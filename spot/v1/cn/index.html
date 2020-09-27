@@ -527,6 +527,9 @@
             <a href="#4832b46474" class="toc-h1 toc-link" data-title="现货 / 杠杆交易">现货 / 杠杆交易</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#5ea2e0cde2-5" class="toc-h2 toc-link" data-title="简介">简介</a>
+                  </li>
+                  <li>
                     <a href="#fd6ce2a756" class="toc-h2 toc-link" data-title="下单">下单</a>
                   </li>
                   <li>
@@ -574,7 +577,7 @@
             <a href="#60bd10ac69" class="toc-h1 toc-link" data-title="策略委托">策略委托</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#5ea2e0cde2-5" class="toc-h2 toc-link" data-title="简介">简介</a>
+                    <a href="#5ea2e0cde2-6" class="toc-h2 toc-link" data-title="简介">简介</a>
                   </li>
                   <li>
                     <a href="#59cfd288e6" class="toc-h2 toc-link" data-title="策略委托下单">策略委托下单</a>
@@ -678,7 +681,7 @@
             <a href="#websocket" class="toc-h1 toc-link" data-title="Websocket行情数据">Websocket行情数据</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#5ea2e0cde2-6" class="toc-h2 toc-link" data-title="简介">简介</a>
+                    <a href="#5ea2e0cde2-7" class="toc-h2 toc-link" data-title="简介">简介</a>
                   </li>
                   <li>
                     <a href="#k-2" class="toc-h2 toc-link" data-title="K线数据">K线数据</a>
@@ -710,7 +713,7 @@
             <a href="#websocket-2" class="toc-h1 toc-link" data-title="Websocket资产及订单">Websocket资产及订单</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#5ea2e0cde2-7" class="toc-h2 toc-link" data-title="简介">简介</a>
+                    <a href="#5ea2e0cde2-8" class="toc-h2 toc-link" data-title="简介">简介</a>
                   </li>
                   <li>
                     <a href="#7a9a8e63b7" class="toc-h2 toc-link" data-title="订阅账户更新（即将废弃）">订阅账户更新（即将废弃）</a>
@@ -736,7 +739,7 @@
             <a href="#websocket-v2" class="toc-h1 toc-link" data-title="Websocket资产及订单（v2）">Websocket资产及订单（v2）</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#5ea2e0cde2-8" class="toc-h2 toc-link" data-title="简介">简介</a>
+                    <a href="#5ea2e0cde2-9" class="toc-h2 toc-link" data-title="简介">简介</a>
                   </li>
                   <li>
                     <a href="#f810bc2ca6" class="toc-h2 toc-link" data-title="订阅订单更新">订阅订单更新</a>
@@ -4422,7 +4425,9 @@ curl &quot;https://api.huobi.pro/market/tickers&quot;
 </tr>
 </tbody></table>
 <h1 id='2a0d0be224'>账户相关</h1><h2 id='5ea2e0cde2-3'>简介</h2>
-<p>账户相关接口提供了账户、余额、历史、点卡等查询以及资产划转等功能。访问账户相关的接口需要进行签名认证。</p>
+<p>账户相关接口提供了账户、余额、历史、点卡等查询以及资产划转等功能。</p>
+
+<p>访问账户相关的接口需要进行签名认证。</p>
 
 <p>以下是账户相关接口返回的错误码、错误消息以及说明。</p>
 
@@ -5853,7 +5858,9 @@ endTime缺省值：当前时间</p>
 </tr>
 </tbody></table>
 <h1 id='3a8e02ba8f'>钱包（充提相关）</h1><h2 id='5ea2e0cde2-4'>简介</h2>
-<p>充提相关接口提供了充币地址、提币地址、提币额度、充提记录等查询，以及提币、取消提币等功能。访问充提相关的接口需要进行签名认证。</p>
+<p>充提相关接口提供了充币地址、提币地址、提币额度、充提记录等查询，以及提币、取消提币等功能。</p>
+
+<p>访问充提相关的接口需要进行签名认证。</p>
 
 <p>以下是充提相关接口返回的返回码、返回消息以及说明。</p>
 
@@ -8827,10 +8834,226 @@ endTime缺省值：当前时间<br></p>
 <td>-</td>
 </tr>
 </tbody></table>
-<h1 id='4832b46474'>现货 / 杠杆交易</h1>
-<aside class="notice">访问交易相关的接口需要进行签名认证。</aside>
+<h1 id='4832b46474'>现货 / 杠杆交易</h1><h2 id='5ea2e0cde2-5'>简介</h2>
+<p>现货/杠杆交易接口提供了下单、撤单、订单查询、成交查询、手续费率查询等功能。</p>
 
-<aside class="warning">参数"account-id"和"source"需要准确填写，请参见下面的请求参数说明。</aside>
+<p>下单参数&quot;account-id&quot;和&quot;source&quot;需要准确填写，请参见下面各个接口的请求参数说明。</p>
+
+<p>访问交易相关的接口需要进行签名认证。</p>
+
+<p>以下是交易相关接口返回的返回码以及说明。</p>
+
+<table><thead>
+<tr>
+<th>返回码</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base-argument-unsupported</td>
+<td>某参数不支持，请检查参数</td>
+</tr>
+<tr>
+<td>base-system-error</td>
+<td>系统错误，如果是撤单：缓存中查不到订单状态，该订单无法撤单；如果是下单：订单入缓存失败，请再次尝试</td>
+</tr>
+<tr>
+<td>login-required</td>
+<td>url中没有Signature参数或找不到此用户（key与账户id不对应等情况）</td>
+</tr>
+<tr>
+<td>parameter-required</td>
+<td>止盈止损订单缺少参数 stop-price或operator</td>
+</tr>
+<tr>
+<td>order-amount-over-limit</td>
+<td>订单数量超出限额</td>
+</tr>
+<tr>
+<td>base-symbol-trade-disabled</td>
+<td>该交易对被禁止交易</td>
+</tr>
+<tr>
+<td>base-operation-forbidden</td>
+<td>用户不在白名单内或该币种不允许OTC交易等禁止行为</td>
+</tr>
+<tr>
+<td>account-get-accounts-inexistent-error</td>
+<td>该账户在该用户下不存在</td>
+</tr>
+<tr>
+<td>account-account-id-inexistent</td>
+<td>该账户不存在</td>
+</tr>
+<tr>
+<td>operation-forbidden-for-fl-account-state</td>
+<td>账户爆仓状态下禁止订单操作</td>
+</tr>
+<tr>
+<td>sub-user-auth-required</td>
+<td>子用户未开通逐仓杠杆权限</td>
+</tr>
+<tr>
+<td>order-disabled</td>
+<td>交易对暂停，无法下单</td>
+</tr>
+<tr>
+<td>cancel-disabled</td>
+<td>交易对暂停，无法撤单</td>
+</tr>
+<tr>
+<td>order-invalid-price</td>
+<td>下单价格非法</td>
+</tr>
+<tr>
+<td>order-accountbalance-error</td>
+<td>账户余额不足</td>
+</tr>
+<tr>
+<td>order-limitorder-price-min-error</td>
+<td>卖出价格不能低于指定价格</td>
+</tr>
+<tr>
+<td>order-limitorder-price-max-error</td>
+<td>买入价格不能高于指定价格</td>
+</tr>
+<tr>
+<td>order-limitorder-amount-min-error</td>
+<td>下单数量不能低于指定数量</td>
+</tr>
+<tr>
+<td>order-limitorder-amount-max-error</td>
+<td>下单数量不能高于指定数量</td>
+</tr>
+<tr>
+<td>order-etp-nav-price-min-error</td>
+<td>下单价格不能低于净值的指定比率</td>
+</tr>
+<tr>
+<td>order-etp-nav-price-max-error</td>
+<td>下单价格不能高于净值等指定比率</td>
+</tr>
+<tr>
+<td>order-orderprice-precision-error</td>
+<td>交易价格精度错误</td>
+</tr>
+<tr>
+<td>order-orderamount-precision-error</td>
+<td>交易数额精度错误</td>
+</tr>
+<tr>
+<td>order-value-min-error</td>
+<td>订单交易额不能低于指定额度</td>
+</tr>
+<tr>
+<td>order-marketorder-amount-min-error</td>
+<td>市价单交易数额错误不能低于指定数额</td>
+</tr>
+<tr>
+<td>order-marketorder-amount-max-error</td>
+<td>市价单交易数额错误不能大于指定数额</td>
+</tr>
+<tr>
+<td>order-type-invalid</td>
+<td>订单类型非法</td>
+</tr>
+<tr>
+<td>order-orderstate-error</td>
+<td>订单状态错误</td>
+</tr>
+<tr>
+<td>order-date-limit-error</td>
+<td>查询时间不能超过系统限制</td>
+</tr>
+<tr>
+<td>order-source-invalid</td>
+<td>订单来源非法</td>
+</tr>
+<tr>
+<td>order-update-error</td>
+<td>更新数据错误</td>
+</tr>
+<tr>
+<td>order-fl-cancellation-is-disallowed</td>
+<td>禁止撤销爆仓单</td>
+</tr>
+<tr>
+<td>operation-forbidden-for-fl-account-state</td>
+<td>账户爆仓状态下禁止订单操作</td>
+</tr>
+<tr>
+<td>operation-forbidden-for-lock-account-state</td>
+<td>账户lock状态下禁止订单操作或c2c借款账户被禁止下撤单</td>
+</tr>
+<tr>
+<td>fl-order-already-existed</td>
+<td>爆仓单已经存在 而且未成交</td>
+</tr>
+<tr>
+<td>order-user-cancel-forbidden</td>
+<td>订单类型为IOC或FOK 不允许撤单</td>
+</tr>
+<tr>
+<td>account-state-invalid</td>
+<td>不支持的爆仓账户状态</td>
+</tr>
+<tr>
+<td>order-price-greater-than-limit</td>
+<td>下单价格高于开盘前下单限制价格，请重新下单</td>
+</tr>
+<tr>
+<td>order-price-less-than-limit</td>
+<td>下单价格低于开盘前下单限制价格，请重新下单</td>
+</tr>
+<tr>
+<td>order-stop-order-hit-trigger</td>
+<td>止盈止损单下单被当前价触发</td>
+</tr>
+<tr>
+<td>market-orders-not-support-during-limit-price-trading</td>
+<td>限时下单不支持市价单</td>
+</tr>
+<tr>
+<td>price-exceeds-the-protective-price-during-limit-price-trading</td>
+<td>限价时间内价格超出保护价</td>
+</tr>
+<tr>
+<td>invalid-client-order-id</td>
+<td>client order id 已重复</td>
+</tr>
+<tr>
+<td>invalid-interval</td>
+<td>查询起止窗口设置错误</td>
+</tr>
+<tr>
+<td>invalid-start-date</td>
+<td>查询起始日期含非法取值</td>
+</tr>
+<tr>
+<td>invalid-end-date</td>
+<td>查询起始日期含非法取值</td>
+</tr>
+<tr>
+<td>invalid-start-time</td>
+<td>查询起始时间含非法取值</td>
+</tr>
+<tr>
+<td>invalid-end-time</td>
+<td>查询起始时间含非法取值</td>
+</tr>
+<tr>
+<td>symbol-not-support</td>
+<td>交易对不支持，全仓杠杆或c2c</td>
+</tr>
+<tr>
+<td>not-found</td>
+<td>撤单时订单不存在</td>
+</tr>
+<tr>
+<td>base-not-found</td>
+<td>撤单时无效clientorderid撤单过多，一个小时后再重试</td>
+</tr>
+</tbody></table>
 <h2 id='fd6ce2a756'>下单</h2>
 <p>API Key 权限：交易
 限频值；100次/2s</p>
@@ -11154,7 +11377,7 @@ endTime缺省值：当前时间<br></p>
 <p>注：<br>
 - 如makerFeeRate/actualMakerRate为正值，该字段意为交易手续费率；<br>
 - 如makerFeeRate/actualMakerRate为负值，该字段意为交易返佣费率。<br></p>
-<h1 id='60bd10ac69'>策略委托</h1><h2 id='5ea2e0cde2-5'>简介</h2>
+<h1 id='60bd10ac69'>策略委托</h1><h2 id='5ea2e0cde2-6'>简介</h2>
 <p>策略委托，目前仅包括计划委托及追踪委托。与现有止盈止损订单相比，计划委托/追踪委托有以下显著不同 –<br></p>
 
 <p>1）    计划委托/追踪委托被创建后，未触发前，交易所将不会冻结委托保证金。仅当计划委托成功触发后，交易所才会冻结该委托的保证金。<br>
@@ -15072,7 +15295,7 @@ API Key 权限：读取<br></p>
 <p>注：<br>
 • 账户子类型trade, loan, interest, advance仅对借入账户有效；<br>
 • 账户子类型trade, lending, earnings仅对借出账户有效。<br></p>
-<h1 id='websocket'>Websocket行情数据</h1><h2 id='5ea2e0cde2-6'>简介</h2><h3 id='url'>接入URL</h3>
+<h1 id='websocket'>Websocket行情数据</h1><h2 id='5ea2e0cde2-7'>简介</h2><h3 id='url'>接入URL</h3>
 <p><strong>Global站行情请求地址（除MBP增量推送及MBP全量REQ以外Websocket行情频道）</strong></p>
 
 <p><strong><code>wss://api.huobi.pro/ws</code></strong>  </p>
@@ -16160,7 +16383,7 @@ API Key 权限：读取<br></p>
 <td>实际杠杆率</td>
 </tr>
 </tbody></table>
-<h1 id='websocket-2'>Websocket资产及订单</h1><h2 id='5ea2e0cde2-7'>简介</h2><h3 id='url-2'>接入URL</h3>
+<h1 id='websocket-2'>Websocket资产及订单</h1><h2 id='5ea2e0cde2-8'>简介</h2><h3 id='url-2'>接入URL</h3>
 <p><strong>Websocket资产及订单</strong></p>
 
 <p><strong><code>wss://api.huobi.pro/ws/v1</code></strong>  </p>
@@ -17290,7 +17513,7 @@ API Key 权限：读取<br></p>
 <td>止盈止损订单触发价运算符</td>
 </tr>
 </tbody></table>
-<h1 id='websocket-v2'>Websocket资产及订单（v2）</h1><h2 id='5ea2e0cde2-8'>简介</h2><h3 id='url-3'>接入URL</h3>
+<h1 id='websocket-v2'>Websocket资产及订单（v2）</h1><h2 id='5ea2e0cde2-9'>简介</h2><h3 id='url-3'>接入URL</h3>
 <p><strong>Websocket资产及订单（v2）</strong></p>
 
 <p><strong><code>wss://api.huobi.pro/ws/v2</code></strong>  </p>
