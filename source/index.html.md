@@ -7487,9 +7487,9 @@ symbol    | string    | true     | NA                    | 交易代码         
 |	amount }	|	float	|	金额	|
 |	actualLeverage	|	float	|	实际杠杆率	|
 
-# Websocket资产及订单
+# Websocket资产及订单（即将废弃）
 
-## 简介
+## 简介（即将废弃）
 
 ### 接入URL
 
