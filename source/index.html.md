@@ -2006,7 +2006,23 @@ symbol    | string    | true     | NA      | 杠杆ETP交易对
 
 # 账户相关
 
+## 简介
+
 账户相关接口提供了账户、余额、历史、点卡等查询以及资产划转等功能。访问账户相关的接口需要进行签名认证。
+
+以下是账户相关接口返回的错误码、错误消息以及说明。
+
+| 错误码 | 错误消息 | 说明 |
+|---------  |-----------  |---------  |
+| 500 | system error | 调用内部服务异常|
+| 1002 | forbidden |用户入参中accountId与UID不一致 |
+| 2002 | "invalid field value in `currency`" |currency不符合正则规则^[a-z0-9]{2,10}$ |
+| 2002 | "invalid field value in `transactTypes`" | 变动类型transactTypes不是“transfer” |
+| 2002 | "invalid field value in `sort`" |分页请求参数不是合法的"asc或desc" |
+| 2002 | "value in `fromId` is not found in record” | 未找到fromId |
+| 2002 | "invalid field value in `accountId`" | 查询参数中accountId为空 |
+| 2002 | "value in `startTime` exceeded valid range"  | 入参查询时间大于当前时间，或者距离当前时间超过180天 |
+| 2002 | "value in `endTime` exceeded valid range") | 查询结束时间小于开始时间，或者查询时间跨度大于10天 |
 
 ## 账户信息 
 
