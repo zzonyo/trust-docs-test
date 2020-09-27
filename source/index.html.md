@@ -2015,7 +2015,7 @@ symbol    | string    | true     | NA      | 杠杆ETP交易对
 | 错误码 | 错误消息 | 说明 |
 |---------  |-----------  |---------  |
 | 500 | system error | 调用内部服务异常|
-| 1002 | forbidden |用户入参中accountId与UID不一致 |
+| 1002 | forbidden |禁止操作，如用户入参中accountId与UID不一致 |
 | 2002 | "invalid field value in `currency`" |currency不符合正则规则^[a-z0-9]{2,10}$ |
 | 2002 | "invalid field value in `transactTypes`" | 变动类型transactTypes不是“transfer” |
 | 2002 | "invalid field value in `sort`" |分页请求参数不是合法的"asc或desc" |
