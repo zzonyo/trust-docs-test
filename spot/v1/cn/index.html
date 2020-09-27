@@ -413,6 +413,9 @@
             <a href="#2a0d0be224" class="toc-h1 toc-link" data-title="账户相关">账户相关</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#5ea2e0cde2-3" class="toc-h2 toc-link" data-title="简介">简介</a>
+                  </li>
+                  <li>
                     <a href="#bd9157656f" class="toc-h2 toc-link" data-title="账户信息">账户信息</a>
                   </li>
                   <li>
@@ -445,7 +448,7 @@
             <a href="#3a8e02ba8f" class="toc-h1 toc-link" data-title="钱包（充提相关）">钱包（充提相关）</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#5ea2e0cde2-3" class="toc-h2 toc-link" data-title="简介">简介</a>
+                    <a href="#5ea2e0cde2-4" class="toc-h2 toc-link" data-title="简介">简介</a>
                   </li>
                   <li>
                     <a href="#85e9327073" class="toc-h2 toc-link" data-title="充币地址查询">充币地址查询</a>
@@ -571,7 +574,7 @@
             <a href="#60bd10ac69" class="toc-h1 toc-link" data-title="策略委托">策略委托</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#5ea2e0cde2-4" class="toc-h2 toc-link" data-title="简介">简介</a>
+                    <a href="#5ea2e0cde2-5" class="toc-h2 toc-link" data-title="简介">简介</a>
                   </li>
                   <li>
                     <a href="#59cfd288e6" class="toc-h2 toc-link" data-title="策略委托下单">策略委托下单</a>
@@ -675,7 +678,7 @@
             <a href="#websocket" class="toc-h1 toc-link" data-title="Websocket行情数据">Websocket行情数据</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#5ea2e0cde2-5" class="toc-h2 toc-link" data-title="简介">简介</a>
+                    <a href="#5ea2e0cde2-6" class="toc-h2 toc-link" data-title="简介">简介</a>
                   </li>
                   <li>
                     <a href="#k-2" class="toc-h2 toc-link" data-title="K线数据">K线数据</a>
@@ -707,7 +710,7 @@
             <a href="#websocket-2" class="toc-h1 toc-link" data-title="Websocket资产及订单">Websocket资产及订单</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#5ea2e0cde2-6" class="toc-h2 toc-link" data-title="简介">简介</a>
+                    <a href="#5ea2e0cde2-7" class="toc-h2 toc-link" data-title="简介">简介</a>
                   </li>
                   <li>
                     <a href="#7a9a8e63b7" class="toc-h2 toc-link" data-title="订阅账户更新（即将废弃）">订阅账户更新（即将废弃）</a>
@@ -733,7 +736,7 @@
             <a href="#websocket-v2" class="toc-h1 toc-link" data-title="Websocket资产及订单（v2）">Websocket资产及订单（v2）</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#5ea2e0cde2-7" class="toc-h2 toc-link" data-title="简介">简介</a>
+                    <a href="#5ea2e0cde2-8" class="toc-h2 toc-link" data-title="简介">简介</a>
                   </li>
                   <li>
                     <a href="#f810bc2ca6" class="toc-h2 toc-link" data-title="订阅订单更新">订阅订单更新</a>
@@ -4418,8 +4421,64 @@ curl &quot;https://api.huobi.pro/market/tickers&quot;
 <td>实际杠杆率</td>
 </tr>
 </tbody></table>
-<h1 id='2a0d0be224'>账户相关</h1>
+<h1 id='2a0d0be224'>账户相关</h1><h2 id='5ea2e0cde2-3'>简介</h2>
 <p>账户相关接口提供了账户、余额、历史、点卡等查询以及资产划转等功能。访问账户相关的接口需要进行签名认证。</p>
+
+<p>以下是账户相关接口返回的错误码、错误消息以及说明。</p>
+
+<table><thead>
+<tr>
+<th>错误码</th>
+<th>错误消息</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>500</td>
+<td>system error</td>
+<td>调用内部服务异常</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>forbidden</td>
+<td>用户入参中accountId与UID不一致</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;invalid field value in <code>currency</code>&quot;</td>
+<td>currency不符合正则规则^[a-z0-9]{2,10}$</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;invalid field value in <code>transactTypes</code>&quot;</td>
+<td>变动类型transactTypes不是“transfer”</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;invalid field value in <code>sort</code>&quot;</td>
+<td>分页请求参数不是合法的&quot;asc或desc&quot;</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;value in <code>fromId</code> is not found in record”</td>
+<td>未找到fromId</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;invalid field value in <code>accountId</code>&quot;</td>
+<td>查询参数中accountId为空</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;value in <code>startTime</code> exceeded valid range&quot;</td>
+<td>入参查询时间大于当前时间，或者距离当前时间超过180天</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;value in <code>endTime</code> exceeded valid range&quot;)</td>
+<td>查询结束时间小于开始时间，或者查询时间跨度大于10天</td>
+</tr>
+</tbody></table>
 <h2 id='bd9157656f'>账户信息</h2>
 <p>API Key 权限：读取<br>
 限频值（NEW）：100次/2s</p>
@@ -5793,7 +5852,7 @@ endTime缺省值：当前时间</p>
 <td>划转交易时间（unix time in millisecond）</td>
 </tr>
 </tbody></table>
-<h1 id='3a8e02ba8f'>钱包（充提相关）</h1><h2 id='5ea2e0cde2-3'>简介</h2>
+<h1 id='3a8e02ba8f'>钱包（充提相关）</h1><h2 id='5ea2e0cde2-4'>简介</h2>
 <p>充提相关接口提供了充币地址、提币地址、提币额度、充提记录等查询，以及提币、取消提币等功能。访问充提相关的接口需要进行签名认证。</p>
 
 <p>以下是充提相关接口返回的返回码、返回消息以及说明。</p>
@@ -11095,7 +11154,7 @@ endTime缺省值：当前时间<br></p>
 <p>注：<br>
 - 如makerFeeRate/actualMakerRate为正值，该字段意为交易手续费率；<br>
 - 如makerFeeRate/actualMakerRate为负值，该字段意为交易返佣费率。<br></p>
-<h1 id='60bd10ac69'>策略委托</h1><h2 id='5ea2e0cde2-4'>简介</h2>
+<h1 id='60bd10ac69'>策略委托</h1><h2 id='5ea2e0cde2-5'>简介</h2>
 <p>策略委托，目前仅包括计划委托及追踪委托。与现有止盈止损订单相比，计划委托/追踪委托有以下显著不同 –<br></p>
 
 <p>1）    计划委托/追踪委托被创建后，未触发前，交易所将不会冻结委托保证金。仅当计划委托成功触发后，交易所才会冻结该委托的保证金。<br>
@@ -15013,7 +15072,7 @@ API Key 权限：读取<br></p>
 <p>注：<br>
 • 账户子类型trade, loan, interest, advance仅对借入账户有效；<br>
 • 账户子类型trade, lending, earnings仅对借出账户有效。<br></p>
-<h1 id='websocket'>Websocket行情数据</h1><h2 id='5ea2e0cde2-5'>简介</h2><h3 id='url'>接入URL</h3>
+<h1 id='websocket'>Websocket行情数据</h1><h2 id='5ea2e0cde2-6'>简介</h2><h3 id='url'>接入URL</h3>
 <p><strong>Global站行情请求地址（除MBP增量推送及MBP全量REQ以外Websocket行情频道）</strong></p>
 
 <p><strong><code>wss://api.huobi.pro/ws</code></strong>  </p>
@@ -16101,7 +16160,7 @@ API Key 权限：读取<br></p>
 <td>实际杠杆率</td>
 </tr>
 </tbody></table>
-<h1 id='websocket-2'>Websocket资产及订单</h1><h2 id='5ea2e0cde2-6'>简介</h2><h3 id='url-2'>接入URL</h3>
+<h1 id='websocket-2'>Websocket资产及订单</h1><h2 id='5ea2e0cde2-7'>简介</h2><h3 id='url-2'>接入URL</h3>
 <p><strong>Websocket资产及订单</strong></p>
 
 <p><strong><code>wss://api.huobi.pro/ws/v1</code></strong>  </p>
@@ -17231,7 +17290,7 @@ API Key 权限：读取<br></p>
 <td>止盈止损订单触发价运算符</td>
 </tr>
 </tbody></table>
-<h1 id='websocket-v2'>Websocket资产及订单（v2）</h1><h2 id='5ea2e0cde2-7'>简介</h2><h3 id='url-3'>接入URL</h3>
+<h1 id='websocket-v2'>Websocket资产及订单（v2）</h1><h2 id='5ea2e0cde2-8'>简介</h2><h3 id='url-3'>接入URL</h3>
 <p><strong>Websocket资产及订单（v2）</strong></p>
 
 <p><strong><code>wss://api.huobi.pro/ws/v2</code></strong>  </p>
