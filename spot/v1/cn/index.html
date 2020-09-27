@@ -15780,6 +15780,57 @@ API Key 权限：读取<br></p>
 <p>数据请求（req）限频规则</p>
 
 <p>单个连接每两次请求不能小于100ms。</p>
+<h3 id='e08c1d4f9a-3'>错误码</h3>
+<p>以下是行情WebSocket接口的错误码、错误消息和说明。</p>
+
+<table><thead>
+<tr>
+<th>错误码</th>
+<th>错误消息</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bad-request</td>
+<td>invalid topic</td>
+<td>topic错误</td>
+</tr>
+<tr>
+<td>bad-request</td>
+<td>invalid symbol</td>
+<td>symbol错误</td>
+</tr>
+<tr>
+<td>bad-request</td>
+<td>symbol trade not open now</td>
+<td>该交易对未到开始交易时间</td>
+</tr>
+<tr>
+<td>bad-request</td>
+<td>429 too many request</td>
+<td>req 请求太频繁</td>
+</tr>
+<tr>
+<td>bad-request</td>
+<td>unsub with not subbed topic</td>
+<td>未订阅该主题</td>
+</tr>
+<tr>
+<td>bad-request</td>
+<td>not json string</td>
+<td>发送的请求不是JSON格式</td>
+</tr>
+<tr>
+<td>1008</td>
+<td>header required correct cloud-exchange</td>
+<td>exchangeCode 参数错误</td>
+</tr>
+<tr>
+<td>bad-request</td>
+<td>request timeout</td>
+<td>请求超时</td>
+</tr>
+</tbody></table>
 <h2 id='k-2'>K线数据</h2><h3 id='a94c7743c5'>主题订阅</h3>
 <p>一旦K线数据产生，Websocket服务器将通过此订阅主题接口推送至客户端：</p>
 
@@ -19071,7 +19122,7 @@ API Key 权限：读取</p>
 <td>时间（一般为接口请求时间向后延伸10秒）</td>
 </tr>
 </tbody></table>
-<h3 id='e08c1d4f9a-3'>错误码</h3>
+<h3 id='e08c1d4f9a-4'>错误码</h3>
 <table><thead>
 <tr>
 <th>响应码</th>
@@ -19176,7 +19227,7 @@ API Key 权限：交易</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e08c1d4f9a-4'>错误码</h3>
+<h3 id='e08c1d4f9a-5'>错误码</h3>
 <table><thead>
 <tr>
 <th>响应码</th>
