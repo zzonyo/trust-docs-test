@@ -603,6 +603,9 @@
             <a href="#ffdaa3c288" class="toc-h1 toc-link" data-title="借币（逐仓杠杆）">借币（逐仓杠杆）</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#5ea2e0cde2-8" class="toc-h2 toc-link" data-title="简介">简介</a>
+                  </li>
+                  <li>
                     <a href="#0d3c2e7382-2" class="toc-h2 toc-link" data-title="资产划转">资产划转</a>
                   </li>
                   <li>
@@ -684,7 +687,7 @@
             <a href="#websocket" class="toc-h1 toc-link" data-title="Websocket行情数据">Websocket行情数据</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#5ea2e0cde2-8" class="toc-h2 toc-link" data-title="简介">简介</a>
+                    <a href="#5ea2e0cde2-9" class="toc-h2 toc-link" data-title="简介">简介</a>
                   </li>
                   <li>
                     <a href="#k-2" class="toc-h2 toc-link" data-title="K线数据">K线数据</a>
@@ -716,7 +719,7 @@
             <a href="#websocket-2" class="toc-h1 toc-link" data-title="Websocket资产及订单">Websocket资产及订单</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#5ea2e0cde2-9" class="toc-h2 toc-link" data-title="简介">简介</a>
+                    <a href="#5ea2e0cde2-10" class="toc-h2 toc-link" data-title="简介">简介</a>
                   </li>
                   <li>
                     <a href="#7a9a8e63b7" class="toc-h2 toc-link" data-title="订阅账户更新（即将废弃）">订阅账户更新（即将废弃）</a>
@@ -742,7 +745,7 @@
             <a href="#websocket-v2" class="toc-h1 toc-link" data-title="Websocket资产及订单（v2）">Websocket资产及订单（v2）</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#5ea2e0cde2-10" class="toc-h2 toc-link" data-title="简介">简介</a>
+                    <a href="#5ea2e0cde2-11" class="toc-h2 toc-link" data-title="简介">简介</a>
                   </li>
                   <li>
                     <a href="#f810bc2ca6" class="toc-h2 toc-link" data-title="订阅订单更新">订阅订单更新</a>
@@ -6877,7 +6880,7 @@ endTime缺省值：当前时间</p>
 </tr>
 <tr>
 <td>2016</td>
-<td>invalid request while value <code>{0}</code> specified in sub user states</td>
+<td>invalid request while value specified in sub user states</td>
 <td>冻结/解冻失败</td>
 </tr>
 </tbody></table>
@@ -12440,10 +12443,134 @@ API Key 权限：读取<br>
 <td>订单被拒错误消息（仅对orderStatus=rejected有效）</td>
 </tr>
 </tbody></table>
-<h1 id='ffdaa3c288'>借币（逐仓杠杆）</h1>
+<h1 id='ffdaa3c288'>借币（逐仓杠杆）</h1><h2 id='5ea2e0cde2-8'>简介</h2>
+<p>逐仓杠杆接口提供了逐仓杠杆账户借币、还币、查询、划转等功能</p>
+
 <aside class="notice">访问借币相关的接口需要进行签名认证。</aside>
 
 <aside class="notice">目前逐仓杠杆交易仅支持部分以 USDT，HSUD， 和 BTC 为报价币种的交易对。</aside>
+
+<p>以下是逐仓杠杆接口的返回码和说明。</p>
+
+<table><thead>
+<tr>
+<th>返回码</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account-transfer-balance-insufficient-error</td>
+<td>账户余额不足</td>
+</tr>
+<tr>
+<td>account-transfer-balance-overflow-error</td>
+<td>负账户余额溢出</td>
+</tr>
+<tr>
+<td>account-transfer-balance-insufficient_error</td>
+<td>账户余额不足（不区分动作类型）</td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>自定义错误消息</td>
+</tr>
+<tr>
+<td>base-system-error</td>
+<td>系统异常</td>
+</tr>
+<tr>
+<td>base-currency-error</td>
+<td>currency不存在</td>
+</tr>
+<tr>
+<td>base-symbol-error</td>
+<td>symbol不存在</td>
+</tr>
+<tr>
+<td>base-margin-symbol-invalid</td>
+<td>非法借贷交易对(非法交易对或者被禁止借贷的交易对)</td>
+</tr>
+<tr>
+<td>base-record-invalid</td>
+<td>记录无效</td>
+</tr>
+<tr>
+<td>base-request-timeout</td>
+<td>请求超时，请稍后再试</td>
+</tr>
+<tr>
+<td>base_request_exceed_number_limit</td>
+<td>请求人数过多，请稍后再试</td>
+</tr>
+<tr>
+<td>base-date-limit-error</td>
+<td>日期错误</td>
+</tr>
+<tr>
+<td>base-update-error</td>
+<td>更新数据错误</td>
+</tr>
+<tr>
+<td>base-operation-forbidden 禁止操作</td>
+<td>非计息状态 禁止还款</td>
+</tr>
+<tr>
+<td>dw-insufficient-balance</td>
+<td>余额不足</td>
+</tr>
+<tr>
+<td>dw-account-transfer-error</td>
+<td>转账错误</td>
+</tr>
+<tr>
+<td>frequent-invoke</td>
+<td>操作过于频繁，请稍后重试</td>
+</tr>
+<tr>
+<td>loan-order-not-found</td>
+<td>订单未找到</td>
+</tr>
+<tr>
+<td>loan-amount-scale-limit</td>
+<td>借贷&amp;还款 金额精度限制</td>
+</tr>
+<tr>
+<td>loan-repay-max-limit</td>
+<td>偿还大于借贷</td>
+</tr>
+<tr>
+<td>loan-insufficient-balance</td>
+<td>余额不足</td>
+</tr>
+<tr>
+<td>login-required</td>
+<td>需要登录</td>
+</tr>
+<tr>
+<td>margin-country-not-allow</td>
+<td>国家未开放借贷</td>
+</tr>
+<tr>
+<td>margin-country-auth-required</td>
+<td>国家未开放借贷，需要认证</td>
+</tr>
+<tr>
+<td>margin-trading-is-not-available</td>
+<td>暂不支持逐仓杠杆交易--禁止土耳其籍或通过土耳其KYC的用户进行逐仓杠杆借币</td>
+</tr>
+<tr>
+<td>margin-account-state-error</td>
+<td>账户状态异常(爆仓中)</td>
+</tr>
+<tr>
+<td>risk-verification-failed</td>
+<td>风控拦截通用错误码</td>
+</tr>
+<tr>
+<td>sub-user-auth-required</td>
+<td>需要母用户授权子用户</td>
+</tr>
+</tbody></table>
 <h2 id='0d3c2e7382-2'>资产划转</h2>
 <p>API Key 权限：交易<br>
 限频值（NEW）：2次/2s</p>
@@ -15347,7 +15474,7 @@ API Key 权限：读取<br></p>
 <p>注：<br>
 • 账户子类型trade, loan, interest, advance仅对借入账户有效；<br>
 • 账户子类型trade, lending, earnings仅对借出账户有效。<br></p>
-<h1 id='websocket'>Websocket行情数据</h1><h2 id='5ea2e0cde2-8'>简介</h2><h3 id='url'>接入URL</h3>
+<h1 id='websocket'>Websocket行情数据</h1><h2 id='5ea2e0cde2-9'>简介</h2><h3 id='url'>接入URL</h3>
 <p><strong>Global站行情请求地址（除MBP增量推送及MBP全量REQ以外Websocket行情频道）</strong></p>
 
 <p><strong><code>wss://api.huobi.pro/ws</code></strong>  </p>
@@ -16435,7 +16562,7 @@ API Key 权限：读取<br></p>
 <td>实际杠杆率</td>
 </tr>
 </tbody></table>
-<h1 id='websocket-2'>Websocket资产及订单</h1><h2 id='5ea2e0cde2-9'>简介</h2><h3 id='url-2'>接入URL</h3>
+<h1 id='websocket-2'>Websocket资产及订单</h1><h2 id='5ea2e0cde2-10'>简介</h2><h3 id='url-2'>接入URL</h3>
 <p><strong>Websocket资产及订单</strong></p>
 
 <p><strong><code>wss://api.huobi.pro/ws/v1</code></strong>  </p>
@@ -17565,7 +17692,7 @@ API Key 权限：读取<br></p>
 <td>止盈止损订单触发价运算符</td>
 </tr>
 </tbody></table>
-<h1 id='websocket-v2'>Websocket资产及订单（v2）</h1><h2 id='5ea2e0cde2-10'>简介</h2><h3 id='url-3'>接入URL</h3>
+<h1 id='websocket-v2'>Websocket资产及订单（v2）</h1><h2 id='5ea2e0cde2-11'>简介</h2><h3 id='url-3'>接入URL</h3>
 <p><strong>Websocket资产及订单（v2）</strong></p>
 
 <p><strong><code>wss://api.huobi.pro/ws/v2</code></strong>  </p>
