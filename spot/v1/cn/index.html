@@ -762,8 +762,11 @@
               </ul>
           </li>
           <li>
-            <a href="#d85352d62b" class="toc-h1 toc-link" data-title="稳定币兑换">稳定币兑换</a>
+            <a href="#ac95c322ab" class="toc-h1 toc-link" data-title="稳定币">稳定币</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#5ea2e0cde2-13" class="toc-h2 toc-link" data-title="简介">简介</a>
+                  </li>
                   <li>
                     <a href="#612d7943b6" class="toc-h2 toc-link" data-title="稳定币兑换价格查询">稳定币兑换价格查询</a>
                   </li>
@@ -776,7 +779,7 @@
             <a href="#etf-hb10" class="toc-h1 toc-link" data-title="ETF（HB10）">ETF（HB10）</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#5ea2e0cde2-13" class="toc-h2 toc-link" data-title="简介">简介</a>
+                    <a href="#5ea2e0cde2-14" class="toc-h2 toc-link" data-title="简介">简介</a>
                   </li>
                   <li>
                     <a href="#b122f813d5" class="toc-h2 toc-link" data-title="基本信息">基本信息</a>
@@ -793,7 +796,7 @@
             <a href="#etp-3" class="toc-h1 toc-link" data-title="杠杆ETP">杠杆ETP</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#5ea2e0cde2-14" class="toc-h2 toc-link" data-title="简介">简介</a>
+                    <a href="#5ea2e0cde2-15" class="toc-h2 toc-link" data-title="简介">简介</a>
                   </li>
                   <li>
                     <a href="#8bb7c6b75e" class="toc-h2 toc-link" data-title="基础参考信息">基础参考信息</a>
@@ -19139,7 +19142,55 @@ accounts.update#1<br>
 
 <p>注：<br>
 账户更新推送的是到账金额，多笔成交产生的多笔交易返佣可能会合并到帐。<br></p>
-<h1 id='d85352d62b'>稳定币兑换</h1><h2 id='612d7943b6'>稳定币兑换价格查询</h2>
+<h1 id='ac95c322ab'>稳定币</h1><h2 id='5ea2e0cde2-13'>简介</h2>
+<p>稳定币接口提供了价格查询和兑换功能。</p>
+
+<p>以下是是稳定币接口的错误码和说明。</p>
+
+<table><thead>
+<tr>
+<th>响应码</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>invalid-currency</td>
+<td>币种无效</td>
+</tr>
+<tr>
+<td>invalid-amount</td>
+<td>币种数量小于最低值（1000）或大于当前可兑换额度</td>
+</tr>
+<tr>
+<td>invalid-type</td>
+<td>type不为sell或buy</td>
+</tr>
+<tr>
+<td>quote-failure</td>
+<td>后端其他错误引起的后端其他错误引起的价格查询失败</td>
+</tr>
+<tr>
+<td>invalid-quote-id</td>
+<td>无效的quote-id</td>
+</tr>
+<tr>
+<td>insufficient-balance</td>
+<td>可用余额不足</td>
+</tr>
+<tr>
+<td>insufficient-quota</td>
+<td>稳定币限额不足/超出稳定币限额</td>
+</tr>
+<tr>
+<td>exchange-failure</td>
+<td>后端其他错误引起的兑换失败</td>
+</tr>
+<tr>
+<td>Base-user-request-exceed-limit</td>
+<td>您的操作太频繁，请稍后再试</td>
+</tr>
+</tbody></table>
+<h2 id='612d7943b6'>稳定币兑换价格查询</h2>
 <p>GET v1/stable-coin/quote
 API Key 权限：读取</p>
 <h3 id='1f9ac54b15-87'>请求参数</h3>
@@ -19234,30 +19285,6 @@ API Key 权限：读取</p>
 <td>时间（一般为接口请求时间向后延伸10秒）</td>
 </tr>
 </tbody></table>
-<h3 id='e08c1d4f9a-5'>错误码</h3>
-<table><thead>
-<tr>
-<th>响应码</th>
-<th>说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>invalid-currency</td>
-<td>币种无效</td>
-</tr>
-<tr>
-<td>invalid-amount</td>
-<td>币种数量小于最低值（1000）或大于当前可兑换额度</td>
-</tr>
-<tr>
-<td>invalid-type</td>
-<td>type不为sell或buy</td>
-</tr>
-<tr>
-<td>quote-failure</td>
-<td>后端其他错误引起的后端其他错误引起的价格查询失败</td>
-</tr>
-</tbody></table>
 <h2 id='c2a4e601a0'>兑换稳定币</h2>
 <p>POST v1/stable-coin/exchange
 API Key 权限：交易</p>
@@ -19339,35 +19366,7 @@ API Key 权限：交易</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e08c1d4f9a-6'>错误码</h3>
-<table><thead>
-<tr>
-<th>响应码</th>
-<th>说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>invalid-quote-id</td>
-<td>无效的quote-id</td>
-</tr>
-<tr>
-<td>insufficient-balance</td>
-<td>可用余额不足</td>
-</tr>
-<tr>
-<td>insufficient-quota</td>
-<td>稳定币限额不足/超出稳定币限额</td>
-</tr>
-<tr>
-<td>exchange-failure</td>
-<td>后端其他错误引起的兑换失败</td>
-</tr>
-<tr>
-<td>Base-user-request-exceed-limit</td>
-<td>您的操作太频繁，请稍后再试</td>
-</tr>
-</tbody></table>
-<h1 id='etf-hb10'>ETF（HB10）</h1><h2 id='5ea2e0cde2-13'>简介</h2>
+<h1 id='etf-hb10'>ETF（HB10）</h1><h2 id='5ea2e0cde2-14'>简介</h2>
 <p>ETF接口提供了ETF基本信息、换入、换出、查询等功能。</p>
 
 <p>以下是ETF接口的错误码、错误消息和说明。</p>
@@ -19943,7 +19942,7 @@ API Key 权限：交易</p>
 <td>数量</td>
 </tr>
 </tbody></table>
-<h1 id='etp-3'>杠杆ETP</h1><h2 id='5ea2e0cde2-14'>简介</h2>
+<h1 id='etp-3'>杠杆ETP</h1><h2 id='5ea2e0cde2-15'>简介</h2>
 <p>杠杆ETP接口提供了ETP的换入、换出、调仓、查询等功能。</p>
 
 <p>以下是杠杆ETP接口的错误码、错误消息和说明。</p>
