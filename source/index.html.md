@@ -8848,7 +8848,25 @@ accounts.update#1：
 账户更新推送的是到账金额，多笔成交产生的多笔交易返佣可能会合并到帐。<br>
 
 
-# 稳定币兑换
+# 稳定币
+
+## 简介
+
+稳定币接口提供了价格查询和兑换功能。
+
+以下是是稳定币接口的错误码和说明。
+
+| 响应码 | 说明  |
+| ---- | ----- |
+| invalid-currency | 币种无效 |
+| invalid-amount | 币种数量小于最低值（1000）或大于当前可兑换额度 |
+| invalid-type | type不为sell或buy |
+| quote-failure | 后端其他错误引起的后端其他错误引起的价格查询失败 |
+| invalid-quote-id | 无效的quote-id |
+| insufficient-balance | 可用余额不足 |
+| insufficient-quota | 稳定币限额不足/超出稳定币限额 |
+| exchange-failure | 后端其他错误引起的兑换失败 |
+| Base-user-request-exceed-limit | 您的操作太频繁，请稍后再试 |
 
 ## 稳定币兑换价格查询
 
@@ -8875,15 +8893,6 @@ API Key 权限：读取
 | quoteId     | true | string | 该次稳定币报价唯一ID  |     |
 | expiration     | true | string | 确认兑换有效期  |时间（一般为接口请求时间向后延伸10秒）     |
 
-### 错误码
-
-| 响应码 | 说明  |
-| ---- | ----- |
-| invalid-currency | 币种无效 |
-| invalid-amount | 币种数量小于最低值（1000）或大于当前可兑换额度 |
-| invalid-type | type不为sell或buy |
-| quote-failure | 后端其他错误引起的后端其他错误引起的价格查询失败 |
-
 ## 兑换稳定币
 
 POST v1/stable-coin/exchange
@@ -8906,16 +8915,6 @@ API Key 权限：交易
 | exchange-amount     | true | string | 匹配的HUSD数量  |type=buy时，exchange-amount为用户所需支付的husd数量；type=sell时，exchange-amount为用户可获得的husd数量     |
 | exchange-fee     | true | string | 手续费金额 （单位：HUSD）  |     |
 | time     | true | long | 时间戳  |     |
-
-### 错误码
-
-| 响应码 | 说明  |
-| ---- | ----- |
-| invalid-quote-id | 无效的quote-id |
-| insufficient-balance | 可用余额不足 |
-| insufficient-quota | 稳定币限额不足/超出稳定币限额 |
-| exchange-failure | 后端其他错误引起的兑换失败 |
-| Base-user-request-exceed-limit | 您的操作太频繁，请稍后再试 |
 
 # ETF（HB10）
 
