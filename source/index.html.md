@@ -3008,6 +3008,24 @@ API Key 权限：读取<br>
 
 # 子用户管理
 
+## 简介
+
+子用户管理接口了子用户的创建、查询、权限设置、转账，子用户API Key的创建、修改、查询、删除，子用户充提地址、余额的查询等功能。
+
+访问子用户管理的接口需要进行签名认证。
+
+以下是子用户相关接口返回的返回码、返回消息以及说明。
+
+| 错误码 | 返回消息 | 说明 |
+| ------ | -------- | ---- |
+| 1002 | "forbidden"|禁止操作，如该账户不允许创建子用户|
+| 1003 | "unauthorized”| 未认证 |
+| 2002 | invalid field value | 参数错误 |
+| 2014 | number of sub account in the request exceeded valid range | 子账户数量达到限制 |
+| 2014 | number of api key in the request exceeded valid range | API Key数量超过限制 |
+| 2016 | invalid request while value `{0}` specified in sub user states  | 冻结/解冻失败 |
+
+
 ## 子用户创建
 
 此接口用于母用户进行子用户创建，单次最多50个
@@ -3869,6 +3887,7 @@ balance|-|decimal|-		|账户余额	|-|
 | order-value-min-error | 订单交易额不能低于指定额度 |
 | order-marketorder-amount-min-error | 市价单交易数额错误不能低于指定数额 |
 | order-marketorder-amount-max-error  | 市价单交易数额错误不能大于指定数额 |
+| order-holding-limit-failed | 下单超出该币种的持仓限额 |
 | order-type-invalid | 订单类型非法 |
 | order-orderstate-error | 订单状态错误 |
 | order-date-limit-error | 查询时间不能超过系统限制 |
