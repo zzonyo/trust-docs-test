@@ -2010,7 +2010,7 @@ symbol    | string    | true     | NA      | 杠杆ETP交易对
 
 账户相关接口提供了账户、余额、历史、点卡等查询以及资产划转等功能。
 
-访问账户相关的接口需要进行签名认证。
+<aside class="notice">访问账户相关的接口需要进行签名认证。</aside>
 
 以下是账户相关接口返回的错误码、错误消息以及说明。
 
@@ -2622,7 +2622,7 @@ API Key 权限：交易<br>
 
 充提相关接口提供了充币地址、提币地址、提币额度、充提记录等查询，以及提币、取消提币等功能。
 
-访问充提相关的接口需要进行签名认证。
+<aside class="notice">访问充提相关的接口需要进行签名认证。</aside>
 
 以下是充提相关接口返回的返回码、返回消息以及说明。
 
@@ -3012,7 +3012,7 @@ API Key 权限：读取<br>
 
 子用户管理接口了子用户的创建、查询、权限设置、转账，子用户API Key的创建、修改、查询、删除，子用户充提地址、余额的查询等功能。
 
-访问子用户管理的接口需要进行签名认证。
+<aside class="notice">访问子用户管理的相关接口需要进行签名认证。</aside>
 
 以下是子用户相关接口返回的返回码、返回消息以及说明。
 
@@ -3853,9 +3853,7 @@ balance|-|decimal|-		|账户余额	|-|
 
 现货/杠杆交易接口提供了下单、撤单、订单查询、成交查询、手续费率查询等功能。
 
-下单参数"account-id"和"source"需要准确填写，请参见下面各个接口的请求参数说明。
-
-访问交易相关的接口需要进行签名认证。
+<aside class="notice">访问交易相关的接口需要进行签名认证。</aside>
 
 以下是交易相关接口返回的返回码以及说明。
 
@@ -4942,6 +4940,7 @@ symbols    | string    | true     | NA      | 交易对，可多填，逗号分�
 2）	计划委托支持限价单和市价单类型，追踪委托仅支持市价单。<br>
 3）	追踪委托是一种更高级的计划委托。通常的计划委托仅可设置触发价一个条件，当市场最新价格达到触发价时，该订单即被送入撮合。追踪委托在计划委托的基础上增加了一个设定条件，即回调幅度。当市场最新价达到设定的触发价时，该追踪委托并不会被送入撮合，而是继续等待市场价格回转出现。当市场价格回转幅度达到设定的回调幅度时，该追踪委托才会被送入撮合。火币Global支持用户设定的回调幅度范围为0.1%~5%。<br>
 
+<aside class="notice">访问策略委托相关的接口需要进行签名认证。</aside>
 <aside class="notice"> 在计划委托/追踪委托上线一段时间后，火币Global可能会下线现有止盈止损订单类型。届时将另行通知。 </aside>
 
 以下是策略委托接口返回的错误码和说明。
@@ -5268,7 +5267,6 @@ API Key 权限：读取<br>
 <aside class="notice">目前逐仓杠杆交易仅支持部分以 USDT，HSUD， 和 BTC 为报价币种的交易对。</aside>
 
 以下是逐仓杠杆接口的返回码和说明。
-
 
 |返回码          | 说明 |
 |---------           | ---------  |
@@ -5674,8 +5672,47 @@ curl "https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"
 
 # 借币（全仓杠杆）
 
+## 简介
+
+全仓杠杆相关接口提供了全仓杠杆账户的借币、还币、查询、划转等功能。
+
 <aside class="notice">访问借币相关的接口需要进行签名认证。</aside>
 <aside class="notice">目前全仓杠杆交易仅支持部分以 USDT 和 BTC 为报价币种的交易对。</aside>
+
+以下是全仓杠杆接口的返回码和说明。
+
+| 返回码              | 说明         |
+| --------------- | ------------ |
+| abnormal-users-cannot-transfer           | 非正常用户不能转出                    |
+| account-explosion-in-prohibited-transfer | 账户爆仓中禁止划转操作                |
+| account-is-abnormal-retry-after-refresh  | 账户异常请刷新重试                    |
+| account-balance-insufficient-error       | 账户余额不足，不区分动作类型          |
+| account-cannot-be-inquired               | 无法查询到全仓杠杆账户                |
+| base-not-in-white-list                   | 不是白名单用户                        |
+| base-currency-error                      | currency不存在                        |
+| base-operation-forbidden                 | 禁止操作                              |
+| base-user-request-exceed-limit           | 操作太频繁，请稍后再试                |
+| base-currency-not-open                   | currency还没有开放 该保证金币种未开启 |
+| beyond-maximum-number-of-rollover        | 超出最大转出数量                      |
+| exceed-maximum-amount                    | 超出最大数量                          |
+| endtime-greater-than-begintime           | 结束时间应该大于开始时间              |
+| frequent-invoke                          | 操作过于频繁，请稍后重试              |
+| loan-order-not-found                     | 订单未找到                            |
+| loan-amount-scale-limit                  | 借贷&还款 金额精度限制                |
+| loan-repay-max-limit                     | 偿还大于借贷                          |
+| loan-insufficient-balance                | 余额不足                              |
+| loan-fee-rate-compute-fail               | 系统借款利率计算异常                  |
+| login-required                           | 需要登录                              |
+| margin-subuser-no-permission             | 全仓杠杆子账号未开通权限              |
+| normal-and-warehouse-can-transfer        | 正常用户与穿仓用户可以转入            |
+| order-orderamount-precision-error        | 交易数额精度错误                      |
+| require-exchange-id                      | 需要交易所id                          |
+| subacount-currency-not-exit              | 该币种的子账户不存在                  |
+| system-busy                              | 系统繁忙                              |
+| unsupport-kyc-info                       | 不支持的kyc认证信息                   |
+| uc-network-error                         | 网络错误                              |
+| uncreated-currency-cannot-be-drawn       | 未创建币种子账户无法划出              |
+
 ## 资产划转
 
 API Key 权限：交易
