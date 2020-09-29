@@ -260,10 +260,10 @@
                     <a href="#api" class="toc-h2 toc-link" data-title="API 简介">API 简介</a>
                   </li>
                   <li>
-                    <a href="#6ac6895b3f" class="toc-h2 toc-link" data-title="做市商项目">做市商项目</a>
+                    <a href="#ecae7085ce" class="toc-h2 toc-link" data-title="更新订阅">更新订阅</a>
                   </li>
                   <li>
-                    <a href="#ecae7085ce" class="toc-h2 toc-link" data-title="更新订阅">更新订阅</a>
+                    <a href="#6ac6895b3f" class="toc-h2 toc-link" data-title="做市商项目">做市商项目</a>
                   </li>
                   <li>
                     <a href="#152d3db758" class="toc-h2 toc-link" data-title="联系我们">联系我们</a>
@@ -345,9 +345,6 @@
                   </li>
                   <li>
                     <a href="#1e4de8d72a" class="toc-h2 toc-link" data-title="账户充提相关">账户充提相关</a>
-                  </li>
-                  <li>
-                    <a href="#f988263e8c" class="toc-h2 toc-link" data-title="技术支持">技术支持</a>
                   </li>
               </ul>
           </li>
@@ -1478,11 +1475,17 @@ table th {
 <h1 id='5ea2e0cde2'>简介</h1><h2 id='api'>API 简介</h2>
 <p>欢迎使用火币 API！  </p>
 
-<p>此文档是火币API的唯一官方文档，火币API提供的能力会在此持续更新，请大家及时关注。  </p>
+<p>此文档是火币API的唯一官方文档，火币API提供的功能和服务会在此持续更新，请大家及时关注。  </p>
 
 <p>你可以通过点击上方菜单来切换获取不同业务的API，还可通过点击右上方的语言按钮来切换文档语言。  </p>
 
-<p>文档右侧是针对请求参数以及响应结果的示例。</p>
+<p>文档右侧是请求参数以及响应结果的示例。</p>
+<h2 id='ecae7085ce'>更新订阅</h2>
+<p>关于API新增、更新、下线等信息火币会提前发布公告进行通知，建议您关注和订阅我们的公告，及时获取相关信息。  </p>
+
+<p>您可以点击 <a href='https://huobiglobal.zendesk.com/hc/zh-cn/sections/360000070201-API-%E5%85%AC%E5%91%8A'>这里 </a> 订阅公告。</p>
+
+<p>订阅流程为：点击“API公告”右上角“关注”按钮，用账号登录成功后，再次点击“关注”按钮，并选择需要关注的内容类型，按钮变为“正在关注”，即表示订阅成功。若无账号，点击弹窗左下角“注册”按钮，进行注册。</p>
 <h2 id='6ac6895b3f'>做市商项目</h2>
 <p>欢迎有优秀 maker 策略且交易量大的用户参与长期做市商项目。如果您的火币现货账户或者合约账户中有折合大于10BTC资产（币币和合约账户分开统计），请提供以下信息发送邮件至：</p>
 
@@ -1500,19 +1503,39 @@ table th {
 <aside class="notice">
 做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动。
 </aside>
-<h2 id='ecae7085ce'>更新订阅</h2>
-<p>关于API新增、更新、下线等信息火币会提前发布公告进行通知，建议您关注和订阅我们的公告，及时获取相关信息。  </p>
-
-<p>您可以点击 <a href='https://huobiglobal.zendesk.com/hc/zh-cn/sections/360000070201-API-%E5%85%AC%E5%91%8A'>这里 </a> 订阅公告。</p>
-
-<p>订阅流程为：点击“API公告”右上角“关注”按钮，用账号登录成功后，再次点击“关注”按钮，并选择需要关注的内容类型，按钮变为“正在关注”，即表示订阅成功。若无账号，点击弹窗左下角“注册”按钮，进行注册。  </p>
 <h2 id='152d3db758'>联系我们</h2>
 <p>使用过程中如有问题或者建议，您可选择以下任一方式联系我们：</p>
 
 <ul>
-<li>加入官方QQ群（Huobi Global Spot API交流群 1007336325），入群申请请注明UID和编程语言，待群管理员审核通过后即可入群。</li>
-<li>发送邮件至api_service@huobi.com。</li>
+<li>加入官方QQ群（Huobi Global Spot API交流群 1007336325），入群申请请注明UID和编程语言。</li>
+<li>通过官网的“帮助中心”或者发送邮件至support@huobigroup.com联系客服。</li>
 </ul>
+
+<p>如您遇到API错误，请按照如下模板向我们反馈问题。</p>
+
+<p><code>1. 问题描述</code><br>
+<code>2. 问题发生的用户Id(UID)，账户Id和订单Id(如果和账户、订单有关系)</code><br>
+<code>3. 完整的URL请求</code><br>
+<code>4. 完整的JSON格式的请求参数（如果有）</code><br>
+<code>5. 完整的JSON格式的返回结果</code><br>
+<code>6. 问题出现时间和频率（如何时开始出现，是否可以重现）</code><br>
+<code>7. 签名前字符串（如果是签名认证错误）</code>  </p>
+
+<p>下方是一个应用了模版的例子：</p>
+
+<p><code>1. 问题简要说明：签名错误</code><br>
+<code>2. UID：123456</code><br>
+<code>3. 完整的URL请求：GET https://api.huobi.pro/v1/account/accounts?&amp;SignatureVersion=2&amp;SignatureMethod=HmacSHA256&amp;Timestamp=2019-11-06T03%3A25%3A39&amp;AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D</code><br>
+<code>4. 完整的JSON格式的参数：无</code><br>
+<code>5. 完整的JSON格式的返回：{&quot;status&quot;:&quot;error&quot;,&quot;err-code&quot;:&quot;api-signature-not-valid&quot;,&quot;err-msg&quot;:&quot;Signature not valid: Incorrect Access key [Access key错误]&quot;,&quot;data&quot;:null}</code><br>
+<code>6. 问题出现频率：每次都会出现</code><br>
+<code>7. 签名前字符串</code><br>
+<code>GET\n</code><br>
+<code>api.huobi.pro\n</code><br>
+<code>/v1/account/accounts\n</code><br>
+<code>AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2019-11-06T03%3A26%3A13</code>   </p>
+
+<p>注意：Access Key仅能证明您的身份，不会影响您账户的安全。切记<strong>不</strong>要将Secret Key信息分享给任何人，若您不小心将Secret Key暴露，请尽快<a href="https://www.hbg.com/zh-cn/apikey/">删除</a>其对应的API Key，以免造成您的账户损失。</p>
 <h1 id='25e54147de'>快速入门</h1><h2 id='c1ae0a8486'>接入准备</h2>
 <p>如需使用API ，请先登录网页端，完成API key的申请和权限配置，再据此文档详情进行开发和交易。  </p>
 
@@ -2455,36 +2478,7 @@ api.huobi.pro\n
 <h3 id='q4'>Q4：如何查看我的提币额度？</h3>
 <p>A：请参考/v2/account/withdraw/quota接口返回值，返回信息中包含您查询币种的单次、当日、当前、总提币额度以及剩余额度的信息。 </p>
 
-<p>备注：若您有大额提币需求，且提币数额超出相关限额，可联系官方客服（发送信息至support@huobi.pro邮箱）进行沟通。  </p>
-<h2 id='f988263e8c'>技术支持</h2>
-<p>若以上内容任未帮助到您，可选择以下任一方式联系我们：<br>
-1、加入官方QQ群（火币网API交流群 1045069901），进群时请注明UID 和编程语言。<br>
-2、通过官网的帮助中心或者发送邮件至support@huobigroup.com联系客服。<br>
-为了能够更快的了解和调查您反馈的问题，请按照如下模板向我们反馈问题。  </p>
-
-<p><code>1. 问题简要说明</code><br>
-<code>2. UID</code><br>
-<code>3. 完整的URL请求</code><br>
-<code>4. 完整的JSON格式的参数（如果有）</code><br>
-<code>5. 完整的JSON格式的返回</code><br>
-<code>6. 问题出现频率（如何时开始出现，是否可以重现）</code><br>
-<code>7. 签名前字符串（签名认证错误时必填）</code>  </p>
-
-<p>下方是一个应用了模版的例子：</p>
-
-<p><code>1. 问题简要说明：签名错误</code><br>
-<code>2. UID：123456</code><br>
-<code>3. 完整的URL请求：GET https://api.huobi.pro/v1/account/accounts?&amp;SignatureVersion=2&amp;SignatureMethod=HmacSHA256&amp;Timestamp=2019-11-06T03%3A25%3A39&amp;AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D</code><br>
-<code>4. 完整的JSON格式的参数：无</code><br>
-<code>5. 完整的JSON格式的返回：{&quot;status&quot;:&quot;error&quot;,&quot;err-code&quot;:&quot;api-signature-not-valid&quot;,&quot;err-msg&quot;:&quot;Signature not valid: Incorrect Access key [Access key错误]&quot;,&quot;data&quot;:null}</code><br>
-<code>6. 问题出现频率：每次都会出现</code><br>
-<code>7. 签名前字符串</code><br>
-<code>GET\n</code><br>
-<code>api.huobi.pro\n</code><br>
-<code>/v1/account/accounts\n</code><br>
-<code>AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2019-11-06T03%3A26%3A13</code>   </p>
-
-<p>注意：Access Key仅能证明您的身份，不会影响您账户的安全。切记<strong>不</strong>要将Secret Key信息分享给任何人，若您不小心将Secret Key暴露，请尽快<a href="https://www.hbg.com/zh-cn/apikey/">删除</a>其对应的API Key，以免造成您的账户损失。</p>
+<p>若您有大额提币需求，且提币数额超出相关限额，可联系官方客服进行沟通。  </p>
 <h1 id='41654e0268'>基础信息</h1>
 <p>基础信息Rest接口提供了系统状态、市场状态、交易对信息、币种信息、币链信息、服务器时间戳等公共参考信息。</p>
 <h2 id='cd63bde415'>获取当前系统状态</h2>
