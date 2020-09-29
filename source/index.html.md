@@ -173,7 +173,33 @@ How to subscribe: Login to API Announcements page, click "Follow" button in the 
 If you have any other questions on API, you can contact us by below ways:
 
 - Join official QQ group (Huobi Global Spot API, 1007336325). Please tell your UID and programming language in your join request, and you can join the group after the group administrator has approved it.
-- Send email to api_service@huobi.com.
+- Contact customer support from Help Center or send email to support@huobigroup.com.
+
+If you encounter API errors, please use below template in your feedback:
+
+`1. Problem description`  
+`2. UID, Account Id and Order Id (if related with account and order)`  
+`3. Raw URL request`  
+`4. Raw JSON request (if any)`  
+`5. Raw JSON response`  
+`6. Problem time and frequency (such as, when this problem occurs, whether it is reproducible)`  
+`7. Pre-signed text (mandatory for authentication issue)`  
+
+Below is an example：
+
+`1. Problem description: API authentication error`  
+`2. UID：123456`  
+`3. Raw URL request: https://api.huobi.pro/v1/account/accounts?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D`  
+`4. Raw JSON request: N/A`  
+`5. Raw JSON response：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key错误]","data":null}`  
+`6. Problem time and frequency: It occurs every time`  
+`7. Pre-signed text:`  
+`GET\n`  
+`api.huobi.pro\n`  
+`/v1/account/accounts\n`    
+`AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-06T03%3A26%3A13`
+
+Note：It is safe to share your Access Key, which is to prove your identity, and it will not affect your account safety. Remember do **not** share your `Secret Key` to any one. If you expose your `Secret Key` by accident, please [remove](https://www.hbg.com/en-us/apikey/) the related API Key immediately.
 
 # Quick Start
 
@@ -975,38 +1001,7 @@ A：Please refer to the response from endpoint `GET /v2/reference/currencies`, w
 ### Q4：How to query my withdraw quota?
 A：Please refer to the response from endpoint `GET /v2/account/withdraw/quota`, where quota per request, daily quota, annual quota, overall quota are available.
 
-Note: If you need to withdraw large amount which breaking the limitation, you can contact our official support (support@huobi.pro) for assistance.
-
-## API Technical Support
-If you have any other questions on API, you can contact us by below ways:
-
-1、Join official QQ group (火币网API交流群, 1045069901), please tell your UID and programming language in your join request.  
-2、Contact customer support from Help Center or send email to support@huobigroup.com.  
-In order to better understand your question and respond you quickly, please use below template in your email:
-
-`1. Problem description`  
-`2. UID`  
-`3. Full URL request`  
-`4. Full JSON request (if any)`  
-`5. Full JSON response`  
-`6. Problem frequency (such as, when this problem occurs, whether it is reproducible)`  
-`7. Signature text (mandatory for authentication issue)`  
-
-Below is an example：
-
-`1. Problem description: API authentication error`  
-`2. UID：123456`  
-`3. Full URL request: https://api.huobi.pro/v1/account/accounts?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D`  
-`4. Full JSON request: N/A`  
-`5. Full JSON response：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key错误]","data":null}`  
-`6. Problem frequency: It occurs every time`  
-`7. Signature text:`  
-`GET\n`  
-`api.huobi.pro\n`  
-`/v1/account/accounts\n`    
-`AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-06T03%3A26%3A13`
-
-Note：It is safe to share your Access Key, which is to prove your identity, and it will not affect your account safety. Remember do **not** share your `Secret Key` to any one. If you expose your `Secret Key` by accident, please [remove](https://www.hbg.com/en-us/apikey/) the related API Key immediately.
+Note: If you need to withdraw large amount which breaking the limitation, you can contact customer support for assistance.
 
 # Reference Data
 
