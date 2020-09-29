@@ -136,11 +136,19 @@ table th {
 
 欢迎使用火币 API！  
 
-此文档是火币API的唯一官方文档，火币API提供的能力会在此持续更新，请大家及时关注。  
+此文档是火币API的唯一官方文档，火币API提供的功能和服务会在此持续更新，请大家及时关注。  
 
 你可以通过点击上方菜单来切换获取不同业务的API，还可通过点击右上方的语言按钮来切换文档语言。  
 
-文档右侧是针对请求参数以及响应结果的示例。
+文档右侧是请求参数以及响应结果的示例。
+
+## 更新订阅
+
+关于API新增、更新、下线等信息火币会提前发布公告进行通知，建议您关注和订阅我们的公告，及时获取相关信息。  
+
+您可以点击 <a href='https://huobiglobal.zendesk.com/hc/zh-cn/sections/360000070201-API-%E5%85%AC%E5%91%8A'>这里 </a> 订阅公告。
+
+订阅流程为：点击“API公告”右上角“关注”按钮，用账号登录成功后，再次点击“关注”按钮，并选择需要关注的内容类型，按钮变为“正在关注”，即表示订阅成功。若无账号，点击弹窗左下角“注册”按钮，进行注册。
 
 ## 做市商项目
 
@@ -148,7 +156,6 @@ table th {
 
 - [MM_service@huobi.com](mailto:MM_service@huobi.com) Huobi Global（现货 / 杠杆）做市商申请；
 - [dm_mm@huobi.com](mailto:dm_mm@huobi.com) HBDM（合约）做市商申请。
-
 
 1. 提供 UID （需不存在返佣关系的 UID）；
 2. 提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；
@@ -158,20 +165,38 @@ table th {
 做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动。
 </aside>
 
-## 更新订阅
-
-关于API新增、更新、下线等信息火币会提前发布公告进行通知，建议您关注和订阅我们的公告，及时获取相关信息。  
-
-您可以点击 <a href='https://huobiglobal.zendesk.com/hc/zh-cn/sections/360000070201-API-%E5%85%AC%E5%91%8A'>这里 </a> 订阅公告。
-
-订阅流程为：点击“API公告”右上角“关注”按钮，用账号登录成功后，再次点击“关注”按钮，并选择需要关注的内容类型，按钮变为“正在关注”，即表示订阅成功。若无账号，点击弹窗左下角“注册”按钮，进行注册。  
-
 ## 联系我们
 
 使用过程中如有问题或者建议，您可选择以下任一方式联系我们：
 
-- 加入官方QQ群（Huobi Global Spot API交流群 1007336325），入群申请请注明UID和编程语言，待群管理员审核通过后即可入群。
-- 发送邮件至api_service@huobi.com。
+- 加入官方QQ群（Huobi Global Spot API交流群 1007336325），入群申请请注明UID和编程语言。
+- 通过官网的“帮助中心”或者发送邮件至support@huobigroup.com联系客服。
+
+如您遇到API错误，请按照如下模板向我们反馈问题。
+
+`1. 问题描述`  
+`2. 问题发生的用户Id(UID)，账户Id和订单Id(如果和账户、订单有关系)`  
+`3. 完整的URL请求`  
+`4. 完整的JSON格式的请求参数（如果有）`  
+`5. 完整的JSON格式的返回结果`  
+`6. 问题出现时间和频率（如何时开始出现，是否可以重现）`  
+`7. 签名前字符串（如果是签名认证错误）`  
+
+下方是一个应用了模版的例子：
+
+`1. 问题简要说明：签名错误`   
+`2. UID：123456`  
+`3. 完整的URL请求：GET https://api.huobi.pro/v1/account/accounts?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D`  
+`4. 完整的JSON格式的参数：无`     
+`5. 完整的JSON格式的返回：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key错误]","data":null}`  
+`6. 问题出现频率：每次都会出现`  
+`7. 签名前字符串`    
+`GET\n`  
+`api.huobi.pro\n`  
+`/v1/account/accounts\n`   
+`AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-06T03%3A26%3A13`   
+
+注意：Access Key仅能证明您的身份，不会影响您账户的安全。切记**不**要将Secret Key信息分享给任何人，若您不小心将Secret Key暴露，请尽快[删除](https://www.hbg.com/zh-cn/apikey/)其对应的API Key，以免造成您的账户损失。
 
 # 快速入门
 
@@ -950,37 +975,7 @@ A：请参考 GET /v2/reference/currencies接口返回值，返回信息中withd
 ### Q4：如何查看我的提币额度？
 A：请参考/v2/account/withdraw/quota接口返回值，返回信息中包含您查询币种的单次、当日、当前、总提币额度以及剩余额度的信息。 
 
-备注：若您有大额提币需求，且提币数额超出相关限额，可联系官方客服（发送信息至support@huobi.pro邮箱）进行沟通。  
-
-## 技术支持
-若以上内容任未帮助到您，可选择以下任一方式联系我们：  
-1、加入官方QQ群（火币网API交流群 1045069901），进群时请注明UID 和编程语言。  
-2、通过官网的帮助中心或者发送邮件至support@huobigroup.com联系客服。  
-为了能够更快的了解和调查您反馈的问题，请按照如下模板向我们反馈问题。  
-
-`1. 问题简要说明`  
-`2. UID`  
-`3. 完整的URL请求`  
-`4. 完整的JSON格式的参数（如果有）`  
-`5. 完整的JSON格式的返回`  
-`6. 问题出现频率（如何时开始出现，是否可以重现）`  
-`7. 签名前字符串（签名认证错误时必填）`  
-
-下方是一个应用了模版的例子：
-
-`1. 问题简要说明：签名错误`   
-`2. UID：123456`  
-`3. 完整的URL请求：GET https://api.huobi.pro/v1/account/accounts?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D`  
-`4. 完整的JSON格式的参数：无`     
-`5. 完整的JSON格式的返回：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key错误]","data":null}`  
-`6. 问题出现频率：每次都会出现`  
-`7. 签名前字符串`    
-`GET\n`  
-`api.huobi.pro\n`  
-`/v1/account/accounts\n`   
-`AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-06T03%3A26%3A13`   
-
-注意：Access Key仅能证明您的身份，不会影响您账户的安全。切记**不**要将Secret Key信息分享给任何人，若您不小心将Secret Key暴露，请尽快[删除](https://www.hbg.com/zh-cn/apikey/)其对应的API Key，以免造成您的账户损失。
+若您有大额提币需求，且提币数额超出相关限额，可联系官方客服进行沟通。  
 
 # 基础信息
 
