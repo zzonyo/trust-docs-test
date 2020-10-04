@@ -1598,7 +1598,7 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
 | high           | true     | string   | Highest Price                                                       |                |
 | low            | true     | string   | Lowest Price                                                       |                |
 | vol            | true     | string   | Trading Volume (conts)，the sum of bilateral (buy & sell) trading volume.                              |                |
-| trade_turnover | true     | decimal  | Tranding Amount，that is the sum of Filled conts of a single order *Contract Face value *Transaction Price           |                |
+| trade_turnover | true     | string  | Tranding Amount，that is the sum of Filled conts of a single order *Contract Face value *Transaction Price           |                |
 | ts             | true     | long     | Timestamp                                                     |                |
 | \</tick\>        |          |          |                                                              |                |
 | ts             | true     | long     | Time of Response Generation, unit: millisecond                                   |                |
