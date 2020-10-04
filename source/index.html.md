@@ -1569,7 +1569,7 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
 | high   | true | string | 最高价                                    |                |
 | low   | true | string | 最低价  |                |
 | vol   | true | string | 成交量（张），买卖双边成交量之和                                    |                |
-| trade_turnover     | true | decimal | 成交额（即成交的权利金总额），即 sum（每一笔成交张数\*合约面值\*成交价格）       |                |
+| trade_turnover     | true | string | 成交额（即成交的权利金总额），即 sum（每一笔成交张数\*合约面值\*成交价格）       |                |
 | ts   | true | long | 时间戳   |                |
 | \</tick\>              |      |        |               |                |
 | ts     | true | long | 响应生成时间点，单位：毫秒                            |                |
