@@ -2594,7 +2594,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | adjust_factor                | true     | decimal  |  Adjustment Factor               |                |  
 | margin_static                | true     | decimal  | Static Margin                |                |
 | \</list\>                      |               |          |                                               |                 |
-| ts                             | long        | long     | Time of Respond Generation, Unit: Millisecond |                 |
+| ts                             | true        | long     | Time of Respond Generation, Unit: Millisecond |                 |
 
 
 ## Query User’s Position Information
