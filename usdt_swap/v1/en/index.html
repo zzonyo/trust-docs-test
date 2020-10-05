@@ -6536,7 +6536,7 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>ts</td>
-<td>long</td>
+<td>true</td>
 <td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
@@ -13249,8 +13249,9 @@ Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
 <h1 id='websocket-heartbeat-and-authentication-interface'>WebSocket Heartbeat and Authentication Interface</h1><h2 id='market-heartbeat'>Market Heartbeat</h2>
 <p>WebSocket API supports two-way heartbeat. Both Server and Client can send ping message, which the opposite side can return with pong message.</p>
 
-<p>:
-- WebSocket Server sends heartbeat：</p>
+<ul>
+<li>WebSocket Server sends heartbeat：</li>
+</ul>
 
 <p><code>{&quot;ping&quot;: 18212558000}</code></p>
 
@@ -14305,7 +14306,7 @@ Details are below:</p></li>
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>Pairs</td>
+<td>contract code</td>
 <td></td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC-USDT&quot;</td>
 </tr>
@@ -14352,7 +14353,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>int</td>
+<td>long</td>
 <td>Timestamp of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -14401,7 +14402,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>int</td>
+<td>long</td>
 <td>Timepoint for system detecting orderbook, unit: millisecond</td>
 <td></td>
 </tr>
@@ -15560,7 +15561,7 @@ Details are below:</p></li>
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>index symbol</td>
+<td>contract code</td>
 <td></td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported..&quot;BTC-USDT&quot;,&quot;ETH-USDT&quot;...</td>
 </tr>
@@ -17206,7 +17207,7 @@ Details are below:</p></li>
 <tr>
 <td>event</td>
 <td>string</td>
-<td>notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (including withdraw and deposit), system (contract.system), other asset change(other), initial margin(init)</td>
+<td>notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (including transfer with exchange accounts, transfer between main account and sub-account, and tranfer between different margin accounts.), system (contract.system), other asset change(other), initial margin(init)</td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
@@ -17216,7 +17217,7 @@ Details are below:</p></li>
 <tr>
 <td>symbol</td>
 <td>string</td>
-<td>Coins. When the $contract_code value is “*”, it stands for subscribing data of all coins</td>
+<td>Coins. &quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -17497,7 +17498,7 @@ Details are below:</p></li>
 <tr>
 <td>symbol</td>
 <td>string</td>
-<td>Coin, when $contract_code value is *, it stands for subscribing the data of all coins</td>
+<td>Coin. &quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>contract_code</td>
