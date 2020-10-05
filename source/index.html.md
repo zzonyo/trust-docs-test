@@ -532,7 +532,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 </aside>
 
 
-#### 5. After ranking
+#### 5.After ranking
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
 
@@ -542,7 +542,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 
 `Timestamp=2017-05-11T15%3A19%3A30`
 
-#### 6.  Following the sequence above, link parameters with "&"
+#### 6.Following the sequence above, link parameters with "&"
 
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30`
@@ -1506,7 +1506,7 @@ ts                             | true          | long     | Time of Respond Gene
 - GET `/swap-api/v1/swap_index` 
 
 ```shell
-curl "https://api.hbdm.com/swap-api/v1/swap_index?contract_code=BTC-USD"" 
+curl "https://api.hbdm.com/swap-api/v1/swap_index?contract_code=BTC-USD"
 ```
 
 ### Request Parameter
@@ -1537,8 +1537,9 @@ curl "https://api.hbdm.com/swap-api/v1/swap_index?contract_code=BTC-USD""
 | ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------- |
 | status                         | true          | string   | Request Processing Result                     | "ok" , "error"  |
 | data\<list\> |               |          |                                               |                 |
-| contract_code                         | true          | string   | contract_code                                        | "BTC-USD","ETH-USD"...  |
+| contract_code                 | true          | string   | contract_code                                        | "BTC-USD","ETH-USD"...  |
 | index_price                    | true          | decimal  | Index Price                                   |                 |
+| index_ts                    | true          | Long  | Index time	                                  |                 |
 | \</list\>                      |               |          |                                               |                 |
 | ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                 |
 
@@ -1609,6 +1610,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_open_interest?contract_code=BTC-USD"
 
 
 ```json
+
     {
       "status":"ok",
       "data":
@@ -1653,17 +1655,6 @@ curl "https://api.hbdm.com/swap-ex/market/depth?contract_code=BTC-USD&type=step5
 | contract_code             | string             | true          | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
 | type               | string             | true          | Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5,14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged. |
 
->tick illustration:
-
-```
-"tick": {
-    "id": Message id.
-    "ts": Time of Message Generation, unit: millisecond
-    "bids": Buying, [price(hanging unit price), vol(this price represent single contract)], According to the descending order of Price
-    "asks": Selling, [price(hanging unit Price), vol(this price represent single contract)], According to the ascending order of Price  
-    }
-
-```
 
 > Response:
 
@@ -1703,7 +1694,7 @@ curl "https://api.hbdm.com/swap-ex/market/depth?contract_code=BTC-USD&type=step5
 | asks | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 | bids | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
 | ts | true | long | Time of Respond Generation, Unit: Millisecond  | |
-| version | true | string | version ID  | |
+| version | true | long | version ID  | |
 | ch | true |  string | Data channel, Format： market.period | | 
 | \</tick\>    |               |    |      |            | | 
 
@@ -1722,7 +1713,7 @@ curl "https://api.hbdm.com/swap-ex/market/history/kline?period=1min&size=200&con
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc               |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | -------------------- | ----------- | ------------------------------------------------------------ |
-| contract_code             | string             | true          | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
+| contract_code             | true    |   string   | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
 | period             | true          | string   | KLine Type          |             | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon      |
 | size               | false         | integer  | Acquisition Quantity | 150         | [1,2000]                                                     |
 | from              | false         | integer  | start timestamp seconds. |         |                                                    |
@@ -1829,9 +1820,9 @@ curl "https://api.hbdm.com/swap-ex/market/detail/merged?contract_code=BTC-USD"
     "count": transaction count
     "open": opening price,
     "close": Closing Price, when the Kline is the latest one，it means the latest price
-        "low": Lowest price
-        "high": highest price
-        "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
+    "low": Lowest price
+    "high": highest price
+    "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
     "bid": [price of buying one (amount)],
     "ask": [price of selling one (amount)]
 
@@ -1850,7 +1841,7 @@ curl "https://api.hbdm.com/swap-ex/market/detail/merged?contract_code=BTC-USD"
       "ask": [5001, 2],
       "bid": [5000, 1],
       "close": "5000",
-      "count": "13305",
+      "count": 13305,
       "high": "5000",
       "id": 1529387841,
       "low": "5000",
@@ -1868,12 +1859,11 @@ curl "https://api.hbdm.com/swap-ex/market/detail/merged?contract_code=BTC-USD"
 | ------------------ | ------------- | ------------- | ------------------------------------------------------------ | --------------- |
 | ch                 | true          | string        | Data belonged channel，format： market.$contract_code.detail.merged |                 |
 | status             | true          | string        | Request Processing Result                                    | "ok" , "error"  |
-| tick               | true          | object        | KLine Data                                                  |                 |
 | ts                 | true          | long        | Time of Respond Generation, Unit: Millisecond                |                 |
 |  \<dict\>(attr name: tick)    |               |kline data    |      |            | 
 |  id    |     true          | long   |  kline id,the same as kline timestamp   |            
 |  vol    |     true          | string   |  Trade Volume(Cont.)    |            
-| count    |     true          | int   |   Order Quantity  |            
+| count    |     true          | decimal   |   Order Quantity  |            
 |  open    |     true          | string   |   Opening Price  |            
 |  close    |     true          | string   |  Closing Price,  the price in the last kline is the latest order price   |            
 |  low    |     true          | string   |  Low    |            
@@ -1881,6 +1871,7 @@ curl "https://api.hbdm.com/swap-ex/market/detail/merged?contract_code=BTC-USD"
 |  amount    |     true          | string   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
 | ask | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 | bid | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
+| ts  | true          | long        | Timestamp               |                 |
 |  \</dict\>    |               |     |      |  
 
 
@@ -1896,8 +1887,8 @@ curl "https://api.hbdm.com/swap-ex/market/trade?contract_code=BTC-USD"
  
 ###  Request Parameter  
 
-|   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
-| ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
+|   Parameter Name   |   Mandatory   |   Type   |   Desc        | 
+| ------------------ | ------------- | -------- | ------------- | 
 | contract_code             | true            | string          | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
 
 > Tick Illustration：
@@ -1975,7 +1966,7 @@ curl "https://api.hbdm.com/swap-ex/market/history/trade?contract_code=BTC-USD&si
 
 |   Parameter Name   |   Mandatory   |   Data Type   |   Desc                                |   Default   |   Value Range                                                |
 | ------------------ | ------------- | ------------- | ------------------------------------- | ----------- | ------------------------------------------------------------ |
-| contract_code             | true             | string         | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
+| contract_code     | true             | string    |  contract code  |  | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
 | size               | true         | int        | Number of Trading Records Acquisition | 1           | [1, 2000]                                                    |
 
 > data Illustration：
@@ -2033,7 +2024,7 @@ curl "https://api.hbdm.com/swap-ex/market/history/trade?contract_code=BTC-USD&si
 |  \<list\>  (attrs: data)  |               |    |      | 
 | id  |  true  |  long  |  ID  |   |    
 | price  |  true  |  decimal  |  Price |   |    
-| amount  |  true  |  int  |  Quantity(Cont.)  |   |    
+| amount  |  true  |  decimal  |  Quantity(Cont.)  |   |    
 | direction  |  true  |  string  |  Order Direction  |   |    
 | ts  |  true  |  long  |  Order Creation Time |   |    
 |  \</list\>    |               |    |      | 
@@ -2051,7 +2042,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_risk_info"
 
 |  Parameter Name                 |   Mandatory  |   Type   |   Desc              |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | true             | string          | Case-Insenstive.e.g. "BTC-USD" |
+| contract_code             | false             | string   |   contract code     | Case-Insenstive.e.g. "BTC-USD" |
 
 
 > Response:
@@ -2075,9 +2066,9 @@ curl "https://api.hbdm.com/swap-api/v1/swap_risk_info"
 |   Parameter Name                |  Mandatory   |  Type   |   Desc              |   Value Range      |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | Request processing Result	 | "ok" , "error" |
-| ts | true  | long | Time of Respond Generation, Unit: milesecond |  |
+| ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
 | \<data\> |  |  |  |  |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code    |   true      | string   | e.g. "BTC-USD" |
 | insurance_fund | true  | decimal | Insurance Fund Balance |  |
 | estimated_clawback | true  | decimal | Estimated Clawback Rate |  |
 | \</data\> |  |  |  |  |
@@ -2094,7 +2085,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_insurance_fund?contract_code=BTC-USD
 
 |  Parameter Name                |   Mandatory  |   Type  |     Desc             |    Value Range      |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | true             | string          | Case-Insenstive.e.g. "BTC-USD" |
+| contract_code    | true     | string    |  contract code    | Case-Insenstive.e.g. "BTC-USD" |
 page_index  | false    | int    | page index. 1 by default    | 1       |                                          |
 page_size   | false    | int    | page size.100 by default. 100 at most | 100      |                                          |
 
@@ -2126,13 +2117,13 @@ page_size   | false    | int    | page size.100 by default. 100 at most | 100   
 |    Parameter Name                |    Mandatory	  |   Type  |   Desc              |    Value Range      |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | Request Processing Result	 | "ok" , "error" |
-| ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
+| ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
 | \<data\> |  |  |  | Dictionary Data |
 | symbol | true  | string | symbol | "BTC","ETH"... |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code     |   true        |  string   | contract code  | e.g. "BTC-USD" |
 | \<tick\> |  |  |  |  |
 | insurance_fund | true  | decimal | Insurance Fund Balance |  |
-| ts | true  | long | Timestamp, Unit: Milesecond |  |
+| ts | true  | long | Timestamp, Unit: Millisecond |  |
 | \</tick\> |  |  |  |  |
 total_page             | true     | int     | total page                |              |
 current_page           | true     | int     | current page               |              |
@@ -2151,7 +2142,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_adjustfactor"
 
 |   Parameter Name                 |    Mandatory    |   Type   |    Desc             |    Data Value       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | string             | false          | Case-Insenstive.e.g. "BTC-USD" |
+| contract_code             |  false     |    string        | Case-Insenstive.e.g. "BTC-USD" |
 
 
 > Response:
@@ -2195,10 +2186,10 @@ curl "https://api.hbdm.com/swap-api/v1/swap_adjustfactor"
 |    Parameter Name                 |    Mandatory    |    Type    |    Desc            |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | Request Processing Result	 | "ok" , "error" |
-| ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
+| ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
 | \<data\> |  |  |  |  |
-| symbol | true  | string | Contract Code | "BTC","ETH"... |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| symbol | true  | string | symbol | "BTC","ETH"... |
+| contract_code     | true     |  string | Contract Code   | e.g. "BTC-USD" |
 | \<list\> |  |  |  |  |
 | lever_rate   | true     | int  | Leverage               |                |
 | \<ladderDetail\> |  |  |  |  |
@@ -2222,7 +2213,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_his_open_interest?contract_code=BTC-
 
 |   Parameter Name                |   Mandatory   |   Type    |    Desc             |    Data Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | true             | string          |Case-Insenstive. e.g. "BTC-USD" |
+| contract_code      | true             | string   |   contract code     | Case-Insenstive. e.g. "BTC-USD" |
 | period | true | string | Period Type | 1 hour:"60min"，4 hours:"4hour"，12 hours:"12hour"，1 day:"1day" |
 | size | false | int | Request Amount | Default：48，Data Range [1,200]  |
 | amount_type | true | int | Open interest unit | 1:-cont，2:-cryptocurrenty |
@@ -2252,10 +2243,10 @@ curl "https://api.hbdm.com/swap-api/v1/swap_his_open_interest?contract_code=BTC-
 |  Parameter Name                |   Mandatory 	 |   Type    |    Desc              |   Data Range        |
 | ----------------------- | -------- | ------- | ------------------------ | --------------------- |
 | status | true | string | Request Processing Result   | "ok" , "error" |
-| ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
+| ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
 | \<data\> |  |  | Dictionary Data |  |
-| symbol | true | string | Contract Code   | "BTC","ETH"... |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| symbol | true | string | symbol   | "BTC","ETH"... |
+| contract_code     |  true    | string | Contract Code  | e.g. "BTC-USD" |
 | \<tick\> |  |  |  |  |   
 | volume | true | decimal | Open Interest |  |
 | amount_type | true | int | Open Interest Unit | 1:-cont，2:- cryptocurrency  |
@@ -2281,7 +2272,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_api_state"
 
 |  Parameter Name                |   Mandatory   |   Type  |   Desc              |    Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | false             | string          | Case-Insenstive.e.g. "BTC-USD" |
+| contract_code             | false             | string    |   contract code    | Case-Insenstive.e.g. "BTC-USD" |
 
 > Response:
 
@@ -2312,17 +2303,17 @@ curl "https://api.hbdm.com/swap-api/v1/swap_api_state"
 |   Parameter Name                |    Mandatory   |    Type   |    Desc             |    Value Range        |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | Request processing Result	 | "ok" , "error" |
-| ts | true  | long | Time of Respond Generation, Unit: milesecond |  |
+| ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
 | \<data\> |  |  |  |  |
 | symbol | true  | string | symbol | "BTC","ETH"... |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code   |  true   |  string   |  contract code    | e.g. "BTC-USD" |
 | open | true | int | open order access：when “1”, then access available; when “0”, access unavailable"1" |  |
 | close | true | int | close order access：when “1”, then access available; when “0”, access unavailable "1" |  |
 | cancel | true | int | order cancellation access：when “1”, then access available; when “0”, access unavailable "1" |  |
 | transfer_in | true | int |  deposit access：when “1”, then access available; when “0”, access unavailable "1" |  |
 | transfer_out | true | int | withdraw access： when “1”, then access available; when “0”, access unavailable "1" |  |
-master_transfer_sub | true | int | transfer from master to sub account："1" is available，“0” is unavailable |  |
-sub_transfer_master | true | int | transfer from sub to master account："1" is available，“0” is unavailable |  |
+| master_transfer_sub | true | int | transfer from master to sub account："1" is available，“0” is unavailable |  |
+| sub_transfer_master | true | int | transfer from sub to master account："1" is available，“0” is unavailable |  |
 | \</data\>  |  |  |  |  |
 
 ### Notice
@@ -2335,7 +2326,11 @@ sub_transfer_master | true | int | transfer from sub to master account："1" is 
 
 - “transfer_in” is one of the trading access in “Others-Transfer-Deposit”. “On” stands for opening this access; “Off” stands for closing this access；
 
+- transfer_out refers to the corresponding access "Others- Transfer- Transfer out to exchange account" in the trading accesses, and is available when enabled, unavailable when disabled；
 
+- master_transfer_sub refers to the corresponding access "Transfer from main account to sub-account" in the trading accesses, and is available when enabled, unavailable when disabled；
+
+- sub_transfer_master refers to the corresponding access "Transfer from sub-account to main account" in the trading accesses, and is available when enabled, unavailable when disabled；
 
 ## Query Top Trader Sentiment Index Function-Account
 
@@ -2349,7 +2344,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_elite_account_ratio?contract_code=BT
 
 |  Parameter Name                 |   Mandatory    |    Type     |    Desc             |   Value Range        |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | true             | string         | Case-Insenstive.e.g. "BTC-USD" |
+| contract_code    | true    | string  |   Contract Code    | Case-Insenstive.e.g. "BTC-USD" |
 | period | true | string | period	 | 5min, 15min, 30min, 60min,4hour,1day |
 
 > Response:
@@ -2382,10 +2377,10 @@ curl "https://api.hbdm.com/swap-api/v1/swap_elite_account_ratio?contract_code=BT
 |   Parameter Name                 |  Mandatory  |   Type   |   Desc              |   Vaue Range        |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | Request Processing Result	 | "ok" , "error" |
-| ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
+| ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
 | \<data\> |  |  |  |  |
 | symbol | true  | string | symbol | "BTC","ETH"... |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code  | true |  string  | contract code | e.g. "BTC-USD" |
 | \<list\> |  |  |  |  |
 | buy_ratio | true | decimal | net long accounts ratio |  |
 | sell_ratio | true | decimal | net short accounts ratio |  |
@@ -2407,7 +2402,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_elite_position_ratio?contract_code=B
 
 |  Parameter Name                |    Mandatory   |   Type  |       Desc             |    Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code             | true             | string          | Case-Insenstive.e.g. "BTC-USD" |
+| contract_code    | true   | string    | Contract Code  | Case-Insenstive.e.g. "BTC-USD" |
 | period | true | string | period	 | 5min, 15min, 30min, 60min,4hour,1day |
 
 > Response:
@@ -2439,10 +2434,10 @@ curl "https://api.hbdm.com/swap-api/v1/swap_elite_position_ratio?contract_code=B
 |  Parameter Name                |    Mandatory   |    Type    |    Desc             |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | Request Processing Result	 | "ok" , "error" |
-| ts | true  | long | Time of Respond Generation, Unit: Milesecond|  |
+| ts | true  | long | Time of Respond Generation, Unit: Millisecond|  |
 | \<data\> |  |  |  |  |
 | symbol | true  | string | symbol | "BTC","ETH"... |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code   | true  |  string  | contract code | e.g. "BTC-USD" |
 | \<list\> |  |  |  |  |
 | buy_ratio | true | decimal | Net long position ratio |  |
 | sell_ratio | true | decimal | Net short position ratio  |
@@ -2462,7 +2457,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC
 
 |   Parameter Name    |  Mandatory  |  Type   |    Desc          |    Default   |    Value Range                                |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code             | true             | string          | Case-Insenstive.e.g. "BTC-USD" |
+| contract_code     | true      | string  | Contract Code |  | Case-Insenstive.e.g. "BTC-USD" |
 | trade_type      | true     | int  | trading types       |               | when “0”, request fully filled liquidated orders; when “5’, request liquidated close orders; when “6”, request liquidated open orders |
 | create_date | true     | int    | date        |         | 7，90（ 7 days or 90 days）        |
 | page_index | false     | int    | page, system sets page 1 by default without further instruction           |         |         |
@@ -2503,7 +2498,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC
 | \<object\>(object name: data) |          |         |                    |              |
 | \<list\>( object name: orders) |          |         |                    |              |
 | symbol                 | true     | string  | symbol             |              |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code             |  true  |  string  | contract code | e.g. "BTC-USD" |
 | direction              | true     | string  | "buy":buy"sell": sell     |              |
 | offset              | true     | string  | "open":open "close":  close      |              
 | volume           | true     | decimal | liquidated order quantity            |              |
@@ -2520,6 +2515,10 @@ curl "https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC
 ## Query funding rate
 
 - GET `swap-api/v1/swap_funding_rate`
+
+```shell
+"https://api.hbdm.com/swap-api/v1/swap_funding_rate?contract_code=BTC-USD"
+```
 
 ### Request Parameters
 
@@ -2553,7 +2552,7 @@ status | string | response status  | "ok" , "error" |
 ts | long | response timestamp.unit:millionSeconds. |  |
 \<dict\>(attrs：data) |  |  |  |  |
 symbol | string | symbol | "BTC","ETH"... |
-contract_code  |  string   |  contract code,eg:"BTC-USD"  |
+contract_code  |  string   |  contract code | eg:"BTC-USD"  |
 fee_asset | string | fee asset | eg:"BTC","ETH"... |
 funding_time | string | current funding time |  |
 funding_rate | string |  current funding rate |  |
@@ -2564,6 +2563,10 @@ next_funding_time  | string |  estimated funding rate of next period     |   |
 ## Query historical funding rate
 
 - GET `swap-api/v1/swap_historical_funding_rate`
+
+```shell
+"https://api.hbdm.com/swap-api/v1/swap_historical_funding_rate?contract_code=BTC-USD"
+```
 
 ### Request Parameters
 
@@ -2595,22 +2598,6 @@ page_size   | false    | int    | page size.20 by default. 50 at most | 20      
 			"funding_rate": "-0.000012867819466582",
 			"realized_rate": "-0.000012867819466582",
 			"funding_time": "1586404800000",
-			"contract_code": "BTC-USD",
-			"symbol": "BTC",
-            "fee_asset": "BTC",
-            "avg_premium_index": "0"
-		}, {
-			"funding_rate": "0.000100000000000000",
-			"realized_rate": "0.000100000000000000",
-			"funding_time": "1586376000000",
-			"contract_code": "BTC-USD",
-			"symbol": "BTC",
-            "fee_asset": "BTC",
-            "avg_premium_index": "0"
-		}, {
-			"funding_rate": "0.000100000000000000",
-			"realized_rate": "0.000100000000000000",
-			"funding_time": "1586347200000",
 			"contract_code": "BTC-USD",
 			"symbol": "BTC",
             "fee_asset": "BTC",
@@ -2650,7 +2637,7 @@ total_size           | true     | int     |  total size               |         
 - GET `/index/market/history/swap_premium_index_kline`
 
 ```shell
-
+"https://api.hbdm.com/index/market/history/swap_premium_index_kline?contract_code=BTC-USD&period=1min&size=1"
 ```
 
 ### request parameters
@@ -2658,7 +2645,7 @@ total_size           | true     | int     |  total size               |         
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | contract_code      | true     | string |           |         | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD","ETH-USD".                          |
 | period          | true     | string  | kline period               |         | 1min,5min, 15min, 30min, 60min,4hour,1day,1week,1mon     |
-| size  | true     | integer    | kline size         | | [1,2000] |
+| size  | true     | int    | kline size         | | [1,2000] |
 
 ### response parameters：
 | **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
@@ -2666,13 +2653,13 @@ total_size           | true     | int     |  total size               |         
 | ch      | true     | string | data channel          |         | eg： market.period                           |
   \<data\>    |               |    |  object    |            | 
   id    |     true          | long   |  index kline id,the same as kline timestamp, kline start timestamp    |            
-  vol    |     true          | decimal   |  Trade Volume(Cont.) The value is 0   |            
-  count    |     true          | decimal   |   Order Quantity The value is 0|            
-  open    |     true          | decimal   |   Opening Price  |            
-  close    |     true          | decimal   |  Closing Price,  the price in the last kline is the latest order price   |            
-  low    |     true          | decimal   |  Lowest Price   |            
-  high    |     true          | decimal   |  Highest Price   |            
-  amount    |     true          | decimal   |  Trade Amount(Coin), The value is 0. )   |            
+  vol    |     true          | string   |  Trade Volume(Cont.) The value is 0   |            
+  count    |     true          | string   |   Order Quantity The value is 0|            
+  open    |     true          | string   |   Opening Price  |            
+  close    |     true          | string   |  Closing Price,  the price in the last kline is the latest order price   |            
+  low    |     true          | string   |  Lowest Price   |            
+  high    |     true          | string   |  Highest Price   |            
+  amount    |     true          | string   |  Trade Amount(Coin), The value is 0. )   |            
   \</data\>    |               |     |      |          
 | status  | true     | string    | process status          |   | "ok" , "error" |
 | ts  | true     | long    | timestamp of the response of the server          |  |  unit：millionseconds |
@@ -2709,16 +2696,16 @@ total_size           | true     | int     |  total size               |         
 - GET `/index/market/history/swap_estimated_rate_kline`
 
 ```shell
-
+"https://api.hbdm.com/index/market/history/swap_estimated_rate_kline?contract_code=BTC-USD&period=1min&size=1"
 ```
 
 ### request parameters
 
 | **Parameter name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code      | true     | string |           |         | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD","ETH-USD".                          |
+| contract_code      | true     | string |  contract code  |         | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD","ETH-USD".                          |
 | period          | true     | string  | kline period               |         | 1min,5min, 15min, 30min, 60min,4hour,1day,1week,1mon     |
-| size  | true     | integer    | kline size         | | [1,2000] |
+| size  | true     | int    | kline size         | | [1,2000] |
 
 ### response parameters：
 | **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
@@ -2726,13 +2713,13 @@ total_size           | true     | int     |  total size               |         
 | ch      | true     | string | data channel          |         | eg： market.period                           |
   \<data\>    |               |    |  object    |            | 
   id    |     true          | long   |  kline ID     |            
-  vol    |     true          | decimal   |  Trade Volume(Cont.) The value is 0   |            
-  count    |     true          | decimal   |   Order Quantity The value is 0|            
-  open    |     true          | decimal   |   Opening Price  |            
-  close    |     true          | decimal   |  Closing Price,  the price in the last kline is the latest order price   |            
-  low    |     true          | decimal   |  Lowest Price   |            
-  high    |     true          | decimal   |  Highest Price   |            
-  amount    |     true          | decimal   |  Trade Amount(Coin), The value is 0. )   |            
+  vol    |     true          | string   |  Trade Volume(Cont.) The value is 0   |            
+  count    |     true          | string   |   Order Quantity The value is 0|            
+  open    |     true          | string   |   Opening Price  |            
+  close    |     true          | string   |  Closing Price,  the price in the last kline is the latest order price   |            
+  low    |     true          | string   |  Lowest Price   |            
+  high    |     true          | string   |  Highest Price   |            
+  amount    |     true          | string   |  Trade Amount(Coin), The value is 0. )   |            
   \</data\>    |               |     |      |          
 | status  | true     | string    | process status          |   | "ok" , "error" |
 | ts  | true     | long    | timestamp of the response of the server          |  |  unit：millionseconds |
@@ -2774,50 +2761,52 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 ### request parameters
 | **Parameter name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code      | true     | string | contract_code name          |         | Case-Insenstive.Both uppercase and lowercase are supported..e.g."BTC-USD"
+| contract_code      | true     | string | contract code           |         | Case-Insenstive.Both uppercase and lowercase are supported..e.g."BTC-USD"
 | period          | true     | string  | kline period               |         | 1min,5min, 15min, 30min, 60min,4hour,1day,1mon     |
 | basis_price_type          | false     | string  | use basis price type to calculate the basis data       |    Using open price default   |    open price："open"，close price："close"，highest price："high"，lowest price："low"，avg=（high price +low price）/2："average"   |
 | size  | true     | integer    | data size         | 150 | [1,2000] |
+
+> Response example：
+
+```json
+
+{
+    "ch":"market.BTC-USD.basis.1min.open",
+    "data":[
+        {
+            "basis":"-8.017499999999927",
+            "basis_rate":"-0.0007552765143388248",
+            "contract_price":"10607.3",
+            "id":1601799180,
+            "index_price":"10615.3175"
+        }
+    ],
+    "status":"ok",
+    "ts":1601799211628
+}
+
+```
 
 ### response parameters
 
 | **parameter name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
+| ch     | true | string | data channel，eg： market.basis |                | |
+| \<data\> |  | object array |  |  |
 | id | true | long | unique id |  |
-| contract_price | true | string | contract price|  |
-| index_price | true | string | index price|  |
+| contract_price | true | string | contract price |  |
+| index_price | true | string | index price |  |
 | basis | true | string | basis=contract_price - index_price |  |
 | basis_rate | true | string | basis_rate=basis/index_price |  |
-| ts | true  | long | the timestamp of generation |  |
+| \</data\> |  |  |  |  |
+| status | true | string | status                          | "ok" , "error" | |
+| ts | true  | long | created time |  |
+
 
 - Note：
    2000 size at most per request ；
 
-- Response example：
 
-```json
-
-{
-  "ch": "market.BTC-USD.basis.1min.low",
-  "data": [{
-    "basis": 1098.8875,
-    "basis_rate": 0.1592333844724310754244333794007850184,
-    "contract_price": 8000,
-    "id": 1576586760,
-    "index_price": 6901.1125,
-  }, {
-    "basis": 1100.305,
-    "basis_rate": 0.1594715418580096656446408138330752301,
-    "contract_price": 8000,
-    "id": 1576586820,
-    "index_price": 6899.695,
-  }],
-  "status": "ok",
-  "ts": 1576586879618
-}
-}
-
-```
 
 
 # Swap Account Interface
@@ -2830,9 +2819,9 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 
 ###  Request Parameter  
 
-|   Parameter Name   |   Mandatory   |   Type   |   Desc       |   Default   |   Value Range                                           |
-| ------------------ | ------------- | -------- | ------------ | ----------- | ------------------------------------------------------- |
-| contract_code             | false             | string          | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
+|   Parameter Name   |   Mandatory   |   Type   |   Desc       |    Value Range                                           |
+| ------------------ | ------------- | -------- | ------------ |  ------------------------------------------------------- |
+| contract_code             | false             | string    |  contract code    | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 
 > Response:
 
@@ -2882,9 +2871,9 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 |   Parameter Name               |   Mandatory   |   Type   |   Desc                                        |   Value Range   |
 | ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------- |
 | status                         | true          | string   | Request Processing Result                     | "ok" , "error"  |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
 | \<list\>(Attribute Name: data) |               |          |                                               |                 |
 | symbol                         | true          | string   | Variety code                                  | "BTC","ETH"...  |
+| contract_code                  |   true        | string   |  Contract Code  | e.g. "BTC-USD"              |                 |
 | margin_balance                 | true          | decimal  | Account rights                                |                 |
 | margin_position                | true          | decimal  | Position Margin                               |                 |
 | margin_frozen                  | true          | decimal  | Freeze margin                                 |                 |
@@ -2909,9 +2898,9 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 
 ### Request Parameter  
 
-|   Parameter Name   |   Mandatory   |   Type   |   Desc       |   Default   |   Value Range                                           |
-| ------------------ | ------------- | -------- | ------------ | ----------- | ------------------------------------------------------- |
-| contract_code             | true             | string         | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
+|   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Value Range                                           |
+| ------------------ | ------------- | -------- | ------------ | ------------------------------------------------------- |
+| contract_code      | false             | string    |   Contract Code  | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
 
 > Response:
 
@@ -2947,7 +2936,7 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 | status                         | true          | string   | Request Processing Result                     | "ok" , "error"                      |
 | \<list\>(Attribute Name: data) |               |          |                                               |                                     |
 | symbol                         | true          | string   | Variety code                                  | "BTC","ETH"...                      |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code                  |  true         | string   | Contract Code                                 | e.g. "BTC-USD" |
 | volume                         | true          | decimal  | Position quantity                             |                                     |
 | available                      | true          | decimal  | Available position can be closed              |                                     |
 | frozen                         | true          | decimal  | frozen                                        |                                     |
@@ -2971,7 +2960,7 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 
 field               |  Mandatory |  type  |  desc         |   range       |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
-contract_code | true | string | symbol	 |Case-Insenstive.Both uppercase and lowercase are supported. "BTC-USD","ETH-USD".... |
+contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase and lowercase are supported. "BTC-USD","ETH-USD".... |
 
 > Response:
 
@@ -2989,9 +2978,9 @@ contract_code | true | string | symbol	 |Case-Insenstive.Both uppercase and lowe
         "margin_available": 0,
         "profit_real": 0,
         "profit_unreal": 0,
-        "risk_rate": None,
+        "risk_rate": null,
         "withdraw_available": 0,
-        "liquidation_price": None,
+        "liquidation_price": null,
         "lever_rate": 20,
         "adjust_factor": 0.13,
         "margin_static": 1,
@@ -3019,6 +3008,9 @@ contract_code | true | string | symbol	 |Case-Insenstive.Both uppercase and lowe
 
 attr | type | Mandatory | desc     |
 -----  | -----  | -----  | -----  |
+status     |  string  | true  | Request Processing Result  "ok" , "error" |
+ts       | long | true    | Time of Respond Generation, Unit: Millisecond                 |
+\<data\> |    true    |  object array       |                             |
 symbol | string | true | contract symbol                                     |
 contract_code | string | true | contract code                                     |
 margin_balance | decimal | true | Balance Margin                            |
@@ -3049,7 +3041,7 @@ lever_rate | int | true | Leverage Rate                                         
 direction | string  | true  | "buy" "sell"	                                            |
 last_price | decimal  | true  | Last Price                                              |
 \</list\>                  |              |          |                            |
- 
+\</data\>            |        |         |                      |  
 
 
 ## Query assets information of all sub-accounts under the master account
@@ -3058,9 +3050,9 @@ last_price | decimal  | true  | Last Price                                      
 
 ### Request Parameters
 
-| **Parameter name**    | **Must fill or not** | **Type** | **Description**        | **Default value** | **Value range**                                 |
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code             | string             | true          | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
+| **Parameter name**    | **Must fill or not** | **Type** | **Description**    | **Value range**                                 |
+| ----------- | -------- | ------ | ------------- |  ---------------------------------------- |
+| contract_code             |  false     |  string   | Contract Code  | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 
 > Response:
 
@@ -3123,7 +3115,7 @@ last_price | decimal  | true  | Last Price                                      
 | sub_uid | true  | long | sub-account UID |  |
 | \<list\> |  |  |  |  |
 | symbol | true | string | type code | "BTC","ETH"... |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code    |  true  |  string | contract code    | e.g. "BTC-USD" |
 | margin_balance | true | decimal | account equity |  |
 | liquidation_price | true | decimal | estimated liquidation price |  |
 | risk_rate | true | decimal | margin rate |  |
@@ -3143,9 +3135,9 @@ last_price | decimal  | true  | Last Price                                      
 ### Request Parameters
 
 
-| **Parameter name**    | **Must fill or not** | **Type** | **Description**        | **Default value** | **Value range**                                 |
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code             | string             | true          | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
+| **Parameter name**    | **Must fill or not** | **Type** |  **Value range**                                 |
+| ----------- | -------- | ------ |  ---------------------------------------- |
+| contract_code   |   false    |  string  | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 | sub_uid | true | long | sub-account UID	 |  |
 
 > Response:
@@ -3181,10 +3173,10 @@ last_price | decimal  | true  | Last Price                                      
 | **Parameter name**               | **Must fill or not** | **Type**  | **Description**             | **Value range**     |
 | ---------------------- | -------- | ------- | ------------------ | ------------ |
 | status | true | string | the handling result of requests	 | "ok" , "error" |
-| ts                       | true | long | the create time point of response, unit: ms |  |
+| ts    | true | long | the create time point of response, unit: ms |  |
 | \<data\> |  |  |  |  |
 | symbol                  | true     | string  | type code               | "BTC","ETH"...when the$contract_code value is "*", it will subscribe all contract types |
-| contract_code             | string             | true          | e.g. "BTC-USD" |
+| contract_code             | true |  string  | contract code | e.g. "BTC-USD" |
 | margin_balance                  | true     | decimal  | account equity               |                |
 | margin_position                 | true     | decimal  | position margin (the margin used by current positions)               |                |
 | margin_frozen                 | true     | decimal  | frozen margin               |                |
@@ -3200,11 +3192,12 @@ last_price | decimal  | true  | Last Price                                      
 | \</data\> |  |  |  |  |
 
 
-- Notice
+#### Notice:
 
    Only query account information for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission);
-  
+
    No data return for sub-accounts which has logged in hbdm but have not gained trading permission/activated.
+
 
 ## Query a single sub-account's position information
 
@@ -3212,9 +3205,9 @@ last_price | decimal  | true  | Last Price                                      
 
 ### Request Parameters
 
-| **Parameter name**    | **Must fill or not** | **Type** | **Description**        | **Default value** | **Value range**                                 |
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code             | string             | true          | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
+| **Parameter name**    | **Must fill or not** | **Type** | **Description**    |
+| ----------- | -------- | ------ | -------------  |
+| contract_code     |  false    |  string    | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 | sub_uid | true | long | sub-account UID	 |  |
 
 > Response:
@@ -3335,7 +3328,7 @@ last_price | decimal  | true  | Last Price                                      
 
 | Parameter Name        | Mandatory  | Type     | Description   | Value Range                                       |
 | ------------- | ----- | ------ | ------------- | ---------------------------------------- |
-| contract_code | true  | string | contract_code     |                                          |
+| contract_code | true  | string | contract code     |                                          |
 | start_time   | false  | long    | start time（Timestamp，Unit: Millisecond）        |  Value Range: [(current time - 90 days), current time] ，default current day - 90 days   |
 | end_time   | false  | long    | end time（Timestamp，Unit: Millisecond）        |  Value Range: (start_time, current time]，default current time   |
 |page_index	|false |	int	| Page | 1st page by default without given instruction		|
@@ -3409,7 +3402,7 @@ last_price | decimal  | true  | Last Price                                      
 | \<data\> | true     |  object      |                    |                                          |
 | \<settlement_records\> | true     |  object   array    |                    |                                          |
 | symbol     | true   | string  | Coin Code                  | "BTC","ETH"... |
-| contract_code     | true   | string  | | contract code                  |  "BTC-USD" ... |
+| contract_code     | true   | string  |  contract code                  |  "BTC-USD" ... |
 | margin_balance_init        | true | decimal | Initial account equity for this term          |             |
 | margin_balance   | true | decimal | Account equity after settlement for this term  |          |
 | settlement_profit_real    | true | decimal | Realized PnL for this term      |                      |
@@ -3521,7 +3514,7 @@ last_price | decimal  | true  | Last Price                                      
 
 |   Parameter Name                |   Mandatory  |   Type   |    Description             |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code | true | string | contract type code   | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
+| contract_code | false | string | contract type code   | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 | order_price_type | true  | string | Order Type | "limit": Limit Order，"opponent":BBO，"lightning": Lightning Close，"optimal_5": Optimal top 5 price，"optimal_10":Optimal top 10 price，"optimal_20":Optimal top 20 price,"fok":FOK order,"ioc":ioc order, "opponent_ioc"：IOC order using the BBO price，"lightning_ioc"：lightning IOC，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"lightning_fok"：lightning FOK，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK|
 
 > Response:
@@ -3548,7 +3541,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ### Returning Parameter 
 
-|   Parameter Name                |   Mandatory  |    Type   |    Desc              |    Value Range Í      |
+|   Parameter Name                |   Mandatory  |    Type   |    Desc              |    Value Range      |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | Request Processing Result | "ok" , "error" |
 | ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
@@ -3557,8 +3550,8 @@ last_price | decimal  | true  | Last Price                                      
 | \<list\> |  |  |  |  |
 | symbol | true  | string | Contract Code | "BTC","ETH"... |
 | contract_code | true | string | contract type code   | "BTC-USD",... |
-| open_limit | true | float | Max open order limit | |
-| close_limit | true | float | Max close order limit |  |
+| open_limit | true | decimal | Max open order limit | |
+| close_limit | true | decimal | Max close order limit |  |
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
@@ -3570,7 +3563,7 @@ last_price | decimal  | true  | Last Price                                      
 
 |   Parameter Name                 |   Mandatory   |   Type    |    Desc              |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code | true | string | contract type code   | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD",... |
+| contract_code | false | string | contract type code   | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD",... |
 
 > Response:
 
@@ -3618,7 +3611,7 @@ last_price | decimal  | true  | Last Price                                      
 
 |   Parameter Name                 |    Mandatory    |   Type   |   Desc             |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code | true | string | contract type code   | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
+| contract_code | false | string | contract type code   | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 
 > Response:
 
@@ -3649,7 +3642,7 @@ last_price | decimal  | true  | Last Price                                      
 |   Parameter Name                |   Mandatory   |   Type   |   Desc             |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | Request Processing Result	 | "ok" , "error" |
-| ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
+| ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
 | \<data\> |  |  |  |  |
 | symbol | true  | string | Contract Code | "BTC","ETH"... |
 | contract_code | true | string | contract type code   | "BTC-USD",... |
@@ -3671,7 +3664,7 @@ last_price | decimal  | true  | Last Price                                      
 
 |  Parameter Name                |   Mandatory  |   Type   |   Desc             |   Value Range      |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code | true | string | contract type code   | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
+| contract_code | false | string | contract type code   | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 
 > Response:
 
@@ -3697,7 +3690,7 @@ last_price | decimal  | true  | Last Price                                      
 |   Parameter Name                |   Mandatory    |   Type   |   Desc              |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | Request Processing Result	 | "ok" , "error" |
-| ts | true  | long | Time of Responding Generation, Unit: milesecond |  |
+| ts | true  | long | Time of Responding Generation, Unit: Millisecond |  |
 | \<data\> |  |  |  |  |
 | symbol | true  | string | Contract Code | "BTC","ETH"... |
 | contract_code | true | string | contract type code   | "BTC-USD",... |
@@ -3726,7 +3719,7 @@ last_price | decimal  | true  | Last Price                                      
 | attr   | required  | type     | desc   |     |
 | ------ | ----- | ------ | ---- | ---------------------------- |
 | sub_uid | true | long | uid of sub account	 |  |
-| contract_code | true | string | symbol | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
+| contract_code | true | string | contract code | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 | amount | true | decimal | transfer amount ||
 | type | true | string | transfer type | "master_to_sub" or "sub_to_master" |
 
@@ -3846,7 +3839,7 @@ last_price | decimal  | true  | Last Price                                      
 | ts            | true | long    | response millionseconds   |                                          |
 | \<data\>      | true     |  array object        |      |   |
 | is_disable        | true | int  |             | 1：is disabled，0：isn't disabled |
-| order_price_types        | true | long  | order price types,such as：“limit,post_only,FOK,IOC”          |  |
+| order_price_types        | true | string  | order price types,such as：“limit,post_only,FOK,IOC”          |  |
 | disable_reason        | true | string  | disable reason  | "COR":（Cancel Order Ratio），“TDN”：（Total Disable Number）  |
 | disable_interval        | true | long  | disable millionseconds            |  |
 | recovery_time        | true | long  | recovery millionseconds            |  |
@@ -3863,7 +3856,7 @@ last_price | decimal  | true  | Last Price                                      
 | disables_threshold        | true | long  | disable threshold        |  |
 | disables        | true | long  | total disable number        |  | 
 | is_trigger        | true | int  | | 	1：triggered，0：not triggered |
-| is_active        | true | int  |          |  | 1：active，0：not active
+| is_active        | true | int  |          |   1：active，0：not active
 | \</TDN>       | true | dict object  |  |
 | \</data\>     |      |         |         |   |
 
@@ -3875,7 +3868,7 @@ last_price | decimal  | true  | Last Price                                      
   "data":
   [{
       "is_disable": 1,  
-      "order_price_types": “limit,post_only,FOK,IOC”, 
+      "order_price_types": "limit,post_only,FOK,IOC", 
       "disable_reason":"COR", 
       "disable_interval": 5,
       "recovery_time": 1,
@@ -3919,7 +3912,7 @@ last_price | decimal  | true  | Last Price                                      
 | ------------------ | ------------------ | ------------- | ------------------------------------------------------------ |
 | contract_code      | string             | true         | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
 | client_order_id    | long               | false         | Clients fill and maintain themselves.must be Less or Equal than 9223372036854775807 |
-| price              | decimal            | true          | Price                                                        |
+| price              | decimal            | false          | Price                                                        |
 | volume             | long               | true          | Numbers of orders (volume)                                   |
 | direction          | string             | true          | Transaction direction                                        |
 | offset             | string             | true          | "open", "close"                                              |
@@ -3962,9 +3955,11 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                                                       |   Value Range   |
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ | --------------- |
 | status             | true          | string   | Request Processing Result                                    | "ok" , "error"  |
+| \<data\>  |    |    |   |  |
 | order_id           | true          | long     | Order ID                                                     |                 |
 | order_id_str           | true          | string     | Order ID                                                     |                 |
-| client_order_id    | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
+| client_order_id    | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned | 
+| \</data\>  |    |    |   |  ||
 | ts                 | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
 
 ### Note
@@ -3990,7 +3985,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | ------------------------------------- | ------------------ | ------------- | ------------------------------------------------------------ |
 | contract_code      | string             | true       | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"                                                   |
 | client_order_id                       | long               | false          | Clients fill and maintain themselves.must be Less or Equal than 9223372036854775807 |
-| price                                 | decimal            | true          | Price                                                        |
+| price                                 | decimal            | false          | Price                                                        |
 | volume                                | long               | true          | Numbers of orders (volume)                                   |
 | direction                             | string             | true          | Transaction direction                                        |
 | offset                                | string             | true          | "open": "close"                                              |
@@ -4062,7 +4057,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ |
 | order_id           | false         | string   | Order ID（different IDs are separated by ",", maximum 10 orders can be withdrew at one time） |
 | client_order_id    | false         | string   | Client order ID (different IDs are separated by ",", maximum 10 orders can be withdrew at one time) |
-| contract_code      | string             | true       | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"    |
+| contract_code      |  true      |   string     | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"    |
 
 ###  Note  ：
 
@@ -4077,11 +4072,6 @@ The return data from Cancel An Order Interface only means that order cancelation
 {
   "status": "ok",
   "errors":[
-    {
-      "order_id":"633766664829804544",
-      "err_code": "1002",
-      "err_msg": "order doesn’t exist"
-     },
     {
       "order_id":"633766664829804544",
       "err_code": "1002",
@@ -4186,7 +4176,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 |   Parameter Name                 |    Mandatory    |   Type   |   Desc             |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | contract_code      | true             | string       | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"                                                    |
-| volume | true | int | Order Quantity(volume) |  |
+| volume | true | decimal | Order Quantity(volume) |  |
 | direction | true | string | “buy”:Open，“sell”:Close |  |
 | client_order_id | false | long | Client needs to provide unique API and have to maintain the API themselves afterwards.must be Less or Equal than 9223372036854775807 |  |
 | order_price_type | false  | string | "lightning" by default. "lightning_fok": lightning FOK type,"lightning_ioc": lightning IOC type|  |
@@ -4212,12 +4202,11 @@ The return data from Cancel An Order Interface only means that order cancelation
 |   Parameter Name                 |   Mandatory  |   Type   |   Desc              |    Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | Request Processing Result	 | "ok" :Order placed successfully, "error"：Order failed |
-| ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
+| ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
 | <data> |  |  |  | Dictionary |
 | order_id | true  | long | Order ID [Different users may share the same order ID] |  |
 | order_id_str | true  | string | Order ID |  |
 | client_order_id | false | long | user’s own order ID |  |
-| order_price_type | false  | string | "lightning" by default. "lightning_fok": lightning FOK type|  
 | </data> |  |  |  |  |
 
 > Error：
@@ -4363,10 +4352,10 @@ symbol  |  true  |  string  |  symbol  |  eg."BTC"  |
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                        |
 | ------------------ | ------------- | -------- | ---------------------------------- |
-contract_code  |  true   |  string   |  Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
+| contract_code  |  true   |  string   |  Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"  |
 | order_id           | true          | long     | Order ID                      |
-| created_at           | true          | long     | Timestamp                     |
-| order_type         |	true         |	int     |  Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
+| created_at           | false          | long     | Timestamp                     |
+| order_type         |	false         |	int     |  Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
 | page_index         | false         | int      | Page number, default 1st page |
 | page_size          | false         | int      | Default 20，no more than 50   |
 
@@ -4502,7 +4491,7 @@ Please note that created_at can't send "0"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                      |   Default   |   Value Range   |
 | ------------------ | ------------- | -------- | --------------------------- | ----------- | --------------- |
-| contract_code                     | true          | string   | Contract Code                                                | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"                 |
+| contract_code      | true          | string   | Contract Code                                                | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"                 |
 | page_index         | false         | int      | Page, default 1st page      | 1           |                 |
 | page_size          | false         | int      | Default 20，no more than 50 | 20          |                 |
 
@@ -4593,7 +4582,7 @@ Please note that created_at can't send "0"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                      |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | --------------------------- | ----------- | ------------------------------------------------------------ |
-| contract_code                  | true          | string   | Contract Code                                                | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD".                   |
+| contract_code     | true          | string   | Contract Code                |             | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD".                   |
 | trade_type         | true          | int      | Transaction type            |             | 0:all,1: buy long,2: sell short,3: buy short,4: sell  long,5: sell liquidation,6: buy liquidation,7:Delivery long,8: Delivery short,11:reduce positions to close long,12:reduce positions to close short |
 | type               | true          | int      | Type                        |             | 1:All Orders,2:Order in Finished Status                      |
 | status             | true          | string      | Order Status                |          | support multiple query seperated by ',',such as  '3,4,5','0': all.  3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled;  |
@@ -4617,7 +4606,7 @@ When getting information on order cancellation via query history orders interfac
         "contract_code": "BTC-USD",
         "volume": 111,
         "price": 1111,
-        "order_price_type": "limit",
+        "order_price_type": 1,
         "direction": "buy",
         "offset": "open",
         "lever_rate": 10,
@@ -4696,7 +4685,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 Parameter Name |  Mandatory  |  Type  |  Desc                    |  Default  |  Value Range   
 ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
- contract_code                  | true          | string   | Contract Code                                                | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD".                   |
+ contract_code   | true          | string   | Contract Code      |             | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD".                   |
 trade_type  | true     | int    | trasanction types          |         |  0:All; 1: Open long; 2: Open short; 3: Close short; 4: Close long; 5: Liquidate long positions; 6: Liquidate short positions |
 create_date | true     | int    | date            |         | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.                            |
 page_index  | false    | int    | page; if not enter, it will be the default value of the 1st page.  | 1       |                                          |
@@ -4743,7 +4732,7 @@ status                 | true     | string  | request handling result           
 data: \<object\> |          |         |                    |              |
  trades:\<list\> |          |         |                    |              |
 id               | true     | string    | the global unique ID of the trade.                |              |
-match_id               | true     | long    | match_id is the same with trade_id of the websocket subscriptions: orders.$symbol.match_id is the result of sets of order execution and trade confirmation. NOTE: match_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same match_id.             |              |
+match_id               | true     | long    | match_id is the same with trade_id of the websocket subscriptions: orders.$contract_code.match_id is the result of sets of order execution and trade confirmation. NOTE: match_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same match_id.             |              |
 order_id               | true     | long    | order ID              |              |
 order_id_str               | true     | string    | order ID              |              |
 symbol                 | true     | string  | contract type code               |              |
@@ -4777,15 +4766,11 @@ ts                     | true     | long    | timestamp                |        
 
 - POST `swap-api/v1/swap_trigger_order`
 
-### Note
-  
-  - optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.
- 
 ### body
 
 |  Params                |   Mandatory  |   Type    |    Desc              |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code | false | string | contract type | BTC-USD |
+| contract_code | true | string | contract code | BTC-USD |
 | trigger_type | true | string | trigger： `ge` Equal to or Greater than；`le` Less than or Equal to |  |
 | trigger_price | true | decimal | Trigger Price |  |
 | order_price | false | decimal | Order Price |  |
@@ -4793,7 +4778,12 @@ ts                     | true     | long    | timestamp                |        
 | volume | true | decimal | volume |  |
 | direction | true | string | buy sell |  |
 | offset | true | string | open close |  |
-| lever_rate | true | int | Long leverage shall be equal to short leverage. |  |
+| lever_rate | false | int | Long leverage shall be equal to short leverage. |  |
+
+### Note
+  
+  - optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.
+ 
 
 > Request:
 
@@ -4888,12 +4878,12 @@ ts                     | true     | long    | timestamp                |        
   "status": "ok",
   "data": {
     "errors": [{
-        "order_id": 161251,
+        "order_id": "161251",
         "err_code": 200417,
         "err_msg": "invalid symbol"
       },
       {
-        "order_id": 161251,
+        "order_id": "161251",
         "err_code": 200415,
         "err_msg": "invalid symbol"
       }
@@ -4910,12 +4900,14 @@ ts                     | true     | long    | timestamp                |        
 | field             | Mandatory | type | desc                 | value range   |
 | -------------------------- | ------------ | -------- | -------------------------- | -------------- |
 | status                     | true         | string   | response status               | "ok" , "error" |
+| \<data\>                  |              |          |                            |                |
 | successes                  | true         | string   | successful orders                 |                |
 | \<list\>(field name: errors) |              |          |                            |                |
 | order_id                   | true         | string   | order id                     |                |
 | err_code                   | true         | int      | error code             |                |
-| err_msg                    | true         | int      | error messages               |                |
+| err_msg                    | true         | string      | error messages               |                |
 | \</list\>                  |              |          |                            |                |
+| \</data\>                  |              |          |                            |                |
 | ts                         | true         | long     | response timestamp millseconds |  |
 
 
@@ -4938,9 +4930,9 @@ ts                     | true     | long    | timestamp                |        
 
 ### Params
 
-| field | type | Mandatory |desc
+| field | type | Mandatory | desc |
 | -----  | -----  |  -----  | ----- |
-|  contract_code  |  string  |  false  |  contract code,"BTC-USD" ...  |
+|  contract_code  |  string  |  true  |  contract code,"BTC-USD" ...  |
 
 ### Note
 
@@ -4953,12 +4945,12 @@ ts                     | true     | long    | timestamp                |        
   "data": {
     "errors":[
       {
-        "order_id":161251,
+        "order_id":"161251",
         "err_code": 200417,
         "err_msg": "invalid symbol"
        },
       {
-        "order_id":161251,
+        "order_id":"161251",
         "err_code": 200415,
         "err_msg": "invalid symbol"
        }
@@ -4975,12 +4967,14 @@ ts                     | true     | long    | timestamp                |        
 | field              | Mandatory | type | desc                 | value range   |
 | -------------------------- | ------------ | -------- | -------------------------- | -------------- |
 | status                     | true         | string   | status               | "ok" , "error" |
+| \<data\>                  |              |          |                            |                |
 | \<list\>(data name: errors) |              |          |                            |                |
 | order_id                   | true         | string   | order id                    |                |
 | err_code                   | true         | int      | error code            |                |
-| err_msg                    | true         | int      | error message               |                |
+| err_msg                    | true         | string      | error message               |                |
 | \</list\>                  |              |          |                            |                |
 | successes                  | true         | string   | successful orders                 |                |
+| \</data\>                  |              |          |                            |                |
 | ts                         | true         | long     | response timestamp in millseconds |   |
 
 
@@ -5003,9 +4997,9 @@ ts                     | true     | long    | timestamp                |        
 
 ### Request Parameter
  
-|Parameter Name	| Type | Mandatory | Description
+|Parameter Name	| Type | Mandatory | Description |
 | -----  | -----   | -----  | ----- |
-|  contract_code|  string  |  false  |  Case-Insenstive.Both uppercase and lowercase are supported..contract code  |
+|  contract_code|  string  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported..contract code  |
 |  page_index  |  int   |  false  |  page number，default page 1 if no given instruction| 
 |  page_size   |  int   |  false  |  default 20 if no given instruction ，no more than 50 |
 
@@ -5116,7 +5110,7 @@ ts                     | true     | long    | timestamp                |        
 
 |   Parameter Name    |   Mandatory |   Type |     Desc             |   Default   |   Value Range |
 | ------- | ------- | ------- | -------- | ------- | -------- |
-| contract_code | false        | string   | Contract Code            |            | BTC-USD         |
+| contract_code | true        | string   | Contract Code            |            | BTC-USD         |
 | trade_type        | true         | int      |    Transaction type            |            | 0: All ,1: Open Long,2: Close Short,3: Open Short,4: Close Long；the system will transfer these parameters into offset and direction and query the requested data. Please note that no data can be requested with parameter out of this range. |
 | status        | true         | string      | Order Status              |            | data divided with several commas, trigger orders ready to be submitted：0: All (All filled orders),4: Trigger orders successfully submitted,5: Trigger orders failed being submitted, 6: Trigger orders cancelled |
 | create_date   | true         | int      | Date                 |            | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.    |
@@ -5235,6 +5229,7 @@ ts                     | true     | long    | timestamp                |        
 | order_id | long | true | Trigger order ID, the field value in user_order_id data under t_trigger_orders sheet
 | order_id_str | string | true | the order ID with string 
 | relation_order_id | string | true | Relation order ID is the string related to the limit orders which is the field value in order_id under t_trigger_order list. The value is -1 before the trigger orders executed. | order_price_type | string | true | order type "limit": Limit order price，"optimal_5": Optimal 5  price level，"optimal_10":Optimal 10 price level，"optimal_20": the Optimal 20 price level
+| order_price_type | string | true | order price type "limit": limit order，"optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20
 | status | int | true | Order status (4:Orders accepted、5: Orders failing being placed、6: Orders canceled )
 | order_source | string | true | Order source
 | trigger_price | decimal | true | trigger price
@@ -5284,8 +5279,8 @@ Transferring margin between Spot account and Swap account Interface, sets 8 deci
 
 | Parameter Name  |  Mandatory  |  Type  |  Desc                    |  Default   |  Value Range  |  
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-from  |    true  |  string  |  source，value：spot、swap  |   e.g. spot  |
-to  |    true  |  string  |  destination，value：spot、swap |   e.g. swap  |
+| from  |    true  |  string  |  source，value：spot、swap  |   e.g. spot  |
+| to  |    true  |  string  |  destination，value：spot、swap |   e.g. swap  |
 | currency      | true     | string | currency.Both uppercase and lowercase are supported.          |         | e.g. btc                          |
 | amount  | true     | decimal    | Transferring amount         |         |   |
 
@@ -5457,11 +5452,11 @@ Note: The rate limit of WS order push and RESTFUL private interface are separate
 
 Response the following strings for “Header” via API
 
-- ratelimit-limit： the upper request limit per time, unit: time
+- ratelimit-limit： the upper request limit per time, unit: cont.
 
 - ratelimit-interval： reset interval(reset the number of request ), unit: ms
 
-- ratelimit-remaining： available request number left in this round, unit: time
+- ratelimit-remaining： available request number left in this round, unit: cont.
 
 - ratelimit-reset： upper limit of reset time used to request number， unit: ms
  
@@ -5470,7 +5465,6 @@ Response the following strings for “Header” via API
 ## Market Heartbeat
 WebSocket API supports two-way heartbeat. Both Server and Client can send ping message, which the opposite side can return with pong message.
 
-:
 - WebSocket Server sends heartbeat：
 
 `{"ping": 18212558000}`
@@ -5605,9 +5599,9 @@ During making connection and authentication, server will disconnect connection a
 
 `{`
 
-  `"op": "close", // represents server disconnect connection voluntarily
+  `"op": "close", // represents server disconnect connection voluntarily`
    
-  `"ts": long   // Server pushes local timestamp
+  `"ts": long   // Server pushes local timestamp`
   
 `}`
 
@@ -5618,7 +5612,7 @@ After authentication, if clients encountered internal error or request data out 
 
 `{`
 
-  `"op": "error", // means server receive data out from Operator List or clients got internal error `
+  `"op": "error", // means server receive data out from Operator List or clients got internal error`
   
   `"ts": long// Server pushes local timestamp`
   
@@ -5698,9 +5692,7 @@ Example on Signature Computing Process:，
 
 - Sequence the parameter name according to ASCII code (use UTF-8 and transfer into URI encoding, capital letters for hexadecimal characters. E.G.: ‘:’ will be encoded into '%3A', blank will be encoded into '%20'). Here is an encoding example below for request parameters
 
-  `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-
-  7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-
-  11T15%3A19%3A30`
+  `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30`
   
 
 - Connect all parameters with ’&’ according to the sequence above.
@@ -6097,8 +6089,8 @@ ch | true |  string | Data channel, Format： market.period | |
 
  Parameter Name   |  Mandatory   |  Type   |  Description      |    Default   |  Value Range  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
-  contract_code         |  true           |  string     |    Pairs          |        | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
-  size           |  true           |  integer     |    Depth size      |        |  `20`: stands for 20 unmerged data. `150`:stands for 150 unmerged data.|
+  contract_code         |  true           |  string     |    contract code          |        | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
+  size           |  true           |  int     |    Depth size      |        |  `20`: stands for 20 unmerged data. `150`:stands for 150 unmerged data.|
 
 ### Response example:
 ```json
@@ -6129,14 +6121,14 @@ ch | true |  string | Data channel, Format： market.period | |
 
 Parameter Name   |  Mandatory  |   Type  |      Description |    Value Range  |
 -------- | -------- | -------- |  --------------------------------------- | -------------- | 
-ts | true | int | Timestamp of Respond Generation, Unit: Millisecond  | |
+ts | true | long | Timestamp of Respond Generation, Unit: Millisecond  | |
 ch | true |  string | Data channel, Format：`market.$contract_code.depth.size_${size}.high_freq`  | | 
  \<tick\>    |               |    |      |            | 
 mrid  | true| long | Order ID| 
 id  | true| long | tick ID，system timestamp.seconds | 
 asks | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 bids | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
-ts | true | int | Timepoint for system detecting orderbook, unit: millisecond  | |
+ts | true | long | Timepoint for system detecting orderbook, unit: millisecond  | |
 version | true | long | version ID,auto increment ID.  | |
 event | true | string | event type: `update` or `snapshot`  | |
 ch | true |  string | Data channel, Format： `market.$contract_code.depth.size_${size}.high_freq` | | 
@@ -6263,7 +6255,7 @@ count  |  true  |  decimal  |   fulfilled order quantity  |
 
 | Parameter Name | Mandotary| Type   | Desc  |   Value Range |
 | ------- | ----- | ----- | ------- | ------- | 
-| contract_code   |  true    |  string     |    Pairs         |  Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD"   |
+| contract_code   |  true    |  string     |    contract code         |  Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD"   |
 
 > **Return example**:
 
@@ -6511,7 +6503,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### sub Subscribe Parameter Rules
 | **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code      | true     | string | index symbol          |         | Case-Insenstive.Both uppercase and lowercase are supported.."BTC-USD","ETH-USD"...                           |
+| contract_code      | true     | string | contract code         |         | Case-Insenstive.Both uppercase and lowercase are supported.."BTC-USD","ETH-USD"...                           |
 | period          | true     | string  | kline type               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon     |
 
 #### Note
@@ -6553,7 +6545,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | id | string | index kline id,the same as kline timestamp, kline start timestamp  |
 | vol | string  | Trade volume(Cont.). The value is 0.             |
-| count | decimal  | count. The value is 0.              |
+| count | string  | count. The value is 0.              |
 | open | string  | open index price               |
 | close | string  | close index price             |
 | low | string  |  lowest index price             |
@@ -6647,14 +6639,14 @@ direction  |  true  |  string  |  Order direction  |   |
 ### data parameters
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| id | int | index kline id,the same as kline timestamp, kline start timestamp  |
-| vol | decimal  | Trade volume(Cont.). The value is 0.             |
-| count | decimal  | count. The value is 0.              |
-| open | decimal  | open index price               |
-| close | decimal  | close index price             |
-| low | decimal  |  lowest index price             |
-| high | decimal  | highest index price               |
-| amount | decimal  |amount based on coins.            |
+| id | long | index kline id,the same as kline timestamp, kline start timestamp  |
+| vol | string  | Trade volume(Cont.). The value is 0.             |
+| count | string  | count. The value is 0.              |
+| open | string  | open index price               |
+| close | string  | close index price             |
+| low | string  |  lowest index price             |
+| high | string  | highest index price               |
+| amount | string  |amount based on coins.            |
 
 
 ## Subcribe Estimated Funding Rate Kline Data
@@ -6689,7 +6681,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### sub Subscribe Parameter Rules
 | **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code      | true     | string | index symbol          |         | Case-Insenstive.Both uppercase and lowercase are supported.."BTC-USD","ETH-USD"...                           |
+| contract_code      | true     | string | contract code         |         | Case-Insenstive.Both uppercase and lowercase are supported.."BTC-USD","ETH-USD"...                           |
 | period          | true     | string  | kline type               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon     |
 
 #### Note:
@@ -6731,7 +6723,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | id | string | kline id,the same as kline timestamp  |
 | vol | string  | Trade volume(Cont.). The value is 0.             |
-| count | decimal  | count. The value is 0.              |
+| count | string  | count. The value is 0.              |
 | open | string  | open price               |
 | close | string  | close  price             |
 | low | string  |  low price             |
@@ -6821,14 +6813,14 @@ direction  |  true  |  string  |  Order direction  |   |
 ### data parameters
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| id | int | kline id,the same as kline timestamp  |
-| vol | decimal  |Trade volume(Cont.). The value is 0.             |
-| count | decimal  | count. The value is 0.              |
-| open | decimal  | open  price               |
-| close | decimal  | close  price             |
-| low | decimal  |  low price             |
-| high | decimal  | high price               |
-| amount | decimal  |amount based on coins.            |
+| id | long | kline id,the same as kline timestamp  |
+| vol | string  |Trade volume(Cont.). The value is 0.             |
+| count | string  | count. The value is 0.              |
+| open | string  | open  price               |
+| close | string  | close  price             |
+| low | string  |  low price             |
+| high | string  | high price               |
+| amount | string  |amount based on coins.            |
 
 
 ## Subscribe Basis Data
@@ -6877,10 +6869,10 @@ direction  |  true  |  string  |  Order direction  |   |
  "tick": [
         {
          "id": 12312321,
-         "contract_price": 0.4635,
-         "index_price": 0.4645,
-         "basis": 0.4142,
-         "basis_rate": 0.0024,
+         "contract_price": "0.4635",
+         "index_price": "0.4645",
+         "basis": "0.4142",
+         "basis_rate": "0.0024",
        }
  ]
 }
@@ -6943,7 +6935,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### Request Parameter：
 | **Parameter Name**    | **Mandotary** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | true     | string | symbol name          |         | Case-Insenstive.Both uppercase and lowercase are supported..e.g."BTC-USD" 
+| contract_code      | true     | string | contract code          |         | Case-Insenstive.Both uppercase and lowercase are supported..e.g."BTC-USD" 
 | period          | true     | string  | kline type               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
 | basis_price_type          | false     | string  | use basis price type to calculate the basis data       |    Using open price default   |    open price："open"，close price："close"，highest price："high"，lowest price："low"，avg=（high price +low price）/2："average"   |
 
@@ -6963,10 +6955,10 @@ direction  |  true  |  string  |  Order direction  |   |
  "data": [
         {
          "id": 12312321,
-         "contact_price": 0.4635,
-         "index_price": 0.4645,
-         "basis": 0.4142,
-         "basis_rate": 0.0024,
+         "contact_price": "0.4635",
+         "index_price": "0.4645",
+         "basis": "0.4142",
+         "basis_rate": "0.0024",
        }
  ]
 }
@@ -6976,7 +6968,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### Returning Parameter
 | **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| req     | true | string | Data channel，Format： market.period |                | |
+| rep     | true | string | Data channel，Format： market.period |                | |
 | status | true | string | Request processing result          | "ok" , "error" | |
 | id     | true | string | ID       |                | |
 | wsid     | true | long | wsid           |                | |
@@ -7039,7 +7031,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 
 {
     "op": "notify",
-    "topic": "orders.btc",
+    "topic": "orders",
     "uid": "10086",
     "ts": 1590475967607,
     "symbol": "BTC",
@@ -7174,7 +7166,7 @@ To unsubscribe order data, the clients have to make connection to the server and
 
 
 
-## subscribe Match Order Data（sub)
+## Subscribe Match Order Data（sub)
 
 
 To subscribe order data, Clients have to make connection to the Server and send subscribe request in the format below:
@@ -7261,9 +7253,9 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | op                      | string  | notify;                          |
 | topic                   | string  | topic                                              |
 | uid                   | string  |account uid                                              |
-| ts                      | long    | | server response timestamp                                             |
+| ts                      | long    |  server response timestamp                                             |
 | symbol                  | string  | ID                                                       |
-| contract_code           | string  | | contract code                                                     |
+| contract_code           | string  |  contract code                                                     |
 | status                  | int     | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled; |
 | order_id                | long    |                                                        |
 | order_id_str            | string   |                                                      |
@@ -7273,7 +7265,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | volume            | decimal | total volume of the order                                                       |
 | \<list\>(attr: trade) |         |                                                              |
 | id            | string| 	the global unique id of the trade.                                                       |
-| trade_id                | long    | In this interface, trade_id is the same with match_id of api/v1/contract_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.                                                  |
+| trade_id                | long    | In this interface, trade_id is the same with match_id of swap-api/v1/swap_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.                                                  |
 | trade_volume            | decimal | trade volume                                                       |
 | trade_price             | decimal | trade price                                                    |
 | trade_turnover          | decimal | trade turnover                                                    |
@@ -7375,26 +7367,27 @@ To subscribe accounts equity data updates, the client has to make connection to 
 ```json
 
 {
-	"op": "notify",
-	"topic": "accounts",
-    "uid": "10086",
-	"ts": 1489474082831,
-	"event": "order.match",
-	"data": [{
-		"symbol": "BTC",
-		"margin_balance": 1,
-		"margin_static": 1,
-		"margin_position": 0,
-		"margin_frozen": 3.33,
-		"margin_available": 0.34,
-		"profit_real": 3.45,
-		"profit_unreal": 7.45,
-		"withdraw_available": 4.0989898,
-		"risk_rate": 100,
-		"liquidation_price": 100,
-		"lever_rate": 10,
-		"adjust_factor": 0.1
-	}]
+    "op": "notify",
+    "topic": "accounts",
+    "uid": "123456",
+    "ts": 1585832015669,
+    "event": "init",
+    "data": [{
+        "symbol": "BTC",
+        "contract_code": "BTC-USD",
+        "margin_balance": 9.65300225033282,
+        "margin_static": 9.624326797617663,
+        "margin_position": 0.0357473851449755,
+        "margin_frozen": 0.01,
+        "margin_available": 9.607254865187846,
+        "profit_real": 0.001819856887332005,
+        "profit_unreal": 0.028675452715159,
+        "withdraw_available": 9.578579412472687,
+        "risk_rate": 210.93164485504528,
+        "liquidation_price": 174.14824361517893,
+        "lever_rate": 10,
+        "adjust_factor": 0.075
+    }]
 }
 
 ```
@@ -7409,7 +7402,8 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | ts                        | long  | Time of Respond Generation, Unit: Millisecond                          |
 | event                     | string  | notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (including withdraw and deposit), system (contract.system), other asset change(other), initial margin(init)                                              |
 | \<data\>            |   |                                                        |
-| symbol                    | string    | Coins. When the $contract_code value is “*”, it stands for subscribing data of all coins                            |
+| symbol                    | string    |  symbol e.g:  "BTC","ETH"...                         |
+| contract_code            | string  | Contract Code                                                     |
 | margin_balance            | decimal  | Account Equity                                                       |
 | margin_static             | decimal  | Static Equity                                                     |
 | margin_position           | decimal  | Position Margi(the margin for holding currenty positions)                                                    |
@@ -7553,7 +7547,7 @@ To subscribe position updates data, the client has to make connection to the ser
 | ts                     | long  | Time of Respond Generation, Unit: Millisecond	                           |
 | event                  | string  | Notification on position change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (including withdraw and deposit), system (contract.system), initial margin(init)                                             |
 | \<data\>            |   |                                                        |
-| symbol                 | string    | Coin, when $contract_code value is *, it stands for subscribing the data of all coins                       |
+| symbol                 | string    |  symbol  e.g:"BTC","ETH"...               |
 | contract_code          | string  | Contract Code                                                      |
 | volume                 | decimal  | Open Interest                                                     |
 | available              | decimal | Positions available to close                                                     |
@@ -7717,29 +7711,14 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 
 ```
 
-### Return Parameter
+### Format Illustration of Unsubscribe Position Updates
 
 | Field Name |Type   | Description                                              |
 | ------- | ------- | ------------------------------------------------- |
 | op       | string | Required; Operator Name，subscribe value is unsub;                 |
 | cid      | string | Optional;   Client requests unique ID                        |
 | topic    | string | Subscribe topic name，Require subscribe public.$contract_code.liquidation_orders  Subscribe/unsubscribe the data of a given coin; when the $contract_code value is *, it stands for subscribing/unsubscribing the data of all coins，; |
-| ts    | long | Required; Time of Respond Generation, Unit: Millisecond	|
 
-
-> Example of a successful subscription
-
-```json
-
-{
-  "op": "unsub",
-  "topic": "public.BTC-USD.liquidation_orders",
-  "cid": "id generated by client",
-  "err-code": 0,
-  "ts": 1489474081631
-}
-
-```
 
 ### Rules on Subscribe and Unsubscribe
 
@@ -7931,15 +7910,15 @@ To subscribe contract infodata, the client has to make connection to the server 
 | op   |  string  | value: "notify";    |   |
 | topic   | string  | topic subscribed   |   |
 | ts   | long  | timestamp of server response.unit: millionseconds   |   |
-| event   | string  | event   |  "init", "update", "snapshot"  |
+| event   | string  | event ："init", "update", "snapshot"  |
 | \<data\>   | object array |     |    |
 | symbol |string | symbol,"BTC","ETH"... |
 | contract_code  | string   |  contract_code,"BTC-USD"  |
 | contract_size  | decimal | Contract Value (USD of one contract). such as 10,100| 10, 100... |
-| price_tick  | decimal | Minimum Variation of Contract Price | 0.001, 0.01... |
-| settlement_date  |  string  | settlement date    | such as "1490759594752"  |
-| create_date   |  string  | Contract Listing Date    | such as "20180706" |
-| contract_status      |  int     | contract status  | 0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered |
+| price_tick  | decimal | Minimum Variation of Contract Price ： 0.001, 0.01... |
+| settlement_date  |  string  | settlement date ：such as "1490759594752"  |
+| create_date   |  string  | Contract Listing Date ：such as "20180706" |
+| contract_status      |  int     | contract status：0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered |
 | \</data\>   | object array |     |    |
 
 
