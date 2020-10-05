@@ -629,7 +629,7 @@
                     <a href="#unsubscribe-order-data-unsub" class="toc-h2 toc-link" data-title="Unsubscribe Order Data（unsub）">Unsubscribe Order Data（unsub）</a>
                   </li>
                   <li>
-                    <a href="#subscribe-match-order-data-sub" class="toc-h2 toc-link" data-title="subscribe Match Order Data（sub)">subscribe Match Order Data（sub)</a>
+                    <a href="#subscribe-match-order-data-sub" class="toc-h2 toc-link" data-title="Subscribe Match Order Data（sub)">Subscribe Match Order Data（sub)</a>
                   </li>
                   <li>
                     <a href="#unsubscribe-order-data-unsub-2" class="toc-h2 toc-link" data-title="Unsubscribe Order Data（unsub）">Unsubscribe Order Data（unsub）</a>
@@ -1524,7 +1524,7 @@ Use UTF-8 to encode when it has already been encoded by URI with hexadecimals in
 <aside class="notice">
 Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with URI.
 </aside>
-<h4 id='5-after-ranking'>5. After ranking</h4>
+<h4 id='5-after-ranking'>5.After ranking</h4>
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
 
 <p><code>SignatureMethod=HmacSHA256</code></p>
@@ -1532,7 +1532,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <p><code>SignatureVersion=2</code></p>
 
 <p><code>Timestamp=2017-05-11T15%3A19%3A30</code></p>
-<h4 id='6-following-the-sequence-above-link-parameters-with-quot-amp-quot'>6.  Following the sequence above, link parameters with &quot;&amp;&quot;</h4>
+<h4 id='6-following-the-sequence-above-link-parameters-with-quot-amp-quot'>6.Following the sequence above, link parameters with &quot;&amp;&quot;</h4>
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30</code></p>
 <h4 id='7-form-the-final-character-strings-that-need-to-do-signature-calculation-as-following'>7. Form the final character strings that need to do Signature calculation as following:</h4>
 <p><code>POST\n</code></p>
@@ -3138,8 +3138,8 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>GET <code>/swap-api/v1/swap_index</code> </li>
 </ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code=BTC-USD"" 
-</span></code></pre><h3 id='request-parameter-2'>Request Parameter</h3>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code=BTC-USD"</span>
+</code></pre><h3 id='request-parameter-2'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -3206,6 +3206,13 @@ You are recommended to read the status code from the returned message. If the ab
 <td>true</td>
 <td>decimal</td>
 <td>Index Price</td>
+<td></td>
+</tr>
+<tr>
+<td>index_ts</td>
+<td>true</td>
+<td>Long</td>
+<td>Index time</td>
 <td></td>
 </tr>
 <tr>
@@ -3351,7 +3358,8 @@ You are recommended to read the status code from the returned message. If the ab
 <blockquote>
 <p>Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">    </span><span class="p">{</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
       </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
         </span><span class="p">[{</span><span class="w">
@@ -3458,17 +3466,6 @@ You are recommended to read the status code from the returned message. If the ab
 </tbody></table>
 
 <blockquote>
-<p>tick illustration:</p>
-</blockquote>
-<pre class="highlight plaintext"><code>"tick": {
-    "id": Message id.
-    "ts": Time of Message Generation, unit: millisecond
-    "bids": Buying, [price(hanging unit price), vol(this price represent single contract)], According to the descending order of Price
-    "asks": Selling, [price(hanging unit Price), vol(this price represent single contract)], According to the ascending order of Price  
-    }
-
-</code></pre>
-<blockquote>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -3567,7 +3564,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>version</td>
 <td>true</td>
-<td>string</td>
+<td>long</td>
 <td>version ID</td>
 <td></td>
 </tr>
@@ -3604,8 +3601,8 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC-USD&quot;</td>
 <td></td>
 <td></td>
@@ -3835,9 +3832,9 @@ You are recommended to read the status code from the returned message. If the ab
     "count": transaction count
     "open": opening price,
     "close": Closing Price, when the Kline is the latest one，it means the latest price
-        "low": Lowest price
-        "high": highest price
-        "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
+    "low": Lowest price
+    "high": highest price
+    "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
     "bid": [price of buying one (amount)],
     "ask": [price of selling one (amount)]
 
@@ -3855,7 +3852,7 @@ You are recommended to read the status code from the returned message. If the ab
       </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">5001</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w">
       </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">5000</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">
       </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13305"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">13305</span><span class="p">,</span><span class="w">
       </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529387841</span><span class="p">,</span><span class="w">
       </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5000"</span><span class="p">,</span><span class="w">
@@ -3890,13 +3887,6 @@ You are recommended to read the status code from the returned message. If the ab
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>tick</td>
-<td>true</td>
-<td>object</td>
-<td>KLine Data</td>
-<td></td>
-</tr>
-<tr>
 <td>ts</td>
 <td>true</td>
 <td>long</td>
@@ -3927,7 +3917,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>count</td>
 <td>true</td>
-<td>int</td>
+<td>decimal</td>
 <td>Order Quantity</td>
 <td></td>
 </tr>
@@ -3981,6 +3971,13 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Timestamp</td>
+<td></td>
+</tr>
+<tr>
 <td>&lt;/dict&gt;</td>
 <td></td>
 <td></td>
@@ -4000,8 +3997,6 @@ You are recommended to read the status code from the returned message. If the ab
 <th>Mandatory</th>
 <th>Type</th>
 <th>Desc</th>
-<th>Default</th>
-<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -4009,8 +4004,6 @@ You are recommended to read the status code from the returned message. If the ab
 <td>true</td>
 <td>string</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -4196,9 +4189,9 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
+<td>contract code</td>
+<td></td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>size</td>
@@ -4325,7 +4318,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>amount</td>
 <td>true</td>
-<td>int</td>
+<td>decimal</td>
 <td>Quantity(Cont.)</td>
 <td></td>
 </tr>
@@ -4375,10 +4368,10 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
+<td>contract code</td>
 <td>Case-Insenstive.e.g. &quot;BTC-USD&quot;</td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -4417,7 +4410,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>ts</td>
 <td>true</td>
 <td>long</td>
-<td>Time of Respond Generation, Unit: milesecond</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
 <tr>
@@ -4429,8 +4422,8 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
 <td>e.g. &quot;BTC-USD&quot;</td>
 <td></td>
 </tr>
@@ -4475,8 +4468,8 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
+<td>contract code</td>
 <td>Case-Insenstive.e.g. &quot;BTC-USD&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>page_index</td>
@@ -4536,7 +4529,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>ts</td>
 <td>true</td>
 <td>long</td>
-<td>Time of Respond Generation, Unit: Milesecond</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
 <tr>
@@ -4555,10 +4548,10 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
+<td>contract code</td>
 <td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>&lt;tick&gt;</td>
@@ -4578,7 +4571,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>ts</td>
 <td>true</td>
 <td>long</td>
-<td>Timestamp, Unit: Milesecond</td>
+<td>Timestamp, Unit: Millisecond</td>
 <td></td>
 </tr>
 <tr>
@@ -4634,8 +4627,8 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>false</td>
+<td>string</td>
 <td>Case-Insenstive.e.g. &quot;BTC-USD&quot;</td>
 <td></td>
 </tr>
@@ -4695,7 +4688,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>ts</td>
 <td>true</td>
 <td>long</td>
-<td>Time of Respond Generation, Unit: Milesecond</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
 <tr>
@@ -4709,15 +4702,15 @@ You are recommended to read the status code from the returned message. If the ab
 <td>symbol</td>
 <td>true</td>
 <td>string</td>
-<td>Contract Code</td>
+<td>symbol</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
+<td>Contract Code</td>
 <td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>&lt;list&gt;</td>
@@ -4809,8 +4802,8 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
+<td>contract code</td>
 <td>Case-Insenstive. e.g. &quot;BTC-USD&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>period</td>
@@ -4874,7 +4867,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>ts</td>
 <td>true</td>
 <td>long</td>
-<td>Time of Respond Generation, Unit: Milesecond</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
 <tr>
@@ -4888,15 +4881,15 @@ You are recommended to read the status code from the returned message. If the ab
 <td>symbol</td>
 <td>true</td>
 <td>string</td>
-<td>Contract Code</td>
+<td>symbol</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
+<td>Contract Code</td>
 <td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>&lt;tick&gt;</td>
@@ -4965,8 +4958,8 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>false</td>
 <td>string</td>
+<td>contract code</td>
 <td>Case-Insenstive.e.g. &quot;BTC-USD&quot;</td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -5013,7 +5006,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>ts</td>
 <td>true</td>
 <td>long</td>
-<td>Time of Respond Generation, Unit: milesecond</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
 <tr>
@@ -5032,10 +5025,10 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
+<td>contract code</td>
 <td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>open</td>
@@ -5100,6 +5093,9 @@ You are recommended to read the status code from the returned message. If the ab
 <li><p>“close” is one of the trading access in “API-Close-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；</p></li>
 <li><p>“cancel” is one of the trading access in “API-Cancel-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；</p></li>
 <li><p>“transfer_in” is one of the trading access in “Others-Transfer-Deposit”. “On” stands for opening this access; “Off” stands for closing this access；</p></li>
+<li><p>transfer_out refers to the corresponding access &quot;Others- Transfer- Transfer out to exchange account&quot; in the trading accesses, and is available when enabled, unavailable when disabled；</p></li>
+<li><p>master_transfer_sub refers to the corresponding access &quot;Transfer from main account to sub-account&quot; in the trading accesses, and is available when enabled, unavailable when disabled；</p></li>
+<li><p>sub_transfer_master refers to the corresponding access &quot;Transfer from sub-account to main account&quot; in the trading accesses, and is available when enabled, unavailable when disabled；</p></li>
 </ul>
 <h2 id='query-top-trader-sentiment-index-function-account'>Query Top Trader Sentiment Index Function-Account</h2>
 <ul>
@@ -5120,8 +5116,8 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
+<td>Contract Code</td>
 <td>Case-Insenstive.e.g. &quot;BTC-USD&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>period</td>
@@ -5176,7 +5172,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>ts</td>
 <td>true</td>
 <td>long</td>
-<td>Time of Respond Generation, Unit: Milesecond</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
 <tr>
@@ -5195,10 +5191,10 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
+<td>contract code</td>
 <td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>&lt;list&gt;</td>
@@ -5269,8 +5265,8 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
+<td>Contract Code</td>
 <td>Case-Insenstive.e.g. &quot;BTC-USD&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>period</td>
@@ -5324,7 +5320,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>ts</td>
 <td>true</td>
 <td>long</td>
-<td>Time of Respond Generation, Unit: Milesecond</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
 <tr>
@@ -5343,10 +5339,10 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
+<td>contract code</td>
 <td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>&lt;list&gt;</td>
@@ -5411,9 +5407,9 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
+<td>Contract Code</td>
+<td></td>
 <td>Case-Insenstive.e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>trade_type</td>
@@ -5514,10 +5510,10 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
+<td>contract code</td>
 <td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>direction</td>
@@ -5601,7 +5597,8 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>GET <code>swap-api/v1/swap_funding_rate</code></li>
 </ul>
-<h3 id='request-parameters-2'>Request Parameters</h3>
+<pre class="highlight shell tab-shell"><code><span class="s2">"https://api.hbdm.com/swap-api/v1/swap_funding_rate?contract_code=BTC-USD"</span>
+</code></pre><h3 id='request-parameters-2'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Field name</th>
@@ -5672,8 +5669,8 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>contract_code</td>
 <td>string</td>
-<td>contract code,eg:&quot;BTC-USD&quot;</td>
-<td></td>
+<td>contract code</td>
+<td>eg:&quot;BTC-USD&quot;</td>
 </tr>
 <tr>
 <td>fee_asset</td>
@@ -5716,7 +5713,8 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>GET <code>swap-api/v1/swap_historical_funding_rate</code></li>
 </ul>
-<h3 id='request-parameters-3'>Request Parameters</h3>
+<pre class="highlight shell tab-shell"><code><span class="s2">"https://api.hbdm.com/swap-api/v1/swap_historical_funding_rate?contract_code=BTC-USD"</span>
+</code></pre><h3 id='request-parameters-3'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>parameter name</th>
@@ -5771,22 +5769,6 @@ You are recommended to read the status code from the returned message. If the ab
             </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000012867819466582"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000012867819466582"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586404800000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"avg_premium_index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
-        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586376000000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"avg_premium_index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
-        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586347200000"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
@@ -5906,7 +5888,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>GET <code>/index/market/history/swap_premium_index_kline</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>
+<pre class="highlight shell tab-shell"><code><span class="s2">"https://api.hbdm.com/index/market/history/swap_premium_index_kline?contract_code=BTC-USD&amp;period=1min&amp;size=1"</span>
 </code></pre><h3 id='request-parameters-4'>request parameters</h3>
 <table><thead>
 <tr>
@@ -5937,7 +5919,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>size</td>
 <td>true</td>
-<td>integer</td>
+<td>int</td>
 <td>kline size</td>
 <td></td>
 <td>[1,2000]</td>
@@ -5981,7 +5963,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>vol</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Trade Volume(Cont.) The value is 0</td>
 <td></td>
 <td></td>
@@ -5989,7 +5971,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>count</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Order Quantity The value is 0</td>
 <td></td>
 <td></td>
@@ -5997,7 +5979,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>open</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Opening Price</td>
 <td></td>
 <td></td>
@@ -6005,7 +5987,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>close</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Closing Price,  the price in the last kline is the latest order price</td>
 <td></td>
 <td></td>
@@ -6013,7 +5995,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>low</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Lowest Price</td>
 <td></td>
 <td></td>
@@ -6021,7 +6003,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>high</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Highest Price</td>
 <td></td>
 <td></td>
@@ -6029,7 +6011,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>amount</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Trade Amount(Coin), The value is 0. )</td>
 <td></td>
 <td></td>
@@ -6086,7 +6068,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>GET <code>/index/market/history/swap_estimated_rate_kline</code></li>
 </ul>
-<pre class="highlight shell tab-shell"><code>
+<pre class="highlight shell tab-shell"><code><span class="s2">"https://api.hbdm.com/index/market/history/swap_estimated_rate_kline?contract_code=BTC-USD&amp;period=1min&amp;size=1"</span>
 </code></pre><h3 id='request-parameters-5'>request parameters</h3>
 <table><thead>
 <tr>
@@ -6102,7 +6084,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td></td>
+<td>contract code</td>
 <td></td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;,&quot;ETH-USD&quot;.</td>
 </tr>
@@ -6117,7 +6099,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>size</td>
 <td>true</td>
-<td>integer</td>
+<td>int</td>
 <td>kline size</td>
 <td></td>
 <td>[1,2000]</td>
@@ -6161,7 +6143,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>vol</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Trade Volume(Cont.) The value is 0</td>
 <td></td>
 <td></td>
@@ -6169,7 +6151,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>count</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Order Quantity The value is 0</td>
 <td></td>
 <td></td>
@@ -6177,7 +6159,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>open</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Opening Price</td>
 <td></td>
 <td></td>
@@ -6185,7 +6167,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>close</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Closing Price,  the price in the last kline is the latest order price</td>
 <td></td>
 <td></td>
@@ -6193,7 +6175,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>low</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Lowest Price</td>
 <td></td>
 <td></td>
@@ -6201,7 +6183,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>high</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Highest Price</td>
 <td></td>
 <td></td>
@@ -6209,7 +6191,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>amount</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>Trade Amount(Coin), The value is 0. )</td>
 <td></td>
 <td></td>
@@ -6281,7 +6263,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>contract_code name</td>
+<td>contract code</td>
 <td></td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported..e.g.&quot;BTC-USD&quot;</td>
 </tr>
@@ -6310,7 +6292,27 @@ You are recommended to read the status code from the returned message. If the ab
 <td>[1,2000]</td>
 </tr>
 </tbody></table>
-<h3 id='response-parameters-5'>response parameters</h3>
+
+<blockquote>
+<p>Response example：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USD.basis.1min.open"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"basis"</span><span class="p">:</span><span class="s2">"-8.017499999999927"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="s2">"-0.0007552765143388248"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="s2">"10607.3"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1601799180</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"index_price"</span><span class="p">:</span><span class="s2">"10615.3175"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1601799211628</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='response-parameters-5'>response parameters</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -6320,6 +6322,20 @@ You are recommended to read the status code from the returned message. If the ab
 <th><strong>Value Range</strong></th>
 </tr>
 </thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>data channel，eg： market.basis</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td></td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
 <tr>
 <td>id</td>
 <td>true</td>
@@ -6356,41 +6372,33 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>status</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
 <td>ts</td>
 <td>true</td>
 <td>long</td>
-<td>the timestamp of generation</td>
+<td>created time</td>
 <td></td>
 </tr>
 </tbody></table>
 
 <ul>
-<li><p>Note：
-2000 size at most per request ；</p></li>
-<li><p>Response example：</p></li>
+<li>Note：
+2000 size at most per request ；</li>
 </ul>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.basis.1min.low"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="mf">1098.8875</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1592333844724310754244333794007850184</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">8000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576586760</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6901.1125</span><span class="p">,</span><span class="w">
-  </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="mf">1100.305</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1594715418580096656446408138330752301</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">8000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576586820</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6899.695</span><span class="p">,</span><span class="w">
-  </span><span class="p">}],</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1576586879618</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h1 id='swap-account-interface'>Swap Account Interface</h1><h2 id='query-user-s-account-information'>Query User’s Account Information</h2><h3 id='example-13'>Example</h3>
+<h1 id='swap-account-interface'>Swap Account Interface</h1><h2 id='query-user-s-account-information'>Query User’s Account Information</h2><h3 id='example-13'>Example</h3>
 <ul>
 <li>POST <code>/swap-api/v1/swap_account_info</code><br></li>
 </ul>
@@ -6401,7 +6409,6 @@ You are recommended to read the status code from the returned message. If the ab
 <th>Mandatory</th>
 <th>Type</th>
 <th>Desc</th>
-<th>Default</th>
 <th>Value Range</th>
 </tr>
 </thead><tbody>
@@ -6409,9 +6416,8 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>false</td>
 <td>string</td>
+<td>contract code</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -6474,13 +6480,6 @@ You are recommended to read the status code from the returned message. If the ab
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>contract_code</td>
-<td>string</td>
-<td>true</td>
-<td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-</tr>
-<tr>
 <td>&lt;list&gt;(Attribute Name: data)</td>
 <td></td>
 <td></td>
@@ -6493,6 +6492,13 @@ You are recommended to read the status code from the returned message. If the ab
 <td>string</td>
 <td>Variety code</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>Contract Code</td>
+<td>e.g. &quot;BTC-USD&quot;</td>
 </tr>
 <tr>
 <td>margin_balance</td>
@@ -6604,17 +6610,15 @@ You are recommended to read the status code from the returned message. If the ab
 <th>Mandatory</th>
 <th>Type</th>
 <th>Desc</th>
-<th>Default</th>
 <th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
+<td>Contract Code</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -6676,10 +6680,10 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
+<td>Contract Code</td>
 <td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>volume</td>
@@ -6798,7 +6802,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>symbol</td>
+<td>contract code</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported. &quot;BTC-USD&quot;,&quot;ETH-USD&quot;....</td>
 </tr>
 </tbody></table>
@@ -6819,9 +6823,9 @@ You are recommended to read the status code from the returned message. If the ab
         </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
         </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.13</span><span class="p">,</span><span class="w">
         </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -6852,6 +6856,24 @@ You are recommended to read the status code from the returned message. If the ab
 <th>desc</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>true</td>
+<td>Request Processing Result  &quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>true</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+</tr>
 <tr>
 <td>symbol</td>
 <td>string</td>
@@ -7032,6 +7054,12 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </tbody></table>
 <h2 id='query-assets-information-of-all-sub-accounts-under-the-master-account'>Query assets information of all sub-accounts under the master account</h2>
 <ul>
@@ -7044,17 +7072,15 @@ You are recommended to read the status code from the returned message. If the ab
 <th><strong>Must fill or not</strong></th>
 <th><strong>Type</strong></th>
 <th><strong>Description</strong></th>
-<th><strong>Default value</strong></th>
 <th><strong>Value range</strong></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>contract_code</td>
+<td>false</td>
 <td>string</td>
-<td>true</td>
+<td>Contract Code</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -7161,10 +7187,10 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
+<td>contract code</td>
 <td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>margin_balance</td>
@@ -7218,26 +7244,20 @@ You are recommended to read the status code from the returned message. If the ab
 <th><strong>Parameter name</strong></th>
 <th><strong>Must fill or not</strong></th>
 <th><strong>Type</strong></th>
-<th><strong>Description</strong></th>
-<th><strong>Default value</strong></th>
 <th><strong>Value range</strong></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>contract_code</td>
+<td>false</td>
 <td>string</td>
-<td>true</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>sub_uid</td>
 <td>true</td>
 <td>long</td>
 <td>sub-account UID</td>
-<td></td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -7307,10 +7327,10 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
+<td>contract code</td>
 <td>e.g. &quot;BTC-USD&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>margin_balance</td>
@@ -7404,11 +7424,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-
-<ul>
-<li>Notice</li>
-</ul>
-
+<h4 id='notice-4'>Notice:</h4>
 <p>Only query account information for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission);</p>
 
 <p>No data return for sub-accounts which has logged in hbdm but have not gained trading permission/activated.</p>
@@ -7423,25 +7439,19 @@ You are recommended to read the status code from the returned message. If the ab
 <th><strong>Must fill or not</strong></th>
 <th><strong>Type</strong></th>
 <th><strong>Description</strong></th>
-<th><strong>Default value</strong></th>
-<th><strong>Value range</strong></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>contract_code</td>
+<td>false</td>
 <td>string</td>
-<td>true</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
-<td></td>
-<td></td>
 </tr>
 <tr>
 <td>sub_uid</td>
 <td>true</td>
 <td>long</td>
 <td>sub-account UID</td>
-<td></td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -7813,7 +7823,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>contract_code</td>
+<td>contract code</td>
 <td></td>
 </tr>
 <tr>
@@ -7947,8 +7957,8 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td></td>
 <td>contract code</td>
+<td>&quot;BTC-USD&quot; ...</td>
 </tr>
 <tr>
 <td>margin_balance_init</td>
@@ -8283,7 +8293,7 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
 <td>contract type code</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
@@ -8324,7 +8334,7 @@ You are recommended to read the status code from the returned message. If the ab
 <th>Mandatory</th>
 <th>Type</th>
 <th>Desc</th>
-<th>Value Range Í</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -8379,14 +8389,14 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>open_limit</td>
 <td>true</td>
-<td>float</td>
+<td>decimal</td>
 <td>Max open order limit</td>
 <td></td>
 </tr>
 <tr>
 <td>close_limit</td>
 <td>true</td>
-<td>float</td>
+<td>decimal</td>
 <td>Max close order limit</td>
 <td></td>
 </tr>
@@ -8421,7 +8431,7 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
 <td>contract type code</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;,...</td>
@@ -8551,7 +8561,7 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
 <td>contract type code</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
@@ -8601,7 +8611,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>ts</td>
 <td>true</td>
 <td>long</td>
-<td>Time of Respond Generation, Unit: Milesecond</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
 <tr>
@@ -8705,7 +8715,7 @@ You are recommended to read the status code from the returned message. If the ab
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
 <td>contract type code</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
@@ -8749,7 +8759,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>ts</td>
 <td>true</td>
 <td>long</td>
-<td>Time of Responding Generation, Unit: milesecond</td>
+<td>Time of Responding Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
 <tr>
@@ -8830,7 +8840,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>symbol</td>
+<td>contract code</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
 </tr>
 <tr>
@@ -9172,7 +9182,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>order_price_types</td>
 <td>true</td>
-<td>long</td>
+<td>string</td>
 <td>order price types,such as：“limit,post_only,FOK,IOC”</td>
 <td></td>
 </tr>
@@ -9293,7 +9303,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>true</td>
 <td>int</td>
 <td></td>
-<td></td>
+<td>1：active，0：not active</td>
 </tr>
 <tr>
 <td>&lt;/TDN&gt;</td>
@@ -9319,7 +9329,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
   </span><span class="p">[{</span><span class="w">
       </span><span class="s2">"is_disable"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">  
-      </span><span class="s2">"order_price_types"</span><span class="p">:</span><span class="w"> </span><span class="err">“limit</span><span class="p">,</span><span class="err">post_only</span><span class="p">,</span><span class="err">FOK</span><span class="p">,</span><span class="err">IOC”</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"order_price_types"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit,post_only,FOK,IOC"</span><span class="p">,</span><span class="w"> 
       </span><span class="s2">"disable_reason"</span><span class="p">:</span><span class="s2">"COR"</span><span class="p">,</span><span class="w"> 
       </span><span class="s2">"disable_interval"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
       </span><span class="s2">"recovery_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -9373,7 +9383,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>price</td>
 <td>decimal</td>
-<td>true</td>
+<td>false</td>
 <td>Price</td>
 </tr>
 <tr>
@@ -9452,6 +9462,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
+<td>&lt;data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>order_id</td>
 <td>true</td>
 <td>long</td>
@@ -9470,6 +9487,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>true</td>
 <td>long</td>
 <td>the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -9530,7 +9554,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>price</td>
 <td>decimal</td>
-<td>true</td>
+<td>false</td>
 <td>Price</td>
 </tr>
 <tr>
@@ -9733,8 +9757,8 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>true</td>
+<td>string</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
@@ -9750,11 +9774,6 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"order_id"</span><span class="p">:</span><span class="s2">"633766664829804544"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1002"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order doesn’t exist"</span><span class="w">
-     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"order_id"</span><span class="p">:</span><span class="s2">"633766664829804544"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1002"</span><span class="p">,</span><span class="w">
@@ -10005,7 +10024,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>volume</td>
 <td>true</td>
-<td>int</td>
+<td>decimal</td>
 <td>Order Quantity(volume)</td>
 <td></td>
 </tr>
@@ -10067,7 +10086,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>ts</td>
 <td>true</td>
 <td>long</td>
-<td>Time of Respond Generation, Unit: Milesecond</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
 <tr>
@@ -10096,13 +10115,6 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>false</td>
 <td>long</td>
 <td>user’s own order ID</td>
-<td></td>
-</tr>
-<tr>
-<td>order_price_type</td>
-<td>false</td>
-<td>string</td>
-<td>&quot;lightning&quot; by default. &quot;lightning_fok&quot;: lightning FOK type</td>
 <td></td>
 </tr>
 <tr>
@@ -10458,13 +10470,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>created_at</td>
-<td>true</td>
+<td>false</td>
 <td>long</td>
 <td>Timestamp</td>
 </tr>
 <tr>
 <td>order_type</td>
-<td>true</td>
+<td>false</td>
 <td>int</td>
 <td>Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order</td>
 </tr>
@@ -11184,8 +11196,8 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>true</td>
 <td>string</td>
 <td>Contract Code</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;.</td>
 <td></td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;.</td>
 </tr>
 <tr>
 <td>trade_type</td>
@@ -11253,7 +11265,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
         </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w">
         </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1111</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
@@ -11522,8 +11534,8 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>true</td>
 <td>string</td>
 <td>Contract Code</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;.</td>
 <td></td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;.</td>
 </tr>
 <tr>
 <td>trade_type</td>
@@ -11632,7 +11644,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>match_id</td>
 <td>true</td>
 <td>long</td>
-<td>match_id is the same with trade_id of the websocket subscriptions: orders.$symbol.match_id is the result of sets of order execution and trade confirmation. NOTE: match_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same match_id.</td>
+<td>match_id is the same with trade_id of the websocket subscriptions: orders.$contract_code.match_id is the result of sets of order execution and trade confirmation. NOTE: match_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same match_id.</td>
 <td></td>
 </tr>
 <tr>
@@ -11783,7 +11795,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='notice-4'>Notice</h3>
+<h3 id='notice-5'>Notice</h3>
 <ul>
 <li><p>If users don’t upload/fill the page_index or page_size, it will automatically be set as the default value of the top 20 data on the first page, for more details, please follow the parameters illustration.</p></li>
 <li><p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p></li>
@@ -11791,10 +11803,6 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <h2 id='place-trigger-order'>Place Trigger Order</h2>
 <ul>
 <li>POST <code>swap-api/v1/swap_trigger_order</code></li>
-</ul>
-<h3 id='note-12'>Note</h3>
-<ul>
-<li>optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.</li>
 </ul>
 <h3 id='body'>body</h3>
 <table><thead>
@@ -11808,9 +11816,9 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>false</td>
+<td>true</td>
 <td>string</td>
-<td>contract type</td>
+<td>contract code</td>
 <td>BTC-USD</td>
 </tr>
 <tr>
@@ -11864,12 +11872,16 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>lever_rate</td>
-<td>true</td>
+<td>false</td>
 <td>int</td>
 <td>Long leverage shall be equal to short leverage.</td>
 <td></td>
 </tr>
 </tbody></table>
+<h3 id='note-12'>Note</h3>
+<ul>
+<li>optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.</li>
+</ul>
 
 <blockquote>
 <p>Request:</p>
@@ -12023,12 +12035,12 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">161251</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200417</span><span class="p">,</span><span class="w">
         </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">161251</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200415</span><span class="p">,</span><span class="w">
         </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="w">
       </span><span class="p">}</span><span class="w">
@@ -12054,6 +12066,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>string</td>
 <td>response status</td>
 <td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>successes</td>
@@ -12086,12 +12105,19 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>err_msg</td>
 <td>true</td>
-<td>int</td>
+<td>string</td>
 <td>error messages</td>
 <td></td>
 </tr>
 <tr>
 <td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -12133,7 +12159,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>contract_code</td>
 <td>string</td>
-<td>false</td>
+<td>true</td>
 <td>contract code,&quot;BTC-USD&quot; ...</td>
 </tr>
 </tbody></table>
@@ -12147,12 +12173,12 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="mi">161251</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200417</span><span class="p">,</span><span class="w">
         </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="w">
        </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="mi">161251</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200415</span><span class="p">,</span><span class="w">
         </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="w">
        </span><span class="p">}</span><span class="w">
@@ -12180,6 +12206,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
+<td>&lt;data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>&lt;list&gt;(data name: errors)</td>
 <td></td>
 <td></td>
@@ -12203,7 +12236,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>err_msg</td>
 <td>true</td>
-<td>int</td>
+<td>string</td>
 <td>error message</td>
 <td></td>
 </tr>
@@ -12219,6 +12252,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>true</td>
 <td>string</td>
 <td>successful orders</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -12257,7 +12297,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>contract_code</td>
 <td>string</td>
-<td>false</td>
+<td>true</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported..contract code</td>
 </tr>
 <tr>
@@ -12547,7 +12587,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>false</td>
+<td>true</td>
 <td>string</td>
 <td>Contract Code</td>
 <td></td>
@@ -12829,6 +12869,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>order_price_type</td>
 </tr>
 <tr>
+<td>order_price_type</td>
+<td>string</td>
+<td>true</td>
+<td>order price type &quot;limit&quot;: limit order，&quot;optimal_5&quot;:optimal 5，&quot;optimal_10&quot;:optimal 10，&quot;optimal_20&quot;:optimal 20</td>
+<td></td>
+</tr>
+<tr>
 <td>status</td>
 <td>int</td>
 <td>true</td>
@@ -12928,7 +12975,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>https://api.huobi.pro/v2/account/transfer</code></li>
 </ul>
-<h3 id='notice-5'>Notice</h3>
+<h3 id='notice-6'>Notice</h3>
 <p>This interface is used to transfer assets between Spot account and Swap account.</p>
 
 <p>API rate limit for this interface is up to 10 times per minute.</p>
@@ -13507,16 +13554,17 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p>Response the following strings for “Header” via API</p>
 
 <ul>
-<li><p>ratelimit-limit： the upper request limit per time, unit: time</p></li>
+<li><p>ratelimit-limit： the upper request limit per time, unit: cont.</p></li>
 <li><p>ratelimit-interval： reset interval(reset the number of request ), unit: ms</p></li>
-<li><p>ratelimit-remaining： available request number left in this round, unit: time</p></li>
+<li><p>ratelimit-remaining： available request number left in this round, unit: cont.</p></li>
 <li><p>ratelimit-reset： upper limit of reset time used to request number， unit: ms</p></li>
 </ul>
 <h1 id='websocket-heartbeat-and-authentication-interface'>WebSocket Heartbeat and Authentication Interface</h1><h2 id='market-heartbeat'>Market Heartbeat</h2>
 <p>WebSocket API supports two-way heartbeat. Both Server and Client can send ping message, which the opposite side can return with pong message.</p>
 
-<p>:
-- WebSocket Server sends heartbeat：</p>
+<ul>
+<li>WebSocket Server sends heartbeat：</li>
+</ul>
 
 <p><code>{&quot;ping&quot;: 18212558000}</code></p>
 
@@ -13645,9 +13693,9 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 
 <p><code>{</code></p>
 
-<p>`&quot;op&quot;: &quot;close&quot;, // represents server disconnect connection voluntarily</p>
+<p><code>&quot;op&quot;: &quot;close&quot;, // represents server disconnect connection voluntarily</code></p>
 
-<p>`&quot;ts&quot;: long   // Server pushes local timestamp</p>
+<p><code>&quot;ts&quot;: long   // Server pushes local timestamp</code></p>
 
 <p><code>}</code></p>
 <h2 id='server-return-error-code-but-remain-connection'>Server return error code but remain connection</h2>
@@ -13738,7 +13786,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>required if users use ticket signature ； return when logged in</td>
 </tr>
 </tbody></table>
-<h4 id='notice-6'>Notice：</h4>
+<h4 id='notice-7'>Notice：</h4>
 <ul>
 <li><p>To decrease API access rate, the WebSocket server uses the same signature algorithm with that on REST API </p></li>
 <li><p>All data is case sensitive;</p></li>
@@ -13771,9 +13819,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <li>Sequence the parameter name according to ASCII code (use UTF-8 and transfer into URI encoding, capital letters for hexadecimal characters. E.G.: ‘:’ will be encoded into &#39;%3A&#39;, blank will be encoded into &#39;%20&#39;). Here is an encoding example below for request parameters</li>
 </ul>
 
-<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-
-  7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-
-  11T15%3A19%3A30</code></p>
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30</code></p>
 
 <ul>
 <li><p>Connect all parameters with ’&amp;’ according to the sequence above.</p></li>
@@ -14555,14 +14601,14 @@ Details are below:</p></li>
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>Pairs</td>
+<td>contract code</td>
 <td></td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC-USD&quot;</td>
 </tr>
 <tr>
 <td>size</td>
 <td>true</td>
-<td>integer</td>
+<td>int</td>
 <td>Depth size</td>
 <td></td>
 <td><code>20</code>: stands for 20 unmerged data. <code>150</code>:stands for 150 unmerged data.</td>
@@ -14602,7 +14648,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>int</td>
+<td>long</td>
 <td>Timestamp of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
@@ -14651,7 +14697,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>true</td>
-<td>int</td>
+<td>long</td>
 <td>Timepoint for system detecting orderbook, unit: millisecond</td>
 <td></td>
 </tr>
@@ -14915,7 +14961,7 @@ Details are below:</p></li>
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>Pairs</td>
+<td>contract code</td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
@@ -15459,7 +15505,7 @@ Details are below:</p></li>
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>index symbol</td>
+<td>contract code</td>
 <td></td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported..&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
 </tr>
@@ -15552,7 +15598,7 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>count</td>
-<td>decimal</td>
+<td>string</td>
 <td>count. The value is 0.</td>
 <td></td>
 </tr>
@@ -15762,49 +15808,49 @@ Details are below:</p></li>
 </thead><tbody>
 <tr>
 <td>id</td>
-<td>int</td>
+<td>long</td>
 <td>index kline id,the same as kline timestamp, kline start timestamp</td>
 <td></td>
 </tr>
 <tr>
 <td>vol</td>
-<td>decimal</td>
+<td>string</td>
 <td>Trade volume(Cont.). The value is 0.</td>
 <td></td>
 </tr>
 <tr>
 <td>count</td>
-<td>decimal</td>
+<td>string</td>
 <td>count. The value is 0.</td>
 <td></td>
 </tr>
 <tr>
 <td>open</td>
-<td>decimal</td>
+<td>string</td>
 <td>open index price</td>
 <td></td>
 </tr>
 <tr>
 <td>close</td>
-<td>decimal</td>
+<td>string</td>
 <td>close index price</td>
 <td></td>
 </tr>
 <tr>
 <td>low</td>
-<td>decimal</td>
+<td>string</td>
 <td>lowest index price</td>
 <td></td>
 </tr>
 <tr>
 <td>high</td>
-<td>decimal</td>
+<td>string</td>
 <td>highest index price</td>
 <td></td>
 </tr>
 <tr>
 <td>amount</td>
-<td>decimal</td>
+<td>string</td>
 <td>amount based on coins.</td>
 <td></td>
 </tr>
@@ -15864,7 +15910,7 @@ Details are below:</p></li>
 <td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>index symbol</td>
+<td>contract code</td>
 <td></td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported..&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
 </tr>
@@ -15957,7 +16003,7 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>count</td>
-<td>decimal</td>
+<td>string</td>
 <td>count. The value is 0.</td>
 <td></td>
 </tr>
@@ -16165,49 +16211,49 @@ Details are below:</p></li>
 </thead><tbody>
 <tr>
 <td>id</td>
-<td>int</td>
+<td>long</td>
 <td>kline id,the same as kline timestamp</td>
 <td></td>
 </tr>
 <tr>
 <td>vol</td>
-<td>decimal</td>
+<td>string</td>
 <td>Trade volume(Cont.). The value is 0.</td>
 <td></td>
 </tr>
 <tr>
 <td>count</td>
-<td>decimal</td>
+<td>string</td>
 <td>count. The value is 0.</td>
 <td></td>
 </tr>
 <tr>
 <td>open</td>
-<td>decimal</td>
+<td>string</td>
 <td>open  price</td>
 <td></td>
 </tr>
 <tr>
 <td>close</td>
-<td>decimal</td>
+<td>string</td>
 <td>close  price</td>
 <td></td>
 </tr>
 <tr>
 <td>low</td>
-<td>decimal</td>
+<td>string</td>
 <td>low price</td>
 <td></td>
 </tr>
 <tr>
 <td>high</td>
-<td>decimal</td>
+<td>string</td>
 <td>high price</td>
 <td></td>
 </tr>
 <tr>
 <td>amount</td>
-<td>decimal</td>
+<td>string</td>
 <td>amount based on coins.</td>
 <td></td>
 </tr>
@@ -16299,10 +16345,10 @@ Details are below:</p></li>
  </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12312321</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4635</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4645</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4142</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0024</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.4635"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.4645"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.4142"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0024"</span><span class="p">,</span><span class="w">
        </span><span class="p">}</span><span class="w">
  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -16453,10 +16499,10 @@ Details are below:</p></li>
 </tr>
 </thead><tbody>
 <tr>
-<td>symbol</td>
+<td>contract_code</td>
 <td>true</td>
 <td>string</td>
-<td>symbol name</td>
+<td>contract code</td>
 <td></td>
 <td>Case-Insenstive.Both uppercase and lowercase are supported..e.g.&quot;BTC-USD&quot;</td>
 </tr>
@@ -16495,10 +16541,10 @@ Details are below:</p></li>
  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12312321</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"contact_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4635</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4645</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4142</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0024</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"contact_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.4635"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.4645"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.4142"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0024"</span><span class="p">,</span><span class="w">
        </span><span class="p">}</span><span class="w">
  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -16514,7 +16560,7 @@ Details are below:</p></li>
 </tr>
 </thead><tbody>
 <tr>
-<td>req</td>
+<td>rep</td>
 <td>true</td>
 <td>string</td>
 <td>Data channel，Format： market.period</td>
@@ -16656,7 +16702,7 @@ Details are below:</p></li>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.btc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10086"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590475967607</span><span class="p">,</span><span class="w">
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
@@ -16967,7 +17013,7 @@ Details are below:</p></li>
 <td>Not Allowed</td>
 </tr>
 </tbody></table>
-<h2 id='subscribe-match-order-data-sub'>subscribe Match Order Data（sub)</h2>
+<h2 id='subscribe-match-order-data-sub'>Subscribe Match Order Data（sub)</h2>
 <p>To subscribe order data, Clients have to make connection to the Server and send subscribe request in the format below:</p>
 <h3 id='subscribe-request-format-2'>Subscribe Request Format</h3>
 <p><code>{</code></p>
@@ -17084,7 +17130,7 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>long</td>
-<td></td>
+<td>server response timestamp</td>
 </tr>
 <tr>
 <td>symbol</td>
@@ -17094,7 +17140,7 @@ Details are below:</p></li>
 <tr>
 <td>contract_code</td>
 <td>string</td>
-<td></td>
+<td>contract code</td>
 </tr>
 <tr>
 <td>status</td>
@@ -17144,7 +17190,7 @@ Details are below:</p></li>
 <tr>
 <td>trade_id</td>
 <td>long</td>
-<td>In this interface, trade_id is the same with match_id of api/v1/contract_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.</td>
+<td>In this interface, trade_id is the same with match_id of swap-api/v1/swap_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.</td>
 </tr>
 <tr>
 <td>trade_volume</td>
@@ -17317,23 +17363,24 @@ Details are below:</p></li>
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10086"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.match"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585832015669</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"init"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
         </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.33</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.34</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.45</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.45</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.0989898</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.65300225033282</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.624326797617663</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0357473851449755</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.607254865187846</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001819856887332005</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.028675452715159</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.578579412472687</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">210.93164485504528</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">174.14824361517893</span><span class="p">,</span><span class="w">
         </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="w">
+        </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.075</span><span class="w">
     </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -17378,7 +17425,12 @@ Details are below:</p></li>
 <tr>
 <td>symbol</td>
 <td>string</td>
-<td>Coins. When the $contract_code value is “*”, it stands for subscribing data of all coins</td>
+<td>symbol e.g:  &quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>string</td>
+<td>Contract Code</td>
 </tr>
 <tr>
 <td>margin_balance</td>
@@ -17648,7 +17700,7 @@ Details are below:</p></li>
 <tr>
 <td>symbol</td>
 <td>string</td>
-<td>Coin, when $contract_code value is *, it stands for subscribing the data of all coins</td>
+<td>symbol  e.g:&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -17958,7 +18010,7 @@ Details are below:</p></li>
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-10'>Return Parameter</h3>
+</span></code></pre><h3 id='format-illustration-of-unsubscribe-position-updates-2'>Format Illustration of Unsubscribe Position Updates</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -17981,26 +18033,8 @@ Details are below:</p></li>
 <td>string</td>
 <td>Subscribe topic name，Require subscribe public.$contract_code.liquidation_orders  Subscribe/unsubscribe the data of a given coin; when the $contract_code value is *, it stands for subscribing/unsubscribing the data of all coins，;</td>
 </tr>
-<tr>
-<td>ts</td>
-<td>long</td>
-<td>Required; Time of Respond Generation, Unit: Millisecond</td>
-</tr>
 </tbody></table>
-
-<blockquote>
-<p>Example of a successful subscription</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.BTC-USD.liquidation_orders"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='rules-on-subscribe-and-unsubscribe-5'>Rules on Subscribe and Unsubscribe</h3>
+<h3 id='rules-on-subscribe-and-unsubscribe-5'>Rules on Subscribe and Unsubscribe</h3>
 <table><thead>
 <tr>
 <th>Subscribe(sub)</th>
@@ -18338,7 +18372,7 @@ Details are below:</p></li>
 <tr>
 <td>event</td>
 <td>string</td>
-<td>event</td>
+<td>event ：&quot;init&quot;, &quot;update&quot;, &quot;snapshot&quot;</td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
@@ -18363,22 +18397,22 @@ Details are below:</p></li>
 <tr>
 <td>price_tick</td>
 <td>decimal</td>
-<td>Minimum Variation of Contract Price</td>
+<td>Minimum Variation of Contract Price ： 0.001, 0.01...</td>
 </tr>
 <tr>
 <td>settlement_date</td>
 <td>string</td>
-<td>settlement date</td>
+<td>settlement date ：such as &quot;1490759594752&quot;</td>
 </tr>
 <tr>
 <td>create_date</td>
 <td>string</td>
-<td>Contract Listing Date</td>
+<td>Contract Listing Date ：such as &quot;20180706&quot;</td>
 </tr>
 <tr>
 <td>contract_status</td>
 <td>int</td>
-<td>contract status</td>
+<td>contract status：0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered</td>
 </tr>
 <tr>
 <td>&lt;/data&gt;</td>
