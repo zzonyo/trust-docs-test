@@ -2625,9 +2625,9 @@ funding_rate | string | funding rate |  |
 realized_rate |string | realized funding rate |  |
 avg_premium_index | string | average premium index |  |
 \</list\> |  |  |  |  |
-total_page             | true     | int     | total page                |              |
-current_page           | true     | int     | current page               |              |
-total_size           | true     | int     |  total size               |              |
+total_page      | int     | total page                |              |
+current_page    | int     | current page               |              |
+total_size      | int     |  total size               |              |
 \</dict\> |  |  |  |  |
 
 ## Query Premium Index Kline Data
