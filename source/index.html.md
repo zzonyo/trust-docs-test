@@ -872,14 +872,14 @@ No parameter is available for this endpoint.
 
 ### Returning Parameter
 | Parameter Name | Parameter Type   |   Desc         |
-| ------------------ | ------------------ | ------------- | -------------- |
+| ------------------ | ------------------ | ------------- | 
 | status             | string                   | "ok" or "error"... 
 | \<data\>             | dict object                 | 
-| heartbeat             | integer                   | future 1: avaiable 0: not available 
-| swap_heartbeat             | integer                   | swap 1: avaiable 0: not available 
+| heartbeat             | int                   | future 1: avaiable 0: not available 
+| swap_heartbeat             | int                   | swap 1: avaiable 0: not available 
 | estimated_recovery_time             | long                   | null: normal. estimated recovery time :millionseconds.
 | swap_estimated_recovery_time             | long                   | null: normal. swap estimated recovery time millionseconds.
-| option_heartbeat             | integer                   | option 1: avaiable 0: not available 
+| option_heartbeat             | int                   | option 1: avaiable 0: not available 
 | option_estimated_recovery_time             | long                   | null: normal. option estimated recovery time :millionseconds.
 | \</data\>             |                  | 
 
@@ -1715,9 +1715,9 @@ curl "https://api.hbdm.com/swap-ex/market/history/kline?period=1min&size=200&con
 | ------------------ | ------------- | -------- | -------------------- | ----------- | ------------------------------------------------------------ |
 | contract_code             | true    |   string   | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
 | period             | true          | string   | KLine Type          |             | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon      |
-| size               | false         | integer  | Acquisition Quantity | 150         | [1,2000]                                                     |
-| from              | false         | integer  | start timestamp seconds. |         |                                                    |
-| to               | false         | integer  | end timestamp seconds |          |                                                      |
+| size               | false         | int  | Acquisition Quantity | 150         | [1,2000]                                                     |
+| from              | false         | long  | start timestamp seconds. |         |                                                    |
+| to               | false         | long  | end timestamp seconds |          |                                                      |
 ### Note
 
 - Either `size` field or `from` and `to` fields need to be filled.
@@ -2764,7 +2764,7 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 | contract_code      | true     | string | contract code           |         | Case-Insenstive.Both uppercase and lowercase are supported..e.g."BTC-USD"
 | period          | true     | string  | kline period               |         | 1min,5min, 15min, 30min, 60min,4hour,1day,1mon     |
 | basis_price_type          | false     | string  | use basis price type to calculate the basis data       |    Using open price default   |    open price："open"，close price："close"，highest price："high"，lowest price："low"，avg=（high price +low price）/2："average"   |
-| size  | true     | integer    | data size         | 150 | [1,2000] |
+| size  | true     | int    | data size         | 150 | [1,2000] |
 
 > Response example：
 
@@ -2887,7 +2887,7 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 | adjust_factor                | true     | decimal  |  Adjustment Factor               |                |  
 | margin_static                | true     | decimal  | Static Margin                |                |
 | \</list\>                      |               |          |                                               |                 |
-| ts                             | long        | long     | Time of Respond Generation, Unit: Millisecond |                 |
+| ts                             | true        | long     | Time of Respond Generation, Unit: Millisecond |                 |
 
 
 ## Query User’s Position Information
@@ -3010,7 +3010,7 @@ attr | type | Mandatory | desc     |
 -----  | -----  | -----  | -----  |
 status     |  string  | true  | Request Processing Result  "ok" , "error" |
 ts       | long | true    | Time of Respond Generation, Unit: Millisecond                 |
-\<data\> |    true    |  object array       |                             |
+\<data\> |   object array     |  true       |                             |
 symbol | string | true | contract symbol                                     |
 contract_code | string | true | contract code                                     |
 margin_balance | decimal | true | Balance Margin                            |
@@ -3733,7 +3733,7 @@ last_price | decimal  | true  | Last Price                                      
   "status": "ok",
   "ts": 158797866555,
   "data":   {
-      "order_id": 122133213,
+      "order_id": "122133213"
   }
 }
 
@@ -3789,8 +3789,8 @@ last_price | decimal  | true  | Last Price                                      
         "sub_uid":"123123123",      
         "sub_account_name":"bolin",       
         "transfer_type":34,              
-        "amount":1,                  
-        },...                        
+        "amount":1                 
+        }                        
       ],
       "total_page":15,          
       "current_page":3,         
@@ -3851,13 +3851,13 @@ last_price | decimal  | true  | Last Price                                      
 | cancel_ratio        | true | decimal  | cancel ratio           |  |
 | is_trigger        | true | int  |            | 	1: triggered，0: not triggered |
 | is_active        | true | int  |   | 1: active，0：not active
-| \</COR>       | true | dict object  |  |
+| \</COR>       |  |    |  |
 | \<TDN>       | true | dict object  | Total Disable Number|
 | disables_threshold        | true | long  | disable threshold        |  |
 | disables        | true | long  | total disable number        |  | 
 | is_trigger        | true | int  | | 	1：triggered，0：not triggered |
 | is_active        | true | int  |          |   1：active，0：not active
-| \</TDN>       | true | dict object  |  |
+| \</TDN>       |  |    |  |
 | \</data\>     |      |         |         |   |
 
  > eg：
@@ -4003,22 +4003,29 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 > Response:
 
 ```json
-{
- "data": {
-   "errors": [{
-   "err_code": 1037,
-   "err_msg": "The multiple does not meet the requirements",
-   "index": 2
-  }],
-  "success": [{
-   "index": 1,
-   "order_id": 695342621643776000,
-   "order_id_str": "695342621643776000"
-  }]
- },
- "status": "ok",
- "ts": 1585824199847
-}
+
+    {
+      "status": "ok",
+      "data": {
+        "errors":[
+          {
+            "index":1,
+            "err_code": 200417,
+            "err_msg": "invalid contract_code"
+           }
+         ],
+        "success":[
+          {
+            "index":2,
+            "order_id":161256,
+            "order_id_str": "161256",
+            "client_order_id":1344567
+           }
+         ]
+       },
+      "ts": 1490759594752
+    }
+
 ```
 
 ###  Returning Parameter  
@@ -4036,7 +4043,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | index                             | true          | int      | order Index                                                  |                 |
 | order_id                          | true          | long     | Order ID                                                     |                 |
 | order_id_str                          | true          | string     | Order ID                                                     |                 |
-| client_order_id                   | true          | int     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
+| client_order_id                   | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
 | \</list\>                         |               |          |                                                              |                 |
 | \</data\>                         |               |          |                                                              |                 |
 | ts                                | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
@@ -4078,7 +4085,7 @@ The return data from Cancel An Order Interface only means that order cancelation
       "err_msg": "order doesn’t exist"
      }
    ],
-  "success":"161256,1344567",
+  "successes":"161256,1344567",
   "ts": 1490759594752
 }
 ```
@@ -4203,11 +4210,11 @@ The return data from Cancel An Order Interface only means that order cancelation
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | status | true | string | Request Processing Result	 | "ok" :Order placed successfully, "error"：Order failed |
 | ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
-| <data> |  |  |  | Dictionary |
+| \<data\> |  |  |  | Dictionary |
 | order_id | true  | long | Order ID [Different users may share the same order ID] |  |
 | order_id_str | true  | string | Order ID |  |
 | client_order_id | false | long | user’s own order ID |  |
-| </data> |  |  |  |  |
+| \</data\> |  |  |  |  |
 
 > Error：
 
@@ -5552,7 +5559,7 @@ All response data from WebSocket server are compressed into GZIP format. Clients
 
 - Data type： use JSON to transmit data
 
--All request data has fixed format. Please note that Huobi Swap API document will only focus on data illustration in non-fixed format.
+- All request data has fixed format. Please note that Huobi Swap API document will only focus on data illustration in non-fixed format.
 
 > Request data format is laid out as below:
 
@@ -5712,7 +5719,7 @@ Add computed value into the Signature parameter in API request. Please note  the
 | op       | string  | required； Operator type， Authentication response type is auth                    |
 | type     | string  | required； Return data according to the requested parameters                       |
 | cid      | string  | optional； Return data when “cid” string requested                          |
-| err-code | integer | 0 means successfully response, others means response failure  return 0 if success , For detailed Response code（Err-Code）, please refer to appendix  |
+| err-code | int | 0 means successfully response, others means response failure  return 0 if success , For detailed Response code（Err-Code）, please refer to appendix  |
 | err-msg  | string  | optional， response detailed error code when error occurs                         |
 | ts       | long    |  server responds timestamp                                |
 | user-id  | long    |  client ID                                           |
@@ -6543,7 +6550,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### tick parameters
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| id | string | index kline id,the same as kline timestamp, kline start timestamp  |
+| id | long | index kline id,the same as kline timestamp, kline start timestamp  |
 | vol | string  | Trade volume(Cont.). The value is 0.             |
 | count | string  | count. The value is 0.              |
 | open | string  | open index price               |
@@ -6629,7 +6636,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### Returning Parameter
 | **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| req     | true | string | Data channel，Format： market.period |                | |
+| rep     | true | string | Data channel，Format： market.period |                | |
 | status | true | string | Request processing result          | "ok" , "error" | |
 | id     | true | string | ID       |                | |
 | wsid     | true | long | wsid           |                | |
@@ -6721,7 +6728,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### tick parameters
 | **parameter name** | **type** | **desc**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| id | string | kline id,the same as kline timestamp  |
+| id | long | kline id,the same as kline timestamp  |
 | vol | string  | Trade volume(Cont.). The value is 0.             |
 | count | string  | count. The value is 0.              |
 | open | string  | open price               |
@@ -6803,7 +6810,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### Returning Parameter
 | **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| req     | true | string | Data channel，Format： market.period |                | |
+| rep     | true | string | Data channel，Format： market.period |                | |
 | status | true | string | Request processing result          | "ok" , "error" | |
 | id     | true | string | ID       |                | |
 | wsid     | true | long | wsid           |                | |
