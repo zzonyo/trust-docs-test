@@ -1716,8 +1716,8 @@ curl "https://api.hbdm.com/swap-ex/market/history/kline?period=1min&size=200&con
 | contract_code             | true    |   string   | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
 | period             | true          | string   | KLine Type          |             | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon      |
 | size               | false         | int  | Acquisition Quantity | 150         | [1,2000]                                                     |
-| from              | false         | long  | start timestamp seconds. |         |                                                    |
-| to               | false         | long  | end timestamp seconds |          |                                                      |
+| from              | false         | int  | start timestamp seconds. |         |                                                    |
+| to               | false         | int  | end timestamp seconds |          |                                                      |
 ### Note
 
 - Either `size` field or `from` and `to` fields need to be filled.
