@@ -1980,12 +1980,12 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>heartbeat</td>
-<td>integer</td>
+<td>int</td>
 <td>future 1: avaiable 0: not available</td>
 </tr>
 <tr>
 <td>swap_heartbeat</td>
-<td>integer</td>
+<td>int</td>
 <td>swap 1: avaiable 0: not available</td>
 </tr>
 <tr>
@@ -2000,7 +2000,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>option_heartbeat</td>
-<td>integer</td>
+<td>int</td>
 <td>option 1: avaiable 0: not available</td>
 </tr>
 <tr>
@@ -3618,7 +3618,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>size</td>
 <td>false</td>
-<td>integer</td>
+<td>int</td>
 <td>Acquisition Quantity</td>
 <td>150</td>
 <td>[1,2000]</td>
@@ -3626,7 +3626,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>from</td>
 <td>false</td>
-<td>integer</td>
+<td>long</td>
 <td>start timestamp seconds.</td>
 <td></td>
 <td></td>
@@ -3634,7 +3634,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>to</td>
 <td>false</td>
-<td>integer</td>
+<td>long</td>
 <td>end timestamp seconds</td>
 <td></td>
 <td></td>
@@ -6286,7 +6286,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>size</td>
 <td>true</td>
-<td>integer</td>
+<td>int</td>
 <td>data size</td>
 <td>150</td>
 <td>[1,2000]</td>
@@ -6593,7 +6593,7 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>ts</td>
-<td>long</td>
+<td>true</td>
 <td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
@@ -6870,8 +6870,8 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
-<td>true</td>
 <td>object array</td>
+<td>true</td>
 <td></td>
 </tr>
 <tr>
@@ -8871,7 +8871,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w">   </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">122133213</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"122133213"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -8997,8 +8997,8 @@ the rate limit between the master account and each subaccount is 10 times/ minut
         </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="s2">"123123123"</span><span class="p">,</span><span class="w">      
         </span><span class="s2">"sub_account_name"</span><span class="p">:</span><span class="s2">"bolin"</span><span class="p">,</span><span class="w">       
         </span><span class="s2">"transfer_type"</span><span class="p">:</span><span class="mi">34</span><span class="p">,</span><span class="w">              
-        </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">                  
-        </span><span class="p">},</span><span class="err">...</span><span class="w">                        
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">1</span><span class="w">                 
+        </span><span class="p">}</span><span class="w">                        
       </span><span class="p">],</span><span class="w">
       </span><span class="s2">"total_page"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">          
       </span><span class="s2">"current_page"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">         
@@ -9265,8 +9265,8 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>&lt;/COR&gt;</td>
-<td>true</td>
-<td>dict object</td>
+<td></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -9307,8 +9307,8 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>&lt;/TDN&gt;</td>
-<td>true</td>
-<td>dict object</td>
+<td></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -9596,22 +9596,29 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <blockquote>
 <p>Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
- </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-   </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-   </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1037</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The multiple does not meet the requirements"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"index"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
-  </span><span class="p">}],</span><span class="w">
-  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-   </span><span class="s2">"index"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">695342621643776000</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"695342621643776000"</span><span class="w">
-  </span><span class="p">}]</span><span class="w">
- </span><span class="p">},</span><span class="w">
- </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585824199847</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"index"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200417</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid contract_code"</span><span class="w">
+           </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"success"</span><span class="p">:[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"index"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"order_id"</span><span class="p">:</span><span class="mi">161256</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161256"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="mi">1344567</span><span class="w">
+           </span><span class="p">}</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
 </span></code></pre><h3 id='returning-parameter-29'>Returning Parameter</h3>
 <table><thead>
 <tr>
@@ -9702,7 +9709,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <tr>
 <td>client_order_id</td>
 <td>true</td>
-<td>int</td>
+<td>long</td>
 <td>the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned</td>
 <td></td>
 </tr>
@@ -9780,7 +9787,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
       </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order doesn’t exist"</span><span class="w">
      </span><span class="p">}</span><span class="w">
    </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"success"</span><span class="p">:</span><span class="s2">"161256,1344567"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"successes"</span><span class="p">:</span><span class="s2">"161256,1344567"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='returning-parameter-30'>Returning Parameter</h3>
@@ -10090,7 +10097,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 <tr>
-<td><data></td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -10118,7 +10125,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 <tr>
-<td></data></td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -13649,9 +13656,8 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <li><p>Character Encoding：UTF-8</p></li>
 <li><p>Case sensitive，including parameter name and return parameter</p></li>
 <li><p>Data type： use JSON to transmit data</p></li>
+<li><p>All request data has fixed format. Please note that Huobi Swap API document will only focus on data illustration in non-fixed format.</p></li>
 </ul>
-
-<p>-All request data has fixed format. Please note that Huobi Swap API document will only focus on data illustration in non-fixed format.</p>
 
 <blockquote>
 <p>Request data format is laid out as below:</p>
@@ -13854,7 +13860,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>err-code</td>
-<td>integer</td>
+<td>int</td>
 <td>0 means successfully response, others means response failure  return 0 if success , For detailed Response code（Err-Code）, please refer to appendix</td>
 </tr>
 <tr>
@@ -15586,7 +15592,7 @@ Details are below:</p></li>
 </thead><tbody>
 <tr>
 <td>id</td>
-<td>string</td>
+<td>long</td>
 <td>index kline id,the same as kline timestamp, kline start timestamp</td>
 <td></td>
 </tr>
@@ -15755,7 +15761,7 @@ Details are below:</p></li>
 </tr>
 </thead><tbody>
 <tr>
-<td>req</td>
+<td>rep</td>
 <td>true</td>
 <td>string</td>
 <td>Data channel，Format： market.period</td>
@@ -15991,7 +15997,7 @@ Details are below:</p></li>
 </thead><tbody>
 <tr>
 <td>id</td>
-<td>string</td>
+<td>long</td>
 <td>kline id,the same as kline timestamp</td>
 <td></td>
 </tr>
@@ -16158,7 +16164,7 @@ Details are below:</p></li>
 </tr>
 </thead><tbody>
 <tr>
-<td>req</td>
+<td>rep</td>
 <td>true</td>
 <td>string</td>
 <td>Data channel，Format： market.period</td>
