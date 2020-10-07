@@ -70,6 +70,8 @@ permission type  |  Content Type  |   Context           |   Request Type   |   D
  Read  | Market Data | linear-swap-ex/market/history/trade                               | GET    |      Query a Batch of Trade Records of a Contract               |     No         |
  Read  | Account    | linear-swap-api/v1/swap_account_info                              | POST   |      Query User’s Account Information                |     Yes        |
  Read  | Account    | linear-swap-api/v1/swap_position_info                             | POST   |      Query User’s position Information               |     Yes        |
+ Read  | Account    | linear-swap-api/v1/swap_switch_lever_rate                         | POST   |      Switching Leverage               |     Yes        |
+ Read  | Account    | linear-swap-api/v1/swap_available_level_rate                      | POST   |      Query user’s available leverage              |     Yes        |
  Read  | Account    | linear-swap-api/v1/swap_sub_account_list                          | POST   |      Query assets information of all sub-accounts under the master account (Query by coins)       |     Yes        |
  Read  | Account    | linear-swap-api/v1/swap_sub_account_info                          | POST   |      Query a single sub-account's assets information     |     Yes        |
  Read  | Account    | linear-swap-api/v1/swap_sub_position_info                         | POST   |      Query a single sub-account's position information      |     Yes        |
@@ -3144,16 +3146,66 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
  - As long as the user has had funds, there will be settlement records. If the user queried has no settlement record, no data will be returned. (data will be an empty array)
 -->
 
-<!--
+## Switching Leverage
+
+- POST `/linear-swap-api/v1/swap_switch_lever_rate`
+
+###  Request Parameter
+
+| **Parameter Name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| contract_code | true | string | contract code	 |  “BTC-USDT” |
+| lever_rate | true | int | Leverage to switch |  |
+
+> Response:
+
+```json
+
+OK：
+{
+    "status": "ok",
+    "ts": 1547521135713,
+    "data": {
+          "contract_code":"BTC-USDT",
+          "lever_rate":10
+    }
+}
+No：
+{
+    "status": "error",
+    "err_code": 2014,    
+    "err_msg": "Can't switch",  
+    "ts": 1547519608126
+}
+
+```
+
+### Returning Parameter
+
+| Parameter Name   | Mandatory | Type      | Desc    | Value Range    |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | status: ok,error            |                                          |
+| \<data\> | false     |  object      |                    |                                          |
+| contract_code               | false | string    | contract code      |                                          |
+| lever_rate               | false | int    | Switched leverage      |                                          |
+| \</data\>            |      |         |                    |                                          |
+| err_code | false | int | error code | |
+|err_msg| false| string | error msg | |
+| ts                     | true | long    | Timestamp                |    
+
+####  Note
+
+The interface limits the number of requests to 3 times/second.
+
 ## Query user’s available leverage
 
-- POST `swap-api/v1/swap_available_level_rate`
+- POST `linear-swap-api/v1/swap_available_level_rate`
 
 ### Request Parameter：
 
 | **Parameter Name**      | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |	
-| contract_code | false | string | Contract code, if not filled in, the actual available leverage of all contracts will be returned by default	 |  “BTC-USD”。。。 |
+| contract_code | false | string | Contract code, if not filled in, the actual available leverage of all contracts will be returned by default	 |  “BTC-USDT”。。。 |
 
 ### Returning Parameter：
 
@@ -3174,46 +3226,14 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
     "status": "ok",
     "data": [
         {
-            "contract_code": "BTC-USD",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "contract_code": "BSV-USD",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "contract_code": "ETC-USD",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "contract_code": "BCH-USD",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "contract_code": "XRP-USD",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "contract_code": "ETH-USD",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "contract_code": "EOS-USD",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "contract_code": "LTC-USD",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "contract_code": "TRX-USD",
+            "contract_code": "BTC-USDT",
             "available_level_rate": "1,5,10,20"
         }
     ],
     "ts": 1566899973811
 }
 ```
--->
+
 
 ## Query swap information on order limit
 
@@ -4382,7 +4402,7 @@ Please note that created_at can't send "0"
 | price                            | true          | decimal  | Price committed                                              |                                   |
 | create_date                      | true          | long     | Creation time                                                |                                   |
 | order_source                     | true          | string   | Order Source                                                 |                                   |
-| order_price_type                 | true          | int   | 1：limit，3：opponent，4：lightning，5：trigger，6：post_only |                                   |
+| order_price_type                 | true          | int   | 	1：limit，2：market，3：opponent，4：lightning，5：trigger，6：post_only ，7：optimal_5 ，8：optimal_10 ，9：optimal_20，10：FOK ，11：IOC ，12：opponent_ioc，13：lightning_ioc，14：optimal_5_ioc，15：optimal_10_ioc，16：optimal_20_ioc，17：opponent_fok，18：lightning_fok，19：optimal_5_fok，40：optimal_10_fok，41：optimal_20_fok . |                                   |
 | margin_frozen                    | true          | decimal  | Freeze margin                                                |                                   |
 | margin_asset                      | true         | string | margin asset                 |                |
 | profit                           | true          | decimal  | profit                                                       |                                   |
@@ -5112,6 +5132,7 @@ Response Code | Desc in Chinese |  Desc in English  |
 | Read    |  Market Data Interface | market.$contract_code.kline.$period                    | req  | Request Kline Data              |       No      |
 | Read    |  Market Data Interface | market.$contract_code.depth.$type                      | sub  | Subscribe Market Depth Data      |       No      |
 | Read    |  Market Data Interface | market.$contract_code.depth.size_${size}.high_freq     | sub  | Subscribe Incremental Market Depth Data |       No      |
+| Read    |  Market Data Interface | market.$contract_code.bbo                              | sub  | Subscribe market BBO data push    |       No      |
 | Read    |  Market Data Interface | market.$contract_code.detail                           | sub  | Subscribe Market Detail Data     |       No      |
 | Read    |  Market Data Interface | market.$contract_code.trade.detail                     | req  | Request Trade Detail Data        |       No      |
 | Read    |  Market Data Interface | market.$contract_code.trade.detail                     | sub  | Subscribe Trade Detail Data       |       No      |
@@ -5128,7 +5149,7 @@ Response Code | Desc in Chinese |  Desc in English  |
 | Read    |  Account Interface	 | accounts.$contract_code                                | sub  | Subscribe Account Equity Updates Data(sub)             |    Yes      |
 | Read    |  Account Interface	 | positions.$contract_code                               | sub  | Subscribe Position Updates(sub)      |    Yes      |
 | Read    |  Trade Interface	 | matchOrders.$contract_code                             | sub  | Subscribe Match Order Data（sub)    |    Yes      |
-                                                                                                                                      
+| Read    |  Trade Interface	 | trigger_order.$contract_code                             | sub  | Subscribe trigger orders updates(sub)    |    Yes      |                                                                                                                                      
 
 ## WebSocket Subscription Address
 <!--
@@ -5954,7 +5975,7 @@ trade_turnover  |  true  |  decimal  |  Transaction amount, that is, sum (transa
  \</tick\>    |               |    |      |           
 
 
-<!--
+
 ## Subscribe market BBO data push
 
 ### clients have to make connection to WebSocket API Server and send subscribe request in the format below：
@@ -6032,7 +6053,7 @@ trade_turnover  |  true  |  decimal  |  Transaction amount, that is, sum (transa
 - When the data received by the client is failed or delayed, the old data buffer in the server will be discarded.The latest BBO will be pushed.
 - version（version number). Use match id directly to ensure it is globally unique and the value of version number pushed is the largest.
 
--->
+
 
 
 ## Request Trade Detail Data
@@ -7140,7 +7161,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | topic    | string | Subscribe Topic Name |
 | uid                   | string  | account uid                                              |
 | ts                        | long  | Time of Respond Generation, Unit: Millisecond                          |
-| event                     | string  | notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (including transfer with exchange accounts, transfer between main account and sub-account, and tranfer between different margin accounts.), system (contract.system), other asset change(other), initial margin(init)                                              |
+| event                     | string  | notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (ncluding transfer with exchange accounts, transfer between main account and sub-account, and tranfer between different margin accounts.), system (contract.system), other asset change(other)（including switching leverage）, initial margin(init)        |
 | \<data\>            |   |                                                        |
 | symbol                    | string    | Coins. "BTC","ETH"...                     |
 | contract_code           | string  | Contract Code                                                       |
@@ -7287,7 +7308,7 @@ To subscribe position updates data, the client has to make connection to the ser
 | topic                   | string  | Required;  topic                                              |
 | uid                   | string  | account uid                                              |
 | ts                     | long  | Time of Respond Generation, Unit: Millisecond	                           |
-| event                  | string  | Related events of position change notification, such as order creation and position closing (order.close), order filled (order.match) (except for liquidation, settlement and delivery), settlement and delivery (settlement), order liquidation (order.liquidation), order cancellation (order.cancel), initial positions (init), triggered by system periodic push (snapshot).      |
+| event                  | string  | Related events of position change notification, such as order creation and position closing (order.close), order filled (order.match) (except for liquidation, settlement and delivery), settlement and delivery (settlement), order liquidation (order.liquidation), order cancellation (order.cancel), Switching Leverage（other）, initial positions (init), triggered by system periodic push (snapshot).     |
 | \<data\>            |   |                                                        |
 | symbol                 | string    | Coin. "BTC","ETH"...                     |
 | contract_code          | string  | Contract Code                                                      |
@@ -7732,7 +7753,7 @@ To subscribe contract infodata, the client has to make connection to the server 
 | public.contract_code1.contract_info | public.contract_code2.contract_info  | Not Allowed |
 | public.*.contract_info       | public.contract_code1.contract_info  | Not Allowed |
 
-<!--
+
 ## Subscribe trigger orders updates(sub)
 
 ### To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:
@@ -7896,7 +7917,7 @@ To subscribe basis data, the Client has to make connection to the Server and sen
 | trigger_order.contract_code1 | trigger_order.contract_code2  | Not Allowed |
 | trigger_order.*       | trigger_order.contract_code1  | Not Allowed |
 
--->
+
 
 # Appendix
 
