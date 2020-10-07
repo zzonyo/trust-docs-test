@@ -4991,7 +4991,7 @@ When getting information on order cancellation via query history orders interfac
             "contract_code": "BTC180914",
             "volume": 111,
             "price": 1111,
-            "order_price_type": "limit",
+            "order_price_type": 1,
             "direction": "buy",
             "offset": "open",
             "lever_rate": 10,
@@ -5039,7 +5039,7 @@ When getting information on order cancellation via query history orders interfac
 | price                            | true          | decimal  | Price committed                                              |                                   |
 | create_date                      | true          | long     | Creation time                                                |                                   |
 | order_source                     | true          | string   | Order Source                                                 |                                   |
-| order_price_type                 | true          | string   | 1：limit，2：market，3：opponent，4：lightning，5：trigger，6：post_only ，7：optimal_5 ，8：optimal_10 ，9：optimal_20，10：FOK ，11：IOC ，12：opponent_ioc，13：lightning_ioc，14：optimal_5_ioc，15：optimal_10_ioc，16：optimal_20_ioc，17：opponent_fok，18：lightning_fok，19：optimal_5_fok，40：optimal_10_fok，41：optimal_20_fok . |                                   |
+| order_price_type                 | true          | int   | 1：limit，2：market，3：opponent，4：lightning，5：trigger，6：post_only ，7：optimal_5 ，8：optimal_10 ，9：optimal_20，10：FOK ，11：IOC ，12：opponent_ioc，13：lightning_ioc，14：optimal_5_ioc，15：optimal_10_ioc，16：optimal_20_ioc，17：opponent_fok，18：lightning_fok，19：optimal_5_fok，40：optimal_10_fok，41：optimal_20_fok . |                                   |
 | margin_frozen                    | true          | decimal  | Freeze margin                                                |                                   |
 | profit                           | true          | decimal  | profit                                                       |                                   |
 | trade_volume                     | true          | decimal  | Transaction quantity                                         |                                   |
