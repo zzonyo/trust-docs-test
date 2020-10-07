@@ -520,10 +520,10 @@
               </ul>
           </li>
           <li>
-            <a href="#05efcf8774" class="toc-h1 toc-link" data-title="永续合约划转接口">永续合约划转接口</a>
+            <a href="#8c8d158fd9" class="toc-h1 toc-link" data-title="币本位永续合约划转接口">币本位永续合约划转接口</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#614261ed5f" class="toc-h2 toc-link" data-title="现货-永续合约账户间进行资金的划转">现货-永续合约账户间进行资金的划转</a>
+                    <a href="#b6cdd7fbf2" class="toc-h2 toc-link" data-title="现货-币本位永续合约账户间进行资金的划转">现货-币本位永续合约账户间进行资金的划转</a>
                   </li>
                   <li>
                     <a href="#86f9c9c3d1" class="toc-h2 toc-link" data-title="响应码列表">响应码列表</a>
@@ -2910,7 +2910,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_contract_info?contr
 <td>contract_code</td>
 <td>string</td>
 <td>false</td>
-<td>大小写均支持，&quot;BTC-USD&quot;,不填查询所有合约</td>
+<td>合约代码, 大小写均支持，&quot;BTC-USD&quot;,不填查询所有合约</td>
 </tr>
 </tbody></table>
 
@@ -3042,7 +3042,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_index?contract_code
 <td>contract_code</td>
 <td>string</td>
 <td>false</td>
-<td>支持大小写，&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
+<td>指数代码， 支持大小写，&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
 </tr>
 </tbody></table>
 
@@ -3249,7 +3249,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_open_interest?contr
 <td>contract_code</td>
 <td>string</td>
 <td>false</td>
-<td>支持大小写，&quot;BTC-USD&quot;,不填查询所有合约</td>
+<td>合约代码， 支持大小写，&quot;BTC-USD&quot;,不填查询所有合约</td>
 </tr>
 </tbody></table>
 
@@ -3356,7 +3356,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-ex/market/depth?contract_code=B
 <td>contract_code</td>
 <td>string</td>
 <td>true</td>
-<td>支持大小写, &quot;BTC-USD&quot; ...</td>
+<td>合约代码，支持大小写, &quot;BTC-USD&quot; ...</td>
 </tr>
 <tr>
 <td>type</td>
@@ -3453,7 +3453,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-ex/market/depth?contract_code=B
 <tr>
 <td>mrid</td>
 <td>true</td>
-<td>string</td>
+<td>long</td>
 <td>订单ID</td>
 <td></td>
 </tr>
@@ -3467,14 +3467,14 @@ curl <span class="s2">"https://api.hbdm.com/swap-ex/market/depth?contract_code=B
 <tr>
 <td>id</td>
 <td>true</td>
-<td>string</td>
+<td>long</td>
 <td>tick id</td>
 <td></td>
 </tr>
 <tr>
 <td>version</td>
 <td>true</td>
-<td>string</td>
+<td>long</td>
 <td>版本号</td>
 <td></td>
 </tr>
@@ -3502,7 +3502,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-ex/market/depth?contract_code=B
 </tbody></table>
 <h3 id='e0361480e3-3'>备注</h3>
 <ul>
-<li><p>用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</p></li>
+<li><p>合并深度时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</p></li>
 <li><p>step1至step5, step14, step15是进行了深度合并后的150档深度数据，step7至step13是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
 </ul>
 
@@ -3533,11 +3533,11 @@ curl <span class="s2">"https://api.hbdm.com/swap-ex/market/depth?contract_code=B
 <td>0.1</td>
 </tr>
 <tr>
-<td>step12、step14</td>
+<td>step14、step12</td>
 <td>1</td>
 </tr>
 <tr>
-<td>step13、step15</td>
+<td>step15、step13</td>
 <td>10</td>
 </tr>
 </tbody></table>
@@ -3560,11 +3560,11 @@ curl <span class="s2">"https://api.hbdm.com/swap-ex/market/history/kline?contrac
 </tr>
 </thead><tbody>
 <tr>
-<td>contract_code</td>
-<td>true</td>
+<td>contract_code      true</td>
 <td>string</td>
 <td>合约代码</td>
 <td>仅支持大写， &quot;BTC-USD&quot; ...</td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -3578,7 +3578,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-ex/market/history/kline?contrac
 <tr>
 <td>size</td>
 <td>false</td>
-<td>integer</td>
+<td>int</td>
 <td>获取数量</td>
 <td>150</td>
 <td>[1,2000]</td>
@@ -3586,7 +3586,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-ex/market/history/kline?contrac
 <tr>
 <td>from</td>
 <td>false</td>
-<td>integer</td>
+<td>int</td>
 <td>开始时间戳 10位 单位S</td>
 <td></td>
 <td></td>
@@ -3594,7 +3594,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-ex/market/history/kline?contrac
 <tr>
 <td>to</td>
 <td>false</td>
-<td>integer</td>
+<td>int</td>
 <td>结束时间戳 10位 单位S</td>
 <td></td>
 <td></td>
@@ -3936,6 +3936,13 @@ curl <span class="s2">"https://api.hbdm.com/swap-ex/market/detail/merged?contrac
 <td>true</td>
 <td>object</td>
 <td>买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>时间戳</td>
 <td></td>
 </tr>
 <tr>
@@ -4346,8 +4353,8 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_risk_info?contract_
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>string</td>
 <td>false</td>
+<td>string</td>
 <td>支持大小写， 例如&quot;BTC-USD&quot;,不填返回所有合约</td>
 <td></td>
 </tr>
@@ -4929,8 +4936,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_his_open_interest?c
 <li>注意：</li>
 </ul>
 
-<p>tick字段：数组内的数据按照时间倒序排列；
-  data字段：字典类型。</p>
+<p>tick字段：数组内的数据按照时间倒序排列；</p>
 <h2 id='06c58fa171'>精英账户多空持仓对比-账户数</h2>
 <ul>
 <li>GET <code>swap-api/v1/swap_elite_account_ratio</code></li>
@@ -5381,6 +5387,8 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_api_state?contract_
 <li><p>cancel，指交易权限中对应的“API-撤单-普通订单”的权限，开启为可用，关闭为不可用；</p></li>
 <li><p>transfer_in，指交易权限中对应的“其他-划转-从币币转入”的权限，开启为可用，关闭为不可用；</p></li>
 <li><p>transfer_out，指交易权限中对应的“其他-划转-转出至币币”的权限，开启为可用，关闭为不可用；</p></li>
+<li><p>master_transfer_sub，指交易权限中对应的“母账户划转到子账户”的权限，开启为可用，关闭为不可用；</p></li>
+<li><p>sub_transfer_master，指交易权限中对应的“子账户划转到母账户”的权限，开启为可用，关闭为不可用；</p></li>
 </ul>
 <h2 id='4a42f6a161'>获取合约的资金费率</h2>
 <ul>
@@ -5559,7 +5567,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_historical_funding_
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
         </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">62</span><span class="p">,</span><span class="w">
         </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
@@ -5575,30 +5583,6 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_historical_funding_
             </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586865600000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
-        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"avg_premium_index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.028710291990348889"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000195106288532093"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000195106288532093"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586808000000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
-        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"avg_premium_index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.028710291990348889"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586376000000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
-        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"avg_premium_index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.028710291990348889"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"realized_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000100000000000000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1586347200000"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="w">
@@ -5805,7 +5789,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?
         </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w">
         </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1111</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="w">
       </span><span class="p">}</span><span class="w">
      </span><span class="p">],</span><span class="w">
     </span><span class="s2">"total_page"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">
@@ -6338,7 +6322,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>size</td>
 <td>true</td>
-<td>integer</td>
+<td>int</td>
 <td>基差获取数量</td>
 <td></td>
 <td>[1,2000]</td>
@@ -6882,9 +6866,9 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
         </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="err">None</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
         </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.13</span><span class="p">,</span><span class="w">
         </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -7194,15 +7178,15 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
                   </span><span class="p">{</span><span class="w">
                   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
                   </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
                   </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
                 </span><span class="p">},</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
                    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH-USD"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                   </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                   </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
                    </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
                 </span><span class="p">}</span><span class="w">
               </span><span class="p">]</span><span class="w">
@@ -7213,15 +7197,15 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
                     </span><span class="p">{</span><span class="w">
                    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
                    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                   </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                   </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
                    </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
                 </span><span class="p">},</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
                    </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH-USD"</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                 </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                   </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                   </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
                    </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
                 </span><span class="p">}</span><span class="w">
                 </span><span class="p">]</span><span class="w">
@@ -7533,8 +7517,6 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </ul>
 
 <p>只能查询到开通合约交易的子账户信息；</p>
-
-<p>子账户来过合约系统但是未开通合约交易也不返回对应的数据；</p>
 <h2 id='357363cd8d'>查询单个子账户持仓信息</h2>
 <ul>
 <li>POST <code>swap-api/v1/swap_sub_position_info</code></li>
@@ -8505,14 +8487,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>open_limit</td>
 <td>true</td>
-<td>float</td>
+<td>decimal</td>
 <td>合约开仓单笔下单量最大值</td>
 <td></td>
 </tr>
 <tr>
 <td>close_limit</td>
 <td>true</td>
-<td>float</td>
+<td>decimal</td>
 <td>合约平仓单笔下单量最大值</td>
 <td></td>
 </tr>
@@ -9505,7 +9487,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>price</td>
 <td>decimal</td>
-<td>true</td>
+<td>false</td>
 <td>价格</td>
 </tr>
 <tr>
@@ -9581,6 +9563,13 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>order_id</td>
 <td>true</td>
 <td>long</td>
@@ -9599,6 +9588,13 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>true</td>
 <td>long</td>
 <td>用户下单时填写的客户端订单ID，没填则不返回</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -9657,7 +9653,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>price</td>
 <td>decimal</td>
-<td>true</td>
+<td>false</td>
 <td>价格</td>
 </tr>
 <tr>
@@ -10404,7 +10400,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tr>
 <tr>
 <td>order_type</td>
-<td>true</td>
+<td>false</td>
 <td>int</td>
 <td>订单类型，1:报单 、 2:撤单 、 3:强平、4:交割</td>
 </tr>
@@ -11423,8 +11419,8 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>liquidation_type</td>
 <td>true</td>
 <td>string</td>
-<td>强平类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管</td>
-<td></td>
+<td>强平类型</td>
+<td>0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管</td>
 </tr>
 <tr>
 <td>&lt;/list&gt;</td>
@@ -12997,18 +12993,18 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h1 id='05efcf8774'>永续合约划转接口</h1><h2 id='614261ed5f'>现货-永续合约账户间进行资金的划转</h2><h3 id='69fffaf196-3'>实例</h3>
+</span></code></pre><h1 id='8c8d158fd9'>币本位永续合约划转接口</h1><h2 id='b6cdd7fbf2'>现货-币本位永续合约账户间进行资金的划转</h2><h3 id='69fffaf196-3'>实例</h3>
 <ul>
 <li>POST <code>https://api.huobi.pro/v2/account/transfer</code></li>
 </ul>
 <h3 id='e0361480e3-9'>备注</h3>
-<p>此接口用户币币现货账户与永续合约账户之间的资金划转。</p>
+<p>此接口用户币币现货账户与币本位永续合约账户之间的资金划转。</p>
 
 <p>该接口的访问频次的限制为1分钟10次。</p>
 
 <p>注意：请求地址为火币Global地址</p>
 
-<p>现货与永续合约划转接口，所有划转的币的精度是8位小数。</p>
+<p>现货与币本位永续合约划转接口，所有划转的币的精度是8位小数。</p>
 <h3 id='1f9ac54b15-54'>请求参数</h3>
 <table><thead>
 <tr>
@@ -13591,7 +13587,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 
 <p>合约站指数K线及基差数据订阅地址：wss://api.btcgateway.pro/ws_index</p>
 
-<p>如果对合约订单推送订阅有疑问，可以参考Demo</p>
+<p>如果对合约订单推送订阅有疑问，可以参考<a href="https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#2cff7db524">Demo</a></p>
 <h2 id='4977e9e52a-2'>访问次数限制</h2>
 <p>公开行情接口和用户私有接口都有访问次数限制</p>
 
@@ -13864,9 +13860,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 编码后。</li>
 </ul>
 
-<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-
-  7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-
-  11T15%3A19%3A30</code></p>
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30</code></p>
 
 <ul>
 <li><p>按照以上顺序，将各参数使用字符’&amp;’连接。 </p></li>
@@ -14225,7 +14219,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tr>
 <tr>
 <td>period</td>
-<td>false</td>
+<td>true</td>
 <td>string</td>
 <td>K线周期</td>
 <td></td>
@@ -14453,7 +14447,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tbody></table>
 <h4 id='e0361480e3-11'>备注</h4>
 <ul>
-<li><p>用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</p></li>
+<li><p>合并深度时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</p></li>
 <li><p>step1至step5, step14, step15是进行了深度合并后的150档深度数据，step7至step13是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
 </ul>
 
@@ -14734,9 +14728,9 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>size</td>
 <td>true</td>
 <td>string</td>
+<td>档位数</td>
 <td></td>
-<td></td>
-<td>档位数，20:表示20档不合并的深度，150:表示150档不合并的深度</td>
+<td>20:表示20档不合并的深度，150:表示150档不合并的深度</td>
 </tr>
 </tbody></table>
 
@@ -15575,7 +15569,9 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tr>
 </tbody></table>
 <h1 id='websocket-4'>WebSocket指数与基差数据接口</h1>
-<p>指数与基差数据订阅ws地址：wss://api.hbdm.com/ws_index</p>
+<ul>
+<li>指数与基差数据订阅ws地址：wss://api.hbdm.com/ws_index</li>
+</ul>
 <h2 id='k-4'>订阅溢价指数K线数据</h2><h3 id='websocket-api-server-9'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
 <p><code>{</code>  </p>
 
@@ -15908,7 +15904,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tr>
 </thead><tbody>
 <tr>
-<td>req</td>
+<td>rep</td>
 <td>true</td>
 <td>string</td>
 <td>数据所属的 channel，格式： market.period</td>
@@ -16361,7 +16357,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tr>
 </thead><tbody>
 <tr>
-<td>req</td>
+<td>rep</td>
 <td>true</td>
 <td>string</td>
 <td>数据所属的 channel，格式： market.period</td>
@@ -16784,7 +16780,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tr>
 </thead><tbody>
 <tr>
-<td>req</td>
+<td>rep</td>
 <td>true</td>
 <td>string</td>
 <td>数据所属的 channel，格式： market.basis</td>
@@ -18333,11 +18329,6 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>topic</td>
 <td>string</td>
 <td>订阅主题名称，必填 (public.$contract_code.liquidation_orders)  订阅、取消订阅某个品种下的资产变更信息，当 $contract_code值为 * 时代表订阅所有品种;</td>
-</tr>
-<tr>
-<td>ts</td>
-<td>long</td>
-<td>必填;响应生成时间点，单位：毫秒</td>
 </tr>
 </tbody></table>
 
