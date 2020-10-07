@@ -7794,7 +7794,7 @@ To subscribe contract infodata, the client has to make connection to the server 
 
 {
   "op": "notify",           
-	"topic": "trigger_order.EOS-USDT",
+	"topic": "trigger_order.eos-usdt",
 	"ts": 1489474082831,
 	"uid": "15712398",
 	"event": "order",
