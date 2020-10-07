@@ -418,6 +418,12 @@
                     <a href="#query-account-financial-records" class="toc-h2 toc-link" data-title="Query account financial records">Query account financial records</a>
                   </li>
                   <li>
+                    <a href="#switching-leverage" class="toc-h2 toc-link" data-title="Switching Leverage">Switching Leverage</a>
+                  </li>
+                  <li>
+                    <a href="#query-user-s-available-leverage" class="toc-h2 toc-link" data-title="Query user’s available leverage">Query user’s available leverage</a>
+                  </li>
+                  <li>
                     <a href="#query-swap-information-on-order-limit" class="toc-h2 toc-link" data-title="Query swap information on order limit">Query swap information on order limit</a>
                   </li>
                   <li>
@@ -560,6 +566,9 @@
                     <a href="#subscribe-market-detail-data" class="toc-h2 toc-link" data-title="Subscribe Market Detail Data">Subscribe Market Detail Data</a>
                   </li>
                   <li>
+                    <a href="#subscribe-market-bbo-data-push" class="toc-h2 toc-link" data-title="Subscribe market BBO data push">Subscribe market BBO data push</a>
+                  </li>
+                  <li>
                     <a href="#request-trade-detail-data" class="toc-h2 toc-link" data-title="Request Trade Detail Data">Request Trade Detail Data</a>
                   </li>
                   <li>
@@ -634,6 +643,12 @@
                   </li>
                   <li>
                     <a href="#unsubscribe-contract-info-data-no-authentication-unsub" class="toc-h2 toc-link" data-title="Unsubscribe Contract Info Data(no authentication)(unsub)">Unsubscribe Contract Info Data(no authentication)(unsub)</a>
+                  </li>
+                  <li>
+                    <a href="#subscribe-trigger-orders-updates-sub" class="toc-h2 toc-link" data-title="Subscribe trigger orders updates(sub)">Subscribe trigger orders updates(sub)</a>
+                  </li>
+                  <li>
+                    <a href="#unsubscribe-trigger-orders-updates-unsub" class="toc-h2 toc-link" data-title="Unsubscribe trigger orders updates（unsub）">Unsubscribe trigger orders updates（unsub）</a>
                   </li>
               </ul>
           </li>
@@ -880,6 +895,22 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>linear-swap-api/v1/swap_position_info</td>
 <td>POST</td>
 <td>Query User’s position Information</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Account</td>
+<td>linear-swap-api/v1/swap_switch_lever_rate</td>
+<td>POST</td>
+<td>Switching Leverage</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Account</td>
+<td>linear-swap-api/v1/swap_available_level_rate</td>
+<td>POST</td>
+<td>Query user’s available leverage</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -7667,82 +7698,221 @@ You are recommended to read the status code from the returned message. If the ab
  - settlement_time for this term is the start time of the settlement.
  - As long as the user has had funds, there will be settlement records. If the user queried has no settlement record, no data will be returned. (data will be an empty array)
 -->
+<h2 id='switching-leverage'>Switching Leverage</h2>
+<ul>
+<li>POST <code>/linear-swap-api/v1/swap_switch_lever_rate</code></li>
+</ul>
+<h3 id='request-parameter-20'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>“BTC-USDT”</td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>true</td>
+<td>int</td>
+<td>Leverage to switch</td>
+<td></td>
+</tr>
+</tbody></table>
 
-<!--
-## Query user’s available leverage
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="err">OK：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547521135713</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">No：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">2014</span><span class="p">,</span><span class="w">    
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Can't switch"</span><span class="p">,</span><span class="w">  
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547519608126</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-- POST `swap-api/v1/swap_available_level_rate`
+</span></code></pre><h3 id='returning-parameter-22'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>status: ok,error</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>false</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>false</td>
+<td>string</td>
+<td>contract code</td>
+<td></td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>false</td>
+<td>int</td>
+<td>Switched leverage</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>err_code</td>
+<td>false</td>
+<td>int</td>
+<td>error code</td>
+<td></td>
+</tr>
+<tr>
+<td>err_msg</td>
+<td>false</td>
+<td>string</td>
+<td>error msg</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Timestamp</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id='note-6'>Note</h4>
+<p>The interface limits the number of requests to 3 times/second.</p>
+<h2 id='query-user-s-available-leverage'>Query user’s available leverage</h2>
+<ul>
+<li>POST <code>linear-swap-api/v1/swap_available_level_rate</code></li>
+</ul>
+<h3 id='request-parameter-21'>Request Parameter：</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>false</td>
+<td>string</td>
+<td>Contract code, if not filled in, the actual available leverage of all contracts will be returned by default</td>
+<td>“BTC-USDT”。。。</td>
+</tr>
+</tbody></table>
+<h3 id='returning-parameter-23'>Returning Parameter：</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request Processing Result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>&quot;BTC-USDT&quot;</td>
+</tr>
+<tr>
+<td>available_level_rate</td>
+<td>true</td>
+<td>string</td>
+<td>available level rate,splited by &#39;,&#39;</td>
+<td>&quot;1,5,10&quot;</td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Response generation time point, unit: millisecond</td>
+<td></td>
+</tr>
+</tbody></table>
 
-### Request Parameter：
-
-| **Parameter Name**      | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |  
-| contract_code | false | string | Contract code, if not filled in, the actual available leverage of all contracts will be returned by default   |  “BTC-USD”。。。 |
-
-### Returning Parameter：
-
-| **Parameter Name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| status | true | string | Request Processing Result     | "ok" , "error" |
-| \<data\> | true  | object array |  |   |
-| contract_code | true  | string |  contract code |  "BTC-USDT"|
-| available_level_rate | true  | string |  available level rate,splited by ','  | "1,5,10" |
-| \</data\> |  |  |  |  |
-| ts | true  | long | Response generation time point, unit: millisecond |  |
-
-> Response：
-
-```json
-
-{
-    "status": "ok",
-    "data": [
-        {
-            "contract_code": "BTC-USD",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "contract_code": "BSV-USD",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "contract_code": "ETC-USD",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "contract_code": "BCH-USD",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "contract_code": "XRP-USD",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "contract_code": "ETH-USD",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "contract_code": "EOS-USD",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "contract_code": "LTC-USD",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "contract_code": "TRX-USD",
-            "available_level_rate": "1,5,10,20"
-        }
-    ],
-    "ts": 1566899973811
-}
-```
--->
-<h2 id='query-swap-information-on-order-limit'>Query swap information on order limit</h2>
+<blockquote>
+<p>Response：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available_level_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1,5,10,20"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1566899973811</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='query-swap-information-on-order-limit'>Query swap information on order limit</h2>
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_order_limit</code></li>
 </ul>
-<h3 id='request-parameter-20'>Request Parameter</h3>
+<h3 id='request-parameter-22'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7788,7 +7958,7 @@ You are recommended to read the status code from the returned message. If the ab
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-22'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-24'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7880,7 +8050,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_fee</code></li>
 </ul>
-<h3 id='request-parameter-21'>Request Parameter</h3>
+<h3 id='request-parameter-23'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7918,7 +8088,7 @@ You are recommended to read the status code from the returned message. If the ab
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-23'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-25'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8010,7 +8180,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_transfer_limit</code></li>
 </ul>
-<h3 id='request-parameter-22'>Request Parameter</h3>
+<h3 id='request-parameter-24'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8051,7 +8221,7 @@ You are recommended to read the status code from the returned message. If the ab
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-24'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-26'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8164,7 +8334,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_position_limit</code></li>
 </ul>
-<h3 id='request-parameter-23'>Request Parameter</h3>
+<h3 id='request-parameter-25'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8199,7 +8369,7 @@ You are recommended to read the status code from the returned message. If the ab
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-25'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-27'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8323,7 +8493,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>&quot;master_to_sub&quot; or &quot;sub_to_master&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-6'>Note：</h4>
+<h4 id='note-7'>Note：</h4>
 <ul>
 <li>represents transfer from transfer_out margin account to transfer_in margin account. The currency transferred shall be the same as the denominated currency of the transfer_out margin account.；</li>
 <li>The denominated currency of the transfer_out margin account and transfer_in margin account must be the same. (eg, USDT can be transferred from BTC-USDT to ETH-USDT, but cannot be transferred from BTC-USDT to ETH-HUSD account).</li>
@@ -8612,7 +8782,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>post <code>linear-swap-api/v1/swap_transfer_inner</code></li>
 </ul>
-<h3 id='request-parameter-24'>Request Parameter</h3>
+<h3 id='request-parameter-26'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -8651,7 +8821,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-7'><strong>Note:</strong></h4>
+<h4 id='note-8'><strong>Note:</strong></h4>
 <ul>
 <li>represents transfer from transfer_out margin account to transfer_in margin account. The currency transferred shall be the same as the denominated currency of the transfer_out margin account.；</li>
 <li>The denominated currency of the transfer_out margin account and transfer_in margin account must be the same. (eg, USDT can be transferred from BTC-USDT to ETH-USDT, but cannot be transferred from BTC-USDT to ETH-HUSD account)。</li>
@@ -8668,7 +8838,7 @@ You are recommended to read the status code from the returned message. If the ab
       </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"122133213"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-26'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-28'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -8938,7 +9108,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_order</code></li>
 </ul>
-<h3 id='request-parameter-25'>Request Parameter</h3>
+<h3 id='request-parameter-27'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8996,7 +9166,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,fok：FOK Order, &quot;opponent_ioc&quot;：IOC order using the BBO price，&quot;optimal_5_ioc&quot;：optimal_5 IOC，&quot;optimal_10_ioc&quot;：optimal_10 IOC，&quot;optimal_20_ioc&quot;：optimal_20 IOC, &quot;opponent_fok&quot;：FOK order using the BBO price，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
 </tr>
 </tbody></table>
-<h3 id='note-8'>Note ：</h3>
+<h3 id='note-9'>Note ：</h3>
 <p>Post-Only orders are limit orders that will never take liquidity (also called maker-only order). There are order limit and position for post-only orders which the upper limit is 500,000 for open/close orders under weekly, bi-weekly and quarterly contract respectively.</p>
 
 <p>Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.</p>
@@ -9023,7 +9193,7 @@ You are recommended to read the status code from the returned message. If the ab
           </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-27'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-29'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9083,13 +9253,13 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-9'>Note</h3>
+<h3 id='note-10'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='place-a-batch-of-orders'>Place a Batch of Orders</h2><h3 id='example-16'>Example</h3>
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_batchorder</code></li>
 </ul>
-<h3 id='request-parameter-26'>Request Parameter</h3>
+<h3 id='request-parameter-28'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9167,7 +9337,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order, &quot;opponent_ioc&quot;：IOC order using the BBO price，&quot;optimal_5_ioc&quot;：optimal_5 IOC，&quot;optimal_10_ioc&quot;：optimal_10 IOC，&quot;optimal_20_ioc&quot;：optimal_20 IOC, &quot;opponent_fok&quot;：FOK order using the BBO price，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
 </tr>
 </tbody></table>
-<h3 id='note-10'>Note  ：</h3>
+<h3 id='note-11'>Note  ：</h3>
 <p>Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.</p>
 
 <p>No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 optimal BBO price, optimal_10：top 10 optimal BBO price, optimal_20：top 20 optimal BBO price (No need to transfer price data) ，limit&quot;: limit order, &quot;post_only&quot;: maker order only (price data transfer is needed),IOC :Immediate-Or-Cancel Order,FOK:Fill-Or-Kill Order.</p>
@@ -9198,7 +9368,7 @@ You are recommended to read the status code from the returned message. If the ab
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-28'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-30'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9314,13 +9484,13 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-11'>Note</h3>
+<h3 id='note-12'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='cancel-an-order'>Cancel an Order</h2><h3 id='example-17'>Example</h3>
 <ul>
 <li>POST  <code>/linear-swap-api/v1/swap_cancel</code></li>
 </ul>
-<h3 id='request-parameter-27'>Request Parameter</h3>
+<h3 id='request-parameter-29'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9348,7 +9518,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-12'>Note  ：</h3>
+<h3 id='note-13'>Note  ：</h3>
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
 
 <p>The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.</p>
@@ -9374,7 +9544,7 @@ You are recommended to read the status code from the returned message. If the ab
   </span><span class="s2">"success"</span><span class="p">:</span><span class="s2">"161256,1344567"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-29'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-31'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9459,7 +9629,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_cancelall</code></li>
 </ul>
-<h3 id='request-parameter-28'>Request Parameter</h3>
+<h3 id='request-parameter-30'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9499,7 +9669,7 @@ You are recommended to read the status code from the returned message. If the ab
    </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-30'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-32'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9584,7 +9754,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_lightning_close_position</code></li>
 </ul>
-<h3 id='request-parameter-29'>Request Parameter</h3>
+<h3 id='request-parameter-31'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9645,7 +9815,7 @@ You are recommended to read the status code from the returned message. If the ab
      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-31'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-33'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9721,7 +9891,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_order_info</code></li>
 </ul>
-<h3 id='request-parameter-30'>Request Parameter</h3>
+<h3 id='request-parameter-32'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9749,7 +9919,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-13'>Note  ：</h3>
+<h3 id='note-14'>Note  ：</h3>
 <p>When getting information on order cancellation via get contracts Information interface, users can only query last 24-hour data</p>
 
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id. The order completed( 5.partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled; ) will be deleted after the settlement of funding rate on 04:00(GMT+8), 12:00(GMT+8) and 20:00(GMT+8).</p>
@@ -9793,7 +9963,7 @@ You are recommended to read the status code from the returned message. If the ab
 </span><span class="p">}</span><span class="w">
 
 
-</span></code></pre><h3 id='returning-parameter-32'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-34'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10011,7 +10181,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_order_detail</code></li>
 </ul>
-<h3 id='request-parameter-31'>Request Parameter</h3>
+<h3 id='request-parameter-33'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10057,7 +10227,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Default 20，no more than 50</td>
 </tr>
 </tbody></table>
-<h3 id='note-14'>Note</h3>
+<h3 id='note-15'>Note</h3>
 <p>When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 24-hour data, while users who don’t type in parameters “created_at” and “order_type” can only query last 12-hour data.</p>
 
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
@@ -10129,7 +10299,7 @@ You are recommended to read the status code from the returned message. If the ab
  </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-33'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-35'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10459,7 +10629,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST  <code>/linear-swap-api/v1/swap_openorders</code></li>
 </ul>
-<h3 id='request-parameter-32'>Request Parameter</h3>
+<h3 id='request-parameter-34'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10538,7 +10708,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1600393389518</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-34'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-36'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10791,7 +10961,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_hisorders</code></li>
 </ul>
-<h3 id='request-parameter-33'>Request Parameter</h3>
+<h3 id='request-parameter-35'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10859,7 +11029,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-15'>Note:</h4>
+<h4 id='note-16'>Note:</h4>
 <ul>
 <li>When getting information on order cancellation via query history orders interface, users can only query last 24-hour data.</li>
 </ul>
@@ -10903,7 +11073,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600917898909</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-35'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-37'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11015,7 +11185,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>order_price_type</td>
 <td>true</td>
 <td>int</td>
-<td>1：limit，3：opponent，4：lightning，5：trigger，6：post_only</td>
+<td>1：limit，2：market，3：opponent，4：lightning，5：trigger，6：post_only ，7：optimal_5 ，8：optimal_10 ，9：optimal_20，10：FOK ，11：IOC ，12：opponent_ioc，13：lightning_ioc，14：optimal_5_ioc，15：optimal_10_ioc，16：optimal_20_ioc，17：opponent_fok，18：lightning_fok，19：optimal_5_fok，40：optimal_10_fok，41：optimal_20_fok .</td>
 <td></td>
 </tr>
 <tr>
@@ -11138,13 +11308,13 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-16'>Note</h3>
+<h3 id='note-17'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='acquire-history-match-results'>Acquire History Match Results</h2><h3 id='example-23'>Example</h3>
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_matchresults</code></li>
 </ul>
-<h3 id='request-parameter-34'>Request Parameter</h3>
+<h3 id='request-parameter-36'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11230,7 +11400,7 @@ You are recommended to read the status code from the returned message. If the ab
         </span><span class="p">},</span><span class="w">
         </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600918927589</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-36'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-38'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11523,7 +11693,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-17'>Note</h4>
+<h4 id='note-18'>Note</h4>
 <ul>
 <li>optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.</li>
 </ul>
@@ -11777,7 +11947,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract code,&quot;BTC-USDT&quot; ...</td>
 </tr>
 </tbody></table>
-<h3 id='note-18'>Note</h3>
+<h3 id='note-19'>Note</h3>
 <blockquote>
 <p>Response:</p>
 </blockquote>
@@ -11894,7 +12064,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>linear-swap-api/v1/swap_trigger_openorders</code></li>
 </ul>
-<h3 id='request-parameter-35'>Request Parameter</h3>
+<h3 id='request-parameter-37'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11974,7 +12144,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600920158872</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-37'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-39'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12197,7 +12367,7 @@ You are recommended to read the status code from the returned message. If the ab
   </span><span class="s2">"page_size"</span><span class="p">:</span><span class="mi">10</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-36'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-38'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12257,7 +12427,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Page 20 by default without given instruction,  ，no more than 50</td>
 </tr>
 </tbody></table>
-<h3 id='note-19'>NOTE</h3>
+<h3 id='note-20'>NOTE</h3>
 <ul>
 <li>System will query the filled trigger order history by default </li>
 </ul>
@@ -12339,7 +12509,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-38'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-40'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12592,7 +12762,7 @@ You are recommended to read the status code from the returned message. If the ab
 <p>API rate limit for this interface is up to 10 times per minute.</p>
 
 <p>Transferring margin between Spot account and USDT Swap account Interface, sets 8 decimal places for transferring amount of all coins.</p>
-<h3 id='request-parameter-37'>Request Parameter</h3>
+<h3 id='request-parameter-39'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12655,7 +12825,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="s2">"err-code"</span><span class="p">:</span><span class="s2">"dw-account-transfer-error"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="s2">"dw account transfer error"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-39'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-41'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13064,6 +13234,14 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>Read</td>
 <td>Market Data Interface</td>
+<td>market.$contract_code.bbo</td>
+<td>sub</td>
+<td>Subscribe market BBO data push</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Market Data Interface</td>
 <td>market.$contract_code.detail</td>
 <td>sub</td>
 <td>Subscribe Market Detail Data</td>
@@ -13189,6 +13367,14 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Subscribe Match Order Data（sub)</td>
 <td>Yes</td>
 </tr>
+<tr>
+<td>Read</td>
+<td>Trade Interface</td>
+<td>trigger_order.$contract_code</td>
+<td>sub</td>
+<td>Subscribe trigger orders updates(sub)</td>
+<td>Yes</td>
+</tr>
 </tbody></table>
 <h2 id='websocket-subscription-address'>WebSocket Subscription Address</h2>
 <!--
@@ -13207,7 +13393,7 @@ Order Push Subscription：wss://api.btcgateway.pro/linear-swap-notification
 
 Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
  -->
-<h3 id='note-20'>Note:</h3>
+<h3 id='note-21'>Note:</h3>
 <ul>
 <li>Huobi USDT swap is being tested in fake assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.<br></li>
 </ul>
@@ -13282,7 +13468,7 @@ Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
 <p><code>&quot;ts&quot;: &quot;1492420473058&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-21'>Note</h3>
+<h3 id='note-22'>Note</h3>
 <ul>
 <li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 5 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
 </ul>
@@ -13327,7 +13513,7 @@ Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
 - Huobi USDT Swap uses one official address:
   `wss://api.hbdm.com/linear-swap-notification`
   -->
-<h3 id='note-22'>Note:</h3>
+<h3 id='note-23'>Note:</h3>
 <ul>
 <li>Huobi USDT swap is being tested in fake assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.<br></li>
 </ul>
@@ -13609,7 +13795,7 @@ Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-38'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-40'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13800,7 +13986,7 @@ Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
     </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573106298</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-39'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-41'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13862,7 +14048,7 @@ Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-23'>Note</h4>
+<h4 id='note-24'>Note</h4>
 <p>If between time range [t1, t5], there are t1-t5 KLines in quantity.</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -14036,7 +14222,7 @@ Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-40'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-42'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14086,7 +14272,7 @@ Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
 <td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5,14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
-<h3 id='note-24'>Note:</h3>
+<h3 id='note-25'>Note:</h3>
 <ul>
 <li><p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p></li>
 <li><p>steps between step1 and step5, step14, step15 are merged orderbook data of step 150. 
@@ -14263,7 +14449,7 @@ Details are below:</p></li>
 </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-41'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-43'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14435,7 +14621,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-25'>Note:</h3>
+<h3 id='note-26'>Note:</h3>
 <ul>
 <li>when <code>data_type</code> is <code>incremental</code>,<code>snapshot</code> data wil be pushed for the first time. When re-connection occurs, <code>snapshort</code> data will be pushed for the first time. </li>
 <li><code>version</code>: auto increment in single websocket connection. <code>version</code> may be different among several websocket subscription connections.</li>
@@ -14461,7 +14647,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-42'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-44'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14619,86 +14805,177 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='subscribe-market-bbo-data-push'>Subscribe market BBO data push</h2><h3 id='clients-have-to-make-connection-to-websocket-api-server-and-send-subscribe-request-in-the-format-below'>clients have to make connection to WebSocket API Server and send subscribe request in the format below：</h3>
+<p><code>{</code></p>
 
-<!--
-## Subscribe market BBO data push
+<p><code>&quot;req&quot;: &quot;market.$contract_code.bbo&quot;,</code></p>
 
-### clients have to make connection to WebSocket API Server and send subscribe request in the format below：
+<p><code>&quot;id&quot;: &quot;id generated by client&quot;</code></p>
 
-  `{`
-  
-  `"req": "market.$contract_code.bbo", `
-  
-  `"id": "id generated by client" `
-  
-  `}`
+<p><code>}</code></p>
 
-> Example of a successful request：
+<blockquote>
+<p>Example of a successful request：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT.bbo"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 
-```json
+</span></code></pre><h3 id='request-parameter-45'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandotary</th>
+<th>Type</th>
+<th>Desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub</td>
+<td>true</td>
+<td>string</td>
+<td>the themes that need to be subscribed; the interface is fixed at: market.$contract_code.bbo，For parameter details please check sub Subscribe Parameter Rules</td>
+</tr>
+<tr>
+<td>id</td>
+<td>false</td>
+<td>string</td>
+<td>id automatically generated by the business party</td>
+</tr>
+</tbody></table>
+<h3 id='sub-subscribe-parameter-rules-5'>sub Subscribe Parameter Rules</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandotary</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>Pairs</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC-USDT&quot;</td>
+</tr>
+</tbody></table>
 
-    {
-     "sub": "market.BTC-USDT.bbo",
-     "id": "id8"
-    }
-
-```
-
-### Request Parameter
-
-| Parameter Name | Mandotary   | Type   | Desc  |
-| ------ | ------ | ------ | ------ | 
-| sub | true | string |  the themes that need to be subscribed; the interface is fixed at: market.$contract_code.bbo，For parameter details please check sub Subscribe Parameter Rules  | 
-| id | false | string | id automatically generated by the business party  |  |
-
-### sub Subscribe Parameter Rules
-
-| Parameter Name | Mandotary| Type   | Desc  |   Value Range |
-| ------- | ----- | ----- | ------- | ------- | 
-| contract_code   |  true    |  string     |    Pairs         |  Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USDT"   |
-
-> **Return example**:
-
-```json
-
-    {
-     "ch": "market.BTC-USDT.bbo",
-     "ts": 1489474082831,
-     "tick":{
-        "ch": "market.BTC-USDT.bbo",
-        "mrid": 269073229,
-        "id": 1539843937,
-        "bid": [9999.9101, 1],
-        "ask": [10010.9800, 10],
-        "ts": 1539843937417,
-        "version": 1539843937
-      }
-    }
-```
-
-### **Return Parameter**：
-
-| Parameter Name   |   Mandotary  |   Type   |   Desc   |   Value Range   |
-| -------- | -------- | -------- |  --------------------------------------- | -------------- |
-| ch | true |  string | Data channel, Format： market.$contract_code.bbo | |
-| ts | true | long | Timestamp of Respond Generation, Unit: Millisecond | |
-| \<tick\> | true | object |  | |
-| ch | true |  string | Data channel, Format： market.$contract_code.bbo | |
-| mrid  | true| string | Order ID | |
-| id  | true| long | tick ID | |
-| ask | true | array | Best Ask Quotation,[price(Ask price), vol(Ask order (cont.) )] | |
-| bid | true| array | Best Bid Quotation,[price(Bid price), vol(Bid order(Cont.))] | |
-| version | true| string | version ID. | |
-| ts | true | long |  Time of Respond Generation, Unit: Millisecond  | |
-| \<\tick\> | | |  | |
-
-####  **Rules**：
-- When any one of the buy_one price, buy_one quantity, sell_one price and sell_one quantity changes, the system will push BBO price.  
-- If there are multiple changes in the price or quantity of buy_one or sell_one at the same time, the system will push the latest price and quantity of buy_one and sell one with the intermediate data discarded. 
-- When the data received by the client is failed or delayed, the old data buffer in the server will be discarded.The latest BBO will be pushed.
-- version（version number). Use match id directly to ensure it is globally unique and the value of version number pushed is the largest.
-
--->
+<blockquote>
+<p><strong>Return example</strong>:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+     </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT.bbo"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT.bbo"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">269073229</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">9999.9101</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">
+        </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">10010.9800</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">],</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937417</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='return-parameter-6'><strong>Return Parameter</strong>：</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandotary</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>Data channel, Format： market.$contract_code.bbo</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Timestamp of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;tick&gt;</td>
+<td>true</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>Data channel, Format： market.$contract_code.bbo</td>
+<td></td>
+</tr>
+<tr>
+<td>mrid</td>
+<td>true</td>
+<td>string</td>
+<td>Order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>tick ID</td>
+<td></td>
+</tr>
+<tr>
+<td>ask</td>
+<td>true</td>
+<td>array</td>
+<td>Best Ask Quotation,[price(Ask price), vol(Ask order (cont.) )]</td>
+<td></td>
+</tr>
+<tr>
+<td>bid</td>
+<td>true</td>
+<td>array</td>
+<td>Best Bid Quotation,[price(Bid price), vol(Bid order(Cont.))]</td>
+<td></td>
+</tr>
+<tr>
+<td>version</td>
+<td>true</td>
+<td>string</td>
+<td>version ID.</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;\tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id='rules'><strong>Rules</strong>：</h4>
+<ul>
+<li>When any one of the buy_one price, buy_one quantity, sell_one price and sell_one quantity changes, the system will push BBO price.<br></li>
+<li>If there are multiple changes in the price or quantity of buy_one or sell_one at the same time, the system will push the latest price and quantity of buy_one and sell one with the intermediate data discarded. </li>
+<li>When the data received by the client is failed or delayed, the old data buffer in the server will be discarded.The latest BBO will be pushed.</li>
+<li>version（version number). Use match id directly to ensure it is globally unique and the value of version number pushed is the largest.</li>
+</ul>
 <h2 id='request-trade-detail-data'>Request Trade Detail Data</h2><h3 id='to-request-trade-detail-data-clients-have-to-make-connection-to-the-websocket-server-and-send-request-data-in-the-format-below'>To request Trade detail data, Clients have to make connection to the WebSocket Server and send request data in the format below：</h3>
 <p><code>{</code></p>
 
@@ -14721,7 +14998,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-43'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-46'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14796,7 +15073,7 @@ Details are below:</p></li>
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-6'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-7'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14902,9 +15179,9 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='note-26'>Note:</h3>
+</span></code></pre><h3 id='note-27'>Note:</h3>
 <p>Clients can only access the recent 300 trade detail data </p>
-<h3 id='request-parameter-44'>Request Parameter</h3>
+<h3 id='request-parameter-47'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14926,7 +15203,7 @@ Details are below:</p></li>
 <td>id automatically generated by the business party</td>
 </tr>
 </tbody></table>
-<h3 id='sub-subscribe-parameter-rules-5'>sub Subscribe Parameter Rules</h3>
+<h3 id='sub-subscribe-parameter-rules-6'>sub Subscribe Parameter Rules</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14967,7 +15244,7 @@ Details are below:</p></li>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-7'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-8'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15091,7 +15368,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-45'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-48'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15113,7 +15390,7 @@ Details are below:</p></li>
 <td>id automatically generated by the business party</td>
 </tr>
 </tbody></table>
-<h3 id='sub-subscribe-parameter-rules-6'>sub Subscribe Parameter Rules</h3>
+<h3 id='sub-subscribe-parameter-rules-7'>sub Subscribe Parameter Rules</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -15141,7 +15418,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-27'>Note</h4>
+<h4 id='note-28'>Note</h4>
 <ul>
 <li><p>Pushed once the index data is changed.</p></li>
 <li><p>Periodical Push when the index data hasn&#39;t changed according to the kline period.</p></li>
@@ -15166,7 +15443,7 @@ Details are below:</p></li>
      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='return-parameter-8'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-9'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -15291,7 +15568,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-46'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-49'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15353,7 +15630,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-28'>Note：</h3>
+<h3 id='note-29'>Note：</h3>
 <ul>
 <li>Pushed once the index data is updated.</li>
 </ul>
@@ -15524,7 +15801,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-47'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-50'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15546,7 +15823,7 @@ Details are below:</p></li>
 <td>id automatically generated by the business party</td>
 </tr>
 </tbody></table>
-<h3 id='sub-subscribe-parameter-rules-7'>sub Subscribe Parameter Rules</h3>
+<h3 id='sub-subscribe-parameter-rules-8'>sub Subscribe Parameter Rules</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -15574,7 +15851,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-29'>Note:</h4>
+<h4 id='note-30'>Note:</h4>
 <ul>
 <li><p>Pushed once the kline data is changed.</p></li>
 <li><p>Periodical Push when the kline data hasn&#39;t changed according to the kline period.</p></li>
@@ -15725,7 +16002,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-48'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-51'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15759,7 +16036,7 @@ Details are below:</p></li>
 <td>end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameter-49'>Request Parameter：</h3>
+<h3 id='request-parameter-52'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -15953,7 +16230,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-50'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-53'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15975,7 +16252,7 @@ Details are below:</p></li>
 <td>id automatically generated by the business party</td>
 </tr>
 </tbody></table>
-<h3 id='sub-subscribe-parameter-rules-8'>sub Subscribe Parameter Rules：</h3>
+<h3 id='sub-subscribe-parameter-rules-9'>sub Subscribe Parameter Rules：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -16126,7 +16403,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-51'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-54'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16160,7 +16437,7 @@ Details are below:</p></li>
 <td>end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameter-52'>Request Parameter：</h3>
+<h3 id='request-parameter-55'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -16196,7 +16473,7 @@ Details are below:</p></li>
 <td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-30'>Note：</h3>
+<h3 id='note-31'>Note：</h3>
 <ul>
 <li>2000 data at most per request.</li>
 </ul>
@@ -16748,7 +17025,7 @@ Details are below:</p></li>
 <td>Required；format: matchOrders.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-31'>Note:</h4>
+<h4 id='note-32'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 <li>The orders will be pushed when matched by matching engine.</li>
@@ -17141,7 +17418,7 @@ Details are below:</p></li>
 <td>Required； Subscribe Topic Name，Required subscribe accounts.$contract_code   Subscribe/unsubscribe the balance change of a given coin，when the value of $contract_code is “*”, it means to subscribe/unsubscribe the balance change of all coins; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-32'>Note:</h3>
+<h3 id='note-33'>Note:</h3>
 <ul>
 <li>Account topic will be pushed every 5s.</li>
 </ul>
@@ -17207,7 +17484,7 @@ Details are below:</p></li>
 <tr>
 <td>event</td>
 <td>string</td>
-<td>notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (including transfer with exchange accounts, transfer between main account and sub-account, and tranfer between different margin accounts.), system (contract.system), other asset change(other), initial margin(init)</td>
+<td>notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (ncluding transfer with exchange accounts, transfer between main account and sub-account, and tranfer between different margin accounts.), system (contract.system), other asset change(other)（including switching leverage）, initial margin(init)</td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
@@ -17423,7 +17700,7 @@ Details are below:</p></li>
 <td style="text-align: left">Required； Subscribe Topic, Subscribe (positions.$contract_code) Required  Subscribe/unsubscribe the position data of a single coin, when the $contract_code value is *, it stands for subscribing the data of all coins. contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-33'>Note:</h3>
+<h3 id='note-34'>Note:</h3>
 <ul>
 <li>Position topic will be pushed every 5s.</li>
 </ul>
@@ -17488,7 +17765,7 @@ Details are below:</p></li>
 <tr>
 <td>event</td>
 <td>string</td>
-<td>Related events of position change notification, such as order creation and position closing (order.close), order filled (order.match) (except for liquidation, settlement and delivery), settlement and delivery (settlement), order liquidation (order.liquidation), order cancellation (order.cancel), initial positions (init), triggered by system periodic push (snapshot).</td>
+<td>Related events of position change notification, such as order creation and position closing (order.close), order filled (order.match) (except for liquidation, settlement and delivery), settlement and delivery (settlement), order liquidation (order.liquidation), order cancellation (order.cancel), Switching Leverage（other）, initial positions (init), triggered by system periodic push (snapshot).</td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
@@ -17724,7 +18001,7 @@ Details are below:</p></li>
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-9'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-10'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -18089,7 +18366,7 @@ Details are below:</p></li>
 <td>not allowed</td>
 </tr>
 </tbody></table>
-<h3 id='note-34'>Note</h3>
+<h3 id='note-35'>Note</h3>
 <ul>
 <li><p>Funding rate will be pushed every 60 seconds by default.Funding rate will not be calculated under conditions below:</p>
 
@@ -18235,7 +18512,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-35'>Note：</h3>
+<h3 id='note-36'>Note：</h3>
 <ul>
 <li>The websocket subscription of contract info event is pushed every 60 seconds, and the event is &quot;snapshot&quot;. </li>
 <li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is &quot;init&quot;.</li>
@@ -18325,172 +18602,410 @@ Details are below:</p></li>
 <td>Not Allowed</td>
 </tr>
 </tbody></table>
+<h2 id='subscribe-trigger-orders-updates-sub'>Subscribe trigger orders updates(sub)</h2><h3 id='to-subscribe-basis-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below-3'>To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
+<p><code>{</code></p>
 
-<!--
-## Subscribe trigger orders updates(sub)
+<p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
 
-### To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:
+<p><code>&quot;cid&quot;: &quot;id generated by client&quot;,</code></p>
 
-  `{`
-  
-  `"op": "sub",`
-  
-  `"cid": "id generated by client",`
-  
-  `"topic": "trigger_order.$contract_code"`
-  
-  `}`
-  
-> Example of a successful return data:
+<p><code>&quot;topic&quot;: &quot;trigger_order.$contract_code&quot;</code></p>
 
-```json
+<p><code>}</code></p>
 
-{
-  "op": "sub",
-  "topic": "trigger_order.BTC-USDT",
-  "cid": "40sG903yz80oDFWr"
-}
+<blockquote>
+<p>Example of a successful return data:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trigger_order.BTC-USDT"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-```
+</span></code></pre><h3 id='request-parameter-56'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandotary</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>true</td>
+<td>string</td>
+<td>Required； Operator Name，required subscribe value is  sub</td>
+<td></td>
+</tr>
+<tr>
+<td>cid</td>
+<td>false</td>
+<td>string</td>
+<td>Optional; ID Client requests unique ID</td>
+<td></td>
+</tr>
+<tr>
+<td>topic</td>
+<td>true</td>
+<td>string</td>
+<td>Required；format: trigger_order.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
+<td></td>
+</tr>
+</tbody></table>
 
-### Request Parameter
+<blockquote>
+<p><strong>Return example</strong>:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">           
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trigger_order.EOS-USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15712398"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w">  </span><span class="p">[{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EOS-USDT"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ge"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">161251</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"relation_order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"88"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"triggered_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.03</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547448030638</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"triggered_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_insert_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547448845593</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fail_code"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fail_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='format-illustration-on-return-data-of-order-push-2'>Format Illustration on return data of order push：</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandotary</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>true</td>
+<td>string</td>
+<td>Required;Operator Name，Order push value is notify</td>
+<td></td>
+</tr>
+<tr>
+<td>topic</td>
+<td>true</td>
+<td>string</td>
+<td>Required; Order push topic</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>uid</td>
+<td>true</td>
+<td>string</td>
+<td>account uid</td>
+<td></td>
+</tr>
+<tr>
+<td>event</td>
+<td>true</td>
+<td>string</td>
+<td>Event notification description</td>
+<td>trigger order placed successfully（order），trigger order canceled successfully（cancel），order triggered successfully（trigger_success），order failed to be triggered（trigger_fail）</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>Variety code</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>&quot;BTC-USDT&quot; ...</td>
+</tr>
+<tr>
+<td>trigger_type</td>
+<td>true</td>
+<td>string</td>
+<td>trigger type： <code>ge</code> great than or equal to；<code>le</code> less than or equal to</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>true</td>
+<td>decimal</td>
+<td>trigger order volume</td>
+<td></td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>true</td>
+<td>int</td>
+<td>Transaction Type</td>
+<td>1. Place orders</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>true</td>
+<td>string</td>
+<td>order direction</td>
+<td>[buy,sell]</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>true</td>
+<td>string</td>
+<td>offset direction</td>
+<td>[open,close]</td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>true</td>
+<td>int</td>
+<td>Leverage</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>decimal</td>
+<td>trigger order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>true</td>
+<td>string</td>
+<td>the order ID with string</td>
+<td></td>
+</tr>
+<tr>
+<td>relation_order_id</td>
+<td>true</td>
+<td>string</td>
+<td>Relation order ID is the string related to the limit orders which is the field value in order_id under t_trigger_order list. The value is -1 before the trigger orders executed.</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>true</td>
+<td>string</td>
+<td>Order price type</td>
+<td>&quot;limit&quot;: limit order，&quot;optimal_5&quot;:optimal 5，&quot;optimal_10&quot;:optimal 10，&quot;optimal_20&quot;:optimal 20</td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>int</td>
+<td>order status</td>
+<td>2. Ready to submit the orders;  4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched;</td>
+</tr>
+<tr>
+<td>order_source</td>
+<td>true</td>
+<td>string</td>
+<td>Order Source</td>
+<td></td>
+</tr>
+<tr>
+<td>trigger_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>trigger price</td>
+<td></td>
+</tr>
+<tr>
+<td>triggered_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>the price when trigger orders executed</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>the preset price by the client</td>
+<td></td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>true</td>
+<td>long</td>
+<td>order creation time</td>
+<td></td>
+</tr>
+<tr>
+<td>triggered_at</td>
+<td>true</td>
+<td>long</td>
+<td>the execution time when orders getting triggered</td>
+<td></td>
+</tr>
+<tr>
+<td>order_insert_at</td>
+<td>true</td>
+<td>long</td>
+<td>the time when the triggered orders filled successfully</td>
+<td></td>
+</tr>
+<tr>
+<td>canceled_at</td>
+<td>true</td>
+<td>long</td>
+<td>Order cancelation time</td>
+<td></td>
+</tr>
+<tr>
+<td>fail_code</td>
+<td>true</td>
+<td>int</td>
+<td>the error code when the triggered orders failed to be filled</td>
+<td></td>
+</tr>
+<tr>
+<td>fail_reason</td>
+<td>true</td>
+<td>string</td>
+<td>the error message with failure reason when triggered orders failed to filled</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id='rules-2'>Rules:</h4>
+<ul>
+<li>The intermediate states processed by the order status system will not be pushed, such as in the progress of placing an order, The descriptions of specific event notifications are as below: 
 
-| Parameter Name    | Mandotary | Type     | Desc   | Value Range           |
-| ------ | ---- | ------ | -------- | -------------- |
-| op | true | string | Required； Operator Name，required subscribe value is  sub  |  |
-| cid | false| string | Optional; ID Client requests unique ID   | |
-| topic | true| string | Required；format: trigger_order.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT" | |
+<ul>
+<li> when the order status is 2（Submitted），event notification is order（trigger order placed successfully）；</li>
+<li> when the order status is 4（Order placed successfully），event notification is trigger_success（trigger order triggered successfully）；</li>
+<li> when the order status is 6（Canceled），event notification is cancel（trigger order canceled successfully）；</li>
+<li> when the order status is 5（Order failed to be placed），event notification is trigger_fail（trigger order failed to be triggered）；</li>
+</ul></li>
+<li>Single coin cannot be re-suscribed, and all coins subscription can cover single coin subscription; single coin cannot be subscribed after subscribing all coins. </li>
+</ul>
+<h2 id='unsubscribe-trigger-orders-updates-unsub'>Unsubscribe trigger orders updates（unsub）</h2>
+<p>To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:</p>
+<h3 id='format-of-unsubscribe-order-data-3'>Format of Unsubscribe order data</h3>
+<p><code>{</code></p>
 
-> **Return example**:
+<p><code>&quot;op&quot;: &quot;unsub&quot;,</code></p>
 
-```json
+<p><code>&quot;topic&quot;: &quot;trigger_order.$contract_code&quot;,</code></p>
 
-{
-  "op": "notify",           
-    "topic": "trigger_order.EOS-USDT",
-    "ts": 1489474082831,
-    "uid": "15712398",
-    "event": "order",
-    "data":  [{
-                "symbol": "EOS",
-                "contract_code": "EOS-USDT",
-                "trigger_type": "ge",
-                "volume": 4,
-                "order_type": 1,
-                "direction": "sell",
-                "offset": "open",
-                "lever_rate": 1,
-                "order_id": 161251,
-                "order_id_str": "161251",
-                "relation_order_id": "88",
-                "order_price_type": "limit",
-                "status": 6,
-                "order_source": "web",
-                "trigger_price": 2,
-                "triggered_price": 2.03,
-                "order_price": 2,
-                "created_at": 1547448030638,
-                "triggered_at": 0,
-                "order_insert_at": 0,
-                "canceled_at": 1547448845593,
-                "fail_code": null,
-                "fail_reason": null
-            }
-        ]
-}
-```
+<p><code>&quot;cid&quot;: &quot;id generated by client&quot;,</code></p>
 
-### Format Illustration on return data of order push：
+<p><code>}</code></p>
 
-| Parameter Name    |   Mandotary  |   Type   |   Desc   |   Value Range   |
-| -------- | -------- | -------- |  --------------------------------------- | -------------- |
-| op | true |  string | Required;Operator Name，Order push value is notify | |
-| topic | true |  string | Required; Order push topic | |
-| ts     | true | long    | Time of Respond Generation, Unit: Millisecond  |     |
-| uid     | true | string    | account uid   |     |
-| event | true  | string | Event notification description |  trigger order placed successfully（order），trigger order canceled successfully（cancel），order triggered successfully（trigger_success），order failed to be triggered（trigger_fail）  |
-| \<data\> |   true   |  object array   |   |   |
-| symbol                 | true | string  | Variety code               |                                          |
-| contract_code          | true | string  | contract code                | "BTC-USDT" ...                          |
-| trigger_type              | true | string  | trigger type： `ge` great than or equal to；`le` less than or equal to  |              |
-| volume                 | true | decimal  | trigger order volume |      |
-| order_type           | true | int | Transaction Type               |  1. Place orders    |
-| direction            | true | string | order direction        |       [buy,sell]          |
-| offset         | true | string | offset direction           |             [open,close]            |
-| lever_rate            | true | int    | Leverage              |                         |
-| order_id      | true | decimal |  trigger order ID                |                                          |
-| order_id_str             | true | string | the order ID with string            |                                          |
-| relation_order_id             | true | string | Relation order ID is the string related to the limit orders which is the field value in order_id under t_trigger_order list. The value is -1 before the trigger orders executed.  |         |
-| order_price_type        | true  | string | Order price type  |     "limit": limit order，"optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20    |
-| status        | true  | int | order status|   2. Ready to submit the orders;  4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched;    |
-| order_source      | true | string  | Order Source      |                                          |
-| trigger_price         | true | decimal  |trigger price   |       |
-| triggered_price         | true | decimal  | the price when trigger orders executed     |       |
-| order_price           | true | decimal  | the preset price by the client   |                                          |
-| created_at        | true  | long | order creation time |                      |
-| triggered_at        | true  | long | the execution time when orders getting triggered |                      |
-| order_insert_at        | true  | long | the time when the triggered orders filled successfully |                      |
-| canceled_at        | true  | long | Order cancelation time |                      |
-| fail_code        | true  | int | the error code when the triggered orders failed to be filled |                      |
-| fail_reason        | true  | string | the error message with failure reason when triggered orders failed to filled |                      |
-| \</data\>   |      |         |        |       |
-
-#### Rules:
-
-- The intermediate states processed by the order status system will not be pushed, such as in the progress of placing an order, The descriptions of specific event notifications are as below: 
-   -  when the order status is 2（Submitted），event notification is order（trigger order placed successfully）；
-   -  when the order status is 4（Order placed successfully），event notification is trigger_success（trigger order triggered successfully）；
-   -  when the order status is 6（Canceled），event notification is cancel（trigger order canceled successfully）；
-   -  when the order status is 5（Order failed to be placed），event notification is trigger_fail（trigger order failed to be triggered）；
-- Single coin cannot be re-suscribed, and all coins subscription can cover single coin subscription; single coin cannot be subscribed after subscribing all coins. 
-
-
-## Unsubscribe trigger orders updates（unsub）
-
-To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:
-
-### Format of Unsubscribe order data
-
-  `{`
-  
-  `"op": "unsub",`
-  
-  `"topic": "trigger_order.$contract_code",`
-  
-  `"cid": "id generated by client",`
-  
-  `}`
- 
-> Example of a successful unsubscribe request:
-
-```json
-                                  
-{                                    
-  "op": "unsub",                     
-  "topic": "trigger_order.BTC-USDT",   
-  "cid": "40sG903yz80oDFWr"          
-}                                    
-```                                  
- 
-### Format illustration of unsubscribe order data
-
-| Filed | Type   | Description                                               |
-| :------- | :----- | :------------------------------------------------- |
-| op       | string | Required;Operator Name，value for unsubscribe is unsub;                 |
-| cid      | string | Optional;  Client requests unique ID                           |
-| topic    | string | Optional; Unsubscribe Topic Name，format: trigger_order.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT" |
-
-### Rules on Subscribe and Unsubscribe
-
-| Subscribe(sub)     | Unsubscribe( unsub) | Rule   |
-| -------------- | --------------- | ------ |
-| trigger_order.*       | trigger_order.*      | Allowed   |
-| trigger_order.contract_code1 | trigger_order.*       | Allowed   |
-| trigger_order.contract_code1 | trigger_order.contract_code1 | Allowed   |
-| trigger_order.contract_code1 | trigger_order.contract_code2  | Not Allowed |
-| trigger_order.*       | trigger_order.contract_code1  | Not Allowed |
-
--->
+<blockquote>
+<p>Example of a successful unsubscribe request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">                                    
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">                     
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trigger_order.BTC-USDT"</span><span class="p">,</span><span class="w">   
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">          
+</span><span class="p">}</span><span class="w">                                    
+</span></code></pre><h3 id='format-illustration-of-unsubscribe-order-data-3'>Format illustration of unsubscribe order data</h3>
+<table><thead>
+<tr>
+<th style="text-align: left">Filed</th>
+<th style="text-align: left">Type</th>
+<th style="text-align: left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">op</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">Required;Operator Name，value for unsubscribe is unsub;</td>
+</tr>
+<tr>
+<td style="text-align: left">cid</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">Optional;  Client requests unique ID</td>
+</tr>
+<tr>
+<td style="text-align: left">topic</td>
+<td style="text-align: left">string</td>
+<td style="text-align: left">Optional; Unsubscribe Topic Name，format: trigger_order.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
+</tr>
+</tbody></table>
+<h3 id='rules-on-subscribe-and-unsubscribe-6'>Rules on Subscribe and Unsubscribe</h3>
+<table><thead>
+<tr>
+<th>Subscribe(sub)</th>
+<th>Unsubscribe( unsub)</th>
+<th>Rule</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>trigger_order.*</td>
+<td>trigger_order.*</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>trigger_order.contract_code1</td>
+<td>trigger_order.*</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>trigger_order.contract_code1</td>
+<td>trigger_order.contract_code1</td>
+<td>Allowed</td>
+</tr>
+<tr>
+<td>trigger_order.contract_code1</td>
+<td>trigger_order.contract_code2</td>
+<td>Not Allowed</td>
+</tr>
+<tr>
+<td>trigger_order.*</td>
+<td>trigger_order.contract_code1</td>
+<td>Not Allowed</td>
+</tr>
+</tbody></table>
 <h1 id='appendix'>Appendix</h1><h2 id='operator-type-op'>Operator Type(OP)</h2>
 <table><thead>
 <tr>
