@@ -71,7 +71,7 @@ search: true
 读取  | 账户接口    | linear-swap-api/v1/swap_account_info                              | POST   |      获取用户的合约账户信息               |     是         |
 读取  | 账户接口    | linear-swap-api/v1/swap_position_info                             | POST   |      获取用户的合约持仓信息               |     是         |
 读取  | 账户接口    | linear-swap-api/v1/swap_switch_lever_rate                         | POST   |      切换杠杆                          |     是         |
-读取  | 账户接口    | linear-swap-api/v1/swap_available_level_rate                      | POST   |      查询用户品种实际可用杠杆倍数          |     是         |
+读取  | 账户接口    | linear-swap-api/v1/swap_available_level_rate                      | POST   |      查询用户可用杠杆倍数          |     是         |
 读取  | 账户接口    | linear-swap-api/v1/swap_sub_account_list                          | POST   |      查询母账户下所有子账户资产信息       |     是         |
 读取  | 账户接口    | linear-swap-api/v1/swap_sub_account_info                          | POST   |      查询母账户下的单个子账户资产信息     |     是         |
 读取  | 账户接口    | linear-swap-api/v1/swap_sub_position_info                         | POST   |      查询母账户下的单个子账户持仓信息     |     是         |
@@ -2880,10 +2880,10 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | 参数名称                   | 是否必须 | 类型      | 描述                 | 取值范围                                     |
 | ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
 | status                 | true | string  | 响应状态: ok,error            |                                          |
-| <data> | false     |  object      |                    |                                          |
+| \<data\> | false     |  object      |                    |                                          |
 | contract_code               | false | string    | 合约代码      |                                          |
 | lever_rate               | false | int    | 切换成功后的杠杆倍数      |                                          |
-| </data>            |      |         |                    |                                          |
+| \</data\>            |      |         |                    |                                          |
 | err_code | false | int | 错误码| |
 | err_msg| false| string | 错误信息| |
 | ts                     | true | long    | 时间戳                |                                          |
@@ -6033,9 +6033,9 @@ count  |  true  |  decimal  |   成交笔数  |
      "ts": 1489474082831,
      "tick":{
         "ch": "market.BTC-USDT.bbo",
-        "mrid": 269073229,
+        "mrid": "269073229",
         "id": 1539843937,
-	      "bid": [9999.9101, 1],
+	     "bid": [9999.9101, 1],
         "ask": [10010.9800, 10],
         "ts": 1539843937417,
         "version": 1539843937
@@ -6055,7 +6055,7 @@ count  |  true  |  decimal  |   成交笔数  |
 | id  | true| long | tick ID | |
 | ask | true | array |卖一盘,[price(挂单价), vol(此价格挂单张数)] | |
 | bid | true| array | 买一盘,[price(挂单价), vol(此价格挂单张数)] | |
-| version | true| string | 版本号 | |
+| version | true| long | 版本号 | |
 | ts | true | long | 响应生成时间点，单位：毫秒（指数据生成时间）| |
 | \<\tick\> | | |  | |
 
@@ -7791,7 +7791,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 ```json
 
 {
-     "op": "notify",           
+    "op": "notify",           
 	"topic": "trigger_order.eos-usdt",
 	"ts": 1489474082831,
 	"uid": "15712398",
