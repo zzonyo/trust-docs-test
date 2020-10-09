@@ -418,7 +418,7 @@
                     <a href="#query-account-financial-records" class="toc-h2 toc-link" data-title="Query account financial records">Query account financial records</a>
                   </li>
                   <li>
-                    <a href="#switching-leverage" class="toc-h2 toc-link" data-title="Switching Leverage">Switching Leverage</a>
+                    <a href="#switch-leverage" class="toc-h2 toc-link" data-title="Switch Leverage">Switch Leverage</a>
                   </li>
                   <li>
                     <a href="#query-user-s-available-leverage" class="toc-h2 toc-link" data-title="Query user’s available leverage">Query user’s available leverage</a>
@@ -902,7 +902,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Account</td>
 <td>linear-swap-api/v1/swap_switch_lever_rate</td>
 <td>POST</td>
-<td>Switching Leverage</td>
+<td>Switch Leverage</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -7698,7 +7698,7 @@ You are recommended to read the status code from the returned message. If the ab
  - settlement_time for this term is the start time of the settlement.
  - As long as the user has had funds, there will be settlement records. If the user queried has no settlement record, no data will be returned. (data will be an empty array)
 -->
-<h2 id='switching-leverage'>Switching Leverage</h2>
+<h2 id='switch-leverage'>Switch Leverage</h2>
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_switch_lever_rate</code></li>
 </ul>
@@ -17484,7 +17484,7 @@ Details are below:</p></li>
 <tr>
 <td>event</td>
 <td>string</td>
-<td>notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (ncluding transfer with exchange accounts, transfer between main account and sub-account, and tranfer between different margin accounts.), system (contract.system), other asset change(other)（including switching leverage）, initial margin(init)</td>
+<td>notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (ncluding transfer with exchange accounts, transfer between main account and sub-account, and tranfer between different margin accounts.), system (contract.system), other asset change(other)（including switch leverage）, initial margin(init)</td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
@@ -17765,7 +17765,7 @@ Details are below:</p></li>
 <tr>
 <td>event</td>
 <td>string</td>
-<td>Related events of position change notification, such as order creation and position closing (order.close), order filled (order.match) (except for liquidation, settlement and delivery), settlement and delivery (settlement), order liquidation (order.liquidation), order cancellation (order.cancel), Switching Leverage（other）, initial positions (init), triggered by system periodic push (snapshot).</td>
+<td>Related events of position change notification, such as order creation and position closing (order.close), order filled (order.match) (except for liquidation, settlement and delivery), settlement and delivery (settlement), order liquidation (order.liquidation), order cancellation (order.cancel), Switch Leverage（other）, initial positions (init), triggered by system periodic push (snapshot).</td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
