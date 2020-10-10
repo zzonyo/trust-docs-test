@@ -4546,7 +4546,7 @@ Response Code | Desc in Chinese |  Desc in English  |
  Read  |      Market Data Interface       |  market.$contract_code.detail  |               sub        |    Subscribe Market Detail Data    |   No  |
  Read   |     Market Data Interface        |  market.$contract_code.trade.detail  |               req        |    Request Trade Detail Data |  No|
  Read  |    Market Data Interface         |  market.$contract_code.trade.detail  |        sub |  Subscribe Trade Detail Data | No  | 
- Read   |  System Status Interface         |  public.$service.heartbeat  |    sub  |Subscribing system status updates   | No  | 
+ Read   |  System Status Interface         |  public.$service.heartbeat  |    sub  |Subscribe system status updates   | No  | 
  Read|        Trade Interface      |  orders.$symbol-$partition   | sub| Subscribe Order Data  | Yes | 
  Read|        Trade Interface      |  matchOrders.$symbol-$partition   | sub| Subscribe Match Order Data  | Yes | 
  Read |     Account Interface        |  accounts.$symbol-$partition |        sub  |  Subscribe asset change Information of a given coin  | Yes  | 
@@ -4558,7 +4558,7 @@ Market Data Request and Subscription: wss://api.hbdm.com/option-ws
 
 Order Push Subscription: wss://api.hbdm.com/option-notification
 
-System status updates subscribing ：wss://api.hbdm.com/center-notification
+System status updates subscription ：wss://api.hbdm.com/center-notification
  
 If you fail visiting the two addresses above, you can also visit: 
 
@@ -4566,7 +4566,7 @@ Market Data Request and Subscription Address: wss://api.btcgateway.pro/option-ws
  
 Order Push Subscription：wss://api.btcgateway.pro/option-notification
 
-System status updates subscribing ：wss://api.btcgateway.pro/center-notification
+System status updates subscription ：wss://api.btcgateway.pro/center-notification
 
 #### Note: 
 
@@ -6150,9 +6150,9 @@ Return to the current trade detail data only
 
 # WebSocket interface for system status updates 
 
- - System status updates subscribing ：wss://api.hbdm.com/center-notification
+ - The websocket url of system status updates is : wss://api.hbdm.com/center-notification
 
-##  Subscribing system status updates 
+##  Subscribe system status updates 
 
 ### After successfully establishing a connection with the WebSocket API, users could send data in the following format to the server to request data:
 
@@ -6184,7 +6184,7 @@ Return to the current trade detail data only
 | cid | false| string | Client requests a unique ID	 | |
 | topic | true| string | Subscription topic name is required (public.$service.heartbeat), Subscribe system status information of a certain business | |
 
-### **subSubscription parameter description**:
+### **Subscription parameter description**:
 | Name   |Mandatory | Type     | Desc   | Value Range           |
 | ------ | ---- | ------ | -------- | -------------- |
 | service | true | string |Business Code	 | option |
@@ -6214,7 +6214,7 @@ Return to the current trade detail data only
 | topic   | true | string  | Push topic   |   |
 | event   | true | string  | Description on notification related event | The initial system status information returned by a successful subscription (init), triggered by system status change (update) |
 | ts   | true | long  | Server response timestamp   |   |
-| \<data\> | true | array object |  | |
+| \<data\> |  |  |  | |
 | heartbeat | true | int | System Status	 |  1 is available, 0 is not available |
 | estimated_recovery_time | true | long |  Estimated system recovery time, unit: millisecond	 |  When the system status is available, return NULL |
 | \</data\> | | |  | |
