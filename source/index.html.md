@@ -38,6 +38,13 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.0.8 2020-10-10 【Newly added：Added WS interface for subscribing system status updates push】
+
+### 1. Added WS interface for subscribing system status updates push
+  - Interface name: subscribe system status updates
+  - Interface type: public
+  - Subscription topic：public.$service.heartbeat
+
 ## 1.0.7 2020-08-06 【Added interfaces：Subscribe market BBO data push； Query user’s available leverage；Query user’s settlement records；Subscribe trigger orders updates 】
 
 ### 1、Subscribe Market BBO Data
@@ -5404,17 +5411,18 @@ Response Code | Desc in Chinese |  Desc in English  |
 
   Permission |   Content Type   | Request Method |  Type  |  Description                 |  Authentication Required      |                                                                                                                                            
 ----------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |---------- |---------------------------- |--------------|
-  Read  |  Market Data Interface |         market.$contract_code.kline.$period  |      sub        |    Subscribe KLine data           |  No |
-  Read  |  Market Data Interface |           market.$contract_code.kline.$period  |              req        |     Request Kline Data|  No  |
+ Read  |  Market Data Interface |         market.$contract_code.kline.$period  |      sub        |    Subscribe KLine data           |  No |
+ Read  |  Market Data Interface |           market.$contract_code.kline.$period  |              req        |     Request Kline Data|  No  |
  Read  |     Market Data Interface      |  market.$contract_code.depth.$type  |               sub        |       Subscribe Market Depth Data | No | 
  Read  |      Market Data Interface       |  market.$contract_code.detail  |               sub        |    Subscribe Market Detail Data    |   No  |
-  Read  |      Market Data Interface       |  market.$contract_code.bbo  |               sub        |    Subscribe market BBO data push    |   No  |
+ Read  |      Market Data Interface       |  market.$contract_code.bbo  |               sub        |    Subscribe market BBO data push    |   No  |
  Read   |     Market Data Interface        |  market.$contract_code.trade.detail  |               req        |    Request Trade Detail Data |  No|
-Read  |    Market Data Interface         |  market.$contract_code.trade.detail  |        sub |  Subscribe Trade Detail Data | No  | 
+ Read  |    Market Data Interface         |  market.$contract_code.trade.detail  |        sub |  Subscribe Trade Detail Data | No  | 
+ Read   |  System Status Interface         |  public.$service.heartbeat  |    sub  |Subscribing system status updates   | No  | 
  Read|        Trade Interface      |  orders.$contract_code   | sub| Subscribe Order Data  | Yes | 
-  Read |     Account Interface        |  accounts.$contract_code  |        sub  |  Subscribe asset change Information of a given coin  | Yes  | 
-  Read |      Account Interface      |  positions.$contract_code  |        sub  |  Subscribe position change Information of a given coin  | Yes | 
-  Read |      Account Interface      |  trigger_order.$contract_code  |        sub  |  Subscribe trigger orders updates  | Yes | 
+ Read |     Account Interface        |  accounts.$contract_code  |        sub  |  Subscribe asset change Information of a given coin  | Yes  | 
+ Read |      Account Interface      |  positions.$contract_code  |        sub  |  Subscribe position change Information of a given coin  | Yes | 
+ Read |      Account Interface      |  trigger_order.$contract_code  |        sub  |  Subscribe trigger orders updates  | Yes | 
 
 ## WebSocket Subscription Address
 
@@ -5424,7 +5432,8 @@ Order Push Subscription: wss://api.hbdm.com/swap-notification
 
 Index Kline Data and Basis Data Subscription: wss://api.hbdm.com/ws_index
 
- 
+System status updates subscribing ：wss://api.hbdm.com/center-notification
+
 If you fail visiting the two addresses above, you can also visit: 
 
 Market Data Request and Subscription Address: wss://api.btcgateway.pro/swap-ws;
@@ -5432,8 +5441,9 @@ Market Data Request and Subscription Address: wss://api.btcgateway.pro/swap-ws;
 Order Push Subscription：wss://api.btcgateway.pro/swap-notification
 
 Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
- 
- 
+
+System status updates subscribing ：wss://api.btcgateway.pro/center-notification
+
 If you have further queries about Huobi Swap order push subscription, please refer to [Demo](https://github.com/hbdmapi/hbdm_Python)
  
 ## API Rate Limit Illustration
@@ -8147,6 +8157,79 @@ To subscribe basis data, the Client has to make connection to the Server and sen
 | trigger_order.contract_code1 | trigger_order.contract_code2  | Not Allowed |
 | trigger_order.*       | trigger_order.contract_code1  | Not Allowed |
 
+# WebSocket interface for system status updates 
+
+ - System status updates subscribing ：wss://api.hbdm.com/center-notification
+
+##  Subscribing system status updates 
+
+### After successfully establishing a connection with the WebSocket API, users could send data in the following format to the server to request data:
+
+  `{`
+  
+      `"op": "sub",`
+  
+      `"cid": "id generated by client",`
+  
+      `"topic ": "public.$service.heartbeat"`
+  
+  `} `
+
+> Example on using parameters to request data: 
+
+```json
+
+{
+	"op": "sub",
+	"cid": "id generated by client",
+	"topic ": "public.swap.heartbeat"
+}
+```
+
+### **Request Parameter**:
+| Name   |Mandatory | Type     | Desc   | Value Range           |
+| ------ | ---- | ------ | -------- | -------------- |
+| op | true | string | The fixed value of subscription is sub	 |  |
+| cid | false| string | Client requests a unique ID	 | |
+| topic | true| string | Subscription topic name is required (public.$service.heartbeat), Subscribe system status information of a certain business | |
+
+### **subSubscription parameter description**:
+| Name   |Mandatory | Type     | Desc   | Value Range           |
+| ------ | ---- | ------ | -------- | -------------- |
+| service | true | string |Business Code	 | swap |
+
+
+> **Return Parameter Example**:
+
+```json
+
+{
+    "op": "notify",
+    "topic": "public.swap.heartbeat",
+    "event": "init",
+    "ts":1580815422403,
+    "data":{
+        "heartbeat": 0,
+        "estimated_recovery_time": 1408076414000
+    }
+}
+
+```
+
+### **Return Parameter Rules**：
+| Name   |Mandatory | Type     | Desc   | Value Range           |
+| -------- | -------- | -------- |  --------------------------------------- | -------------- | 
+| op   | true | string  | Operation name, the fixed value of push is notify;  |   |
+| topic   | true | string  | Push topic   |   |
+| event   | true | string  | Description on notification related event | The initial system status information returned by a successful subscription (init), triggered by system status change (update) |
+| ts   | true | long  | Server response timestamp   |   |
+| \<data\> | true | array object |  | |
+| heartbeat | true | int | System Status	 |  1 is available, 0 is not available |
+| estimated_recovery_time | true | long |  Estimated system recovery time, unit: millisecond	 |  When the system status is available, return NULL |
+| \</data\> | | |  | |
+
+### Note
+- Since this push is a poll query status, there may be a delay of 1-2 seconds.
 
 # Appendix
 
