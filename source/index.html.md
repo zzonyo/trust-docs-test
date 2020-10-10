@@ -6195,7 +6195,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | matchOrders.symbol1-partion1 | matchOrders.symbol2-partion1 | 不允许 |
 | matchOrders.*       | matchOrders.symbol1-partion1 | 不允许 |
 
-# WebSocket 系统状态更新接口
+# WebSocket系统状态更新接口
 
  - 系统状态更新订阅WS地址：wss://api.hbdm.com/center-notification
 
@@ -6261,7 +6261,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | topic   | true | string  | 推送的主题   |   |
 | event   | true | string  | 通知相关事件说明   |  订阅成功返回的初始系统状态信息（init），系统状态变化触发（update） |
 | ts   | true | long  | 服务端应答时间戳   |   |
-| \<data\> | true | array object |  | |
+| \<data\> |  |  |  | |
 | heartbeat | true | int | 系统状态	 |  1是可用，0为不可用 |
 | estimated_recovery_time | true | long |  系统预估恢复时间，单位：毫秒	 |  当系统状态为可用时，返回空值 |
 | \</data\> | | |  | |
