@@ -5418,7 +5418,7 @@ Response Code | Desc in Chinese |  Desc in English  |
  Read  |      Market Data Interface       |  market.$contract_code.bbo  |               sub        |    Subscribe market BBO data push    |   No  |
  Read   |     Market Data Interface        |  market.$contract_code.trade.detail  |               req        |    Request Trade Detail Data |  No|
  Read  |    Market Data Interface         |  market.$contract_code.trade.detail  |        sub |  Subscribe Trade Detail Data | No  | 
- Read   |  System Status Interface         |  public.$service.heartbeat  |    sub  |Subscribing system status updates   | No  | 
+ Read   |  System Status Interface         |  public.$service.heartbeat  |    sub  |Subscribe system status updates   | No  | 
  Read|        Trade Interface      |  orders.$contract_code   | sub| Subscribe Order Data  | Yes | 
  Read |     Account Interface        |  accounts.$contract_code  |        sub  |  Subscribe asset change Information of a given coin  | Yes  | 
  Read |      Account Interface      |  positions.$contract_code  |        sub  |  Subscribe position change Information of a given coin  | Yes | 
@@ -5432,7 +5432,7 @@ Order Push Subscription: wss://api.hbdm.com/swap-notification
 
 Index Kline Data and Basis Data Subscription: wss://api.hbdm.com/ws_index
 
-System status updates subscribing ：wss://api.hbdm.com/center-notification
+System status updates subscription ：wss://api.hbdm.com/center-notification
 
 If you fail visiting the two addresses above, you can also visit: 
 
@@ -5442,7 +5442,7 @@ Order Push Subscription：wss://api.btcgateway.pro/swap-notification
 
 Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
 
-System status updates subscribing ：wss://api.btcgateway.pro/center-notification
+System status updates subscription ：wss://api.btcgateway.pro/center-notification
 
 If you have further queries about Huobi Swap order push subscription, please refer to [Demo](https://github.com/hbdmapi/hbdm_Python)
  
@@ -8159,9 +8159,9 @@ To subscribe basis data, the Client has to make connection to the Server and sen
 
 # WebSocket interface for system status updates 
 
- - System status updates subscribing ：wss://api.hbdm.com/center-notification
+ - The websocket url of system status updates is : wss://api.hbdm.com/center-notification
 
-##  Subscribing system status updates 
+##  Subscribe system status updates 
 
 ### After successfully establishing a connection with the WebSocket API, users could send data in the following format to the server to request data:
 
@@ -8193,7 +8193,7 @@ To subscribe basis data, the Client has to make connection to the Server and sen
 | cid | false| string | Client requests a unique ID	 | |
 | topic | true| string | Subscription topic name is required (public.$service.heartbeat), Subscribe system status information of a certain business | |
 
-### **subSubscription parameter description**:
+### **Subscription parameter description**:
 | Name   |Mandatory | Type     | Desc   | Value Range           |
 | ------ | ---- | ------ | -------- | -------------- |
 | service | true | string |Business Code	 | swap |
@@ -8223,7 +8223,7 @@ To subscribe basis data, the Client has to make connection to the Server and sen
 | topic   | true | string  | Push topic   |   |
 | event   | true | string  | Description on notification related event | The initial system status information returned by a successful subscription (init), triggered by system status change (update) |
 | ts   | true | long  | Server response timestamp   |   |
-| \<data\> | true | array object |  | |
+| \<data\> |  | |  | |
 | heartbeat | true | int | System Status	 |  1 is available, 0 is not available |
 | estimated_recovery_time | true | long |  Estimated system recovery time, unit: millisecond	 |  When the system status is available, return NULL |
 | \</data\> | | |  | |
