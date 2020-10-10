@@ -40,6 +40,13 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.1.7 2020-10-10 【Newly added：Added WS interface for subscribing system status updates push】
+
+### 1. Added WS interface for subscribing system status updates push
+  - Interface name: subscribe system status updates
+  - Interface type: public
+  - Subscription topic：public.$service.heartbeat
+
 ## 1.1.6 2020-09-22 【Updated: Future Market Data Interfaces (including rest and ws interfaces) already support calls according to the contract code. Modified “symbol” field in request parameter: added contract code type, the format of which is fixed at “symbol-year-month-date”, for example, BTC200925. Only listing contracts can be queried currently if query according to the contract code.  】
 
 ### 1、Get Market Depth
@@ -5745,20 +5752,21 @@ This contract type doesn't exist.  |              |
 
   Permission |   Content Type   | Request Method |  Type  |  Description                 |  Authentication Required      |                                                                                                                                            
 ----------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |---------- |---------------------------- |--------------|
-  Read  |  Market Data Interface |         market.$symbol.kline.$period  |      sub        |    Subscribe Kline data           |  No |
-  Read  |  Market Data Interface |           market.$symbol.kline.$period  |              req        |     Request Kline Data|  Nos  |
+ Read  |  Market Data Interface |         market.$symbol.kline.$period  |      sub        |    Subscribe Kline data           |  No |
+ Read  |  Market Data Interface |           market.$symbol.kline.$period  |              req        |     Request Kline Data|  Nos  |
  Read  |     Market Data Interface      |  market.$symbol.depth.$type  |               sub        |       Subscribe Market Depth Data | No | 
  Read  |     Market Data Interface      |  market.$symbol.depth.size_${size}.high_freq  |               sub        |       Subscribe Incremental Market Depth Data | No | 
  Read  |     Market Data Interface      |  market.$symbol.bbo  |               sub        |       Subscribe BBO Data | No | 
  Read  |      Market Data Interface       |  market.$symbol.detail  |               sub        |    Subscribe Market Detail Data    |   No  |
  Read   |     Market Data Interface        |  market.$symbol.trade.detail  |               req        |    Request Trade Detail Data |  No|
-Read  |    Market Data Interface         |  market.$symbol.trade.detail  |        sub |  Subscribe Trade Detail Data | No  | 
-Trade |       Trade Interface      |  orders.$symbol  |        sub |  Subscribe Order Data  | Yes | 
-Trade |       Trade Interface      |  matchOrders.$symbol  |        sub |  Subscribe Order Data  | Yes | 
-  Read |     Account Interface        |  accounts.$symbol  |        sub  |  Subscribe asset change Information of a given coin  | Yes  | 
-  Read |      Account Interface      |  positions.$symbol  |        sub  |  Subscribe position change Information of a given coin  | Yes | 
-    Read |      Account Interface      |  trigger_order.$symbol  |     sub  |  Subscribe trigger orders updates  | Yes | 
-  Read |      Trade Interface     |  public.$symbol.liquidation_orders  |        sub  |  Subscribe liquidation Order information of a given coin | Yes | 
+ Read  |    Market Data Interface         |  market.$symbol.trade.detail  |        sub |  Subscribe Trade Detail Data | No  | 
+ Read   |  System Status Interface         |  public.$service.heartbeat  |    sub  |Subscribing system status updates   | No  | 
+ Trade |       Trade Interface      |  orders.$symbol  |        sub |  Subscribe Order Data  | Yes | 
+ Trade |       Trade Interface      |  matchOrders.$symbol  |        sub |  Subscribe Order Data  | Yes | 
+ Read |     Account Interface        |  accounts.$symbol  |        sub  |  Subscribe asset change Information of a given coin  | Yes  | 
+ Read |      Account Interface      |  positions.$symbol  |        sub  |  Subscribe position change Information of a given coin  | Yes | 
+ Read |      Account Interface      |  trigger_order.$symbol  |     sub  |  Subscribe trigger orders updates  | Yes | 
+ Read |      Trade Interface     |  public.$symbol.liquidation_orders  |        sub  |  Subscribe liquidation Order information of a given coin | Yes | 
 
 ## Huobi Future WebSocket Subscription Address
 
@@ -5767,6 +5775,8 @@ Market Data Request and Subscription: wss://api.hbdm.com/ws
 Order Push Subscription: wss://api.hbdm.com/notification
 
 Index Kline Data and Basis Data Subscription: wss://api.hbdm.com/ws_index
+
+System status updates subscribing ：wss://api.hbdm.com/center-notification
  
 If you fail visiting the two addresses above, you can also visit: 
 
@@ -5775,6 +5785,8 @@ Market Data Request and Subscription Address: wss://api.btcgateway.pro/ws;
 Order Push Subscription：wss://api.btcgateway.pro/notification
 
 Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
+
+System status updates subscribing ：wss://api.btcgateway.pro/center-notification
  
 If you have further queries about Huobi Future order push subscription, please refer to [Demo](https://github.com/huobiapi/Futures-Java-demo)
  
@@ -8417,7 +8429,79 @@ To subscribe basis data, the Client has to make connection to the Server and sen
 | trigger_order.*       | trigger_order.symbol1  | Not Allowed |
 
 
+# WebSocket interface for system status updates 
 
+ - System status updates subscribing ：wss://api.hbdm.com/center-notification
+
+##  Subscribing system status updates 
+
+### After successfully establishing a connection with the WebSocket API, users could send data in the following format to the server to request data:
+
+  `{`
+  
+      `"op": "sub",`
+  
+      `"cid": "id generated by client",`
+  
+      `"topic ": "public.$service.heartbeat"`
+  
+  `} `
+
+> Example on using parameters to request data: 
+
+```json
+
+{
+	"op": "sub",
+	"cid": "id generated by client",
+	"topic ": "public.futures.heartbeat"
+}
+```
+
+### **Request Parameter**:
+| Name   |Mandatory | Type     | Desc   | Value Range           |
+| ------ | ---- | ------ | -------- | -------------- |
+| op | true | string | The fixed value of subscription is sub	 |  |
+| cid | false| string | Client requests a unique ID	 | |
+| topic | true| string | Subscription topic name is required (public.$service.heartbeat), Subscribe system status information of a certain business | |
+
+### **subSubscription parameter description**:
+| Name   |Mandatory | Type     | Desc   | Value Range           |
+| ------ | ---- | ------ | -------- | -------------- |
+| service | true | string |Business Code	 | futures |
+
+
+> **Return Parameter Example**:
+
+```json
+
+{
+    "op": "notify",
+    "topic": "public.futures.heartbeat",
+    "event": "init",
+    "ts":1580815422403,
+    "data":{
+        "heartbeat": 0,
+        "estimated_recovery_time": 1408076414000
+    }
+}
+
+```
+
+### **Return Parameter Rules**：
+| Name   |Mandatory | Type     | Desc   | Value Range           |
+| -------- | -------- | -------- |  --------------------------------------- | -------------- | 
+| op   | true | string  | Operation name, the fixed value of push is notify;  |   |
+| topic   | true | string  | Push topic   |   |
+| event   | true | string  | Description on notification related event | The initial system status information returned by a successful subscription (init), triggered by system status change (update) |
+| ts   | true | long  | Server response timestamp   |   |
+| \<data\> | true | array object |  | |
+| heartbeat | true | int | System Status	 |  1 is available, 0 is not available |
+| estimated_recovery_time | true | long |  Estimated system recovery time, unit: millisecond	 |  When the system status is available, return NULL |
+| \</data\> | | |  | |
+
+### Note
+- Since this push is a poll query status, there may be a delay of 1-2 seconds.
 
 # Appendix
 
