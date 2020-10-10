@@ -578,7 +578,7 @@
             <a href="#websocket-interface-for-system-status-updates" class="toc-h1 toc-link" data-title="WebSocket interface for system status updates">WebSocket interface for system status updates</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#subscribing-system-status-updates" class="toc-h2 toc-link" data-title="Subscribing system status updates">Subscribing system status updates</a>
+                    <a href="#subscribe-system-status-updates" class="toc-h2 toc-link" data-title="Subscribe system status updates">Subscribe system status updates</a>
                   </li>
               </ul>
           </li>
@@ -12145,7 +12145,7 @@ It will be pushed only when position event is updated.</p>
 <td>System Status Interface</td>
 <td>public.$service.heartbeat</td>
 <td>sub</td>
-<td>Subscribing system status updates</td>
+<td>Subscribe system status updates</td>
 <td>No</td>
 </tr>
 <tr>
@@ -12186,7 +12186,7 @@ It will be pushed only when position event is updated.</p>
 
 <p>Order Push Subscription: wss://api.hbdm.com/option-notification</p>
 
-<p>System status updates subscribing ：wss://api.hbdm.com/center-notification</p>
+<p>System status updates subscription ：wss://api.hbdm.com/center-notification</p>
 
 <p>If you fail visiting the two addresses above, you can also visit: </p>
 
@@ -12194,7 +12194,7 @@ It will be pushed only when position event is updated.</p>
 
 <p>Order Push Subscription：wss://api.btcgateway.pro/option-notification</p>
 
-<p>System status updates subscribing ：wss://api.btcgateway.pro/center-notification</p>
+<p>System status updates subscription ：wss://api.btcgateway.pro/center-notification</p>
 <h4 id='note-26'>Note:</h4>
 <ul>
 <li>If you have further queries about Huobi Option order push subscription, please refer to <a href="https://docs.huobigroup.com/docs/option/v1/en/#code-demo">Demo</a></li>
@@ -15672,9 +15672,9 @@ It will be pushed only when position event is updated.</p>
 </tbody></table>
 <h1 id='websocket-interface-for-system-status-updates'>WebSocket interface for system status updates</h1>
 <ul>
-<li>System status updates subscribing ：wss://api.hbdm.com/center-notification</li>
+<li>The websocket url of system status updates is : wss://api.hbdm.com/center-notification</li>
 </ul>
-<h2 id='subscribing-system-status-updates'>Subscribing system status updates</h2><h3 id='after-successfully-establishing-a-connection-with-the-websocket-api-users-could-send-data-in-the-following-format-to-the-server-to-request-data'>After successfully establishing a connection with the WebSocket API, users could send data in the following format to the server to request data:</h3>
+<h2 id='subscribe-system-status-updates'>Subscribe system status updates</h2><h3 id='after-successfully-establishing-a-connection-with-the-websocket-api-users-could-send-data-in-the-following-format-to-the-server-to-request-data'>After successfully establishing a connection with the WebSocket API, users could send data in the following format to the server to request data:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
@@ -15726,7 +15726,7 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='subsubscription-parameter-description'><strong>subSubscription parameter description</strong>:</h3>
+<h3 id='subscription-parameter-description'><strong>Subscription parameter description</strong>:</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -15800,8 +15800,8 @@ It will be pushed only when position event is updated.</p>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
-<td>true</td>
-<td>array object</td>
+<td></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
