@@ -703,7 +703,7 @@
             <a href="#websocket-interface-for-system-status-updates" class="toc-h1 toc-link" data-title="WebSocket interface for system status updates">WebSocket interface for system status updates</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#subscribing-system-status-updates" class="toc-h2 toc-link" data-title="Subscribing system status updates">Subscribing system status updates</a>
+                    <a href="#subscribe-system-status-updates" class="toc-h2 toc-link" data-title="Subscribe system status updates">Subscribe system status updates</a>
                   </li>
               </ul>
           </li>
@@ -13554,7 +13554,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>System Status Interface</td>
 <td>public.$service.heartbeat</td>
 <td>sub</td>
-<td>Subscribing system status updates</td>
+<td>Subscription system status updates</td>
 <td>No</td>
 </tr>
 <tr>
@@ -13613,7 +13613,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 
 <p>Index Kline Data and Basis Data Subscription: wss://api.hbdm.com/ws_index</p>
 
-<p>System status updates subscribing ：wss://api.hbdm.com/center-notification</p>
+<p>System status updates subscription ：wss://api.hbdm.com/center-notification</p>
 
 <p>If you fail visiting the two addresses above, you can also visit: </p>
 
@@ -13623,7 +13623,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 
 <p>Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index</p>
 
-<p>System status updates subscribing ：wss://api.btcgateway.pro/center-notification</p>
+<p>System status updates subscription ：wss://api.btcgateway.pro/center-notification</p>
 
 <p>If you have further queries about Huobi Future order push subscription, please refer to <a href="https://github.com/huobiapi/Futures-Java-demo">Demo</a></p>
 <h2 id='api-rate-limit-illustration-2'>API Rate Limit Illustration</h2>
@@ -18673,9 +18673,9 @@ Details are below:</p></li>
 </tbody></table>
 <h1 id='websocket-interface-for-system-status-updates'>WebSocket interface for system status updates</h1>
 <ul>
-<li>System status updates subscribing ：wss://api.hbdm.com/center-notification</li>
+<li>The websocket url of system status updates is : wss://api.hbdm.com/center-notification</li>
 </ul>
-<h2 id='subscribing-system-status-updates'>Subscribing system status updates</h2><h3 id='after-successfully-establishing-a-connection-with-the-websocket-api-users-could-send-data-in-the-following-format-to-the-server-to-request-data'>After successfully establishing a connection with the WebSocket API, users could send data in the following format to the server to request data:</h3>
+<h2 id='subscribe-system-status-updates'>Subscribe system status updates</h2><h3 id='after-successfully-establishing-a-connection-with-the-websocket-api-users-could-send-data-in-the-following-format-to-the-server-to-request-data'>After successfully establishing a connection with the WebSocket API, users could send data in the following format to the server to request data:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
@@ -18727,7 +18727,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='subsubscription-parameter-description'><strong>subSubscription parameter description</strong>:</h3>
+<h3 id='subscription-parameter-description'><strong>subscription parameter description</strong>:</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -18801,8 +18801,8 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
-<td>true</td>
-<td>array object</td>
+<td></td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
