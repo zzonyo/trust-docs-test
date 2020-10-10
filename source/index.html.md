@@ -24,6 +24,7 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口 | 变化      | 摘要 |
 |-----|-----|-----|-----|
+| 2020.10.10 | `POST /v2/account/repayment`,`GET /v2/account/repayment` | 新增 | 新增通用还币接口及还币交易记录查询接口 |
 |2020.8.28 19:00|`GET /v1/common/symbols`|优化|新增API交易使能标记 |
 |2020.8.21 19:00|`accounts.update#${mode}`, `accounts`|优化|新增账户变更事件类型deposit，withdraw |
 |2020.8.11 19:00|`GET /v1/common/symbols`, `GET /market/etp`, `market.$symbol.etp`, `GET /market/history/kline`, `market.$symbol$.kline.$period$`, `GET /v2/etp/reference`, `POST /v2/etp/creation`, `POST /v2/etp/redemption`, `GET /v2/etp/transactions`, `GET /v2/etp/transaction`, `GET /v2/etp/rebalance`|新增+优化|新增/优化相关接口支持杠杆ETP |
@@ -5238,11 +5239,11 @@ API Key 权限：读取<br>
 |	errCode	|	integer	|	FALSE	|订单被拒状态码（仅对orderStatus=rejected有效）	|
 |	errMessage }	|	string	|	FALSE	|订单被拒错误消息（仅对orderStatus=rejected有效）	|
 
-# 借币（逐仓杠杆）
+# 借币（逐仓/全仓杠杆）
 
 ## 简介
 
-逐仓杠杆接口提供了逐仓杠杆账户借币、还币、查询、划转等功能
+逐仓杠杆/全仓杠杆接口提供了账户借币、还币、查询、划转等功能
 
 <aside class="notice">访问借币相关的接口需要进行签名认证。</aside>
 <aside class="notice">目前逐仓杠杆交易仅支持部分以 USDT，HSUD， 和 BTC 为报价币种的交易对。</aside>
@@ -5280,7 +5281,41 @@ API Key 权限：读取<br>
 |risk-verification-failed |风控拦截通用错误码 |
 |sub-user-auth-required |需要母用户授权子用户 |
 
-## 资产划转
+以下是全仓杆接口的返回码和说明。
+
+| 返回码                                   | 说明                                  |
+| ---------------------------------------- | ------------------------------------- |
+| abnormal-users-cannot-transfer           | 非正常用户不能转出                    |
+| account-explosion-in-prohibited-transfer | 账户爆仓中禁止划转操作                |
+| account-is-abnormal-retry-after-refresh  | 账户异常请刷新重试                    |
+| account-balance-insufficient-error       | 账户余额不足，不区分动作类型          |
+| account-cannot-be-inquired               | 无法查询到全仓杠杆账户                |
+| base-not-in-white-list                   | 不是白名单用户                        |
+| base-currency-error                      | currency不存在                        |
+| base-operation-forbidden                 | 禁止操作                              |
+| base-user-request-exceed-limit           | 操作太频繁，请稍后再试                |
+| base-currency-not-open                   | currency还没有开放 该保证金币种未开启 |
+| beyond-maximum-number-of-rollover        | 超出最大转出数量                      |
+| exceed-maximum-amount                    | 超出最大数量                          |
+| endtime-greater-than-begintime           | 结束时间应该大于开始时间              |
+| frequent-invoke                          | 操作过于频繁，请稍后重试              |
+| loan-order-not-found                     | 订单未找到                            |
+| loan-amount-scale-limit                  | 借贷&还款 金额精度限制                |
+| loan-repay-max-limit                     | 偿还大于借贷                          |
+| loan-insufficient-balance                | 余额不足                              |
+| loan-fee-rate-compute-fail               | 系统借款利率计算异常                  |
+| login-required                           | 需要登录                              |
+| margin-subuser-no-permission             | 全仓杠杆子账号未开通权限              |
+| normal-and-warehouse-can-transfer        | 正常用户与穿仓用户可以转入            |
+| order-orderamount-precision-error        | 交易数额精度错误                      |
+| require-exchange-id                      | 需要交易所id                          |
+| subacount-currency-not-exit              | 该币种的子账户不存在                  |
+| system-busy                              | 系统繁忙                              |
+| unsupport-kyc-info                       | 不支持的kyc认证信息                   |
+| uc-network-error                         | 网络错误                              |
+| uncreated-currency-cannot-be-drawn       | 未创建币种子账户无法划出              |
+
+## 资产划转（逐仓）
 
 API Key 权限：交易<br>
 限频值（NEW）：2次/2s
@@ -5330,7 +5365,7 @@ amount     | string    | true     | NA      | 划转数量
 ------ | ------- | -----
 data   | integer | Transfer id
 
-## 查询借币币息率及额度
+## 查询借币币息率及额度（逐仓）
 
 API Key 权限：读取<br>
 限频值（NEW）：20次/2s
@@ -5395,7 +5430,7 @@ max-loan-amt|string|最大允许借币金额
 loanable-amt|string|最大可借金额
 actual-rate }}|string|抵扣后的实际借币币息率，如不适用抵扣或未启用抵扣，返回基础日币息率
 
-## 申请借币
+## 申请借币（逐仓）
 
 API Key 权限：交易<br>
 限频值（NEW）：2次/2s
@@ -5440,7 +5475,7 @@ amount     | string    | true     | NA      | 借币数量（精度：3位小数
 status| string | 状态 
 data   | integer | 订单id 
 
-## 归还借币
+## 归还借币（逐仓）
 
 API Key 权限：交易<br>
 限频值（NEW）：2次/2s
@@ -5482,7 +5517,7 @@ amount     | string    | true     | 归还币种数量
 data     | integer | Margin order id
 
 
-## 查询借币订单
+## 查询借币订单（逐仓）
 
 API Key 权限：读取<br>
 限频值（NEW）：100次/2s
@@ -5566,7 +5601,7 @@ API Key 权限：读取<br>
 | hour-interest-rate | true | string | 时息率 | |
 | day-interest-rate | true | string | 日息率 | |
 
-## 借币账户详情
+## 借币账户详情（逐仓）
 
 API Key 权限：读取<br>
 限频值（NEW）：100次/2s
@@ -5651,50 +5686,7 @@ curl "https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"
 | type | true | string | 类型 | type: 交易余额, frozen: 冻结余额, loan: 待还借贷本金, interest: 待还借贷利息 |
 | balance } | true | string | 余额，负数表示应还金额 |  |
 
-# 借币（全仓杠杆）
-
-## 简介
-
-全仓杠杆相关接口提供了全仓杠杆账户的借币、还币、查询、划转等功能。
-
-<aside class="notice">访问借币相关的接口需要进行签名认证。</aside>
-<aside class="notice">目前全仓杠杆交易仅支持部分以 USDT 和 BTC 为报价币种的交易对。</aside>
-
-以下是全仓杠杆接口的返回码和说明。
-
-| 返回码              | 说明         |
-| --------------- | ------------ |
-| abnormal-users-cannot-transfer           | 非正常用户不能转出                    |
-| account-explosion-in-prohibited-transfer | 账户爆仓中禁止划转操作                |
-| account-is-abnormal-retry-after-refresh  | 账户异常请刷新重试                    |
-| account-balance-insufficient-error       | 账户余额不足，不区分动作类型          |
-| account-cannot-be-inquired               | 无法查询到全仓杠杆账户                |
-| base-not-in-white-list                   | 不是白名单用户                        |
-| base-currency-error                      | currency不存在                        |
-| base-operation-forbidden                 | 禁止操作                              |
-| base-user-request-exceed-limit           | 操作太频繁，请稍后再试                |
-| base-currency-not-open                   | currency还没有开放 该保证金币种未开启 |
-| beyond-maximum-number-of-rollover        | 超出最大转出数量                      |
-| exceed-maximum-amount                    | 超出最大数量                          |
-| endtime-greater-than-begintime           | 结束时间应该大于开始时间              |
-| frequent-invoke                          | 操作过于频繁，请稍后重试              |
-| loan-order-not-found                     | 订单未找到                            |
-| loan-amount-scale-limit                  | 借贷&还款 金额精度限制                |
-| loan-repay-max-limit                     | 偿还大于借贷                          |
-| loan-insufficient-balance                | 余额不足                              |
-| loan-fee-rate-compute-fail               | 系统借款利率计算异常                  |
-| login-required                           | 需要登录                              |
-| margin-subuser-no-permission             | 全仓杠杆子账号未开通权限              |
-| normal-and-warehouse-can-transfer        | 正常用户与穿仓用户可以转入            |
-| order-orderamount-precision-error        | 交易数额精度错误                      |
-| require-exchange-id                      | 需要交易所id                          |
-| subacount-currency-not-exit              | 该币种的子账户不存在                  |
-| system-busy                              | 系统繁忙                              |
-| unsupport-kyc-info                       | 不支持的kyc认证信息                   |
-| uc-network-error                         | 网络错误                              |
-| uncreated-currency-cannot-be-drawn       | 未创建币种子账户无法划出              |
-
-## 资产划转
+## 资产划转（全仓）
 
 API Key 权限：交易
 
@@ -5740,7 +5732,7 @@ amount     | string    | true     | NA      | 划转数量
 ------ | ------- | -----
 data   | integer | Transfer id
 
-## 查询借币币息率及额度
+## 查询借币币息率及额度（全仓）
 
 API Key 权限：读取
 
@@ -5831,7 +5823,7 @@ max-loan-amt|string|最大允许借币金额
 loanable-amt |string|最大可借金额
 actual-rate }|string|抵扣后的实际币息率，如不适用抵扣或未启用抵扣则返回基础日币息率
 
-## 申请借币
+## 申请借币（全仓）
 
 API Key 权限：交易
 
@@ -5872,7 +5864,7 @@ amount     | string    | true     | NA      | 借币数量（精度：3位小数
 -------| ------  | ----
 data   | integer | Margin order id
 
-## 归还借币
+## 归还借币（全仓）
 
 API Key 权限：交易
 
@@ -5912,7 +5904,7 @@ amount     | string    | true     | 归还币种数量
 -------  | ------- | -----------
 data     | null | -
 
-## 查询借币订单
+## 查询借币订单（全仓）
 
 API Key 权限：读取
 
@@ -5978,7 +5970,7 @@ API Key 权限：读取
 | accrued-at | true | long | 最近一次计息时间 | |
 | state | true | string | 订单状态 |created 未放款，accrual 已放款，cleared 已还清，invalid 异常|
 
-## 借币账户详情
+## 借币账户详情（全仓）
 
 API Key 权限：读取
 
@@ -6057,6 +6049,125 @@ API Key 权限：读取
 | { currency | true | string | 币种| |
 |   type | true | string | 账户类型| trade,frozen,loan,interest,transfer-out-available,loan-available|
 |   balance } | true | string | 余额（注：当type= transfer-out-available时，如果balance=-1，意味着该币种余额可全部转出）| |
+
+## 归还借币（通用）
+
+API Key 权限：交易
+限频值：2次/秒
+子用户可以调用
+还币顺序为，（如不指定transactId）先借先还，利息先还。
+
+### HTTP 请求
+
+- POST /v2/account/repayment
+
+> Request:
+
+```json
+{
+    "accountid": "1266826",
+    "currency": "btc",
+    "amount": "0.00800334",
+    "transactId": "437"
+}
+```
+
+### 请求参数
+
+| **名称**   | **类型** | **是否必需** | **描述**       |
+| ---------- | -------- | ------------ | -------------- |
+| accountId  | string   | TRUE         | 还币账户ID     |
+| currency   | string   | TRUE         | 还币币种       |
+| amount     | string   | TRUE         | 还币金额       |
+| transactId | string   | FALSE        | 原始借币交易ID |
+
+> Response:
+
+```json
+{
+  "code":200,
+  "Data": [
+      {
+          "repayId":1174424,
+          "repayTime":1600747722018
+      }
+   ]
+}
+```
+### 响应数据
+| **名称**    | **类型** | **是否必需** | **描述**                                 |
+| ----------- | -------- | ------------ | ---------------------------------------- |
+| code        | integer  | TRUE         | 状态码                                   |
+| message     | string   | FALSE        | 错误描述（如有）                         |
+| data        | object   | TRUE         |                                          |
+| { repayId   | string   | TRUE         | 还币交易ID                               |
+| repayTime } | long     | TRUE         | 还币交易时间（unix time in millisecond） |
+
+注：
+返回relayId不意味着该还币100%成功，用户须在还币后通过查询还币交易记录确认该还币状态。
+
+## 还币交易记录查询（通用）
+API Key 权限：读取
+限频值：2次/秒
+子用户可以调用
+按repayTime检索
+### HTTP 请求
+- GET /v2/account/repayment
+### 请求参数
+
+| **名称**  | **类型** | **是否必需** | **描述**                                                     |
+| --------- | -------- | ------------ | ------------------------------------------------------------ |
+| repayId   | string   | FALSE        | 还币交易ID                                                   |
+| accountId | string   | FALSE        | 账户ID（缺省值：所有账户）                                   |
+| currency  | string   | FALSE        | 借入/借出币种（缺省值：所有币种）                            |
+| startTime | long     | FALSE        | 远点时间（unix time in millisecond；取值范围：[(endTime - x天), endTime]；缺省值：(endTime - x天)） |
+| endTime   | long     | FALSE        | 近点时间（unix time in millisecond；取值范围：[(当前时间 - y天), 当前时间]；缺省值：当前时间） |
+| sort      | string   | FALSE        | 检索方向（有效值：asc 由远及近, desc 由近及远；缺省值：desc） |
+| limit     | integer  | FALSE        | 单页最大返回条目数量（取值范围：[1,100]；缺省值：50）        |
+| fromId    | long     | FALSE        | 查询起始编号（仅对翻页查询有效）                             |
+
+> Response:
+
+```json
+{
+     "code":200,
+     "data":[
+         {
+             "repayId": 1174413,
+             "repayTime":1600747389111,
+             "accountId": 1266826,
+             "currency":"btc",
+             "repaidAmount": "0.00200083",
+             "transactIds": 
+                  {
+                      "transactId":502,
+                      "repaidprincipal": "0.00199666",
+                      "repaidInterest": "0.00000417",
+                      "paidHt": "0",
+                      "paidPoint": "0"
+                  }
+            }
+     ]
+}
+```
+### 响应数据
+| **名称**        | **类型** | **是否必需** | **描述**                                                 |
+| --------------- | -------- | ------------ | -------------------------------------------------------- |
+| code            | integer  | TRUE         | 状态码                                                   |
+| message         | string   | FALSE        | 错误描述（如有）                                         |
+| data            | object   | TRUE         | 按sort指定顺序排列                                       |
+| { repayId       | string   | TRUE         | 还币交易ID                                               |
+| repayTime       | long     | TRUE         | 还币交易时间（unix time in millisecond）                 |
+| accountId       | string   | TRUE         | 还币账户ID                                               |
+| currency        | string   | TRUE         | 还币币种                                                 |
+| repaidAmount    | string   | TRUE         | 已还币金额                                               |
+| transactIds     | object   | TRUE         | 该笔还币所涉及的原始借币交易ID列表（按还币优先顺序排列） |
+| { transactId    | long     | TRUE         | 原始借币交易ID                                           |
+| repaidPrincipal | string   | TRUE         | 该笔还币交易已还本金                                     |
+| repaidInterest  | string   | TRUE         | 该笔还币交易已还利息                                     |
+| paidHt          | string   | TRUE         | 该笔还币交易已支付HT金额                                 |
+| paidPoint }}    | string   | TRUE         | 该笔还币交易已支付点卡金额                               |
+| nextId          | long     | FALSE        | 下页查询起始编号（仅在存在下页数据时返回）               |
 
 # 借币（C2C）
 
