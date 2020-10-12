@@ -26,6 +26,7 @@ table th {
 
 | Release Time<BR>(UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+| 2020.10.10 19:00 | `POST /v2/account/repayment`,<BR>`GET /v2/account/repayment` | Add | Added general repayment and query |
 |2020.8.28 19:00|`GET /v1/common/symbols`|Update|Added API trading eligibility flag |
 |2020.8.4 19:00|`accounts.update#${mode}`, `accounts`|Update|Added new event type deposit and withdraw|
 |2020.8.11 19:00|`GET /v1/common/symbols`, `GET /market/etp`, `market.$symbol.etp`, `GET /market/history/kline`, `market.$symbol$.kline.$period$`, `GET /v2/etp/reference`, `POST /v2/etp/creation`, `POST /v2/etp/redemption`, `GET /v2/etp/transactions`, `GET /v2/etp/transaction`, `GET /v2/etp/rebalance`|Add & Update|Added/updated relevant channels/endpoints to support ETP |
