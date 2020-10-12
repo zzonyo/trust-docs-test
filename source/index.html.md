@@ -24,7 +24,7 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口 | 变化      | 摘要 |
 |-----|-----|-----|-----|
-| 2020.10.10 | `POST /v2/account/repayment`,`GET /v2/account/repayment` | 新增 | 新增通用还币接口及还币交易记录查询接口 |
+| 2020.10.10 19:00 | `POST /v2/account/repayment`,<BR>`GET /v2/account/repayment` | 新增 | 新增通用还币接口及还币交易记录查询接口 |
 |2020.8.28 19:00|`GET /v1/common/symbols`|优化|新增API交易使能标记 |
 |2020.8.21 19:00|`accounts.update#${mode}`, `accounts`|优化|新增账户变更事件类型deposit，withdraw |
 |2020.8.11 19:00|`GET /v1/common/symbols`, `GET /market/etp`, `market.$symbol.etp`, `GET /market/history/kline`, `market.$symbol$.kline.$period$`, `GET /v2/etp/reference`, `POST /v2/etp/creation`, `POST /v2/etp/redemption`, `GET /v2/etp/transactions`, `GET /v2/etp/transaction`, `GET /v2/etp/rebalance`|新增+优化|新增/优化相关接口支持杠杆ETP |
