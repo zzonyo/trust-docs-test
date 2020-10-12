@@ -5089,11 +5089,13 @@ The conditional order before triggering, as well as the conditional order failed
 |	errCode	|	integer	|	FALSE	|Status code in case of order triggering failure (only valid for orderStatus=rejected) 	|
 |	errMessage }	|	string	|	FALSE	|Error message in case of order triggering failure (only valid for orderStatus=rejected) 	|
 
-# Margin Loan (isolated margin mode)
+# Margin Loan (isolated/cross)
 
 <aside class="notice">All endpoints in this section require authentication</aside>
 <aside class="notice">Currently loan only supports base currency of USDT, HUSD, and BTC</aside>
-## Transfer Asset from Spot Trading Account to Isolated Margin Account
+<aside class="notice">Once completed a margin loan or transfer, please wait for 10 seconds before requesting for next margin loan or transfer.</aside>
+
+## Transfer Asset from Spot Trading Account to Isolated Margin Account（Isolated）
 
 API Key Permission：Trade<br>
 Rate Limit (NEW): 2times/2s
@@ -5134,7 +5136,7 @@ Field               | Data Type | Description
 ---------           | --------- | -----------
 data                | integer   | Transfer id
 
-## Transfer Asset from Isolated Margin Account to Spot Trading Account
+## Transfer Asset from Isolated Margin Account to Spot Trading Account（Isolated）
 
 API Key Permission：Trade<br>
 Rate Limit (NEW): 2times/2s
@@ -5175,7 +5177,7 @@ Field               | Data Type | Description
 ---------           | --------- | -----------
 data                | integer   | Transfer id
 
-## Get Loan Interest Rate and Quota
+## Get Loan Interest Rate and Quota（Isolated）
 
 API Key Permission: Read<br>
 Rate Limit (NEW): 20times/2s
@@ -5239,7 +5241,7 @@ max-loan-amt|string|Maximum loanable amount
 loanable-amt |string|Remaining loanable amount
 actual-rate }}|string|Actual interest rate (if deduction is inapplicable or disabled, return basic daily interest rate)
 
-## Request a Margin Loan
+## Request a Margin Loan（Isolated）
 
 API Key Permission：Trade<br>
 Rate Limit (NEW): 2times/2s
@@ -5284,7 +5286,7 @@ Field               | Data Type | Description
 status | string | Status 
 data                | integer   | Margin order id
 
-## Repay Margin Loan
+## Repay Margin Loan（Isolated）
 
 API Key Permission：Trade<br>
 Rate Limit (NEW): 2times/2s
@@ -5323,7 +5325,7 @@ Field               | Data Type | Description
 ---------           | --------- | -----------
 data                | integer   | Margin order id
 
-## Search Past Margin Orders
+## Search Past Margin Orders（Isolated）
 
 API Key Permission：Read<br>
 Rate Limit (NEW): 100times/2s
@@ -5410,7 +5412,7 @@ updated-at | long | Update time
 hour-interest-rate | string | Hourly interest rate
 day-interest-rate | string | Daily interest rate
 
-## Get the Balance of the Margin Loan Account
+## Get the Balance of the Margin Loan Account（Isolated）
 
 API Key Permission：Read<br>
 Rate Limit (NEW): 100times/2s
@@ -5493,14 +5495,7 @@ list                | array         | The list of margin accounts and their deta
 type | string | The sub account type, possible values: trade, frozen, loan, interest 
 balance } | string | The balance. The negative balance means the loan or interest that need to  repay 
 
-
-
-# Margin Loan (cross margin mode)
-
-<aside class="notice">All endpoints in this section require authentication</aside>
-<aside class="notice">Currently loan only supports base currency of USDT and BTC</aside>
-<aside class="notice">Once completed a margin loan or transfer, please wait for 10 seconds before requesting for next margin loan or transfer.</aside>
-## Transfer Asset from Spot Trading Account to Cross Margin Account
+## Transfer Asset from Spot Trading Account to Cross Margin Account（Cross）
 
 API Key Permission：Trade
 
@@ -5541,7 +5536,7 @@ Field               | Data Type | Description
 ---------           | --------- | -----------
 data                | integer   | Transfer id
 
-## Transfer Asset from Cross Margin Account to Spot Trading Account
+## Transfer Asset from Cross Margin Account to Spot Trading Account（Cross）
 
 API Key Permission：Trade
 
@@ -5582,7 +5577,7 @@ Field               | Data Type | Description
 ---------           | --------- | -----------
 data                | integer   | Transfer id
 
-## Get Loan Interest Rate and Quota
+## Get Loan Interest Rate and Quota（Cross）
 
 API Key Permission: Read
 
@@ -5677,7 +5672,7 @@ max-loan-amt|string|Maximum loanable amount
 loanable-amt |string|Remaining loanable amount
 actual-rate }|string|Actual interest rate post deduction (if deduction is inapplicable or disabled, return basic daily interest rate)
 
-## Request a Margin Loan
+## Request a Margin Loan（Cross）
 
 API Key Permission：Trade
 
@@ -5718,7 +5713,7 @@ Field               | Data Type | Description
 ---------           | --------- | -----------
 data                | integer   | Margin order id
 
-## Repay Margin Loan
+## Repay Margin Loan（Cross）
 
 API Key Permission：Trade
 
@@ -5759,7 +5754,7 @@ Field               | Data Type | Description
 ---------           | --------- | -----------
 data                | null   | NA
 
-## Search Past Margin Orders
+## Search Past Margin Orders（Cross）
 
 API Key Permission：Read
 
@@ -5829,7 +5824,7 @@ interest-amount     | string    | The accumulated loan interest
 interest-balance    | string    | The amount of loan interest left
 state               | string    | Loan state, possible values: created, accrual (loaned), cleared (paid), invalid
 
-## Get the Balance of the Margin Loan Account
+## Get the Balance of the Margin Loan Account（Cross）
 
 API Key Permission：Read
 
@@ -5912,6 +5907,130 @@ Field               | Data Type     | Description
  { currency | true | string | Currency| |
    type | true | string | Account type| trade,frozen,loan,interest,transfer-out-available,loan-available|
    balance } | true | string | Balance (note: while type=transfer-out-available, if balance=-1, it implicates that all balance can be transferred out.)| |
+
+## Repay Margin Loan（General）
+
+API Key Permission: Transaction
+Frequency Limit: 2/s
+Available Accounts: Main and Sub-Accounts
+You should make a loan first before making a repayment. While repaying the loan, you should repay the loan interest first if there is no appointed transactId. 
+
+### HTTP Request
+
+`POST /v2/account/repayment`
+
+> Request:
+
+```json
+{
+    "accountid": "1266826",
+    "currency": "btc",
+    "amount": "0.00800334",
+    "transactId": "437"
+}
+```
+
+### Request Parameters
+
+| **Field**  | **Data Type** | **Mandotory** | **Description**      |
+| ---------- | ------------- | ------------- | -------------------- |
+| accountId  | string        | TRUE          | repayment account ID |
+| currency   | string        | TRUE          | repayment currency   |
+| amount     | string        | TRUE          | repayment amount     |
+| transactId | string        | FALSE         | loan transaction ID  |
+
+> Response:
+
+```json
+{
+  "code":200,
+  "Data": [
+      {
+          "repayId":1174424,
+          "repayTime":1600747722018
+      }
+   ]
+}
+```
+
+### Response Content
+
+| **Field**   | **Data Type** | **Mandotory** | **Description**                            |
+| ----------- | ------------- | ------------- | ------------------------------------------ |
+| code        | integer       | TRUE          | status code                                |
+| message     | string        | FALSE         | error description (if any)                 |
+| data        | object        | TRUE          |                                            |
+| { repayId   | string        | TRUE          | repayment ID                               |
+| repayTime } | long          | TRUE          | repayment time (unix  time in millisecond) |
+Note: Back to “repayId” doesn’t mean the repayment is 100% successful. Please check the transaction record to confirm the repayment status. 
+
+## Repayment Record Reference（General）
+
+API Key Permission: Read
+Frequency Limit: 2/s
+Available Accounts: Main and Sub-Accounts
+Sort: Click “repayTime” 
+
+### HTTP Request
+
+`GET /v2/account/repayment`
+
+### Request Parameters
+
+| Field     | Data Type | Mandotory | Description                                                  |
+| --------- | --------- | --------- | ------------------------------------------------------------ |
+| repayId   | string    | FALSE     | repayment transaction ID                                     |
+| accountId | string    | FALSE     | account ID (default value: all  accounts)                    |
+| currency  | string    | FALSE     | borrowing/lending currency (default  value: all currencies)  |
+| startTime | long      | FALSE     | start time (unix time in millisecond; range:  [(endTime – x D), endTime]; default value: (endTime – x D) |
+| endTime   | long      | FALSE     | end time (unix time in millisecond；range: [(present time – y D), present time]; default value:  present time) |
+| sort      | string    | FALSE     | sort direction (virtual value: asc,  desc; default value: desc) |
+| limit     | integer   | FALSE     | max return items per page (range: [1,100];  default value: 50) |
+| fromId    | long      | FALSE     | search original ID (only available when  searching for the next page) |
+
+> Response:
+```json
+{
+     "code":200,
+     "data":[
+         {
+             "repayId": 1174413,
+             "repayTime":1600747389111,
+             "accountId": 1266826,
+             "currency":"btc",
+             "repaidAmount": "0.00200083",
+             "transactIds": 
+                  {
+                      "transactId":502,
+                      "repaidprincipal": "0.00199666",
+                      "repaidInterest": "0.00000417",
+                      "paidHt": "0",
+                      "paidPoint": "0"
+                  }
+            }
+     ]
+}
+```
+
+### Response Content
+
+| Field           | Data Type | Mandotory | Description                                                  |
+| --------------- | --------- | --------- | ------------------------------------------------------------ |
+| code            | integer   | TRUE      | status code                                                  |
+| message         | string    | FALSE     | error description (if any)                                   |
+| data            | object    | TRUE      | sorted by the appointed order                                |
+| { repayId       | string    | TRUE      | repayment transaction ID                                     |
+| repayTime       | long      | TRUE      | repayment transaction time (unix time  in millisecond)       |
+| accountId       | string    | TRUE      | repayment account ID                                         |
+| currency        | string    | TRUE      | repayment currency                                           |
+| repaidAmount    | string    | TRUE      | repaid amount                                                |
+| transactIds     | object    | TRUE      | ID list of original loan transactions (arranged by order of repaymen time) |
+| { transactId    | long      | TRUE      | original loan transaction ID                                 |
+| repaidPrincipal | string    | TRUE      | principal repaid                                             |
+| repaidInterest  | string    | TRUE      | interest repaid                                              |
+| paidHt          | string    | TRUE      | HT paid                                                      |
+| paidPoint }}    | string    | TRUE      | point paid                                                   |
+| nextId          | long      | FALSE     | search the start ID in the next page  (return only when there is data in the  next page) |
 
 # Margin Loan (C2C)
 
