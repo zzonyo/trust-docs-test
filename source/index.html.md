@@ -26,21 +26,21 @@ table th {
 |-----|-----|-----|-----|
 | 2020.10.10 19:00 | `POST /v2/account/repayment`,<BR>`GET /v2/account/repayment` | 新增 | 新增通用还币接口及还币交易记录查询接口 |
 |2020.8.28 19:00|`GET /v1/common/symbols`|优化|新增API交易使能标记 |
-|2020.8.21 19:00|`accounts.update#${mode}`, `accounts`|优化|新增账户变更事件类型deposit，withdraw |
-|2020.8.11 19:00|`GET /v1/common/symbols`, `GET /market/etp`, `market.$symbol.etp`, `GET /market/history/kline`, `market.$symbol$.kline.$period$`, `GET /v2/etp/reference`, `POST /v2/etp/creation`, `POST /v2/etp/redemption`, `GET /v2/etp/transactions`, `GET /v2/etp/transaction`, `GET /v2/etp/rebalance`|新增+优化|新增/优化相关接口支持杠杆ETP |
-|2020.8.10 19:00|`GET v1/stable-coin/quote`, `POST v1/stable-coin/exchange`|优化|新增稳定币兑换手续费字段 |
+|2020.8.21 19:00|`accounts.update#${mode}`, <BR>`accounts`|优化|新增账户变更事件类型deposit，withdraw |
+|2020.8.11 19:00|`GET /v1/common/symbols`,<BR> `GET /market/etp`, <BR>`market.$symbol.etp`,<BR> `GET /market/history/kline`, <BR>`market.$symbol$.kline.$period$`,<BR> `GET /v2/etp/reference`, <BR>`POST /v2/etp/creation`,<BR> `POST /v2/etp/redemption`,<BR> `GET /v2/etp/transactions`,<BR> `GET /v2/etp/transaction`, <BR>`GET /v2/etp/rebalance`|新增+优化|新增/优化相关接口支持杠杆ETP |
+|2020.8.10 19:00|`GET v1/stable-coin/quote`, <BR>`POST v1/stable-coin/exchange`|优化|新增稳定币兑换手续费字段 |
 |2020.8.4 19:00|`GET /v1/account/history`|优化|新增返回字段“next-id” |
-|2020.8.3 19:00|`POST /v2/algo-orders`, `GET /v2/algo-orders/opening`, `GET /v2/algo-orders/history`, `GET /v2/algo-orders/specific`|优化|新增追踪委托 |
+|2020.8.3 19:00|`POST /v2/algo-orders`, <BR>`GET /v2/algo-orders/opening`, <BR>`GET /v2/algo-orders/history`, <BR>`GET /v2/algo-orders/specific`|优化|新增追踪委托 |
 |2020.7.24 19:00|`trade.clearing#${symbol}#${mode}`|优化|新增撤单推送 |
 |2020.7.17 19:00|`GET /v2/account/asset-valuation`|新增|新增账户资产估值查询节点 |
 |2020.7.16 19:00|`GET /v1/common/symbols`|优化|新增返回字段 |
-|2020.7.10 19:00|`GET /v2/point/account`, `POST /v2/point/transfer`|新增|新增点卡余额查询节点及点卡划转节点 |
+|2020.7.10 19:00|`GET /v2/point/account`,<BR> `POST /v2/point/transfer`|新增|新增点卡余额查询节点及点卡划转节点 |
 |2020.7.10 19:00|`POST /v1/order/batch-orders`|优化|限频值调整 |
 |2020.7.8 19:00|`orders#{symbol}`|优化|新增两个事件类型 |
 |2020.6.27 19:00|`GET /v2/market-status`|新增|新增市场状态查询节点 |
 |2020.6.27 19:00|`market.$symbol.mbp.$levels`|优化|新增五档MBP逐笔增量订阅 |
 |2020.6.27 19:00|若干新增节点|新增|新增策略委托相关节点 |
-|2020.6.24 19:00|`GET /v1/order/orders/{order-id}/matchresults` & `GET /v1/order/matchresults`|优化|增加fee-currency字段 |
+|2020.6.24 19:00|`GET /v1/order/orders/{order-id}/matchresults` <BR> `GET /v1/order/matchresults`|优化|增加fee-currency字段 |
 |2020.6.24 19:00|`GET /v2/account/withdraw/address`|新增|提币地址查询 |
 |2020.6.23 19:00|若干新增节点|新增|新增C2C杠借币相关节点 |
 |2020.6.16 10:00|`GET /v2/sub-user/user-list`,<BR> `GET /v2/sub-user/user-state`, <BR>`GET /v2/sub-user/account-list`|新增|新增子用户列表查询、子用户状态查询、子用户账户查询接口 |
