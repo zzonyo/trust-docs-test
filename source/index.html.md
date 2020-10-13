@@ -3854,7 +3854,7 @@ balance|-|decimal|-		|账户余额	|-|
 | sub-user-auth-required | 子用户未开通逐仓杠杆权限 |
 | order-disabled | 交易对暂停，无法下单 |
 | cancel-disabled | 交易对暂停，无法撤单 |
-| order-invalid-price |下单价格非法 |
+| order-invalid-price |下单价格非法（如市价单不能有价格，或限价单价格超过市场价10%） |
 | order-accountbalance-error |  账户余额不足 |
 | order-limitorder-price-min-error | 卖出价格不能低于指定价格 |
 | order-limitorder-price-max-error | 买入价格不能高于指定价格 |
