@@ -9636,7 +9636,8 @@ You are recommended to read the status code from the returned message. If the ab
 </ul>
 <h4 id='note-13'>Note</h4>
 <ul>
-<li>Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.</li>
+<li><p>Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.</p></li>
+<li><p>The interface limits the number of requests to 3 times/second.</p></li>
 </ul>
 <h3 id='request-parameter-30'>Request Parameter</h3>
 <table><thead>
@@ -9752,8 +9753,6 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-14'>Note</h4>
-<p>The interface limits the number of requests to 3 times/second.</p>
 <h2 id='place-lightning-close-order'>Place Lightning Close Order</h2>
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_lightning_close_position</code></li>
@@ -9923,7 +9922,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-15'>Note  ：</h3>
+<h3 id='note-14'>Note  ：</h3>
 <p>When getting information on order cancellation via get contracts Information interface, users can only query last 24-hour data</p>
 
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id. The order completed( 5.partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled; ) will be deleted after the settlement of funding rate on 04:00(GMT+8), 12:00(GMT+8) and 20:00(GMT+8).</p>
@@ -10231,7 +10230,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Default 20，no more than 50</td>
 </tr>
 </tbody></table>
-<h3 id='note-16'>Note</h3>
+<h3 id='note-15'>Note</h3>
 <p>When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 24-hour data, while users who don’t type in parameters “created_at” and “order_type” can only query last 12-hour data.</p>
 
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
@@ -11033,7 +11032,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-17'>Note:</h4>
+<h4 id='note-16'>Note:</h4>
 <ul>
 <li>When getting information on order cancellation via query history orders interface, users can only query last 24-hour data.</li>
 </ul>
@@ -11312,7 +11311,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-18'>Note</h3>
+<h3 id='note-17'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='acquire-history-match-results'>Acquire History Match Results</h2><h3 id='example-23'>Example</h3>
 <ul>
@@ -11697,7 +11696,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-19'>Note</h4>
+<h4 id='note-18'>Note</h4>
 <ul>
 <li>optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.</li>
 </ul>
@@ -11951,7 +11950,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract code,&quot;BTC-USDT&quot; ...</td>
 </tr>
 </tbody></table>
-<h3 id='note-20'>Note</h3>
+<h3 id='note-19'>Note</h3>
 <blockquote>
 <p>Response:</p>
 </blockquote>
@@ -12431,7 +12430,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Page 20 by default without given instruction,  ，no more than 50</td>
 </tr>
 </tbody></table>
-<h3 id='note-21'>NOTE</h3>
+<h3 id='note-20'>NOTE</h3>
 <ul>
 <li>System will query the filled trigger order history by default </li>
 </ul>
@@ -13397,7 +13396,7 @@ Order Push Subscription：wss://api.btcgateway.pro/linear-swap-notification
 
 Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
  -->
-<h3 id='note-22'>Note:</h3>
+<h3 id='note-21'>Note:</h3>
 <ul>
 <li>Huobi USDT swap is being tested in fake assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.<br></li>
 </ul>
@@ -13472,7 +13471,7 @@ Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
 <p><code>&quot;ts&quot;: &quot;1492420473058&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-23'>Note</h3>
+<h3 id='note-22'>Note</h3>
 <ul>
 <li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 5 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
 </ul>
@@ -13517,7 +13516,7 @@ Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
 - Huobi USDT Swap uses one official address:
   `wss://api.hbdm.com/linear-swap-notification`
   -->
-<h3 id='note-24'>Note:</h3>
+<h3 id='note-23'>Note:</h3>
 <ul>
 <li>Huobi USDT swap is being tested in fake assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.<br></li>
 </ul>
@@ -14052,7 +14051,7 @@ Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-25'>Note</h4>
+<h4 id='note-24'>Note</h4>
 <p>If between time range [t1, t5], there are t1-t5 KLines in quantity.</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -14276,7 +14275,7 @@ Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
 <td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5,14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
-<h3 id='note-26'>Note:</h3>
+<h3 id='note-25'>Note:</h3>
 <ul>
 <li><p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p></li>
 <li><p>steps between step1 and step5, step14, step15 are merged orderbook data of step 150. 
@@ -14625,7 +14624,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-27'>Note:</h3>
+<h3 id='note-26'>Note:</h3>
 <ul>
 <li>when <code>data_type</code> is <code>incremental</code>,<code>snapshot</code> data wil be pushed for the first time. When re-connection occurs, <code>snapshort</code> data will be pushed for the first time. </li>
 <li><code>version</code>: auto increment in single websocket connection. <code>version</code> may be different among several websocket subscription connections.</li>
@@ -15183,7 +15182,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='note-28'>Note:</h3>
+</span></code></pre><h3 id='note-27'>Note:</h3>
 <p>Clients can only access the recent 300 trade detail data </p>
 <h3 id='request-parameter-47'>Request Parameter</h3>
 <table><thead>
@@ -15422,7 +15421,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-29'>Note</h4>
+<h4 id='note-28'>Note</h4>
 <ul>
 <li><p>Pushed once the index data is changed.</p></li>
 <li><p>Periodical Push when the index data hasn&#39;t changed according to the kline period.</p></li>
@@ -15634,7 +15633,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-30'>Note：</h3>
+<h3 id='note-29'>Note：</h3>
 <ul>
 <li>Pushed once the index data is updated.</li>
 </ul>
@@ -15855,7 +15854,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-31'>Note:</h4>
+<h4 id='note-30'>Note:</h4>
 <ul>
 <li><p>Pushed once the kline data is changed.</p></li>
 <li><p>Periodical Push when the kline data hasn&#39;t changed according to the kline period.</p></li>
@@ -16477,7 +16476,7 @@ Details are below:</p></li>
 <td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-32'>Note：</h3>
+<h3 id='note-31'>Note：</h3>
 <ul>
 <li>2000 data at most per request.</li>
 </ul>
@@ -17029,7 +17028,7 @@ Details are below:</p></li>
 <td>Required；format: matchOrders.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-33'>Note:</h4>
+<h4 id='note-32'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 <li>The orders will be pushed when matched by matching engine.</li>
@@ -17422,7 +17421,7 @@ Details are below:</p></li>
 <td>Required； Subscribe Topic Name，Required subscribe accounts.$contract_code   Subscribe/unsubscribe the balance change of a given coin，when the value of $contract_code is “*”, it means to subscribe/unsubscribe the balance change of all coins; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-34'>Note:</h3>
+<h3 id='note-33'>Note:</h3>
 <ul>
 <li>Account topic will be pushed every 5s.</li>
 </ul>
@@ -17853,7 +17852,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-35'>Note:</h3>
+<h3 id='note-34'>Note:</h3>
 <ul>
 <li><p>Position topic will be pushed every 5s.</p></li>
 <li><p>When switching leverage with no positions, the event &quot;switch_lever_rate&quot; will not be pushed by the position topic.</p></li>
@@ -18371,7 +18370,7 @@ Details are below:</p></li>
 <td>not allowed</td>
 </tr>
 </tbody></table>
-<h3 id='note-36'>Note</h3>
+<h3 id='note-35'>Note</h3>
 <ul>
 <li><p>Funding rate will be pushed every 60 seconds by default.Funding rate will not be calculated under conditions below:</p>
 
@@ -18517,7 +18516,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-37'>Note：</h3>
+<h3 id='note-36'>Note：</h3>
 <ul>
 <li>The websocket subscription of contract info event is pushed every 60 seconds, and the event is &quot;snapshot&quot;. </li>
 <li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is &quot;init&quot;.</li>
