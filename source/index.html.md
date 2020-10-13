@@ -870,13 +870,13 @@ USDT永续合约API Key和现货API Key是同一个，两个是一样的。您�
 
 ### Q2: 为什么经常出现断线、超时的错误？
 
-如果是在大陆网络环境去请求API接口，网络连接很不稳定，很容易出现超时。建议使用AWS东京A区服务器进行访问。
+如果是在大陆网络环境去请求API接口，网络连接很不稳定，很容易出现超时。建议使用AWS东京C区服务器进行访问。
 
 国内网络可以使用api.btcgateway.pro或者api.hbdm.vn来进行调试,如果仍然无法请求，请在国外服务器上进行运行。
 
 ### Q3: 为什么WebSocket总是断开连接？
 
-由于网络环境不同，很容易导致websocket断开连接(websocket: close 1006 (abnormal closure))，目前最佳实践是建议您将服务器放置在AWS东京A区，并且使用api.hbdm.vn域名；同时需要做好断连重连操作；行情心跳与订单心跳均需要按照《Websocket心跳以及鉴权接口》的行情心跳与订单心跳回复不同格式的Pong消息：<a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#472585d15d'>这里</a>。以上操作可以有效减少断连情况。
+由于网络环境不同，很容易导致websocket断开连接(websocket: close 1006 (abnormal closure))，目前最佳实践是建议您将服务器放置在AWS东京C区，并且使用api.hbdm.vn域名；同时需要做好断连重连操作；行情心跳与订单心跳均需要按照《Websocket心跳以及鉴权接口》的行情心跳与订单心跳回复不同格式的Pong消息：<a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#472585d15d'>这里</a>。以上操作可以有效减少断连情况。
 
 ### Q4: api.hbdm.com与api.hbdm.vn有什么区别？
 
@@ -1050,7 +1050,7 @@ market.$contract_code.depth.$type是全量数据，market.$contract_code.depth.s
 
 ### Q5: API接口返回Connection Reset 或者 Max retris 或者 Timed out 是什么原因？
 
-出现连接重置或者网络超时，一般是网络不稳定导致，可以尝试将服务器放置在AWS东京A区，并使用api.hbdm.vn来尝试，可以有效减少网络超时等错误。
+出现连接重置或者网络超时，一般是网络不稳定导致，可以尝试将服务器放置在AWS东京C区，并使用api.hbdm.vn来尝试，可以有效减少网络超时等错误。
 
 ### Q6: API接口下单时出错没有order_id如何来查询订单状态？
 
