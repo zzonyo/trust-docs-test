@@ -3883,6 +3883,8 @@ The return data from Cancel An Order Interface only means that order cancelation
 
 - Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.
 
+- The interface limits the number of requests to 3 times/second.
+
 ###  Request Parameter
 
 | **Parameter Name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
@@ -3926,9 +3928,6 @@ No：
 |err_msg| false| string | error msg | |
 | ts                     | true | long    | Timestamp                |    
 
-####  Note
-
-The interface limits the number of requests to 3 times/second.
 
 
 ## Place Lightning Close Order
