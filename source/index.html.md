@@ -70,7 +70,6 @@ search: true
 读取  | 账户接口    | linear-swap-ex/market/history/trade                               | GET    |      批量获取最近的交易记录               |     否         |
 读取  | 账户接口    | linear-swap-api/v1/swap_account_info                              | POST   |      获取用户的合约账户信息               |     是         |
 读取  | 账户接口    | linear-swap-api/v1/swap_position_info                             | POST   |      获取用户的合约持仓信息               |     是         |
-读取  | 账户接口    | linear-swap-api/v1/swap_switch_lever_rate                         | POST   |      切换杠杆                          |     是         |
 读取  | 账户接口    | linear-swap-api/v1/swap_available_level_rate                      | POST   |      查询用户可用杠杆倍数          |     是         |
 读取  | 账户接口    | linear-swap-api/v1/swap_sub_account_list                          | POST   |      查询母账户下所有子账户资产信息       |     是         |
 读取  | 账户接口    | linear-swap-api/v1/swap_sub_account_info                          | POST   |      查询母账户下的单个子账户资产信息     |     是         |
@@ -87,6 +86,7 @@ search: true
 读取  | 账户接口    | linear-swap-api/v1/swap_api_trading_status                        | GET    |      获取用户API指标禁用信息              |     是         |
 交易  | 交易接口    | linear-swap-api/v1/swap_order                                     | POST   |      合约下单                             |     是         |
 交易  | 交易接口    | linear-swap-api/v1/swap_batchorder                                | POST   |      合约批量下单                         |     是         |
+交易  | 交易接口    | linear-swap-api/v1/swap_switch_lever_rate                         | POST   |      切换杠杆                          |     是         |
 交易  | 交易接口    | linear-swap-api/v1/swap_cancel                                    | POST   |      撤销合约订单                         |     是         |
 交易  | 交易接口    | linear-swap-api/v1/swap_cancelall                                 | POST   |      撤销全部合约单                       |     是         |
 读取  | 交易接口    | linear-swap-api/v1/swap_order_info                                | POST   |      获取用户的合约订单信息               |     是         |
@@ -2843,55 +2843,6 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | \</data\>            |        |         |                      |                |
 
 
-## 切换杠杆
-
-- POST `/linear-swap-api/v1/swap_switch_lever_rate`
-
-### 请求参数
-
-| **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code | true | String | 合约代码	 | 比如“BTC-USDT” |
-| lever_rate | true | int | 要切换的杠杆倍数 |  |
-
-> ** 响应示例**
-
-```json
-
-正确：
-{
-    "status": "ok",
-    "ts": 1547521135713,
-    "data": {
-          "contract_code":"BTC-USDT",
-          "lever_rate":10
-    }
-}
-错误：
-{
-    "status": "error",
-    "err_code": 2014,     
-    "err_msg": "无法切换",  
-    "ts": 1547519608126
-}
-```
-
-### **响应参数**
-| 参数名称                   | 是否必须 | 类型      | 描述                 | 取值范围                                     |
-| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
-| status                 | true | string  | 响应状态: ok,error            |                                          |
-| \<data\> | false     |  object      |                    |                                          |
-| contract_code               | false | string    | 合约代码      |                                          |
-| lever_rate               | false | int    | 切换成功后的杠杆倍数      |                                          |
-| \</data\>            |      |         |                    |                                          |
-| err_code | false | int | 错误码| |
-| err_msg| false| string | 错误信息| |
-| ts                     | true | long    | 时间戳                |                                          |
-
-###  备注
-
-- 接口限制请求次数为3次/秒。
-
 ## 查询母账户下所有子账户资产信息
 
 - POST `linear-swap-api/v1/swap_sub_account_list`
@@ -3893,6 +3844,61 @@ orders_data  | List\<Object\>   |    |    |
 
 #### 备注
  - order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。
+
+
+## 切换杠杆
+
+- POST `/linear-swap-api/v1/swap_switch_lever_rate`
+
+#### 备注
+
+- 只有在单个品种下只有持仓，且没有挂单的场景下，才可以切换该品种当前的倍数。
+
+### 请求参数
+
+| **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| contract_code | true | String | 合约代码	 | 比如“BTC-USDT” |
+| lever_rate | true | int | 要切换的杠杆倍数 |  |
+
+> ** 响应示例**
+
+```json
+
+正确：
+{
+    "status": "ok",
+    "ts": 1547521135713,
+    "data": {
+          "contract_code":"BTC-USDT",
+          "lever_rate":10
+    }
+}
+错误：
+{
+    "status": "error",
+    "err_code": 2014,     
+    "err_msg": "无法切换",  
+    "ts": 1547519608126
+}
+```
+
+### **响应参数**
+| 参数名称                   | 是否必须 | 类型      | 描述                 | 取值范围                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | 响应状态: ok,error            |                                          |
+| \<data\> | false     |  object      |                    |                                          |
+| contract_code               | false | string    | 合约代码      |                                          |
+| lever_rate               | false | int    | 切换成功后的杠杆倍数      |                                          |
+| \</data\>            |      |         |                    |                                          |
+| err_code | false | int | 错误码| |
+| err_msg| false| string | 错误信息| |
+| ts                     | true | long    | 时间戳                |                                          |
+
+###  备注
+
+- 接口限制请求次数为3次/秒。
+
 
 ## 撤销订单 
 
@@ -7012,7 +7018,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | topic   | true | string  | 推送的主题   |   |
 | ts   | true | long  | 服务端应答时间戳   |   |
 | uid   | true | string  | 用户uid  |    |
-| event   | true | string  | 资产变化通知相关事件说明 |  比如订单创建开仓(order.open) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel) 、合约账户划转（contract.transfer)（包括外部划转、母子划转和不同保证金账户划转）、系统（contract.system)、其他资产变化(other)（包含切换杠杆） 、初始资金（init）、由系统定期推送触发（snapshot） |
+| event   | true | string  | 资产变化通知相关事件说明 |  比如订单创建开仓(order.open) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel) 、合约账户划转（contract.transfer)（包括外部划转、母子划转和不同保证金账户划转）、系统（contract.system)、其他资产变化(other)、切换杠杆（switch_lever_rate） 、初始资金（init）、由系统定期推送触发（snapshot） |
 | \<data\>   | true | object array |     |   |
 | symbol   | true | string  | 品种代码   | "BTC","ETH"...   |
 | contract_code   | true | string  | 合约代码   | "BTC-USDT","ETH-USDT"...   |
@@ -7159,7 +7165,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | topic       | string |               订阅主题   |
 | uid           | string    | 账户id	                                             |
 | ts                     | long  | 响应生成时间点，单位：毫秒                           |
-| event                  | string  | 持仓变化通知相关事件说明，比如订单创建平仓(order.close) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel)、切换杠杆（other） 、初始持仓（init）、由系统定期推送触发（snapshot）    |
+| event                  | string  | 持仓变化通知相关事件说明，比如订单创建平仓(order.close) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel)、切换杠杆（switch_lever_rate） 、初始持仓（init）、由系统定期推送触发（snapshot）    |
 | \<list\> (attr name: data) | array object |  | |
 | symbol                 | string    | 品种代码 ,"BTC","ETH"...                                             |
 | contract_code          | string  | 合约代码，"BTC-USDT"                                                       |
