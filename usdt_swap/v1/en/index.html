@@ -2432,13 +2432,13 @@ No parameter is available for this endpoint.
 <p>Yes. The Swap API key and spot API key are same. You can create API using the following link.<a href=https://www.hbg.com/zh-cn/apikey/> click here</a></p>
 <h3 id='q2-why-are-apis-disconnected-or-timeout'>Q2: Why are APIs  disconnected or timeout?</h3>
 <ol>
-<li><p>The network connection is unstable if the server locates in China mainland,it is suggested to invoke APIS from a server located in  1a area of AWS Tokyo.</p></li>
+<li><p>The network connection is unstable if the server locates in China mainland,it is suggested to invoke APIS from a server located in  1c area of AWS Tokyo.</p></li>
 <li><p>You can use api.btcgateway.pro or api.hbdm.vn to debug for China mainland  network.</p></li>
 </ol>
 <h3 id='q3-why-is-the-websocket-often-disconnected'>Q3: Why is the websocket often disconnected?</h3>
 <p>It seems that most of the abnormal websocket  issues (such as disconnect, websocket close )(websocket: close 1006 (abnormal closure))are caused by different network environment. The following measures can effectively reduce websocket issues.</p>
 
-<p>It would be better if the server is located in 1a area of AWS Tokyo with url api.hbdm.vn and implement websocket re-connection mechanism. Both market heartbeat and order heartbeat should response with Pong with different format, following  Websocket market heartbeat and account heartbeat requirement.<a href=https://docs.huobigroup.com/docs/usdt_swap/v1/en/#market-heartbeat>here</a></p>
+<p>It would be better if the server is located in 1c area of AWS Tokyo with url api.hbdm.vn and implement websocket re-connection mechanism. Both market heartbeat and order heartbeat should response with Pong with different format, following  Websocket market heartbeat and account heartbeat requirement.<a href=https://docs.huobigroup.com/docs/usdt_swap/v1/en/#market-heartbeat>here</a></p>
 <h3 id='q4-what-is-the-difference-between-api-hbdm-com-and-api-hbdm-vn'>Q4:  what is the difference between api.hbdm.com and api.hbdm.vn?</h3>
 <p>The api.hbdm.vn uses AWS&#39;s CDN service. it should be more stable and faster for AWS users. The api.hbdm.com uses Cloudflare&#39;s CDN service.</p>
 <h3 id='q5-what-is-the-colocation-service-which-attention-points-should-we-know'>Q5: What is the colocation service ? which attention points should we know ?</h3>
@@ -2575,7 +2575,7 @@ You are recommended to read the status code from the returned message. If the ab
 <h3 id='q4-what-is-the-delay-for-the-round-trip-of-huobi-usdt-swap'>Q4: What is the delay for the round trip of huobi USDT swap?</h3>
 <p>At present,it normally takes about 200-300ms from placing the order to getting the status of the order.</p>
 <h3 id='q5-why-does-the-api-return-connection-reset-or-max-retris-or-timeout-error'>Q5: Why does the API return connection reset or Max retris or Timeout error?</h3>
-<p>Most of the network connectivity problems ,(such as Connection reset or network timeout )  are caused by network instability , you can use the server in AWS Tokyo A area with api.hbdm.vn , which can effectively reduce network timeout errors.</p>
+<p>Most of the network connectivity problems ,(such as Connection reset or network timeout )  are caused by network instability , you can use the server in AWS Tokyo C area with api.hbdm.vn , which can effectively reduce network timeout errors.</p>
 <h3 id='q6-how-to-check-the-order-status-without-order_id-not-returned'>Q6: How to check the order status without order_id not returned?</h3>
 <p>If the order_id couldn&#39;t be returned due to network problems, you can query the status of the order by adding the custom order number(client_order_id ).</p>
 <h3 id='q7-what-to-do-if-it-39-s-diconnected-after-the-websocket-subscription-of-account-order-and-positions-for-a-while'>Q7: What to do if it&#39;s diconnected after the websocket subscription of account, order and positions for a while?</h3>
