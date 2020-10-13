@@ -3846,60 +3846,6 @@ orders_data  | List\<Object\>   |    |    |
  - order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。
 
 
-## 切换杠杆
-
-- POST `/linear-swap-api/v1/swap_switch_lever_rate`
-
-#### 备注
-
-- 只有在单个品种下只有持仓，且没有挂单的场景下，才可以切换该品种当前的倍数。
-
-### 请求参数
-
-| **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code | true | String | 合约代码	 | 比如“BTC-USDT” |
-| lever_rate | true | int | 要切换的杠杆倍数 |  |
-
-> ** 响应示例**
-
-```json
-
-正确：
-{
-    "status": "ok",
-    "ts": 1547521135713,
-    "data": {
-          "contract_code":"BTC-USDT",
-          "lever_rate":10
-    }
-}
-错误：
-{
-    "status": "error",
-    "err_code": 2014,     
-    "err_msg": "无法切换",  
-    "ts": 1547519608126
-}
-```
-
-### **响应参数**
-| 参数名称                   | 是否必须 | 类型      | 描述                 | 取值范围                                     |
-| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
-| status                 | true | string  | 响应状态: ok,error            |                                          |
-| \<data\> | false     |  object      |                    |                                          |
-| contract_code               | false | string    | 合约代码      |                                          |
-| lever_rate               | false | int    | 切换成功后的杠杆倍数      |                                          |
-| \</data\>            |      |         |                    |                                          |
-| err_code | false | int | 错误码| |
-| err_msg| false| string | 错误信息| |
-| ts                     | true | long    | 时间戳                |                                          |
-
-###  备注
-
-- 接口限制请求次数为3次/秒。
-
-
 ## 撤销订单 
 
 ###  示例
@@ -4008,6 +3954,60 @@ err_msg  |  true  |  string  |   订单失败信息  |    |
 successes  |    true  |  string  |  成功的订单  |    |   
 \</data\>    |    |    |    |    |
 ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   | 
+
+
+## 切换杠杆
+
+- POST `/linear-swap-api/v1/swap_switch_lever_rate`
+
+#### 备注
+
+- 只有在单个品种下只有持仓，且没有挂单的场景下，才可以切换该品种当前的倍数。
+
+### 请求参数
+
+| **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| contract_code | true | String | 合约代码	 | 比如“BTC-USDT” |
+| lever_rate | true | int | 要切换的杠杆倍数 |  |
+
+> ** 响应示例**
+
+```json
+
+正确：
+{
+    "status": "ok",
+    "ts": 1547521135713,
+    "data": {
+          "contract_code":"BTC-USDT",
+          "lever_rate":10
+    }
+}
+错误：
+{
+    "status": "error",
+    "err_code": 2014,     
+    "err_msg": "无法切换",  
+    "ts": 1547519608126
+}
+```
+
+### **响应参数**
+| 参数名称                   | 是否必须 | 类型      | 描述                 | 取值范围                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | 响应状态: ok,error            |                                          |
+| \<data\> | false     |  object      |                    |                                          |
+| contract_code               | false | string    | 合约代码      |                                          |
+| lever_rate               | false | int    | 切换成功后的杠杆倍数      |                                          |
+| \</data\>            |      |         |                    |                                          |
+| err_code | false | int | 错误码| |
+| err_msg| false| string | 错误信息| |
+| ts                     | true | long    | 时间戳                |                                          |
+
+###  备注
+
+- 接口限制请求次数为3次/秒。
 
 
 ## 获取合约订单信息
@@ -7121,10 +7121,6 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | cid      | string | 选填;Client 请求唯一 ID                     |
 | topic    | string | 必填；订阅主题名称，必填 (positions.$contract_code)  订阅、取消订阅某个合约代码下的持仓变更信息，当 $contract_code值为 * 时代表订阅所有合约代码,contract_code支持大小写;  |
 
-#### 备注：
-
-- 推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果5秒内某仓位已触发过推送，则该仓位跳过此次推送。
-
 
 > 当持仓有更新时，返回的参数示例如下:
 
@@ -7183,6 +7179,13 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | last_price             | decimal    | 最新价                                                       |
 | margin_asset           | string | 保证金币种（计价币种）                 |  
 | \</list\> | | |  | |
+
+
+#### 备注：
+
+- 推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果5秒内某仓位已触发过推送，则该仓位跳过此次推送。
+
+- 当用户持仓量为0时使用切换杠杆的接口，持仓推送接口不会推送"switch_lever_rate"。
 
 ## 取消订阅持仓变动数据（unsub）
 
