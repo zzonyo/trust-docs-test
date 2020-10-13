@@ -456,13 +456,13 @@
                     <a href="#place-a-batch-of-orders" class="toc-h2 toc-link" data-title="Place a Batch of Orders">Place a Batch of Orders</a>
                   </li>
                   <li>
-                    <a href="#switch-leverage" class="toc-h2 toc-link" data-title="Switch Leverage">Switch Leverage</a>
-                  </li>
-                  <li>
                     <a href="#cancel-an-order" class="toc-h2 toc-link" data-title="Cancel an Order">Cancel an Order</a>
                   </li>
                   <li>
                     <a href="#cancel-all-orders" class="toc-h2 toc-link" data-title="Cancel All Orders">Cancel All Orders</a>
+                  </li>
+                  <li>
+                    <a href="#switch-leverage" class="toc-h2 toc-link" data-title="Switch Leverage">Switch Leverage</a>
                   </li>
                   <li>
                     <a href="#place-lightning-close-order" class="toc-h2 toc-link" data-title="Place Lightning Close Order">Place Lightning Close Order</a>
@@ -9366,135 +9366,11 @@ You are recommended to read the status code from the returned message. If the ab
 </tbody></table>
 <h3 id='note-11'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
-<h2 id='switch-leverage'>Switch Leverage</h2>
-<ul>
-<li>POST <code>/linear-swap-api/v1/swap_switch_lever_rate</code></li>
-</ul>
-<h4 id='note-12'>Note</h4>
-<ul>
-<li>Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.</li>
-</ul>
-<h3 id='request-parameter-28'>Request Parameter</h3>
-<table><thead>
-<tr>
-<th><strong>Parameter Name</strong></th>
-<th><strong>Mandatory</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>Desc</strong></th>
-<th><strong>Value Range</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>contract_code</td>
-<td>true</td>
-<td>string</td>
-<td>contract code</td>
-<td>“BTC-USDT”</td>
-</tr>
-<tr>
-<td>lever_rate</td>
-<td>true</td>
-<td>int</td>
-<td>Leverage to switch</td>
-<td></td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="err">OK：</span><span class="w">
-</span><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547521135713</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="mi">10</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="err">No：</span><span class="w">
-</span><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">2014</span><span class="p">,</span><span class="w">    
-    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Can't switch"</span><span class="p">,</span><span class="w">  
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547519608126</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='returning-parameter-30'>Returning Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>status: ok,error</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;data&gt;</td>
-<td>false</td>
-<td>object</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>contract_code</td>
-<td>false</td>
-<td>string</td>
-<td>contract code</td>
-<td></td>
-</tr>
-<tr>
-<td>lever_rate</td>
-<td>false</td>
-<td>int</td>
-<td>Switched leverage</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/data&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>err_code</td>
-<td>false</td>
-<td>int</td>
-<td>error code</td>
-<td></td>
-</tr>
-<tr>
-<td>err_msg</td>
-<td>false</td>
-<td>string</td>
-<td>error msg</td>
-<td></td>
-</tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>Timestamp</td>
-<td></td>
-</tr>
-</tbody></table>
-<h4 id='note-13'>Note</h4>
-<p>The interface limits the number of requests to 3 times/second.</p>
 <h2 id='cancel-an-order'>Cancel an Order</h2><h3 id='example-17'>Example</h3>
 <ul>
 <li>POST  <code>/linear-swap-api/v1/swap_cancel</code></li>
 </ul>
-<h3 id='request-parameter-29'>Request Parameter</h3>
+<h3 id='request-parameter-28'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9522,7 +9398,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-14'>Note  ：</h3>
+<h3 id='note-12'>Note  ：</h3>
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
 
 <p>The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.</p>
@@ -9548,7 +9424,7 @@ You are recommended to read the status code from the returned message. If the ab
   </span><span class="s2">"successes"</span><span class="p">:</span><span class="s2">"161256,1344567"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-31'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-30'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9633,7 +9509,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_cancelall</code></li>
 </ul>
-<h3 id='request-parameter-30'>Request Parameter</h3>
+<h3 id='request-parameter-29'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9673,7 +9549,7 @@ You are recommended to read the status code from the returned message. If the ab
    </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-32'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-31'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9754,6 +9630,130 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='switch-leverage'>Switch Leverage</h2>
+<ul>
+<li>POST <code>/linear-swap-api/v1/swap_switch_lever_rate</code></li>
+</ul>
+<h4 id='note-13'>Note</h4>
+<ul>
+<li>Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.</li>
+</ul>
+<h3 id='request-parameter-30'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>“BTC-USDT”</td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>true</td>
+<td>int</td>
+<td>Leverage to switch</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="err">OK：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547521135713</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">No：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">2014</span><span class="p">,</span><span class="w">    
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Can't switch"</span><span class="p">,</span><span class="w">  
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547519608126</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='returning-parameter-32'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>status: ok,error</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>false</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>false</td>
+<td>string</td>
+<td>contract code</td>
+<td></td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>false</td>
+<td>int</td>
+<td>Switched leverage</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>err_code</td>
+<td>false</td>
+<td>int</td>
+<td>error code</td>
+<td></td>
+</tr>
+<tr>
+<td>err_msg</td>
+<td>false</td>
+<td>string</td>
+<td>error msg</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Timestamp</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id='note-14'>Note</h4>
+<p>The interface limits the number of requests to 3 times/second.</p>
 <h2 id='place-lightning-close-order'>Place Lightning Close Order</h2>
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_lightning_close_position</code></li>
@@ -17704,10 +17704,6 @@ Details are below:</p></li>
 <td style="text-align: left">Required； Subscribe Topic, Subscribe (positions.$contract_code) Required  Subscribe/unsubscribe the position data of a single coin, when the $contract_code value is *, it stands for subscribing the data of all coins. contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-35'>Note:</h3>
-<ul>
-<li>Position topic will be pushed every 5s.</li>
-</ul>
 
 <blockquote>
 <p>When there is any position update, the server will send notification with return parameter. For example:</p>
@@ -17857,6 +17853,11 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
+<h3 id='note-35'>Note:</h3>
+<ul>
+<li><p>Position topic will be pushed every 5s.</p></li>
+<li><p>When switching leverage with no positions, the event &quot;switch_lever_rate&quot; will not be pushed by the position topic.</p></li>
+</ul>
 <h2 id='unsubscribe-position-updates-data-unsub'>Unsubscribe Position Updates Data(unsub)</h2>
 <p>To unsubscribe, the client has to make connection to the server and send unsubscribe request in the format below:</p>
 <h3 id='request-format-of-unsubscribe-position-updates'>Request Format of Unsubscribe Position Updates</h3>
