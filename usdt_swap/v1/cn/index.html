@@ -9722,7 +9722,8 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </ul>
 <h4 id='e0361480e3-11'>备注</h4>
 <ul>
-<li>只有在单个品种下只有持仓，且没有挂单的场景下，才可以切换该品种当前的倍数。</li>
+<li><p>只有在单个品种下只有持仓，且没有挂单的场景下，才可以切换该品种当前的倍数。</p></li>
+<li><p>接口限制请求次数为3次/秒。</p></li>
 </ul>
 <h3 id='1f9ac54b15-42'>请求参数</h3>
 <table><thead>
@@ -9837,10 +9838,6 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-12'>备注</h3>
-<ul>
-<li>接口限制请求次数为3次/秒。</li>
-</ul>
 <h2 id='f36cfcbaef'>获取合约订单信息</h2><h3 id='30fd4ed55b-16'>示例</h3>
 <ul>
 <li>POST  <code>linear-swap-api/v1/swap_order_info</code></li>
@@ -10191,7 +10188,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-13'>备注</h3>
+<h3 id='e0361480e3-12'>备注</h3>
 <p>获取订单明细接口查询撤单数据时，如果传“created_at”和“order_type”参数则能查询最近24小时数据，如果不传“created_at”和“order_type”参数只能查询到最近12小时数据。</p>
 
 <p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
@@ -11552,7 +11549,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-14'>备注</h3>
+<h3 id='e0361480e3-13'>备注</h3>
 <ul>
 <li>如果不传page_index和page_size，默认只查第一页的20条数据，详情请看参数说明</li>
 </ul>
@@ -12766,7 +12763,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <ul>
 <li>POST <code>https://api.huobi.pro/v2/account/transfer</code></li>
 </ul>
-<h3 id='e0361480e3-15'>备注</h3>
+<h3 id='e0361480e3-14'>备注</h3>
 <p>此接口用户币币现货账户与USDT永续合约账户之间的资金划转。</p>
 
 <p>该接口的访问频次的限制为1分钟10次。</p>
@@ -14057,7 +14054,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-16'>备注</h4>
+<h4 id='e0361480e3-15'>备注</h4>
 <p>[t1, t5] 假设有 t1  ~ t5 的K线：</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -14284,7 +14281,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>(150档数据)  step0, step1, step2, step3, step4, step5, step14, step15（合并深度1-5,14-15）,step0时，不合并深度;(20档数据)  step6, step7, step8, step9, step10, step11, step12, step13（合并深度7-13）；step6时，不合并深度；step12（表示合并精度1的20档深度数据，表示整数位的个位）、step13（表示合并精度10的20档深度数据，表示整数位的十位）、step14（表示合并精度1的150档深度数据，表示整数位的个位）、step15（表示合并精度10的150档深度数据，表示整数位的十位）</td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-17'>备注</h4>
+<h4 id='e0361480e3-16'>备注</h4>
 <ul>
 <li><p>合并深度仅改变显示方式，不改变实际成交价格。</p></li>
 <li><p>step1至step5, step14, step15是进行了深度合并后的150档深度数据，step7至step13是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
@@ -14691,7 +14688,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-18'>备注</h3>
+<h3 id='e0361480e3-17'>备注</h3>
 <p>1、    当&quot;data_type&quot;为incremental时，首次推送的&quot;event&quot;为&quot;snapshot&quot;的数据，且当重新发送订阅请求时，首次返回都是&quot;snapshot&quot;的数据；</p>
 
 <p>2、深度即可以按照合约周期订阅，也可以按照合约代码订阅，行情系统在进行数据计算时，需要更新对应类型的数据；</p>
@@ -18704,7 +18701,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-19'>备注</h3>
+<h3 id='e0361480e3-18'>备注</h3>
 <p>推送逻辑一般是1分钟一次，但是出现以下情况时不会计算资金费率：</p>
 
 <ul>
