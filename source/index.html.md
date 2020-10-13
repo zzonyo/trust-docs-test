@@ -70,7 +70,6 @@ permission type  |  Content Type  |   Context           |   Request Type   |   D
  Read  | Market Data | linear-swap-ex/market/history/trade                               | GET    |      Query a Batch of Trade Records of a Contract               |     No         |
  Read  | Account    | linear-swap-api/v1/swap_account_info                              | POST   |      Query User’s Account Information                |     Yes        |
  Read  | Account    | linear-swap-api/v1/swap_position_info                             | POST   |      Query User’s position Information               |     Yes        |
- Read  | Account    | linear-swap-api/v1/swap_switch_lever_rate                         | POST   |      Switch Leverage               |     Yes        |
  Read  | Account    | linear-swap-api/v1/swap_available_level_rate                      | POST   |      Query user’s available leverage              |     Yes        |
  Read  | Account    | linear-swap-api/v1/swap_sub_account_list                          | POST   |      Query assets information of all sub-accounts under the master account (Query by coins)       |     Yes        |
  Read  | Account    | linear-swap-api/v1/swap_sub_account_info                          | POST   |      Query a single sub-account's assets information     |     Yes        |
@@ -87,6 +86,7 @@ Trade  | Account    | linear-swap-api/v1/swap_master_sub_transfer               
  Read  | Account    | linear-swap-api/v1/swap_api_trading_status                        | GET    |      Query user's API indicator disable information              |     Yes        |
 Trade  | Trade      | linear-swap-api/v1/swap_order                                     | POST   |      Place an Order                              |     Yes        |
 Trade  | Trade      | linear-swap-api/v1/swap_batchorder                                | POST   |      Place a Batch of Orders                         |     Yes        |
+Trade  | Trade      | linear-swap-api/v1/swap_switch_lever_rate                         | POST   |      Switch Leverage               |     Yes        |
 Trade  | Trade      | linear-swap-api/v1/swap_cancel                                    | POST   |      Cancel an Order                          |     Yes        |
 Trade  | Trade      | linear-swap-api/v1/swap_cancelall                                 | POST   |      Cancel All Orders                       |     Yes        |
  Read  | Trade      | linear-swap-api/v1/swap_order_info                                | POST   |      Get Information of an Order               |     Yes        |
@@ -3146,57 +3146,6 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
  - As long as the user has had funds, there will be settlement records. If the user queried has no settlement record, no data will be returned. (data will be an empty array)
 -->
 
-## Switch Leverage
-
-- POST `/linear-swap-api/v1/swap_switch_lever_rate`
-
-###  Request Parameter
-
-| **Parameter Name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code | true | string | contract code	 |  “BTC-USDT” |
-| lever_rate | true | int | Leverage to switch |  |
-
-> Response:
-
-```json
-
-OK：
-{
-    "status": "ok",
-    "ts": 1547521135713,
-    "data": {
-          "contract_code":"BTC-USDT",
-          "lever_rate":10
-    }
-}
-No：
-{
-    "status": "error",
-    "err_code": 2014,    
-    "err_msg": "Can't switch",  
-    "ts": 1547519608126
-}
-
-```
-
-### Returning Parameter
-
-| Parameter Name   | Mandatory | Type      | Desc    | Value Range    |
-| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
-| status                 | true | string  | status: ok,error            |                                          |
-| \<data\> | false     |  object      |                    |                                          |
-| contract_code               | false | string    | contract code      |                                          |
-| lever_rate               | false | int    | Switched leverage      |                                          |
-| \</data\>            |      |         |                    |                                          |
-| err_code | false | int | error code | |
-|err_msg| false| string | error msg | |
-| ts                     | true | long    | Timestamp                |    
-
-####  Note
-
-The interface limits the number of requests to 3 times/second.
-
 ## Query user’s available leverage
 
 - POST `linear-swap-api/v1/swap_available_level_rate`
@@ -3808,6 +3757,63 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 ### Note
 
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
+
+
+## Switch Leverage
+
+- POST `/linear-swap-api/v1/swap_switch_lever_rate`
+
+#### Note
+
+- Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.
+
+###  Request Parameter
+
+| **Parameter Name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| contract_code | true | string | contract code	 |  “BTC-USDT” |
+| lever_rate | true | int | Leverage to switch |  |
+
+> Response:
+
+```json
+
+OK：
+{
+    "status": "ok",
+    "ts": 1547521135713,
+    "data": {
+          "contract_code":"BTC-USDT",
+          "lever_rate":10
+    }
+}
+No：
+{
+    "status": "error",
+    "err_code": 2014,    
+    "err_msg": "Can't switch",  
+    "ts": 1547519608126
+}
+
+```
+
+### Returning Parameter
+
+| Parameter Name   | Mandatory | Type      | Desc    | Value Range    |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | status: ok,error            |                                          |
+| \<data\> | false     |  object      |                    |                                          |
+| contract_code               | false | string    | contract code      |                                          |
+| lever_rate               | false | int    | Switched leverage      |                                          |
+| \</data\>            |      |         |                    |                                          |
+| err_code | false | int | error code | |
+|err_msg| false| string | error msg | |
+| ts                     | true | long    | Timestamp                |    
+
+####  Note
+
+The interface limits the number of requests to 3 times/second.
+
 
 ## Cancel an Order 
 
@@ -7161,7 +7167,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | topic    | string | Subscribe Topic Name |
 | uid                   | string  | account uid                                              |
 | ts                        | long  | Time of Respond Generation, Unit: Millisecond                          |
-| event                     | string  | notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (ncluding transfer with exchange accounts, transfer between main account and sub-account, and tranfer between different margin accounts.), system (contract.system), other asset change(other)（including switch leverage）, initial margin(init)        |
+| event                     | string  | notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (ncluding transfer with exchange accounts, transfer between main account and sub-account, and tranfer between different margin accounts.), system (contract.system), other asset change(other), switch leverage(switch_lever_rate) , initial margin(init)        |
 | \<data\>            |   |                                                        |
 | symbol                    | string    | Coins. "BTC","ETH"...                     |
 | contract_code           | string  | Contract Code                                                       |
@@ -7308,7 +7314,7 @@ To subscribe position updates data, the client has to make connection to the ser
 | topic                   | string  | Required;  topic                                              |
 | uid                   | string  | account uid                                              |
 | ts                     | long  | Time of Respond Generation, Unit: Millisecond	                           |
-| event                  | string  | Related events of position change notification, such as order creation and position closing (order.close), order filled (order.match) (except for liquidation, settlement and delivery), settlement and delivery (settlement), order liquidation (order.liquidation), order cancellation (order.cancel), Switch Leverage（other）, initial positions (init), triggered by system periodic push (snapshot).     |
+| event                  | string  | Related events of position change notification, such as order creation and position closing (order.close), order filled (order.match) (except for liquidation, settlement and delivery), settlement and delivery (settlement), order liquidation (order.liquidation), order cancellation (order.cancel), switch leverage（switch_lever_rate）, initial positions (init), triggered by system periodic push (snapshot).     |
 | \<data\>            |   |                                                        |
 | symbol                 | string    | Coin. "BTC","ETH"...                     |
 | contract_code          | string  | Contract Code                                                      |
