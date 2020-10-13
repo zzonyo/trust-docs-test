@@ -875,7 +875,7 @@ Yes. The Swap API key and spot API key are same. You can create API using the fo
 
 ### Q2: Why are APIs  disconnected or timeout?
 
-1. The network connection is unstable if the server locates in China mainland,it is suggested to invoke APIS from a server located in  1a area of AWS Tokyo.
+1. The network connection is unstable if the server locates in China mainland,it is suggested to invoke APIS from a server located in  1c area of AWS Tokyo.
 
 2.  You can use api.btcgateway.pro or api.hbdm.vn to debug for China mainland  network.
 
@@ -883,7 +883,7 @@ Yes. The Swap API key and spot API key are same. You can create API using the fo
 
 It seems that most of the abnormal websocket  issues (such as disconnect, websocket close )(websocket: close 1006 (abnormal closure))are caused by different network environment. The following measures can effectively reduce websocket issues.
 
-It would be better if the server is located in 1a area of AWS Tokyo with url api.hbdm.vn and implement websocket re-connection mechanism. Both market heartbeat and order heartbeat should response with Pong with different format, following  Websocket market heartbeat and account heartbeat requirement.<a href=https://docs.huobigroup.com/docs/usdt_swap/v1/en/#market-heartbeat>here</a>
+It would be better if the server is located in 1c area of AWS Tokyo with url api.hbdm.vn and implement websocket re-connection mechanism. Both market heartbeat and order heartbeat should response with Pong with different format, following  Websocket market heartbeat and account heartbeat requirement.<a href=https://docs.huobigroup.com/docs/usdt_swap/v1/en/#market-heartbeat>here</a>
 
 ### Q4:  what is the difference between api.hbdm.com and api.hbdm.vn?
 
@@ -1070,7 +1070,7 @@ At present,it normally takes about 200-300ms from placing the order to getting t
 
 ### Q5: Why does the API return connection reset or Max retris or Timeout error?
 
-Most of the network connectivity problems ,(such as Connection reset or network timeout )  are caused by network instability , you can use the server in AWS Tokyo A area with api.hbdm.vn , which can effectively reduce network timeout errors.
+Most of the network connectivity problems ,(such as Connection reset or network timeout )  are caused by network instability , you can use the server in AWS Tokyo C area with api.hbdm.vn , which can effectively reduce network timeout errors.
 
 ### Q6: How to check the order status without order_id not returned?
  
