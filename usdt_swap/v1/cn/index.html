@@ -456,13 +456,13 @@
                     <a href="#33123f0c09" class="toc-h2 toc-link" data-title="合约批量下单">合约批量下单</a>
                   </li>
                   <li>
-                    <a href="#8a15d24569" class="toc-h2 toc-link" data-title="切换杠杆">切换杠杆</a>
-                  </li>
-                  <li>
                     <a href="#4e53c0fccd" class="toc-h2 toc-link" data-title="撤销订单">撤销订单</a>
                   </li>
                   <li>
                     <a href="#f175a031e7" class="toc-h2 toc-link" data-title="全部撤单">全部撤单</a>
+                  </li>
+                  <li>
+                    <a href="#8a15d24569" class="toc-h2 toc-link" data-title="切换杠杆">切换杠杆</a>
                   </li>
                   <li>
                     <a href="#f36cfcbaef" class="toc-h2 toc-link" data-title="获取合约订单信息">获取合约订单信息</a>
@@ -9448,136 +9448,11 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <ul>
 <li>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</li>
 </ul>
-<h2 id='8a15d24569'>切换杠杆</h2>
-<ul>
-<li>POST <code>/linear-swap-api/v1/swap_switch_lever_rate</code></li>
-</ul>
-<h4 id='e0361480e3-11'>备注</h4>
-<ul>
-<li>只有在单个品种下只有持仓，且没有挂单的场景下，才可以切换该品种当前的倍数。</li>
-</ul>
-<h3 id='1f9ac54b15-40'>请求参数</h3>
-<table><thead>
-<tr>
-<th><strong>参数名称</strong></th>
-<th><strong>是否必须</strong></th>
-<th><strong>类型</strong></th>
-<th><strong>描述</strong></th>
-<th><strong>取值范围</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>contract_code</td>
-<td>true</td>
-<td>String</td>
-<td>合约代码</td>
-<td>比如“BTC-USDT”</td>
-</tr>
-<tr>
-<td>lever_rate</td>
-<td>true</td>
-<td>int</td>
-<td>要切换的杠杆倍数</td>
-<td></td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>** 响应示例**</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="err">正确：</span><span class="w">
-</span><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547521135713</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="mi">10</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="err">错误：</span><span class="w">
-</span><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">2014</span><span class="p">,</span><span class="w">     
-    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"无法切换"</span><span class="p">,</span><span class="w">  
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547519608126</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='d5d25aef1a'><strong>响应参数</strong></h3>
-<table><thead>
-<tr>
-<th>参数名称</th>
-<th>是否必须</th>
-<th>类型</th>
-<th>描述</th>
-<th>取值范围</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>响应状态: ok,error</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;data&gt;</td>
-<td>false</td>
-<td>object</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>contract_code</td>
-<td>false</td>
-<td>string</td>
-<td>合约代码</td>
-<td></td>
-</tr>
-<tr>
-<td>lever_rate</td>
-<td>false</td>
-<td>int</td>
-<td>切换成功后的杠杆倍数</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/data&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>err_code</td>
-<td>false</td>
-<td>int</td>
-<td>错误码</td>
-<td></td>
-</tr>
-<tr>
-<td>err_msg</td>
-<td>false</td>
-<td>string</td>
-<td>错误信息</td>
-<td></td>
-</tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>时间戳</td>
-<td></td>
-</tr>
-</tbody></table>
-<h3 id='e0361480e3-12'>备注</h3>
-<ul>
-<li>接口限制请求次数为3次/秒。</li>
-</ul>
 <h2 id='4e53c0fccd'>撤销订单</h2><h3 id='30fd4ed55b-14'>示例</h3>
 <ul>
 <li>POST <code>linear-swap-api/v1/swap_cancel</code></li>
 </ul>
-<h3 id='1f9ac54b15-41'>请求参数</h3>
+<h3 id='1f9ac54b15-40'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9717,7 +9592,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <ul>
 <li>POST  <code>linear-swap-api/v1/swap_cancelall</code></li>
 </ul>
-<h3 id='1f9ac54b15-42'>请求参数</h3>
+<h3 id='1f9ac54b15-41'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9841,6 +9716,131 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='8a15d24569'>切换杠杆</h2>
+<ul>
+<li>POST <code>/linear-swap-api/v1/swap_switch_lever_rate</code></li>
+</ul>
+<h4 id='e0361480e3-11'>备注</h4>
+<ul>
+<li>只有在单个品种下只有持仓，且没有挂单的场景下，才可以切换该品种当前的倍数。</li>
+</ul>
+<h3 id='1f9ac54b15-42'>请求参数</h3>
+<table><thead>
+<tr>
+<th><strong>参数名称</strong></th>
+<th><strong>是否必须</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+<th><strong>取值范围</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>String</td>
+<td>合约代码</td>
+<td>比如“BTC-USDT”</td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>true</td>
+<td>int</td>
+<td>要切换的杠杆倍数</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>** 响应示例**</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="err">正确：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547521135713</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">错误：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">2014</span><span class="p">,</span><span class="w">     
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"无法切换"</span><span class="p">,</span><span class="w">  
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547519608126</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='d5d25aef1a'><strong>响应参数</strong></h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>响应状态: ok,error</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>false</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>false</td>
+<td>string</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>false</td>
+<td>int</td>
+<td>切换成功后的杠杆倍数</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>err_code</td>
+<td>false</td>
+<td>int</td>
+<td>错误码</td>
+<td></td>
+</tr>
+<tr>
+<td>err_msg</td>
+<td>false</td>
+<td>string</td>
+<td>错误信息</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>时间戳</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='e0361480e3-12'>备注</h3>
+<ul>
+<li>接口限制请求次数为3次/秒。</li>
+</ul>
 <h2 id='f36cfcbaef'>获取合约订单信息</h2><h3 id='30fd4ed55b-16'>示例</h3>
 <ul>
 <li>POST  <code>linear-swap-api/v1/swap_order_info</code></li>
@@ -17585,10 +17585,6 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td style="text-align: left">必填；订阅主题名称，必填 (positions.$contract_code)  订阅、取消订阅某个合约代码下的持仓变更信息，当 $contract_code值为 * 时代表订阅所有合约代码,contract_code支持大小写;</td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-16'>备注：</h4>
-<ul>
-<li>推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果5秒内某仓位已触发过推送，则该仓位跳过此次推送。</li>
-</ul>
 
 <blockquote>
 <p>当持仓有更新时，返回的参数示例如下:</p>
@@ -17738,6 +17734,11 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
+<h4 id='9852b06629-16'>备注：</h4>
+<ul>
+<li><p>推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果5秒内某仓位已触发过推送，则该仓位跳过此次推送。</p></li>
+<li><p>当用户持仓量为0时使用切换杠杆的接口，持仓推送接口不会推送&quot;switch_lever_rate&quot;。</p></li>
+</ul>
 <h2 id='unsub-3'>取消订阅持仓变动数据（unsub）</h2>
 <p>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</p>
 <h3 id='5ece2c9713-3'>取消订阅请求数据格式</h3>
