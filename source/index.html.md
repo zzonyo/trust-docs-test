@@ -3759,62 +3759,6 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
 
 
-## Switch Leverage
-
-- POST `/linear-swap-api/v1/swap_switch_lever_rate`
-
-#### Note
-
-- Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.
-
-###  Request Parameter
-
-| **Parameter Name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code | true | string | contract code	 |  “BTC-USDT” |
-| lever_rate | true | int | Leverage to switch |  |
-
-> Response:
-
-```json
-
-OK：
-{
-    "status": "ok",
-    "ts": 1547521135713,
-    "data": {
-          "contract_code":"BTC-USDT",
-          "lever_rate":10
-    }
-}
-No：
-{
-    "status": "error",
-    "err_code": 2014,    
-    "err_msg": "Can't switch",  
-    "ts": 1547519608126
-}
-
-```
-
-### Returning Parameter
-
-| Parameter Name   | Mandatory | Type      | Desc    | Value Range    |
-| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
-| status                 | true | string  | status: ok,error            |                                          |
-| \<data\> | false     |  object      |                    |                                          |
-| contract_code               | false | string    | contract code      |                                          |
-| lever_rate               | false | int    | Switched leverage      |                                          |
-| \</data\>            |      |         |                    |                                          |
-| err_code | false | int | error code | |
-|err_msg| false| string | error msg | |
-| ts                     | true | long    | Timestamp                |    
-
-####  Note
-
-The interface limits the number of requests to 3 times/second.
-
-
 ## Cancel an Order 
 
 ###  Example   
@@ -3929,6 +3873,63 @@ The return data from Cancel An Order Interface only means that order cancelation
 | successes                        | true          | string   | Successful order                              |                 |
 | \</dict\>                        |               |          |                                               |                 |
 | ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond |                 |
+
+
+## Switch Leverage
+
+- POST `/linear-swap-api/v1/swap_switch_lever_rate`
+
+#### Note
+
+- Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.
+
+###  Request Parameter
+
+| **Parameter Name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| contract_code | true | string | contract code	 |  “BTC-USDT” |
+| lever_rate | true | int | Leverage to switch |  |
+
+> Response:
+
+```json
+
+OK：
+{
+    "status": "ok",
+    "ts": 1547521135713,
+    "data": {
+          "contract_code":"BTC-USDT",
+          "lever_rate":10
+    }
+}
+No：
+{
+    "status": "error",
+    "err_code": 2014,    
+    "err_msg": "Can't switch",  
+    "ts": 1547519608126
+}
+
+```
+
+### Returning Parameter
+
+| Parameter Name   | Mandatory | Type      | Desc    | Value Range    |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | status: ok,error            |                                          |
+| \<data\> | false     |  object      |                    |                                          |
+| contract_code               | false | string    | contract code      |                                          |
+| lever_rate               | false | int    | Switched leverage      |                                          |
+| \</data\>            |      |         |                    |                                          |
+| err_code | false | int | error code | |
+|err_msg| false| string | error msg | |
+| ts                     | true | long    | Timestamp                |    
+
+####  Note
+
+The interface limits the number of requests to 3 times/second.
+
 
 ## Place Lightning Close Order
 
@@ -7271,8 +7272,6 @@ To subscribe position updates data, the client has to make connection to the ser
 | cid      | string | Optional ; Client requests unique ID                 |
 | topic    | string | Required； Subscribe Topic, Subscribe (positions.$contract_code) Required  Subscribe/unsubscribe the position data of a single coin, when the $contract_code value is *, it stands for subscribing the data of all coins. contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT" |
 
-### Note:
- - Position topic will be pushed every 5s.
 
 > When there is any position update, the server will send notification with return parameter. For example:
 
@@ -7333,6 +7332,11 @@ To subscribe position updates data, the client has to make connection to the ser
 | margin_asset              | string    | Margin Asset                                                    |
 | \</data\>            |   |                                                        |
 
+### Note:
+
+ - Position topic will be pushed every 5s.
+ 
+ - When switching leverage with no positions, the event "switch_lever_rate" will not be pushed by the position topic.
 
 ## Unsubscribe Position Updates Data(unsub)
 
