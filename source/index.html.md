@@ -2743,6 +2743,10 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | last_price           | true | decimal | 最新价              |                                          |
 | \</data\>            |      |         |      |              |
 
+#### 备注
+
+- 如果有某个品种在结算中，不带请求参数去查询持仓，会返回错误码1080(1080  In settlement or delivery. Unable to get positions.)。建议您带上请求参数去查询持仓，避免报错查询不到持仓。
+
 ## 查询用户账户和持仓信息
 
 - post `linear-swap-api/v1/swap_account_position_info`
