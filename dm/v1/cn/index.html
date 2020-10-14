@@ -6480,10 +6480,6 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-5'>备注</h4>
-<ul>
-<li>当品种中的某个品种处于结算中时，去查询所有品种的账户会报1080错误(1080  In settlement or delivery. Unable to get positions.)。建议您带上请求参数去查询持仓，避免报错查询不到账户信息。</li>
-</ul>
 <h2 id='46a3ba9a2f'>获取用户持仓信息</h2><h3 id='30fd4ed55b-13'>示例</h3>
 <ul>
 <li>POST <code>api/v1/contract_position_info</code></li>
@@ -6679,7 +6675,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-6'>备注</h4>
+<h4 id='e0361480e3-5'>备注</h4>
 <ul>
 <li>当品种中的某个品种处于结算中时，去查询所有品种的持仓会报1080错误(1080  In settlement or delivery. Unable to get positions.)。建议您带上请求参数去查询持仓，避免报错查询不到持仓。</li>
 </ul>
@@ -7323,7 +7319,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-7'>备注</h3>
+<h3 id='e0361480e3-6'>备注</h3>
 <ul>
 <li>请求参数“create_date”，由只能填写7或90 改为 可随意输入正整数，如果参数超过90则默认查询90天的数据；</li>
 </ul>
@@ -9415,7 +9411,7 @@ step6是不合并小数；
 <td>订单报价类型 &quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单, &quot;opponent_ioc&quot;： 对手价-IOC下单，&quot;optimal_5_ioc&quot;：最优5档-IOC下单，&quot;optimal_10_ioc&quot;：最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单,&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-8'>备注</h3>
+<h3 id='e0361480e3-7'>备注</h3>
 <p>如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单。</p>
 
 <p>对手价下单price价格参数不用传，对手价下单价格是买一和卖一价,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单price价格参数不用传，&quot;limit&quot;:限价，&quot;post_only&quot;:只做maker单 需要传价格，&quot;fok&quot;：全部成交或立即取消，&quot;ioc&quot;:立即成交并取消剩余。</p>
@@ -9503,7 +9499,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-9'>备注</h3>
+<h3 id='e0361480e3-8'>备注</h3>
 <p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
 <h2 id='33123f0c09'>合约批量下单</h2>
 <ul>
@@ -9631,7 +9627,7 @@ step6是不合并小数；
 <td>订单报价类型 &quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc：IOC订单，fok：FOK订单,&quot;opponent_ioc&quot;： 对手价-IOC下单，&quot;optimal_5_ioc&quot;：最优5档-IOC下单，&quot;optimal_10_ioc&quot;：最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单,&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-10'>备注</h3>
+<h3 id='e0361480e3-9'>备注</h3>
 <p>如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单。</p>
 
 <p>对手价下单price价格参数不用传，对手价下单价格是买一和卖一价,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单price价格参数不用传，&quot;limit&quot;:限价，&quot;post_only&quot;:只做maker单 需要传价格，&quot;fok&quot;：全部成交或立即取消，&quot;ioc&quot;:立即成交并取消剩余。</p>
@@ -9789,7 +9785,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-11'>备注</h3>
+<h3 id='e0361480e3-10'>备注</h3>
 <p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
 <h2 id='4e53c0fccd'>撤销订单</h2><h3 id='30fd4ed55b-15'>示例</h3>
 <ul>
@@ -9982,7 +9978,7 @@ step6是不合并小数；
 <td>合约类型</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-12'>备注</h3>
+<h3 id='e0361480e3-11'>备注</h3>
 <ul>
 <li>只传symbol，撤该该品种下所有周期的合约</li>
 <li>只要有contract_code，则撤销该code的合约</li>
@@ -10096,7 +10092,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>api/v1/contract_switch_lever_rate</code></li>
 </ul>
-<h4 id='e0361480e3-13'>备注</h4>
+<h4 id='e0361480e3-12'>备注</h4>
 <ul>
 <li><p>只有在单个品种下只有持仓，且没有挂单的场景下，才可以切换该品种当前的倍数。</p></li>
 <li><p>接口限制请求次数为3次/秒。</p></li>
@@ -10575,7 +10571,7 @@ step6是不合并小数；
 <td>不填默认20,不得多于50</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-14'>备注</h3>
+<h3 id='e0361480e3-13'>备注</h3>
 <p>获取订单明细接口查询撤单数据时，如果传“created_at”和“order_type”参数则能查询最近24小时数据，如果不传“created_at”和“order_type”参数只能查询到最近12小时数据。</p>
 
 <p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
@@ -11391,7 +11387,7 @@ step6是不合并小数；
 <td>1：限价单、3：对手价、4：闪电平仓、5：计划委托、6：post_only、7：最优5档、8：最优10档、9：最优20档、10：fok、11：ioc</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-15'>备注</h3>
+<h3 id='e0361480e3-14'>备注</h3>
 <ul>
 <li>所有已撤销且无成交的API限价订单记录只保留24小时。</li>
 </ul>
@@ -11670,7 +11666,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-16'>备注</h3>
+<h3 id='e0361480e3-15'>备注</h3>
 <ul>
 <li>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</li>
 </ul>
@@ -11750,7 +11746,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-17'>备注</h3>
+<h3 id='e0361480e3-16'>备注</h3>
 <ul>
 <li>请求参数“create_date”，由只能填写7或90 改为 可随意输入正整数，如果参数超过90则默认查询90天的数据；</li>
 </ul>
@@ -11987,7 +11983,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-18'>备注</h3>
+<h3 id='e0361480e3-17'>备注</h3>
 <ul>
 <li><p>如果不传page_index和page_size，默认只查第一页的20条数据，详情请看参数说明:</p></li>
 <li><p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p></li>
@@ -11996,7 +11992,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>api/v1/lightning_close_position</code></li>
 </ul>
-<h3 id='e0361480e3-19'>备注</h3>
+<h3 id='e0361480e3-18'>备注</h3>
 <p>闪电平仓，是指在对手价平仓的基础上，实行&#39;最优30档&#39;成交，即用户发出的平仓订单能够迅速以30档范围内对手方价格进行成交，未成交部分自动转为限价委托单。</p>
 
 <p>闪电平仓的平仓价格具备可预期的效果，避免在行情急涨急跌时订单无法成交时造成用户损失。</p>
@@ -12153,7 +12149,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>api/v1/contract_trigger_order</code></li>
 </ul>
-<h3 id='e0361480e3-20'>备注</h3>
+<h3 id='e0361480e3-19'>备注</h3>
 <ul>
 <li><p>如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单；</p></li>
 <li><p>optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单order_price价格参数不用传，&quot;limit&quot;:限价需要传价格。</p></li>
@@ -12530,7 +12526,7 @@ step6是不合并小数；
 <td>合约类型  当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;, 次季:&quot;next_quarter&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-21'>备注</h3>
+<h3 id='e0361480e3-20'>备注</h3>
 <ul>
 <li><p>只传symbol，撤该该品种下所有周期的合约</p></li>
 <li><p>只要有contract_code，则撤销该code的合约</p></li>
@@ -13009,7 +13005,7 @@ step6是不合并小数；
 <td>不填默认20，不得多于50</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-22'>备注</h3>
+<h3 id='e0361480e3-21'>备注</h3>
 <ul>
 <li><p>默认查询 已完成订单（type对应状态范围 4、5、6）；</p></li>
 <li><p>请求参数“create_date”，由只能填写7或90 改为 可随意输入正整数，如果参数超过90则默认查询90天的数据；</p></li>
@@ -13319,7 +13315,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>https://api.huobi.pro/v1/futures/transfer</code></li>
 </ul>
-<h3 id='e0361480e3-23'>备注</h3>
+<h3 id='e0361480e3-22'>备注</h3>
 <p>此接口用户币币现货账户与交割合约账户之间的资金划转。</p>
 
 <p>从现货现货账户转至交割合约账户，类型为<code>pro-to-futures</code>; 从交割合约账户转至现货账户，类型为<code>futures-to-pro</code></p>
@@ -14369,7 +14365,7 @@ step6是不合并小数；
 <td>仅支持小写，1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-24'>备注</h4>
+<h4 id='e0361480e3-23'>备注</h4>
 <p>[t1, t5] 假设有 t1  ~ t5 的K线：</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -14588,7 +14584,7 @@ step6是不合并小数；
 <td>获得150档深度数据，使用step0, step1, step2, step3, step4, step5, step14, step15 （step1至step15是进行了深度合并后的深度），使用step0时，不合并深度获取150档数据;获得20档深度数据，使用 step6, step7, step8, step9, step10, step11, step12, step13（step7至step13是进行了深度合并后的深度），使用step6时，不合并深度获取20档数据</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-25'>备注</h3>
+<h3 id='e0361480e3-24'>备注</h3>
 <ul>
 <li><p>用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</p></li>
 <li><p>step1至step5,step14,step15是进行了深度合并后的150档深度数据，step7至step13是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
@@ -16004,7 +16000,7 @@ step6是不合并小数；
 <td>仅支持小写,1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-26'>备注</h3>
+<h3 id='e0361480e3-25'>备注</h3>
 <ul>
 <li><p>当指数有变化时会推送;</p></li>
 <li><p>指数无变化时会根据订阅的周期推送；</p></li>
@@ -17927,7 +17923,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-27'>备注</h3>
+<h3 id='e0361480e3-26'>备注</h3>
 <ul>
 <li><p>每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。如果 5 秒内已经触发过推送，则该品种跳过该次定期推送。</p></li>
 <li><p>当用户持仓量为0时使用切换杠杆的接口，持仓推送接口不会推送&quot;switch_lever_rate&quot;。</p></li>
@@ -19132,7 +19128,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-28'>备注</h3>
+<h3 id='e0361480e3-27'>备注</h3>
 <ul>
 <li>这个推送由于是轮询判断状态的，所以推送可能存在1—2秒的延迟。</li>
 </ul>
