@@ -503,7 +503,7 @@ search: True
 交易     |  交易接口           |  swap-api/v1/swap_batchorder |    POST       |       合约批量下单       |  是  |
 交易     |  交易接口           |  swap-api/v1/swap_cancel |    POST       |       撤销订单       |  是  |
 交易     |  交易接口           |  swap-api/v1/swap_cancelall |    POST       |       全部撤单       |  是  |
-交易     |  交易接口           |  api/v1/contract_switch_lever_rate |             POST       |  切换杠杆                  |  是  |
+交易     |  交易接口           |  swap-api/v1/swap_switch_lever_rate |             POST       |  切换杠杆                  |  是  |
 交易     |  交易接口           |  swap-api/v1/swap_order_info |    POST       |       获取合约订单信息       |  是  |
 交易     |  交易接口           |  swap-api/v1/swap_order_detail |    POST       |       获取订单明细信息       |  是  |
 交易     |  交易接口           |  swap-api/v1/swap_openorders |    POST       |       获取合约当前未成交委托       |  是  |
