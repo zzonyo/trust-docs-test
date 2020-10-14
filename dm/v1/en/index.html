@@ -265,6 +265,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-1-8-2020-10-15-newly-added-added-switch-leverage-interface-updated-websocket-messages-of-account-topic-will-be-pushed-when-leverage-switch-succeeds-websocket-messages-of-position-topic-will-be-pushed-when-leverage-switch-succeeds-new-response-fields-are-added-on-websocket-topic-of-match-orders-the-interface-contract_order_info-supports-query-of-4-hour-order-cancellation-data-previously-only-support-to-query-24-hour-data" class="toc-h2 toc-link" data-title="1.1.8 2020-10-15 【Newly added：Added switch leverage interface; Updated:  websocket messages of account topic will be pushed when leverage switch succeeds;  websocket messages of position topic will be pushed when leverage switch succeeds; new response fields are added on websocket topic of match orders; the interface(contract_order_info) supports query of 4-hour order cancellation data (previously only support to query 24-hour data).】">1.1.8 2020-10-15 【Newly added：Added switch leverage interface; Updated:  websocket messages of account topic will be pushed when leverage switch succeeds;  websocket messages of position topic will be pushed when leverage switch succeeds; new response fields are added on websocket topic of match orders; the interface(contract_order_info) supports query of 4-hour order cancellation data (previously only support to query 24-hour data).】</a>
+                  </li>
+                  <li>
                     <a href="#1-1-7-2020-10-10-newly-added-added-ws-interface-for-subscribing-system-status-updates-push" class="toc-h2 toc-link" data-title="1.1.7 2020-10-10 【Newly added：Added WS interface for subscribing system status updates push】">1.1.7 2020-10-10 【Newly added：Added WS interface for subscribing system status updates push】</a>
                   </li>
                   <li>
@@ -518,6 +521,9 @@
                     <a href="#cancel-all-orders" class="toc-h2 toc-link" data-title="Cancel All Orders">Cancel All Orders</a>
                   </li>
                   <li>
+                    <a href="#switch-leverage" class="toc-h2 toc-link" data-title="Switch Leverage">Switch Leverage</a>
+                  </li>
+                  <li>
                     <a href="#place-flash-close-order" class="toc-h2 toc-link" data-title="Place Flash Close Order">Place Flash Close Order</a>
                   </li>
                   <li>
@@ -749,7 +755,37 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-1-7-2020-10-10-newly-added-added-ws-interface-for-subscribing-system-status-updates-push'>1.1.7 2020-10-10 【Newly added：Added WS interface for subscribing system status updates push】</h2><h3 id='1-added-ws-interface-for-subscribing-system-status-updates-push'>1. Added WS interface for subscribing system status updates push</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-1-8-2020-10-15-newly-added-added-switch-leverage-interface-updated-websocket-messages-of-account-topic-will-be-pushed-when-leverage-switch-succeeds-websocket-messages-of-position-topic-will-be-pushed-when-leverage-switch-succeeds-new-response-fields-are-added-on-websocket-topic-of-match-orders-the-interface-contract_order_info-supports-query-of-4-hour-order-cancellation-data-previously-only-support-to-query-24-hour-data'>1.1.8 2020-10-15 【Newly added：Added switch leverage interface; Updated:  websocket messages of account topic will be pushed when leverage switch succeeds;  websocket messages of position topic will be pushed when leverage switch succeeds; new response fields are added on websocket topic of match orders; the interface(contract_order_info) supports query of 4-hour order cancellation data (previously only support to query 24-hour data).】</h2><h3 id='1-added-switch-leverage-interface'>1、Added switch leverage interface</h3>
+<ul>
+<li><p>Interface Name：Switch Leverage</p></li>
+<li><p>Interface Type：private</p></li>
+<li><p>Interface URL：api/v1/contract_switch_lever_rate</p></li>
+</ul>
+<h3 id='2-subscribe-account-equity-updates-data-return-parameters-added-switch_lever_rate-event-type-to-represent-switching-leverages-when-the-leverage-is-successfully-switched-a-latest-information-on-assets-will-be-pushed-with-event-switch_lever_rate-quot'>2、Subscribe Account Equity Updates Data（Return parameters added “switch_lever_rate” event type to represent switching leverages. When the leverage is successfully switched, a latest information on assets will be pushed with event“switch_lever_rate&quot;.）</h3>
+<ul>
+<li><p>Interface Name：Subscribe Account Equity Updates Data</p></li>
+<li><p>Interface Type：private</p></li>
+<li><p>Subscribe topic：accounts.$symbol</p></li>
+</ul>
+<h3 id='3-subscribe-position-updates-return-parameters-added-switch_lever_rate-event-type-to-represent-switching-leverages-when-the-leverage-is-successfully-switched-a-latest-information-on-positions-will-be-pushed-with-event-switch_lever_rate-quot-the-information-will-not-be-pushed-when-the-user-39-s-position-is-0'>3、Subscribe Position Updates（Return parameters added “switch_lever_rate” event type to represent switching leverages. When the leverage is successfully switched, a latest information on positions will be pushed with event“switch_lever_rate&quot; (the information will not be pushed when the user&#39;s position is 0).）</h3>
+<ul>
+<li><p>Interface Name：Subscribe Position Updates</p></li>
+<li><p>Interface Type：private</p></li>
+<li><p>Subscribe topic：positions.$symbol </p></li>
+</ul>
+<h3 id='4-subscribe-match-order-data-added-the-following-fields-in-return-parameters-direction-buy-sell-direction-offset-open-close-direction-lever_rate-leverages-price-order-price-created_at-creation-time-order_source-order-source-order_price_type-order-quotation-type'>4、Subscribe Match Order Data（Added the following fields in return parameters: direction (buy/sell direction), offset (open/close direction), lever_rate (leverages), price (order price), created_at (creation time), order_source (order source), order_price_type (order quotation type).）</h3>
+<ul>
+<li><p>Interface Name：Subscribe Match Order Data</p></li>
+<li><p>Interface Type：private</p></li>
+<li><p>Subscribe topic：matchOrders.$symbol  </p></li>
+</ul>
+<h3 id='5-the-interface-contract_order_info-supports-query-of-4-hour-order-cancellation-data-previously-only-support-to-query-24-hour-data'>5、The interface(contract_order_info) supports query of 4-hour order cancellation data (previously only support to query 24-hour data).</h3>
+<ul>
+<li><p>Interface Name：Get Information of an Order</p></li>
+<li><p>Interface Type：private</p></li>
+<li><p>Interface URL：api/v1/contract_order_info</p></li>
+</ul>
+<h2 id='1-1-7-2020-10-10-newly-added-added-ws-interface-for-subscribing-system-status-updates-push'>1.1.7 2020-10-10 【Newly added：Added WS interface for subscribing system status updates push】</h2><h3 id='1-added-ws-interface-for-subscribing-system-status-updates-push'>1. Added WS interface for subscribing system status updates push</h3>
 <ul>
 <li>Interface name: subscribe system status updates</li>
 <li>Interface type: public</li>
@@ -1611,6 +1647,14 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
 <td>api/v1/contract_cancelall</td>
 <td>POST</td>
 <td>Cancel All Orders</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Trade</td>
+<td>Trade</td>
+<td>api/v1/contract_switch_lever_rate</td>
+<td>POST</td>
+<td>Switch Leverage</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -3129,13 +3173,13 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <p>Yes. The future API key and spot API key are same. You can create API using the following link.<a href=https://www.hbg.com/zh-cn/apikey/> click here</a></p>
 <h3 id='q2-why-are-apis-disconnected-or-timeout'>Q2: Why are APIs  disconnected or timeout?</h3>
 <ol>
-<li><p>The network connection is unstable if the server locates in China mainland,it is suggested to invoke APIS from a server located in  1a area of AWS Tokyo.</p></li>
+<li><p>The network connection is unstable if the server locates in China mainland,it is suggested to invoke APIS from a server located in  1c area of AWS Tokyo.</p></li>
 <li><p>You can use api.btcgateway.pro to debug for domestic network.</p></li>
 </ol>
 <h3 id='q3-why-is-the-websocket-often-disconnected'>Q3: Why is the websocket often disconnected?</h3>
 <p>It seems that most of the abnormal websocket  issues (such as disconnect, websocket close )(websocket: close 1006 (abnormal closure))are caused by different network environment. The following measures can effectively reduce websocket issues.</p>
 
-<p>It would be better if the server is located in 1a area of AWS Tokyo with url api.hbdm.vn and implement websocket re-connection mechanism. Both market heartbeat and order heartbeat should response with Pong with different format, following  Websocket market heartbeat and account heartbeat requirement.<a href=https://docs.huobigroup.com/docs/dm/v1/en/#websocket-heartbeat-and-authentication-interface>here</a></p>
+<p>It would be better if the server is located in 1c area of AWS Tokyo with url api.hbdm.vn and implement websocket re-connection mechanism. Both market heartbeat and order heartbeat should response with Pong with different format, following  Websocket market heartbeat and account heartbeat requirement.<a href=https://docs.huobigroup.com/docs/dm/v1/en/#websocket-heartbeat-and-authentication-interface>here</a></p>
 <h3 id='q4-what-is-the-difference-between-api-hbdm-com-and-api-hbdm-vn'>Q4:  What is the difference between api.hbdm.com and api.hbdm.vn?</h3>
 <p>The api.hbdm.vn uses AWS&#39;s CDN service. it should be more stable and faster for AWS users. The api.hbdm.com uses Cloudflare&#39;s CDN service.</p>
 <h3 id='q5-what-is-the-colocation-service-which-attention-points-should-we-know'>Q5: What is the colocation service ? which attention points should we know ?</h3>
@@ -3275,7 +3319,7 @@ You are recommended to read the status code from the returned message. If the ab
 <h3 id='q4-what-is-the-delay-for-the-round-trip-of-huobi-future'>Q4: What is the delay for the round trip of huobi future?</h3>
 <p>At present,it normally takes about 200-300ms from placing the order to getting the status of the order.</p>
 <h3 id='q5-why-does-the-api-return-connection-reset-or-max-retris-or-timeout-error'>Q5: Why does the API return connection reset or Max retris or Timeout error?</h3>
-<p>Most of the network connectivity problems ,(such as Connection reset or network timeout )  are caused by network instability , you can use the server in AWS Tokyo A area with api.hbdm.vn , which can effectively reduce network timeout errors.</p>
+<p>Most of the network connectivity problems ,(such as Connection reset or network timeout )  are caused by network instability , you can use the server in AWS Tokyo C area with api.hbdm.vn , which can effectively reduce network timeout errors.</p>
 <h3 id='q6-how-to-check-the-order-status-without-order_id-not-returned'>Q6: How to check the order status without order_id not returned?</h3>
 <p>If the order_id couldn&#39;t be returned due to network problems, you can query the status of the order by adding the custom order number(client_order_id ).</p>
 <h3 id='q7-what-to-do-if-it-39-s-diconnected-after-the-websocket-subscription-of-account-order-and-positions-for-a-while'>Q7: What to do if it&#39;s diconnected after the websocket subscription of account, order and positions for a while?</h3>
@@ -6759,6 +6803,10 @@ One of the query conditions must be chosen.</p>
 <td></td>
 </tr>
 </tbody></table>
+<h4 id='note-5'>Note</h4>
+<ul>
+<li>If there are symbols in the settlement or delivery period,error code 1080(1080  In settlement or delivery. Unable to get positions) will return without request parameters. It&#39;s suggested to query the position info with request parameters to avoid raising the error code and not being able to query the position.</li>
+</ul>
 <h2 id='query-assets-information-of-all-sub-accounts-under-the-master-account-2'>Query assets information of all sub-accounts under the master account</h2>
 <ul>
 <li>POST <code>api/v1/contract_sub_account_list</code></li>
@@ -7548,7 +7596,7 @@ One of the query conditions must be chosen.</p>
 <td>Page 20 by default without given instruction,  ，no more than 50</td>
 </tr>
 </tbody></table>
-<h4 id='note-5'>Note:</h4>
+<h4 id='note-6'>Note:</h4>
 <ul>
 <li>The data is queried in reverse order by default; the newer the data, the closer to the front.</li>
 <li>If the start time or the end time is not within the value range, the system will report an error 1067 to indicate the parameter is invalid.<br></li>
@@ -9442,7 +9490,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order. &quot;opponent_ioc&quot;：IOC order using the BBO price，&quot;optimal_5_ioc&quot;：optimal_5 IOC，&quot;optimal_10_ioc&quot;：optimal_10 IOC，&quot;optimal_20_ioc&quot;：optimal_20 IOC, &quot;opponent_fok&quot;：FOK order using the BBO price，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
 </tr>
 </tbody></table>
-<h3 id='note-6'>Note ：</h3>
+<h3 id='note-7'>Note ：</h3>
 <p>If there is a number in the Contract Code row，inquiry with Contract_Code. </p>
 
 <p>If there is no number，inquiry by Symbol + Contract Type.</p>
@@ -9533,7 +9581,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-7'>Note</h3>
+<h3 id='note-8'>Note</h3>
 <ul>
 <li>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</li>
 </ul>
@@ -9663,7 +9711,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20 ,ioc: IOC Order,，fok：FOK Order ,&quot;opponent_ioc&quot;：IOC order using the BBO price，&quot;optimal_5_ioc&quot;：optimal_5 IOC，&quot;optimal_10_ioc&quot;：optimal_10 IOC，&quot;optimal_20_ioc&quot;：optimal_20 IOC, &quot;opponent_fok&quot;：FOK order using the BBO price，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
 </tr>
 </tbody></table>
-<h3 id='note-8'>Note  ：</h3>
+<h3 id='note-9'>Note  ：</h3>
 <p>If there is a number in the Contract Code row,inquiry with Contract_Code. </p>
 
 <p>If there is no number,inquiry by Symbol + Contract Type.</p>
@@ -9823,7 +9871,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-9'>Note</h3>
+<h3 id='note-10'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
 <h2 id='cancel-an-order'>Cancel an Order</h2><h3 id='example-17'>Example</h3>
 <ul>
@@ -9857,7 +9905,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Case-Insenstive.Both uppercase and lowercase are supported..&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
-<h3 id='note-10'>Note  ：</h3>
+<h3 id='note-11'>Note  ：</h3>
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
 
 <p>The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.</p>
@@ -10004,7 +10052,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>contract_type</td>
 </tr>
 </tbody></table>
-<h3 id='note-11'>Note</h3>
+<h3 id='note-12'>Note</h3>
 <ol>
 <li><p>Send symbol to cancel all the contracts of that kind of symbol, e.g. send “BTC” to cancel all BTC weekly, biweekly and quarterly contracts.</p></li>
 <li><p>Send contract_code to cancel the contracts of that code.</p></li>
@@ -10124,11 +10172,134 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='switch-leverage'>Switch Leverage</h2>
+<ul>
+<li>POST <code>api/v1/contract_switch_lever_rate</code></li>
+</ul>
+<h4 id='note-13'>Note</h4>
+<ul>
+<li><p>Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.</p></li>
+<li><p>The interface limits the number of requests to 3 times/second.</p></li>
+</ul>
+<h3 id='request-parameter-30'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>String</td>
+<td>Variety code</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>true</td>
+<td>int</td>
+<td>Leverage to switch</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="err">OK：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547521135713</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">No：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">2014</span><span class="p">,</span><span class="w">   
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Can't switch"</span><span class="p">,</span><span class="w">  
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547519608126</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='returning-parameter-32'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>status: ok,error</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>false</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>Variety code</td>
+<td></td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>false</td>
+<td>int</td>
+<td>Switched leverage</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>err_code</td>
+<td>false</td>
+<td>int</td>
+<td>error code</td>
+<td></td>
+</tr>
+<tr>
+<td>err_msg</td>
+<td>false</td>
+<td>string</td>
+<td>error msg</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Timestamp</td>
+<td></td>
+</tr>
+</tbody></table>
 <h2 id='place-flash-close-order'>Place Flash Close Order</h2>
 <ul>
 <li>POST <code>api/v1/lightning_close_position</code></li>
 </ul>
-<h3 id='request-parameter-30'>Request Parameter</h3>
+<h3 id='request-parameter-31'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10202,7 +10373,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-32'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-33'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10277,7 +10448,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>api/v1/contract_order_info</code></li>
 </ul>
-<h3 id='request-parameter-31'>Request Parameter</h3>
+<h3 id='request-parameter-32'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10305,8 +10476,8 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Case-Insenstive.Both uppercase and lowercase are supported..&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
-<h3 id='note-12'>Note  ：</h3>
-<p>When getting information on order cancellation via get contracts Information interface, users can only query last 24-hour data</p>
+<h3 id='note-14'>Note  ：</h3>
+<p>When getting information on order cancellation via get contracts Information interface, users can only query last 4-hour data</p>
 
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id. The order completed( 5.partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled; ) will be deleted after the settlement on Friday.</p>
 
@@ -10347,7 +10518,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585563190031</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-33'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-34'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10565,7 +10736,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>api/v1/contract_order_detail</code></li>
 </ul>
-<h3 id='request-parameter-32'>Request Parameter</h3>
+<h3 id='request-parameter-33'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10611,7 +10782,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Default 20，no more than 50</td>
 </tr>
 </tbody></table>
-<h3 id='note-13'>Note</h3>
+<h3 id='note-15'>Note</h3>
 <p>When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 24-hour data, while users who don’t type in parameters “created_at” and “order_type” can only query last 12-hour data.</p>
 
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jason-bigint package.</p>
@@ -10682,7 +10853,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
  </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-34'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-35'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11012,7 +11183,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST  <code>api/v1/contract_openorders</code></li>
 </ul>
-<h3 id='request-parameter-33'>Request Parameter</h3>
+<h3 id='request-parameter-34'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11088,7 +11259,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
    </span><span class="p">},</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-35'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-36'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11343,7 +11514,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-34'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-35'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11427,7 +11598,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>1:&quot;limit&quot;，3:&quot;opponent&quot;，4:&quot;lightning&quot;,5:&quot;Trigger Order&quot;,6:&quot;pst_only&quot;,7:&quot;optimal_5&quot;，8:&quot;optimal_10&quot;，9:&quot;optimal_20&quot;,10:&quot;fok&quot;:FOK order,11:&quot;ioc&quot;:ioc order</td>
 </tr>
 </tbody></table>
-<h3 id='note-14'>Note</h3>
+<h3 id='note-16'>Note</h3>
 <p>When getting information on order cancellation via query history orders interface, users can only query last 24-hour data.</p>
 
 <blockquote>
@@ -11470,7 +11641,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
         </span><span class="p">},</span><span class="w">
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-36'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-37'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11705,13 +11876,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-15'>Note</h3>
+<h3 id='note-17'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
 <h2 id='get-history-match-results'>Get History Match Results</h2><h3 id='example-23'>Example</h3>
 <ul>
 <li>POST <code>api/v1/contract_matchresults</code></li>
 </ul>
-<h3 id='request-parameter-35'>Request Parameter</h3>
+<h3 id='request-parameter-36'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11804,7 +11975,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1555654870867</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-37'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-38'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12118,7 +12289,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-16'>Note</h3>
+<h3 id='note-18'>Note</h3>
 <ul>
 <li><p>If the contract_code field is filled with a number, order will by placed by contract_code.</p></li>
 <li><p>If the contract_code field is None, order will by placed by symbol and contract_type.</p></li>
@@ -12391,7 +12562,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>contract type &quot;this_week&quot; &quot;next_week&quot; &quot;quarter&quot; &quot;next_quarter&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-17'>Note</h3>
+<h3 id='note-19'>Note</h3>
 <ul>
 <li><p>If only symbol is filled, cancel all trigger orders of this symbol</p></li>
 <li><p>If contract_code is filled, cancel trigger orders of this contract code.</p></li>
@@ -12519,7 +12690,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>api/v1/contract_trigger_openorders</code></li>
 </ul>
-<h3 id='request-parameter-36'>Request Parameter</h3>
+<h3 id='request-parameter-37'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12608,7 +12779,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </span><span class="p">}</span><span class="w">
 
 
-</span></code></pre><h3 id='returning-parameter-38'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-39'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12824,7 +12995,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>api/v1/contract_trigger_hisorders</code></li>
 </ul>
-<h3 id='request-parameter-37'>Request Parameter</h3>
+<h3 id='request-parameter-38'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12892,7 +13063,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Page 20 by default without given instruction,  ，no more than 50</td>
 </tr>
 </tbody></table>
-<h3 id='note-18'>NOTE</h3>
+<h3 id='note-20'>NOTE</h3>
 <ul>
 <li>System will query the filled trigger order history by default </li>
 </ul>
@@ -12963,7 +13134,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547520777695</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-39'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-40'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13229,7 +13400,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p>API rate limit for this interface is up to 10 times per minute.</p>
 
 <p>Transferring margin between Spot account and Future account Interface, sets 8 decimal places for transferring amount of all coins.</p>
-<h3 id='request-parameter-38'>Request Parameter</h3>
+<h3 id='request-parameter-39'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13281,7 +13452,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     "err-msg":"account transfer error"
     }
 
-</code></pre><h3 id='returning-parameter-40'>Returning Parameter</h3>
+</code></pre><h3 id='returning-parameter-41'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13694,7 +13865,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p><code>&quot;ts&quot;: &quot;1492420473058&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-19'>Note</h3>
+<h3 id='note-21'>Note</h3>
 <ul>
 <li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 5 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
 </ul>
@@ -14021,7 +14192,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-39'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-40'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14205,7 +14376,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573106298</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-40'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-41'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14267,7 +14438,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Case-Senstive.Only lowercase is supported.1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-20'>Note</h4>
+<h4 id='note-22'>Note</h4>
 <p>If between time range [t1, t5], there are t1-t5 Klines in quantity.</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -14433,7 +14604,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-41'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-42'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14483,7 +14654,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5, 14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
-<h3 id='note-21'>Note:</h3>
+<h3 id='note-23'>Note:</h3>
 <ul>
 <li><p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p></li>
 <li><p>steps between step1 and step5, step14, step15 are merged orderbook data of step 150. 
@@ -14660,7 +14831,7 @@ Details are below:</p></li>
 </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-42'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-43'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14811,7 +14982,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-22'>Note:</h3>
+<h3 id='note-24'>Note:</h3>
 <ul>
 <li>when <code>data_type</code> is <code>incremental</code>,<code>snapshot</code> data wil be pushed for the first time. When re-connection occurs, <code>snapshort</code> data will be pushed for the first time. </li>
 <li><code>version</code>: auto increment in single websocket connection. <code>version</code> may be different among several websocket subscription connections.</li>
@@ -15019,7 +15190,7 @@ Details are below:</p></li>
 </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-43'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-44'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15041,7 +15212,7 @@ Details are below:</p></li>
 <td>id automatically generated by the business party</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameter-44'>Request Parameter</h3>
+<h3 id='request-parameter-45'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15167,7 +15338,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-23'>Note:</h3>
+<h3 id='note-25'>Note:</h3>
 <ul>
 <li><p>Once Best Bid/Ask Quotations (price,volume) change, it will be pushed.</p></li>
 <li><p>When the price and volume of Best Bid/Ask Quotations both change, only the latest BBO will be pushed.  </p></li>
@@ -15192,7 +15363,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-45'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-46'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15550,7 +15721,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-46'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-47'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15733,7 +15904,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-47'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-48'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15783,7 +15954,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-24'>Note</h3>
+<h3 id='note-26'>Note</h3>
 <ul>
 <li><p>Pushed once the index data is changed.</p></li>
 <li><p>Periodical Push when the index data hasn&#39;t changed according to the kline period.</p></li>
@@ -15807,7 +15978,7 @@ Details are below:</p></li>
     </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-41'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-42'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -15920,7 +16091,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-48'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-49'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15982,7 +16153,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-25'>Note：</h3>
+<h3 id='note-27'>Note：</h3>
 <ul>
 <li>Pushed once the index data is changed.</li>
 </ul>
@@ -16017,7 +16188,7 @@ Details are below:</p></li>
     </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
   </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-42'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-43'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -16146,7 +16317,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-49'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-50'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16204,7 +16375,7 @@ Details are below:</p></li>
 <td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-26'>Note:</h4>
+<h4 id='note-28'>Note:</h4>
 <ul>
 <li>The basis data of Next Quarterly Contract is available after 2020/6/15 14:00:00.</li>
 </ul>
@@ -16224,7 +16395,7 @@ Details are below:</p></li>
     </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0030004029945711621869969577274395938"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-43'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-44'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -16325,7 +16496,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-50'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-51'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16395,7 +16566,7 @@ Details are below:</p></li>
 <td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-27'>Note：</h3>
+<h3 id='note-29'>Note：</h3>
 <ul>
 <li>2000 data at most per request.</li>
 </ul>
@@ -16418,7 +16589,7 @@ Details are below:</p></li>
     </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0030004029945711621869969577274395938"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-44'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-45'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -16564,7 +16735,7 @@ Details are below:</p></li>
 <td>Required；format: orders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-28'>Note:</h4>
+<h4 id='note-30'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 </ul>
@@ -16956,7 +17127,7 @@ Details are below:</p></li>
 <blockquote>
 <p>Illustration on detailed data format of orders Notification</p>
 </blockquote>
-<h4 id='note-29'>Note:</h4>
+<h4 id='note-31'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 <li>The orders will be pushed when matched by matching engine.</li>
@@ -16973,37 +17144,44 @@ Details are below:</p></li>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">           
-  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matchOrders.btc"</span><span class="p">,</span><span class="w">     
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">         
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matchOrders.btc"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1315816"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">    
-  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">         
-  </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">     
-  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC180914"</span><span class="p">,</span><span class="w">     
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">   
-  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">106837</span><span class="p">,</span><span class="w">            
-  </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"106837"</span><span class="p">,</span><span class="w">     
-  </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">    
-  </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">    
-  </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w"> 
-  </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w">   
+  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">    
+  </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">  
+  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC180914"</span><span class="p">,</span><span class="w">  
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">  
+  </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">106837</span><span class="p">,</span><span class="w">   
+  </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"106837"</span><span class="p">,</span><span class="w">    
+  </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">   
+  </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">  
+  </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">   
+  </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w">
   </span><span class="s2">"trade"</span><span class="p">:[{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1232-213123-1231"</span><span class="p">,</span><span class="w"> 
-      </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="mi">112</span><span class="p">,</span><span class="w">     
-      </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">    
-      </span><span class="s2">"trade_price"</span><span class="p">:</span><span class="mf">123.4555</span><span class="p">,</span><span class="w">     
-      </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="mf">34.123</span><span class="p">,</span><span class="w">    
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="p">,</span><span class="w">    
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1232-213123-1231"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"trade_id"</span><span class="p">:</span><span class="mi">112</span><span class="p">,</span><span class="w">    
+      </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">  
+      </span><span class="s2">"trade_price"</span><span class="p">:</span><span class="mf">123.4555</span><span class="p">,</span><span class="w">   
+      </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="mf">34.123</span><span class="p">,</span><span class="w">   
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="p">,</span><span class="w">  
       </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maker"</span><span class="w">
-    </span><span class="p">}]</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">34.123</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='format-of-order-data-pushed'>format of order data pushed</h3>
 <table><thead>
 <tr>
-<th>attr</th>
-<th>type</th>
-<th>desc</th>
+<th>Parameter Name</th>
+<th>Type</th>
+<th>Desc</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -17024,12 +17202,12 @@ Details are below:</p></li>
 <tr>
 <td>ts</td>
 <td>long</td>
-<td></td>
+<td>Time of Respond Generation</td>
 </tr>
 <tr>
 <td>symbol</td>
 <td>string</td>
-<td>ID</td>
+<td>symbol</td>
 </tr>
 <tr>
 <td>contract_type</td>
@@ -17039,7 +17217,7 @@ Details are below:</p></li>
 <tr>
 <td>contract_code</td>
 <td>string</td>
-<td></td>
+<td>contract code</td>
 </tr>
 <tr>
 <td>status</td>
@@ -17048,18 +17226,18 @@ Details are below:</p></li>
 </tr>
 <tr>
 <td>order_id</td>
-<td>long</td>
-<td></td>
+<td>bigint</td>
+<td>order id</td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>string</td>
+<td>order id</td>
 </tr>
 <tr>
 <td>client_order_id</td>
 <td>long</td>
 <td>the client ID that is filled in when the order is placed</td>
-</tr>
-<tr>
-<td>order_id_str</td>
-<td>string</td>
-<td></td>
 </tr>
 <tr>
 <td>order_type</td>
@@ -17089,7 +17267,7 @@ Details are below:</p></li>
 <tr>
 <td>trade_id</td>
 <td>long</td>
-<td>In this interface, trade_id is the same with match_id of api/v1/contract_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.</td>
+<td>In this interface, trade_id is the same with match_id of api/v1/contract_matchresults. trade_id is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.</td>
 </tr>
 <tr>
 <td>trade_volume</td>
@@ -17120,6 +17298,41 @@ Details are below:</p></li>
 <td>&lt;/list&gt;</td>
 <td></td>
 <td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>string</td>
+<td>direction &quot;buy&quot; or  &quot;sell&quot;</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>string</td>
+<td>offset:  &quot;open&quot; or &quot;close&quot;</td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>int</td>
+<td>lever rate</td>
+</tr>
+<tr>
+<td>price</td>
+<td>decimal</td>
+<td>trigger price</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>long</td>
+<td>created at</td>
+</tr>
+<tr>
+<td>order_source</td>
+<td>string</td>
+<td>order source</td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>string</td>
+<td>order price type: &quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order. &quot;opponent_ioc&quot;：IOC order using the BBO price，&quot;optimal_5_ioc&quot;：optimal_5 IOC，&quot;optimal_10_ioc&quot;：optimal_10 IOC，&quot;optimal_20_ioc&quot;：optimal_20 IOC, &quot;opponent_fok&quot;：FOK order using the BBO price，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
 </tr>
 </tbody></table>
 <h2 id='unsubscribe-order-data-unsub-2'>Unsubscribe Order Data（unsub）</h2>
@@ -17309,7 +17522,7 @@ Details are below:</p></li>
 <tr>
 <td>event</td>
 <td>string</td>
-<td>notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (including withdraw and deposit), system (contract.system), other asset change(other), initial margin(init)</td>
+<td>notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (including withdraw and deposit), system (contract.system), other asset change(other), switch leverages(switch_lever_rate), initial margin(init)</td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
@@ -17387,7 +17600,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-30'>Note</h3>
+<h3 id='note-32'>Note</h3>
 <ul>
 <li>The websocket subscription of accounts will be pushed every 5 seconds with the event &quot;snapshot&quot;. It will not be pushed if there is a push in 5 seconds. </li>
 </ul>
@@ -17580,7 +17793,7 @@ Details are below:</p></li>
 <tr>
 <td>event</td>
 <td>string</td>
-<td>Notification on position change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (including withdraw and deposit), system (contract.system), initial margin(init)</td>
+<td>Related events of position change notification, such as order creation and position closing (order.close), order filled (order.match) (except for liquidation, settlement and delivery), settlement and delivery (settlement), order liquidation (order.liquidation), order cancellation (order.cancel),switch leverage（switch_lever_rate）, initial positions (init), triggered by system periodic push (snapshot).</td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
@@ -17668,9 +17881,10 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-31'>Note</h3>
+<h3 id='note-33'>Note</h3>
 <ul>
-<li>The websocket subscription of positions will be pushed every 5 seconds with the event &quot;snapshot&quot;. It will not be pushed if there is a push in 5 seconds. </li>
+<li><p>The websocket subscription of positions will be pushed every 5 seconds with the event &quot;snapshot&quot;. It will not be pushed if there is a push in 5 seconds. </p></li>
+<li><p>When switching leverage with no positions, the event &quot;switch_lever_rate&quot; will not be pushed by the position topic.</p></li>
 </ul>
 <h2 id='unsubscribe-position-updates-data-unsub'>Unsubscribe Position Updates Data(unsub)</h2>
 <p>To unsubscribe, the client has to make connection to the server and send unsubscribe request in the format below:</p>
@@ -18174,7 +18388,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-32'>Note：</h3>
+<h3 id='note-34'>Note：</h3>
 <ul>
 <li>The websocket subscription of contract info event is pushed every 60 seconds, and the event is &quot;snapshot&quot;. </li>
 <li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is &quot;init&quot;.</li>
@@ -18280,7 +18494,7 @@ Details are below:</p></li>
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trigger_order.BTC"</span><span class="p">,</span><span class="w">   
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">          
 </span><span class="p">}</span><span class="w">                                    
-</span></code></pre><h3 id='request-parameter-51'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-52'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18695,7 +18909,7 @@ Details are below:</p></li>
     </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"topic "</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.futures.heartbeat"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-52'><strong>Request Parameter</strong>:</h3>
+</span></code></pre><h3 id='request-parameter-53'><strong>Request Parameter</strong>:</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -18828,7 +19042,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-33'>Note</h3>
+<h3 id='note-35'>Note</h3>
 <ul>
 <li>Since this push is a poll query status, there may be a delay of 1-2 seconds.</li>
 </ul>
