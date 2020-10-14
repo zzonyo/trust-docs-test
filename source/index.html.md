@@ -38,6 +38,49 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.0.9 2020-10-15 【Newly added：Added switch leverage interface; Updated:  websocket messages of account topic will be pushed when leverage switch succeeds;  websocket messages of position topic will be pushed when leverage switch succeeds; new response fields are added on websocket topic of match orders; the interface(swap_order_info) supports query of 4-hour order cancellation data (previously only support to query 24-hour data).】
+
+  
+### 1、Added “switch leverages” interface
+  - Interface Name：switch leverage
+
+  - Interface Type：private
+
+  - Interface URL：swap-api/v1/swap_switch_lever_rate
+
+### 2、Modified “subscribe asset change information” interface（Return parameters added “switch_lever_rate” event type to represent switching leverages. When the leverage is successfully switched, a latest information on assets will be pushed with event“switch_lever_rate".）
+
+  - Interface Name：Subscribe Account Equity Updates Data
+
+  - Interface Type：private
+
+  - Subscribe topic：accounts.$contract_code
+
+### 3、Modified “subscribe position change information” interface（Return parameters added “switch_lever_rate” event type to represent switching leverages. When the leverage is successfully switched, a latest information on positions will be pushed with event“switch_lever_rate" (the information will not be pushed when the user's position is 0).）
+
+  - Interface Name：Subscribe Position Updates
+
+  - Interface Type：private
+
+  - Subscribe topic：positions.$contract_code
+
+### 4、Added fields in return parameters for “subscribe match order” （Added the following fields in return parameters: direction (buy/sell direction), offset (open/close direction), lever_rate (leverages), price (order price), created_at (creation time), order_source (order source), order_price_type (order quotation type).）
+
+  - Interface Name：Subscribe Match Order Data
+
+  - Interface Type：private
+
+  - Subscribe topic：matchOrders.$contract_code 
+
+### 5、the interface(swap_order_info) supports query of 4-hour order cancellation data (previously only support to query 24-hour data).
+
+  - Interface Name：Get Information of an Order
+
+  - Interface Type：private
+
+  - Interface URL：swap-api/v1/swap_order_info
+
+
 ## 1.0.8 2020-10-10 【Newly added：Added WS interface for subscribing system status updates push】
 
 ### 1. Added WS interface for subscribing system status updates push
@@ -419,6 +462,7 @@ Trade  | Trade            |  /swap-api/v1/swap_order          |  POST           
 Trade | Trade            | /swap-api/v1/swap_batchorder       |  POST             | Place a Batch of Orders                        | Yes                    |
 Trade | Trade            | /swap-api/v1/swap_cancel           |  POST             | Cancel an Order                                | Yes                    |
 Trade | Trade            | /swap-api/v1/swap_cancelall        |  POST             | Cancel All Orders                              | Yes                    |
+Trade     |  Trade           |  /swap-api/v1/swap_switch_lever_rate |             POST       |  Switch Leverage                  |  Yes  |
 Trade     |  Trade           |  /swap-api/v1/swap_lightning_close_position |   POST       |  Place Lightning Close Order            |  Yes  |
 Trade  | Trade            |  /swap-api/v1/swap_trigger_order          |  POST             | Place an Trigger Order                                 | Yes                    |
 Trade  | Trade            |  /swap-api/v1/swap_trigger_cancel          |  POST             | Cancel a Trigger Order                                 | Yes                    |
@@ -1202,7 +1246,7 @@ Yes. The future API key and spot API key are same. You can create API using the 
 
 ### Q2: Why are APIs  disconnected or timeout?
 
-1. The network connection is unstable if the server locates in China mainland,it is suggested to invoke APIS from a server located in  1a area of AWS Tokyo.
+1. The network connection is unstable if the server locates in China mainland,it is suggested to invoke APIS from a server located in  1c area of AWS Tokyo.
 
 2.  You can use api.btcgateway.pro or api.hbdm.vn to debug for China mainland  network.
 
@@ -1210,7 +1254,7 @@ Yes. The future API key and spot API key are same. You can create API using the 
 
 It seems that most of the abnormal websocket  issues (such as disconnect, websocket close )(websocket: close 1006 (abnormal closure))are caused by different network environment. The following measures can effectively reduce websocket issues.
 
-It would be better if the server is located in 1a area of AWS Tokyo with url api.hbdm.vn and implement websocket re-connection mechanism. Both market heartbeat and order heartbeat should response with Pong with different format, following  Websocket market heartbeat and account heartbeat requirement.<a href=https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#472585d15d>here</a>
+It would be better if the server is located in 1c area of AWS Tokyo with url api.hbdm.vn and implement websocket re-connection mechanism. Both market heartbeat and order heartbeat should response with Pong with different format, following  Websocket market heartbeat and account heartbeat requirement.<a href=https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#472585d15d>here</a>
 
 ### Q4:  what is the difference between api.hbdm.com and api.hbdm.vn?
 
@@ -1397,7 +1441,7 @@ At present,it normally takes about 200-300ms from placing the order to getting t
 
 ### Q5: Why does the API return connection reset or Max retris or Timeout error?
 
-Most of the network connectivity problems ,(such as Connection reset or network timeout )  are caused by network instability , you can use the server in AWS Tokyo A area with api.hbdm.vn , which can effectively reduce network timeout errors.
+Most of the network connectivity problems ,(such as Connection reset or network timeout )  are caused by network instability , you can use the server in AWS Tokyo C area with api.hbdm.vn , which can effectively reduce network timeout errors.
 
 ### Q6: How to check the order status without order_id not returned?
  
@@ -4237,6 +4281,61 @@ The return data from Cancel An Order Interface only means that order cancelation
 ```
 
 
+## Switch Leverage
+
+- POST `swap-api/v1/swap_switch_lever_rate`
+
+#### Note
+
+- Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.
+
+- The interface limits the number of requests to 3 times/second.
+
+###  Request Parameter
+
+| **Parameter Name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| contract_code | true | String | contract code	 |  “BTC-USD” |
+| lever_rate | true | int | Leverage to switch |  |
+
+> Response:
+
+```json
+
+OK：
+{
+    "status": "ok",
+    "ts": 1547521135713,
+    "data": {
+          "contract_code":"BTC-USD",
+          "lever_rate":10
+    }
+}
+No：
+{
+    "status": "error",
+    "err_code": 2014,    
+    "err_msg": "Can't switch",  
+    "ts": 1547519608126
+}
+
+```
+
+### Returning Parameter
+
+| Parameter Name   | Mandatory | Type      | Desc    | Value Range    |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | status: ok,error            |                                          |
+| \<data\> | false     |  object      |                    |                                          |
+| contract_code               | false | string    | contract code      |                                          |
+| lever_rate               | false | int    | Switched leverage      |                                          |
+| \</data\>            |      |         |                    |                                          |
+| err_code | false | int | error code | |
+|err_msg| false| string | error msg | |
+| ts                     | true | long    | Timestamp                |    
+
+
+
 ## Get Information of an Order
 
 ###  Example   
@@ -4253,7 +4352,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 
 ###  Note  ：
 
-When getting information on order cancellation via get contracts Information interface, users can only query last 24-hour data
+When getting information on order cancellation via get contracts Information interface, users can only query last 4-hour data
 
 Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id. The order completed( 5.partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled; ) will be deleted after the settlement of funding rate on 04:00(GMT+8), 12:00(GMT+8) and 20:00(GMT+8).
 
@@ -7237,58 +7336,73 @@ To subscribe order data, Clients have to make connection to the Server and send 
 ```json
 
 {
-  "op": "notify",           
-  "topic": "matchOrders.btc-usd",     
-  "uid": "1315816",
-  "ts": 1489474082831,    
-  "symbol": "BTC",         
-  "contract_code": "BTC-USD",     
-  "status": 1,   
-  "order_id": 106837,            
-  "order_id_str": "106837", 
-  "client_order_id": 111,    
-  "order_type": "1",    
-  "trade_volume": 1,
-  "volume": 100,  
-  "trade":[{
-      "id": "1232-213123-1231", 
-      "trade_id":112,     
-      "trade_volume":1,    
-      "trade_price":123.4555,     
-      "trade_turnover":34.123,    
-      "created_at": 1490759594752,    
-      "role": "maker"
-    }]
+    "op": "notify",      
+    "topic": "matchOrders.btc-usd", 
+    "ts": 1489474082831,    
+    "uid": "11434749",     
+    "symbol": "BTC",       
+    "contract_code": "BTC-USD",    
+    "status": 1, 
+    "order_id": 106837,     
+    "order_id_str": "106837",  
+    "client_order_id":"111", 
+    "order_type": "1",  
+    "trade_volume": 1,  
+    "volume": 100,  
+    "trade":[{
+        "id": "1232-213123-1231", 
+        "trade_id":112,   
+        "trade_volume":1,  
+        "trade_price":123.4555,   
+        "trade_turnover":34.123,  
+        "created_at": 1490759594752,  
+        "role": "maker"
+      }],
+    "direction": "buy",
+    "offset": "open",
+    "lever_rate": 10,
+    "price": 34.123,
+    "created_at": 1490759594752,
+    "order_source": "api",
+    "order_price_type": "limit"
 }
 
 ```
 
 ### format of order data pushed
 
-| attr                | type    | desc                                                         |
-| ----------------------- | ------- | ------------------------------------------------------------ |
-| op                      | string  | notify;                          |
-| topic                   | string  | topic                                              |
-| uid                   | string  |account uid                                              |
-| ts                      | long    |  server response timestamp                                             |
-| symbol                  | string  | ID                                                       |
-| contract_code           | string  |  contract code                                                     |
-| status                  | int     | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled; |
-| order_id                | long    |                                                        |
-| order_id_str            | string   |                                                      |
-| client_order_id            | long   | the client ID that is filled in when the order is placed         |
-| order_type              | int     | Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order                 |
-| trade_volume            | decimal | total filled volume of the order                                                       |
-| volume            | decimal | total volume of the order                                                       |
-| \<list\>(attr: trade) |         |                                                              |
-| id            | string| 	the global unique id of the trade.                                                       |
-| trade_id                | long    | In this interface, trade_id is the same with match_id of swap-api/v1/swap_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.                                                  |
-| trade_volume            | decimal | trade volume                                                       |
-| trade_price             | decimal | trade price                                                    |
-| trade_turnover          | decimal | trade turnover                                                    |
-| created_at              | long    | created at                                                 |
-| role             | string  | taker or maker                                                 |
-| \</list\>                  |         |                                                             |
+| **Parameter Name**       | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| op        | true     | string  |  notify;              |                |
+| topic     | true     | string  | topic               |                |
+| ts                  | true     | long  | Time of Respond Generation          |                |
+| uid        | true     | string  | account uid   |                |
+| symbol                  | true     | string  | symbol               |                |
+| contract_code           | true     | string  | contract code               |"BTC-USD" ...         |
+| status                 |  true     | int | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled; |             |
+| order_id             | true      | long | order id |                |
+| order_id_str             | true      | string | order id |                |
+| client_order_id             | true      | long | the client ID that is filled in when the order is placed |                |
+| order_type | true | string | order type |1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order |
+| trade_volume    | true     | decimal  |   total filled volume of the order    |                |
+| volume                  | true     | decimal  |      total volume of the order        |                |
+| \<trade\>|   true       |   object array      |                    |                |
+| id             | true     | string    | the global unique id of the trade.             |                |
+| trade_id                | true     | long    | In this interface, trade_id is the same with match_id of swap-api/v1/swap_matchresults. trade_id is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.     |                |
+| trade_price             | true     | decimal | trade price               |                |
+| trade_volume            | true     | decimal | trade volume                |                |
+| trade_turnover          | true     | decimal | trade turnover               |                |
+| created_at              | true     | long    | created at               |                |
+| role              | true     | string    | taker or maker               |                |
+| \</trade\>               |          |         |                    |                |
+| direction        | true     | string       | Order Direction          | "buy" or  "sell"                                         |
+| offset           | true     | string       | offset direction        | "open" or "close"                                       |
+| lever_rate              | true | int     | lever rate        |                  |
+| price            | true     | decimal      | trigger price            |                                            |
+| created_at       | true     | long         | created at                                                     |                                                              |
+| order_source     | true     | string       | order source                                                     |                                                              |
+| order_price_type | true     | string       | order price type          |  order price type: "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order. "opponent_ioc"：IOC order using the BBO price，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK    |
+
 
 ## Unsubscribe Order Data（unsub）
 
@@ -7417,7 +7531,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | topic    | string | Subscribe Topic Name |
 | uid                   | string  | account uid                                              |
 | ts                        | long  | Time of Respond Generation, Unit: Millisecond                          |
-| event                     | string  | notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (including withdraw and deposit), system (contract.system), other asset change(other), initial margin(init)                                              |
+| event                     | string  | notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (including withdraw and deposit), system (contract.system), other asset change(other), switch leverage（switch_lever_rate）, initial margin(init)                           |
 | \<data\>            |   |                                                        |
 | symbol                    | string    |  symbol e.g:  "BTC","ETH"...                         |
 | contract_code            | string  | Contract Code                                                     |
@@ -7520,8 +7634,6 @@ To subscribe position updates data, the client has to make connection to the ser
 | cid      | string | Optional ; Client requests unique ID                 |
 | topic    | string | Required； Subscribe Topic, Subscribe (positions.$contract_code) Required  Subscribe/unsubscribe the position data of a single coin, when the $contract_code value is *, it stands for subscribing the data of all coins. contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 
-### Note:
- - Position topic will be pushed every 5s.
 
 > When there is any position update, the server will send notification with return parameter. For example:
 
@@ -7562,7 +7674,7 @@ To subscribe position updates data, the client has to make connection to the ser
 | topic                   | string  | Required;  topic                                              |
 | uid                   | string  | account uid                                              |
 | ts                     | long  | Time of Respond Generation, Unit: Millisecond	                           |
-| event                  | string  | Notification on position change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (including withdraw and deposit), system (contract.system), initial margin(init)                                             |
+| event                  | string  | Related events of position change notification, such as order creation and position closing (order.close), order filled (order.match) (except for liquidation, settlement and delivery), settlement and delivery (settlement), order liquidation (order.liquidation), order cancellation (order.cancel), switch leverage（switch_lever_rate）, initial positions (init), triggered by system periodic push (snapshot).                                     |
 | \<data\>            |   |                                                        |
 | symbol                 | string    |  symbol  e.g:"BTC","ETH"...               |
 | contract_code          | string  | Contract Code                                                      |
@@ -7579,6 +7691,12 @@ To subscribe position updates data, the client has to make connection to the ser
 | direction              | string    | Position direction   "buy":Long "sell":Short                                                     |
 | last_price              | decimal    | Last Price                                                     |
 | \</data\>            |   |                                                        |
+
+### Note:
+
+ - Position topic will be pushed every 5s.
+ 
+ - When switching leverage with no positions, the event "switch_lever_rate" will not be pushed by the position topic.
 
 
 ## Unsubscribe Position Updates Data(unsub)
@@ -7685,7 +7803,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 ```json
 {
     "op":"notify",
-    "topic":"public.BTC-USD.liquidation_orders",
+    "topic":"public.btc-usd.liquidation_orders",
     "ts":1580815422403,
     "data":[
         {
@@ -7776,7 +7894,7 @@ To subscribe funding rate data, the client has to make connection to the server 
 ```json
 { 
       "op": "notify",            
-      "topic": "public.BTC-USD.funding_rate",    
+      "topic": "public.btc-usd.funding_rate",    
       "ts": 1489474082831,   
       "data": [
         {
@@ -7905,7 +8023,7 @@ To subscribe contract infodata, the client has to make connection to the server 
 ```json
 {
     "op": "notify",           
-	"topic": "public.BTC-USD.contract_info",
+	"topic": "public.btc-usd.contract_info",
 	"ts": 1489474082831,
 	"event":"init",
 	"data": [{
@@ -8034,7 +8152,7 @@ To subscribe contract infodata, the client has to make connection to the server 
 
 {
   "op": "notify",           
-	"topic": "trigger_order.EOS-USD",
+	"topic": "trigger_order.eos-usd",
 	"ts": 1489474082831,
 	"uid": "15712398",
 	"event": "order",
