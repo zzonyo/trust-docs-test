@@ -654,13 +654,6 @@ The JSON data type described in this document is defined as below:
 
 ## Error Message
 
-### Market Data  API Error Message
-
-| Error Message | Description |
-|-----|-----|
-| bad-request | The request is wrong |
-| invalid-parameter | The parameter is invalid |
-| invalid-command | The command is invalid |
 ### Order API Error Message
 
 | Error Message | Description |
@@ -1525,6 +1518,22 @@ No parameter is needed for this endpoint.
 The returned "Data" field contains an integer represents the timestamp in milliseconds adjusted to Singapore time.
 
 # Market Data
+
+## Introduction
+
+Market data APIs provide public market information such as varies of candlestick, depth and trade information.
+
+Below is the error code, error message and description returned by Market data APIs.
+
+| Error Code | Error Message | Description |
+| ---------- | ------------- | ----------- |
+|invalid-parameter| invalid symbol   | Parameter symbol is invalid |
+|invalid-parameter| invalid period   |Parameter period is invalid for candlestick data|
+|invalid-parameter| invalid depth    | Parameter depth is invalid for depth data |
+|invalid-parameter| invalid type | Parameter type is invalid |
+|invalid-parameter| invalid size   | Parameter size is invalid |
+|invalid-parameter| invalid size,valid range: [1, 2000]   | Parameter size range is invalide |
+|invalid-parameter| request timeout   | Request timeout please try again |
 
 ## Get Klines(Candles)
 
