@@ -7042,7 +7042,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | role   | true | string  | taker or maker  |   |
 | \</trade\>   |  |  |     |    |
 
-## Unsubscribe Order Data（unsub）
+## Unsubscribe Match Order Data（unsub）
 
 To unsubscribe order data, the clients have to make connection to the server and send unsubscribe request in the format below: 
 
