@@ -43,7 +43,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 ## 1.1.8 2020-10-15 【Newly added：Added switch leverage interface; Updated:  websocket messages of account topic will be pushed when leverage switch succeeds;  websocket messages of position topic will be pushed when leverage switch succeeds; new response fields are added on websocket topic of match orders; the interface(contract_order_info) supports query of 4-hour order cancellation data (previously only support to query 24-hour data).】
 
   
-### 1、Switch Leverage
+### 1、Added switch leverage interface
 
   - Interface Name：Switch Leverage
 
@@ -75,7 +75,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
   - Subscribe topic：matchOrders.$symbol  
 
-### 5、the interface(contract_order_info) supports query of 4-hour order cancellation data (previously only support to query 24-hour data).
+### 5、The interface(contract_order_info) supports query of 4-hour order cancellation data (previously only support to query 24-hour data).
 
   - Interface Name：Get Information of an Order
 
@@ -3261,6 +3261,9 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 | \</list\>                      |               |          |                                               |                                     |
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                     |
 
+#### Note
+
+- If there are symbols in the settlement or delivery period,error code 1080(1080  In settlement or delivery. Unable to get positions) will return without request parameters. It's suggested to query the position info with request parameters to avoid raising the error code and not being able to query the position.
 
 ## Query assets information of all sub-accounts under the master account
 
