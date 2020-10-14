@@ -3027,6 +3027,9 @@ contract_code   |  false          | string |    支持大小写, "BTC-USD"... ,�
     }
     
 ```
+#### 备注
+
+- 当品种中的某个品种处于结算中时，去查询所有品种的账户会报1080错误(1080  In settlement or delivery. Unable to get positions.)。建议您带上请求参数去查询持仓，避免报错查询不到账户信息。
 
 ###  返回参数
 
@@ -3115,6 +3118,10 @@ direction  |  true  |  string  |  "buy":买 "sell":卖  |    |
 last_price  |  true  |  decimal    |  最新价  |     | 
 \</list\>  |    |    |    |    |
 ts  |    true  |  long  |  响应生成时间点，单位：毫秒   |    |
+
+#### 备注
+
+- 当品种中的某个品种处于结算中时，去查询所有品种的持仓会报1080错误(1080  In settlement or delivery. Unable to get positions.)。建议您带上请求参数去查询持仓，避免报错查询不到持仓。
 
 ## 查询用户账户和持仓信息
 
