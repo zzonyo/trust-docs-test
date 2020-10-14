@@ -6677,7 +6677,7 @@ step6是不合并小数；
 </tbody></table>
 <h4 id='e0361480e3-5'>备注</h4>
 <ul>
-<li>当品种中的某个品种处于结算中时，去查询所有品种的持仓会报1080错误(1080  In settlement or delivery. Unable to get positions.)。建议您带上请求参数去查询持仓，避免报错查询不到持仓。</li>
+<li>如果有某个品种在结算中，不带请求参数去查询持仓，会返回错误码1080(1080  In settlement or delivery. Unable to get positions.)。建议您带上请求参数去查询持仓，避免报错查询不到持仓。</li>
 </ul>
 <h2 id='a2a4472972'>查询母账户下所有子账户资产信息</h2><h3 id='1f9ac54b15-24'>请求参数</h3>
 <ul>
