@@ -6902,7 +6902,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tbody></table>
 <h4 id='e0361480e3-4'>备注</h4>
 <ul>
-<li>当品种中的某个品种处于结算中时，去查询所有品种的持仓会报1080错误(1080  In settlement or delivery. Unable to get positions.)。建议您带上请求参数去查询持仓，避免报错查询不到持仓。</li>
+<li>如果有某个品种在结算中，不带请求参数去查询持仓，会返回错误码1080(1080  In settlement or delivery. Unable to get positions.)。建议您带上请求参数去查询持仓，避免报错查询不到持仓。</li>
 </ul>
 <h2 id='2aa4c454c6'>查询用户账户和持仓信息</h2>
 <ul>
