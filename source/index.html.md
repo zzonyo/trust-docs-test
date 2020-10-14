@@ -2643,7 +2643,22 @@ Note:<br>
 
 # Wallet (Deposit and Withdraw)
 
+## Introduction
+
+Wallet APIs provide query functionality for deposit address, withdraw address, withdraw quota, deposit and withdraw history, and also provide withdraw and cancel-withdraw functionality.
+
 <aside class="notice">All endpoints in this section require authentication</aside>
+Below is the response code, message and description returned by Wallet APIs.
+
+| Response Code       |  Message   | Description |
+|---------           | -----------|---------|
+|200	|success	| Successful |
+|500	|error	| Server internal error |
+|1002	|unauthorized	| User is unautherized |
+|1003	|invalid signature	| API signature is wrong |
+|2002	|invalid field value in "field name"	| Parameter is invalid |
+|2003	|missing mandatory field "field name"	| Parameter is missing |
+
 ## Query Deposit Address
 
 Parent user and sub user could query deposit address of corresponding chain, for a specific crypto currency (except IOTA).
