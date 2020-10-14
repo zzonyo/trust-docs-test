@@ -751,7 +751,7 @@
 </ol>
 <h1 id='185368440e'>更新日志</h1><h2 id='1-1-8-2020-10-15-ws-ws-24-4'>1.1.8 2020年10月15日 【新增：切换杠杆倍数接口；修改：切换杠杆成功时 WS 资产接口推送更新信息，切换杠杆成功时 WS 持仓接口推送更新信息，订单撮合推送接口新增返参字段，获取合约订单信息接口（将原支持查询 24 小时的撤单数据改为支持查询 4 小时撤单数据）】</h2><h3 id='1'>1、新增切换杠杆倍数接口</h3>
 <ul>
-<li><p>接口名称：切换杠杆倍数接口</p></li>
+<li><p>接口名称：切换杠杆</p></li>
 <li><p>接口类型：私有接口</p></li>
 <li><p>接口地址：api/v1/contract_switch_lever_rate</p></li>
 </ul>
@@ -17170,7 +17170,7 @@ step6是不合并小数；
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>matchOrders.$symbol;symbol支持大小写，比如BTC</td>
+<td>matchOrders.$symbol;    symbol支持大小写，比如BTC</td>
 </tr>
 </tbody></table>
 <h4 id='9852b06629-7'>备注：</h4>
@@ -17223,38 +17223,164 @@ step6是不合并小数；
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='0fea2b65b8-2'>成交推送返回数据格式说明</h3>
-<p>| 字段名称                | 类型    | 说明                                                         |
-| ----------------------- | ------- | ------------------------------------------------------------ |
-| op                      | string  | 操作名称，推送固定值为 notify;                          |
-| topic                   | string  | 推送的主题                                              |
-| uid                   | string  | 账户UID                                              |
-| ts                      | long    | 服务端应答时间戳                                             |
-| symbol                  | string  | 品种ID                                                       |
-| contract_type           | string  | 合约类型                                                     |
-| contract_code           | string  | 合约代码                                                     |
-| status                  | int     | 订单状态(1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单) |
-| order_id                | bigint    | 订单ID                                                       |
-| order_id_str            | string   | 订单ID                                                       |
-| client_order_id   |  long |  客户端订单ID  | 
-| order_type              | int     | 订单类型  1:报单 、 2:撤单 、 3:强平、4:交割                 |
-| trade_volume            | decimal | 订单已成交数量                                                       |
-| volume            | decimal | 订单总委托数量                                                       |
-| &lt;list&gt;(属性名称: trade) |         |                                                              |
-| id            | string| 全局唯一交易标识                                                         |
-| trade_id                | long    | 撮合结果id，与api/v1/contract_matchresults返回结果中的match_id一样, 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id                                                  |
-| trade_volume            | decimal | 成交量                                                       |
-| trade_price             | decimal | 撮合价格                                                     |
-| trade_turnover          | decimal | 成交金额                                                     |
-| created_at              | long    | 创建时间                                                 |
-| role             | string  | taker或maker                                                 |
-| &lt;/list&gt;                  |         |                                                             |
-| direction              | string    |  买卖方向: &quot;buy&quot;:买 &quot;sell&quot;:卖                                 |
-| offset              | string    | 开平方向:  &quot;open&quot;:开 &quot;close&quot;:平                                 |
-| lever_rate              | int    |    杠杆倍数                                                 |
-| price              | decimal    | 委托价格                                                     |
-| created_at              | long    | 创建时间                                                 |
-| order_source              | string    | 订单来源                                                 |
-| order_price_type              | string    | 订单报价类型: &quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc：IOC订单，fok：FOK订单,&quot;opponent_ioc&quot;: 对手价-IOC下单，&quot;optimal_5_ioc&quot;: 最优5档-IOC下单，&quot;optimal_10_ioc&quot;: 最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单，&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单     |</p>
+<table><thead>
+<tr>
+<th>字段名称</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>string</td>
+<td>操作名称，推送固定值为 notify;</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>string</td>
+<td>推送的主题</td>
+</tr>
+<tr>
+<td>uid</td>
+<td>string</td>
+<td>账户UID</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>服务端应答时间戳</td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>品种ID</td>
+</tr>
+<tr>
+<td>contract_type</td>
+<td>string</td>
+<td>合约类型</td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>string</td>
+<td>合约代码</td>
+</tr>
+<tr>
+<td>status</td>
+<td>int</td>
+<td>订单状态(1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单)</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>bigint</td>
+<td>订单ID</td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>string</td>
+<td>订单ID</td>
+</tr>
+<tr>
+<td>client_order_id</td>
+<td>long</td>
+<td>客户端订单ID</td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>int</td>
+<td>订单类型  1:报单 、 2:撤单 、 3:强平、4:交割</td>
+</tr>
+<tr>
+<td>trade_volume</td>
+<td>decimal</td>
+<td>订单已成交数量</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>decimal</td>
+<td>订单总委托数量</td>
+</tr>
+<tr>
+<td>&lt;list&gt;(属性名称: trade)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>全局唯一交易标识</td>
+</tr>
+<tr>
+<td>trade_id</td>
+<td>long</td>
+<td>撮合结果id，与api/v1/contract_matchresults返回结果中的match_id一样, 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id</td>
+</tr>
+<tr>
+<td>trade_volume</td>
+<td>decimal</td>
+<td>成交量</td>
+</tr>
+<tr>
+<td>trade_price</td>
+<td>decimal</td>
+<td>撮合价格</td>
+</tr>
+<tr>
+<td>trade_turnover</td>
+<td>decimal</td>
+<td>成交金额</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>long</td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td>role</td>
+<td>string</td>
+<td>taker或maker</td>
+</tr>
+<tr>
+<td>&lt;/list&gt;</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>string</td>
+<td>买卖方向: &quot;buy&quot;:买 &quot;sell&quot;:卖</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>string</td>
+<td>开平方向:  &quot;open&quot;:开 &quot;close&quot;:平</td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>int</td>
+<td>杠杆倍数</td>
+</tr>
+<tr>
+<td>price</td>
+<td>decimal</td>
+<td>委托价格</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>long</td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td>order_source</td>
+<td>string</td>
+<td>订单来源</td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>string</td>
+<td>订单报价类型: &quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc：IOC订单，fok：FOK订单,&quot;opponent_ioc&quot;: 对手价-IOC下单，&quot;optimal_5_ioc&quot;: 最优5档-IOC下单，&quot;optimal_10_ioc&quot;: 最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单，&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
+</tr>
+</tbody></table>
 <h2 id='unsub-2'>取消订阅订单撮合数据（unsub）</h2>
 <p>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</p>
 <h3 id='5ece2c9713-2'>取消订阅请求数据格式</h3>
