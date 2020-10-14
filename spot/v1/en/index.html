@@ -381,6 +381,9 @@
             <a href="#market-data-2" class="toc-h1 toc-link" data-title="Market Data">Market Data</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#introduction-3" class="toc-h2 toc-link" data-title="Introduction">Introduction</a>
+                  </li>
+                  <li>
                     <a href="#get-klines-candles" class="toc-h2 toc-link" data-title="Get Klines(Candles)">Get Klines(Candles)</a>
                   </li>
                   <li>
@@ -2109,27 +2112,7 @@ The types include:</p>
 <li><code>long</code>: a 64-bit integer, mainly used for Id and timestamp</li>
 <li><code>float</code>: a fraction represented in decimal format, mainly used for volume and price, recommend to use high precision decimal data types in program</li>
 </ul>
-<h2 id='error-message'>Error Message</h2><h3 id='market-data-api-error-message'>Market Data  API Error Message</h3>
-<table><thead>
-<tr>
-<th>Error Message</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>bad-request</td>
-<td>The request is wrong</td>
-</tr>
-<tr>
-<td>invalid-parameter</td>
-<td>The parameter is invalid</td>
-</tr>
-<tr>
-<td>invalid-command</td>
-<td>The command is invalid</td>
-</tr>
-</tbody></table>
-<h3 id='order-api-error-message'>Order API Error Message</h3>
+<h2 id='error-message'>Error Message</h2><h3 id='order-api-error-message'>Order API Error Message</h3>
 <table><thead>
 <tr>
 <th>Error Message</th>
@@ -3488,7 +3471,55 @@ Halt reason includes: 2 - emergency maintenance，3 - schedule maintenance.<br><
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494900087029</span><span class="w">
 </span></code></pre><h3 id='response-content-6'>Response Content</h3>
 <p>The returned &quot;Data&quot; field contains an integer represents the timestamp in milliseconds adjusted to Singapore time.</p>
-<h1 id='market-data-2'>Market Data</h1><h2 id='get-klines-candles'>Get Klines(Candles)</h2>
+<h1 id='market-data-2'>Market Data</h1><h2 id='introduction-3'>Introduction</h2>
+<p>Market data APIs provide public market information such as varies of candlestick, depth and trade information.</p>
+
+<p>Below is the error code, error message and description returned by Market data APIs.</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Error Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>invalid-parameter</td>
+<td>invalid symbol</td>
+<td>Parameter symbol is invalid</td>
+</tr>
+<tr>
+<td>invalid-parameter</td>
+<td>invalid period</td>
+<td>Parameter period is invalid for candlestick data</td>
+</tr>
+<tr>
+<td>invalid-parameter</td>
+<td>invalid depth</td>
+<td>Parameter depth is invalid for depth data</td>
+</tr>
+<tr>
+<td>invalid-parameter</td>
+<td>invalid type</td>
+<td>Parameter type is invalid</td>
+</tr>
+<tr>
+<td>invalid-parameter</td>
+<td>invalid size</td>
+<td>Parameter size is invalid</td>
+</tr>
+<tr>
+<td>invalid-parameter</td>
+<td>invalid size,valid range: [1, 2000]</td>
+<td>Parameter size range is invalide</td>
+</tr>
+<tr>
+<td>invalid-parameter</td>
+<td>request timeout</td>
+<td>Request timeout please try again</td>
+</tr>
+</tbody></table>
+<h2 id='get-klines-candles'>Get Klines(Candles)</h2>
 <p>This endpoint retrieves all klines in a specific range.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/market/history/kline</code></p>
