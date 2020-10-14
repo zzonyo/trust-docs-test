@@ -35,6 +35,49 @@ search: True
 
 # 更新日志
 
+## 1.1.8 2020年10月15日 【新增：切换杠杆倍数接口；修改：切换杠杆成功时 WS 资产接口推送更新信息，切换杠杆成功时 WS 持仓接口推送更新信息，订单撮合推送接口新增返参字段，获取合约订单信息接口（将原支持查询 24 小时的撤单数据改为支持查询 4 小时撤单数据）】
+
+  
+### 1、新增切换杠杆倍数接口
+
+  - 接口名称：切换杠杆倍数接口
+
+  - 接口类型：私有接口
+
+  - 接口地址：api/v1/contract_switch_lever_rate
+
+### 2、订阅资产接口推送更新（返参event新增事件类型，switch_lever_rate表示切换倍数。在用户切换倍数成功时，需推送一次最新的资产信息，event为switch_lever_rate。）
+
+  - 接口名称：订阅资产变动数据
+
+  - 接口类型：私有接口
+
+  - 订阅主题：accounts.$symbol
+
+### 3、订阅持仓接口推送更新（返参event新增事件类型，switch_lever_rate表示切换杠杆。在用户切换杠杆倍数成功时，需推送一次最新的持仓信息（若用户持仓量为0，则不会触发推送），event为switch_lever_rate。）
+
+  - 接口名称：订阅持仓变动数据
+
+  - 接口类型：私有接口
+
+  - 订阅主题：positions.$symbol 
+
+### 4、订阅订单撮合推送接口更新（返回参数新增以下字段:direction(买卖方向)、offset (开平方向)、lever_rate(杠杆倍数)、price(委托价格)、created_at(创建时间)、order_source (订单来源)、order_price_type(订单报价类型)。）
+
+  - 接口名称：订阅订单撮合推送
+
+  - 接口类型：私有接口
+
+  - 订阅主题：matchOrders.$symbol  
+
+### 5、获取合约订单信息接口（将原支持查询 24 小时的撤单数据改为支持查询 4 小时撤单数据）
+
+  - 接口名称：获取合约订单信息
+
+  - 接口类型：私有接口
+
+  - 接口地址：api/v1/contract_order_info
+
 ## 1.1.7 2020年10月10日 【新增：订阅系统状态更新推送的 WebSocket 接口】
 
 ### 1、新增订阅系统状态更新推送的 WebSocket 接口
@@ -753,6 +796,7 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
 交易     |  交易接口           |  api/v1/contract_batchorder |                    POST       |  合约批量下单                  |  是  |
 交易     |  交易接口           |  api/v1/contract_cancel |                        POST       |  撤销订单                     |  是  |
 交易     |  交易接口           |  api/v1/contract_cancelall |                     POST       |  全部撤单                     |  是  |
+交易     |  交易接口           |  api/v1/contract_switch_lever_rate |             POST       |  切换杠杆                  |  是  |
 读取     |  交易接口          |  api/v1/contract_order_info |                   POST       |  获取合约订单信息             |  是  |
 读取    |  交易接口           |   api/v1/contract_order_detail |               POST        |  获取订单明细信息             |  是  |
 读取     |  交易接口           |   api/v1/contract_openorders |                   POST       |  获取合约当前未成交委托       |  是  |
@@ -1554,13 +1598,13 @@ curl "https://status-dm.huobigroup.com/api/v2/summary.json"
 
 ### Q2: 为什么经常出现断线、超时的错误？
 
-如果是在大陆网络环境去请求API接口，网络连接很不稳定，很容易出现超时。建议使用AWS东京A区服务器进行访问。
+如果是在大陆网络环境去请求API接口，网络连接很不稳定，很容易出现超时。建议使用AWS东京C区服务器进行访问。
 
 国内网络可以使用api.btcgateway.pro或者api.hbdm.vn来进行调试,如果仍然无法请求，请在国外服务器上进行运行。
 
 ### Q3: 为什么WebSocket总是断开连接？
 
-由于网络环境不同，很容易导致websocket断开连接(websocket: close 1006 (abnormal closure))，目前最佳实践是建议您将服务器放置在AWS东京A区，并且使用api.hbdm.vn域名；同时需要做好断连重连操作；行情心跳与订单心跳均需要按照《Websocket心跳以及鉴权接口》的行情心跳与订单心跳回复不同格式的Pong消息：<a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#472585d15d'>这里</a>。以上操作可以有效减少断连情况。
+由于网络环境不同，很容易导致websocket断开连接(websocket: close 1006 (abnormal closure))，目前最佳实践是建议您将服务器放置在AWS东京C区，并且使用api.hbdm.vn域名；同时需要做好断连重连操作；行情心跳与订单心跳均需要按照《Websocket心跳以及鉴权接口》的行情心跳与订单心跳回复不同格式的Pong消息：<a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#472585d15d'>这里</a>。以上操作可以有效减少断连情况。
 
 ### Q4: api.hbdm.com与api.hbdm.vn有什么区别？
 
@@ -1739,7 +1783,7 @@ market.$symbol.depth.$type是全量数据，market.$symbol.depth.size_${size}.hi
 
 ### Q5: API接口返回Connection Reset 或者 Max retris 或者 Timed out 是什么原因？
 
-出现连接重置或者网络超时，一般是网络不稳定导致，可以尝试将服务器放置在AWS东京A区，并使用api.hbdm.vn来尝试，可以有效减少网络超时等错误。
+出现连接重置或者网络超时，一般是网络不稳定导致，可以尝试将服务器放置在AWS东京C区，并使用api.hbdm.vn来尝试，可以有效减少网络超时等错误。
 
 ### Q6: API接口下单时出错没有order_id如何来查询订单状态？
 
@@ -4585,6 +4629,59 @@ successes  |    true  |  string  |  成功的订单  |    |
 \</dict\>    |    |    |    |    |
 ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   | 
 
+## 切换杠杆
+
+- POST `api/v1/contract_switch_lever_rate`
+
+#### 备注
+
+- 只有在单个品种下只有持仓，且没有挂单的场景下，才可以切换该品种当前的倍数。
+
+- 接口限制请求次数为3次/秒。
+
+###  请求参数
+
+| **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| symbol | true | String | 品种代码	 | "BTC","ETH"... |
+| lever_rate | true | int | 要切换的杠杆倍数 | |
+
+> Response:
+
+```json
+
+正确：
+{
+    "status": "ok",
+    "ts": 1547521135713,
+    "data": {
+          "symbol":"BTC",
+          "lever_rate":10
+    }
+}
+错误：
+{
+    "status": "error",
+    "err_code": 2014,     
+    "err_msg": "无法切换",   
+    "ts": 1547519608126
+}
+
+```
+
+### 返回参数
+
+| 参数名称                   | 是否必须 | 类型      | 描述                 | 取值范围                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | 响应状态: ok,error            |                                          |
+| \<data\> | false     |  object      |                    |                                          |
+| symbol               | false | string    |  品种代码      |                                          |
+| lever_rate               | false | int    | 切换成功后的杠杆倍数      |                                          |
+| \</data\>            |      |         |                    |                                          |
+| err_code | false | int | 错误码| |
+|err_msg| false| string | 错误信息| |
+| ts                     | true | long    | 时间戳                |   
+
 
 ## 获取合约订单信息
 
@@ -4612,13 +4709,13 @@ symbol  |   true  |  string  |  支持大小写，"BTC","ETH"...  |
 
 ###  备注：
 
-最多只能查询24小时内的撤单信息。
+- 最多只能查询 4 小时内的撤单信息。
 
-order_id和client_order_id至少要填写一个。
+- order_id和client_order_id至少要填写一个。
 
-order_id和client_order_id都可以用来查询，同时只可以设置其中一种，如果设置了两种，默认以order_id来查询。周五交割结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。
+- order_id和client_order_id都可以用来查询，同时只可以设置其中一种，如果设置了两种，默认以order_id来查询。周五交割结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。
 
-client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。
+- client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。
 
 > Response:
 
@@ -7597,7 +7694,6 @@ direction  |  true  |  string  |  买卖方向  |   |
 
 ## 订阅订单撮合数据（sub）
 
-
 成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:
 
 ### 订阅请求数据格式
@@ -7670,14 +7766,21 @@ direction  |  true  |  string  |  买卖方向  |   |
       "trade_turnover":34.123,     //成交金额 
       "created_at": 1490759594752,    //成交时间
       "role": "maker"
-    }]
+    }],
+    "direction": "buy",
+    "offset": "open",
+    "lever_rate": 10,
+    "price": 34.123,
+    "created_at": 1490759594752,
+    "order_source": "api",
+    "order_price_type": "limit"
 }
 
 ```
 
 ### 成交推送返回数据格式说明
 
-| 字段名称                | 类型    | 说明                                                         |
+ | 字段名称                | 类型    | 说明                                                         |
 | ----------------------- | ------- | ------------------------------------------------------------ |
 | op                      | string  | 操作名称，推送固定值为 notify;                          |
 | topic                   | string  | 推送的主题                                              |
@@ -7687,9 +7790,9 @@ direction  |  true  |  string  |  买卖方向  |   |
 | contract_type           | string  | 合约类型                                                     |
 | contract_code           | string  | 合约代码                                                     |
 | status                  | int     | 订单状态(1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单) |
-| order_id                | long    | 订单ID                                                       |
+| order_id                | bigint    | 订单ID                                                       |
 | order_id_str            | string   | 订单ID                                                       |
-client_order_id   |  long |  客户端订单ID  | 
+| client_order_id   |  long |  客户端订单ID  | 
 | order_type              | int     | 订单类型  1:报单 、 2:撤单 、 3:强平、4:交割                 |
 | trade_volume            | decimal | 订单已成交数量                                                       |
 | volume            | decimal | 订单总委托数量                                                       |
@@ -7702,6 +7805,13 @@ client_order_id   |  long |  客户端订单ID  |
 | created_at              | long    | 创建时间                                                 |
 | role             | string  | taker或maker                                                 |
 | \</list\>                  |         |                                                             |
+| direction              | string    | 	买卖方向: "buy":买 "sell":卖                                 |
+| offset              | string    |	开平方向:  "open":开 "close":平                                 |
+| lever_rate              | int    | 	杠杆倍数                                                 |
+| price              | decimal    | 委托价格	                                                 |
+| created_at              | long    | 创建时间                                                 |
+| order_source              | string    | 订单来源                                                 |
+| order_price_type              | string    | 订单报价类型: "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc：IOC订单，fok：FOK订单,"opponent_ioc": 对手价-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单     |
 
 
 ## 取消订阅订单撮合数据（unsub）
@@ -7825,7 +7935,7 @@ client_order_id   |  long |  客户端订单ID  |
 | topic                   | string  | 必填;推送的主题                                              |
 | uid                   | string  | 账户UID                                              |
 | ts                        | long  | 响应生成时间点，单位：毫秒                           |
-| event                     | string  | 资产变化通知相关事件说明，比如订单创建开仓(order.open) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel) 、合约账户划转（contract.transfer)（包括外部划转）、系统（contract.system)、其他资产变化(other)、初始资金（init）                                              |
+| event                     | string  | 资产变化通知相关事件说明，比如订单创建开仓(order.open) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel) 、合约账户划转（contract.transfer)（包括外部划转）、系统（contract.system)、其他资产变化(other)、切换杠杆（switch_lever_rate）、初始资金（init）                            |
 | \<data\>                     |   |          |                                   |
 | symbol                    | string    | 品种代码 ,"BTC","ETH"...，                                             |
 | margin_balance            | decimal  | 账户权益                                                       |
@@ -7970,7 +8080,7 @@ client_order_id   |  long |  客户端订单ID  |
 | topic                   | string  | 必填;推送的主题                                              |
 | uid                   | string  | 账户ID                                              |
 | ts                     | long  | 响应生成时间点，单位：毫秒                           |
-| event                  | string  | 持仓变化通知相关事件说明，比如订单创建平仓(order.close) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel)  、初始持仓（init）                                             |
+| event                  | string  | 持仓变化通知相关事件说明，比如订单创建平仓(order.close) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel)、切换杠杆（switch_lever_rate） 、初始持仓（init）、由系统定期推送触发（snapshot）。                               |
 | \<data\>                     |   |          |                                   |
 | symbol                 | string    | 品种代码 ,"BTC","ETH"...，                                             |
 | contract_code          | string  | 合约代码                                                       |
@@ -7991,8 +8101,10 @@ client_order_id   |  long |  客户端订单ID  |
 
 
 ### 备注
- - 每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。如果 5 秒内已经触发过推送，则该品种跳过该次定期推送。
 
+ - 每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。如果 5 秒内已经触发过推送，则该品种跳过该次定期推送。
+ 
+ - 当用户持仓量为0时使用切换杠杆的接口，持仓推送接口不会推送"switch_lever_rate"。
 
 ## 取消订阅持仓变动更新数据（unsub）
 
@@ -8096,7 +8208,7 @@ client_order_id   |  long |  客户端订单ID  |
 ```json
 {
     "op": "notify",
-    "topic": "public.EOS.liquidation_orders",
+    "topic": "public.eos.liquidation_orders",
     "ts":1580815422403,
     "data":[{
         "symbol": "EOS",
@@ -8152,7 +8264,7 @@ client_order_id   |  long |  客户端订单ID  |
 
 {
   "op": "unsub",
-  "topic": "public.EOS.liquidation_orders",
+  "topic": "public.eos.liquidation_orders",
   "cid": "id generated by client",
   "err-code": 0,
   "ts": 1489474081631
@@ -8209,7 +8321,7 @@ client_order_id   |  long |  客户端订单ID  |
 ```json
 {
     "op": "notify",           
-	"topic": "public.EOS.contract_info",
+	"topic": "public.eos.contract_info",
 	"ts": 1489474082831,
 	"event": "update",
 	"data": [{
@@ -8293,7 +8405,7 @@ client_order_id   |  long |  客户端订单ID  |
                                  
 {                                    
   "op": "unsub",                     
-  "topic": "public.BTC.contract_info",   
+  "topic": "public.btc.contract_info",   
   "cid": "40sG903yz80oDFWr"          
 }                                    
 ```                                  
@@ -8354,7 +8466,7 @@ client_order_id   |  long |  客户端订单ID  |
 
 {
     "op": "notify",           
-	"topic": "trigger_order.EOS",
+	"topic": "trigger_order.eos",
 	"ts": 1489474082831,
 	"uid": "157959",
 	"event": "order",
