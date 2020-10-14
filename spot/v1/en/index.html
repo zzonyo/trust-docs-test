@@ -448,6 +448,9 @@
             <a href="#wallet-deposit-and-withdraw" class="toc-h1 toc-link" data-title="Wallet (Deposit and Withdraw)">Wallet (Deposit and Withdraw)</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#introduction-5" class="toc-h2 toc-link" data-title="Introduction">Introduction</a>
+                  </li>
+                  <li>
                     <a href="#query-deposit-address" class="toc-h2 toc-link" data-title="Query Deposit Address">Query Deposit Address</a>
                   </li>
                   <li>
@@ -5746,8 +5749,51 @@ Callable by sub user<br></p>
 <td>Transaction time (unix time in millisecond)</td>
 </tr>
 </tbody></table>
-<h1 id='wallet-deposit-and-withdraw'>Wallet (Deposit and Withdraw)</h1>
+<h1 id='wallet-deposit-and-withdraw'>Wallet (Deposit and Withdraw)</h1><h2 id='introduction-5'>Introduction</h2>
+<p>Wallet APIs provide query functionality for deposit address, withdraw address, withdraw quota, deposit and withdraw history, and also provide withdraw and cancel-withdraw functionality.</p>
+
 <aside class="notice">All endpoints in this section require authentication</aside>
+
+<p>Below is the response code, message and description returned by Wallet APIs.</p>
+
+<table><thead>
+<tr>
+<th>Response Code</th>
+<th>Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>success</td>
+<td>Successful</td>
+</tr>
+<tr>
+<td>500</td>
+<td>error</td>
+<td>Server internal error</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>unauthorized</td>
+<td>User is unautherized</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>invalid signature</td>
+<td>API signature is wrong</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid field value in &quot;field name&quot;</td>
+<td>Parameter is invalid</td>
+</tr>
+<tr>
+<td>2003</td>
+<td>missing mandatory field &quot;field name&quot;</td>
+<td>Parameter is missing</td>
+</tr>
+</tbody></table>
 <h2 id='query-deposit-address'>Query Deposit Address</h2>
 <p>Parent user and sub user could query deposit address of corresponding chain, for a specific crypto currency (except IOTA).</p>
 
