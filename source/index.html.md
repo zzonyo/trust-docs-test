@@ -2038,7 +2038,25 @@ symbol    | string    | true     | NA      | ETP trading symbol
 
 # Account
 
+## Introduction
+
+Account APIs provide account related (such as basic info, balance, history, point) query and transfer functionality.
+
 <aside class="notice">All endpoints in this section require authentication</aside>
+Below is the error code, error message and description returned by Account APIs.
+
+| Error Code |Error Message | Description|
+|--- | --- | --- |
+| 500 | system error | Server internal error |
+| 1002 | forbidden | Operation is forbidden, such as the account Id and UID doesn't match |
+| 2002 | "invalid field value in `currency`" | Parameter currency is invalid |
+| 2002 | "invalid field value in `transactTypes`" | Parameter transactTypes is invalid (should be transfer) |
+| 2002 | "invalid field value in `sort`" | Parameter sort is invalid (should be 'asc' or 'desc') |
+| 2002 | "value in `fromId` is not found in record” | Value fromId doesn't exist |
+| 2002 | "invalid field value in `accountId`" | Parameter accountId is invalid (should not be empty) |
+| 2002 | "value in `startTime` exceeded valid range"  | Value startTime is later than current time or earlier than 180 days ago |
+| 2002 | "value in `endTime` exceeded valid range") | Value endTime is earlier than startTime, or 10 days later than startTime |
+
 ## Get all Accounts of the Current User
 
 API Key Permission：Read<br>
