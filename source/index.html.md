@@ -1006,6 +1006,10 @@ Note: If you need to withdraw large amount which breaking the limitation, you ca
 
 # Reference Data
 
+## Introduction
+
+Reference data APIs provide public reference information such as system status, market status, symbol info, currency info, chain info and server timestamp.
+
 ## Get system status
 
 This endpoint allows users to get system status, Incidents and planned maintenance.
