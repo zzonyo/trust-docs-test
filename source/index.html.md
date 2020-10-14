@@ -41,14 +41,14 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 ## 1.0.9 2020-10-15 【Newly added：Added switch leverage interface; Updated:  websocket messages of account topic will be pushed when leverage switch succeeds;  websocket messages of position topic will be pushed when leverage switch succeeds; new response fields are added on websocket topic of match orders; the interface(swap_order_info) supports query of 4-hour order cancellation data (previously only support to query 24-hour data).】
 
   
-### 1、Added “switch leverages” interface
-  - Interface Name：switch leverage
+### 1、Added switch leverage interface
+  - Interface Name：Switch Leverage
 
   - Interface Type：private
 
   - Interface URL：swap-api/v1/swap_switch_lever_rate
 
-### 2、Modified “subscribe asset change information” interface（Return parameters added “switch_lever_rate” event type to represent switching leverages. When the leverage is successfully switched, a latest information on assets will be pushed with event“switch_lever_rate".）
+### 2、Subscribe Account Equity Updates Data（Return parameters added “switch_lever_rate” event type to represent switching leverages. When the leverage is successfully switched, a latest information on assets will be pushed with event“switch_lever_rate".）
 
   - Interface Name：Subscribe Account Equity Updates Data
 
@@ -56,7 +56,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
   - Subscribe topic：accounts.$contract_code
 
-### 3、Modified “subscribe position change information” interface（Return parameters added “switch_lever_rate” event type to represent switching leverages. When the leverage is successfully switched, a latest information on positions will be pushed with event“switch_lever_rate" (the information will not be pushed when the user's position is 0).）
+### 3、Subscribe Position Updates（Return parameters added “switch_lever_rate” event type to represent switching leverages. When the leverage is successfully switched, a latest information on positions will be pushed with event“switch_lever_rate" (the information will not be pushed when the user's position is 0).）
 
   - Interface Name：Subscribe Position Updates
 
@@ -64,7 +64,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
   - Subscribe topic：positions.$contract_code
 
-### 4、Added fields in return parameters for “subscribe match order” （Added the following fields in return parameters: direction (buy/sell direction), offset (open/close direction), lever_rate (leverages), price (order price), created_at (creation time), order_source (order source), order_price_type (order quotation type).）
+### 4、Subscribe Match Order Data （Added the following fields in return parameters: direction (buy/sell direction), offset (open/close direction), lever_rate (leverages), price (order price), created_at (creation time), order_source (order source), order_price_type (order quotation type).）
 
   - Interface Name：Subscribe Match Order Data
 
@@ -72,7 +72,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
   - Subscribe topic：matchOrders.$contract_code 
 
-### 5、the interface(swap_order_info) supports query of 4-hour order cancellation data (previously only support to query 24-hour data).
+### 5、The interface(swap_order_info) supports query of 4-hour order cancellation data (previously only support to query 24-hour data).
 
   - Interface Name：Get Information of an Order
 
