@@ -2663,6 +2663,10 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | \</list\>                      |               |          |                                               |                                     |
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                     |
 
+#### Note
+
+- If there are symbols in the settlement or delivery period,error code 1080(1080  In settlement or delivery. Unable to get positions) will return without request parameters. It's suggested to query the position info with request parameters to avoid raising the error code and not being able to query the position.
+
 ## Query Assets And Positions
 
 - post `linear-swap-api/v1/swap_account_position_info`
