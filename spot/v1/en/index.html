@@ -413,6 +413,9 @@
             <a href="#account-3" class="toc-h1 toc-link" data-title="Account">Account</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#introduction-4" class="toc-h2 toc-link" data-title="Introduction">Introduction</a>
+                  </li>
+                  <li>
                     <a href="#get-all-accounts-of-the-current-user" class="toc-h2 toc-link" data-title="Get all Accounts of the Current User">Get all Accounts of the Current User</a>
                   </li>
                   <li>
@@ -4402,8 +4405,66 @@ Halt reason includes: 2 - emergency maintenance，3 - schedule maintenance.<br><
 <td>Actual leverage ratio</td>
 </tr>
 </tbody></table>
-<h1 id='account-3'>Account</h1>
+<h1 id='account-3'>Account</h1><h2 id='introduction-4'>Introduction</h2>
+<p>Account APIs provide account related (such as basic info, balance, history, point) query and transfer functionality.</p>
+
 <aside class="notice">All endpoints in this section require authentication</aside>
+
+<p>Below is the error code, error message and description returned by Account APIs.</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Error Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>500</td>
+<td>system error</td>
+<td>Server internal error</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>forbidden</td>
+<td>Operation is forbidden, such as the account Id and UID doesn&#39;t match</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;invalid field value in <code>currency</code>&quot;</td>
+<td>Parameter currency is invalid</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;invalid field value in <code>transactTypes</code>&quot;</td>
+<td>Parameter transactTypes is invalid (should be transfer)</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;invalid field value in <code>sort</code>&quot;</td>
+<td>Parameter sort is invalid (should be &#39;asc&#39; or &#39;desc&#39;)</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;value in <code>fromId</code> is not found in record”</td>
+<td>Value fromId doesn&#39;t exist</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;invalid field value in <code>accountId</code>&quot;</td>
+<td>Parameter accountId is invalid (should not be empty)</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;value in <code>startTime</code> exceeded valid range&quot;</td>
+<td>Value startTime is later than current time or earlier than 180 days ago</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;value in <code>endTime</code> exceeded valid range&quot;)</td>
+<td>Value endTime is earlier than startTime, or 10 days later than startTime</td>
+</tr>
+</tbody></table>
 <h2 id='get-all-accounts-of-the-current-user'>Get all Accounts of the Current User</h2>
 <p>API Key Permission：Read<br>
 Rate Limit (NEW): 100times/2s</p>
