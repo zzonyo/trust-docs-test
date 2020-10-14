@@ -265,6 +265,9 @@
             <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-0-9-2020-10-15-ws-ws-24-4" class="toc-h2 toc-link" data-title="1.0.9 2020年10月15日 【新增：切换杠杆倍数接口；修改：切换杠杆成功时 WS 资产接口推送更新信息，切换杠杆成功时 WS 持仓接口推送更新信息，订单撮合推送接口新增返参字段,获取合约订单信息接口（将原支持查询 24小时的撤单数据改为支持查询 4 小时撤单数据）】">1.0.9 2020年10月15日 【新增：切换杠杆倍数接口；修改：切换杠杆成功时 WS 资产接口推送更新信息，切换杠杆成功时 WS 持仓接口推送更新信息，订单撮合推送接口新增返参字段,获取合约订单信息接口（将原支持查询 24小时的撤单数据改为支持查询 4 小时撤单数据）】</a>
+                  </li>
+                  <li>
                     <a href="#1-0-8-2020-10-10-websocket" class="toc-h2 toc-link" data-title="1.0.8 2020年10月10日 【新增：订阅系统状态更新推送的 WebSocket 接口】">1.0.8 2020年10月10日 【新增：订阅系统状态更新推送的 WebSocket 接口】</a>
                   </li>
                   <li>
@@ -486,6 +489,9 @@
                   </li>
                   <li>
                     <a href="#f175a031e7" class="toc-h2 toc-link" data-title="全部撤单">全部撤单</a>
+                  </li>
+                  <li>
+                    <a href="#8a15d24569" class="toc-h2 toc-link" data-title="切换杠杆">切换杠杆</a>
                   </li>
                   <li>
                     <a href="#f36cfcbaef" class="toc-h2 toc-link" data-title="获取合约订单信息">获取合约订单信息</a>
@@ -722,7 +728,37 @@
 <li>提供火币 UID （需不存在返佣关系的 UID）；</li>
 <li>提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；</li>
 </ol>
-<h1 id='185368440e'>更新日志</h1><h2 id='1-0-8-2020-10-10-websocket'>1.0.8 2020年10月10日 【新增：订阅系统状态更新推送的 WebSocket 接口】</h2><h3 id='1-websocket'>1、新增订阅系统状态更新推送的 WebSocket 接口</h3>
+<h1 id='185368440e'>更新日志</h1><h2 id='1-0-9-2020-10-15-ws-ws-24-4'>1.0.9 2020年10月15日 【新增：切换杠杆倍数接口；修改：切换杠杆成功时 WS 资产接口推送更新信息，切换杠杆成功时 WS 持仓接口推送更新信息，订单撮合推送接口新增返参字段,获取合约订单信息接口（将原支持查询 24小时的撤单数据改为支持查询 4 小时撤单数据）】</h2><h3 id='1'>1、新增切换杠杆倍数接口</h3>
+<ul>
+<li><p>接口名称：切换杠杆</p></li>
+<li><p>接口类型：私有接口</p></li>
+<li><p>接口地址：swap-api/v1/swap_switch_lever_rate</p></li>
+</ul>
+<h3 id='2-event-switch_lever_rate-event-switch_lever_rate'>2、订阅资产接口推送更新（返参event新增事件类型，switch_lever_rate表示切换倍数。在用户切换倍数成功时，需推送一次最新的资产信息，event为switch_lever_rate。）</h3>
+<ul>
+<li><p>接口名称：订阅资产变动数据</p></li>
+<li><p>接口类型：私有接口</p></li>
+<li><p>订阅主题：accounts.$contract_code</p></li>
+</ul>
+<h3 id='3-event-switch_lever_rate-0-event-switch_lever_rate'>3、订阅持仓接口推送更新（返参event新增事件类型，switch_lever_rate表示切换杠杆。在用户切换杠杆倍数成功时，需推送一次最新的持仓信息（若用户持仓量为0，则不会触发推送），event 为 switch_lever_rate。）</h3>
+<ul>
+<li><p>接口名称：订阅持仓变动数据</p></li>
+<li><p>接口类型：私有接口</p></li>
+<li><p>订阅主题：positions.$contract_code</p></li>
+</ul>
+<h3 id='4-direction-offset-lever_rate-price-created_at-order_source-order_price_type'>4、订阅订单撮合推送接口更新（返回参数新增以下字段:direction(买卖方向)、offset(开平方向)、lever_rate(杠杆倍数)、price(委托价格)、created_at(创建时间)、order_source (订单来源)、order_price_type(订单报价类型)。）</h3>
+<ul>
+<li><p>接口名称：订阅订单撮合推送</p></li>
+<li><p>接口类型：私有接口</p></li>
+<li><p>订阅主题：matchOrders.$contract_code </p></li>
+</ul>
+<h3 id='5-24-4'>5、获取合约订单信息接口（将原支持查询 24小时的撤单数据改为支持查询 4 小时撤单数据）</h3>
+<ul>
+<li><p>接口名称：获取合约订单信息</p></li>
+<li><p>接口类型：私有接口</p></li>
+<li><p>接口地址：swap-api/v1/swap_order_info</p></li>
+</ul>
+<h2 id='1-0-8-2020-10-10-websocket'>1.0.8 2020年10月10日 【新增：订阅系统状态更新推送的 WebSocket 接口】</h2><h3 id='1-websocket'>1、新增订阅系统状态更新推送的 WebSocket 接口</h3>
 <ul>
 <li><p>接口名称：订阅系统状态更新</p></li>
 <li><p>接口类型: 公共接口</p></li>
@@ -902,7 +938,7 @@
 <li><p>接口类型：公开接口</p></li>
 <li><p>订阅主题：public.$contract_code.contract_info</p></li>
 </ul>
-<h2 id='1-0-3-2020-5-7'>1.0.3 2020年5月7日 【增加查询用户账户和持仓信息】</h2><h3 id='1'>1、增加查询用户账户和持仓信息</h3>
+<h2 id='1-0-3-2020-5-7'>1.0.3 2020年5月7日 【增加查询用户账户和持仓信息】</h2><h3 id='1-2'>1、增加查询用户账户和持仓信息</h3>
 <ul>
 <li><p>接口名称：查询用户账户和持仓信息</p></li>
 <li><p>接口类型： 私有接口</p></li>
@@ -1323,6 +1359,14 @@
 <td>swap-api/v1/swap_cancelall</td>
 <td>POST</td>
 <td>全部撤单</td>
+<td>是</td>
+</tr>
+<tr>
+<td>交易</td>
+<td>交易接口</td>
+<td>swap-api/v1/swap_switch_lever_rate</td>
+<td>POST</td>
+<td>切换杠杆</td>
 <td>是</td>
 </tr>
 <tr>
@@ -2774,11 +2818,11 @@ api.hbdm.com\n
 <h3 id='demo'>备注：永续代码使用方式与交割合约类似，其他语言demo可以参考交割合约</h3><h1 id='0adb1147b3'>常见问题</h1><h2 id='59ce3c8353'>接入验签相关</h2><h3 id='q1-api-key'>Q1: 合约API Key和现货是否同一个？</h3>
 <p>合约API Key和现货API Key是同一个，两个是一样的。您可以在 <a href='https://www.hbg.com/zh-cn/apikey/'>这里 </a> 创建 API Key。</p>
 <h3 id='q2'>Q2: 为什么经常出现断线、超时的错误？</h3>
-<p>如果是在大陆网络环境去请求API接口，网络连接很不稳定，很容易出现超时。建议使用AWS东京A区服务器进行访问。</p>
+<p>如果是在大陆网络环境去请求API接口，网络连接很不稳定，很容易出现超时。建议使用AWS东京C区服务器进行访问。</p>
 
 <p>国内网络可以使用api.btcgateway.pro或者api.hbdm.vn来进行调试,如果仍然无法请求，请在国外服务器上进行运行。</p>
 <h3 id='q3-websocket'>Q3: 为什么WebSocket总是断开连接？</h3>
-<p>由于网络环境不同，很容易导致websocket断开连接(websocket: close 1006 (abnormal closure))，目前最佳实践是建议您将服务器放置在AWS东京A区，并且使用api.hbdm.vn域名；同时需要做好断连重连操作；行情心跳与订单心跳均需要按照《Websocket心跳以及鉴权接口》的行情心跳与订单心跳回复不同格式的Pong消息：<a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#472585d15d'>这里</a>。以上操作可以有效减少断连情况。</p>
+<p>由于网络环境不同，很容易导致websocket断开连接(websocket: close 1006 (abnormal closure))，目前最佳实践是建议您将服务器放置在AWS东京C区，并且使用api.hbdm.vn域名；同时需要做好断连重连操作；行情心跳与订单心跳均需要按照《Websocket心跳以及鉴权接口》的行情心跳与订单心跳回复不同格式的Pong消息：<a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#472585d15d'>这里</a>。以上操作可以有效减少断连情况。</p>
 <h3 id='q4-api-hbdm-com-api-hbdm-vn'>Q4: api.hbdm.com与api.hbdm.vn有什么区别？</h3>
 <p>api.hbdm.vn域名使用的是AWS的CDN服务，理论上AWS服务器用户使用此域名会更快更稳定；api.hbdm.com域名使用的是Cloudflare的CDN服务。</p>
 <h3 id='q5-colocation'>Q5: 市商享受的colocation服务是指什么以及使用注意事项？</h3>
@@ -2896,7 +2940,7 @@ step6是不合并小数；
 <h3 id='q4'>Q4: 永续合约交易全链路延时多少？</h3>
 <p>目前永续合约全链路(从开始下单到订单的订单状态可以查询)正常情况下大约在200-300MS左右,来行情时延迟会比平时大，可能会在秒级别。</p>
 <h3 id='q5-api-connection-reset-max-retris-timed-out'>Q5: API接口返回Connection Reset 或者 Max retris 或者 Timed out 是什么原因？</h3>
-<p>出现连接重置或者网络超时，一般是网络不稳定导致，可以尝试将服务器放置在AWS东京A区，并使用api.hbdm.vn来尝试，可以有效减少网络超时等错误。</p>
+<p>出现连接重置或者网络超时，一般是网络不稳定导致，可以尝试将服务器放置在AWS东京C区，并使用api.hbdm.vn来尝试，可以有效减少网络超时等错误。</p>
 <h3 id='q6-api-order_id'>Q6: API接口下单时出错没有order_id如何来查询订单状态？</h3>
 <p>如果由于网络原因等API下单超时或者失败，没有返回order_id，可以通过下单时加入client_order_id自定义订单号来进行查询订单状态。</p>
 <h3 id='q7-ws'>Q7: WS 订阅私有账户，订单或者仓位一段时间，连接断开如何办？</h3>
@@ -6530,7 +6574,11 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">158797866555</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-24'>返回参数</h3>
+</span></code></pre><h4 id='e0361480e3-4'>备注</h4>
+<ul>
+<li>当品种中的某个品种处于结算中时，去查询所有品种的账户会报1080错误(1080  In settlement or delivery. Unable to get positions.)。建议您带上请求参数去查询持仓，避免报错查询不到账户信息。</li>
+</ul>
+<h3 id='70bdef7e25-24'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6856,6 +6904,10 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 </tbody></table>
+<h4 id='e0361480e3-5'>备注</h4>
+<ul>
+<li>当品种中的某个品种处于结算中时，去查询所有品种的持仓会报1080错误(1080  In settlement or delivery. Unable to get positions.)。建议您带上请求参数去查询持仓，避免报错查询不到持仓。</li>
+</ul>
 <h2 id='2aa4c454c6'>查询用户账户和持仓信息</h2>
 <ul>
 <li>post <code>swap-api/v1/swap_account_position_info</code></li>
@@ -7983,7 +8035,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>不填默认20，不得多于50（超过则按照50进行查询）</td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-4'>备注</h4>
+<h4 id='e0361480e3-6'>备注</h4>
 <ul>
 <li>默认按照时间倒序查询，新数据排在前</li>
 <li>当起始时间或结束时间不符合取值范围时，报错1067，参数不合法。</li>
@@ -9552,7 +9604,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>订单报价类型 &quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，&quot;fok&quot;:FOK订单，&quot;ioc&quot;:IOC订单, opponent_ioc&quot;： 对手价-IOC下单，&quot;optimal_5_ioc&quot;：最优5档-IOC下单，&quot;optimal_10_ioc&quot;：最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单,&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-5'>备注</h3>
+<h3 id='e0361480e3-7'>备注</h3>
 <p>对手价下单price价格参数不用传，对手价下单价格是买一和卖一价,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单price价格参数不用传，&quot;limit&quot;:限价，&quot;post_only&quot;:只做maker单 需要传价格。</p>
 <h3 id='8a08d50999'>开平方向</h3>
 <p>开多：买入开多(direction用buy、offset用open)</p>
@@ -9718,7 +9770,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>订单报价类型 &quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，&quot;fok&quot;:FOK订单，&quot;ioc&quot;:IOC订单, opponent_ioc&quot;： 对手价-IOC下单，&quot;optimal_5_ioc&quot;：最优5档-IOC下单，&quot;optimal_10_ioc&quot;：最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单,&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-6'>备注</h3>
+<h3 id='e0361480e3-8'>备注</h3>
 <p>对手价下单price价格参数不用传，对手价下单价格是买一和卖一价,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单price价格参数不用传，&quot;limit&quot;:限价，&quot;post_only&quot;:只做maker单 需要传价格。</p>
 
 <p>一次最多允许10个订单。</p>
@@ -10111,11 +10163,134 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='8a15d24569'>切换杠杆</h2>
+<ul>
+<li>POST <code>swap-api/v1/swap_switch_lever_rate</code></li>
+</ul>
+<h4 id='e0361480e3-9'>备注</h4>
+<ul>
+<li><p>只有在单个品种下只有持仓，且没有挂单的场景下，才可以切换该品种当前的倍数。</p></li>
+<li><p>接口限制请求次数为3次/秒。</p></li>
+</ul>
+<h3 id='1f9ac54b15-43'>请求参数</h3>
+<table><thead>
+<tr>
+<th><strong>参数名称</strong></th>
+<th><strong>是否必须</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+<th><strong>取值范围</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>String</td>
+<td>合约代码</td>
+<td>比如“BTC-USD”</td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>true</td>
+<td>int</td>
+<td>要切换的杠杆倍数</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="err">正确：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547521135713</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">错误：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">2014</span><span class="p">,</span><span class="w">    
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"无法切换"</span><span class="p">,</span><span class="w">   
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547519608126</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='70bdef7e25-42'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>响应状态: ok,error</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>false</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>false</td>
+<td>string</td>
+<td>合约代码</td>
+<td></td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>false</td>
+<td>int</td>
+<td>切换成功后的杠杆倍数</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>err_code</td>
+<td>false</td>
+<td>int</td>
+<td>错误码</td>
+<td></td>
+</tr>
+<tr>
+<td>err_msg</td>
+<td>false</td>
+<td>string</td>
+<td>错误信息</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>时间戳</td>
+<td></td>
+</tr>
+</tbody></table>
 <h2 id='f36cfcbaef'>获取合约订单信息</h2><h3 id='30fd4ed55b-16'>示例</h3>
 <ul>
 <li>POST  <code>swap-api/v1/swap_order_info</code></li>
 </ul>
-<h3 id='1f9ac54b15-43'>请求参数</h3>
+<h3 id='1f9ac54b15-44'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10144,11 +10319,11 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tr>
 </tbody></table>
 <h3 id='9852b06629-3'>备注：</h3>
-<p>最多只能查询24小时内的撤单信息。</p>
-
-<p>order_id和client_order_id都可以用来查询，同时只可以设置其中一种，如果设置了两种，默认以order_id来查询。结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。</p>
-
-<p>client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。</p>
+<ul>
+<li><p>最多只能查询 4 小时内的撤单信息。</p></li>
+<li><p>order_id和client_order_id都可以用来查询，同时只可以设置其中一种，如果设置了两种，默认以order_id来查询。结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。</p></li>
+<li><p>client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。</p></li>
+</ul>
 
 <blockquote>
 <p>Response:</p>
@@ -10402,7 +10577,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <ul>
 <li>POST <code>swap-api/v1/swap_order_detail</code></li>
 </ul>
-<h3 id='1f9ac54b15-44'>请求参数</h3>
+<h3 id='1f9ac54b15-45'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10448,7 +10623,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>不填默认20，不得多于50</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-7'>备注</h3>
+<h3 id='e0361480e3-10'>备注</h3>
 <p>获取订单明细接口查询撤单数据时，如果传“created_at”和“order_type”参数则能查询最近24小时数据，如果不传“created_at”和“order_type”参数只能查询到最近12小时数据。</p>
 
 <p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p>
@@ -10850,7 +11025,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <ul>
 <li>POST <code>swap-api/v1/swap_openorders</code></li>
 </ul>
-<h3 id='1f9ac54b15-45'>请求参数</h3>
+<h3 id='1f9ac54b15-46'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10927,7 +11102,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-42'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-43'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11159,7 +11334,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <ul>
 <li>POST <code>swap-api/v1/swap_hisorders</code> </li>
 </ul>
-<h3 id='1f9ac54b15-46'>请求参数</h3>
+<h3 id='1f9ac54b15-47'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11268,7 +11443,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1586751989809</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-43'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-44'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11500,7 +11675,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <ul>
 <li>POST <code>swap-api/v1/swap_matchresults</code></li>
 </ul>
-<h3 id='1f9ac54b15-47'>请求参数</h3>
+<h3 id='1f9ac54b15-48'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11586,7 +11761,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1555654870867</span><span class="w">                               
 </span><span class="p">}</span><span class="w">                
 
-</span></code></pre><h3 id='70bdef7e25-44'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-45'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11779,7 +11954,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-8'>备注</h3>
+<h3 id='e0361480e3-11'>备注</h3>
 <ul>
 <li>如果不传page_index和page_size，默认只查第一页的20条数据，详情请看参数说明:</li>
 </ul>
@@ -11787,7 +11962,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <ul>
 <li>POST <code>swap-api/v1/swap_lightning_close_position</code></li>
 </ul>
-<h3 id='1f9ac54b15-48'>请求参数</h3>
+<h3 id='1f9ac54b15-49'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11848,7 +12023,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
   </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-45'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-46'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11924,7 +12099,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <ul>
 <li>POST <code>swap-api/v1/swap_trigger_order</code></li>
 </ul>
-<h3 id='1f9ac54b15-49'>请求参数</h3>
+<h3 id='1f9ac54b15-50'>请求参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -12016,7 +12191,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547521135713</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-46'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-47'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12085,7 +12260,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <ul>
 <li>POST <code>swap-api/v1/swap_trigger_cancel</code></li>
 </ul>
-<h3 id='1f9ac54b15-50'>请求参数</h3>
+<h3 id='1f9ac54b15-51'>请求参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -12108,141 +12283,6 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>string</td>
 <td>用户订单ID（多个订单ID中间以&quot;,&quot;分隔,一次最多允许撤消10个订单 ）</td>
 <td></td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200415</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="w">
-       </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"successes"</span><span class="p">:</span><span class="s2">"161256,1344567"</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='70bdef7e25-47'>返回参数</h3>
-<table><thead>
-<tr>
-<th>参数名称</th>
-<th>是否必须</th>
-<th>类型</th>
-<th>描述</th>
-<th>取值范围</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>status</td>
-<td>true</td>
-<td>string</td>
-<td>请求处理结果</td>
-<td>&quot;ok&quot; , &quot;error&quot;</td>
-</tr>
-<tr>
-<td>&lt;data&gt;</td>
-<td>true</td>
-<td>object</td>
-<td>成功处理返回的数据</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;errors&gt;</td>
-<td>true</td>
-<td>object array</td>
-<td>订单失败信息</td>
-<td></td>
-</tr>
-<tr>
-<td>order_id</td>
-<td>false</td>
-<td>string</td>
-<td>订单id</td>
-<td></td>
-</tr>
-<tr>
-<td>err_code</td>
-<td>false</td>
-<td>int</td>
-<td>订单失败错误码</td>
-<td></td>
-</tr>
-<tr>
-<td>err_msg</td>
-<td>false</td>
-<td>string</td>
-<td>订单失败信息</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/errors&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>successes</td>
-<td>true</td>
-<td>string</td>
-<td>成功的订单，多个订单号以“,”相连</td>
-<td></td>
-</tr>
-<tr>
-<td>&lt;/data&gt;</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>响应生成时间点，单位：毫秒</td>
-<td></td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>错误示例：</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h2 id='3d2471d520'>合约计划委托全部撤单</h2>
-<ul>
-<li>POST <code>swap-api/v1/swap_trigger_cancelall</code></li>
-</ul>
-<h3 id='1f9ac54b15-51'>请求参数</h3>
-<table><thead>
-<tr>
-<th><strong>参数名称</strong></th>
-<th><strong>是否必须</strong></th>
-<th><strong>类型</strong></th>
-<th><strong>描述</strong></th>
-<th><strong>取值范围</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>contract_code</td>
-<td>true</td>
-<td>string</td>
-<td>合约代码</td>
-<td>BTC-USD</td>
 </tr>
 </tbody></table>
 
@@ -12358,11 +12398,146 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
+</span></code></pre><h2 id='3d2471d520'>合约计划委托全部撤单</h2>
+<ul>
+<li>POST <code>swap-api/v1/swap_trigger_cancelall</code></li>
+</ul>
+<h3 id='1f9ac54b15-52'>请求参数</h3>
+<table><thead>
+<tr>
+<th><strong>参数名称</strong></th>
+<th><strong>是否必须</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+<th><strong>取值范围</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>合约代码</td>
+<td>BTC-USD</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="s2">"161251"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200415</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="w">
+       </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"successes"</span><span class="p">:</span><span class="s2">"161256,1344567"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='70bdef7e25-49'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object</td>
+<td>成功处理返回的数据</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;errors&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td>订单失败信息</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>false</td>
+<td>string</td>
+<td>订单id</td>
+<td></td>
+</tr>
+<tr>
+<td>err_code</td>
+<td>false</td>
+<td>int</td>
+<td>订单失败错误码</td>
+<td></td>
+</tr>
+<tr>
+<td>err_msg</td>
+<td>false</td>
+<td>string</td>
+<td>订单失败信息</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/errors&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>successes</td>
+<td>true</td>
+<td>string</td>
+<td>成功的订单，多个订单号以“,”相连</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>错误示例：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">20012</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid symbol"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
 </span></code></pre><h2 id='b5280a27b3'>获取计划委托当前委托</h2>
 <ul>
 <li>POST <code>swap-api/v1/swap_trigger_openorders</code></li>
 </ul>
-<h3 id='1f9ac54b15-52'>请求参数</h3>
+<h3 id='1f9ac54b15-53'>请求参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -12446,7 +12621,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547520777695</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-49'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-50'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12648,7 +12823,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <ul>
 <li>POST <code>swap-api/v1/swap_trigger_hisorders</code></li>
 </ul>
-<h3 id='1f9ac54b15-53'>请求参数</h3>
+<h3 id='1f9ac54b15-54'>请求参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -12777,7 +12952,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1547520777695</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-50'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-51'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13028,7 +13203,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <ul>
 <li>POST <code>https://api.huobi.pro/v2/account/transfer</code></li>
 </ul>
-<h3 id='e0361480e3-9'>备注</h3>
+<h3 id='e0361480e3-12'>备注</h3>
 <p>此接口用户币币现货账户与币本位永续合约账户之间的资金划转。</p>
 
 <p>该接口的访问频次的限制为1分钟10次。</p>
@@ -13036,7 +13211,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <p>注意：请求地址为火币Global地址</p>
 
 <p>现货与币本位永续合约划转接口，所有划转的币的精度是8位小数。</p>
-<h3 id='1f9ac54b15-54'>请求参数</h3>
+<h3 id='1f9ac54b15-55'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13094,7 +13269,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
     "message":"The single transfer-out amount must be no less than 0.0008BTC",
     "success":false}
 
-</code></pre><h3 id='70bdef7e25-51'>返回参数</h3>
+</code></pre><h3 id='70bdef7e25-52'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14016,7 +14191,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
       </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
   </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-55'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-56'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14069,7 +14244,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>仅支持小写：1min, 5min, 15min, 30min, 1hour,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='70bdef7e25-52'>返回参数</h3>
+<h3 id='70bdef7e25-53'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14202,7 +14377,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
     </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1579247342</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-56'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-57'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14269,7 +14444,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-10'>备注</h4>
+<h4 id='e0361480e3-13'>备注</h4>
 <p>[t1, t5] 假设有 t1  ~ t5 的K线：</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -14289,7 +14464,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <p>from: t1 and to: t2, should satisfy 1325347200  &lt; t1  &lt; t2  &lt; 2524579200.</p>
 
 <p>一次最多2000条。</p>
-<h3 id='70bdef7e25-53'>返回参数</h3>
+<h3 id='70bdef7e25-54'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14435,7 +14610,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">                                
     </span><span class="p">}</span><span class="w"> 
 
-</span></code></pre><h3 id='1f9ac54b15-57'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-58'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14488,7 +14663,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>(150档数据)  step0, step1, step2, step3, step4, step5, step14, step15（合并深度1-5,14-15）,step0时，不合并深度;(20档数据)  step6, step7, step8, step9, step10, step11, step12, step13（合并深度7-13）；step6时，不合并深度；step12（表示合并精度1的20档深度数据，表示整数位的个位）、step13（表示合并精度10的20档深度数据，表示整数位的十位）、step14（表示合并精度1的150档深度数据，表示整数位的个位）、step15（表示合并精度10的150档深度数据，表示整数位的十位）</td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-11'>备注</h4>
+<h4 id='e0361480e3-14'>备注</h4>
 <ul>
 <li><p>合并深度时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</p></li>
 <li><p>step1至step5, step14, step15是进行了深度合并后的150档深度数据，step7至step13是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
@@ -14582,7 +14757,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>10</td>
 </tr>
 </tbody></table>
-<h3 id='70bdef7e25-54'>返回参数</h3>
+<h3 id='70bdef7e25-55'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14716,7 +14891,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
   </span><span class="s2">"data_type"</span><span class="p">:</span><span class="s2">"incremental"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-58'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-59'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14800,7 +14975,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
          </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"update"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-55'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-56'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14923,7 +15098,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">                         
  </span><span class="p">}</span><span class="w">                                    
 
-</span></code></pre><h3 id='1f9ac54b15-59'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-60'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14987,7 +15162,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
       </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-56'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-57'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -15093,7 +15268,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-60'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-61'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -15271,7 +15446,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-61'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-62'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -15321,7 +15496,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>合约代码，支持大小写，比如&quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='70bdef7e25-57'>返回参数</h3>
+<h3 id='70bdef7e25-58'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -15445,7 +15620,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-62'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-63'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -15509,7 +15684,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-58'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-59'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -15633,7 +15808,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-63'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-64'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -15707,7 +15882,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
      </span><span class="p">}</span><span class="w">
  </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-59'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-60'>返回参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -15838,7 +16013,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-64'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-65'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -15935,7 +16110,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-60'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-61'>返回参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -16085,7 +16260,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-65'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-66'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -16159,7 +16334,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-61'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-62'>返回参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -16291,7 +16466,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
     </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1579247342</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-66'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-67'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -16388,7 +16563,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-62'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-63'>返回参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -16538,7 +16713,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-67'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-68'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -16618,7 +16793,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-63'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-64'>返回参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -16716,7 +16891,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
     </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1579247342</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-68'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-69'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -16812,7 +16987,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-64'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-65'>返回参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -17394,7 +17569,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>event</td>
 <td>string</td>
-<td>资产变化通知相关事件说明，比如订单创建开仓(order.open) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel) 、合约账户划转（contract.transfer)（包括外部划转）、系统（contract.system)、其他资产变化(other)   、初始资金（init）</td>
+<td>资产变化通知相关事件说明，比如订单创建开仓(order.open) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel) 、合约账户划转（contract.transfer)（包括外部划转）、系统（contract.system)、其他资产变化(other)、切换杠杆（switch_lever_rate）、初始资金（init）</td>
 </tr>
 <tr>
 <td>&lt;list&gt; (attr name: data)</td>
@@ -17605,10 +17780,6 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td style="text-align: left">必填；订阅主题名称，必填 (positions.$contract_code)  订阅、取消订阅某个合约代码下的持仓变更信息，当 $contract_code值为 * 时代表订阅所有合约代码,contract_code支持大小写;</td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-11'>备注：</h4>
-<ul>
-<li>推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果5秒内某仓位已触发过推送，则该仓位跳过此次推送。</li>
-</ul>
 
 <blockquote>
 <p>当持仓有更新时，返回的参数示例如下:</p>
@@ -17638,7 +17809,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
  </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-65'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-66'>返回参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -17669,7 +17840,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>event</td>
 <td>string</td>
-<td>持仓变化通知相关事件说明，比如订单创建平仓(order.close) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel)  、初始持仓（init）</td>
+<td>持仓变化通知相关事件说明，比如订单创建平仓(order.close) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel)、切换杠杆（switch_lever_rate） 、初始持仓（init）、由系统定期推送触发（snapshot）。</td>
 </tr>
 <tr>
 <td>&lt;list&gt; (attr name: data)</td>
@@ -17752,6 +17923,11 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 </tbody></table>
+<h4 id='9852b06629-11'>备注：</h4>
+<ul>
+<li><p>推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果5秒内某仓位已触发过推送，则该仓位跳过此次推送。</p></li>
+<li><p>当用户持仓量为0时使用切换杠杆的接口，持仓推送接口不会推送&quot;switch_lever_rate&quot;。</p></li>
+</ul>
 <h2 id='unsub-3'>取消订阅持仓变动数据（unsub）</h2>
 <p>成功建⽴和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来取消订阅数据:</p>
 <h3 id='5ece2c9713-3'>取消订阅请求数据格式</h3>
@@ -17854,7 +18030,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matchOrders.BTC-USD"</span><span class="p">,</span><span class="w">      
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">          
 </span><span class="p">}</span><span class="w">                                    
-</span></code></pre><h3 id='1f9ac54b15-69'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-70'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -17913,10 +18089,17 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
         </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="mf">34.123</span><span class="p">,</span><span class="w">     </span><span class="err">//成交金额</span><span class="w"> 
         </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="p">,</span><span class="w">   </span><span class="err">//成交时间</span><span class="w">
         </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maker"</span><span class="w">
-      </span><span class="p">}]</span><span class="w">
+      </span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">34.123</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-66'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-67'>返回参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -18028,14 +18211,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>id</td>
 <td>true</td>
 <td>string</td>
-<td>成交唯一ID</td>
+<td>全局唯一交易标识</td>
 <td></td>
 </tr>
 <tr>
 <td>trade_id</td>
 <td>true</td>
 <td>long</td>
-<td>撮合结果id</td>
+<td>撮合结果id，与api/v1/contract_matchresults返回结果中的match_id一样, 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id</td>
 <td></td>
 </tr>
 <tr>
@@ -18079,6 +18262,55 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 <td></td>
 <td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>true</td>
+<td>string</td>
+<td>买卖方向</td>
+<td>&quot;buy&quot;:买 &quot;sell&quot;:卖</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>true</td>
+<td>string</td>
+<td>开平方向</td>
+<td>&quot;open&quot;:开 &quot;close&quot;:平</td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>true</td>
+<td>int</td>
+<td>杠杆倍数</td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>true</td>
+<td>decimal</td>
+<td>委托价格</td>
+<td></td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>true</td>
+<td>long</td>
+<td>创建时间</td>
+<td></td>
+</tr>
+<tr>
+<td>order_source</td>
+<td>true</td>
+<td>string</td>
+<td>订单来源</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>true</td>
+<td>string</td>
+<td>订单报价类型</td>
+<td>&quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc：IOC订单，fok：FOK订单,&quot;opponent_ioc&quot;: 对手价-IOC下单，&quot;optimal_5_ioc&quot;: 最优5档-IOC下单，&quot;optimal_10_ioc&quot;: 最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单，&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
 </tr>
 </tbody></table>
 <h2 id='unsub-4'>取消订阅合约订单撮合数据（unsub）</h2>
@@ -18350,7 +18582,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-67'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-68'>返回参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -18497,7 +18729,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
         </span><span class="p">}</span><span class="w">
       </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-68'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-69'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -18671,7 +18903,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-12'>备注</h3>
+<h3 id='e0361480e3-15'>备注</h3>
 <p>推送逻辑一般是1分钟一次，但是出现以下情况时不会计算资金费率：</p>
 
 <ul>
@@ -18703,7 +18935,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-70'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-71'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -18754,7 +18986,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
         </span><span class="s2">"contract_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
     </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-69'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-70'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -18967,7 +19199,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-71'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-72'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -19507,7 +19739,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-13'>备注</h3>
+<h3 id='e0361480e3-16'>备注</h3>
 <ul>
 <li>这个推送由于是轮询判断状态的，所以推送可能存在1—2秒的延迟。</li>
 </ul>
