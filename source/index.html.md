@@ -6415,7 +6415,7 @@ count  |  true  |  decimal  |   成交笔数  |
 | id  | true| long | tick ID | |
 | ask | true | array |卖一盘,[price(挂单价), vol(此价格挂单张数)] | |
 | bid | true| array | 买一盘,[price(挂单价), vol(此价格挂单张数)] | |
-| version | true| string | 版本号 | |
+| version | true| long | 版本号 | |
 | ts | true | long | 响应生成时间点，单位：毫秒（指数据生成时间）| |
 | \<\tick\> | | |  | |
 
