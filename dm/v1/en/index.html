@@ -1765,7 +1765,7 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
 <li><p>Request address of method, i.e. visit server address--api.hbdm.com, e.g.:  api.hbdm.com/api/v1/contract_order</p></li>
 <li><p>API Access Key ID (AccessKeyId): Access Key of the API Key that you apply.</p></li>
 <li><p>Method of Signature (SignatureMethod): Based on the Hash Aggrement, users calculate the signature via HmacSHA256.</p></li>
-<li><p>aSignature Version (SignatureVersion): It adopts version 2 in terms of Signature Version.</p></li>
+<li><p>Signature Version (SignatureVersion): It adopts version 2 in terms of Signature Version.</p></li>
 <li><p>Timestamp (Timestamp): The time when you send the request (UTC time zone) : (UTC time zone) : (UTC time zone), e.g.: 2017-05-11T16:22:06</p></li>
 <li><p>Must-fill parameters &amp; optional parameters: For each method, there are a group of must-fill parameters and optional parameters used to address the API request, which can be found in the illustration of each method as well as their meaning. Please note that, in terms of &quot;Get&quot; requests, it needs to do Signature calculation for all the original parameters in each method ; In terms of &quot;Post&quot; requests, no need to do Signature calculation for the original parameters in each method, which means only four parameters need to do Signature calculation in &quot;Post&quot; requests, i.e. AccessKeyId, SignatureMethod, SignatureVersion, Timestamp with other parameters placed in &quot;body&quot;.</p></li>
 <li><p>Signature: The result of Signature calculation which is used to verify if signature is valid and not tampered.</p></li>
@@ -10477,7 +10477,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 </tbody></table>
 <h3 id='note-14'>Note  ：</h3>
-<p>When getting information on order cancellation via get contracts Information interface, users can only query last 4-hour data</p>
+<p>When getting information on order cancellation via get order information interface, users can only query last 4-hour data</p>
 
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id. The order completed( 5.partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled; ) will be deleted after the settlement on Friday.</p>
 
@@ -14090,9 +14090,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <li>Sequence the parameter name according to ASCII code (use UTF-8 and transfer into URI encoding, capital letters for hexadecimal characters. E.G.: ‘:’ will be encoded into &#39;%3A&#39;, blank will be encoded into &#39;%20&#39;). Here is an encoding example below for request parameters</li>
 </ul>
 
-<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-
-  7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-
-  11T15%3A19%3A30</code></p>
+<p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30</code></p>
 
 <ul>
 <li><p>Connect all parameters with ’&amp;’ according to the sequence above.</p></li>
