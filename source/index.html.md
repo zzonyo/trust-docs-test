@@ -6173,9 +6173,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
   大写，如‘:’会被编码为'%3A'，空格被编码为'%20')。例如，下面是请求参数的原始顺序，进⾏过
   编码后。
 
-  `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-
-  7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-
-  11T15%3A19%3A30`
+  `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30`
   
 
 - 按照以上顺序，将各参数使用字符’&’连接。 
