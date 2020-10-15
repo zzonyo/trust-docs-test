@@ -502,7 +502,7 @@ A legitimate request consists of following parts：
 
 - Method of Signature (SignatureMethod): Based on the Hash Aggrement, users calculate the signature via HmacSHA256.
 
-- aSignature Version (SignatureVersion): It adopts version 2 in terms of Signature Version.
+- Signature Version (SignatureVersion): It adopts version 2 in terms of Signature Version.
 
 - Timestamp (Timestamp): The time when you send the request (UTC time zone) : (UTC time zone) : (UTC time zone), e.g.: 2017-05-11T16:22:06
 
@@ -6409,7 +6409,7 @@ count  |  true  |  decimal  |   fulfilled order quantity  |
 | id  | true| long | tick ID | |
 | ask | true | array | Best Ask Quotation,[price(Ask price), vol(Ask order (cont.) )] | |
 | bid | true| array | Best Bid Quotation,[price(Bid price), vol(Bid order(Cont.))] | |
-| version | true| string | version ID. | |
+| version | true| long | version ID. | |
 | ts | true | long |  Time of Respond Generation, Unit: Millisecond  | |
 | \<\tick\> | | |  | |
 
