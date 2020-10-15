@@ -807,7 +807,7 @@ A legitimate request consists of following parts：
 
 - Method of Signature (SignatureMethod): Based on the Hash Aggrement, users calculate the signature via HmacSHA256.
 
-- aSignature Version (SignatureVersion): It adopts version 2 in terms of Signature Version.
+- Signature Version (SignatureVersion): It adopts version 2 in terms of Signature Version.
 
 - Timestamp (Timestamp): The time when you send the request (UTC time zone) : (UTC time zone) : (UTC time zone), e.g.: 2017-05-11T16:22:06
 
@@ -6157,9 +6157,7 @@ Example on Signature Computing Process:，
 
 - Sequence the parameter name according to ASCII code (use UTF-8 and transfer into URI encoding, capital letters for hexadecimal characters. E.G.: ‘:’ will be encoded into '%3A', blank will be encoded into '%20'). Here is an encoding example below for request parameters
 
-  `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-
-  7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-
-  11T15%3A19%3A30`
+  `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30`
   
 
 - Connect all parameters with ’&’ according to the sequence above.
