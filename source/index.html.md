@@ -131,7 +131,7 @@ A legitimate request consists of following parts：
 
 - Method of Signature (SignatureMethod): Based on the Hash Aggrement, users calculate the signature via HmacSHA256.
 
-- aSignature Version (SignatureVersion): It adopts version 2 in terms of Signature Version.
+- Signature Version (SignatureVersion): It adopts version 2 in terms of Signature Version.
 
 - Timestamp (Timestamp): The time when you send the request (UTC time zone) : (UTC time zone) : (UTC time zone), e.g.: 2017-05-11T16:22:06
 
@@ -4007,7 +4007,7 @@ No：
 
 ###  Note  ：
 
-When getting information on order cancellation via get contracts Information interface, users can only query last 24-hour data
+When getting information on order cancellation via get order Information interface, users can only query last 24-hour data
 
 Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id. The order completed( 5.partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled; ) will be deleted after the settlement of funding rate on 04:00(GMT+8), 12:00(GMT+8) and 20:00(GMT+8).
 
