@@ -6053,7 +6053,7 @@ trade_turnover  |  true  |  decimal  |  Transaction amount, that is, sum (transa
 | id  | true| long | tick ID | |
 | ask | true | array | Best Ask Quotation,[price(Ask price), vol(Ask order (cont.) )] | |
 | bid | true| array | Best Bid Quotation,[price(Bid price), vol(Bid order(Cont.))] | |
-| version | true| string | version ID. | |
+| version | true| long | version ID. | |
 | ts | true | long |  Time of Respond Generation, Unit: Millisecond  | |
 | \<\tick\> | | |  | |
 
