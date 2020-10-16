@@ -26,6 +26,7 @@ table th {
 
 | Release Time<BR>(UTC +8) | API | New / Update | Description |
 |-----|-----|-----|-----|
+| 2020.10.16 19:00 | `orders#${symbol} `| Add | Add accountId for order creation event |
 | 2020.10.10 19:00 | `POST /v2/account/repayment`,<BR>`GET /v2/account/repayment` | Add | Added general repayment and query |
 |2020.8.28 19:00|`GET /v1/common/symbols`|Update|Added API trading eligibility flag |
 |2020.8.4 19:00|`accounts.update#${mode}`, `accounts`|Update|Added new event type deposit and withdraw|
@@ -8411,6 +8412,7 @@ After conditional order being cancelled before triggering –
 	{
 		"orderSize":"2.000000000000000000",
 		"orderCreateTime":1583853365586,
+    "accountld":"992701",
 		"orderPrice":"77.000000000000000000",
 		"type":"sell-limit",
 		"orderId":27163533,
@@ -8418,6 +8420,7 @@ After conditional order being cancelled before triggering –
 		"orderStatus":"submitted",
 		"symbol":"btcusdt",
 		"eventType":"creation"
+    
 	}
 }
 ```
@@ -8428,6 +8431,7 @@ After order is submitted –
 | ----- | --------- | ----------- |
 |	eventType		|	string		|	Event type, valid value: creation					|
 |	symbol			|	string		|	Trading symbol									|
+|	accountId	|	long	|	account ID	|
 |	orderId			|	long		|	Order ID										|
 |	clientOrderId		|	string		|	Client order ID (if any)								|
 |	orderPrice		|	string		|	Order price										|
