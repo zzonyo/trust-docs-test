@@ -3036,6 +3036,23 @@ orphan          | Confirmed but currently in an orphan branch
 
 # Sub user management
 
+## Introduction
+
+Sub user management APIs provide sub user account management (creation, query, permission, transfer), sub user API key management (creation, update, query, deletion), sub user address (deposit, withdraw) query and balance query.
+
+<aside class="notice">All endpoints in this section require authentication</aside>
+
+Below is the error code, error message and description returned by Sub user management APIs
+
+| Error Code | Error Message | Description |
+| ---  | ---  | ---  |
+| 1002 | forbidden | Operation is forbidden, such as sub user creation is not allowed for current user |
+| 1003 | unauthorized | Signature is wrong |
+| 2002 | invalid field value | Parameter is invalid |
+| 2014 | number of sub account in the request exceeded valid range | number of sub account exceeded |
+| 2014 | number of api key in the request exceeded valid range | number of API Key exceeded |
+| 2016 | invalid request while value specified in sub user states  | lock or unlock failure |
+
 ## Sub user creation
 
 This endpoint is used by the parent user to create sub users, up to 50 at a time
