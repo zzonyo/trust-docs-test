@@ -24,6 +24,7 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口 | 变化      | 摘要 |
 |-----|-----|-----|-----|
+| 2020.10.16 19:00 | `orders#${symbol}` | 优化 | 订单创建事件新增accountId |
 | 2020.10.10 19:00 | `POST /v2/account/repayment`,<BR>`GET /v2/account/repayment` | 新增 | 新增通用还币接口及还币交易记录查询接口 |
 |2020.8.28 19:00|`GET /v1/common/symbols`|优化|新增API交易使能标记 |
 |2020.8.21 19:00|`accounts.update#${mode}`, <BR>`accounts`|优化|新增账户变更事件类型deposit，withdraw |
