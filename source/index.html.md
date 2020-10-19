@@ -654,11 +654,11 @@ Please note that, for both public interface and private interface, there are rat
 
 * Will response following string for "header" via api 
 
-    ratelimit-limit: the upper limit of requests per time, unit: time
+    ratelimit-limit: the upper limit of requests per time, unit: times
 
     ratelimit-interval: reset interval (reset the number of request), unit: ms
 
-    ratelimit-remaining: the left available request number for this round, unit: time
+    ratelimit-remaining: the left available request number for this round, unit: times
 
     ratelimit-reset: upper limit of reset time used to reset request number, unit: ms 
 
@@ -671,7 +671,7 @@ Please note that, for both public interface and private interface, there are rat
 
 ## API Limitation on Order Cancellation Ratio
 
-* The system will calculate the order cancellation ratio automatically when the total number of orders placed via certain order price types by the API user goes equal to or larger than 2,000 within 10 minutes. If the order cancellation ratio is greater than 95%, the user will be prohibited for 5 minutes from placing orders via certain API order price types which will be listed below.
+* The system will calculate the order cancellation ratio automatically when the total number of orders placed via certain order price types by the API user goes equal to or larger than 3,000 within 10 minutes. If the order cancellation ratio is greater than 99%, the user will be prohibited for 5 minutes from placing orders via certain API order price types which will be listed below.
 * A 30-minute API order placement prohibition will be triggered if the user was prohibited for 3 times within an hour. After resuming access, the total number of prohibited times will be cleared during the previous period and will not be counted into the total prohibited times in the new period.
 * Please note that the prohibition from placing orders will cause no effect on order cancellation via API as well as order placement and cancellation via other terminals. We’ll keep you notified on each prohibition via SMS and email.
 * Only four API order price types will be prohibited which are Limit order, Post_only, FOK and IOC. Please note that you can still use freely other order price types during the banned period, such as Lightning Close, BBO, Optimal 5, Optimal 10 and Optimal 20, opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok,etc.
@@ -1438,7 +1438,7 @@ The field ID returned by the information interface swap-api/v1/swap_order_detail
 
 ### Q4: What is the delay for the round trip of huobi swap?
 
-At present,it normally takes about 200-300ms from placing the order to getting the status of the order.
+At present,it normally takes about 30-50ms from placing the order to getting the status of the order.
 
 ### Q5: Why does the API return connection reset or Max retris or Timeout error?
 
@@ -5573,11 +5573,11 @@ Note: The rate limit of WS order push and RESTFUL private interface are separate
 
 Response the following strings for “Header” via API
 
-- ratelimit-limit： the upper request limit per time, unit: cont.
+- ratelimit-limit： the upper request limit per time, unit: times
 
 - ratelimit-interval： reset interval(reset the number of request ), unit: ms
 
-- ratelimit-remaining： available request number left in this round, unit: cont.
+- ratelimit-remaining： available request number left in this round, unit: times
 
 - ratelimit-reset： upper limit of reset time used to request number， unit: ms
  
