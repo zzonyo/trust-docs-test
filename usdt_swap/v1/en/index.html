@@ -1290,11 +1290,11 @@ order push connection for BTC Contract which will automatically push orders of B
 contracts. Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.</p></li>
 <li><p>Will response following string for &quot;header&quot; via api </p>
 
-<p>ratelimit-limit: the upper limit of requests per time, unit: time</p>
+<p>ratelimit-limit: the upper limit of requests per time, unit: times</p>
 
 <p>ratelimit-interval: reset interval (reset the number of request), unit: ms</p>
 
-<p>ratelimit-remaining: the left available request number for this round, unit: time</p>
+<p>ratelimit-remaining: the left available request number for this round, unit: times</p>
 
 <p>ratelimit-reset: upper limit of reset time used to reset request number, unit: ms </p>
 
@@ -1306,7 +1306,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </ul>
 <h2 id='api-limitation-on-order-cancellation-ratio-unavailable-now'>API Limitation on Order Cancellation Ratio(unavailable now)</h2>
 <ul>
-<li>The system will calculate the order cancellation ratio automatically when the total number of orders placed via certain order price types by the API user goes equal to or larger than 2,000 within 10 minutes. If the order cancellation ratio is greater than 95%, the user will be prohibited for 5 minutes from placing orders via certain API order price types which will be listed below.</li>
+<li>The system will calculate the order cancellation ratio automatically when the total number of orders placed via certain order price types by the API user goes equal to or larger than 3,000 within 10 minutes. If the order cancellation ratio is greater than 99%, the user will be prohibited for 5 minutes from placing orders via certain API order price types which will be listed below.</li>
 <li>A 30-minute API order placement prohibition will be triggered if the user was prohibited for 3 times within an hour. After resuming access, the total number of prohibited times will be cleared during the previous period and will not be counted into the total prohibited times in the new period.</li>
 <li>Please note that the prohibition from placing orders will cause no effect on order cancellation via API as well as order placement and cancellation via other terminals. We’ll keep you notified on each prohibition via SMS and email.</li>
 <li>Only four API order price types will be prohibited which are Limit order, Post_only, FOK and IOC. Please note that you can still use freely other order price types during the banned period, such as Lightning Close, BBO, Optimal 5, Optimal 10 and Optimal 20, opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok,etc.</li>
@@ -2573,7 +2573,7 @@ You are recommended to read the status code from the returned message. If the ab
 <h3 id='q3-the-same-order-id-and-match-id-can-have-multiple-trades-for-example-if-a-user-take-a-large-amount-of-maker-orders-there-will-be-multiple-corresponding-trades-how-to-identify-these-different-trades'>Q3: The same order ID and match ID can have multiple trades. for example: if a user take a large amount of maker orders, there will be multiple corresponding trades . How to identify these different trades ?</h3>
 <p>The field ID returned by the information interface linear-swap-api/v1/swap_order_detail is a globally unique transaction identifier. if a maker order is matched multiple times, a trade will be pushed once there is a transaction matched.</p>
 <h3 id='q4-what-is-the-delay-for-the-round-trip-of-huobi-usdt-swap'>Q4: What is the delay for the round trip of huobi USDT swap?</h3>
-<p>At present,it normally takes about 200-300ms from placing the order to getting the status of the order.</p>
+<p>At present,it normally takes about 30-50ms from placing the order to getting the status of the order.</p>
 <h3 id='q5-why-does-the-api-return-connection-reset-or-max-retris-or-timeout-error'>Q5: Why does the API return connection reset or Max retris or Timeout error?</h3>
 <p>Most of the network connectivity problems ,(such as Connection reset or network timeout )  are caused by network instability , you can use the server in AWS Tokyo C area with api.hbdm.vn , which can effectively reduce network timeout errors.</p>
 <h3 id='q6-how-to-check-the-order-status-without-order_id-not-returned'>Q6: How to check the order status without order_id not returned?</h3>
@@ -13434,9 +13434,9 @@ Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
 <p>Response the following strings for “Header” via API</p>
 
 <ul>
-<li><p>ratelimit-limit： the upper request limit per time, unit: cont.</p></li>
+<li><p>ratelimit-limit： the upper request limit per time, unit: times</p></li>
 <li><p>ratelimit-interval： reset interval(reset the number of request ), unit: ms</p></li>
-<li><p>ratelimit-remaining： available request number left in this round, unit: cont.</p></li>
+<li><p>ratelimit-remaining： available request number left in this round, unit: times</p></li>
 <li><p>ratelimit-reset： upper limit of reset time used to request number， unit: ms</p></li>
 </ul>
 <h1 id='websocket-heartbeat-and-authentication-interface'>WebSocket Heartbeat and Authentication Interface</h1><h2 id='market-heartbeat'>Market Heartbeat</h2>
