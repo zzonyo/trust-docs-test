@@ -530,6 +530,9 @@
             <a href="#trading" class="toc-h1 toc-link" data-title="Trading">Trading</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#introduction-7" class="toc-h2 toc-link" data-title="Introduction">Introduction</a>
+                  </li>
+                  <li>
                     <a href="#place-a-new-order" class="toc-h2 toc-link" data-title="Place a New Order">Place a New Order</a>
                   </li>
                   <li>
@@ -8499,10 +8502,226 @@ Rate Limit (NEW): 20times/2s</p>
 <td>NA</td>
 </tr>
 </tbody></table>
-<h1 id='trading'>Trading</h1>
+<h1 id='trading'>Trading</h1><h2 id='introduction-7'>Introduction</h2>
+<p>Trading APIs provide trading related functionality, including placing order, canceling order, order history query, trading history query, transaction fee query.</p>
+
 <aside class="notice">All endpoints in this section require authentication</aside>
 
 <aside class="warning">The parameter "account-id" and "source" should be set properly, refer to details in Request Parameters description below.</aside>
+
+<p>Below is the error code and description returned by Trading APIs</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base-argument-unsupported</td>
+<td>The specified parameter is not supported</td>
+</tr>
+<tr>
+<td>base-system-error</td>
+<td>Server internel error. For placing or canceling order, it is most related to cache issue, please try again later.</td>
+</tr>
+<tr>
+<td>login-required</td>
+<td>Signature is missing or wrong</td>
+</tr>
+<tr>
+<td>parameter-required</td>
+<td>Parameter stop-price or operator is missing for stop-order type</td>
+</tr>
+<tr>
+<td>order-amount-over-limit</td>
+<td>The amount of order exceeds the limitation</td>
+</tr>
+<tr>
+<td>base-symbol-trade-disabled</td>
+<td>The symbol is disabled for trading</td>
+</tr>
+<tr>
+<td>base-operation-forbidden</td>
+<td>The operation is forbidden for current user or the symbol is not allowed to trade over OTC</td>
+</tr>
+<tr>
+<td>account-get-accounts-inexistent-error</td>
+<td>The account doesn&#39;t exist in current user</td>
+</tr>
+<tr>
+<td>account-account-id-inexistent</td>
+<td>The account id doesn&#39;t exist</td>
+</tr>
+<tr>
+<td>sub-user-auth-required</td>
+<td>Isolated margin account is not enabled for sub user</td>
+</tr>
+<tr>
+<td>order-disabled</td>
+<td>The symbol is pending and not allowed to place order</td>
+</tr>
+<tr>
+<td>cancel-disabled</td>
+<td>The symbol is pending and not allowed to cancel order</td>
+</tr>
+<tr>
+<td>order-invalid-price</td>
+<td>The order price is invalid, usually exceeds the 10% of latest trade price</td>
+</tr>
+<tr>
+<td>order-accountbalance-error</td>
+<td>The account balance is insufficient</td>
+</tr>
+<tr>
+<td>order-limitorder-price-min-error</td>
+<td>Sell price cannot be lower than specific price</td>
+</tr>
+<tr>
+<td>order-limitorder-price-max-error</td>
+<td>Buy price cannot be higher than specific price</td>
+</tr>
+<tr>
+<td>order-limitorder-amount-min-error</td>
+<td>Limit order amount can not be less than specific number</td>
+</tr>
+<tr>
+<td>order-limitorder-amount-max-error</td>
+<td>Limit order amount can not be more than specific number</td>
+</tr>
+<tr>
+<td>order-etp-nav-price-min-error</td>
+<td>Order price cannot be lower than specific percentage</td>
+</tr>
+<tr>
+<td>order-etp-nav-price-max-error</td>
+<td>Order price cannot be higher than specific percentage</td>
+</tr>
+<tr>
+<td>order-orderprice-precision-error</td>
+<td>Order price precision error</td>
+</tr>
+<tr>
+<td>order-orderamount-precision-error</td>
+<td>Order amount precision error</td>
+</tr>
+<tr>
+<td>order-value-min-error</td>
+<td>Order value cannot be lower than specific value</td>
+</tr>
+<tr>
+<td>order-marketorder-amount-min-error</td>
+<td>Market order amount cannot be less than specific amount</td>
+</tr>
+<tr>
+<td>order-marketorder-amount-max-error</td>
+<td>Market order amount cannot be more than specific amount</td>
+</tr>
+<tr>
+<td>order-holding-limit-failed</td>
+<td>Exceed the holding limit of the currency</td>
+</tr>
+<tr>
+<td>order-type-invalid</td>
+<td>Order type is invalid</td>
+</tr>
+<tr>
+<td>order-orderstate-error</td>
+<td>Order state is invalid</td>
+</tr>
+<tr>
+<td>order-date-limit-error</td>
+<td>Order query date exceed the limit</td>
+</tr>
+<tr>
+<td>order-source-invalid</td>
+<td>Order source is invalid</td>
+</tr>
+<tr>
+<td>order-update-error</td>
+<td>Order update error</td>
+</tr>
+<tr>
+<td>order-fl-cancellation-is-disallowed</td>
+<td>Liquidation order cannot be canceled</td>
+</tr>
+<tr>
+<td>operation-forbidden-for-fl-account-state</td>
+<td>The operation is forbidden when the account is in liquidation</td>
+</tr>
+<tr>
+<td>operation-forbidden-for-lock-account-state</td>
+<td>The operation is forbidden when the account is locked</td>
+</tr>
+<tr>
+<td>fl-order-already-existed</td>
+<td>An unfilled liquidation order already exists</td>
+</tr>
+<tr>
+<td>order-user-cancel-forbidden</td>
+<td>IOC or FOK order is not allowed to cancel</td>
+</tr>
+<tr>
+<td>account-state-invalid</td>
+<td>Invalid status of liquidation account</td>
+</tr>
+<tr>
+<td>order-price-greater-than-limit</td>
+<td>Order price is higher than the limitation before market opens</td>
+</tr>
+<tr>
+<td>order-price-less-than-limit</td>
+<td>Order price is lower than the limitation before market opens</td>
+</tr>
+<tr>
+<td>order-stop-order-hit-trigger</td>
+<td>The stop orders triggered immediately are not allowed</td>
+</tr>
+<tr>
+<td>market-orders-not-support-during-limit-price-trading</td>
+<td>Market orders are not supported during limit-price trading</td>
+</tr>
+<tr>
+<td>price-exceeds-the-protective-price-during-limit-price-trading</td>
+<td>The price exceeds the protective price during limit-price trading</td>
+</tr>
+<tr>
+<td>invalid-client-order-id</td>
+<td>The client order id is duplicated (within last 24h)</td>
+</tr>
+<tr>
+<td>invalid-interval</td>
+<td>Query window is zero, negative or greater than limitation</td>
+</tr>
+<tr>
+<td>invalid-start-date</td>
+<td>The start date is invalid</td>
+</tr>
+<tr>
+<td>invalid-end-date</td>
+<td>The end date is invalid</td>
+</tr>
+<tr>
+<td>invalid-start-time</td>
+<td>The start time is invalid</td>
+</tr>
+<tr>
+<td>invalid-end-time</td>
+<td>The end time is invalid</td>
+</tr>
+<tr>
+<td>symbol-not-support</td>
+<td>The symbol is not support for cross margin or C2C</td>
+</tr>
+<tr>
+<td>not-found</td>
+<td>The order id is not found</td>
+</tr>
+<tr>
+<td>base-not-found</td>
+<td>Too much invalid client order id in the past, try again after 1 hour</td>
+</tr>
+</tbody></table>
 <h2 id='place-a-new-order'>Place a New Order</h2>
 <p>API Key Permission：Trade<br>
 Rate Limit (NEW): 100times/2s</p>
