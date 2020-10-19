@@ -321,9 +321,6 @@
                     <a href="#data-type" class="toc-h2 toc-link" data-title="Data Type">Data Type</a>
                   </li>
                   <li>
-                    <a href="#error-message" class="toc-h2 toc-link" data-title="Error Message">Error Message</a>
-                  </li>
-                  <li>
                     <a href="#best-practice" class="toc-h2 toc-link" data-title="Best Practice">Best Practice</a>
                   </li>
               </ul>
@@ -2130,94 +2127,6 @@ The types include:</p>
 <li><code>long</code>: a 64-bit integer, mainly used for Id and timestamp</li>
 <li><code>float</code>: a fraction represented in decimal format, mainly used for volume and price, recommend to use high precision decimal data types in program</li>
 </ul>
-<h2 id='error-message'>Error Message</h2><h3 id='order-api-error-message'>Order API Error Message</h3>
-<table><thead>
-<tr>
-<th>Error Message</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>base-symbol-error</td>
-<td>Trade pair doesn&#39;t exist</td>
-</tr>
-<tr>
-<td>base-currency-error</td>
-<td>Currency doesn&#39;t exist</td>
-</tr>
-<tr>
-<td>base-date-error</td>
-<td>The date format is wrong</td>
-</tr>
-<tr>
-<td>account for id <code>12,345</code> and user id <code>6,543,210</code> does not exist</td>
-<td>The<code>account-id</code> is wrong, please use GET <code>/v1/account/accounts</code> to get account</td>
-</tr>
-<tr>
-<td>account-frozen-balance-insufficient-error</td>
-<td>Can not froze due to insufficient balance</td>
-</tr>
-<tr>
-<td>account-transfer-balance-insufficient-error</td>
-<td>Can not transfer due to insufficient balance</td>
-</tr>
-<tr>
-<td>bad-argument</td>
-<td>The arugment is wrong</td>
-</tr>
-<tr>
-<td>api-signature-not-valid</td>
-<td>The API signature is wrong</td>
-</tr>
-<tr>
-<td>gateway-internal-error</td>
-<td>System is too busy</td>
-</tr>
-<tr>
-<td>ad-ethereum-addresss</td>
-<td>The Ethereum address is required</td>
-</tr>
-<tr>
-<td>order-accountbalance-error</td>
-<td>Insufficient balance in account</td>
-</tr>
-<tr>
-<td>order-limitorder-price-error</td>
-<td>The limited order price exceeds limitation</td>
-</tr>
-<tr>
-<td>order-limitorder-amount-error</td>
-<td>The limited order amount exceeds limitation</td>
-</tr>
-<tr>
-<td>order-orderprice-precision-error</td>
-<td>The limited order price exceeds precision limitation</td>
-</tr>
-<tr>
-<td>order-orderamount-precision-error</td>
-<td>The limited order amount exceeds precision limitation</td>
-</tr>
-<tr>
-<td>order-marketorder-amount-error</td>
-<td>The order amount exceeds limitation</td>
-</tr>
-<tr>
-<td>order-queryorder-invalid</td>
-<td>Can not query the order</td>
-</tr>
-<tr>
-<td>order-orderstate-error</td>
-<td>The order status is wrong</td>
-</tr>
-<tr>
-<td>order-datelimit-error</td>
-<td>The query exceeds date limitation</td>
-</tr>
-<tr>
-<td>order-update-error</td>
-<td>The order fail to update</td>
-</tr>
-</tbody></table>
 <h2 id='best-practice'>Best Practice</h2><h3 id='security'>Security</h3>
 <ul>
 <li>It is strongly suggested to bind your IP with your API Key to ensure that your API Key can only be used in your machine. Furthermore, your API Key will be expired after 90 days if it is not binded with any IP.</li>
