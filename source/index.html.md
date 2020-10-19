@@ -113,7 +113,7 @@ https://api.hbdm.com| 火币合约|   API     | 火币合约的交易品种  |
 "https://api.hbdm.com"如果无法访问请使用："https://api.btcgateway.pro"。
 -->
 ### 备注：
-- USDT永续合约正在假币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。
+- USDT永续合约正在真币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。
 
 ## 签名认证
 
@@ -5184,7 +5184,7 @@ err-msg  |    true  |   string    |     错误消息	 | 具体错误码请见列
 合约站指数K线及基差数据订阅地址：wss://api.btcgateway.pro/ws_index
 -->
 ### 备注：
-- USDT永续合约正在假币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。
+- USDT永续合约正在真币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。
 
 如果对合约订单推送订阅有疑问，可以参考 <a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#2cff7db524'> Demo </a>
  
@@ -5284,7 +5284,7 @@ api接口response中的header返回以下字段
   合约站订单推送订阅地址：wss://api.hbdm.com/linear-swap-notification
 -->
 ### 备注：
-- USDT永续合约正在假币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。  
+- USDT永续合约正在真币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。  
   
   正常ws请求连接不能同时超过30个
 
