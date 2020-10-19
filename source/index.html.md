@@ -653,33 +653,6 @@ The JSON data type described in this document is defined as below:
 - `long`: a 64-bit integer, mainly used for Id and timestamp
 - `float`: a fraction represented in decimal format, mainly used for volume and price, recommend to use high precision decimal data types in program
 
-## Error Message
-
-### Order API Error Message
-
-| Error Message | Description |
-|-----|-----|
-| base-symbol-error | Trade pair doesn't exist |
-| base-currency-error | Currency doesn't exist |
-| base-date-error | The date format is wrong |
-| account for id `12,345` and user id `6,543,210` does not exist| The`account-id` is wrong, please use GET `/v1/account/accounts` to get account |
-| account-frozen-balance-insufficient-error | Can not froze due to insufficient balance |
-| account-transfer-balance-insufficient-error | Can not transfer due to insufficient balance |
-| bad-argument | The arugment is wrong |
-| api-signature-not-valid | The API signature is wrong |
-| gateway-internal-error | System is too busy |
-| ad-ethereum-addresss| The Ethereum address is required |
-| order-accountbalance-error| Insufficient balance in account |
-| order-limitorder-price-error|The limited order price exceeds limitation |
-|order-limitorder-amount-error|The limited order amount exceeds limitation |
-|order-orderprice-precision-error|The limited order price exceeds precision limitation |
-|order-orderamount-precision-error|The limited order amount exceeds precision limitation|
-|order-marketorder-amount-error|The order amount exceeds limitation|
-|order-queryorder-invalid|Can not query the order|
-|order-orderstate-error|The order status is wrong|
-|order-datelimit-error|The query exceeds date limitation|
-|order-update-error|The order fail to update|
-
 ## Best Practice
 
 ### Security
