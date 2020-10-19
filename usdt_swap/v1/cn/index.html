@@ -2497,7 +2497,7 @@ step6是不合并小数；
 <h3 id='q3-order-id-match-id-n-trade-taker-n-maker-n-trade-trade'>Q3: 同样的order id 和 match id，可以有N多个Trade，比如，用户是一笔大的taker单，吃掉了N个maker的订单，那么，就会对应有N个trade，如何标识这些不同的trade？</h3>
 <p>订单明细信息接口linear-swap-api/v1/swap_order_detail返回的的字段id是全局唯一的交易标识。如果一个maker单，分多次match掉的话是每次推送只推match的部分，撮合一笔推送一笔。</p>
 <h3 id='q4-usdt'>Q4: USDT永续合约交易全链路延时多少？</h3>
-<p>目前USDT永续合约全链路(从开始下单到订单的订单状态可以查询)正常情况下大约在200-300MS左右,来行情时延迟会比平时大，可能会在秒级别。</p>
+<p>目前USDT永续合约全链路(从开始下单到订单的订单状态可以查询)正常情况下大约在30-50MS左右,来行情时延迟会比平时大，可能会在秒级别。</p>
 <h3 id='q5-api-connection-reset-max-retris-timed-out'>Q5: API接口返回Connection Reset 或者 Max retris 或者 Timed out 是什么原因？</h3>
 <p>出现连接重置或者网络超时，一般是网络不稳定导致，可以尝试将服务器放置在AWS东京C区，并使用api.hbdm.vn来尝试，可以有效减少网络超时等错误。</p>
 <h3 id='q6-api-order_id'>Q6: API接口下单时出错没有order_id如何来查询订单状态？</h3>
