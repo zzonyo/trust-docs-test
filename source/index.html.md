@@ -115,7 +115,7 @@ https://api.hbdm.com  | Huobi USDT Swap |  API       | Trading pairs provided by
  If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro".
 -->
 ### Note: 
-- Huobi USDT swap is being tested in fake assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.  
+- Huobi USDT swap is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.  
 
 ## Signature Authentication & Verification
 
@@ -5169,7 +5169,6 @@ Order Push Subscription: wss://api.hbdm.com/linear-swap-notification
 
 Index Kline Data and Basis Data Subscription: wss://api.hbdm.com/ws_index
 
- 
 If you fail visiting the two addresses above, you can also visit: 
 
 Market Data Request and Subscription Address: wss://api.btcgateway.pro/linear-swap-ws;
@@ -5179,7 +5178,7 @@ Order Push Subscription：wss://api.btcgateway.pro/linear-swap-notification
 Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
  -->
 ### Note: 
-- Huobi USDT swap is being tested in fake assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.   
+- Huobi USDT swap is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.   
  
  
 If you have further queries about Huobi USDT Swap order push subscription, please refer to [Demo](https://docs.huobigroup.com/docs/usdt_swap/v1/en/#code-demo)
@@ -5294,7 +5293,7 @@ Note: Once the WebSocket Client and WebSocket Server get connected, the server w
   `wss://api.hbdm.com/linear-swap-notification`
   -->
 ### Note: 
-- Huobi USDT swap is being tested in fake assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.  
+- Huobi USDT swap is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.  
   
 Please note that the WS request connection should not go over 30 normally.
 
