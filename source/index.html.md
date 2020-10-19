@@ -1046,7 +1046,7 @@ market.$contract_code.depth.$type是全量数据，market.$contract_code.depth.s
 
 ### Q4: USDT永续合约交易全链路延时多少？
 
-目前USDT永续合约全链路(从开始下单到订单的订单状态可以查询)正常情况下大约在200-300MS左右,来行情时延迟会比平时大，可能会在秒级别。
+目前USDT永续合约全链路(从开始下单到订单的订单状态可以查询)正常情况下大约在30-50MS左右,来行情时延迟会比平时大，可能会在秒级别。
 
 ### Q5: API接口返回Connection Reset 或者 Max retris 或者 Timed out 是什么原因？
 
