@@ -3861,11 +3861,70 @@ currency            | string    | The currency of this balance          | NA
 type                | string    | The balance type                      | trade, frozen
 balance             | string    | The balance in the main currency unit | NA
 
-
 # Trading
+
+## Introduction
+
+Trading APIs provide trading related functionality, including placing order, canceling order, order history query, trading history query, transaction fee query.
 
 <aside class="notice">All endpoints in this section require authentication</aside>
 <aside class="warning">The parameter "account-id" and "source" should be set properly, refer to details in Request Parameters description below.</aside>
+
+Below is the error code and description returned by Trading APIs
+
+| Error Code                | Description |
+| ------------------------- | ----------------------------------- |
+| base-argument-unsupported | The specified parameter is not supported |
+| base-system-error         | Server internel error. For placing or canceling order, it is most related to cache issue, please try again later. |
+| login-required | Signature is missing or wrong |
+| parameter-required |Parameter stop-price or operator is missing for stop-order type |
+| order-amount-over-limit | The amount of order exceeds the limitation |
+| base-symbol-trade-disabled | The symbol is disabled for trading |
+| base-operation-forbidden | The operation is forbidden for current user or the symbol is not allowed to trade over OTC |
+| account-get-accounts-inexistent-error | The account doesn't exist in current user |
+|  account-account-id-inexistent | The account id doesn't exist |
+| sub-user-auth-required | Isolated margin account is not enabled for sub user |
+| order-disabled | The symbol is pending and not allowed to place order |
+| cancel-disabled | The symbol is pending and not allowed to cancel order |
+| order-invalid-price |The order price is invalid, usually exceeds the 10% of latest trade price |
+| order-accountbalance-error | The account balance is insufficient |
+| order-limitorder-price-min-error | Sell price cannot be lower than specific price |
+| order-limitorder-price-max-error | Buy price cannot be higher than specific price |
+| order-limitorder-amount-min-error  | Limit order amount can not be less than specific number |
+| order-limitorder-amount-max-error | Limit order amount can not be more than specific number |
+| order-etp-nav-price-min-error  | Order price cannot be lower than specific percentage |
+| order-etp-nav-price-max-error  | Order price cannot be higher than specific percentage |
+| order-orderprice-precision-error | Order price precision error |
+| order-orderamount-precision-error | Order amount precision error |
+| order-value-min-error | Order value cannot be lower than specific value |
+| order-marketorder-amount-min-error | Market order amount cannot be less than specific amount |
+| order-marketorder-amount-max-error  | Market order amount cannot be more than specific amount |
+| order-holding-limit-failed | Exceed the holding limit of the currency |
+| order-type-invalid | Order type is invalid |
+| order-orderstate-error | Order state is invalid |
+| order-date-limit-error | Order query date exceed the limit |
+| order-source-invalid | Order source is invalid |
+| order-update-error | Order update error |
+| order-fl-cancellation-is-disallowed | Liquidation order cannot be canceled |
+| operation-forbidden-for-fl-account-state | The operation is forbidden when the account is in liquidation |
+| operation-forbidden-for-lock-account-state | The operation is forbidden when the account is locked |
+| fl-order-already-existed | An unfilled liquidation order already exists |
+| order-user-cancel-forbidden | IOC or FOK order is not allowed to cancel |
+| account-state-invalid  | Invalid status of liquidation account |
+| order-price-greater-than-limit | Order price is higher than the limitation before market opens |
+| order-price-less-than-limit | Order price is lower than the limitation before market opens |
+| order-stop-order-hit-trigger | The stop orders triggered immediately are not allowed |
+| market-orders-not-support-during-limit-price-trading  | Market orders are not supported during limit-price trading   |
+| price-exceeds-the-protective-price-during-limit-price-trading  | The price exceeds the protective price during limit-price trading |
+| invalid-client-order-id	| The client order id is duplicated (within last 24h) |
+| invalid-interval | Query window is zero, negative or greater than limitation |
+| invalid-start-date | The start date is invalid |
+| invalid-end-date | The end date is invalid |
+| invalid-start-time | The start time is invalid |
+| invalid-end-time | The end time is invalid |
+| symbol-not-support | The symbol is not support for cross margin or C2C |
+| not-found | The order id is not found |
+| base-not-found| Too much invalid client order id in the past, try again after 1 hour |
 
 ## Place a New Order
 
