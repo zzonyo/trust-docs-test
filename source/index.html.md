@@ -3849,7 +3849,7 @@ Below is the error code and description returned by Trading APIs
 | ------------------------- | ----------------------------------- |
 | base-argument-unsupported | The specified parameter is not supported |
 | base-system-error         | Server internel error. For placing or canceling order, it is most related to cache issue, please try again later. |
-| login-required | Signature is missing or wrong |
+| login-required | Signature is missing |
 | parameter-required |Parameter stop-price or operator is missing for stop-order type |
 | order-amount-over-limit | The amount of order exceeds the limitation |
 | base-symbol-trade-disabled | The symbol is disabled for trading |
@@ -4888,13 +4888,39 @@ symbols    | string    | true     | NA      | The trading symbols to query, sepa
 
 # Conditional Order
 
+## Introduction
+
 By comparing with the existing stop limit order, the newly introduced conditional order does have following major differences:<br>
 
 1)	Although the newly introduced conditional order is also triggered by stop price, before it being triggered, the Exchange will not lock order margin for this order. Only when this conditional order being successfully triggered, its order margin will be locked.<br>
 2)	Conditional order does support not only limit order type but also market order type. (Trailing stop order only supports market order type.)<br>
 3)	As advanced conditional order, trailing stop order does support additional triggering condition i.e. trailing rate. Only when latest market price breaks stop price, and continues to go up (or down), and then reverts back for a certain percentage which exceeding the pre-defined "trailing rate", this order can be triggered. The valid value range of trailing rate is between 0.1% and 5%.<br>
 
-After the official launch of conditional order, Huobi Global might decommission the existing stop order later. This will be notified through another circular.<br>
+<aside class="notice">All endpoints in this section require authentication</aside>
+<aside class="notice">After the official launch of conditional order, Huobi Global might decommission the existing stop order later. This will be notified through another circular.</aside>
+
+Below is the error code and the description returned by Conditional Order APIs
+
+|Error Code  | Description | 
+|---------   | ----------- |
+|2002 | Parameter is invalid |
+|1001 | Request URL is invalid |
+|1002 | Signature is missing or account id doesn't exist |
+|1003 | Signature is wrong |
+|1005 | Insufficient weight for rate limit |
+|1006 | Exceed rate limit |
+|1007 | Currency is not found |
+|2003 | Trading is disabled |
+|3002 | Order amount precision error |
+|3003 | Trigger price precision error |
+|3004 | Limit order amount is less than specific amount |
+|3005 | Limit order amount is greater than specific amount |
+|3006 | Limit order price is higher than specific price |
+|3007 | Limit order price is lower than specific price |
+|3008 | Order value is less than specific value |
+|3009 | Market order amount is less than specific amount |
+|3010 | Market order amount is greater than specific amount |
+|3100 | Market orders not support during limit price trading |
 
 ## Place a conditional order
 
