@@ -656,6 +656,9 @@
             <a href="#margin-loan-c2c" class="toc-h1 toc-link" data-title="Margin Loan (C2C)">Margin Loan (C2C)</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#introduction-10" class="toc-h2 toc-link" data-title="Introduction">Introduction</a>
+                  </li>
+                  <li>
                     <a href="#place-a-lending-borrowing-offer" class="toc-h2 toc-link" data-title="Place a lending/borrowing offer">Place a lending/borrowing offer</a>
                   </li>
                   <li>
@@ -13602,10 +13605,136 @@ Sort: Click “repayTime” </p>
 <td>search the start ID in the next page  (return only when there is data in the  next page)</td>
 </tr>
 </tbody></table>
-<h1 id='margin-loan-c2c'>Margin Loan (C2C)</h1>
+<h1 id='margin-loan-c2c'>Margin Loan (C2C)</h1><h2 id='introduction-10'>Introduction</h2>
+<p>C2C margin loan APIs provide the customer-to-customer loan functionality such as lend, borrow, repay, query and transfer.</p>
+
+<aside class="notice">All endpoints in this section require authentication</aside>
+
 <p>The rate limit for all the endpoints of c2c margin is set as 2 times/sec.<br>
 All the c2c margin endpoints below are not available by sub user.<br>
 The account ID of borrowing account will be generated once the first time asset transfer (from spot account to the borrowing account) is accomplished on the web.<br></p>
+
+<p>Below is the error code and description for C2C margin loan APIs</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>40301</td>
+<td>Insufficient available balance</td>
+</tr>
+<tr>
+<td>40302</td>
+<td>Failed to get the account</td>
+</tr>
+<tr>
+<td>40307</td>
+<td>Existence of an ongoing loan order</td>
+</tr>
+<tr>
+<td>40309</td>
+<td>Wrong order status</td>
+</tr>
+<tr>
+<td>40310</td>
+<td>Order does not exist</td>
+</tr>
+<tr>
+<td>40311</td>
+<td>User has OTC loans</td>
+</tr>
+<tr>
+<td>40312</td>
+<td>Only normal and bankrupt users can be included</td>
+</tr>
+<tr>
+<td>40315</td>
+<td>There is no liquidation or forced liquidation setting</td>
+</tr>
+<tr>
+<td>40317</td>
+<td>Failed to get sub-loan order</td>
+</tr>
+<tr>
+<td>40319</td>
+<td>No less than the minimum borrowing amount</td>
+</tr>
+<tr>
+<td>40320</td>
+<td>borrowing configuration does not exist</td>
+</tr>
+<tr>
+<td>40322</td>
+<td>The user has not passed advanced verification</td>
+</tr>
+<tr>
+<td>40324</td>
+<td>The amount of repayment exceeds the amount borrowed</td>
+</tr>
+<tr>
+<td>40326</td>
+<td>White list users only</td>
+</tr>
+<tr>
+<td>40327</td>
+<td>Exceeding the maximum accuracy</td>
+</tr>
+<tr>
+<td>40328</td>
+<td>Cannot exceed the maximum amount of borrowing</td>
+</tr>
+<tr>
+<td>40329</td>
+<td>Interest rate out of the set range</td>
+</tr>
+<tr>
+<td>40330</td>
+<td>Cannot be less than the minimum loan amount</td>
+</tr>
+<tr>
+<td>40331</td>
+<td>cannot exceed the maximum loan amount</td>
+</tr>
+<tr>
+<td>40332</td>
+<td>Cannot be less than the minimum repayment amount</td>
+</tr>
+<tr>
+<td>40333</td>
+<td>the ending time must be greater than the starting time</td>
+</tr>
+<tr>
+<td>40335</td>
+<td>in repayment</td>
+</tr>
+<tr>
+<td>40336</td>
+<td>This feature is not open to users in China, the United States, Turkey, Japan, Singapore</td>
+</tr>
+<tr>
+<td>40337</td>
+<td>C2C lending transaction is not currently available</td>
+</tr>
+<tr>
+<td>40339</td>
+<td>Debit and credit function is closed</td>
+</tr>
+<tr>
+<td>40340</td>
+<td>The current account ID does not belong to the current user</td>
+</tr>
+<tr>
+<td>40345</td>
+<td>This account is not a C2C account</td>
+</tr>
+<tr>
+<td>40346</td>
+<td>This order is not allowed to change renew state</td>
+</tr>
+</tbody></table>
 <h2 id='place-a-lending-borrowing-offer'>Place a lending/borrowing offer</h2>
 <p>POST /v2/c2c/offer<br>
 API Key Permission: Trade<br></p>
