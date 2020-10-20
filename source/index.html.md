@@ -4901,15 +4901,15 @@ By comparing with the existing stop limit order, the newly introduced conditiona
 
 Below is the error code and the description returned by Conditional Order APIs
 
-|Error Code  | Description | 
+|Error Code  | Description |
 |---------   | ----------- |
-|2002 | Parameter is invalid |
 |1001 | Request URL is invalid |
 |1002 | Signature is missing or account id doesn't exist |
 |1003 | Signature is wrong |
 |1005 | Insufficient weight for rate limit |
 |1006 | Exceed rate limit |
 |1007 | Currency is not found |
+|2002 | Specified parameter is missing or invalid |
 |2003 | Trading is disabled |
 |3002 | Order amount precision error |
 |3003 | Trigger price precision error |
@@ -5214,9 +5214,79 @@ The conditional order before triggering, as well as the conditional order failed
 
 # Margin Loan (isolated/cross)
 
+## Introduction
+
+Isolated/cross margin loan APIs provide loan related functionality such as request loan, repay loan, loan query and transfer.
+
 <aside class="notice">All endpoints in this section require authentication</aside>
 <aside class="notice">Currently loan only supports base currency of USDT, HUSD, and BTC</aside>
 <aside class="notice">Once completed a margin loan or transfer, please wait for 10 seconds before requesting for next margin loan or transfer.</aside>
+
+Below is the error code and description for Isolated margin loan APIs
+
+| Error Code  | Description   |
+| ------- | ------- |
+| account-transfer-balance-insufficient-error | Account balance is insufficient |
+| account-transfer-balance-overflow-error | To account balance is overflow |
+| base-msg | Customized error, check error message |
+| base-system-error | Server internal error |
+| base-currency-error | currency is invalid |
+| base-symbol-error | symbol is invalid  |
+|base-margin-symbol-invalid | symbol is invalid for margin |
+|base-record-invalid | The data is not found |
+|base-request-timeout | Request timeout, try again later |
+|base_request_exceed_number_limit| Request exceed number limit, try again later |
+|base-date-limit-error | Date is invalid |
+|base-update-error | Update operation error |
+|base-operation-forbidden | Operation is forbidden |
+|dw-insufficient-balance | Account balance is insufficient |
+|dw-account-transfer-error | Transfer error |
+|frequent-invoke | Operates too frequently, try again later |
+|loan-order-not-found | Loan order is not found |
+|loan-amount-scale-limit | Loan order amount precision error |
+|loan-repay-max-limit | Repay amount is greater than requested |
+|loan-insufficient-balance | Loan account balance is insufficient |
+|login-required | Signature is missing |
+|margin-country-not-allow | Your country is not allowed |
+|margin-country-auth-required | Your IP is not allowed, require ID verification |
+|margin-trading-is-not-available| Isolated margin trading is not available |
+|margin-account-state-error| Margin account state is abnormal (liquidation) |
+|risk-verification-failed |Risk verification failed |
+|sub-user-auth-required |Sub user is not authorized |
+
+Below is the error code and description for Cross margin loan APIs (including general margin)
+
+| Error Code | Description |
+|---------  | ----------- |
+|abnormal-users-cannot-transfer | Abnormal user cannot transfer |
+|account-explosion-in-prohibited-transfer | Account is explosion and transfer is prohibited |
+|account-is-abnormal-retry-after-refresh | Account is abnormal, try again later |
+|account-balance-insufficient-error | Account balance is insufficient |
+|account-cannot-be-inquired | Account is not found |
+|base-not-in-white-list | Operation is not allowed for current user |
+|base-currency-error | Currency is not found |
+|base-operation-forbidden | Operation is forbidden |
+|base-user-request-exceed-limit | Operates too frequently, try again later |
+|base-currency-not-open | The currency is not enabled |
+|beyond-maximum-number-of-rollover | Transfer amount exceed the limit |
+|exceed-maximum-amount | Exceed the limit |
+|endtime-greater-than-begintime | Start time cannot be greater than end time |
+|frequent-invoke | Operates too frequently |
+|loan-order-not-found | Loan order is not found |
+|loan-amount-scale-limit | Loan order amount precision error |
+|loan-repay-max-limit | Repay amount is greater than requested |
+|loan-insufficient-balance | Loan account balance is insufficient |
+|loan-fee-rate-compute-fail | Loan fee is abnormal |
+|login-required | Signature is missing |
+|margin-subuser-no-permission | Sub user has no permission |
+|normal-and-warehouse-can-transfer | Normal and warehouse user can transfer |
+|order-orderamount-precision-error | Order amount precision error |
+|require-exchange-id | Exchange id is required |
+|subacount-currency-not-exit | Sub account for this currency does not exist |
+|system-busy | System is busy |
+|unsupport-kyc-info | KYC info is unsupported |
+|uc-network-error | Network error for User Center, try again later |
+|uncreated-currency-cannot-be-drawn | Uncreated sub account cannot be drawn |
 
 ## Transfer Asset from Spot Trading Account to Isolated Margin Account（Isolated）
 
