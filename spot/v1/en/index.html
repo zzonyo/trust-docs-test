@@ -694,7 +694,7 @@
             <a href="#websocket-market-data" class="toc-h1 toc-link" data-title="Websocket Market Data">Websocket Market Data</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#general-2" class="toc-h2 toc-link" data-title="General">General</a>
+                    <a href="#introduction-11" class="toc-h2 toc-link" data-title="Introduction">Introduction</a>
                   </li>
                   <li>
                     <a href="#market-candlestick" class="toc-h2 toc-link" data-title="Market Candlestick">Market Candlestick</a>
@@ -726,7 +726,7 @@
             <a href="#websocket-asset-and-order" class="toc-h1 toc-link" data-title="Websocket Asset and Order">Websocket Asset and Order</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#general-3" class="toc-h2 toc-link" data-title="General">General</a>
+                    <a href="#general-2" class="toc-h2 toc-link" data-title="General">General</a>
                   </li>
                   <li>
                     <a href="#subscribe-to-account-updates-to-be-obsoleted" class="toc-h2 toc-link" data-title="Subscribe to Account Updates (to be obsoleted)">Subscribe to Account Updates (to be obsoleted)</a>
@@ -752,7 +752,7 @@
             <a href="#websocket-asset-and-order-v2" class="toc-h1 toc-link" data-title="Websocket Asset and Order (v2)">Websocket Asset and Order (v2)</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#general-4" class="toc-h2 toc-link" data-title="General">General</a>
+                    <a href="#general-3" class="toc-h2 toc-link" data-title="General">General</a>
                   </li>
                   <li>
                     <a href="#subscribe-order-updates" class="toc-h2 toc-link" data-title="Subscribe Order Updates">Subscribe Order Updates</a>
@@ -15218,7 +15218,7 @@ API Key Permission: Read<br></p>
 <p>Note:<br>
 • Sub account trade, loan, interest, advance are only valid for borrowing account；<br>
 • Sub account trade, lending, earnings are only valid for lending account. <br></p>
-<h1 id='websocket-market-data'>Websocket Market Data</h1><h2 id='general-2'>General</h2><h3 id='websocket-url'>Websocket URL</h3>
+<h1 id='websocket-market-data'>Websocket Market Data</h1><h2 id='introduction-11'>Introduction</h2><h3 id='websocket-url'>Websocket URL</h3>
 <p><strong>Websocket Market Feed (excluding MBP incremental channel &amp; its REQ channel)</strong></p>
 
 <p><strong><code>wss://api.huobi.pro/ws</code></strong>
@@ -15311,6 +15311,52 @@ or
 <p><strong>Rate limt of pull style query (req)</strong></p>
 
 <p>The limitation of single connection is 100 ms.</p>
+<h3 id='error-code-3'>Error Code</h3>
+<p>Below is the error code, error message and description</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Error Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bad-request</td>
+<td>invalid topic</td>
+<td>Parameter topic is invalid</td>
+</tr>
+<tr>
+<td>bad-request</td>
+<td>invalid symbol</td>
+<td>Parammeter symbol is invalid</td>
+</tr>
+<tr>
+<td>bad-request</td>
+<td>symbol trade not open now</td>
+<td>The market is not open for this symbol</td>
+</tr>
+<tr>
+<td>bad-request</td>
+<td>429 too many request</td>
+<td>Request exceed limit</td>
+</tr>
+<tr>
+<td>bad-request</td>
+<td>unsub with not subbed topic</td>
+<td>The topic is not subscribed</td>
+</tr>
+<tr>
+<td>bad-request</td>
+<td>not json string</td>
+<td>The request is not JSON format</td>
+</tr>
+<tr>
+<td>bad-request</td>
+<td>request timeout</td>
+<td>The request is time out</td>
+</tr>
+</tbody></table>
 <h2 id='market-candlestick'>Market Candlestick</h2>
 <p>This topic sends a new candlestick whenever it is available.</p>
 <h3 id='topic'>Topic</h3>
@@ -16300,7 +16346,7 @@ In the near future, Huobi Global will align the update behavior of 150-level inc
 <td>Actual leverage ratio</td>
 </tr>
 </tbody></table>
-<h1 id='websocket-asset-and-order'>Websocket Asset and Order</h1><h2 id='general-3'>General</h2><h3 id='websocket-url-2'>Websocket URL</h3>
+<h1 id='websocket-asset-and-order'>Websocket Asset and Order</h1><h2 id='general-2'>General</h2><h3 id='websocket-url-2'>Websocket URL</h3>
 <p><strong>Websocket Asset and Order</strong></p>
 
 <p><strong><code>wss://api.huobi.pro/ws/v1</code></strong>
@@ -17426,7 +17472,7 @@ or
 <td>opration character of stop price</td>
 </tr>
 </tbody></table>
-<h1 id='websocket-asset-and-order-v2'>Websocket Asset and Order (v2)</h1><h2 id='general-4'>General</h2><h3 id='access-url'>Access URL</h3>
+<h1 id='websocket-asset-and-order-v2'>Websocket Asset and Order (v2)</h1><h2 id='general-3'>General</h2><h3 id='access-url'>Access URL</h3>
 <p><strong>Websocket Asset and Order (v2)</strong></p>
 
 <p><strong><code>wss://api.huobi.pro/ws/v2</code></strong>  </p>
@@ -18564,7 +18610,7 @@ The topic disseminates the current static value of individual accounts first, at
 <td>Term of validity</td>
 </tr>
 </tbody></table>
-<h3 id='error-code-3'>Error Code</h3>
+<h3 id='error-code-4'>Error Code</h3>
 <table><thead>
 <tr>
 <th>Error Code</th>
@@ -18654,7 +18700,7 @@ The topic disseminates the current static value of individual accounts first, at
 <td>Timestampe</td>
 </tr>
 </tbody></table>
-<h3 id='error-code-4'>Error Code</h3>
+<h3 id='error-code-5'>Error Code</h3>
 <table><thead>
 <tr>
 <th>Error Code</th>
