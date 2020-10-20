@@ -600,6 +600,9 @@
             <a href="#margin-loan-isolated-cross" class="toc-h1 toc-link" data-title="Margin Loan (isolated/cross)">Margin Loan (isolated/cross)</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#introduction-9" class="toc-h2 toc-link" data-title="Introduction">Introduction</a>
+                  </li>
+                  <li>
                     <a href="#transfer-asset-from-spot-trading-account-to-isolated-margin-account-isolated" class="toc-h2 toc-link" data-title="Transfer Asset from Spot Trading Account to Isolated Margin Account（Isolated）">Transfer Asset from Spot Trading Account to Isolated Margin Account（Isolated）</a>
                   </li>
                   <li>
@@ -10671,10 +10674,6 @@ Rate Limit (NEW): 20times/2s</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>2002</td>
-<td>Parameter is invalid</td>
-</tr>
-<tr>
 <td>1001</td>
 <td>Request URL is invalid</td>
 </tr>
@@ -10697,6 +10696,10 @@ Rate Limit (NEW): 20times/2s</p>
 <tr>
 <td>1007</td>
 <td>Currency is not found</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>Specified parameter is missing or invalid</td>
 </tr>
 <tr>
 <td>2003</td>
@@ -11663,12 +11666,258 @@ The conditional order before triggering, as well as the conditional order failed
 <td>Error message in case of order triggering failure (only valid for orderStatus=rejected)</td>
 </tr>
 </tbody></table>
-<h1 id='margin-loan-isolated-cross'>Margin Loan (isolated/cross)</h1>
+<h1 id='margin-loan-isolated-cross'>Margin Loan (isolated/cross)</h1><h2 id='introduction-9'>Introduction</h2>
+<p>Isolated/cross margin loan APIs provide loan related functionality such as request loan, repay loan, loan query and transfer.</p>
+
 <aside class="notice">All endpoints in this section require authentication</aside>
 
 <aside class="notice">Currently loan only supports base currency of USDT, HUSD, and BTC</aside>
 
 <aside class="notice">Once completed a margin loan or transfer, please wait for 10 seconds before requesting for next margin loan or transfer.</aside>
+
+<p>Below is the error code and description for Isolated margin loan APIs</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account-transfer-balance-insufficient-error</td>
+<td>Account balance is insufficient</td>
+</tr>
+<tr>
+<td>account-transfer-balance-overflow-error</td>
+<td>To account balance is overflow</td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>Customized error, check error message</td>
+</tr>
+<tr>
+<td>base-system-error</td>
+<td>Server internal error</td>
+</tr>
+<tr>
+<td>base-currency-error</td>
+<td>currency is invalid</td>
+</tr>
+<tr>
+<td>base-symbol-error</td>
+<td>symbol is invalid</td>
+</tr>
+<tr>
+<td>base-margin-symbol-invalid</td>
+<td>symbol is invalid for margin</td>
+</tr>
+<tr>
+<td>base-record-invalid</td>
+<td>The data is not found</td>
+</tr>
+<tr>
+<td>base-request-timeout</td>
+<td>Request timeout, try again later</td>
+</tr>
+<tr>
+<td>base_request_exceed_number_limit</td>
+<td>Request exceed number limit, try again later</td>
+</tr>
+<tr>
+<td>base-date-limit-error</td>
+<td>Date is invalid</td>
+</tr>
+<tr>
+<td>base-update-error</td>
+<td>Update operation error</td>
+</tr>
+<tr>
+<td>base-operation-forbidden</td>
+<td>Operation is forbidden</td>
+</tr>
+<tr>
+<td>dw-insufficient-balance</td>
+<td>Account balance is insufficient</td>
+</tr>
+<tr>
+<td>dw-account-transfer-error</td>
+<td>Transfer error</td>
+</tr>
+<tr>
+<td>frequent-invoke</td>
+<td>Operates too frequently, try again later</td>
+</tr>
+<tr>
+<td>loan-order-not-found</td>
+<td>Loan order is not found</td>
+</tr>
+<tr>
+<td>loan-amount-scale-limit</td>
+<td>Loan order amount precision error</td>
+</tr>
+<tr>
+<td>loan-repay-max-limit</td>
+<td>Repay amount is greater than requested</td>
+</tr>
+<tr>
+<td>loan-insufficient-balance</td>
+<td>Loan account balance is insufficient</td>
+</tr>
+<tr>
+<td>login-required</td>
+<td>Signature is missing</td>
+</tr>
+<tr>
+<td>margin-country-not-allow</td>
+<td>Your country is not allowed</td>
+</tr>
+<tr>
+<td>margin-country-auth-required</td>
+<td>Your IP is not allowed, require ID verification</td>
+</tr>
+<tr>
+<td>margin-trading-is-not-available</td>
+<td>Isolated margin trading is not available</td>
+</tr>
+<tr>
+<td>margin-account-state-error</td>
+<td>Margin account state is abnormal (liquidation)</td>
+</tr>
+<tr>
+<td>risk-verification-failed</td>
+<td>Risk verification failed</td>
+</tr>
+<tr>
+<td>sub-user-auth-required</td>
+<td>Sub user is not authorized</td>
+</tr>
+</tbody></table>
+
+<p>Below is the error code and description for Cross margin loan APIs (including general margin)</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>abnormal-users-cannot-transfer</td>
+<td>Abnormal user cannot transfer</td>
+</tr>
+<tr>
+<td>account-explosion-in-prohibited-transfer</td>
+<td>Account is explosion and transfer is prohibited</td>
+</tr>
+<tr>
+<td>account-is-abnormal-retry-after-refresh</td>
+<td>Account is abnormal, try again later</td>
+</tr>
+<tr>
+<td>account-balance-insufficient-error</td>
+<td>Account balance is insufficient</td>
+</tr>
+<tr>
+<td>account-cannot-be-inquired</td>
+<td>Account is not found</td>
+</tr>
+<tr>
+<td>base-not-in-white-list</td>
+<td>Operation is not allowed for current user</td>
+</tr>
+<tr>
+<td>base-currency-error</td>
+<td>Currency is not found</td>
+</tr>
+<tr>
+<td>base-operation-forbidden</td>
+<td>Operation is forbidden</td>
+</tr>
+<tr>
+<td>base-user-request-exceed-limit</td>
+<td>Operates too frequently, try again later</td>
+</tr>
+<tr>
+<td>base-currency-not-open</td>
+<td>The currency is not enabled</td>
+</tr>
+<tr>
+<td>beyond-maximum-number-of-rollover</td>
+<td>Transfer amount exceed the limit</td>
+</tr>
+<tr>
+<td>exceed-maximum-amount</td>
+<td>Exceed the limit</td>
+</tr>
+<tr>
+<td>endtime-greater-than-begintime</td>
+<td>Start time cannot be greater than end time</td>
+</tr>
+<tr>
+<td>frequent-invoke</td>
+<td>Operates too frequently</td>
+</tr>
+<tr>
+<td>loan-order-not-found</td>
+<td>Loan order is not found</td>
+</tr>
+<tr>
+<td>loan-amount-scale-limit</td>
+<td>Loan order amount precision error</td>
+</tr>
+<tr>
+<td>loan-repay-max-limit</td>
+<td>Repay amount is greater than requested</td>
+</tr>
+<tr>
+<td>loan-insufficient-balance</td>
+<td>Loan account balance is insufficient</td>
+</tr>
+<tr>
+<td>loan-fee-rate-compute-fail</td>
+<td>Loan fee is abnormal</td>
+</tr>
+<tr>
+<td>login-required</td>
+<td>Signature is missing</td>
+</tr>
+<tr>
+<td>margin-subuser-no-permission</td>
+<td>Sub user has no permission</td>
+</tr>
+<tr>
+<td>normal-and-warehouse-can-transfer</td>
+<td>Normal and warehouse user can transfer</td>
+</tr>
+<tr>
+<td>order-orderamount-precision-error</td>
+<td>Order amount precision error</td>
+</tr>
+<tr>
+<td>require-exchange-id</td>
+<td>Exchange id is required</td>
+</tr>
+<tr>
+<td>subacount-currency-not-exit</td>
+<td>Sub account for this currency does not exist</td>
+</tr>
+<tr>
+<td>system-busy</td>
+<td>System is busy</td>
+</tr>
+<tr>
+<td>unsupport-kyc-info</td>
+<td>KYC info is unsupported</td>
+</tr>
+<tr>
+<td>uc-network-error</td>
+<td>Network error for User Center, try again later</td>
+</tr>
+<tr>
+<td>uncreated-currency-cannot-be-drawn</td>
+<td>Uncreated sub account cannot be drawn</td>
+</tr>
+</tbody></table>
 <h2 id='transfer-asset-from-spot-trading-account-to-isolated-margin-account-isolated'>Transfer Asset from Spot Trading Account to Isolated Margin Account（Isolated）</h2>
 <p>API Key Permission：Trade<br>
 Rate Limit (NEW): 2times/2s</p>
