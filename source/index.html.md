@@ -8497,6 +8497,28 @@ Once the Websocket connection is established, Websocket client could send follow
 
 Upon success, Websocket client should receive a response below:
 
+Below is the return code, return message and the description returend from Asset and Order WebSocket
+
+| Return Code | Return Message | Description |
+|--------- | -----------|--------- |
+|200 | Success | Successful |
+|100| time out close | The connection is timeout and closed |
+|400| Bad Request | The request is invalid |
+|404 | Not Found | The service is not found |
+|429 | Too Many Requests | Connection number exceed limit |
+|500 | system error | System internal error |
+|2000 | invalid.ip | The IP is invalid |
+|2001 | nvalid.json | The JSON request is invalid |
+|2001 | invalid.action | Parameter action is invalid |
+|2001 | invalid.symbol | Parameter symbol is invalid |
+|2001 | invalid.ch | Parameter channel is invalid |
+|2001 | missing.param.auth | Parameter auth is missing|
+|2002 | invalid.auth.state | Authentication state is invalid |
+|2002 | auth.fail| Authentication failed |
+|2003 | query.account.list.error | Account query error |
+|4000 | too.many.request | Request exceed limit |
+|4000 | too.many.connection | Connection number exceed limit for single API Key |
+
 ## Subscribe Order Updates
 
 API Key Permission: Read
