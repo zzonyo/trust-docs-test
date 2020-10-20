@@ -8349,8 +8349,6 @@ Different with v1, the return data of websocket v2 are not compressed.
 
 ### Heartbeat
 
-Once the Websocket connection is established, Huobi server will periodically send "ping" message at 20s interval, with an integer inside.
-
 ```json
 {
 	"action": "ping",
@@ -8360,16 +8358,18 @@ Once the Websocket connection is established, Huobi server will periodically sen
 }
 ```
 
-Once client's server receives "ping", it should respond "pong" message back with the same integer.
+Once the Websocket connection is established, Huobi server will periodically send "ping" message at 20s interval, with an integer inside.
 
 ```json
 {
     "action": "pong",
     "data": {
-          "ts": 1575537778295 // the same integer from "ping" message
+          "ts": 1575537778295 // the same with "ping" message
     }
 }
 ```
+
+Once client's server receives "ping", it should respond "pong" message back with the same integer.
 
 ### Valid Values of `action`
 
@@ -8390,7 +8390,18 @@ There are multiple limitations for this version:
 
 ### Authentication
 
-Authentication request:
+Authentication request field list
+
+|Field| Mandatory|Data Type| Description
+|----| ----|--------| ----
+|action|true| string| Action type, valid value: "req"
+|ch|true|string|Channel, valid value: "auth"
+|authType| true|string|Authentication type, valid value: "api"
+|accessKey|true|string|Access key
+|signatureMethod| true| string| Signature method, valid value: "HmacSHA256"
+|signatureVersion| true|string|Signature version, valid value: "2.1"
+|timestamp|true|string|Timestamp in UTC in format like 2017-05-11T16:22:06
+|signature| true| string| Signature
 
 ```json
 {
@@ -8405,10 +8416,9 @@ Authentication request:
         "signature": "4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o="
     }
 }
-
 ```
 
-The response of success
+This is an exmaple of authentication request:
 
 ```json
 {
@@ -8419,18 +8429,7 @@ The response of success
 }
 ```
 
-Authentication request field list
-
-|Field| Mandatory|Data Type| Description
-|----| ----|--------| ----
-|action|true| string| Action type, valid value: "req"
-|ch|true|string|Channel, valid value: "auth"
-|authType| true|string|Authentication type, valid value: "api"
-|accessKey|true|string|Access key
-|signatureMethod| true| string| Signature method, valid value: "HmacSHA256"
-|signatureVersion| true|string|Signature version, valid value: "2.1"
-|timestamp|true|string|Timestamp in UTC in format like 2017-05-11T16:22:06
-|signature| true| string| Signature
+The response of success:
 
 ### Generating Signature 
 
@@ -8455,6 +8454,8 @@ Note: The data in JSON request doesn't require URL encode
 
 ### Subscribe a Topic to Continuously Receive Updates
 
+> Sub request:
+
 ```json
 {
 	"action": "sub",
@@ -8464,34 +8465,14 @@ Note: The data in JSON request doesn't require URL encode
 
 Once the Websocket connection is established, Websocket client could send following request to subscribe a topic:
 
+> Sub respose:
+
 ```json
 {
 	"action": "sub",
 	"code": 200,
 	"ch": "accounts.update#0",
 	"data": {}
-}
-```
-
-Upon success, Websocket client should receive a response below:
-
-### Request an Update
-
-```json
-{
-    "action": "req", 
-    "ch": "topic",
-}
-```
-
-Once the Websocket connection is established, Websocket client could send following request to acquire an update:
-
-```json
-{
-    "action": "req",
-    "ch": "topic",
-    "code": 200,
-    "data": {} // update contents
 }
 ```
 
