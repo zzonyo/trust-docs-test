@@ -6850,7 +6850,7 @@ Note:<br>
 
 # Websocket Market Data
 
-## General
+## Introduction
 
 ### Websocket URL
 
@@ -6966,6 +6966,20 @@ You will receive a response accordingly and immediately
 **Rate limt of pull style query (req)**
 
 The limitation of single connection is 100 ms.
+
+### Error Code
+
+Below is the error code, error message and description
+
+| Error Code | Error Message | Description |
+|---------  | -----------|--------- |
+| bad-request | invalid topic | Parameter topic is invalid |
+| bad-request | invalid symbol | Parammeter symbol is invalid |
+| bad-request | symbol trade not open now | The market is not open for this symbol |
+| bad-request | 429 too many request | Request exceed limit |
+| bad-request | unsub with not subbed topic  | The topic is not subscribed |
+| bad-request | not json string   | The request is not JSON format |
+| bad-request | request timeout | The request is time out |
 
 ## Market Candlestick
 
