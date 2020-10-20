@@ -8643,10 +8643,10 @@ After order is submitted –
 |	orderStatus		|	string		|	Order status, valid value: submitted			|
 |	orderCreateTime	|	long		|	Order creation time									|
 
-Note: <BR>
-- If a stop limit order is created but not yet triggered, the topic won’t send an update. <BR>
+Note:<br>
+- If a stop limit order is created but not yet triggered, the topic won’t send an update.<br>
 - The topic will send creation update for taker's order before it being filled.<br>
-- Stop limit order's type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<BR>
+- Stop limit order's type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<br>
 
 ```json
 {
@@ -8687,9 +8687,9 @@ After order matching –
 |	orderStatus		|	string		|	Order status, valid value: partial-filled, filled						|
 |	remainAmt		|	string		|	Remaining amount (for buy-market order it's remaining value)									|
 
-Note:<BR>
-- Stop limit order's type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<BR>
-- If a taker’s order matching with multiple orders at opposite side simultaneously, the multiple trades will be disseminated over separately instead of merging into one trade.<BR>
+Note:<br>
+- Stop limit order's type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<br>
+- If a taker’s order matching with multiple orders at opposite side simultaneously, the multiple trades will be disseminated over separately instead of merging into one trade.<br>
 
 ```json
 {
@@ -8723,7 +8723,7 @@ After order cancellation –
 |	lastActTime		|	long		|	Last activity time									|
 
 Note:<br>
-- Stop limit order's type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<BR>
+- Stop limit order's type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<br>
 
 ## Subscribe Trade Details & Order Cancellation post Clearing
 
@@ -8970,6 +8970,26 @@ Note:<br>
 
 # Stable Coin Exchange
 
+## Introduction
+
+Stable coin APIs provide stable coin quote query and exchange.
+
+<aside class="notice">All endpoints in this section require authentication</aside>
+
+Below is the error code and the description from stable coin APIs
+
+| Error Code   | Description |
+| ---------    | --------- |
+| invalid-currency    | invalid currency |
+| invalid-amount     | amount < 1,000 or amount > quota limit |
+| invalid-type   | type not 'buy' or 'sell'|
+| quote-failure|other errors|
+| invalid-quote-id    | Paramemter ‘quote-id’ is invalid |
+| insufficient-balance | insufficient balance to buy or sell stable coins |
+| insufficient-quota  | the quota is exceeded|
+| exchange-failure | other errors |
+|Base-user-request-exceed-limit| Operation is too frequent|
+
 ## Get Exchange Rate
 
 API Key Permission：Read
@@ -8998,15 +9018,6 @@ exchangeFee      | string | Exchange fee (in HUSD)
 quoteId       | string   | Stable currency quoteID
 expiration|string|Term of validity
 
-### Error Code
-
-Error Code               | Description
----------           | --------- 
-invalid-currency    | invalid currency    
-invalid-amount     | amount < 1,000 or amount > quota limit     
-invalid-type        | type not 'buy' or 'sell'
-quote-failure|other errors
-
 ## Exchange Stable Coin
 
 API Key Permission：Trade
@@ -9032,16 +9043,6 @@ type        | string   | Type of the exchange (buy/sell)
 exchange-amount       | string   | Amount of HUSD to exchange in or out
 exchange-fee      | string | Exchange fee (in HUSD) 
 time       | long   | Timestampe
-
-### Error Code
-
-Error Code               | Description
----------           | --------- 
-invalid-quote-id    | Paramemter ‘quote-id’ is invalid    
-insufficient-balance     | insufficient balance to buy or sell stable coins     
-insufficient-quota        | the quota is exceeded
-exchange-failure|other errors
-Base-user-request-exceed-limit|Operation is too frequent
 
 # ETF (HB10)
 
