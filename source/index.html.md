@@ -6182,6 +6182,7 @@ Sort: Click “repayTime”
 | fromId    | long      | FALSE     | search original ID (only available when  searching for the next page) |
 
 > Response:
+
 ```json
 {
      "code":200,
@@ -7646,9 +7647,9 @@ symbol    | string    | true     | NA                    | ETP traiding symbol  
 |	amount }	|	float	|	Amount	|
 |	actualLeverage	|	float	|	Actual leverage ratio	|
 
-# Websocket Asset and Order
+# Websocket Asset and Order (to be obsolete)
 
-## General
+## Introduction (to be obsolete)
 
 ### Websocket URL
 
@@ -8329,7 +8330,7 @@ operator|string|opration character of stop price|
 
 # Websocket Asset and Order (v2)
 
-## General
+## Introduction
 
 ### Access URL
 
@@ -8441,8 +8442,6 @@ The signature generation method v2.1 is similar with v2.0, with only following d
 
 Please refer to detailed signature generation steps from: [https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc]
 
-The final string involved in signature generation should be like below:
-
 ```
 GET\n
 api.huobi.pro\n
@@ -8450,11 +8449,11 @@ api.huobi.pro\n
 accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatureVersion=2.1&timestamp=2019-12-05T11%3A53%3A03
 ```
 
+The final string involved in signature generation should be like below:
+
 Note: The data in JSON request doesn't require URL encode
 
 ### Subscribe a Topic to Continuously Receive Updates
-
-Once the Websocket connection is established, Websocket client could send following request to subscribe a topic:
 
 ```json
 {
@@ -8463,7 +8462,7 @@ Once the Websocket connection is established, Websocket client could send follow
 }
 ```
 
-Upon success, Websocket client should receive a response below:
+Once the Websocket connection is established, Websocket client could send following request to subscribe a topic:
 
 ```json
 {
@@ -8474,9 +8473,9 @@ Upon success, Websocket client should receive a response below:
 }
 ```
 
-### Request an Update
+Upon success, Websocket client should receive a response below:
 
-Once the Websocket connection is established, Websocket client could send following request to acquire an update:
+### Request an Update
 
 ```json
 {
@@ -8485,7 +8484,7 @@ Once the Websocket connection is established, Websocket client could send follow
 }
 ```
 
-Upon success, Websocket client should receive a response below:
+Once the Websocket connection is established, Websocket client could send following request to acquire an update:
 
 ```json
 {
@@ -8495,6 +8494,8 @@ Upon success, Websocket client should receive a response below:
     "data": {} // update contents
 }
 ```
+
+Upon success, Websocket client should receive a response below:
 
 ## Subscribe Order Updates
 
