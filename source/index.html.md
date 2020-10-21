@@ -1,5 +1,5 @@
 ---
-title: Huobi USDT Swap API Reference
+title: Huobi USDT Margined Swap API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -17,7 +17,7 @@ search: true
 
 ## API Documentation Summary
 
-Welcome to the Huobi USDT Swap API! You can use our API to access all market data, trading, and account management endpoints.
+Welcome to the Huobi USDT Margined Swap API! You can use our API to access all market data, trading, and account management endpoints.
 
 We have code examples in Shell! You can view code examples in the dark area to the right.
 
@@ -31,7 +31,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 
 ### Eligibility Criteria as a Market Maker on Huobi Futures
 
-Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Futures long-term Market Maker project.If you have more than 5 BTC in your Huobi future account, or more than 3 BTC in your Huobi coin margined swap account, or you have more than 3 BTC in your Huobi option account,or more than 30000 USDT in your Huobi USDT swap account, please send the following information to dm_mm@huobi.com:
+Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Futures long-term Market Maker project.If you have more than 5 BTC in your Huobi future account, or more than 3 BTC in your Huobi coin margined swap account, or you have more than 3 BTC in your Huobi option account,or more than 30000 USDT in your Huobi USDT Margined swap account, please send the following information to dm_mm@huobi.com:
 
 1. Huobi UIDs (not linked to any rebate program in any accounts)
 2. Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges
@@ -40,7 +40,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 1.0.0 Coming soon
  
-# USDT Swap API Access Guide
+# USDT Margined Swap API Access Guide
 
 ##  API List
 
@@ -100,7 +100,7 @@ Trade  | Trade      | linear-swap-api/v1/swap_trigger_cancel                    
 Trade  | Trade      | linear-swap-api/v1/swap_trigger_cancelall                         | POST   |      Cancel all trigger Orders                 |     Yes        |
  Read  | Trade      | linear-swap-api/v1/swap_trigger_openorders                        | POST   |      Get all open trigger Orders                 |     Yes        |
  Read  | Trade      | linear-swap-api/v1/swap_trigger_hisorders                         | POST   |      Get all history trigger Orders                 |     Yes        |
-Trade  | Account    | https://api.huobi.pro/v2/account/transfer                         | POST   |      Transfer margin between Spot account and USDT Swap account     |     Yes       |
+Trade  | Account    | https://api.huobi.pro/v2/account/transfer                         | POST   |      Transfer margin between Spot account and USDT Margined Swap account     |     Yes       |
 
 
 
@@ -108,14 +108,14 @@ Trade  | Account    | https://api.huobi.pro/v2/account/transfer                 
 <!--
 Address | Applicable sites | Applicable functions | Applicable trading pairs |
 ------ | ---- | ---- | ------ |
-https://api.hbdm.com  | Huobi USDT Swap |  API       | Trading pairs provided by Huobi USDT Swap  |
+https://api.hbdm.com  | Huobi USDT Margined Swap |  API       | Trading pairs provided by Huobi USDT Margined Swap  |
 
 ### Notice
 
  If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro".
 -->
 ### Note: 
-- Huobi USDT swap is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.  
+- Huobi USDT Margined swap is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.  
 
 ## Signature Authentication & Verification
 
@@ -856,7 +856,7 @@ Error Code | Error Details Description|
 
 - <a href='https://github.com/hbdmapi/huobi_futures_Postman'>Postman</a>
 
-PS: USDT swap api is similar to Coin margined swap api and future api.
+PS: USDT Margined swap api is similar to Coin margined swap api and future api.
 
 <!--
 - <a href='https://github.com/hbdmapi/hbdm_swap_Rust'>Rust</a>
@@ -865,7 +865,7 @@ PS: USDT swap api is similar to Coin margined swap api and future api.
 
 -->
 
-# USDT Swap API FAQ
+# USDT Margined Swap API FAQ
 
 ## Access and Authentication
 
@@ -893,13 +893,13 @@ The api.hbdm.vn uses AWS's CDN service. it should be more stable and faster for 
 
 Actually ,colo corresponds to a vpc node, which directly connects to  private network of huobi's future, so it will reduce the latency between the client and the Huobi future server (bypassing the CDN)
 
-huobi future and huobi swap have the same colo, so the domain name connecting the USDT swap api and the future api are the same.
+huobi future and huobi swap have the same colo, so the domain name connecting the USDT Margined swap api and the future api are the same.
 
 Note : Colo needs to use api.hbdm.com for signature(authentication) to avoid getting 403 error: Verification failure. 
 
 ### Q6: Why does signature verification return failure (403: Verification failure) ?
 
-The signature process of USDT swap is similar to huobi future and coin margined swap . In addition to the following precautions,please refer to the swap or future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful. The coin margined  swap code demo is <a href=https://docs.huobigroup.com/docs/coin_margined_swap/v1/en/#code-demo>here</a>. The future code demo is <a href=https://docs.huobigroup.com/docs/dm/v1/en/#code-demo>here</a>.The option code demo is <a href=https://docs.huobigroup.com/docs/option/v1/en/#code-demo>here</a>. The USDT Swap code demo is <a href=https://docs.huobigroup.com/docs/usdt_swap/v1/en/#code-demo>here</a>.
+The signature process of USDT Margined swap is similar to huobi future and coin margined swap . In addition to the following precautions,please refer to the swap or future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful. The coin margined  swap code demo is <a href=https://docs.huobigroup.com/docs/coin_margined_swap/v1/en/#code-demo>here</a>. The future code demo is <a href=https://docs.huobigroup.com/docs/dm/v1/en/#code-demo>here</a>.The option code demo is <a href=https://docs.huobigroup.com/docs/option/v1/en/#code-demo>here</a>. The USDT Margined Swap code demo is <a href=https://docs.huobigroup.com/docs/usdt_swap/v1/en/#code-demo>here</a>.
 
 1. Check if the API key is valid and copied correctly.
 2. Check if the IP is in whitelist
@@ -1038,9 +1038,9 @@ Snapshot MBP data will be pushed for the first time, and the incremental MBP dat
 
 ## Order and Trade
 
-### Q1: What is the USDT Swap funding rate settlement cycle? Which interface can be used to check the status when the fund rate is settled? 
+### Q1: What is the USDT Margined Swap funding rate settlement cycle? Which interface can be used to check the status when the fund rate is settled? 
 
-We warmly remind you that Huobi USDT Swap is settled every 8 hours, and the settlement will be at the end of each period. For example, 00:00 - 08:00 is a period, and its settlement time would be at 08:00; 08:00 - 16:00 is a period, and its settlement time would be at 16:00; 16:00 - 00:00 (+1 day) is a period, and its settlement time would be at 00:00. All times mentioned above are Singapore Standard time (GMT+8).
+We warmly remind you that Huobi USDT Margined Swap is settled every 8 hours, and the settlement will be at the end of each period. For example, 00:00 - 08:00 is a period, and its settlement time would be at 08:00; 08:00 - 16:00 is a period, and its settlement time would be at 16:00; 16:00 - 00:00 (+1 day) is a period, and its settlement time would be at 00:00. All times mentioned above are Singapore Standard time (GMT+8).
 
 （1）Orders can't be placed or cancelled during settlement period, error code "1056" will be returned if users place or cancel orders. You are recommended to request contract information every few seconds during settlement period: linear-swap-api/v1/swap_contract_info. It's in settlement time if there is any number of 5, 6, 7, 8 included in the returned status code of contract_status, while it indicates that settlement completed and users could place and cancel orders as usual if the returned status code is 1.
 
@@ -1064,7 +1064,7 @@ please be patient, and do not place or cancel order repeatedly during the proces
 
 The field ID returned by the information interface linear-swap-api/v1/swap_order_detail is a globally unique transaction identifier. if a maker order is matched multiple times, a trade will be pushed once there is a transaction matched.
 
-### Q4: What is the delay for the round trip of huobi USDT swap?
+### Q4: What is the delay for the round trip of huobi USDT Margined swap?
 
 At present,it normally takes about 30-50ms from placing the order to getting the status of the order.
 
@@ -1122,7 +1122,7 @@ When you report an API error, you need to attach your request URL, the original 
 If it is an order-related issue, use the API order query interface linear-swap-api/v1/swap_order_info to keep the complete log returned and provide your UID and order number.
 
 
-# USDT Swap Market Data interface
+# USDT Margined Swap Market Data interface
 
 ## Query Swap Info 
 
@@ -2514,7 +2514,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | ts | true  | long | created time |  |
 
 
-# USDT Swap Account Interface
+# USDT Margined Swap Account Interface
 
 ## Query User’s Account Information
 
@@ -3608,7 +3608,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 
 
 
-# USDT Swap Trade Interface
+# USDT Margined Swap Trade Interface
 
 ##  Place an Order 
 
@@ -5004,9 +5004,9 @@ ts                     | true     | long    | timestamp                |        
 
 
 
-# USDT Swap Transferring Interface
+# USDT Margined Swap Transferring Interface
 
-##  Transfer margin between Spot account and USDT Swap account 
+##  Transfer margin between Spot account and USDT Margined Swap account 
 
 ### Example
 
@@ -5014,11 +5014,11 @@ ts                     | true     | long    | timestamp                |        
 
 ### Notice
 
-This interface is used to transfer assets between Spot account and USDT Swap account.
+This interface is used to transfer assets between Spot account and USDT Margined Swap account.
 
 API rate limit for this interface is up to 10 times per minute.
 
-Transferring margin between Spot account and USDT Swap account Interface, sets 8 decimal places for transferring amount of all coins.
+Transferring margin between Spot account and USDT Margined Swap account Interface, sets 8 decimal places for transferring amount of all coins.
 
 ### Request Parameter
 
@@ -5132,7 +5132,7 @@ Response Code | Desc in Chinese |  Desc in English  |
 
 
 
-# USDT Swap WebSocket Reference 
+# USDT Margined Swap WebSocket Reference 
 
 ## API List
 
@@ -5178,10 +5178,10 @@ Order Push Subscription：wss://api.btcgateway.pro/linear-swap-notification
 Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
  -->
 ### Note: 
-- Huobi USDT swap is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.   
+- Huobi USDT Margined swap is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.   
  
  
-If you have further queries about Huobi USDT Swap order push subscription, please refer to [Demo](https://docs.huobigroup.com/docs/usdt_swap/v1/en/#code-demo)
+If you have further queries about Huobi USDT Margined Swap order push subscription, please refer to [Demo](https://docs.huobigroup.com/docs/usdt_swap/v1/en/#code-demo)
  
 ## API Rate Limit Illustration
 
@@ -5289,11 +5289,11 @@ Note: Once the WebSocket Client and WebSocket Server get connected, the server w
 
 ## Order Push Address
 <!--
-- Huobi USDT Swap uses one official address:
+- Huobi USDT Margined Swap uses one official address:
   `wss://api.hbdm.com/linear-swap-notification`
   -->
 ### Note: 
-- Huobi USDT swap is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.  
+- Huobi USDT Margined swap is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.  
   
 Please note that the WS request connection should not go over 30 normally.
 
@@ -5309,7 +5309,7 @@ All response data from WebSocket server are compressed into GZIP format. Clients
 
 - Data type： use JSON to transmit data
 
-- All request data has fixed format. Please note that Huobi USDT Swap API document will only focus on data illustration in non-fixed format.
+- All request data has fixed format. Please note that Huobi USDT Margined Swap API document will only focus on data illustration in non-fixed format.
 
 > Request data format is laid out as below:
 
@@ -5323,7 +5323,7 @@ All response data from WebSocket server are compressed into GZIP format. Clients
 
 ```
 
-> All responses push data will be returned in fixed format，Huobi USDT Swap API document will only focus on data illustration， Response data format is laid out as below；
+> All responses push data will be returned in fixed format，Huobi USDT Margined Swap API document will only focus on data illustration， Response data format is laid out as below；
 
 ```
    
@@ -5377,7 +5377,7 @@ After authentication, if clients encountered internal error or request data out 
 
 ## Authentication
 
-Clients can create Access Key and Secret Key on Huobi which Access Key is the API access key kept by the client.  The Secret Key is used to sign the request (available only for request). To apply/change API key, please go to “Account-API Management” on Huobi USDT Swap. Make name for the API Key and click “create” to finish. It’s optional to bind IP address to the API Key.
+Clients can create Access Key and Secret Key on Huobi which Access Key is the API access key kept by the client.  The Secret Key is used to sign the request (available only for request). To apply/change API key, please go to “Account-API Management” on Huobi USDT Margined Swap. Make name for the API Key and click “create” to finish. It’s optional to bind IP address to the API Key.
 
 For the Trade WebSocket interface, server have to do authentication for topics require authentication before making connection. 
 
