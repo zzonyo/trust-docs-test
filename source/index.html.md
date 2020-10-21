@@ -5037,7 +5037,7 @@ from  |    true  |  string  |  来源业务线账户，取值：spot(币币)、l
 to  |    true  |  string  |  目标业务线账户，取值：spot(币币)、linear-swap(正向永续合约)  | e.g. linear-swap  |
 currency  |    true  |  string  |  币种,支持大小写  |   e.g. usdt  |
 amount  |   true  |  decimal  |   划转金额  |      |
-margin_account  |   true  |  string  |   保证金账户	  | e.g. btc-usdt、eth-usdt     |
+margin-account  |   true  |  string  |   保证金账户	  | e.g. btc-usdt、eth-usdt     |
 
 > Response:
 
