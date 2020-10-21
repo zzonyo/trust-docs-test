@@ -23,10 +23,10 @@ Options:
 run_build() {
   if [[ $version = dm ]]; then
     build_dir=$build_directory/dm/v1/$language
-  elif [[ $version = swap ]]; then
-    build_dir=$build_directory/swap/v1/$language
   elif [[ $version = coin ]]; then
     build_dir=$build_directory/coin_margined_swap/v1/$language
+  elif [[ $version = usdt ]]; then
+    build_dir=$build_directory/usdt_swap/v1/$language
   elif [[ $version = option ]]; then
     build_dir=$build_directory/option/v1/$language
   else
@@ -287,7 +287,7 @@ parse_args "$@"
 if [[ -n "$source_only" ]]; then
   echo "source only"
   run_build
-elif [[ -n "$source_only" ]]; then
+elif [[ -n "$push_only" ]]; then
   echo "push only"  
   main
 else
