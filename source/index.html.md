@@ -5028,7 +5028,7 @@ Transferring margin between Spot account and USDT Swap account Interface, sets 8
 | to  |    true  |  string  |  destination，value：spot、linear-swap |   e.g. linear-swap  |
 | currency      | true     | string | currency.Both uppercase and lowercase are supported.          |       e.g. USDT                          |
 | amount  | true     | decimal    | Transferring amount         |         |   |
-| margin_account  | true     | string    | margin account        |  e.g. USDT             |   |
+| margin-account  | true     | string    | margin account        |  e.g. USDT             |   |
 
 > Response:
 
