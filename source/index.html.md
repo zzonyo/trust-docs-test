@@ -103,17 +103,15 @@ search: true
 交易  | 账户接口    | https://api.huobi.pro/v2/account/transfer                         | POST   |      现货-USDT本位永续账户间进行资金的划转              |     是        |
 
 ## 访问地址
-<!--
+
 访问地址 | 适用站点 | 适用功能 | 适用交易对 |
 ------ | ---- | ---- | ------ |
 https://api.hbdm.com| 火币合约|   API     | 火币合约的交易品种  |
 
-### 备注
+### 备注：
 
 "https://api.hbdm.com"如果无法访问请使用："https://api.btcgateway.pro"。
--->
-### 备注：
-- USDT本位永续合约正在真币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。
+
 
 ## 签名认证
 
@@ -892,7 +890,7 @@ colo相当于是 创建一个VPC节点，直接连了火币合约的内网，会
 
 ### Q6: 为什么签名认证总返回失败(403:Verification failure [校验失败]) ？
 
-USDT本位永续签名过程和币本位永续、交割类似，除了参考以下注意事项外，请参照反向永续或者交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。币本位永续的demo代码在 <a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。交割的demo代码在<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#2cff7db524'>  这里</a>  查看。期权的demo代码在<a href='https://docs.huobigroup.com/docs/option/v1/cn/#2cff7db524'>  这里</a>  查看。USDT本位永续的demo代码在 <a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。
+USDT本位永续签名过程和币本位永续、交割类似，除了参考以下注意事项外，请参照币本位永续或者交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。币本位永续的demo代码在 <a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。交割的demo代码在<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#2cff7db524'>  这里</a>  查看。期权的demo代码在<a href='https://docs.huobigroup.com/docs/option/v1/cn/#2cff7db524'>  这里</a>  查看。USDT本位永续的demo代码在 <a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。
 
 1. 检查 API Key 是否有效，是否复制正确
 
@@ -5033,8 +5031,8 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 
   参数名称   |  是否必须    |  类型   |  描述      |  取值范围  |
 --------------  | --------------  | ---------- |  ------------------------  |  ------------------------------------------------------------------------------------------------------  |
-from  |    true  |  string  |  来源业务线账户，取值：spot(币币)、linear-swap(正向永续合约)  |   e.g. spot  |
-to  |    true  |  string  |  目标业务线账户，取值：spot(币币)、linear-swap(正向永续合约)  | e.g. linear-swap  |
+from  |    true  |  string  |  来源业务线账户，取值：spot(币币)、linear-swap(USDT本位永续合约)  |   e.g. spot  |
+to  |    true  |  string  |  目标业务线账户，取值：spot(币币)、linear-swap(USDT本位永续合约)  | e.g. linear-swap  |
 currency  |    true  |  string  |  币种,支持大小写  |   e.g. usdt  |
 amount  |   true  |  decimal  |   划转金额  |      |
 margin-account  |   true  |  string  |   保证金账户	  | e.g. btc-usdt、eth-usdt     |
@@ -5170,7 +5168,7 @@ err-msg  |    true  |   string    |     错误消息	 | 具体错误码请见列
 | 读取    |  交易接口	 | trigger_order.$contract_code                             | sub  | 订阅计划委托订单更新ws推送   |    是       |
 
 ## 合约订阅地址
-<!--
+
 合约站行情请求以及订阅地址为：wss://api.hbdm.com/linear-swap-ws
 
 合约站订单推送订阅地址：wss://api.hbdm.com/linear-swap-notification
@@ -5182,9 +5180,6 @@ err-msg  |    true  |   string    |     错误消息	 | 具体错误码请见列
 合约站订单推送订阅地址：wss://api.btcgateway.pro/linear-swap-notification
 
 合约站指数K线及基差数据订阅地址：wss://api.btcgateway.pro/ws_index
--->
-### 备注：
-- USDT本位永续合约正在真币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。
 
 如果对合约订单推送订阅有疑问，可以参考 <a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#2cff7db524'> Demo </a>
  
@@ -5278,14 +5273,10 @@ api接口response中的header返回以下字段
 
 ## 订单推送访问地址
 
-<!--
 - 统一服务地址
 
   合约站订单推送订阅地址：wss://api.hbdm.com/linear-swap-notification
--->
-### 备注：
-- USDT本位永续合约正在真币内测，您可以发送UID与服务器IP地址到dm_mm@huobi.com 申请内测。  
-  
+ 
   正常ws请求连接不能同时超过30个
 
 ### 数据压缩
