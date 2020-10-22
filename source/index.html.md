@@ -105,7 +105,7 @@ Trade  | Account    | https://api.huobi.pro/v2/account/transfer                 
 
 
 ##  Address
-<!--
+
 Address | Applicable sites | Applicable functions | Applicable trading pairs |
 ------ | ---- | ---- | ------ |
 https://api.hbdm.com  | Huobi USDT Margined Swap |  API       | Trading pairs provided by Huobi USDT Margined Swap  |
@@ -113,9 +113,6 @@ https://api.hbdm.com  | Huobi USDT Margined Swap |  API       | Trading pairs pr
 ### Notice
 
  If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro".
--->
-### Note: 
-- Huobi USDT Margined swap is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.  
 
 ## Signature Authentication & Verification
 
@@ -5161,7 +5158,7 @@ Response Code | Desc in Chinese |  Desc in English  |
 | Read    |  Trade Interface	 | trigger_order.$contract_code                             | sub  | Subscribe trigger orders updates(sub)    |    Yes      |                                                                                                                                      
 
 ## WebSocket Subscription Address
-<!--
+
 Market Data Request and Subscription: wss://api.hbdm.com/linear-swap-ws 
 
 Order Push Subscription: wss://api.hbdm.com/linear-swap-notification
@@ -5175,10 +5172,7 @@ Market Data Request and Subscription Address: wss://api.btcgateway.pro/linear-sw
 Order Push Subscription：wss://api.btcgateway.pro/linear-swap-notification
 
 Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
- -->
-### Note: 
-- Huobi USDT Margined swap is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.   
- 
+
  
 If you have further queries about Huobi USDT Margined Swap order push subscription, please refer to [Demo](https://docs.huobigroup.com/docs/usdt_swap/v1/en/#code-demo)
  
@@ -5287,13 +5281,11 @@ Note: Once the WebSocket Client and WebSocket Server get connected, the server w
 `}`
 
 ## Order Push Address
-<!--
+
 - Huobi USDT Margined Swap uses one official address:
+
   `wss://api.hbdm.com/linear-swap-notification`
-  -->
-### Note: 
-- Huobi USDT Margined swap is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.  
-  
+
 Please note that the WS request connection should not go over 30 normally.
 
 ### Data Compression
