@@ -6053,7 +6053,7 @@ API Key 权限：读取
 |   type | true | string | 账户类型| trade,frozen,loan,interest,transfer-out-available,loan-available|
 |   balance } | true | string | 余额（注：当type= transfer-out-available时，如果balance=-1，意味着该币种余额可全部转出）| |
 
-## 归还借币（通用）
+## 归还借币（全仓）
 
 API Key 权限：交易
 
@@ -6114,7 +6114,7 @@ API Key 权限：交易
 注：
 返回relayId不意味着该还币100%成功，用户须在还币后通过查询还币交易记录确认该还币状态。
 
-## 还币交易记录查询（通用）
+## 还币交易记录查询（全仓）
 
 API Key 权限：读取
 
