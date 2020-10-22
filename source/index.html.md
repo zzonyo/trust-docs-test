@@ -416,7 +416,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
   - Interface type: User private interface
   - URL: /swap-api/v1/swap_financial_record
  
-# SWAP API Access Guide
+# Coin Margined SWAP API Access Guide
 
 ##  API List
 
