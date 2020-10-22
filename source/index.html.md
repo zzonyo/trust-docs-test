@@ -259,8 +259,7 @@ The final request sent to Server via API should be like:
 
 ## API Rate Limit Illustration
 
-Futures and perpetual swaps are using seperate API rate limits.
-
+Future, Coin Margined Swap,Option Swap and USDT Margined Swap are using separate API rate limits.
 
 Please note that, for both public interface and private interface, there are rate limits, more details are as below:
 
@@ -1113,7 +1112,7 @@ If you encounter errors such as {'index': 1, 'err_code': 1048, 'err_msg': 'Insuf
 
 ### Q3: What is the reason for 1032 error code? 
 
-1032 means that your request exceeds the ratelimit. The perpetual contract and the delivery contract limit the rate separately. Please check the ratelimit in the api ratelimit instructions, and you can print the current ratelimit in the header of the API response to check whether the ratelimit is exceeded. It is recommended to increase the request interval delay to avoid exceeding the ratelimit.
+1032 means that your request exceeds the ratelimit. The coin margined swap, future, option swap and USDT margined swap limit the rate separately. Please check the ratelimit in the api ratelimit instructions, and you can print the current ratelimit in the header of the API response to check whether the ratelimit is exceeded. It is recommended to increase the request interval delay to avoid exceeding the ratelimit.
 
 ## How to solve problems more effectively?
 
