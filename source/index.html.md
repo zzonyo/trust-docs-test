@@ -38,7 +38,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
-## 1.0.0 2020-10-22 Being tested in real assets
+## 1.0.0 2020-10-22 Real Coin Internal Test
  
 # USDT Margined Swap API Access Guide
 
