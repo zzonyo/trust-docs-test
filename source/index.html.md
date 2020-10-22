@@ -6101,11 +6101,14 @@ Field               | Data Type     | Description
    type | true | string | Account type| trade,frozen,loan,interest,transfer-out-available,loan-available|
    balance } | true | string | Balance (note: while type=transfer-out-available, if balance=-1, it implicates that all balance can be transferred out.)| |
 
-## Repay Margin Loan（General）
+## Repay Margin Loan（Cross）
 
 API Key Permission: Transaction
+
 Frequency Limit: 2/s
+
 Available Accounts: Main and Sub-Accounts
+
 You should make a loan first before making a repayment. While repaying the loan, you should repay the loan interest first if there is no appointed transactId. 
 
 ### HTTP Request
@@ -6157,12 +6160,15 @@ You should make a loan first before making a repayment. While repaying the loan,
 | repayTime } | long          | TRUE          | repayment time (unix  time in millisecond) |
 Note: Back to “repayId” doesn’t mean the repayment is 100% successful. Please check the transaction record to confirm the repayment status. 
 
-## Repayment Record Reference（General）
+## Repayment Record Reference（Cross）
 
 API Key Permission: Read
+
 Frequency Limit: 2/s
+
 Available Accounts: Main and Sub-Accounts
-Sort: Click “repayTime” 
+
+Sort by “repayTime” 
 
 ### HTTP Request
 
