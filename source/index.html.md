@@ -1,5 +1,5 @@
 ---
-title: Huobi Swap API Reference
+title: Huobi Coin Margined Swap API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -17,7 +17,7 @@ search: true
 
 ## API Documentation Summary
 
-Welcome to the Huobi Swap API! You can use our API to access all market data, trading, and account management endpoints.
+Welcome to the Huobi Coin Margined Swap API! You can use our API to access all market data, trading, and account management endpoints.
 
 We have code examples in Shell! You can view code examples in the dark area to the right.
 
@@ -31,7 +31,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 
 ### Eligibility Criteria as a Market Maker on Huobi Futures
 
-Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Futures long-term Market Maker project.If you have more than 5 BTC in your Huobi future account, or more than 3 BTC in your Huobi perpetual swap account,or you have more than 3 BTC in your Huobi option account, please send the following information to dm_mm@huobi.com:
+Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Futures long-term Market Maker project.If you have more than 5 BTC in your Huobi future account, or more than 3 BTC in your Huobi coin margined swap account, or you have more than 3 BTC in your Huobi option account,or more than 30000 USDT in your Huobi USDT Margined swap account, please send the following information to dm_mm@huobi.com:
 
 1. Huobi UIDs (not linked to any rebate program in any accounts)
 2. Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges
@@ -481,7 +481,7 @@ Read  | User Order Info  |  /swap-api/v1/swap_matchresults       |  POST        
 
 Address | Applicable sites | Applicable functions | Applicable trading pairs |
 ------ | ---- | ---- | ------ |
-https://api.hbdm.com  | Huobi Swap |  API       | Trading pairs provided by Huobi Swap  |
+https://api.hbdm.com  | Huobi Coin Margined Swap |  API       | Trading pairs provided by Huobi Coin Margined Swap  |
 
 ### Notice
 
@@ -630,8 +630,7 @@ The final request sent to Server via API should be like:
 
 ## API Rate Limit Illustration
 
-Futures and perpetual swaps are using seperate API rate limits.
-
+Future, Coin Margined Swap,Option Swap and USDT Margined Swap are using separate API rate limits.
 
 Please note that, for both public interface and private interface, there are rate limits, more details are as below:
 
@@ -1227,7 +1226,7 @@ Error Code | Error Details Description|
 
 ## Code Demo
 
-PS: swap api is similar to future api.
+PS: Coin Margined Swap api is similar to future api.
 
 - <a href='https://github.com/hbdmapi/java_demo'>Java</a>
 
@@ -1237,7 +1236,7 @@ PS: swap api is similar to future api.
 
 - <a href='https://github.com/hbdmapi/huobi_swap_Cpp'>C++</a>
 
-# SWAP API FAQ
+# Coin Margined SWAP API FAQ
 
 ## Access and Authentication
 
@@ -1271,7 +1270,7 @@ Note : Colo needs to use api.hbdm.com for signature(authentication) to avoid get
 
 ### Q6: Why does signature verification return failure (403: Verification failure) ?
 
-The signature process of swap is similar to huobi future . In addition to the following precautions,please refer to the swap or future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful.The swap code demo is <a href=https://docs.huobigroup.com/docs/coin_margined_swap/v1/en/#code-demo>here</a>. The future code demo is <a href=https://docs.huobigroup.com/docs/dm/v1/en/#code-demo>here</a>.The option code demo is <a href=https://docs.huobigroup.com/docs/option/v1/en/#code-demo>here</a>.
+The signature process of coin margined swap is similar to huobi future . In addition to the following precautions,please refer to the future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful. The coin margined  swap code demo is <a href=https://docs.huobigroup.com/docs/coin_margined_swap/v1/en/#code-demo>here</a>. The future code demo is <a href=https://docs.huobigroup.com/docs/dm/v1/en/#code-demo>here</a>.The option code demo is <a href=https://docs.huobigroup.com/docs/option/v1/en/#code-demo>here</a>. The USDT Margined Swap code demo is <a href=https://docs.huobigroup.com/docs/usdt_swap/v1/en/#code-demo>here</a>.
 
 1. Check if the API key is valid and copied correctly.
 2. Check if the IP is in whitelist
@@ -1494,7 +1493,7 @@ When you report an API error, you need to attach your request URL, the original 
 If it is an order-related issue, use the API order query interface swap-api/ v1/swap_order_info to keep the complete log returned and provide your UID and order number.
 
 
-# Swap Market Data interface
+# Coin Margined Swap Market Data interface
 
 ## Query Swap Info 
 
@@ -2861,7 +2860,7 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 
 
 
-# Swap Account Interface
+# Coin Margined Swap Account Interface
 
 ## Query User’s Account Information
 
@@ -3954,7 +3953,7 @@ last_price | decimal  | true  | Last Price                                      
 
 
 
-# Swap Trade Interface
+# Coin Margined Swap Trade Interface
 
 ##  Place an Order 
 
@@ -5376,9 +5375,9 @@ ts                     | true     | long    | timestamp                |        
 
 
 
-# Swap Transferring Interface
+# Coin Margined Swap Transferring Interface
 
-##  Transfer margin between Spot account and Swap account 
+##  Transfer margin between Spot account and Coin Margined Swap account 
 
 ### Example
 
@@ -5386,12 +5385,12 @@ ts                     | true     | long    | timestamp                |        
 
 ### Notice
 
-This interface is used to transfer assets between Spot account and Swap account.
+This interface is used to transfer assets between Spot account and Coin Margined Swap account.
 
 
 API rate limit for this interface is up to 10 times per minute.
 
-Transferring margin between Spot account and Swap account Interface, sets 8 decimal places for transferring amount of all coins.
+Transferring margin between Spot account and Coin Margined Swap account Interface, sets 8 decimal places for transferring amount of all coins.
 
 ### Request Parameter
 
@@ -5509,7 +5508,7 @@ Response Code | Desc in Chinese |  Desc in English  |
 
 
 
-# Swap WebSocket Reference 
+# Coin Margined Swap WebSocket Reference 
 
 ## API List
 
@@ -5548,11 +5547,12 @@ Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
 
 System status updates subscription ：wss://api.btcgateway.pro/center-notification
 
-If you have further queries about Huobi Swap order push subscription, please refer to [Demo](https://github.com/hbdmapi/hbdm_Python)
+If you have further queries about Huobi Coin Margined Swap order push subscription, please refer to [Demo](https://github.com/hbdmapi/hbdm_Python)
  
 ## API Rate Limit Illustration
 
 There is rate limit for both public and private interfaces. More details are laid out as below:
+
 - Generally, for the private interfaces, users need to user API keys. The rate limit for each UID is 30 times at most every 3 seconds. (Please note that the 30 times/3s of rate limit mentioned above are shared by all contracts (all coins and contracts types expiring at different date).
 
 - For public interfaces used to get information of non-market data (such as request information of index, price limit, delivery and settlement, positions, etc.), the rate limit for each IP is 120 times every 3 seconds. (Please note that the 120 times/3s rate limit is shared by all the requests for non-market data under this UID)
@@ -5656,7 +5656,7 @@ Note: Once the WebSocket Client and WebSocket Server get connected, the server w
 
 ## Order Push Address
 
-- Huobi Swap uses one official address:
+- Huobi Coin Margined Swap uses one official address:
   `wss://api.hbdm.com/swap-notification`
   
 Please note that the WS request connection should not go over 30 normally.
@@ -5673,7 +5673,7 @@ All response data from WebSocket server are compressed into GZIP format. Clients
 
 - Data type： use JSON to transmit data
 
-- All request data has fixed format. Please note that Huobi Swap API document will only focus on data illustration in non-fixed format.
+- All request data has fixed format. Please note that Huobi Coin Margined Swap API document will only focus on data illustration in non-fixed format.
 
 > Request data format is laid out as below:
 
@@ -5687,7 +5687,7 @@ All response data from WebSocket server are compressed into GZIP format. Clients
 
 ```
 
-> All responses push data will be returned in fixed format，Huobi Swap API document will only focus on data illustration， Response data format is laid out as below；
+> All responses push data will be returned in fixed format，Huobi Coin Margined Swap API document will only focus on data illustration， Response data format is laid out as below；
 
 ```
    
