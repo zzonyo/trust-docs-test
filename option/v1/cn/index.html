@@ -618,7 +618,7 @@
 做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动。
 </aside>  
 
-<p>欢迎有优秀 maker 策略交易量大的用户参与长期合约做市商项目。如果您的火币交割合约账户中有折合大于 5 BTC 资产，或火币永续合约账户中有折合大于 3 BTC 资产，或火币期权合约账户中有折合大于 3 BTC 资产，请提供以下信息到 dm_mm@huobi.com（做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动）:</p>
+<p>欢迎有优秀 maker 策略交易量大的用户参与长期合约做市商项目。如果您的火币交割合约账户中有折合大于 5 BTC 资产，或火币币本位永续合约账户中有折合大于 3 BTC 资产，或火币期权合约账户中有折合大于 3 BTC 资产，或火币USDT本位永续合约账户中有大于 30000 USDT 资产，请提供以下信息到 dm_mm@huobi.com（做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动）:</p>
 
 <ol>
 <li>提供火币 UID （需不存在返佣关系的 UID）；</li>
@@ -1123,7 +1123,7 @@ api.hbdm.com\n
 </ol>
 <h2 id='4977e9e52a'>访问次数限制</h2>
 <ul>
-<li><p>交割合约、永续合约和期权合约分开限频</p></li>
+<li><p>交割合约、币本位永续合约、期权合约和USDT本位永续合约都分开限频</p></li>
 <li><p>公开行情接口和用户私有接口都有访问次数限制</p></li>
 <li><p>普通用户，需要密钥的私有接口，每个UID 3秒最多30次请求(该UID的所有币种的合约的所有私有接口共享3秒30次的额度)</p></li>
 <li><p>其他非行情类的公开接口，比如获取指数信息，限价信息，交割结算、平台持仓信息等，所有用户都是每个IP3秒最多60次请求（所有该IP的非行情类的公开接口请求共享3秒60次的额度）</p></li>
@@ -2024,7 +2024,7 @@ api.hbdm.com\n
 <h3 id='q4-api-hbdm-com-api-hbdm-vn'>Q4: api.hbdm.com与api.hbdm.vn有什么区别？</h3>
 <p>api.hbdm.vn域名使用的是AWS的CDN服务，理论上AWS服务器用户使用此域名会更快更稳定；api.hbdm.com域名使用的是Cloudflare的CDN服务。</p>
 <h3 id='q5-403-verification-failure'>Q5: 为什么签名认证总返回失败(403:Verification failure [校验失败]) ？</h3>
-<p>期权签名过程和永续以及交割签名过程类似，除了参考以下注意事项外，请参照期权、永续或者交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。永续的demo代码在 <a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。交割的demo代码在<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#2cff7db524'>  这里</a>  查看。期权的demo代码在<a href='https://docs.huobigroup.com/docs/option/v1/cn/#2cff7db524'>  这里</a>  查看。</p>
+<p>期权签名过程和永续以及交割签名过程类似，除了参考以下注意事项外，请参照期权、永续或者交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。币本位永续的demo代码在 <a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。交割的demo代码在<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#2cff7db524'>  这里</a>  查看。期权的demo代码在<a href='https://docs.huobigroup.com/docs/option/v1/cn/#2cff7db524'>  这里</a>  查看。USDT本位永续的demo代码在 <a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。</p>
 
 <ol>
 <li><p>检查 API Key 是否有效，是否复制正确</p></li>
@@ -2132,7 +2132,7 @@ step6是不合并小数；
 <h3 id='q2-1048'>Q2: 1048错误是什么原因？</h3>
 <p>如果您出现{&#39;index&#39;: 1, &#39;err_code&#39;: 1048, &#39;err_msg&#39;: &#39;Insufficient close amount available. &#39;}类似错误，说明此时可平仓量不足，您平仓时需查询目前已有的仓位张数再去平仓。</p>
 <h3 id='q3-api-1032'>Q3: API返回1032错误码是什么原因？</h3>
-<p>1032代表您的访问次数超出限制， 期权合约、永续合约和交割合约是分开限制频率，请查看合约交易接入说明中的访问次数限制，并且可以在api接口response中的header打印当前的频率限制次数来看是否超出限制频率。建议加大请求间隔延时避免超出限制频率。</p>
+<p>1032代表您的访问次数超出限制， 期权合约、币本位永续合约、USDT本位永续合约和交割合约是分开限制频率，请查看合约交易接入说明中的访问次数限制，并且可以在api接口response中的header打印当前的频率限制次数来看是否超出限制频率。建议加大请求间隔延时避免超出限制频率。</p>
 <h2 id='9065b72c3b'>如何更有效的解决问题</h2>
 <p>您在反馈API错误时，需要附上您的请求URL，请求request的原始的完整body以及完整请求URL参数，服务器的回复response的原始完整log。如果是websocket订阅，需要您提供订阅的地址，订阅的主题，server推送的原始完整log。</p>
 
