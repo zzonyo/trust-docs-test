@@ -1147,19 +1147,23 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </tr>
 </tbody></table>
 <h2 id='address'>Address</h2>
-<!--
-Address | Applicable sites | Applicable functions | Applicable trading pairs |
------- | ---- | ---- | ------ |
-https://api.hbdm.com  | Huobi USDT Margined Swap |  API       | Trading pairs provided by Huobi USDT Margined Swap  |
-
-### Notice
-
- If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro".
--->
-<h3 id='note'>Note:</h3>
-<ul>
-<li>Huobi USDT Margined swap is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.<br></li>
-</ul>
+<table><thead>
+<tr>
+<th>Address</th>
+<th>Applicable sites</th>
+<th>Applicable functions</th>
+<th>Applicable trading pairs</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>https://api.hbdm.com</td>
+<td>Huobi USDT Margined Swap</td>
+<td>API</td>
+<td>Trading pairs provided by Huobi USDT Margined Swap</td>
+</tr>
+</tbody></table>
+<h3 id='notice'>Notice</h3>
+<p>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot;.</p>
 <h2 id='signature-authentication-amp-verification'>Signature Authentication &amp; Verification</h2><h3 id='signature-guide'>Signature Guide</h3>
 <p>Considering that API requests may get tampered in the process of transmission, to keep the transmission secure, you have to use your API Key to do Signature Authentication for all private interface except for public interface (used for acuqiring basic information and market data), in this way to verify whether the parameters/ parameter value get tampered or not in the process of transmission</p>
 
@@ -1662,7 +1666,7 @@ No parameter is available for this endpoint.
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-2'>Note:</h4>
+<h4 id='note'>Note:</h4>
 <ul>
 <li>It can be used for  system time calibration.</li>
 </ul>
@@ -3038,7 +3042,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-3'>Note</h4>
+<h4 id='note-2'>Note</h4>
 <ul>
 <li>Position volume (coin) = position quantity (cont) * contract face value</li>
 <li>Total position amount = position quantity (cont)* contract face value * latest price</li>
@@ -3246,7 +3250,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-4'>Note</h3>
+<h3 id='note-3'>Note</h3>
 <ul>
 <li>Either <code>size</code> field or <code>from</code> and <code>to</code> fields need to be filled.</li>
 <li>If <code>size</code> field and <code>from</code>/<code>to</code> fields are not filled, It will return error messages.</li>
@@ -4561,7 +4565,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='notice'>Notice</h3>
+<h3 id='notice-2'>Notice</h3>
 <ul>
 <li>tick field：Tick data is arranged in reverse chronological order；</li>
 </ul>
@@ -4762,7 +4766,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='notice-2'>Notice</h3>
+<h3 id='notice-3'>Notice</h3>
 <ul>
 <li><p>“open” is one of the trading access in “API-Open-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；</p></li>
 <li><p>“close” is one of the trading access in “API-Close-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；</p></li>
@@ -6483,7 +6487,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-5'>Note</h4>
+<h4 id='note-4'>Note</h4>
 <ul>
 <li>If there are symbols in the settlement or delivery period,error code 1080(1080  In settlement or delivery. Unable to get positions) will return without request parameters. It&#39;s suggested to query the position info with request parameters to avoid raising the error code and not being able to query the position.</li>
 </ul>
@@ -6972,7 +6976,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='notice-3'>Notice</h4>
+<h4 id='notice-4'>Notice</h4>
 <ul>
 <li>Only return data for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission). </li>
 </ul>
@@ -7174,7 +7178,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='notice-4'>Notice</h4>
+<h4 id='notice-5'>Notice</h4>
 <ul>
 <li><p>Only query account information for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission);</p></li>
 <li><p>No data return for sub-accounts which has logged in hbdm but have not gained trading permission/activated.</p></li>
@@ -7426,7 +7430,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-6'>Note:</h4>
+<h4 id='note-5'>Note:</h4>
 <ul>
 <li>Transfer out to contract sub-account: 34, Transfer in from contract sub-account:35, Transfer out to contract main account: 36, Transfer in from contract main account: 37; All these 4 types include crossing account. No matter crossing account or not, the transfer will merge to the same type.</li>
 </ul>
@@ -8377,7 +8381,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>&quot;master_to_sub&quot; or &quot;sub_to_master&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-7'>Note：</h4>
+<h4 id='note-6'>Note：</h4>
 <ul>
 <li>represents transfer from transfer_out margin account to transfer_in margin account. The currency transferred shall be the same as the denominated currency of the transfer_out margin account.；</li>
 <li>The denominated currency of the transfer_out margin account and transfer_in margin account must be the same. (eg, USDT can be transferred from BTC-USDT to ETH-USDT, but cannot be transferred from BTC-USDT to ETH-HUSD account).</li>
@@ -8705,7 +8709,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-8'><strong>Note:</strong></h4>
+<h4 id='note-7'><strong>Note:</strong></h4>
 <ul>
 <li>represents transfer from transfer_out margin account to transfer_in margin account. The currency transferred shall be the same as the denominated currency of the transfer_out margin account.；</li>
 <li>The denominated currency of the transfer_out margin account and transfer_in margin account must be the same. (eg, USDT can be transferred from BTC-USDT to ETH-USDT, but cannot be transferred from BTC-USDT to ETH-HUSD account)。</li>
@@ -9050,7 +9054,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,fok：FOK Order, &quot;opponent_ioc&quot;：IOC order using the BBO price，&quot;optimal_5_ioc&quot;：optimal_5 IOC，&quot;optimal_10_ioc&quot;：optimal_10 IOC，&quot;optimal_20_ioc&quot;：optimal_20 IOC, &quot;opponent_fok&quot;：FOK order using the BBO price，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
 </tr>
 </tbody></table>
-<h3 id='note-9'>Note ：</h3>
+<h3 id='note-8'>Note ：</h3>
 <p>Post-Only orders are limit orders that will never take liquidity (also called maker-only order). There are order limit and position for post-only orders which the upper limit is 500,000 for open/close orders under weekly, bi-weekly and quarterly contract respectively.</p>
 
 <p>Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.</p>
@@ -9137,7 +9141,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-10'>Note</h3>
+<h3 id='note-9'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='place-a-batch-of-orders'>Place a Batch of Orders</h2><h3 id='example-16'>Example</h3>
 <ul>
@@ -9221,7 +9225,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>&quot;limit”: Limit Order &quot;opponent&quot;:BBO &quot;post_only&quot;: Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order, &quot;opponent_ioc&quot;：IOC order using the BBO price，&quot;optimal_5_ioc&quot;：optimal_5 IOC，&quot;optimal_10_ioc&quot;：optimal_10 IOC，&quot;optimal_20_ioc&quot;：optimal_20 IOC, &quot;opponent_fok&quot;：FOK order using the BBO price，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
 </tr>
 </tbody></table>
-<h3 id='note-11'>Note  ：</h3>
+<h3 id='note-10'>Note  ：</h3>
 <p>Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.</p>
 
 <p>No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 optimal BBO price, optimal_10：top 10 optimal BBO price, optimal_20：top 20 optimal BBO price (No need to transfer price data) ，limit&quot;: limit order, &quot;post_only&quot;: maker order only (price data transfer is needed),IOC :Immediate-Or-Cancel Order,FOK:Fill-Or-Kill Order.</p>
@@ -9368,7 +9372,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-12'>Note</h3>
+<h3 id='note-11'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='cancel-an-order'>Cancel an Order</h2><h3 id='example-17'>Example</h3>
 <ul>
@@ -9402,7 +9406,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-13'>Note  ：</h3>
+<h3 id='note-12'>Note  ：</h3>
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
 
 <p>The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.</p>
@@ -9638,7 +9642,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_switch_lever_rate</code></li>
 </ul>
-<h4 id='note-14'>Note</h4>
+<h4 id='note-13'>Note</h4>
 <ul>
 <li><p>Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.</p></li>
 <li><p>The interface limits the number of requests to 3 times/second.</p></li>
@@ -9926,7 +9930,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-15'>Note  ：</h3>
+<h3 id='note-14'>Note  ：</h3>
 <p>When getting information on order cancellation via get order Information interface, users can only query last 24-hour data</p>
 
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id. The order completed( 5.partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled; ) will be deleted after the settlement of funding rate on 04:00(GMT+8), 12:00(GMT+8) and 20:00(GMT+8).</p>
@@ -10234,7 +10238,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Default 20，no more than 50</td>
 </tr>
 </tbody></table>
-<h3 id='note-16'>Note</h3>
+<h3 id='note-15'>Note</h3>
 <p>When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 24-hour data, while users who don’t type in parameters “created_at” and “order_type” can only query last 12-hour data.</p>
 
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
@@ -11036,7 +11040,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-17'>Note:</h4>
+<h4 id='note-16'>Note:</h4>
 <ul>
 <li>When getting information on order cancellation via query history orders interface, users can only query last 24-hour data.</li>
 </ul>
@@ -11315,7 +11319,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-18'>Note</h3>
+<h3 id='note-17'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='acquire-history-match-results'>Acquire History Match Results</h2><h3 id='example-23'>Example</h3>
 <ul>
@@ -11600,7 +11604,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='notice-5'>Notice</h3>
+<h3 id='notice-6'>Notice</h3>
 <ul>
 <li><p>If users don’t upload/fill the page_index or page_size, it will automatically be set as the default value of the top 20 data on the first page, for more details, please follow the parameters illustration.</p></li>
 <li><p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p></li>
@@ -11700,7 +11704,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-19'>Note</h4>
+<h4 id='note-18'>Note</h4>
 <ul>
 <li>optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.</li>
 </ul>
@@ -11954,7 +11958,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract code,&quot;BTC-USDT&quot; ...</td>
 </tr>
 </tbody></table>
-<h3 id='note-20'>Note</h3>
+<h3 id='note-19'>Note</h3>
 <blockquote>
 <p>Response:</p>
 </blockquote>
@@ -12434,7 +12438,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Page 20 by default without given instruction,  ，no more than 50</td>
 </tr>
 </tbody></table>
-<h3 id='note-21'>NOTE</h3>
+<h3 id='note-20'>NOTE</h3>
 <ul>
 <li>System will query the filled trigger order history by default </li>
 </ul>
@@ -12763,7 +12767,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>https://api.huobi.pro/v2/account/transfer</code></li>
 </ul>
-<h3 id='notice-6'>Notice</h3>
+<h3 id='notice-7'>Notice</h3>
 <p>This interface is used to transfer assets between Spot account and USDT Margined Swap account.</p>
 
 <p>API rate limit for this interface is up to 10 times per minute.</p>
@@ -13384,25 +13388,19 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 </tbody></table>
 <h2 id='websocket-subscription-address'>WebSocket Subscription Address</h2>
-<!--
-Market Data Request and Subscription: wss://api.hbdm.com/linear-swap-ws 
+<p>Market Data Request and Subscription: wss://api.hbdm.com/linear-swap-ws </p>
 
-Order Push Subscription: wss://api.hbdm.com/linear-swap-notification
+<p>Order Push Subscription: wss://api.hbdm.com/linear-swap-notification</p>
 
-Index Kline Data and Basis Data Subscription: wss://api.hbdm.com/ws_index
+<p>Index Kline Data and Basis Data Subscription: wss://api.hbdm.com/ws_index</p>
 
-If you fail visiting the two addresses above, you can also visit: 
+<p>If you fail visiting the two addresses above, you can also visit: </p>
 
-Market Data Request and Subscription Address: wss://api.btcgateway.pro/linear-swap-ws;
- 
-Order Push Subscription：wss://api.btcgateway.pro/linear-swap-notification
+<p>Market Data Request and Subscription Address: wss://api.btcgateway.pro/linear-swap-ws;</p>
 
-Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
- -->
-<h3 id='note-22'>Note:</h3>
-<ul>
-<li>Huobi USDT Margined swap is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.<br></li>
-</ul>
+<p>Order Push Subscription：wss://api.btcgateway.pro/linear-swap-notification</p>
+
+<p>Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index</p>
 
 <p>If you have further queries about Huobi USDT Margined Swap order push subscription, please refer to <a href="https://docs.huobigroup.com/docs/usdt_swap/v1/en/#code-demo">Demo</a></p>
 <h2 id='api-rate-limit-illustration-2'>API Rate Limit Illustration</h2>
@@ -13474,7 +13472,7 @@ Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
 <p><code>&quot;ts&quot;: &quot;1492420473058&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-23'>Note</h3>
+<h3 id='note-21'>Note</h3>
 <ul>
 <li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 5 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
 </ul>
@@ -13515,14 +13513,11 @@ Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
 
 <p><code>}</code></p>
 <h2 id='order-push-address'>Order Push Address</h2>
-<!--
-- Huobi USDT Margined Swap uses one official address:
-  `wss://api.hbdm.com/linear-swap-notification`
-  -->
-<h3 id='note-24'>Note:</h3>
 <ul>
-<li>Huobi USDT Margined swap is being tested in real assets, you can send your UID and server IP address to DM_ mm@huobi.com to apply for internal test.<br></li>
+<li>Huobi USDT Margined Swap uses one official address:</li>
 </ul>
+
+<p><code>wss://api.hbdm.com/linear-swap-notification</code></p>
 
 <p>Please note that the WS request connection should not go over 30 normally.</p>
 <h3 id='data-compression'>Data Compression</h3>
@@ -13668,7 +13663,7 @@ Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
 <td>required if users use ticket signature ； return when logged in</td>
 </tr>
 </tbody></table>
-<h4 id='notice-7'>Notice：</h4>
+<h4 id='notice-8'>Notice：</h4>
 <ul>
 <li><p>To decrease API access rate, the WebSocket server uses the same signature algorithm with that on REST API </p></li>
 <li><p>All data is case sensitive;</p></li>
@@ -14054,7 +14049,7 @@ Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-25'>Note</h4>
+<h4 id='note-22'>Note</h4>
 <p>If between time range [t1, t5], there are t1-t5 KLines in quantity.</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -14278,7 +14273,7 @@ Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
 <td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5,14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
-<h3 id='note-26'>Note:</h3>
+<h3 id='note-23'>Note:</h3>
 <ul>
 <li><p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p></li>
 <li><p>steps between step1 and step5, step14, step15 are merged orderbook data of step 150. 
@@ -14627,7 +14622,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-27'>Note:</h3>
+<h3 id='note-24'>Note:</h3>
 <ul>
 <li>when <code>data_type</code> is <code>incremental</code>,<code>snapshot</code> data wil be pushed for the first time. When re-connection occurs, <code>snapshort</code> data will be pushed for the first time. </li>
 <li><code>version</code>: auto increment in single websocket connection. <code>version</code> may be different among several websocket subscription connections.</li>
@@ -15185,7 +15180,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='note-28'>Note:</h3>
+</span></code></pre><h3 id='note-25'>Note:</h3>
 <p>Clients can only access the recent 300 trade detail data </p>
 <h3 id='request-parameter-47'>Request Parameter</h3>
 <table><thead>
@@ -15424,7 +15419,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-29'>Note</h4>
+<h4 id='note-26'>Note</h4>
 <ul>
 <li><p>Pushed once the index data is changed.</p></li>
 <li><p>Periodical Push when the index data hasn&#39;t changed according to the kline period.</p></li>
@@ -15636,7 +15631,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-30'>Note：</h3>
+<h3 id='note-27'>Note：</h3>
 <ul>
 <li>Pushed once the index data is updated.</li>
 </ul>
@@ -15857,7 +15852,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-31'>Note:</h4>
+<h4 id='note-28'>Note:</h4>
 <ul>
 <li><p>Pushed once the kline data is changed.</p></li>
 <li><p>Periodical Push when the kline data hasn&#39;t changed according to the kline period.</p></li>
@@ -16479,7 +16474,7 @@ Details are below:</p></li>
 <td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-32'>Note：</h3>
+<h3 id='note-29'>Note：</h3>
 <ul>
 <li>2000 data at most per request.</li>
 </ul>
@@ -17031,7 +17026,7 @@ Details are below:</p></li>
 <td>Required；format: matchOrders.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-33'>Note:</h4>
+<h4 id='note-30'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 <li>The orders will be pushed when matched by matching engine.</li>
@@ -17424,7 +17419,7 @@ Details are below:</p></li>
 <td>Required； Subscribe Topic Name，Required subscribe accounts.$contract_code   Subscribe/unsubscribe the balance change of a given coin，when the value of $contract_code is “*”, it means to subscribe/unsubscribe the balance change of all coins; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-34'>Note:</h3>
+<h3 id='note-31'>Note:</h3>
 <ul>
 <li>Account topic will be pushed every 5s.</li>
 </ul>
@@ -17855,7 +17850,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-35'>Note:</h3>
+<h3 id='note-32'>Note:</h3>
 <ul>
 <li><p>Position topic will be pushed every 5s.</p></li>
 <li><p>When switching leverage with no positions, the event &quot;switch_lever_rate&quot; will not be pushed by the position topic.</p></li>
@@ -18373,7 +18368,7 @@ Details are below:</p></li>
 <td>not allowed</td>
 </tr>
 </tbody></table>
-<h3 id='note-36'>Note</h3>
+<h3 id='note-33'>Note</h3>
 <ul>
 <li><p>Funding rate will be pushed every 60 seconds by default.Funding rate will not be calculated under conditions below:</p>
 
@@ -18519,7 +18514,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-37'>Note：</h3>
+<h3 id='note-34'>Note：</h3>
 <ul>
 <li>The websocket subscription of contract info event is pushed every 60 seconds, and the event is &quot;snapshot&quot;. </li>
 <li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is &quot;init&quot;.</li>
