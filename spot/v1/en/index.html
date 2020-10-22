@@ -648,10 +648,10 @@
                     <a href="#get-the-balance-of-the-margin-loan-account-cross" class="toc-h2 toc-link" data-title="Get the Balance of the Margin Loan Account（Cross）">Get the Balance of the Margin Loan Account（Cross）</a>
                   </li>
                   <li>
-                    <a href="#repay-margin-loan-general" class="toc-h2 toc-link" data-title="Repay Margin Loan（General）">Repay Margin Loan（General）</a>
+                    <a href="#repay-margin-loan-cross-2" class="toc-h2 toc-link" data-title="Repay Margin Loan（Cross）">Repay Margin Loan（Cross）</a>
                   </li>
                   <li>
-                    <a href="#repayment-record-reference-general" class="toc-h2 toc-link" data-title="Repayment Record Reference（General）">Repayment Record Reference（General）</a>
+                    <a href="#repayment-record-reference-cross" class="toc-h2 toc-link" data-title="Repayment Record Reference（Cross）">Repayment Record Reference（Cross）</a>
                   </li>
               </ul>
           </li>
@@ -13314,11 +13314,14 @@ Rate Limit (NEW): 100times/2s</p>
 <td>string</td>
 </tr>
 </tbody></table>
-<h2 id='repay-margin-loan-general'>Repay Margin Loan（General）</h2>
-<p>API Key Permission: Transaction
-Frequency Limit: 2/s
-Available Accounts: Main and Sub-Accounts
-You should make a loan first before making a repayment. While repaying the loan, you should repay the loan interest first if there is no appointed transactId. </p>
+<h2 id='repay-margin-loan-cross-2'>Repay Margin Loan（Cross）</h2>
+<p>API Key Permission: Transaction</p>
+
+<p>Frequency Limit: 2/s</p>
+
+<p>Available Accounts: Main and Sub-Accounts</p>
+
+<p>You should make a loan first before making a repayment. While repaying the loan, you should repay the loan interest first if there is no appointed transactId. </p>
 <h3 id='http-request-74'>HTTP Request</h3>
 <p><code>POST /v2/account/repayment</code></p>
 
@@ -13420,11 +13423,14 @@ You should make a loan first before making a repayment. While repaying the loan,
 </tbody></table>
 
 <p>Note: Back to “repayId” doesn’t mean the repayment is 100% successful. Please check the transaction record to confirm the repayment status. </p>
-<h2 id='repayment-record-reference-general'>Repayment Record Reference（General）</h2>
-<p>API Key Permission: Read
-Frequency Limit: 2/s
-Available Accounts: Main and Sub-Accounts
-Sort: Click “repayTime” </p>
+<h2 id='repayment-record-reference-cross'>Repayment Record Reference（Cross）</h2>
+<p>API Key Permission: Read</p>
+
+<p>Frequency Limit: 2/s</p>
+
+<p>Available Accounts: Main and Sub-Accounts</p>
+
+<p>Sort by “repayTime” </p>
 <h3 id='http-request-75'>HTTP Request</h3>
 <p><code>GET /v2/account/repayment</code></p>
 <h3 id='request-parameters-68'>Request Parameters</h3>
