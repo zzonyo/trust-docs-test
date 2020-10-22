@@ -6,7 +6,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="images/favicon.ico" rel="icon" type="image/ico" />
-    <title>火币永续合约 API 文档</title>
+    <title>火币币本位永续合约 API 文档</title>
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -257,7 +257,7 @@
             <a href="#5ea2e0cde2" class="toc-h1 toc-link" data-title="简介">简介</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#api" class="toc-h2 toc-link" data-title="永续合约API简介">永续合约API简介</a>
+                    <a href="#api" class="toc-h2 toc-link" data-title="币本位永续合约API简介">币本位永续合约API简介</a>
                   </li>
                   <li>
                     <a href="#cc4b988593" class="toc-h2 toc-link" data-title="做市商项目">做市商项目</a>
@@ -714,8 +714,8 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='5ea2e0cde2'>简介</h1><h2 id='api'>永续合约API简介</h2>
-<p>欢迎使用火币永续合约 API！ 你可以使用此 API 获得市场行情数据，进行交易，并且管理你的账户。</p>
+        <h1 id='5ea2e0cde2'>简介</h1><h2 id='api'>币本位永续合约API简介</h2>
+<p>欢迎使用火币币本位永续合约 API！ 你可以使用此 API 获得市场行情数据，进行交易，并且管理你的账户。</p>
 
 <p>在文档的右侧是代码示例，目前我们仅提供针对 <code>shell</code> 的代码示例。</p>
 
@@ -725,7 +725,7 @@
 做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动。
 </aside>
 
-<p>欢迎有优秀 maker 策略交易量大的用户参与长期合约做市商项目。如果您的火币交割合约账户中有折合大于 5 BTC 资产，或火币永续合约账户中有折合大于 3 BTC 资产，或火币期权合约账户中有折合大于 3 BTC 资产，请提供以下信息到 dm_mm@huobi.com（做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动）:</p>
+<p>欢迎有优秀 maker 策略交易量大的用户参与长期合约做市商项目。如果您的火币交割合约账户中有折合大于 5 BTC 资产，或火币币本位永续合约账户中有折合大于 3 BTC 资产，或火币期权合约账户中有折合大于 3 BTC 资产，或火币USDT本位永续合约账户中有大于 30000 USDT 资产，，请提供以下信息到 dm_mm@huobi.com（做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动）:</p>
 
 <ol>
 <li>提供火币 UID （需不存在返佣关系的 UID）；</li>
@@ -1598,7 +1598,7 @@ api.hbdm.com\n
 </ol>
 <h2 id='4977e9e52a'>访问次数限制</h2>
 <ul>
-<li><p>交割合约和永续合约分开限频</p></li>
+<li><p>交割合约、币本位永续合约、期权合约和USDT本位永续合约都分开限频</p></li>
 <li><p>公开行情接口和用户私有接口都有访问次数限制</p></li>
 <li><p>普通用户，需要密钥的私有接口，每个UID 3秒最多30次请求(该UID的所有币种的合约的所有私有接口共享3秒30次的额度)</p></li>
 <li><p>其他非行情类的公开接口，比如获取指数信息，限价信息，交割结算、平台持仓信息等，所有用户都是每个IP3秒最多120次请求（所有该IP的非行情类的公开接口请求共享3秒120次的额度）</p></li>
@@ -2818,7 +2818,7 @@ api.hbdm.com\n
 <li><p><a href='https://github.com/hbdmapi/hbdm_swap_Rust'>Rust</a></p></li>
 <li><p><a href='https://github.com/hbdmapi/huobi_swap_Cpp'>C++</a></p></li>
 </ul>
-<h3 id='demo'>备注：永续代码使用方式与交割合约类似，其他语言demo可以参考交割合约</h3><h1 id='0adb1147b3'>常见问题</h1><h2 id='59ce3c8353'>接入验签相关</h2><h3 id='q1-api-key'>Q1: 合约API Key和现货是否同一个？</h3>
+<h3 id='demo'>备注：币本位永续代码使用方式与交割合约类似，其他语言demo可以参考交割合约</h3><h1 id='0adb1147b3'>常见问题</h1><h2 id='59ce3c8353'>接入验签相关</h2><h3 id='q1-api-key'>Q1: 合约API Key和现货是否同一个？</h3>
 <p>合约API Key和现货API Key是同一个，两个是一样的。您可以在 <a href='https://www.hbg.com/zh-cn/apikey/'>这里 </a> 创建 API Key。</p>
 <h3 id='q2'>Q2: 为什么经常出现断线、超时的错误？</h3>
 <p>如果是在大陆网络环境去请求API接口，网络连接很不稳定，很容易出现超时。建议使用AWS东京C区服务器进行访问。</p>
@@ -2835,7 +2835,7 @@ api.hbdm.com\n
 
 <p>但请您注意：colo需要使用：api.hbdm.com 进行签名（鉴权），避免返回403:Verification failure [校验失败] 的错误。</p>
 <h3 id='q6-403-verification-failure'>Q6: 为什么签名认证总返回失败(403:Verification failure [校验失败]) ？</h3>
-<p>永续签名过程和交割签名过程类似，除了参考以下注意事项外，请参照永续或者交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。永续的demo代码在 <a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。交割的demo代码在<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#2cff7db524'>  这里</a>  查看。期权的demo代码在<a href='https://docs.huobigroup.com/docs/option/v1/cn/#2cff7db524'>  这里</a>  查看。</p>
+<p>币本位永续签名过程和交割签名过程类似，除了参考以下注意事项外，请参照交割的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。币本位永续的demo代码在 <a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。交割的demo代码在<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#2cff7db524'>  这里</a>  查看。期权的demo代码在<a href='https://docs.huobigroup.com/docs/option/v1/cn/#2cff7db524'>  这里</a>  查看。USDT本位永续的demo代码在 <a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。</p>
 
 <ol>
 <li><p>检查 API Key 是否有效，是否复制正确</p></li>
@@ -2916,8 +2916,8 @@ step6是不合并小数；
 <p>(3) 如果某个价格挂单没有了，会推送类似[8100, 0]这样的数据，把本地相同价格的移除；</p>
 
 <p>(4) 同一个websocket连接，增量数据version是递增的；如果 version不递增，您需要重新订阅并重新维护本地全量数据；</p>
-<h2 id='d9c242c3fe'>交易相关</h2><h3 id='q1'>Q1: 永续的资金费率结算周期是什么？资金费率结算时通过哪些接口可以查询状态？</h3>
-<p>温馨提示您，永续合约每8小时为一期，每期结束时进行结算。即04:00-12:00为一期，结算时间为12:00；12:00-20:00为一期，结算时间为20:00；20:00-次日04:00为一期，结算时间为04:00。以上时间均为新加坡时间。</p>
+<h2 id='d9c242c3fe'>交易相关</h2><h3 id='q1'>Q1: 币本位永续的资金费率结算周期是什么？资金费率结算时通过哪些接口可以查询状态？</h3>
+<p>温馨提示您，币本位永续合约每8小时为一期，每期结束时进行结算。即04:00-12:00为一期，结算时间为12:00；12:00-20:00为一期，结算时间为20:00；20:00-次日04:00为一期，结算时间为04:00。以上时间均为新加坡时间。</p>
 
 <p>(1)在结算时不能下单和撤单，若用户在结算时下单或撤单会返回错误码&quot;1056&quot;，提示结算中无法下单和撤单。
 建议您在结算时间点每隔几秒钟轮询获取合约信息接口：swap-api/v1/swap_contract_info，当返回报文中contract_status返回状态码为5、6、7、8中的任意一个数字时表示在结算中，当contract_status返回状态码为1时是表示结算完成可以正常下单和撤单。</p>
@@ -2940,8 +2940,8 @@ step6是不合并小数；
 <p>请您耐心等待，在此过程中请不要进行重复的下单和撤单，以避免造成重复下单以及对系统性能造成额外的压力，在此期间，建议您可以通过Web和APP端进行下单和撤单。</p>
 <h3 id='q3-order-id-match-id-n-trade-taker-n-maker-n-trade-trade'>Q3: 同样的order id 和 match id，可以有N多个Trade，比如，用户是一笔大的taker单，吃掉了N个maker的订单，那么，就会对应有N个trade，如何标识这些不同的trade？</h3>
 <p>订单明细信息接口swap-api/v1/swap_order_detail返回的的字段id是全局唯一的交易标识。如果一个maker单，分多次match掉的话是每次推送只推match的部分，撮合一笔推送一笔。</p>
-<h3 id='q4'>Q4: 永续合约交易全链路延时多少？</h3>
-<p>目前永续合约全链路(从开始下单到订单的订单状态可以查询)正常情况下大约在30-50MS左右,来行情时延迟会比平时大，可能会在秒级别。</p>
+<h3 id='q4'>Q4: 币本位永续合约交易全链路延时多少？</h3>
+<p>目前币本位永续合约全链路(从开始下单到订单的订单状态可以查询)正常情况下大约在30-50MS左右,来行情时延迟会比平时大，可能会在秒级别。</p>
 <h3 id='q5-api-connection-reset-max-retris-timed-out'>Q5: API接口返回Connection Reset 或者 Max retris 或者 Timed out 是什么原因？</h3>
 <p>出现连接重置或者网络超时，一般是网络不稳定导致，可以尝试将服务器放置在AWS东京C区，并使用api.hbdm.vn来尝试，可以有效减少网络超时等错误。</p>
 <h3 id='q6-api-order_id'>Q6: API接口下单时出错没有order_id如何来查询订单状态？</h3>
@@ -2963,7 +2963,7 @@ step6是不合并小数；
 <h3 id='q2-1048'>Q2: 1048错误是什么原因？</h3>
 <p>如果您出现{&#39;index&#39;: 1, &#39;err_code&#39;: 1048, &#39;err_msg&#39;: &#39;Insufficient close amount available. &#39;}类似错误，说明此时可平仓量不足，您平仓时需查询目前已有的仓位张数再去平仓。</p>
 <h3 id='q3-api-1032'>Q3: API返回1032错误码是什么原因？</h3>
-<p>1032代表您的访问次数超出限制，永续合约和交割合约是分开限制频率，请查看合约交易接入说明中的访问次数限制，并且可以在api接口response中的header打印当前的频率限制次数来看是否超出限制频率。建议加大请求间隔延时避免超出限制频率。</p>
+<p>1032代表您的访问次数超出限制，币本位永续合约、交割合约、期权合约和USDT永续合约是分开限制频率，请查看合约交易接入说明中的访问次数限制，并且可以在api接口response中的header打印当前的频率限制次数来看是否超出限制频率。建议加大请求间隔延时避免超出限制频率。</p>
 <h2 id='9065b72c3b'>如何更有效的解决问题</h2>
 <p>您在反馈API错误时，需要附上您的请求URL，请求request的原始的完整body以及完整请求URL参数，服务器的回复response的原始完整log。如果是websocket订阅，需要您提供订阅的地址，订阅的主题，server推送的原始完整log。</p>
 
@@ -13224,14 +13224,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>from</td>
 <td>true</td>
 <td>string</td>
-<td>来源业务线账户，取值：spot(币币)、swap(反向永续)</td>
+<td>来源业务线账户，取值：spot(币币)、swap(币本位永续)</td>
 <td>e.g. spot</td>
 </tr>
 <tr>
 <td>to</td>
 <td>true</td>
 <td>string</td>
-<td>目标业务线账户，取值：spot(币币)、swap(反向永续)</td>
+<td>目标业务线账户，取值：spot(币币)、swap(币本位永续)</td>
 <td>e.g. swap</td>
 </tr>
 <tr>
@@ -19652,7 +19652,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>true</td>
 <td>string</td>
 <td>业务代码</td>
-<td>swap：反向永续</td>
+<td>swap：币本位永续</td>
 </tr>
 </tbody></table>
 
