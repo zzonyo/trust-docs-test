@@ -171,7 +171,7 @@ table th {
 
 使用过程中如有问题或者建议，您可选择以下任一方式联系我们：
 
-- 加入官方QQ群（Huobi Global Spot API交流群 1007336325），入群申请请注明UID和编程语言。
+- 加入官方QQ群（Huobi Global Spot API交流群 1160839820），入群申请请注明UID和编程语言。
 - 通过官网的“帮助中心”或者发送邮件至support@huobigroup.com联系客服。
 
 如您遇到API错误，请按照如下模板向我们反馈问题。
