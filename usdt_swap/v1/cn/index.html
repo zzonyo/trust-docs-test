@@ -3275,7 +3275,8 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-ex/market/history/kline?
     "close": 收盘价,当K线为最晚的一根时，是最新成交价
     "low": 最低价,
     "high": 最高价,
-    "amount": 成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)
+    "amount": 成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价),
+    "trade_turnover":成交额，即 sum（每一笔成交张数 * 合约面值 * 成交价格）
    }
 ]
 
@@ -3387,7 +3388,7 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-ex/market/history/kline?
 <td>trade_turnover</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交额，即 sum（每一笔成交张数<em>合约面值</em>成交价格）</td>
+<td>成交额，即 sum（每一笔成交张数*合约面值*成交价格）</td>
 <td></td>
 </tr>
 <tr>
@@ -3452,7 +3453,8 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-ex/market/detail/merged?
       "high": 最高价,
       "amount": 成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)
       "bid": [买1价,买1量(张)],
-      "ask": [卖1价,卖1量(张)]
+      "ask": [卖1价,卖1量(张)],
+         "trade_turnover":成交额，即 sum（每一笔成交张数 * 合约面值 * 成交价格）
      }
 
 </code></pre>
@@ -3585,7 +3587,7 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-ex/market/detail/merged?
 <td>trade_turnover</td>
 <td>true</td>
 <td>string</td>
-<td>成交额，即 sum（每一笔成交张数<em>合约面值</em>成交价格）</td>
+<td>成交额，即 sum（每一笔成交张数 * 合约面值 * 成交价格）</td>
 <td></td>
 </tr>
 <tr>
