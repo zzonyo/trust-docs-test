@@ -1442,7 +1442,8 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/kline?contract_code=BTC
     "close": 收盘价,当K线为最晚的一根时，是最新成交价
     "low": 最低价,
     "high": 最高价,
-    "amount": 成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)
+    "amount": 成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价),
+    "trade_turnover":成交额，即 sum（每一笔成交张数 * 合约面值 * 成交价格）
    }
 ]
 
@@ -1487,7 +1488,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/kline?contract_code=BTC
 | low     | true | decimal | 最低价        |                |
 | high     | true | decimal | 最高价        |                |
 | amount     | true | decimal | 成交量(币), 即 (成交量(张)*单张合约面值)        |                |
-| trade_turnover     | true | decimal | 成交额，即 sum（每一笔成交张数*合约面值*成交价格）       |                |
+| trade_turnover     | true | decimal | 成交额，即 sum（每一笔成交张数\*合约面值\*成交价格）       |                |
 | \</data\>            |      |        |               |                |
 | status | true | string | 请求处理结果                          | "ok" , "error" |
 | ts     | true | long | 响应生成时间点，单位：毫秒                   |                |
@@ -1525,7 +1526,8 @@ curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC
       "high": 最高价,
       "amount": 成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)
       "bid": [买1价,买1量(张)],
-      "ask": [卖1价,卖1量(张)]
+      "ask": [卖1价,卖1量(张)],
+         "trade_turnover":成交额，即 sum（每一笔成交张数 * 合约面值 * 成交价格）
      }
      
 ```
@@ -1573,7 +1575,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC
 | high   | true | string | 最高价                                    |                |
 | low   | true | string | 最低价  |                |
 | vol   | true | string | 成交量（张），买卖双边成交量之和                                    |                |
-| trade_turnover     | true | string | 成交额，即 sum（每一笔成交张数*合约面值*成交价格）       |                |
+| trade_turnover     | true | string | 成交额，即 sum（每一笔成交张数 \* 合约面值 \* 成交价格）       |                |
 | ts   | true | long | 时间戳   |                |
 | \</tick\>            |      |        |               |                |
 | ts     | true | long | 响应生成时间点，单位：毫秒                            |                |
