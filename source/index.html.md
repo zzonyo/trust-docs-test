@@ -4959,7 +4959,7 @@ ts  |  true  |  long  |  时间戳  |     |
 -------------- | -------------- | ---------- | ------------------------ | ------------ | ---------------- |
 symbol  |    true  |  string  |  品种代码  |     | 支持大小写, "BTC","ETH"...  |
 page_index   |  false  |  int  |   页码，不填默认第1页  |  1  |     | 
-page_size  |  false  |  int  |    |    |  不填默认20，不得多于50 |
+page_size  |  false  |  int  |   不填默认20，不得多于50 | 20 |    |
 
 > Response:
 
@@ -5072,7 +5072,7 @@ trade_type  |   true  |  int  |   交易类型  |  |   0:全部,1:买入开多,2
 type  |  true  |  int  |   类型  |  | 1:所有订单,2:结束状态的订单  |
 status  |    true  |  string  |   订单状态  |  | 可查询多个状态，"3,4,5" , 0:全部,3:未成交, 4: 部分成交,5: 部分成交已撤单,6: 全部成交,7:已撤单  |
 create_date |  true  |  int  |   日期  |  |  可随意输入正整数, ，如果参数超过90则默认查询90天的数据|
-page_index  |  false  |  int  |   |  页码，不填默认第1页  |  1  | 
+page_index  |  false  |  int  |  页码，不填默认第1页  |  1  | 
 page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得多于50  |
 contract_code  |  false  |  string   |  合约代码  |    |   |
 order_type  |  false  |  string  |   订单类型  |    | 1：限价单、3：对手价、4：闪电平仓、5：计划委托、6：post_only、7：最优5档、8：最优10档、9：最优20档、10：fok、11：ioc |
