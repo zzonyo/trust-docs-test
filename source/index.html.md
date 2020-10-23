@@ -1417,7 +1417,8 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/kline?period=1min&size=
         "close": Closing Price, when the Kline is the latest one，it means the latest price
         "low": Lowest price
         "high": highest price
-        "amount": transaction volume(currency), sum(every transaction volume(con)*every contract value/transaction price for this contract)
+        "amount": transaction volume(currency), sum(every transaction volume(con)*every contract value/transaction price for this contract)，
+        "trade_turnover": Transaction amount, that is, sum (transaction quantity * contract face value * transaction price)
    }
 ]
 ```
@@ -1495,8 +1496,8 @@ curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC
     "high": highest price
     "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
     "bid": [price of buying one (amount)],
-    "ask": [price of selling one (amount)]
-
+    "ask": [price of selling one (amount)],
+    "trade_turnover": Transaction amount, that is, sum (transaction quantity * contract face value * transaction price)
   }
 ```
 
@@ -7161,7 +7162,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | topic    | string | Subscribe Topic Name |
 | uid                   | string  | account uid                                              |
 | ts                        | long  | Time of Respond Generation, Unit: Millisecond                          |
-| event                     | string  | notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (ncluding transfer with exchange accounts, transfer between main account and sub-account, and tranfer between different margin accounts.), system (contract.system), other asset change(other), switch leverage(switch_lever_rate) , initial margin(init)        |
+| event                     | string  | notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (ncluding transfer with exchange accounts, transfer between main account and sub-account, and tranfer between different margin accounts.), system (contract.system), other asset change(other), initial margin(init)        |
 | \<data\>            |   |                                                        |
 | symbol                    | string    | Coins. "BTC","ETH"...                     |
 | contract_code           | string  | Contract Code                                                       |
@@ -7306,7 +7307,7 @@ To subscribe position updates data, the client has to make connection to the ser
 | topic                   | string  | Required;  topic                                              |
 | uid                   | string  | account uid                                              |
 | ts                     | long  | Time of Respond Generation, Unit: Millisecond	                           |
-| event                  | string  | Related events of position change notification, such as order creation and position closing (order.close), order filled (order.match) (except for liquidation, settlement and delivery), settlement and delivery (settlement), order liquidation (order.liquidation), order cancellation (order.cancel), switch leverage（switch_lever_rate）, initial positions (init), triggered by system periodic push (snapshot).     |
+| event                  | string  | Related events of position change notification, such as order creation and position closing (order.close), order filled (order.match) (except for liquidation, settlement and delivery), settlement and delivery (settlement), order liquidation (order.liquidation), order cancellation (order.cancel),  initial positions (init), triggered by system periodic push (snapshot).     |
 | \<data\>            |   |                                                        |
 | symbol                 | string    | Coin. "BTC","ETH"...                     |
 | contract_code          | string  | Contract Code                                                      |
