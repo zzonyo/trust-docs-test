@@ -7014,7 +7014,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | topic   | true | string  | 推送的主题   |   |
 | ts   | true | long  | 服务端应答时间戳   |   |
 | uid   | true | string  | 用户uid  |    |
-| event   | true | string  | 资产变化通知相关事件说明 |  比如订单创建开仓(order.open) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel) 、合约账户划转（contract.transfer)（包括外部划转、母子划转和不同保证金账户划转）、系统（contract.system)、其他资产变化(other)、 <!-- 切换杠杆（switch_lever_rate） -->  、初始资金（init）、由系统定期推送触发（snapshot） |
+| event   | true | string  | 资产变化通知相关事件说明 |  比如订单创建开仓(order.open) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel) 、合约账户划转（contract.transfer)（包括外部划转、母子划转和不同保证金账户划转）、系统（contract.system)、其他资产变化(other)、初始资金（init）、由系统定期推送触发（snapshot） |
 | \<data\>   | true | object array |     |   |
 | symbol   | true | string  | 品种代码   | "BTC","ETH"...   |
 | contract_code   | true | string  | 合约代码   | "BTC-USDT","ETH-USDT"...   |
@@ -7149,6 +7149,8 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 
 ```
 
+
+ 
 ### 返回参数
 
 | 字段名称                | 类型    | 说明                                                         |
@@ -7157,7 +7159,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | topic       | string |               订阅主题   |
 | uid           | string    | 账户id	                                             |
 | ts                     | long  | 响应生成时间点，单位：毫秒                           |
-| event                  | string  | 持仓变化通知相关事件说明，比如订单创建平仓(order.close) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel)、 <!--  切换杠杆（switch_lever_rate） -->  、初始持仓（init）、由系统定期推送触发（snapshot）    |
+| event                  | string  | 持仓变化通知相关事件说明，比如订单创建平仓(order.close) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel)、 初始持仓（init）、由系统定期推送触发（snapshot）    |
 | \<list\> (attr name: data) | array object |  | |
 | symbol                 | string    | 品种代码 ,"BTC","ETH"...                                             |
 | contract_code          | string  | 合约代码，"BTC-USDT"                                                       |
