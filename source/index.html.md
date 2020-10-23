@@ -1269,6 +1269,8 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 
 - <a href='https://github.com/hbdmapi/huobi_swap_Cpp'>C++</a>
 
+- <a href='https://github.com/hbdmapi/huobi_futures_Postman'>Postman</a>
+
 ### 备注：币本位永续代码使用方式与交割合约类似，其他语言demo可以参考交割合约
 
 # 常见问题
