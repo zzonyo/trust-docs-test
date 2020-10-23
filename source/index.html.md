@@ -1236,6 +1236,8 @@ PS: Coin Margined Swap api is similar to future api.
 
 - <a href='https://github.com/hbdmapi/huobi_swap_Cpp'>C++</a>
 
+- <a href='https://github.com/hbdmapi/huobi_futures_Postman'>Postman</a>
+
 # Coin Margined SWAP API FAQ
 
 ## Access and Authentication
