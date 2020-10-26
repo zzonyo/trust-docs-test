@@ -5002,7 +5002,7 @@ margin-account  |   true  |  string  |   保证金账户	  | e.g. btc-usdt、eth
 
 参数名称  |  是否必须     |  类型    |  描述  |  取值范围  |
 ------------------ |  -------------- |  ---------- |  ---------------------  |  -----------------------------  |
-status  |  true  |   string  |  状态  | true/false   |  
+success  |  true  |   string  |  状态  | true/false   |  
 data  |    true  |   long    |    生成的划转订单id  |  |
 code |    true  |   long    |     响应码	  |  |
 message |    true  |   string    |   响应信息	 |   |
