@@ -4979,18 +4979,21 @@ margin-account  |   true  |  string  |   保证金账户	  | e.g. btc-usdt、eth
 
 > Response:
 
-```
+```json
+
  正确的返回：
 {
-    "status": "ok",
-    "data":56656,
- }
+    "code": 200,
+    "data": 176104252,
+    "message": "Succeed",
+    "success": true
+}
 错误的返回：
-{
-    "status": "error",
-    "data":null,
-    "err-code":"dw-account-transfer-error",
-    "err-msg":"由于其他服务不可用导致的划转失败"
+ {
+   "code":1303,
+   "data":null,
+   "message":"The single transfer-out amount must be no less than 0.0008BTC",
+   "success":false
 }
 
 ```
@@ -4999,10 +5002,10 @@ margin-account  |   true  |  string  |   保证金账户	  | e.g. btc-usdt、eth
 
 参数名称  |  是否必须     |  类型    |  描述  |  取值范围  |
 ------------------ |  -------------- |  ---------- |  ---------------------  |  -----------------------------  |
-status  |  true  |   string  |  状态  | ok, error   |  
+status  |  true  |   string  |  状态  | true/false   |  
 data  |    true  |   long    |    生成的划转订单id  |  |
-err-code |    true  |   string    |     错误码	  | 具体错误码请见列表 |
-err-msg  |    true  |   string    |     错误消息	 | 具体错误码请见列表  |
+code |    true  |   long    |     响应码	  |  |
+message |    true  |   string    |   响应信息	 |   |
 
 
 ## 响应码列表
@@ -5503,22 +5506,22 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 
 ```json
 
-   {
-   	"ch": "market.BTC-USDT.kline.1min",
-   	"ts": 1489474082831,
-   	"tick": {
-   		"id": 1489464480,
-   		"mrid": 268168237,
-   		"vol": 100,
-   		"count": 0,
-   		"open": 7962.62,
-   		"close": 7962.62,
-   		"low": 7962.62,
-   		"high": 7962.62,
-        "amount": 0.3,
-        "trade_turnover": 100
-   	}
-   }
+{
+    "ch":"market.BTC-USDT.kline.1min",
+    "ts":1603707124366,
+    "tick":{
+        "id":1603707120,
+        "mrid":131592424,
+        "open":13067.7,
+        "close":13067.7,
+        "high":13067.7,
+        "low":13067.7,
+        "amount":0.004,
+        "vol":4,
+        "trade_turnover":52.2708,
+        "count":1
+    }
+}
 
 ```
 
@@ -5593,37 +5596,37 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
 
 ```json
     
-    {
-     "rep": "market.BTC-USDT.kline.1min",
-     "status": "ok",
-     "id": "id4",
-     "wsid": 3925737956,
-     "data": [
-       {
-        "vol": 100,
-        "count": 27,
-        "id": 1494478080,
-        "open": 10050.00,
-        "close": 10058.00,
-        "low": 10050.00,
-        "high": 10058.00,
-        "amount": 175798.757708,
-        "trade_turnover": 2000
-       },
-       {
-        "vol": 300,
-        "count": 28,
-        "id": 1494478140,
-        "open": 10058.00,
-        "close": 10060.00,
-        "low": 10056.00,
-        "high": 10065.00,
-        "amount": 158331.348600,
-        "trade_turnover": 2000
-       }
-     ]
-    }
-    
+{
+    "id":"id4",
+    "rep":"market.BTC-USDT.kline.60min",
+    "wsid":467277265,
+    "status":"ok",
+    "data":[
+        {
+            "id":1603270800,
+            "open":12198,
+            "close":12196.7,
+            "low":11715.8,
+            "high":12300,
+            "amount":0.276,
+            "vol":276,
+            "trade_turnover":3315.9104,
+            "count":39
+        },
+        {
+            "id":1603274400,
+            "open":12196.7,
+            "close":12277.9,
+            "low":12111,
+            "high":12289.9,
+            "amount":0.198,
+            "vol":198,
+            "trade_turnover":2420.7728,
+            "count":21
+        }
+    ]
+}
+
 ```
 
 ### 返回参数  
@@ -5713,26 +5716,37 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
 
 ```json
  
-    {
-     "ch": "market.BTC-USDT.depth.step0",
-     "ts": 1489474082831,
-     "tick":
-       { 
-        "mrid": 269073229,
-         "id": 1539843937,
-            "bids": [
-             [9999.9101,1], 
-             [9992.3089,2]
-                    ],
-             "asks": [
-              [10010.9800,10],
-              [10011.3900,15]
-                     ],
-	      "ts": 1539843937417,
-	      "version": 1539843937,
-	      "ch": "market.BTC-USDT.depth.step0"
-        }
+{
+    "ch":"market.BTC-USDT.depth.step6",
+    "ts":1603707576468,
+    "tick":{
+        "mrid":131596447,
+        "id":1603707576,
+        "bids":[
+            [
+                13071.9,
+                38
+            ],
+            [
+                13068,
+                5
+            ]
+        ],
+        "asks":[
+            [
+                13081.9,
+                197
+            ],
+            [
+                13099.7,
+                371
+            ]
+        ],
+        "ts":1603707576467,
+        "version":1603707576,
+        "ch":"market.BTC-USDT.depth.step6"
     }
+}
     
 ```
 
@@ -5789,31 +5803,43 @@ ch | true |  string | 数据所属的 channel，格式： market.period | |
   参数名称   |  是否必须    |  类型     |  描述      |  默认值     |  取值范围  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  --  |
  contract_code         |  true           |  string     |  交易对            |        |  合约代码，支持大小写，比如"BTC-USDT"   |
-  size           |  true           |  string     |          |        |  档位数，20:表示20档不合并的深度，150:表示150档不合并的深度  |
+  size           |  true           |  string     |   档位数       |        |  20:表示20档不合并的深度，150:表示150档不合并的深度  |
 
   
 > response：
 
 ```json
- {
- "ch": "market.BTC-USDT.depth.size_150.high_freq",
- "ts": 1489474082831,
- "tick":{
-          "mrid": 269073229,
-          "id": 1539843937,
-          "bids": [
-                      [9999.9101,1], 
-                      [9992.3089,2]
-           ],
-          "asks": [
-                       [10010.9800,10],
-                       [10011.3900,15]
-           ],
-         "ts": 1539843937417,
-         "version": 1539843937,
-         "ch": "market.BTC-USDT.depth.size_150.high_freq",
-         "event":"update"
-  }
+{
+    "ch":"market.BTC-USDT.depth.size_20.high_freq",
+    "tick":{
+        "asks":[
+            [
+                13081.9,
+                206
+            ],
+            [
+                13099.7,
+                371
+            ]
+        ],
+        "bids":[
+            [
+                13071.9,
+                38
+            ],
+            [
+                13060,
+                400
+            ]
+        ],
+        "ch":"market.BTC-USDT.depth.size_20.high_freq",
+        "event":"snapshot",
+        "id":131597620,
+        "mrid":131597620,
+        "ts":1603707712356,
+        "version":1512467
+    },
+    "ts":1603707712357
 }
 ```
 
@@ -5890,22 +5916,22 @@ event | true |  string | 事件类型；"update":更新，表示推送买卖各2
 
 ```json
 
-  {
-	"ch": "market.BTC-USDT.detail",
-	"ts": 1539842340724,
-	"tick": {
-		"id": 1539842340,
-		"mrid": 268041138,
-		"open": 6740.47,
-		"close": 7800,
-		"high": 7800,
-		"low": 6726.13,
-		"amount": 477.1200312075244664773339914558562673572,
-		"vol": 32414,
-        "count": 1716,
-        "trade_turnover": 0
-	  }
-  }
+{
+    "ch":"market.BTC-USDT.detail",
+    "ts":1603707870528,
+    "tick":{
+        "id":1603707840,
+        "mrid":131599205,
+        "open":12916.2,
+        "close":13065.8,
+        "high":13205.3,
+        "low":12852.8,
+        "amount":30.316,
+        "vol":30316,
+        "trade_turnover":395073.4918,
+        "count":2983
+    }
+}
   
 ```
 ### 返回参数
@@ -5968,19 +5994,25 @@ count  |  true  |  decimal  |   成交笔数  |
 
 ```json
 
-    {
-     "ch": "market.BTC-USDT.bbo",
-     "ts": 1489474082831,
-     "tick":{
-        "ch": "market.BTC-USDT.bbo",
-        "mrid": "269073229",
-        "id": 1539843937,
-	     "bid": [9999.9101, 1],
-        "ask": [10010.9800, 10],
-        "ts": 1539843937417,
-        "version": 1539843937
-      }
+{
+    "ch":"market.BTC-USDT.bbo",
+    "ts":1603707934525,
+    "tick":{
+        "mrid":131599726,
+        "id":1603707934,
+        "bid":[
+            13064,
+            38
+        ],
+        "ask":[
+            13072.3,
+            205
+        ],
+        "ts":1603707934525,
+        "version":131599726,
+        "ch":"market.BTC-USDT.bbo"
     }
+}
 ```
 
 ### **返回参数说明**：
@@ -6051,18 +6083,27 @@ count  |  true  |  decimal  |   成交笔数  |
 
 ```json
 
-  {
- "data": [{
-  "amount": "2",
-  "ts": 1585831661886,
-  "id": 478879310000,
-  "price": "6681",
-  "direction": "sell"
- }],
- "id": "2a024656-74e0-11ea-a2ee-3af9d3dd9051",
- "rep": "market.BTC-USDT.trade.detail",
- "status": "ok",
- "ts": 1585831672148
+{
+    "data":[
+        {
+            "amount":"22",
+            "ts":1603706942240,
+            "id":1315909380000,
+            "price":"13068.4",
+            "direction":"sell"
+        },
+        {
+            "amount":"2",
+            "ts":1603706947767,
+            "id":1315909430000,
+            "price":"13068.5",
+            "direction":"buy"
+        }
+    ],
+    "id":"id8",
+    "rep":"market.BTC-USDT.trade.detail",
+    "status":"ok",
+    "ts":1603708046534
 }
 ```
 
@@ -6125,21 +6166,23 @@ ts  |  true  |  long  |  发送时间  |   |
 
 ```json
 
-  {
-		"ch": "market.BTC-USDT.trade.detail",
-		"ts": 1539831709042,
-		"tick": {
-			"id": 265842227,
-			"ts": 1539831709001,
-			"data": [{
-				"amount": 20,
-				"ts": 1539831709001,
-				"id": 2658422273,
-				"price": 6742.25,
-				"direction": "buy"
-			}]
-  	}
-  }
+{
+    "ch":"market.BTC-USDT.trade.detail",
+    "ts":1603708208346,
+    "tick":{
+        "id":131602265,
+        "ts":1603708208335,
+        "data":[
+            {
+                "amount":2,
+                "ts":1603708208335,
+                "id":1316022650000,
+                "price":13073.3,
+                "direction":"buy"
+            }
+        ]
+    }
+}
 
 ```
 
@@ -6207,22 +6250,21 @@ direction  |  true  |  string  |  买卖方向  |   |
 
 ```json
 
- {
-  "ch": "market.BTC-USDT.premium_index.1min",
-  "ts": 1489474082831,
-  "tick": 
-     {
-      "id": 1489464480,
-      "vol": "0",
-      "count": "0",
-      "open": "-0.0015",
-      "close": "-0.0015",
-      "low": "-0.0015",
-      "high": "-0.0015",
-      "amount": "0",
-      "trade_turnover": "0"
-     }
- }
+{
+    "ch":"market.BTC-USDT.premium_index.1min",
+    "ts":1603708380380,
+    "tick":{
+        "id":1603708380,
+        "open":"0.000068125",
+        "close":"0.000068125",
+        "high":"0.000068125",
+        "low":"0.000068125",
+        "amount":"0",
+        "vol":"0",
+        "count":"0",
+        "trade_turnover":"0"
+    }
+}
 
 ```
 
@@ -6389,19 +6431,18 @@ direction  |  true  |  string  |  买卖方向  |   |
 ```json
 
 {
- "ch": "market.BTC-USDT.estimated_rate.1min",
- "ts": 1489474082831,
- "tick": 
-    {
-     "id": 1489464480,
-     "vol": "0",
-     "count": "0",
-     "open": "-0.000153",
-     "close": "-0.000153",
-     "low": "-0.000153",
-     "high": "-0.000153",
-     "amount": "0",
-     "trade_turnover": "0"
+    "ch":"market.BTC-USDT.estimated_rate.1min",
+    "ts":1603708560233,
+    "tick":{
+        "id":1603708560,
+        "open":"0.0001",
+        "close":"0.0001",
+        "high":"0.0001",
+        "low":"0.0001",
+        "amount":"0",
+        "vol":"0",
+        "count":"0",
+        "trade_turnover":"0"
     }
 }
 
@@ -6570,19 +6611,16 @@ direction  |  true  |  string  |  买卖方向  |   |
 ```json
 
 {
- "ch": "market.BTC-USDT.basis.1min.open",
- "ts": 1489474082831,
- "tick": [
-        {
-         "id": 12312321,
-         "contract_price": "0.4635",
-         "index_price": "0.4645",
-         "basis": "0.4142",
-         "basis_rate": "0.0024"
-       }
- ]
+    "ch":"market.BTC-USD.basis.15min.open",
+    "ts":1603709195504,
+    "tick":{
+        "id":1603709100,
+        "index_price":"13101.595",
+        "contract_price":"13100.9",
+        "basis":"-0.695",
+        "basis_rate":"-0.0000530469763414301846454572897422031"
+    }
 }
-
 ```
 
 ### 返回参数
@@ -6646,8 +6684,6 @@ direction  |  true  |  string  |  买卖方向  |   |
 | period          | true     | string  | 周期               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon     |
 | basis_price_type     | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    不填，默认为使用开盘价     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
 
-
-#### 备注：目前只支持查询2020/6/5 20:13:00之后的基差数据。
 
 > 请求成功返回数据的例子：
 
@@ -6918,28 +6954,30 @@ direction  |  true  |  string  |  买卖方向  |   |
 ```json
 
 {
- "op": "notify",
- "topic": "accounts.btc-usdt",
- "uid": "123456",
- "ts": 1585832015669,
- "event": "order.match",
- "data": [{
-  "symbol": "BTC",
-  "contract_code": "BTC-USDT",
-  "margin_asset": "USDT",
-  "margin_balance": 9.65300225033282,
-  "margin_static": 9.624326797617663,
-  "margin_position": 0.0357473851449755,
-  "margin_frozen": 0.01,
-  "margin_available": 9.607254865187846,
-  "profit_real": 0.001819856887332005,
-  "profit_unreal": 0.028675452715159,
-  "withdraw_available": 9.578579412472687,
-  "risk_rate": 210.93164485504528,
-  "liquidation_price": 174.14824361517893,
-  "lever_rate": 10,
-  "adjust_factor": 0.075
- }]
+    "op":"notify",
+    "topic":"accounts.btc-usdt",
+    "ts":1603711370689,
+    "event":"order.open",
+    "data":[
+        {
+            "symbol":"BTC",
+            "contract_code":"BTC-USDT",
+            "margin_balance":79.72434662,
+            "margin_static":79.79484662,
+            "margin_position":1.31303,
+            "margin_frozen":4.0662,
+            "margin_available":74.34511662,
+            "profit_real":0.03405608,
+            "profit_unreal":-0.0705,
+            "withdraw_available":74.34511662,
+            "risk_rate":14.745772976801512484,
+            "liquidation_price":92163.420962779156327543,
+            "lever_rate":10,
+            "adjust_factor":0.075,
+            "margin_asset":"USDT"
+        }
+    ],
+    "uid":"123456789"
 }
 
 ```
@@ -7061,28 +7099,30 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 ```json
 
 {
- "op": "notify",
- "topic": "positions.btc-usdt",
- "uid": "123456",
- "ts": 1585831975715,
- "event": "order.match",
- "data": [{
-  "symbol": "BTC",
-  "contract_code": "BTC-USDT",
-  "volume": 22.0,
-  "available": 22.0,
-  "frozen": 0.0,
-  "cost_open": 4797.075764608844,
-  "cost_hold": 6688.728896560855,
-  "profit_unreal": 0.037636531688646,
-  "profit_rate": 3.648780928625918,
-  "profit": 0.1673377373398984,
-  "position_margin": 0.02912749900701708,
-  "lever_rate": 10,
-  "direction": "buy",
-  "last_price": 7553,
-  "margin_asset": "USDT"
- }]
+    "op":"notify",
+    "topic":"positions",
+    "ts":1603711371803,
+    "event":"snapshot",
+    "data":[
+        {
+            "symbol":"BTC",
+            "contract_code":"BTC-USDT",
+            "volume":1,
+            "available":0,
+            "frozen":1,
+            "cost_open":13059.8,
+            "cost_hold":13059.8,
+            "profit_unreal":-0.0705,
+            "profit_rate":-0.05398244996094886,
+            "profit":-0.0705,
+            "position_margin":1.31303,
+            "lever_rate":10,
+            "direction":"sell",
+            "last_price":13130.3,
+            "margin_asset":"USDT"
+        }
+    ],
+    "uid":"123456789"
 }
 
 ```
