@@ -6898,7 +6898,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">146190163</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456789</span><span class="p">,</span><span class="w">
             </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
@@ -12773,20 +12773,23 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <blockquote>
 <p>Response:</p>
 </blockquote>
-<pre class="highlight plaintext"><code> 正确的返回：
-{
-    "status": "ok",
-    "data":56656,
- }
-错误的返回：
-{
-    "status": "error",
-    "data":null,
-    "err-code":"dw-account-transfer-error",
-    "err-msg":"由于其他服务不可用导致的划转失败"
-}
+<pre class="highlight json tab-json"><code><span class="w">
+ </span><span class="err">正确的返回：</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">176104252</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Succeed"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="err">错误的返回：</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+   </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">1303</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"data"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"The single transfer-out amount must be no less than 0.0008BTC"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"success"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-</code></pre><h3 id='70bdef7e25-51'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-51'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12797,11 +12800,11 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </tr>
 </thead><tbody>
 <tr>
-<td>status</td>
+<td>success</td>
 <td>true</td>
 <td>string</td>
 <td>状态</td>
-<td>ok, error</td>
+<td>true/false</td>
 </tr>
 <tr>
 <td>data</td>
@@ -12811,18 +12814,18 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 <tr>
-<td>err-code</td>
+<td>code</td>
 <td>true</td>
-<td>string</td>
-<td>错误码</td>
-<td>具体错误码请见列表</td>
+<td>long</td>
+<td>响应码</td>
+<td></td>
 </tr>
 <tr>
-<td>err-msg</td>
+<td>message</td>
 <td>true</td>
 <td>string</td>
-<td>错误消息</td>
-<td>具体错误码请见列表</td>
+<td>响应信息</td>
+<td></td>
 </tr>
 </tbody></table>
 <h2 id='86f9c9c3d1'>响应码列表</h2>
@@ -13888,22 +13891,22 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <p>之后每当 KLine 有更新时，client 会收到数据:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT.kline.1min"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489464480</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">268168237</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">7962.62</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USDT.kline.1min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603707124366</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1603707120</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mrid"</span><span class="p">:</span><span class="mi">131592424</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"open"</span><span class="p">:</span><span class="mf">13067.7</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"close"</span><span class="p">:</span><span class="mf">13067.7</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"high"</span><span class="p">:</span><span class="mf">13067.7</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"low"</span><span class="p">:</span><span class="mf">13067.7</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">0.004</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vol"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="mf">52.2708</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">1</span><span class="w">
     </span><span class="p">}</span><span class="w">
-   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
 </span></code></pre><h2 id='kline-2'>请求 KLine 数据</h2><h3 id='websocket-api-server-2'>成功建立和 WebSocket API 的连接之后，向Server发送如下格式的数据来请求数据：</h3>
 <p><code>{</code></p>
@@ -14021,36 +14024,36 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <p>之后每当 KLine 有更新时，client 会收到数据：</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-    </span><span class="p">{</span><span class="w">
-     </span><span class="s2">"rep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT.kline.1min"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id4"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"wsid"</span><span class="p">:</span><span class="w"> </span><span class="mi">3925737956</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-       </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494478080</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">10050.00</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">10058.00</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">10050.00</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">10058.00</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">175798.757708</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="w">
-       </span><span class="p">},</span><span class="w">
-       </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494478140</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">10058.00</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">10060.00</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">10056.00</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">10065.00</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">158331.348600</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="w">
-       </span><span class="p">}</span><span class="w">
-     </span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"id4"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rep"</span><span class="p">:</span><span class="s2">"market.BTC-USDT.kline.60min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"wsid"</span><span class="p">:</span><span class="mi">467277265</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1603270800</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open"</span><span class="p">:</span><span class="mi">12198</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"close"</span><span class="p">:</span><span class="mf">12196.7</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low"</span><span class="p">:</span><span class="mf">11715.8</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high"</span><span class="p">:</span><span class="mi">12300</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">0.276</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vol"</span><span class="p">:</span><span class="mi">276</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="mf">3315.9104</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">39</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1603274400</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open"</span><span class="p">:</span><span class="mf">12196.7</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"close"</span><span class="p">:</span><span class="mf">12277.9</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low"</span><span class="p">:</span><span class="mi">12111</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high"</span><span class="p">:</span><span class="mf">12289.9</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">0.198</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vol"</span><span class="p">:</span><span class="mi">198</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="mf">2420.7728</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">21</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='70bdef7e25-53'>返回参数</h3>
 <table><thead>
@@ -14322,26 +14325,37 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <p>之后每当 depth 有更新时，client 会收到数据，例子：</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-    </span><span class="p">{</span><span class="w">
-     </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT.depth.step0"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"tick"</span><span class="p">:</span><span class="w">
-       </span><span class="p">{</span><span class="w"> 
-        </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">269073229</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-             </span><span class="p">[</span><span class="mf">9999.9101</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="w"> 
-             </span><span class="p">[</span><span class="mf">9992.3089</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="w">
-                    </span><span class="p">],</span><span class="w">
-             </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-              </span><span class="p">[</span><span class="mf">10010.9800</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span><span class="w">
-              </span><span class="p">[</span><span class="mf">10011.3900</span><span class="p">,</span><span class="mi">15</span><span class="p">]</span><span class="w">
-                     </span><span class="p">],</span><span class="w">
-          </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937417</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT.depth.step0"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USDT.depth.step6"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603707576468</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"mrid"</span><span class="p">:</span><span class="mi">131596447</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1603707576</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bids"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">13071.9</span><span class="p">,</span><span class="w">
+                </span><span class="mi">38</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mi">13068</span><span class="p">,</span><span class="w">
+                </span><span class="mi">5</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"asks"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">13081.9</span><span class="p">,</span><span class="w">
+                </span><span class="mi">197</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">13099.7</span><span class="p">,</span><span class="w">
+                </span><span class="mi">371</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603707576467</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"version"</span><span class="p">:</span><span class="mi">1603707576</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USDT.depth.step6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='70bdef7e25-54'>返回参数</h3>
 <table><thead>
@@ -14506,34 +14520,46 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>size</td>
 <td>true</td>
 <td>string</td>
+<td>档位数</td>
 <td></td>
-<td></td>
-<td>档位数，20:表示20档不合并的深度，150:表示150档不合并的深度</td>
+<td>20:表示20档不合并的深度，150:表示150档不合并的深度</td>
 </tr>
 </tbody></table>
 
 <blockquote>
 <p>response：</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">
- </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT.depth.size_150.high_freq"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
- </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
-          </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">269073229</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"bids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                      </span><span class="p">[</span><span class="mf">9999.9101</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="w"> 
-                      </span><span class="p">[</span><span class="mf">9992.3089</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="w">
-           </span><span class="p">],</span><span class="w">
-          </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                       </span><span class="p">[</span><span class="mf">10010.9800</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span><span class="w">
-                       </span><span class="p">[</span><span class="mf">10011.3900</span><span class="p">,</span><span class="mi">15</span><span class="p">]</span><span class="w">
-           </span><span class="p">],</span><span class="w">
-         </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937417</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT.depth.size_150.high_freq"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"update"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USDT.depth.size_20.high_freq"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"asks"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">13081.9</span><span class="p">,</span><span class="w">
+                </span><span class="mi">206</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">13099.7</span><span class="p">,</span><span class="w">
+                </span><span class="mi">371</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"bids"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mf">13071.9</span><span class="p">,</span><span class="w">
+                </span><span class="mi">38</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="p">[</span><span class="w">
+                </span><span class="mi">13060</span><span class="p">,</span><span class="w">
+                </span><span class="mi">400</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USDT.depth.size_20.high_freq"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">131597620</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mrid"</span><span class="p">:</span><span class="mi">131597620</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603707712356</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"version"</span><span class="p">:</span><span class="mi">1512467</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603707712357</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='70bdef7e25-55'>返回参数</h3>
 <table><thead>
@@ -14706,22 +14732,22 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <p>请求成功返回数据的例子：</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT.detail"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539842340724</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539842340</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">268041138</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">6740.47</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mi">7800</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mi">7800</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">6726.13</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">477.1200312075244664773339914558562673572</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mi">32414</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1716</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USDT.detail"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603707870528</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1603707840</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mrid"</span><span class="p">:</span><span class="mi">131599205</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"open"</span><span class="p">:</span><span class="mf">12916.2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"close"</span><span class="p">:</span><span class="mf">13065.8</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"high"</span><span class="p">:</span><span class="mf">13205.3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"low"</span><span class="p">:</span><span class="mf">12852.8</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">30.316</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vol"</span><span class="p">:</span><span class="mi">30316</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="mf">395073.4918</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">2983</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='70bdef7e25-56'>返回参数</h3>
 <table><thead>
@@ -14883,19 +14909,25 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <p><strong>返回示例</strong>:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-    </span><span class="p">{</span><span class="w">
-     </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT.bbo"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
-        </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT.bbo"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"269073229"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">9999.9101</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w">
-        </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">10010.9800</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">],</span><span class="w">
-        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937417</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539843937</span><span class="w">
-      </span><span class="p">}</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USDT.bbo"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603707934525</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"mrid"</span><span class="p">:</span><span class="mi">131599726</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1603707934</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bid"</span><span class="p">:[</span><span class="w">
+            </span><span class="mi">13064</span><span class="p">,</span><span class="w">
+            </span><span class="mi">38</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"ask"</span><span class="p">:[</span><span class="w">
+            </span><span class="mf">13072.3</span><span class="p">,</span><span class="w">
+            </span><span class="mi">205</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603707934525</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"version"</span><span class="p">:</span><span class="mi">131599726</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USDT.bbo"</span><span class="w">
     </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='66d8016b4f'><strong>返回参数说明</strong>：</h3>
 <table><thead>
 <tr>
@@ -15068,18 +15100,27 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <p>请求成功返回数据的例子：</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-  </span><span class="p">{</span><span class="w">
- </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585831661886</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">478879310000</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6681"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="w">
- </span><span class="p">}],</span><span class="w">
- </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2a024656-74e0-11ea-a2ee-3af9d3dd9051"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"rep"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT.trade.detail"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585831672148</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="s2">"22"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603706942240</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1315909380000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="s2">"13068.4"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"sell"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603706947767</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1315909430000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="s2">"13068.5"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"buy"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"id8"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rep"</span><span class="p">:</span><span class="s2">"market.BTC-USDT.trade.detail"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603708046534</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='70bdef7e25-57'>返回参数</h3>
 <table><thead>
@@ -15235,21 +15276,23 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <p>之后每当 Trade Detail 有更新时，client 会收到数据，例子：</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
-  </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT.trade.detail"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539831709042</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">265842227</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539831709001</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1539831709001</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2658422273</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6742.25</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="w">
-            </span><span class="p">}]</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USDT.trade.detail"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603708208346</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">131602265</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603708208335</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603708208335</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1316022650000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">13073.3</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"buy"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='70bdef7e25-58'>返回参数</h3>
 <table><thead>
@@ -15433,22 +15476,21 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <p>之后每当溢价指数有更新时，client 会收到数据，例子：</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
- </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT.premium_index.1min"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> 
-     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489464480</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0015"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0015"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0015"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.0015"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
-     </span><span class="p">}</span><span class="w">
- </span><span class="p">}</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USDT.premium_index.1min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603708380380</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1603708380</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"open"</span><span class="p">:</span><span class="s2">"0.000068125"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"close"</span><span class="p">:</span><span class="s2">"0.000068125"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"high"</span><span class="p">:</span><span class="s2">"0.000068125"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"low"</span><span class="p">:</span><span class="s2">"0.000068125"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vol"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='70bdef7e25-59'>返回参数</h3>
 <table><thead>
@@ -15904,19 +15946,18 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
- </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT.estimated_rate.1min"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
- </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> 
-    </span><span class="p">{</span><span class="w">
-     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489464480</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000153"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000153"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000153"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.000153"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USDT.estimated_rate.1min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603708560233</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1603708560</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"open"</span><span class="p">:</span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"close"</span><span class="p">:</span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"high"</span><span class="p">:</span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"low"</span><span class="p">:</span><span class="s2">"0.0001"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vol"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -16383,19 +16424,16 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
- </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT.basis.1min.open"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w">
- </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-         </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12312321</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.4635"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"index_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.4645"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"basis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.4142"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0024"</span><span class="w">
-       </span><span class="p">}</span><span class="w">
- </span><span class="p">]</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USD.basis.15min.open"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603709195504</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1603709100</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"index_price"</span><span class="p">:</span><span class="s2">"13101.595"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"contract_price"</span><span class="p">:</span><span class="s2">"13100.9"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"basis"</span><span class="p">:</span><span class="s2">"-0.695"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="s2">"-0.0000530469763414301846454572897422031"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre><h3 id='70bdef7e25-63'>返回参数</h3>
 <table><thead>
 <tr>
@@ -16569,7 +16607,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average</td>
 </tr>
 </tbody></table>
-<h4 id='2020-6-5-20-13-00'>备注：目前只支持查询2020/6/5 20:13:00之后的基差数据。</h4>
+
 <blockquote>
 <p>请求成功返回数据的例子：</p>
 </blockquote>
@@ -17207,28 +17245,30 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
- </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accounts.btc-usdt"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585832015669</span><span class="p">,</span><span class="w">
- </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.match"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"margin_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.65300225033282</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.624326797617663</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0357473851449755</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.607254865187846</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001819856887332005</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.028675452715159</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.578579412472687</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">210.93164485504528</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">174.14824361517893</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.075</span><span class="w">
- </span><span class="p">}]</span><span class="w">
+    </span><span class="s2">"op"</span><span class="p">:</span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="s2">"accounts.btc-usdt"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603711370689</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"order.open"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"margin_balance"</span><span class="p">:</span><span class="mf">79.72434662</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="mf">79.79484662</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="mf">1.31303</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="mf">4.0662</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="mf">74.34511662</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="mf">0.03405608</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="mf">-0.0705</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="mf">74.34511662</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="mf">14.745772976801512484</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="mf">92163.420962779156327543</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="mf">0.075</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"margin_asset"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"uid"</span><span class="p">:</span><span class="s2">"123456789"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='b302a98fa6'>返回字段说明</h3>
@@ -17530,28 +17570,30 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
- </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"positions.btc-usdt"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1585831975715</span><span class="p">,</span><span class="w">
- </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.match"</span><span class="p">,</span><span class="w">
- </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-  </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">22.0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="mf">22.0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cost_open"</span><span class="p">:</span><span class="w"> </span><span class="mf">4797.075764608844</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cost_hold"</span><span class="p">:</span><span class="w"> </span><span class="mf">6688.728896560855</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.037636531688646</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"profit_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.648780928625918</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"profit"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1673377373398984</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"position_margin"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.02912749900701708</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"last_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">7553</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"margin_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="w">
- </span><span class="p">}]</span><span class="w">
+    </span><span class="s2">"op"</span><span class="p">:</span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="s2">"positions"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603711371803</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"available"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"frozen"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cost_open"</span><span class="p">:</span><span class="mf">13059.8</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cost_hold"</span><span class="p">:</span><span class="mf">13059.8</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="mf">-0.0705</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profit_rate"</span><span class="p">:</span><span class="mf">-0.05398244996094886</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profit"</span><span class="p">:</span><span class="mf">-0.0705</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"position_margin"</span><span class="p">:</span><span class="mf">1.31303</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"last_price"</span><span class="p">:</span><span class="mf">13130.3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"margin_asset"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"uid"</span><span class="p">:</span><span class="s2">"123456789"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='70bdef7e25-65'>返回参数</h3>
