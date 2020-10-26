@@ -5033,26 +5033,29 @@ Transferring margin between Spot account and USDT Margined Swap account Interfac
 
  正确的返回：
 {
-    "status": "ok",
-    "data":56656,
- }
+    "code": 200,
+    "data": 176104252,
+    "message": "Succeed",
+    "print-log": true,
+    "success": true
+}
 错误的返回：
-{
-    "status": "error",
-    "data":null,
-    "err-code":"dw-account-transfer-error",
-    "err-msg":"dw account transfer error"
+ {
+   "code":1303,
+   "data":null,
+   "message":"The single transfer-out amount must be no less than 0.0008BTC",
+   "success":false
 }
  ```
 
 ### Returning Parameter
 
-|  Parameter Name                |  Mandatory  |  Type  |  Desc         |  Value Range                    |
-| ---------------------- | -------- | ------- | ------------------ | ------------ |
-status  |  true  |   string  | status  | ok, error   |  
+  Parameter Name                |  Mandatory  |  Type  |  Desc         |  Value Range                    |
+ ---------------------- | -------- | ------- | ------------------ | ------------ |
+success  |  true  |   string  | status  | true/false   |  
 data  |    true  |   long    |    The generated transfer order id  |  |
-err-code  |    true  |   string    |     error code  |  |
-err-msg  |    true  |   string    |    error msg |  |
+code  |    true  |   long    |     Response code  |  |
+message  |    true  |   string    |   Response  message |  |
 
 
 ## Response Code Table
