@@ -6346,24 +6346,24 @@ direction  |  true  |  string  |  买卖方向  |   |
 ```json
 
 {
- "rep": "market.BTC-USDT.premium_index.1min",
- "status": "ok",
- "id": "id4",
- "wsid": 1231323423,
- "ts": 1579489028884,
- "data": [
-   {
-    "vol": "0",
-    "count": "0",
-    "id": 1494478080,
-    "open": "-0.0015",
-    "close": "-0.0015",
-    "low": "-0.0015",
-    "high": "-0.0015",
-    "amount": "0",
-    "trade_turnover": "0"
-   }
- ]
+    "id":"id4",
+    "rep":"market.BTC-USDT.premium_index.15min",
+    "wsid":1524762738,
+    "ts":1603782744066,
+    "status":"ok",
+    "data":[
+        {
+            "id":1603641600,
+            "open":"0",
+            "close":"0.0000970833333333",
+            "low":"0",
+            "high":"0.0000997916666666",
+            "amount":"0",
+            "vol":"0",
+            "count":"0",
+            "trade_turnover":"0"
+        }
+    ]
 }
 
 ```
@@ -6526,24 +6526,24 @@ direction  |  true  |  string  |  买卖方向  |   |
 ```json
 
 {
- "rep": "market.BTC-USDT.estimated_rate.1min",
- "status": "ok",
- "id": "id4",
- "wsid": 1231323423,
- "ts": 1579489028884,
- "data": [
-   {
-    "vol": "0",
-    "count": "0",
-    "id": 1494478080,
-    "open": "-0.000153",
-    "close": "-0.000153",
-    "low": "-0.000153",
-    "high": "-0.000153",
-    "amount": "0",
-    "trade_turnover": "0"
-   }
- ]
+    "id":"id4",
+    "rep":"market.BTC-USDT.estimated_rate.15min",
+    "wsid":3674722864,
+    "ts":1603782867314,
+    "status":"ok",
+    "data":[
+        {
+            "id":1603641600,
+            "open":"0.0001",
+            "close":"0.0001",
+            "low":"0.0001",
+            "high":"0.0001",
+            "amount":"0",
+            "vol":"0",
+            "count":"0",
+            "trade_turnover":"0"
+        }
+    ]
 }
 
 ```
@@ -6692,20 +6692,20 @@ direction  |  true  |  string  |  买卖方向  |   |
 ```json
 
 {
- "rep": "market.BTC-USDT.basis.1min.open",
- "status": "ok",
- "id": "id4",
- "wsid": 1231231231,
- "ts": 1489474082831,
- "data": [
+    "data":[
         {
-         "id": 12312321,
-         "contact_price": "0.4635",
-         "index_price": "0.4645",
-         "basis": "0.4142",
-         "basis_rate": "0.0024"
-       }
- ]
+            "basis":"-27.593412766666006",
+            "basis_rate":"-0.0021317871729511838",
+            "contract_price":"12916.2",
+            "id":1603641600,
+            "index_price":"12943.793412766667"
+        }
+    ],
+    "id":"id4",
+    "rep":"market.BTC-USDT.basis.15min.open",
+    "status":"ok",
+    "ts":1603783024207,
+    "wsid":1308653018
 }
 
 ```
@@ -7520,22 +7520,23 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 
 ```json
 
-{ 
-      "op": "notify",            
-      "topic": "public.btc-usdt.funding_rate",    
-      "ts": 1489474082831,   
-      "data": [
+{
+    "op":"notify",
+    "topic":"public.BTC-USDT.funding_rate",
+    "ts":1603778748166,
+    "data":[
         {
-          "symbol": "BTC",
-          "contract_code": "BTC-USDT",
-          "fee_asset": "USDT", 
-          "funding_time": "1490759594752",
-          "funding_rate": "-0.12000001",
-          "estimated_rate": "-0.12000001",
-          "settlement_time": "1490759594752"
+            "symbol":"BTC",
+            "contract_code":"BTC-USDT",
+            "fee_asset":"USDT",
+            "funding_time":"1603778700000",
+            "funding_rate":"-0.000220068774978695",
+            "estimated_rate":"-0.000684397270167616",
+            "settlement_time":"1603785600000"
         }
-      ]
+    ]
 }
+
 ```
 
 ### 返回参数
@@ -7649,20 +7650,23 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 > 返回的参数为：
 
 ```json
+
 {
-    "op": "notify",           
-	"topic": "public.btc-usdt.contract_info",
-	"ts": 1489474082831,
-	"event":"init",
-	"data": [{
-		"symbol": "BTC",
-		"contract_code": "BTC-USDT",
-		"contract_size": 100,
-		"price_tick": 0.001,
-		"settlement_date": "1490759594752",
-		"create_date": "20200102",
-		"contract_status": 1
-	}]
+    "op":"notify",
+    "topic":"public.BTC-USDT.contract_info",
+    "ts":1603778748167,
+    "event":"init",
+    "data":[
+        {
+            "symbol":"BTC",
+            "contract_code":"BTC-USDT",
+            "contract_size":0.001,
+            "price_tick":0.1,
+            "settlement_date":"1603785600000",
+            "create_date":"20201021",
+            "contract_status":1
+        }
+    ]
 }
 ```
 
@@ -7778,37 +7782,38 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 ```json
 
 {
-    "op": "notify",           
-	"topic": "trigger_order.eos-usdt",
-	"ts": 1489474082831,
-	"uid": "15712398",
-	"event": "order",
-	"data":  [{
-                "symbol": "EOS",
-                "contract_code": "EOS-USDT",
-                "trigger_type": "ge",
-                "volume": 4,
-                "order_type": 1,
-                "direction": "sell",
-                "offset": "open",
-                "lever_rate": 1,
-                "order_id": 23,
-                "order_id_str": "161251",
-                "relation_order_id": "88",
-                "order_price_type": "limit",
-                "status": 6,
-                "order_source": "web",
-                "trigger_price": 2,
-                "triggered_price": 2.03,
-                "order_price": 2,
-                "created_at": 1547448030638,
-                "triggered_at": 0,
-                "order_insert_at": 0,
-                "canceled_at": 1547448845593,
-                "fail_code": null,
-                "fail_reason": null
-            }
-        ]
+    "op":"notify",
+    "topic":"trigger_order.btc-usdt",
+    "ts":1603778055069,
+    "event":"order",
+    "uid":"144455922",
+    "data":[
+        {
+            "symbol":"BTC-USDT",
+            "contract_code":"BTC-USDT",
+            "trigger_type":"ge",
+            "volume":1,
+            "order_type":1,
+            "direction":"sell",
+            "offset":"open",
+            "lever_rate":10,
+            "order_id":5,
+            "order_id_str":"5",
+            "relation_order_id":"-1",
+            "order_price_type":"limit",
+            "status":2,
+            "order_source":"web",
+            "trigger_price":15000,
+            "triggered_price":null,
+            "order_price":15000,
+            "created_at":1603778055064,
+            "triggered_at":0,
+            "order_insert_at":0,
+            "canceled_at":0,
+            "fail_code":null,
+            "fail_reason":null
+        }
+    ]
 }
 ```
 
