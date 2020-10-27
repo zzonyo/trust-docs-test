@@ -1144,21 +1144,23 @@ contract_code | string   | false      | Case-insenstive.such as "BTC-USDT". All 
 > Response
 
 ```json
-    {
-      "status": "ok",
-      "data": [
+
+{
+    "status": "ok",
+    "data": [
         {
-          "symbol": "BTC",
-          "contract_code": "BTC-USDT",
-          "contract_size": 100,
-          "price_tick": 0.001,
-          "settlement_date": "1490759594752",
-          "create_date": "20190808",
-          "contract_status": 1
-         }
-        ],
-      "ts":158797866555
-    }   
+            "symbol": "BTC",
+            "contract_code": "BTC-USDT",
+            "contract_size": 0.001000000000000000,
+            "price_tick": 0.100000000000000000,
+            "create_date": "20201021",
+            "contract_status": 1,
+            "settlement_date": "1603699200000"
+        }
+    ],
+    "ts": 1603694455082
+}
+
 ```
 
 
@@ -1198,17 +1200,18 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_index?contract_code=BTC-USDT"
 > Response
 
 ```json
-    {
-      "status":"ok",
-      "data": [
-         {
-           "contract_code": "BTC-USDT",
-           "index_price":471.0817,
-           "index_ts": 1490759594752
-          }
-        ],
-      "ts": 1490759594752
-    }
+
+{
+    "status": "ok",
+    "data": [
+        {
+            "index_price": 13076.329865680000000000,
+            "index_ts": 1603694592011,
+            "contract_code": "BTC-USDT"
+        }
+    ],
+    "ts": 1603694596400
+}
 ```
 
 ###  Returning Parameter  
@@ -1243,17 +1246,19 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_price_limit?contract_code=BTC
 > Response
 
 ```json
-    {
-      "status":"ok",
-      "data": 
-       [{
-          "symbol":"BTCT",
-          "high_limit":443.07,
-          "low_limit":417.09,
-          "contract_code": "BTC-USDT"
-         }],
-      "ts": 1490759594752
-    }
+
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_code": "BTC-USDT",
+            "high_limit": 13596.800000000000000000000000000000000000,
+            "low_limit": 12550.900000000000000000000000000000000000
+        }
+    ],
+    "ts": 1603694645979
+}
 ```
 
 ###  Returning Parameter  
@@ -1290,18 +1295,20 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_open_interest?contract_code=B
 
 
 ```json
-    {
-      "status":"ok",
-      "data":
-        [{
-          "symbol":"BTC",
-          "volume":123,
-          "amount":106,
-          "value":1230000,
-          "contract_code": "BTC-USDT"
-         }],
-      "ts": 1490759594752
-    }
+
+{
+    "status": "ok",
+    "data": [
+        {
+            "volume": 2017.000000000000000000,
+            "amount": 2.017000000000000000,
+            "symbol": "BTC",
+            "value": 26376.309000000000000000,
+            "contract_code": "BTC-USDT"
+        }
+    ],
+    "ts": 1603694760141
+}
 ```
 
 ###  Returning Parameter  
@@ -1342,26 +1349,40 @@ curl "https://api.hbdm.com/linear-swap-ex/market/depth?contract_code=BTC-USDT&ty
 > Response:
 
 ```json
+
 {
-  "ch":"market.BTC-USDT.depth.step5",
-  "status":"ok",
-    "tick":{
-      "asks":[
-        [6580,3000],
-        [70000,100]
+    "ch": "market.BTC-USDT.depth.step0",
+    "status": "ok",
+    "tick": {
+        "asks": [
+            [
+                13084.2,
+                168
+            ],
+            [
+                13085.6,
+                1
+            ]
         ],
-      "bids":[
-        [10,3],
-        [2,1]
+        "bids": [
+            [
+                13084,
+                38
+            ],
+            [
+                13069.9,
+                1
+            ]
         ],
-      "ch":"market.BTC-USDT.depth.step5",
-      "id":1536980854,
-      "mrid":6903717,
-      "ts":1536980854171,
-      "version":1536980854
+        "ch": "market.BTC-USDT.depth.step0",
+        "id": 1603694838,
+        "mrid": 131471527,
+        "ts": 1603694838167,
+        "version": 1603694838
     },
-  "ts":1536980854585
+    "ts": 1603694838240
 }
+
 ```
 
 ###  Returning Parameter  
@@ -1430,23 +1451,24 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/kline?period=1min&size=
 > Response:
 
 ```json
+
 {
-  "ch": "market.BTC-USDT.kline.1min",
-  "data": [
-    {
-      "vol": 2446,
-      "close": 5000,
-      "count": 2446,
-      "high": 5000,
-      "id": 1529898120,
-      "low": 5000,
-      "open": 5000,
-      "amount": 48.92,
-      "trade_turnover": 489200
-     }
-   ],
-  "status": "ok",
-  "ts": 1529908345313
+    "ch": "market.BTC-USDT.kline.1min",
+    "data": [
+        {
+            "amount": 0.004,
+            "close": 13076.8,
+            "count": 1,
+            "high": 13076.8,
+            "id": 1603695060,
+            "low": 13076.8,
+            "open": 13076.8,
+            "trade_turnover": 52.3072,
+            "vol": 4
+        }
+    ],
+    "status": "ok",
+    "ts": 1603695099234
 }
 ```
 
@@ -1510,29 +1532,29 @@ curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC
 ```json
 
 {
-    "ch":"market.BTC-USDT.detail.merged",
-    "status":"ok",
-    "tick":{
-        "amount":"5.7",
-        "ask":[
-            10329.1,
-            100
+    "ch": "market.BTC-USDT.detail.merged",
+    "status": "ok",
+    "tick": {
+        "amount": "12.526",
+        "ask": [
+            13084.2,
+            131
         ],
-        "bid":[
-            10328.994,
-            1000
+        "bid": [
+            13082.9,
+            38
         ],
-        "close":"10328.572",
-        "count":25,
-        "high":"11100",
-        "id":1600855335,
-        "low":"9999",
-        "open":"10121",
-        "trade_turnover":"58195.4012",
-        "ts":1600855335581,
-        "vol":"570"
+        "close": "13076.8",
+        "count": 2920,
+        "high": "13205.3",
+        "id": 1603695162,
+        "low": "12877.5",
+        "open": "12916.2",
+        "trade_turnover": "163247.3982",
+        "ts": 1603695162580,
+        "vol": "12526"
     },
-    "ts":1600855335581
+    "ts": 1603695162580
 }
 ```
 
@@ -1597,23 +1619,24 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
 > Response:
 
 ```json
+
 {
-  "ch": "market.BTC-USDT.trade.detail",
-  "status": "ok",
-  "tick": {
-    "data": [
-      {
-        "amount": "1",
-        "direction": "sell",
-        "id": 6010881529486944176,
-        "price": "5000",
-        "ts": 1529386945343
-       }
-     ],
-    "id": 1529388202797,
-    "ts": 1529388202797
+    "ch": "market.BTC-USDT.trade.detail",
+    "status": "ok",
+    "tick": {
+        "data": [
+            {
+                "amount": "6",
+                "ts": 1603695230083,
+                "id": 1314755250000,
+                "price": "13083",
+                "direction": "buy"
+            }
+        ],
+        "id": 1603695235127,
+        "ts": 1603695235127
     },
-  "ts": 1529388202797
+    "ts": 1603695235127
 }
 ```
 
@@ -1674,25 +1697,26 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
 > Response:
 
 ```json
+
 {
-  "ch": "market.BTC-USDT.trade.detail",
-  "status": "ok",
-  "ts": 1529388050915,
-  "data": [
-    {
-      "id": 601088,
-      "ts": 1529386945343,
-      "data": [
+    "ch": "market.BTC-USDT.trade.detail",
+    "data": [
         {
-         "amount": 1,
-         "direction": "sell",
-         "id": 6010881529486944176,
-         "price": 5000,
-         "ts": 1529386945343
-         }
-       ]
-    }
-   ]
+            "data": [
+                {
+                    "amount": 2,
+                    "direction": "buy",
+                    "id": 1314767870000,
+                    "price": 13081.3,
+                    "ts": 1603695383124
+                }
+            ],
+            "id": 131476787,
+            "ts": 1603695383124
+        }
+    ],
+    "status": "ok",
+    "ts": 1603695388965
 }
 ```
 
@@ -1734,16 +1758,17 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_risk_info"
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "ts": 158797866555,
-  "data": [
-    {
-      "contract_code": "BTC-USDT",
-      "insurance_fund": 3806.4615259197324414715719,
-      "estimated_clawback": 0.0023
-    }
-  ]
+    "status": "ok",
+    "data": [
+        {
+            "contract_code": "BTC-USDT",
+            "insurance_fund": 499937.059826600000000000,
+            "estimated_clawback": 0
+        }
+    ],
+    "ts": 1603695455942
 }
 ```
 
@@ -1778,22 +1803,23 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_insurance_fund?contract_code=
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "ts": 158797866555,
-  "data":   {
-     "symbol": "BTC",
-     "contract_code": "BTC-USDT",
-     "tick": [
-        {
-          "insurance_fund": 3806.4615259197324414715719,
-          "ts": 158797866555
-         }
-      ],
-      "total_page": 1,
-      "total_size": 1,
-      "current_page": 1
-  }
+    "status": "ok",
+    "data": {
+        "total_page": 5,
+        "current_page": 1,
+        "total_size": 5,
+        "symbol": "BTC",
+        "contract_code": "BTC-USDT",
+        "tick": [
+            {
+                "insurance_fund": 499937.059826600000000000,
+                "ts": 1603612800000
+            }
+        ]
+    },
+    "ts": 1603695552425
 }
 
 ```
@@ -1834,34 +1860,41 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_adjustfactor"
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data": [
-   {
-      "symbol": "BTC",
-      "contract_code": "BTC-USDT",
-      "list": [
-       {
-          "lever_rate": 10,
-          "ladders": [
-           {
-             "ladder": 1,
-             "min_size": 0,
-             "max_size": 100,
-             "adjust_factor": 0.1
-           },
-           {
-             "ladder": 2,
-             "min_size": 101,
-             "max_size": 500,
-             "adjust_factor": 0.2
-           }
-           ]
-       }
-       ]
-   }
-   ],
-   "ts": 158797866555
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_code": "BTC-USDT",
+            "list": [
+                {
+                    "lever_rate": 125,
+                    "ladders": [
+                        {
+                            "ladder": 0,
+                            "min_size": 0,
+                            "max_size": 8999,
+                            "adjust_factor": 0.650000000000000000
+                        },
+                        {
+                            "ladder": 1,
+                            "min_size": 9000,
+                            "max_size": 89999,
+                            "adjust_factor": 0.800000000000000000
+                        },
+                        {
+                            "ladder": 2,
+                            "min_size": 90000,
+                            "max_size": null,
+                            "adjust_factor": 0.850000000000000000
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "ts": 1603695606565
 }
 
 ```
@@ -1907,20 +1940,22 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_his_open_interest?contract_co
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data": 
-    {
-    "symbol": "BTC",
-    "contract_code": "BTC-USDT",
-    "tick": [{
-      "volume": 1,
-      "amount_type": 1,
-      "value": 900,
-      "ts": 1529387842137
-      }]
+    "status": "ok",
+    "data": {
+        "symbol": "BTC",
+        "tick": [
+            {
+                "volume": 2124.0000000000000000,
+                "amount_type": 1,
+                "ts": 1603695600000,
+                "value": 27771.93720000000000000000000000000000000
+            }
+        ],
+        "contract_code": "BTC-USDT"
     },
-    "ts": 158797866555
+    "ts": 1603695899986
 }
 
 ```
@@ -1966,27 +2001,27 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_api_state"
 ```json
 
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "contract_code": "BTC-USDT",
-      "open": 1,
-      "close": 1,
-      "cancel": 1,
-      "transfer_in": 1,
-      "transfer_out": 1,
-      "master_transfer_sub": 1,
-      "sub_transfer_master": 1,
-      "master_transfer_sub_inner_in": 1,
-      "master_transfer_sub_inner_out": 1,
-      "sub_transfer_master_inner_in": 1,
-      "sub_transfer_master_inner_out": 1,
-      "transfer_inner_in": 1,
-      "transfer_inner_out": 1
-    }
- ],
- "ts": 158797866555
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_code": "BTC-USDT",
+            "open": 1,
+            "close": 1,
+            "cancel": 1,
+            "transfer_in": 1,
+            "transfer_out": 1,
+            "master_transfer_sub": 1,
+            "sub_transfer_master": 1,
+            "master_transfer_sub_inner_in": 1,
+            "master_transfer_sub_inner_out": 1,
+            "sub_transfer_master_inner_in": 1,
+            "sub_transfer_master_inner_out": 1,
+            "transfer_inner_in": 1,
+            "transfer_inner_out": 1
+        }
+    ],
+    "ts": 1603696366019
 }
 
 
@@ -2066,24 +2101,21 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_elite_account_ratio?contract_
 ```json
 
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "contract_code": "BTC-USDT",
-      "list": [
-        {
-         "buy_ratio": 0.2323,
-         "sell_ratio": 0.4645,
-         "locked_ratio": 0.4142,
-         "ts": 158797866555
-       }
-       ]
-    }
- ],
- "ts": 158797866555
+    "status": "ok",
+    "data": {
+        "list": [
+            {
+                "buy_ratio": 0.2940,
+                "sell_ratio": 0.6760,
+                "locked_ratio": 0.0300,
+                "ts": 1603591200000
+            }
+        ],
+        "symbol": "BTC",
+        "contract_code": "BTC-USDT"
+    },
+    "ts": 1603696167089
 }
-
 ```
 
 ### Returning Parameter 
@@ -2123,22 +2155,21 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_elite_position_ratio?contract
 
 ```json
 
+
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "contract_code": "BTC-USDT",
-      "list": [
-        {
-         "buy_ratio": 0.2323,
-         "sell_ratio": 0.4645,
-         "ts": 158797866555
-       }
-       ]
-    }
- ],
- "ts": 158797866555
+    "status": "ok",
+    "data": {
+        "list": [
+            {
+                "buy_ratio": 0.5000,
+                "sell_ratio": 0.5000,
+                "ts": 1603591200000
+            }
+        ],
+        "symbol": "BTC",
+        "contract_code": "BTC-USDT"
+    },
+    "ts": 1603696275437
 }
 
 ```
@@ -2182,24 +2213,24 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
 ```json
 
 {
-  "status": "ok",
-  "data":{
-    "orders":[
-      {
-        "symbol": "BTC",
-        "contract_code": "BTC-USDT",    
-        "direction": "buy",
-        "offset": "close",
-        "volume": 111,
-        "price": 1111,
-        "created_at": 1408076414000
-      }
-     ],
-    "total_page":15,
-    "current_page":3,
-    "total_size":3
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "contract_code": "BTC-USDT",
+                "symbol": "BTC",
+                "direction": "buy",
+                "offset": "close",
+                "volume": 13.000000000000000000,
+                "price": 13395.300000000000000000,
+                "created_at": 1603597296671
+            }
+        ],
+        "total_page": 10,
+        "current_page": 1,
+        "total_size": 10
     },
-  "ts": 1490759594752
+    "ts": 1603696886350
 }
 
 ```
@@ -2244,17 +2275,19 @@ contract_code  |  true   |  string   |  contract code   |  Case-Insenstive."BTC-
 
 ```json
 
-{"status":"ok",
-"data":{
-  "estimated_rate":"-0.000467564159217294",
-  "funding_rate":"0.000100000000000000",
-  "contract_code":"BTC-USDT",
-  "symbol":"BTC",
-  "fee_asset":"USDT",
-  "funding_time":"1585771200000",
-  "next_funding_time":"1585800000000"
-  },
-  "ts":1585754382195}
+{
+    "status": "ok",
+    "data": {
+        "estimated_rate": "0.000100000000000000",
+        "funding_rate": "0.000100000000000000",
+        "contract_code": "BTC-USDT",
+        "symbol": "BTC",
+        "fee_asset": "USDT",
+        "funding_time": "1603699200000",
+        "next_funding_time": "1603728000000"
+    },
+    "ts": 1603696494714
+}
 
 ```
 
@@ -2294,22 +2327,24 @@ page_size   | false    | int    | page size.20 by default. 50 at most | 20      
 ```json
 
 {
-	"status": "ok",
-	"data": {
-		"total_page": 4,
-		"current_page": 1,
-		"total_size": 62,
-		"data": [{
-			"funding_rate": "-0.000069120944848016",
-			"realized_rate": "-0.000069120944848016",
-			"funding_time": "1586894400000",
-			"contract_code": "BTC-USDT",
-			"symbol": "BTC",
-            "fee_asset": "USDT",
-            "avg_premium_index": "0"
-		}]
-	},
-	"ts": 1586913570441
+    "status": "ok",
+    "data": {
+        "total_page": 14,
+        "current_page": 1,
+        "total_size": 14,
+        "data": [
+            {
+                "avg_premium_index": "0.000049895833333333",
+                "funding_rate": "0.000100000000000000",
+                "realized_rate": "0.000100000000000000",
+                "funding_time": "1603670400000",
+                "contract_code": "BTC-USDT",
+                "symbol": "BTC",
+                "fee_asset": "USDT"
+            }
+        ]
+    },
+    "ts": 1603696680599
 }
 
 ```
@@ -2357,22 +2392,22 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_premium_index_kline?
 ```json
 
 {
-  "ch": "market.BTC-USDT.premium_index.1min",
-  "data": [
-    {
-      "vol": "0",
-      "close": "-0.0015",
-      "count": "0",
-      "high": "-0.0015",
-      "id": 1529898780,
-      "low": "-0.0015",
-      "open": "-0.0015",
-      "amount": "0",
-      "trade_turnover": "0"
-     }
-   ],
-  "status": "ok",
-  "ts": 1529908345313
+    "ch": "market.BTC-USDT.premium_index.1min",
+    "data": [
+        {
+            "amount": "0",
+            "close": "0.0000079166666666",
+            "count": "0",
+            "high": "0.0000079166666666",
+            "id": 1603696920,
+            "low": "0.0000079166666666",
+            "open": "0.0000079166666666",
+            "trade_turnover": "0",
+            "vol": "0"
+        }
+    ],
+    "status": "ok",
+    "ts": 1603696958348
 }
 
 ```
@@ -2419,25 +2454,25 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_estimated_rate_kline
 > Response Example：
 
 ```json
-{
-  "ch": "market.BTC-USDT.estimated_rate.1min",
-  "data": [
-    {
-      "vol": "0",
-      "close": "-0.000153",
-      "count": "0",
-      "high": "-0.000153",
-      "id": 1529898780,
-      "low": "-0.000153",
-      "open": "-0.000153",
-      "amount": "0",
-      "trade_turnover": "0"
-     }
-   ],
-  "status": "ok",
-  "ts": 1529908345313
-}
 
+{
+    "ch": "market.BTC-USDT.estimated_rate.1min",
+    "data": [
+        {
+            "amount": "0",
+            "close": "0.0001",
+            "count": "0",
+            "high": "0.0001",
+            "id": 1603697100,
+            "low": "0.0001",
+            "open": "0.0001",
+            "trade_turnover": "0",
+            "vol": "0"
+        }
+    ],
+    "status": "ok",
+    "ts": 1603697104902
+}
 ```
 
 ### response parameters：
@@ -2483,17 +2518,18 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 ```json
 
 {
-  "ch": "market.BTC-USDT.basis.1min.low",
-  "data":[
-         {
-             "basis":"-392.21999999999935",
-             "basis_rate":"-0.0373073140293839",
-             "contract_price":"10121",
-             "id":1600822800,
-             "index_price":"10513.22"
-         }],
-  "status": "ok",
-  "ts": 1576586879618
+    "ch": "market.BTC-USDT.basis.1min.open",
+    "data": [
+        {
+            "basis": "15.29074235666667",
+            "basis_rate": "0.001170582317307796",
+            "contract_price": "13077.8",
+            "id": 1603697160,
+            "index_price": "13062.509257643333"
+        }
+    ],
+    "status": "ok",
+    "ts": 1603697170804
 }
 
 ```
@@ -2533,46 +2569,30 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 ```json
 
-    {
-      "status": "ok",
-      "data": [
+ 
+{
+    "status": "ok",
+    "data": [
         {
-          "symbol": "BTC",
-          "contract_code": "BTC-USDT",
-          "margin_asset": "USDT",
-          "margin_balance": 1,
-          "margin_static": 0.5,
-          "margin_position": 0,
-          "margin_frozen": 3.33,
-          "margin_available": 0.34,
-          "profit_real": 3.45,
-          "profit_unreal": 7.45,
-          "withdraw_available":4.0989898,
-          "risk_rate": 100,
-          "liquidation_price": 100, 
-          "lever_rate": 10,
-          "adjust_factor": 0.1
-         },
-        {
-          "symbol": "ETH",
-          "contract_code": "ETH-USDT",
-          "margin_asset": "USDT",
-          "margin_balance": 1,
-          "margin_static": 0.5,
-          "margin_position": 0,
-          "margin_frozen": 3.33,
-          "margin_available": 0.34,
-          "profit_real": 3.45,
-          "profit_unreal": 7.45,
-          "withdraw_available":4.7389859,
-          "risk_rate": 100,
-          "liquidation_price": 100,
-          "lever_rate": 10,
-          "adjust_factor": 0.1
-         }
-       ],
-      "ts":158797866555
-    }
+            "symbol": "BTC",
+            "margin_balance": 99.755058840000000000,
+            "margin_position": 0,
+            "margin_frozen": 12.730000000000000000,
+            "margin_available": 87.025058840000000000,
+            "profit_real": 0,
+            "profit_unreal": 0,
+            "risk_rate": 7.761218290652003142,
+            "withdraw_available": 87.025058840000000000000000000000000000,
+            "liquidation_price": null,
+            "lever_rate": 10,
+            "adjust_factor": 0.075000000000000000,
+            "margin_static": 99.755058840000000000,
+            "contract_code": "BTC-USDT",
+            "margin_asset": "USDT"
+        }
+    ],
+    "ts": 1603697381238
+}
 ```
 
 ###  Returning Parameter  
@@ -2615,29 +2635,31 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "contract_code": "BTC-USDT",
-      "volume": 1,
-      "available": 0,
-      "frozen": 0.3,
-      "cost_open": 422.78,
-      "cost_hold": 422.78,
-      "profit_unreal": 0.00007096,
-      "profit_rate": 0.07,
-      "profit": 0.97,
-      "margin_asset": "USDT",
-      "position_margin": 3.4,
-      "lever_rate": 10,
-      "direction":"buy",
-      "last_price":7900.17
-     }
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_code": "BTC-USDT",
+            "volume": 1.000000000000000000,
+            "available": 1.000000000000000000,
+            "frozen": 0,
+            "cost_open": 13068.000000000000000000,
+            "cost_hold": 13068.000000000000000000,
+            "profit_unreal": 0,
+            "profit_rate": 0,
+            "lever_rate": 10,
+            "position_margin": 1.306800000000000000,
+            "direction": "buy",
+            "profit": 0,
+            "last_price": 13068,
+            "margin_asset": "USDT"
+        }
     ],
- "ts": 158797866555
+    "ts": 1603697821846
 }
+
 ```
 
 ### Returning Parameter  
@@ -2684,41 +2706,45 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 
 {
     "status": "ok",
-    "ts": 1560147583367,
-    "data": [{
-        "symbol": "BTC",
-        "contract_code": "BTC-USDT",
-        "margin_asset": "USDT",
-        "margin_balance": 0,
-        "margin_position": 0,
-        "margin_frozen": 0,
-        "margin_available": 0,
-        "profit_real": 0,
-        "profit_unreal": 0,
-        "risk_rate": null,
-        "withdraw_available": 0,
-        "liquidation_price": null,
-        "lever_rate": 20,
-        "adjust_factor": 0.13,
-        "margin_static": 1,
-        "positions": [{
+    "data": [
+        {
             "symbol": "BTC",
             "contract_code": "BTC-USDT",
-            "volume": 1,
-            "available": 0,
-            "frozen": 0.3,
-            "cost_open": 422.78,
-            "cost_hold": 422.78,
-            "profit_unreal": 0.00007096,
-            "profit_rate": 0.07,
-            "profit": 0.97,
-            "margin_asset": "USDT",
-            "position_margin": 3.4,
-            "lever_rate": 20,
-            "direction": "buy",
-            "last_price": 7900.17
-        }]
-    }]
+            "margin_balance": 99.751731640000000000,
+            "margin_position": 1.306990000000000000,
+            "margin_frozen": 12.730000000000000000,
+            "margin_available": 85.714741640000000000,
+            "profit_real": -0.005227200000000000,
+            "profit_unreal": 0.001900000000000000,
+            "risk_rate": 7.031347702748238760,
+            "withdraw_available": 85.712841640000000000000000000000000000,
+            "liquidation_price": null,
+            "lever_rate": 10,
+            "adjust_factor": 0.075000000000000000,
+            "margin_static": 99.749831640000000000,
+            "positions": [
+                {
+                    "symbol": "BTC",
+                    "contract_code": "BTC-USDT",
+                    "volume": 1.000000000000000000,
+                    "available": 1.000000000000000000,
+                    "frozen": 0,
+                    "cost_open": 13068.000000000000000000,
+                    "cost_hold": 13068.000000000000000000,
+                    "profit_unreal": 0.001900000000000000,
+                    "profit_rate": 0.001453933272115090,
+                    "lever_rate": 10,
+                    "position_margin": 1.306990000000000000,
+                    "direction": "buy",
+                    "profit": 0.001900000000000000,
+                    "last_price": 13069.9,
+                    "margin_asset": "USDT"
+                }
+            ],
+            "margin_asset": "USDT"
+        }
+    ],
+    "ts": 1603697944138
 }
 ```
 
@@ -2778,33 +2804,25 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 
 ```json
 
-  {
+{
     "status": "ok",
-    "ts": 1499223904680,
-  	"data": [
-  	  {
-  	    "sub_uid": 9910049,
-  	    "list": [
+    "data": [
+        {
+            "sub_uid": 123456789,
+            "list": [
                 {
-  	            "symbol": "BTC",
-                "contract_code": "BTC-USDT",
-                "margin_asset": "USDT",
-                "margin_balance": 1,
-                "liquidation_price": 100,
-  	            "risk_rate": 100
-  	        },
-  	        {
-  	            "symbol": "ETH",
-                "contract_code": "ETH-USDT",
-                "margin_asset": "USDT",
-                "margin_balance": 1,
-                "liquidation_price": 100,
-  	            "risk_rate": 100
-  	        }
+                    "symbol": "BTC",
+                    "margin_balance": 20,
+                    "liquidation_price": null,
+                    "risk_rate": null,
+                    "contract_code": "BTC-USDT",
+                    "margin_asset": "USDT"
+                }
             ]
         }
-    ]
-  }
+    ],
+    "ts": 1603698380336
+}
   
 ```
 
@@ -2849,28 +2867,29 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 ```json
 
 {
-  "status": "ok",
-  "data":  [ 
-     {
-        "symbol": "BTC",
-        "contract_code": "BTC-USDT",
-        "margin_asset": "USDT",
-        "margin_balance": 1,
-        "margin_position": 0,
-        "margin_frozen": 3.33,
-        "margin_available": 0.34,
-        "profit_real": 3.45,
-        "profit_unreal": 7.45,
-        "withdraw_available":4.0989898,
-        "risk_rate": 100,
-        "lever_rate": 3,
-        "liquidation_price": 100,
-        "adjust_factor": 0.1,
-        "margin_static": 3
-      }
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "margin_balance": 20,
+            "margin_position": 0,
+            "margin_frozen": 0,
+            "margin_available": 20.000000000000000000,
+            "profit_real": 0,
+            "profit_unreal": 0,
+            "risk_rate": null,
+            "withdraw_available": 20.000000000000000000,
+            "liquidation_price": null,
+            "lever_rate": 5,
+            "adjust_factor": 0.040000000000000000,
+            "margin_static": 20,
+            "contract_code": "BTC-USDT",
+            "margin_asset": "USDT"
+        }
     ],
-  "ts":158797866555
+    "ts": 1603698523200
 }
+
 ```
 
 ### Return parameters
@@ -2918,29 +2937,30 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "ts": 158797866555,
-  "data":[ 
-     {
-         "symbol": "BTC",
-         "contract_code": "BTC-USDT",
-         "volume": 1,
-         "available": 0,
-         "frozen": 0.3,
-         "cost_open": 422.78,
-         "cost_hold": 422.78,
-         "profit_unreal": 0.00007096,
-         "profit_rate": 0.07,
-         "profit": 0.97,
-         "margin_asset": "USDT", 
-         "position_margin": 3.4,
-         "lever_rate": 10,
-         "direction":"buy",
-         "last_price":6000 
-     }
-   ]
-}
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_code": "BTC-USDT",
+            "volume": 1.000000000000000000,
+            "available": 1.000000000000000000,
+            "frozen": 0,
+            "cost_open": 13038.700000000000000000,
+            "cost_hold": 13038.700000000000000000,
+            "profit_unreal": 0,
+            "profit_rate": 0,
+            "lever_rate": 10,
+            "position_margin": 1.303870000000000000,
+            "direction": "buy",
+            "profit": 0,
+            "last_price": 13038.7,
+            "margin_asset": "USDT"
+        }
+    ],
+    "ts": 1603699081114
+}                                           
 ```
 
 ### Return parameters
@@ -2988,26 +3008,28 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data":{
-    "financial_record" : [
-      {
-        "id": 192838272,
-        "ts": 1408076414000,
-        "symbol":"BTC",
-        "contract_code": "BTC-USDT", 
-        "margin_account": "BTC-USDT", 
-        "face_margin_account": "BTC-USDT", 
-        "type":1, 
-        "amount":1
-      }],
-    "total_page":15,
-    "current_page":3,
-    "total_size":3
+    "status": "ok",
+    "data": {
+        "total_page": 13,
+        "current_page": 1,
+        "total_size": 13,
+        "financial_record": [
+            {
+                "id": 57408,
+                "type": 34,
+                "amount": -20.000000000000000000,
+                "ts": 1603698366183,
+                "contract_code": "BTC-USDT",
+                "asset": "USDT",
+                "margin_account": "BTC-USDT",
+                "face_margin_account": "BTC-USDT"
+            }
+        ]
     },
-  "ts": 1490759594752
-}
+    "ts": 1603699203087
+}  
 ```
 
 
@@ -3181,11 +3203,12 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
     "data": [
         {
             "contract_code": "BTC-USDT",
-            "available_level_rate": "1,5,10,20"
+            "available_level_rate": "1,2,3,5,10,20,30,50,75,100,125"
         }
     ],
-    "ts": 1566899973811
+    "ts": 1603699467348
 }
+
 ```
 
 
@@ -3205,21 +3228,20 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 ```json
 
 {
-  "status": "ok",
-  "data":  {
-      "order_price_type": "limit",
-      "list":[
-      {
-          "symbol": "BTC",
-          "contract_code": "BTC-USDT",
-          "open_limit": 3000.0,
-          "close_limit": 3000.0
-      }
-      ]
-   },
- "ts": 158797866555
+    "status": "ok",
+    "data": {
+        "order_price_type": "limit",
+        "list": [
+            {
+                "symbol": "BTC",
+                "contract_code": "BTC-USDT",
+                "open_limit": 70000.000000000000000000,
+                "close_limit": 140000.000000000000000000
+            }
+        ]
+    },
+    "ts": 1603699658996
 }
-
 ```
 
 ### Returning Parameter 
@@ -3251,22 +3273,22 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 > Response:
 
 ```json
-{
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "contract_code": "BTC-USDT",
-      "fee_asset": "USDT", 
-      "open_maker_fee": "-0.00025",
-      "open_taker_fee": "0.00075",
-      "close_maker_fee": "-0.00025",
-      "close_taker_fee": "0.00075"
-    }
- ],
- "ts": 158797866555
-}
 
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_code": "BTC-USDT",
+            "open_maker_fee": "0.0002",
+            "open_taker_fee": "0.0004",
+            "close_maker_fee": "0.0002",
+            "close_taker_fee": "0.0004",
+            "fee_asset": "USDT"
+        }
+    ],
+    "ts": 1603699756575
+}
 ```
 
 ### Returning Parameter 
@@ -3299,25 +3321,25 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 > Response:
 
 ```json
-{
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "contract_code": "BTC-USDT",
-      "transfer_in_max_each": 5000,
-      "transfer_in_min_each": 5000,
-      "transfer_out_max_each": 5000,
-      "transfer_out_min_each": 5000,
-      "transfer_in_max_daily": 5000,
-      "transfer_out_max_daily": 5000,
-      "net_transfer_in_max_daily": 5000,
-      "net_transfer_out_max_daily": 5000
-    }
- ],
- "ts": 158797866555
-}
 
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_code": "BTC-USDT",
+            "transfer_in_max_each": 100000000.000000000000000000,
+            "transfer_in_min_each": 1.000000000000000000,
+            "transfer_out_max_each": 10000000.000000000000000000,
+            "transfer_out_min_each": 0.000001000000000000,
+            "transfer_in_max_daily": 1000000000.000000000000000000,
+            "transfer_out_max_daily": 200000000.000000000000000000,
+            "net_transfer_in_max_daily": 500000000.000000000000000000,
+            "net_transfer_out_max_daily": 100000000.000000000000000000
+        }
+    ],
+    "ts": 1603699803580
+}
 ```
 
 ### Returning Parameter 
@@ -3353,19 +3375,19 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 
 
 ```json
-{
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "contract_code": "BTC-USDT",
-      "buy_limit": 3000,
-      "sell_limit": 3000
-    }
- ],
- "ts": 158797866555
-}
 
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_code": "BTC-USDT",
+            "buy_limit": 700000.000000000000000000,
+            "sell_limit": 700000.000000000000000000
+        }
+    ],
+    "ts": 1603699957489
+}
 ```
 
 ### Returning Parameter 
@@ -3405,14 +3427,14 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 > Response:
 
 ```json
-{
-  "status": "ok",
-  "ts": 158797866555,
-  "data":   {
-      "order_id": "122133213"
-  }
-}
 
+{
+    "status": "ok",
+    "data": {
+        "order_id": "770320047276195840"
+    },
+    "ts": 1603700211160
+}
 ```
 
 ### response
@@ -3444,27 +3466,28 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 ```json
 
 {
-  "data": {
-    "current_page": 1,
-    "total_page": 1,
-    "total_size": 7,
-    "transfer_record": [{
-      "amount": 0.01,
-      "asset": "USDT",
-      "margin_account": "BTC-USDT",
-      "from_margin_account": "BTC-USDT",
-      "to_margin_account": "BTC-USDT",
-      "id": 1660214269,
-      "sub_account_name": "feyondtest01",
-      "sub_uid": "1566233",
-      "transfer_type": 34,
-      "ts": 1585823672602
-    }]
-  },
-  "status": "ok",
-  "ts": 1585823674006
-}   
-
+    "status": "ok",
+    "data": {
+        "total_page": 2,
+        "current_page": 1,
+        "total_size": 2,
+        "transfer_record": [
+            {
+                "id": 57920,
+                "transfer_type": 34,
+                "amount": -10.000000000000000000,
+                "ts": 1603700211125,
+                "sub_uid": "12343678",
+                "sub_account_name": "tom",
+                "margin_account": "BTC-USDT",
+                "asset": "USDT",
+                "to_margin_account": "BTC-USDT",
+                "from_margin_account": "BTC-USDT"
+            }
+        ]
+    },
+    "ts": 1603700414957
+} 
 ```
 
 ### response
@@ -3509,17 +3532,18 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 #### **Note:**
 - represents transfer from transfer_out margin account to transfer_in margin account. The currency transferred shall be the same as the denominated currency of the transfer_out margin account.；
 - The denominated currency of the transfer_out margin account and transfer_in margin account must be the same. (eg, USDT can be transferred from BTC-USDT to ETH-USDT, but cannot be transferred from BTC-USDT to ETH-HUSD account)。
+- API rate limit for this interface is up to 10 times per minute.
 
 > response：
 
 ```json
 
 {
-  "status": "ok",
-  "ts": 158797866555,
-  "data":   {
-      "order_id": "122133213"
-  }
+    "status": "ok",
+    "data": {
+        "order_id": "770321554893758464"
+    },
+    "ts": 1603700570600
 }
 ```
 
@@ -3573,7 +3597,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 
  > eg：
  
- ```json
+```json
   {
   "status": "ok",
   "data":
@@ -3604,8 +3628,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
  "ts": 158797866555
 }
 
-
- ```
+```
 
 
 
@@ -3649,15 +3672,16 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 > Response:
 
 ```json
-   {
-      "status": "ok",
-      "data": {
-            "order_id": 633766664829804544,
-            "order_id_str": "633766664829804544",
-            "client_order_id": 1234
-          },
-      "ts": 158797866555
-    }
+
+{
+    "status": "ok",
+    "data": {
+        "order_id": 770323133537685504,
+        "client_order_id": 57012021022,
+        "order_id_str": "770323133537685504"
+    },
+    "ts": 1603700946949
+}
 ```
 
 
@@ -3715,28 +3739,27 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 ```json
 
-    {
-      "status": "ok",
-      "data": {
-        "errors":[
-          {
-            "index":1,
-            "err_code": 200417,
-            "err_msg": "invalid contract_code"
-           }
-         ],
-        "success":[
-          {
-            "index":2,
-            "order_id":161256,
-            "order_id_str": "161256",
-            "client_order_id":1344567
-           }
-         ]
-       },
-      "ts": 1490759594752
-    }
-
+{
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "index": 2,
+                "err_code": 1050,
+                "err_msg": "Customers order number is repeated. Please try again later."
+            }
+        ],
+        "success": [
+            {
+                "order_id": 770323847022211072,
+                "client_order_id": 57012021024,
+                "index": 1,
+                "order_id_str": "770323847022211072"
+            }
+        ]
+    },
+    "ts": 1603701117058
+}
 ```
 
 ###  Returning Parameter  
@@ -3789,21 +3812,18 @@ The return data from Cancel An Order Interface only means that order cancelation
 ```json
 
 {
-  "status": "ok",
-  "errors":[
-    {
-      "order_id":"633766664829804544",
-      "err_code": 1002,
-      "err_msg": "order doesn’t exist"
-     },
-    {
-      "order_id":"633766664829804544",
-      "err_code": 1002,
-      "err_msg": "order doesn’t exist"
-     }
-   ],
-  "successes":"161256,1344567",
-  "ts": 1490759594752
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "order_id": "770323133537685504",
+                "err_code": 1071,
+                "err_msg": "Repeated withdraw."
+            }
+        ],
+        "successes": "770323847022211072"
+    },
+    "ts": 1603701351602
 }
 ```
 
@@ -3842,24 +3862,14 @@ The return data from Cancel An Order Interface only means that order cancelation
  
 ```json
 
+
 {
-  "status": "ok",
-  "data": {
-    "errors":[
-      {
-        "order_id":"633766664829804544",
-        "err_code": 200417,
-        "err_msg": "invalid symbol"
-       },
-      {
-        "order_id":"633766664829804544",
-        "err_code": 200415,
-        "err_msg": "invalid symbol"
-       }
-      ],
-    "successes":"161256,1344567"
-   },
-  "ts": 1490759594752
+    "status": "ok",
+    "data": {
+        "errors": [],
+        "successes": "768883002062282752,770325103371542528,770325103388319744"
+    },
+    "ts": 1603701437838
 }
 ```
 
@@ -3904,18 +3914,18 @@ The return data from Cancel An Order Interface only means that order cancelation
 OK：
 {
     "status": "ok",
-    "ts": 1547521135713,
     "data": {
-          "contract_code":"BTC-USDT",
-          "lever_rate":10
-    }
+        "contract_code": "btc-usdt",
+        "lever_rate": 10
+    },
+    "ts": 1603699417036
 }
 No：
 {
     "status": "error",
-    "err_code": 2014,    
-    "err_msg": "Can't switch",  
-    "ts": 1547519608126
+    "err_code": 1045,
+    "err_msg": "Unable to switch leverage due to current holdings or open orders.",
+    "ts": 1603701654205
 }
 
 ```
@@ -3939,7 +3949,6 @@ No：
 
 - POST ` /linear-swap-api/v1/swap_lightning_close_position`
 
- 
 ### Request Parameter 
 
 |   Parameter Name                 |    Mandatory    |   Type   |   Desc             |   Value Range       |
@@ -3984,11 +3993,10 @@ No：
 
 {
     "status": "error",
-    "err_code": 20012,
-    "err_msg": "invalid contract_code",
-    "ts": 1490759594752
+    "err_code": 1048,
+    "err_msg": "Insufficient close amount available.",
+    "ts": 1603704587846
 }
-
 ```
 
 
@@ -4019,37 +4027,38 @@ client_order_id，order status query is available for orders placed within 24 ho
 ```json
 
 {
-  "data": [{
-    "symbol": "BTC",
-    "contract_code": "BTC-USDT",
-    "created_at": 1585824063859,
-    "direction": "buy",
-    "fee": 0,
-    "fee_asset": "USDT",
-    "lever_rate": 10,
-    "margin_asset": "USDT",
-    "margin_frozen": 0.0,
-    "offset": "open",
-    "order_id": 695342051289735168,
-    "order_id_str": "695342051289735168",
-    "client_order_id": null,
-    "order_price_type": "limit",
-    "order_source": "api",
-    "order_type": 1,
-    "price": 100,
-    "profit": 0,
-    "status": 7,
-    "trade_avg_price": null,
-    "trade_turnover": 0,
-    "trade_volume": 0,
-    "volume": 1,
-    "liquidation_type": "0",
-    "canceled_at": 1585824063859
-  }],
-  "status": "ok",
-  "ts": 1585824542208
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_code": "BTC-USDT",
+            "volume": 1,
+            "price": 13059.8,
+            "order_price_type": "opponent",
+            "order_type": 1,
+            "direction": "sell",
+            "offset": "open",
+            "lever_rate": 10,
+            "order_id": 770334322963152896,
+            "client_order_id": 57012021045,
+            "created_at": 1603703614712,
+            "trade_volume": 1,
+            "trade_turnover": 13.059800000000000000,
+            "fee": -0.005223920000000000,
+            "trade_avg_price": 13059.800000000000000000,
+            "margin_frozen": 0,
+            "profit": 0,
+            "status": 6,
+            "order_source": "api",
+            "order_id_str": "770334322963152896",
+            "fee_asset": "USDT",
+            "liquidation_type": "0",
+            "canceled_at": 0,
+            "margin_asset": "USDT"
+        }
+    ],
+    "ts": 1603703631815
 }
-
 
 ```
 
@@ -4123,64 +4132,57 @@ Please note that created_at can't send "0"
 ```json
 
 {
-  "status": "ok",
-  "data":{
-    "symbol": "BTC",
-    "contract_code": "BTC-USDT",
-    "volume": 111,
-    "price": 1111,
-    "order_price_type": "limit",
-    "direction": "buy",
-    "offset": "open",
-    "lever_rate": 10,
-    "margin_asset": "USDT",
-    "margin_frozen": 10,
-    "profit": 10,
-    "order_source": "web",
-    "created_at": 1408076414000,
-    "canceled_at": 1408076414000,
-    "final_interest": 0,
-    "adjust_value": 1,
-    "fee_asset":"USDT",
-    "liquidation_type":"0",
-    "order_id": 633766664829804544,
-    "order_id_str": "633766664829804544",
-    "client_order_id": 10683,
-    "trade_volume": 1,
-    "trade_turnover": 1200,
-    "order_type": "1",
-    "status": 6,
-    "trade_avg_price": 10,
-    "trades":[
-      {
-        "id":"112-633766664829804544-1",
-        "trade_id":112,
-        "trade_volume":1,
-        "trade_price":123.4555,
-        "trade_fee":0.234,
-        "trade_turnover":34.123,
-        "role": "maker",
-        "created_at": 1490759594752
-       }
-      ],
-    "total_page":15,
-    "total_size":3,
-    "current_page":3
+    "status": "ok",
+    "data": {
+        "symbol": "BTC",
+        "contract_code": "BTC-USDT",
+        "instrument_price": 0,
+        "final_interest": 0,
+        "adjust_value": 0,
+        "lever_rate": 10,
+        "direction": "sell",
+        "offset": "open",
+        "volume": 1.000000000000000000,
+        "price": 13059.800000000000000000,
+        "created_at": 1603703614712,
+        "canceled_at": 0,
+        "order_source": "api",
+        "order_price_type": "opponent",
+        "margin_frozen": 0,
+        "profit": 0,
+        "trades": [
+            {
+                "trade_id": 131560927,
+                "trade_price": 13059.800000000000000000,
+                "trade_volume": 1.000000000000000000,
+                "trade_turnover": 13.059800000000000000,
+                "trade_fee": -0.005223920000000000,
+                "created_at": 1603703614715,
+                "role": "taker",
+                "fee_asset": "USDT",
+                "id": "131560927-770334322963152896-1"
+            }
+        ],
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 1,
+        "liquidation_type": "0",
+        "fee_asset": "USDT",
+        "fee": -0.005223920000000000,
+        "order_id": 770334322963152896,
+        "order_id_str": "770334322963152896",
+        "client_order_id": 57012021045,
+        "order_type": "1",
+        "status": 6,
+        "trade_avg_price": 13059.800000000000000000,
+        "trade_turnover": 13.059800000000000000,
+        "trade_volume": 1.000000000000000000,
+        "margin_asset": "USDT"
     },
-  "ts": 1490759594752
+    "ts": 1603703678477
 }
 ```
 
-> Error:
-
-```json
-{
- "status":"error",
- "err_code":20029,
- "err_msg": "invalid symbol",
- "ts": 1490759594752
-}
-```
 
 ###  Returning Parameter 
 
@@ -4251,44 +4253,46 @@ Please note that created_at can't send "0"
 
 ```json
 
+
 {
-    "status":"ok",
-    "data":{
-        "orders":[
+    "status": "ok",
+    "data": {
+        "orders": [
             {
-                "symbol":"BTC",
-                "contract_code":"BTC-USDT",
-                "volume":10,
-                "price":11110,
-                "order_price_type":"opponent",
-                "order_type":1,
-                "direction":"buy",
-                "offset":"open",
-                "lever_rate":5,
-                "order_id":756216542115532800,
-                "client_order_id":null,
-                "created_at":1600337673460,
-                "trade_volume":0,
-                "trade_turnover":0,
-                "fee":0,
-                "trade_avg_price":null,
-                "margin_frozen":222.2,
-                "profit":0,
-                "status":3,
-                "order_source":"api",
-                "order_id_str":"756216542115532800",
-                "fee_asset":"USDT",
-                "liquidation_type":null,
-                "canceled_at":null,
-                "margin_asset":"USDT"
+                "symbol": "BTC",
+                "contract_code": "BTC-USDT",
+                "volume": 1,
+                "price": 13329,
+                "order_price_type": "limit",
+                "order_type": 1,
+                "direction": "sell",
+                "offset": "open",
+                "lever_rate": 10,
+                "order_id": 770326042832437248,
+                "client_order_id": 57012021028,
+                "created_at": 1603701640576,
+                "trade_volume": 0,
+                "trade_turnover": 0,
+                "fee": 0,
+                "trade_avg_price": null,
+                "margin_frozen": 1.332900000000000000,
+                "profit": 0,
+                "status": 3,
+                "order_source": "api",
+                "order_id_str": "770326042832437248",
+                "fee_asset": "USDT",
+                "liquidation_type": null,
+                "canceled_at": null,
+                "margin_asset": "USDT"
             }
         ],
-        "total_page":1,
-        "current_page":1,
-        "total_size":2
+        "total_page": 2,
+        "current_page": 1,
+        "total_size": 2
     },
-    "ts":1600393389518
+    "ts": 1603703993952
 }
+
 ```
 
 ###  Returning Parameter  
@@ -4356,41 +4360,42 @@ Please note that created_at can't send "0"
 > Response:
 
 ```json
+
 {
     "status": "ok",
     "data": {
         "orders": [
             {
-                "order_id": 758645826126630912,
+                "order_id": 770336866451992576,
                 "contract_code": "BTC-USDT",
                 "symbol": "BTC",
-                "lever_rate": 1,
+                "lever_rate": 10,
                 "direction": "sell",
-                "offset": "open",
-                "volume": 1,
-                "price": 10329.14,
-                "create_date": 1600916859890,
+                "offset": "close",
+                "volume": 1.000000000000000000,
+                "price": 13100.000000000000000000,
+                "create_date": 1603704221118,
                 "order_source": "web",
-                "order_price_type": 1,
+                "order_price_type": 6,
                 "order_type": 1,
-                "margin_frozen": 103.2914,
+                "margin_frozen": 0,
                 "profit": 0,
                 "trade_volume": 0,
                 "trade_turnover": 0,
                 "fee": 0,
                 "trade_avg_price": 0,
                 "status": 3,
-                "order_id_str": "758645826126630912",
+                "order_id_str": "770336866451992576",
                 "fee_asset": "USDT",
                 "liquidation_type": "0",
                 "margin_asset": "USDT"
             }
         ],
-        "total_page": 5,
+        "total_page": 10,
         "current_page": 1,
         "total_size": 10
     },
-    "ts": 1600917898909
+    "ts": 1603704312847
 }
 ```
 
@@ -4456,36 +4461,37 @@ Parameter Name |  Mandatory  |  Type  |  Desc                    |  Default  |  
 > Response:
 
 ```json
-    {
-        "status": "ok",
-        "data": {
-            "trades": [
-                {
-                    "match_id": 13674,
-                    "order_id": 758645772984799232,
-                    "symbol": "BTC",
-                    "contract_code": "BTC-USDT",
-                    "direction": "buy",
-                    "offset": "open",
-                    "trade_volume": 1,
-                    "trade_price": 10329.11,
-                    "trade_turnover": 103.2911,
-                    "trade_fee": -0.05164555,
-                    "offset_profitloss": 0,
-                    "create_date": 1600916848319,
-                    "role": "Taker",
-                    "order_source": "web",
-                    "order_id_str": "758645772984799232",
-                    "id": "13674-758645772984799232-1",
-                    "fee_asset": "USDT"
-                }
-            ],
-            "total_page": 4,
-            "current_page": 1,
-            "total_size": 7
-        },
-        "ts": 1600918927589
-    }
+
+{
+    "status": "ok",
+    "data": {
+        "trades": [
+            {
+                "match_id": 131560927,
+                "order_id": 770334322963152896,
+                "symbol": "BTC",
+                "contract_code": "BTC-USDT",
+                "direction": "sell",
+                "offset": "open",
+                "trade_volume": 1.000000000000000000,
+                "trade_price": 13059.800000000000000000,
+                "trade_turnover": 13.059800000000000000,
+                "trade_fee": -0.005223920000000000,
+                "offset_profitloss": 0,
+                "create_date": 1603703614715,
+                "role": "Taker",
+                "order_source": "api",
+                "order_id_str": "770334322963152896",
+                "id": "131560927-770334322963152896-1",
+                "fee_asset": "USDT"
+            }
+        ],
+        "total_page": 2,
+        "current_page": 1,
+        "total_size": 2
+    },
+    "ts": 1603704407235
+}   
 ```
 
 ### Returning Parameter
@@ -4606,10 +4612,9 @@ ts                     | true     | long    | timestamp                |        
 {
     "status": "error",
     "err_code": 1014,
-    "err_msg": "...",
-    "ts": 1547519608126
+    "err_msg": "This contract doesnt exist.",
+    "ts": 1603704820880
 }
-
 ```
 
 ## Cancel Trigger Order
@@ -4629,19 +4634,19 @@ ts                     | true     | long    | timestamp                |        
 ```json
 
 {
-  "status": "ok",
-  "data": {
-    "errors": [{
-        "order_id": "161251",
-        "err_code": 1061,
-        "err_msg": "invalid symbol"
-      }
-    ],
-    "successes": "161256,1344567"
-  },
-  "ts": 1490759594752
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "order_id": "34",
+                "err_code": 1061,
+                "err_msg": "This order doesnt exist."
+            }
+        ],
+        "successes": "1"
+    },
+    "ts": 1603704887184
 }
-
 ```
 
 ### response
@@ -4660,19 +4665,6 @@ ts                     | true     | long    | timestamp                |        
 | ts                         | true         | long     | response timestamp millseconds |  |
 
 
-> error response：
-
-```json
-
-{
-    "status": "error",
-    "err_code": 20012,
-    "err_msg": "invalid symbol",
-    "ts": 1490759594752
-}
-
-```
-
 ## Cancel All Trigger Orders
 
 - POST `/linear-swap-api/v1/swap_trigger_cancelall`
@@ -4690,18 +4682,12 @@ ts                     | true     | long    | timestamp                |        
 ```json
 
 {
-  "status": "ok",
-  "data": {
-    "errors":[
-      {
-        "order_id":"161251",
-        "err_code": 200417,
-        "err_msg": "invalid symbol"
-       }
-      ],
-    "successes":"161256,1344567"
-   },
-  "ts": 1490759594752
+    "status": "ok",
+    "data": {
+        "errors": [],
+        "successes": "2"
+    },
+    "ts": 1603704998960
 }
 
 ```
@@ -4728,9 +4714,9 @@ ts                     | true     | long    | timestamp                |        
 
 {
     "status": "error",
-    "err_code": 20012,
-    "err_msg": "invalid symbol",
-    "ts": 1490759594752
+    "err_code": 1051,
+    "err_msg": "No orders to cancel.",
+    "ts": 1603705063592
 }
 
 ```
@@ -4759,45 +4745,28 @@ ts                     | true     | long    | timestamp                |        
                 "symbol": "BTC",
                 "contract_code": "BTC-USDT",
                 "trigger_type": "ge",
-                "volume": 1,
+                "volume": 1.000000000000000000,
                 "order_type": 1,
-                "direction": "buy",
+                "direction": "sell",
                 "offset": "open",
-                "lever_rate": 1,
+                "lever_rate": 10,
                 "order_id": 4,
                 "order_id_str": "4",
                 "order_source": "api",
-                "trigger_price": 10387,
-                "order_price": 10367,
-                "created_at": 1600920155563,
-                "order_price_type": "limit",
-                "status": 2
-            },
-            {
-                "symbol": "BTC",
-                "contract_code": "BTC-USDT",
-                "trigger_type": "ge",
-                "volume": 1,
-                "order_type": 1,
-                "direction": "buy",
-                "offset": "open",
-                "lever_rate": 1,
-                "order_id": 3,
-                "order_id_str": "3",
-                "order_source": "api",
-                "trigger_price": 10387,
-                "order_price": 10367,
-                "created_at": 1600920150728,
+                "trigger_price": 13900.000000000000000000,
+                "order_price": 13900.000000000000000000,
+                "created_at": 1603705215654,
                 "order_price_type": "limit",
                 "status": 2
             }
         ],
         "total_page": 1,
         "current_page": 1,
-        "total_size": 2
+        "total_size": 1
     },
-    "ts": 1600920158872
+    "ts": 1603705219567
 }
+
 ```
 
 ### Returning Parameter
@@ -4834,17 +4803,6 @@ ts                     | true     | long    | timestamp                |        
 | status | int | true | order status：1:ready to submit、2:submited、3:order accepted 、8：canceled orders but not found、9：canceling order、10：failed'
 | \</orders\>                  |              |          |                            |                |
 
-> error response：
-
-```json
-
-{
-	"status": "error",
-	"err_code": 20012,
-	"err_msg": "invalid symbol",
-	"ts": 1490759594752
-}
-```
 
 ## Query Trigger Order History
 
@@ -4881,7 +4839,6 @@ ts                     | true     | long    | timestamp                |        
 - System will query the filled trigger order history by default 
 
 
-
 > Response:
 
 ```json
@@ -4894,73 +4851,37 @@ ts                     | true     | long    | timestamp                |        
                 "symbol": "BTC",
                 "contract_code": "BTC-USDT",
                 "trigger_type": "ge",
-                "volume": 1,
+                "volume": 1.000000000000000000,
                 "order_type": 1,
-                "direction": "buy",
+                "direction": "sell",
                 "offset": "open",
-                "lever_rate": 1,
-                "order_id": 2,
-                "order_id_str": "2",
+                "lever_rate": 10,
+                "order_id": 3,
+                "order_id_str": "3",
                 "relation_order_id": "-1",
                 "order_price_type": "limit",
                 "status": 6,
                 "order_source": "api",
-                "trigger_price": 10387,
+                "trigger_price": 13900.000000000000000000,
                 "triggered_price": null,
-                "order_price": 10367,
-                "created_at": 1600920075353,
+                "order_price": 13900.000000000000000000,
+                "created_at": 1603705155231,
                 "triggered_at": null,
                 "order_insert_at": 0,
-                "canceled_at": 1600920083590,
-                "fail_code": null,
-                "fail_reason": null
-            },
-            {
-                "symbol": "BTC",
-                "contract_code": "BTC-USDT",
-                "trigger_type": "ge",
-                "volume": 1,
-                "order_type": 1,
-                "direction": "buy",
-                "offset": "open",
-                "lever_rate": 1,
-                "order_id": 1,
-                "order_id_str": "1",
-                "relation_order_id": "-1",
-                "order_price_type": "limit",
-                "status": 6,
-                "order_source": "api",
-                "trigger_price": 10387,
-                "triggered_price": null,
-                "order_price": 10367,
-                "created_at": 1600919682900,
-                "triggered_at": null,
-                "order_insert_at": 0,
-                "canceled_at": 1600919759922,
+                "canceled_at": 1603705159520,
                 "fail_code": null,
                 "fail_reason": null
             }
         ],
-        "total_page": 1,
+        "total_page": 3,
         "current_page": 1,
-        "total_size": 2
+        "total_size": 3
     },
-    "ts": 1600920651099
+    "ts": 1603705603369
 }
 
 ```
 
-> Example of failure Query trigger order history
-
-```json
-
-{
-	"status": "error",
-	"err_code": 20012,
-	"err_msg": "invalid symbol",
-	"ts": 1490759594752
-}
-```
 
 ### Returning Parameter
 
@@ -5017,7 +4938,7 @@ ts                     | true     | long    | timestamp                |        
 
 This interface is used to transfer assets between Spot account and USDT Margined Swap account.
 
-API rate limit for this interface is up to 10 times per minute.
+API rate limit for this interface is 1 times/second.
 
 Transferring margin between Spot account and USDT Margined Swap account Interface, sets 8 decimal places for transferring amount of all coins.
 
@@ -5035,15 +4956,14 @@ Transferring margin between Spot account and USDT Margined Swap account Interfac
 
 ```json
 
- 正确的返回：
+ Yes：
 {
     "code": 200,
     "data": 176104252,
     "message": "Succeed",
-    "print-log": true,
     "success": true
 }
-错误的返回：
+No：
  {
    "code":1303,
    "data":null,
@@ -5546,23 +5466,22 @@ Add computed value into the Signature parameter in API request. Please note  the
 
 ```json
 
-    {
-     "ch": "market.BTC-USDT.kline.1min",
-     "ts": 1489474082831,
-     "tick": 
-        {
-         "id": 1489464480,
-         "mrid": 268168237,
-         "vol": 100,
-         "count": 0,
-         "open": 7962.62,
-         "close": 7962.62,
-         "low": 7962.62,
-         "high": 7962.62,
-         "amount": 0.3,
-         "trade_turnover": 100
-        }
+{
+    "ch":"market.BTC-USDT.kline.1min",
+    "ts":1603707124366,
+    "tick":{
+        "id":1603707120,
+        "mrid":131592424,
+        "open":13067.7,
+        "close":13067.7,
+        "high":13067.7,
+        "low":13067.7,
+        "amount":0.004,
+        "vol":4,
+        "trade_turnover":52.2708,
+        "count":1
     }
+}
 
 ```
 
@@ -5660,36 +5579,36 @@ Clients can request 2000 Klines at most in one request
 
 ```json
     
-    {
-     "rep": "market.BTC-USDT.kline.1min",
-     "status": "ok",
-     "id": "id4",
-     "wsid": 3925737956,
-     "tick": [
-       {
-        "vol": 100,
-        "count": 27,
-        "id": 1494478080,
-        "open": 10050.00,
-        "close": 10058.00,
-        "low": 10050.00,
-        "high": 10058.00,
-        "amount": 175798.757708,
-        "trade_turnover": 2000
-       },
-       {
-        "vol": 300,
-        "count": 28,
-        "id": 1494478140,
-        "open": 10058.00,
-        "close": 10060.00,
-        "low": 10056.00,
-        "high": 10065.00,
-        "amount": 158331.348600,
-        "trade_turnover": 2000
-       }
-     ]
-    }
+{
+    "id":"id4",
+    "rep":"market.BTC-USDT.kline.60min",
+    "wsid":467277265,
+    "status":"ok",
+    "data":[
+        {
+            "id":1603270800,
+            "open":12198,
+            "close":12196.7,
+            "low":11715.8,
+            "high":12300,
+            "amount":0.276,
+            "vol":276,
+            "trade_turnover":3315.9104,
+            "count":39
+        },
+        {
+            "id":1603274400,
+            "open":12196.7,
+            "close":12277.9,
+            "low":12111,
+            "high":12289.9,
+            "amount":0.198,
+            "vol":198,
+            "trade_turnover":2420.7728,
+            "count":21
+        }
+    ]
+}
     
 ```
 
@@ -5773,26 +5692,38 @@ Details are below:
 
 ```json
 
-    {
-     "ch": "market.BTC-USDT.depth.step0",
-     "ts": 1489474082831,
-     "tick":
-       { 
-        "mrid": 269073229,
-         "id": 1539843937,
-            "bids": [
-             [9999.9101,1], 
-             [9992.3089,2]
-                    ],
-             "asks": [
-              [10010.9800,10],
-              [10011.3900,15]
-                     ],
-	       "ts": 1539843937417,
-	       "version": 1539843937,
-	       "ch": "market.BTC-USDT.depth.step0"
-        }
+
+{
+    "ch":"market.BTC-USDT.depth.step6",
+    "ts":1603707576468,
+    "tick":{
+        "mrid":131596447,
+        "id":1603707576,
+        "bids":[
+            [
+                13071.9,
+                38
+            ],
+            [
+                13068,
+                5
+            ]
+        ],
+        "asks":[
+            [
+                13081.9,
+                197
+            ],
+            [
+                13099.7,
+                371
+            ]
+        ],
+        "ts":1603707576467,
+        "version":1603707576,
+        "ch":"market.BTC-USDT.depth.step6"
     }
+}
     
 ```
 
@@ -5853,27 +5784,41 @@ ch | true |  string | Data channel, Format： market.period | |
   contract_code         |  true           |  string     |    contract code          |        | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USDT" |
   size           |  true           |  int     |    Depth size      |        |  `20`: stands for 20 unmerged data. `150`:stands for 150 unmerged data.|
 
-### Response example:
+> Response example:
+
 ```json
+
 {
- "ch": "market.BCT-USDT.depth.size_150.high_freq",
- "ts": 1489474082831,
- "tick":{
-          "mrid": 269073229,
-          "id": 1539843937,
-          "bids": [
-                      [9999.9101,1], 
-                      [9992.3089,2]
-           ],
-          "asks": [
-                       [10010.9800,10],
-                       [10011.3900,15]
-           ],
-         "ts": 1539843937417,
-         "version": 1539843937,
-         "ch": "market.BCT-USDT.depth.size_150.high_freq",
-         "event":"update"
-  }
+    "ch":"market.BTC-USDT.depth.size_20.high_freq",
+    "tick":{
+        "asks":[
+            [
+                13081.9,
+                206
+            ],
+            [
+                13099.7,
+                371
+            ]
+        ],
+        "bids":[
+            [
+                13071.9,
+                38
+            ],
+            [
+                13060,
+                400
+            ]
+        ],
+        "ch":"market.BTC-USDT.depth.size_20.high_freq",
+        "event":"snapshot",
+        "id":131597620,
+        "mrid":131597620,
+        "ts":1603707712356,
+        "version":1512467
+    },
+    "ts":1603707712357
 }
 
 ```
@@ -5944,22 +5889,22 @@ Parameter Name  |  Mandatory  |    Type  |     Description   |  Default   |  Val
 
 ```json
 
-  {
-	"ch": "market.BTC-USDT.detail",
-	"ts": 1539842340724,
-	"tick": {
-		"id": 1539842340,
-		"mrid": 268041138,
-		"open": 6740.47,
-		"close": 7800,
-		"high": 7800,
-		"low": 6726.13,
-		"amount": 477.1200312075244664773339914558562673572,
-		"vol": 32414,
-        "trade_turnover":299541.15444,
-		"count": 1716
-	  }
-  }
+{
+    "ch":"market.BTC-USDT.detail",
+    "ts":1603707870528,
+    "tick":{
+        "id":1603707840,
+        "mrid":131599205,
+        "open":12916.2,
+        "close":13065.8,
+        "high":13205.3,
+        "low":12852.8,
+        "amount":30.316,
+        "vol":30316,
+        "trade_turnover":395073.4918,
+        "count":2983
+    }
+}
 
 ```
 
@@ -6024,19 +5969,25 @@ trade_turnover  |  true  |  decimal  |  Transaction amount, that is, sum (transa
 
 ```json
 
-    {
-     "ch": "market.BTC-USDT.bbo",
-     "ts": 1489474082831,
-     "tick":{
-        "ch": "market.BTC-USDT.bbo",
-        "mrid": 269073229,
-        "id": 1539843937,
-	    "bid": [9999.9101, 1],
-        "ask": [10010.9800, 10],
-        "ts": 1539843937417,
-        "version": 1539843937
-      }
+{
+    "ch":"market.BTC-USDT.bbo",
+    "ts":1603707934525,
+    "tick":{
+        "mrid":131599726,
+        "id":1603707934,
+        "bid":[
+            13064,
+            38
+        ],
+        "ask":[
+            13072.3,
+            205
+        ],
+        "ts":1603707934525,
+        "version":131599726,
+        "ch":"market.BTC-USDT.bbo"
     }
+}
 ```
 
 ### **Return Parameter**：
@@ -6111,25 +6062,26 @@ Parameter Name  |  Mandatory  |    Type  |     Description   |  Default   |  Val
 ```json
 
 {
-	"rep": "market.BTC-USDT.trade.detail",
-	"id": 1573468030,
-	"status": "ok",
-    "ts": 1494495766000,
-	"data": [{
-			"id": 601595424,
-			"price": "10195.64",
-			"amount": "100",
-			"direction": "buy",
-			"ts": 1494495766000
-		},
-		{
-			"id": 601595423,
-			"price": "10195.64",
-			"amount": "200",
-			"direction": "buy",
-			"ts": 1494495711000
-		}
-	]
+    "data":[
+        {
+            "amount":"22",
+            "ts":1603706942240,
+            "id":1315909380000,
+            "price":"13068.4",
+            "direction":"sell"
+        },
+        {
+            "amount":"2",
+            "ts":1603706947767,
+            "id":1315909430000,
+            "price":"13068.5",
+            "direction":"buy"
+        }
+    ],
+    "id":"id8",
+    "rep":"market.BTC-USDT.trade.detail",
+    "status":"ok",
+    "ts":1603708046534
 }
     
 ```
@@ -6196,20 +6148,23 @@ ts  |  true  |  long  |  server response time |   |
 ```json
 
 {
-  "ch": "market.BTC-USDT.trade.detail",
-  "ts": 1539831709042,
-  "tick": {
-     "id": 265842227,
-     "ts": 1539831709001,
-     "data": [{
-         "amount": 20,
-         "ts": 1539831709001,
-         "id": 265842227259096443,
-         "price": 6742.25,
-         "direction": "buy"
-    }]
-  }
+    "ch":"market.BTC-USDT.trade.detail",
+    "ts":1603708208346,
+    "tick":{
+        "id":131602265,
+        "ts":1603708208335,
+        "data":[
+            {
+                "amount":2,
+                "ts":1603708208335,
+                "id":1316022650000,
+                "price":13073.3,
+                "direction":"buy"
+            }
+        ]
+    }
 }
+
 
 ```
 
@@ -6283,18 +6238,18 @@ direction  |  true  |  string  |  Order direction  |   |
 ```json
 
 {
- "ch": "market.BTC-USDT.premium_index.1min",
- "ts": 1489474082831,
- "tick": 
-    {
-     "id": 1489464480,
-     "vol": "0",
-     "count": "0",
-     "open": "-0.0015",
-     "close": "-0.0015",
-     "low": "-0.0015",
-     "high": "-0.0015",
-     "amount": "0"
+    "ch":"market.BTC-USDT.premium_index.1min",
+    "ts":1603708380380,
+    "tick":{
+        "id":1603708380,
+        "open":"0.000068125",
+        "close":"0.000068125",
+        "high":"0.000068125",
+        "low":"0.000068125",
+        "amount":"0",
+        "vol":"0",
+        "count":"0",
+        "trade_turnover":"0"
     }
 }
 ```
@@ -6369,24 +6324,24 @@ direction  |  true  |  string  |  Order direction  |   |
 ```json
 
 {
- "rep": "market.BTC-USDT.premium_index.1min",
- "status": "ok",
- "id": "id4",
- "wsid": 1231323423,
- "ts": 1579489028884,
- "data": [
-   {
-    "vol": "0",
-    "count": "0",
-    "id": 1494478080,
-    "open": "-0.0015",
-    "close": "-0.0015",
-    "low": "-0.0015",
-    "high": "-0.0015",
-    "amount": "0",
-    "trade_turnover": "0"
-   }
- ]
+    "id":"id4",
+    "rep":"market.BTC-USDT.premium_index.15min",
+    "wsid":1524762738,
+    "ts":1603782744066,
+    "status":"ok",
+    "data":[
+        {
+            "id":1603641600,
+            "open":"0",
+            "close":"0.0000970833333333",
+            "low":"0",
+            "high":"0.0000997916666666",
+            "amount":"0",
+            "vol":"0",
+            "count":"0",
+            "trade_turnover":"0"
+        }
+    ]
 }
 
 ```
@@ -6456,22 +6411,22 @@ direction  |  true  |  string  |  Order direction  |   |
 ```json
 
 {
- "ch": "market.BTC-USDT.estimated_rate.1min",
- "ts": 1489474082831,
- "tick": 
-    {
-     "id": 1489464480,
-     "vol": "0",
-     "count": "0",
-     "open": "-0.000153",
-     "close": "-0.000153",
-     "low": "-0.000153",
-     "high": "-0.000153",
-     "amount": "0",
-     "trade_turnover": "0"
+    "ch":"market.BTC-USDT.estimated_rate.1min",
+    "ts":1603708560233,
+    "tick":{
+        "id":1603708560,
+        "open":"0.0001",
+        "close":"0.0001",
+        "high":"0.0001",
+        "low":"0.0001",
+        "amount":"0",
+        "vol":"0",
+        "count":"0",
+        "trade_turnover":"0"
     }
 }
 ```
+
 ###  parameters
 | **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
@@ -6526,7 +6481,8 @@ direction  |  true  |  string  |  Order direction  |   |
 | to     | true     | long  | end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than 'from' value              |     
 
 
-### Request Parameter：
+### req Request Parameter：
+
 | **Parameter Name**    | **Mandotary** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | contract_code      | true     | string | contract code          |         | Case-Insenstive.Both uppercase and lowercase are supported.."BTC-USDT","ETH-USDT"...                           |
@@ -6538,24 +6494,24 @@ direction  |  true  |  string  |  Order direction  |   |
 ```json
 
 {
- "rep": "market.BTC-USDT.estimated_rate.1min",
- "status": "ok",
- "id": "id4",
- "wsid": 1231323423,
- "ts": 1579489028884,
- "data": [
-   {
-    "vol": "0",
-    "count": "0",
-    "id": 1494478080,
-    "open": "-0.000153",
-    "close": "-0.000153",
-    "low": "-0.000153",
-    "high": "-0.000153",
-    "amount": "0",
-    "trade_turnover": "0"
-   }
- ]
+    "id":"id4",
+    "rep":"market.BTC-USDT.estimated_rate.15min",
+    "wsid":3674722864,
+    "ts":1603782867314,
+    "status":"ok",
+    "data":[
+        {
+            "id":1603641600,
+            "open":"0.0001",
+            "close":"0.0001",
+            "low":"0.0001",
+            "high":"0.0001",
+            "amount":"0",
+            "vol":"0",
+            "count":"0",
+            "trade_turnover":"0"
+        }
+    ]
 }
 ```
 ###  parameters
@@ -6619,18 +6575,17 @@ direction  |  true  |  string  |  Order direction  |   |
 ```json
 
 {
- "ch": "market.BTC-USDT.basis.1min.open",
- "ts": 1489474082831,
- "tick": [
-        {
-         "id": 12312321,
-         "contact_price": "0.4635",
-         "index_price": "0.4645",
-         "basis": "0.4142",
-         "basis_rate": "0.0024"
-       }
- ]
+    "ch":"market.BTC-USD.basis.15min.open",
+    "ts":1603709195504,
+    "tick":{
+        "id":1603709100,
+        "index_price":"13101.595",
+        "contract_price":"13100.9",
+        "basis":"-0.695",
+        "basis_rate":"-0.0000530469763414301846454572897422031"
+    }
 }
+
 ```
 
 ### Response Parameters
@@ -6700,23 +6655,24 @@ direction  |  true  |  string  |  Order direction  |   |
 ```json
 
 {
- "rep": "market.BTC-USDT.basis.1min.open",
- "status": "ok",
- "id": "id4",
- "wsid": 1231231231,
- "ts": 1579489028884,
- "data": [
+    "data":[
         {
-         "id": 12312321,
-         "contact_price": "0.4635",
-         "index_price": "0.4645",
-         "basis": "0.4142",
-         "basis_rate": "0.0024"
-       }
- ]
+            "basis":"-27.593412766666006",
+            "basis_rate":"-0.0021317871729511838",
+            "contract_price":"12916.2",
+            "id":1603641600,
+            "index_price":"12943.793412766667"
+        }
+    ],
+    "id":"id4",
+    "rep":"market.BTC-USDT.basis.15min.open",
+    "status":"ok",
+    "ts":1603783024207,
+    "wsid":1308653018
 }
 
 ```
+
 ### Response Parameters
 
 | **parameter name**      | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
@@ -6782,7 +6738,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
     "op": "notify", 
     "topic": "orders.btc-usdt", 
     "ts": 1489474082831, 
-    "uid": "1489474",
+    "uid": "123456789",
     "symbol": "BTC", 
     "contract_code": "BTC-USDT", 
     "volume": 111, 
@@ -6993,7 +6949,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
             "role":"taker"
         }
     ],
-    "uid":"114387879",
+    "uid":"123456789",
     "volume":1,
     "trade_volume":1,
     "direction":"buy",
@@ -7133,30 +7089,31 @@ To subscribe accounts equity data updates, the client has to make connection to 
 
 ```json
 
-
 {
- "op": "notify",
- "topic": "accounts.btc-usdt",
- "uid": "123456",
- "ts": 1585832015669,
- "event": "order.match",
- "data": [{
-     "symbol": "BTC",
-     "contract_code": "BTC-USDT",
-     "margin_asset": "USDT",
-     "margin_balance": 9.65300225033282,
-     "margin_static": 9.624326797617663,
-     "margin_position": 0.0357473851449755,
-     "margin_frozen": 0.01,
-     "margin_available": 9.607254865187846,
-     "profit_real": 0.001819856887332005,
-     "profit_unreal": 0.028675452715159,
-     "withdraw_available": 9.578579412472687,
-     "risk_rate": 210.93164485504528,
-     "liquidation_price": 174.14824361517893,
-     "lever_rate": 10,
-     "adjust_factor": 0.075
- }]
+    "op":"notify",
+    "topic":"accounts.btc-usdt",
+    "ts":1603711370689,
+    "event":"order.open",
+    "data":[
+        {
+            "symbol":"BTC",
+            "contract_code":"BTC-USDT",
+            "margin_balance":79.72434662,
+            "margin_static":79.79484662,
+            "margin_position":1.31303,
+            "margin_frozen":4.0662,
+            "margin_available":74.34511662,
+            "profit_real":0.03405608,
+            "profit_unreal":-0.0705,
+            "withdraw_available":74.34511662,
+            "risk_rate":14.745772976801512484,
+            "liquidation_price":92163.420962779156327543,
+            "lever_rate":10,
+            "adjust_factor":0.075,
+            "margin_asset":"USDT"
+        }
+    ],
+    "uid":"123456789"
 }
 
 ```
@@ -7278,29 +7235,32 @@ To subscribe position updates data, the client has to make connection to the ser
 
 ```json
 
+
 {
-	"op": "notify",
-	"topic": "positions",
-    "uid": "10086",
-	"ts": 1489474082831,
-	"event": "order.match",
-	"data": [{
-		"symbol": "BTC",
-		"contract_code": "BTC-USDT",
-		"volume": 1,
-		"available": 0,
-		"frozen": 1,
-		"cost_open": 422.78,
-		"cost_hold": 422.78,
-		"profit_unreal": 0.00007096,
-		"profit_rate": 0.07,
-		"profit": 0.97,
-		"position_margin": 3.4,
-		"lever_rate": 10,
-		"direction": "buy",
-        "last_price": 9584.41,
-        "margin_asset": "USDT"
-	}]
+    "op":"notify",
+    "topic":"positions",
+    "ts":1603711371803,
+    "event":"snapshot",
+    "data":[
+        {
+            "symbol":"BTC",
+            "contract_code":"BTC-USDT",
+            "volume":1,
+            "available":0,
+            "frozen":1,
+            "cost_open":13059.8,
+            "cost_hold":13059.8,
+            "profit_unreal":-0.0705,
+            "profit_rate":-0.05398244996094886,
+            "profit":-0.0705,
+            "position_margin":1.31303,
+            "lever_rate":10,
+            "direction":"sell",
+            "last_price":13130.3,
+            "margin_asset":"USDT"
+        }
+    ],
+    "uid":"123456789"
 }
 
 ```
@@ -7545,21 +7505,22 @@ To subscribe funding rate data, the client has to make connection to the server 
 > Response example when funding_rate is updated:
 
 ```json
-{ 
-      "op": "notify",            
-      "topic": "public.btc-usdt.funding_rate",    
-      "ts": 1489474082831,   
-      "data": [
+
+{
+    "op":"notify",
+    "topic":"public.BTC-USDT.funding_rate",
+    "ts":1603778748166,
+    "data":[
         {
-          "symbol": "BTC",
-          "contract_code": "BTC-USDT",
-          "fee_asset": "USDT", 
-          "funding_time": "1490759594752",
-          "funding_rate": "-0.12000001",
-          "estimated_rate": "-0.12000001",
-          "settlement_time": "1490759594752"
+            "symbol":"BTC",
+            "contract_code":"BTC-USDT",
+            "fee_asset":"USDT",
+            "funding_time":"1603778700000",
+            "funding_rate":"-0.000220068774978695",
+            "estimated_rate":"-0.000684397270167616",
+            "settlement_time":"1603785600000"
         }
-      ]
+    ]
 }
 
 ```
@@ -7674,21 +7635,25 @@ To subscribe contract infodata, the client has to make connection to the server 
 ###  Response example：
 
 ```json
+
 {
-    "op": "notify",           
-	"topic": "public.btc-usdt.contract_info",
-	"ts": 1489474082831,
-	"event":"init",
-	"data": [{
-		"symbol": "BTC",
-		"contract_code": "BTC-USDT",
-		"contract_size": 100,
-		"price_tick": 0.001,
-		"settlement_date": "1490759594752",
-		"create_date": "20200102",
-		"contract_status": 1
-	}]
+    "op":"notify",
+    "topic":"public.BTC-USDT.contract_info",
+    "ts":1603778748167,
+    "event":"init",
+    "data":[
+        {
+            "symbol":"BTC",
+            "contract_code":"BTC-USDT",
+            "contract_size":0.001,
+            "price_tick":0.1,
+            "settlement_date":"1603785600000",
+            "create_date":"20201021",
+            "contract_status":1
+        }
+    ]
 }
+
 ```
 
 ### Response data fields
@@ -7804,38 +7769,40 @@ To subscribe contract infodata, the client has to make connection to the server 
 ```json
 
 {
-  "op": "notify",           
-	"topic": "trigger_order.eos-usdt",
-	"ts": 1489474082831,
-	"uid": "15712398",
-	"event": "order",
-	"data":  [{
-                "symbol": "EOS",
-                "contract_code": "EOS-USDT",
-                "trigger_type": "ge",
-                "volume": 4,
-                "order_type": 1,
-                "direction": "sell",
-                "offset": "open",
-                "lever_rate": 1,
-                "order_id": 161251,
-                "order_id_str": "161251",
-                "relation_order_id": "88",
-                "order_price_type": "limit",
-                "status": 6,
-                "order_source": "web",
-                "trigger_price": 2,
-                "triggered_price": 2.03,
-                "order_price": 2,
-                "created_at": 1547448030638,
-                "triggered_at": 0,
-                "order_insert_at": 0,
-                "canceled_at": 1547448845593,
-                "fail_code": null,
-                "fail_reason": null
-            }
-        ]
+    "op":"notify",
+    "topic":"trigger_order.btc-usdt",
+    "ts":1603778055069,
+    "event":"order",
+    "uid":"123456789",
+    "data":[
+        {
+            "symbol":"BTC-USDT",
+            "contract_code":"BTC-USDT",
+            "trigger_type":"ge",
+            "volume":1,
+            "order_type":1,
+            "direction":"sell",
+            "offset":"open",
+            "lever_rate":10,
+            "order_id":5,
+            "order_id_str":"5",
+            "relation_order_id":"-1",
+            "order_price_type":"limit",
+            "status":2,
+            "order_source":"web",
+            "trigger_price":15000,
+            "triggered_price":null,
+            "order_price":15000,
+            "created_at":1603778055064,
+            "triggered_at":0,
+            "order_insert_at":0,
+            "canceled_at":0,
+            "fail_code":null,
+            "fail_reason":null
+        }
+    ]
 }
+
 ```
 
 ### Format Illustration on return data of order push：
