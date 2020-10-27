@@ -1797,7 +1797,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_risk_info?contract_code=BTC-U
         {
             "contract_code": "BTC-USDT",
             "insurance_fund": 499937.059826600000000000,
-            "estimated_clawback": 0E-18
+            "estimated_clawback": 0
         }
     ],
     "ts": 1603695455942
@@ -2630,7 +2630,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
             "margin_position": 0,
             "margin_frozen": 12.730000000000000000,
             "margin_available": 87.025058840000000000,
-            "profit_real": 0E-18,
+            "profit_real": 0,
             "profit_unreal": 0,
             "risk_rate": 7.761218290652003142,
             "withdraw_available": 87.025058840000000000000000000000000000,
@@ -3535,7 +3535,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
                 "transfer_type": 34,
                 "amount": -10.000000000000000000,
                 "ts": 1603700211125,
-                "sub_uid": "12343678",
+                "sub_uid": "123436789",
                 "sub_account_name": "tom",
                 "margin_account": "BTC-USDT",
                 "asset": "USDT",
@@ -3589,6 +3589,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 #### **备注：**
 - 从转出的保证金账户划转到转入的保证金账户，划转的币种必须为转出的保证金账户的计价币种；
 - 转出的保证金账户与转入的保证金账户的计价币种必须一致（如BTC-USDT可以划转USDT到ETH-USDT，而没办法划转到ETH-HUSD）。
+- 此接口的访问频次的限制为1分钟10次。。
 
 > 返回示例：
 
@@ -3709,7 +3710,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | volume           | long    | true  | 委托数量(张)                                  | |
 | direction        | string  | true  | 仓位方向 | "buy":买 "sell":卖 |
 | offset           | string  | true  | 开平方向    | "open":开 "close":平 |
-| lever_rate       | int     | true  | 杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单]             |   |
+| lever_rate       | int     | true  | 杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单;首次使用高倍杠杆(>20倍)，请使用主账号登录web端同意高倍杠杆协议后，才能使用接口下高倍杠杆(>20倍)]             |   |
 | order_price_type | string  | true  | 订单报价类型 | "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单, "opponent_ioc": 对手价-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 |
 
 ####  备注
@@ -3781,7 +3782,7 @@ orders_data  | List\<Object\>   |    |    |
 | volume   | true    |  long | 委托数量(张)  |      |
 | direction   |true   |  string | 仓位方向   |  "buy":买 "sell":卖    |
 | offset   | true  |  string |   开平方向    |  "open":开 "close":平    |
-| lever_rate     |  true    | int  | 杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单]             |      |
+| lever_rate     |  true    | int  | 杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单;首次使用高倍杠杆(>20倍)，请使用主账号登录web端同意高倍杠杆协议后，才能使用接口下高倍杠杆(>20倍)]             |      |
 | order_price_type            |  true |  string | 订单报价类型  | "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单, "opponent_ioc": 对手价-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 |
 
 ###  备注
@@ -3957,7 +3958,7 @@ ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   |
 | **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | contract_code | true | String | 合约代码	 | 比如“BTC-USDT” |
-| lever_rate | true | int | 要切换的杠杆倍数 |  |
+| lever_rate | true | int | 要切换的杠杆倍数;首次使用高倍杠杆(>20倍)，请使用主账号登录web端同意高倍杠杆协议后，才能使用接口下高倍杠杆(>20倍) |  |
 
 > ** 响应示例**
 
@@ -4464,7 +4465,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
                 "trade_price": 13059.800000000000000000,
                 "trade_turnover": 13.059800000000000000,
                 "trade_fee": -0.005223920000000000,
-                "offset_profitloss": 0E-18,
+                "offset_profitloss": 0,
                 "create_date": 1603703614715,
                 "role": "Taker",
                 "order_source": "api",
@@ -4611,7 +4612,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | volume | true | decimal | 委托数量(张) |  |
 | direction | true | string | buy:买 sell:卖 |  |
 | offset | true | string | open:开 close:平 |  |
-| lever_rate | false | int | 开仓必须填写，平仓可以不填。杠杆倍数[开仓若有10倍多单，就不能再下20倍多单] |  |
+| lever_rate | false | int | 开仓必须填写，平仓可以不填。杠杆倍数[开仓若有10倍多单，就不能再下20倍多单;首次使用高倍杠杆(>20倍)，请使用主账号登录web端同意高倍杠杆协议后，才能使用接口下高倍杠杆(>20倍)] |  |
 
 #### 备注：
 
@@ -4963,7 +4964,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 
 此接口用户币币现货账户与USDT本位永续合约账户之间的资金划转。
 
-该接口的访问频次的限制为1分钟10次。
+该接口的访问频次的限制为1秒/1次。
 
 注意：请求地址为火币Global地址
 
@@ -6774,7 +6775,7 @@ direction  |  true  |  string  |  买卖方向  |   |
     "op": "notify", 
     "topic": "orders.btc-usdt", 
     "ts": 1489474082831, 
-    "uid": "1489474",
+    "uid": "123456789",
     "symbol": "BTC", 
     "contract_code": "BTC-USDT", 
     "volume": 111, 
@@ -7271,7 +7272,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
             "role":"taker"
         }
     ],
-    "uid":"114387879",
+    "uid":"123456789",
     "volume":1,
     "trade_volume":1,
     "direction":"buy",
@@ -7786,7 +7787,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
     "topic":"trigger_order.btc-usdt",
     "ts":1603778055069,
     "event":"order",
-    "uid":"144455922",
+    "uid":"123456789",
     "data":[
         {
             "symbol":"BTC-USDT",
