@@ -4422,7 +4422,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 This interface is used to transfer assets between Spot account and Option account.
 
 
-API rate limit for this interface is up to 10 times per minute.
+API rate limit for this interface is 1 times/second.
 
 Transferring margin between Spot account and Option account Interface, sets 8 decimal places for transferring amount of all coins.
 
