@@ -4315,7 +4315,7 @@ price  |  decimal  |   false  |  价格  |
 volume  |    long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
 offset  |    string  |    true  |  "open":开 "close":平  |
-lever_rate  |  int  | true  |  杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单, "平仓"可以不填杠杆倍数。lever_rate支持用户在该次下单所选合约品种下的所有实际可用杠杆倍数，不局限为原来的 1、5、10、20]  |
+lever_rate  |  int  | true  |  杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单, "平仓"可以不填杠杆倍数;首次使用高倍杠杆(>20倍)，请使用主账号登录web端同意高倍杠杆协议后，才能使用接口下高倍杠杆(>20倍)]  |
 order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单, "opponent_ioc"： 对手价-IOC下单，"optimal_5_ioc"：最优5档-IOC下单，"optimal_10_ioc"：最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单,"opponent_fok"： 对手价-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 |
 
 ###  备注
@@ -4325,6 +4325,8 @@ order_price_type |  string  |    true  |  订单报价类型 "limit":限价 "opp
 对手价下单price价格参数不用传，对手价下单价格是买一和卖一价,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单price价格参数不用传，"limit":限价，"post_only":只做maker单 需要传价格，"fok"：全部成交或立即取消，"ioc":立即成交并取消剩余。
 
 Post only(也叫maker only订单，只下maker单)每个周期合约的开仓/平仓的下单数量限制为500000，同时也会受到用户持仓数量限制。
+
+若存在持仓，那么下单时杠杆倍数必须与持仓杠杆相同，否则下单失败。若需使用新杠杆下单，则必须先使用切换杠杆接口将持仓杠杆切换成功后再下单。
 
 ###   开平方向
 
@@ -4410,7 +4412,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 ---------------------------------- | -------------- |  ---------- | -------------------------------------------------------------- |
  orders_data  | List\<Object\>   |  一次最多10个订单  |    |  
 
-- orders_data参数对象详情：
+### orders_data参数对象详情：
 
 参数名  |    参数类型   |  必填   |  描述  |
 ---------------------------------- | -------------- |  ---------- | -------------------------------------------------------------- |
@@ -4422,7 +4424,7 @@ price  |  decimal  |   false  |  价格  |
 volume  |  long  |  true  |  委托数量(张)  |
 direction  |  string  |    true  |  "buy":买 "sell":卖  |
 offset  |  string  |    true  |  "open":开 "close":平  |
-leverRate  |   int  | true  |  杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单;lever_rate 支持用户在该次下单所选合约品种下的所有实际可用 杠杆倍数，不局限为原来的 1、5、10、20]  |
+leverRate  |   int  | true  |  杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单;首次使用高倍杠杆(>20倍)，请使用主账号登录web端同意高倍杠杆协议后，才能使用接口下高倍杠杆(>20倍)]  |
 orderPriceType |  string  |    true  |  订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc：IOC订单，fok：FOK订单,"opponent_ioc"： 对手价-IOC下单，"optimal_5_ioc"：最优5档-IOC下单，"optimal_10_ioc"：最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单,"opponent_fok"： 对手价-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单  |
 
 ###  备注
@@ -4430,6 +4432,8 @@ orderPriceType |  string  |    true  |  订单报价类型 "limit":限价 "oppon
 如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单。
 
 对手价下单price价格参数不用传，对手价下单价格是买一和卖一价,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单price价格参数不用传，"limit":限价，"post_only":只做maker单 需要传价格，"fok"：全部成交或立即取消，"ioc":立即成交并取消剩余。
+
+若存在持仓，那么下单时杠杆倍数必须与持仓杠杆相同，否则下单失败。若需使用新杠杆下单，则必须先使用切换杠杆接口将持仓杠杆切换成功后再下单。
 
 请注意：一次最多允许10个订单。
 
@@ -4648,7 +4652,7 @@ ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   |
 | **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | symbol | true | String | 品种代码	 | "BTC","ETH"... |
-| lever_rate | true | int | 要切换的杠杆倍数 | |
+| lever_rate | true | int | 要切换的杠杆倍数。[首次使用高倍杠杆(>20倍)，请使用主账号登录web端同意高倍杠杆协议后，才能使用接口下高倍杠杆(>20倍)] | |
 
 > Response:
 
@@ -5353,6 +5357,8 @@ client_order_id | false | long | 用户自己的订单id |  |
   
   - optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单order_price价格参数不用传，"limit":限价需要传价格。
   
+  - 若存在持仓，那么下单时杠杆倍数必须与持仓杠杆相同，否则下单失败。若需使用新杠杆下单，则必须先使用切换杠杆接口将持仓杠杆切换成功后再下单。
+  
  >  Request:
  
  ```json
@@ -5385,7 +5391,7 @@ client_order_id | false | long | 用户自己的订单id |  |
 | volume | true | int | 委托数量(张) |  |
 | direction | true | string | buy:买 sell:卖 |  |
 | offset | true | string | open:开 close:平 |  |
-| lever_rate | true | int | 杠杆倍数[开仓若有10倍多单，就不能再下20倍多单;lever_rate 支持用户在该次下单所选合约品种下的所有实际可用 杠杆倍数，不局限为原来的 1、5、10、20] |  |
+| lever_rate | true | int | 杠杆倍数[开仓若有10倍多单，就不能再下20倍多单;首次使用高倍杠杆(>20倍)，请使用主账号登录web端同意高倍杠杆协议后，才能使用接口下高倍杠杆(>20倍)] |  |
 
 > 正确的返回:
 
@@ -5798,7 +5804,7 @@ client_order_id | false | long | 用户自己的订单id |  |
 
 从现货现货账户转至交割合约账户，类型为`pro-to-futures`; 从交割合约账户转至现货账户，类型为`futures-to-pro`
 
-该接口的访问频次的限制为1分钟10次。
+该接口的访问频次的限制为1秒/1次。
 
 注意：请求地址为火币Global地址
 
