@@ -2731,10 +2731,6 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 ```
 
-### 备注：
- - 母账户与每个子账户相互划转限频10次/分钟。
-
-
 ### 返回参数
 
 | 参数名称 | 是否必须 | 类型   | 描述                       | 取值范围       |
@@ -2745,7 +2741,9 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | order_id | true     | long   | 划转订单ID                 |                |
 | \</data\>    |          |        |                            |                |
 
+### 备注：
 
+ - 母账户与每个子账户相互划转限频10次/分钟。
 
 
 ## 获取母账户下的所有母子账户划转记录
