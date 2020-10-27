@@ -358,7 +358,9 @@ api.hbdm.com\n
         "swap_heartbeat":1,
         "swap_estimated_recovery_time":null,
         "option_heartbeat":1,
-        "option_estimated_recovery_time":null
+        "option_estimated_recovery_time":null,
+        "linear_swap_heartbeat":1,
+        "linear_swap_estimated_recovery_time":null
     },
     "ts":1557714418033
 }
