@@ -4030,7 +4030,7 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-api/v1/swap_risk_info?co
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"insurance_fund"</span><span class="p">:</span><span class="w"> </span><span class="mf">499937.059826600000000000</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"estimated_clawback"</span><span class="p">:</span><span class="w"> </span><span class="mi">0E-18</span><span class="w">
+            </span><span class="s2">"estimated_clawback"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603695455942</span><span class="w">
@@ -6177,7 +6177,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
             </span><span class="s2">"margin_position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="s2">"margin_frozen"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.730000000000000000</span><span class="p">,</span><span class="w">
             </span><span class="s2">"margin_available"</span><span class="p">:</span><span class="w"> </span><span class="mf">87.025058840000000000</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mi">0E-18</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profit_real"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="s2">"profit_unreal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
             </span><span class="s2">"risk_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.761218290652003142</span><span class="p">,</span><span class="w">
             </span><span class="s2">"withdraw_available"</span><span class="p">:</span><span class="w"> </span><span class="mf">87.025058840000000000000000000000000000</span><span class="p">,</span><span class="w">
@@ -8568,7 +8568,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
                 </span><span class="s2">"transfer_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">34</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">-10.000000000000000000</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603700211125</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12343678"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123436789"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"sub_account_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"margin_account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
@@ -8770,6 +8770,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <ul>
 <li>从转出的保证金账户划转到转入的保证金账户，划转的币种必须为转出的保证金账户的计价币种；</li>
 <li>转出的保证金账户与转入的保证金账户的计价币种必须一致（如BTC-USDT可以划转USDT到ETH-USDT，而没办法划转到ETH-HUSD）。</li>
+<li>此接口的访问频次的限制为1分钟10次。。</li>
 </ul>
 
 <blockquote>
@@ -9109,7 +9110,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>lever_rate</td>
 <td>int</td>
 <td>true</td>
-<td>杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单]</td>
+<td>杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单;首次使用高倍杠杆(&gt;20倍)，请使用主账号登录web端同意高倍杠杆协议后，才能使用接口下高倍杠杆(&gt;20倍)]</td>
 <td></td>
 </tr>
 <tr>
@@ -9291,7 +9292,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>lever_rate</td>
 <td>true</td>
 <td>int</td>
-<td>杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单]</td>
+<td>杠杆倍数[“开仓”若有10倍多单，就不能再下20倍多单;首次使用高倍杠杆(&gt;20倍)，请使用主账号登录web端同意高倍杠杆协议后，才能使用接口下高倍杠杆(&gt;20倍)]</td>
 <td></td>
 </tr>
 <tr>
@@ -9741,7 +9742,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>lever_rate</td>
 <td>true</td>
 <td>int</td>
-<td>要切换的杠杆倍数</td>
+<td>要切换的杠杆倍数;首次使用高倍杠杆(&gt;20倍)，请使用主账号登录web端同意高倍杠杆协议后，才能使用接口下高倍杠杆(&gt;20倍)</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -11325,7 +11326,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
                 </span><span class="s2">"trade_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">13059.800000000000000000</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.059800000000000000</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"trade_fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.005223920000000000</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"offset_profitloss"</span><span class="p">:</span><span class="w"> </span><span class="mi">0E-18</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"offset_profitloss"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603703614715</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taker"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
@@ -11765,7 +11766,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>lever_rate</td>
 <td>false</td>
 <td>int</td>
-<td>开仓必须填写，平仓可以不填。杠杆倍数[开仓若有10倍多单，就不能再下20倍多单]</td>
+<td>开仓必须填写，平仓可以不填。杠杆倍数[开仓若有10倍多单，就不能再下20倍多单;首次使用高倍杠杆(&gt;20倍)，请使用主账号登录web端同意高倍杠杆协议后，才能使用接口下高倍杠杆(&gt;20倍)]</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -12720,7 +12721,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <h3 id='e0361480e3-15'>备注</h3>
 <p>此接口用户币币现货账户与USDT本位永续合约账户之间的资金划转。</p>
 
-<p>该接口的访问频次的限制为1分钟10次。</p>
+<p>该接口的访问频次的限制为1秒/1次。</p>
 
 <p>注意：请求地址为火币Global地址</p>
 
@@ -16781,7 +16782,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
     </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orders.btc-usdt"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474082831</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1489474"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="p">,</span><span class="w"> 
@@ -17884,7 +17885,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
             </span><span class="s2">"role"</span><span class="p">:</span><span class="s2">"taker"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"uid"</span><span class="p">:</span><span class="s2">"114387879"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uid"</span><span class="p">:</span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
@@ -19029,7 +19030,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="s2">"trigger_order.btc-usdt"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603778055069</span><span class="p">,</span><span class="w">
     </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"order"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"uid"</span><span class="p">:</span><span class="s2">"144455922"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uid"</span><span class="p">:</span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
