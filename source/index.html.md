@@ -3650,7 +3650,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | volume             | long               | true          | Numbers of orders (volume)                                   |
 | direction          | string             | true          | Transaction direction                                        |
 | offset             | string             | true          | "open", "close"                                              |
-| lever_rate         | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate |
+| lever_rate         | int                | true          | Leverage rate [ if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate; Using Leverage greater than 20 times requires prior approval of high-leverage agreement for the first time. ]|
 | order_price_type   | string             | true     |  "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,fok：FOK Order, "opponent_ioc"：IOC order using the BBO price，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK|
 
 ###  Note ： 
@@ -3724,7 +3724,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | volume                                | long               | true          | Numbers of orders (volume)                                   |
 | direction                             | string             | true          | Transaction direction                                        |
 | offset                                | string             | true          | "open": "close"                                              |
-| lever_rate                            | int                | true          | Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate |
+| lever_rate                            | int                | true          | Leverage rate [ if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate; Using Leverage greater than 20 times requires prior approval of high-leverage agreement for the first time. ] |
 | order_price_type   | string             | true     | "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order, "opponent_ioc"：IOC order using the BBO price，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK|
 
 ###  Note  ：
@@ -3905,7 +3905,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | **Parameter Name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | contract_code | true | string | contract code	 |  “BTC-USDT” |
-| lever_rate | true | int | Leverage to switch |  |
+| lever_rate | true | int | Leverage to switch [Using Leverage greater than 20 times requires prior approval of high-leverage agreement for the first time.] |  |
 
 > Response:
 
@@ -4565,7 +4565,7 @@ ts                     | true     | long    | timestamp                |        
 | volume | true | decimal | volume |  |
 | direction | true | string | buy sell |  |
 | offset | true | string | open close |  |
-| lever_rate | false | int | Long leverage shall be equal to short leverage. |  |
+| lever_rate | false | int | Long leverage shall be equal to short leverage.[Using Leverage greater than 20 times requires prior approval of high-leverage agreement for the first time.] |  |
 
 #### Note
   
