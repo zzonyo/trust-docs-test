@@ -2731,6 +2731,10 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 ```
 
+### 备注：
+ - 母账户与每个子账户相互划转限频10次/分钟。
+
+
 ### 返回参数
 
 | 参数名称 | 是否必须 | 类型   | 描述                       | 取值范围       |
@@ -4413,7 +4417,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 
 此接口用户币币现货账户与期权合约账户之间的资金划转。 这是broker提供的接口，不受合约控制和维护
 
-该接口的访问频次的限制为1分钟10次。
+该接口的访问频次的限制为1秒/1次。
 
 注意：请求地址为火币Global地址
 
