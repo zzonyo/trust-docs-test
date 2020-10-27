@@ -327,7 +327,6 @@ Please note that, for both public interface and private interface, there are rat
 
 - Interface `https://api.hbdm.com/heartbeat/`
 
-
 ### Returning Parameter
 | Parameter Name | Parameter Type   |   Desc         |
 | ------------------ | ------------------ | ------------- | -------------- |
