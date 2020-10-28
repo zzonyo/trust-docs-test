@@ -40,7 +40,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ## 1.0.0 2020-10-26 14:00(GMT+8)
  
-# USDT Margined Swap API Access Guide
+# Swap API Access Guide
 
 ##  API List
 
@@ -865,7 +865,7 @@ PS: USDT Margined swap api is similar to Coin margined swap api and future api.
 
 -->
 
-# USDT Margined Swap API FAQ
+# Swap API FAQ
 
 ## Access and Authentication
 
@@ -1122,7 +1122,7 @@ When you report an API error, you need to attach your request URL, the original 
 If it is an order-related issue, use the API order query interface linear-swap-api/v1/swap_order_info to keep the complete log returned and provide your UID and order number.
 
 
-# USDT Margined Swap Market Data interface
+# Swap Market Data interface
 
 ## Query Swap Info 
 
@@ -2551,7 +2551,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | ts | true  | long | created time |  |
 
 
-# USDT Margined Swap Account Interface
+# Swap Account Interface
 
 ## Query User’s Account Information
 
@@ -3632,7 +3632,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 
 
 
-# USDT Margined Swap Trade Interface
+# Swap Trade Interface
 
 ##  Place an Order 
 
@@ -4931,7 +4931,7 @@ ts                     | true     | long    | timestamp                |        
 
 
 
-# USDT Margined Swap Transferring Interface
+# Swap Transferring Interface
 
 ##  Transfer margin between Spot account and USDT Margined Swap account 
 
@@ -5061,7 +5061,7 @@ Response Code | Desc in Chinese |  Desc in English  |
 
 
 
-# USDT Margined Swap WebSocket Reference 
+# Swap WebSocket Reference 
 
 ## API List
 
