@@ -3902,7 +3902,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 
 - Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.
 
-- The interface limits the number of requests to 3 times/second.
+- The interface limits the number of requests to 1 time per 3 seconds.
 
 ###  Request Parameter
 
