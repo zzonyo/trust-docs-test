@@ -3589,7 +3589,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 #### **备注：**
 - 从转出的保证金账户划转到转入的保证金账户，划转的币种必须为转出的保证金账户的计价币种；
 - 转出的保证金账户与转入的保证金账户的计价币种必须一致（如BTC-USDT可以划转USDT到ETH-USDT，而没办法划转到ETH-HUSD）。
-- 此接口的访问频次的限制为1分钟10次。。
+- 此接口的访问频次的限制为1分钟10次。
 
 > 返回示例：
 
