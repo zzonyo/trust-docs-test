@@ -4667,18 +4667,6 @@ created_at禁止传0。
     
 ```
 
->错误:
-
-```json
-
-    {
-     "status":"error",
-     "err_code":20029,
-     "err_msg": "invalid contract_code",
-     "ts": 1490759594752
-    }
-    
-```
 
 ###  返回数据
 
@@ -8252,7 +8240,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 
 {
     "op":"notify",
-    "topic":"public.*.funding_rate",
+    "topic":"public.BTC-USD.funding_rate",
     "ts":1603879631291,
     "data":[
         {
@@ -8304,7 +8292,8 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
  
 > 正确的取消订阅请求:
 
-```                                  
+```json
+                                  
 {                                    
   "op": "unsub",                     
   "topic": "public.BTC-USD.funding_rate",   
@@ -8381,7 +8370,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 
 {
     "op":"notify",
-    "topic":"public.*.contract_info",
+    "topic":"public.BTC-USD.contract_info",
     "ts":1603879734428,
     "event":"snapshot",
     "data":[
@@ -8511,7 +8500,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 
 {
     "op":"notify",
-    "topic":"trigger_order.*",
+    "topic":"trigger_order.theta-usd",
     "ts":1603880263724,
     "event":"order",
     "uid":"123456789",
