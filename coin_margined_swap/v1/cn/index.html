@@ -11051,18 +11051,6 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603872939505</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre>
-<blockquote>
-<p>错误:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-    </span><span class="p">{</span><span class="w">
-     </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"error"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"err_code"</span><span class="p">:</span><span class="mi">20029</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid contract_code"</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490759594752</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-
 </span></code></pre><h3 id='b691cfe782-2'>返回数据</h3>
 <table><thead>
 <tr>
@@ -19942,7 +19930,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"topic"</span><span class="p">:</span><span class="s2">"public.*.funding_rate"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="s2">"public.BTC-USD.funding_rate"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603879631291</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
         </span><span class="p">{</span><span class="w">
@@ -20067,12 +20055,13 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <blockquote>
 <p>正确的取消订阅请求:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{                                    
-  "op": "unsub",                     
-  "topic": "public.BTC-USD.funding_rate",   
-  "cid": "40sG903yz80oDFWr"          
-}                                    
-</code></pre><h3 id='4efe6ad8fa-5'>取消订阅请求数据格式说明</h3>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">                                    
+  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">                     
+  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.BTC-USD.funding_rate"</span><span class="p">,</span><span class="w">   
+  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">          
+</span><span class="p">}</span><span class="w">                                    
+</span></code></pre><h3 id='4efe6ad8fa-5'>取消订阅请求数据格式说明</h3>
 <table><thead>
 <tr>
 <th style="text-align: left">字段名称</th>
@@ -20201,7 +20190,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"topic"</span><span class="p">:</span><span class="s2">"public.*.contract_info"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="s2">"public.BTC-USD.contract_info"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603879734428</span><span class="p">,</span><span class="w">
     </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"snapshot"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
@@ -20468,7 +20457,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"topic"</span><span class="p">:</span><span class="s2">"trigger_order.*"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="s2">"trigger_order.theta-usd"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603880263724</span><span class="p">,</span><span class="w">
     </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"order"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"uid"</span><span class="p">:</span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
