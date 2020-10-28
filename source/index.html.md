@@ -440,8 +440,10 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
   - Interface name: Query contract financial record
   - Interface type: User private interface
   - URL: /swap-api/v1/swap_financial_record
+  
+
  
-# API Access Guide
+# Swap API Access Guide
 
 ##  API List
 
@@ -1269,7 +1271,7 @@ PS: Coin Margined Swap api is similar to future api.
 
 - <a href='https://github.com/hbdmapi/huobi_futures_Postman'>Postman</a>
 
-# API FAQ
+# Swap API FAQ
 
 ## Access and Authentication
 
@@ -1526,7 +1528,7 @@ When you report an API error, you need to attach your request URL, the original 
 If it is an order-related issue, use the API order query interface swap-api/ v1/swap_order_info to keep the complete log returned and provide your UID and order number.
 
 
-# Market Data interface
+# Swap Market Data interface
 
 ## Query Swap Info 
 
@@ -2893,7 +2895,7 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 
 
 
-# Account Interface
+# Swap Account Interface
 
 ## Query User’s Account Information
 
@@ -4077,7 +4079,7 @@ last_price | decimal  | true  | Last Price                                      
 
 
 
-# Trade Interface
+# Swap Trade Interface
 
 ##  Place an Order 
 
@@ -5765,7 +5767,7 @@ ts                     | true     | long    | timestamp                |        
 
 
 
-# Transferring Interface
+# Swap Transferring Interface
 
 ##  Transfer margin between Spot account and Coin Margined Swap account 
 
@@ -5897,7 +5899,7 @@ Response Code | Desc in Chinese |  Desc in English  |
 
 
 
-# WebSocket Reference 
+# Swap WebSocket Reference 
 
 ## API List
 
