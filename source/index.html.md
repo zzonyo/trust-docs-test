@@ -38,6 +38,24 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.0.1 2020-10-29 【Updated: websocket messages of account topic will be pushed when leverage switch succeeds; websocket messages of position topic will be pushed when leverage switch succeeds;】
+
+### 1、Subscribe Account Equity Updates Data（Return parameters added “switch_lever_rate” event type to represent switching leverages. When the leverage is successfully switched, a latest information on assets will be pushed with event “switch_lever_rate".）
+   
+   -  Interface Name：Subscribe Account Equity Updates Data
+
+   - Interface Type：private
+
+   - Subscribe topic：accounts.$contract_code
+
+### 2、Subscribe Position Updates（Return parameters added “switch_lever_rate” event type to represent switching leverages. When the leverage is successfully switched, a latest information on positions will be pushed with event “switch_lever_rate" (the information will not be pushed when the user's position is 0).）
+   
+   - Interface Name：Subscribe Position Updates
+
+   - Interface Type：private
+
+   - Subscribe topic：positions.$contract_code
+
 ## 1.0.0 2020-10-26 14:00(GMT+8)
  
 # Swap API Access Guide
@@ -260,7 +278,7 @@ Future, Coin Margined Swap,Option Swap and USDT Margined Swap are using separate
 
 Please note that, for both public interface and private interface, there are rate limits, more details are as below:
 
-* Generally, the private interface rate limit of API key is at most 30 times every 3 second for each UID (this 30 times every 3 second rate limit is shared by all the altcoins contracts).
+* Generally, the private interface rate limit of API key is at most 39 times every 3 second for each UID (this 39 times every 3 second rate limit is shared by all the altcoins contracts).
 
 * For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 120 times every 3 second at most for each IP (this 120 times every 3 second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).
 
@@ -5112,7 +5130,8 @@ If you have further queries about Huobi USDT Margined Swap order push subscripti
 ## API Rate Limit Illustration
 
 There is rate limit for both public and private interfaces. More details are laid out as below:
-- Generally, for the private interfaces, users need to user API keys. The rate limit for each UID is 30 times at most every 3 seconds. (Please note that the 30 times/3s of rate limit mentioned above are shared by all contracts (all coins and contracts types expiring at different date).
+
+- Generally, for the private interfaces, users need to user API keys. The rate limit for each UID is 39 times at most every 3 seconds. (Please note that the 39 times/3s of rate limit mentioned above are shared by all contracts (all coins and contracts types expiring at different date).
 
 - For public interfaces used to get information of non-market data (such as request information of index, price limit, delivery and settlement, positions, etc.), the rate limit for each IP is 120 times every 3 seconds. (Please note that the 120 times/3s rate limit is shared by all the requests for non-market data under this UID)
 
@@ -7131,7 +7150,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | topic    | string | Subscribe Topic Name |
 | uid                   | string  | account uid                                              |
 | ts                        | long  | Time of Respond Generation, Unit: Millisecond                          |
-| event                     | string  | notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (ncluding transfer with exchange accounts, transfer between main account and sub-account, and tranfer between different margin accounts.), system (contract.system), other asset change(other), initial margin(init)        |
+| event                     | string  | notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (ncluding transfer with exchange accounts, transfer between main account and sub-account, and tranfer between different margin accounts.), system (contract.system), other asset change(other), switch leverage(switch_lever_rate), initial margin(init)        |
 | \<data\>            |   |                                                        |
 | symbol                    | string    | Coins. "BTC","ETH"...                     |
 | contract_code           | string  | Contract Code                                                       |
@@ -7279,7 +7298,7 @@ To subscribe position updates data, the client has to make connection to the ser
 | topic                   | string  | Required;  topic                                              |
 | uid                   | string  | account uid                                              |
 | ts                     | long  | Time of Respond Generation, Unit: Millisecond	                           |
-| event                  | string  | Related events of position change notification, such as order creation and position closing (order.close), order filled (order.match) (except for liquidation, settlement and delivery), settlement and delivery (settlement), order liquidation (order.liquidation), order cancellation (order.cancel),  initial positions (init), triggered by system periodic push (snapshot).     |
+| event                  | string  | Related events of position change notification, such as order creation and position closing (order.close), order filled (order.match) (except for liquidation, settlement and delivery), settlement and delivery (settlement), order liquidation (order.liquidation), order cancellation (order.cancel), switch leverage(switch_lever_rate),  initial positions (init), triggered by system periodic push (snapshot).     |
 | \<data\>            |   |                                                        |
 | symbol                 | string    | Coin. "BTC","ETH"...                     |
 | contract_code          | string  | Contract Code                                                      |
