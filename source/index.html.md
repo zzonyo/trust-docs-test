@@ -968,7 +968,7 @@ Future, Coin Margined Swap,Option Swap and USDT Margined Swap are using separate
 
 Please note that, for both public interface and private interface, there are rate limits, more details are as below:
 
-* Generally, the private interface rate limit of API key is at most 62 times every 3 seconds for each UID (Trade Interface: at most 31 times every 3 seconds. Read Interface: at most 31 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date). <a href= https://docs.huobigroup.com/docs/dm/v1/en/#api-list > API Interface List </a> 
+* Generally, the private interface rate limit of API key is at most 48 times every 3 seconds for each UID (Trade Interface: at most 24 times every 3 seconds. Read Interface: at most 24 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date). <a href= https://docs.huobigroup.com/docs/dm/v1/en/#api-list > API Interface List </a> 
 
 * For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 120 times every 3 seconds at most for each IP (this 120 times every 3 seconds public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).
 
@@ -6280,7 +6280,7 @@ If you have further queries about Huobi Future order push subscription, please r
 
 There is rate limit for both public and private interfaces. More details are laid out as below:
 
-- Generally, the private interface rate limit of API key is at most 62 times every 3 seconds for each UID (Trade Interface: at most 31 times every 3 seconds. Read Interface: at most 31 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date).
+- Generally, the private interface rate limit of API key is at most 48 times every 3 seconds for each UID (Trade Interface: at most 24 times every 3 seconds. Read Interface: at most 24 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date).
 
 - For public interfaces used to get information of non-market data (such as request information of index, price limit, delivery and settlement, positions, etc.), the rate limit for each IP is 120 times every 3 seconds. (Please note that the 120 times/3s rate limit is shared by all the requests for non-market data under this UID)
 
@@ -8272,7 +8272,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 
 ### Note
 
-  - The websocket subscription of accounts will be pushed every 5 seconds with the event "snapshot". It will not be pushed if there is a push in 5 seconds. 
+  - A regular push of account is performed every 5 sedconds.The event field of the reponse is "snapshot".If there is a push in 5 seconds, snapshot push will be skipped.
 
 
 ## Unsubscribe Account Equity Updates Data (ubsub)
@@ -8421,7 +8421,7 @@ To subscribe position updates data, the client has to make connection to the ser
 
 ### Note
 
- - The websocket subscription of positions will be pushed every 5 seconds with the event "snapshot". It will not be pushed if there is a push in 5 seconds. 
+ - A regular push of position is performed every 5 sedconds.The event field of the reponse is "snapshot".If there is a push in 5 seconds, snapshot push will be skipped.
 
  - When switching leverage with no positions, the event "switch_lever_rate" will not be pushed by the position topic.
 
