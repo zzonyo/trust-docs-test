@@ -1682,7 +1682,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <p>Please note that, for both public interface and private interface, there are rate limits, more details are as below:</p>
 
 <ul>
-<li><p>Generally, the private interface rate limit of API key is at most 39 times every 3 second for each UID (this 39 times every 3 second rate limit is shared by all the altcoins contracts).</p></li>
+<li><p>Generally, the private interface rate limit of API key is at most 30 times every 3 second for each UID (this 30 times every 3 second rate limit is shared by all the altcoins contracts).</p></li>
 <li><p>For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 120 times every 3 second at most for each IP (this 120 times every 3 second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).</p></li>
 <li><p>For public interface to get market data such as  Get Kline data, Get Market Data Overview, Get Contract Information,Get market in-depth data, Get premium index Kline, Get real-time forecast capital rate kline, Get basis data, Get the last Trade of a Contract and so on：</p>
 
@@ -14884,7 +14884,7 @@ You are recommended to read the status code from the returned message. If the ab
 <p>There is rate limit for both public and private interfaces. More details are laid out as below:</p>
 
 <ul>
-<li><p>Generally, for the private interfaces, users need to user API keys. The rate limit for each UID is 39 times at most every 3 seconds. (Please note that the 39 times/3s of rate limit mentioned above are shared by all contracts (all coins and contracts types expiring at different date).</p></li>
+<li><p>Generally, for the private interfaces, users need to user API keys. The rate limit for each UID is 30 times at most every 3 seconds. (Please note that the 30 times/3s of rate limit mentioned above are shared by all contracts (all coins and contracts types expiring at different date).</p></li>
 <li><p>For public interfaces used to get information of non-market data (such as request information of index, price limit, delivery and settlement, positions, etc.), the rate limit for each IP is 120 times every 3 seconds. (Please note that the 120 times/3s rate limit is shared by all the requests for non-market data under this UID)</p></li>
 <li><p>For public interface to get market data such as  Get Kline data, Get Market Data Overview, Get Contract Information,Get market in-depth data, Get premium index Kline, Get real-time forecast capital rate kline, Get basis data, Get the last Trade of a Contract and so on：</p></li>
 </ul>
@@ -18864,7 +18864,7 @@ Details are below:</p></li>
 </tbody></table>
 <h3 id='note-33'>Note:</h3>
 <ul>
-<li>Account topic will be pushed every 5s.</li>
+<li>A regular push of account is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</li>
 </ul>
 
 <blockquote>
@@ -19286,7 +19286,7 @@ Details are below:</p></li>
 </tbody></table>
 <h3 id='note-34'>Note:</h3>
 <ul>
-<li><p>Position topic will be pushed every 5s.</p></li>
+<li><p>A regular push of position is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</p></li>
 <li><p>When switching leverage with no positions, the event &quot;switch_lever_rate&quot; will not be pushed by the position topic.</p></li>
 </ul>
 <h2 id='unsubscribe-position-updates-data-unsub'>Unsubscribe Position Updates Data(unsub)</h2>
