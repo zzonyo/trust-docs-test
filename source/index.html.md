@@ -278,7 +278,7 @@ Future, Coin Margined Swap,Option Swap and USDT Margined Swap are using separate
 
 Please note that, for both public interface and private interface, there are rate limits, more details are as below:
 
-* Generally, the private interface rate limit of API key is at most 39 times every 3 second for each UID (this 39 times every 3 second rate limit is shared by all the altcoins contracts).
+* Generally, the private interface rate limit of API key is at most 30 times every 3 second for each UID (this 30 times every 3 second rate limit is shared by all the altcoins contracts).
 
 * For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 120 times every 3 second at most for each IP (this 120 times every 3 second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).
 
@@ -5131,7 +5131,7 @@ If you have further queries about Huobi USDT Margined Swap order push subscripti
 
 There is rate limit for both public and private interfaces. More details are laid out as below:
 
-- Generally, for the private interfaces, users need to user API keys. The rate limit for each UID is 39 times at most every 3 seconds. (Please note that the 39 times/3s of rate limit mentioned above are shared by all contracts (all coins and contracts types expiring at different date).
+- Generally, for the private interfaces, users need to user API keys. The rate limit for each UID is 30 times at most every 3 seconds. (Please note that the 30 times/3s of rate limit mentioned above are shared by all contracts (all coins and contracts types expiring at different date).
 
 - For public interfaces used to get information of non-market data (such as request information of index, price limit, delivery and settlement, positions, etc.), the rate limit for each IP is 120 times every 3 seconds. (Please note that the 120 times/3s rate limit is shared by all the requests for non-market data under this UID)
 
@@ -7107,7 +7107,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | topic    | string | Required； Subscribe Topic Name，Required subscribe accounts.$contract_code   Subscribe/unsubscribe the balance change of a given coin，when the value of $contract_code is “*”, it means to subscribe/unsubscribe the balance change of all coins; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT" |
 
 ### Note:
- - Account topic will be pushed every 5s.
+ - A regular push of account is performed every 5 sedconds.The event field of the reponse is "snapshot".If there is a push in 5 seconds, snapshot push will be skipped.
 
 > When there is any balance change, the Server will send a notification with the return parameter. For example:
 
@@ -7319,7 +7319,7 @@ To subscribe position updates data, the client has to make connection to the ser
 
 ### Note:
 
- - Position topic will be pushed every 5s.
+ - A regular push of position is performed every 5 sedconds.The event field of the reponse is "snapshot".If there is a push in 5 seconds, snapshot push will be skipped.
  
  - When switching leverage with no positions, the event "switch_lever_rate" will not be pushed by the position topic.
 
