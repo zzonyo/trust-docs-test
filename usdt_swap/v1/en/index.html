@@ -268,6 +268,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-0-1-2020-10-29-updated-websocket-messages-of-account-topic-will-be-pushed-when-leverage-switch-succeeds-websocket-messages-of-position-topic-will-be-pushed-when-leverage-switch-succeeds" class="toc-h2 toc-link" data-title="1.0.1 2020-10-29 【Updated: websocket messages of account topic will be pushed when leverage switch succeeds; websocket messages of position topic will be pushed when leverage switch succeeds;】">1.0.1 2020-10-29 【Updated: websocket messages of account topic will be pushed when leverage switch succeeds; websocket messages of position topic will be pushed when leverage switch succeeds;】</a>
+                  </li>
+                  <li>
                     <a href="#1-0-0-2020-10-26-14-00-gmt-8" class="toc-h2 toc-link" data-title="1.0.0 2020-10-26 14:00(GMT+8)">1.0.0 2020-10-26 14:00(GMT+8)</a>
                   </li>
               </ul>
@@ -697,7 +700,19 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-0-0-2020-10-26-14-00-gmt-8'>1.0.0 2020-10-26 14:00(GMT+8)</h2><h1 id='swap-api-access-guide'>Swap API Access Guide</h1><h2 id='api-list'>API List</h2>
+<h1 id='changelog'>Changelog</h1><h2 id='1-0-1-2020-10-29-updated-websocket-messages-of-account-topic-will-be-pushed-when-leverage-switch-succeeds-websocket-messages-of-position-topic-will-be-pushed-when-leverage-switch-succeeds'>1.0.1 2020-10-29 【Updated: websocket messages of account topic will be pushed when leverage switch succeeds; websocket messages of position topic will be pushed when leverage switch succeeds;】</h2><h3 id='1-subscribe-account-equity-updates-data-return-parameters-added-switch_lever_rate-event-type-to-represent-switching-leverages-when-the-leverage-is-successfully-switched-a-latest-information-on-assets-will-be-pushed-with-event-switch_lever_rate-quot'>1、Subscribe Account Equity Updates Data（Return parameters added “switch_lever_rate” event type to represent switching leverages. When the leverage is successfully switched, a latest information on assets will be pushed with event “switch_lever_rate&quot;.）</h3>
+<ul>
+<li><p>Interface Name：Subscribe Account Equity Updates Data</p></li>
+<li><p>Interface Type：private</p></li>
+<li><p>Subscribe topic：accounts.$contract_code</p></li>
+</ul>
+<h3 id='2-subscribe-position-updates-return-parameters-added-switch_lever_rate-event-type-to-represent-switching-leverages-when-the-leverage-is-successfully-switched-a-latest-information-on-positions-will-be-pushed-with-event-switch_lever_rate-quot-the-information-will-not-be-pushed-when-the-user-39-s-position-is-0'>2、Subscribe Position Updates（Return parameters added “switch_lever_rate” event type to represent switching leverages. When the leverage is successfully switched, a latest information on positions will be pushed with event “switch_lever_rate&quot; (the information will not be pushed when the user&#39;s position is 0).）</h3>
+<ul>
+<li><p>Interface Name：Subscribe Position Updates</p></li>
+<li><p>Interface Type：private</p></li>
+<li><p>Subscribe topic：positions.$contract_code</p></li>
+</ul>
+<h2 id='1-0-0-2020-10-26-14-00-gmt-8'>1.0.0 2020-10-26 14:00(GMT+8)</h2><h1 id='swap-api-access-guide'>Swap API Access Guide</h1><h2 id='api-list'>API List</h2>
 <table><thead>
 <tr>
 <th>permission type</th>
@@ -1282,7 +1297,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <p>Please note that, for both public interface and private interface, there are rate limits, more details are as below:</p>
 
 <ul>
-<li><p>Generally, the private interface rate limit of API key is at most 30 times every 3 second for each UID (this 30 times every 3 second rate limit is shared by all the altcoins contracts).</p></li>
+<li><p>Generally, the private interface rate limit of API key is at most 39 times every 3 second for each UID (this 39 times every 3 second rate limit is shared by all the altcoins contracts).</p></li>
 <li><p>For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 120 times every 3 second at most for each IP (this 120 times every 3 second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).</p></li>
 <li><p>For public interface to get market data such as  Get Kline data, Get Market Data Overview, Get Contract Information,Get market in-depth data, Get premium index Kline, Get real-time forecast capital rate kline, Get basis data, Get the last Trade of a Contract and so on：</p>
 
@@ -13351,10 +13366,10 @@ You are recommended to read the status code from the returned message. If the ab
 
 <p>If you have further queries about Huobi USDT Margined Swap order push subscription, please refer to <a href="https://docs.huobigroup.com/docs/usdt_swap/v1/en/#code-demo">Demo</a></p>
 <h2 id='api-rate-limit-illustration-2'>API Rate Limit Illustration</h2>
-<p>There is rate limit for both public and private interfaces. More details are laid out as below:
-- Generally, for the private interfaces, users need to user API keys. The rate limit for each UID is 30 times at most every 3 seconds. (Please note that the 30 times/3s of rate limit mentioned above are shared by all contracts (all coins and contracts types expiring at different date).</p>
+<p>There is rate limit for both public and private interfaces. More details are laid out as below:</p>
 
 <ul>
+<li><p>Generally, for the private interfaces, users need to user API keys. The rate limit for each UID is 39 times at most every 3 seconds. (Please note that the 39 times/3s of rate limit mentioned above are shared by all contracts (all coins and contracts types expiring at different date).</p></li>
 <li><p>For public interfaces used to get information of non-market data (such as request information of index, price limit, delivery and settlement, positions, etc.), the rate limit for each IP is 120 times every 3 seconds. (Please note that the 120 times/3s rate limit is shared by all the requests for non-market data under this UID)</p></li>
 <li><p>For public interface to get market data such as  Get Kline data, Get Market Data Overview, Get Contract Information,Get market in-depth data, Get premium index Kline, Get real-time forecast capital rate kline, Get basis data, Get the last Trade of a Contract and so on：</p></li>
 </ul>
@@ -17469,7 +17484,7 @@ Details are below:</p></li>
 <tr>
 <td>event</td>
 <td>string</td>
-<td>notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (ncluding transfer with exchange accounts, transfer between main account and sub-account, and tranfer between different margin accounts.), system (contract.system), other asset change(other), initial margin(init)</td>
+<td>notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (ncluding transfer with exchange accounts, transfer between main account and sub-account, and tranfer between different margin accounts.), system (contract.system), other asset change(other), switch leverage(switch_lever_rate), initial margin(init)</td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
@@ -17749,7 +17764,7 @@ Details are below:</p></li>
 <tr>
 <td>event</td>
 <td>string</td>
-<td>Related events of position change notification, such as order creation and position closing (order.close), order filled (order.match) (except for liquidation, settlement and delivery), settlement and delivery (settlement), order liquidation (order.liquidation), order cancellation (order.cancel),  initial positions (init), triggered by system periodic push (snapshot).</td>
+<td>Related events of position change notification, such as order creation and position closing (order.close), order filled (order.match) (except for liquidation, settlement and delivery), settlement and delivery (settlement), order liquidation (order.liquidation), order cancellation (order.cancel), switch leverage(switch_lever_rate),  initial positions (init), triggered by system periodic push (snapshot).</td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
