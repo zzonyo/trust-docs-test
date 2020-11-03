@@ -1889,22 +1889,23 @@ contract_code   |  string         |  false|      BTC180914  |
 > Response:
 
 ```json
-    {
-      "status": "ok",
-      "data": [
+
+{
+    "status": "ok",
+    "data": [
         {
-          "symbol": "BTC",
-          "contract_code": "BTC180914",
-          "contract_type": "this_week",
-          "contract_size": 100,
-          "price_tick": 0.001,
-          "delivery_date": "20180704",
-          "create_date": "20180604",
-          "contract_status": 1
-         }
-        ],
-      "ts":158797866555
-    }
+            "symbol": "BTC",
+            "contract_code": "BTC201225",
+            "contract_type": "quarter",
+            "contract_size": 100,
+            "price_tick": 0.01,
+            "delivery_date": "20201225",
+            "create_date": "20200605",
+            "contract_status": 1
+        }
+    ],
+    "ts": 1604296501822
+}
 ```
 
 ###  返回参数
@@ -1944,17 +1945,18 @@ symbol         |  string         |  false       |  支持大小写，"BTC","ETH"
 > Response:
 
 ```json
-    {
-      "status":"ok",
-      "data": [
-         {
-           "symbol": "BTC",
-           "index_price":471.0817,
-           "index_ts": 1490759594752
-          }
-        ],
-      "ts": 1490759594752
-    }
+
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "index_price": 13707.26,
+            "index_ts": 1604296614010
+        }
+    ],
+    "ts": 1604296620746
+}
 ```
 
 ###  返回参数
@@ -1995,18 +1997,20 @@ contract_code   |  string         |  false      |  BTC180914 ...  |
 > Response:
 
 ```json
-    {
-      "status":"ok",
-      "data": 
-       [{
-          "symbol":"BTC",
-          "high_limit":443.07,
-          "low_limit":417.09,
-          "contract_code":"BTC180914",
-          "contract_type":"this_week"
-         }],
-      "ts": 1490759594752
-    }
+
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_code": "BTC201225",
+            "contract_type": "quarter",
+            "high_limit": 14724.88,
+            "low_limit": 13057.92
+        }
+    ],
+    "ts": 1604296680648
+}
 ```
 
 ###  返回参数
@@ -2045,18 +2049,20 @@ contract_code  |   string  |    false  | BTC180914  |
 > Response:
 
 ```json
-    {
-      "status":"ok",
-      "data":
-        [{
-          "symbol":"BTC",
-          "contract_type": "this_week",
-          "volume":123,
-          "amount":106,
-          "contract_code": "BTC180914"
-         }],
-      "ts": 1490759594752
-    }
+
+{
+    "status": "ok",
+    "data": [
+        {
+            "volume": 3057834,
+            "amount": 22013.565930537597871378,
+            "symbol": "BTC",
+            "contract_type": "quarter",
+            "contract_code": "BTC201225"
+        }
+    ],
+    "ts": 1604296751272
+}
 ```
 
 ###  返回参数
@@ -2092,14 +2098,14 @@ symbol  |  string  |    true  | 支持大小写，"BTC","ETH"...  |
 > Response:
 
 ```json
-    {
-      "status":"ok",
-      "data":
-        {
-          "delivery_price": 3806.4615259197324414715719     
-         },
-      "ts": 1490759594752
-    }
+
+{
+    "status": "ok",
+    "data": {
+        "delivery_price": 13212.3643864774624373956594
+    },
+    "ts": 1604296995036
+}
 ```
 
 ###  返回参数
@@ -2133,22 +2139,22 @@ symbol  |    string  |    false  |  支持大小写，"BTC","ETH"...，如果缺
 
 ```json
 
-    {
-      "status": "ok",
-      "data": [
+{
+    "status": "ok",
+    "data": [
         {
-          "symbol": "BTC",
-          "open": 1,
-          "close": 1,
-          "cancel": 1,
-          "transfer_in": 1,
-          "transfer_out": 1,
-          "master_transfer_sub": 1,
-          "sub_transfer_master": 1
+            "symbol": "BTC",
+            "open": 1,
+            "close": 1,
+            "cancel": 1,
+            "transfer_in": 1,
+            "transfer_out": 1,
+            "master_transfer_sub": 1,
+            "sub_transfer_master": 1
         }
-     ],
-     "ts": 158797866555
-    }
+    ],
+    "ts": 1604297099976
+}
     
 ```
 
@@ -2216,26 +2222,39 @@ type  |  string  |    true  |  仅支持小写，获得150档深度数据，使�
 > Response:
 
 ```json
-    {
-      "ch":"market.BTC_CQ.depth.step5",
-      "status":"ok",
-        "tick":{
-          "asks":[
-            [6580,3000],
-            [70000,100]
+
+{
+    "ch":"market.BTC_NQ.depth.step6",
+    "status":"ok",
+    "tick":{
+        "asks":[
+            [
+                14100.87,
+                163
             ],
-          "bids":[
-            [10,3],
-            [2,1]
+            [
+                14100.88,
+                20
+            ]
+        ],
+        "bids":[
+            [
+                14098.09,
+                53
             ],
-          "ch":"market.BTC_CQ.depth.step5",
-          "id":1536980854,
-          "mrid":6903717,
-          "ts":1536980854171,
-          "version":1536980854
-        },
-      "ts":1536980854585
-    }
+            [
+                14098.08,
+                75
+            ]
+        ],
+        "ch":"market.BTC_NQ.depth.step6",
+        "id":1604297395,
+        "mrid":113765352864,
+        "ts":1604297395012,
+        "version":1604297395
+    },
+    "ts":1604297395085
+}
 ```
 
 ###  返回参数
@@ -2260,7 +2279,7 @@ type  |  string  |    true  |  仅支持小写，获得150档深度数据，使�
 
 ### 备注
 
-- 用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。
+- 合并深度时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。
 
 - step1至step5,step14,step15是进行了深度合并后的150档深度数据，step7至step13是进行了深度合并后的20档深度数据，对应精度如下：
 
@@ -2271,8 +2290,8 @@ type  |  string  |    true  |  仅支持小写，获得150档深度数据，使�
 |step3、step9|0.001|
 |step4、step10|0.01|
 |step5、step11|0.1|
-|step12、step14|1|
-|step13、step15|10|
+|step14、step12|1|
+|step15、step13|10|
 
 
 ## 获取K线数据
@@ -2321,33 +2340,34 @@ to  |  false  |  int  |   结束时间戳 10位 单位S |    |
 > Response:
 
 ```json
-    {
-      "ch": "market.BTC_CQ.kline.1min",
-      "data": [
+
+{
+    "ch": "market.BTC_NQ.kline.5min",
+    "data": [
         {
-          "vol": 2446,
-          "close": 5000,
-          "count": 2446,
-          "high": 5000,
-          "id": 1529898120,
-          "low": 5000,
-          "open": 5000,
-          "amount": 48.92
-         },
+            "amount": 4.30994018951037,
+            "close": 14103.1,
+            "count": 39,
+            "high": 14110,
+            "id": 1604297400,
+            "low": 14098.29,
+            "open": 14098.75,
+            "vol": 608
+        },
         {
-          "vol": 0,
-          "close": 5000,
-          "count": 0,
-          "high": 5000,
-          "id": 1529898780,
-          "low": 5000,
-          "open": 5000,
-          "amount": 0
-         }
-       ],
-      "status": "ok",
-      "ts": 1529908345313
-    }
+            "amount": 0.19851299586596685,
+            "close": 14104.87,
+            "count": 1,
+            "high": 14104.87,
+            "id": 1604297700,
+            "low": 14104.87,
+            "open": 14104.87,
+            "vol": 28
+        }
+    ],
+    "status": "ok",
+    "ts": 1604297729928
+}
 ```
 
 ###  返回参数
@@ -2409,24 +2429,31 @@ symbol  |    true  |  string  |  合约名称  |  支持大小写，如"BTC_CW"�
 > Response:
 
 ```json
+
 {
-  "ch": "market.BTC_CW.detail.merged",
-  "status": "ok",
-  "tick": {
-    "amount": "70265.639784675159904085762749331596223598",
-    "ask": [6643.79, 293],
-    "bid": [6643.34, 51],
-    "close": "6643.35",
-    "count": 128191,
-    "high": "6870.19",
-    "id": 1585310012,
-    "low": "6590.64",
-    "open": "6624.73",
-    "ts": 1585310012632,
-    "vol": "4696346"
-  },
-  "ts": 1585310012632
- }
+    "ch": "market.BTC_NQ.detail.merged",
+    "status": "ok",
+    "tick": {
+        "amount": "4478.2911316482577028620799060719867257944",
+        "ask": [
+            14114.01,
+            177
+        ],
+        "bid": [
+            14112.71,
+            28
+        ],
+        "close": "14114",
+        "count": 18805,
+        "high": "14299.99",
+        "id": 1604298319,
+        "low": "14028.78",
+        "open": "14229.47",
+        "ts": 1604298319019,
+        "vol": "633708"
+    },
+    "ts": 1604298319019
+}
 ```
 
 ###  返回参数
@@ -2475,13 +2502,13 @@ symbol  |    true  |  string  |  合约名称  |  |  支持大小写，如"BTC_C
       "id": 消息id,
       "ts": 最新成交时间,
       "data": [
-        {
-       "id": 成交id,
-        "price": 成交价钱,
-         "amount": 成交量(张)，买卖双边成交量之和,
-         "direction": 主动成交方向,
-         "ts": 成交时间
-        }
+         {
+            "id": 成交id,
+            "price": 成交价钱,
+            "amount": 成交量(张)，买卖双边成交量之和,
+            "direction": 主动成交方向,
+            "ts": 成交时间
+         }
       ]
     }
 ```
@@ -2490,24 +2517,25 @@ symbol  |    true  |  string  |  合约名称  |  |  支持大小写，如"BTC_C
 > Response:
 
 ```json
-    {
-      "ch": "market.BTC_CQ.trade.detail",
-      "status": "ok",
-      "tick": {
+
+{
+    "ch": "market.BTC_NQ.trade.detail",
+    "status": "ok",
+    "tick": {
         "data": [
-          {
-            "amount": "2",
-            "direction": "sell",
-            "id": 6010881529486944176,
-            "price": "5000",
-            "ts": 1529386945343
-           }
-         ],
-        "id": 1529388202797,
-        "ts": 1529388202797
-        },
-      "ts": 1529388202797
-    }
+            {
+                "amount": "4",
+                "ts": 1604298443540,
+                "id": 1137660004780000,
+                "price": "14117.98",
+                "direction": "sell"
+            }
+        ],
+        "id": 1604298454352,
+        "ts": 1604298454352
+    },
+    "ts": 1604298454352
+}
 ```
 
 ###  返回参数
@@ -2568,26 +2596,40 @@ size  |  true  |  int  |    获取交易记录的数量  | 1  |  [1, 2000]  |
 > Response:
 
 ```json
-    {
-      "ch": "market.BTC_CQ.trade.detail",
-      "status": "ok",
-      "ts": 1529388050915,
-      "data": [
+
+{
+    "ch": "market.BTC_NQ.trade.detail",
+    "data": [
         {
-          "id": 601088,
-          "ts": 1529386945343,
-          "data": [
-            {
-             "amount": 2,
-             "direction": "sell",
-             "id": 6010881529486944176,
-             "price": 5000,
-             "ts": 1529386945343
-             }
-           ]
+            "data": [
+                {
+                    "amount": 12,
+                    "direction": "buy",
+                    "id": 1137660361550000,
+                    "price": 14119.84,
+                    "ts": 1604298530920
+                }
+            ],
+            "id": 113766036155,
+            "ts": 1604298530920
+        },
+        {
+            "data": [
+                {
+                    "amount": 4,
+                    "direction": "sell",
+                    "id": 1137660376740000,
+                    "price": 14123.14,
+                    "ts": 1604298531331
+                }
+            ],
+            "id": 113766037674,
+            "ts": 1604298531331
         }
-       ]
-    }
+    ],
+    "status": "ok",
+    "ts": 1604298553734
+}
 ```
 
 ###  返回参数
@@ -2626,18 +2668,18 @@ symbol | false | string | 品种代码	 | 支持大小写，"BTC","ETH"...，如
 > Response:
 
 ```json
-{
-  "status": "ok",
-  "ts": 158797866555,
-  "data": [
-    {
-      "symbol": "ETH",
-      "insurance_fund": 3806.4615259197324414715719,
-      "estimated_clawback": 0.0023
-    }
-  ]
-}
 
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "insurance_fund": 1909.852579486750035041,
+            "estimated_clawback": 0
+        }
+    ],
+    "ts": 1604298633195
+}
 ```
 
 ### 返回参数
@@ -2669,18 +2711,23 @@ curl "https://api.hbdm.com/api/v1/contract_insurance_fund?symbol=ETH"
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "ts": 158797866555,
-  "data":   {
-     "symbol": "ETH",
-     "tick": [
-        {
-          "insurance_fund": 3806.4615259197324414715719,
-          "ts": 158797866555
-         }
-      ]
-  }
+    "status":"ok",
+    "data":{
+        "symbol":"BTC",
+        "tick":[
+            {
+                "insurance_fund":1909.852579486750035041,
+                "ts":1604217600000
+            },
+            {
+                "insurance_fund":1907.646552903264189201,
+                "ts":1604131200000
+            }
+        ]
+    },
+    "ts":1604298695848
 }
 
 ```
@@ -2716,35 +2763,41 @@ curl "https://api.hbdm.com/api/v1/contract_adjustfactor"
 > Response:
 
 ```json
-{
-  "status": "ok",
-  "data": [
-   {
-      "symbol": "BTC",
-      "list": [
-       {
-          "lever_rate": 10,
-          "ladders": [
-           {
-             "ladder": 1,
-             "min_size": 0,
-             "max_size": 100,
-             "adjust_factor": 0.1
-           },
-           {
-             "ladder": 2,
-             "min_size": 101,
-             "max_size": 500,
-             "adjust_factor": 0.2
-           }
-           ]
-       }
-       ]
-   }
-   ],
-   "ts": 158797866555
-}
 
+{
+    "status":"ok",
+    "data":[
+        {
+            "symbol":"BTC",
+            "list":[
+                {
+                    "lever_rate":125,
+                    "ladders":[
+                        {
+                            "ladder":0,
+                            "min_size":0,
+                            "max_size":1999,
+                            "adjust_factor":0.65
+                        },
+                        {
+                            "ladder":1,
+                            "min_size":2000,
+                            "max_size":14999,
+                            "adjust_factor":0.8
+                        },
+                        {
+                            "ladder":2,
+                            "min_size":15000,
+                            "max_size":null,
+                            "adjust_factor":0.85
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "ts":1604298785020
+}
 ```
 
 ### 返回参数
@@ -2789,24 +2842,26 @@ curl "https://api.hbdm.com/api/v1/contract_his_open_interest?symbol=BTC&contract
 > Response:
 
 ```json
+
 {
- "data": {
-  "contract_type": "this_week",
-  "symbol": "BTC",
-  "tick": [{
-    "amount_type": 1,
-    "ts": 1585551600000,
-    "volume": "241915.0000000000000000"
-   },
-   {
-    "amount_type": 1,
-    "ts": 1585382400000,
-    "volume": "721512.0000000000000000"
-   }
-  ]
- },
- "status": "ok",
- "ts": 1585554044275
+    "status": "ok",
+    "data": {
+        "symbol": "BTC",
+        "contract_type": "quarter",
+        "tick": [
+            {
+                "volume": "3058980.0000000000000000",
+                "amount_type": 1,
+                "ts": 1604296800000
+            },
+            {
+                "volume": "3049899.0000000000000000",
+                "amount_type": 1,
+                "ts": 1604293200000
+            }
+        ]
+    },
+    "ts": 1604298943494
 }
 ```
 
@@ -2851,22 +2906,21 @@ curl "https://api.hbdm.com/api/v1/contract_elite_account_ratio?symbol=BTC&period
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "list": [
-        {
-         "buy_ratio": 0.2323,
-         "sell_ratio": 0.4645,
-         "locked_ratio": 0.4142,
-         "ts": 158797866555
-       }
-       ]
-    }
- ],
- "ts": 158797866555
+    "status":"ok",
+    "data":{
+        "list":[
+            {
+                "buy_ratio":0.52,
+                "sell_ratio":0.45,
+                "locked_ratio":0.03,
+                "ts":1604290200000
+            }
+        ],
+        "symbol":"BTC"
+    },
+    "ts":1604299070097
 }
 ```
 
@@ -2908,20 +2962,23 @@ curl "https://api.hbdm.com/api/v1/contract_elite_position_ratio?symbol=BTC&perio
 ```json
 
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "list": [
-        {
-         "buy_ratio": 0.2323,
-         "sell_ratio": 0.4645,
-         "ts": 158797866555
-       }
-       ]
-    }
- ],
- "ts": 158797866555
+    "status":"ok",
+    "data":{
+        "list":[
+            {
+                "buy_ratio":0.51,
+                "sell_ratio":0.49,
+                "ts":1604290500000
+            },
+            {
+                "buy_ratio":0.508,
+                "sell_ratio":0.492,
+                "ts":1604290800000
+            }
+        ],
+        "symbol":"BTC"
+    },
+    "ts":1604299402211
 }
 
 ```
@@ -2966,24 +3023,24 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 ```json
 
 {
-   "status": "ok",
-   "data":{
-     "orders":[
-       {
-         "symbol": "BTC",
-         "contract_code": "BTC180914",    
-         "direction": "buy",
-         "offset": "close",
-         "volume": 111,
-         "price": 1111,
-         "created_at": 1408076414000
-       }
-      ],
-     "total_page":15,
-     "current_page":3,
-     "total_size":3
-     },
-   "ts": 1490759594752
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "contract_code": "BTC210326",
+                "symbol": "BTC",
+                "direction": "buy",
+                "offset": "close",
+                "volume": 100,
+                "price": 14149.98,
+                "created_at": 1604299146147
+            }
+        ],
+        "total_page": 114,
+        "current_page": 1,
+        "total_size": 2264
+    },
+    "ts": 1604299610722
 }
 
 ```
@@ -3029,29 +3086,33 @@ curl "https://api.hbdm.com/index/market/history/index?symbol=BTC-USD&period=1min
 > 返回示例：
 
 ```json
+
 {
-  "ch": "market.BTC-USD.index.1mon",
-  "data": [{
-    "amount": 0,
-    "close": 9309.8625,
-    "count": 0,
-    "high": 9564.9675,
-    "id": 1577808000,
-    "low": 7488.4875,
-    "open": 7541.0125,
-    "vol": 0
-  },  {
-    "amount": 0,
-    "close": 6696.19,
-    "count": 0,
-    "high": 9214.58,
-    "id": 1582992000,
-    "low": 3915.1175,
-    "open": 8668.5125,
-    "vol": 0
-  }],
-  "status": "ok",
-  "ts": 1585309189389
+    "ch": "market.BTC-USD.index.60min",
+    "data": [
+        {
+            "amount": 0,
+            "close": 13703.4175,
+            "count": 0,
+            "high": 13720.84,
+            "id": 1604293200,
+            "low": 13658.245,
+            "open": 13709.6175,
+            "vol": 0
+        },
+        {
+            "amount": 0,
+            "close": 13751.6,
+            "count": 0,
+            "high": 13771.21,
+            "id": 1604296800,
+            "low": 13693.16,
+            "open": 13703.365,
+            "vol": 0
+        }
+    ],
+    "status": "ok",
+    "ts": 1604299755097
 }
 ```
 
@@ -3097,23 +3158,27 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC_CQ&period=1min&
 > 返回示例：
 
 ```json
+
 {
-  "ch": "market.BTC_CW.basis.1mon.close",
-  "data": [{
-    "basis": "34.39000000000124",
-    "basis_rate": "0.003968208179193762",
-    "contract_price": "8700.77",
-    "id": 1580486400,
-    "index_price": "8666.38"
-  }, {
-    "basis": "-18.720000000000255",
-    "basis_rate": "-0.0028115411360609068",
-    "contract_price": "6639.55",
-    "id": 1582992000,
-    "index_price": "6658.27"
-  }],
-  "status": "ok",
-  "ts": 1585309433084
+    "ch": "market.BTC-USD.basis.5min.open",
+    "data": [
+        {
+            "basis": "-2.1850000000013097",
+            "basis_rate": "-0.00015880531885174013",
+            "contract_price": "13756.8",
+            "id": 1604299500,
+            "index_price": "13758.985"
+        },
+        {
+            "basis": "-4.235000000000582",
+            "basis_rate": "-0.00030799697602973224",
+            "contract_price": "13745.9",
+            "id": 1604299800,
+            "index_price": "13750.135"
+        }
+    ],
+    "status": "ok",
+    "ts": 1604299816352
 }
 ```
 
@@ -3161,42 +3226,29 @@ symbol  |    false  |  string  |  品种代码  |    |  支持大小写,"BTC","E
 > Response:
 
 ```json
-    {
-      "status": "ok",
-      "data": [
+
+{
+    "status": "ok",
+    "data": [
         {
-          "symbol": "BTC",
-          "margin_balance": 1,
-          "margin_position": 0,
-          "margin_frozen": 3.33,
-          "margin_available": 0.34,
-          "profit_real": 3.45,
-          "profit_unreal": 7.45,
-          "withdraw_available":4.0989898,
-          "risk_rate": 100,
-          "liquidation_price": 100,
-          "adjust_factor": 0.1,
-          "lever_rate": 10,
-          "margin_static": 1
-         },
-        {
-          "symbol": "ETH",
-          "margin_balance": 1,
-          "margin_position": 0,
-          "margin_frozen": 3.33,
-          "margin_available": 0.34,
-          "profit_real": 3.45,
-          "profit_unreal": 7.45,
-          "withdraw_available":4.7389859,
-          "risk_rate": 100,
-          "liquidation_price": 100,
-          "adjust_factor": 0.1,
-          "lever_rate": 10,
-          "margin_static": 1
-         }
-       ],
-      "ts":158797866555
-    }
+            "symbol": "ADA",
+            "margin_balance": 453.151955780787465997,
+            "margin_position": 0,
+            "margin_frozen": 0,
+            "margin_available": 453.151955780787465997,
+            "profit_real": 16.35635155751274032,
+            "profit_unreal": 0,
+            "risk_rate": null,
+            "withdraw_available": 436.795604223274725677,
+            "liquidation_price": null,
+            "lever_rate": 10,
+            "adjust_factor": 0.2,
+            "margin_static": 453.151955780787465997,
+            "is_debit": 0
+        }
+    ],
+    "ts": 1604300060777
+}
 ```
 
 ###  返回参数
@@ -3237,29 +3289,30 @@ symbol  |    false  |  string  |  品种代码  |    |  支持大小写,""BTC","
 > Response:
 
 ```json
-    {
-      "status": "ok",
-      "data": [
+
+{
+    "status": "ok",
+    "data": [
         {
-          "symbol": "BTC",
-          "contract_code": "BTC180914",
-          "contract_type": "this_week",
-          "volume": 1,
-          "available": 0,
-          "frozen": 0.3,
-          "cost_open": 422.78,
-          "cost_hold": 422.78,
-          "profit_unreal": 0.00007096,
-          "profit_rate": 0.07,
-          "profit": 0.97,
-          "position_margin": 3.4,
-          "lever_rate": 10,
-          "direction":"buy",
-          "last_price":7900.17
-         }
-        ],
-     "ts": 158797866555
-    }
+            "symbol": "ADA",
+            "contract_code": "ADA201225",
+            "contract_type": "quarter",
+            "volume": 1,
+            "available": 1,
+            "frozen": 0,
+            "cost_open": 0.0991,
+            "cost_hold": 0.0991,
+            "profit_unreal": 0,
+            "profit_rate": 0,
+            "lever_rate": 10,
+            "position_margin": 10.090817356205852674,
+            "direction": "sell",
+            "profit": 0,
+            "last_price": 0.0991
+        }
+    ],
+    "ts": 1604301441639
+}
 ```
 
 ###  返回参数
@@ -3304,43 +3357,23 @@ symbol      | false     | string | 品种代码          |         | 支持大�
 
 ```json
   
-  {
-  	"status": "ok",
-  	"ts": 1499223904680,
-  	"data": [{
-  			"sub_uid": 9910049,
-  			"list": [{
-  					"symbol": "BTC",
-  					"margin_balance": 1,
-  					"liquidation_price": 100,
-  					"risk_rate": 100
-  				},
-  				{
-  					"symbol": "ETH",
-  					"margin_balance": 1,
-  					"liquidation_price": 100,
-  					"risk_rate": 100
-  				}
-  			]
-  		},
-  		{
-  			"sub_uid": 9910048,
-  			"list": [{
-  					"symbol": "BTC",
-  					"margin_balance": 1,
-  					"liquidation_price": 100,
-  					"risk_rate": 100
-  				},
-  				{
-  					"symbol": "ETH",
-  					"margin_balance": 1,
-  					"liquidation_price": 100,
-  					"risk_rate": 100
-  				}
-  			]
-  		}
-  	]
-  }
+{
+    "status": "ok",
+    "data": [
+        {
+            "sub_uid": 123456789,
+            "list": [
+                {
+                    "symbol": "ADA",
+                    "margin_balance": 50,
+                    "liquidation_price": null,
+                    "risk_rate": null
+                }
+            ]
+        }
+    ],
+    "ts": 1604301647427
+}
   
 ```
 
@@ -3388,27 +3421,28 @@ sub_uid | true | long | 子账户的UID	 |  |
 
 ```json
 
-  {
+{
     "status": "ok",
-    "data":  [ 
-       {
-          "symbol": "BTC",
-          "margin_balance": 1,
-          "margin_position": 0,
-          "margin_frozen": 3.33,
-          "margin_available": 0.34,
-          "profit_real": 3.45,
-          "profit_unreal": 7.45,
-          "withdraw_available":4.0989898,
-          "risk_rate": 100,
-          "liquidation_price": 100,
-          "lever_rate": 1,
-          "adjust_factor": 0.1,
-          "margin_static": 3
+    "data": [
+        {
+            "symbol": "ADA",
+            "margin_balance": 50,
+            "margin_position": 0,
+            "margin_frozen": 0,
+            "margin_available": 50,
+            "profit_real": 0,
+            "profit_unreal": 0,
+            "risk_rate": null,
+            "withdraw_available": 50,
+            "liquidation_price": null,
+            "lever_rate": 5,
+            "adjust_factor": 0.1,
+            "margin_static": 50,
+            "is_debit": 0
         }
-      ],
-    "ts":158797866555
-  }
+    ],
+    "ts": 1604301730723
+}
   
 ```
 
@@ -3463,31 +3497,31 @@ sub_uid | true | long | 子账户的UID	 |  |
 
 > Response:
 
-```json 
+```json
 
-  {                                               
-    "status": "ok",                               
-    "ts": 158797866555                            
-    "data":[                                      
-       {                                          
-           "symbol": "BTC",                       
-           "contract_code": "BTC180914",          
-           "contract_type": "this_week",          
-           "volume": 1,                           
-           "available": 0,                        
-           "frozen": 0.3,                         
-           "cost_open": 422.78,                   
-           "cost_hold": 422.78,                   
-           "profit_unreal": 0.00007096,           
-           "profit_rate": 0.07,                   
-           "profit": 0.97,                        
-           "position_margin": 3.4,                
-           "lever_rate": 10,                      
-           "direction":"buy",                      
-           "last_price":6000                     
-       }                                          
-     ]                                            
-  } 
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "ADA",
+            "contract_code": "ADA201225",
+            "contract_type": "quarter",
+            "volume": 1,
+            "available": 1,
+            "frozen": 0,
+            "cost_open": 0.0991,
+            "cost_hold": 0.0991,
+            "profit_unreal": -0.04686106551835051,
+            "profit_rate": -0.002321965796434265,
+            "lever_rate": 5,
+            "position_margin": 20.191006925515375451,
+            "direction": "buy",
+            "profit": -0.04686106551835051,
+            "last_price": 0.099054
+        }
+    ],
+    "ts": 1604302891178
+}
                                                 
 ``` 
                                             
@@ -3549,27 +3583,24 @@ page_size | false | int | 不填默认20，不得多于50 |  |
 
 ```json
                             
-  {                                  
-    "status": "ok",              
-    "data":{                         
-      "financial_record" : [         
-        {                            
-        "id": 192838272,             
-        "ts": 1408076414000,         
-        "symbol":"BTC",              
-        "type":1,              
-        "amount":1,                  
-        },                           
-        {                            
-          .........                  
-        }                            
-      ],                             
-      "total_page":15,          
-      "current_page":3,         
-      "total_size":3            
-      },                         
-    "ts": 1490759594752              
-  }                                  
+{
+    "status": "ok",
+    "data": {
+        "total_page": 15,
+        "current_page": 1,
+        "total_size": 15,
+        "financial_record": [
+            {
+                "id": 3657420903,
+                "symbol": "ADA",
+                "type": 34,
+                "amount": -50,
+                "ts": 1604301623306
+            }
+        ]
+    },
+    "ts": 1604306015124
+}                                
 ```   
                              
 ### 返回参数
@@ -3635,22 +3666,31 @@ total_size | true  | int | 总条数 |  |
 ```json
                                 
 {
-  "status": "ok",
-  "ts": 1578123194790,
-  "data": {
-    "financial_record": [{
-        "id": 394796886,
-        "ts": 1578121002637,
-        "symbol": "BTC",
-        "contract_code": "BTC200919",
-        "type": 5,
-        "amount": 400,
-      }
-    ],
-    "remain_size":20,
-    "next_id":192838272
-  }
-}                                
+    "status": "ok",
+    "data": {
+        "financial_record": [
+            {
+                "id": 3657420903,
+                "symbol": "ADA",
+                "type": 34,
+                "amount": -50,
+                "ts": 1604301623306,
+                "contract_code": "ADA"
+            },
+            {
+                "id": 3657420101,
+                "symbol": "ADA",
+                "type": 6,
+                "amount": -0.020181634712411705,
+                "ts": 1604301416067,
+                "contract_code": "ADA201225"
+            }
+        ],
+        "remain_size": 22,
+        "next_id": 3657309434
+    },
+    "ts": 1604305081144
+}                              
 ```
 ### 返回参数
 
@@ -3703,49 +3743,39 @@ total_size | true  | int | 总条数 |  |
 {
     "status": "ok",
     "data": {
-        "settlement_records":[
+        "total_page": 13,
+        "current_page": 1,
+        "total_size": 13,
+        "settlement_records": [
             {
-                "symbol": "BTC",
-                "margin_balance_init": 10,
-                "margin_balance": 2,
-                "settlement_profit_real": 1.199,
-                "settlement_time": 1590825600,
-                "clawback": -0.001,
+                "symbol": "ADA",
+                "margin_balance_init": 436.415907066107795161,
+                "margin_balance": 436.795604223274725677,
+                "settlement_profit_real": 0.379697157166930517,
+                "settlement_time": 1604044800130,
+                "clawback": 0,
                 "delivery_fee": 0,
-                "offset_profitloss": 0,
-                "fee": 0,
-                "fee_asset": "BTC",
-                "positions":[
+                "offset_profitloss": 13.25977319159553892,
+                "fee": -0.565357129977092573,
+                "fee_asset": "ADA",
+                "positions": [
                     {
-                        "symbol": "BTC",
-                        "contract_code": "BTC200626",
+                        "symbol": "ADA",
+                        "contract_code": "ADA201225",
                         "direction": "buy",
                         "volume": 2,
-                        "cost_open": 6500,
-                        "cost_hold_pre": 6500,
-                        "cost_hold": 7000,
-                        "settlement_profit_unreal": 2.4,
-                        "settlement_price": 7000,
+                        "cost_open": 0.098,
+                        "cost_hold_pre": 0.098,
+                        "cost_hold": 0.092423,
+                        "settlement_profit_unreal": -12.31471890445151583,
+                        "settlement_price": 0.092423,
                         "settlement_type": "settlement"
-                    },
-                    {
-                        "symbol": "BTC",
-                        "contract_code": "BTC200619",
-                        "direction": "sell",
-                        "volume": 1,
-                        "cost_open": 6500,
-                        "cost_hold_pre": 6500,
-                        "cost_hold": None,
-                        "settlement_profit_unreal": -1.201,
-                        "settlement_price": 7000,
-                        "settlement_type": "delivery"
-                    }]
-            }],
-        "current_page": 1,
-        "total_page": 1,
-        "total_size": 5
+                    }
+                ]
+            }
+        ]
     },
-    "ts": 1578124684692
+    "ts": 1604305358564
 }
 
 ```
@@ -3812,34 +3842,40 @@ total_size | true  | int | 总条数 |  |
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data":  {
-      "order_price_type": "limit",
-      "list":[
-      {
-          "symbol": "BTC",
-          "types": [
-             {
-              "contract_type": "this_week",
-              "open_limit": 3000,
-              "close_limit": 3000
-             },
-             {
-              "contract_type": "next_week",
-              "open_limit": 3000,
-              "close_limit": 3000
-             },     
-             {
-              "contract_type": "quarter",
-              "open_limit": 3000,
-              "close_limit": 3000
-             }
-           ]
-      }
-      ]
-   },
- "ts": 158797866555
+    "status": "ok",
+    "data": {
+        "order_price_type": "limit",
+        "list": [
+            {
+                "symbol": "ADA",
+                "types": [
+                    {
+                        "contract_type": "this_week",
+                        "open_limit": 6000,
+                        "close_limit": 12000
+                    },
+                    {
+                        "contract_type": "next_week",
+                        "open_limit": 6000,
+                        "close_limit": 12000
+                    },
+                    {
+                        "contract_type": "quarter",
+                        "open_limit": 6000,
+                        "close_limit": 12000
+                    },
+                    {
+                        "contract_type": "next_quarter",
+                        "open_limit": 6000,
+                        "close_limit": 12000
+                    }
+                ]
+            }
+        ]
+    },
+    "ts": 1604306946036
 }
 
 ```
@@ -3875,20 +3911,21 @@ symbol | false | string | 品种代码	 | 支持大小写,"BTC","ETH"...，如�
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "fee_asset": "BTC",
-      "open_maker_fee": "-0.00025",
-      "open_taker_fee": "0.00075",
-      "close_maker_fee": "-0.00025",
-      "close_taker_fee": "0.00075",
-      "delivery_fee": "0.0005"
-    }
- ],
- "ts": 158797866555
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "ADA",
+            "open_maker_fee": "0.0002",
+            "open_taker_fee": "0.0004",
+            "close_maker_fee": "0.0002",
+            "close_taker_fee": "0.0004",
+            "delivery_fee": "0.0005",
+            "fee_asset": "ADA"
+        }
+    ],
+    "ts": 1604307012954
 }
 
 ```
@@ -3922,24 +3959,24 @@ symbol | false | string | 品种代码	 | 支持大小写,"BTC","ETH"...，如�
 > Response:
 
 ```json
-{
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "transfer_in_max_each": 5000,
-      "transfer_in_min_each": 5000,
-      "transfer_out_max_each": 5000,
-      "transfer_out_min_each": 5000,
-      "transfer_in_max_daily": 5000,
-      "transfer_out_max_daily": 5000,
-      "net_transfer_in_max_daily": 5000,
-    "net_transfer_out_max_daily": 5000
-    }
- ],
- "ts": 158797866555
-}
 
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "ADA",
+            "transfer_in_max_each": 1500000000,
+            "transfer_in_min_each": 16,
+            "transfer_out_max_each": 150000000,
+            "transfer_out_min_each": 0.000001,
+            "transfer_in_max_daily": 15000000000,
+            "transfer_out_max_daily": 3000000000,
+            "net_transfer_in_max_daily": 7500000000,
+            "net_transfer_out_max_daily": 1500000000
+        }
+    ],
+    "ts": 1604307084954
+}
 ```
 
 ### 返回参数
@@ -3973,36 +4010,42 @@ symbol | false | string | 品种代码	 | 支持大小写,"BTC","ETH"...，如�
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "list": [
+    "status": "ok",
+    "data": [
         {
-         "contract_type": "all",
-         "buy_limit": 9000,
-         "sell_limit": 9000
-       },
-        {
-         "contract_type": "this_week",
-         "buy_limit": 3000,
-         "sell_limit": 3000
-       },
-        {
-         "contract_type": "next_week",
-         "buy_limit": 3000,
-         "sell_limit": 3000
-       },     
-        {
-         "contract_type": "quarter",
-         "buy_limit": 3000,
-         "sell_limit": 3000
-       }
-       ]
-    }
- ],
- "ts": 158797866555
+            "symbol": "ADA",
+            "list": [
+                {
+                    "contract_type": "this_week",
+                    "buy_limit": 60000,
+                    "sell_limit": 60000
+                },
+                {
+                    "contract_type": "next_week",
+                    "buy_limit": 60000,
+                    "sell_limit": 60000
+                },
+                {
+                    "contract_type": "quarter",
+                    "buy_limit": 60000,
+                    "sell_limit": 60000
+                },
+                {
+                    "contract_type": "next_quarter",
+                    "buy_limit": 60000,
+                    "sell_limit": 60000
+                },
+                {
+                    "contract_type": "all",
+                    "buy_limit": 240000,
+                    "sell_limit": 240000
+                }
+            ]
+        }
+    ],
+    "ts": 1604307195501
 }
 
 ```
@@ -4037,40 +4080,44 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 ```json
 
 {
- "data": [{
-  "adjust_factor": 0.01,
-  "lever_rate": 1,
-  "liquidation_price": 2.0207008251323884,
-  "margin_available": 99.90183573230843,
-  "margin_balance": 99.93357672580152,
-  "margin_frozen": 0.0,
-  "margin_position": 0.03174099349309633,
-  "margin_static": 99.93358176245552,
-  "positions": [{
-   "available": 2.0,
-   "contract_code": "BTC200710",
-   "contract_type": "this_week",
-   "cost_hold": 6302.0,
-   "cost_open": 6302.0,
-   "direction": "buy",
-   "frozen": 0.0,
-   "last_price": 6301,
-   "lever_rate": 1,
-   "position_margin": 0.03174099349309633,
-   "profit": -5.0366539976e-06,
-   "profit_rate": -0.000158704967465507,
-   "profit_unreal": -5.0366539976e-06,
-   "symbol": "BTC",
-   "volume": 2.0
-  }],
-  "profit_real": -0.000317359568390986,
-  "profit_unreal": -5.0366539976e-06,
-  "risk_rate": 3148.397334746377,
-  "symbol": "BTC",
-  "withdraw_available": 99.90183573230843
- }],
- "status": "ok",
- "ts": 1585562633421
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "ADA",
+            "margin_balance": 405.226124145843792312,
+            "margin_position": 10.300252356182726476,
+            "margin_frozen": 0,
+            "margin_available": 394.925871789661065836,
+            "profit_real": 16.336169922800328615,
+            "profit_unreal": 2.09434999976873802,
+            "risk_rate": 39.141378262699244579,
+            "withdraw_available": 386.795604223274725677,
+            "liquidation_price": null,
+            "lever_rate": 10,
+            "adjust_factor": 0.2,
+            "margin_static": 403.131774146075054292,
+            "positions": [
+                {
+                    "symbol": "ADA",
+                    "contract_code": "ADA201225",
+                    "contract_type": "quarter",
+                    "volume": 1,
+                    "available": 1,
+                    "frozen": 0,
+                    "cost_open": 0.0991,
+                    "cost_hold": 0.0991,
+                    "profit_unreal": 2.09434999976873802,
+                    "profit_rate": 0.20755008497708193,
+                    "lever_rate": 10,
+                    "position_margin": 10.300252356182726476,
+                    "direction": "sell",
+                    "profit": 2.09434999976873802,
+                    "last_price": 0.097085
+                }
+            ]
+        }
+    ],
+    "ts": 1604307305267
 }
 ```
 
@@ -4118,7 +4165,7 @@ last_price | decimal  | true  | 最新价                                       
 
 ```json
 {
-	"sub_uid": "123123123",
+	"sub_uid": "123456789",
 	"symbol": "BTC",
 	"amount": "123",
 	"type": "master_to_sub"
@@ -4140,12 +4187,13 @@ last_price | decimal  | true  | 最新价                                       
 > Response:
 
 ```json
+
 {
- "data": {
-  "order_id": "694246251809681408"
- },
- "status": "ok",
- "ts": 1585562804933
+    "status": "ok",
+    "data": {
+        "order_id": "772874532490125313"
+    },
+    "ts": 1604309247876
 }
 
 ```
@@ -4164,16 +4212,6 @@ last_price | decimal  | true  | 最新价                                       
 
 - post `api/v1/contract_master_sub_transfer_record`
 
-> Request:
-
-```json
-{
-	"sub_uid": "123123123",
-	"symbol": "BTC",
-	"amount": "123",
-	"type": "master_to_sub"
-}
-```
 
 ### 请求参数
 
@@ -4188,27 +4226,36 @@ last_price | decimal  | true  | 最新价                                       
 > Response:
 
 ```json
-{                                  
-    "status": "ok",                           
-    "ts": 1490759594752,            
-    "data":{                         
-      "transfer_record" : [         
-        {                            
-        "id": 192838272,             
-        "ts": 1408076414000,         
-        "symbol":"BTC",        
-        "sub_uid":123123123,      
-        "sub_account_name":"bolin",       
-        "transfer_type":34,              
-        "amount":1                  
-        },
-        ...                        
-      ],
-      "total_page":15,          
-      "current_page":3,         
-      "total_size":3            
-      } 
-  }
+
+{
+    "status": "ok",
+    "data": {
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 2,
+        "transfer_record": [
+            {
+                "id": 3657499070,
+                "symbol": "ADA",
+                "transfer_type": 34,
+                "amount": -1,
+                "ts": 1604309247860,
+                "sub_uid": "123456789",
+                "sub_account_name": "tom"
+            },
+            {
+                "id": 3657420904,
+                "symbol": "ADA",
+                "transfer_type": 34,
+                "amount": -50,
+                "ts": 1604301623314,
+                "sub_uid": "123456789",
+                "sub_account_name": "tom"
+            }
+        ]
+    },
+    "ts": 1604309883224
+}
 ```
 
 ### 返回参数
@@ -4260,13 +4307,13 @@ last_price | decimal  | true  | 最新价                                       
 | cancel_ratio_threshold        | true | decimal  | 撤单率的阈值            |  |
 | cancel_ratio        | true | decimal  | 用户撤单率的实际值           |  |
 | is_trigger        | true | int  | 用户是否触发该指标           | 	1：已经触发，0：没有触发 |
-| is_active        | true | int  | 该指标是否开启         |  | 1：已启用，0：未启用
+| is_active        | true | int  | 该指标是否开启          | 1：已启用，0：未启用
 | \</COR>       | true | dict object  |  |
 | \<TDN>       | true | dict object  | 表示总禁用次数的指标（Total Disable Number）|
 | disables_threshold        | true | long  | 总禁用次数的阈值         |  |
 | disables        | true | long  | 总禁用次数的实际值         |  | 
 | is_trigger        | true | long  | 用户是否触发该指标           | 	1：已经触发，0：没有触发 |
-| is_active        | true | long  | 该指标是否开启         |  | 1：已启用，0：未启用
+| is_active        | true | long  | 该指标是否开启          | 1：已启用，0：未启用
 | \</TDN>       | true | dict object  |  |
 | \</data\>     |      |         |         |   |
 
@@ -4336,58 +4383,12 @@ last_price | decimal  | true  | 最新价                                       
     "status": "ok",
     "data": [
         {
-            "symbol": "BTC",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "symbol": "BTT",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "symbol": "BSV",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "symbol": "ETC",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "symbol": "BCH",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "symbol": "XRP",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "symbol": "ETH",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "symbol": "EOS",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "symbol": "USDT",
-            "available_level_rate": "1,5"
-        },
-        {
-            "symbol": "LTC",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "symbol": "TRX",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "symbol": "HT",
-            "available_level_rate": "1,5"
+            "symbol": "ADA",
+            "available_level_rate": "1,2,3,5,10,20,30,50,75"
         }
     ],
-    "ts": 1566899973811
+    "ts": 1604312615051
 }
-
-
 ```
 
 # 合约交易接口
@@ -4454,15 +4455,14 @@ Post only(也叫maker only订单，只下maker单)每个周期合约的开仓/�
 
 ```json
 
-    {
-      "status": "ok",
-      "data": {
-		    "order_id": 633766664829804544,
-		    "order_id_str": "633766664829804544",
-		    "client_order_id": 11223344556677
-	      },
-      "ts": 158797866555
-    }
+{
+    "status": "ok",
+    "data": {
+        "order_id": 773119326353580033,
+        "order_id_str": "773119326353580033"
+    },
+    "ts": 1604367611267
+}
 ```
 
 ###  返回参数
@@ -4552,38 +4552,27 @@ orderPriceType |  string  |    true  |  订单报价类型 "limit":限价 "oppon
 > Response:
 
 ```json
-    {
-      "status": "ok",
-      "data": {
-        "errors":[
-          {
-            "index":1,
-            "err_code": 200417,
-            "err_msg": "invalid symbol"
-           },
-          {
-            "index":2,
-            "err_code": 200415,
-            "err_msg": "invalid symbol"
-           }
-         ],
-        "success":[
-          {
-            "index":3,
-            "order_id":633766664829804544,
-            "order_id_str": "633766664829804544",
-            "client_order_id":1344567
-           },
-          {
-            "index":4,
-            "order_id":633766664829804544,
-            "order_id_str": "633766664829804544",
-            "client_order_id":1344569
-           }
-         ]
-       },
-      "ts": 1490759594752
-    }
+
+{
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "index": 1,
+                "err_code": 1037,
+                "err_msg": "The leverage is invalid. Please contact the customer service."
+            }
+        ],
+        "success": [
+            {
+                "order_id": 773120304138219520,
+                "index": 2,
+                "order_id_str": "773120304138219520"
+            }
+        ]
+    },
+    "ts": 1604367844388
+}
 ```
 
 ###  返回参数
@@ -4644,25 +4633,20 @@ order_id和client_order_id都可以用来撤单，同时只可以设置其中一
 
 ```json
 
-    {
-  "status": "ok",
-  "data": {
-    "errors":[
-      {
-        "order_id":"633766664829804544",
-        "err_code": 200417,
-        "err_msg": "invalid symbol"
-       },
-      {
-        "order_id":"633766664829804544",
-        "err_code": 200415,
-        "err_msg": "invalid symbol"
-       }
-      ],
-    "successes":"161256,1344567"
-   },
-  "ts": 1490759594752
-}   
+{
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "order_id": "769206471845261312",
+                "err_code": 1061,
+                "err_msg": "This order doesnt exist."
+            }
+        ],
+        "successes": "773120304138219520"
+    },
+    "ts": 1604367997451
+} 
 ```
 
 ###  返回参数
@@ -4713,25 +4697,15 @@ contract_type  |    false  |  string  |  合约类型  |
 > Response:(多笔订单返回结果(成功订单ID,失败订单ID))
     
 ```json
-    {
-      "status": "ok",
-      "data": {
-        "errors":[
-          {
-            "order_id":"633766664829804544",
-            "err_code": 200417,
-            "err_msg": "invalid symbol"
-           },
-          {
-            "order_id":"633766664829804544",
-            "err_code": 200415,
-            "err_msg": "invalid symbol"
-           }
-          ],
-        "successes":"161256,161256"
-       },
-      "ts": 1490759594752
-    }
+
+{
+    "status": "ok",
+    "data": {
+        "errors": [],
+        "successes": "773120045672095744,773120045684678656"
+    },
+    "ts": 1604369127577
+}
 ```
 
 ###  返回参数
@@ -4771,22 +4745,23 @@ ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   |
 ```json
 
 正确：
+
 {
     "status": "ok",
-    "ts": 1547521135713,
     "data": {
-          "symbol":"BTC",
-          "lever_rate":10
-    }
+        "contract_code": "ada",
+        "lever_rate": 20
+    },
+    "ts": 1604369902689
 }
 错误：
+
 {
     "status": "error",
-    "err_code": 2014,     
-    "err_msg": "无法切换",   
-    "ts": 1547519608126
+    "err_code": 1037,
+    "err_msg": "The leverage is invalid. Please contact the customer service.",
+    "ts": 1604369954194
 }
-
 ```
 
 ### 返回参数
@@ -4841,36 +4816,38 @@ symbol  |   true  |  string  |  支持大小写，"BTC","ETH"...  |
 
 ```json
 
-   {
- "data": [{
-  "client_order_id": null,
-  "contract_code": "BTC200925",
-  "contract_type": "quarter",
-  "created_at": 1585563146143,
-  "canceled_at": 1585563146143,
-  "direction": "sell",
-  "fee": 0,
-  "fee_asset": "BTC",
-  "lever_rate": 1,
-  "margin_frozen": 0.0,
-  "offset": "open",
-  "order_id": 694247683073978368,
-  "order_id_str": "694247683073978368",
-  "order_price_type": "limit",
-  "order_source": "api",
-  "order_type": 1,
-  "price": 10000,
-  "profit": 0,
-  "status": 7,
-  "symbol": "BTC",
-  "trade_avg_price": null,
-  "trade_turnover": 0,
-  "trade_volume": 0,
-  "volume": 1,
-  "liquidation_type":"1"
- }],
- "status": "ok",
- "ts": 1585563190031
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "ADA",
+            "contract_code": "ADA201225",
+            "contract_type": "quarter",
+            "volume": 1,
+            "price": 0.0933,
+            "order_price_type": "post_only",
+            "order_type": 1,
+            "direction": "sell",
+            "offset": "open",
+            "lever_rate": 10,
+            "order_id": 773119326353580033,
+            "client_order_id": null,
+            "created_at": 1604367611263,
+            "trade_volume": 1,
+            "trade_turnover": 10,
+            "fee": -0.021436227224008574,
+            "trade_avg_price": 0.0933,
+            "margin_frozen": 0,
+            "profit": 0,
+            "status": 6,
+            "order_source": "api",
+            "order_id_str": "773119326353580033",
+            "fee_asset": "ADA",
+            "liquidation_type": "0",
+            "canceled_at": 0
+        }
+    ],
+    "ts": 1604370179844
 }
 ```
 
@@ -4952,66 +4929,56 @@ created_at禁止传0。
 > Response:
 
 ```json
-    {
-      "status": "ok",
-      "data":{
-        "symbol": "BTC",
-        "contract_type": "this_week",
-        "contract_code": "BTC180914",
-        "volume": 111,
-        "price": 1111,
-        "order_price_type": "limit",
-        "direction": "buy",
-        "offset": "open",
+
+{
+    "status": "ok",
+    "data": {
+        "symbol": "ADA",
+        "contract_code": "ADA201225",
+        "contract_type": "quarter",
+        "instrument_price": 0,
+        "final_interest": 0,
+        "adjust_value": 0,
         "lever_rate": 10,
-        "margin_frozen": 10,
-        "profit": 10,
-        "order_source": "web",
-        "created_at": 1408076414000,
-        "canceled_at": 1408076414000,
-        "instrument_price" : 10000,
-        "final_interest" : 0,
-        "adjust_value" : 0,
-        "fee_asset": "BTC",
-        "liquidation_type": 0,
-        "fee": 1.1,
-        "order_id": 21315414825,
-        "order_id_str": "21315414825",
-        "client_order_id": 1234,
-        "order_type": 1,   
-        "status": 1,   
-        "trade_avg_price": 1,   
-        "trade_turnover": 1,   
-        "trade_volume": 1,   
-        "trades":[
-          {
-            "id":"21315414825-6141291349-1",
-            "trade_id":112,
-            "trade_volume":1,
-            "trade_price":123.4555,
-            "trade_fee":0.234,
-            "trade_turnover":34.123,
-            "role": "maker",
-            "created_at": 1490759594752
-          }
+        "direction": "sell",
+        "offset": "open",
+        "volume": 1,
+        "price": 0.0933,
+        "created_at": 1604367611263,
+        "canceled_at": 0,
+        "order_source": "api",
+        "order_price_type": "post_only",
+        "margin_frozen": 0,
+        "profit": 0,
+        "trades": [
+            {
+                "trade_id": 113887800667,
+                "trade_price": 0.0933,
+                "trade_volume": 1,
+                "trade_turnover": 10,
+                "trade_fee": -0.021436227224008574,
+                "created_at": 1604368087894,
+                "role": "maker",
+                "id": "113887800667-773119326353580033-1"
+            }
         ],
-        "total_page":15,
-        "total_size":3,
-        "current_page":3
-        },
-      "ts": 1490759594752
-    }
-```
-
->错误:
-
-```json
-    {
-     "status":"error",
-     "err_code":20029,
-     "err_msg": "invalid symbol",
-     "ts": 1490759594752
-    }
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 1,
+        "liquidation_type": "0",
+        "fee_asset": "ADA",
+        "order_id": 773119326353580033,
+        "order_id_str": "773119326353580033",
+        "client_order_id": null,
+        "order_type": "1",
+        "status": 6,
+        "trade_avg_price": 0.0933,
+        "trade_turnover": 10,
+        "trade_volume": 1,
+        "fee": -0.021436227224008574
+    },
+    "ts": 1604370259827
+}
 ```
 
 ###  返回数据
@@ -5082,42 +5049,45 @@ page_size  |  false  |  int  |   不填默认20，不得多于50 | 20 |    |
 > Response:
 
 ```json
-    {
-      "status": "ok",
-      "data":{
-        "orders":[
-          {
-             "symbol": "BTC",
-             "contract_type": "this_week",
-             "contract_code": "BTC180914",
-             "volume": 111,
-             "price": 1111,
-             "order_price_type": "limit",
-             "order_type": 1,
-             "direction": "buy",
-             "offset": "open",
-             "lever_rate": 10,
-             "order_id": 633766664829804544,
-             "order_id_str": "633766664829804544",
-             "client_order_id": 10683,
-             "order_source": "web",
-             "created_at": 1408076414000,
-             "trade_volume": 1,
-             "trade_turnover": 1200,
-             "fee": 0,
-             "trade_avg_price": 10,
-             "margin_frozen": 10,
-             "profit": 0,
-             "status": 1,
-             "fee_asset": "BTC"
+
+{
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "symbol": "ADA",
+                "contract_code": "ADA201225",
+                "contract_type": "quarter",
+                "volume": 1,
+                "price": 0.0925,
+                "order_price_type": "post_only",
+                "order_type": 1,
+                "direction": "buy",
+                "offset": "close",
+                "lever_rate": 20,
+                "order_id": 773131315209248768,
+                "client_order_id": null,
+                "created_at": 1604370469629,
+                "trade_volume": 0,
+                "trade_turnover": 0,
+                "fee": 0,
+                "trade_avg_price": null,
+                "margin_frozen": 0,
+                "profit": 0,
+                "status": 3,
+                "order_source": "web",
+                "order_id_str": "773131315209248768",
+                "fee_asset": "ADA",
+                "liquidation_type": null,
+                "canceled_at": null
             }
-           ],
-        "total_page":15,
-        "current_page":3,
-        "total_size":3
-       },
-      "ts": 1490759594752
-    }
+        ],
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 1
+    },
+    "ts": 1604370488518
+}
 ```
 
 ###  返回参数
@@ -5203,42 +5173,43 @@ order_type  |  false  |  string  |   订单类型  |    | 1：限价单、3：�
 > Response:
 
 ```json
-    {
-      "status": "ok",
-      "data":{
-        "orders":[
-          {
-            "symbol": "BTC",
-            "contract_type": "this_week",
-            "contract_code": "BTC180914",
-            "volume": 111,
-            "price": 1111,
-            "order_price_type": 1,
-            "direction": "buy",
-            "offset": "open",
-            "lever_rate": 10,
-            "order_id": 633766664829804544,
-            "order_id_str": "633766664829804544",
-            "order_source": "web",
-            "create_date": 1408076414000,
-            "trade_volume": 1,
-            "trade_turnover": 1200,
-            "fee": 0,
-            "trade_avg_price": 10,
-            "margin_frozen": 10,
-            "profit": 10,
-            "status": 1,
-            "order_type": 1,
-            "fee_asset": "BTC",
-            "liquidation_type": 0
-          }
-         ],
-        "total_page":15,
-        "current_page":3,
-        "total_size":3
-        },
-      "ts": 1490759594752
-    }
+ 
+{
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "order_id": 773131315209248768,
+                "contract_code": "ADA201225",
+                "symbol": "ADA",
+                "lever_rate": 20,
+                "direction": "buy",
+                "offset": "close",
+                "volume": 1,
+                "price": 0.0925,
+                "create_date": 1604370469629,
+                "order_source": "web",
+                "order_price_type": 6,
+                "order_type": 1,
+                "margin_frozen": 0,
+                "profit": 0,
+                "contract_type": "quarter",
+                "trade_volume": 0,
+                "trade_turnover": 0,
+                "fee": 0,
+                "trade_avg_price": 0,
+                "status": 3,
+                "order_id_str": "773131315209248768",
+                "fee_asset": "ADA",
+                "liquidation_type": "0"
+            }
+        ],
+        "total_page": 19,
+        "current_page": 1,
+        "total_size": 19
+    },
+    "ts": 1604370617322
+}
 ```
 
 ###  返回参数
@@ -5333,39 +5304,40 @@ ts  |  true  |  long  |  时间戳  |    |
 ```json
 
 {
-  "status": "ok",
-  "data": {
-    "orders": [{
-        "query_id": 1123123123123123123,
-        "order_id": 663044581721378816,
-        "order_id_str": "663044581721378816",
-        "symbol": "BTC",
-        "contract_code": "BTC200124",
-        "contract_type": "next_week",
-        "lever_rate": 20,
-        "direction": "buy",
-        "offset": "open",
-        "volume": 5.0,
-        "price": 8000.0,
-        "create_date": 1578123747055,
-        "order_source": "api",
-        "order_price_type": "limit",
-        "margin_frozen": 0.0,
-        "profit": 0.0,
-        "trade_volume": 5.0,
-        "trade_turnover": 500.0,
-        "fee": 0.2323,
-        "trade_avg_price": 7503.0,
-        "status": 6,
-        "order_type": 1,
-        "fee_asset": "BTC",
-        "liquidation_type": "0"
-      }
-    ],
-      "remain_size":15,
-      "next_id":1123123123123123123
-  },
-  "ts": 1578124395177
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "query_id": 113957564277,
+                "order_id": 773135295142658048,
+                "contract_code": "ADA201225",
+                "symbol": "ADA",
+                "lever_rate": 20,
+                "direction": "buy",
+                "offset": "open",
+                "volume": 1,
+                "price": 0.092,
+                "create_date": 1604371418518,
+                "order_source": "web",
+                "order_price_type": "post_only",
+                "order_type": 1,
+                "margin_frozen": 0,
+                "profit": 0,
+                "contract_type": "quarter",
+                "trade_volume": 1,
+                "trade_turnover": 10,
+                "fee": -0.021739130434782608,
+                "trade_avg_price": 0.092,
+                "status": 6,
+                "order_id_str": "773135295142658048",
+                "fee_asset": "ADA",
+                "liquidation_type": "0"
+            }
+        ],
+        "remain_size": 19,
+        "next_id": 113956362239
+    },
+    "ts": 1604371805794
 }
 ```
 ###  返回参数
@@ -5447,35 +5419,38 @@ ts  |  true  |  long  |  时间戳  |    |
 > Response: 
 
 ```json
-{                                               
-    "data": {                                      
- 		"current_page": 1,                              
- 		"total_page": 1,                                
- 		"total_size": 2,                                
-		"trades": [{
-			"id": "2131234825-6124591349-1",
-			"contract_code": "EOS190419",
-			"contract_type": "this_week",
-			"create_date": 1555553626736,
-			"direction": "sell",
-			"match_id": 3635853382,
-			"offset": "close",
-			"offset_profitloss": 0.15646398812252696,
-			"order_id": 633766664829804544,
-			"order_id_str": "633766664829804544",
-			"symbol": "EOS",
-			"order_source": "android",
-			"trade_fee": -0.002897500905469032,
-			"trade_price": 5.522,
-			"trade_turnover": 80,
-			"role": "maker",
-			"trade_volume": 8,
-			"fee_asset": "BTC"
-		}]                                        
- 	},                                                
- 	"status": "ok",                                   
- 	"ts": 1555654870867                               
-}                                               
+
+{
+    "status": "ok",
+    "data": {
+        "trades": [
+            {
+                "match_id": 113891764710,
+                "order_id": 773135295142658048,
+                "symbol": "ADA",
+                "contract_type": "quarter",
+                "contract_code": "ADA201225",
+                "direction": "buy",
+                "offset": "open",
+                "trade_volume": 1,
+                "trade_price": 0.092,
+                "trade_turnover": 10,
+                "trade_fee": -0.021739130434782608,
+                "offset_profitloss": 0,
+                "create_date": 1604371703183,
+                "role": "Maker",
+                "order_source": "web",
+                "order_id_str": "773135295142658048",
+                "fee_asset": "ADA",
+                "id": "113891764710-773135295142658048-1"
+            }
+        ],
+        "total_page": 16,
+        "current_page": 1,
+        "total_size": 16
+    },
+    "ts": 1604371918571
+}                                             
 ```    
 
 ### 返回参数
@@ -5563,56 +5538,35 @@ ts  |  true  |  long  |  时间戳  |    |
 
 {
     "status": "ok",
-    "data":{
-        "trades":[
+    "data": {
+        "trades": [
             {
-                "id": "32586745130-662260778996572129-1",
-                "query_id": 121231231231233,
-                "match_id": 32586745130,
-                "order_id": 662260778996572160,
-                "order_id_str": "662260778996572160",
-                "symbol": "BTC",
+                "query_id": 2424420723,
+                "match_id": 113891764710,
+                "order_id": 773135295142658048,
+                "symbol": "ADA",
                 "contract_type": "quarter",
-                "contract_code": "BTC200327",
+                "contract_code": "ADA201225",
                 "direction": "buy",
                 "offset": "open",
                 "trade_volume": 1,
-                "trade_price": 6500,
-                "trade_turnover": 100,
-                "create_date": 1577936874070,
+                "trade_price": 0.092,
+                "trade_turnover": 10,
+                "trade_fee": -0.021739130434782608,
                 "offset_profitloss": 0,
-                "trade_fee": 0.2323,
-                "role": "Taker",
-                "fee_asset": "BTC",
-                "order_source": "web"
-            },
-            {
-                "id": "32586745130-662260778996572160-1",
-                "query_id": 121231231231233,
-                "match_id": 32586745130,
-                "order_id": 662260778996572160,
-                "order_id_str": "662260778996572160",
-                "symbol": "BTC",
-                "contract_type": "quarter",
-                "contract_code": "BTC200327",
-                "direction": "buy",
-                "offset": "open",
-                "trade_volume": 1,
-                "trade_price": 6500,
-                "trade_turnover": 100,
-                "create_date": 1577936874070,
-                "offset_profitloss": 0,
-                "trade_fee": 0.2323,
-                "role": "Taker",
-                "fee_asset": "BTC",
-                "order_source": "web"
+                "create_date": 1604371703183,
+                "role": "Maker",
+                "order_source": "web",
+                "order_id_str": "773135295142658048",
+                "fee_asset": "ADA",
+                "id": "113891764710-773135295142658048-1"
             }
         ],
-        "remain_size":20,
-        "next_id":121231231231233
+        "remain_size": 15,
+        "next_id": 2424413094
     },
-    "ts": 1578124684692
-}                   
+    "ts": 1604372202243
+}                 
 ```
 ### 返回参数
 
@@ -5682,15 +5636,14 @@ ts  |  true  |  long  |  时间戳  |    |
 ```json
 
 {
-  "status": "ok",
-  "data": {
-    "order_id": 633766664829804544,
-    "order_id_str": "633766664829804544",
-    "client_order_id": 9086
-  },
-  "ts": 158797866555
+    "status":"ok",
+    "data":{
+        "order_id":633766664829804544,
+        "order_id_str":"633766664829804544",
+        "client_order_id":9086
+    },
+    "ts":158797866555
 }
-
 ```
 
 
@@ -5713,11 +5666,10 @@ client_order_id | false | long | 用户自己的订单id |  |
 
 {
     "status": "error",
-    "err_code": 20012,
-    "err_msg": "invalid symbol",
-    "ts": 1490759594752
+    "err_code": 1048,
+    "err_msg": "Insufficient close amount available.",
+    "ts": 1604372431440
 }
-
 ```
 
 ## 合约计划委托下单
@@ -5735,6 +5687,7 @@ client_order_id | false | long | 用户自己的订单id |  |
  >  Request:
  
  ```json
+
  {
      "contract_code":"btc200925",
      "contract_type":"quarter",
@@ -5773,12 +5726,11 @@ client_order_id | false | long | 用户自己的订单id |  |
 {
     "status": "ok",
     "data": {
-        "order_id": 35,
-        "order_id_str": "35"
+        "order_id": 28312412,
+        "order_id_str": "28312412"
     },
-    "ts": 1547521135713
+    "ts": 1604372634548
 }
-
 ```
 
 ### 返回参数
@@ -5799,19 +5751,6 @@ client_order_id | false | long | 用户自己的订单id |  |
 | order_id_str | string | true | 字符串类型的订单ID 
 
 
-> 错误的返回：
-
-```json
-
-{
-    "status": "error",
-    "err_code": 1014,
-    "err_msg": "合约不存在",
-    "ts": 1547519608126
-}
-
-```
-
 ## 合约计划委托撤单
 
 - POST `api/v1/contract_trigger_cancel`
@@ -5828,24 +5767,19 @@ client_order_id | false | long | 用户自己的订单id |  |
 ```json
 
 {
-	"status": "ok",
-	"data": {
-		"errors": [{
-				"order_id": 161251,
-				"err_code": 200417,
-				"err_msg": "invalid symbol"
-			},
-			{
-				"order_id": 161251,
-				"err_code": 200415,
-				"err_msg": "invalid symbol"
-			}
-		],
-		"successes": "161256,1344567"
-	},
-	"ts": 1490759594752
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "order_id": "28312406",
+                "err_code": 1061,
+                "err_msg": "This order doesnt exist."
+            }
+        ],
+        "successes": "28312412"
+    },
+    "ts": 1604372746401
 }
-
 ```
 
 ### 返回参数
@@ -5864,18 +5798,6 @@ client_order_id | false | long | 用户自己的订单id |  |
 | ts                         | true         | long     | 响应生成时间点，单位：毫秒 |  |
 
 
-> 错误的返回：
-
-```json
-
-{
-    "status": "error",
-    "err_code": 20012,
-    "err_msg": "invalid symbol",
-    "ts": 1490759594752
-}
-
-```
 
 ## 合约计划委托全部撤单
 
@@ -5902,23 +5824,12 @@ client_order_id | false | long | 用户自己的订单id |  |
 ```json
 
 {
-  "status": "ok",
-  "data": {
-    "errors":[
-      {
-        "order_id":161251,
-        "err_code": 200417,
-        "err_msg": "invalid symbol"
-       },
-      {
-        "order_id":161251,
-        "err_code": 200415,
-        "err_msg": "invalid symbol"
-       }
-      ],
-    "successes":"161256,1344567"
-   },
-  "ts": 1490759594752
+    "status": "ok",
+    "data": {
+        "errors": [],
+        "successes": "28312413,28312414"
+    },
+    "ts": 1604373863946
 }
 
 ```
@@ -5939,18 +5850,6 @@ client_order_id | false | long | 用户自己的订单id |  |
 | ts                         | true         | long     | 响应生成时间点，单位：毫秒 |   |
 
 
-> 错误的返回：
-
-```json
-
-{
-    "status": "error",
-    "err_code": 20012,
-    "err_msg": "invalid symbol",
-    "ts": 1490759594752
-}
-
-```
 
 ## 获取计划委托当前委托
 
@@ -5970,32 +5869,34 @@ client_order_id | false | long | 用户自己的订单id |  |
 ```json
 
 {
- "data": {
-  "current_page": 1,
-  "orders": [{
-   "contract_code": "BTC200925",
-   "contract_type": "quarter",
-   "created_at": 1585564594107,
-   "direction": "buy",
-   "lever_rate": 1,
-   "offset": "open",
-   "order_id": 1582,
-   "order_id_str": "1582",
-   "order_price": 100.0,
-   "order_price_type": "limit",
-   "order_source": "api",
-   "order_type": 1,
-   "status": 2,
-   "symbol": "BTC",
-   "trigger_price": 500.0,
-   "trigger_type": "le",
-   "volume": 1.0
-  }],
-  "total_page": 1,
-  "total_size": 1
- },
- "status": "ok",
- "ts": 1585564594712
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "symbol": "ADA",
+                "contract_code": "ADA201225",
+                "contract_type": "quarter",
+                "trigger_type": "le",
+                "volume": 1,
+                "order_type": 1,
+                "direction": "buy",
+                "offset": "open",
+                "lever_rate": 20,
+                "order_id": 28312415,
+                "order_id_str": "28312415",
+                "order_source": "api",
+                "trigger_price": 0.0895,
+                "order_price": 0.0895,
+                "created_at": 1604374041289,
+                "order_price_type": "limit",
+                "status": 2
+            }
+        ],
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 1
+    },
+    "ts": 1604374215911
 }
 ```
 
@@ -6034,17 +5935,6 @@ client_order_id | false | long | 用户自己的订单id |  |
 | status | int | true | 订单状态：1:准备提交、2:已提交、3:报单中、8：撤单未找到、9：撤单中、10：失败'
 | \</list\>                  |              |          |                            |                |
 
-> 错误的返回：
-
-```json
-
-{
-	"status": "error",
-	"err_code": 20012,
-	"err_msg": "invalid symbol",
-	"ts": 1490759594752
-}
-```
 
 ## 获取计划委托历史委托
 
@@ -6073,39 +5963,41 @@ client_order_id | false | long | 用户自己的订单id |  |
 ```json
 
 {
- "data": {
-  "current_page": 1,
-  "orders": [{
-   "canceled_at": 1585564668410,
-   "contract_code": "BTC200925",
-   "contract_type": "quarter",
-   "created_at": 1585564594107,
-   "direction": "buy",
-   "fail_code": null,
-   "fail_reason": null,
-   "lever_rate": 1,
-   "offset": "open",
-   "order_id": 1582,
-   "order_id_str": "1582",
-   "order_insert_at": 0,
-   "order_price": 100.0,
-   "order_price_type": "limit",
-   "order_source": "api",
-   "order_type": 1,
-   "relation_order_id": "-1",
-   "status": 6,
-   "symbol": "BTC",
-   "trigger_price": 500.0,
-   "trigger_type": "le",
-   "triggered_at": null,
-   "triggered_price": null,
-   "volume": 1.0
-  }],
-  "total_page": 1,
-  "total_size": 1
- },
- "status": "ok",
- "ts": 1585564668765
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "symbol": "ADA",
+                "contract_code": "ADA201225",
+                "contract_type": "quarter",
+                "trigger_type": "le",
+                "volume": 1,
+                "order_type": 1,
+                "direction": "buy",
+                "offset": "open",
+                "lever_rate": 20,
+                "order_id": 28312415,
+                "order_id_str": "28312415",
+                "relation_order_id": "773147284987842560",
+                "order_price_type": "limit",
+                "status": 4,
+                "order_source": "api",
+                "trigger_price": 0.0895,
+                "triggered_price": 0.089497,
+                "order_price": 0.0895,
+                "created_at": 1604374041289,
+                "triggered_at": 1604374277082,
+                "order_insert_at": 1604374277124,
+                "canceled_at": 0,
+                "fail_code": null,
+                "fail_reason": null
+            }
+        ],
+        "total_page": 4,
+        "current_page": 1,
+        "total_size": 4
+    },
+    "ts": 1604374349086
 }
 ```
 
@@ -6151,17 +6043,6 @@ client_order_id | false | long | 用户自己的订单id |  |
 | fail_reason | string | true |被触发时下order单失败原因
 | \</list\>                  |              |          |                            |                |
 
-> 错误的返回：
-
-```json
-
-{
-	"status": "error",
-	"err_code": 20012,
-	"err_msg": "invalid symbol",
-	"ts": 1490759594752
-}
-```
 
 # 合约划转接口
 
@@ -6193,19 +6074,20 @@ type  |  true  |  string  |   划转类型   |  从合约账户到现货账户�
 
 > Response:
 
-```
-   正确的返回：
-	{
-	"status": "ok",
-	"data":56656,
-   }
-	错误的返回：
-	{
-	"status": "error",
-	"data":null,
-	"err-code":"dw-account-transfer-error",
-	"err-msg":"由于其他服务不可用导致的划转失败"
-  }
+```json
+
+正确的返回：
+{
+    "status": "ok",
+    "data": 179697972
+}
+错误的返回：
+{
+    "status": "error",
+    "data": null,
+    "err-code": "base-currency-error",
+    "err-msg": "The current coin does not exist."
+}
 
 ```
 
@@ -6671,23 +6553,21 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 
 ```json
 
-    {
-     "ch": "market.BTC_CQ.kline.1min",
-     "ts": 1489474082831,
-     "tick": 
-        {
-         "id": 1489464480,
-         "mrid": 268168237,
-         "vol": 100,
-         "count": 0,
-         "open": 7962.62,
-         "close": 7962.62,
-         "low": 7962.62,
-         "high": 7962.62,
-         "amount": 0.3
-        }
+{
+    "ch":"market.BTC_CW.kline.1min",
+    "ts":1604385120328,
+    "tick":{
+        "id":1604385120,
+        "mrid":113842458873,
+        "open":13436.12,
+        "close":13436.12,
+        "high":13436.12,
+        "low":13436.12,
+        "amount":0,
+        "vol":0,
+        "count":0
     }
-
+}
 ```
 
 
@@ -6784,34 +6664,34 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
 
 ```json
     
-    {
-     "rep": "market.BTC_CQ.kline.1min",
-     "status": "ok",
-     "id": "id4",
-     "wsid": 3925737956,
-     "data": [
-       {
-        "vol": 100,
-        "count": 27,
-        "id": 1494478080,
-        "open": 10050.00,
-        "close": 10058.00,
-        "low": 10050.00,
-        "high": 10058.00,
-        "amount": 175798.757708
-       },
-       {
-        "vol": 300,
-        "count": 28,
-        "id": 1494478140,
-        "open": 10058.00,
-        "close": 10060.00,
-        "low": 10056.00,
-        "high": 10065.00,
-        "amount": 158331.348600
-       }
-     ]
-    }
+{
+    "id":"id4",
+    "rep":"market.BTC_CQ.kline.15min",
+    "wsid":498385304,
+    "status":"ok",
+    "data":[
+        {
+            "id":1599667200,
+            "open":10262.31,
+            "close":10244.93,
+            "low":10234.84,
+            "high":10282,
+            "amount":1849.4984536479908439463088799853871134642,
+            "vol":189634,
+            "count":5342
+        },
+        {
+            "id":1599668100,
+            "open":10244.94,
+            "close":10242.07,
+            "low":10216.55,
+            "high":10244.94,
+            "amount":1586.9623024248859129381285787325037896282,
+            "vol":162334,
+            "count":4375
+        }
+    ]
+}
     
 ```
 
@@ -6878,6 +6758,43 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
 |20档 |step12|1|
 |20档 |step13|10|
 
+> 之后每当 depth 有更新时，client 会收到数据，例子：
+
+```json
+
+{
+    "ch":"market.BTC_CQ.depth.step6",
+    "ts":1604385453899,
+    "tick":{
+        "mrid":113842765361,
+        "id":1604385453,
+        "bids":[
+            [
+                13584.33,
+                1483
+            ],
+            [
+                13584,
+                1
+            ]
+        ],
+        "asks":[
+            [
+                13584.34,
+                126
+            ],
+            [
+                13584.35,
+                24
+            ]
+        ],
+        "ts":1604385453896,
+        "version":1604385453,
+        "ch":"market.BTC_CQ.depth.step6"
+    }
+}
+```
+
 ### 返回参数
 
 参数名称   |   是否必须  |   数据类型   |   描述   |   取值范围   |
@@ -6895,67 +6812,6 @@ ch | true |  string | 数据所属的 channel，格式： market.period | |
  \</tick\>    |               |    |      |            | | 
 
 
-> 之后每当 depth 有更新时，client 会收到数据，例子：
-
-```json
-
- {
-	"ch": "market.BTC_CQ.depth.step6",
-	"ts": 1586336779425,
-	"tick": {
-		"mrid": 58038661925,
-		"id": 1586336779,
-		"bids": [
-			[7376.41, 552],
-			[7375.22, 3],
-			[7375.21, 42],
-			[7375.1, 50],
-			[7374.97, 42],
-			[7374.96, 111],
-			[7374.95, 8],
-			[7374.72, 8],
-			[7374.71, 265],
-			[7374.5, 50],
-			[7374.08, 19],
-			[7373.9, 100],
-			[7373.88, 200],
-			[7373.87, 38],
-			[7373.8, 90],
-			[7373.74, 161],
-			[7373.64, 5],
-			[7373.62, 13],
-			[7373.49, 33],
-			[7373.48, 10]
-		],
-		"asks": [
-			[7376.42, 734],
-			[7376.73, 1],
-			[7377.26, 3],
-			[7377.27, 67],
-			[7377.28, 23],
-			[7377.3, 50],
-			[7377.45, 66],
-			[7377.46, 68],
-			[7377.53, 40],
-			[7377.81, 9],
-			[7377.9, 50],
-			[7377.94, 200],
-			[7377.95, 63],
-			[7377.98, 33],
-			[7378, 148],
-			[7378.07, 11],
-			[7378.24, 7],
-			[7378.26, 3],
-			[7378.38, 100],
-			[7378.44, 13]
-		],
-		"ts": 1586336779412,
-		"version": 1586336779,
-		"ch": "market.BTC_CQ.depth.step6"
-	}
-}
-    
-```
 ##  订阅Market Depth增量数据
 
 ### 成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来请求数据:
@@ -6994,7 +6850,43 @@ ch | true |  string | 数据所属的 channel，格式： market.period | |
  symbol         |  true           |  string     |  交易对            |        | 支持大小写， 交易对,"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示BTC次季度合约。支持使用合约code来订阅 例如："BTC200918"(当周)，"BTC200925"(次周)，"BTC201225"(季度)，"BTC210326"(次季度)。  |
   size           |  true           |  string     |          |        |  档位数，20:表示20档不合并的深度，150:表示150档不合并的深度  |
 
+> response：
 
+```json
+
+{
+    "ch":"market.BTC_CQ.depth.size_20.high_freq",
+    "tick":{
+        "asks":[
+            [
+                13576.41,
+                2627
+            ],
+            [
+                13576.53,
+                122
+            ]
+        ],
+        "bids":[
+            [
+                13576.4,
+                1648
+            ],
+            [
+                13574.17,
+                398
+            ]
+        ],
+        "ch":"market.BTC_CQ.depth.size_20.high_freq",
+        "event":"snapshot",
+        "id":113842925649,
+        "mrid":113842925649,
+        "ts":1604385634838,
+        "version":330099154
+    },
+    "ts":1604385634838
+}
+```
 
 ### 返回参数
 
@@ -7025,186 +6917,6 @@ event | true |  string | 事件类型；"update":更新，表示推送买卖各2
 5、如果是增量数据，要自己维护好本地的orderbook bids\asks 数据。
 
   
-> response：
-
-```json
-  {
-    "ch": "market.BTC_CQ.depth.size_20.high_freq",
-    "tick": {
-        "asks": [
-            [
-                7365.69,
-                225
-            ],
-            [
-                7366.38,
-                17
-            ],
-            [
-                7366.39,
-                128
-            ],
-            [
-                7366.79,
-                25
-            ],
-            [
-                7366.8,
-                100
-            ],
-            [
-                7367.1,
-                40
-            ],
-            [
-                7367.2,
-                10
-            ],
-            [
-                7367.4,
-                50
-            ],
-            [
-                7367.41,
-                5
-            ],
-            [
-                7367.58,
-                91
-            ],
-            [
-                7367.59,
-                112
-            ],
-            [
-                7367.6,
-                100
-            ],
-            [
-                7368,
-                92
-            ],
-            [
-                7368.01,
-                313
-            ],
-            [
-                7368.08,
-                11
-            ],
-            [
-                7368.14,
-                20
-            ],
-            [
-                7368.18,
-                109
-            ],
-            [
-                7368.22,
-                38
-            ],
-            [
-                7368.32,
-                9
-            ],
-            [
-                7368.33,
-                3
-            ]
-        ],
-        "bids": [
-            [
-                7365.68,
-                1461
-            ],
-            [
-                7365.67,
-                1
-            ],
-            [
-                7365.3,
-                3
-            ],
-            [
-                7365.03,
-                32
-            ],
-            [
-                7365.02,
-                68
-            ],
-            [
-                7365,
-                329
-            ],
-            [
-                7364.4,
-                52
-            ],
-            [
-                7363.3,
-                100
-            ],
-            [
-                7363.25,
-                1
-            ],
-            [
-                7363.23,
-                20
-            ],
-            [
-                7363.15,
-                38
-            ],
-            [
-                7363.04,
-                36
-            ],
-            [
-                7363.02,
-                71
-            ],
-            [
-                7363,
-                3
-            ],
-            [
-                7362.92,
-                200
-            ],
-            [
-                7362.76,
-                33
-            ],
-            [
-                7362.75,
-                16
-            ],
-            [
-                7362.63,
-                12
-            ],
-            [
-                7362.44,
-                8
-            ],
-            [
-                7362.43,
-                7
-            ]
-        ],
-        "ch": "market.BTC_CQ.depth.size_20.high_freq",
-        "event": "snapshot",
-        "id": 58039921057,
-        "mrid": 58039921057,
-        "ts": 1586337225104,
-        "version": 80067445
-    },
-    "ts": 1586337225107
-}
-```
 
 ##  订阅买一卖一逐笔行情数据(BBO)
 
@@ -7244,19 +6956,24 @@ event | true |  string | 事件类型；"update":更新，表示推送买卖各2
 ```json
 
 {
-	"ch": "market.BTC_CQ.bbo",
-	"ts": 1489474082831,
-	"tick": {
-    "ch": "market.BTC_CQ.bbo",
-		"mrid": 269073229,
-		"id": 1539843937,
-		"bid": [9999.9101, 1],
-		"ask": [10010.9800, 10],
-		"ts": 1539843937417,
-		"version": 1539843937
-	}
+    "ch":"market.BTC_CQ.bbo",
+    "ts":1604385767803,
+    "tick":{
+        "mrid":113843014986,
+        "id":1604385767,
+        "bid":[
+            13579.06,
+            1488
+        ],
+        "ask":[
+            13579.07,
+            1535
+        ],
+        "ts":1604385767803,
+        "version":113843014986,
+        "ch":"market.BTC_CQ.bbo"
+    }
 }
-
 ```
 
 ### 返回参数
@@ -7322,6 +7039,26 @@ ch | true |  string | 数据所属的 channel，格式： market.$symbol.bbo | |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
  symbol         |  true           |  string     |  交易对            |        | 支持大小写， 交易对,"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约。支持使用合约code来订阅 例如："BTC200918"(当周)，"BTC200925"(次周)，"BTC201225"(季度)，"BTC210326"(次季度)。  |
 
+> 请求成功返回数据的例子：
+
+```json
+
+{
+    "ch":"market.BTC_CQ.detail",
+    "ts":1604385863717,
+    "tick":{
+        "id":1604385840,
+        "mrid":113843084999,
+        "open":13607.17,
+        "close":13589,
+        "high":13830.63,
+        "low":13411.89,
+        "amount":261417.4288915740193389700120854767791857974,
+        "vol":35572590,
+        "count":586972
+    }
+}
+```
 
 ### 返回参数
 
@@ -7342,27 +7079,6 @@ count  |  true  |  decimal  |   成交笔数  |
  \</tick\>    |               |    |      |           
 
 
-> 请求成功返回数据的例子：
-
-```json
-
-  {
-	"ch": "market.BTC_CW.detail",
-	"ts": 1539842340724,
-	"tick": {
-		"id": 1539842340,
-		"mrid": 268041138,
-		"open": 6740.47,
-		"close": 7800,
-		"high": 7800,
-		"low": 6726.13,
-		"amount": 477.1200312075244664773339914558562673572,
-		"vol": 32414,
-		"count": 1716
-	  }
-  }
-
-```
 
 ## 请求 Trade Detail 数据
 
@@ -7409,6 +7125,33 @@ count  |  true  |  decimal  |   成交笔数  |
 
 仅返回当前 Trade Detail
 
+> 请求成功返回数据的例子：
+
+```json
+
+{
+    "data":[
+        {
+            "amount":"4",
+            "ts":1604386167285,
+            "id":1138433247400000,
+            "price":"13586.25",
+            "direction":"buy"
+        },
+        {
+            "amount":"20",
+            "ts":1604386167469,
+            "id":1138433248730000,
+            "price":"13586.25",
+            "direction":"buy"
+        }
+    ],
+    "id":"id8",
+    "rep":"market.BTC_CQ.trade.detail",
+    "status":"ok",
+    "ts":1604386202755
+}
+```
 
 ### 返回参数
 
@@ -7427,26 +7170,6 @@ ts  |  true  |  long  |  订单成交时间  |   |
 ts  |  true  |  long  |  发送时间  |   |   
 
 
-> 请求成功返回数据的例子：
-
-```json
-
-{
-  "data": [ {
-  "amount": "2",
-  "ts": 1585559699035,
-  "id": 108710870120000,
-  "price": "2.11",
-  "direction": "sell"
- }],
- "id": "ed90a9f4-7266-11ea-a9b6-3af9d3dd9051",
- "rep": "market.EOS_CW.trade.detail",
- "status": "ok",
- "ts": 1585559699082
-}
-
-    
-```
 
 ## 订阅 Trade Detail 数据 
 
@@ -7488,38 +7211,29 @@ ts  |  true  |  long  |  发送时间  |   |
 ```json
 
 {
-	"ch": "market.BTC_NW.trade.detail",
-	"ts": 1539831709042,
-	"tick": {
-		"id": 265842227,
-		"ts": 1539831709001,
-		"data": [{
-			"amount": 20,
-			"ts": 1539831709001,
-			"id": 265842227259096443,
-			"price": 6742.25,
-			"direction": "buy"
-		}]
-	}
+    "ch":"market.BTC_CQ.trade.detail",
+    "ts":1604386599136,
+    "tick":{
+        "id":113843672389,
+        "ts":1604386599123,
+        "data":[
+            {
+                "amount":120,
+                "ts":1604386599123,
+                "id":1138436723890000,
+                "price":13562.5,
+                "direction":"sell"
+            },
+            {
+                "amount":2,
+                "ts":1604386599123,
+                "id":1138436723890001,
+                "price":13562.5,
+                "direction":"sell"
+            }
+        ]
+    }
 }
-
-```
-  
-
-> data 说明：
-
-```json
-
-"data": [
-      {
-       "id": 消息ID,
-       "price": 成交价,
-       "amount": 成交量（张）,
-       "direction": 成交方向,
-       "ts": 时间戳
-      }
-]
-
 ```
 
 ### 返回参数
@@ -7592,18 +7306,17 @@ direction  |  true  |  string  |  买卖方向  |   |
 ```json
 
 {
- "ch": "market.BTC-USD.index.1min",
- "ts": 1489474082831,
- "tick": 
-    {
-     "id": 1489464480,
-     "vol": 0,
-     "count": 0,
-     "open": 7962.62,
-     "close": 7962.62,
-     "low": 7962.62,
-     "high": 7962.62,
-     "amount": 0
+    "ch":"market.BTC-USD.index.1min",
+    "ts":1604387688243,
+    "tick":{
+        "id":1604387640,
+        "open":"13419.4325",
+        "close":"13420.3325",
+        "high":"13424.4925",
+        "low":"13419.4325",
+        "amount":"0",
+        "vol":"0",
+        "count":0
     }
 }
 ```
@@ -7679,22 +7392,32 @@ direction  |  true  |  string  |  买卖方向  |   |
 ```json
 
 {
- "rep": "market.BTC-USD.index.1min",
- "status": "ok",
- "id": "id4",
- "wsid": 1231323423,
- "data": [
-   {
-    "vol": 0,
-    "count": 0,
-    "id": 1494478080,
-    "open": 10050.00,
-    "close": 10058.00,
-    "low": 10050.00,
-    "high": 10058.00,
-    "amount": 0
-   }
- ]
+    "id":"id4",
+    "rep":"market.BTC-USD.index.60min",
+    "wsid":915217437,
+    "status":"ok",
+    "data":[
+        {
+            "id":1604160000,
+            "open":13862.65,
+            "close":13832.615,
+            "low":13822.41,
+            "high":13890.2225,
+            "amount":0,
+            "vol":0,
+            "count":0
+        },
+        {
+            "id":1604163600,
+            "open":13832.7725,
+            "close":13788.6625,
+            "low":13751.9075,
+            "high":13833.41,
+            "amount":0,
+            "vol":0,
+            "count":0
+        }
+    ]
 }
 ```
 
@@ -7764,15 +7487,15 @@ direction  |  true  |  string  |  买卖方向  |   |
 ```json
 
 {
-  "ch": "market.BTC_CW.basis.5min.close",
-  "ts": 1585307850144,
-  "tick": {
-    "id": 1585307700,
-    "index_price": "6687.435",
-    "contract_price": "6667.37",
-    "basis": "-20.065",
-    "basis_rate": "-0.0030004029945711621869969577274395938"
-  }
+    "ch":"market.BTC_CW.basis.5min.close",
+    "ts":1604387856115,
+    "tick":{
+        "id":1604387700,
+        "index_price":"13434.5075",
+        "contract_price":"13454.01",
+        "basis":"19.5025",
+        "basis_rate":"0.0014516721212147151654052074480586653"
+    }
 }
 ```
 
@@ -7847,25 +7570,28 @@ direction  |  true  |  string  |  买卖方向  |   |
 
 ```json
 
- {
-  "data": [{
-    "basis": "-189.7774999999997",
-    "basis_rate": "-0.04769887832767704",
-    "contract_price": "3788.88",
-    "id": 1584065400,
-    "index_price": "3978.6575"
-  }, {
-    "basis": "-244.86500000000024",
-    "basis_rate": "-0.058387311761038056",
-    "contract_price": "3948.94",
-    "id": 1584065700,
-    "index_price": "4193.805"
-  }],
-  "id": "",
-  "rep": "market.BTC_CW.basis.5min.close",
-  "status": "ok",
-  "ts": 1585308650353,
-  "wsid": 1468558649
+{
+    "data":[
+        {
+            "basis":"20.357500000000073",
+            "basis_rate":"0.0014671752201438544",
+            "contract_price":"13895.66",
+            "id":1604160000,
+            "index_price":"13875.3025"
+        },
+        {
+            "basis":"20.13249999999971",
+            "basis_rate":"0.001454177342461542",
+            "contract_price":"13864.73",
+            "id":1604160300,
+            "index_price":"13844.5975"
+        }
+    ],
+    "id":"id4",
+    "rep":"market.BTC_CW.basis.5min.close",
+    "status":"ok",
+    "ts":1604387965575,
+    "wsid":3823737955
 }
 ```
 
@@ -7936,48 +7662,49 @@ direction  |  true  |  string  |  买卖方向  |   |
 ```json
 
 {
-	"op": "notify",
-	"topic": "orders.btc",
-    "uid": "1315816",
-	"ts": 1489474082831,
-	"symbol": "BTC",
-	"contract_type": "this_week",
-	"contract_code": "BTC180914",
-	"volume": 111,
-	"price": 1111,
-	"order_price_type": "limit",
-	"direction": "buy",
-	"offset": "open",
-	"status": 6,
-	"lever_rate": 10,
-	"order_id": 633989207806582784,
-	"order_id_str": "633989207806582784",
-	"client_order_id": 10683,
-	"order_source": "web",
-	"order_type": 1,
-	"created_at": 1408076414000,
-	"canceled_at": 1408076414000,
-	"trade_volume": 1,
-	"trade_turnover": 1200,
-	"fee": 0,
-	"fee_asset": "btc",
-	"trade_avg_price": 10,
-	"margin_frozen": 10,
-	"profit": 2,
-    "liquidation_type": 0,
-	"trade": [{
-		"id": "2131234825-6124591349-1",
-		"trade_id": 112,
-		"trade_volume": 1,
-		"trade_price": 123.4555,
-		"trade_fee": 0.234,
-		"trade_turnover": 34.123,
-		"created_at": 1490759594752,
-		"role": "maker",
-        "fee_asset": "BTC"
-	}]
+    "op":"notify",
+    "topic":"orders.ada",
+    "ts":1604388667226,
+    "symbol":"ADA",
+    "contract_type":"quarter",
+    "contract_code":"ADA201225",
+    "volume":1,
+    "price":0.0905,
+    "order_price_type":"post_only",
+    "direction":"sell",
+    "offset":"open",
+    "status":6,
+    "lever_rate":20,
+    "order_id":773207641127878656,
+    "order_id_str":"773207641127878656",
+    "client_order_id":null,
+    "order_source":"web",
+    "order_type":1,
+    "created_at":1604388667146,
+    "trade_volume":1,
+    "trade_turnover":10,
+    "fee":-0.022099447513812154,
+    "trade_avg_price":0.0905,
+    "margin_frozen":0,
+    "profit":0,
+    "trade":[
+        {
+            "trade_fee":-0.022099447513812154,
+            "fee_asset":"ADA",
+            "trade_id":113913755890,
+            "id":"113913755890-773207641127878656-1",
+            "trade_volume":1,
+            "trade_price":0.0905,
+            "trade_turnover":10,
+            "created_at":1604388667194,
+            "role":"maker"
+        }
+    ],
+    "canceled_at":0,
+    "fee_asset":"ADA",
+    "uid":"123456789",
+    "liquidation_type":"0"
 }
-
 ```
 
 ### 成交推送返回数据格式说明
@@ -8125,38 +7852,39 @@ direction  |  true  |  string  |  买卖方向  |   |
 ```json
 
 {
-  "op": "notify",           // 操作名称
-  "topic": "matchOrders.btc",     // 主题
-  "uid": "1315816",
-  "ts": 1489474082831,    
-  "symbol": "BTC",         //品种
-  "contract_type": "this_week",     //合约类型
-  "contract_code": "BTC180914",     //合约代码
-  "status": 4,   //订单状态(3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单)
-  "order_id": 106837,     //订单ID       
-  "order_id_str": "106837",     //订单ID ,字符串类型
-  "order_type": "1",    //订单类型  1:报单 、 2:撤单 、 3:强平、4:交割
-  "trade_volume":1,    //订单已成交量
-  "volume":2,    //订单委托量,
-  "client_order_id": 111,
-  "trade":[{
-      "id": "1232-213123-1231", //成交唯一ID
-      "trade_id":112,     //撮合结果id
-      "trade_volume":1,    //成交量
-      "trade_price":123.4555,     //撮合价格
-      "trade_turnover":34.123,     //成交金额 
-      "created_at": 1490759594752,    //成交时间
-      "role": "maker"
-    }],
-    "direction": "buy",
-    "offset": "open",
-    "lever_rate": 10,
-    "price": 34.123,
-    "created_at": 1490759594752,
-    "order_source": "api",
-    "order_price_type": "limit"
+    "op":"notify",
+    "topic":"matchOrders.ada",
+    "ts":1604388667219,
+    "symbol":"ADA",
+    "contract_code":"ADA201225",
+    "contract_type":"quarter",
+    "status":6,
+    "order_id":773207641127878656,
+    "order_id_str":"773207641127878656",
+    "client_order_id":null,
+    "order_type":1,
+    "created_at":1604388667146,
+    "trade":[
+        {
+            "trade_id":113913755890,
+            "id":"113913755890-773207641127878656-1",
+            "trade_volume":1,
+            "trade_price":0.0905,
+            "trade_turnover":10,
+            "created_at":1604388667194,
+            "role":"maker"
+        }
+    ],
+    "uid":"123456789",
+    "volume":1,
+    "trade_volume":1,
+    "direction":"sell",
+    "offset":"open",
+    "lever_rate":20,
+    "price":0.0905,
+    "order_source":"web",
+    "order_price_type":"post_only"
 }
-
 ```
 
 ### 成交推送返回数据格式说明
@@ -8284,28 +8012,29 @@ direction  |  true  |  string  |  买卖方向  |   |
 ```json
 
 {
-	"op": "notify",
-	"topic": "accounts",
-    "uid": "1315816",
-	"ts": 1489474082831,
-	"event": "order.match",
-	"data": [{
-		"symbol": "BTC",
-		"margin_balance": 1,
-		"margin_static": 1,
-		"margin_position": 0,
-		"margin_frozen": 3.33,
-		"margin_available": 0.34,
-		"profit_real": 3.45,
-		"profit_unreal": 7.45,
-		"withdraw_available": 4.0989898,
-		"risk_rate": 100,
-		"liquidation_price": 100,
-		"lever_rate": 10,
-		"adjust_factor": 0.1
-	}]
+    "op":"notify",
+    "topic":"accounts.ada",
+    "ts":1604388667226,
+    "event":"order.match",
+    "data":[
+        {
+            "symbol":"ADA",
+            "margin_balance":446.417641681222726716,
+            "margin_static":445.554085945257745136,
+            "margin_position":11.049723756906077348,
+            "margin_frozen":0,
+            "margin_available":435.367917924316649368,
+            "profit_real":21.627049781983019459,
+            "profit_unreal":0.86355573596498158,
+            "risk_rate":40.000796572150656768,
+            "liquidation_price":0.018674308027108984,
+            "withdraw_available":423.927036163274725677,
+            "lever_rate":20,
+            "adjust_factor":0.4
+        }
+    ],
+    "uid":"123456789"
 }
-
 ```
 
 ### 返回参数字段说明
@@ -8426,28 +8155,30 @@ direction  |  true  |  string  |  买卖方向  |   |
 ```json
 
 {
-	"op": "notify",
-	"topic": "positions",
-    "uid": "1315816",
-	"ts": 1489474082831,
-	"event": "order.match",
-	"data": [{
-		"symbol": "BTC",
-		"contract_code": "BTC180914",
-		"contract_type": "this_week",
-		"volume": 1,
-		"available": 0,
-		"frozen": 1,
-		"cost_open": 422.78,
-		"cost_hold": 422.78,
-		"profit_unreal": 0.00007096,
-		"profit_rate": 0.07,
-		"profit": 0.97,
-		"position_margin": 3.4,
-		"lever_rate": 10,
-		"direction": "sell",
-		"last_price": 9584.41
-	}]
+    "op":"notify",
+    "topic":"positions.ada",
+    "ts":1604388667226,
+    "event":"order.match",
+    "data":[
+        {
+            "symbol":"ADA",
+            "contract_code":"ADA201225",
+            "contract_type":"quarter",
+            "volume":1,
+            "available":1,
+            "frozen":0,
+            "cost_open":0.0905,
+            "cost_hold":0.0905,
+            "profit_unreal":0,
+            "profit_rate":0,
+            "profit":0,
+            "position_margin":5.524861878453038674,
+            "lever_rate":20,
+            "direction":"sell",
+            "last_price":0.0905
+        }
+    ],
+    "uid":"123456789"
 }
 
 `````
@@ -8587,19 +8318,22 @@ direction  |  true  |  string  |  买卖方向  |   |
 > 当有订单被爆仓账户接管后，返回的参数示例如下：
 
 ```json
+
 {
-    "op": "notify",
-    "topic": "public.eos.liquidation_orders",
+    "op":"notify",
+    "topic":"public.eos.liquidation_orders",
     "ts":1580815422403,
-    "data":[{
-        "symbol": "EOS",
-	      "contract_code": "EOS191227",
-	      "direction": "buy",
-	      "offset": "close",
-	      "volume": 7.0000000000000,
-	      "price": 4.23600000000000,
-	      "created_at": 1580815422296
-    }]
+    "data":[
+        {
+            "symbol":"EOS",
+            "contract_code":"EOS191227",
+            "direction":"buy",
+            "offset":"close",
+            "volume":7,
+            "price":4.236,
+            "created_at":1580815422296
+        }
+    ]
 }
 ```
 
@@ -8700,41 +8434,55 @@ direction  |  true  |  string  |  买卖方向  |   |
 ### 返回的参数为：
 
 ```json
-{
-    "op": "notify",           
-	"topic": "public.eos.contract_info",
-	"ts": 1489474082831,
-	"event": "update",
-	"data": [{
-		"symbol": "EOS",
-		"contract_code": "EOS200113",
-		"contract_type": "this_week",
-		"contract_size": 10.0,
-		"price_tick": 0.001,
-		"delivery_date": "20200113",
-		"create_date": "20200102",
-		"contract_status": 1
-	},{
-		"symbol": "EOS",
-		"contract_code": "EOS200120",
-		"contract_type": "next_week",
-		"contract_size": 10.0,
-		"price_tick": 0.001,
-		"delivery_date": "20200120",
-		"create_date": "20200102",
-		"contract_status": 1
-	},{
-		"symbol": "EOS",
-		"contract_code": "EOS200327",
-		"contract_type": "quarter",
-		"contract_size": 10.0,
-		"price_tick": 0.001,
-		"delivery_date": "20200327",
-		"create_date": "20200102",
-		"contract_status": 1
-	}]
-}
 
+{
+    "op":"notify",
+    "topic":"public.btc.contract_info",
+    "ts":1604389592693,
+    "event":"snapshot",
+    "data":[
+        {
+            "symbol":"BTC",
+            "contract_code":"BTC201106",
+            "contract_type":"this_week",
+            "contract_size":100,
+            "price_tick":0.01,
+            "delivery_date":"20201106",
+            "create_date":"20201016",
+            "contract_status":1
+        },
+        {
+            "symbol":"BTC",
+            "contract_code":"BTC201113",
+            "contract_type":"next_week",
+            "contract_size":100,
+            "price_tick":0.01,
+            "delivery_date":"20201113",
+            "create_date":"20201023",
+            "contract_status":1
+        },
+        {
+            "symbol":"BTC",
+            "contract_code":"BTC201225",
+            "contract_type":"quarter",
+            "contract_size":100,
+            "price_tick":0.01,
+            "delivery_date":"20201225",
+            "create_date":"20200612",
+            "contract_status":1
+        },
+        {
+            "symbol":"BTC",
+            "contract_code":"BTC210326",
+            "contract_type":"next_quarter",
+            "contract_size":100,
+            "price_tick":0.01,
+            "delivery_date":"20210326",
+            "create_date":"20200904",
+            "contract_status":1
+        }
+    ]
+}
 ```
 
 ### 返回参数
@@ -8846,38 +8594,39 @@ direction  |  true  |  string  |  买卖方向  |   |
 ```json
 
 {
-    "op": "notify",           
-	"topic": "trigger_order.eos",
-	"ts": 1489474082831,
-	"uid": "157959",
-	"event": "order",
-	"data":  [{
-                "symbol": "EOS",
-                "contract_code": "EOS190118",
-                "contract_type": "this_week",
-                "trigger_type": "ge",
-                "volume": 4,
-                "order_type": 1,
-                "direction": "sell",
-                "offset": "open",
-                "lever_rate": 1,
-                "order_id": 23,
-                "order_id_str": "161251",
-                "relation_order_id": "88",
-                "order_price_type": "limit",
-                "status": 6,
-                "order_source": "web",
-                "trigger_price": 2,
-                "triggered_price": 2.03,
-                "order_price": 2,
-                "created_at": 1547448030638,
-                "triggered_at": 0,
-                "order_insert_at": 0,
-                "canceled_at": 1547448845593,
-                "fail_code": null,
-                "fail_reason": null
-            }
-        ]
+    "op":"notify",
+    "topic":"trigger_order.ADA",
+    "ts":1604390110568,
+    "event":"order",
+    "uid":"144455922",
+    "data":[
+        {
+            "symbol":"ADA",
+            "contract_code":"ADA201225",
+            "contract_type":"quarter",
+            "trigger_type":"le",
+            "volume":1,
+            "order_type":1,
+            "direction":"buy",
+            "offset":"close",
+            "lever_rate":20,
+            "order_id":28312417,
+            "order_id_str":"28312417",
+            "relation_order_id":"-1",
+            "order_price_type":"limit",
+            "status":2,
+            "order_source":"web",
+            "trigger_price":0.09,
+            "triggered_price":null,
+            "order_price":0.09,
+            "created_at":1604390110565,
+            "triggered_at":0,
+            "order_insert_at":0,
+            "canceled_at":0,
+            "fail_code":null,
+            "fail_reason":null
+        }
+    ]
 }
 ``` 
  
