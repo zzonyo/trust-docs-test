@@ -1579,6 +1579,8 @@ Error Code | Error Details Description|
 
 - <a href='https://github.com/huobiapi/Futures-Node.js-demo'>Node.js</a>
 
+- <a href='https://github.com/hbdmapi/huobi_futures_Postman'>Postman</a>
+
 **Websocket**
 
 - <a href='https://github.com/huobiapi/Futures-Java-demo/tree/master/WebSocket-JAVA-demo'>Java</a>
