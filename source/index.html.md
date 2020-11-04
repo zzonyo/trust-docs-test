@@ -639,6 +639,8 @@ api.hbdm.com\n
 
 - <a href='https://github.com/hbdmapi/huobi_option_Java'> Java </a> 
 
+- <a href='https://github.com/hbdmapi/huobi_futures_Postman'>Postman</a>
+
 ### 备注：期权代码使用方式与交割与永续合约类似，其他语言demo可以参考交割与永续合约
 
 ## 策略DEMO
