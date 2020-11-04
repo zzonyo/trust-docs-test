@@ -1882,21 +1882,22 @@ Note：If there is a number in the Contract Code row，inquiry with Contract_Cod
 > Response
 
 ```json
+
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "contract_code": "BTC180914",
-      "contract_type": "this_week",
-      "contract_size": 100,
-      "price_tick": 0.001,
-      "delivery_date": "20180704",
-      "create_date": "20180604",
-      "contract_status": 1
-     }
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_code": "BTC201225",
+            "contract_type": "quarter",
+            "contract_size": 100,
+            "price_tick": 0.01,
+            "delivery_date": "20201225",
+            "create_date": "20200605",
+            "contract_status": 1
+        }
     ],
-  "ts":158797866555
+    "ts": 1604296501822
 }
 ```
 
@@ -1937,16 +1938,17 @@ curl "https://api.hbdm.com/api/v1/contract_index?symbol=BTC"
 > Response
 
 ```json
+
 {
-  "status":"ok",
-  "data": [
-     {
-       "symbol": "BTC",
-       "index_price":471.0817,
-       "index_ts": 1490759594752,
-      }
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "index_price": 13707.26,
+            "index_ts": 1604296614010
+        }
     ],
-  "ts": 1490759594752
+    "ts": 1604296620746
 }
 ```
 
@@ -1990,17 +1992,19 @@ One of the query conditions must be chosen.
 > Response
 
 ```json
+
 {
-  "status":"ok",
-  "data": 
-    {
-      "symbol":"BTC",
-      "high_limit":443.07,
-      "low_limit":417.09,
-      "contract_code":"BTC180914",
-      "contract_type":"this_week"
-     },
-  "ts": 1490759594752
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_code": "BTC201225",
+            "contract_type": "quarter",
+            "high_limit": 14724.88,
+            "low_limit": 13057.92
+        }
+    ],
+    "ts": 1604296680648
 }
 ```
 
@@ -2040,17 +2044,19 @@ curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_typ
 > Response:
 
 ```json
+
 {
-  "status":"ok",
-  "data":
-    [{
-      "symbol":"BTC",
-      "contract_type": "this_week",
-      "volume":123,
-      "amount":106,
-      "contract_code": "BTC180914"
-     }],
-  "ts": 1490759594752
+    "status": "ok",
+    "data": [
+        {
+            "volume": 3057834,
+            "amount": 22013.565930537597871378,
+            "symbol": "BTC",
+            "contract_type": "quarter",
+            "contract_code": "BTC201225"
+        }
+    ],
+    "ts": 1604296751272
 }
 ```
 
@@ -2088,14 +2094,14 @@ curl "https://api.hbdm.com/api/v1/contract_delivery_price?symbol=BTC"
 > Response:
 
 ```json
-    {
-      "status":"ok",
-      "data":
-        {
-          "delivery_price": 3806.4615259197324414715719     
-         },
-      "ts": 1490759594752
-    }
+
+{
+    "status": "ok",
+    "data": {
+        "delivery_price": 13212.3643864774624373956594
+    },
+    "ts": 1604296995036
+}
 ```
 
 ###  Returning Parameter  
@@ -2130,11 +2136,15 @@ curl "https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5"
 
 ```
 "tick": {
-    "id": Message id.
-    "ts": Time of Message Generation, unit: millisecond
-    "bids": Buying, [price(hanging unit price), vol(this price represent single contract)], According to the descending order of Price
-    "asks": Selling, [price(hanging unit Price), vol(this price represent single contract)], According to the ascending order of Price  
-    }
+    "id": Message id,
+    "ts": Time of Message Generation, unit: millisecond,
+    "bids": Buying, [price(hanging unit price), vol(this price represent single contract)], According to the descending order of Price,
+    "asks": Selling, [price(hanging unit Price), vol(this price represent single contract)], According to the ascending order of Price,
+    "ch": Data channel,
+    "mrid": Order ID,
+    "ts": Time of Respond Generation,
+    "version": version ID 
+}
 
 ```
 
@@ -2142,62 +2152,38 @@ curl "https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5"
 
 ```json
 
- {
-	"ch": "market.BTC_CQ.depth.step6",
-	"ts": 1586336779425,
-	"tick": {
-		"mrid": 58038661925,
-		"id": 1586336779,
-		"bids": [
-			[7376.41, 552],
-			[7375.22, 3],
-			[7375.21, 42],
-			[7375.1, 50],
-			[7374.97, 42],
-			[7374.96, 111],
-			[7374.95, 8],
-			[7374.72, 8],
-			[7374.71, 265],
-			[7374.5, 50],
-			[7374.08, 19],
-			[7373.9, 100],
-			[7373.88, 200],
-			[7373.87, 38],
-			[7373.8, 90],
-			[7373.74, 161],
-			[7373.64, 5],
-			[7373.62, 13],
-			[7373.49, 33],
-			[7373.48, 10]
-		],
-		"asks": [
-			[7376.42, 734],
-			[7376.73, 1],
-			[7377.26, 3],
-			[7377.27, 67],
-			[7377.28, 23],
-			[7377.3, 50],
-			[7377.45, 66],
-			[7377.46, 68],
-			[7377.53, 40],
-			[7377.81, 9],
-			[7377.9, 50],
-			[7377.94, 200],
-			[7377.95, 63],
-			[7377.98, 33],
-			[7378, 148],
-			[7378.07, 11],
-			[7378.24, 7],
-			[7378.26, 3],
-			[7378.38, 100],
-			[7378.44, 13]
-		],
-		"ts": 1586336779412,
-		"version": 1586336779,
-		"ch": "market.BTC_CQ.depth.step6",
-	}
+{
+    "ch":"market.BTC_NQ.depth.step6",
+    "status":"ok",
+    "tick":{
+        "asks":[
+            [
+                14100.87,
+                163
+            ],
+            [
+                14100.88,
+                20
+            ]
+        ],
+        "bids":[
+            [
+                14098.09,
+                53
+            ],
+            [
+                14098.08,
+                75
+            ]
+        ],
+        "ch":"market.BTC_NQ.depth.step6",
+        "id":1604297395,
+        "mrid":113765352864,
+        "ts":1604297395012,
+        "version":1604297395
+    },
+    "ts":1604297395085
 }
-  
 ```
 
 ###  Returning Parameter  
@@ -2264,32 +2250,33 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 > Response:
 
 ```json
+
 {
-  "ch": "market.BTC_CQ.kline.1min",
-  "data": [
-    {
-      "vol": 2446,
-      "close": 5000,
-      "count": 2446,
-      "high": 5000,
-      "id": 1529898120,
-      "low": 5000,
-      "open": 5000,
-      "amount": 48.92
-     },
-    {
-      "vol": 0,
-      "close": 5000,
-      "count": 0,
-      "high": 5000,
-      "id": 1529898780,
-      "low": 5000,
-      "open": 5000,
-      "amount": 0
-     }
-   ],
-  "status": "ok",
-  "ts": 1529908345313
+    "ch": "market.BTC_NQ.kline.5min",
+    "data": [
+        {
+            "amount": 4.30994018951037,
+            "close": 14103.1,
+            "count": 39,
+            "high": 14110,
+            "id": 1604297400,
+            "low": 14098.29,
+            "open": 14098.75,
+            "vol": 608
+        },
+        {
+            "amount": 0.19851299586596685,
+            "close": 14104.87,
+            "count": 1,
+            "high": 14104.87,
+            "id": 1604297700,
+            "low": 14104.87,
+            "open": 14104.87,
+            "vol": 28
+        }
+    ],
+    "status": "ok",
+    "ts": 1604297729928
 }
 ```
 
@@ -2341,9 +2328,9 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
     "count": transaction count
     "open": opening price,
     "close": Closing Price, when the Kline is the latest one，it means the latest price
-        "low": Lowest price
-        "high": highest price
-        "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
+    "low": Lowest price
+    "high": highest price
+    "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
     "bid": [price of buying one (amount)],
     "ask": [price of selling one (amount)]
 
@@ -2353,24 +2340,30 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
 > Response:
 
 ```json
+
 {
-  "ch": "market.BTC_CQ.detail.merged",
-  "status": "ok",
-  "tick": 
-    {
-      "vol":"13305",
-      "ask": [5001, 2],
-      "bid": [5000, 1],
-      "close": "5000",
-      "count": "13305",
-      "high": "5000",
-      "id": 1529387841,
-      "low": "5000",
-      "open": "5000",
-      "ts": 1529387842137,
-      "amount": "266.1"
-     },
-  "ts": 1529387842137
+    "ch": "market.BTC_NQ.detail.merged",
+    "status": "ok",
+    "tick": {
+        "amount": "4478.2911316482577028620799060719867257944",
+        "ask": [
+            14114.01,
+            177
+        ],
+        "bid": [
+            14112.71,
+            28
+        ],
+        "close": "14114",
+        "count": 18805,
+        "high": "14299.99",
+        "id": 1604298319,
+        "low": "14028.78",
+        "open": "14229.47",
+        "ts": 1604298319019,
+        "vol": "633708"
+    },
+    "ts": 1604298319019
 }
 ```
 
@@ -2434,23 +2427,24 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 > Response:
 
 ```json
+
 {
-  "ch": "market.BTC_CQ.trade.detail",
-  "status": "ok",
-  "tick": {
-    "data": [
-      {
-        "amount": "1",
-        "direction": "sell",
-        "id": 6010881529486944176,
-        "price": "5000",
-        "ts": 1529386945343
-       }
-     ],
-    "id": 1529388202797,
-    "ts": 1529388202797
+    "ch": "market.BTC_NQ.trade.detail",
+    "status": "ok",
+    "tick": {
+        "data": [
+            {
+                "amount": "4",
+                "ts": 1604298443540,
+                "id": 1137660004780000,
+                "price": "14117.98",
+                "direction": "sell"
+            }
+        ],
+        "id": 1604298454352,
+        "ts": 1604298454352
     },
-  "ts": 1529388202797
+    "ts": 1604298454352
 }
 ```
 
@@ -2511,25 +2505,39 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 > Response:
 
 ```json
+
 {
-  "ch": "market.BTC_CQ.trade.detail",
-  "status": "ok",
-  "ts": 1529388050915,
-  "data": [
-    {
-      "id": 601088,
-      "ts": 1529386945343,
-      "data": [
+    "ch": "market.BTC_NQ.trade.detail",
+    "data": [
         {
-         "amount": 1,
-         "direction": "sell",
-         "id": 6010881529486944176,
-         "price": 5000,
-         "ts": 1529386945343
-         }
-       ]
-    }
-   ]
+            "data": [
+                {
+                    "amount": 12,
+                    "direction": "buy",
+                    "id": 1137660361550000,
+                    "price": 14119.84,
+                    "ts": 1604298530920
+                }
+            ],
+            "id": 113766036155,
+            "ts": 1604298530920
+        },
+        {
+            "data": [
+                {
+                    "amount": 4,
+                    "direction": "sell",
+                    "id": 1137660376740000,
+                    "price": 14123.14,
+                    "ts": 1604298531331
+                }
+            ],
+            "id": 113766037674,
+            "ts": 1604298531331
+        }
+    ],
+    "status": "ok",
+    "ts": 1604298553734
 }
 ```
 
@@ -2570,16 +2578,17 @@ curl "https://api.hbdm.com/api/v1/contract_risk_info"
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "ts": 158797866555,
-  "data": [
-    {
-      "symbol": "ETH",
-      "insurance_fund": 3806.4615259197324414715719,
-      "estimated_clawback": 0.0023
-    }
-  ]
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "insurance_fund": 1909.852579486750035041,
+            "estimated_clawback": 0
+        }
+    ],
+    "ts": 1604298633195
 }
 ```
 
@@ -2600,7 +2609,7 @@ curl "https://api.hbdm.com/api/v1/contract_risk_info"
 - GET `api/v1/contract_insurance_fund`
 
 ```shell
-curl "https://api.hbdm.com/api/v1/contract_insurance_fund?symbol=ETH"
+curl "https://api.hbdm.com/api/v1/contract_insurance_fund?symbol=BTC"
 ```
  
 ### Request Parameter 
@@ -2614,19 +2623,22 @@ curl "https://api.hbdm.com/api/v1/contract_insurance_fund?symbol=ETH"
 ```json
 
 {
-  "status": "ok",
-  "ts": 158797866555,
-  "data":   {
-      "symbol": "ETH",
-      "tick": [
-        {
-          "insurance_fund": 3806.4615259197324414715719,
-          "ts": 158797866555
-         }
-       ]
-  }
+    "status":"ok",
+    "data":{
+        "symbol":"BTC",
+        "tick":[
+            {
+                "insurance_fund":1909.852579486750035041,
+                "ts":1604217600000
+            },
+            {
+                "insurance_fund":1907.646552903264189201,
+                "ts":1604131200000
+            }
+        ]
+    },
+    "ts":1604298695848
 }
-
 ```
 
 ### Returning Parameter
@@ -2663,34 +2675,39 @@ curl "https://api.hbdm.com/api/v1/contract_adjustfactor"
 ```json
 
 {
-  "status": "ok",
-  "data": [
-   {
-      "symbol": "BTC",
-      "list": [
-       {
-          "lever_rate": 10,
-          "ladders": [
-           {
-             "ladder": 1,
-             "min_size": 0,
-             "max_size": 100,
-             "adjust_factor": 0.1
-           },
-           {
-             "ladder": 2,
-             "min_size": 101,
-             "max_size": 500,
-             "adjust_factor": 0.2
-           }
-           ]
-       }
-       ]
-   }
-   ],
-   "ts": 158797866555
+    "status":"ok",
+    "data":[
+        {
+            "symbol":"BTC",
+            "list":[
+                {
+                    "lever_rate":125,
+                    "ladders":[
+                        {
+                            "ladder":0,
+                            "min_size":0,
+                            "max_size":1999,
+                            "adjust_factor":0.65
+                        },
+                        {
+                            "ladder":1,
+                            "min_size":2000,
+                            "max_size":14999,
+                            "adjust_factor":0.8
+                        },
+                        {
+                            "ladder":2,
+                            "min_size":15000,
+                            "max_size":null,
+                            "adjust_factor":0.85
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "ts":1604298785020
 }
-
 ```
 
 ### Returning Parameter 
@@ -2733,21 +2750,27 @@ curl "https://api.hbdm.com/api/v1/contract_his_open_interest?symbol=BTC&contract
 > Response:
 
 ```json
-{
-  "status": "ok",
-  "data": 
-    {
-    "symbol": "BTC",
-    "contract_type": "this_week",
-    "tick": [{
-      "volume": 1,
-      "amount_type": 1,
-      "ts": 1529387842137
-      }]
-    },
-    "ts": 158797866555
-}
 
+{
+    "status": "ok",
+    "data": {
+        "symbol": "BTC",
+        "contract_type": "quarter",
+        "tick": [
+            {
+                "volume": "3058980.0000000000000000",
+                "amount_type": 1,
+                "ts": 1604296800000
+            },
+            {
+                "volume": "3049899.0000000000000000",
+                "amount_type": 1,
+                "ts": 1604293200000
+            }
+        ]
+    },
+    "ts": 1604298943494
+}
 ```
 
 ### Returning Parameter 
@@ -2791,23 +2814,21 @@ curl "https://api.hbdm.com/api/v1/contract_api_state"
 ```json
 
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "open": 1,
-      "close": 1,
-      "cancel": 1,
-      "transfer_in": 1,
-      "transfer_out": 1,
-      "master_transfer_sub": 1,
-      "sub_transfer_master": 1
-                        
-    }
- ],
- "ts": 158797866555
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "open": 1,
+            "close": 1,
+            "cancel": 1,
+            "transfer_in": 1,
+            "transfer_out": 1,
+            "master_transfer_sub": 1,
+            "sub_transfer_master": 1
+        }
+    ],
+    "ts": 1604297099976
 }
-
 ```
 
 ### Returning Parameter 
@@ -2859,23 +2880,20 @@ curl "https://api.hbdm.com/api/v1/contract_elite_account_ratio?symbol=BTC&period
 ```json
 
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "list": [
-        {
-         "buy_ratio": 0.2323,
-         "sell_ratio": 0.4645,
-         "locked_ratio": 0.4142,
-         "ts": 158797866555
-       }
-       ]
-    }
- ],
- "ts": 158797866555
+    "status":"ok",
+    "data":{
+        "list":[
+            {
+                "buy_ratio":0.52,
+                "sell_ratio":0.45,
+                "locked_ratio":0.03,
+                "ts":1604290200000
+            }
+        ],
+        "symbol":"BTC"
+    },
+    "ts":1604299070097
 }
-
 ```
 
 ### Returning Parameter 
@@ -2915,22 +2933,24 @@ curl "https://api.hbdm.com/api/v1/contract_elite_position_ratio?symbol=BTC&perio
 ```json
 
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "list": [
-        {
-         "buy_ratio": 0.2323,
-         "sell_ratio": 0.4645,
-         "ts": 158797866555
-       }
-       ]
-    }
- ],
- "ts": 158797866555
+    "status":"ok",
+    "data":{
+        "list":[
+            {
+                "buy_ratio":0.51,
+                "sell_ratio":0.49,
+                "ts":1604290500000
+            },
+            {
+                "buy_ratio":0.508,
+                "sell_ratio":0.492,
+                "ts":1604290800000
+            }
+        ],
+        "symbol":"BTC"
+    },
+    "ts":1604299402211
 }
-
 ```
 
 ### Returning Parameter 
@@ -2971,26 +2991,25 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 ```json
 
 {
-  "status": "ok",
-  "data":{
-    "orders":[
-      {
-        "symbol": "BTC",
-        "contract_code": "BTC180914",    
-        "direction": "buy",
-        "offset": "close",
-        "volume": 111,
-        "price": 1111,
-        "created_at": 1408076414000
-      }
-     ],
-    "total_page":15,
-    "current_page":3,
-    "total_size":3
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "contract_code": "BTC210326",
+                "symbol": "BTC",
+                "direction": "buy",
+                "offset": "close",
+                "volume": 100,
+                "price": 14149.98,
+                "created_at": 1604299146147
+            }
+        ],
+        "total_page": 114,
+        "current_page": 1,
+        "total_size": 2264
     },
-  "ts": 1490759594752
+    "ts": 1604299610722
 }
-
 ```
 
 ### Returning Parameter 
@@ -3036,31 +3055,31 @@ curl "https://api.hbdm.com/index/market/history/index?symbol=BTC-USD&period=1min
 ```json
 
 {
-  "ch": "market.BTC-USD.index.1min",
-  "data": [
-    {
-      "vol": 2446,
-      "close": 5000,
-      "count": 2446,
-      "high": 5000,
-      "id": 1529898120,
-      "low": 5000,
-      "open": 5000,
-      "amount": 48.92
-     },
-    {
-      "vol": 0,
-      "close": 5000,
-      "count": 0,
-      "high": 5000,
-      "id": 1529898780,
-      "low": 5000,
-      "open": 5000,
-      "amount": 0
-     }
-   ],
-  "status": "ok",
-  "ts": 1529908345313
+    "ch": "market.BTC-USD.index.60min",
+    "data": [
+        {
+            "amount": 0,
+            "close": 13703.4175,
+            "count": 0,
+            "high": 13720.84,
+            "id": 1604293200,
+            "low": 13658.245,
+            "open": 13709.6175,
+            "vol": 0
+        },
+        {
+            "amount": 0,
+            "close": 13751.6,
+            "count": 0,
+            "high": 13771.21,
+            "id": 1604296800,
+            "low": 13693.16,
+            "open": 13703.365,
+            "vol": 0
+        }
+    ],
+    "status": "ok",
+    "ts": 1604299755097
 }
 ```
 
@@ -3105,23 +3124,27 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 > Response example：
 
 ```json
+
 {
-  "ch": "market.BTC_CW.basis.1mon.close",
-  "data": [{
-    "basis": "34.39000000000124",
-    "basis_rate": "0.003968208179193762",
-    "contract_price": "8700.77",
-    "id": 1580486400,
-    "index_price": "8666.38"
-  }, {
-    "basis": "-18.720000000000255",
-    "basis_rate": "-0.0028115411360609068",
-    "contract_price": "6639.55",
-    "id": 1582992000,
-    "index_price": "6658.27"
-  }],
-  "status": "ok",
-  "ts": 1585309433084
+    "ch": "market.BTC-USD.basis.5min.open",
+    "data": [
+        {
+            "basis": "-2.1850000000013097",
+            "basis_rate": "-0.00015880531885174013",
+            "contract_price": "13756.8",
+            "id": 1604299500,
+            "index_price": "13758.985"
+        },
+        {
+            "basis": "-4.235000000000582",
+            "basis_rate": "-0.00030799697602973224",
+            "contract_price": "13745.9",
+            "id": 1604299800,
+            "index_price": "13750.135"
+        }
+    ],
+    "status": "ok",
+    "ts": 1604299816352
 }
 ```
 
@@ -3165,41 +3188,28 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "margin_balance": 1,
-      "margin_position": 0,
-      "margin_frozen": 3.33,
-      "margin_available": 0.34,
-      "profit_real": 3.45,
-      "profit_unreal": 7.45,
-      "withdraw_available":4.0989898,
-      "risk_rate": 100,
-      "liquidation_price": 100,
-      "adjust_factor": 0.1,
-      "lever_rate": 10,
-      "margin_static": 1
-     },
-    {
-      "symbol": "ETH",
-      "margin_balance": 1,
-      "margin_position": 0,
-      "margin_frozen": 3.33,
-      "margin_available": 0.34,
-      "profit_real": 3.45,
-      "profit_unreal": 7.45,
-      "withdraw_available":4.7389859,
-      "risk_rate": 100,
-      "liquidation_price": 100,
-      "adjust_factor": 0.1,
-      "lever_rate": 10,
-      "margin_static": 1
-     }
-   ],
-  "ts":158797866555
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "ADA",
+            "margin_balance": 453.151955780787465997,
+            "margin_position": 0,
+            "margin_frozen": 0,
+            "margin_available": 453.151955780787465997,
+            "profit_real": 16.35635155751274032,
+            "profit_unreal": 0,
+            "risk_rate": null,
+            "withdraw_available": 436.795604223274725677,
+            "liquidation_price": null,
+            "lever_rate": 10,
+            "adjust_factor": 0.2,
+            "margin_static": 453.151955780787465997,
+            "is_debit": 0
+        }
+    ],
+    "ts": 1604300060777
 }
 ```
 
@@ -3241,28 +3251,29 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "contract_code": "BTC180914",
-      "contract_type": "this_week",
-      "volume": 1,
-      "available": 0,
-      "frozen": 0.3,
-      "cost_open": 422.78,
-      "cost_hold": 422.78,
-      "profit_unreal": 0.00007096,
-      "profit_rate": 0.07,
-      "profit": 0.97,
-      "position_margin": 3.4,
-      "lever_rate": 10,
-      "direction":"buy",
-      "last_price":7900.17
-     }
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "ADA",
+            "contract_code": "ADA201225",
+            "contract_type": "quarter",
+            "volume": 1,
+            "available": 1,
+            "frozen": 0,
+            "cost_open": 0.0991,
+            "cost_hold": 0.0991,
+            "profit_unreal": 0,
+            "profit_rate": 0,
+            "lever_rate": 10,
+            "position_margin": 10.090817356205852674,
+            "direction": "sell",
+            "profit": 0,
+            "last_price": 0.0991
+        }
     ],
- "ts": 158797866555
+    "ts": 1604301441639
 }
 ```
 
@@ -3309,43 +3320,22 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 ```json
 
 {
-	"status": "ok",
-	"ts": 1499223904680,
-	"data": [{
-			"sub_uid": 9910049,
-			"list": [{
-					"symbol": "BTC",
-					"margin_balance": 1,
-					"liquidation_price": 100,
-					"risk_rate": 100
-				},
-				{
-					"symbol": "ETH",
-					"margin_balance": 1,
-					"liquidation_price": 100,
-					"risk_rate": 100
-				}
-			]
-		},
-		{
-			"sub_uid": 9910048,
-			"list": [{
-					"symbol": "BTC",
-					"margin_balance": 1,
-					"liquidation_price": 100,
-					"risk_rate": 100
-				},
-				{
-					"symbol": "ETH",
-					"margin_balance": 1,
-					"liquidation_price": 100,
-					"risk_rate": 100
-				}
-			]
-		}
-	]
+    "status": "ok",
+    "data": [
+        {
+            "sub_uid": 123456789,
+            "list": [
+                {
+                    "symbol": "ADA",
+                    "margin_balance": 50,
+                    "liquidation_price": null,
+                    "risk_rate": null
+                }
+            ]
+        }
+    ],
+    "ts": 1604301647427
 }
-
 ```
 
 ### Return parameters
@@ -3385,26 +3375,28 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data":  [ 
-     {
-        "symbol": "BTC",
-        "margin_balance": 1,
-        "margin_position": 0,
-        "margin_frozen": 3.33,
-        "margin_available": 0.34,
-        "profit_real": 3.45,
-        "profit_unreal": 7.45,
-        "withdraw_available":4.0989898,
-        "risk_rate": 100,
-        "lever_rate": 3,
-        "liquidation_price": 100,
-        "adjust_factor": 0.1,
-        "margin_static": 3
-      }
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "ADA",
+            "margin_balance": 50,
+            "margin_position": 0,
+            "margin_frozen": 0,
+            "margin_available": 50,
+            "profit_real": 0,
+            "profit_unreal": 0,
+            "risk_rate": null,
+            "withdraw_available": 50,
+            "liquidation_price": null,
+            "lever_rate": 5,
+            "adjust_factor": 0.1,
+            "margin_static": 50,
+            "is_debit": 0
+        }
     ],
-  "ts":158797866555
+    "ts": 1604301730723
 }
 ```
 
@@ -3451,28 +3443,29 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "ts": 158797866555,
-  "data":[ 
-     {
-         "symbol": "BTC",
-         "contract_code": "BTC180914",
-         "contract_type": "this_week",
-         "volume": 1,
-         "available": 0,
-         "frozen": 0.3,
-         "cost_open": 422.78,
-         "cost_hold": 422.78,
-         "profit_unreal": 0.00007096,
-         "profit_rate": 0.07,
-         "profit": 0.97,
-         "position_margin": 3.4,
-         "lever_rate": 10,
-         "direction":"buy",
-         "last_price":6000 
-     }
-   ]
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "ADA",
+            "contract_code": "ADA201225",
+            "contract_type": "quarter",
+            "volume": 1,
+            "available": 1,
+            "frozen": 0,
+            "cost_open": 0.0991,
+            "cost_hold": 0.0991,
+            "profit_unreal": -0.04686106551835051,
+            "profit_rate": -0.002321965796434265,
+            "lever_rate": 5,
+            "position_margin": 20.191006925515375451,
+            "direction": "buy",
+            "profit": -0.04686106551835051,
+            "last_price": 0.099054
+        }
+    ],
+    "ts": 1604302891178
 }
 ```
 
@@ -3504,7 +3497,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 ## Query account financial records
 
 - POST `api/v1/contract_financial_record`
- 
+
 ### Request Parameters
 
 | **Parameter name**                | **Must fill or not** | **Type**  | **Description**             | **Value range**       |
@@ -3518,23 +3511,25 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data":{
-    "financial_record" : [
-      {
-      "id": 192838272,
-      "ts": 1408076414000,
-      "symbol":"BTC",
-      "type":1, 
-      "amount":1
-      }],
-    "total_page":15,
-    "current_page":3,
-    "total_size":3
+    "status": "ok",
+    "data": {
+        "total_page": 15,
+        "current_page": 1,
+        "total_size": 15,
+        "financial_record": [
+            {
+                "id": 3657420903,
+                "symbol": "ADA",
+                "type": 34,
+                "amount": -50,
+                "ts": 1604301623306
+            }
+        ]
     },
-  "ts": 1490759594752
-}
+    "ts": 1604306015124
+}  
 ```
 
 
@@ -3561,7 +3556,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 ## Query financial records via multiple fields
 
  - POST `api/v1/contract_financial_record_exact`
- 
+
 ### Request Parameter
 | Parameter name        | Mandatory  | Type     | Description    | Value range  |
 | ----------- | ----- | ------ | ---------------------- | ---------------------------------------- |
@@ -3601,25 +3596,35 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 > Response:
 
 ```json
-                                
+
 {
-  "status": "ok",
-  "ts": 1578123194790,
-  "data": {
-    "financial_record": [{
-        "id": 394796886,
-        "ts": 1578121002637,
-        "symbol": "BTC",
-        "contract_code": "BTC200919",
-        "type": 5,
-        "amount": 400,
-      }
-    ],
-    "remain_size":20,
-    "next_id":192838272
-  }
-}                                
+    "status": "ok",
+    "data": {
+        "financial_record": [
+            {
+                "id": 3657420903,
+                "symbol": "ADA",
+                "type": 34,
+                "amount": -50,
+                "ts": 1604301623306,
+                "contract_code": "ADA"
+            },
+            {
+                "id": 3657420101,
+                "symbol": "ADA",
+                "type": 6,
+                "amount": -0.020181634712411705,
+                "ts": 1604301416067,
+                "contract_code": "ADA201225"
+            }
+        ],
+        "remain_size": 22,
+        "next_id": 3657309434
+    },
+    "ts": 1604305081144
+}
 ```
+
 ### Returning Parameter
 
 | Parameter Name    | Mandatory | Type      | Description            | Value Range  |
@@ -3648,7 +3653,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 ## Query user’s settlement records
 
  - POST `api/v1/contract_user_settlement_records`
- 
+
 ### Request Parameter
 
 |  Parameter Name          | Mandatory  | Type     | Description   | Value Range                                      |
@@ -3672,52 +3677,42 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 {
     "status": "ok",
     "data": {
-        "settlement_records":[
+        "total_page": 13,
+        "current_page": 1,
+        "total_size": 13,
+        "settlement_records": [
             {
-                "symbol": "BTC",
-                "margin_balance_init": 10,
-                "margin_balance": 2,
-                "settlement_profit_real": 1.199,
-                "settlement_time": 1590825600,
-                "clawback": -0.001,
+                "symbol": "ADA",
+                "margin_balance_init": 436.415907066107795161,
+                "margin_balance": 436.795604223274725677,
+                "settlement_profit_real": 0.379697157166930517,
+                "settlement_time": 1604044800130,
+                "clawback": 0,
                 "delivery_fee": 0,
-                "offset_profitloss": 0,
-                "fee": 0,
-                "fee_asset": "BTC",
-                "positions":[
+                "offset_profitloss": 13.25977319159553892,
+                "fee": -0.565357129977092573,
+                "fee_asset": "ADA",
+                "positions": [
                     {
-                        "symbol": "BTC",
-                        "contract_code": "BTC200626",
+                        "symbol": "ADA",
+                        "contract_code": "ADA201225",
                         "direction": "buy",
                         "volume": 2,
-                        "cost_open": 6500,
-                        "cost_hold_pre": 6500,
-                        "cost_hold": 7000,
-                        "settlement_profit_unreal": 2.4,
-                        "settlement_price": 7000,
+                        "cost_open": 0.098,
+                        "cost_hold_pre": 0.098,
+                        "cost_hold": 0.092423,
+                        "settlement_profit_unreal": -12.31471890445151583,
+                        "settlement_price": 0.092423,
                         "settlement_type": "settlement"
-                    },
-                    {
-                        "symbol": "BTC",
-                        "contract_code": "BTC200619",
-                        "direction": "sell",
-                        "volume": 1,
-                        "cost_open": 6500,
-                        "cost_hold_pre": 6500,
-                        "cost_hold": None,
-                        "settlement_profit_unreal": -1.201,
-                        "settlement_price": 7000,
-                        "settlement_type": "delivery"
-                    }]
-            }],
-        "current_page": 1,
-        "total_page": 1,
-        "total_size": 5
+                    }
+                ]
+            }
+        ]
     },
-    "ts": 1578124684692
+    "ts": 1604305358564
 }
-
 ```
+
 ### Returning Parameter
 
 | Parameter Name                    | Mandatory | Type      | Description                 | Value Range     |
@@ -3775,36 +3770,41 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 > Response:
 
 ```json
-{
-  "status": "ok",
-  "data":  {
-      "order_price_type": "limit",
-      "list":[
-      {
-          "symbol": "BTC",
-          "types": [
-             {
-              "contract_type": "this_week",
-              "open_limit": 3000,
-              "close_limit": 3000
-             },
-             {
-              "contract_type": "next_week",
-              "open_limit": 3000,
-              "close_limit": 3000
-             },     
-             {
-              "contract_type": "quarter",
-              "open_limit": 3000,
-              "close_limit": 3000
-             }
-           ]
-      }
-      ]
-   },
- "ts": 158797866555
-}
 
+{
+    "status": "ok",
+    "data": {
+        "order_price_type": "limit",
+        "list": [
+            {
+                "symbol": "ADA",
+                "types": [
+                    {
+                        "contract_type": "this_week",
+                        "open_limit": 6000,
+                        "close_limit": 12000
+                    },
+                    {
+                        "contract_type": "next_week",
+                        "open_limit": 6000,
+                        "close_limit": 12000
+                    },
+                    {
+                        "contract_type": "quarter",
+                        "open_limit": 6000,
+                        "close_limit": 12000
+                    },
+                    {
+                        "contract_type": "next_quarter",
+                        "open_limit": 6000,
+                        "close_limit": 12000
+                    }
+                ]
+            }
+        ]
+    },
+    "ts": 1604306946036
+}
 ```
 
 ### Returning Parameter 
@@ -3825,10 +3825,11 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
+
 ## Query information on contract trading fee
- 
+
 - POST `api/v1/contract_fee`
- 
+
 ### Request Parameter 
 
 |   Parameter Name                 |   Mandatory   |   Type    |    Desc              |   Value Range       |
@@ -3840,21 +3841,20 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 ```json
 
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "open_maker_fee": "-0.00025",
-      "open_taker_fee": "0.00075",
-      "close_maker_fee": "-0.00025",
-      "close_taker_fee": "0.00075",
-      "delivery_fee": "0.0005",
-      "fee_asset":"BTC"
-    }
- ],
- "ts": 158797866555
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "ADA",
+            "open_maker_fee": "0.0002",
+            "open_taker_fee": "0.0004",
+            "close_maker_fee": "0.0002",
+            "close_taker_fee": "0.0004",
+            "delivery_fee": "0.0005",
+            "fee_asset": "ADA"
+        }
+    ],
+    "ts": 1604307012954
 }
-
 ```
 
 ### Returning Parameter 
@@ -3876,8 +3876,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 ## Query information on Transfer Limit
 
 - POST `api/v1/contract_transfer_limit`
- 
- 
+
 ### Request Parameter 
 
 |   Parameter Name                 |    Mandatory    |   Type   |   Desc             |   Value Range       |
@@ -3887,24 +3886,24 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 > Response:
 
 ```json
-{
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "transfer_in_max_each": 5000,
-      "transfer_in_min_each": 5000,
-      "transfer_out_max_each": 5000,
-      "transfer_out_min_each": 5000,
-      "transfer_in_max_daily": 5000,
-      "transfer_out_max_daily": 5000,
-      "net_transfer_in_max_daily": 5000,
-      "net_transfer_out_max_daily": 5000
-    }
- ],
- "ts": 158797866555
-}
 
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "ADA",
+            "transfer_in_max_each": 1500000000,
+            "transfer_in_min_each": 16,
+            "transfer_out_max_each": 150000000,
+            "transfer_out_min_each": 0.000001,
+            "transfer_in_max_daily": 15000000000,
+            "transfer_out_max_daily": 3000000000,
+            "net_transfer_in_max_daily": 7500000000,
+            "net_transfer_out_max_daily": 1500000000
+        }
+    ],
+    "ts": 1604307084954
+}
 ```
 
 ### Returning Parameter 
@@ -3928,7 +3927,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 ##  Query information on position limit
 
 - POST `api/v1/contract_position_limit`
-  
+
 ### Request Parameter 
 
 |  Parameter Name                |   Mandatory  |   Type   |   Desc             |   Value Range      |
@@ -3938,38 +3937,43 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 > Response:
 
 ```json
-{
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "list": [
-        {
-         "contract_type": "all",
-         "buy_limit": 5000,
-         "sell_limit": 5000
-       },
-        {
-         "contract_type": "this_week",
-         "buy_limit": 3000,
-         "sell_limit": 3000
-       },
-        {
-         "contract_type": "next_week",
-         "buy_limit": 3000,
-         "sell_limit": 3000
-       },     
-        {
-         "contract_type": "quarter",
-         "buy_limit": 3000,
-         "sell_limit": 3000
-       }
-       ]
-    }
- ],
- "ts": 158797866555
-}
 
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "ADA",
+            "list": [
+                {
+                    "contract_type": "this_week",
+                    "buy_limit": 60000,
+                    "sell_limit": 60000
+                },
+                {
+                    "contract_type": "next_week",
+                    "buy_limit": 60000,
+                    "sell_limit": 60000
+                },
+                {
+                    "contract_type": "quarter",
+                    "buy_limit": 60000,
+                    "sell_limit": 60000
+                },
+                {
+                    "contract_type": "next_quarter",
+                    "buy_limit": 60000,
+                    "sell_limit": 60000
+                },
+                {
+                    "contract_type": "all",
+                    "buy_limit": 240000,
+                    "sell_limit": 240000
+                }
+            ]
+        }
+    ],
+    "ts": 1604307195501
+}
 ```
 
 ### Returning Parameter 
@@ -3990,7 +3994,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 ## Query Assets And Positions
 
 - post `api/v1/contract_account_position_info`
-  
+
 ### params
 
 field               |  Mandatory |  type  |  desc         |   range       |
@@ -4002,42 +4006,45 @@ symbol | true | string | symbol	 |Case-Insenstive.Both uppercase and lowercase a
 ```json
 
 {
-	"status": "ok",
-	"data": [{
-		"symbol": "BTC",
-		"margin_balance": 0,
-		"margin_position": 0,
-		"margin_frozen": 0,
-		"margin_available": 0,
-		"profit_real": 0,
-		"profit_unreal": 0,
-		"risk_rate": null,
-		"withdraw_available": 0,
-		"liquidation_price": null,
-		"lever_rate": 20,
-		"adjust_factor": 0.13,
-		"margin_static": 1,
-		"positions": [{
-			"symbol": "BTC",
-			"contract_code": "BTC180914",
-			"contract_type": "this_week",
-			"volume": 1,
-			"available": 0,
-			"frozen": 0.3,
-			"cost_open": 422.78,
-			"cost_hold": 422.78,
-			"profit_unreal": 0.00007096,
-			"profit_rate": 0.07,
-			"profit": 0.97,
-			"position_margin": 3.4,
-			"lever_rate": 20,
-			"direction": "buy",
-			"last_price": 7900.17
-		}]
-	}],
-	"ts": 1560147583367
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "ADA",
+            "margin_balance": 405.226124145843792312,
+            "margin_position": 10.300252356182726476,
+            "margin_frozen": 0,
+            "margin_available": 394.925871789661065836,
+            "profit_real": 16.336169922800328615,
+            "profit_unreal": 2.09434999976873802,
+            "risk_rate": 39.141378262699244579,
+            "withdraw_available": 386.795604223274725677,
+            "liquidation_price": null,
+            "lever_rate": 10,
+            "adjust_factor": 0.2,
+            "margin_static": 403.131774146075054292,
+            "positions": [
+                {
+                    "symbol": "ADA",
+                    "contract_code": "ADA201225",
+                    "contract_type": "quarter",
+                    "volume": 1,
+                    "available": 1,
+                    "frozen": 0,
+                    "cost_open": 0.0991,
+                    "cost_hold": 0.0991,
+                    "profit_unreal": 2.09434999976873802,
+                    "profit_rate": 0.20755008497708193,
+                    "lever_rate": 10,
+                    "position_margin": 10.300252356182726476,
+                    "direction": "sell",
+                    "profit": 2.09434999976873802,
+                    "last_price": 0.097085
+                }
+            ]
+        }
+    ],
+    "ts": 1604307305267
 }
-
 ```
 
 ### response
@@ -4074,7 +4081,7 @@ lever_rate | int | true | Leverage Rate                                         
 direction | string  | true  | "buy" "sell"	                                            |
 last_price | decimal  | true  | Last Price                                              |
 \</list\>                  |              |          |                            |
- 
+
 ## Transfer between master and sub account
 
 - post `api/v1/contract_master_sub_transfer`
@@ -4083,14 +4090,14 @@ last_price | decimal  | true  | Last Price                                      
 
 ```json
 {
-	"sub_uid": "123123123",
+	"sub_uid": "123456789",
 	"symbol": "BTC",
 	"amount": "123",
 	"type": "master_to_sub"
 }
 ```
 
-### 请求参数
+### params
 
 | attr   | required  | type     | desc   |     |
 | ------ | ----- | ------ | ---- | ---------------------------- |
@@ -4105,14 +4112,14 @@ last_price | decimal  | true  | Last Price                                      
 > Response:
 
 ```json
-{
-  "status": "ok",
-  "ts": 158797866555,
-  "data":   {
-      "order_id": "122133213",
-  }
-}
 
+{
+    "status": "ok",
+    "data": {
+        "order_id": "772874532490125313"
+    },
+    "ts": 1604309247876
+}
 ```
 
 ### response
@@ -4125,20 +4132,11 @@ last_price | decimal  | true  | Last Price                                      
 | order_id        | true | string  | order id            |  |
 | \</data\>     |      |         |         |   |
 
+
+
 ## Get transfer records between master and sub account
 
 - post `api/v1/contract_master_sub_transfer_record`
-
-> Request:
-
-```json
-{
-	"sub_uid": "123123123",
-	"symbol": "BTC",
-	"amount": "123",
-	"type": "master_to_sub"
-}
-```
 
 ### request
 
@@ -4153,26 +4151,36 @@ last_price | decimal  | true  | Last Price                                      
 > Response:
 
 ```json
-{                                  
-    "status": "ok",                           
-    "ts": 1490759594752,            
-    "data":{                         
-      "transfer_record" : [         
-        {                            
-        "id": 192838272,             
-        "ts": 1408076414000,         
-        "symbol":"BTC",        
-        "sub_uid":"123123123",      
-        "sub_account_name":"bolin",       
-        "transfer_type":34,              
-        "amount":1,                  
-        },...                        
-      ],
-      "total_page":15,          
-      "current_page":3,         
-      "total_size":3            
-      } 
-  }
+
+{
+    "status": "ok",
+    "data": {
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 2,
+        "transfer_record": [
+            {
+                "id": 3657499070,
+                "symbol": "ADA",
+                "transfer_type": 34,
+                "amount": -1,
+                "ts": 1604309247860,
+                "sub_uid": "123456789",
+                "sub_account_name": "tom"
+            },
+            {
+                "id": 3657420904,
+                "symbol": "ADA",
+                "transfer_type": 34,
+                "amount": -50,
+                "ts": 1604301623314,
+                "sub_uid": "123456789",
+                "sub_account_name": "tom"
+            }
+        ]
+    },
+    "ts": 1604309883224
+}
 ```
 
 ### response
@@ -4201,9 +4209,8 @@ last_price | decimal  | true  | Last Price                                      
 
 - get `api/v1/contract_api_trading_status`
 
-
 ### request body
- 
+
  null
 
  > eg：
@@ -4271,7 +4278,7 @@ last_price | decimal  | true  | Last Price                                      
 | \</data\>     |      |         |         |   |
 
 
- 
+
 ## Query Available Leverage Rate
 
 - POST `api/v1/contract_available_level_rate`
@@ -4291,57 +4298,12 @@ last_price | decimal  | true  | Last Price                                      
     "status": "ok",
     "data": [
         {
-            "symbol": "BTC",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "symbol": "BTT",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "symbol": "BSV",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "symbol": "ETC",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "symbol": "BCH",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "symbol": "XRP",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "symbol": "ETH",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "symbol": "EOS",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "symbol": "USDT",
-            "available_level_rate": "1,5"
-        },
-        {
-            "symbol": "LTC",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "symbol": "TRX",
-            "available_level_rate": "1,5,10,20"
-        },
-        {
-            "symbol": "HT",
-            "available_level_rate": "1,5"
+            "symbol": "ADA",
+            "available_level_rate": "1,2,3,5,10,20,30,50,75"
         }
     ],
-    "ts": 1566899973811
+    "ts": 1604312615051
 }
-
 ```
 
 ### Response:
@@ -4422,15 +4384,15 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 > Response:
 
 ```json
-    {
-      "status": "ok",
-      "data": {
-            "order_id": 633766664829804544,
-            "order_id_str": "633766664829804544",
-            "client_order_id": 1234
-          },
-      "ts": 158797866555
-    }
+
+{
+    "status": "ok",
+    "data": {
+        "order_id": 773119326353580033,
+        "order_id_str": "773119326353580033"
+    },
+    "ts": 1604367611267
+}
 ```
 
 
@@ -4526,36 +4488,24 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 ```json
 {
-  "status": "ok",
-  "data": {
-    "errors":[
-      {
-        "index":1,
-        "err_code": 200417,
-        "err_msg": "invalid symbol"
-       },
-      {
-        "index":2,
-        "err_code": 200415,
-        "err_msg": "invalid symbol"
-       }
-     ],
-    "success":[
-      {
-        "index":3,
-        "order_id":633766664829804544,
-        "order_id_str": "633766664829804544",
-        "client_order_id":1344567
-       },
-      {
-        "index":4,
-        "order_id":633766664829804544,
-        "order_id_str": "633766664829804544",
-        "client_order_id":1344569
-       }
-     ]
-   },
-  "ts": 1490759594752
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "index": 1,
+                "err_code": 1037,
+                "err_msg": "The leverage is invalid. Please contact the customer service."
+            }
+        ],
+        "success": [
+            {
+                "order_id": 773120304138219520,
+                "index": 2,
+                "order_id_str": "773120304138219520"
+            }
+        ]
+    },
+    "ts": 1604367844388
 }
 ```
 
@@ -4583,6 +4533,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.
 
+
 ## Cancel an Order 
 
 ###  Example   
@@ -4606,25 +4557,21 @@ The return data from Cancel An Order Interface only means that order cancelation
 > Response: result of multiple order withdraws (successful withdrew order ID, failed withdrew order ID)
 
 ```json
+
 {
-  "status": "ok",
-  "data":{
-    "errors":[
-      {
-        "order_id":"633766664829804544",
-        "err_code": "1002",
-        "err_msg": "order doesn’t exist"
-      },
-      {
-        "order_id":"633766664829804544",
-        "err_code": "1002",
-        "err_msg": "order doesn’t exist"
-      }
-    ],
-    "successes":"161256,1344567"
-  }
-  "ts": 1490759594752
-}
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "order_id": "769206471845261312",
+                "err_code": 1061,
+                "err_msg": "This order doesnt exist."
+            }
+        ],
+        "successes": "773120304138219520"
+    },
+    "ts": 1604367997451
+} 
 ```
 
 ###  Returning Parameter  
@@ -4652,8 +4599,11 @@ The return data from Cancel An Order Interface only means that order cancelation
 > Request:
 
 ```json
+
 {
- "symbol": "BTC"
+    "symbol":"btc",
+    "contract_code":"btc200925",
+    "contract_type":"quarter"
 }
 ```
 
@@ -4674,39 +4624,19 @@ The return data from Cancel An Order Interface only means that order cancelation
 3.  Send symbol+contract_type to cancel the certain contracts under the symbol of that contract_type, e.g. send “BTC” and “this week”, then the BTC weekly contracts will be cancelled.
 
 > Response:result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
- 
+
 ```json
+
 {
-  "status": "ok",
-  "data": {
-    "errors":[
-      {
-        "order_id":"633766664829804544",
-        "err_code": 200417,
-        "err_msg": "invalid symbol"
-       },
-      {
-        "order_id":"633766664829804544",
-        "err_code": 200415,
-        "err_msg": "invalid symbol"
-       }
-      ],
-    "successes":"161256,1344567"
-   },
-  "ts": 1490759594752
+    "status": "ok",
+    "data": {
+        "errors": [],
+        "successes": "773120045672095744,773120045684678656"
+    },
+    "ts": 1604369127577
 }
 ```
 
-> Error：
-
-```json
-{
-  "status": "error",
-  "err_code": 20012,
-  "err_msg": "invalid symbol",
-  "ts": 1490759594752
-}
-```
 
 ###  Returning Parameter  
 
@@ -4746,20 +4676,22 @@ The return data from Cancel An Order Interface only means that order cancelation
 ```json
 
 OK：
+
 {
     "status": "ok",
-    "ts": 1547521135713,
     "data": {
-          "symbol":"BTC",
-          "lever_rate":10
-    }
+        "contract_code": "ada",
+        "lever_rate": 20
+    },
+    "ts": 1604369902689
 }
 No：
+
 {
     "status": "error",
-    "err_code": 2014,   
-    "err_msg": "Can't switch",  
-    "ts": 1547519608126
+    "err_code": 1037,
+    "err_msg": "The leverage is invalid. Please contact the customer service.",
+    "ts": 1604369954194
 }
 
 ```
@@ -4782,7 +4714,6 @@ No：
 
 - POST ` api/v1/lightning_close_position`
 
- 
 ### Request Parameter 
 
 |   Parameter Name                 |    Mandatory    |   Type   |   Desc             |   Value Range       |
@@ -4797,6 +4728,7 @@ No：
 > Response:
 
 ```json
+
 {
   "status": "ok",
   "data": {
@@ -4824,13 +4756,13 @@ No：
 > Error：
 
 ```json
+
 {
     "status": "error",
-    "err_code": 20012,
-    "err_msg": "invalid symbol",
-    "ts": 1490759594752
+    "err_code": 1048,
+    "err_msg": "Insufficient close amount available.",
+    "ts": 1604372431440
 }
-
 ```
 
 
@@ -4861,35 +4793,37 @@ client_order_id，order status query is available for orders placed within 24 ho
 ```json
 
 {
- "data": [{
-     "client_order_id": null,
-     "contract_code": "BTC200925",
-     "contract_type": "quarter",
-     "created_at": 1585563146143,
-     "canceled_at": 1585563146143,
-     "direction": "sell",
-     "fee": 0,
-     "fee_asset": "BTC",
-     "lever_rate": 1,
-     "margin_frozen": 0.0,
-     "offset": "open",
-     "order_id": 694247683073978368,
-     "order_id_str": "694247683073978368",
-     "order_price_type": "limit",
-     "order_source": "api",
-     "order_type": 1,
-     "price": 10000,
-     "profit": 0,
-     "status": 7,
-     "symbol": "BTC",
-     "trade_avg_price": null,
-     "trade_turnover": 0,
-     "trade_volume": 0,
-     "volume": 1,
-     "liquidation_type":"1"
-   }],
-  "status": "ok",
-  "ts": 1585563190031
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "ADA",
+            "contract_code": "ADA201225",
+            "contract_type": "quarter",
+            "volume": 1,
+            "price": 0.0933,
+            "order_price_type": "post_only",
+            "order_type": 1,
+            "direction": "sell",
+            "offset": "open",
+            "lever_rate": 10,
+            "order_id": 773119326353580033,
+            "client_order_id": null,
+            "created_at": 1604367611263,
+            "trade_volume": 1,
+            "trade_turnover": 10,
+            "fee": -0.021436227224008574,
+            "trade_avg_price": 0.0933,
+            "margin_frozen": 0,
+            "profit": 0,
+            "status": 6,
+            "order_source": "api",
+            "order_id_str": "773119326353580033",
+            "fee_asset": "ADA",
+            "liquidation_type": "0",
+            "canceled_at": 0
+        }
+    ],
+    "ts": 1604370179844
 }
 ```
 
@@ -4948,7 +4882,6 @@ client_order_id，order status query is available for orders placed within 24 ho
 ### Note
 When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 24-hour data, while users who don’t type in parameters “created_at” and “order_type” can only query last 12-hour data.
 
-
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jason-bigint package.
 
 created_at should use timestamp of long type as 13 bits (include Millisecond), if send the accurate timestamp for "created_at", query performance will be improved.
@@ -4960,65 +4893,58 @@ Please note that created_at can't send "0"
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data":{
-    "symbol": "BTC",
-    "contract_type": "this_week",
-    "contract_code": "BTC180914",
-    "volume": 111,
-    "price": 1111,
-    "order_price_type": "limit",
-    "direction": "buy",
-    "offset": "open",
-    "lever_rate": 10,
-    "margin_frozen": 10,
-    "profit": 10,
-    "order_source": "web",
-    "order_id": 633766664829804544,
-    "order_id_str": "633766664829804544",
-    "client_order_id": 10683,
-    "order_type": 1,
-    "status": 6,
-    "trade_volume": 1,
-    "trade_turnover": 1200,
-    "trade_avg_price": 10,
-    "fee": 0,
-    "created_at": 1408076414000,
-    "canceled_at": 1408076414000,
-    "final_interest": 0,
-    "adjust_value": 1,
-    "fee_asset":"BTC",
-    "trades":[
-      {
-        "id":"21315414825-6141291349-1",
-        "trade_id":112,
-        "trade_volume":1,
-        "trade_price":123.4555,
-        "trade_fee":0.234,
-        "trade_turnover":34.123,
-        "role": "maker",
-        "created_at": 1490759594752
-       }
-      ],
-    "total_page":15,
-    "total_size":3,
-    "current_page":3
+    "status": "ok",
+    "data": {
+        "symbol": "ADA",
+        "contract_code": "ADA201225",
+        "contract_type": "quarter",
+        "instrument_price": 0,
+        "final_interest": 0,
+        "adjust_value": 0,
+        "lever_rate": 10,
+        "direction": "sell",
+        "offset": "open",
+        "volume": 1,
+        "price": 0.0933,
+        "created_at": 1604367611263,
+        "canceled_at": 0,
+        "order_source": "api",
+        "order_price_type": "post_only",
+        "margin_frozen": 0,
+        "profit": 0,
+        "trades": [
+            {
+                "trade_id": 113887800667,
+                "trade_price": 0.0933,
+                "trade_volume": 1,
+                "trade_turnover": 10,
+                "trade_fee": -0.021436227224008574,
+                "created_at": 1604368087894,
+                "role": "maker",
+                "id": "113887800667-773119326353580033-1"
+            }
+        ],
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 1,
+        "liquidation_type": "0",
+        "fee_asset": "ADA",
+        "order_id": 773119326353580033,
+        "order_id_str": "773119326353580033",
+        "client_order_id": null,
+        "order_type": "1",
+        "status": 6,
+        "trade_avg_price": 0.0933,
+        "trade_turnover": 10,
+        "trade_volume": 1,
+        "fee": -0.021436227224008574
     },
-  "ts": 1490759594752
+    "ts": 1604370259827
 }
 ```
 
-> Error:
-
-```json
-{
- "status":"error",
- "err_code":20029,
- "err_msg": "invalid symbol",
- "ts": 1490759594752
-}
-```
 
 ###  Returning Parameter 
 
@@ -5088,42 +5014,46 @@ Please note that created_at can't send "0"
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data":{
-    "orders":[
-      {
-         "symbol": "BTC",
-         "contract_type": "this_week",
-         "contract_code": "BTC180914",
-         "volume": 111,
-         "price": 1111,
-         "order_price_type": "limit",
-         "order_type": 1,
-         "direction": "buy",
-         "offset": "open",
-         "lever_rate": 10,
-         "order_id": 633766664829804544,
-         "order_id_str": "633766664829804544",
-         "client_order_id": 10683,
-         "order_source": "web",
-         "created_at": 1408076414000,
-         "trade_volume": 1,
-         "trade_turnover": 1200,
-         "fee": 0,
-         "trade_avg_price": 10,
-         "margin_frozen": 10, 
-         "profit": 0,
-         "status": 1,
-         "fee_asset":"BTC"
-        }
-       ],
-    "total_page":15,
-    "current_page":3,
-    "total_size":3
-   },
-  "ts": 1490759594752
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "symbol": "ADA",
+                "contract_code": "ADA201225",
+                "contract_type": "quarter",
+                "volume": 1,
+                "price": 0.0925,
+                "order_price_type": "post_only",
+                "order_type": 1,
+                "direction": "buy",
+                "offset": "close",
+                "lever_rate": 20,
+                "order_id": 773131315209248768,
+                "client_order_id": null,
+                "created_at": 1604370469629,
+                "trade_volume": 0,
+                "trade_turnover": 0,
+                "fee": 0,
+                "trade_avg_price": null,
+                "margin_frozen": 0,
+                "profit": 0,
+                "status": 3,
+                "order_source": "web",
+                "order_id_str": "773131315209248768",
+                "fee_asset": "ADA",
+                "liquidation_type": null,
+                "canceled_at": null
+            }
+        ],
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 1
+    },
+    "ts": 1604370488518
 }
+
 ```
 
 ###  Returning Parameter  
@@ -5169,7 +5099,6 @@ Please note that created_at can't send "0"
 
 - POST `api/v1/contract_hisorders`
 
-
 > Request:
 
 ```json
@@ -5209,42 +5138,42 @@ When getting information on order cancellation via query history orders interfac
 
 ```json
 
-    {
-      "status": "ok",
-      "data":{
-        "orders":[
-          {
-            "symbol": "BTC",
-            "contract_type": "this_week",
-            "contract_code": "BTC180914",
-            "volume": 111,
-            "price": 1111,
-            "order_price_type": 1,
-            "direction": "buy",
-            "offset": "open",
-            "lever_rate": 10,
-            "order_id": 633766664829804544,
-            "order_id_str": "633766664829804544",
-            "order_source": "web",
-            "create_date": 1408076414000,
-            "trade_volume": 1,
-            "trade_turnover": 1200,
-            "fee": 0,
-            "trade_avg_price": 10,
-            "margin_frozen": 10,
-            "profit": 10,
-            "status": 1,
-            "order_type": 1,
-            "fee_asset": "BTC",
-            "liquidation_type": 0
-          }
-         ],
-        "total_page":15,
-        "current_page":3,
-        "total_size":3
-        },
-      "ts": 1490759594752
-    }
+{
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "order_id": 773131315209248768,
+                "contract_code": "ADA201225",
+                "symbol": "ADA",
+                "lever_rate": 20,
+                "direction": "buy",
+                "offset": "close",
+                "volume": 1,
+                "price": 0.0925,
+                "create_date": 1604370469629,
+                "order_source": "web",
+                "order_price_type": 6,
+                "order_type": 1,
+                "margin_frozen": 0,
+                "profit": 0,
+                "contract_type": "quarter",
+                "trade_volume": 0,
+                "trade_turnover": 0,
+                "fee": 0,
+                "trade_avg_price": 0,
+                "status": 3,
+                "order_id_str": "773131315209248768",
+                "fee_asset": "ADA",
+                "liquidation_type": "0"
+            }
+        ],
+        "total_page": 19,
+        "current_page": 1,
+        "total_size": 19
+    },
+    "ts": 1604370617322
+}
 ```
 
 
@@ -5293,7 +5222,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 ## Query history orders via multiple fields
 
  - POST `api/v1/contract_hisorders_exact`
- 
+
 ###  Request Parameter
 
 | Parameter Name        | Mandatory  | Type     | Desc              |  Value Range  |
@@ -5342,41 +5271,43 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 ```json
 
 {
-  "status": "ok",
-  "data": {
-    "orders": [{
-        "query_id": 1123123123123123123,
-        "order_id": 663044581721378816,
-        "order_id_str": "663044581721378816",
-        "symbol": "BTC",
-        "contract_code": "BTC200124",
-        "contract_type": "next_week",
-        "lever_rate": 20,
-        "direction": "buy",
-        "offset": "open",
-        "volume": 5.0,
-        "price": 8000.0,
-        "create_date": 1578123747055,
-        "order_source": "api",
-        "order_price_type": "limit",
-        "margin_frozen": 0.0,
-        "profit": 0.0,
-        "trade_volume": 5.0,
-        "trade_turnover": 500.0,
-        "fee": 0.2323,
-        "trade_avg_price": 7503.0,
-        "status": 6,
-        "order_type": 1,
-        "fee_asset": "BTC",
-        "liquidation_type": "0"
-      }
-    ],
-      "remain_size":15,
-      "next_id":1123123123123123123
-  },
-  "ts": 1578124395177
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "query_id": 113957564277,
+                "order_id": 773135295142658048,
+                "contract_code": "ADA201225",
+                "symbol": "ADA",
+                "lever_rate": 20,
+                "direction": "buy",
+                "offset": "open",
+                "volume": 1,
+                "price": 0.092,
+                "create_date": 1604371418518,
+                "order_source": "web",
+                "order_price_type": "post_only",
+                "order_type": 1,
+                "margin_frozen": 0,
+                "profit": 0,
+                "contract_type": "quarter",
+                "trade_volume": 1,
+                "trade_turnover": 10,
+                "fee": -0.021739130434782608,
+                "trade_avg_price": 0.092,
+                "status": 6,
+                "order_id_str": "773135295142658048",
+                "fee_asset": "ADA",
+                "liquidation_type": "0"
+            }
+        ],
+        "remain_size": 19,
+        "next_id": 113956362239
+    },
+    "ts": 1604371805794
 }
 ```
+
 ###  Returning Parameter
 
 |  Parameter Name        | Mandatory | Type      | Desc     | Value Range                                     |
@@ -5440,35 +5371,38 @@ page_size   | false    | int    | if not enter, it will be the default value of 
 > Response:
 
 ```json
-    {
-     "data": {
-		"current_page": 1,
-		"total_page": 1,
-		"total_size": 2,
-		"trades": [{
-			"id": "21315414825-6141291349-1",
-			"contract_code": "EOS190419",
-			"contract_type": "this_week",
-			"create_date": 1555553626736,
-			"direction": "sell",
-			"match_id": 3635853382,
-			"offset": "close",
-			"offset_profitloss": 0.15646398812252696,
-			"order_id": 633766664829804544,
-			"order_id_str": "633766664829804544",
-			"symbol": "EOS",
-			"order_source": "android",
-			"trade_fee": -0.002897500905469032,
-			"trade_price": 5.522,
-			"trade_turnover": 80,
-			"trade_volume": 8,
-			"role": "maker",
-			"fee_asset":"BTC"
-		}]
-	},
-	"status": "ok",
-	"ts": 1555654870867
-    }
+
+{
+    "status": "ok",
+    "data": {
+        "trades": [
+            {
+                "match_id": 113891764710,
+                "order_id": 773135295142658048,
+                "symbol": "ADA",
+                "contract_type": "quarter",
+                "contract_code": "ADA201225",
+                "direction": "buy",
+                "offset": "open",
+                "trade_volume": 1,
+                "trade_price": 0.092,
+                "trade_turnover": 10,
+                "trade_fee": -0.021739130434782608,
+                "offset_profitloss": 0,
+                "create_date": 1604371703183,
+                "role": "Maker",
+                "order_source": "web",
+                "order_id_str": "773135295142658048",
+                "fee_asset": "ADA",
+                "id": "113891764710-773135295142658048-1"
+            }
+        ],
+        "total_page": 16,
+        "current_page": 1,
+        "total_size": 16
+    },
+    "ts": 1604371918571
+}
 ```
 
 ### Returning Parameter
@@ -5559,57 +5493,37 @@ ts                     | true     | long    | timestamp                |        
 
 {
     "status": "ok",
-    "data":{
-        "trades":[
+    "data": {
+        "trades": [
             {
-                "id": "32586745130-662260778996572129-1",
-                "query_id": 121231231231233,
-                "match_id": 32586745130,
-                "order_id": 662260778996572160,
-                "order_id_str": "662260778996572160",
-                "symbol": "BTC",
+                "query_id": 2424420723,
+                "match_id": 113891764710,
+                "order_id": 773135295142658048,
+                "symbol": "ADA",
                 "contract_type": "quarter",
-                "contract_code": "BTC200327",
+                "contract_code": "ADA201225",
                 "direction": "buy",
                 "offset": "open",
                 "trade_volume": 1,
-                "trade_price": 6500,
-                "trade_turnover": 100,
-                "create_date": 1577936874070,
+                "trade_price": 0.092,
+                "trade_turnover": 10,
+                "trade_fee": -0.021739130434782608,
                 "offset_profitloss": 0,
-                "trade_fee": 0.2323,
-                "role": "Taker",
-                "fee_asset": "BTC",
-                "order_source": "web"
-            },
-            {
-                "id": "32586745130-662260778996572160-1",
-                "query_id": 121231231231233,
-                "match_id": 32586745130,
-                "order_id": 662260778996572160,
-                "order_id_str": "662260778996572160",
-                "symbol": "BTC",
-                "contract_type": "quarter",
-                "contract_code": "BTC200327",
-                "direction": "buy",
-                "offset": "open",
-                "trade_volume": 1,
-                "trade_price": 6500,
-                "trade_turnover": 100,
-                "create_date": 1577936874070,
-                "offset_profitloss": 0,
-                "trade_fee": 0.2323,
-                "role": "Taker",
-                "fee_asset": "BTC",
-                "order_source": "web"
+                "create_date": 1604371703183,
+                "role": "Maker",
+                "order_source": "web",
+                "order_id_str": "773135295142658048",
+                "fee_asset": "ADA",
+                "id": "113891764710-773135295142658048-1"
             }
         ],
-        "remain_size":20,
-        "next_id":121231231231233
+        "remain_size": 15,
+        "next_id": 2424413094
     },
-    "ts": 1578124684692
-}                   
+    "ts": 1604372202243
+}
 ```
+
 ### Returning Parameter
 
 | Parameter Name           | Mandatory | Type      | Desc                 | Value Range                                     |
@@ -5702,12 +5616,11 @@ ts                     | true     | long    | timestamp                |        
 {
     "status": "ok",
     "data": {
-        "order_id": 35,
-        "order_id_str": "35"
+        "order_id": 28312412,
+        "order_id_str": "28312412"
     },
-    "ts": 1547521135713
+    "ts": 1604372634548
 }
-
 ```
 
 ### Response Desc
@@ -5728,19 +5641,6 @@ ts                     | true     | long    | timestamp                |        
 | order_id_str | string | true | order id str 
 
 
-> Error：
-
-```json
-
-{
-    "status": "error",
-    "err_code": 1014,
-    "err_msg": "...",
-    "ts": 1547519608126
-}
-
-```
-
 
 ## Cancel Trigger Order
 
@@ -5758,24 +5658,19 @@ ts                     | true     | long    | timestamp                |        
 ```json
 
 {
-  "status": "ok",
-  "data": {
-    "errors": [{
-        "order_id": 161251,
-        "err_code": 200417,
-        "err_msg": "invalid symbol"
-      },
-      {
-        "order_id": 161251,
-        "err_code": 200415,
-        "err_msg": "invalid symbol"
-      }
-    ],
-    "successes": "161256,1344567"
-  },
-  "ts": 1490759594752
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "order_id": "28312406",
+                "err_code": 1061,
+                "err_msg": "This order doesnt exist."
+            }
+        ],
+        "successes": "28312412"
+    },
+    "ts": 1604372746401
 }
-
 ```
 
 ### response
@@ -5793,19 +5688,6 @@ ts                     | true     | long    | timestamp                |        
 | \</data\> |              |          |                            |                |
 | ts                         | true         | long     | response timestamp millseconds |  |
 
-
-> error response：
-
-```json
-
-{
-    "status": "error",
-    "err_code": 20012,
-    "err_msg": "invalid symbol",
-    "ts": 1490759594752
-}
-
-```
 
 ## Cancel All Trigger Orders
 
@@ -5832,25 +5714,13 @@ ts                     | true     | long    | timestamp                |        
 ```json
 
 {
-  "status": "ok",
-  "data": {
-    "errors":[
-      {
-        "order_id":161251,
-        "err_code": 200417,
-        "err_msg": "invalid symbol"
-       },
-      {
-        "order_id":161251,
-        "err_code": 200415,
-        "err_msg": "invalid symbol"
-       }
-      ],
-    "successes":"161256,1344567"
-   },
-  "ts": 1490759594752
+    "status": "ok",
+    "data": {
+        "errors": [],
+        "successes": "28312413,28312414"
+    },
+    "ts": 1604373863946
 }
-
 ```
 
 ### response params
@@ -5868,19 +5738,6 @@ ts                     | true     | long    | timestamp                |        
 | \</data\> |              |          |                            |                |
 | ts                         | true         | long     | response timestamp in millseconds |   |
 
-
-> response error：
-
-```json
-
-{
-    "status": "error",
-    "err_code": 20012,
-    "err_msg": "invalid symbol",
-    "ts": 1490759594752
-}
-
-```
 
 ## Query Trigger Order Open Orders
 
@@ -5900,55 +5757,35 @@ ts                     | true     | long    | timestamp                |        
 ```json
 
 {
-	"status": "ok",
-	"data": {
-		"orders": [{
-				"symbol": "EOS",
-				"contract_code": "EOS190118",
-				"contract_type": "this_week",
-				"trigger_type": "ge",
-				"volume": 4,
-				"order_type": 1,
-				"direction": "sell",
-				"offset": "open",
-				"lever_rate": 1,
-				"order_id": 23,
-				"order_id_str": "161251",
-				"order_source": "web",
-				"trigger_price": 2,
-				"order_price": 2,
-				"created_at": 1547448030638,
-				"order_price_type": "limit",
-				"status": 4
-			},
-			{
-				"symbol": "EOS",
-				"contract_code": "EOS190118",
-				"contract_type": "this_week",
-				"trigger_type": "ge",
-				"volume": 4,
-				"order_type": 1,
-				"direction": "sell",
-				"offset": "open",
-				"lever_rate": 1,
-				"order_id": 23,
-				"order_id_str": "161251",
-				"order_source": "web",
-				"trigger_price": 2,
-				"order_price": 2,
-				"created_at": 1547448030638,
-				"order_price_type": "limit",
-				"status": 4
-			}
-		],
-		"total_page": 3,
-		"current_page": 1,
-		"total_size": 22
-	},
-	"ts": 1547520777695
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "symbol": "ADA",
+                "contract_code": "ADA201225",
+                "contract_type": "quarter",
+                "trigger_type": "le",
+                "volume": 1,
+                "order_type": 1,
+                "direction": "buy",
+                "offset": "open",
+                "lever_rate": 20,
+                "order_id": 28312415,
+                "order_id_str": "28312415",
+                "order_source": "api",
+                "trigger_price": 0.0895,
+                "order_price": 0.0895,
+                "created_at": 1604374041289,
+                "order_price_type": "limit",
+                "status": 2
+            }
+        ],
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 1
+    },
+    "ts": 1604374215911
 }
-
-
 ```
 
 ### Returning Parameter
@@ -5986,17 +5823,6 @@ ts                     | true     | long    | timestamp                |        
 | status | int | true | order status：1:ready to submit、2:submited、3:order accepted、7:wrong order、8：canceled orders but not found、9：canceling order、10：failed'
 | \</list\>                  |              |          |                            |                |
 
-> error response：
-
-```json
-
-{
-	"status": "error",
-	"err_code": 20012,
-	"err_msg": "invalid symbol",
-	"ts": 1490759594752
-}
-```
 
 ## Query Trigger Order History
 
@@ -6023,67 +5849,42 @@ ts                     | true     | long    | timestamp                |        
 ```json
 
 {
-	"status": "ok",
-	"data": {
-		"orders": [{
-				"symbol": "EOS",
-				"contract_code": "EOS190118",
-				"contract_type": "this_week",
-				"trigger_type": "ge",
-				"volume": 4,
-				"order_type": 1,
-				"direction": "sell",
-				"offset": "open",
-				"lever_rate": 1,
-				"order_id": 23,
-				"order_id_str": "161251",
-				"relation_order_id": "88",
-				"order_price_type": "limit",
-				"status": 6,
-				"order_source": "web",
-				"trigger_price": 2,
-				"triggered_price": 2.03,
-				"order_price": 2,
-				"created_at": 1547448030638,
-				"triggered_at": 0,
-				"order_insert_at": 0,
-				"canceled_at": 1547448845593,
-				"fail_code": null,
-				"fail_reason": null
-			},
-			{
-				"symbol": "EOS",
-				"contract_code": "EOS190118",
-				"contract_type": "this_week",
-				"trigger_type": "ge",
-				"volume": 4,
-				"order_type": 1,
-				"direction": "sell",
-				"offset": "open",
-				"lever_rate": 1,
-				"order_id": 22,
-				"order_id_str": "161251",
-				"relation_order_id": "-1",
-				"order_price_type": "limit",
-				"status": 5,
-				"order_source": "web",
-				"trigger_price": 2,
-				"order_price": 2,
-				"created_at": 1547433975948,
-				"triggered_at": 0,
-				"order_insert_at": 0,
-				"canceled_at": 0,
-				"fail_code": 1064,
-				"fail_reason": " Error detected. Please try again"
-			}
-		],
-		"total_page": 3,
-		"current_page": 1,
-		"total_size": 22
-	},
-	"ts": 1547520777695
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "symbol": "ADA",
+                "contract_code": "ADA201225",
+                "contract_type": "quarter",
+                "trigger_type": "le",
+                "volume": 1,
+                "order_type": 1,
+                "direction": "buy",
+                "offset": "open",
+                "lever_rate": 20,
+                "order_id": 28312415,
+                "order_id_str": "28312415",
+                "relation_order_id": "773147284987842560",
+                "order_price_type": "limit",
+                "status": 4,
+                "order_source": "api",
+                "trigger_price": 0.0895,
+                "triggered_price": 0.089497,
+                "order_price": 0.0895,
+                "created_at": 1604374041289,
+                "triggered_at": 1604374277082,
+                "order_insert_at": 1604374277124,
+                "canceled_at": 0,
+                "fail_code": null,
+                "fail_reason": null
+            }
+        ],
+        "total_page": 4,
+        "current_page": 1,
+        "total_size": 4
+    },
+    "ts": 1604374349086
 }
-
 ```
 
 ### Returning Parameter
@@ -6127,17 +5928,6 @@ ts                     | true     | long    | timestamp                |        
 | fail_reason | string | true | the error message with failure reason when triggered orders failed to filled.
 | \</list\>                  |              |          |                            |                |
 
-> Example of failure Query trigger order history
-
-```json
-
-{
-	"status": "error",
-	"err_code": 20012,
-	"err_msg": "invalid symbol",
-	"ts": 1490759594752
-}
-```
 
 # Future Transferring Interface
 
@@ -6167,20 +5957,20 @@ Transferring margin between Spot account and Future account Interface, sets 8 de
 
 > Response:
 
-  ```
-	{
-	"status": "ok",
-	"data":56656,
-    }
-	Error response
-	{
-	"status": "error",
-	"data":null,
-	"err-code":"dw-account-transfer-error",
-	"err-msg":"account transfer error"
-    }
-	
- ```
+```json
+
+{
+    "status": "ok",
+    "data": 179697972
+}
+Error response:
+{
+    "status": "error",
+    "data": null,
+    "err-code": "base-currency-error",
+    "err-msg": "The current coin does not exist."
+}
+```
 
 ### Returning Parameter
 
@@ -6265,19 +6055,19 @@ Order Push Subscription: wss://api.hbdm.com/notification
 Index Kline Data and Basis Data Subscription: wss://api.hbdm.com/ws_index
 
 System status updates subscription ：wss://api.hbdm.com/center-notification
- 
+
 If you fail visiting the two addresses above, you can also visit: 
 
 Market Data Request and Subscription Address: wss://api.btcgateway.pro/ws;
- 
+
 Order Push Subscription：wss://api.btcgateway.pro/notification
 
 Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
 
 System status updates subscription ：wss://api.btcgateway.pro/center-notification
- 
+
 If you have further queries about Huobi Future order push subscription, please refer to [Demo](https://github.com/huobiapi/Futures-Java-demo)
- 
+
 ## API Rate Limit Illustration
 
 There is rate limit for both public and private interfaces. More details are laid out as below:
@@ -6289,7 +6079,7 @@ There is rate limit for both public and private interfaces. More details are lai
 - For public interface to get market data such as  Get Kline data, Get Market Data Overview, Get Contract Information,Get market depth data, Get index kline, Get basis data, Get the last Trade of a Contract and so on：
 
    (1) For restful interface：800 times/second for one IP at most 
-　　
+
    (2)  The rate limit for “req” request is 50 times/s at most. No limit for “sub” request as the data will be pushed by server voluntarily. 
 
 - The order push private WebSocket interface requires API Key for authentication.
@@ -6315,7 +6105,6 @@ Response the following strings for “Header” via API
 ## Market Heartbeat
 WebSocket API supports two-way heartbeat. Both Server and Client can send ping message, which the opposite side can return with pong message.
 
-:
 - WebSocket Server sends heartbeat：
 
 `{"ping": 18212558000}`
@@ -6379,9 +6168,9 @@ Note: Once the WebSocket Client and WebSocket Server get connected, the server w
 `{`
 
   `"op": "error", // indicate that receive illegal Op or internal error`
-  
+
   `"ts": long// The local timestamp of Server push`
-  
+
 `}`
 
 ## Order Push Address
@@ -6389,7 +6178,7 @@ Note: Once the WebSocket Client and WebSocket Server get connected, the server w
 - Huobi Future uses one official address:
 
   `wss://api.hbdm.com/notification`
-  
+
 Please note that the WS request connection should not go over 30 normally.
 
 ### Data Compression
@@ -6442,7 +6231,7 @@ All response data from WebSocket server are compressed into GZIP format. Clients
   "ts": long, // required; Server pushes local timestamp
   "data": object // required;返return data object
   }
-  
+
 ```
 
 ## Server voluntarily disconnects connection
@@ -6596,10 +6385,9 @@ Add computed value into the Signature parameter in API request. Please note  the
 "err-code": xxxx， 
 "err-msg" : "Error details "
 }
-
 ```
- 
- 
+
+
 #  WebSocket Market Interface
 
 ## Subscribe Kline data
@@ -6642,23 +6430,21 @@ Add computed value into the Signature parameter in API request. Please note  the
 
 ```json
 
-    {
-     "ch": "market.BTC_CQ.kline.1min",
-     "ts": 1489474082831,
-     "tick": 
-        {
-         "id": 1489464480,
-         "mrid": 268168237,
-         "vol": 100,
-         "count": 0,
-         "open": 7962.62,
-         "close": 7962.62,
-         "low": 7962.62,
-         "high": 7962.62,
-         "amount": 0.3
-        }
+{
+    "ch":"market.BTC_CW.kline.1min",
+    "ts":1604385120328,
+    "tick":{
+        "id":1604385120,
+        "mrid":113842458873,
+        "open":13436.12,
+        "close":13436.12,
+        "high":13436.12,
+        "low":13436.12,
+        "amount":0,
+        "vol":0,
+        "count":0
     }
-
+}
 ```
 
 ### Return Parameter 
@@ -6678,8 +6464,6 @@ Add computed value into the Signature parameter in API request. Please note  the
   high    |     true          | decimal   |  High Price   |            
   amount    |     true          | decimal   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
   \</tick\>    |               |     |      |          
-
-
 
 
 ## Request Kline data
@@ -6703,13 +6487,12 @@ Add computed value into the Signature parameter in API request. Please note  the
 
 ```json
 
-    {
+{
     "req": "market.BTC_CQ.kline.1min",
     "id": "id4",
     "from": 1571000000,
     "to": 1573106298
-    }
-    
+}
 ```
 
 ###  Request Parameter
@@ -6754,36 +6537,35 @@ Clients can request 2000 Klines at most in one request
 > After subscription, Clients can receive the most recent data upon any update：
 
 ```json
-    
-    {
-     "rep": "market.BTC_CQ.kline.1min",
-     "status": "ok",
-     "id": "id4",
-     "wsid": 3925737956,
-     "tick": [
-       {
-        "vol": 100,
-        "count": 27,
-        "id": 1494478080,
-        "open": 10050.00,
-        "close": 10058.00,
-        "low": 10050.00,
-        "high": 10058.00,
-        "amount": 175798.757708
-       },
-       {
-        "vol": 300,
-        "count": 28,
-        "id": 1494478140,
-        "open": 10058.00,
-        "close": 10060.00,
-        "low": 10056.00,
-        "high": 10065.00,
-        "amount": 158331.348600
-       }
-     ]
-    }
-    
+
+{
+    "id":"id4",
+    "rep":"market.BTC_CQ.kline.15min",
+    "wsid":498385304,
+    "status":"ok",
+    "data":[
+        {
+            "id":1599667200,
+            "open":10262.31,
+            "close":10244.93,
+            "low":10234.84,
+            "high":10282,
+            "amount":1849.4984536479908439463088799853871134642,
+            "vol":189634,
+            "count":5342
+        },
+        {
+            "id":1599668100,
+            "open":10244.94,
+            "close":10242.07,
+            "low":10216.55,
+            "high":10244.94,
+            "amount":1586.9623024248859129381285787325037896282,
+            "vol":162334,
+            "count":4375
+        }
+    ]
+}
 ```
 
 ### Return Parameter
@@ -6858,34 +6640,44 @@ Details are below:
 |step3、step9|0.001|
 |step4、step10|0.01|
 |step5、step11|0.1|
-|step12、step14|1|
-|step13、step15|10|
+|step14、step12|1|
+|step15、step13|10|
 
 > Clients can receive data if there is any update upon market depth. Example：
 
 ```json
 
-    {
-     "ch": "market.BTC_CQ.depth.step0",
-     "ts": 1489474082831,
-     "tick":
-       { 
-        "mrid": 269073229,
-         "id": 1539843937,
-            "bids": [
-             [9999.9101,1], 
-             [9992.3089,2]
-                    ],
-             "asks": [
-              [10010.9800,10],
-              [10011.3900,15]
-                     ],
-	       "ts": 1539843937417,
-	       "version": 1539843937,
-	       "ch": "market.BTC_CQ.depth.step0"
-        }
+{
+    "ch":"market.BTC_CQ.depth.step6",
+    "ts":1604385453899,
+    "tick":{
+        "mrid":113842765361,
+        "id":1604385453,
+        "bids":[
+            [
+                13584.33,
+                1483
+            ],
+            [
+                13584,
+                1
+            ]
+        ],
+        "asks":[
+            [
+                13584.34,
+                126
+            ],
+            [
+                13584.35,
+                24
+            ]
+        ],
+        "ts":1604385453896,
+        "version":1604385453,
+        "ch":"market.BTC_CQ.depth.step6"
     }
-    
+}
 ```
 
 ### Return Parameter
@@ -6924,12 +6716,12 @@ ch | true |  string | Data channel, Format： market.period | |
 > Example of a successful request
 
 ```json
-{
-"sub": "market.btc_cw.depth.size_20.high_freq",
-"data_type":"incremental",
-"id": "id generated by client"
-}
 
+{
+  "sub": "market.btc_cw.depth.size_20.high_freq",
+  "data_type":"incremental",
+  "id": "id generated by client"
+}
 ```
 
 ###  Request Parameter
@@ -6975,183 +6767,38 @@ ch | true |  string | Data channel, Format： `market.$symbol.depth.size_${size}
 
 ```json
 
-  {
-    "ch": "market.BTC_CQ.depth.size_20.high_freq",
-    "tick": {
-        "asks": [
+{
+    "ch":"market.BTC_CQ.depth.size_20.high_freq",
+    "tick":{
+        "asks":[
             [
-                7365.69,
-                225
+                13576.41,
+                2627
             ],
             [
-                7366.38,
-                17
-            ],
-            [
-                7366.39,
-                128
-            ],
-            [
-                7366.79,
-                25
-            ],
-            [
-                7366.8,
-                100
-            ],
-            [
-                7367.1,
-                40
-            ],
-            [
-                7367.2,
-                10
-            ],
-            [
-                7367.4,
-                50
-            ],
-            [
-                7367.41,
-                5
-            ],
-            [
-                7367.58,
-                91
-            ],
-            [
-                7367.59,
-                112
-            ],
-            [
-                7367.6,
-                100
-            ],
-            [
-                7368,
-                92
-            ],
-            [
-                7368.01,
-                313
-            ],
-            [
-                7368.08,
-                11
-            ],
-            [
-                7368.14,
-                20
-            ],
-            [
-                7368.18,
-                109
-            ],
-            [
-                7368.22,
-                38
-            ],
-            [
-                7368.32,
-                9
-            ],
-            [
-                7368.33,
-                3
+                13576.53,
+                122
             ]
         ],
-        "bids": [
+        "bids":[
             [
-                7365.68,
-                1461
+                13576.4,
+                1648
             ],
             [
-                7365.67,
-                1
-            ],
-            [
-                7365.3,
-                3
-            ],
-            [
-                7365.03,
-                32
-            ],
-            [
-                7365.02,
-                68
-            ],
-            [
-                7365,
-                329
-            ],
-            [
-                7364.4,
-                52
-            ],
-            [
-                7363.3,
-                100
-            ],
-            [
-                7363.25,
-                1
-            ],
-            [
-                7363.23,
-                20
-            ],
-            [
-                7363.15,
-                38
-            ],
-            [
-                7363.04,
-                36
-            ],
-            [
-                7363.02,
-                71
-            ],
-            [
-                7363,
-                3
-            ],
-            [
-                7362.92,
-                200
-            ],
-            [
-                7362.76,
-                33
-            ],
-            [
-                7362.75,
-                16
-            ],
-            [
-                7362.63,
-                12
-            ],
-            [
-                7362.44,
-                8
-            ],
-            [
-                7362.43,
-                7
+                13574.17,
+                398
             ]
         ],
-        "ch": "market.BTC_CQ.depth.size_20.high_freq",
-        "event": "snapshot",
-        "id": 58039921057,
-        "mrid": 58039921057,
-        "ts": 1586337225104,
-        "version": 80067445
+        "ch":"market.BTC_CQ.depth.size_20.high_freq",
+        "event":"snapshot",
+        "id":113842925649,
+        "mrid":113842925649,
+        "ts":1604385634838,
+        "version":330099154
     },
-    "ts": 1586337225107
+    "ts":1604385634838
 }
-
 ```
 
 ## Subscribe Market BBO Data
@@ -7171,8 +6818,8 @@ ch | true |  string | Data channel, Format： `market.$symbol.depth.size_${size}
 ```json
 
 {
-"sub": "market.$symbol.bbo",
-"id": "id generated by client"
+  "sub": "market.$symbol.bbo",
+  "id": "id generated by client"
 }
 
 ```
@@ -7192,20 +6839,26 @@ ch | true |  string | Data channel, Format： `market.$symbol.depth.size_${size}
 > Response:
 
 ```json
-{
-	"ch": "market.BTC_CQ.bbo",
-	"ts": 1489474082831,
-	"tick": {
-        "ch": "market.BTC_CQ.bbo",
-		"mrid": 269073229,
-		"id": 1539843937,
-		"bid": [9999.9101, 1],
-		"ask": [10010.9800, 10],
-		"ts": 1539843937417,
-		"version": 1539843937
-	}
-}
 
+{
+    "ch":"market.BTC_CQ.bbo",
+    "ts":1604385767803,
+    "tick":{
+        "mrid":113843014986,
+        "id":1604385767,
+        "bid":[
+            13579.06,
+            1488
+        ],
+        "ask":[
+            13579.07,
+            1535
+        ],
+        "ts":1604385767803,
+        "version":113843014986,
+        "ch":"market.BTC_CQ.bbo"
+    }
+}
 ```
 
 ### Return Parameter
@@ -7295,22 +6948,21 @@ count  |  true  |  decimal  |   fulfilled order quantity  |
 
 ```json
 
-  {
-	"ch": "market.BTC_CW.detail",
-	"ts": 1539842340724,
-	"tick": {
-		"id": 1539842340,
-		"mrid": 268041138,
-		"open": 6740.47,
-		"close": 7800,
-		"high": 7800,
-		"low": 6726.13,
-		"amount": 477.1200312075244664773339914558562673572,
-		"vol": 32414,
-		"count": 1716
-	  }
-  }
-
+{
+    "ch":"market.BTC_CQ.detail",
+    "ts":1604385863717,
+    "tick":{
+        "id":1604385840,
+        "mrid":113843084999,
+        "open":13607.17,
+        "close":13589,
+        "high":13830.63,
+        "low":13411.89,
+        "amount":261417.4288915740193389700120854767791857974,
+        "vol":35572590,
+        "count":586972
+    }
+}
 ```
 
 ## Request Trade Detail Data
@@ -7360,27 +7012,27 @@ size         |  false           |  int     |  number of data; no more than 50; d
 ```json
 
 {
-	"rep": "market.BTC_CQ.trade.detail",
-	"id": "1573468030",
-	"status": "ok",
-    "ts": 1494495766000,
-	"data": [{
-			"id": 601595424,
-			"price": "10195.64",
-			"amount": "100",
-			"direction": "buy",
-			"ts": 1494495766000
-		},
-		{
-			"id": 601595423,
-			"price": "10195.64",
-			"amount": "200",
-			"direction": "buy",
-			"ts": 1494495711000
-		}
-	]
+    "data":[
+        {
+            "amount":"4",
+            "ts":1604386167285,
+            "id":1138433247400000,
+            "price":"13586.25",
+            "direction":"buy"
+        },
+        {
+            "amount":"20",
+            "ts":1604386167469,
+            "id":1138433248730000,
+            "price":"13586.25",
+            "direction":"buy"
+        }
+    ],
+    "id":"id8",
+    "rep":"market.BTC_CQ.trade.detail",
+    "status":"ok",
+    "ts":1604386202755
 }
-    
 ```
 
 ### Return Parameter
@@ -7406,11 +7058,11 @@ ts  |  true  |  long  |  server response time |   |
 ### To subscribe trade detail data, the Client has to make connection to the Server and send subscribe request in the format below：
 
 `{`
- 
+
   `"sub": "market.$symbol.trade.detail",`
-    
+
   `"id": "id generated by client"`
-    
+
 `}`
 
 > Example of a successful subscribe request：
@@ -7462,21 +7114,29 @@ direction  |  true  |  string  |  Order direction  |   |
 ```json
 
 {
-  "ch": "market.BTC_NW.trade.detail",
-  "ts": 1539831709042,
-  "tick": {
-    "id": 265842227,
-    "ts": 1539831709001,
-    "data": [{
-      "amount": 20,
-      "ts": 1539831709001,
-      "id": 265842227259096443,
-      "price": 6742.25,
-      "direction": "buy"
-    }]
-  }
+    "ch":"market.BTC_CQ.trade.detail",
+    "ts":1604386599136,
+    "tick":{
+        "id":113843672389,
+        "ts":1604386599123,
+        "data":[
+            {
+                "amount":120,
+                "ts":1604386599123,
+                "id":1138436723890000,
+                "price":13562.5,
+                "direction":"sell"
+            },
+            {
+                "amount":2,
+                "ts":1604386599123,
+                "id":1138436723890001,
+                "price":13562.5,
+                "direction":"sell"
+            }
+        ]
+    }
 }
-
 ```
 
 
@@ -7530,18 +7190,18 @@ direction  |  true  |  string  |  Order direction  |   |
 ```json
 
 {
-  "ch": "market.BTC-USD.index.1min",
-  "ts": 1585307166166,
-  "tick": {
-    "id": 1585307160,
-    "open": "6665.2725",
-    "close": "6665.2725",
-    "high": "6665.2725",
-    "low": "6665.2725",
-    "amount": "0",
-    "vol": "0",
-    "count": 0
-  }
+    "ch":"market.BTC-USD.index.1min",
+    "ts":1604387688243,
+    "tick":{
+        "id":1604387640,
+        "open":"13419.4325",
+        "close":"13420.3325",
+        "high":"13424.4925",
+        "low":"13419.4325",
+        "amount":"0",
+        "vol":"0",
+        "count":0
+    }
 }
 ```
 ### Returning Parameter
@@ -7615,31 +7275,33 @@ direction  |  true  |  string  |  Order direction  |   |
 
 ```json
 
- {
-  "id": "",
-  "rep": "market.BTC-USD.index.1min",
-  "wsid": 1157008131,
-  "status": "ok",
-  "ts": 1579489028884,
-  "data": [{
-    "id": 1584065400,
-    "open": 4147.4425,
-    "close": 4188.29,
-    "low": 4147.4425,
-    "high": 4188.29,
-    "amount": 0,
-    "vol": 0,
-    "count": 0
-  }, {
-    "id": 1584065820,
-    "open": 3937.44,
-    "close": 4017.605,
-    "low": 3924.785,
-    "high": 4017.605,
-    "amount": 0,
-    "vol": 0,
-    "count": 0
-  }]
+{
+    "id":"id4",
+    "rep":"market.BTC-USD.index.60min",
+    "wsid":915217437,
+    "status":"ok",
+    "data":[
+        {
+            "id":1604160000,
+            "open":13862.65,
+            "close":13832.615,
+            "low":13822.41,
+            "high":13890.2225,
+            "amount":0,
+            "vol":0,
+            "count":0
+        },
+        {
+            "id":1604163600,
+            "open":13832.7725,
+            "close":13788.6625,
+            "low":13751.9075,
+            "high":13833.41,
+            "amount":0,
+            "vol":0,
+            "count":0
+        }
+    ]
 }
 ```
 
@@ -7712,15 +7374,15 @@ direction  |  true  |  string  |  Order direction  |   |
 ```json
 
 {
-  "ch": "market.BTC_CW.basis.5min.close",
-  "ts": 1585307850144,
-  "tick": {
-    "id": 1585307700,
-    "index_price": "6687.435",
-    "contract_price": "6667.37",
-    "basis": "-20.065",
-    "basis_rate": "-0.0030004029945711621869969577274395938"
-  }
+    "ch":"market.BTC_CW.basis.5min.close",
+    "ts":1604387856115,
+    "tick":{
+        "id":1604387700,
+        "index_price":"13434.5075",
+        "contract_price":"13454.01",
+        "basis":"19.5025",
+        "basis_rate":"0.0014516721212147151654052074480586653"
+    }
 }
 ```
 
@@ -7792,20 +7454,30 @@ direction  |  true  |  string  |  Order direction  |   |
 ```json
 
 {
-  "id": "11111",
-  "rep": "market.BTC_CW.basis.5min.close",
-  "status": "ok",
-  "ts": 1585308650353,
-  "wsid": 1468558649,
-  "tick": {
-    "id": 1585307700,
-    "index_price": "6687.435",
-    "contract_price": "6667.37",
-    "basis": "-20.065",
-    "basis_rate": "-0.0030004029945711621869969577274395938"
-  }
+    "data":[
+        {
+            "basis":"20.357500000000073",
+            "basis_rate":"0.0014671752201438544",
+            "contract_price":"13895.66",
+            "id":1604160000,
+            "index_price":"13875.3025"
+        },
+        {
+            "basis":"20.13249999999971",
+            "basis_rate":"0.001454177342461542",
+            "contract_price":"13864.73",
+            "id":1604160300,
+            "index_price":"13844.5975"
+        }
+    ],
+    "id":"id4",
+    "rep":"market.BTC_CW.basis.5min.close",
+    "status":"ok",
+    "ts":1604387965575,
+    "wsid":3823737955
 }
 ```
+
 ### Returning Parameter
 | **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
@@ -7872,47 +7544,49 @@ To subscribe order data, Clients have to make connection to the Server and send 
 ```json
 
 {
-	"op": "notify",
-  "topic": "orders.btc",
-  "uid": "100011",
-	"ts": 1489474082831,
-	"symbol": "BTC",
-	"contract_type": "this_week",
-	"contract_code": "BTC180914",
-	"volume": 111,
-	"price": 1111,
-	"order_price_type": "limit",
-	"direction": "buy",
-	"offset": "open",
-	"status": 6,
-	"lever_rate": 10,
-	"order_id": 633989207806582784,
-	"order_id_str": "633989207806582784",
-	"client_order_id": 10683,
-	"order_source": "web",
-	"order_type": 1,
-	"created_at": 1408076414000,
-	"trade_volume": 1,
-	"trade_turnover": 1200,
-	"fee": 0,
-	"trade_avg_price": 10,
-	"margin_frozen": 10,
-	"profit": 2,
-  "fee_asset":"BTC",
-  "canceled_at": 1408076414000, 
-	"trade": [{
-		"id": "2131234825-6124591349-1",
-		"trade_id": 112,
-		"trade_volume": 1,
-		"trade_price": 123.4555,
-		"trade_fee": 0.234,
-		"trade_turnover": 34.123,
-		"created_at": 1490759594752,
-		"role": "maker",
-        "fee_asset":"BTC"
-	}]
+    "op":"notify",
+    "topic":"orders.ada",
+    "ts":1604388667226,
+    "symbol":"ADA",
+    "contract_type":"quarter",
+    "contract_code":"ADA201225",
+    "volume":1,
+    "price":0.0905,
+    "order_price_type":"post_only",
+    "direction":"sell",
+    "offset":"open",
+    "status":6,
+    "lever_rate":20,
+    "order_id":773207641127878656,
+    "order_id_str":"773207641127878656",
+    "client_order_id":null,
+    "order_source":"web",
+    "order_type":1,
+    "created_at":1604388667146,
+    "trade_volume":1,
+    "trade_turnover":10,
+    "fee":-0.022099447513812154,
+    "trade_avg_price":0.0905,
+    "margin_frozen":0,
+    "profit":0,
+    "trade":[
+        {
+            "trade_fee":-0.022099447513812154,
+            "fee_asset":"ADA",
+            "trade_id":113913755890,
+            "id":"113913755890-773207641127878656-1",
+            "trade_volume":1,
+            "trade_price":0.0905,
+            "trade_turnover":10,
+            "created_at":1604388667194,
+            "role":"maker"
+        }
+    ],
+    "canceled_at":0,
+    "fee_asset":"ADA",
+    "uid":"123456789",
+    "liquidation_type":"0"
 }
-
 ```
 
 ### Format Illustration on return data of order push
@@ -8064,38 +7738,39 @@ To subscribe order data, Clients have to make connection to the Server and send 
 ```json
 
 {
-  "op": "notify",         
-  "topic": "matchOrders.btc", 
-  "uid": "1315816",
-  "ts": 1489474082831,    
-  "symbol": "BTC",    
-  "contract_type": "this_week",  
-  "contract_code": "BTC180914",  
-  "status": 4,  
-  "order_id": 106837,   
-  "order_id_str": "106837",    
-  "order_type": "1",   
-  "trade_volume":1,  
-  "volume":2,   
-  "client_order_id": 111,
-  "trade":[{
-      "id": "1232-213123-1231",
-      "trade_id":112,    
-      "trade_volume":1,  
-      "trade_price":123.4555,   
-      "trade_turnover":34.123,   
-      "created_at": 1490759594752,  
-      "role": "maker"
-    }],
-    "direction": "buy",
-    "offset": "open",
-    "lever_rate": 10,
-    "price": 34.123,
-    "created_at": 1490759594752,
-    "order_source": "api",
-    "order_price_type": "limit"
+    "op":"notify",
+    "topic":"matchOrders.ada",
+    "ts":1604388667219,
+    "symbol":"ADA",
+    "contract_code":"ADA201225",
+    "contract_type":"quarter",
+    "status":6,
+    "order_id":773207641127878656,
+    "order_id_str":"773207641127878656",
+    "client_order_id":null,
+    "order_type":1,
+    "created_at":1604388667146,
+    "trade":[
+        {
+            "trade_id":113913755890,
+            "id":"113913755890-773207641127878656-1",
+            "trade_volume":1,
+            "trade_price":0.0905,
+            "trade_turnover":10,
+            "created_at":1604388667194,
+            "role":"maker"
+        }
+    ],
+    "uid":"123456789",
+    "volume":1,
+    "trade_volume":1,
+    "direction":"sell",
+    "offset":"open",
+    "lever_rate":20,
+    "price":0.0905,
+    "order_source":"web",
+    "order_price_type":"post_only"
 }
-
 ```
 
 ### format of order data pushed
@@ -8223,28 +7898,29 @@ To subscribe accounts equity data updates, the client has to make connection to 
 ```json
 
 {
-	"op": "notify",
-	"topic": "accounts",
-    "uid": "1315816",
-	"ts": 1489474082831,
-	"event": "order.match",
-	"data": [{
-		"symbol": "BTC",
-		"margin_balance": 1,
-		"margin_static": 1,
-		"margin_position": 0,
-		"margin_frozen": 3.33,
-		"margin_available": 0.34,
-		"profit_real": 3.45,
-		"profit_unreal": 7.45,
-		"withdraw_available": 4.0989898,
-		"risk_rate": 100,
-		"liquidation_price": 100,
-		"lever_rate": 10,
-		"adjust_factor": 0.1
-	}]
+    "op":"notify",
+    "topic":"accounts.ada",
+    "ts":1604388667226,
+    "event":"order.match",
+    "data":[
+        {
+            "symbol":"ADA",
+            "margin_balance":446.417641681222726716,
+            "margin_static":445.554085945257745136,
+            "margin_position":11.049723756906077348,
+            "margin_frozen":0,
+            "margin_available":435.367917924316649368,
+            "profit_real":21.627049781983019459,
+            "profit_unreal":0.86355573596498158,
+            "risk_rate":40.000796572150656768,
+            "liquidation_price":0.018674308027108984,
+            "withdraw_available":423.927036163274725677,
+            "lever_rate":20,
+            "adjust_factor":0.4
+        }
+    ],
+    "uid":"123456789"
 }
-
 ```
 
 ### Format Illustration of Notification 
@@ -8367,30 +8043,31 @@ To subscribe position updates data, the client has to make connection to the ser
 ```json
 
 {
-	"op": "notify",
-	"topic": "positions",
-    "uid": "1315816",
-	"ts": 1489474082831,
-	"event": "order.match",
-	"data": [{
-		"symbol": "BTC",
-		"contract_code": "BTC180914",
-		"contract_type": "this_week",
-		"volume": 1,
-		"available": 0,
-		"frozen": 1,
-		"cost_open": 422.78,
-		"cost_hold": 422.78,
-		"profit_unreal": 0.00007096,
-		"profit_rate": 0.07,
-		"profit": 0.97,
-		"position_margin": 3.4,
-		"lever_rate": 10,
-		"direction": "buy",
-		"last_price": 9584.41
-	}]
+    "op":"notify",
+    "topic":"positions.ada",
+    "ts":1604388667226,
+    "event":"order.match",
+    "data":[
+        {
+            "symbol":"ADA",
+            "contract_code":"ADA201225",
+            "contract_type":"quarter",
+            "volume":1,
+            "available":1,
+            "frozen":0,
+            "cost_open":0.0905,
+            "cost_hold":0.0905,
+            "profit_unreal":0,
+            "profit_rate":0,
+            "profit":0,
+            "position_margin":5.524861878453038674,
+            "lever_rate":20,
+            "direction":"sell",
+            "last_price":0.0905
+        }
+    ],
+    "uid":"123456789"
 }
-
 ```
 
 ### Return Parameter Illustration
@@ -8532,20 +8209,21 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 ```json
 
 {
-    "op": "notify",
-    "topic": "public.EOS.liquidation_orders",
+    "op":"notify",
+    "topic":"public.eos.liquidation_orders",
     "ts":1580815422403,
-    "data":[{
-        "symbol": "EOS",
-	    "contract_code": "EOS191227",
-	    "direction": "buy",
-	    "offset": "close",
-	    "volume": 7.0000000000000,
-	    "price": 4.23600000000000,
-	    "created_at": 1580815422296
-    }]
+    "data":[
+        {
+            "symbol":"EOS",
+            "contract_code":"EOS191227",
+            "direction":"buy",
+            "offset":"close",
+            "volume":7,
+            "price":4.236,
+            "created_at":1580815422296
+        }
+    ]
 }
-
 ```
 
 ## Unsubscribe Liquidation Order Data(no authentication)(unsub)
@@ -8657,40 +8335,53 @@ To subscribe contract info, the client has to make connection to the server and 
 ```json
 
 {
-    "op": "notify",           
-	"topic": "public.EOS.contract_info",
-	"ts": 1489474082831,
-	"event": "update",
-	"data": [{
-		"symbol": "EOS",
-		"contract_code": "EOS200113",
-		"contract_type": "this_week",
-		"contract_size": 10.0,
-		"price_tick": 0.001,
-		"delivery_date": "20200113",
-		"create_date": "20200102",
-		"contract_status": 1
-	}，{
-		"symbol": "EOS",
-		"contract_code": "EOS200120",
-		"contract_type": "next_week",
-		"contract_size": 10.0,
-		"price_tick": 0.001,
-		"delivery_date": "20200120",
-		"create_date": "20200102",
-		"contract_status": 1
-	}，{
-		"symbol": "EOS",
-		"contract_code": "EOS200327",
-		"contract_type": "quarter",
-		"contract_size": 10.0,
-		"price_tick": 0.001,
-		"delivery_date": "20200327",
-		"create_date": "20200102",
-		"contract_status": 1
-	}]
+    "op":"notify",
+    "topic":"public.btc.contract_info",
+    "ts":1604389592693,
+    "event":"snapshot",
+    "data":[
+        {
+            "symbol":"BTC",
+            "contract_code":"BTC201106",
+            "contract_type":"this_week",
+            "contract_size":100,
+            "price_tick":0.01,
+            "delivery_date":"20201106",
+            "create_date":"20201016",
+            "contract_status":1
+        },
+        {
+            "symbol":"BTC",
+            "contract_code":"BTC201113",
+            "contract_type":"next_week",
+            "contract_size":100,
+            "price_tick":0.01,
+            "delivery_date":"20201113",
+            "create_date":"20201023",
+            "contract_status":1
+        },
+        {
+            "symbol":"BTC",
+            "contract_code":"BTC201225",
+            "contract_type":"quarter",
+            "contract_size":100,
+            "price_tick":0.01,
+            "delivery_date":"20201225",
+            "create_date":"20200612",
+            "contract_status":1
+        },
+        {
+            "symbol":"BTC",
+            "contract_code":"BTC210326",
+            "contract_type":"next_quarter",
+            "contract_size":100,
+            "price_tick":0.01,
+            "delivery_date":"20210326",
+            "create_date":"20200904",
+            "contract_status":1
+        }
+    ]
 }
-
 ```
 
 ### Response data fields
@@ -8714,7 +8405,6 @@ To subscribe contract info, the client has to make connection to the server and 
 
 
 ### Note：
-
 
 - The websocket subscription of contract info event is pushed every 60 seconds, and the event is "snapshot". 
 - When the subscription is successful, the latest contract information will be pushed immediately, and the event is "init".
@@ -8782,7 +8472,7 @@ To unsubscribe contract info data, the client has to make connection to the serv
   `}`
 
 > request
- 
+
 ```json
                                  
 {                                    
@@ -8804,41 +8494,42 @@ To unsubscribe contract info data, the client has to make connection to the serv
 ```json
 
 {
-     "op": "notify",           
-	"topic": "trigger_order.EOS",
-	"ts": 1489474082831,
-	"uid": "157959",
-	"event": "order",
-	"data":  [{
-                "symbol": "EOS",
-                "contract_code": "EOS190118",
-                "contract_type": "this_week",
-                "trigger_type": "ge",
-                "volume": 4,
-                "order_type": 1,
-                "direction": "sell",
-                "offset": "open",
-                "lever_rate": 1,
-                "order_id": 23,
-                "order_id_str": "161251",
-                "relation_order_id": "88",
-                "order_price_type": "limit",
-                "status": 6,
-                "order_source": "web",
-                "trigger_price": 2,
-                "triggered_price": 2.03,
-                "order_price": 2,
-                "created_at": 1547448030638,
-                "triggered_at": 0,
-                "order_insert_at": 0,
-                "canceled_at": 1547448845593,
-                "fail_code": null,
-                "fail_reason": null
-            }
-        ]
+    "op":"notify",
+    "topic":"trigger_order.ADA",
+    "ts":1604390110568,
+    "event":"order",
+    "uid":"123456789",
+    "data":[
+        {
+            "symbol":"ADA",
+            "contract_code":"ADA201225",
+            "contract_type":"quarter",
+            "trigger_type":"le",
+            "volume":1,
+            "order_type":1,
+            "direction":"buy",
+            "offset":"close",
+            "lever_rate":20,
+            "order_id":28312417,
+            "order_id_str":"28312417",
+            "relation_order_id":"-1",
+            "order_price_type":"limit",
+            "status":2,
+            "order_source":"web",
+            "trigger_price":0.09,
+            "triggered_price":null,
+            "order_price":0.09,
+            "created_at":1604390110565,
+            "triggered_at":0,
+            "order_insert_at":0,
+            "canceled_at":0,
+            "fail_code":null,
+            "fail_reason":null
+        }
+    ]
 }
 ``` 
- 
+
 ### Format Illustration on return data of order push：
 
 | Parameter Name   |   Mandotary  |   Type   |   Desc   |   Value Range    |
