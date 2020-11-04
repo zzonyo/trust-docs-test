@@ -1601,6 +1601,8 @@ curl "https://status-dm.huobigroup.com/api/v2/summary.json"
 - <a href='https://github.com/huobiapi/Futures-Node.js-demo'>Node.js</a>
 
 - <a href='https://github.com/huobiapi/Futures-Yi-demo'>易语言</a>
+
+- <a href='https://github.com/hbdmapi/huobi_futures_Postman'>Postman</a>
   
 **Websocket**
 
