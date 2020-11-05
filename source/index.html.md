@@ -968,7 +968,7 @@ Future, Coin Margined Swap,Option Swap and USDT Margined Swap are using separate
 
 Please note that, for both public interface and private interface, there are rate limits, more details are as below:
 
-* Generally, the private interface rate limit of API key is at most 48 times every 3 seconds for each UID (Trade Interface: at most 24 times every 3 seconds. Read Interface: at most 24 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date). <a href= https://docs.huobigroup.com/docs/dm/v1/en/#api-list > API Interface List </a> 
+* Generally, the private interface rate limit of API key is at most 62 times every 3 seconds for each UID (Trade Interface: at most 31 times every 3 seconds. Read Interface: at most 31 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date). <a href= https://docs.huobigroup.com/docs/dm/v1/en/#api-list > API Interface List </a> 
 
 * For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 120 times every 3 seconds at most for each IP (this 120 times every 3 seconds public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).
 
@@ -6072,7 +6072,7 @@ If you have further queries about Huobi Future order push subscription, please r
 
 There is rate limit for both public and private interfaces. More details are laid out as below:
 
-- Generally, the private interface rate limit of API key is at most 48 times every 3 seconds for each UID (Trade Interface: at most 24 times every 3 seconds. Read Interface: at most 24 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date).
+- Generally, the private interface rate limit of API key is at most 62 times every 3 seconds for each UID (Trade Interface: at most 31 times every 3 seconds. Read Interface: at most 31 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date).
 
 - For public interfaces used to get information of non-market data (such as request information of index, price limit, delivery and settlement, positions, etc.), the rate limit for each IP is 120 times every 3 seconds. (Please note that the 120 times/3s rate limit is shared by all the requests for non-market data under this UID)
 
