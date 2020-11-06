@@ -2768,7 +2768,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 | 参数名称   | 是否必须  | 类型     | 描述   | 取值范围         |
 | ------ | ----- | ------ | ---- | ---------------------------- |
-| contract_code | true | string | 合约代码 |  "BTC-USDT"... ,如果缺省，默认返回所有合约  |
+| contract_code | true | string | 合约代码 |  "BTC-USDT"...   |
 
 ### 备注：
 
