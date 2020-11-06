@@ -889,27 +889,26 @@ curl "https://api.hbdm.com/option-api/v1/option_contract_info?contract_code=BTC-
 ```json
 
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "trade_partition": "USDT",
-      "contract_code": "BTC-USDT-200508-C-8800",
-      "contract_type": "quarter",
-      "contract_size": 0.01,
-      "price_tick": 0.01,
-      "delivery_date": "20200626",
-      "create_date": "20200515",
-      "contract_status": 1,
-      "option_right_type": "C",
-      "exercise_price": 6622,
-      "delivery_asset": "BTC",
-      "quote_asset": "USDT"
-    }
-  ],
-  "ts": 1590027409126
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_code": "BTC-USDT-201225-C-13000",
+            "contract_type": "quarter",
+            "contract_size": 0.001,
+            "price_tick": 0.01,
+            "delivery_date": "20201225",
+            "create_date": "20200904",
+            "contract_status": 1,
+            "option_right_type": "C",
+            "exercise_price": 13000,
+            "delivery_asset": "BTC",
+            "quote_asset": "USDT",
+            "trade_partition": "USDT"
+        }
+    ],
+    "ts": 1604641660310
 }
-
 ```
 
 ###  返回参数
@@ -960,15 +959,16 @@ curl "https://api.hbdm.com/option-api/v1/option_index?symbol=BTC-USDT"
 ```json
 
 {
-  "data": [{
-    "symbol": "BTC-USDT",
-    "index_price": 7345.4425,
-    "index_ts": 1590018746005
-  }],
-  "status": "ok",
-  "ts": 1590018753930
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC-USDT",
+            "index_price": 15666.651003896666666666,
+            "index_ts": 1604641743091
+        }
+    ],
+    "ts": 1604641747077
 }
-
 ```
 
 ###  返回参数
@@ -1007,20 +1007,19 @@ curl "https://api.hbdm.com/option-api/v1/option_price_limit?contract_code=BTC-US
 ```json
 
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "trade_partition": "USDT",
-      "contract_type": "this_week",
-      "contract_code": "BTC-USDT-200508-C-8800",
-      "high_limit": 14618.93,
-      "low_limit": 75.05
-    }
-  ],
-  "ts": 1590044770222
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_type": "quarter",
+            "contract_code": "BTC-USDT-201225-C-13000",
+            "high_limit": 4619.82,
+            "low_limit": 1484.26,
+            "trade_partition": "USDT"
+        }
+    ],
+    "ts": 1604641793095
 }
-
 ```
 
 ###  返回参数
@@ -1071,31 +1070,30 @@ curl "https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-U
 ```json
 
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "trade_partition": "USDT",
-      "contract_type": "quarter",
-      "option_right_type": "C",
-      "contract_code": "BTC-USDT-200508-C-8800",
-      "iv_last_price": 175.05,
-      "iv_ask_one": 118.93,
-      "iv_bid_one": 57.32,
-      "iv_mark_price": 84.41,
-      "delta": 0.2,
-      "gamma": 0.11,
-      "theta": 0.23,
-      "vega": 0.55,
-      "ask_one": 1.55,
-      "bid_one": 1.2,
-      "last_price": 1.11,
-      "mark_price": 1.23
-    }
-  ],
-  "ts": 1590018789304
+    "status": "ok",
+    "data": [
+        {
+            "contract_code": "BTC-USDT-201225-C-13000",
+            "symbol": "BTC",
+            "iv_last_price": 0.47379972,
+            "iv_ask_one": 0.66771509,
+            "iv_bid_one": 0.55960657,
+            "iv_mark_price": 0.62272073,
+            "delta": 0.8249273542423468,
+            "gamma": 0.00007202,
+            "theta": -9.40283094,
+            "vega": 14.82486644,
+            "ask_one": 3122.7,
+            "bid_one": 2964.33,
+            "last_price": 2855.11,
+            "mark_price": 3054.4960937643172123041257590971717688,
+            "trade_partition": "USDT",
+            "contract_type": "quarter",
+            "option_right_type": "C"
+        }
+    ],
+    "ts": 1604641840724
 }
-
 ```
 
 ###  返回参数
@@ -1156,20 +1154,19 @@ curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-
 ```json
 
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "trade_partition": "USDT",
-      "contract_code": "BTC-USDT-200508-C-8800",
-      "contract_type": "quarter",
-      "amount": 23403.03,
-      "volume": 2340303
-    }
-  ],
-  "ts": 1590018849260
+    "status": "ok",
+    "data": [
+        {
+            "volume": 2947,
+            "amount": 2.947,
+            "symbol": "BTC",
+            "contract_type": "quarter",
+            "contract_code": "BTC-USDT-201225-C-13000",
+            "trade_partition": "USDT"
+        }
+    ],
+    "ts": 1604641943451
 }
-
 ```
 
 ###  返回参数
@@ -1213,15 +1210,14 @@ curl "https://api.hbdm.com/soption-api/v1/option_delivery_price?symbol=BTC"
 ```json
 
 {
-  "status": "ok",
-  "data": {
-    "symbol": "BTC",
-    "trade_partition": "USDT",
-    "delivery_price": 9326.8520
-  },
-  "ts": 1590062630412
+    "status": "ok",
+    "data": {
+        "symbol": "BTC",
+        "trade_partition": "USDT",
+        "delivery_price": 13203.1966277128547579298831
+    },
+    "ts": 1604642022058
 }
-
 ```
 
 ###  返回参数
@@ -1265,23 +1261,27 @@ curl "https://api.hbdm.com/option-api/v1/option_his_open_interest?symbol=BTC&con
 ```json
 
 {
-  "data": {
-    "contract_type": "quarter",
-    "symbol": "BTC",
-    "trade_partition": "USDT",
-    "option_right_type": "C",
-    "tick": [
-      {
-        "amount_type": 1,
-        "ts": 1590062514097,
-        "volume": 2326104
-      }
-    ]
-  },
-  "status": "ok",
-  "ts": 1590062514097
+    "status": "ok",
+    "data": {
+        "symbol": "BTC",
+        "contract_type": "quarter",
+        "option_right_type": "C",
+        "trade_partition": "USDT",
+        "tick": [
+            {
+                "volume": 22688,
+                "amount_type": 1,
+                "ts": 1604638800000
+            },
+            {
+                "volume": 22633,
+                "amount_type": 1,
+                "ts": 1604635200000
+            }
+        ]
+    },
+    "ts": 1604642063718
 }
-
 ```
 
 ###  返回参数
@@ -1336,23 +1336,22 @@ curl "https://api.hbdm.com/option-api/v1/option_api_state"
 ```json
 
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "trade_partition": "USDT",
-      "open": 1,
-      "close": 1,
-      "cancel": 1,
-      "transfer_in": 1,
-      "transfer_out": 1,
-      "master_transfer_sub": 1,
-      "sub_transfer_master": 1
-    }
-  ],
-  "ts": 159007866555
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "open": 1,
+            "close": 1,
+            "cancel": 1,
+            "transfer_in": 1,
+            "transfer_out": 1,
+            "master_transfer_sub": 1,
+            "sub_transfer_master": 1,
+            "trade_partition": "USDT"
+        }
+    ],
+    "ts": 1604642146524
 }
-
 ```
 
 ###  返回参数
@@ -1413,26 +1412,37 @@ curl "https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USDT-200508-
 ```json
 
 {
-  "ch": "market.BTC-USDT-200508-C-8800.depth.step0",
-  "status": "ok",
-  "tick": {
-    "asks": [
-      [6500, 9],
-      [6700, 900]
-    ],
-    "bids": [
-      [4000, 3],
-      [1234, 1]
-    ],
-    "ch": "market.BTC-USDT-200508-C-8800.depth.step0",
-    "id": 1585818737,
-    "mrid": 72403,
-    "ts": 1585818737715,
-    "version": 1585818737
-  },
-  "ts": 1585818738815
+    "ch": "market.BTC-USDT-201225-C-13000.depth.step6",
+    "status": "ok",
+    "ts": 1604642203490,
+    "tick": {
+        "mrid": 118879828,
+        "id": 1604642202,
+        "bids": [
+            [
+                2943.2,
+                552
+            ],
+            [
+                2919.87,
+                748
+            ]
+        ],
+        "asks": [
+            [
+                3094.55,
+                381
+            ],
+            [
+                3125.95,
+                494
+            ]
+        ],
+        "ts": 1604642202644,
+        "version": 1604642202,
+        "ch": "market.BTC-USDT-201225-C-13000.depth.step6"
+    }
 }
-
 ```
 
 ###  返回参数
@@ -1483,25 +1493,35 @@ curl "https://api.hbdm.com//option-ex/market/history/kline?period=1min&size=200&
 
 ```json
 
-    {
-      "ch": "market.BTC-USDT-200508-C-8800.kline.1min",
-      "data": [
+{
+    "ch": "market.BTC-USDT-201225-C-13000.kline.5min",
+    "data": [
         {
-          "vol": 2446,
-          "close": 5000,
-          "count": 2446,
-          "high": 5000,
-          "id": 1529898120,
-          "low": 5000,
-          "open": 5000,
-          "amount": 48.92,
-          "trade_turnover": 489200
-         }
-       ],
-      "status": "ok",
-      "ts": 1529908345313
-    }
-
+            "amount": 0,
+            "close": 2855.11,
+            "count": 0,
+            "high": 2855.11,
+            "id": 1604641800,
+            "low": 2855.11,
+            "open": 2855.11,
+            "trade_turnover": 0,
+            "vol": 0
+        },
+        {
+            "amount": 0,
+            "close": 2855.11,
+            "count": 0,
+            "high": 2855.11,
+            "id": 1604642100,
+            "low": 2855.11,
+            "open": 2855.11,
+            "trade_turnover": 0,
+            "vol": 0
+        }
+    ],
+    "status": "ok",
+    "ts": 1604642303996
+}
 ```
 
 ### 返回参数
@@ -1543,23 +1563,29 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
 ```json
 
 {
-  "ch": "market.BTC-USDT-200508-C-8800.detail.merged",
-  "status": "ok",
-  "tick": {
-    "amount": "324.1457155582624058973835160063648331838",
-    "ask": [6500, 9],
-    "bid": [4000, 3],
-    "close": "6500",
-    "count": 30,
-    "high": "6700",
-    "id": 1585818738,
-    "low": "6500",
-    "open": "6641.0192",
-    "ts": 1585818739007,
-    "vol": "15254",
-    "trade_turnover": 15254012
-  },
-  "ts": 1585818739007
+    "ch": "market.BTC-USDT-201225-C-13000.detail.merged",
+    "status": "ok",
+    "tick": {
+        "amount": "1.69",
+        "ask": [
+            3099.36,
+            381
+        ],
+        "bid": [
+            2939.87,
+            552
+        ],
+        "close": "2855.11",
+        "count": 5,
+        "high": "2855.11",
+        "id": 1604642357,
+        "low": "2821.97",
+        "open": "2821.97",
+        "trade_turnover": "4480.8195",
+        "ts": 1604642358431,
+        "vol": "1690"
+    },
+    "ts": 1604642358431
 }
 ```
 
@@ -1605,24 +1631,24 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-200508-
 
 ```json
 
-    {
-      "ch": "market.BTC-USDT-200508-C-8800.trade.detail",
-      "status": "ok",
-      "tick": {
+{
+    "ch": "market.BTC-USDT-201225-C-13000.trade.detail",
+    "status": "ok",
+    "tick": {
         "data": [
-          {
-            "amount": "2",
-            "direction": "sell",
-            "id": 6010881529486944176,
-            "price": "5000",
-            "ts": 1529386945343
-           }
-         ],
-        "id": 1529388202797,
-        "ts": 1529388202797
-        },
-      "ts": 1529388202797
-    }
+            {
+                "amount": "98",
+                "direction": "buy",
+                "id": 1182841000001,
+                "price": "2855.11",
+                "ts": 1604615035549
+            }
+        ],
+        "id": 1604642413998,
+        "ts": 1604642413998
+    },
+    "ts": 1604642413998
+}
 ```
 
 ### 返回参数
@@ -1667,26 +1693,46 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 ```json
 
-    {
-      "ch": "market.BTC-USDT-200508-C-8800.trade.detail",
-      "status": "ok",
-      "ts": 1529388050915,
-      "data": [
+{
+    "ch": "market.BTC-USDT-201225-C-13000.trade.detail",
+    "data": [
         {
-          "id": 601088,
-          "ts": 1529386945343,
-          "data": [
-            {
-             "amount": 2,
-             "direction": "sell",
-             "id": 6010881529486944176,
-             "price": 5000,
-             "ts": 1529386945343
-             }
-           ]
+            "data": [
+                {
+                    "amount": 10,
+                    "direction": "sell",
+                    "id": 1174421220000,
+                    "price": 2406.83,
+                    "ts": 1604581920670
+                }
+            ],
+            "id": 117442122,
+            "ts": 1604581920670
+        },
+        {
+            "data": [
+                {
+                    "amount": 970,
+                    "direction": "buy",
+                    "id": 1182841000000,
+                    "price": 2821.97,
+                    "ts": 1604615035549
+                },
+                {
+                    "amount": 98,
+                    "direction": "buy",
+                    "id": 1182841000001,
+                    "price": 2855.11,
+                    "ts": 1604615035549
+                }
+            ],
+            "id": 118284100,
+            "ts": 1604615035549
         }
-       ]
-    }
+    ],
+    "status": "ok",
+    "ts": 1604642481841
+}
 ```
 
 ### 返回参数
@@ -1741,35 +1787,34 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 ```json
 
 {
-  "status": "ok",
-  "ts": 1590029488569,
-  "data": [
-    {
-      "symbol": "BTC",
-      "trade_partition": "USDT",
-      "margin_balance": 0,
-      "margin_position": 0,
-      "margin_frozen": 0,
-      "margin_available": 0,
-      "profit_real": 0,
-      "profit_unreal": 0,
-      "withdraw_available": 0,
-      "margin_static": 0,
-      "premium_frozen": 0,
-      "fee_frozen": 0,
-      "fee_asset": "USDT",
-      "premium_in": 0,
-      "premium_out": 0,
-      "delta": 0.2,
-      "gamma": 2,
-      "theta": 0.1,
-      "vega": 2,
-      "option_value": 0,
-      "margin_asset": "USDT"
-    }
-  ]
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "USDT",
+            "margin_balance": 10.45482,
+            "margin_position": 0,
+            "margin_frozen": 0,
+            "margin_available": 10.45482,
+            "profit_real": -0.09418,
+            "profit_unreal": 0,
+            "withdraw_available": 10.45482,
+            "margin_static": 10.45482,
+            "premium_frozen": 0,
+            "fee_frozen": 0,
+            "premium_in": 2.85101,
+            "premium_out": 0.47879,
+            "delta": null,
+            "gamma": null,
+            "theta": null,
+            "vega": null,
+            "option_value": 0,
+            "trade_partition": "USDT",
+            "fee_asset": "USDT",
+            "margin_asset": "USDT"
+        }
+    ],
+    "ts": 1604642578467
 }
-
 ```
 
 ###  返回参数
