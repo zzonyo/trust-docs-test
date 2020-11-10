@@ -934,7 +934,7 @@ curl "https://api.hbdm.com/option-api/v1/option_contract_info?contract_code=BTC-
 | \<data\>            | true     | object array |                                   |                                                              |
 | symbol            | true     | string       | Coin Code                         | "BTC","ETH"...                                               |
 | trade_partition   | true     | string       | Trade Partition                          | "USDT"                                                       |
-| contract_code     | true     | string       | Contract Code (If the strike price has a decimal point, "+" will be used to indicate the decimal point. eg, if the strike price of BTC Weekly call options is 9002.35, the contract code is BTC-USDT-200508-C-9002+35)        | "BTC-USDT-200508-C-8800"        |
+| contract_code     | true     | string       | Contract Code (If the strike price has a decimal point, "+" will be used to indicate the decimal point. eg, if the strike price of BTC Weekly call options is 9002.35, the contract code is BTC-USDT-200508-C-9002+35)        | "BTC-USDT-201225-C-13000"        |
 | contract_type     | true     | string       | Contract Type                         | "this_week", "next_week", "quarter"           |
 | contract_size     | true     | decimal      | Contract Value (how many coins corresponding to one contract) | 0.01...                                                      |
 | price_tick        | true     | decimal      | Minimum Variation of Contract Price              | 0.001, 0.01...                                               |
