@@ -9290,6 +9290,35 @@ obtain_currency_list  | array     | For creation this is the amount for ETF crea
 
 # ETP
 
+## Introduction
+
+ETP (Exchange Tradable Products) APIs provide ETP related functionality, such as swap in, swap out, query.
+
+Below is the error code and the description returend by ETP APIs
+
+| Error Code | Description |
+| -- | -- |
+| 1002 | This feature is not open to users in your country. |
+| 80007 | Subscription closed. Order cancelled |
+| 80008 | Redemption closed. Order cancelled. |
+| 80009 | The subscription amount shall not be less than specified amount |
+| 80010 | The subscription amount shall not be more than specified amount |
+| 80011 | The subscription exceeds the daily limit for each user |
+| 80012 | The subscription exceeds the daily limit of the platform |
+| 80013 | Redemption quantity shall not be less than specified quantity |
+| 80014 | Redemption quantity shall not be more than specified quantity |
+| 80015 | The redemption exceeds the daily limit for each user |
+| 80016 | The redemption exceeds the daily limit of the platform |
+| 80018 | Insufficient balances |
+| 80019 | Order submission failed, please try again |
+| 80021 | Subscription failed due to less than 1 count, Order cancelled |
+| 80022 | Redemption failed due to less than 1 count, Order cancelled |
+| 80023 | Subscription failed due to price changed, Order cancelled |
+| 80024 | Redemption failed due to price changed, Order cancelled |
+| 80026 | The system is busy, try again later |
+| 80027 | Redemption failed due to no availablity, Order cancelled. |
+| 80028 | Order failed, exceeded the holding limit of this currency |
+
 ## Get reference data of ETP
 
 ### HTTP Request
