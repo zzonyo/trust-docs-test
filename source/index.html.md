@@ -7441,7 +7441,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | direction                 | string  | Long or short                                                     |
 | offset              | string | Open or close                                                     |
 | volume                 | decimal | quantity(Cont.)                                                      |
-| price              | decimal  | Price                |
+| price              | decimal  | bankruptcy price             |
 | created_at              | long  | Order Creation Time                                          |
 | \</data\> | object array |  | |
 
