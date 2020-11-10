@@ -1256,12 +1256,14 @@ No parameter is available for this endpoint.
 | ------------------ | ------------------ | ------------- | -------------- |
 | status             | string                   | "ok" or "error"... 
 | \<data\>             | dict object                 | 
-| heartbeat             | integer                   | future 1: avaiable 0: not available 
-| swap_heartbeat             | integer                   | swap 1: avaiable 0: not available 
+| heartbeat             | int                   | future 1: avaiable 0: not available 
+| swap_heartbeat             | int                   | coin margined swap 1: avaiable 0: not available 
 | estimated_recovery_time             | long                   | null: normal. estimated recovery time :millionseconds.
-| swap_estimated_recovery_time             | long                   | null: normal. swap estimated recovery time millionseconds.
-| option_heartbeat             | integer                   | option 1: avaiable 0: not available 
+| swap_estimated_recovery_time             | long                   | null: normal. coin margined swap estimated recovery time millionseconds.
+| option_heartbeat             | int                   | option 1: avaiable 0: not available 
 | option_estimated_recovery_time             | long                   | null: normal. option estimated recovery time :millionseconds.
+| linear_swap_heartbeat             | long                   | USDT margined swap 1: avaiable 0: not available 
+| linear_swap_estimated_recovery_time             | long                   | null: normal. USDT margined swap estimated recovery time millionseconds.
 | \</data\>             |                  | 
 
 > Response:
@@ -1276,7 +1278,9 @@ No parameter is available for this endpoint.
         "swap_heartbeat":1,
         "swap_estimated_recovery_time":null,
         "option_heartbeat":1,
-        "option_estimated_recovery_time":null
+        "option_estimated_recovery_time":null,
+        "linear_swap_heartbeat":1,
+        "linear_swap_estimated_recovery_time":null
     },
     "ts":1557714418033
 }
