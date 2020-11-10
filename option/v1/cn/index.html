@@ -2019,11 +2019,11 @@ api.hbdm.com\n
 <h1 id='0adb1147b3'>常见问题</h1><h2 id='59ce3c8353'>接入验签相关</h2><h3 id='q1-api-key'>Q1: 期权API Key和现货是否同一个？</h3>
 <p>期权API Key和现货API Key是同一个，两个是一样的。您可以在 <a href='https://www.hbg.com/zh-cn/apikey/'>  这里 </a>   创建 API Key。</p>
 <h3 id='q2'>Q2: 为什么经常出现断线、超时的错误？</h3>
-<p>如果是在大陆网络环境去请求API接口，网络连接很不稳定，很容易出现超时。建议使用AWS东京A区服务器进行访问。</p>
+<p>如果是在大陆网络环境去请求API接口，网络连接很不稳定，很容易出现超时。建议使用AWS东京C区服务器进行访问。</p>
 
 <p>国内网络可以使用api.btcgateway.pro或者api.hbdm.vn来进行调试,如果仍然无法请求，请在国外服务器上进行运行。</p>
 <h3 id='q3-websocket'>Q3: 为什么WebSocket总是断开连接？</h3>
-<p>由于网络环境不同，很容易导致websocket断开连接(websocket: close 1006 (abnormal closure))，目前最佳实践是建议您将服务器放置在AWS东京A区，并且使用api.hbdm.vn域名；同时需要做好断连重连操作；行情心跳与订单心跳均需要按照《Websocket心跳以及鉴权接口》的行情心跳与订单心跳回复不同格式的Pong消息：<a href='https://docs.huobigroup.com/docs/option/v1/cn/#472585d15d'>  这里</a>  。以上操作可以有效减少断连情况。</p>
+<p>由于网络环境不同，很容易导致websocket断开连接(websocket: close 1006 (abnormal closure))，目前最佳实践是建议您将服务器放置在AWS东京C区，并且使用api.hbdm.vn域名；同时需要做好断连重连操作；行情心跳与订单心跳均需要按照《Websocket心跳以及鉴权接口》的行情心跳与订单心跳回复不同格式的Pong消息：<a href='https://docs.huobigroup.com/docs/option/v1/cn/#472585d15d'>  这里</a>  。以上操作可以有效减少断连情况。</p>
 <h3 id='q4-api-hbdm-com-api-hbdm-vn'>Q4: api.hbdm.com与api.hbdm.vn有什么区别？</h3>
 <p>api.hbdm.vn域名使用的是AWS的CDN服务，理论上AWS服务器用户使用此域名会更快更稳定；api.hbdm.com域名使用的是Cloudflare的CDN服务。</p>
 <h3 id='q5-403-verification-failure'>Q5: 为什么签名认证总返回失败(403:Verification failure [校验失败]) ？</h3>
@@ -2115,7 +2115,7 @@ step6是不合并小数；
 <h3 id='q2-order-id-match-id-n-trade-taker-n-maker-n-trade-trade'>Q2: 同样的order id 和 match id，可以有N多个Trade，比如，用户是一笔大的taker单，吃掉了N个maker的订单，那么，就会对应有N个trade，如何标识这些不同的trade？</h3>
 <p>订单明细信息接口option-api/v1/option_order_detail返回的的字段id是全局唯一的交易标识。如果一个maker单，分多次match掉的话是每次推送只推match的部分，撮合一笔推送一笔。</p>
 <h3 id='q3-api-connection-reset-max-retris-timed-out'>Q3: API接口返回Connection Reset 或者 Max retris 或者 Timed out 是什么原因？</h3>
-<p>出现连接重置或者网络超时，一般是网络不稳定导致，可以尝试将服务器放置在AWS东京A区，并使用api.hbdm.vn来尝试，可以有效减少网络超时等错误。</p>
+<p>出现连接重置或者网络超时，一般是网络不稳定导致，可以尝试将服务器放置在AWS东京C区，并使用api.hbdm.vn来尝试，可以有效减少网络超时等错误。</p>
 <h3 id='q4-api-order_id'>Q4: API接口下单时出错没有order_id如何来查询订单状态？</h3>
 <p>如果由于网络原因等API下单超时或者失败，没有返回order_id，可以通过下单时加入client_order_id自定义订单号来进行查询订单状态。</p>
 <h3 id='q5-ws'>Q5: WS 订阅私有账户，订单或者仓位一段时间，连接断开如何办？</h3>
@@ -2145,7 +2145,7 @@ step6是不合并小数；
 <li>GET <code>option-api/v1/option_contract_info</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>
-curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_contract_info?contract_code=BTC-USDT-200925-C-10000"</span>
+curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_contract_info?contract_code=BTC-USDT-201225-C-13000"</span>
 
 </code></pre><h3 id='1f9ac54b15-2'>请求参数</h3>
 <table><thead>
@@ -2183,7 +2183,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_contract_info?c
 <td>false</td>
 <td>string</td>
 <td>合约代码</td>
-<td>BTC-USDT-200508-C-8800</td>
+<td>BTC-USDT-201225-C-13000</td>
 </tr>
 </tbody></table>
 <h4 id='9852b06629'>备注：</h4>
@@ -2257,7 +2257,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_contract_info?c
 <td>true</td>
 <td>string</td>
 <td>合约代码 （若行权价存在小数点，则用”+“表示小数点，如BTC当周看涨期权行权价为9002.35，则合约代码为BTC-USDT-200508-C-9002+35）</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot;</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot;</td>
 </tr>
 <tr>
 <td>contract_type</td>
@@ -2450,7 +2450,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_index?symbol=BT
 <li>GET <code>option-api/v1/option_price_limit</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>
-curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_price_limit?contract_code=BTC-USDT-200925-C-10000"</span>
+curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_price_limit?contract_code=BTC-USDT-201225-C-13000"</span>
 
 </code></pre><h3 id='1f9ac54b15-4'>请求参数</h3>
 <table><thead>
@@ -2467,7 +2467,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_price_limit?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>BTC-USDT-200508-C-8800</td>
+<td>BTC-USDT-201225-C-13000</td>
 </tr>
 </tbody></table>
 
@@ -2539,7 +2539,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_price_limit?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>如&quot;BTC-USDT-200508-C-8800&quot; ...</td>
+<td>如&quot;BTC-USDT-201225-C-13000&quot; ...</td>
 </tr>
 <tr>
 <td>high_limit</td>
@@ -2575,7 +2575,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_price_limit?con
 <li>GET <code>option-api/v1/option_market_index</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>
-curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-USDT-200508-C-8800"</span>
+curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-USDT-201225-C-13000"</span>
 
 </code></pre><h3 id='1f9ac54b15-5'>请求参数</h3>
 <table><thead>
@@ -2620,7 +2620,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_market_index?co
 <td>false</td>
 <td>string</td>
 <td>合约代码</td>
-<td>BTC-USDT-200508-C-8800</td>
+<td>BTC-USDT-201225-C-13000</td>
 </tr>
 </tbody></table>
 <h3 id='9852b06629-2'>备注：</h3>
@@ -2701,7 +2701,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_market_index?co
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>如&quot;BTC-USDT-200508-C-8800&quot; ...</td>
+<td>如&quot;BTC-USDT-201225-C-13000&quot; ...</td>
 </tr>
 <tr>
 <td>contract_type</td>
@@ -2821,7 +2821,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_market_index?co
 <li>GET <code>/option-api/v1/option_open_interest</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>
-curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-USDT-200925-C-10000"</span>
+curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-USDT-201225-C-13000"</span>
 
 </code></pre><h3 id='1f9ac54b15-6'>请求参数</h3>
 <table><thead>
@@ -2859,7 +2859,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_open_interest?c
 <td>false</td>
 <td>string</td>
 <td>合约代码</td>
-<td>BTC-USDT-200508-C-8800</td>
+<td>BTC-USDT-201225-C-13000</td>
 </tr>
 </tbody></table>
 <h4 id='9852b06629-3'>备注：</h4>
@@ -2928,7 +2928,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_open_interest?c
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>如&quot;BTC-USDT-200508-C-8800&quot;</td>
+<td>如&quot;BTC-USDT-201225-C-13000&quot;</td>
 </tr>
 <tr>
 <td>contract_type</td>
@@ -3448,7 +3448,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_api_state"</spa
 <li>GET <code>/option-ex/market/depth</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>
-curl <span class="s2">"https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USDT-200508-C-8800&amp;type=step5"</span>
+curl <span class="s2">"https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USDT-201225-C-13000&amp;type=step5"</span>
 
 </code></pre><h3 id='9b19f8c9cc'>请求参数：</h3>
 <table><thead>
@@ -3465,7 +3465,7 @@ curl <span class="s2">"https://api.hbdm.com/option-ex/market/depth?contract_code
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot; ...</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot; ...</td>
 </tr>
 <tr>
 <td>type</td>
@@ -3612,7 +3612,7 @@ curl <span class="s2">"https://api.hbdm.com/option-ex/market/depth?contract_code
 <li>GET <code>/option-ex/market/history/kline</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>
-curl <span class="s2">"https://api.hbdm.com//option-ex/market/history/kline?period=1min&amp;size=200&amp;contract_code=BTC-USDT-200508-C-8800"</span>
+curl <span class="s2">"https://api.hbdm.com//option-ex/market/history/kline?period=1min&amp;size=200&amp;contract_code=BTC-USDT-201225-C-13000"</span>
 
 </code></pre><h3 id='1f9ac54b15-10'>请求参数</h3>
 <table><thead>
@@ -3629,7 +3629,7 @@ curl <span class="s2">"https://api.hbdm.com//option-ex/market/history/kline?peri
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot; ...</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot; ...</td>
 </tr>
 <tr>
 <td>period</td>
@@ -3814,7 +3814,7 @@ curl <span class="s2">"https://api.hbdm.com//option-ex/market/history/kline?peri
 <li>GET <code>/option-ex/market/detail/merged</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>
-curl <span class="s2">"https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT-200508-C-8800"</span>
+curl <span class="s2">"https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT-201225-C-13000"</span>
 
 </code></pre><h3 id='1f9ac54b15-11'>请求参数</h3>
 <table><thead>
@@ -3831,7 +3831,7 @@ curl <span class="s2">"https://api.hbdm.com/option-ex/market/detail/merged?contr
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot; ...</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot; ...</td>
 </tr>
 </tbody></table>
 
@@ -3999,7 +3999,7 @@ curl <span class="s2">"https://api.hbdm.com/option-ex/market/detail/merged?contr
 <li>GET <code>/option-ex/market/trade</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>
-curl <span class="s2">"https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-200508-C-8800"</span>
+curl <span class="s2">"https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-201225-C-13000"</span>
 
 </code></pre><h3 id='1f9ac54b15-12'>请求参数</h3>
 <table><thead>
@@ -4016,7 +4016,7 @@ curl <span class="s2">"https://api.hbdm.com/option-ex/market/trade?contract_code
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot; ...</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot; ...</td>
 </tr>
 </tbody></table>
 
@@ -4156,7 +4156,7 @@ curl <span class="s2">"https://api.hbdm.com/option-ex/market/trade?contract_code
 <li>GET <code>/option-ex/market/history/trade</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>
-curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-USDT-200508-C-8800&amp;size=10"</span>
+curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-USDT-201225-C-13000&amp;size=10"</span>
 
 </code></pre><h3 id='1f9ac54b15-13'>请求参数</h3>
 <table><thead>
@@ -4173,7 +4173,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot; ...</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot; ...</td>
 </tr>
 <tr>
 <td>size</td>
@@ -4613,7 +4613,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-200508-C-8800"</span><span class="w">
+  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-201225-C-13000"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='1f9ac54b15-15'>请求参数</h3>
@@ -4645,7 +4645,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>false</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot; ...</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot; ...</td>
 </tr>
 </tbody></table>
 
@@ -4732,7 +4732,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot; ...</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot; ...</td>
 </tr>
 <tr>
 <td>contract_type</td>
@@ -5310,7 +5310,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456789"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-200508-C-8800"</span><span class="w">
+  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-201225-C-13000"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='1f9ac54b15-18'>请求参数</h3>
@@ -5342,7 +5342,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>false</td>
 <td>string</td>
 <td>合约代码</td>
-<td>如&quot;BTC-USDT-200508-C-8800&quot; ...</td>
+<td>如&quot;BTC-USDT-201225-C-13000&quot; ...</td>
 </tr>
 <tr>
 <td>sub_uid</td>
@@ -5362,7 +5362,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"BTC-USDT-200508-C-8800"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"BTC-USDT-201225-C-13000"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="s2">"available"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -5436,7 +5436,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot; ...</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot; ...</td>
 </tr>
 <tr>
 <td>contract_type</td>
@@ -5743,7 +5743,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot;， ...</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot;， ...</td>
 </tr>
 <tr>
 <td>type</td>
@@ -6891,7 +6891,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot;</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot;</td>
 </tr>
 <tr>
 <td>contract_type</td>
@@ -7621,7 +7621,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-200508-C-8800"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-201225-C-13000"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.4</span><span class="p">,</span><span class="w">
   </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
   </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
@@ -7644,7 +7644,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true <img width=250/></td>
 <td>string  <img width=250/></td>
 <td>合约代码   <img width=1000/></td>
-<td>BTC-USDT-200508-C-8800</td>
+<td>BTC-USDT-201225-C-13000</td>
 </tr>
 <tr>
 <td>client_order_id</td>
@@ -7830,7 +7830,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true <img width=250/></td>
 <td>string</td>
 <td>合约代码   <img width=1000/></td>
-<td>BTC-USDT-200508-C-8800</td>
+<td>BTC-USDT-201225-C-13000</td>
 </tr>
 <tr>
 <td>client_order_id</td>
@@ -8223,7 +8223,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>false</td>
 <td>string</td>
 <td>合约代码</td>
-<td>BTC-USDT-200508-C-8800</td>
+<td>BTC-USDT-201225-C-13000</td>
 </tr>
 </tbody></table>
 <h3 id='4000b231e7'>备注:</h3>
@@ -8475,7 +8475,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot;</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot;</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -8865,7 +8865,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot;</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot;</td>
 </tr>
 <tr>
 <td>direction</td>
@@ -9180,7 +9180,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-200508-C-8800"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-201225-C-13000"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"page_index"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="s2">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -9213,7 +9213,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>false</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot; ...</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot; ...</td>
 </tr>
 <tr>
 <td>page_index</td>
@@ -9335,7 +9335,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot;</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot;</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -9651,7 +9651,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>false</td>
 <td>string</td>
 <td>合约代码</td>
-<td>BTC-USDT-200508-C-8800</td>
+<td>BTC-USDT-201225-C-13000</td>
 </tr>
 </tbody></table>
 <h3 id='9852b06629-11'>备注：</h3>
@@ -9774,7 +9774,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot;</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot;</td>
 </tr>
 <tr>
 <td>direction</td>
@@ -10029,7 +10029,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>false</td>
 <td>string</td>
 <td>合约代码</td>
-<td>BTC-USDT-200508-C-8800</td>
+<td>BTC-USDT-201225-C-13000</td>
 </tr>
 <tr>
 <td>page_index</td>
@@ -10172,7 +10172,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot;</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot;</td>
 </tr>
 <tr>
 <td>direction</td>
@@ -10336,7 +10336,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-200508-C-8800"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-201225-C-13000"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -10356,7 +10356,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>BTC-USDT-200508-C-8800</td>
+<td>BTC-USDT-201225-C-13000</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -10486,7 +10486,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-200508-C-8800"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-201225-C-13000"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"le"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"trigger_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7900"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7900"</span><span class="p">,</span><span class="w">
@@ -10511,7 +10511,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>BTC-USDT-200508-C-8800</td>
+<td>BTC-USDT-201225-C-13000</td>
 </tr>
 <tr>
 <td>trigger_type</td>
@@ -10824,7 +10824,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>false</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot;</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot;</td>
 </tr>
 <tr>
 <td>contract_type</td>
@@ -10976,7 +10976,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>false</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot;</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot;</td>
 </tr>
 <tr>
 <td>page_index</td>
@@ -11106,7 +11106,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot;</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot;</td>
 </tr>
 <tr>
 <td>trigger_type</td>
@@ -11267,7 +11267,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>false</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot;</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot;</td>
 </tr>
 <tr>
 <td>trade_type</td>
@@ -11429,7 +11429,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot;</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot;</td>
 </tr>
 <tr>
 <td>trigger_type</td>
@@ -12544,7 +12544,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
-</span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.kline.1min"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-201225-C-13000.kline.1min"</span><span class="p">,</span><span class="w">
 </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -12588,7 +12588,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot; ...</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot; ...</td>
 </tr>
 <tr>
 <td>period</td>
@@ -12606,7 +12606,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
     </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"subbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.kline.1min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subbed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-201225-C-13000.kline.1min"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
@@ -12763,7 +12763,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.kline.60min"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-201225-C-13000.kline.60min"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="mi">1579247342</span><span class="p">,</span><span class="w">
   </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1579247342</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -12822,7 +12822,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot; ...</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot; ...</td>
 </tr>
 <tr>
 <td>period</td>
@@ -13021,7 +13021,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.depth.step0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-201225-C-13000.depth.step0"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -13065,7 +13065,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true <img width=250/></td>
 <td>string</td>
 <td>合约代码 <img width=250/></td>
-<td>&quot;BTC-USDT-200508-C-8800&quot; ...</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot; ...</td>
 </tr>
 <tr>
 <td>type</td>
@@ -13314,7 +13314,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"incremental"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.depth.size_150.high_freq"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-201225-C-13000.depth.size_150.high_freq"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -13365,7 +13365,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>如&quot;BTC-USDT-200508-C-8800&quot; 。</td>
+<td>如&quot;BTC-USDT-201225-C-13000&quot; 。</td>
 </tr>
 <tr>
 <td>size</td>
@@ -13538,7 +13538,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"111"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.detail"</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-201225-C-13000.detail"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='1f9ac54b15-48'>请求参数</h3>
@@ -13581,7 +13581,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>如&quot;BTC-USDT-200508-C-8800&quot;。</td>
+<td>如&quot;BTC-USDT-201225-C-13000&quot;。</td>
 </tr>
 </tbody></table>
 
@@ -13734,7 +13734,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"160943040012341"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.trade.detail"</span><span class="w">
+  </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-201225-C-13000.trade.detail"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='e0361480e3-21'>备注</h3>
@@ -13788,7 +13788,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>如&quot;BTC-USDT-200508-C-8800&quot;。</td>
+<td>如&quot;BTC-USDT-201225-C-13000&quot;。</td>
 </tr>
 </tbody></table>
 
@@ -13925,7 +13925,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"160943040012341"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"Sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-200508-C-8800.trade.detail"</span><span class="w">
+  </span><span class="s2">"Sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-201225-C-13000.trade.detail"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='1f9ac54b15-50'>请求参数</h3>
@@ -13968,7 +13968,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>如&quot;BTC-USDT-200508-C-8800&quot;。</td>
+<td>如&quot;BTC-USDT-201225-C-13000&quot;。</td>
 </tr>
 </tbody></table>
 
@@ -14271,7 +14271,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>BTC-USDT-200508-C-8800</td>
+<td>BTC-USDT-201225-C-13000</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -15193,7 +15193,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>BTC-USDT-200508-C-8800</td>
+<td>BTC-USDT-201225-C-13000</td>
 </tr>
 <tr>
 <td>contract_type</td>
@@ -15567,7 +15567,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>string</td>
 <td>合约代码</td>
-<td>BTC-USDT-200508-C-8800</td>
+<td>BTC-USDT-201225-C-13000</td>
 </tr>
 <tr>
 <td>status</td>
