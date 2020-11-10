@@ -2537,7 +2537,7 @@ API Key 权限：读取<br>
 |	message	|	string	|	FALSE	|错误描述（如有）	|
 |	data	|	object	|	TRUE	|	|
 |	{ accountId	|	string	|	TRUE	|账户ID	|
-|	accountStatus	|	string	|	TRUE	| 账户状态（working, lock, fl-sys, fl-mgt, fl-end, fl-negative）	|
+|	accountStatus	|	string	|	TRUE	| 账户状态（working 正常, lock 锁定, fl-sys 系统自动爆仓, fl-mgt 手动爆仓, fl-end 爆仓结束, fl-negative 穿仓）	|
 |	acctBalance	|	string	|	TRUE	|账户余额	|
 |	groupIds	|	object	|	TRUE	| 点卡分组ID列表	|
 |	{ groupId	|	long	|	TRUE	| 点卡分组ID	|
@@ -5681,7 +5681,7 @@ curl "https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"
 | 字段名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
 |-----|-----|-----|-----|------|
 | symbol  |  true  |  string  |  交易对 | |
-| state  |  true  |  string  |  账户状态 | working,fl-sys,fl-mgt,fl-end |
+| state  |  true  |  string  |  账户状态 | working 正常,fl-sys 系统自动爆仓,fl-mgt 手动爆仓,fl-end 爆仓结束 |
 | risk-rate | true | string | 风险率 | |
 | fl-price | true | string | 爆仓价 | |
 | list | true | array | 借币账户详情列表 | |
@@ -6044,7 +6044,7 @@ API Key 权限：读取
 |-----|-----|-----|-----|------|
 | id | true | integer | Account ID 账户编号 | |
 | type | true | integer | 账户类型 (margin or cross-margin) |cross-margin |
-| state  |  true  |  string  |  账户状态 | working,fl-sys,fl-end,fl-negative |
+| state  |  true  |  string  |  账户状态 | working 正常,fl-sys 系统自动爆仓,fl-end 爆仓结束,fl-negative 穿仓 |
 | risk-rate | true | string | 风险率 | |
 | acct-balance-sum | true | string | 总持有usdt折合 | |
 | debt-balance-sum | true | string | 总负债usdt折合 | |
@@ -6786,7 +6786,7 @@ API Key 权限：读取<br>
 |	message	|	string	|	FALSE	|	错误描述（如有）	|
 |	data	|	object	|	TRUE	|		|
 |	{ accountId	|	string	|	TRUE	|	账户ID	|
-|	accountStatus	|	string	|	TRUE	|	账户状态（working, lock, fl-sys, fl-mgt, fl-end, fl-negative）	|
+|	accountStatus	|	string	|	TRUE	|	账户状态（working 正常, lock 锁定, fl-sys 系统自动爆仓, fl-mgt 手动爆仓, fl-end 爆仓结束, fl-negative 穿仓）	|
 |	symbol	|	string	|	FALSE	|	交易对（仅对借入账户类型有效）	|
 |	riskRate	|	string	|	FALSE	|	风险率（仅对借入账户类型有效）	|
 |	subAccountTypes	|	object	|	TRUE	|	账户子类型列表	|
