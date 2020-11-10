@@ -9054,7 +9054,25 @@ time       | long   | Timestampe
 
 # ETF (HB10)
 
+## Introduction
+
 Huobi's platform allows clients to create ETF holdings with their matching assets, and also allows clients to redempt ETF to comprised assets.
+
+Below is the error code and the description returned by ETF APIs
+
+
+| Error Code | Description |
+| ---------   | ----------- |
+| 504 | Missing Parameter: [name] |
+| 10404 | The fund does not exist (right now only support hb10) |
+| 13404 | Exchange ratio of the coin and ETF is missing |
+| 13406 | Non-API calls. The request is rejected |
+| 13410 | API signature error |
+| 13601 | Position adjustment phase: swap-in and swap-out are suspended |
+| 13603 | Swap-in and swap-out have been suspended |
+| 13604 | Swap-in has been suspended |
+| 13605 | Swap-out has been suspended |
+| 13606 | Incorrect transaction share, exceed the limit |
 
 ## Creation and Redemption Configuration
 
