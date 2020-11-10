@@ -803,6 +803,9 @@
             <a href="#etp" class="toc-h1 toc-link" data-title="ETP">ETP</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#introduction-15" class="toc-h2 toc-link" data-title="Introduction">Introduction</a>
+                  </li>
+                  <li>
                     <a href="#get-reference-data-of-etp" class="toc-h2 toc-link" data-title="Get reference data of ETP">Get reference data of ETP</a>
                   </li>
                   <li>
@@ -19278,7 +19281,99 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <td>For creation this is the amount for ETF created. For redemption this is the list and amount of underlying assets obtained.</td>
 </tr>
 </tbody></table>
-<h1 id='etp'>ETP</h1><h2 id='get-reference-data-of-etp'>Get reference data of ETP</h2><h3 id='http-request-81'>HTTP Request</h3>
+<h1 id='etp'>ETP</h1><h2 id='introduction-15'>Introduction</h2>
+<p>ETP (Exchange Tradable Products) APIs provide ETP related functionality, such as swap in, swap out, query.</p>
+
+<p>Below is the error code and the description returend by ETP APIs</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1002</td>
+<td>This feature is not open to users in your country.</td>
+</tr>
+<tr>
+<td>80007</td>
+<td>Subscription closed. Order cancelled</td>
+</tr>
+<tr>
+<td>80008</td>
+<td>Redemption closed. Order cancelled.</td>
+</tr>
+<tr>
+<td>80009</td>
+<td>The subscription amount shall not be less than specified amount</td>
+</tr>
+<tr>
+<td>80010</td>
+<td>The subscription amount shall not be more than specified amount</td>
+</tr>
+<tr>
+<td>80011</td>
+<td>The subscription exceeds the daily limit for each user</td>
+</tr>
+<tr>
+<td>80012</td>
+<td>The subscription exceeds the daily limit of the platform</td>
+</tr>
+<tr>
+<td>80013</td>
+<td>Redemption quantity shall not be less than specified quantity</td>
+</tr>
+<tr>
+<td>80014</td>
+<td>Redemption quantity shall not be more than specified quantity</td>
+</tr>
+<tr>
+<td>80015</td>
+<td>The redemption exceeds the daily limit for each user</td>
+</tr>
+<tr>
+<td>80016</td>
+<td>The redemption exceeds the daily limit of the platform</td>
+</tr>
+<tr>
+<td>80018</td>
+<td>Insufficient balances</td>
+</tr>
+<tr>
+<td>80019</td>
+<td>Order submission failed, please try again</td>
+</tr>
+<tr>
+<td>80021</td>
+<td>Subscription failed due to less than 1 count, Order cancelled</td>
+</tr>
+<tr>
+<td>80022</td>
+<td>Redemption failed due to less than 1 count, Order cancelled</td>
+</tr>
+<tr>
+<td>80023</td>
+<td>Subscription failed due to price changed, Order cancelled</td>
+</tr>
+<tr>
+<td>80024</td>
+<td>Redemption failed due to price changed, Order cancelled</td>
+</tr>
+<tr>
+<td>80026</td>
+<td>The system is busy, try again later</td>
+</tr>
+<tr>
+<td>80027</td>
+<td>Redemption failed due to no availablity, Order cancelled.</td>
+</tr>
+<tr>
+<td>80028</td>
+<td>Order failed, exceeded the holding limit of this currency</td>
+</tr>
+</tbody></table>
+<h2 id='get-reference-data-of-etp'>Get reference data of ETP</h2><h3 id='http-request-81'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v2/etp/reference</code></li>
 </ul>
