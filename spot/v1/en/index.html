@@ -786,6 +786,9 @@
             <a href="#etf-hb10" class="toc-h1 toc-link" data-title="ETF (HB10)">ETF (HB10)</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#introduction-14" class="toc-h2 toc-link" data-title="Introduction">Introduction</a>
+                  </li>
+                  <li>
                     <a href="#creation-and-redemption-configuration" class="toc-h2 toc-link" data-title="Creation and Redemption Configuration">Creation and Redemption Configuration</a>
                   </li>
                   <li>
@@ -18825,8 +18828,58 @@ The topic disseminates the current static value of individual accounts first, at
 <td>Timestampe</td>
 </tr>
 </tbody></table>
-<h1 id='etf-hb10'>ETF (HB10)</h1>
+<h1 id='etf-hb10'>ETF (HB10)</h1><h2 id='introduction-14'>Introduction</h2>
 <p>Huobi&#39;s platform allows clients to create ETF holdings with their matching assets, and also allows clients to redempt ETF to comprised assets.</p>
+
+<p>Below is the error code and the description returned by ETF APIs</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>504</td>
+<td>Missing Parameter: [name]</td>
+</tr>
+<tr>
+<td>10404</td>
+<td>The fund does not exist (right now only support hb10)</td>
+</tr>
+<tr>
+<td>13404</td>
+<td>Exchange ratio of the coin and ETF is missing</td>
+</tr>
+<tr>
+<td>13406</td>
+<td>Non-API calls. The request is rejected</td>
+</tr>
+<tr>
+<td>13410</td>
+<td>API signature error</td>
+</tr>
+<tr>
+<td>13601</td>
+<td>Position adjustment phase: swap-in and swap-out are suspended</td>
+</tr>
+<tr>
+<td>13603</td>
+<td>Swap-in and swap-out have been suspended</td>
+</tr>
+<tr>
+<td>13604</td>
+<td>Swap-in has been suspended</td>
+</tr>
+<tr>
+<td>13605</td>
+<td>Swap-out has been suspended</td>
+</tr>
+<tr>
+<td>13606</td>
+<td>Incorrect transaction share, exceed the limit</td>
+</tr>
+</tbody></table>
 <h2 id='creation-and-redemption-configuration'>Creation and Redemption Configuration</h2>
 <p>This endpoint will return the basic information of ETF creation and redemption, as well as ETF constituents, including max amount of creation, min amount of creation, max amount of redemption, min amount of redemption, creation fee rate, redemption fee rate, eft create/redeem status.</p>
 <h3 id='http-request-78'>HTTP Request</h3>
