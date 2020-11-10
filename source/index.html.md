@@ -869,11 +869,14 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 
 - <a href='https://github.com/hbdmapi/huobi_futures_Postman'>Postman</a>
 
+- <a href='https://github.com/hbdmapi/huobi_futures_CSharp'>CSharp</a>
+
 <!--
 
 - <a href='https://github.com/hbdmapi/hbdm_swap_Rust'>Rust</a>
 
 - <a href='https://github.com/hbdmapi/huobi_swap_Cpp'>C++</a>
+
 -->
 
 ### 备注：USDT本位永续代码使用方式与币本位永续和交割合约类似，可以参考币本位永续和交割合约。
