@@ -874,6 +874,8 @@ Error Code | Error Details Description|
 
 - <a href='https://github.com/hbdmapi/huobi_futures_Postman'>Postman</a>
 
+- <a href='https://github.com/hbdmapi/huobi_futures_CSharp'>CSharp</a>
+
 PS: USDT Margined swap api is similar to Coin margined swap api and future api.
 
 <!--
