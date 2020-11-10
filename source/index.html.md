@@ -919,7 +919,7 @@ curl "https://api.hbdm.com/option-api/v1/option_contract_info?contract_code=BTC-
 | \<data\>            | true     | object array |                                 |                                                              |
 | symbol          | true     | string       | 品种代码                        | "BTC","ETH"...                                               |
 | trade_partition | true     | string       | 交易分区                        | "USDT"                                                       |
-| contract_code   | true     | string       | 合约代码 （若行权价存在小数点，则用”+“表示小数点，如BTC当周看涨期权行权价为9002.35，则合约代码为BTC-USDT-200508-C-9002+35）         | "BTC-USDT-200508-C-8800"                                     |
+| contract_code   | true     | string       | 合约代码 （若行权价存在小数点，则用”+“表示小数点，如BTC当周看涨期权行权价为9002.35，则合约代码为BTC-USDT-200508-C-9002+35）         | "BTC-USDT-201225-C-13000"                                     |
 | contract_type   | true     | string       | 合约类型                        | 当周:"this_week", 次周:"next_week", 季度:"quarter"           |
 | contract_size   | true     | decimal      | 合约面值，即1张合约对应多少标的币    | 0.01...                                                   |
 | price_tick      | true     | decimal      | 合约价格最小变动精度            | 0.001, 0.01...                                               |
