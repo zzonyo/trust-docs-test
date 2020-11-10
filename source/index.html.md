@@ -658,7 +658,7 @@ Yes. The option API key and spot API key are same. You can create API using the 
 
 ### Q2: Why are APIs  disconnected or timeouted?
 
-1. The network connection is unstable if the server locates in China mainland,it is suggested to invoke APIS from a server located in  1a area of AWS Tokyo.
+1. The network connection is unstable if the server locates in China mainland,it is suggested to invoke APIS from a server located in  1c area of AWS Tokyo.
 
 2.  You can use api.btcgateway.pro or api.hbdm.vn to debug for China mainland  network.
 
@@ -666,7 +666,7 @@ Yes. The option API key and spot API key are same. You can create API using the 
 
 It seems that most of the abnormal websocket  issues (such as disconnect, websocket close )(websocket: close 1006 (abnormal closure))are caused by different network environment. The following measures can effectively reduce websocket issues.
 
-It would be better if the server is located in 1a area of AWS Tokyo with url api.hbdm.vn and implement websocket re-connection mechanism. Both market heartbeat and order heartbeat should response with Pong with different formats, following  Websocket market heartbeat and account heartbeat requirement.<a href=https://docs.huobigroup.com/docs/option/v1/en/#market-heartbeat>here</a>
+It would be better if the server is located in 1C area of AWS Tokyo with url api.hbdm.vn and implement websocket re-connection mechanism. Both market heartbeat and order heartbeat should response with Pong with different formats, following  Websocket market heartbeat and account heartbeat requirement.<a href=https://docs.huobigroup.com/docs/option/v1/en/#market-heartbeat>here</a>
 
 ### Q4:  what is the difference between api.hbdm.com and api.hbdm.vn?
 
@@ -821,7 +821,7 @@ The field ID returned by the information interface option-api/v1/option_order_de
 
 ### Q3: Why does the API return connection reset or Max retris or Timeout error?
 
-Most of the network connectivity problems ,(such as Connection reset or network timeout )  are caused by network instability , you can use the server in AWS Tokyo A area with api.hbdm.vn , which can effectively reduce network timeout errors.
+Most of the network connectivity problems ,(such as Connection reset or network timeout )  are caused by network instability , you can use the server in AWS Tokyo C area with api.hbdm.vn , which can effectively reduce network timeout errors.
 
 ### Q4: How to check the order status without order_id not returned?
  
@@ -882,7 +882,7 @@ If it is an order-related issue, use the API order query interface option-api/v1
 - GET  `/option-api/v1/option_contract_info`
 
 ```shell
-curl "https://api.hbdm.com/option-api/v1/option_contract_info?contract_code=BTC-USDT-200508-C-8800"      
+curl "https://api.hbdm.com/option-api/v1/option_contract_info?contract_code=BTC-USDT-201225-C-13000"      
 ```
                                                            
 ### Request Parameter
@@ -892,7 +892,7 @@ curl "https://api.hbdm.com/option-api/v1/option_contract_info?contract_code=BTC-
 | symbol        | false    | string | Coin Code | "BTC","ETH"，If default, all coins will be returned.           |
 | trade_partition | false  | string | trade partition | "USDT", Default:"USDT"                                                        |
 | contract_type | false    | string | contract type | Weekly: "this_week", Bi-weekly: "next_week", Quarterly: "quarter" |
-| contract_code | false    | string | contract code | BTC-USDT-200508-C-8800                                        |
+| contract_code | false    | string | contract code | BTC-USDT-201225-C-13000                                        |
 
 #### Note: 
 
@@ -901,26 +901,27 @@ curl "https://api.hbdm.com/option-api/v1/option_contract_info?contract_code=BTC-
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "trade_partition": "USDT",
-      "contract_code": "BTC-USDT-200508-C-8800",
-      "contract_type": "quarter",
-      "contract_size": 0.01,
-      "price_tick": 0.01,
-      "delivery_date": "20200626",
-      "create_date": "20200515",
-      "contract_status": 1,
-      "option_right_type": "C",
-      "exercise_price": 6622,
-      "delivery_asset": "BTC",
-      "quote_asset": "USDT"
-    }
-  ],
-  "ts": 1590027409126
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_code": "BTC-USDT-201225-C-13000",
+            "contract_type": "quarter",
+            "contract_size": 0.001,
+            "price_tick": 0.01,
+            "delivery_date": "20201225",
+            "create_date": "20200904",
+            "contract_status": 1,
+            "option_right_type": "C",
+            "exercise_price": 13000,
+            "delivery_asset": "BTC",
+            "quote_asset": "USDT",
+            "trade_partition": "USDT"
+        }
+    ],
+    "ts": 1604641660310
 }
 ```
 
@@ -966,14 +967,17 @@ curl "https://api.hbdm.com/option-api/v1/option_index""
 > Response
 
 ```json
+
 {
-  "data": [{
-    "symbol": "BTC",
-    "index_price": 7345.4425,
-    "index_ts": 1590018746005
-  }],
-  "status": "ok",
-  "ts": 1590018753930
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC-USDT",
+            "index_price": 15666.651003896666666666,
+            "index_ts": 1604641743091
+        }
+    ],
+    "ts": 1604641747077
 }
 ```
 
@@ -997,32 +1001,33 @@ curl "https://api.hbdm.com/option-api/v1/option_index""
 - GET `/option-api/v1/option_price_limit` 
  
 ```shell
-curl "https://api.hbdm.com/option-api/v1/option_price_limit?contract_code=BTC-USDT-200508-C-8800
+curl "https://api.hbdm.com/option-api/v1/option_price_limit?contract_code=BTC-USDT-201225-C-13000
 ```
 
 ###  Request Parameter  
 
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | ------------- | -------- | ------ | -------- | ---------------------- |
-| contract_code | true     | string | Contract Code | BTC-USDT-200508-C-8800 |
+| contract_code | true     | string | Contract Code | BTC-USDT-201225-C-13000 |
 
 
 > Response
 
 ```json
+
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "trade_partition": "USDT",
-      "contract_type": "this_week",
-      "contract_code": "BTC-USDT-200508-C-8800",
-      "high_limit": 14618.93,
-      "low_limit": 75.05
-    }
-  ],
-  "ts": 1590044770222
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_type": "quarter",
+            "contract_code": "BTC-USDT-201225-C-13000",
+            "high_limit": 4619.82,
+            "low_limit": 1484.26,
+            "trade_partition": "USDT"
+        }
+    ],
+    "ts": 1604641793095
 }
 ```
 
@@ -1035,7 +1040,7 @@ curl "https://api.hbdm.com/option-api/v1/option_price_limit?contract_code=BTC-US
 | symbol          | true     | string       | Coin Code                   | "BTC","ETH"...                                     |
 | trade_partition | true     | string       | Trade Partition                   | "USDT"                                             |
 | contract_type   | true     | string       | Contract Type                   | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter" |
-| contract_code   | true     | string       | Contract Code                   | eg"BTC-USDT-200508-C-8800" ...                     |
+| contract_code   | true     | string       | Contract Code                   | eg"BTC-USDT-201225-C-13000" ...                     |
 | high_limit      | true     | decimal      | Highest Buy Price                   |                                                    |
 | low_limit       | true     | decimal      | Lowest Sell Price                  |                                                    |
 | \<data\>          |          |              |                            |                                                    |
@@ -1049,7 +1054,7 @@ curl "https://api.hbdm.com/option-api/v1/option_price_limit?contract_code=BTC-US
 - GET `/option-api/v1/option_market_index` 
  
 ```shell
-curl "https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-USDT-200508-C-8800
+curl "https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-USDT-201225-C-13000
 ```
 
 ###  Request Parameter  
@@ -1060,7 +1065,7 @@ curl "https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-U
 | trade_partition   | false    | string | Trade Partition     | "USDT", Default: "USDT"                                               |
 | contract_type     | false    | string | Contract Type     | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter" |
 | option_right_type | false    | string | Options Type | C: Call options P: Put options                              |
-| contract_code     | false    | string | Contract Code     | BTC-USDT-200508-C-8800                             |
+| contract_code     | false    | string | Contract Code     | BTC-USDT-201225-C-13000                             |
 
 
 ### Note:
@@ -1072,30 +1077,31 @@ curl "https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-U
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "trade_partition": "USDT",
-      "contract_type": "quarter",
-      "option_right_type": "C",
-      "contract_code": "BTC-USDT-200508-C-8800",
-      "iv_last_price": 175.05,
-      "iv_ask_one": 118.93,
-      "iv_bid_one": 57.32,
-      "iv_mark_price": 84.41,
-      "delta": 0.2,
-      "gamma": 0.11,
-      "theta": 0.23,
-      "vega": 0.55,
-      "ask_one": 1.55,
-      "bid_one": 1.2,
-      "last_price": 1.11,
-      "mark_price": 1.23
-    }
-  ],
-  "ts": 1590018789304
+    "status": "ok",
+    "data": [
+        {
+            "contract_code": "BTC-USDT-201225-C-13000",
+            "symbol": "BTC",
+            "iv_last_price": 0.47379972,
+            "iv_ask_one": 0.66771509,
+            "iv_bid_one": 0.55960657,
+            "iv_mark_price": 0.62272073,
+            "delta": 0.8249273542423468,
+            "gamma": 0.00007202,
+            "theta": -9.40283094,
+            "vega": 14.82486644,
+            "ask_one": 3122.7,
+            "bid_one": 2964.33,
+            "last_price": 2855.11,
+            "mark_price": 3054.4960937643172123041257590971717688,
+            "trade_partition": "USDT",
+            "contract_type": "quarter",
+            "option_right_type": "C"
+        }
+    ],
+    "ts": 1604641840724
 }
 ```
 
@@ -1107,7 +1113,7 @@ curl "https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-U
 | \<data\>            | true     | object array |                            |                                                    |
 | symbol            | true     | string       | Coin Code                   | "BTC","ETH"...                                     |
 | trade_partition   | true     | string       | Trade Partition                   | "USDT", Default: "USDT"                                               |
-| contract_code     | true     | string       | Contract Code                   | eg"BTC-USDT-200508-C-8800" ...                     |
+| contract_code     | true     | string       | Contract Code                   | eg"BTC-USDT-201225-C-13000" ...                     |
 | contract_type     | true     | string       | Contract Type                   | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter" |
 | option_right_type | true     | string       | Options Type               | C: Call options P: Put options                              |
 | iv_last_price   | true     | decimal      | Latest Price Implied Volatility       |                                                    |
@@ -1134,7 +1140,7 @@ curl "https://api.hbdm.com/option-api/v1/option_market_index?contract_code=BTC-U
 - GET `/option-api/v1/option_open_interest` 
 
 ```shell
-curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-USDT-200508-C-8800"
+curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-USDT-201225-C-13000"
 ```
 
 ###  Request Parameter  
@@ -1144,7 +1150,7 @@ curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-
 | symbol          | false    | string | Coin Code | "BTC","ETH"，If default, all coins will be returned.   |
 | trade_partition | false    | string | Trade Partition | "USDT" Default: "USDT"                                      |
 | contract_type   | false    | string | Contract Type | this_week: Weekly next_week: Bi-weekly quarter: Quarterly |
-| contract_code   | false    | string | Contract Code | BTC-USDT-200508-C-8800                     |
+| contract_code   | false    | string | Contract Code | BTC-USDT-201225-C-13000                    |
 
 ### Note:
  - If all input parameters are not filled, query all contracts info under the USDT trading zone by default. If contract_code is filled, query according to contract_code first. 
@@ -1152,19 +1158,20 @@ curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "trade_partition": "USDT",
-      "contract_code": "BTC-USDT-200508-C-8800",
-      "contract_type": "quarter",
-      "amount": 23403.03,
-      "volume": 2340303
-    }
-  ],
-  "ts": 1590018849260
+    "status": "ok",
+    "data": [
+        {
+            "volume": 2947,
+            "amount": 2.947,
+            "symbol": "BTC",
+            "contract_type": "quarter",
+            "contract_code": "BTC-USDT-201225-C-13000",
+            "trade_partition": "USDT"
+        }
+    ],
+    "ts": 1604641943451
 }
 ```
 
@@ -1176,7 +1183,7 @@ curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-
 | \<data\>          | true     | object array |                            |                                                    |
 | symbol          | true     | string       | Coin Code                   | "BTC","ETH"...                                     |
 | trade_partition | true     | string       | Trade Partition                   | "USDT"                                             |
-| contract_code   | true     | string       | Contract Code                   | eg"BTC-USDT-200508-C-8800"                         |
+| contract_code   | true     | string       | Contract Code                   | eg"BTC-USDT-201225-C-13000"                         |
 | contract_type   | true     | string       | Contract Type                   | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter" |
 | amount          | true     | decimal      | Position Amount (coin)                 |                                                    |
 | volume          | true     | decimal      | volume (volume)                 |                                                    |
@@ -1192,7 +1199,7 @@ curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-
 - GET `/option-api/v1/option_delivery_price` 
 
 ```shell
-curl "https://api.hbdm.com/option-api/v1/option_delivery_price?contract_code=BTC-USDT-200508-C-8800"
+curl "https://api.hbdm.com/option-api/v1/option_delivery_price?contract_code=BTC-USDT-201225-C-13000"
 ```
 
 ###  Request Parameter  
@@ -1205,14 +1212,15 @@ curl "https://api.hbdm.com/option-api/v1/option_delivery_price?contract_code=BTC
 >Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data": {
-    "symbol": "BTC",
-    "trade_partition": "USDT",
-    "delivery_price": 9326.8520
-  },
-  "ts": 1590062630412
+    "status": "ok",
+    "data": {
+        "symbol": "BTC",
+        "trade_partition": "USDT",
+        "delivery_price": 13203.1966277128547579298831
+    },
+    "ts": 1604642022058
 }
 ```
 
@@ -1252,24 +1260,29 @@ curl "https://api.hbdm.com/option-api/v1/option_his_open_interest?symbol=BTC&con
 > Response:
 
 ```json
-{
-  "data": {
-    "contract_type": "quarter",
-    "symbol": "BTC",
-    "trade_partition": "USDT",
-    "option_right_type": "C",
-    "tick": [
-      {
-        "amount_type": 1,
-        "ts": 1590062514097,
-        "volume": 2326104
-      }
-    ]
-  },
-  "status": "ok",
-  "ts": 1590062514097
-}
 
+{
+    "status": "ok",
+    "data": {
+        "symbol": "BTC",
+        "contract_type": "quarter",
+        "option_right_type": "C",
+        "trade_partition": "USDT",
+        "tick": [
+            {
+                "volume": 22688,
+                "amount_type": 1,
+                "ts": 1604638800000
+            },
+            {
+                "volume": 22633,
+                "amount_type": 1,
+                "ts": 1604635200000
+            }
+        ]
+    },
+    "ts": 1604642063718
+}
 ```
 
 ### Returning Parameter 
@@ -1317,24 +1330,24 @@ curl "https://api.hbdm.com/option-api/v1/option_api_state?symbol=BTC&trade_parti
 > Response:
 
 ```json
-{
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "trade_partition": "USDT",
-      "open": 1,
-      "close": 1,
-      "cancel": 1,
-      "transfer_in": 1,
-      "transfer_out": 1,
-      "master_transfer_sub": 1,
-      "sub_transfer_master": 1
-    }
-  ],
-  "ts": 159007866555
-}
 
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "open": 1,
+            "close": 1,
+            "cancel": 1,
+            "transfer_in": 1,
+            "transfer_out": 1,
+            "master_transfer_sub": 1,
+            "sub_transfer_master": 1,
+            "trade_partition": "USDT"
+        }
+    ],
+    "ts": 1604642146524
+}
 ```
 
 ### Returning Parameter 
@@ -1379,14 +1392,14 @@ curl "https://api.hbdm.com/option-api/v1/option_api_state?symbol=BTC&trade_parti
 - GET `/option-ex/market/depth` 
 
 ```shell
-curl "https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USDT-200508-C-8800&type=step5"
+curl "https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USDT-201225-C-13000&type=step5"
 ```  
 
 ###  Request Parameter  
 
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | ------------- | -------- | ------ | -------- | ------------------------------------------------------------ |
-| contract_code | true     | string | Contract Code | "BTC-USDT-200508-C-8800" ...                                 |
+| contract_code | true     | string | Contract Code | "BTC-USDT-201225-C-13000" ...                                 |
 | type          | true     | string | Depth Type | (Data within Step150)  step0, step1, step2, step3, step4, step5, step14, step15 (merged depth 1-5,14,15); when step is 0, depth will not be merged, (Data within Step20)  step6, step7, step8, step9, step10, step11, step12, step13(merge depth 7-13); when step is 6, depth will not be merged |
 
 > tick illustration:
@@ -1404,25 +1417,38 @@ curl "https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USDT-200508-
 > Response:
 
 ```json
+
 {
-  "ch":"market.BTC-USDT-200508-C-8800.depth.step5",
-  "status":"ok",
-    "tick":{
-      "asks":[
-        [6580,3000],
-        [70000,100]
+    "ch": "market.BTC-USDT-201225-C-13000.depth.step6",
+    "status": "ok",
+    "ts": 1604642203490,
+    "tick": {
+        "mrid": 118879828,
+        "id": 1604642202,
+        "bids": [
+            [
+                2943.2,
+                552
+            ],
+            [
+                2919.87,
+                748
+            ]
         ],
-      "bids":[
-        [10,3],
-        [2,1]
+        "asks": [
+            [
+                3094.55,
+                381
+            ],
+            [
+                3125.95,
+                494
+            ]
         ],
-      "ch":"market.BTC-USDT-200508-C-8800.depth.step5",
-      "id":1536980854,
-      "mrid":6903717,
-      "ts":1536980854171,
-      "version":1536980854
-    },
-  "ts":1536980854585
+        "ts": 1604642202644,
+        "version": 1604642202,
+        "ch": "market.BTC-USDT-201225-C-13000.depth.step6"
+    }
 }
 ```
 
@@ -1451,14 +1477,14 @@ curl "https://api.hbdm.com/option-ex/market/depth?contract_code=BTC-USDT-200508-
 - GET `/option-ex/market/history/kline` 
 
 ```shell
-curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&contract_code=BTC-USDT-200508-C-8800"
+curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&contract_code=BTC-USDT-201225-C-13000"
 ```
 
 ###  Request Parameter  
 
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | ------------- | -------- | ------- | --------------------- | ----------------------------------------------------- |
-| contract_code | true     | string  | Contract Code              | "BTC-USDT-200508-C-8800" ...                          |
+| contract_code | true     | string  | Contract Code              | "BTC-USDT-201225-C-13000" ...                          |
 | period        | true     | string  | kline Type               | 1min, 5min, 15min, 30min, 60min, 4hour,1day,1week,1mon |
 | size          | false    | integer | Request Amount, default 150    | [1,2000]                                              |
 | from          | false    | integer | Start Timestamp, 10 digits, seconds |                                                       |
@@ -1492,24 +1518,36 @@ curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&c
 > Response:
 
 ```json
-    {
-      "ch": "market.BTC-USDT-200508-C-8800.kline.1min",
-      "data": [
+
+{
+    "ch": "market.BTC-USDT-201225-C-13000.kline.5min",
+    "data": [
         {
-          "vol": 2446,
-          "close": 5000,
-          "count": 2446,
-          "high": 5000,
-          "id": 1529898120,
-          "low": 5000,
-          "open": 5000,
-          "amount": 48.92,
-          "trade_turnover": 489200
-         }
-       ],
-      "status": "ok",
-      "ts": 1529908345313
-    }
+            "amount": 0,
+            "close": 2855.11,
+            "count": 0,
+            "high": 2855.11,
+            "id": 1604641800,
+            "low": 2855.11,
+            "open": 2855.11,
+            "trade_turnover": 0,
+            "vol": 0
+        },
+        {
+            "amount": 0,
+            "close": 2855.11,
+            "count": 0,
+            "high": 2855.11,
+            "id": 1604642100,
+            "low": 2855.11,
+            "open": 2855.11,
+            "trade_turnover": 0,
+            "vol": 0
+        }
+    ],
+    "status": "ok",
+    "ts": 1604642303996
+}
 ```
 
 ###  Returning Parameter  
@@ -1539,7 +1577,7 @@ curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&c
 - GET `/option-ex/market/detail/merged`
    
 ```shell
-curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT-200508-C-8800"
+curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT-201225-C-13000"
 ```
 
 
@@ -1547,7 +1585,7 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
 
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | ------------- | -------- | ------ | -------- | ---------------------------- |
-| contract_code | true     | string | Contract Code | "BTC-USDT-200508-C-8800" ... |
+| contract_code | true     | string | Contract Code | "BTC-USDT-201225-C-13000" ... |
 
 > tick Illustration:
 
@@ -1558,9 +1596,9 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
     "count": transaction count
     "open": opening price,
     "close": Closing Price, when the kline is the latest one，it means the latest price
-        "low": Lowest price
-        "high": highest price
-        "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
+    "low": Lowest price
+    "high": highest price
+    "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
     "bid": [price of buying one (amount)],
     "ask": [price of selling one (amount)],
     "trade_turnover": trade turnover.
@@ -1571,25 +1609,33 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
 > Response:
 
 ```json
+
 {
-  "ch": "market.BTC-USDT-200508-C-8800.detail.merged",
-  "status": "ok",
-  "tick": {
-    "amount": "324.1457155582624058973835160063648331838",
-    "ask": [6500, 9],
-    "bid": [4000, 3],
-    "close": "6500",
-    "count": 30,
-    "high": "6700",
-    "id": 1585818738,
-    "low": "6500",
-    "open": "6641.0192",
-    "ts": 1585818739007,
-    "vol": "15254",
-    "trade_turnover": 15254012
-  },
-  "ts": 1585818739007
+    "ch": "market.BTC-USDT-201225-C-13000.detail.merged",
+    "status": "ok",
+    "tick": {
+        "amount": "1.69",
+        "ask": [
+            3099.36,
+            381
+        ],
+        "bid": [
+            2939.87,
+            552
+        ],
+        "close": "2855.11",
+        "count": 5,
+        "high": "2855.11",
+        "id": 1604642357,
+        "low": "2821.97",
+        "open": "2821.97",
+        "trade_turnover": "4480.8195",
+        "ts": 1604642358431,
+        "vol": "1690"
+    },
+    "ts": 1604642358431
 }
+
 ```
 
 ###  Returning Parameter  
@@ -1622,14 +1668,14 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
 - GET `/option-ex/market/trade`   
 
 ```shell
-curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-200508-C-8800"
+curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-201225-C-13000"
 ```
  
 ###  Request Parameter  
 
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | ------------- | -------- | ------ | -------- | ---------------------------- |
-| contract_code | true     | string | Contract Code | "BTC-USDT-200508-C-8800" ... |
+| contract_code | true     | string | Contract Code | "BTC-USDT-201225-C-13000" ... |
 
 > Tick Illustration：
 
@@ -1644,7 +1690,6 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-200508-
       "amount": transaction amount,
       "direction": Active transaction direction,
       "ts": transaction time
-
     }
   ]
 }
@@ -1653,24 +1698,25 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-200508-
 > Response:
 
 ```json
-    {
-      "ch": "market.BTC-USDT-200508-C-8800.trade.detail",
-      "status": "ok",
-      "tick": {
+
+{
+    "ch": "market.BTC-USDT-201225-C-13000.trade.detail",
+    "status": "ok",
+    "tick": {
         "data": [
-          {
-            "amount": "2",
-            "direction": "sell",
-            "id": 6010881529486944176,
-            "price": "5000",
-            "ts": 1529386945343
-           }
-         ],
-        "id": 1529388202797,
-        "ts": 1529388202797
-        },
-      "ts": 1529388202797
-    }
+            {
+                "amount": "98",
+                "direction": "buy",
+                "id": 1182841000001,
+                "price": "2855.11",
+                "ts": 1604615035549
+            }
+        ],
+        "id": 1604642413998,
+        "ts": 1604642413998
+    },
+    "ts": 1604642413998
+}
 ```
 
 ###  Returning Parameter  
@@ -1700,14 +1746,14 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-200508-
 - GET `/option-ex/market/history/trade`
    
 ```shell 
-curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT-200508-C-8800&size=100"
+curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT-201225-C-13000&size=100"
 ```
 
 ###  Request Parameter  
 
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | ------------- | -------- | -------- | ------------------------- | ---------------------------- |
-| contract_code | true     | string   | Contract Code                  | "BTC-USDT-200508-C-8800" ... |
+| contract_code | true     | string   | Contract Code                  | "BTC-USDT-201225-C-13000" ... |
 | size          | true    | int      | Quantity of trade records acquisition  | [1, 2000]                    |
 
 > data Illustration：
@@ -1730,25 +1776,46 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 > Response:
 
 ```json
+
 {
-  "ch": "market.BTC-USD.trade.detail",
-  "status": "ok",
-  "ts": 1529388050915,
-  "data": [
-    {
-      "id": 601088,
-      "ts": 1529386945343,
-      "data": [
+    "ch": "market.BTC-USDT-201225-C-13000.trade.detail",
+    "data": [
         {
-         "amount": 1,
-         "direction": "sell",
-         "id": 6010881529486944176,
-         "price": 5000,
-         "ts": 1529386945343
-         }
-       ]
-    }
-   ]
+            "data": [
+                {
+                    "amount": 10,
+                    "direction": "sell",
+                    "id": 1174421220000,
+                    "price": 2406.83,
+                    "ts": 1604581920670
+                }
+            ],
+            "id": 117442122,
+            "ts": 1604581920670
+        },
+        {
+            "data": [
+                {
+                    "amount": 970,
+                    "direction": "buy",
+                    "id": 1182841000000,
+                    "price": 2821.97,
+                    "ts": 1604615035549
+                },
+                {
+                    "amount": 98,
+                    "direction": "buy",
+                    "id": 1182841000001,
+                    "price": 2855.11,
+                    "ts": 1604615035549
+                }
+            ],
+            "id": 118284100,
+            "ts": 1604615035549
+        }
+    ],
+    "status": "ok",
+    "ts": 1604642481841
 }
 ```
 
@@ -1799,34 +1866,35 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "ts": 1590029488569,
-  "data": [
-    {
-      "symbol": "BTC",
-      "trade_partition": "USDT",
-      "margin_balance": 0,
-      "margin_position": 0,
-      "margin_frozen": 0,
-      "margin_available": 0,
-      "profit_real": 0,
-      "profit_unreal": 0,
-      "withdraw_available": 0,
-      "margin_static": 0,
-      "premium_frozen": 0,
-      "fee_frozen": 0,
-      "fee_asset": "USDT",
-      "premium_in": 0,
-      "premium_out": 0,
-      "delta": 0.2,
-      "gamma": 2,
-      "theta": 0.1,
-      "vega": 2,
-      "option_value": 0,
-      "margin_asset": "BTC"
-    }
-  ]
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "USDT",
+            "margin_balance": 10.45482,
+            "margin_position": 0,
+            "margin_frozen": 0,
+            "margin_available": 10.45482,
+            "profit_real": -0.09418,
+            "profit_unreal": 0,
+            "withdraw_available": 10.45482,
+            "margin_static": 10.45482,
+            "premium_frozen": 0,
+            "fee_frozen": 0,
+            "premium_in": 2.85101,
+            "premium_out": 0.47879,
+            "delta": null,
+            "gamma": null,
+            "theta": null,
+            "vega": null,
+            "option_value": 0,
+            "trade_partition": "USDT",
+            "fee_asset": "USDT",
+            "margin_asset": "USDT"
+        }
+    ],
+    "ts": 1604642578467
 }
 ```
 
@@ -1874,7 +1942,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 {
   "symbol": "BTC",
   "trade_partition": "USDT",
-  "contract_code": "BTC-USDT-200508-C-8800"
+  "contract_code": "BTC-USDT-201225-C-13000"
 }
 ```
 
@@ -1884,39 +1952,40 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | --------------- | -------- | ------ | -------- | --------------------------------------- |
 | symbol          | false    | string | Coin Code | "BTC","ETH"，If default, all coins will be returned.|
 | trade_partition | false    | string | Trade Partition | "USDT"                                  |
-| contract_code   | false    | string | Contract Code | "BTC-USDT-200508-C-8800" ...            |
+| contract_code   | false    | string | Contract Code | "BTC-USDT-201225-C-13000" ...            |
 
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "ts": 1590047536445,
-  "data": [
-    {
-      "symbol": "BTC",
-      "trade_partition": "USDT",
-      "contract_code": "BTC-USDT-200508-C-8800",
-      "contract_type": "quarter",
-      "volume": 1.0,
-      "available": 1.0,
-      "frozen": 0.0,
-      "cost_open": 7503.0,
-      "cost_hold": 7503.0,
-      "profit_unreal": -4.442,
-      "profit_rate": -0.00666622225185016,
-      "profit": -4.442,
-      "margin_position": 0.000666622225184987,
-      "position_value": 5.49,
-      "direction": "buy",
-      "last_price": 7500.5,
-      "delivery_date": "20200508",
-      "option_right_type": "C",
-      "exercise_price": 3500,
-      "quote_asset": "USDT",
-      "margin_asset": "BTC"
-    }
-  ]
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_code": "BTC-USDT-201225-C-13000",
+            "contract_type": "quarter",
+            "volume": 1,
+            "available": 1,
+            "frozen": 0,
+            "cost_open": 2897.25,
+            "cost_hold": 2897.25,
+            "profit_unreal": 0,
+            "profit_rate": 0,
+            "margin_position": 0,
+            "position_value": 2.89725,
+            "direction": "buy",
+            "profit": -0.005,
+            "last_price": 2897.25,
+            "delivery_date": "20201225",
+            "option_right_type": "C",
+            "exercise_price": 13000,
+            "quote_asset": "USDT",
+            "trade_partition": "USDT",
+            "margin_asset": "BTC"
+        }
+    ],
+    "ts": 1604888304689
 }
 ```
 
@@ -1929,7 +1998,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | \<data\>            | true     | object array |                            |                                                    |
 | symbol            | true     | string       | Coin Code                   | "BTC","ETH"...                                     |
 | trade_partition   | true     | string       | Trade Partition                   | "USDT"                                             |
-| contract_code     | true     | string       | Contract Code                   | "BTC-USDT-200508-C-8800" ...                       |
+| contract_code     | true     | string       | Contract Code                   | "BTC-USDT-201225-C-13000" ...                       |
 | contract_type     | true     | string       | Contract Type                   | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter" |
 | volume            | true     | decimal      | Position Quantity                     |                                                    |
 | available         | true     | decimal      | Available Close Quantiy                 |                                                    |
@@ -1974,32 +2043,33 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 > Response:
 
 ```json
-  {
-  "status": "ok",
-  "ts": 1590031242538,
-  "data": [
-    {
-      "sub_uid": 9910049,
-      "list": [
+
+{
+    "status": "ok",
+    "data": [
         {
-          "symbol": "BTC",
-          "trade_partition": "USDT",
-          "margin_balance": 1
+            "sub_uid": 123456789,
+            "list": [
+                {
+                    "symbol": "USDT",
+                    "margin_balance": 10,
+                    "trade_partition": "USDT"
+                },
+                {
+                    "symbol": "BTC",
+                    "margin_balance": 0,
+                    "trade_partition": "USDT"
+                },
+                {
+                    "symbol": "ETH",
+                    "margin_balance": 0,
+                    "trade_partition": "USDT"
+                }
+            ]
         }
-      ]
-    },
-    {
-      "sub_uid": 9910048,
-      "list": [{
-          "symbol": "BTC",
-          "trade_partition": "USDT",
-          "margin_balance": 1
-        }
-      ]
-    }
-  ]
+    ],
+    "ts": 1604888581799
 }
-  
 ```
 
 ### Return parameters
@@ -2031,7 +2101,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 
 ```json
 {
-  "sub_uid": "1506092",
+  "sub_uid": "123456789",
   "symbol": "BTC",
   "trade_partition": "USDT"
 }
@@ -2048,32 +2118,35 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "ts": 1590030968097,
-  "data": [
-    {
-      "symbol": "BTC",
-      "trade_partition": "USDT",
-      "margin_balance": 0,
-      "margin_position": 0,
-      "margin_frozen": 0,
-      "margin_available": 0,
-      "profit_real": 0,
-      "profit_unreal": 0,
-      "withdraw_available": 0,
-      "margin_static": 0,
-      "premium_frozen": 0,
-      "fee_frozen": 0,
-      "fee_asset": "USDT",
-      "premium_in": 0,
-      "premium_out": 0,
-      "delta": 0.2,
-      "gamma": 2,
-      "theta": 0.1,
-      "vega": 2,
-      "option_value": 0,
-      "margin_asset": "BTC"
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "USDT",
+            "margin_balance": 10,
+            "margin_position": 0,
+            "margin_frozen": 0,
+            "margin_available": 10,
+            "profit_real": 0,
+            "profit_unreal": 0,
+            "withdraw_available": 10,
+            "margin_static": 10,
+            "premium_frozen": 0,
+            "fee_frozen": 0,
+            "premium_in": 0,
+            "premium_out": 0,
+            "delta": null,
+            "gamma": null,
+            "theta": null,
+            "vega": null,
+            "option_value": 0,
+            "trade_partition": "USDT",
+            "fee_asset": "USDT",
+            "margin_asset": "USDT"
+        }
+    ],
+    "ts": 1604888673495
 }
 ```
 
@@ -2107,12 +2180,12 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | margin_asset       | true     | decimal      | Margin Coin."BTC"                   |                |
 | \</data\>            |          |              |                            |                |
 
-
 ### Notice
 
   - Can only query information of sub-accounts with contract trading opened;
 
   - The corresponding data will not be returned if the sub-account has visited the contract system but has not opened contract trading.
+
 
 ## Query a single sub-account's position information
 
@@ -2122,10 +2195,10 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 
 ```json
 {
-  "sub_uid": "1506092",
+  "sub_uid": "123456789",
   "symbol": "BTC",
   "trade_partition": "USDT",
-  "contract_code": "BTC-USDT-200508-C-8800"
+  "contract_code": "BTC-USDT-201225-C-13000"
 }
 ```
 
@@ -2135,40 +2208,41 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | --------------- | -------- | ------ | ----------- | --------------------------------------- |
 | symbol          | false    | string | Coin Code    | "BTC","ETH"，If default, all coins will be returned.|
 | trade_partition | false    | string | Trade Partition    | "USDT"                                  |
-| contract_code   | false    | string | Contract Code    | eg"BTC-USDT-200508-C-8800" ...          |
+| contract_code   | false    | string | Contract Code    | eg"BTC-USDT-201225-C-13000" ...          |
 | sub_uid         | true     | string | Sub-account UID |                                         |
 
 > Response:
 
 ```json
+
 {
-  "data": [
-    {
-      "symbol": "BTC",
-      "trade_partition": "USDT",
-      "contract_code": "BTC-USDT-200508-C-8800",
-      "contract_type": "quarter",
-      "volume": 1.0,
-      "available": 1.0,
-      "frozen": 0.0,
-      "cost_open": 7503.0,
-      "cost_hold": 7503.0,
-      "profit_unreal": -4.442,
-      "profit_rate": -0.00666622225185016,
-      "profit": -4.442,
-      "margin_position": 0.000666622225184987,
-      "position_value": 5.49,
-      "direction": "buy",
-      "last_price": 7500.5,
-      "delivery_date": "20200508",
-      "option_right_type": "C",
-      "exercise_price": 3500,
-      "quote_asset": "USDT",
-      "margin_asset": "BTC"
-    }
-  ],
-  "status": "ok",
-  "ts": 1590047279305
+    "data":[
+        {
+            "symbol":"BTC",
+            "trade_partition":"USDT",
+            "contract_code":"BTC-USDT-201225-C-13000",
+            "contract_type":"quarter",
+            "volume":1,
+            "available":1,
+            "frozen":0,
+            "cost_open":7503,
+            "cost_hold":7503,
+            "profit_unreal":-4.442,
+            "profit_rate":-0.00666622225185016,
+            "profit":-4.442,
+            "margin_position":0.000666622225184987,
+            "position_value":5.49,
+            "direction":"buy",
+            "last_price":7500.5,
+            "delivery_date":"20200508",
+            "option_right_type":"C",
+            "exercise_price":3500,
+            "quote_asset":"USDT",
+            "margin_asset":"BTC"
+        }
+    ],
+    "status":"ok",
+    "ts":1590047279305
 }
 ```
 
@@ -2181,7 +2255,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | \<data\>            | true     | object array |                            |                                                    |
 | symbol            | true     | string       | Coin Code                   | "BTC","ETH"...                                     |
 | trade_partition   | true     | string       | Trade Partition                   | "USDT"                                             |
-| contract_code     | true     | string       | Contract Code                   | "BTC-USDT-200508-C-8800" ...                       |
+| contract_code     | true     | string       | Contract Code                   | "BTC-USDT-201225-C-13000" ...                       |
 | contract_type     | true     | string       | Contract Type                   | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter" |
 | volume            | true     | decimal      | Position Quantity                     |                                                    |
 | available         | true     | decimal      | Available Close Quantity                 |                                                    |
@@ -2230,25 +2304,35 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "ts": 1590041114834,
-  "data": {
-    "current_page": 1,
-    "total_page": 21,
-    "total_size": 103,
-    "financial_record": [
-      {
-        "id": 394796886,
-        "ts": 1590041114421,
-        "symbol": "BTC",
-        "trade_partition": "USDT",
-        "contract_code": "BTC-USDT-200508-C-8800",
-        "type": 5,
-        "amount": 400
-      }
-    ]
-  }
+    "status": "ok",
+    "data": {
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 9,
+        "financial_record": [
+            {
+                "id": 321223,
+                "symbol": "USDT",
+                "contract_code": "",
+                "type": 34,
+                "amount": -10,
+                "ts": 1604888539807,
+                "trade_partition": "USDT"
+            },
+            {
+                "id": 321222,
+                "symbol": "USDT",
+                "contract_code": "",
+                "type": 14,
+                "amount": 10,
+                "ts": 1604888516515,
+                "trade_partition": "USDT"
+            }
+        ]
+    },
+    "ts": 1604888841800
 }
 ```
 
@@ -2265,7 +2349,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | ts                  | true     | long         | Create Time                   |                                                              |
 | symbol              | true     | string       | Coin Code                   | "BTC","ETH"...                                               |
 | trade_partition     | true     | string       | Trade Partition                   | "USDT"                                                       |
-| contract_code       | true     | string       | Contract Code                   | "BTC-USDT-200508-C-8800"， ...                               |
+| contract_code       | true     | string       | Contract Code                   | "BTC-USDT-201225-C-13000"， ...                               |
 | type                | true     | int          | TradeType                   | open long: 1, open short: 2, close long: 3，close short: 4，fees for opening positions-taker: 5，fees for opening positions - maker: 6，fees for closing positions - taker: 7，fees for closing positions - maker: 8，delivery to close long: 9，delivery to close short: 10，delivery fee: 11，Tranfer in from exchange account: 14，Transfer out to exchange account: 15，system: 26，activity rewards: 28，rebate: 29, Transfer out to contract sub-account: 34，Transfer in from contract sub-account: 35, Transfer out to contract main-account: 36，Transfer in from contract main-account: 37  |
 | amount              | true     | decimal      | Amount                       |                                                              |
 | \</financial_record\> |          |              |                            |                                                              |
@@ -2299,32 +2383,57 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "ts": 1590063872356,
-  "data": {
-    "order_price_type": "FOK",
-    "list": [
-      {
-        "symbol": "BTC",
-        "trade_partition": "USDT",
-        "types": [
-          {
-            "contract_type": "this_week",
-            "option_right_type": "C",
-            "open_limit": 4500,
-            "close_limit": 9000
-          },
-          {
-            "contract_type": "this_week",
-            "option_right_type": "P",
-            "open_limit": 3500,
-            "close_limit": 6000
-          }
+    "status": "ok",
+    "data": {
+        "order_price_type": "limit",
+        "list": [
+            {
+                "symbol": "BTC",
+                "types": [
+                    {
+                        "contract_type": "this_week",
+                        "option_right_type": "C",
+                        "open_limit": 100000,
+                        "close_limit": 200000
+                    },
+                    {
+                        "contract_type": "this_week",
+                        "option_right_type": "P",
+                        "open_limit": 100000,
+                        "close_limit": 200000
+                    },
+                    {
+                        "contract_type": "next_week",
+                        "option_right_type": "C",
+                        "open_limit": 100000,
+                        "close_limit": 200000
+                    },
+                    {
+                        "contract_type": "next_week",
+                        "option_right_type": "P",
+                        "open_limit": 100000,
+                        "close_limit": 200000
+                    },
+                    {
+                        "contract_type": "quarter",
+                        "option_right_type": "C",
+                        "open_limit": 100000,
+                        "close_limit": 200000
+                    },
+                    {
+                        "contract_type": "quarter",
+                        "option_right_type": "P",
+                        "open_limit": 100000,
+                        "close_limit": 200000
+                    }
+                ],
+                "trade_partition": "USDT"
+            }
         ]
-      }
-    ]
-  }
+    },
+    "ts": 1604888933651
 }
 ```
 
@@ -2348,10 +2457,11 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | \</list\>           |          |              |                            |                                                              |
 | \</data\>           |          |              |                            |                                                              |
 
+
 ## Query information on option trading fee
- 
+
 - POST `/option-api/v1/option_fee`
- 
+
 > Request:
 
 ```json
@@ -2371,29 +2481,28 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "ts": 1590064868527,
-  "data": [
-    {
-      "symbol": "BTC",
-      "trade_partition": "USDT",
-      "fee_asset": "USDT",
-      "open_maker_fee": "-0.0001",
-      "open_taker_fee": "0.0003",
-      "close_maker_fee": "-0.0001",
-      "close_taker_fee": "0.0003",
-      "call_delivery_fee": "0.0002",
-      "put_delivery_fee": "0.0003",
-      "fee_rate_type": 1,
-      "max_trade_in_fee_rate": "0.0001",
-      "max_trade_out_fee_rate": "0.0002",
-      "max_delivery_fee_rate": "0.0003"
-    }
-  ]
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "open_maker_fee": "0.002",
+            "open_taker_fee": "0.005",
+            "close_maker_fee": "0.002",
+            "close_taker_fee": "0.005",
+            "fee_rate_type": 2,
+            "max_trade_in_fee_rate": "0.125",
+            "max_trade_out_fee_rate": "0.08",
+            "call_delivery_fee": "0.002",
+            "put_delivery_fee": "0.002",
+            "max_delivery_fee_rate": "0.125",
+            "trade_partition": "USDT",
+            "fee_asset": "USDT"
+        }
+    ],
+    "ts": 1604888987136
 }
-
-
 ```
 
 ### Returning Parameter 
@@ -2422,7 +2531,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 ## Query information on Transfer Limit
 
 - POST `/option-api/v1/option_transfer_limit`
- 
+
 > Request:
 
 ```json
@@ -2443,25 +2552,25 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 > Response:
 
 ```json
-{
-  "status": "ok",
-  "ts": 1590065134027,
-  "data": [
-    {
-      "symbol": "BTC",
-      "trade_partition": "USDT",
-      "transfer_in_max_each": 100.0,
-      "transfer_in_min_each": 0.0001,
-      "transfer_out_max_each": 10.0,
-      "transfer_out_min_each": 0.0001,
-      "transfer_in_max_daily": 500.0,
-      "transfer_out_max_daily": 100.0,
-      "net_transfer_in_max_daily": 250.0,
-      "net_transfer_out_max_daily": 50.0
-    }
-  ]
-}
 
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "transfer_in_max_each": 8000,
+            "transfer_in_min_each": 0.0001,
+            "transfer_out_max_each": 800,
+            "transfer_out_min_each": 0.000001,
+            "transfer_in_max_daily": 80000,
+            "transfer_out_max_daily": 16000,
+            "net_transfer_in_max_daily": 40000,
+            "net_transfer_out_max_daily": 8000,
+            "trade_partition": "USDT"
+        }
+    ],
+    "ts": 1604889046636
+}
 ```
 
 ### Returning Parameter 
@@ -2507,45 +2616,66 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 
 
 ```json
+
 {
-  "status": "ok",
-  "data": [
-    {
-      "symbol": "BTC",
-      "trade_partition": "USDT",
-      "list": [
+    "status": "ok",
+    "data": [
         {
-          "contract_type": "all",
-          "option_right_type": "C",
-          "buy_limit": 5000,
-          "sell_limit": 5000
-        },
-        {
-          "contract_type": "all",
-          "option_right_type": "P",
-          "buy_limit": 5000,
-          "sell_limit": 5000
-        },
-        {
-          "contract_type": "this_week",
-          "option_right_type": "C",
-          "buy_limit": 3000,
-          "sell_limit": 3000
-        },{
-          "contract_type": "next_week",
-          "option_right_type": "C",
-          "buy_limit": 3000,
-          "sell_limit": 3000
-        },{
-          "contract_type": "quarter",
-          "option_right_type": "C",
-          "buy_limit": 3000,
-          "sell_limit": 3000
+            "symbol": "BTC",
+            "list": [
+                {
+                    "contract_type": "this_week",
+                    "option_right_type": "C",
+                    "buy_limit": 1000000,
+                    "sell_limit": 1000000
+                },
+                {
+                    "contract_type": "this_week",
+                    "option_right_type": "P",
+                    "buy_limit": 1000000,
+                    "sell_limit": 1000000
+                },
+                {
+                    "contract_type": "next_week",
+                    "option_right_type": "C",
+                    "buy_limit": 1000000,
+                    "sell_limit": 1000000
+                },
+                {
+                    "contract_type": "next_week",
+                    "option_right_type": "P",
+                    "buy_limit": 1000000,
+                    "sell_limit": 1000000
+                },
+                {
+                    "contract_type": "quarter",
+                    "option_right_type": "C",
+                    "buy_limit": 1000000,
+                    "sell_limit": 1000000
+                },
+                {
+                    "contract_type": "quarter",
+                    "option_right_type": "P",
+                    "buy_limit": 1000000,
+                    "sell_limit": 1000000
+                },
+                {
+                    "contract_type": "all",
+                    "option_right_type": "C",
+                    "buy_limit": 3000000,
+                    "sell_limit": 3000000
+                },
+                {
+                    "contract_type": "all",
+                    "option_right_type": "P",
+                    "buy_limit": 3000000,
+                    "sell_limit": 3000000
+                }
+            ],
+            "trade_partition": "USDT"
         }
-      ]
-    }
-  ],
-  "ts": 159007866555
+    ],
+    "ts": 1604889079265
 }
 ```
 
@@ -2596,57 +2726,60 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 >Response:
 
 ```json
+
 {
     "status": "ok",
-    "ts": 1560147583367,
     "data": [
         {
-            "symbol": "BTC",
-            "trade_partition": "USDT",
-            "margin_balance": 1.0,
+            "symbol": "USDT",
+            "margin_balance": 10.44982,
             "margin_position": 0,
             "margin_frozen": 0,
-            "margin_asset": "BTC",
-            "margin_available": 1.0,
-            "profit_real": 0.0,
+            "margin_available": 7.55257,
+            "profit_real": -0.005,
             "profit_unreal": 0,
-            "withdraw_available": 1.0,
-            "margin_static": 1.0,
+            "withdraw_available": 7.55257,
+            "margin_static": 7.55257,
             "premium_frozen": 0,
             "fee_frozen": 0,
-            "fee_asset":"USDT",
             "premium_in": 0,
-            "premium_out": 0,
-            "delta": 0.2,
-            "gamma": 0.3,
-            "theta": 0.1,
-            "vega": 0.22,
-            "option_value": 0,
+            "premium_out": 2.89725,
+            "delta": null,
+            "gamma": null,
+            "theta": null,
+            "vega": null,
+            "option_value": 2.89725,
+            "trade_partition": "USDT",
+            "fee_asset": "USDT",
+            "margin_asset": "USDT",
             "positions": [
                 {
                     "symbol": "BTC",
-                    "trade_partition": "USDT",
-                    "contract_code": "BTC-USDT-200508-C-8800",
+                    "contract_code": "BTC-USDT-201225-C-13000",
                     "contract_type": "quarter",
-                    "volume": 1.0,
-                    "available": 1.0,
-                    "frozen": 0.0,
-                    "cost_open": 7503.0,
-                    "cost_hold": 7503.0,
-                    "profit_unreal": -4.442,
-                    "profit_rate": -0.00666622225185016,
-                    "profit": -4.442,
-                    "margin_position": 0.000666622225184987,
-                    "position_value": 5.49,
+                    "volume": 1,
+                    "available": 1,
+                    "frozen": 0,
+                    "cost_open": 2897.25,
+                    "cost_hold": 2897.25,
+                    "profit_unreal": 0,
+                    "profit_rate": 0,
+                    "margin_position": 0,
+                    "position_value": 2.89725,
                     "direction": "buy",
-                    "last_price": 7500.5,
-                    "delivery_date": "20200508",
+                    "profit": -0.005,
+                    "last_price": 2897.25,
+                    "delivery_date": "20201225",
                     "option_right_type": "C",
-                    "exercise_price": 3500,
+                    "exercise_price": 13000,
                     "quote_asset": "USDT",
+                    "trade_partition": "USDT",
                     "margin_asset": "BTC"
-                }]
-        }]
+                }
+            ]
+        }
+    ],
+    "ts": 1604889122270
 }
 ```
 
@@ -2681,7 +2814,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | \<positions\>        | true     | object array |                            |                                                    |
 | symbol             | true     | string       | Coin Code                   | "BTC","ETH"...                                     |
 | trade_partition    | true     | string       | Trade Partition                   | "USDT"                                             |
-| contract_code      | true     | string       | Contract Code                   | "BTC-USDT-200508-C-8800"                           |
+| contract_code      | true     | string       | Contract Code                   | "BTC-USDT-201225-C-13000"                           |
 | contract_type      | true     | string       | Contract Type                   | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter" |
 | volume             | true     | decimal      | Position Quantity                     |                                                    |
 | available          | true     | decimal      | Available Close Quantity                 |                                                    |
@@ -2716,7 +2849,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 
 ```json
 {
-  "sub_uid": "123123123",
+  "sub_uid": "123456789",
   "symbol": "BTC",
   "trade_partition": "USDT",
   "amount": "123",
@@ -2741,12 +2874,14 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 > Response:
 
 ```json
+
+
 {
-  "status": "ok",
-  "ts": 159007866555,
-  "data":   {
-    "order_id": 122133213
-  }
+    "status": "ok",
+    "data": {
+        "order_id": "775309101143093248"
+    },
+    "ts": 1604889694272
 }
 ```
 
@@ -2767,12 +2902,12 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 > Request:
 
 ```json
+
 {
-  "sub_uid": "123123123",
   "symbol": "BTC",
   "trade_partition": "USDT",
-  "amount": "123",
-  "type": "master_to_sub"
+  "transfer_type": "34",
+  "create_date": 7
 }
 ```
 
@@ -2790,24 +2925,38 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 > Response:
 
 ```json
+
+
 {
-    "data": {
-        "current_page": 1,
-        "total_page": 1,
-        "total_size": 1,
-        "transfer_record": [{
-            "amount": -1.0,
-            "id": 8736014288,
-            "sub_account_name": "test0001",
-            "sub_uid": "1527524",
-            "symbol": "BTC",
-            "trade_partition": "USDT",
-            "transfer_type": 34,
-            "ts": 1590062804904
-        }]
+    "status":"ok",
+    "data":{
+        "total_page":1,
+        "current_page":1,
+        "total_size":4,
+        "transfer_record":[
+            {
+                "id":321255,
+                "symbol":"USDT",
+                "amount":10,
+                "transfer_type":35,
+                "ts":1604889694258,
+                "sub_uid":"123456789",
+                "sub_account_name":"tom",
+                "trade_partition":"USDT"
+            },
+            {
+                "id":321224,
+                "symbol":"USDT",
+                "amount":-10,
+                "transfer_type":34,
+                "ts":1604888539807,
+                "sub_uid":"123456789",
+                "sub_account_name":"tom",
+                "trade_partition":"USDT"
+            }
+        ]
     },
-    "status": "ok",
-    "ts": 1590062834559
+    "ts":1604889988776
 }
 ```
 
@@ -2840,37 +2989,40 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 
 
 ### request body
- 
+
  null
 
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data": [{
-    "is_disable": 1,
-    "order_price_types": "limit,post_only,FOK,IOC",
-    "disable_reason":"COR",
-    "disable_interval": 5,
-    "recovery_time": 1,
-    "COR": {
-       "orders_threshold": 150,
-       "orders": 150,
-       "invalid_cancel_orders": 150,
-       "cancel_ratio_threshold": 0.98,
-       "cancel_ratio": 0.98,
-       "is_trigger": 1,
-       "is_active": 1
-    },
-    "TDN": {
-       "disables_threshold": 3,
-       "disables": 3,
-       "is_trigger": 1,
-       "is_active": 1
-    }
-   }],
- "ts": 159007866555
+    "status":"ok",
+    "data":[
+        {
+            "is_disable":1,
+            "order_price_types":"limit,post_only,FOK,IOC",
+            "disable_reason":"COR",
+            "disable_interval":5,
+            "recovery_time":1,
+            "COR":{
+                "orders_threshold":150,
+                "orders":150,
+                "invalid_cancel_orders":150,
+                "cancel_ratio_threshold":0.98,
+                "cancel_ratio":0.98,
+                "is_trigger":1,
+                "is_active":1
+            },
+            "TDN":{
+                "disables_threshold":3,
+                "disables":3,
+                "is_trigger":1,
+                "is_active":1
+            }
+        }
+    ],
+    "ts":159007866555
 }
 ```
 
@@ -2917,7 +3069,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 
 ```json
 {
-  "contract_code": "BTC-USDT-200508-C-8800",
+  "contract_code": "BTC-USDT-201225-C-13000",
   "price": 4.4,
   "volume": 5,
   "direction": "buy",
@@ -2930,7 +3082,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 
 | Parameter Name           | Parameter Type | Mandatory  | Desc                           | Value Range                                                     |
 | ---------------- | -------- | ----- | ------------------------------ | ------------------------------------------------------------ |
-| contract_code    | string   | true  | Contract Code     <img width=1000/>                  | BTC-USDT-200508-C-8800                                       |
+| contract_code    | string   | true  | Contract Code     <img width=1000/>                  | BTC-USDT-201225-C-13000                                       |
 | client_order_id  | long     | false | Shall be filled out and maintained by the client; must be numbers |                                                              |
 | price            | decimal  | false | Price                           |                                                              |
 | volume           | long     | true  | Order Quantity (volume)                   |                                                              |
@@ -2957,13 +3109,15 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data": {
-    "order_id": 663044218662424576,
-    "order_id_str": "663044218662424576"
-  },
-  "ts": 1590023660518
+    "status": "ok",
+    "data": {
+        "order_id": 775311792237785088,
+        "order_id_str": "775311792237785088",
+        "client_order_id": 563829342342342
+    },
+    "ts": 1604890335869
 }
 ```
 
@@ -2996,12 +3150,22 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 {
   "orders_data": [
     {
-      "contract_code": "BTC-USDT-200508-C-8800",
-      "price": 8000,
-      "volume": 5,
+      "contract_code": "BTC-USDT-201225-C-13000",
+      "price": 1120,
+      "volume": 1,
       "direction": "buy",
       "offset": "open",
-      "order_price_type": "limit"
+      "order_price_type": "post_only",
+      "client_order_id":563829342342343
+    },
+     {
+      "contract_code": "BTC-USDT-201225-C-13000",
+      "price": 1150,
+      "volume": 1,
+      "direction": "buy",
+      "offset": "open",
+      "order_price_type": "post_only",
+      "client_order_id":563829342342345
     }
   ]
 }
@@ -3012,7 +3176,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | Parameter Name         | Mandatory | Type         | Desc                           | Value Range                                                     |
 | ---------------- | -------- | ------------ | ------------------------------ | ------------------------------------------------------------ |
 | \<orders_data\>    | true     | object array |      <img width=1000/>                          |                                                              |
-| contract_code    | true     | string       | Contract Code                       | BTC-USDT-200508-C-8800                                       |
+| contract_code    | true     | string       | Contract Code                       | BTC-USDT-201225-C-13000                                       |
 | client_order_id  | false    | long         | Shall be filled out and maintained by the client; must be numbers |                                                              |
 | price            | false    | decimal      | Price                         |                                                              |
 | volume           | true     | long         | Order Quantity(volume)                   |                                                              |
@@ -3034,33 +3198,28 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data": {
-    "errors": [
-      {
-        "index": 1,
-        "err_code": 200417,
-        "err_msg": "invalid symbol"
-      },{
-        "index": 2,
-        "err_code": 200415,
-        "err_msg": "invalid symbol"
-      }
-    ],
-    "success": [
-      {
-        "index": 3,
-        "order_id": 161256,
-        "client_order_id": 1344567
-      },{
-        "index": 4,
-        "order_id": 161257,
-        "client_order_id": 1344569
-      }
-    ]
-  },
-  "ts": 1590054296865
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "index": 1,
+                "err_code": 1050,
+                "err_msg": "Customer's order number is repeated. Please try again later.",
+                "errorParams": null
+            }
+        ],
+        "success": [
+            {
+                "order_id": 775312478778372096,
+                "order_id_str": "775312478778372096",
+                "client_order_id": 563829342342345,
+                "index": 2
+            }
+        ]
+    },
+    "ts": 1604890499553
 }
 ```
 
@@ -3121,19 +3280,20 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 > Response: result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
 
 ```json
+
 {
-  "status": "ok",
-  "data": {
-    "errors":[
-      {
-        "order_id": "675016139515973632",
-        "err_code": 200415,
-        "err_msg": "invalid symbol"
-      }
-    ],
-    "successes":"675016139515973632,675016172537729024"
-  },
-  "ts": 1490759594752
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "order_id": "771757367472893952",
+                "err_code": 1061,
+                "err_msg": "This order doesn't exist."
+            }
+        ],
+        "successes": "775312478778372096"
+    },
+    "ts": 1604890627676
 }
 ```
 
@@ -3175,46 +3335,26 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | symbol            | true     | string       | Coin Code                         | "BTC","ETH"...                                               |
 | trade_partition | false    | string | Trade Partition | "USDT"                                     |
 | contract_type   | false    | string | Contract Type | this_week: Weekly next_week: Bi-weekly quarter: Quarterly |
-| contract_code   | false    | string | Contract Code | BTC-USDT-200508-C-8800                     |
+| contract_code   | false    | string | Contract Code | BTC-USDT-201225-C-13000                    |
 
 #### Note 
 
 - If there is "contract_code" parameter, canceling all contracts under this code.
 
 > Response:result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
- 
+
 ```json
+
 {
-  "status": "ok",
-  "data": {
-    "errors":[
-      {
-        "order_id":"633766664829804544",
-        "err_code": 200417,
-        "err_msg": "invalid symbol"
-       },
-      {
-        "order_id":"633766664829804544",
-        "err_code": 200415,
-        "err_msg": "invalid symbol"
-       }
-      ],
-    "successes":"161256,1344567"
-   },
-  "ts": 1490759594752
+    "status": "ok",
+    "data": {
+        "errors": [],
+        "successes": "775311573278339072,775311792237785088,775312389775110144,775312389800275968"
+    },
+    "ts": 1604890694946
 }
 ```
 
-> Error：
-
-```json
-{
-  "status": "error",
-  "err_code": 20012,
-  "err_msg": "invalid symbol",
-  "ts": 1490759594752
-}
-```
 
 ###  Returning Parameter  
 
@@ -3239,7 +3379,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 ```json
 {
-  "contract_code": "BTC-USDT-200508-C-8800",
+  "contract_code": "BTC-USDT-201225-C-13000",
   "volume": 1,
   "direction": "sell"
 }
@@ -3249,7 +3389,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 | Parameter Name         | Mandatory | Type    | Desc                                    | Value Range                                                     |
 | ---------------- | -------- | ------- | --------------------------------------- | ------------------------------------------------------------ |
-| contract_code    | true     | string  | Contract Code                                | BTC-USDT-200508-C-8800                                       |
+| contract_code    | true     | string  | Contract Code                                | BTC-USDT-201225-C-13000                                       |
 | volume           | true     | long | Order Quantity (volume)                          |                                                              |
 | direction        | true     | string  | Buy/Sell Direction                                | "buy": Buy，"sell": Sell                                          |
 | client_order_id  | false    | long    | （API）shall be filled in and maintained by the client; shall be unique. |                                                              |
@@ -3264,16 +3404,15 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 > Response:
 
 ```json
-{
-  "status": "ok",
-  "data": {
-    "order_id": 633766664829804544,
-    "order_id_str": "633766664829804544",
-    "client_order_id": 9086
-  },
-     "ts": 158797866555
-}
 
+{
+    "status":"ok",
+    "ts":1590024939929,
+    "data":{
+        "order_id":663049584884322304,
+        "order_id_str":"663049584884322304"
+    }
+}
 ```
 
 ### Returning Parameter 
@@ -3291,13 +3430,13 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 > Error：
 
 ```json
+
 {
     "status": "error",
-    "err_code": 20012,
-    "err_msg": "invalid symbol",
-    "ts": 1490759594752
+    "err_code": 1048,
+    "err_msg": "Insufficient close amount available.",
+    "ts": 1604891439021
 }
-
 ```
 
 
@@ -3336,41 +3475,44 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data": [{
-    "symbol": "BTC",
-    "trade_partition": "USDT",
-    "contract_type": "quarter",
-    "contract_code": "BTC-USDT-200508-C-8800",
-    "volume": 1,
-    "price": 7409.86,
-    "order_price_type": "limit",
-    "direction": "buy",
-    "offset": "open",
-    "order_id": 663046998353764352,
-    "order_id_str": "663046998353764352",
-    "client_order_id": null,
-    "created_at": 1590024323225,
-    "trade_volume": 0,
-    "trade_turnover": 0,
-    "fee": 0,
-    "fee_asset":"USDT" ,
-    "trade_avg_price": null,
-    "margin_frozen": 0.000674776581473874,
-    "margin_asset": "USDT",
-    "profit": 0,
-    "status": 3,
-    "order_source": "web",
-    "order_type": 1,
-    "delivery_date": "20200508",
-    "option_right_type": "C",
-    "exercise_price": 6622,
-    "quote_asset": "USDT",
-    "premium_frozen": 1.20,
-    "fee_frozen": 0.01
-  }],
-  "ts": 1590047895288
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_code": "BTC-USDT-201225-C-13000",
+            "contract_type": "quarter",
+            "volume": 1,
+            "price": 2897.25,
+            "order_price_type": "opponent",
+            "order_type": 1,
+            "direction": "buy",
+            "offset": "open",
+            "order_id": 775303174474293248,
+            "order_id_str": "775303174474293248",
+            "client_order_id": null,
+            "created_at": 1604888281225,
+            "trade_volume": 1,
+            "trade_turnover": 2.89725,
+            "fee": -0.005,
+            "trade_avg_price": 2897.25,
+            "margin_frozen": 0,
+            "profit": 0,
+            "status": 6,
+            "order_source": "web",
+            "delivery_date": "20201225",
+            "option_right_type": "C",
+            "exercise_price": 13000,
+            "quote_asset": "USDT",
+            "premium_frozen": 0,
+            "fee_frozen": 0,
+            "trade_partition": "USDT",
+            "fee_asset": "USDT",
+            "margin_asset": "BTC"
+        }
+    ],
+    "ts": 1604890904670
 }
 ```
 
@@ -3383,7 +3525,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | symbol            | true     | string  | Coin Code                             | "BTC","ETH"...                                               |
 | trade_partition   | true     | string  | Trade Partition                             | "USDT"                                                       |
 | contract_type     | true     | string  | Contract Type                             | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter"           |
-| contract_code     | true     | string  | Contract Code                             | "BTC-USDT-200508-C-8800"                                     |
+| contract_code     | true     | string  | Contract Code                             | "BTC-USDT-201225-C-13000"                                     |
 | volume            | true     | decimal | Order Quantity                             |                                                              |
 | price             | true     | decimal | Order Price                             |                                                              |
 | order_price_type  | true     | string  | Order Type                         | "limit":Limit Order, "opponent":BBO, "post_only":Post-only Order, placing a Post-only order is only limited by user's position quantity, optimal_5: Optimal 5, optimal_10: Optimal 10, optimal_20: Optimal 20, ioc: IOC Order，fok: FOKOrder, "opponent_ioc": BBO-IOC，"optimal_5_ioc": Optimal 5-IOC，"optimal_10_ioc": Optimal 10-IOC，"optimal_20_ioc": Optimal 20-IOC，"opponent_fok": BBO-FOK，"optimal_5_fok": Optimal 5-FOK，"optimal_10_fok": Optimal 10-FOK，"optimal_20_fok": Optimal 20-FOK |
@@ -3458,71 +3600,62 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data": {
-    "symbol": "BTC",
-    "trade_partition": "USDT",
-    "contract_type": "quarter",
-    "contract_code": "BTC-USDT-200508-C-8800",
-    "direction": "sell",
-    "offset": "open",
-    "volume": 1,
-    "price": 8000,
-    "created_at": 1590075693681,
-    "canceled_at": 1590075693681,
-    "order_source": "api",
-    "order_price_type": "limit",
-    "margin_frozen": 0,
-    "margin_asset": "USDT",
-    "profit": 0,
-    "order_type": 1,
-    "order_id": 663046998353764352,
-    "order_id_str": "663046998353764352",
-    "client_order_id": null,
-    "trade_volume": 0,
-    "trade_turnover": 0,
-    "fee": 0,
-    "fee_asset":"USDT",
-    "trade_avg_price": null,
-    "status": 3,
-    "delivery_date": "20200508",
-    "option_right_type": "C",
-    "exercise_price": 6622,
-    "quote_asset": "USDT",
-    "premium_frozen": 1.20,
-    "fee_frozen": 0.01,
-    "total_page": 1,
-    "current_page": 1,
-    "total_size": 1,
-    "trades": [
-      {
-        "id": "32586769233-663681892062679040-1",
-        "trade_id": 32586769233,
-        "trade_price": 8000.0,
-        "trade_volume": 1.0,
-        "trade_turnover": 100.0,
-        "trade_fee": 0.02231,
-        "fee_asset":"USDT",
-        "role": "maker",
-        "created_at": 1590080562643
-      }
-    ]
-  },
-  "ts": 1590051329884
+    "status": "ok",
+    "data": {
+        "symbol": "BTC",
+        "trade_partition": "USDT",
+        "contract_code": "BTC-USDT-201225-C-13000",
+        "contract_type": "quarter",
+        "direction": "buy",
+        "offset": "open",
+        "volume": 1,
+        "price": 2897.25,
+        "created_at": 1604888281225,
+        "canceled_at": 0,
+        "order_source": "web",
+        "order_price_type": "opponent",
+        "margin_frozen": 0,
+        "profit": 0,
+        "option_right_type": "C",
+        "exercise_price": 13000,
+        "quote_asset": "USDT",
+        "premium_frozen": 0,
+        "fee_frozen": 0,
+        "fee_asset": "USDT",
+        "order_type": 1,
+        "order_id": 775303174474293248,
+        "order_id_str": "775303174474293248",
+        "client_order_id": null,
+        "trade_volume": 1,
+        "trade_turnover": 2.89725,
+        "fee": -0.005,
+        "trade_avg_price": 2897.25,
+        "status": 6,
+        "delivery_date": "20201225",
+        "margin_asset": "BTC",
+        "trades": [
+            {
+                "trade_id": 125344032,
+                "trade_price": 2897.25,
+                "trade_volume": 1,
+                "trade_turnover": 2.89725,
+                "trade_fee": -0.005,
+                "created_at": 1604888281258,
+                "role": "taker",
+                "id": "125344032-775303174474293248-1",
+                "fee_asset": "USDT"
+            }
+        ],
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 1
+    },
+    "ts": 1604890985365
 }
 ```
 
-> Error:
-
-```json
-{
- "status":"error",
- "err_code":20029,
- "err_msg": "invalid symbol",
- "ts": 1490759594752
-}
-```
 
 ###  Returning Parameter 
 
@@ -3533,7 +3666,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | symbol           | true     | string       | Coin Code                                                     | "BTC","ETH"...                                               |
 | trade_partition  | true     | string       | Trade Partition                                                     | "USDT"                                                       |
 | contract_type    | true     | string       | Contract Type                                                     | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter"           |
-| contract_code    | true     | string       | Contract Code                                                     | "BTC-USDT-200508-C-8800"                                     |
+| contract_code    | true     | string       | Contract Code                                                     | "BTC-USDT-201225-C-13000"                                     |
 | direction        | true     | string       | Buy/Sell Direction                                                     | "buy":Buy "sell":Sell                                           |
 | offset           | true     | string       | Open/Close Direction                                                    | "open": open "close": close                                         |
 | volume           | true     | decimal      | Order Quantity                                                     |                                                              |
@@ -3591,7 +3724,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 {
   "symbol": "BTC",
   "trade_partition": "USDT",
-  "contract_code": "BTC-USDT-200508-C-8800",
+  "contract_code": "BTC-USDT-201225-C-13000",
   "page_index": 1,
   "page_size": 20
 }
@@ -3603,53 +3736,56 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | --------------- | -------- | ------ | ---------------------------- | --------------------------------------- |
 | symbol          | false    | string | Coin Code                     | "BTC","ETH"，If default, all coins will be returned.|
 | trade_partition | false    | string | Trade Partition                     | "USDT"                                  |
-| contract_code   | false    | string | Contract Code                     | "BTC-USDT-200508-C-8800" ...            |
+| contract_code   | false    | string | Contract Code                     | "BTC-USDT-201225-C-13000" ...            |
 | page_index      | false    | int    | Page number, default page1 if not filled      |                                         |
 | page_size       | false    | int    | Page size, default 20 if not filled; no more than 50|                                         |
 
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data": {
-    "current_page": 1,
-    "total_page": 1,
-    "total_size": 1,
-    "orders": [{
-      "symbol": "BTC",
-      "trade_partition": "USDT",
-      "contract_type": "quarter",
-      "contract_code": "BTC-USDT-200508-C-8800",
-      "volume": 1,
-      "price": 7409.86,
-      "order_price_type": "limit",
-      "direction": "buy",
-      "offset": "open",
-      "order_id": 663046998353764352,
-      "order_id_str": "663046998353764352",
-      "client_order_id": null,
-      "created_at": 1590024323225,
-      "trade_volume": 0,
-      "trade_turnover": 0,
-      "fee": 0,
-      "fee_asset": "USDT",
-      "trade_avg_price": null,
-      "margin_frozen": 0.000674776581473874,
-    "margin_asset": "USDT",
-      "profit": 0,
-      "status": 3,
-      "order_source": "web",
-      "order_type": 1,
-      "delivery_date": "20200508",
-      "option_right_type": "C",
-      "exercise_price": 6622,
-      "quote_asset": "USDT",
-      "premium_frozen": 1.20,
-      "fee_frozen": 0.01
-    }]
-  },
-  "ts": 1590047812565
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "symbol": "BTC",
+                "contract_code": "BTC-USDT-201225-C-13000",
+                "contract_type": "quarter",
+                "volume": 1,
+                "price": 1204.79,
+                "order_price_type": "post_only",
+                "order_type": 1,
+                "direction": "buy",
+                "offset": "open",
+                "order_id": 775314891945996288,
+                "order_id_str": "775314891945996288",
+                "client_order_id": 563829342342349,
+                "created_at": 1604891074887,
+                "trade_volume": 0,
+                "trade_turnover": 0,
+                "fee": 0,
+                "trade_avg_price": 0,
+                "margin_frozen": 0,
+                "profit": 0,
+                "status": 3,
+                "order_source": "api",
+                "delivery_date": "20201225",
+                "option_right_type": "C",
+                "exercise_price": 13000,
+                "quote_asset": "USDT",
+                "premium_frozen": 1.20479,
+                "fee_frozen": 0.005,
+                "trade_partition": "USDT",
+                "fee_asset": "USDT",
+                "margin_asset": "BTC"
+            }
+        ],
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 1
+    },
+    "ts": 1604891079443
 }
 ```
 
@@ -3663,7 +3799,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | symbol            | true     | string  | Coin Code                            | "BTC","ETH"...                                               |
 | trade_partition   | true     | string  | Trade Partition                            | "USDT"                                                       |
 | contract_type     | true     | string  | Contract Type                            | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter"           |
-| contract_code     | true     | string  | Contract Code                            | "BTC-USDT-200508-C-8800"                                     |
+| contract_code     | true     | string  | Contract Code                            | "BTC-USDT-201225-C-13000"                                     |
 | volume            | true     | decimal | Order Quantity                            |                                                              |
 | price             | true     | decimal | Order Price                            |                                                              |
 | order_price_type  | true     | string  | Order Type                        | "limit": Limit Order "opponent": BBO "post_only":Post-only Order, placing a Post-only order is only limited by user's position quantity, optimal_5: Optimal 5、optimal_10: Optimal 10, optimal_20: Optimal 20，ioc: IOC Order，fok: FOK Order,"opponent_ioc": BBO-IOC，"optimal_5_ioc": Optimal 5-IOC，"optimal_10_ioc": Optimal 10-IOC，"optimal_20_ioc": Optimal 20-IOC，"opponent_fok":  BBO-FOK，"optimal_5_fok": Optimal 5-FOK，"optimal_10_fok": Optimal 10-FOK，"optimal_20_fok": Optimal 20-FOK |
@@ -3728,7 +3864,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | create_date     | true     | int    | Date                 | Enter a positive integer; if the parameter exceeds 90, a default 90 days'data will be queried.         |
 | page_index      | false    | int    | Page number, default page 1 if not filled |                                                              |
 | page_size       | false    | int    | page size, default 20 | no more than 50                                                |
-| contract_code   | false    | string | Contract Code             | BTC-USDT-200508-C-8800                                       |
+| contract_code   | false    | string | Contract Code             | BTC-USDT-201225-C-13000                                      |
 
 ### Note: 
 
@@ -3737,45 +3873,46 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data": {
-    "orders": [
-      {
-        "order_id": 663044581721378816,
-        "order_id_str": "663044581721378816",
-        "symbol": "BTC",
-        "trade_partition": "USDT",
-        "contract_code": "BTC-USDT-200508-C-8800",
-        "contract_type": "next_week",
-        "direction": "buy",
-        "offset": "open",
-        "volume": 5.0,
-        "price": 8000.0,
-        "create_date": 1590023747055,
-        "order_source": "api",
-        "order_price_type": 1,
-        "margin_frozen": 0.0,
-        "margin_asset": "USDT",
-        "profit": 0.0,
-        "trade_volume": 5.0,
-        "trade_turnover": 500.0,
-        "fee": 0.2323,
-        "fee_asset": "USDT",
-        "trade_avg_price": 7503.0,
-        "status": 6,
-        "order_type": 1,
-        "delivery_date": "20200508",
-        "option_right_type": "C",
-        "exercise_price": 6622,
-        "quote_asset": "USDT"
-      }
-    ],
-    "current_page": 1,
-    "total_page": 5,
-    "total_size": 86
-  },
-  "ts": 1590051400253
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "order_id": 775314891945996288,
+                "order_id_str": "775314891945996288",
+                "contract_code": "BTC-USDT-201225-C-13000",
+                "symbol": "BTC",
+                "direction": "buy",
+                "offset": "open",
+                "volume": 1,
+                "price": 1204.79,
+                "create_date": 1604891074887,
+                "order_source": "api",
+                "order_price_type": "post_only",
+                "order_type": 1,
+                "margin_frozen": 0,
+                "profit": 0,
+                "contract_type": "quarter",
+                "trade_volume": 0,
+                "trade_turnover": 0,
+                "fee": 0,
+                "trade_avg_price": 0,
+                "status": 3,
+                "delivery_date": "20201225",
+                "option_right_type": "C",
+                "exercise_price": 13000,
+                "quote_asset": "USDT",
+                "trade_partition": "USDT",
+                "fee_asset": "USDT",
+                "margin_asset": "BTC"
+            }
+        ],
+        "total_page": 22,
+        "current_page": 1,
+        "total_size": 22
+    },
+    "ts": 1604891148311
 }
 ```
 
@@ -3792,7 +3929,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | symbol            | true     | string       | Coin Code           | "BTC","ETH"...                                     |
 | trade_partition   | true     | string       | Trade Partition           | "USDT"                                             |
 | contract_type     | true     | string       | Contract Type           | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter" |
-| contract_code     | true     | string       | Contract Code           | "BTC-USDT-200508-C-8800"                           |
+| contract_code     | true     | string       | Contract Code           | "BTC-USDT-201225-C-13000"                           |
 | direction         | true     | string       | Buy/Sell Direction           | "buy":Buy "sell":Sell                                 |
 | offset            | true     | string       | Open/Close Direction          | "open": open "close": close                               |
 | volume            | true     | decimal      | Order Quantity           |                                                    |
@@ -3850,7 +3987,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | trade_partition | false    | string | Trade Partition               | "USDT"                                                |
 | trade_type      | true     | int    | Trade Type               | 0: all,1: Buy to open long, 2: Sell to open short, 3: Buy to close short, 4: Sell to close long |
 | create_date     | true     | int    | Date                   | Enter a positive integer; if the parameter exceeds 90, 90 days' data will be queried.  |
-| contract_code   | false    | string | Contract Code               | BTC-USDT-200508-C-8800                                |
+| contract_code   | false    | string | Contract Code               | BTC-USDT-201225-C-13000                                |
 | role            | false    | string | taker or maker           |                                                       |
 | page_index      | false    | int    | Page number, default page 1   |                                                       |
 | page_size       | false    | int    | Default 20 if not filled; no more than 50 |                                                       |
@@ -3861,42 +3998,43 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 > Response:
 
 ```json
-   {
-  "status": "ok",
-  "data": {
-    "trades": [
-      {
-        "id": "32586745130-662260778996572160-1",
-        "match_id": 32586745130,
-        "order_id": 662260778996572160,
-        "order_id_str": "662260778996572160",
-        "symbol": "BTC",
-        "trade_partition": "USDT",
-        "contract_type": "quarter",
-        "contract_code": "BTC-USDT-200508-C-8800",
-        "direction": "buy",
-        "offset": "open",
-        "trade_volume": 1,
-        "trade_price": 6500,
-        "trade_turnover": 100,
-        "create_date": 1590036874070,
-        "offset_profitloss": 0,
-        "trade_fee": 0.2323,
-        "fee_asset": "USDT",
-        "role": "Taker",
-        "order_source": "web",
-        "delivery_date": "20200508",
-        "option_right_type": "C",
-        "exercise_price": 6622,
-        "quote_asset": "USDT"
-      }
-    ],
-    "current_page": 1,
-    "total_page": 1,
-    "total_size": 2
-  },
-  "ts": 1590024684692
-}          
+
+{
+    "status": "ok",
+    "data": {
+        "trades": [
+            {
+                "match_id": 125344032,
+                "order_id": 775303174474293248,
+                "order_id_str": "775303174474293248",
+                "symbol": "BTC",
+                "contract_type": "quarter",
+                "contract_code": "BTC-USDT-201225-C-13000",
+                "direction": "buy",
+                "offset": "open",
+                "trade_volume": 1,
+                "trade_price": 2897.25,
+                "trade_turnover": 2.89725,
+                "trade_fee": -0.005,
+                "offset_profitloss": 0,
+                "create_date": 1604888281258,
+                "role": "Taker",
+                "order_source": "web",
+                "id": "125344032-775303174474293248-1",
+                "quote_asset": "USDT",
+                "delivery_date": "20201225",
+                "option_right_type": "C",
+                "exercise_price": 13000,
+                "trade_partition": "USDT",
+                "fee_asset": "USDT"
+            }
+        ],
+        "total_page": 7,
+        "current_page": 1,
+        "total_size": 7
+    },
+    "ts": 1604891293936
+}  
 ```
 
 ### Returning Parameter
@@ -3913,7 +4051,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | symbol            | true     | string       | Coin Code                                                     | "BTC","ETH"...                                     |
 | trade_partition   | true     | string       | Trade Partition                                                     | "USDT"                                             |
 | contract_type     | true     | string       | Contract Type                                                     | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter" |
-| contract_code     | true     | string       | Contract Code                                                     | "BTC-USDT-200508-C-8800"                           |
+| contract_code     | true     | string       | Contract Code                                                     | "BTC-USDT-201225-C-13000"                           |
 | direction         | true     | string       | Buy/Sell Direction                                                     | "buy":Buy "sell":Sell                                 |
 | offset            | true     | string       | Open/Close Direction                                                    | "open": open "close": close                               |
 | trade_volume      | true     | decimal      | Trading Volume                                                     |                                                    |
@@ -3942,16 +4080,16 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 - order_id returns 18 digits.  nodejs and javascript cannot parse 18 digits by default. In nodejs and javascript, JSON.parse defaults to int, and numbers with more than 18 digits are parsed using the json-bigint package. 
 
+
 ## Place Trigger Order
 
 - POST `option-api/v1/option_trigger_order`
-
 
 > Request:
 
 ```json
 {
-  "contract_code": "BTC-USDT-200508-C-8800",
+  "contract_code": "BTC-USDT-201225-C-13000",
   "trigger_type": "le",
   "trigger_price": "7900",
   "order_price": "7900",
@@ -3966,7 +4104,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 | Parameter Name         | Mandatory | Type    | Desc                                                         | Value Range                                                     |
 | ---------------- | -------- | ------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| contract_code    | true     | string  | Contract Code                                                     | BTC-USDT-200508-C-8800                                       |
+| contract_code    | true     | string  | Contract Code                                                     | BTC-USDT-201225-C-13000                                       |
 | trigger_type     | true     | string  | Trigger Type:  ge equal to or greater than (Trigger Price is higher than Latest Price)；le less than (Trigger Price is lower than Latest Price) |                                                              |
 | trigger_price    | true     | decimal | Trigger Price，if the precision exceeds the minimum variation unit, an error will be reported                           |                                                              |
 | order_price      | false    | decimal | Order Price，if the precision exceeds the minimum variation unit, an error will be reported                           |                                                              |
@@ -3987,10 +4125,10 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 {
     "status": "ok",
     "data": {
-        "order_id": 35,
-        "order_id_str": "35"
+        "order_id": 775316559685038080,
+        "order_id_str": "775316559685038080"
     },
-    "ts": 1547521135713
+    "ts": 1604891472516
 }
 
 ```
@@ -4018,10 +4156,9 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 {
     "status": "error",
     "err_code": 1014,
-    "err_msg": "...",
-    "ts": 1547519608126
+    "err_msg": "This contract doesn't exist.",
+    "ts": 1604891496965
 }
-
 ```
 
 ## Cancel Trigger Order
@@ -4051,22 +4188,18 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 ```json
 
 {
-  "status": "ok",
-  "data": {
-    "errors": [{
-        "order_id": 161251,
-        "err_code": 200417,
-        "err_msg": "invalid symbol"
-      },
-      {
-        "order_id": 161251,
-        "err_code": 200415,
-        "err_msg": "invalid symbol"
-      }
-    ],
-    "successes": "161256,1344567"
-  },
-  "ts": 1490759594752
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "order_id": "775316816045150201",
+                "err_code": 1061,
+                "err_msg": "This order doesn't exist."
+            }
+        ],
+        "successes": "775316816045150208"
+    },
+    "ts": 1604891550756
 }
 
 ```
@@ -4087,20 +4220,6 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | ts        | true     | long   | Time of Response Generation, unit: millisecond                     |                           |
 
 
-
-> error response：
-
-```json
-
-{
-    "status": "error",
-    "err_code": 20012,
-    "err_msg": "invalid symbol",
-    "ts": 1490759594752
-}
-
-```
-
 ## Cancel All Trigger Orders
 
 - POST `/option-api/v1/option_trigger_cancelall`
@@ -4120,7 +4239,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | --------------- | -------- | ------ | -------- | -------------------------------------------------- |
 | symbol            | true     | string       | Coin Code                         | "BTC","ETH"...                                               |
 | trade_partition | false    | string | Trade Partition | "USDT"                                             |
-| contract_code   | false    | string | Contract Code | "BTC-USDT-200508-C-8800"                           |
+| contract_code   | false    | string | Contract Code | "BTC-USDT-201225-C-13000"                           |
 | contract_type   | false    | string | Contract Type | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter" |
 
 #### Note
@@ -4133,25 +4252,13 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 ```json
 
 {
-  "status": "ok",
-  "data": {
-    "errors":[
-      {
-        "order_id":161251,
-        "err_code": 200417,
-        "err_msg": "invalid symbol"
-       },
-      {
-        "order_id":161251,
-        "err_code": 200415,
-        "err_msg": "invalid symbol"
-       }
-      ],
-    "successes":"161256,1344567"
-   },
-  "ts": 1490759594752
+    "status": "ok",
+    "data": {
+        "errors": [],
+        "successes": "775316559685038080"
+    },
+    "ts": 1604891729726
 }
-
 ```
 
 ### response params
@@ -4169,19 +4276,6 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | \</data\> |          |        |                                                |                           |
 | ts        | true     | long   | Time of Response Generation, unit: millisecond                     |                           |
 
-
-> response error：
-
-```json
-
-{
-    "status": "error",
-    "err_code": 20012,
-    "err_msg": "invalid symbol",
-    "ts": 1490759594752
-}
-
-```
 
 ## Query Trigger Order Open Orders
 
@@ -4204,7 +4298,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | --------------- | -------- | ------ | ---------------------- | ------------------------ |
 | symbol          | true     | string | Coin Code               | "BTC","ETH"...           |
 | trade_partition | false    | string | Trade Partition               | "USDT"                   |
-| contract_code   | false    | string | Contract Code               | "BTC-USDT-200508-C-8800" |
+| contract_code   | false    | string | Contract Code               | "BTC-USDT-201225-C-13000" |
 | page_index      | false    | int    | Page number. Default page1 if not filled |                          |
 | page_size       | false    | int    | Default 20 if not filled; no more than 50 |                          |
 
@@ -4213,34 +4307,35 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 ```json
 
 {
-  "status": "ok",
-  "data": {
-    "total_page": 1,
-    "total_size": 1,
-    "current_page": 1,
-    "orders": [{
-      "symbol": "BTC",
-      "trade_partition": "USDT",
-      "contract_type": "quarter",
-      "contract_code": "BTC-USDT-200508-C-8800",
-      "trigger_type": "le",
-      "volume": 1.0,
-      "order_type": 1,
-      "direction": "buy",
-      "offset": "close",
-      "order_id": 1801,
-      "order_id_str": "1801",
-      "order_source": "api",
-      "trigger_price": 7900.0,
-      "order_price": 7900.0,
-      "created_at": 1590041685445,
-      "order_price_type": "limit",
-      "status": 2
-    }]
-  },
-  "ts": 1590041700685
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "symbol": "BTC",
+                "contract_code": "BTC-USDT-201225-C-13000",
+                "contract_type": "quarter",
+                "trigger_type": "le",
+                "volume": 1,
+                "order_type": 1,
+                "direction": "buy",
+                "offset": "open",
+                "order_id": 775317966815424512,
+                "order_id_str": "775317966815424512",
+                "status": 2,
+                "order_source": "api",
+                "trigger_price": 100,
+                "order_price": 100,
+                "order_price_type": "limit",
+                "created_at": 1604891807992,
+                "trade_partition": "USDT"
+            }
+        ],
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 1
+    },
+    "ts": 1604891813788
 }
-
 ```
 
 ### Returning Parameter
@@ -4256,7 +4351,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | symbol           | true     | string       | Coin Code                          | "BTC","ETH"...                                               |
 | trade_partition  | true     | string       | Trade Partition                          | "USDT"                                                       |
 | contract_type    | true     | string       | Contract Type                          | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter"           |
-| contract_code    | true     | string       | Contract Code                          | "BTC-USDT-200508-C-8800"                                     |
+| contract_code    | true     | string       | Contract Code                          | "BTC-USDT-201225-C-13000"                                     |
 | trigger_type     | true     | string       | Trigger Type:  ge equals to or greater than；le eaquals to or less than |                                                              |
 | volume           | true     | decimal      | Order Quantity                          |                                                              |
 | order_type       | true     | int          | Order Type: 1, place an order 2, cancel an order         |                                                              |
@@ -4274,17 +4369,6 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | \</data\>          |          |              |                                   |                                                              |
 | ts               | true     | long         | Time of Response Generation, unit: millisecond        |                                                              |
 
-> error response：
-
-```json
-
-{
-	"status": "error",
-	"err_code": 20012,
-	"err_msg": "invalid symbol",
-	"ts": 1490759594752
-}
-```
 
 ## Query Trigger Order History
 
@@ -4309,7 +4393,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | --------------- | -------- | ------ | ---------------------- | ------------------------------------------------------------ |
 | symbol          | true     | string | Coin Code               | "BTC","ETH"...                                               |
 | trade_partition | false    | string | Trade Partition               | "USDT"                                                       |
-| contract_code   | false    | string | Contract Code               | "BTC-USDT-200508-C-8800"                                     |
+| contract_code   | false    | string | Contract Code               | "BTC-USDT-201225-C-13000"                                     |
 | trade_type      | true     | int    | TradeType               | 0: all,1: Buy to open long,2: Sell to open short, 3: Buy to close short, 4: Sell to close long；the backstage queries by converting the value to offset and direction; cannot query by other values. |
 | status          | true     | string | Order Status               | Seperate multiple status with commas. Trigger order status: 0: all（represents all orders with status ended）, 4: trigger orders successfully submitted, 5: trigger orders failed being submitted、6: order canceled |
 | create_date     | true     | long   | Date                   | Enter a positive integer; if the parameter exceeds 90, a default 90 days' data will be queried.         |
@@ -4323,40 +4407,43 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 > Response:
 
 ```json
+
 {
-  "status": "ok",
-  "data": {
-    "orders": [{
-      "symbol": "BTC",
-      "trade_partition": "USDT",
-      "contract_code": "BTC-USDT-200508-C-8800",
-      "contract_type": "this_week",
-      "trigger_type": "ge",
-      "volume": 4,
-      "order_type": 1,
-      "direction": "sell",
-      "offset": "open",
-      "order_id": 23,
-      "order_id_str": "161251",
-      "relation_order_id": "88",
-      "order_price_type": "limit",
-      "status": 6,
-      "order_source": "web",
-      "trigger_price": 2,
-      "triggered_price": 2.03,
-      "order_price": 2,
-      "created_at": 1547448030638,
-      "triggered_at": 0,
-      "order_insert_at": 0,
-      "canceled_at": 1547448845593,
-      "fail_code": null,
-      "fail_reason": null
-    }],
-    "total_page": 3,
-    "current_page": 1,
-    "total_size": 22
-  },
-  "ts": 1547520777695
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "symbol": "BTC",
+                "contract_code": "BTC-USDT-201225-C-13000",
+                "contract_type": "quarter",
+                "trigger_type": "le",
+                "volume": 1,
+                "order_type": 1,
+                "direction": "buy",
+                "offset": "open",
+                "order_id": 775316816045150208,
+                "order_id_str": "775316816045150208",
+                "relation_order_id": null,
+                "status": 6,
+                "order_source": "api",
+                "trigger_price": 100,
+                "triggered_price": null,
+                "order_price": 100,
+                "order_price_type": "limit",
+                "created_at": 1604891533629,
+                "triggered_at": null,
+                "order_insert_at": 0,
+                "canceled_at": 1604891551047,
+                "fail_code": null,
+                "fail_reason": null,
+                "trade_partition": "USDT"
+            }
+        ],
+        "total_page": 7,
+        "current_page": 1,
+        "total_size": 7
+    },
+    "ts": 1604891892449
 }
 ```
 
@@ -4373,7 +4460,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | symbol            | true     | string       | Coin Code                                                     | "BTC","ETH"...                                               |
 | trade_partition   | true     | string       | Trade Partition                                                     | "USDT"                                                       |
 | contract_type     | true     | string       | Contract Type                                                     | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter"           |
-| contract_code     | true     | string       | Contract Code                                                     | "BTC-USDT-200508-C-8800"                                     |
+| contract_code     | true     | string       | Contract Code                                                     | "BTC-USDT-201225-C-13000"                                     |
 | trigger_type      | true     | string       | Trigger Type:  ge equals to or greater than；le equals to or lower than                            |                                                              |
 | volume            | true     | decimal      | Order Quantity                                                     |                                                              |
 | order_type        | true     | int          | Order Type                                                     | 1: place an order 2: cancel an order                                              |
@@ -4398,17 +4485,6 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | \</data\>           |          |              |                                                              |                                                              |
 | ts                | true     | long         | Time of Response Generation, unit: millisecond                                   |                                                              |
 
-> Example of failure Query trigger order history
-
-```json
-
-{
-	"status": "error",
-	"err_code": 20012,
-	"err_msg": "invalid symbol",
-	"ts": 1490759594752
-}
-```
 
 
 # Option Transferring Interface
@@ -4440,19 +4516,22 @@ Transferring margin between Spot account and Option account Interface, sets 8 de
 
 > Response:
 
-  ```json
-	{
-   "code":200,
-   "data":113423809,
-   "message":"Succeed",
-   "success":true
-   }
+```json
+
+{
+    "code": 200,
+    "data": 182408686,
+    "message": "Succeed",
+    "success": true
+}
 	Error response
- {
-    "code":1303,
-    "data":null,
-    "message":"The single transfer-out amount must be no less than 0.0008BTC",
-    "success":false}
+
+{
+    "code": 1301,
+    "data": null,
+    "message": "Insufficient amount available.",
+    "success": false
+}
 	
  ```
 
@@ -4575,7 +4654,7 @@ System status updates subscription ：wss://api.btcgateway.pro/center-notificati
 #### Note: 
 
 - If you have further queries about Huobi Option order push subscription, please refer to [Demo](https://docs.huobigroup.com/docs/option/v1/en/#code-demo)
- 
+
 ## API Rate Limit Illustration
 
 There is rate limit for both public and private interfaces. More details are laid out as below:
@@ -4586,7 +4665,7 @@ There is rate limit for both public and private interfaces. More details are lai
 - For public interface to get market data such as  Get kline data, Get Market Data Overview, Get Contract Information, Get the last Trade of a Contract and so on：
 
    (1) For restful interface：800 times/second for one IP at most 
-　　
+
    (2)  The rate limit for “req” request is 50 times/s at most. No limit for “sub” request as the data will be pushed by server voluntarily. 
 
 - The order push private WebSocket interface requires API Key for authentication.
@@ -4606,13 +4685,12 @@ Response the following strings for “Header” via API
 - ratelimit-remaining： available request number left in this round, unit: time
 
 - ratelimit-reset： upper limit of reset time used to request number， unit: ms
- 
+
 # Websocket Heartbeat and Authentication Interface
 
 ## Market Heartbeat
 WebSocket API supports two-way heartbeat. Both Server and Client can send ping message, which the opposite side can return with pong message.
 
-:
 - WebSocket Server sends heartbeat：
 
 `{"ping": 18212558000}`
@@ -4843,9 +4921,7 @@ Example on Signature Computing Process:，
 
 - Sequence the parameter name according to ASCII code (use UTF-8 and transfer into URI encoding, capital letters for hexadecimal characters. E.G.: ‘:’ will be encoded into '%3A', blank will be encoded into '%20'). Here is an encoding example below for request parameters
 
-  `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-
-  7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-
-  11T15%3A19%3A30`
+  `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30`
   
 
 - Connect all parameters with ’&’ according to the sequence above.
@@ -4880,7 +4956,7 @@ Add computed value into the Signature parameter in API request. Please note  the
   "ts": 1489474081631,
   "err-code": 0,
   "data": {
-    "user-id": 12345678
+    "user-id": 123456789
   }
 }
 
@@ -4920,7 +4996,7 @@ Add computed value into the Signature parameter in API request. Please note  the
 ```json
 
     {
-    "sub": "market.BTC-USDT-200508-C-8800.kline.1min",
+    "sub": "market.BTC-USDT-201225-C-13000.kline.1min",
     "id": "id1"
     }
 
@@ -4937,7 +5013,7 @@ Add computed value into the Signature parameter in API request. Please note  the
 
 | Parameter Name      | Mandatory | Type   | Desc     | Value Range                                               |
 | ------------- | -------- | ------ | -------- | ------------------------------------------------------ |
-| contract_code | true     | string | Contract Code | "BTC-USDT-200508-C-8800" ...                           |
+| contract_code | true     | string | Contract Code | "BTC-USDT-201225-C-13000" ...                           |
 | period        | true     | string | kline Type  | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon |
 
 > After subscription, clients can receive updates upon any change. Example:
@@ -4948,7 +5024,7 @@ Add computed value into the Signature parameter in API request. Please note  the
     {
     "id": "id1",
     "status": "ok",
-    "subbed": "market.BTC-USDT-200508-C-8800.kline.1min",
+    "subbed": "market.BTC-USDT-201225-C-13000.kline.1min",
     "ts": 1489474081631
     }
 ```
@@ -4956,23 +5032,23 @@ Add computed value into the Signature parameter in API request. Please note  the
  Then everytime when kline is updated, clients will receive data. Example:
 
 ```json
-    {
-     "ch": "market.BTC-USDT-200508-C-8800.kline.1min",
-     "ts": 1489474082831,
-     "tick": 
-        {
-         "id": 1489464480,
-         "mrid": 268168237,
-         "vol": 100,
-         "count": 0,
-         "open": 7962.62,
-         "close": 7962.62,
-         "low": 7962.62,
-         "high": 7962.62,
-         "amount": 1 ,
-         "trade_turnover": 100
-        }
+
+{
+    "ch":"market.BTC-USDT-201225-C-13000.kline.15min",
+    "ts":1604900702590,
+    "tick":{
+        "id":1604900700,
+        "mrid":125344032,
+        "open":2897.25,
+        "close":2897.25,
+        "high":2897.25,
+        "low":2897.25,
+        "amount":0,
+        "vol":0,
+        "trade_turnover":0,
+        "count":0
     }
+}
 ```
 
 ###  Return Parameter
@@ -5021,7 +5097,7 @@ Add computed value into the Signature parameter in API request. Please note  the
 ```json
 {
   "id": "id1",
-  "req": "market.BTC-USDT-200508-C-8800.kline.60min",
+  "req": "market.BTC-USDT-201225-C-13000.kline.60min",
   "from": 1579247342,
   "to": 1579247342
 }
@@ -5040,7 +5116,7 @@ Add computed value into the Signature parameter in API request. Please note  the
 
 | Parameter Name      | Mandatory | Type   | Desc     | Value Range                                               |
 | ------------- | -------- | ------ | -------- | ------------------------------------------------------ |
-| contract_code | true     | string | Contract Code | "BTC-USDT-200508-C-8800" ...                           |
+| contract_code | true     | string | Contract Code | "BTC-USDT-201225-C-13000" ...                           |
 | period        | true     | string | kline Type  | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon |
 
 #### Note
@@ -5067,22 +5143,36 @@ At most 2000 at a time.
 Return data as below:
 
 ```json
+
 {
-  "id": "id1",
-  "rep": "market.BTC-USDT-200508-C-8800.kline.60min",
-  "wsid": 890180419,
-  "status": "ok",
-  "data": [{
-    "id": 1584583200,
-    "open": 7000,
-    "close": 7000,
-    "low": 7000,
-    "high": 7000,
-    "amount": 0.04,
-    "vol": 4,
-    "count": 2,
-    "trade_turnover": 2000
-  }]
+    "id":"id1",
+    "rep":"market.BTC-USDT-201225-C-13000.kline.60min",
+    "wsid":4203781398,
+    "status":"ok",
+    "data":[
+        {
+            "id":1602691200,
+            "open":630,
+            "close":630,
+            "low":630,
+            "high":630,
+            "amount":0,
+            "vol":0,
+            "trade_turnover":0,
+            "count":0
+        },
+        {
+            "id":1602694800,
+            "open":630,
+            "close":630,
+            "low":630,
+            "high":630,
+            "amount":0,
+            "vol":0,
+            "trade_turnover":0,
+            "count":0
+        }
+    ]
 }
 ```
 
@@ -5122,7 +5212,7 @@ Return data as below:
 
 ```json
 {
-  "sub": "market.BTC-USDT-200508-C-8800.depth.step0",
+  "sub": "market.BTC-USDT-201225-C-13000.depth.step0",
   "id": "id5"
 }
 ```
@@ -5136,7 +5226,7 @@ Return data as below:
 ####  SubscribeParameter Rules
 | Parameter Name      | Mandatory | Type   | Desc       | Value Range                                                     |
 | ------------- | -------- | ------ | ---------- | ------------------------------------------------------------ |
-| contract_code | true     | string | Contract Code   | "BTC-USDT-200508-C-8800" ...                                 |
+| contract_code | true     | string | Contract Code   | "BTC-USDT-201225-C-13000" ...                                 |
 | type          | true     | string | Depth Type | Get depth data within Step 150 using step0, step1, step2, step3, step4, step5，step14，step15（step1 to step5 and step14, step15 are the depth after depth merging），When the step is 0, get step150 data without depth merged; Get step 20 data using step6, step7, step8, step9, step10, step11, step12, step13（step7 to step13 are the depth after merging)，when using step 6，get step 20 data without depth merged|
 
 #### Note
@@ -5168,24 +5258,37 @@ Return data as below:
 > Whenever depth is updated, the clients will receive data as following: 
 
 ```json
+
 {
-  "ch": "market.BTC-USDT-200508-C-8800.depth.step0",
-  "ts": 1489474082831,
-  "tick": {
-    "mrid": 269073229,
-    "id": 1539843937,
-    "bids": [
-      [9999.9101, 1],
-      [9992.3089, 2]
-    ],
-    "asks": [
-      [10010.9800, 10],
-      [10011.3900, 15]
-    ],
-    "ts": 1539843937417,
-    "version": 1539843937,
-    "ch": "market.BTC-USDT-200508-C-8800.depth.step0"
-  }
+    "ch":"market.BTC-USDT-201225-C-13000.depth.step0",
+    "ts":1604901962322,
+    "tick":{
+        "mrid":125686472,
+        "id":1604901962,
+        "bids":[
+            [
+                2746.4,
+                535
+            ],
+            [
+                2723.89,
+                520
+            ]
+        ],
+        "asks":[
+            [
+                2881.38,
+                498
+            ],
+            [
+                2911.03,
+                499
+            ]
+        ],
+        "ts":1604901962321,
+        "version":1604901962,
+        "ch":"market.BTC-USDT-201225-C-13000.depth.step0"
+    }
 }
 ```
 
@@ -5227,7 +5330,7 @@ Return data as below:
 ```json
 {
   "data_type": "incremental",
-  "sub": "market.BTC-USDT-200508-C-8800.depth.size_150.high_freq",
+  "sub": "market.BTC-USDT-201225-C-13000.depth.size_150.high_freq",
   "id": "id1"
 }
 ```
@@ -5239,38 +5342,51 @@ Return data as below:
 | id        | false    | string | id generated automatically by the business party                                       |                                                              |
 | data_type | false    | string | Data Type                                                     | Default full data if not filled，"incremental": Incremental Data，"snapshot": Full Data |
 
-#### Subscribe Parameter Rules
+### Subscribe Parameter Rules
 | Parameter Name       | Mandatory | Type   | Desc     | Value Range                                           |
 | -------------- | -------- | ------ | -------- | -------------------------------------------------- |
-| $contract_code | true     | string | Contract Code | eg"BTC-USDT-200508-C-8800"。              |
+| $contract_code | true     | string | Contract Code | eg"BTC-USDT-201225-C-13000"。              |
 | size           | true     | string | step   | 20: represents depth within step 20 without merging,  150: represents depth within step 150 without merging,   |
 
-####Note
+#### Note
 When users select "Merge Depth", open orders of a certain precision will be merged and displayed. "Merge Depth" only affects the display mode, not the actual transaction price. 
 
 
 > Whenever depth has incremental updates, clients will receive data as below:
 
 ```json
+
 {
-  "ch": "market.BTC-USDT-200508-C-8800.depth.size_150.high_freq",
-  "ts": 1489474082831,
-  "tick": {
-    "mrid": 269073229,
-    "id": 1539843937,
-    "asks": [
-      [10010.9800, 10],
-      [10011.3900, 15]
-    ],
-    "bids": [
-      [9999.9101, 1],
-      [9992.3089, 2]
-    ],
-    "ts": 1539843937417,
-    "version": 1539843937,
-    "ch": "market.BTC-USDT-200508-C-8800.depth.size_150.high_freq",
-    "event": "snapshot"
-  }
+    "ch":"market.BTC-USDT-201225-C-13000.depth.size_20.high_freq",
+    "tick":{
+        "asks":[
+            [
+                2891.92,
+                509
+            ],
+            [
+                2922.58,
+                499
+            ]
+        ],
+        "bids":[
+            [
+                2732.53,
+                535
+            ],
+            [
+                2710.12,
+                520
+            ]
+        ],
+        "ch":"market.BTC-USDT-201225-C-13000.depth.size_20.high_freq",
+        "event":"snapshot",
+        "id":125696596,
+        "mrid":125696596,
+        "ts":1604902337523,
+        "version":1511997
+    },
+    "ts":1604902337523
 }
 ```
 
@@ -5301,6 +5417,7 @@ When users select "Merge Depth", open orders of a certain precision will be merg
 
 4. If it is incremental data, you have to maintain local orderbook bids/ asks data.
 
+
 ## Subscribe Market Detail Data
 
 ### To subscribe market details, the clients have to make connection to WebSocket Server and send subscribe request in the format below:
@@ -5319,7 +5436,7 @@ When users select "Merge Depth", open orders of a certain precision will be merg
 
 {
   "id": "111",
-  "sub": "market.BTC-USDT-200508-C-8800.detail"
+  "sub": "market.BTC-USDT-201225-C-13000.detail"
 }
 ```
 
@@ -5332,26 +5449,27 @@ When users select "Merge Depth", open orders of a certain precision will be merg
 #### subSubscribe Parameter Rules
 | Parameter Name      | Mandatory | Type   | Desc     | Value Range                                           |
 | ------------- | -------- | ------ | -------- | -------------------------------------------------- |
-| contract_code | true     | string | Contract Code | eg"BTC-USDT-200508-C-8800". |
+| contract_code | true     | string | Contract Code | eg"BTC-USDT-201225-C-13000". |
 
 > Whenever Market Detail updates, clients will receive data as below: 
 
 ```json
+
 {
-  "ch": "market.BTC-USDT-200508-C-8800.detail",
-  "ts": 1579489620390,
-  "tick": {
-    "id": 1579489620,
-    "mrid": 32587606751,
-    "open": 49.015,
-    "close": 49.015,
-    "high": 49.015,
-    "low": 49.015,
-    "amount": 0,
-    "vol": 0,
-    "count": 0,
-    "trade_turnover": 0
-  }
+    "ch":"market.BTC-USDT-201225-C-13000.detail",
+    "ts":1604902200630,
+    "tick":{
+        "id":1604902200,
+        "mrid":125693341,
+        "open":2897.25,
+        "close":2897.25,
+        "high":2897.25,
+        "low":2897.25,
+        "amount":0.176,
+        "vol":176,
+        "trade_turnover":439.20704,
+        "count":3
+    }
 }
 ```
 
@@ -5394,7 +5512,7 @@ Return to the current trade detail data only
 {
   "id": "160943040012341",
   "size": 50,
-  "req": "market.BTC-USDT-200508-C-8800.trade.detail"
+  "req": "market.BTC-USDT-201225-C-13000.trade.detail"
 }
 ```
 
@@ -5408,7 +5526,7 @@ Return to the current trade detail data only
 ####  Request Parameter
 | Parameter Name      | Mandatory | Type   | Desc     | Value Range                                           |
 | ------------- | -------- | ------ | -------- | -------------------------------------------------- |
-| contract_code | true     | string | Contract Code | eg"BTC-USDT-200508-C-8800". |
+| contract_code | true     | string | Contract Code | eg"BTC-USDT-201225-C-13000". |
 
 ### Note
  - Only return current Trade Detail.
@@ -5416,18 +5534,28 @@ Return to the current trade detail data only
 >Return data as below:
 
 ```json
+
 {
-  "rep": "market.BTC-USDT-200508-C-8800.trade.detail",
-  "status": "ok",
-  "id": "160943040012341",
-  "ts": 1579489774579,
-  "data": [{
-    "id": 325876067380000,
-    "price": "49.014",
-    "amount": "6",
-    "direction": "sell",
-    "ts": 1578992746723
-  }]
+    "data":[
+        {
+            "amount":"6",
+            "ts":1603869385244,
+            "id":991487430000,
+            "price":"1542.78",
+            "direction":"sell"
+        },
+        {
+            "amount":"40",
+            "ts":1603889690205,
+            "id":996663430000,
+            "price":"1300",
+            "direction":"sell"
+        }
+    ],
+    "id":"160943040012341",
+    "rep":"market.BTC-USDT-201225-C-13000.trade.detail",
+    "status":"ok",
+    "ts":1604902521584
 }
 ```
 
@@ -5465,7 +5593,7 @@ Return to the current trade detail data only
 ```json
 {
   "id": "160943040012341",
-  "Sub": "market.BTC-USDT-200508-C-8800.trade.detail"
+  "Sub": "market.BTC-USDT-201225-C-13000.trade.detail"
 }
 ```
 
@@ -5478,25 +5606,28 @@ Return to the current trade detail data only
 ####  subSubscribeParameter Rules
 | Parameter Name      | Mandatory | Type   | Desc     | Value Range                                           |
 | ------------- | -------- | ------ | -------- | -------------------------------------------------- |
-| contract_code | true     | string | Contract Code | eg"BTC-USDT-200508-C-8800". |
+| contract_code | true     | string | Contract Code | eg"BTC-USDT-201225-C-13000". |
 
 >Whenever trade detail is updated, clients will receive data as below:
 
 ```json
+
 {
-  "ch": "market.BTC-USDT-200508-C-8800.trade.detail",
-  "ts": 1579054977044,
-  "tick": {
-    "id": 32587606754,
-    "ts": 1579054976903,
-    "data": [{
-      "amount": 2,
-      "ts": 1579054976903,
-      "id": 325876067540000,
-      "price": 8900,
-      "direction": "buy"
-    }]
-  }
+    "ch":"market.BTC-USDT-201225-C-13000.trade.detail",
+    "ts":1604888281270,
+    "tick":{
+        "id":125344032,
+        "ts":1604888281258,
+        "data":[
+            {
+                "amount":2,
+                "ts":1604888281258,
+                "id":1253440320000,
+                "price":2897.25,
+                "direction":"buy"
+            }
+        ]
+    }
 }
 ```
 
@@ -5559,53 +5690,56 @@ Return to the current trade detail data only
 > Whenever there is an order filled, clients will receive data as below:
 
 ```json
+
 {
-    "op": "notify",
-    "topic": "orders.btc-usdt",
-    "ts": 1590096259621,
-    "uid": "157959",
-    "symbol": "BTC",
-    "trade_partition": "USDT",
-    "contract_type": "quarter",
-    "contract_code": "BTC-USDT-200508-C-8800",
-    "volume": 1,
-    "price": 7409.9,
-    "order_price_type": "limit",
-    "direction": "sell",
-    "offset": "open",
-    "status": 6,
-    "order_id": 669220745955860480,
-    "order_id_str": "669220745955860480",
-    "client_order_id": null,
-    "order_source": "web",
-    "order_type": 1,
-    "created_at": 1590096259356,
-    "trade_volume": 1,
-    "trade_turnover": 100.000000000000000000,
-    "fee": -0.000003998400639744,
-    "trade_avg_price": 7503.00,
-    "margin_frozen": 0E-18,
-    "margin_asset": "USDT",
-    "profit": 0,
-    "canceled_at": 1590096259356,
+    "op":"notify",
+    "topic":"orders.btc-usdt",
+    "uid":"123456789",
+    "ts":1604903121972,
+    "symbol":"BTC",
+    "contract_type":"quarter",
+    "contract_code":"BTC-USDT-201225-C-13000",
+    "volume":1,
+    "price":2752.58,
+    "order_price_type":"opponent",
+    "direction":"sell",
+    "offset":"close",
+    "status":6,
+    "order_id":775365420395126784,
+    "order_id_str":"775365420395126784",
+    "client_order_id":null,
+    "order_source":"web",
+    "order_type":1,
+    "created_at":1604903121809,
+    "canceled_at":0,
+    "trade_volume":1,
+    "trade_turnover":2.75258,
+    "fee":-0.005,
+    "trade_avg_price":2752.58,
+    "margin_frozen":0,
+    "profit":-0.14467,
+    "trade_partition":"USDT",
+    "delivery_date":"20201225",
+    "option_right_type":"C",
+    "exercise_price":13000,
+    "quote_asset":"USDT",
+    "premium_frozen":0,
+    "fee_frozen":0,
     "fee_asset":"USDT",
-    "trade": [{
-        "id": "3997130478-669220745955860480-1",
-        "trade_id": 3997130478,
-        "trade_volume": 1,
-        "trade_price": 7503,
-        "trade_fee": -0.000003998400639744,
-        "trade_turnover": 100.000000000000000000,
-        "created_at": 1590096259423,
-        "fee_asset": "USDT",
-        "delivery_date": "20200508",
-        "option_right_type": "C",
-        "exercise_price": 6622,
-        "quote_asset": "USDT",
-        "premium_frozen": 1.20,
-        "fee_frozen": 0.01,
-        "role": "taker"
-    }]
+    "margin_asset":"BTC",
+    "trade":[
+        {
+            "id":"125715777-775365420395126784-1",
+            "trade_id":125715777,
+            "trade_volume":1,
+            "trade_price":2752.58,
+            "trade_fee":-0.005,
+            "trade_turnover":2.75258,
+            "created_at":1604903121857,
+            "role":"taker",
+            "fee_asset":"USDT"
+        }
+    ]
 }
 ```
 
@@ -5620,7 +5754,7 @@ Return to the current trade detail data only
 | symbol           | true     | string       | Coin Code                                                     | "BTC","ETH"...                                               |
 | trade_partition  | true     | string       | Trade Partition                                                     | "USDT"                                                       |
 | contract_type    | true     | string       | ContractType                                                     |                                                              |
-| contract_code    | true     | string       | Contract Code                                                     | BTC-USDT-200508-C-8800                                       |
+| contract_code    | true     | string       | Contract Code                                                     | BTC-USDT-201225-C-13000                                       |
 | volume           | true     | decimal      | Order Quantity                                                     |                                                              |
 | price            | true     | decimal      | Order Price                                                     |                                                              |
 | order_price_type | true     | string       | Order Type                                                 | "limit":Limit Order，"opponent":BBO，"lightning":Flash close，"optimal_5":Optimal 5，"optimal_10":Optimal 10，"optimal_20":Optimal 20，"fok": FOK Order，"ioc": IOC Order, "opponent_ioc": BBO-IOC，"lightning_ioc": Flash close-IOC，"optimal_5_ioc": Optimal 5-IOC，"optimal_10_ioc": Optimal 10-IOC，"optimal_20_ioc": Optimal 20-IOC，"opponent_fok":  FOK order using BBO price，"lightning_fok": Flash close-FOK，"optimal_5_fok": Optimal 5-FOK，"optimal_10_fok": Optimal 10-FOK，"optimal_20_fok": Optimal 20-FOK |
@@ -5746,30 +5880,33 @@ Return to the current trade detail data only
 > Whenever filled orders change, the clients will receive the data as below:
 
 ```json
+
 {
-  "op": "notify",
-  "topic": "matchOrders.btc-usdt",
-  "ts": 1590074082831,    
-  "uid": "157959",
-  "symbol": "BTC",
-  "trade_partition": "USDT",
-  "contract_type": "this_week",
-  "contract_code": "BTC-USDT-200508-C-8800",
-  "status": 1,
-  "order_id": 106837,
-  "order_id_str": "106837",
-  "order_type": "1",
-  "trade_volume": 1,
-  "trade_volume": 100,
-  "trade":[{
-    "id": "1232-213123-1231",
-    "trade_id":112,
+    "op":"notify",
+    "topic":"matchOrders.btc-usdt",
+    "ts":1604903121879,
+    "uid":"123456789",
+    "symbol":"BTC",
+    "trade_partition":"USDT",
+    "contract_type":"quarter",
+    "contract_code":"BTC-USDT-201225-C-13000",
+    "status":6,
+    "order_id":775365420395126784,
+    "order_id_str":"775365420395126784",
+    "order_type":1,
     "trade_volume":1,
-    "trade_price":123.4555,
-    "trade_turnover":34.123,
-    "created_at": 1490759594752,
-    "role": "maker"
-  }]
+    "volume":1,
+    "trade":[
+        {
+            "id":"125715777-775365420395126784-1",
+            "trade_id":125715777,
+            "trade_volume":1,
+            "trade_price":2752.58,
+            "trade_turnover":2.75258,
+            "created_at":1604903121857,
+            "role":"taker"
+        }
+    ]
 }
 ```
 
@@ -5784,7 +5921,7 @@ Return to the current trade detail data only
 | symbol          | true     | string       | Coin Code                                                     | "BTC","ETH"...                                     |
 | trade_partition | true     | string       | Trade Partition                                                     | "USDT"                                             |
 | contract_type   | true     | string       | ContractType                                                     | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter" |
-| contract_code   | true     | string       | Contract Code                                                     | BTC-USDT-200508-C-8800                             |
+| contract_code   | true     | string       | Contract Code                                                     | BTC-USDT-201225-C-13000                            |
 | status          | true     | int          | OrderStatus (3unfilled 4partial filled 5partial filled orders have been deleted 6all filled7deleted) |                                                    |
 | order_id        | true     | long         | Order ID, the field stored in the system is user_order_id                      |                                                    |
 | order_id_str    | true     | string       | Order ID, String Type                                           |                                                    |
@@ -5888,35 +6025,38 @@ Return to the current trade detail data only
 > Whenever asset changes, clients will receive data as below: 
 
 ```json
+
 {
-    "op": "notify",
-    "topic": "accounts.btc-usdt",
-    "ts": 1590096917857,
-    "uid": "157959",
-    "event": "snapshot",
-    "data": [{
-        "symbol": "BTC",
-            "trade_partition": "USDT",
-            "margin_balance": 1.0,
-            "margin_position": 0,
-            "margin_frozen": 0,
-            "margin_asset": "USDT",
-            "margin_available": 1.0,
-            "profit_real": 0.0,
-            "profit_unreal": 0,
-            "withdraw_available": 1.0,
-            "margin_static": 1.0,
-            "premium_frozen": 0,
-            "fee_frozen": 0,
-            "fee_asset": "USDT",
-            "premium_in": 0,
-            "premium_out": 0,
-            "delta": 0.2,
-            "gamma": 0.3,
-            "theta": 0.1,
-            "vega": 0.22,
-            "option_value": 0,
-    }]
+    "op":"notify",
+    "topic":"accounts",
+    "ts":1604903471303,
+    "uid":"123456789",
+    "event":"init",
+    "data":[
+        {
+            "symbol":"USDT",
+            "margin_balance":10.30015,
+            "margin_static":10.30015,
+            "margin_position":0,
+            "margin_frozen":0,
+            "margin_available":9.09036,
+            "profit_real":-0.15467,
+            "profit_unreal":0,
+            "withdraw_available":9.09036,
+            "option_value":0,
+            "premium_frozen":1.20479,
+            "fee_frozen":0.005,
+            "premium_in":2.75258,
+            "premium_out":2.89725,
+            "fee_asset":"USDT",
+            "delta":null,
+            "gamma":null,
+            "theta":null,
+            "vega":null,
+            "margin_asset":"USDT",
+            "trade_partition":"USDT"
+        }
+    ]
 }
 ```
 
@@ -6038,38 +6178,39 @@ Return to the current trade detail data only
 > Whenever position changes, clients will receive data as below: 
 
 ```json
-{
-    "op": "notify",
-    "topic": "positions.btc-usdt",
-    "ts": 1590096257847,
-    "uid": "157959",
-    "event": "snapshot",
-    "data": [
-        {
-            "symbol": "BTC",
-            "trade_partition": "USDT",
-            "contract_code": "BTC-USDT-200508-C-8800",
-            "contract_type": "quarter",
-            "volume": 1.0,
-            "available": 1.0,
-            "frozen": 0.0,
-            "cost_open": 7503.0,
-            "cost_hold": 7503.0,
-            "profit_unreal": -4.442,
-            "profit_rate": -0.00666622225185016,
-            "profit": -4.442,
-            "margin_position": 0.000666622225184987,
-            "position_value": 5.49,
-            "direction": "buy",
-            "last_price": 7500.5,
-            "delivery_date": "20200508",
-            "option_right_type": "C",
-            "exercise_price": 3500,
-            "quote_asset": "USDT",
-            "margin_asset": "BTC"
-        }]
-}
 
+{
+    "op":"notify",
+    "topic":"positions",
+    "ts":1604903117918,
+    "uid":"123456789",
+    "event":"snapshot",
+    "data":[
+        {
+            "symbol":"BTC",
+            "contract_code":"BTC-USDT-201225-C-13000",
+            "contract_type":"quarter",
+            "volume":1,
+            "available":1,
+            "frozen":0,
+            "cost_open":2897.25,
+            "cost_hold":2897.25,
+            "profit_unreal":0,
+            "profit_rate":0,
+            "profit":0,
+            "margin_position":0,
+            "direction":"buy",
+            "last_price":2897.25,
+            "trade_partition":"USDT",
+            "delivery_date":"20201225",
+            "option_right_type":"C",
+            "exercise_price":13000,
+            "quote_asset":"USDT",
+            "margin_asset":"BTC",
+            "position_value":2.89725
+        }
+    ]
+}
 ```
 
 ###  Return Parameter
@@ -6084,7 +6225,7 @@ Return to the current trade detail data only
 | \<data\>          | true     | object array |                                |                                                              |
 | symbol            | true     | string       | Coin Code                       | "BTC","ETH"...                                               |
 | trade_partition   | true     | string       | Trade Partition                       | "USDT"                                                       |
-| contract_code     | true     | string       | Contract Code                       | BTC-USDT-200508-C-8800                                       |
+| contract_code     | true     | string       | Contract Code                       | BTC-USDT-201225-C-13000                                      |
 | contract_type     | true     | string       | ContractType                       | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter"           |
 | volume            | true     | decimal      | Position Quantity                         |                                                              |
 | available         | true     | decimal      | Available Close Amount                     |                                                              |
