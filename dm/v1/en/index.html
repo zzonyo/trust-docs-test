@@ -2345,13 +2345,13 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>heartbeat</td>
-<td>integer</td>
+<td>int</td>
 <td>future 1: avaiable 0: not available</td>
 </tr>
 <tr>
 <td>swap_heartbeat</td>
-<td>integer</td>
-<td>swap 1: avaiable 0: not available</td>
+<td>int</td>
+<td>coin margined swap 1: avaiable 0: not available</td>
 </tr>
 <tr>
 <td>estimated_recovery_time</td>
@@ -2361,17 +2361,27 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <tr>
 <td>swap_estimated_recovery_time</td>
 <td>long</td>
-<td>null: normal. swap estimated recovery time millionseconds.</td>
+<td>null: normal. coin margined swap estimated recovery time millionseconds.</td>
 </tr>
 <tr>
 <td>option_heartbeat</td>
-<td>integer</td>
+<td>int</td>
 <td>option 1: avaiable 0: not available</td>
 </tr>
 <tr>
 <td>option_estimated_recovery_time</td>
 <td>long</td>
 <td>null: normal. option estimated recovery time :millionseconds.</td>
+</tr>
+<tr>
+<td>linear_swap_heartbeat</td>
+<td>long</td>
+<td>USDT margined swap 1: avaiable 0: not available</td>
+</tr>
+<tr>
+<td>linear_swap_estimated_recovery_time</td>
+<td>long</td>
+<td>null: normal. USDT margined swap estimated recovery time millionseconds.</td>
 </tr>
 <tr>
 <td>&lt;/data&gt;</td>
@@ -2392,7 +2402,9 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
         </span><span class="s2">"swap_heartbeat"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"swap_estimated_recovery_time"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"option_heartbeat"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"option_estimated_recovery_time"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+        </span><span class="s2">"option_estimated_recovery_time"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"linear_swap_heartbeat"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"linear_swap_estimated_recovery_time"</span><span class="p">:</span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1557714418033</span><span class="w">
 </span><span class="p">}</span><span class="w">
