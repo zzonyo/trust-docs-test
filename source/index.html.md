@@ -5254,10 +5254,10 @@ ts  |  true  |  long  |  时间戳  |    |
    参数名称                |   是否必须  |   类型  |    描述            |   取值范围       |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
  contract_code  |  true   |  string   |  合约代码   |  支持大小写,"BTC-USD" ...  |
- volume | true | int | 委托数量（张） |  |
+ volume | true | long | 委托数量（张） |  |
  direction | true | string | “buy”:买，“sell”:卖 |  |
  client_order_id | false | long | （API）客户自己填写和维护，必须保持唯一 |  |
-| order_price_type | false | string | 订单报价类型 |不填，默认为“闪电平仓”，"lightning"：闪电平仓，"lightning_fok"：闪电平仓-FOK,"lightning_ioc"：闪电平仓-IOC |
+ order_price_type | false | string | 订单报价类型 |不填，默认为“闪电平仓”，"lightning"：闪电平仓，"lightning_fok"：闪电平仓-FOK,"lightning_ioc"：闪电平仓-IOC |
 > Response:
 
 ```json
@@ -5315,7 +5315,7 @@ client_order_id | false | long | 用户自己的订单id |  |
 | trigger_price | true | decimal | 触发价，精度超过最小变动单位会报错 |  |
 | order_price | false | decimal | 委托价，精度超过最小变动单位会报错 |  |
 | order_price_type | false | string | 委托类型： 不填默认为limit; 限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20 |  |
-| volume | true | decimal | 委托数量(张) |  |
+| volume | true | long | 委托数量(张) |  |
 | direction | true | string | buy:买 sell:卖 |  |
 | offset | true | string | open:开 close:平 |  |
 | lever_rate | false | int | 开仓必须填写，平仓可以不填。杠杆倍数[开仓若有10倍多单，就不能再下20倍多单;首次使用高倍杠杆(>20倍)，请使用主账号登录web端同意高倍杠杆协议后，才能使用接口下高倍杠杆(>20倍)] |  |
