@@ -4725,7 +4725,7 @@ No：
 | symbol | false | string | Contract Code	 | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"... |
 | contract_type | false | string | Contract Type | “this_week”:Weekly，“next_week”:Bi-weekly，“quarter”:Quarterly ,Next Quarterly Contract: "next_quarter"|
 | contract_code | false | string | Contract Code | BTC190903 |
-| volume | true | int | Order Quantity(volume) |  |
+| volume | true | long | Order Quantity(volume) |  |
 | direction | true | string | “buy”:Open，“sell”:Close |  |
 | client_order_id | false | long | Client order ID.must be Less or Equal than 9223372036854775807 |  |
 | order_price_type | false  | string | "lightning" by default. "lightning_fok": lightning FOK type,"lightning_ioc": lightning IOC type|  |
@@ -5598,7 +5598,7 @@ ts                     | true     | long    | timestamp                |        
 | trigger_price | true | Decimal | Trigger Price |  |
 | order_price | false | Decimal | Order Price |  |
 | order_price_type | false |  | order price type： "limit" by default;"optimal_5", "optimal_10"，"optimal_20" |  |
-| volume | true | int | volume |  |
+| volume | true | long | volume |  |
 | direction | true | string | buy sell |  |
 | offset | true | string | open close |  |
 | lever_rate | true | int | Long leverage shall be equal to short leverage.[Using Leverage greater than 20 times requires prior approval of high-leverage agreement for the first time. ] |  |
