@@ -3978,7 +3978,7 @@ No：
 |   Parameter Name                 |    Mandatory    |   Type   |   Desc             |   Value Range       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | contract_code      | true             | string       | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT"                                                    |
-| volume | true | decimal | Order Quantity(Cont) |  |
+| volume | true | long | Order Quantity(Cont) |  |
 | direction | true | string | “buy”:Open，“sell”:Close |  |
 | client_order_id | false | long | Client needs to provide unique API and have to maintain the API themselves afterwards.must be Less or Equal than 9223372036854775807 |  |
 | order_price_type | false  | string | "lightning" by default. "lightning_fok": lightning FOK type,"lightning_ioc": lightning IOC type|  |
@@ -4586,7 +4586,7 @@ ts                     | true     | long    | timestamp                |        
 | trigger_price | true | decimal | Trigger Price |  |
 | order_price | false | decimal | Order Price |  |
 | order_price_type | false | string | order price type： "limit" by default;"optimal_5", "optimal_10"，"optimal_20" |  |
-| volume | true | decimal | volume |  |
+| volume | true | long | volume |  |
 | direction | true | string | buy sell |  |
 | offset | true | string | open close |  |
 | lever_rate | false | int | Long leverage shall be equal to short leverage.[Using Leverage greater than 20 times requires prior approval of high-leverage agreement for the first time.] |  |
