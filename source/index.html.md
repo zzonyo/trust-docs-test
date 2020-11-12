@@ -2311,8 +2311,8 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 symbol  |    true  |  string  |  合约名称  |  | 支持大小写， 如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约"。支持使用合约code来订阅 例如："BTC200918"(当周)，"BTC200925"(次周)，"BTC201225"(季度)，"BTC210326"(次季度)。  |
 period  |    true  |  string  |  K线类型  |  |  1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon  |
 size  |  false  |  int    |  获取数量   |  150  |  [1,2000]  |
-from  |  false  |  int  |  开始时间戳 10位 单位S |    |
-to  |  false  |  int  |   结束时间戳 10位 单位S |    |
+from  |  false  |  long  |  开始时间戳 10位 单位S |    |
+to  |  false  |  long  |   结束时间戳 10位 单位S |    |
 
 ### Note
    - 1、size字段或者from、to字段至少要填写一个。
@@ -7506,7 +7506,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | **参数名称**                | **类型**  | **描述** |
 | ----------------------- | -------- | ------- |
 | id | long | 唯一标识 |  |
-| contract_price | string | 合约基准价，与基差价格类型匹配 |  |
+| contract_price | string | 合约最新成交价 |  |
 | index_price | string | 指数基准价，与基差价格类型匹配 |  |
 | basis | string | 基差=合约基准价 - 指数基准价 |  |
 | basis_rate | string | 基差率=基差/指数基准价 |  |
@@ -7605,7 +7605,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | **参数名称**                | **类型**  | **描述** |
 | ----------------------- | -------- | ------- |
 | id | long | 唯一标识 |  |
-| contract_price | string | 合约基准价，与基差价格类型匹配 |  |
+| contract_price | string | 合约最新成交价 |  |
 | index_price | string | 指数基准价，与基差价格类型匹配 |  |
 | basis | string | 基差=合约基准价 - 指数基准价 |  |
 | basis_rate | string | 基差率=基差/指数基准价 |  |
