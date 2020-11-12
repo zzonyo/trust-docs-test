@@ -1486,9 +1486,9 @@ curl "https://api.hbdm.com/option-ex/market/history/kline?period=1min&size=200&c
 | ------------- | -------- | ------- | --------------------- | ----------------------------------------------------- |
 | contract_code | true     | string  | Contract Code              | "BTC-USDT-201225-C-13000" ...                          |
 | period        | true     | string  | kline Type               | 1min, 5min, 15min, 30min, 60min, 4hour,1day,1week,1mon |
-| size          | false    | integer | Request Amount, default 150    | [1,2000]                                              |
-| from          | false    | integer | Start Timestamp, 10 digits, seconds |                                                       |
-| to            | false    | integer | End Timestamp, 10 digits, seconds |                                                       |
+| size          | false    | int | Request Amount, default 150    | [1,2000]                                              |
+| from          | false    | long | Start Timestamp, 10 digits, seconds |                                                       |
+| to            | false    | long | End Timestamp, 10 digits, seconds |                                                       |
 
 ### Note
 
