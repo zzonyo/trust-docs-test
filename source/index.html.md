@@ -2957,7 +2957,7 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 | ch     | true | string | data channel，eg： market.basis |                | |
 | \<data\> |  | object array |  |  |
 | id | true | long | unique id |  |
-| contract_price | true | string | contract price |  |
+| contract_price | true | string | contract last price |  |
 | index_price | true | string | index price |  |
 | basis | true | string | basis=contract_price - index_price |  |
 | basis_rate | true | string | basis_rate=basis/index_price |  |
