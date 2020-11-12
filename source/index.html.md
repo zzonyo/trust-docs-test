@@ -1457,8 +1457,8 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/kline?contract_code=BTC
 | contract_code | true | string  | 合约代码 |  "BTC-USDT" ...  |
 | period | true | string  | K线类型   | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week,1mon |
 | size   | false | int | 获取数量，默认150 |  [1,2000]  |
-| from   | false | int | 开始时间戳 10位 单位S |   |
-| to   | false | int | 结束时间戳 10位 单位S |  |
+| from   | false | long | 开始时间戳 10位 单位S |   |
+| to   | false | long | 结束时间戳 10位 单位S |  |
 
 ### 备注
 
@@ -6658,7 +6658,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | ch      | string | 数据所属的 channel，格式： market.period |                | |
 | \<tick\>    |    object array    |               |                | |
 | id  | long | 唯一标识 |  |
-| contract_price  | string | 合约基准价，与基差价格类型匹配 |  |
+| contract_price  | string | 合约最新成交价 |  |
 | index_price  | string | 指数基准价，与基差价格类型匹配 |  |
 | basis  | string | 基差=合约基准价 - 指数基准价 |  |
 | basis_rate | string | 基差率=基差/指数基准价 |  |
@@ -6747,7 +6747,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | ts     | true | long | 响应生成时间点，单位：毫秒                   |                | |
 | \<data\>    |    object array    |               |                | |
 | id | true  | long | 唯一标识 |  |
-| contract_price | true  | string | 合约基准价，与基差价格类型匹配 |  |
+| contract_price | true  | string | 合约最新成交价 |  |
 | index_price | true  | string | 指数基准价，与基差价格类型匹配 |  |
 | basis | true  | string | 基差=合约基准价 - 指数基准价 |  |
 | basis_rate | true | string | 基差率=基差/指数基准价 |  |
