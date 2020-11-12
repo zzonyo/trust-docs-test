@@ -758,7 +758,7 @@
 做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动。
 </aside>
 
-<p>欢迎有优秀 maker 策略交易量大的用户参与长期合约做市商项目。如果您的火币交割合约账户中有折合大于 5 BTC 资产，或火币币本位永续合约账户中有折合大于 3 BTC 资产，或火币期权合约账户中有折合大于 3 BTC 资产，或火币USDT本位永续合约账户中有大于 30000 USDT 资产，请提供以下信息到 dm_mm@huobi.com（做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动）:</p>
+<p>欢迎有优秀 maker 策略交易量大的用户参与长期合约做市商项目。如果您的火币交割合约账户中有折合大于 3 BTC 资产，或火币币本位永续合约账户中有折合大于 3 BTC 资产，或火币期权合约账户中有折合大于 3 BTC 资产，或火币USDT本位永续合约账户中有大于 30000 USDT 资产，请提供以下信息到 dm_mm@huobi.com（做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动）:</p>
 
 <ol>
 <li>提供火币UID （需不存在返佣关系的 UID）；</li>
@@ -3402,7 +3402,7 @@ step6是不合并小数；
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>&lt;list&gt;(属性名称: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -3465,7 +3465,7 @@ step6是不合并小数；
 <td>合约状态: 0:已下市、1:上市、2:待上市、3:停牌，4:暂停上市中、5:结算中、6:交割中、7:结算完成、8:交割完成、9:暂停上市</td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -3534,7 +3534,7 @@ step6是不合并小数；
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>&lt;list&gt;(属性名称: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -3562,7 +3562,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -3648,7 +3648,7 @@ step6是不合并小数；
 <td>&quot;ok&quot; ,&quot;error&quot;</td>
 </tr>
 <tr>
-<td>&lt;list&gt;(属性名称: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -3690,7 +3690,7 @@ step6是不合并小数；
 <td>当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot; ,次季:&quot;next_quarter&quot;</td>
 </tr>
 <tr>
-<td>&lt;list&gt;</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -3773,7 +3773,7 @@ step6是不合并小数；
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>&lt;list&gt;(属性名称: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -3815,7 +3815,7 @@ step6是不合并小数；
 <td>如&quot;BTC180914&quot; ...</td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -3880,7 +3880,7 @@ step6是不合并小数；
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>&lt;list&gt;(属性名称: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -3894,7 +3894,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -4146,7 +4146,7 @@ step6是不合并小数；
 <td>ch</td>
 <td>true</td>
 <td>string</td>
-<td>数据所属的 channel，格式：market.$contract_code.depth.type</td>
+<td>数据所属的 channel，格式：market.$symbol.depth.$type</td>
 <td></td>
 </tr>
 <tr>
@@ -4181,7 +4181,7 @@ step6是不合并小数；
 <td>ch</td>
 <td>true</td>
 <td>string</td>
-<td>数据所属的 channel，格式： market.period</td>
+<td>数据所属的 channel，格式：market.$symbol.depth.$type</td>
 <td></td>
 </tr>
 <tr>
@@ -4394,7 +4394,7 @@ step6是不合并小数；
 <td>ch</td>
 <td>true</td>
 <td>string</td>
-<td>数据所属的 channel，格式： market.period</td>
+<td>数据所属的 channel，格式：market.$symbol.kline.$period</td>
 <td></td>
 </tr>
 <tr>
@@ -4498,8 +4498,8 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>合约名称</td>
-<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约, &quot;BTC_NQ&quot;表示次季度合约&quot;。支持使用合约code来订阅 例如：&quot;BTC200918&quot;(当周)，&quot;BTC200925&quot;(次周)，&quot;BTC201225&quot;(季度)，&quot;BTC210326&quot;(次季度)。</td>
 <td></td>
+<td>支持大小写，如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约, &quot;BTC_NQ&quot;表示次季度合约&quot;。支持使用合约code来订阅 例如：&quot;BTC200918&quot;(当周)，&quot;BTC200925&quot;(次周)，&quot;BTC201225&quot;(季度)，&quot;BTC210326&quot;(次季度)。</td>
 </tr>
 </tbody></table>
 
@@ -4517,7 +4517,7 @@ step6是不合并小数；
       "amount": 成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)
       "bid": [买1价,买1量(张)],
       "ask": [卖1价,卖1量(张)]
-     }
+    }
 </code></pre>
 <blockquote>
 <p>Response:</p>
@@ -4561,7 +4561,7 @@ step6是不合并小数；
 <td>ch</td>
 <td>true</td>
 <td>string</td>
-<td>数据所属的 channel，格式： market.\$symbol.detail.merged</td>
+<td>数据所属的 channel，格式： market.$symbol.detail.merged</td>
 <td></td>
 </tr>
 <tr>
@@ -4641,6 +4641,12 @@ step6是不合并小数；
 <td>amount</td>
 <td>string</td>
 <td>成交量(币)</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>时间戳</td>
 <td></td>
 </tr>
 <tr>
@@ -4735,7 +4741,7 @@ step6是不合并小数；
 <td>ch</td>
 <td>true</td>
 <td>string</td>
-<td>数据所属的 channel，格式： market.$contract_code.trade.detail</td>
+<td>数据所属的 channel，格式： market.$symbol.trade.detail</td>
 <td></td>
 </tr>
 <tr>
@@ -4776,7 +4782,7 @@ step6是不合并小数；
 <tr>
 <td>amount</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>成交量(张)，买卖双边成交量之和</td>
 <td></td>
 </tr>
@@ -4859,7 +4865,7 @@ step6是不合并小数；
 <td>true</td>
 <td>int</td>
 <td>获取交易记录的数量</td>
-<td>1</td>
+<td></td>
 <td>[1, 2000]</td>
 </tr>
 </tbody></table>
@@ -4932,7 +4938,7 @@ step6是不合并小数；
 <td>ch</td>
 <td>true</td>
 <td>string</td>
-<td>数据所属的 channel，格式： market.$contract_code.trade.detail</td>
+<td>数据所属的 channel，格式： market.$symbol.trade.detail</td>
 <td></td>
 </tr>
 <tr>
@@ -5548,7 +5554,7 @@ step6是不合并小数；
 <tr>
 <td>volume</td>
 <td>true</td>
-<td>decimal</td>
+<td>string</td>
 <td>持仓量</td>
 <td></td>
 </tr>
@@ -5581,11 +5587,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-
-<ul>
-<li>注意：</li>
-</ul>
-
+<h3 id='4c95618614'>注意：</h3>
 <p>tick字段：数组内的数据按照时间倒序排列；
   data字段：字典类型。</p>
 <h2 id='06c58fa171'>精英账户多空持仓对比-账户数</h2><h3 id='69fffaf196-2'>实例</h3>
@@ -5907,7 +5909,7 @@ step6是不合并小数；
 <td>false</td>
 <td>int</td>
 <td>页码,不填默认第1页</td>
-<td></td>
+<td>1</td>
 <td></td>
 </tr>
 <tr>
@@ -5915,8 +5917,8 @@ step6是不合并小数；
 <td>false</td>
 <td>int</td>
 <td>不填默认20，不得多于50</td>
-<td></td>
-<td></td>
+<td>20</td>
+<td>[1-50]</td>
 </tr>
 </tbody></table>
 
@@ -5963,14 +5965,14 @@ step6是不合并小数；
 <td></td>
 </tr>
 <tr>
-<td>&lt;object&gt;(属性名称: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(属性名称: orders)</td>
+<td>&lt;orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -6026,7 +6028,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -6054,7 +6056,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 <tr>
-<td>&lt;/object&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -15134,7 +15136,7 @@ step6是不合并小数；
 <td>type的值为ticket时必填；登陆时返回</td>
 </tr>
 </tbody></table>
-<h4 id='4c95618614'>注意：</h4>
+<h4 id='4c95618614-2'>注意：</h4>
 <ul>
 <li><p>为了减少已有用户的接入工作量，此处使用了与REST接口同样的签名算法进行鉴权。</p></li>
 <li><p>请注意大小写</p></li>
