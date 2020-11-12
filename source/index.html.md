@@ -1480,9 +1480,9 @@ curl "https://api.hbdm.com//option-ex/market/history/kline?period=1min&size=200&
 | ------ | ---- | ------- | ---- | ---------------------------------------- |
 | contract_code | true | string  | 合约代码 |  "BTC-USDT-201225-C-13000" ...  |
 | period | true | string  | K线类型   | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week,1mon |
-| size   | false | integer | 获取数量，默认150 |  [1,2000]  |
-| from   | false | integer | 开始时间戳 10位 单位S |   |
-| to   | false | integer | 结束时间戳 10位 单位S |  |
+| size   | false | int | 获取数量，默认150 |  [1,2000]  |
+| from   | false | long | 开始时间戳 10位 单位S |   |
+| to   | false | ling | 结束时间戳 10位 单位S |  |
 
 ### 备注
 - 1、size与from&to 必填其一，若全不填则返回空数据。
