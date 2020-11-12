@@ -3160,7 +3160,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 | status | true | string | status |  |
 | \<data\> | true | object |  |  |
 | id | true | long | unique id |  |
-| contract_price | true | string | contract price|  |
+| contract_price | true | string | contract last price |  |
 | index_price | true | string | index price|  |
 | basis | true | string | basis=contract_price - index_price |  |
 | basis_rate | true | string | basis_rate=basis/index_price |  |
