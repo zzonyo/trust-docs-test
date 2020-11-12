@@ -2224,9 +2224,9 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 | ------------------ | ------------- | -------- | -------------------- | ----------- | ------------------------------------------------------------ |
 | symbol             | true          | string   | Contract Name        |             | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”. contract code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 | period             | true          | string   | Kline Type          |             | 1min, 5min, 15min, 30min, 60min, 1hour,4hour,1day, 1mon      |
-| size               | false         | integer  | Acquisition Quantity | 150         | [1,2000]                                                     |
-| from              | false         | integer  | start timestamp seconds. |         |                                                    |
-| to               | false         | integer  | end timestamp seconds |          |                                                      |
+| size               | false         | int  | Acquisition Quantity | 150         | [1,2000]                                                     |
+| from              | false         | long  | start timestamp seconds. |         |                                                    |
+| to               | false         | long  | end timestamp seconds |          |                                                      |
 ### Note
 
 - Either `size` field or `from`/`to` fields need to be filled.
@@ -7401,7 +7401,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | **parameter name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | id | true | long | unique id |  |
-| contract_price | true | string | contract price|  |
+| contract_price | true | string | contract last price |  |
 | index_price | true | string | index price|  |
 | basis | true | string | basis=contract_price - index_price |  |
 | basis_rate | true | string | basis_rate=basis/index_price |  |
@@ -7497,7 +7497,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | **parameter name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | id | true | long | unique id |  |
-| contract_price | true | string | contract price|  |
+| contract_price | true | string | contract last price |  |
 | index_price | true | string | index price|  |
 | basis | true | string | basis=contract_price - index_price |  |
 | basis_rate | true | string | basis_rate=basis/index_price |  |
