@@ -3868,8 +3868,9 @@ balance|-|decimal|-		|账户余额	|-|
 | order-orderprice-precision-error | 交易价格精度错误 |
 | order-orderamount-precision-error | 交易数额精度错误 |
 | order-value-min-error | 订单交易额不能低于指定额度 |
-| order-marketorder-amount-min-error | 市价单交易数额错误不能低于指定数额 |
-| order-marketorder-amount-max-error  | 市价单交易数额错误不能大于指定数额 |
+| order-marketorder-amount-min-error | 卖出数量不能低于指定数量 |
+| order-marketorder-amount-buy-max-error | 市价单买入额度不能高于指定额度 |
+| order-marketorder-amount-sell-max-error | 市价单卖出数量不能高于指定数量 |
 | order-holding-limit-failed | 下单超出该币种的持仓限额 |
 | order-type-invalid | 订单类型非法 |
 | order-orderstate-error | 订单状态错误 |
