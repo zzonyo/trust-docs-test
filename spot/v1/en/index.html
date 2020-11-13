@@ -8541,11 +8541,15 @@ Rate Limit (NEW): 20times/2s</p>
 </tr>
 <tr>
 <td>order-marketorder-amount-min-error</td>
-<td>Market order amount cannot be less than specific amount</td>
+<td>Market order sell amount cannot be less than specific amount</td>
 </tr>
 <tr>
-<td>order-marketorder-amount-max-error</td>
-<td>Market order amount cannot be more than specific amount</td>
+<td>order-marketorder-amount-buy-max-error</td>
+<td>Market order buy amount(value) cannot be more than specific amount(value)</td>
+</tr>
+<tr>
+<td>order-marketorder-amount-sell-max-error</td>
+<td>Market order sell amount cannot be more than specific amount</td>
 </tr>
 <tr>
 <td>order-holding-limit-failed</td>
@@ -11865,8 +11869,8 @@ The conditional order before triggering, as well as the conditional order failed
 <td>Exceed the limit</td>
 </tr>
 <tr>
-<td>endtime-greater-than-begintime</td>
-<td>Start time cannot be greater than end time</td>
+<td>start-date-cannot-greater-than-end-date</td>
+<td>Start date cannot be greater than end date</td>
 </tr>
 <tr>
 <td>frequent-invoke</td>
@@ -18659,6 +18663,14 @@ The topic disseminates the current static value of individual accounts first, at
 <tr>
 <td>invalid-type</td>
 <td>type not &#39;buy&#39; or &#39;sell&#39;</td>
+</tr>
+<tr>
+<td>quote-exceed-price-limit</td>
+<td>offered price exceed limit (less than 0.9 or more than 1.1)</td>
+</tr>
+<tr>
+<td>quote-exceed-time-limit</td>
+<td>offered price is out of time</td>
 </tr>
 <tr>
 <td>quote-failure</td>
