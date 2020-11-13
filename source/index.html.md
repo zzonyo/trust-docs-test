@@ -846,7 +846,7 @@ https://api.hbdm.com| 火币合约|   行情     | 火币合约的交易品种  
 
 ### 备注
 
-"https://api.hbdm.com"如果无法访问请使用："https://api.btcgateway.pro"。
+ 如果api.hbdm.com无法访问，可以使用api.btcgateway.pro来做调试，AWS服务器用户推荐使用api.hbdm.vn；
 
 ## 签名认证
 
@@ -2554,8 +2554,8 @@ symbol  |    true  |  string  |  合约名称  |  |  支持大小写，如"BTC_C
 | id     | true | long | 成交id       |      |
 | price     | true | string | 成交价       |      |
 | ts     | true | long | 成交时间       |      |
-|\</data\>      |  |  |              |      |
-|\</tick\>      |  |  |              |      |
+| \</data\>      |  |  |              |      |
+| \</tick\>      |  |  |              |      |
 | ts     | true | long | 发送时间       |      |
 
 
@@ -4132,7 +4132,7 @@ liquidation_price | decimal | true | 预估爆仓价                        |
 lever_rate | int | true | 杠杆倍数                                |
 adjust_factor | float | true | 调整系数                             |
 margin_static | decimal  | true  | 静态权益                         |
-\<list\>(属性名称: positions) |              |          |                            |
+\<positions\> |              |          |                            |
 symbol | string | true | 合约品种                                                                        |
 contract_code |  string | true  | 合约代码	"BTC180914" ...                                               |
 contract_type  | string |  true | 合约类型	当周:"this_week", 次周:"next_week", 当季:"quarter", 次季:"next_quarter"                  |
@@ -4148,7 +4148,7 @@ position_margin |  decimal |  true | 持仓保证金                            
 lever_rate | int | true | 杠杆倍数                                                                    |
 direction | string  | true  | "buy":买 "sell":卖	                                                    |
 last_price | decimal  | true  | 最新价                                                                 |
-\</list\>                  |              |          |                            |
+\</positions\>                  |              |          |                            |
 
 
 ## 母子账户划转
@@ -4175,7 +4175,7 @@ last_price | decimal  | true  | 最新价                                       
 | amount | true | decimal | 划转金额 ||
 | type | true | string | 划转类型 | 仅支持小写,master_to_sub：母账户划转到子账户， sub_to_master：子账户划转到母账户 |
 
-- 备注：
+### 备注：
   母账户与每个子账户相互划转限频10次/分钟。
   
 > Response:
@@ -4214,8 +4214,8 @@ last_price | decimal  | true  | 最新价                                       
 | symbol | true | string | 品种代码 | 支持大小写, "BTC","ETH"... |
 | transfer_type | false | string | 划转类型，不填查询全部类型,【查询多类型中间用，隔开】 | 34:转出到子账号合约账户 35:从子账号合约账户转入  |
 | create_date | true | int | 日期 | 可随意输入正整数，如果参数超过90则默认查询90天的数据 |
-| page_index | false | int | 页码，不填默认第1页 | 1 |
-| page_size | false | int | 不填默认20，不得多于50 | 20 |
+| page_index | false | int | 页码，不填默认第1页 |  |
+| page_size | false | int | 不填默认20，不得多于50 | [1-50] |
 
 > Response:
 
@@ -4302,13 +4302,13 @@ last_price | decimal  | true  | 最新价                                       
 | cancel_ratio        | true | decimal  | 用户撤单率的实际值           |  |
 | is_trigger        | true | int  | 用户是否触发该指标           | 	1：已经触发，0：没有触发 |
 | is_active        | true | int  | 该指标是否开启          | 1：已启用，0：未启用
-| \</COR>       | true | dict object  |  |
+| \</COR>       |  |   |  |
 | \<TDN>       | true | dict object  | 表示总禁用次数的指标（Total Disable Number）|
 | disables_threshold        | true | long  | 总禁用次数的阈值         |  |
 | disables        | true | long  | 总禁用次数的实际值         |  | 
 | is_trigger        | true | long  | 用户是否触发该指标           | 	1：已经触发，0：没有触发 |
 | is_active        | true | long  | 该指标是否开启          | 1：已启用，0：未启用
-| \</TDN>       | true | dict object  |  |
+| \</TDN>       |  |   |  |
 | \</data\>     |      |         |         |   |
 
  > 例子：
@@ -6178,6 +6178,10 @@ err-msg(中文） |  err-msg(English)  |  补充说明   |
  
  如果对合约订单推送订阅有疑问，可以参考[Demo](https://github.com/huobiapi/Futures-Java-demo)
  
+### 备注
+
+ 如果api.hbdm.com无法访问，可以使用api.btcgateway.pro来做调试，AWS服务器用户推荐使用api.hbdm.vn； 
+ 
 ## 访问次数限制
 
 公开行情接口和用户私有接口都有访问次数限制
@@ -6271,6 +6275,10 @@ api接口response中的header返回以下字段
 - 统一服务地址
 
   `wss://api.hbdm.com/notification`
+  
+### 备注
+
+ 如果api.hbdm.com无法访问，可以使用api.btcgateway.pro来做调试，AWS服务器用户推荐使用api.hbdm.vn；  
   
 正常ws请求连接不能同时超过30个
 
