@@ -5272,7 +5272,7 @@ Below is the error code and description for Cross margin loan APIs (including ge
 |base-currency-not-open | The currency is not enabled |
 |beyond-maximum-number-of-rollover | Transfer amount exceed the limit |
 |exceed-maximum-amount | Exceed the limit |
-|endtime-greater-than-begintime | Start time cannot be greater than end time |
+|start-date-cannot-greater-than-end-date | Start date cannot be greater than end date |
 |frequent-invoke | Operates too frequently |
 |loan-order-not-found | Loan order is not found |
 |loan-amount-scale-limit | Loan order amount precision error |
@@ -8991,6 +8991,8 @@ Below is the error code and the description from stable coin APIs
 | invalid-currency    | invalid currency |
 | invalid-amount     | amount < 1,000 or amount > quota limit |
 | invalid-type   | type not 'buy' or 'sell'|
+| quote-exceed-price-limit | offered price exceed limit (less than 0.9 or more than 1.1) |
+| quote-exceed-time-limit | offered price is out of time |
 | quote-failure|other errors|
 | invalid-quote-id    | Paramemter ‘quote-id’ is invalid |
 | insufficient-balance | insufficient balance to buy or sell stable coins |
