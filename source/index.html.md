@@ -554,7 +554,7 @@ https://api.hbdm.com| 火币合约|   API     | 火币合约的交易品种  |
 
 ### 备注
 
-"https://api.hbdm.com"如果无法访问请使用："https://api.btcgateway.pro"。
+ 如果api.hbdm.com无法访问，可以使用api.btcgateway.pro来做调试，AWS服务器用户推荐使用api.hbdm.vn；
 
 
 ## 签名认证
@@ -5828,10 +5828,13 @@ data  |    true  |   long    |     划转流水ID |  |
 
 合约站指数K线及基差数据订阅地址：wss://api.btcgateway.pro/ws_index
 
- 合约站系统状态更新订阅地址：wss://api.btcgateway.pro/center-notification
-
+合约站系统状态更新订阅地址：wss://api.btcgateway.pro/center-notification
 
 如果对合约订单推送订阅有疑问，可以参考[Demo](https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#2cff7db524)
+ 
+### 备注
+
+ 如果api.hbdm.com无法访问，可以使用api.btcgateway.pro来做调试，AWS服务器用户推荐使用api.hbdm.vn； 
  
 ## 访问次数限制
 
@@ -5926,6 +5929,10 @@ api接口response中的header返回以下字段
 - 统一服务地址
 
   合约站订单推送订阅地址：wss://api.hbdm.com/swap-notification
+  
+### 备注
+  
+   如果api.hbdm.com无法访问，可以使用api.btcgateway.pro来做调试，AWS服务器用户推荐使用api.hbdm.vn；
   
   正常ws请求连接不能同时超过30个
 
