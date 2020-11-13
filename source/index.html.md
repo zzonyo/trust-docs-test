@@ -3872,8 +3872,9 @@ Below is the error code and description returned by Trading APIs
 | order-orderprice-precision-error | Order price precision error |
 | order-orderamount-precision-error | Order amount precision error |
 | order-value-min-error | Order value cannot be lower than specific value |
-| order-marketorder-amount-min-error | Market order amount cannot be less than specific amount |
-| order-marketorder-amount-max-error  | Market order amount cannot be more than specific amount |
+| order-marketorder-amount-min-error | Market order sell amount cannot be less than specific amount |
+| order-marketorder-amount-buy-max-error | Market order buy amount(value) cannot be more than specific amount(value) |
+| order-marketorder-amount-sell-max-error | Market order sell amount cannot be more than specific amount |
 | order-holding-limit-failed | Exceed the holding limit of the currency |
 | order-type-invalid | Order type is invalid |
 | order-orderstate-error | Order state is invalid |
