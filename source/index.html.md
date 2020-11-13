@@ -104,7 +104,7 @@ https://api.hbdm.com  | Huobi Option |  API       | Trading pairs provided by Hu
 
 ### Notice
 
- - If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro".
+If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro" for debug purpose. If your server is deployed in AWS, we recommend using "https://api.hbdm.vn".
 
 ## Signature Authentication & Verification
 
@@ -4655,6 +4655,8 @@ System status updates subscription ：wss://api.btcgateway.pro/center-notificati
 
 - If you have further queries about Huobi Option order push subscription, please refer to [Demo](https://docs.huobigroup.com/docs/option/v1/en/#code-demo)
 
+- If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro" for debug purpose. If your server is deployed in AWS, we recommend using "https://api.hbdm.vn".
+
 ## API Rate Limit Illustration
 
 There is rate limit for both public and private interfaces. More details are laid out as below:
@@ -4762,10 +4764,12 @@ Note: Once the WebSocket Client and WebSocket Server get connected, the server w
 ## Order Push Address
 
 - Huobi Option uses one official address:
+
   `wss://api.hbdm.com/option-notification`
 
-
 #### Note: 
+
+- If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro" for debug purpose. If your server is deployed in AWS, we recommend using "https://api.hbdm.vn".
 
 - Please note that the WS request connection should not go over 30 normally.
 
