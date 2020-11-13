@@ -5822,6 +5822,8 @@ data  |    true  |   long    |     划转流水ID |  |
 
 合约站系统状态更新订阅地址：wss://api.hbdm.com/center-notification
 
+如果api.hbdm.com域名访问不了，可使用：
+
 合约站行情请求以及订阅地址为：wss://api.btcgateway.pro/swap-ws
 
 合约站订单推送订阅地址：wss://api.btcgateway.pro/swap-notification
