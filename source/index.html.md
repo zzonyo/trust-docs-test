@@ -515,7 +515,7 @@ https://api.hbdm.com  | Huobi Coin Margined Swap |  API       | Trading pairs pr
 
 ### Notice
 
- If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro".
+If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro" for debug purpose. If your server is deployed in AWS, we recommend using "https://api.hbdm.vn".
 
 
 ## Signature Authentication & Verification
@@ -5806,7 +5806,11 @@ Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
 System status updates subscription ：wss://api.btcgateway.pro/center-notification
 
 If you have further queries about Huobi Coin Margined Swap order push subscription, please refer to [Demo](https://github.com/hbdmapi/hbdm_Python)
- 
+
+### Note:
+
+If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro" for debug purpose. If your server is deployed in AWS, we recommend using "https://api.hbdm.vn".
+
 ## API Rate Limit Illustration
 
 There is rate limit for both public and private interfaces. More details are laid out as below:
@@ -5916,7 +5920,11 @@ Note: Once the WebSocket Client and WebSocket Server get connected, the server w
 
 - Huobi Coin Margined Swap uses one official address:
   `wss://api.hbdm.com/swap-notification`
-  
+
+### Note:
+
+If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro" for debug purpose. If your server is deployed in AWS, we recommend using "https://api.hbdm.vn".
+
 Please note that the WS request connection should not go over 30 normally.
 
 ### Data Compression
