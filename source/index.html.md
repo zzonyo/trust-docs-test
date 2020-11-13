@@ -820,7 +820,7 @@ https://api.hbdm.com  | Huobi Future |    Market     | Trading pairs provided by
 
 ### Notice
 
- If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro".
+ If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro" for debug purpose. If your server is deployed in AWS, we recommend using "https://api.hbdm.vn".
 
 ## Signature Authentication & Verification
 
@@ -6072,6 +6072,11 @@ System status updates subscription ：wss://api.btcgateway.pro/center-notificati
 
 If you have further queries about Huobi Future order push subscription, please refer to [Demo](https://github.com/huobiapi/Futures-Java-demo)
 
+### Note:
+
+If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro" for debug purpose. If your server is deployed in AWS, we recommend using "https://api.hbdm.vn".
+
+
 ## API Rate Limit Illustration
 
 There is rate limit for both public and private interfaces. More details are laid out as below:
@@ -6182,6 +6187,10 @@ Note: Once the WebSocket Client and WebSocket Server get connected, the server w
 - Huobi Future uses one official address:
 
   `wss://api.hbdm.com/notification`
+
+### Note:
+
+If you can't connect "https://api.hbdm.com", please use "https://api.btcgateway.pro" for debug purpose. If your server is deployed in AWS, we recommend using "https://api.hbdm.vn".
 
 Please note that the WS request connection should not go over 30 normally.
 
