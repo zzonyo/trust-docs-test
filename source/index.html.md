@@ -5795,10 +5795,10 @@ Index Kline Data and Basis Data Subscription: wss://api.hbdm.com/ws_index
 
 System status updates subscription ：wss://api.hbdm.com/center-notification
 
-If you fail visiting the two addresses above, you can also visit: 
+If the url: api.hbdm.com can't be accessed, please use the url below:
 
 Market Data Request and Subscription Address: wss://api.btcgateway.pro/swap-ws;
- 
+
 Order Push Subscription：wss://api.btcgateway.pro/swap-notification
 
 Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
