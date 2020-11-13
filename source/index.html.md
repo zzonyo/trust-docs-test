@@ -6168,7 +6168,9 @@ err-msg(中文） |  err-msg(English)  |  补充说明   |
  
  合约站系统状态更新订阅地址：wss://api.hbdm.com/center-notification
  
- 如果这个两个地址访问不了，可使用：合约站行情请求以及订阅地址为：wss://api.btcgateway.pro/ws
+ 如果api.hbdm.com域名访问不了，可使用：
+ 
+ 合约站行情请求以及订阅地址为：wss://api.btcgateway.pro/ws
  
  合约站订单推送订阅地址：wss://api.btcgateway.pro/notification
 
