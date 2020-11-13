@@ -4642,11 +4642,11 @@ Market Data Request and Subscription: wss://api.hbdm.com/option-ws
 Order Push Subscription: wss://api.hbdm.com/option-notification
 
 System status updates subscription ：wss://api.hbdm.com/center-notification
- 
-If you fail visiting the two addresses above, you can also visit: 
+
+If the url: api.hbdm.com can't be accessed, please use the url below:
 
 Market Data Request and Subscription Address: wss://api.btcgateway.pro/option-ws;
- 
+
 Order Push Subscription：wss://api.btcgateway.pro/option-notification
 
 System status updates subscription ：wss://api.btcgateway.pro/center-notification
