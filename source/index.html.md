@@ -5300,7 +5300,7 @@ API Key 权限：读取<br>
 | base-currency-not-open                   | currency还没有开放 该保证金币种未开启 |
 | beyond-maximum-number-of-rollover        | 超出最大转出数量                      |
 | exceed-maximum-amount                    | 超出最大数量                          |
-| endtime-greater-than-begintime           | 结束时间应该大于开始时间              |
+| start-date-cannot-greater-than-end-date  | 开始时间不能大于结束时间              |
 | frequent-invoke                          | 操作过于频繁，请稍后重试              |
 | loan-order-not-found                     | 订单未找到                            |
 | loan-amount-scale-limit                  | 借贷&还款 金额精度限制                |
