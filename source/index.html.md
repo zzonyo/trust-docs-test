@@ -3069,7 +3069,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | 参数名称        | 是否必须  | 类型     | 描述    | 取值范围  |
 | ----------- | ----- | ------ | ---------------------- | ---------------------------------------- |
 | margin_account      | true <img width=250/>  | string | 保证金账户  <img width=1000/>    | "BTC-USDT"...     |
-| type        | false | string | 不填查询全部类型,【查询多类型中间用，隔开】 | 平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29，资金费-收入：30，资金费-支出：31, 转出到子账号合约账户: 34, 从子账号合约账户转入:35, 转出到母账号合约账户: 36, 从母账号合约账户转入: 37，从其他保证金账户转入：38，转出到其他保证金账户：39  |
+| type        | false | string | 不填查询全部类型,【查询多类型中间用，隔开】 | 3:平多; 4:平空; 5:开仓手续费-吃单; 6:开仓手续费-挂单; 7:平仓手续费-吃单; 8:平仓手续费-挂单; 9:交割平多; 10:交割平空; 11:交割手续费; 12:强制平多; 13:强制平空; 14:从币币转入; 15:转出至币币; 16:结算未实现盈亏-多仓; 17:结算未实现盈亏-空仓; 19:穿仓分摊; 26:系统; 28:活动奖励; 29:返利; 30:资金费-收入; 31:资金费-支出; 34:转出到子账号合约账户; 35:从子账号合约账户转入; 36:转出到母账号合约账户; 37:从母账号合约账户转入; 38:从其他保证金账户转入; 39:转出到其他保证金账户;  |
 | create_date | false | int    | 可随意输入正整数，如果参数超过90则默认查询90天的数据，默认7 |                                          |
 | page_index  | false | int    | 第几页,不填默认第一页            |                                          |
 | page_size   | false | int    | 不填默认20，不得多于50          |                                          |
@@ -3119,7 +3119,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | contract_code                | true | string  | 合约代码         | "BTC-USDT"...                           |
 | margin_account                | true | string  | 保证金账户          | "BTC-USDT"...                           |
 | face_margin_account           | true | string  | 对手方保证金账户，仅在type交易类型为34、35、36、37、38、39时有值，其他类型为空字符串          | "BTC-USDT"...                           |
-| type                  | true | int     | 交易类型          | 平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，强制平多：12，强制平空：13，从币币转入：14，转出至币币：15，结算未实现盈亏-多仓：16，结算未实现盈亏-空仓：17，穿仓分摊：19，系统：26，活动奖励：28，返利：29，资金费-收入：30，资金费-支出：31, 转出到子账号合约账户: 34, 从子账号合约账户转入:35, 转出到母账号合约账户: 36, 从母账号合约账户转入: 37，从其他保证金账户转入：38，转出到其他保证金账户：39  |
+| type                  | true | int     | 交易类型          | 3:平多; 4:平空; 5:开仓手续费-吃单; 6:开仓手续费-挂单; 7:平仓手续费-吃单; 8:平仓手续费-挂单; 9:交割平多; 10:交割平空; 11:交割手续费; 12:强制平多; 13:强制平空; 14:从币币转入; 15:转出至币币; 16:结算未实现盈亏-多仓; 17:结算未实现盈亏-空仓; 19:穿仓分摊; 26:系统; 28:活动奖励; 29:返利; 30:资金费-收入; 31:资金费-支出; 34:转出到子账号合约账户; 35:从子账号合约账户转入; 36:转出到母账号合约账户; 37:从母账号合约账户转入; 38:从其他保证金账户转入; 39:转出到其他保证金账户;   |
 | amount                | true | decimal | 金额（计价货币）            |                                          |
 | \</financial_record\> |     |         |               |                                          |
 | current_page          | true | int     | 当前页           |                                          |
@@ -3535,7 +3535,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | 参数名称   | 是否必须  | 类型     | 描述   | 取值范围      |
 | ------ | ----- | ------ | ---- | ---------------------------- |
 | margin_account | true | string | 保证金账户	 |  "BTC-USDT"... |
-| transfer_type | false | string | 划转类型，不填查询全部类型,【查询多类型中间用，隔开】 | 转出到子账号合约账户：34， 从子账号合约账户转入：35 |
+| transfer_type | false | string | 划转类型，不填查询全部类型,【查询多类型中间用，隔开】 | 34:转出到子账号合约账户;  35:从子账号合约账户转入; |
 | create_date | true | int | 日期 | 可随意输入正整数，如果参数超过90则默认查询90天的数据 |
 | page_index | false | int | 页码，不填默认第1页 | 1 |
 | page_size | false | int | 不填默认20，不得多于50 | 20 |
@@ -3585,7 +3585,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | to_margin_account | true | string | 转入的保证金账户	 |  "BTC-USDT"... |
 | sub_uid        | true | string  | 子账户UID            |  |
 | sub_account_name        | true | string  | 子账户登录名            |  |
-| transfer_type        | true | int  | 划转类型            | 转出到子账号合约账户：34， 从子账号合约账户转入：35 |
+| transfer_type        | true | int  | 划转类型            | 34:转出到子账号合约账户; 35:从子账号合约账户转入; |
 | amount        | true | decimal  | 金额            |  |
 | \</transfer_record\>     |      |         |         |   |
 | total_page        | true | int  | 总页数            |  |
@@ -7872,7 +7872,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | lever_rate            | true | int    | 杠杆倍数              |                         |
 | order_id      | true | decimal | 计划委托单订单ID                |                                          |
 | order_id_str             | true | string | 字符串类型的订单ID              |                                          |
-| relation_order_id             | true | string | 该字段为关联限价单的关联字段，是t_trigger_order 表中的order_id 字段值，关联t_order表中的user_order_id 值，未触发前数值为-1  |         |
+| relation_order_id             | true | string | 该字段为关联限价单的关联字段，未触发前数值为-1  |         |
 | order_price_type        | true  | string | 订单报价类型 |                  "limit":限价，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档     |
 | status        | true  | int | 订单状态|    2:已提交、4:报单成功、5:报单失败、6:已撤单    |
 | order_source      | true | string  | 来源        |                                          |
