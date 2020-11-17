@@ -11680,9 +11680,9 @@ step6是不合并小数；
 <td>page_size</td>
 <td>false</td>
 <td>int</td>
-<td>每页条数，不填默认20</td>
+<td>每页条数，不填默认20,不得多于50</td>
 <td>20</td>
-<td>不得多于50</td>
+<td>[1-50]</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -11764,14 +11764,14 @@ step6是不合并小数；
 <td></td>
 </tr>
 <tr>
-<td>&lt;object&gt;(属性名称: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(属性名称: orders)</td>
+<td>&lt;orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -11817,7 +11817,7 @@ step6是不合并小数；
 <td>true</td>
 <td>int</td>
 <td>杠杆倍数</td>
-<td>1\5\10\20</td>
+<td>1,5,10,20</td>
 </tr>
 <tr>
 <td>direction</td>
@@ -11935,11 +11935,11 @@ step6是不合并小数；
 <td>liquidation_type</td>
 <td>true</td>
 <td>string</td>
-<td>强平类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管</td>
-<td></td>
+<td>强平类型</td>
+<td>0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管</td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -11967,7 +11967,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 <tr>
-<td>&lt;/object&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -12084,7 +12084,7 @@ step6是不合并小数；
 
 <ul>
 <li>start_time：取值范围为[(当前时间 - 90天)，当前时间] ；默认值取clamp（end_time - 10天，当前时间-90天，当前时间-10天），即时间最远取当前时间-90天，最近取当前时间-10天。</li>
-<li>end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。</li>
+<li>end_time：取值范围为：[(当前时间 - 90天)，above++)]，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。</li>
 </ul></li>
 <li>当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询创建时间大于等于起始时间，且小于等于结束时间的历史委托数据。</li>
 <li>无论查询方向是向前还是向后，返回的数据都是按创建时间倒序。</li>
@@ -12536,13 +12536,9 @@ step6是不合并小数；
 <td>int</td>
 <td>不填默认20，不得多于50</td>
 <td>20</td>
-<td></td>
+<td>[1-50]</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-17'>备注</h3>
-<ul>
-<li>请求参数“create_date”，由只能填写7或90 改为 可随意输入正整数，如果参数超过90则默认查询90天的数据；</li>
-</ul>
 
 <blockquote>
 <p>Response: </p>
@@ -12597,14 +12593,14 @@ step6是不合并小数；
 <td></td>
 </tr>
 <tr>
-<td>&lt;object&gt;(属性名称: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(属性名称: trades)</td>
+<td>&lt;trades&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -12737,7 +12733,7 @@ step6是不合并小数；
 <td>（&quot;BTC&quot;,&quot;ETH&quot;...）</td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/trades&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -12765,7 +12761,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 <tr>
-<td>&lt;/object&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -12779,10 +12775,9 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-18'>备注</h3>
+<h3 id='e0361480e3-17'>备注</h3>
 <ul>
-<li><p>如果不传page_index和page_size，默认只查第一页的20条数据，详情请看参数说明:</p></li>
-<li><p>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</p></li>
+<li>order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。</li>
 </ul>
 <h2 id='921239dec1'>组合查询历史成交记录接口</h2>
 <ul>
@@ -12861,7 +12856,7 @@ step6是不合并小数；
 
 <ul>
 <li>start_time：取值范围为[(当前时间 - 90天)，当前时间] ；默认值取clamp（end_time - 10天，当前时间-90天，当前时间-10天），即时间最远取当前时间-90天，最近取当前时间-10天。</li>
-<li>end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。</li>
+<li>end_time：取值范围为：[(当前时间 - 90天)，above++)]，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。</li>
 </ul></li>
 <li>当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询成交时间大于等于起始时间，且小于等于结束时间的成交数据。</li>
 <li>无论查询方向是向前还是向后，返回的数据都是按成交时间倒序。</li>
@@ -13204,7 +13199,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>api/v1/lightning_close_position</code></li>
 </ul>
-<h3 id='e0361480e3-19'>备注</h3>
+<h3 id='e0361480e3-18'>备注</h3>
 <p>闪电平仓，是指在对手价平仓的基础上，实行&#39;最优30档&#39;成交，即用户发出的平仓订单能够迅速以30档范围内对手方价格进行成交，未成交部分自动转为限价委托单。</p>
 
 <p>闪电平仓的平仓价格具备可预期的效果，避免在行情急涨急跌时订单无法成交时造成用户损失。</p>
@@ -13359,7 +13354,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>api/v1/contract_trigger_order</code></li>
 </ul>
-<h3 id='e0361480e3-20'>备注</h3>
+<h3 id='e0361480e3-19'>备注</h3>
 <ul>
 <li><p>如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单；</p></li>
 <li><p>optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单order_price价格参数不用传，&quot;limit&quot;:限价需要传价格。</p></li>
@@ -13484,6 +13479,17 @@ step6是不合并小数；
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604372634548</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>错误的返回:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1037</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The leverage is invalid. Please contact the customer service."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1605495536623</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='70bdef7e25-47'>返回参数</h3>
 <table><thead>
 <tr>
@@ -13513,7 +13519,7 @@ step6是不合并小数；
 </tr>
 <tr>
 <td>data</td>
-<td>List<OrderInsertRspInfo></td>
+<td>List&lt;OrderInsertRspInfo&gt;</td>
 <td>false</td>
 <td>返回数据-泛型，支持各种返回的数据格式类型</td>
 </tr>
@@ -13620,7 +13626,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(属性名称: errors)</td>
+<td>&lt;errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -13648,7 +13654,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -13708,7 +13714,7 @@ step6是不合并小数；
 <td>合约类型  当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;, 次季:&quot;next_quarter&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-21'>备注</h3>
+<h3 id='e0361480e3-20'>备注</h3>
 <ul>
 <li><p>只传symbol，撤该该品种下所有周期的合约</p></li>
 <li><p>只要有contract_code，则撤销该code的合约</p></li>
@@ -13753,7 +13759,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(属性名称: errors)</td>
+<td>&lt;errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -13781,7 +13787,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -13950,7 +13956,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(属性名称: orders)</td>
+<td>&lt;orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -13981,8 +13987,8 @@ step6是不合并小数；
 <td>trigger_type</td>
 <td>string</td>
 <td>true</td>
-<td>触发类型： <code>ge</code>大于等于；<code>le</code>小于等于</td>
-<td></td>
+<td>触发类型</td>
+<td><code>ge</code>大于等于；<code>le</code>小于等于</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -13995,29 +14001,29 @@ step6是不合并小数；
 <td>order_type</td>
 <td>int</td>
 <td>true</td>
-<td>订单类型：1、报单  2、撤单</td>
-<td></td>
+<td>订单类型</td>
+<td>1、报单  2、撤单</td>
 </tr>
 <tr>
 <td>direction</td>
 <td>string</td>
 <td>true</td>
-<td>订单方向 [买(buy),卖(sell)]</td>
-<td></td>
+<td>订单方向</td>
+<td>[买(buy),卖(sell)]</td>
 </tr>
 <tr>
 <td>offset</td>
 <td>string</td>
 <td>true</td>
-<td>开平标志 [开(open),平(close)]</td>
-<td></td>
+<td>开平标志</td>
+<td>[开(open),平(close)]</td>
 </tr>
 <tr>
 <td>lever_rate</td>
 <td>int</td>
 <td>true</td>
-<td>杠杆倍数 1\5\10\20</td>
-<td></td>
+<td>杠杆倍数</td>
+<td>1，5，10，20</td>
 </tr>
 <tr>
 <td>order_id</td>
@@ -14065,18 +14071,18 @@ step6是不合并小数；
 <td>order_price_type</td>
 <td>string</td>
 <td>true</td>
-<td>订单报价类型 &quot;limit&quot;:限价，&quot;optimal_5&quot;:最优5档，&quot;optimal_10&quot;:最优10档，&quot;optimal_20&quot;:最优20档</td>
-<td></td>
+<td>订单报价类型</td>
+<td>&quot;limit&quot;:限价，&quot;optimal_5&quot;:最优5档，&quot;optimal_10&quot;:最优10档，&quot;optimal_20&quot;:最优20档</td>
 </tr>
 <tr>
 <td>status</td>
 <td>int</td>
 <td>true</td>
-<td>订单状态：1:准备提交、2:已提交、3:报单中、8：撤单未找到、9：撤单中、10：失败&#39;</td>
-<td></td>
+<td>订单状态</td>
+<td>1:准备提交、2:已提交、3:报单中、8：撤单未找到、9：撤单中、10：失败&#39;</td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -14144,7 +14150,7 @@ step6是不合并小数；
 <td>int</td>
 <td>页码，不填默认第1页</td>
 <td>1</td>
-<td>第几页，不填默认第一页</td>
+<td></td>
 </tr>
 <tr>
 <td>page_size</td>
@@ -14152,13 +14158,12 @@ step6是不合并小数；
 <td>int</td>
 <td>不填默认20，不得多于50</td>
 <td>20</td>
-<td>不填默认20，不得多于50</td>
+<td>[1-50]</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-22'>备注</h3>
+<h3 id='e0361480e3-21'>备注</h3>
 <ul>
-<li><p>默认查询 已完成订单（type对应状态范围 4、5、6）；</p></li>
-<li><p>请求参数“create_date”，由只能填写7或90 改为 可随意输入正整数，如果参数超过90则默认查询90天的数据；</p></li>
+<li>默认查询 已完成订单（type对应状态范围 4、5、6）；</li>
 </ul>
 
 <blockquote>
@@ -14270,7 +14275,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(属性名称: orders)</td>
+<td>&lt;orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -14301,8 +14306,8 @@ step6是不合并小数；
 <td>trigger_type</td>
 <td>string</td>
 <td>true</td>
-<td>触发类型： <code>ge</code>大于等于；<code>le</code>小于等于</td>
-<td></td>
+<td>触发类型</td>
+<td><code>ge</code>大于等于；<code>le</code>小于等于</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -14315,35 +14320,35 @@ step6是不合并小数；
 <td>order_type</td>
 <td>int</td>
 <td>true</td>
-<td>订单类型：1、报单  2、撤单</td>
-<td></td>
+<td>订单类型</td>
+<td>1、报单  2、撤单</td>
 </tr>
 <tr>
 <td>direction</td>
 <td>string</td>
 <td>true</td>
-<td>订单方向 [买(buy),卖(sell)]</td>
-<td></td>
+<td>订单方向</td>
+<td>[买(buy),卖(sell)]</td>
 </tr>
 <tr>
 <td>offset</td>
 <td>string</td>
 <td>true</td>
-<td>开平标志 [开(open),平(close)]</td>
-<td></td>
+<td>开平标志</td>
+<td>[开(open),平(close)]</td>
 </tr>
 <tr>
 <td>lever_rate</td>
 <td>int</td>
 <td>true</td>
-<td>杠杆倍数 1\5\10\20</td>
-<td></td>
+<td>杠杆倍数</td>
+<td>1,5,10,20</td>
 </tr>
 <tr>
 <td>order_id</td>
 <td>int</td>
 <td>true</td>
-<td>计划委托单订单ID，是t_trigger_order 表中的user_order_id 字段值</td>
+<td>计划委托单订单ID</td>
 <td></td>
 </tr>
 <tr>
@@ -14357,22 +14362,22 @@ step6是不合并小数；
 <td>relation_order_id</td>
 <td>string</td>
 <td>true</td>
-<td>该字段为关联限价单的关联字段，是t_trigger_order 表中的order_id 字段值，关联t_order表中的user_order_id 值，未触发前数值为-1</td>
+<td>该字段为关联限价单的订单id，未触发前数值为-1</td>
 <td></td>
 </tr>
 <tr>
 <td>order_price_type</td>
 <td>string</td>
 <td>true</td>
-<td>订单报价类型 &quot;limit&quot;:限价，&quot;optimal_5&quot;:最优5档，&quot;optimal_10&quot;:最优10档，&quot;optimal_20&quot;:最优20档</td>
-<td></td>
+<td>订单报价类型</td>
+<td>&quot;limit&quot;:限价，&quot;optimal_5&quot;:最优5档，&quot;optimal_10&quot;:最优10档，&quot;optimal_20&quot;:最优20档</td>
 </tr>
 <tr>
 <td>status</td>
 <td>int</td>
 <td>true</td>
-<td>订单状态(4:报单成功、5:报单失败、6:已撤单 )</td>
-<td></td>
+<td>订单状态</td>
+<td>(4:报单成功、5:报单失败、6:已撤单 )</td>
 </tr>
 <tr>
 <td>order_source</td>
@@ -14445,7 +14450,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -14456,7 +14461,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>https://api.huobi.pro/v1/futures/transfer</code></li>
 </ul>
-<h3 id='e0361480e3-23'>备注</h3>
+<h3 id='e0361480e3-22'>备注</h3>
 <p>此接口用户币币现货账户与交割合约账户之间的资金划转。</p>
 
 <p>从现货现货账户转至交割合约账户，类型为<code>pro-to-futures</code>; 从交割合约账户转至现货账户，类型为<code>futures-to-pro</code></p>
@@ -14481,7 +14486,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>币种,不区分大小写</td>
-<td>e.g. btc,BTC</td>
+<td>e.g. btc,eth</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -14879,7 +14884,7 @@ step6是不合并小数；
 <p>合约站系统状态更新订阅地址：wss://api.btcgateway.pro/center-notification</p>
 
 <p>如果对合约订单推送订阅有疑问，可以参考<a href="https://github.com/huobiapi/Futures-Java-demo">Demo</a></p>
-<h3 id='e0361480e3-24'>备注</h3>
+<h3 id='e0361480e3-23'>备注</h3>
 <p>如果api.hbdm.com无法访问，可以使用api.btcgateway.pro来做调试，AWS服务器用户推荐使用api.hbdm.vn； </p>
 <h2 id='4977e9e52a-2'>访问次数限制</h2>
 <p>公开行情接口和用户私有接口都有访问次数限制</p>
@@ -14970,7 +14975,7 @@ step6是不合并小数；
 </ul>
 
 <p><code>wss://api.hbdm.com/notification</code></p>
-<h3 id='e0361480e3-25'>备注</h3>
+<h3 id='e0361480e3-24'>备注</h3>
 <p>如果api.hbdm.com无法访问，可以使用api.btcgateway.pro来做调试，AWS服务器用户推荐使用api.hbdm.vn；  </p>
 
 <p>正常ws请求连接不能同时超过30个</p>
@@ -15310,7 +15315,27 @@ step6是不合并小数；
 <td>仅支持小写，1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='70bdef7e25-53'>返回参数</h3>
+
+<blockquote>
+<p>之后每当 KLine 有更新时，client 会收到数据，例子:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC_CW.kline.1min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1604385120328</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1604385120</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mrid"</span><span class="p">:</span><span class="mi">113842458873</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"open"</span><span class="p">:</span><span class="mf">13436.12</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"close"</span><span class="p">:</span><span class="mf">13436.12</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"high"</span><span class="p">:</span><span class="mf">13436.12</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"low"</span><span class="p">:</span><span class="mf">13436.12</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vol"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='70bdef7e25-53'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -15398,27 +15423,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-
-<blockquote>
-<p>之后每当 KLine 有更新时，client 会收到数据，例子:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC_CW.kline.1min"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1604385120328</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1604385120</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"mrid"</span><span class="p">:</span><span class="mi">113842458873</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"open"</span><span class="p">:</span><span class="mf">13436.12</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"close"</span><span class="p">:</span><span class="mf">13436.12</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"high"</span><span class="p">:</span><span class="mf">13436.12</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"low"</span><span class="p">:</span><span class="mf">13436.12</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"vol"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">0</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='kline-2'>请求 KLine 数据</h2><h3 id='websocket-api-server-2'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
+<h2 id='kline-2'>请求 KLine 数据</h2><h3 id='websocket-api-server-2'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;req&quot;: &quot;market.$symbol.kline.$period&quot;,</code></p>
@@ -15502,14 +15507,14 @@ step6是不合并小数；
 </tr>
 <tr>
 <td>period</td>
-<td>false</td>
+<td>true</td>
 <td>string</td>
 <td>K线周期</td>
 <td></td>
 <td>仅支持小写，1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-26'>备注</h4>
+<h4 id='e0361480e3-25'>备注</h4>
 <p>[t1, t5] 假设有 t1  ~ t5 的K线：</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -15728,9 +15733,9 @@ step6是不合并小数；
 <td>获得150档深度数据，使用step0, step1, step2, step3, step4, step5, step14, step15 （step1至step15是进行了深度合并后的深度），使用step0时，不合并深度获取150档数据;获得20档深度数据，使用 step6, step7, step8, step9, step10, step11, step12, step13（step7至step13是进行了深度合并后的深度），使用step6时，不合并深度获取20档数据</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-27'>备注</h3>
+<h3 id='e0361480e3-26'>备注</h3>
 <ul>
-<li><p>用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</p></li>
+<li><p>合并深度时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</p></li>
 <li><p>step1至step5,step14,step15是进行了深度合并后的150档深度数据，step7至step13是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
 <li><p>Depth类型字段对应精度如下：</p></li>
 </ul>
@@ -15873,7 +15878,7 @@ step6是不合并小数；
 <td>ch</td>
 <td>true</td>
 <td>string</td>
-<td>数据所属的 channel，格式： market.period</td>
+<td>数据所属的 channel，格式： market.$symbol.depth.$type</td>
 <td></td>
 </tr>
 <tr>
@@ -15936,7 +15941,7 @@ step6是不合并小数；
 <td>ch</td>
 <td>true</td>
 <td>string</td>
-<td>数据所属的 channel，格式： market.period</td>
+<td>数据所属的 channel，格式：market.$symbol.depth.$type</td>
 <td></td>
 </tr>
 <tr>
@@ -16022,9 +16027,9 @@ step6是不合并小数；
 <td>size</td>
 <td>true</td>
 <td>string</td>
+<td>档位数</td>
 <td></td>
-<td></td>
-<td>档位数，20:表示20档不合并的深度，150:表示150档不合并的深度</td>
+<td>20:表示20档不合并的深度，150:表示150档不合并的深度</td>
 </tr>
 </tbody></table>
 
@@ -16980,7 +16985,7 @@ step6是不合并小数；
 <td>仅支持小写,1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-28'>备注</h3>
+<h3 id='e0361480e3-27'>备注</h3>
 <ul>
 <li><p>当指数有变化时会推送;</p></li>
 <li><p>指数无变化时会根据订阅的周期推送；</p></li>
@@ -17017,7 +17022,7 @@ step6是不合并小数；
 <tr>
 <td>ch</td>
 <td>string</td>
-<td>数据所属的 channel，格式： market.period</td>
+<td>数据所属的 channel，格式： market.$symbol.index.$period</td>
 <td></td>
 <td></td>
 </tr>
@@ -17235,7 +17240,7 @@ step6是不合并小数；
 <td>req</td>
 <td>true</td>
 <td>string</td>
-<td>数据所属的 channel，格式： market.basis</td>
+<td>数据所属的 channel，格式：market.$symbol.index.$period</td>
 <td></td>
 </tr>
 <tr>
@@ -17407,7 +17412,7 @@ step6是不合并小数；
 <td>false</td>
 <td>string</td>
 <td>基差价格类型，表示在周期内计算基差使用的价格类型</td>
-<td>不填，默认为使用开盘价</td>
+<td>不填，默认为使用开盘价 （open）</td>
 <td>开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average</td>
 </tr>
 </tbody></table>
@@ -17446,7 +17451,7 @@ step6是不合并小数；
 <td>ch</td>
 <td>true</td>
 <td>string</td>
-<td>数据所属的 channel，格式： market.period</td>
+<td>数据所属的 channel，格式：market.$symbol.basis.$period.$basis_price_type</td>
 <td></td>
 <td></td>
 </tr>
@@ -17595,7 +17600,7 @@ step6是不合并小数；
 <td>false</td>
 <td>string</td>
 <td>基差价格类型，表示在周期内计算基差使用的价格类型</td>
-<td>不填，默认为使用开盘价</td>
+<td>不填，默认为使用开盘价 （open）</td>
 <td>开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average</td>
 </tr>
 </tbody></table>
@@ -17646,7 +17651,7 @@ step6是不合并小数；
 <td>req</td>
 <td>true</td>
 <td>string</td>
-<td>数据所属的 channel，格式： market.period</td>
+<td>数据所属的 channel，格式：market.$symbol.basis.$period.$basis_price_type</td>
 <td></td>
 <td></td>
 </tr>
@@ -17769,17 +17774,17 @@ step6是不合并小数；
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>必填；订阅主题名称，orders.$symbol;symbol支持大小写，比如BTC</td>
+<td>必填；订阅主题名称，orders.$symbol;symbol支持大小写，比如：BTC,ETH</td>
 </tr>
 </tbody></table>
-
-<blockquote>
-<p>成交详情通知数据格式说明</p>
-</blockquote>
 
 <ul>
 <li>备注：postOnly的报单收到的WS推送要么是报单成功，状态为3，要么是7，已撤单。</li>
 </ul>
+
+<blockquote>
+<p>成交详情通知数据格式说明</p>
+</blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
@@ -17979,7 +17984,7 @@ step6是不合并小数；
 <td>强平类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管</td>
 </tr>
 <tr>
-<td>&lt;list&gt;(属性名称: trade)</td>
+<td>&lt;trade&gt;</td>
 <td></td>
 <td></td>
 </tr>
@@ -18029,7 +18034,7 @@ step6是不合并小数；
 <td>手续费币种</td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/trade&gt;</td>
 <td></td>
 <td></td>
 </tr>
@@ -18078,7 +18083,7 @@ step6是不合并小数；
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>必填;待取消订阅主题名称，orders.$symbol;symbol支持大小写，比如BTC</td>
+<td>必填;待取消订阅主题名称，orders.$symbol;symbol支持大小写，比如:BTC,ETH</td>
 </tr>
 </tbody></table>
 <h3 id='25b9181131'>订阅与取消订阅规则说明</h3>
@@ -18920,7 +18925,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-29'>备注</h3>
+<h3 id='e0361480e3-28'>备注</h3>
 <ul>
 <li><p>每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。如果 5 秒内已经触发过推送，则该品种跳过该次定期推送。</p></li>
 <li><p>当用户持仓量为0时使用切换杠杆的接口，持仓推送接口不会推送&quot;switch_lever_rate&quot;。</p></li>
@@ -20143,7 +20148,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-30'>备注</h3>
+<h3 id='e0361480e3-29'>备注</h3>
 <ul>
 <li>这个推送由于是轮询判断状态的，所以推送可能存在1—2秒的延迟。</li>
 </ul>
