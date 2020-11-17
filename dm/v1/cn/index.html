@@ -14786,6 +14786,22 @@ step6是不合并小数；
 <tr>
 <td>读取</td>
 <td>市场行情接口</td>
+<td>market.$symbol.depth.size_${size}.high_freq</td>
+<td>sub</td>
+<td>订阅 Market Depth增量推送数据</td>
+<td>否</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>市场行情接口</td>
+<td>market.$symbol.bbo</td>
+<td>sub</td>
+<td>买一卖一逐笔行情推送</td>
+<td>否</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>市场行情接口</td>
 <td>market.$symbol.detail</td>
 <td>sub</td>
 <td>订阅 Market detail 数据</td>
@@ -14809,10 +14825,50 @@ step6是不合并小数；
 </tr>
 <tr>
 <td>读取</td>
-<td>系统状态接口</td>
-<td>public.$service.heartbeat</td>
+<td>指数与基差接口</td>
+<td>market.$symbol.basis.$period.$basis_price_type</td>
 <td>sub</td>
-<td>订阅系统状态更新</td>
+<td>订阅基差数据</td>
+<td>否</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>指数与基差接口</td>
+<td>market.$symbol.basis.$period.$basis_price_type</td>
+<td>req</td>
+<td>请求基差数据</td>
+<td>否</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>指数与基差接口</td>
+<td>market.$symbol.index.$period</td>
+<td>sub</td>
+<td>订阅(sub)指数K线数据</td>
+<td>否</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>指数与基差接口</td>
+<td>market.$symbol.index.$period</td>
+<td>req</td>
+<td>请求(req)指数K线数据</td>
+<td>否</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>交易接口</td>
+<td>public.$symbol.liquidation_orders</td>
+<td>sub</td>
+<td>订阅强平订单数据（免鉴权）</td>
+<td>否</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>交易接口</td>
+<td>public.$symbol.contract_info</td>
+<td>sub</td>
+<td>订阅合约信息变动数据（免鉴权）</td>
 <td>否</td>
 </tr>
 <tr>
@@ -14825,6 +14881,22 @@ step6是不合并小数；
 </tr>
 <tr>
 <td>读取</td>
+<td>资产接口</td>
+<td>accounts.$symbol</td>
+<td>sub</td>
+<td>订阅资产变动数据</td>
+<td>是</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>资产接口</td>
+<td>positions.$symbol</td>
+<td>sub</td>
+<td>订阅持仓变动更新数据</td>
+<td>是</td>
+</tr>
+<tr>
+<td>读取</td>
 <td>交易接口</td>
 <td>matchOrders.$symbol</td>
 <td>sub</td>
@@ -14833,35 +14905,19 @@ step6是不合并小数；
 </tr>
 <tr>
 <td>读取</td>
-<td>资产接口</td>
-<td>accounts.$symbol</td>
-<td>sub</td>
-<td>订阅某个品种下的资产变动信息</td>
-<td>是</td>
-</tr>
-<tr>
-<td>读取</td>
-<td>资产接口</td>
-<td>positions.$symbol</td>
-<td>sub</td>
-<td>订阅某个品种下的持仓变动信息</td>
-<td>是</td>
-</tr>
-<tr>
-<td>读取</td>
 <td>交易接口</td>
 <td>trigger_order.$symbol</td>
 <td>sub</td>
-<td>订阅计划委托订单更新</td>
+<td>订阅计划委托订单更新ws推送</td>
 <td>是</td>
 </tr>
 <tr>
 <td>读取</td>
-<td>交易接口</td>
-<td>public.$symbol.liquidation_orders</td>
+<td>系统状态接口</td>
+<td>public.$service.heartbeat</td>
 <td>sub</td>
-<td>订阅某个品种下的强平订单信息</td>
-<td>是</td>
+<td>订阅系统状态更新</td>
+<td>否</td>
 </tr>
 </tbody></table>
 <h2 id='af44fd2dcc'>合约订阅地址</h2>
@@ -17774,7 +17830,7 @@ step6是不合并小数；
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>必填；订阅主题名称，orders.$symbol;symbol支持大小写，比如：BTC,ETH</td>
+<td>必填；订阅主题名称，orders.$symbol;  symbol支持大小写，比如：BTC,ETH ;当 $symbol值为 * 时代表订阅所有品种;</td>
 </tr>
 </tbody></table>
 
@@ -17985,7 +18041,7 @@ step6是不合并小数；
 </tr>
 <tr>
 <td>&lt;trade&gt;</td>
-<td></td>
+<td>list</td>
 <td></td>
 </tr>
 <tr>
@@ -18083,7 +18139,7 @@ step6是不合并小数；
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>必填;待取消订阅主题名称，orders.$symbol;symbol支持大小写，比如:BTC,ETH</td>
+<td>必填;待取消订阅主题名称:orders.$symbol; symbol支持大小写，比如:BTC,ETH ;  当 $symbol值为 * 时代表取消订阅所有品种;</td>
 </tr>
 </tbody></table>
 <h3 id='25b9181131'>订阅与取消订阅规则说明</h3>
@@ -18164,7 +18220,7 @@ step6是不合并小数；
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>matchOrders.$symbol;    symbol支持大小写，比如BTC</td>
+<td>必填，订阅主题名称:matchOrders.$symbol;  symbol支持大小写，比如：BTC，ETH ; 当 $symbol值为 * 时代表订阅所有品种;</td>
 </tr>
 </tbody></table>
 <h4 id='9852b06629-14'>备注：</h4>
@@ -18296,8 +18352,8 @@ step6是不合并小数；
 <td>订单总委托数量</td>
 </tr>
 <tr>
-<td>&lt;list&gt;(属性名称: trade)</td>
-<td></td>
+<td>&lt;trade&gt;</td>
+<td>list</td>
 <td></td>
 </tr>
 <tr>
@@ -18336,7 +18392,7 @@ step6是不合并小数；
 <td>taker或maker</td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/trade&gt;</td>
 <td></td>
 <td></td>
 </tr>
@@ -18420,7 +18476,7 @@ step6是不合并小数；
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>必填;待取消订阅主题名称，matchOrders.$symbol;symbol支持大小写，比如BTC</td>
+<td>必填;待取消订阅主题名:matchOrders.$symbol;  symbol支持大小写，比如:BTC,ETH ; 当 $symbol值为 * 时代表取消订阅所有品种;</td>
 </tr>
 </tbody></table>
 <h3 id='25b9181131-2'>订阅与取消订阅规则说明</h3>
@@ -18501,7 +18557,7 @@ step6是不合并小数；
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>必填；订阅主题名称，必填 (accounts.$symbol)  订阅、取消订阅某个品种下的资产变更信息，当 $symbol值为 * 时代表订阅所有品种; symbol支持大小写，比如BTC</td>
+<td>必填；订阅主题名称: accounts.$symbol;  symbol支持大小写，比如：BTC，ETH  ; 当 $symbol值为 * 时代表订阅所有品种;</td>
 </tr>
 </tbody></table>
 
@@ -18568,7 +18624,7 @@ step6是不合并小数；
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
-<td></td>
+<td>list</td>
 <td></td>
 </tr>
 <tr>
@@ -18690,7 +18746,7 @@ step6是不合并小数；
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>必填;必填；必填；订阅主题名称，必填 (accounts.$symbol)  订阅、取消订阅某个品种下的资产变更信息，当 $symbol值为 * 时代表订阅所有品种;symbol支持大小写</td>
+<td>必填;待取消订阅主题名称: accounts.$symbol;  symbol支持大小写,比如：BTC，ETH ; 当 $symbol值为 * 时代表取消订阅所有品种;</td>
 </tr>
 </tbody></table>
 <h3 id='25b9181131-3'>订阅与取消订阅规则说明</h3>
@@ -18771,7 +18827,7 @@ step6是不合并小数；
 <tr>
 <td>topic</td>
 <td style="text-align: left">string</td>
-<td style="text-align: left">必填；订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的持仓变更信息，当 $symbol值为 * 时代表订阅所有品种,symbol支持大小写</td>
+<td style="text-align: left">必填；订阅主题名称:positions.$symbol; symbol支持大小写,比如:BTC,ETH ;  当 $symbol值为 * 时代表订阅所有品种</td>
 </tr>
 </tbody></table>
 
@@ -18841,7 +18897,7 @@ step6是不合并小数；
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
-<td></td>
+<td>list</td>
 <td></td>
 </tr>
 <tr>
@@ -18974,7 +19030,7 @@ step6是不合并小数；
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>必填;必填；必填；订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的资产变更信息; symbol支持大小写</td>
+<td>必填；待取消订阅主题名称:positions.$symbol;  symbol支持大小写,比如:BTC,ETH ;  当 $symbol值为 * 时代表取消订阅所有品种</td>
 </tr>
 </tbody></table>
 <h3 id='25b9181131-4'>订阅与取消订阅规则说明</h3>
@@ -19060,7 +19116,7 @@ step6是不合并小数；
 <td>topic</td>
 <td>true</td>
 <td>string</td>
-<td>订阅主题名称，必填 (public.$symbol.liquidation_orders) 订阅某个品种下的强平订单信息；$symbol为品种代码（BTC、ETH），如果值为 * 时代表订阅所有品种; symbol支持大小写</td>
+<td>必填;订阅主题名称:public.$symbol.liquidation_orders; 订阅某个品种下的强平订单信息；$symbol为品种代码（BTC、ETH），如果值为 * 时代表订阅所有品种; symbol支持大小写</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -19152,7 +19208,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 <tr>
-<td>&lt;\data&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -19201,7 +19257,7 @@ step6是不合并小数；
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-65'>返回参数</h3>
+</span></code></pre><h3 id='c084539f16'>取消订阅请求参数</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -19222,28 +19278,10 @@ step6是不合并小数；
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>订阅主题名称，必填 (public.$symbol.liquidation_orders)  订阅、取消订阅某个品种下的资产变更信息;symbol支持大小写</td>
-</tr>
-<tr>
-<td>ts</td>
-<td>long</td>
-<td>必填;响应生成时间点，单位：毫秒</td>
+<td>必填;订阅主题名称:public.$symbol.liquidation_orders; symbol支持大小写 比如:BTC,ETH ; 当 $symbol值为 * 时代表取消订阅所有品种</td>
 </tr>
 </tbody></table>
-
-<blockquote>
-<p>取消订阅成功返回数据示例:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.eos.liquidation_orders"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='25b9181131-5'>订阅与取消订阅规则说明</h3>
+<h3 id='25b9181131-5'>订阅与取消订阅规则说明</h3>
 <table><thead>
 <tr>
 <th>订阅(sub)</th>
@@ -19314,21 +19352,21 @@ step6是不合并小数；
 <td>op</td>
 <td>true</td>
 <td>string</td>
-<td>订阅固定值为sub</td>
+<td>必填；订阅固定值为sub</td>
 <td></td>
 </tr>
 <tr>
 <td>cid</td>
 <td>false</td>
 <td>string</td>
-<td>Client 请求唯一 ID</td>
+<td>选填；Client 请求唯一 ID</td>
 <td></td>
 </tr>
 <tr>
 <td>topic</td>
 <td>true</td>
 <td>string</td>
-<td>订阅主题名称，必填 (public.$symbol.contract_info) 订阅某个品种下的合约变动信息；$symbol为品种代码（BTC、ETH），如果值为 * 时代表订阅所有品种; symbol支持大小写;</td>
+<td>必填；订阅主题名称:public.$symbol.contract_info; 订阅某个品种下的合约变动信息；$symbol为品种代码（BTC、ETH），如果值为 * 时代表订阅所有品种; symbol支持大小写;</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -19381,7 +19419,7 @@ step6是不合并小数；
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-66'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-65'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -19480,7 +19518,7 @@ step6是不合并小数；
 <td>true</td>
 <td>int</td>
 <td>合约状态</td>
-<td>合约状态: 0:已下市、1:上市、2:待上市、3:停牌，4:暂停上市中、5:结算中、6:交割中、7:结算完成、8:交割完成、9:暂停交易中</td>
+<td>0:已下市、1:上市、2:待上市、3:停牌，4:暂停上市中、5:结算中、6:交割中、7:结算完成、8:交割完成、9:暂停交易中</td>
 </tr>
 <tr>
 <td>&lt;/data&gt;</td>
@@ -19542,7 +19580,7 @@ step6是不合并小数；
 <tr>
 <td style="text-align: left">topic</td>
 <td style="text-align: left">string</td>
-<td style="text-align: left">必填;必填；必填；订阅主题名称，必填 (public.$symbol.contract_info)  订阅、取消订阅某个合约代码下的资产变更信息，当 $symbol值为 * 时代表订阅所有合约代码;</td>
+<td style="text-align: left">必填;待取消订阅主题名称:public.$symbol.contract_info;  symbol支持大小写，比如:BTC,ETH ; 当 $symbol值为 * 时代表取消订阅所有合约代码;</td>
 </tr>
 </tbody></table>
 <h3 id='25b9181131-6'>订阅与取消订阅规则说明</h3>
@@ -19606,29 +19644,25 @@ step6是不合并小数；
 <th>是否必须</th>
 <th>类型</th>
 <th>描述</th>
-<th>取值范围</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>op</td>
 <td>true</td>
 <td>string</td>
-<td>订阅固定值为sub</td>
-<td></td>
+<td>必填；订阅固定值为sub</td>
 </tr>
 <tr>
 <td>cid</td>
 <td>false</td>
 <td>string</td>
-<td>Client 请求唯一 ID</td>
-<td></td>
+<td>选填；Client 请求唯一 ID</td>
 </tr>
 <tr>
 <td>topic</td>
 <td>true</td>
 <td>string</td>
-<td>订阅主题名称，必填 (trigger_order.$symbol) 订阅某个品种下的计划委托订单更新信息；$symbol为品种代码（BTC、ETH），如果值为 * 时代表订阅所有品种; symbol支持大小写;</td>
-<td></td>
+<td>必填；订阅主题名称:trigger_order.$symbol; 订阅某个品种下的计划委托订单更新信息；$symbol为品种代码（BTC、ETH），如果值为 * 时代表订阅所有品种; symbol支持大小写;</td>
 </tr>
 </tbody></table>
 
@@ -19748,8 +19782,8 @@ step6是不合并小数；
 <td>trigger_type</td>
 <td>true</td>
 <td>string</td>
-<td>触发类型： ge大于等于；le小于等于</td>
-<td></td>
+<td>触发类型</td>
+<td>ge大于等于；le小于等于</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -19804,7 +19838,7 @@ step6是不合并小数；
 <td>relation_order_id</td>
 <td>true</td>
 <td>string</td>
-<td>该字段为关联限价单的关联字段，是t_trigger_order 表中的order_id 字段值，关联t_order表中的user_order_id 值，未触发前数值为-1</td>
+<td>该字段为关联限价单的关联字段，未触发前数值为-1</td>
 <td></td>
 </tr>
 <tr>
@@ -19954,7 +19988,7 @@ step6是不合并小数；
 <tr>
 <td style="text-align: left">topic</td>
 <td style="text-align: left">string</td>
-<td style="text-align: left">必填;必填；必填；订阅主题名称，必填 (trigger_order.$symbol)  订阅、取消订阅某个合约代码下的计划委托订单更新信息，当 $symbol值为 * 时代表订阅所有合约代码;</td>
+<td style="text-align: left">必填;待取消订阅主题名称:trigger_order.$symbol; symbol支持大小写，比如:BTC,ETH ; 当 $symbol值为 * 时代表取消订阅所有合约代码;</td>
 </tr>
 </tbody></table>
 <h3 id='25b9181131-7'>订阅与取消订阅规则说明</h3>
@@ -20029,21 +20063,21 @@ step6是不合并小数；
 <td>op</td>
 <td>true</td>
 <td>string</td>
-<td>订阅固定值为sub</td>
+<td>必填;订阅固定值为sub</td>
 <td></td>
 </tr>
 <tr>
 <td>cid</td>
 <td>false</td>
 <td>string</td>
-<td>Client 请求唯一 ID</td>
+<td>选填;Client 请求唯一 ID</td>
 <td></td>
 </tr>
 <tr>
 <td>topic</td>
 <td>true</td>
 <td>string</td>
-<td>订阅主题名称，必填 (public.$service.heartbeat) 订阅某个业务的系统状态信息</td>
+<td>必填;订阅主题名称:public.$service.heartbeat; 订阅交割合约的系统状态信息</td>
 <td></td>
 </tr>
 </tbody></table>
