@@ -6148,21 +6148,29 @@ err-msg(中文） |  err-msg(English)  |  补充说明   |
 
 ## 接口列表
 
-  权限类型  |   接口数据类型   |  请求方法   |  类型    |  描述                     |  需要验签       |                                                                                                                                            
------------ | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |---------- |---------------------------- |--------------|
-  读取   |  市场行情接口 |         market.$symbol.kline.$period  |      sub        |  订阅 KLine 数据              |  否  |
-  读取   |  市场行情接口  |           market.$symbol.kline.$period  |              req        |  请求 KLine 数据              |  否  |
-  读取   |  市场行情接口           |  market.$symbol.depth.$type  |               sub        |  订阅 Market Depth 数据       |  否  | 
-  读取   |  市场行情接口           |  market.$symbol.detail  |               sub        |  订阅 Market detail 数据       |  否  |
-  读取   |  市场行情接口           |  market.$symbol.trade.detail  |               req        |  请求 Trade detail 数据       |  否  |
-  读取   |  市场行情接口           |  market.$symbol.trade.detail  |        sub |  订阅 Trade Detail 数据  |  否  | 
-  读取   |  系统状态接口          |  public.$service.heartbeat  |        sub  | 订阅系统状态更新  | 否  | 
-  读取   |  交易接口           |  orders.$symbol  |        sub |  订阅订单成交数据  | 是  | 
-  读取   |  交易接口           |  matchOrders.$symbol  |        sub |  订阅撮合订单成交数据  | 是  | 
-  读取   |  资产接口           |  accounts.$symbol  |        sub  |  订阅某个品种下的资产变动信息  | 是  | 
-  读取   |  资产接口          |  positions.$symbol  |        sub  |  订阅某个品种下的持仓变动信息  | 是  | 
-  读取   |  交易接口          |  trigger_order.$symbol  |        sub  |  订阅计划委托订单更新  | 是  | 
-  读取   |  交易接口          |  public.$symbol.liquidation_orders  |        sub  |  订阅某个品种下的强平订单信息  | 是  | 
+| 权限类型  |   接口数据类型   |  请求方法   |  类型    |  描述                     |  需要验签       |    
+----------- | ------------------ | ------------------ |---------- |---------------------------- |--------------|
+| 读取    |  市场行情接口 | market.$symbol.kline.$period                   | sub  | 订阅 KLine 数据               |       否      |
+| 读取    |  市场行情接口 | market.$symbol.kline.$period                    | req  | 请求 KLine 数据               |       否      |
+| 读取    |  市场行情接口 | market.$symbol.depth.$type                      | sub  | 订阅 Market Depth 数据        |       否      |
+| 读取    |  市场行情接口 | market.$symbol.depth.size_${size}.high_freq     | sub  | 订阅 Market Depth增量推送数据 |       否      |
+| 读取    |  市场行情接口 | market.$symbol.bbo                              | sub  | 买一卖一逐笔行情推送         |       否      |
+| 读取    |  市场行情接口 | market.$symbol.detail                           | sub  | 订阅 Market detail 数据       |       否      |
+| 读取    |  市场行情接口 | market.$symbol.trade.detail                     | req  | 请求 Trade detail 数据        |       否      |
+| 读取    |  市场行情接口 | market.$symbol.trade.detail                     | sub  | 订阅 Trade Detail 数据        |       否      |
+| 读取    |  指数与基差接口 | market.$symbol.basis.$period.$basis_price_type  | sub  | 订阅基差数据                  |       否      |
+| 读取    |  指数与基差接口 | market.$symbol.basis.$period.$basis_price_type  | req  | 请求基差数据                  |       否      |
+| 读取    |  指数与基差接口 | market.$symbol.index.$period           | sub  | 订阅(sub)指数K线数据           |       否      |
+| 读取    |  指数与基差接口 | market.$symbol.index.$period            | req  | 请求(req)指数K线数据          |       否      |
+| 读取    |  交易接口 | public.$symbol.liquidation_orders               | sub  | 订阅强平订单数据（免鉴权）    |       否      |
+| 读取    |  交易接口 | public.$symbol.contract_info                    | sub  | 订阅合约信息变动数据（免鉴权）|       否      |
+| 读取    |  交易接口	 | orders.$symbol                                  | sub  | 订阅订单成交数据              |    是       |
+| 读取    |  资产接口	 | accounts.$symbol                                | sub  | 订阅资产变动数据              |    是       |
+| 读取    |  资产接口	 | positions.$symbol                               | sub  | 订阅持仓变动更新数据          |    是       |
+| 读取    |  交易接口	 | matchOrders.$symbol                             | sub  | 订阅撮合订单成交数据          |    是       |
+| 读取    |  交易接口	 | trigger_order.$symbol                             | sub  | 订阅计划委托订单更新ws推送   |    是       |
+| 读取    |  系统状态接口   |  public.$service.heartbeat  |        sub  | 订阅系统状态更新  | 否  | 
+
 
 ## 合约订阅地址
 
@@ -7660,7 +7668,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | ------- | ----- | ------------------------------------------ |
 | op       | string | 必填；操作名称，订阅固定值为sub             |
 | cid      | string | 选填;Client 请求唯一 ID                     |
-| topic    | string | 必填；订阅主题名称，orders.$symbol;symbol支持大小写，比如：BTC,ETH |
+| topic    | string | 必填；订阅主题名称，orders.$symbol;  symbol支持大小写，比如：BTC,ETH ;当 $symbol值为 * 时代表订阅所有品种; |
 
 - 备注：postOnly的报单收到的WS推送要么是报单成功，状态为3，要么是7，已撤单。
 
@@ -7742,12 +7750,12 @@ direction  |  true  |  string  |  买卖方向  |   |
 | trade_volume            | decimal | 总成交数量                                                     |
 | trade_turnover          | decimal | 成交总金额                                                   |
 | fee                     | decimal | 手续费                                                       |
-| fee_asset                    | string | 手续费币种                                                       |
+| fee_asset               | string | 手续费币种                                                       |
 | trade_avg_price         | decimal | 成交均价                                                     |
 | margin_frozen           | decimal | 冻结保证金                                                   |
 | profit                  | decimal | 收益                                                         |
 | liquidation_type | string     | 强平类型 0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管  |
-| \<trade\>  |         |                                                              |
+| \<trade\>  |   list     |                                                              |
 | id            | string| 	全局唯一的交易标识                                                       |
 | trade_id                | long    | 撮合结果id,与api/v1/contract_matchresults返回结果中的match_id一样， 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id                                                  |
 | trade_volume            | decimal | 成交量                                                       |
@@ -7794,7 +7802,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | ------- | ----- | ------------------------------------------------- |
 | op       | string | 必填;操作名称，订阅固定值为 unsub;                 |
 | cid      | string | 选填;Client 请求唯一 ID                            |
-| topic    | string | 必填;待取消订阅主题名称，orders.$symbol;symbol支持大小写，比如:BTC,ETH|
+| topic    | string | 必填;待取消订阅主题名称:orders.$symbol; symbol支持大小写，比如:BTC,ETH ;  当 $symbol值为 * 时代表取消订阅所有品种; |
 
 
 ### 订阅与取消订阅规则说明
@@ -7841,7 +7849,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | ------- | ----- | ------------------------------------------ |
 | op       | string | 必填；操作名称，订阅固定值为sub             |
 | cid      | string | 选填;Client 请求唯一 ID                     |
-| topic    | string | matchOrders.$symbol;    symbol支持大小写，比如BTC |
+| topic    | string | 必填，订阅主题名称:matchOrders.$symbol;  symbol支持大小写，比如：BTC，ETH ; 当 $symbol值为 * 时代表订阅所有品种; |
 
 #### 备注：
 - postOnly的报单收到的WS推送要么是报单成功，状态为3，要么是7，已撤单;
@@ -7912,7 +7920,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | order_type              | int     | 订单类型  1:报单 、 2:撤单 、 3:强平、4:交割                 |
 | trade_volume            | decimal | 订单已成交数量                                                       |
 | volume            | decimal | 订单总委托数量                                                       |
-| \<list\>(属性名称: trade) |         |                                                              |
+| \<trade\> |   list      |                                                              |
 | id            | string| 全局唯一交易标识	                                                       |
 | trade_id                | long    | 撮合结果id，与api/v1/contract_matchresults返回结果中的match_id一样, 非唯一，可重复，注意：一个撮合结果代表一个taker单和N个maker单的成交记录的集合，如果一个taker单吃了N个maker单，那这N笔trade都是一样的撮合结果id                                                  |
 | trade_volume            | decimal | 成交量                                                       |
@@ -7920,7 +7928,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | trade_turnover          | decimal | 成交金额                                                     |
 | created_at              | long    | 创建时间                                                 |
 | role             | string  | taker或maker                                                 |
-| \</list\>                  |         |                                                             |
+| \</trade\>                  |         |                                                             |
 | direction              | string    | 	买卖方向: "buy":买 "sell":卖                                 |
 | offset              | string    |	开平方向:  "open":开 "close":平                                 |
 | lever_rate              | int    | 	杠杆倍数                                                 |
@@ -7964,7 +7972,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | ------- | ----- | ------------------------------------------------- |
 | op       | string | 必填;操作名称，订阅固定值为 unsub;                 |
 | cid      | string | 选填;Client 请求唯一 ID                            |
-| topic    | string | 必填;待取消订阅主题名称，matchOrders.$symbol;symbol支持大小写，比如BTC |
+| topic    | string | 必填;待取消订阅主题名:matchOrders.$symbol;  symbol支持大小写，比如:BTC,ETH ; 当 $symbol值为 * 时代表取消订阅所有品种; |
 
 
 ### 订阅与取消订阅规则说明
@@ -8012,7 +8020,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | ------- | ----- | ------------------------------------------ |
 | op       | string | 必填；操作名称，订阅固定值为sub             |
 | cid      | string | 选填;Client 请求唯一 ID                     |
-| topic    | string | 必填；订阅主题名称，必填 (accounts.$symbol)  订阅、取消订阅某个品种下的资产变更信息，当 $symbol值为 * 时代表订阅所有品种; symbol支持大小写，比如BTC|
+| topic    | string | 必填；订阅主题名称: accounts.$symbol;  symbol支持大小写，比如：BTC，ETH  ; 当 $symbol值为 * 时代表订阅所有品种; |
 
 > 当资产有更新时，返回的参数示例如下:
 
@@ -8053,7 +8061,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | uid                   | string  | 账户UID                                              |
 | ts                        | long  | 响应生成时间点，单位：毫秒                           |
 | event                     | string  | 资产变化通知相关事件说明，比如订单创建开仓(order.open) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel) 、合约账户划转（contract.transfer)（包括外部划转）、系统（contract.system)、其他资产变化(other)、切换杠杆（switch_lever_rate）、初始资金（init）                            |
-| \<data\>                     |   |          |                                   |
+| \<data\>                  | list    |          |                                   |
 | symbol                    | string    | 品种代码 ,"BTC","ETH"...，                                             |
 | margin_balance            | decimal  | 账户权益                                                       |
 | margin_static             | decimal  | 静态权益                                                     |
@@ -8107,7 +8115,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | ------- | ----- | ------------------------------------------------- |
 | op       | string | 必填;操作名称，订阅固定值为 unsub;                 |
 | cid      | string | 选填;Client 请求唯一 ID                            |
-| topic    | string | 必填;必填；必填；订阅主题名称，必填 (accounts.$symbol)  订阅、取消订阅某个品种下的资产变更信息，当 $symbol值为 * 时代表订阅所有品种;symbol支持大小写 |
+| topic    | string | 必填;待取消订阅主题名称: accounts.$symbol;  symbol支持大小写,比如：BTC，ETH ; 当 $symbol值为 * 时代表取消订阅所有品种; |
 
 
 ### 订阅与取消订阅规则说明
@@ -8155,7 +8163,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | ------- | :----- | :------------------------------------------ |
 | op       | string | 必填；操作名称，订阅固定值为sub             |
 | cid      | string | 选填;Client 请求唯一 ID                     |
-| topic    | string | 必填；订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的持仓变更信息，当 $symbol值为 * 时代表订阅所有品种,symbol支持大小写|
+| topic    | string | 必填；订阅主题名称:positions.$symbol; symbol支持大小写,比如:BTC,ETH ;  当 $symbol值为 * 时代表订阅所有品种|
 
 > 当持仓有更新时，返回的参数示例如下
 
@@ -8200,7 +8208,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | uid                   | string  | 账户ID                                              |
 | ts                     | long  | 响应生成时间点，单位：毫秒                           |
 | event                  | string  | 持仓变化通知相关事件说明，比如订单创建平仓(order.close) 、订单成交(order.match)（除开强平和结算交割）、结算交割(settlement)、订单强平成交(order.liquidation)（对钆和接管仓位）、订单撤销(order.cancel)、切换杠杆（switch_lever_rate） 、初始持仓（init）、由系统定期推送触发（snapshot）。                               |
-| \<data\>                     |   |          |                                   |
+| \<data\>               | list  |          |                                   |
 | symbol                 | string    | 品种代码 ,"BTC","ETH"...，                                             |
 | contract_code          | string  | 合约代码                                                       |
 | contract_type          | string  | 合约类型,当周:"this_week", 次周:"next_week", 当季:"quarter", 次季:"next_quarter", 已下市：“delivered”                                                    |
@@ -8259,7 +8267,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | ------- | ------- | ------------------------------------------------- |
 | op       | string | 必填;操作名称，订阅固定值为 unsub;                 |
 | cid      | string | 选填;Client 请求唯一 ID                            |
-| topic    | string | 必填;必填；必填；订阅主题名称，必填 (positions.$symbol)  订阅、取消订阅某个品种下的资产变更信息; symbol支持大小写|
+| topic    | string | 必填；待取消订阅主题名称:positions.$symbol;  symbol支持大小写,比如:BTC,ETH ;  当 $symbol值为 * 时代表取消订阅所有品种 |
 
 ### 订阅与取消订阅规则说明
 
@@ -8303,7 +8311,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | ------ | ---- | ------ | -------- | -------------- |
 | op | true | string | 订阅固定值为sub	 |  |
 | cid | false| string | Client 请求唯一 ID	 | |
-| topic | true| string | 订阅主题名称，必填 (public.$symbol.liquidation_orders) 订阅某个品种下的强平订单信息；$symbol为品种代码（BTC、ETH），如果值为 * 时代表订阅所有品种; symbol支持大小写| |
+| topic | true| string |必填;订阅主题名称:public.$symbol.liquidation_orders; 订阅某个品种下的强平订单信息；$symbol为品种代码（BTC、ETH），如果值为 * 时代表订阅所有品种; symbol支持大小写| |
 
 ### **返回参数说明**
 | 参数名称   |   是否必须  |   数据类型   |   描述   |   取值范围   |
@@ -8319,7 +8327,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | volume   | true | decimal  | 数量（张）  |   |
 | price   | true | decimal  | 破产价格  |   |
 | created_at   | true | long  | 订单创建时间  |   |
-| \<\data> | | |  | |
+| \</data> | | |  | |
 
 
 > 当有订单被爆仓账户接管后，返回的参数示例如下：
@@ -8370,29 +8378,14 @@ direction  |  true  |  string  |  买卖方向  |   |
 
 ```
 
-### 返回参数
+### 取消订阅请求参数
 
 | 字段名称 | 类型   | 说明                                               |
 | ------- | ------- | ------------------------------------------------- |
 | op       | string | 必填;操作名称，订阅固定值为 unsub;                 |
 | cid      | string | 选填;Client 请求唯一 ID                            |
-| topic    | string | 订阅主题名称，必填 (public.$symbol.liquidation_orders)  订阅、取消订阅某个品种下的资产变更信息;symbol支持大小写 |
-| ts    | long | 必填;响应生成时间点，单位：毫秒 |
+| topic    | string | 必填;订阅主题名称:public.$symbol.liquidation_orders; symbol支持大小写 比如:BTC,ETH ; 当 $symbol值为 * 时代表取消订阅所有品种 |
 
-
-> 取消订阅成功返回数据示例:
-
-```json
-
-{
-  "op": "unsub",
-  "topic": "public.eos.liquidation_orders",
-  "cid": "id generated by client",
-  "err-code": 0,
-  "ts": 1489474081631
-}
-
-```
 
 ### 订阅与取消订阅规则说明
 
@@ -8434,9 +8427,9 @@ direction  |  true  |  string  |  买卖方向  |   |
 
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
-| op | true | string | 订阅固定值为sub	 |  |
-| cid | false| string | Client 请求唯一 ID	 | |
-| topic | true| string | 订阅主题名称，必填 (public.$symbol.contract_info) 订阅某个品种下的合约变动信息；$symbol为品种代码（BTC、ETH），如果值为 * 时代表订阅所有品种; symbol支持大小写; | |
+| op | true | string | 必填；订阅固定值为sub	 |  |
+| cid | false| string | 选填；Client 请求唯一 ID	 | |
+| topic | true| string |必填；订阅主题名称:public.$symbol.contract_info; 订阅某个品种下的合约变动信息；$symbol为品种代码（BTC、ETH），如果值为 * 时代表订阅所有品种; symbol支持大小写; | |
 
 ### 返回的参数为：
 
@@ -8508,7 +8501,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | price_tick  | true | decimal | 合约价格最小变动精度 | 0.001, 0.01... |
 | delivery_date  | true | string  | 合约交割日期    | 时间戳，如"20200327"  |
 | create_date   | true | string  | 合约上市日期    | 如"20180706" |
-| contract_status      | true | int     | 合约状态  | 合约状态: 0:已下市、1:上市、2:待上市、3:停牌，4:暂停上市中、5:结算中、6:交割中、7:结算完成、8:交割完成、9:暂停交易中  |
+| contract_status      | true | int     | 合约状态  |  0:已下市、1:上市、2:待上市、3:停牌，4:暂停上市中、5:结算中、6:交割中、7:结算完成、8:交割完成、9:暂停交易中  |
 | \</data\>   |      |         |        |       |
 
 ### 说明：
@@ -8552,7 +8545,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | :------- | :----- | :------------------------------------------------- |
 | op       | string | 必填;操作名称，订阅固定值为 unsub;                 |
 | cid      | string | 选填;Client 请求唯一 ID                            |
-| topic    | string | 必填;必填；必填；订阅主题名称，必填 (public.$symbol.contract_info)  订阅、取消订阅某个合约代码下的资产变更信息，当 $symbol值为 * 时代表订阅所有合约代码; |
+| topic    | string | 必填;待取消订阅主题名称:public.$symbol.contract_info;  symbol支持大小写，比如:BTC,ETH ; 当 $symbol值为 * 时代表取消订阅所有合约代码; |
 
 ### 订阅与取消订阅规则说明
 
@@ -8590,11 +8583,11 @@ direction  |  true  |  string  |  买卖方向  |   |
 ``` 
 ### 请求参数
 
-| 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
-| ------ | ---- | ------ | -------- | -------------- |
-| op | true | string | 订阅固定值为sub	 |  |
-| cid | false| string | Client 请求唯一 ID	 | |
-| topic | true| string | 订阅主题名称，必填 (trigger_order.$symbol) 订阅某个品种下的计划委托订单更新信息；$symbol为品种代码（BTC、ETH），如果值为 * 时代表订阅所有品种; symbol支持大小写; | |
+| 参数名称   | 是否必须 | 类型     | 描述   |
+| ------ | ---- | ------ | -------- |
+| op | true | string | 必填；订阅固定值为sub	 |  
+| cid | false| string | 选填；Client 请求唯一 ID	 | 
+| topic | true| string | 必填；订阅主题名称:trigger_order.$symbol; 订阅某个品种下的计划委托订单更新信息；$symbol为品种代码（BTC、ETH），如果值为 * 时代表订阅所有品种; symbol支持大小写; | 
 
 > **返回示例**:
 
@@ -8649,7 +8642,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | symbol                 | true | string  | 品种代码               |                                          |
 | contract_type          | true | string  | 合约类型               | 当周:"this_week", 次周:"next_week", 当季:"quarter"，次季度：“next_quarter”  |
 | contract_code          | true | string  | 合约代码               | "BTC180914" ...                          |
-| trigger_type              | true | string  | 触发类型： ge大于等于；le小于等于  |              |
+| trigger_type              | true | string  | 触发类型  | ge大于等于；le小于等于  |              |
 | volume                 | true | decimal  | 委托数量 |      |
 | order_type           | true | int | 订单类型              |  1、报单     |
 | direction            | true | string | 买卖方向               |             买："buy",卖："sell"          |
@@ -8657,7 +8650,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | lever_rate            | true | int    | 杠杆倍数              |                         |
 | order_id      | true | long | 计划委托单订单ID                |                                          |
 | order_id_str             | true | string | 字符串类型的订单ID              |                                          |
-| relation_order_id             | true | string | 该字段为关联限价单的关联字段，是t_trigger_order 表中的order_id 字段值，关联t_order表中的user_order_id 值，未触发前数值为-1  |         |
+| relation_order_id             | true | string | 该字段为关联限价单的关联字段，未触发前数值为-1  |         |
 | order_price_type        | true  | string | 订单报价类型 |                  "limit":限价，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档     |
 | status        | true  | int | 订单状态|    2:已提交、4:报单成功、5:报单失败、6:已撤单    |
 | order_source      | true | string  | 来源        |                                          |
@@ -8715,7 +8708,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | :------- | :----- | :------------------------------------------------- |
 | op       | string | 必填;操作名称，订阅固定值为 unsub;                 |
 | cid      | string | 选填;Client 请求唯一 ID                            |
-| topic    | string | 必填;必填；必填；订阅主题名称，必填 (trigger_order.$symbol)  订阅、取消订阅某个合约代码下的计划委托订单更新信息，当 $symbol值为 * 时代表订阅所有合约代码; |
+| topic    | string | 必填;待取消订阅主题名称:trigger_order.$symbol; symbol支持大小写，比如:BTC,ETH ; 当 $symbol值为 * 时代表取消订阅所有合约代码; |
 
 ### 订阅与取消订阅规则说明
 
@@ -8760,9 +8753,9 @@ direction  |  true  |  string  |  买卖方向  |   |
 ### **请求参数**:
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
-| op | true | string | 订阅固定值为sub	 |  |
-| cid | false| string | Client 请求唯一 ID	 | |
-| topic | true| string | 订阅主题名称，必填 (public.$service.heartbeat) 订阅某个业务的系统状态信息 | |
+| op | true | string | 必填;订阅固定值为sub	 |  |
+| cid | false| string | 选填;Client 请求唯一 ID	 | |
+| topic | true| string | 必填;订阅主题名称:public.$service.heartbeat; 订阅交割合约的系统状态信息 | |
 
 ### **sub订阅参数说明**:
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
