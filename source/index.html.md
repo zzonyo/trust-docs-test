@@ -3017,7 +3017,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | **Parameter name**                | **Must fill or not** | **Type**  | **Description**             | **Value range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | margin_account      | true <img width=250/>  | string <img width=250/> | Margin currency  <img width=1100/>    | "BTC-USDT"...     |
-| type | false | string | if not fill this parameter, it will query all types 【please use "," to seperate multiple types】 | close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29，funding fee(income): 30, funding fee(pay): 31,  Transfer out to contract sub-account：34，Transfer in from contract sub-account：35，Transfer out to contract master account：36，Transfer in from contract master account：37，Transfer in from another margin account: 38,  Transder out to another margin account: 39 |
+| type | false | string | if not fill this parameter, it will query all types 【please use "," to seperate multiple types】 | 3:close long; 4:close short; 5:fees for open positions-taker; 6:fees for open positions-maker; 7:fees for close positions-taker; 8:fees for close positions-maker; 9:close long for delivery; 10:close short for delivery; 11:delivery fee; 12:close long for liquidation; 13:lose short for liquidation; 14:transfer from spot exchange to contract exchange; 15:tranfer from contract exchange to spot exchange; 16:settle unrealized PnL-long positions; 17:settle unrealized PnL-short positions; 19:clawback; 26:system; 28:activity prize rewards; 29:rebate; 34:transfer to sub; 35:transfer from sub; 36:transfer to master; 37:transfer from master; 38:Transfer in from another margin account; 39:Transfer out to another margin account; |
 | create_date | false | int |  any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.  |  |
 | page_index | false | int | which page, default value is "1st page" when not fill this parameter |  |
 | page_size | false | int | the default value is "20" when not fill this parameter, should ≤50 |  |
@@ -3067,7 +3067,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | contract_code | true | string | contract type code   | "BTC-USDT",... |
 | margin_account                | true | string  | margin account          | "BTC-USDT"...                           |
 | face_margin_account           | true | string  | The counterparty margin account only has value when the type transaction type are 34, 35, 36, 37, 38, 39; for other types, the field values are empty strings.         |  "BTC-USDT"...   | 
-| type | true  | int | transaction type | close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29，funding fee(income): 30, funding fee(pay): 31,  Transfer out to contract sub-account：34，Transfer in from contract sub-account：35，Transfer out to contract master account：36，Transfer in from contract master account：37，Transfer in from another margin account: 38,  Transder out to another margin account: 39 |
+| type | true  | int | transaction type | 3:close long; 4:close short; 5:fees for open positions-taker; 6:fees for open positions-maker; 7:fees for close positions-taker; 8:fees for close positions-maker; 9:close long for delivery; 10:close short for delivery; 11:delivery fee; 12:close long for liquidation; 13:lose short for liquidation; 14:transfer from spot exchange to contract exchange; 15:tranfer from contract exchange to spot exchange; 16:settle unrealized PnL-long positions; 17:settle unrealized PnL-short positions; 19:clawback; 26:system; 28:activity prize rewards; 29:rebate; 34:transfer to sub; 35:transfer from sub; 36:transfer to master; 37:transfer from master; 38:Transfer in from another margin account; 39:Transfer out to another margin account;  |
 | amount | true  | decimal | amount |  |
 | \</financial_record\> |  |  |  |  |
 | total_page | true  | int | total page |  |
@@ -3526,7 +3526,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | to_margin_account | true | string | to margin account	 |  "BTC-USDT"... |
 | sub_uid        | true | string  | subaccount uid        |  |
 | sub_account_name        | true | string  |  subaccount name         |  |
-| transfer_type        | true | int  | transfer type            | transfer from subaccount：35，transfer to subaccount:34  |
+| transfer_type        | true | int  | transfer type            | 35:transfer from subaccount; 34:transfer to subaccount;  |
 | amount        | true | decimal  | amount            |  |
 | \</transfer_record\>     |      |         |         |   |
 | total_page        | true | int  | total page             |  |
@@ -7858,7 +7858,7 @@ To subscribe contract infodata, the client has to make connection to the server 
 | lever_rate            | true | int    | Leverage              |                         |
 | order_id      | true | decimal |  trigger order ID                |                                          |
 | order_id_str             | true | string | the order ID with string            |                                          |
-| relation_order_id             | true | string | Relation order ID is the string related to the limit orders which is the field value in order_id under t_trigger_order list. The value is -1 before the trigger orders executed.  |         |
+| relation_order_id             | true | string | Relation order ID is the string related to the limit orders, The value is -1 before the trigger orders executed.  |         |
 | order_price_type        | true  | string | Order price type  |     "limit": limit order，"optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20    |
 | status        | true  | int | order status|   2. Ready to submit the orders;  4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched;    |
 | order_source      | true | string  | Order Source      |                                          |
