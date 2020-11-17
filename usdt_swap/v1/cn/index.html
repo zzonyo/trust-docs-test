@@ -12626,7 +12626,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>relation_order_id</td>
 <td>true</td>
 <td>string</td>
-<td>该字段为关联限价单的关联字段，是t_trigger_order 表中的order_id 字段值，关联t_order表中的user_order_id 值，未触发前数值为-1</td>
+<td>该字段为关联限价单的订单id，未触发前数值为-1</td>
 <td></td>
 </tr>
 <tr>
@@ -13253,7 +13253,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </tr>
 <tr>
 <td>读取</td>
-<td>市场行情接口</td>
+<td>指数与基差接口</td>
 <td>market.$contract_code.basis.$period.$basis_price_type</td>
 <td>sub</td>
 <td>订阅基差数据</td>
@@ -13261,7 +13261,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </tr>
 <tr>
 <td>读取</td>
-<td>市场行情接口</td>
+<td>指数与基差接口</td>
 <td>market.$contract_code.basis.$period.$basis_price_type</td>
 <td>req</td>
 <td>请求基差数据</td>
@@ -13269,7 +13269,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </tr>
 <tr>
 <td>读取</td>
-<td>市场行情接口</td>
+<td>指数与基差接口</td>
 <td>market.$contract_code.premium_index.$period</td>
 <td>sub</td>
 <td>订阅溢价指数K线数据</td>
@@ -13277,7 +13277,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </tr>
 <tr>
 <td>读取</td>
-<td>市场行情接口</td>
+<td>指数与基差接口</td>
 <td>market.$contract_code.premium_index.$period</td>
 <td>req</td>
 <td>请求溢价指数K线数据</td>
@@ -13285,7 +13285,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </tr>
 <tr>
 <td>读取</td>
-<td>市场行情接口</td>
+<td>指数与基差接口</td>
 <td>market.$contract_code.estimated_rate.$period</td>
 <td>sub</td>
 <td>订阅预测资金费率K线数据</td>
@@ -13293,7 +13293,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </tr>
 <tr>
 <td>读取</td>
-<td>市场行情接口</td>
+<td>指数与基差接口</td>
 <td>market.$contract_code.estimated_rate.$period</td>
 <td>req</td>
 <td>请求预测资金费率K线数据</td>
@@ -13301,7 +13301,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </tr>
 <tr>
 <td>读取</td>
-<td>市场行情接口</td>
+<td>交易接口</td>
 <td>public.$contract_code.liquidation_orders</td>
 <td>sub</td>
 <td>订阅强平订单数据（免鉴权）</td>
@@ -13309,7 +13309,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </tr>
 <tr>
 <td>读取</td>
-<td>市场行情接口</td>
+<td>交易接口</td>
 <td>public.$contract_code.funding_rate</td>
 <td>sub</td>
 <td>订阅资金费率变动数据（免鉴权）</td>
@@ -13317,7 +13317,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </tr>
 <tr>
 <td>读取</td>
-<td>市场行情接口</td>
+<td>交易接口</td>
 <td>public.$contract_code.contract_info</td>
 <td>sub</td>
 <td>订阅合约信息变动数据（免鉴权）</td>
