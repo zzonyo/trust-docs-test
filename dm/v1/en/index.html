@@ -7455,7 +7455,7 @@ One of the query conditions must be chosen.</p>
 <td>false</td>
 <td>string</td>
 <td>if not fill this parameter, it will query all types 【please use &quot;,&quot; to seperate multiple types】</td>
-<td>close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29 transfer to sub：34，transfer from sub: 35, transfer to master: 36，transfer from master：37,</td>
+<td>3:close long; 4:close short; 5:fees for open positions-taker; 6:fees for open positions-maker; 7:fees for close positions-taker; 8:fees for close positions-maker; 9:close long for delivery; 10:close short for delivery; 11:delivery fee; 12:close long for liquidation; 13:lose short for liquidation; 14:transfer from spot exchange to contract exchange; 15:tranfer from contract exchange to spot exchange; 16:settle unrealized PnL-long positions; 17:settle unrealized PnL-short positions; 19:clawback; 26:system; 28:activity prize rewards; 29:rebate; 34:transfer to sub; 35:transfer from sub; 36:transfer to master; 37:transfer from master;</td>
 </tr>
 <tr>
 <td>create_date</td>
@@ -7566,7 +7566,7 @@ One of the query conditions must be chosen.</p>
 <td>true</td>
 <td>int</td>
 <td>transaction type</td>
-<td>close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29，transfer to sub：34，transfer from sub: 35, transfer to master: 36，transfer from master：37</td>
+<td>3:close long; 4:close short; 5:fees for open positions-taker; 6:fees for open positions-maker; 7:fees for close positions-taker; 8:fees for close positions-maker; 9:close long for delivery; 10:close short for delivery; 11:delivery fee; 12:close long for liquidation; 13:lose short for liquidation; 14:transfer from spot exchange to contract exchange; 15:tranfer from contract exchange to spot exchange; 16:settle unrealized PnL-long positions; 17:settle unrealized PnL-short positions; 19:clawback; 26:system; 28:activity prize rewards; 29:rebate; 34:transfer to sub; 35:transfer from sub; 36:transfer to master; 37:transfer from master;</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -7637,7 +7637,7 @@ One of the query conditions must be chosen.</p>
 <td>false</td>
 <td>string</td>
 <td>if not fill this parameter, it will query all types 【please use &quot;,&quot; to seperate multiple types】</td>
-<td>close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29，transfer to sub：34，transfer from sub: 35, transfer to master: 36，transfer from master：37</td>
+<td>3:close long; 4:close short; 5:fees for open positions-taker; 6:fees for open positions-maker; 7:fees for close positions-taker; 8:fees for close positions-maker; 9:close long for delivery; 10:close short for delivery; 11:delivery fee; 12:close long for liquidation; 13:lose short for liquidation; 14:transfer from spot exchange to contract exchange; 15:tranfer from contract exchange to spot exchange; 16:settle unrealized PnL-long positions; 17:settle unrealized PnL-short positions; 19:clawback; 26:system; 28:activity prize rewards; 29:rebate; 34:transfer to sub; 35:transfer from sub; 36:transfer to master; 37:transfer from master;</td>
 </tr>
 <tr>
 <td>start_time</td>
@@ -7882,7 +7882,7 @@ One of the query conditions must be chosen.</p>
 <td>true</td>
 <td>int</td>
 <td>order type</td>
-<td>close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29，transfer to sub：34，transfer from sub: 35, transfer to master: 36，transfer from master：37</td>
+<td>3:close long; 4:close short; 5:fees for open positions-taker; 6:fees for open positions-maker; 7:fees for close positions-taker; 8:fees for close positions-maker; 9:close long for delivery; 10:close short for delivery; 11:delivery fee; 12:close long for liquidation; 13:lose short for liquidation; 14:transfer from spot exchange to contract exchange; 15:tranfer from contract exchange to spot exchange; 16:settle unrealized PnL-long positions; 17:settle unrealized PnL-short positions; 19:clawback; 26:system; 28:activity prize rewards; 29:rebate; 34:transfer to sub; 35:transfer from sub; 36:transfer to master; 37:transfer from master;</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -14370,7 +14370,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>order_id</td>
 <td>int</td>
 <td>true</td>
-<td>Trigger order ID, the field value in user_order_id data under t_trigger_orders sheet</td>
+<td>Trigger order ID</td>
 <td></td>
 </tr>
 <tr>
@@ -14384,8 +14384,15 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>relation_order_id</td>
 <td>string</td>
 <td>true</td>
-<td>Relation order ID is the string related to the limit orders which is the field value in order_id under t_trigger_order list. The value is -1 before the trigger orders executed.</td>
+<td>Relation order ID is the string related to the limit orders. The value is -1 before the trigger orders executed.</td>
+<td></td>
+</tr>
+<tr>
 <td>order_price_type</td>
+<td>string</td>
+<td>true</td>
+<td>order type &quot;limit&quot;: Limit order price，&quot;optimal_5&quot;: Optimal 5  price level，&quot;optimal_10&quot;:Optimal 10 price level，&quot;optimal_20&quot;: the Optimal 20 price level</td>
+<td></td>
 </tr>
 <tr>
 <td>status</td>
@@ -19305,76 +19312,91 @@ Details are below:</p></li>
 <th>Field Name</th>
 <th>Type</th>
 <th>Description</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>op</td>
 <td>string</td>
 <td>value: &quot;notify&quot;;</td>
+<td></td>
 </tr>
 <tr>
 <td>topic</td>
 <td>string</td>
 <td>topic subscribed</td>
+<td></td>
 </tr>
 <tr>
 <td>ts</td>
 <td>long</td>
 <td>timestamp of server response.unit: millionseconds</td>
+<td></td>
 </tr>
 <tr>
 <td>event</td>
 <td>string</td>
 <td>event</td>
+<td>&quot;init&quot;, &quot;update&quot;, &quot;snapshot&quot;</td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
 <td>object array</td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>symbol</td>
 <td>string</td>
 <td>symbol,&quot;BTC&quot;,&quot;ETH&quot;...</td>
+<td></td>
 </tr>
 <tr>
 <td>contract_code</td>
 <td>string</td>
-<td>contract code,&quot;EOS200113&quot;</td>
+<td>contract code</td>
+<td>&quot;EOS200113&quot;</td>
 </tr>
 <tr>
 <td>contract_type</td>
 <td>string</td>
-<td>contract type, &quot;this_week&quot;,&quot;next_week&quot;, &quot;quarter&quot;, &quot;next_quarter&quot;,  Next Quarterly Contract: &quot;next_quarter&quot;</td>
+<td>contract type</td>
+<td>&quot;this_week&quot;,&quot;next_week&quot;, &quot;quarter&quot;, &quot;next_quarter&quot;,  Next Quarterly Contract: &quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>contract_size</td>
 <td>decimal</td>
 <td>Contract Value (USD of one contract). such as 10,100</td>
+<td>10, 100...</td>
 </tr>
 <tr>
 <td>price_tick</td>
 <td>decimal</td>
 <td>Minimum Variation of Contract Price</td>
+<td>0.001, 0.01...</td>
 </tr>
 <tr>
 <td>delivery_date</td>
 <td>string</td>
 <td>delivery  date</td>
+<td>such as &quot;20200327&quot;</td>
 </tr>
 <tr>
 <td>create_date</td>
 <td>string</td>
 <td>Contract Listing Date</td>
+<td>such as &quot;20180706&quot;</td>
 </tr>
 <tr>
 <td>contract_status</td>
 <td>int</td>
 <td>contract status</td>
+<td>0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered, 9 Suspending of Trade</td>
 </tr>
 <tr>
 <td>&lt;/data&gt;</td>
-<td>object array</td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 </tbody></table>
@@ -19427,7 +19449,7 @@ Details are below:</p></li>
 <tr>
 <td style="text-align: left">topic</td>
 <td style="text-align: left">string</td>
-<td style="text-align: left">Subscribe topic name，Require subscribe public.$symbol.contract_info Subscribe/unsubscribe the data of a given contract code; when the $symbol value is *, it stands for subscribing/unsubscribing all the contract infos of contract codes，;</td>
+<td style="text-align: left">Required；Unsubscribe topic name: public.$symbol.contract_info;   symbol is case-insenstive.Both uppercase and lowercase are supported.e.g: &quot;BTC,ETH&quot; ; when $symbol value is *, it stands for unsubscribing the data of all coins;</td>
 </tr>
 </tbody></table>
 <h3 id='data-format-of-subscription-and-unsubscription-of-contract-info'>Data format of subscription and unsubscription of contract info</h3>
@@ -19512,7 +19534,7 @@ Details are below:</p></li>
 <td>topic</td>
 <td>true</td>
 <td>string</td>
-<td>Required；format: trigger_order.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
+<td>Required；format: trigger_order.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g.:&quot;BTC,ETH&quot; ;when $symbol value is *, it stands for subscribing the data of all coins;</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -19633,8 +19655,8 @@ Details are below:</p></li>
 <td>trigger_type</td>
 <td>true</td>
 <td>string</td>
-<td>trigger type： <code>ge</code>great than or equal to；<code>le</code>less than or equal to</td>
-<td></td>
+<td>trigger type</td>
+<td><code>ge</code>great than or equal to；<code>le</code>less than or equal to</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -19689,7 +19711,7 @@ Details are below:</p></li>
 <td>relation_order_id</td>
 <td>true</td>
 <td>string</td>
-<td>Relation order ID is the string related to the limit orders which is the field value in order_id under t_trigger_order list. The value is -1 before the trigger orders executed.</td>
+<td>Relation order ID is the string related to the limit orders ,  The value is -1 before the trigger orders executed.</td>
 <td></td>
 </tr>
 <tr>
@@ -19821,25 +19843,25 @@ Details are below:</p></li>
 </span></code></pre><h3 id='format-illustration-of-unsubscribe-order-data-3'>Format illustration of unsubscribe order data</h3>
 <table><thead>
 <tr>
-<th style="text-align: left">Field Name</th>
-<th style="text-align: left">Type</th>
-<th style="text-align: left">Description</th>
+<th>Field Name</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: left">op</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">Required; Operator Name，subscribe value is unsub;</td>
+<td>op</td>
+<td>string</td>
+<td>Required; Operator Name，subscribe value is unsub;</td>
 </tr>
 <tr>
-<td style="text-align: left">cid</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">Optional;   Client requests unique ID</td>
+<td>cid</td>
+<td>string</td>
+<td>Optional;   Client requests unique ID</td>
 </tr>
 <tr>
-<td style="text-align: left">topic</td>
-<td style="text-align: left">string</td>
-<td style="text-align: left">Required;Required；Required；Subscribe topic，Subscribe positions.$symbol required  Subscribe or unsubscribe the position updates of a single coin; when $symbol value is *, it stands for subscribing the data of all coins; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
+<td>topic</td>
+<td>string</td>
+<td>Required；Unsubscribe topic name: trigger_order.$symbol;   symbol is case-insenstive.Both uppercase and lowercase are supported.e.g: &quot;BTC,ETH&quot; ; when $symbol value is *, it stands for unsubscribing the data of all coins;</td>
 </tr>
 </tbody></table>
 <h3 id='rules-on-subscribe-and-unsubscribe-6'>Rules on Subscribe and Unsubscribe</h3>
