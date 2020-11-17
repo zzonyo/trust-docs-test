@@ -5725,7 +5725,7 @@ It will be pushed only when position event is updated.</p>
 <td>false</td>
 <td>string</td>
 <td>Query all type if not filled,【Separate with commas if querying multiple types】</td>
-<td>open long: 1, open short: 2, close long: 3，close short: 4，fees for opening positions-taker: 5，fees for opening positions - maker: 6，fees for closing positions - taker: 7，fees for closing positions - maker: 8，delivery to close long: 9，delivery to close short: 10，delivery fee: 11，Tranfer in from exchange account: 14，Transfer out to exchange account: 15，system: 26，activity rewards: 28，rebate: 29, Transfer out to contract sub-account: 34，Transfer in from contract sub-account: 35, Transfer out to contract main-account: 36，Transfer in from contract main-account: 37</td>
+<td>1:open long; 2:open short; 3:close long; 4:close short; 5:fees for open positions-taker; 6:fees for open positions-maker; 7:fees for close positions-taker; 8:fees for close positions-maker; 9:close long for delivery; 10:close short for delivery; 11:delivery fee; 12:close long for liquidation; 13:lose short for liquidation; 14:transfer from spot exchange to contract exchange; 15:tranfer from contract exchange to spot exchange; 16:settle unrealized PnL-long positions; 17:settle unrealized PnL-short positions; 19:clawback; 26:system; 28:activity prize rewards; 29:rebate; 34:transfer to sub; 35:transfer from sub; 36:transfer to master; 37:transfer from master;</td>
 </tr>
 <tr>
 <td>create_date</td>
@@ -5861,7 +5861,7 @@ It will be pushed only when position event is updated.</p>
 <td>true</td>
 <td>int</td>
 <td>TradeType</td>
-<td>open long: 1, open short: 2, close long: 3，close short: 4，fees for opening positions-taker: 5，fees for opening positions - maker: 6，fees for closing positions - taker: 7，fees for closing positions - maker: 8，delivery to close long: 9，delivery to close short: 10，delivery fee: 11，Tranfer in from exchange account: 14，Transfer out to exchange account: 15，system: 26，activity rewards: 28，rebate: 29, Transfer out to contract sub-account: 34，Transfer in from contract sub-account: 35, Transfer out to contract main-account: 36，Transfer in from contract main-account: 37</td>
+<td>1:open long; 2:open short; 3:close long; 4:close short; 5:fees for open positions-taker; 6:fees for open positions-maker; 7:fees for close positions-taker; 8:fees for close positions-maker; 9:close long for delivery; 10:close short for delivery; 11:delivery fee; 12:close long for liquidation; 13:lose short for liquidation; 14:transfer from spot exchange to contract exchange; 15:tranfer from contract exchange to spot exchange; 16:settle unrealized PnL-long positions; 17:settle unrealized PnL-short positions; 19:clawback; 26:system; 28:activity prize rewards; 29:rebate; 34:transfer to sub; 35:transfer from sub; 36:transfer to master; 37:transfer from master;</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -7447,7 +7447,7 @@ It will be pushed only when position event is updated.</p>
 <td>true</td>
 <td>int</td>
 <td>Transfer Type</td>
-<td>Transfer in from contract sub-account: 35，Transfer out to contract sub-account:34</td>
+<td>35:Transfer in from contract sub-account;  34:Transfer out to contract sub-account;</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -11565,8 +11565,8 @@ It will be pushed only when position event is updated.</p>
 <td>trigger_type</td>
 <td>true</td>
 <td>string</td>
-<td>Trigger Type:  ge equals to or greater than；le equals to or lower than</td>
-<td></td>
+<td>Trigger Type</td>
+<td>ge equals to or greater than；le equals to or lower than</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -11614,7 +11614,7 @@ It will be pushed only when position event is updated.</p>
 <td>relation_order_id</td>
 <td>true</td>
 <td>string</td>
-<td>The field is the related field of the related limit orders. It associates the value of the order_id field in the t_trigger_order list with the value of user_order_id in the t_order list; the value is -1 before the order is trigged.</td>
+<td>The field is the related field of the related limit orders. the value is -1 before the order is trigged.</td>
 <td></td>
 </tr>
 <tr>
