@@ -3507,7 +3507,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 | **Parameter name**                | **Must fill or not** | **Type**  | **Description**             | **Value range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | symbol | true | string | contract type code   | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC","ETH"... |
-| type | false | string | if not fill this parameter, it will query all types 【please use "," to seperate multiple types】 | close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29 transfer to sub：34，transfer from sub: 35, transfer to master: 36，transfer from master：37,  |
+| type | false | string | if not fill this parameter, it will query all types 【please use "," to seperate multiple types】 |  3:close long; 4:close short; 5:fees for open positions-taker; 6:fees for open positions-maker; 7:fees for close positions-taker; 8:fees for close positions-maker; 9:close long for delivery; 10:close short for delivery; 11:delivery fee; 12:close long for liquidation; 13:lose short for liquidation; 14:transfer from spot exchange to contract exchange; 15:tranfer from contract exchange to spot exchange; 16:settle unrealized PnL-long positions; 17:settle unrealized PnL-short positions; 19:clawback; 26:system; 28:activity prize rewards; 29:rebate; 34:transfer to sub; 35:transfer from sub; 36:transfer to master; 37:transfer from master;  |
 | create_date | false | int |  any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.  |  |
 | page_index | false | int | which page, default value is "1st page" when not fill this parameter |  |
 | page_size | false | int | the default value is "20" when not fill this parameter, should ≤50 |  |
@@ -3548,7 +3548,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 | id | true  | long |  |  |
 | ts | true  | long | create time |  |
 | symbol | true  | string | contract type code | "BTC","ETH"... |
-| type | true  | int | transaction type | close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29，transfer to sub：34，transfer from sub: 35, transfer to master: 36，transfer from master：37  |
+| type | true  | int | transaction type | 3:close long; 4:close short; 5:fees for open positions-taker; 6:fees for open positions-maker; 7:fees for close positions-taker; 8:fees for close positions-maker; 9:close long for delivery; 10:close short for delivery; 11:delivery fee; 12:close long for liquidation; 13:lose short for liquidation; 14:transfer from spot exchange to contract exchange; 15:tranfer from contract exchange to spot exchange; 16:settle unrealized PnL-long positions; 17:settle unrealized PnL-short positions; 19:clawback; 26:system; 28:activity prize rewards; 29:rebate; 34:transfer to sub; 35:transfer from sub; 36:transfer to master; 37:transfer from master; |
 | amount | true  | decimal | amount |  |
 | \</financial_record\> |  |  |  |  |
 | total_page | true  | int | total page |  |
@@ -3565,7 +3565,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 | Parameter name        | Mandatory  | Type     | Description    | Value range  |
 | ----------- | ----- | ------ | ---------------------- | ---------------------------------------- |
 | symbol    | true | string | contract symbol    | "BTC","ETH"...                           |
-| type        | false | string | if not fill this parameter, it will query all types 【please use "," to seperate multiple types】 | close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29，transfer to sub：34，transfer from sub: 35, transfer to master: 36，transfer from master：37 |
+| type        | false | string | if not fill this parameter, it will query all types 【please use "," to seperate multiple types】 |  3:close long; 4:close short; 5:fees for open positions-taker; 6:fees for open positions-maker; 7:fees for close positions-taker; 8:fees for close positions-maker; 9:close long for delivery; 10:close short for delivery; 11:delivery fee; 12:close long for liquidation; 13:lose short for liquidation; 14:transfer from spot exchange to contract exchange; 15:tranfer from contract exchange to spot exchange; 16:settle unrealized PnL-long positions; 17:settle unrealized PnL-short positions; 19:clawback; 26:system; 28:activity prize rewards; 29:rebate; 34:transfer to sub; 35:transfer from sub; 36:transfer to master; 37:transfer from master; |
 | start_time   | false  | long    | Start Time（Timestamp，Unit: Millisecond）        | See Note    |
 | end_time   | false  | long    | End Time（Timestamp，Unit: Millisecond）        |  See Note   |
 | from_id    | false | long    | Query start id（uses id of returned data）  |          |
@@ -3641,7 +3641,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 | ts                    | true | long    | create time          |                                          |
 | symbol                | true | string  | Type Code         | "BTC","ETH"...                           |
 | contract_code                | true | string  | Contract Code         | "BTC200919"...                           |
-| type                  | true | int     | order type          | close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29，transfer to sub：34，transfer from sub: 35, transfer to master: 36，transfer from master：37  |
+| type                  | true | int     | order type          | 3:close long; 4:close short; 5:fees for open positions-taker; 6:fees for open positions-maker; 7:fees for close positions-taker; 8:fees for close positions-maker; 9:close long for delivery; 10:close short for delivery; 11:delivery fee; 12:close long for liquidation; 13:lose short for liquidation; 14:transfer from spot exchange to contract exchange; 15:tranfer from contract exchange to spot exchange; 16:settle unrealized PnL-long positions; 17:settle unrealized PnL-short positions; 19:clawback; 26:system; 28:activity prize rewards; 29:rebate; 34:transfer to sub; 35:transfer from sub; 36:transfer to master; 37:transfer from master; |
 | amount                | true | decimal | amount            |                                          |
 | \</financial_record\> |     |         |               |                                          |
 | remain_size           | true | int  | Remaining data number（the number of data that has not been queried due to the limitation of data number in the time range）  |                                          |
@@ -5916,9 +5916,10 @@ ts                     | true     | long    | timestamp                |        
 | direction | string | true | order direction, [Buy (buy), Sell(sell)]
 | offset | string | true | offset direction [Open(open), Close(lose)]
 | lever_rate | int | true | leverage 1\5\10\20
-| order_id | int | true | Trigger order ID, the field value in user_order_id data under t_trigger_orders sheet
+| order_id | int | true | Trigger order ID
 | order_id_str | string | true | the order ID with string 
-| relation_order_id | string | true | Relation order ID is the string related to the limit orders which is the field value in order_id under t_trigger_order list. The value is -1 before the trigger orders executed. | order_price_type | string | true | order type "limit": Limit order price，"optimal_5": Optimal 5  price level，"optimal_10":Optimal 10 price level，"optimal_20": the Optimal 20 price level
+| relation_order_id | string | true | Relation order ID is the string related to the limit orders. The value is -1 before the trigger orders executed. 
+| order_price_type | string | true | order type "limit": Limit order price，"optimal_5": Optimal 5  price level，"optimal_10":Optimal 10 price level，"optimal_20": the Optimal 20 price level
 | status | int | true | Order status (4:Orders accepted、5: Orders failing being placed、6: Orders canceled )
 | order_source | string | true | Order source
 | trigger_price | decimal | true | trigger price
@@ -8399,22 +8400,22 @@ To subscribe contract info, the client has to make connection to the server and 
 
 ### Response data fields
 
-| Field Name |Type   | Description                                              |
-| ----------------------- | ------- | ------------------------------------------------------------ |
+| Field Name |Type   | Description    | Value Range    |
+| ----------------------- | ------- | --------- | --------- |
 | op   |  string  | value: "notify";    |   |
 | topic   | string  | topic subscribed   |   |
 | ts   | long  | timestamp of server response.unit: millionseconds   |   |
 | event   | string  | event   |  "init", "update", "snapshot"  |
 | \<data\>   | object array |     |    |
 | symbol |string | symbol,"BTC","ETH"... |
-| contract_code  | string   |  contract code,"EOS200113"  |
-| contract_type  | string   |  contract type, "this_week","next_week", "quarter", "next_quarter",  Next Quarterly Contract: "next_quarter" |
+| contract_code  | string   |  contract code | "EOS200113"  |
+| contract_type  | string   |  contract type |  "this_week","next_week", "quarter", "next_quarter",  Next Quarterly Contract: "next_quarter" |
 | contract_size  | decimal | Contract Value (USD of one contract). such as 10,100| 10, 100... |
 | price_tick  | decimal | Minimum Variation of Contract Price | 0.001, 0.01... |
 | delivery_date  |  string  | delivery  date    | such as "20200327"  |
 | create_date   |  string  | Contract Listing Date    | such as "20180706" |
 | contract_status      |  int     | contract status  | 0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered, 9 Suspending of Trade |
-| \</data\>   | object array |     |    |
+| \</data\>   |  |     |    |
 
 
 ### Note：
@@ -8456,7 +8457,7 @@ To unsubscribe contract info data, the client has to make connection to the serv
 | :------- | :----- | :------------------------------------------------- |
 | op       | string | Required; Operator Name，subscribe value is unsub;                 |
 | cid      | string | Optional;   Client requests unique ID                        |
-| topic    | string | Subscribe topic name，Require subscribe public.$symbol.contract_info Subscribe/unsubscribe the data of a given contract code; when the $symbol value is *, it stands for subscribing/unsubscribing all the contract infos of contract codes，; |
+| topic    | string | Required；Unsubscribe topic name: public.$symbol.contract_info;   symbol is case-insenstive.Both uppercase and lowercase are supported.e.g: "BTC,ETH" ; when $symbol value is *, it stands for unsubscribing the data of all coins; |
 
 ### Data format of subscription and unsubscription of contract info
 
@@ -8500,7 +8501,7 @@ To unsubscribe contract info data, the client has to make connection to the serv
 | ------ | ---- | ------ | -------- | -------------- |
 | op | true | string | Required； Operator Name，required subscribe value is  sub	 |  |
 | cid | false| string | Optional; ID Client requests unique ID	 | |
-| topic | true| string |Required；format: trigger_order.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" | |
+| topic | true| string | Required；format: trigger_order.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g.:"BTC,ETH" ;when $symbol value is *, it stands for subscribing the data of all coins; | |
 
 > Return example：
 
@@ -8556,7 +8557,7 @@ To unsubscribe contract info data, the client has to make connection to the serv
 | symbol                 | true | string  | Variety code      |                                          |
 | contract_type          | true | string  | contract type            | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter" Next Quarterly Contract: "next_quarter"：“next_quarter”  |
 | contract_code          | true | string  | contract code               | "BTC180914" ...                          |
-| trigger_type              | true | string  | trigger type： `ge`great than or equal to；`le`less than or equal to  |              |
+| trigger_type              | true | string  | trigger type | `ge`great than or equal to；`le`less than or equal to  |           
 | volume                 | true | decimal  | trigger order volume |      |
 | order_type           | true | int | Transaction Type              | 1. Place orders     |
 | direction            | true | string | order direction        |       [buy,sell]       |
@@ -8564,7 +8565,7 @@ To unsubscribe contract info data, the client has to make connection to the serv
 | lever_rate            | true | int    | Leverage              |                         |
 | order_id      | true | long | trigger order ID         |                                          |
 | order_id_str             | true | string | the order ID with string            |                                          |
-| relation_order_id             | true | string | Relation order ID is the string related to the limit orders which is the field value in order_id under t_trigger_order list. The value is -1 before the trigger orders executed.  |         |
+| relation_order_id             | true | string |  Relation order ID is the string related to the limit orders ,  The value is -1 before the trigger orders executed.  |         |
 | order_price_type        | true  | string | Order price type |        "limit": limit order，"optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20   |
 | status        | true  | int | order status |    2. Ready to submit the orders;  4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched;     |
 | order_source      | true | string  | Order Source       |                                          |
@@ -8619,10 +8620,10 @@ To subscribe basis data, the Client has to make connection to the Server and sen
 ### Format illustration of unsubscribe order data
 
 | Field Name | Type   | Description                                               |
-| :------- | :----- | :------------------------------------------------- |
+| ------- | ----- | ------------------------------------------------- |
 | op       | string | Required; Operator Name，subscribe value is unsub;               |
 | cid      | string | Optional;   Client requests unique ID                          |
-| topic    | string | Required;Required；Required；Subscribe topic，Subscribe positions.$symbol required  Subscribe or unsubscribe the position updates of a single coin; when $symbol value is *, it stands for subscribing the data of all coins; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" |
+| topic    | string | Required；Unsubscribe topic name: trigger_order.$symbol;   symbol is case-insenstive.Both uppercase and lowercase are supported.e.g: "BTC,ETH" ; when $symbol value is *, it stands for unsubscribing the data of all coins; |
 
 ### Rules on Subscribe and Unsubscribe
 
