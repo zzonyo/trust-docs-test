@@ -4957,7 +4957,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | lever_rate | true |int | 杠杆倍数  | |
 | order_id | true |long  | 计划委托单订单ID | |
 | order_id_str | true |string  | 字符串类型的订单ID  | |
-| relation_order_id | true | string  | 该字段为关联限价单的关联字段，是t_trigger_order 表中的order_id 字段值，关联t_order表中的user_order_id 值，未触发前数值为-1  | |
+| relation_order_id | true | string  | 该字段为关联限价单的订单id，未触发前数值为-1 | |
 | order_price_type | true |string | 订单报价类型 限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20| |
 | status | true |int  | 订单状态(4:报单成功、5:报单失败、6:已撤单 )| |
 | order_source | true |string | 来源| |
@@ -5123,15 +5123,15 @@ message |    true  |   string    |   响应信息	 |   |
 | 读取    |  市场行情接口 | market.$contract_code.detail                           | sub  | 订阅 Market detail 数据       |       否      |
 | 读取    |  市场行情接口 | market.$contract_code.trade.detail                     | req  | 请求 Trade detail 数据        |       否      |
 | 读取    |  市场行情接口 | market.$contract_code.trade.detail                     | sub  | 订阅 Trade Detail 数据        |       否      |
-| 读取    |  市场行情接口 | market.$contract_code.basis.$period.$basis_price_type  | sub  | 订阅基差数据                  |       否      |
-| 读取    |  市场行情接口 | market.$contract_code.basis.$period.$basis_price_type  | req  | 请求基差数据                  |       否      |
-| 读取    |  市场行情接口 | market.$contract_code.premium_index.$period            | sub  | 订阅溢价指数K线数据           |       否      |
-| 读取    |  市场行情接口 | market.$contract_code.premium_index.$period            | req  | 请求溢价指数K线数据           |       否      |
-| 读取    |  市场行情接口 | market.$contract_code.estimated_rate.$period           | sub  | 订阅预测资金费率K线数据       |       否      |
-| 读取    |  市场行情接口 | market.$contract_code.estimated_rate.$period           | req  | 请求预测资金费率K线数据       |       否      |
-| 读取    |  市场行情接口 | public.$contract_code.liquidation_orders               | sub  | 订阅强平订单数据（免鉴权）    |       否      |
-| 读取    |  市场行情接口 | public.$contract_code.funding_rate                     | sub  | 订阅资金费率变动数据（免鉴权）|       否      |
-| 读取    |  市场行情接口 | public.$contract_code.contract_info                    | sub  | 订阅合约信息变动数据（免鉴权）|       否      |
+| 读取    |  指数与基差接口 | market.$contract_code.basis.$period.$basis_price_type  | sub  | 订阅基差数据                  |       否      |
+| 读取    |  指数与基差接口 | market.$contract_code.basis.$period.$basis_price_type  | req  | 请求基差数据                  |       否      |
+| 读取    |  指数与基差接口 | market.$contract_code.premium_index.$period            | sub  | 订阅溢价指数K线数据           |       否      |
+| 读取    |  指数与基差接口 | market.$contract_code.premium_index.$period            | req  | 请求溢价指数K线数据           |       否      |
+| 读取    |  指数与基差接口 | market.$contract_code.estimated_rate.$period           | sub  | 订阅预测资金费率K线数据       |       否      |
+| 读取    |  指数与基差接口 | market.$contract_code.estimated_rate.$period           | req  | 请求预测资金费率K线数据       |       否      |
+| 读取    |  交易接口 | public.$contract_code.liquidation_orders               | sub  | 订阅强平订单数据（免鉴权）    |       否      |
+| 读取    |  交易接口 | public.$contract_code.funding_rate                     | sub  | 订阅资金费率变动数据（免鉴权）|       否      |
+| 读取    |  交易接口 | public.$contract_code.contract_info                    | sub  | 订阅合约信息变动数据（免鉴权）|       否      |
 | 读取    |  交易接口	 | orders.$contract_code                                  | sub  | 订阅订单成交数据              |    是       |
 | 读取    |  资产接口	 | accounts.$contract_code                                | sub  | 订阅资产变动数据              |    是       |
 | 读取    |  资产接口	 | positions.$contract_code                               | sub  | 订阅持仓变动更新数据          |    是       |
