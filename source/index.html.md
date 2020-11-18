@@ -3479,8 +3479,7 @@ last_price | decimal  | true  | Last Price                                      
 | end_time   | false  | long    | End Time（Timestamp，Unit: Millisecond）        |  See note   |
 | from_id    | false | long    | Query start id（uses id of returned data）    |                     |
 | size     | false | int    |number of data   |  it will be the default value of 20; the number should ≤50        |
-| direct     | false | string    |   Query direction   |   prev ；next ；default value
-:prev   |
+| direct     | false | string    |   Query direction   |   prev ；next ；default value:prev   |
 
 #### Note:
 
@@ -3556,7 +3555,7 @@ last_price | decimal  | true  | Last Price                                      
 | \</financial_record\> |     |         |               |                                          |
 | remain_size           | true | int  | Remaining data number（the number of data that has not been queried due to the limitation of data number in the time range）   |                                          |
 | next_id           | true | long     | id for next data (only has value when query result exceeds data number limits）            |                                          |
-| </data>             |      |         |      |     |
+| \</data\>             |      |         |      |     |
 
 #### Note：
 
