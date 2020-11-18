@@ -3524,11 +3524,12 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
         "total_size": 15,
         "financial_record": [
             {
-                "id": 3657420903,
+                "id": 3662498355,
                 "symbol": "ADA",
-                "type": 34,
-                "amount": -50,
-                "ts": 1604301623306
+                "type": 8,
+                "amount": -0.074766355140186915,
+                "ts": 1605014144415,
+                "contract_code": "ADA201225"
             }
         ]
     },
@@ -3550,6 +3551,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 | symbol | true  | string | contract type code | "BTC","ETH"... |
 | type | true  | int | transaction type | 3:close long; 4:close short; 5:fees for open positions-taker; 6:fees for open positions-maker; 7:fees for close positions-taker; 8:fees for close positions-maker; 9:close long for delivery; 10:close short for delivery; 11:delivery fee; 12:close long for liquidation; 13:lose short for liquidation; 14:transfer from spot exchange to contract exchange; 15:tranfer from contract exchange to spot exchange; 16:settle unrealized PnL-long positions; 17:settle unrealized PnL-short positions; 19:clawback; 26:system; 28:activity prize rewards; 29:rebate; 34:transfer to sub; 35:transfer from sub; 36:transfer to master; 37:transfer from master; |
 | amount | true  | decimal | amount |  |
+| contract_code | true  | string | contract code |  |
 | \</financial_record\> |  |  |  |  |
 | total_page | true  | int | total page |  |
 | current_page | true  | int | current page |  |
