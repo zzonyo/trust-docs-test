@@ -543,6 +543,7 @@ account-id可通过/v1/account/accounts接口获取，并根据account-type区�
 * point：点卡账户  
 * minepool：矿池账户  
 * etf：ETF账户 
+* 抵押借贷：crypto-loans
 
 ### 订单、成交相关ID说明  
 * order-id : 订单的唯一编号  
@@ -668,6 +669,8 @@ data      | object    | 接口返回数据主体
 - `int`: 32位整数，主要涉及到状态码、大小、次数等
 - `long`: 64位整数，主要涉及到Id和时间戳
 - `float`: 浮点数，主要涉及到金额和价格，建议程序中使用高精度浮点型
+- `object`: 对象，包含一个子对象{}
+- `array`: 数组，包含多个对象
 
 ## 最佳实践
 
@@ -2059,10 +2062,10 @@ API Key 权限：读取<br>
 | ----- | ---- | ------ | ----- | ----  |
 | id    | true | long   | account-id |    |
 | state | true | string | 账户状态  | working：正常, lock：账户被锁定 |
-| type  | true | string | 账户类型  | spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，point：点卡账户，super-margin：全仓杠杆账户, investment: C2C杠杆借出账户, borrow: C2C杠杆借入账户  |
+| type  | true | string | 账户类型  | spot：现货账户, margin：逐仓杠杆账户, otc：OTC 账户, point：点卡账户, super-margin：全仓杠杆账户, investment: C2C杠杆借出账户, borrow: C2C杠杆借入账户，矿池账户: minepool, ETF账户: etf, 抵押借贷账户: crypto-loans |
 | subtype  | false | string | 子账户类型（仅对逐仓杠杆账户有效）  | 逐仓杠杆交易标的，例如btcusdt  |
 
-<aside class="notice">逐仓/全仓杠杆账户（margin/super-margin/borrow）会在第一次划转资产时创建，如果未划转过资产则不会有杠杆账户。</aside>
+<aside class="notice">逐仓/全仓/C2C杠杆账户（margin/super-margin/borrow）会在第一次划转资产时创建，如果未划转过资产则不会有杠杆账户。</aside>
 
 
 ## 账户余额
@@ -2114,7 +2117,7 @@ spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，point：
 | ----- | ----- | ------ | ----- | ----- |
 | id    | true  | long   | 账户 ID |      |
 | state | true  | string | 账户状态  | working：正常  lock：账户被锁定 |
-| type  | true  | string | 账户类型  | spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，point：点卡账户，super-margin：全仓杠杆账户, investment: C2C杠杆借出账户, borrow: C2C杠杆借入账户 |
+| type  | true  | string | 账户类型  | spot：现货账户, margin：逐仓杠杆账户, otc：OTC 账户, point：点卡账户, super-margin：全仓杠杆账户, investment: C2C杠杆借出账户, borrow: C2C杠杆借入账户，矿池账户: minepool, ETF账户: etf, 抵押借贷账户: crypto-loans |
 | list  | false | Array  |      |     |
 
 list字段说明
@@ -2123,7 +2126,7 @@ list字段说明
 | -------- | ---- | ------ | ---- |  ------ |
 | balance  | true | string | 余额   |    |
 | currency | true | string | 币种   |    |
-| type     | true | string | 类型   | trade: 交易余额，frozen: 冻结余额 |
+| type     | true | string | 类型   | trade: 交易余额，frozen: 冻结余额, loan: 待还借贷本金, interest: 待还借贷利息, lock: 锁仓, bank: 储蓄 |
 
 ## 获取账户资产估值
 
@@ -2382,7 +2385,7 @@ endTime缺省值：当前时间
 |	currency	|	string		|	TRUE		|	币种									|										|
 |	transactAmt	|	number	|	TRUE		|	变动金额（入账为正 or 出账为负）				|					|
 |	transactType	|	string		|	TRUE		|	变动类型								| transfer（划转） |
-|	transferType	|	string		|	FALSE		|	划转类型（仅对transactType=transfer有效）								|	otc-to-pro（otc到现货）, pro-to-otc（现货到otc）, futures-to-pro（交割合约到现货）, pro-to-futures（现货到交割合约）, dm-swap-to-pro（永续合约到现货）, dm-pro-to-swap（现货到永续合约）, margin-transfer-in（转入到逐仓杠杆）, margin-transfer-out（从逐仓杠杆转出）, pro-to-super-margin（现货到全仓杠杆）, super-margin-to-pro（全仓杠杆到现货）, master-transfer-in（转入到母用户）, master-transfer-out（从母用户转出）, sub-transfer-in（转入到子用户）, sub-transfer-out（从子用户转出）	|
+|	transferType	|	string		|	FALSE		|	划转类型（仅对transactType=transfer有效）								|	otc-to-pro（otc到现货）, pro-to-otc（现货到otc）, futures-to-pro（交割合约到现货）, pro-to-futures（现货到交割合约）, dm-swap-to-pro（币本位永续合约到现货）, dm-pro-to-swap（现货到币本位永续合约）, margin-transfer-in（转入到逐仓杠杆）, margin-transfer-out（从逐仓杠杆转出）, pro-to-super-margin（现货到全仓杠杆）, super-margin-to-pro（全仓杠杆到现货）, master-transfer-in（转入到母用户）, master-transfer-out（从母用户转出）, sub-transfer-in（转入到子用户）, sub-transfer-out（从子用户转出）	|
 |	transactId	|	integer	|	TRUE		|	交易流水号								|									|
 |	transactTime	|	integer	|	TRUE		|	交易时间								|									|
 |	transferer	|	integer	|	FALSE		|	付款方账户ID			|				|
@@ -3848,6 +3851,7 @@ balance|-|decimal|-		|账户余额	|-|
 | base-system-error | 系统错误，如果是撤单：缓存中查不到订单状态，该订单无法撤单；如果是下单：订单入缓存失败，请再次尝试 |
 | login-required | url中没有Signature参数或找不到此用户（key与账户id不对应等情况）|
 | parameter-required |止盈止损订单缺少参数 stop-price或operator |
+| base-record-invalid |暂时未找到数据，请稍后重试 |
 | order-amount-over-limit | 订单数量超出限额 |
 | base-symbol-trade-disabled | 该交易对被禁止交易 |
 | base-operation-forbidden | 用户不在白名单内或该币种不允许OTC交易等禁止行为 |
@@ -3894,6 +3898,7 @@ balance|-|decimal|-		|账户余额	|-|
 | invalid-end-date | 查询起始日期含非法取值 |
 | invalid-start-time | 查询起始时间含非法取值 |
 | invalid-end-time | 查询起始时间含非法取值 |
+| validation-constraints-required | 指定的必填参数缺失 |
 | symbol-not-support | 交易对不支持，全仓杠杆或c2c |
 | not-found | 撤单时订单不存在 |
 | base-not-found| 撤单时无效clientorderid撤单过多，一个小时后再重试 |
@@ -6104,13 +6109,13 @@ API Key 权限：交易
 
 ### 响应数据
 
-| **名称**    | **类型** | **是否必需** | **描述**                                 |
-| ----------- | -------- | ------------ | ---------------------------------------- |
-| code        | integer  | TRUE         | 状态码                                   |
-| message     | string   | FALSE        | 错误描述（如有）                         |
-| data        | object   | TRUE         |                                          |
-| { repayId   | string   | TRUE         | 还币交易ID                               |
-| repayTime } | long     | TRUE         | 还币交易时间（unix time in millisecond） |
+| **名称**     | **类型** | **是否必需** | **描述**                                 |
+| ------------ | -------- | ------------ | ---------------------------------------- |
+| code         | integer  | TRUE         | 状态码                                   |
+| message      | string   | FALSE        | 错误描述（如有）                         |
+| data         | array    | TRUE         |                                          |
+| [{ repayId   | string   | TRUE         | 还币交易ID                               |
+| repayTime }] | long     | TRUE         | 还币交易时间（unix time in millisecond） |
 
 注：
 返回relayId不意味着该还币100%成功，用户须在还币后通过查询还币交易记录确认该还币状态。
@@ -6171,8 +6176,8 @@ API Key 权限：读取
 | --------------- | -------- | ------------ | -------------------------------------------------------- |
 | code            | integer  | TRUE         | 状态码                                                   |
 | message         | string   | FALSE        | 错误描述（如有）                                         |
-| data            | object   | TRUE         | 按sort指定顺序排列                                       |
-| { repayId       | string   | TRUE         | 还币交易ID                                               |
+| data            | array    | TRUE         | 按sort指定顺序排列                                       |
+| [{ repayId      | string   | TRUE         | 还币交易ID                                               |
 | repayTime       | long     | TRUE         | 还币交易时间（unix time in millisecond）                 |
 | accountId       | string   | TRUE         | 还币账户ID                                               |
 | currency        | string   | TRUE         | 还币币种                                                 |
@@ -6182,7 +6187,7 @@ API Key 权限：读取
 | repaidPrincipal | string   | TRUE         | 该笔还币交易已还本金                                     |
 | repaidInterest  | string   | TRUE         | 该笔还币交易已还利息                                     |
 | paidHt          | string   | TRUE         | 该笔还币交易已支付HT金额                                 |
-| paidPoint }}    | string   | TRUE         | 该笔还币交易已支付点卡金额                               |
+| paidPoint }}]   | string   | TRUE         | 该笔还币交易已支付点卡金额                               |
 | nextId          | long     | FALSE        | 下页查询起始编号（仅在存在下页数据时返回）               |
 
 # 借币（C2C）
@@ -8617,7 +8622,7 @@ API Key 权限：读取
 	{
 		"orderSize":"2.000000000000000000",
 		"orderCreateTime":1583853365586,
-		"accountld":992701,
+		"accountId":992701,
 		"orderPrice":"77.000000000000000000",
 		"type":"sell-limit",
 		"orderId":27163533,
@@ -8635,7 +8640,7 @@ API Key 权限：读取
 | ---- | -------- | ---- |
 |	eventType		|	string		|	事件类型，有效值：creation							|
 |	symbol		|	string		|	交易代码										|
-|	accountld	|	long	|	账户ID	|
+|	accountId	|	long	|	账户ID	|
 |	orderId		|	long		|	订单ID										|
 |	clientOrderId		|	string		|	用户自编订单号（如有）								|
 |	orderPrice		|	string		|	订单价格										|
