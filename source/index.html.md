@@ -1292,6 +1292,8 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 
 ## 代码实例
 
+### REST
+
 - <a href='https://github.com/hbdmapi/java_demo'>Java</a>
 
 - <a href='https://github.com/hbdmapi/hbdm_Python'>Python</a>
@@ -1301,6 +1303,10 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 - <a href='https://github.com/hbdmapi/huobi_swap_Cpp'>C++</a>
 
 - <a href='https://github.com/hbdmapi/huobi_futures_Postman'>Postman</a>
+
+### 合约SDK
+
+- <a href='https://github.com/hbdmapi/huobi_coin_swap_Java'>Java SDK</a>
 
 ### 备注：币本位永续代码使用方式与交割合约类似，其他语言demo可以参考交割合约
 
