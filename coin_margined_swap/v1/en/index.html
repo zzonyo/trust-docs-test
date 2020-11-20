@@ -9390,10 +9390,6 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>post <code>/swap-api/v1/swap_master_sub_transfer_record</code></li>
 </ul>
-
-<blockquote>
-<p>Request:</p>
-</blockquote>
 <h3 id='request-2'>request</h3>
 <table><thead>
 <tr>
@@ -14794,9 +14790,9 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>Read</td>
 <td>Market Data Interface</td>
-<td>market.$contract_code.detail</td>
+<td>market.$contract_code.depth.size_${size}.high_freq</td>
 <td>sub</td>
-<td>Subscribe Market Detail Data</td>
+<td>Subscribe Incremental Market Depth Data</td>
 <td>No</td>
 </tr>
 <tr>
@@ -14805,6 +14801,14 @@ You are recommended to read the status code from the returned message. If the ab
 <td>market.$contract_code.bbo</td>
 <td>sub</td>
 <td>Subscribe market BBO data push</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Market Data Interface</td>
+<td>market.$contract_code.detail</td>
+<td>sub</td>
+<td>Subscribe Market Detail Data</td>
 <td>No</td>
 </tr>
 <tr>
@@ -14825,10 +14829,74 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>Read</td>
-<td>System Status Interface</td>
-<td>public.$service.heartbeat</td>
+<td>Index and Basis Interface</td>
+<td>market.$contract_code.basis.$period.$basis_price_type</td>
 <td>sub</td>
-<td>Subscribe system status updates</td>
+<td>Subscribe Basis Data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Index and Basis Interface</td>
+<td>market.$contract_code.basis.$period.$basis_price_type</td>
+<td>req</td>
+<td>Request Basis Data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Index and Basis Interface</td>
+<td>market.$contract_code.premium_index.$period</td>
+<td>sub</td>
+<td>Subcribe Premium Index Kline Data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Index and Basis Interface</td>
+<td>market.$contract_code.premium_index.$period</td>
+<td>req</td>
+<td>Request Premium Index Kline Data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Index and Basis Interface</td>
+<td>market.$contract_code.estimated_rate.$period</td>
+<td>sub</td>
+<td>Subcribe Estimated Funding Rate Kline Data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Index and Basis Interface</td>
+<td>market.$contract_code.estimated_rate.$period</td>
+<td>req</td>
+<td>Request Estimated Funding Rate Kline Data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Trade Interface</td>
+<td>public.$contract_code.liquidation_orders</td>
+<td>sub</td>
+<td>Subscribe Liquidation Orders (no authentication) (sub)</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Trade Interface</td>
+<td>public.$contract_code.funding_rate</td>
+<td>sub</td>
+<td>Subscribe funding rate (no authentication)（sub）</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Trade Interface</td>
+<td>public.$contract_code.contract_info</td>
+<td>sub</td>
+<td>Subscribe Contract Info (no authentication)（sub）</td>
 <td>No</td>
 </tr>
 <tr>
@@ -14836,7 +14904,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Trade Interface</td>
 <td>orders.$contract_code</td>
 <td>sub</td>
-<td>Subscribe Order Data</td>
+<td>Subscribe Order Data(sub)</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -14844,7 +14912,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Account Interface</td>
 <td>accounts.$contract_code</td>
 <td>sub</td>
-<td>Subscribe asset change Information of a given coin</td>
+<td>Subscribe Account Equity Updates Data(sub)</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -14852,16 +14920,32 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Account Interface</td>
 <td>positions.$contract_code</td>
 <td>sub</td>
-<td>Subscribe position change Information of a given coin</td>
+<td>Subscribe Position Updates(sub)</td>
 <td>Yes</td>
 </tr>
 <tr>
 <td>Read</td>
-<td>Account Interface</td>
+<td>Trade Interface</td>
+<td>matchOrders.$contract_code</td>
+<td>sub</td>
+<td>Subscribe Match Order Data（sub)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Trade Interface</td>
 <td>trigger_order.$contract_code</td>
 <td>sub</td>
-<td>Subscribe trigger orders updates</td>
+<td>Subscribe trigger orders updates(sub)</td>
 <td>Yes</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>System Status Interface</td>
+<td>public.$service.heartbeat</td>
+<td>sub</td>
+<td>Subscribe system status updates</td>
+<td>No</td>
 </tr>
 </tbody></table>
 <h2 id='websocket-subscription-address'>WebSocket Subscription Address</h2>
