@@ -2409,7 +2409,7 @@ endTime default value: current time
 |	currency	|	string		|	TRUE		|	Cryptocurrency							|								|
 |	transactAmt	|	number	|	TRUE		|	Transaction amount (income positive, expenditure negative)	|		|
 |	transactType	|	string		|	TRUE		|	Transaction type							|								|
-|	transferType	|	string		|	FALSE		|	Transfer type	(only valid for transactType=transfer)						|	otc-to-pro, pro-to-otc, futures-to-pro, pro-to-futures, dm-swap-to-pro, dm-pro-to-swap, margin-transfer-in, margin-transfer-out, lock-transfer-in, lock-transfer-out, user-lock-transfer-in, user-lock-transfer-out, master-transfer-in, master-transfer-out, sub-transfer-in, sub-transfer-out, agency-transfer-in, agency-transfer-out, pro-to-super-margin, super-margin-to-pro	|
+|	transferType	|	string		|	FALSE		|	Transfer type	(only valid for transactType=transfer)						|	otc-to-pro, pro-to-otc, futures-to-pro, pro-to-futures, dm-swap-to-pro (coin-margined-swap), dm-pro-to-swap (coin-margined-swap), margin-transfer-in, margin-transfer-out, lock-transfer-in, lock-transfer-out, user-lock-transfer-in, user-lock-transfer-out, master-transfer-in, master-transfer-out, sub-transfer-in, sub-transfer-out, agency-transfer-in, agency-transfer-out, pro-to-super-margin, super-margin-to-pro	|
 |	transactId	|	integer		|	TRUE		|	Transaction ID								|									|
 |	transactTime	|	integer		|	TRUE		|	Transaction time							|								|
 |	transferer	|	integer		|	FALSE		|	Transferer’s account ID		|			|
