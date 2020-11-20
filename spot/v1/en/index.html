@@ -5166,7 +5166,7 @@ endTime default value: current time</p>
 <td>string</td>
 <td>FALSE</td>
 <td>Transfer type   (only valid for transactType=transfer)</td>
-<td>otc-to-pro, pro-to-otc, futures-to-pro, pro-to-futures, dm-swap-to-pro, dm-pro-to-swap, margin-transfer-in, margin-transfer-out, lock-transfer-in, lock-transfer-out, user-lock-transfer-in, user-lock-transfer-out, master-transfer-in, master-transfer-out, sub-transfer-in, sub-transfer-out, agency-transfer-in, agency-transfer-out, pro-to-super-margin, super-margin-to-pro</td>
+<td>otc-to-pro, pro-to-otc, futures-to-pro, pro-to-futures, dm-swap-to-pro (coin-margined-swap), dm-pro-to-swap (coin-margined-swap), margin-transfer-in, margin-transfer-out, lock-transfer-in, lock-transfer-out, user-lock-transfer-in, user-lock-transfer-out, master-transfer-in, master-transfer-out, sub-transfer-in, sub-transfer-out, agency-transfer-in, agency-transfer-out, pro-to-super-margin, super-margin-to-pro</td>
 </tr>
 <tr>
 <td>transactId</td>
@@ -6179,9 +6179,9 @@ Only when the number of items within the query window exceeded the page limitati
 <p>API Key Permission：Withdraw<br>
 Rate Limit (NEW): 20times/2s</p>
 
-<p>Parent user creates a withdraw request from spot account to an external address.</p>
+<p>Parent user creates a withdraw request from spot account to an external address (exists in your withdraw address list), which doesn&#39;t require two-factor-authentication.</p>
 
-<aside class="notice">If user has chosen fast withdraw preferred in  <a href='https://www.hbg.com/en-us/user_center/uc_setting/'>Settings </a>, the withdraw requests submitted via this endpoint would choose 'fast withdraw' as preferred channel. </aside>
+<aside class="notice">If user has chosen fast withdraw preferred in  <a href='https://www.hbg.com/en-us/user_center/uc_setting/'>settings </a>, the withdraw requests submitted via this endpoint would choose 'fast withdraw' as preferred channel. </aside>
 
 <aside class="notice">Only support the existed addresses in your  <a href='https://www.hbg.com/en-us/withdraw_address/'>withdraw address list</a>. The once-off withdraw address of IOTA couldn't be set in the list, thus IOTA withdrawal is not supported through API. </aside>
 <h3 id='http-request-27'>HTTP Request</h3>
@@ -8464,6 +8464,10 @@ Rate Limit (NEW): 20times/2s</p>
 <td>Parameter stop-price or operator is missing for stop-order type</td>
 </tr>
 <tr>
+<td>base-record-invalid</td>
+<td>Failed to get data, please try again later</td>
+</tr>
+<tr>
 <td>order-amount-over-limit</td>
 <td>The amount of order exceeds the limitation</td>
 </tr>
@@ -8642,6 +8646,10 @@ Rate Limit (NEW): 20times/2s</p>
 <tr>
 <td>invalid-end-time</td>
 <td>The end time is invalid</td>
+</tr>
+<tr>
+<td>validation-constraints-required</td>
+<td>The specified parameters is missing</td>
 </tr>
 <tr>
 <td>symbol-not-support</td>
@@ -17578,7 +17586,7 @@ By comparing to api.huobi.pro, the network latency to api-aws.huobi.pro is lower
 <td>authType</td>
 <td>true</td>
 <td>string</td>
-<td>Authentication type, valid value: &quot;api&quot;</td>
+<td>Authentication type, valid value: &quot;api&quot;. Note this is not part of signature calculation</td>
 </tr>
 <tr>
 <td>accessKey</td>
