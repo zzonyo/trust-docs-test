@@ -8401,7 +8401,7 @@ operator              | string  |  止盈止损订单触发价运算符   |
 |----| ----|--------| ----|
 |action|true| string| Websocket数据操作类型，鉴权固定值为req|
 |ch|true|string|请求主题，鉴权固定值为auth|
-|authType| true|string|鉴权类型，鉴权固定值为api|
+|authType| true|string|鉴权类型，鉴权固定值为api。注意，该参数不在签名计算中。|
 |accessKey|true|string|您申请的API Key中的AccessKey|
 |signatureMethod| true| string| 签名方法，用户计算签名寄语哈希的协议，固定值为HmacSHA256|
 |signatureVersion| true|string|签名协议版本，固定值为2.1|
