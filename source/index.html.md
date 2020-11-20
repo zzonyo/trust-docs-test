@@ -2462,7 +2462,7 @@ symbol  |    true  |  string  |  合约名称  |    | 支持大小写，如"BTC_
 -------------- |  -------------- |  -------------- |  ----------------------------------------------------------| ----------------  |
 ch  |  true  |  string  |    数据所属的 channel，格式： market.$symbol.detail.merged   |     |
 status  |    true  |  string  |    请求处理结果  |  "ok" , "error"  |
-tick  |  true  |  object  |    24小时成交量、开盘价和收盘价  |    |
+tick  |  true  |  object  |    24小时成交量、开盘价和收盘价（从当今零点开始）  |    |
 ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    | 
 
 ### tick参数
