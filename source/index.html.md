@@ -2833,9 +2833,9 @@ Only when the number of items within the query window exceeded the page limitati
 API Key Permission：Withdraw<br>
 Rate Limit (NEW): 20times/2s
 
-Parent user creates a withdraw request from spot account to an external address.
+Parent user creates a withdraw request from spot account to an external address (exists in your withdraw address list), which doesn't require two-factor-authentication.
 
-<aside class="notice">If user has chosen fast withdraw preferred in  <a href='https://www.hbg.com/en-us/user_center/uc_setting/'>Settings </a>, the withdraw requests submitted via this endpoint would choose 'fast withdraw' as preferred channel. </aside>
+<aside class="notice">If user has chosen fast withdraw preferred in  <a href='https://www.hbg.com/en-us/user_center/uc_setting/'>settings </a>, the withdraw requests submitted via this endpoint would choose 'fast withdraw' as preferred channel. </aside>
 <aside class="notice">Only support the existed addresses in your  <a href='https://www.hbg.com/en-us/withdraw_address/'>withdraw address list</a>. The once-off withdraw address of IOTA couldn't be set in the list, thus IOTA withdrawal is not supported through API. </aside>
 
 ### HTTP Request
@@ -3853,6 +3853,7 @@ Below is the error code and description returned by Trading APIs
 | base-system-error         | Server internel error. For placing or canceling order, it is most related to cache issue, please try again later. |
 | login-required | Signature is missing |
 | parameter-required |Parameter stop-price or operator is missing for stop-order type |
+| base-record-invalid |Failed to get data, please try again later |
 | order-amount-over-limit | The amount of order exceeds the limitation |
 | base-symbol-trade-disabled | The symbol is disabled for trading |
 | base-operation-forbidden | The operation is forbidden for current user or the symbol is not allowed to trade over OTC |
@@ -3898,6 +3899,7 @@ Below is the error code and description returned by Trading APIs
 | invalid-end-date | The end date is invalid |
 | invalid-start-time | The start time is invalid |
 | invalid-end-time | The end time is invalid |
+| validation-constraints-required | The specified parameters is missing |
 | symbol-not-support | The symbol is not support for cross margin or C2C |
 | not-found | The order id is not found |
 | base-not-found| Too much invalid client order id in the past, try again after 1 hour |
