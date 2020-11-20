@@ -8403,16 +8403,16 @@ There are multiple limitations for this version:
 
 Authentication request field list
 
-|Field| Mandatory|Data Type| Description
-|----| ----|--------| ----
-|action|true| string| Action type, valid value: "req"
-|ch|true|string|Channel, valid value: "auth"
-|authType| true|string|Authentication type, valid value: "api"
-|accessKey|true|string|Access key
-|signatureMethod| true| string| Signature method, valid value: "HmacSHA256"
-|signatureVersion| true|string|Signature version, valid value: "2.1"
-|timestamp|true|string|Timestamp in UTC in format like 2017-05-11T16:22:06
-|signature| true| string| Signature
+|Field| Mandatory|Data Type| Description |
+|----| ----|--------| ---- |
+|action|true| string| Action type, valid value: "req"|
+|ch|true|string|Channel, valid value: "auth"|
+|authType| true|string|Authentication type, valid value: "api". Note this is not part of signature calculation|
+|accessKey|true|string|Access key|
+|signatureMethod| true| string| Signature method, valid value: "HmacSHA256"|
+|signatureVersion| true|string|Signature version, valid value: "2.1"|
+|timestamp|true|string|Timestamp in UTC in format like 2017-05-11T16:22:06|
+|signature| true| string| Signature|
 
 ```json
 {
