@@ -3964,9 +3964,6 @@ last_price | decimal  | true  | Last Price                                      
 
 - post `/swap-api/v1/swap_master_sub_transfer_record`
 
-> Request:
-
-
 ### request
 
 | attr   | required  | type    | desc   |      |
@@ -5776,20 +5773,31 @@ Response Code | Desc in Chinese |  Desc in English  |
 
 ## API List
 
-  Permission |   Content Type   | Request Method |  Type  |  Description                 |  Authentication Required      |                                                                                                                                            
------------ | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |---------- |---------------------------- |--------------|
- Read  |  Market Data Interface |         market.$contract_code.kline.$period  |      sub        |    Subscribe KLine data           |  No |
- Read  |  Market Data Interface |           market.$contract_code.kline.$period  |              req        |     Request Kline Data|  No  |
- Read  |     Market Data Interface      |  market.$contract_code.depth.$type  |               sub        |       Subscribe Market Depth Data | No | 
- Read  |      Market Data Interface       |  market.$contract_code.detail  |               sub        |    Subscribe Market Detail Data    |   No  |
- Read  |      Market Data Interface       |  market.$contract_code.bbo  |               sub        |    Subscribe market BBO data push    |   No  |
- Read   |     Market Data Interface        |  market.$contract_code.trade.detail  |               req        |    Request Trade Detail Data |  No|
- Read  |    Market Data Interface         |  market.$contract_code.trade.detail  |        sub |  Subscribe Trade Detail Data | No  | 
- Read   |  System Status Interface         |  public.$service.heartbeat  |    sub  |Subscribe system status updates   | No  | 
- Read|        Trade Interface      |  orders.$contract_code   | sub| Subscribe Order Data  | Yes | 
- Read |     Account Interface        |  accounts.$contract_code  |        sub  |  Subscribe asset change Information of a given coin  | Yes  | 
- Read |      Account Interface      |  positions.$contract_code  |        sub  |  Subscribe position change Information of a given coin  | Yes | 
- Read |      Account Interface      |  trigger_order.$contract_code  |        sub  |  Subscribe trigger orders updates  | Yes | 
+| Permission |   Content Type   | Request Method |  Type  |  Description        |  Authentication Required   |
+|----------- | ------------------ | ------------------ |---------- |---------------------------- |--------------|
+| Read    |  Market Data Interface | market.$contract_code.kline.$period                    | sub  | Subscribe KLine data               |       No      |
+| Read    |  Market Data Interface | market.$contract_code.kline.$period                    | req  | Request Kline Data              |       No      |
+| Read    |  Market Data Interface | market.$contract_code.depth.$type                      | sub  | Subscribe Market Depth Data      |       No      |
+| Read    |  Market Data Interface | market.$contract_code.depth.size_${size}.high_freq     | sub  | Subscribe Incremental Market Depth Data |       No      |
+| Read    |  Market Data Interface | market.$contract_code.bbo                              | sub  | Subscribe market BBO data push    |       No      |
+| Read    |  Market Data Interface | market.$contract_code.detail                           | sub  | Subscribe Market Detail Data     |       No      |
+| Read    |  Market Data Interface | market.$contract_code.trade.detail                     | req  | Request Trade Detail Data        |       No      |
+| Read    |  Market Data Interface | market.$contract_code.trade.detail                     | sub  | Subscribe Trade Detail Data       |       No      |
+| Read    |  Index and Basis Interface | market.$contract_code.basis.$period.$basis_price_type  | sub  | Subscribe Basis Data                  |       No      |
+| Read    |  Index and Basis Interface | market.$contract_code.basis.$period.$basis_price_type  | req  | Request Basis Data                  |       No      |
+| Read    |  Index and Basis Interface | market.$contract_code.premium_index.$period            | sub  | Subcribe Premium Index Kline Data          |       No      |
+| Read    |  Index and Basis Interface | market.$contract_code.premium_index.$period            | req  | Request Premium Index Kline Data       |       No      |
+| Read    |  Index and Basis Interface| market.$contract_code.estimated_rate.$period           | sub  | Subcribe Estimated Funding Rate Kline Data     |       No      |
+| Read    |  Index and Basis Interface | market.$contract_code.estimated_rate.$period           | req  | Request Estimated Funding Rate Kline Data     |       No      |
+| Read    |  Trade Interface | public.$contract_code.liquidation_orders               | sub  | Subscribe Liquidation Orders (no authentication) (sub)    |       No      |
+| Read    |  Trade Interface | public.$contract_code.funding_rate                     | sub  | Subscribe funding rate (no authentication)（sub）|       No      |
+| Read    |  Trade Interface | public.$contract_code.contract_info                    | sub  | Subscribe Contract Info (no authentication)（sub） |       No      |
+| Read    |  Trade Interface	 | orders.$contract_code                                  | sub  | Subscribe Order Data(sub)              |    Yes      |
+| Read    |  Account Interface	 | accounts.$contract_code                                | sub  | Subscribe Account Equity Updates Data(sub)             |    Yes      |
+| Read    |  Account Interface	 | positions.$contract_code                               | sub  | Subscribe Position Updates(sub)      |    Yes      |
+| Read    |  Trade Interface	 | matchOrders.$contract_code                             | sub  | Subscribe Match Order Data（sub)    |    Yes      |
+| Read    |  Trade Interface	 | trigger_order.$contract_code                             | sub  | Subscribe trigger orders updates(sub)    |    Yes      |   
+| Read    |  System Status Interface         |  public.$service.heartbeat  |    sub  |Subscribe system status updates   | No  | 
 
 ## WebSocket Subscription Address
 
