@@ -1336,7 +1336,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 
 <ul>
 <li>When placing order by using the four prohibited order price types during the prohibition period, the message header returned by interface will include the field: &quot;recovery-time: recovery timestamp&quot; whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; if you are not in the prohibition period, the field is not included in returned header;</li>
-<li>Please note that our system calculates order cancellation ratio according to UID and therefore, the master account UID and sub-accounts UIDs will be counted separately. The calculation period is 10 min/time.</li>
+<li>Please note that our system calculates order cancellation ratio according to UID and therefore, the master account UID and sub-accounts UIDs will be counted separately. The calculation period is 10 min/time(The start time starts at 00:00 and the end time is 00:10. Every 10 minutes is a cycle.).</li>
 </ul></li>
 <li><p>Definition of Indicators：</p>
 
