@@ -710,7 +710,7 @@ Please note that, for both public interface and private interface, there are rat
   - "recovery-time": recovery timestamp,whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; 
   - if you are not in the prohibition period, the field is not included in returned header;
   
-- Please note that our system calculates order cancellation ratio according to UID and therefore, the master account UID and sub-accounts UIDs will be counted separately. The calculation period is 10 min/time.
+- Please note that our system calculates order cancellation ratio according to UID and therefore, the master account UID and sub-accounts UIDs will be counted separately. The calculation period is 10 min/time(The start time starts at 00:00 and the end time is 00:10. Every 10 minutes is a cycle. ).
 - Definition of Indicators：
   
   - Order Cancellation Ratio =Total number of invalid cancellation / Total number of placed orders (all types of orders placed via API) 
