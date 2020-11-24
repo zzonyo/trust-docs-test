@@ -2230,7 +2230,7 @@ curl "https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5"
 
 参数名称   |  参数类型     |  必填    |  描述  |
 -------------- |  -------------- |  ---------- |  -------------------------------------------------------------------------------- |
-symbol  |    string  |    true  |  支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示BTC次季合约。支持使用合约code来订阅 例如："BTC200918"(当周)，"BTC200925"(次周)，"BTC201225"(季度)，"BTC210326"(次季度)。 |
+symbol  |    string  |    true  |  支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示BTC次季合约。支持使用合约code来查询数据， 例如："BTC200918"(当周)，"BTC200925"(次周)，"BTC201225"(季度)，"BTC210326"(次季度)。 |
 type  |  string  |    true  |  仅支持小写，获得150档深度数据，使用step0, step1, step2, step3, step4, step5, step14, step15（step1至step5,step14，step15 是进行了深度合并后的深度），使用step0时，不合并深度获取150档数据;获得20档深度数据，使用 step6, step7, step8, step9, step10, step11, step12, step13（step7至step13是进行了深度合并后的深度），使用step6时，不合并深度获取20档数据  |
 
 >tick 说明:
@@ -2335,7 +2335,7 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 
 参数名称    |  是否必须  |   类型     |  描述    |  默认值   |  取值范围  |
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  -----------------------------------------------------|
-symbol  |    true  |  string  |  合约名称  |  | 支持大小写， 如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约"。支持使用合约code来订阅 例如："BTC200918"(当周)，"BTC200925"(次周)，"BTC201225"(季度)，"BTC210326"(次季度)。  |
+symbol  |    true  |  string  |  合约名称  |  | 支持大小写， 如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约"。支持使用合约code来查询数据， 例如："BTC200918"(当周)，"BTC200925"(次周)，"BTC201225"(季度)，"BTC210326"(次季度)。  |
 period  |    true  |  string  |  K线类型  |  |  1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon  |
 size  |  false  |  int    |  获取数量   |  150  |  [1,2000]  |
 from  |  false  |  long  |  开始时间戳 10位 单位S |    |
@@ -2434,7 +2434,7 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
 
 参数名称   |  是否必须   |  类型   |  描述   |  默认值   |  取值范围  |
 --------------  | --------------  | ---------- |  ----------  | ------------ |  --------------------------------------------------------------------------------  |
-symbol  |    true  |  string  |  合约名称  |    | 支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约"。支持使用合约code来订阅 例如："BTC200918"(当周)，"BTC200925"(次周)，"BTC201225"(季度)，"BTC210326"(次季度)。  | 
+symbol  |    true  |  string  |  合约名称  |    | 支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约"。支持使用合约code来查询数据， 例如："BTC200918"(当周)，"BTC200925"(次周)，"BTC201225"(季度)，"BTC210326"(次季度)。  | 
 
 >tick说明:
 
@@ -2521,7 +2521,7 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 
 参数名称     |  是否必须   |  类型   |  描述   |  默认值  |  取值范围  |
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  --------------------------------------------------------------------------------  |
-symbol  |    true  |  string  |  合约名称  |  |  支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约"。支持使用合约code来订阅 例如："BTC200918"(当周)，"BTC200925"(次周)，"BTC201225"(季度)，"BTC210326"(次季度)。  |
+symbol  |    true  |  string  |  合约名称  |  |  支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约"。支持使用合约code来查询数据， 例如："BTC200918"(当周)，"BTC200925"(次周)，"BTC201225"(季度)，"BTC210326"(次季度)。  |
 
 >Tick说明：
 
@@ -2600,7 +2600,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 参数名称     |  是否必须     | 数据类型   |  描述  |    默认值    |  取值范围  |
 -------------- |  -------------- |  -------------- |  -------------------- |  ------------ |  --------------------------------------------------------------------------------  |
-symbol  |    true  |  string  |    合约名称  |    |  支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约"。支持使用合约code来订阅 例如："BTC200918"(当周)，"BTC200925"(次周)，"BTC201225"(季度)，"BTC210326"(次季度)。  |
+symbol  |    true  |  string  |    合约名称  |    |  支持大小写，如"BTC_CW"表示BTC当周合约，"BTC_NW"表示BTC次周合约，"BTC_CQ"表示BTC当季合约, "BTC_NQ"表示次季度合约"。支持使用合约code来查询数据， 例如："BTC200918"(当周)，"BTC200925"(次周)，"BTC201225"(季度)，"BTC210326"(次季度)。  |
 size  |  true  |  int  |    获取交易记录的数量  |   |  [1, 2000]  |
 
 >data说明：
