@@ -2379,7 +2379,7 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
 | status             | true          | string        | Request Processing Result                                    | "ok" , "error"  |
 | tick               | true          | object        | Kline Data                                                  |                 |
 | ts                 | true          | long        | Time of Respond Generation, Unit: Millisecond                |                 |
-  \<dict\>(attr name: tick)    |               |kline data    |      |            | 
+  \<tick\>     |               |    |  kline data (Start at 00:00(UTC+8) of the day)    |            | 
   id    |     true          | long   |  kline id,the same as kline timestamp    |            
   vol    |     true          | string   |  Trade Volume(Cont.)    |            
   count    |     true          | int   |   Order Quantity  |            
@@ -2390,7 +2390,7 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
   amount    |     true          | string   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
 ask | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 bid | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
-  \</dict\>    |               |     |      |  
+  \</tick\>    |               |     |      |  
 
 
 ## Query The Last Trade of a Contract
