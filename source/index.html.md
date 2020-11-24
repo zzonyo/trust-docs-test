@@ -1595,7 +1595,7 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
 | ------ | ---- | ------ | ---------------------------------------- | -------------- |
 | ch     | true | string | 数据所属的 channel，格式： market.$contract_code.detail.merged |                |
 | status | true | string | 请求处理结果     | "ok" , "error" |
-| \<tick\>   |true  | object |  24小时成交量、开盘价和收盘价（从当天零点开始）         |                |
+| \<tick\>   |true  | object |  24小时成交量、开盘价和收盘价（从当天零点(UTC+8)开始）         |                |
 | id   | true | long | K线ID,也就是K线时间戳  |                |
 | amount   | true | decimal | 成交量(币), 即 (成交量(张)\*单张合约面值)    |                |
 | ask   | true | array | [卖1价,卖1量(张)] |                |
