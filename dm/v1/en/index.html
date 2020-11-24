@@ -6053,6 +6053,7 @@ One of the query conditions must be chosen.</p>
                 </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">14149.98</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604299146147</span><span class="w">
             </span><span class="p">}</span><span class="w">
@@ -6195,7 +6196,7 @@ One of the query conditions must be chosen.</p>
 </tbody></table>
 <h2 id='query-historical-settlement-records-of-the-platform-interface'>Query historical settlement records of the platform interface</h2>
 <ul>
-<li>POST <code>/api/v1/contract_settlement_records</code></li>
+<li>GET <code>/api/v1/contract_settlement_records</code></li>
 </ul>
 <h3 id='request-parameter-19'>Request Parameter</h3>
 <table><thead>
@@ -9185,6 +9186,24 @@ One of the query conditions must be chosen.</p>
 </tr>
 </thead><tbody>
 <tr>
+<td>status</td>
+<td>string</td>
+<td>true</td>
+<td>Request Processing Result  &quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>true</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>object array</td>
+<td>true</td>
+<td></td>
+</tr>
+<tr>
 <td>symbol</td>
 <td>string</td>
 <td>true</td>
@@ -9263,7 +9282,7 @@ One of the query conditions must be chosen.</p>
 <td>Static Margin</td>
 </tr>
 <tr>
-<td>&lt;list&gt;(Attrs: positions)</td>
+<td>&lt;positions&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -9359,7 +9378,13 @@ One of the query conditions must be chosen.</p>
 <td>Last Price</td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/positions&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -19348,6 +19373,7 @@ Details are below:</p></li>
             </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"offset"</span><span class="p">:</span><span class="s2">"close"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="w">
             </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">4.236</span><span class="p">,</span><span class="w">
             </span><span class="s2">"created_at"</span><span class="p">:</span><span class="mi">1580815422296</span><span class="w">
         </span><span class="p">}</span><span class="w">
