@@ -3032,6 +3032,7 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
                 "direction": "buy",
                 "offset": "close",
                 "volume": 100,
+                "amount": 100,
                 "price": 14149.98,
                 "created_at": 1604299146147
             }
@@ -3069,7 +3070,7 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 
 ## Query historical settlement records of the platform interface 
 
-- POST `/api/v1/contract_settlement_records`
+- GET `/api/v1/contract_settlement_records`
 
 ### Request Parameter
 
@@ -8348,6 +8349,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
             "direction":"buy",
             "offset":"close",
             "volume":7,
+            "amount":7,
             "price":4.236,
             "created_at":1580815422296
         }
