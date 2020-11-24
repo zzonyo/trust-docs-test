@@ -54,7 +54,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
  
   - Interface Name: Query Liquidation Orders
  
-  - Interface Type: pubic
+  - Interface Type: public
   
   - Interface URL: api/v1/contract_liquidation_orders
 
@@ -803,7 +803,7 @@ Read    |  Market Data           |  api/v1/contract_his_open_interest |    GET  
 Read     |   Market Data           |  api/v1/contract_elite_account_ratio |   GET       | Query Top Trader Sentiment Index Function-Account            |  No  |
 Read     |   Market Data           |  api/v1/contract_elite_position_ratio |   GET       | Query Top Trader Sentiment Index Function-Position            |  No  |
 Read     |   Market Data           |  api/v1/contract_liquidation_orders |   GET       |  Query Liquidation Order Information            |  No  |
-Read     |  Account                |  api/v1/contract_settlement_records |     GET       |  Query historical settlement records of the platform interface          |  No  |
+Read     |  Market Data            |  api/v1/contract_settlement_records |     GET       |  Query historical settlement records of the platform interface          |  No  |
 Read     |  Market Data           |  api/v1/index/market/history/index |   GET       |  Query Index Kline Data            |  No  |
 Read     |  Market Data           |  api/v1/index/market/history/basis |   GET       |  Query Basis Data            |  No  |
 Read  | Account          | api/v1/contract_account_info   |  POST             | Query User’s Account Information                     | Yes                    |
