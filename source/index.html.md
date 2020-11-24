@@ -2871,6 +2871,7 @@ page_size | false     | int    | 不填默认20，不得多于50            |   
                 "direction": "buy",
                 "offset": "close",
                 "volume": 93.000000000000000000,
+                "amount": 93.000000000000000000,
                 "price": 13860.500000000000000000,
                 "created_at": 1603865955650
             }
