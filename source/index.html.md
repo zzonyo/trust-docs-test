@@ -36,6 +36,32 @@ search: true
 
 # 更新日志
 
+## 1.0.2 2020年11月24日 【新增：查询平台历史结算记录；修改：获取强平订单接口新增返参字段，订阅强平订单数据接口新增返参字段】
+
+### 1、新增查询平台历史结算记录接口
+
+  - 接口名称：查询平台历史结算记录
+  
+  - 接口类型：公共接口
+  
+  - 接口URL：linear-swap-api/v1/swap_settlement_records
+
+### 2、获取强平订单接口新增返参字段（返回参数中的 orders 参数下增加以下字段:amount 表示强平数量(币);trade_turnover 表示强平金额）
+
+  - 接口名称：获取强平订单接口
+  
+  - 接口类型：公共接口
+  
+  - 接口URL：linear-swap-api/v1/swap_liquidation_orders
+
+### 3、订阅强平订单数据接口新增返参字段（返回参数中的 data 参数下增加以下字段:amount 表示强平数量(币);trade_turnover 表示强平金额。）
+
+  - 接口名称：订阅强平订单数据
+  
+  - 接口类型：公共接口
+  
+  - 订阅主题：public.$contract_code.liquidation_orders
+
 ## 1.0.1 2020年10月29日 【修改：切换杠杆成功时 WS 资产接口推送更新信息，切换杠杆成功时 WS 持仓接口推送更新信息】
 
 ### 1、订阅资产接口推送更新（返参event新增事件类型，switch_lever_rate表示切换倍数。在用户切换倍数成功时，需推送一次最新的资产信息，event为switch_lever_rate。）
@@ -75,6 +101,7 @@ search: true
 读取  | 基础信息接口 | linear-swap-api/v1/swap_elite_account_ratio                       | GET    |      精英账户多空持仓对比-账户数         |       否          |
 读取  | 基础信息接口 | linear-swap-api/v1/swap_elite_position_ratio                      | GET    |      精英账户多空持仓对比-持仓量         |       否          |
 读取  | 基础信息接口 | linear-swap-api/v1/swap_liquidation_orders                        | GET    |      获取强平订单                        |       否          |
+读取  | 基础信息接口 | linear-swap-api/v1/swap_settlement_records                        | GET    |      平台历史结算记录                    |       否          |
 读取  | 基础信息接口 | linear-swap-api/v1/swap_api_state                                 | GET    |      查询系统状态                        |       否          |
 读取  | 市场行情接口 | linear-swap-api/v1/swap_funding_rate                              | GET    |      获取合约的资金费率                  |       否          |
 读取  | 市场行情接口 | linear-swap-api/v1/swap_historical_funding_rate                   | GET    |      获取合约的历史资金费率              |       否          |
@@ -2437,7 +2464,67 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
 | offset        | true | string | "open":开 "close":平            |                |
 | price        | true | decimal | 破产价格   |                |
 | volume        | true | decimal | 强平数量（张）         |                |
+| amount        | true | decimal | 强平数量（币）         |                |
+| trade_turnover        | true | decimal | 强平金额（计价币种）         |                |
 | \</orders\>         |      |         |         |                |
+| total_page        | true | int | 总页数   |                |
+| current_page        | true | int | 当前页   |                |
+| total_size        | true | int | 总条数   |                |
+| \</data\>         |      |         |        |                |
+
+## 查询平台历史结算记录
+
+- POST `/linear-swap-api/v1/swap_settlement_records`
+
+### 请求参数
+
+| 参数名称          | 是否必须  | 类型     | 描述   | 取值范围                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| contract_code        | true  | string | 合约代码          | "BTC-USDT","ETH-USDT"...                           |
+| start_time   | false  | long    | 起始时间（时间戳，单位毫秒）        |  取值范围：[(当前时间 - 90天), 当前时间] ，默认取当前时间- 90天   |
+| end_time   | false  | long    | 结束时间（时间戳，单位毫秒）        | 取值范围：(start_time, 当前时间)，默认取当前时间  |
+| page_index        | false  | int |    页码，不填默认第1页       |                        |
+| page_size        | false  | int | 页长，不填默认20，不得多于50         |                          |
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "ts": 1578127363768,
+    "data": {
+        "settlement_record": [
+            {
+                "symbol": "BTC",
+                "contract_code": "BTC-USDT",
+                "settlement_time": 1593460800000,
+                "clawback_ratio": 0,
+                "settlement_price": 9133.21,
+                "settlement_type":"settlement"
+            }
+        ],
+        "current_page": 1,
+        "total_page": 1,
+        "total_size": 5
+    }
+}
+```
+
+### 返回参数
+
+| 参数名称                   | 是否必须 | 类型      | 描述                 | 取值范围                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status            | true | string  | 请求处理结果        | "ok" , "error" |
+| ts                | true | long    | 响应生成时间点，单位：毫秒 |                |
+| \<data\>          |  true    |   object array    |               |          |
+| \<settlement_record\>          |  true    |   object array    |               |          |
+| symbol        | true | string | 品种代码          |             |
+| contract_code        | true | string | 合约代码          |   "BTC-USDT" ...             |
+| settlement_time        | true | long | 结算时间（时间戳，单位毫秒）（当settlement_type为交割时，该时间为交割时间；当settlement_type为结算时，该时间为结算时间；）          |             |
+| clawback_ratio        | true | decimal | 分摊比例        |             |
+| settlement_price        | true | decimal | 结算价格（当settlement_type为交割时，该价格为交割价格；当settlement_type为结算时，该价格为结算价格；）          |              |
+| settlement_type        | true | string | 结算类型         |  “delivery”：交割，“settlement”：结算            |
+| \</settlement_record\>         |      |         |         |                |
 | total_page        | true | int | 总页数   |                |
 | current_page        | true | int | 当前页   |                |
 | total_size        | true | int | 总条数   |                |
@@ -7467,7 +7554,9 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | contract_code   | true | string  | 合约代码  |   |
 | direction   | true | string  | 仓位方向 | "buy":买 "sell":卖    |
 | offset   | true | string  | 开平方向 | "open":开 "close":平    |
-| volume   | true | decimal  | 数量（张）  |   |
+| volume   | true | decimal  | 强平数量（张）  |   |
+| amount   | true | decimal  | 强平数量（币）  |   |
+| trade_turnover   | true | decimal  | 强平金额（计价币种）  |   |
 | price   | true | decimal  | 破产价格  |   |
 | created_at   | true | long  | 订单创建时间  |   |
 | \</data\> | | |  | |
