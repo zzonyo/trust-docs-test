@@ -38,6 +38,33 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.0.2 2020-11-24 【 Added: Query historical settlement records of the platform interface. Modified:  Added fields of return parameter for "Query Liquidation Orders" interface and "Subscribe Liquidation Order Data" interface】
+
+### 1、Added “Query historical settlement records of the platform” interface 
+
+  - Interface Name: Query historical settlement records of the platform
+  
+  - Interface Type: public
+  
+  - Interface URL: linear-swap-api/v1/swap_settlement_records
+
+### 2、Added fields of return parameter for "Query Liquidation Orders" interface（“amount” and “trade-turnover”  are added for return parameter “data". "amount" represents the liquidation amount (token); “trade-turnover”represents the liquidation amount (quotation token) ）
+ 
+  - Interface Name: Query Liquidation Orders
+ 
+  - Interface Type: public
+ 
+  - Interface URL: linear-swap-api/v1/swap_liquidation_orders
+
+
+### 3、Added fields of return parameter for "Subscribe Liquidation Order Data" interface（“amount” and “trade-turnover”  are added for return parameter “data". "amount" represents the liquidation amount (token); “trade-turnover”represents the liquidation amount (quotation token)）
+ 
+  - Interface Name: Subscribe Liquidation Order Data
+ 
+  - Interface Type: public
+ 
+  - Subscription topic: public.$contract_code.liquidation_orders
+
 ## 1.0.1 2020-10-29 【Updated: websocket messages of account topic will be pushed when leverage switch succeeds; websocket messages of position topic will be pushed when leverage switch succeeds;】
 
 ### 1、Subscribe Account Equity Updates Data（Return parameters added “switch_lever_rate” event type to represent switching leverages. When the leverage is successfully switched, a latest information on assets will be pushed with event “switch_lever_rate".）
@@ -75,6 +102,7 @@ permission type  |  Content Type  |   Context           |   Request Type   |   D
  Read  | Market Data | linear-swap-api/v1/swap_elite_account_ratio                       | GET    |      Query Top Trader Sentiment Index Function-Account          |       No          |
  Read  | Market Data | linear-swap-api/v1/swap_elite_position_ratio                      | GET    |      Query Top Trader Sentiment Index Function-Position        |       No          |
  Read  | Market Data | linear-swap-api/v1/swap_liquidation_orders                        | GET    |      Query Liquidation Order Information       |       No          |
+ Read  | Market Data | linear-swap-api/v1/swap_settlement_records                       | GET    |      Query historical settlement records of the platform interface       |       No          |
  Read  | Market Data | linear-swap-api/v1/swap_api_state                                 | GET    |      Query information on system status                      |       No          |
  Read  | Market Data | linear-swap-api/v1/swap_funding_rate                              | GET    |      Query funding rate                 |       No          |
  Read  | Market Data | linear-swap-api/v1/swap_historical_funding_rate                   | GET    |      Query Historical Funding Rate             |       No          |
@@ -2266,7 +2294,9 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
 | contract_code    |  true     |  string  | contract code  | e.g. "BTC-USDT" |
 | direction              | true     | string  | "buy":buy"sell": sell     |              |
 | offset              | true     | string  | "open":open "close":  close      |              
-| volume           | true     | decimal | liquidated order quantity            |              |
+| volume           | true     | decimal |liquidation volume (cont)           |              |
+| amount           | true         | decimal | liquidation amount (token)                                                   |
+| trade-turnover    | true        | decimal |liquidation amount (quotation token)                                                     |
 | price      | true     | decimal | bankruptcy price            |              |
 | created_at            | true     | long    | liquidation time            |              |
 | \</orders\>              |          |         |                    |              |
@@ -2275,6 +2305,64 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
 | total_size             | true     | int     |   total size             |              |
 | \</data\>            |          |         |                    |              |
 | ts                     | true     | long    |   timestamp             |              |
+
+## Query historical settlement records of the platform interface 
+
+ - POST `/linear-swap-api/v1/swap_settlement_records`
+
+### Request Parameter
+
+| Parameter Name        | Mandatory  | Type     | Desc   | Value Range                                    |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| contract_code        | true  | string | Contract Code        | "BTC-USDT","ETH-USDT"...                           |
+| start_time   | false  | long    | Start time（timestamp，unit: millisecond）        |  Value range: [(Current time minus 90 days), Current time] ，default current time minus 90 days   |
+| end_time   | false  | long    | End time（timestamp，unit: millisecond）        |  Value range: (start_time, current time)，default current time  |
+| page_index        | false  | int |    Page, default page 1 if not filled       |                        |
+| page_size        | false  | int | Page items, default 20, shall not exceed 50        |                          |
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "ts": 1578127363768,
+    "data": {
+        "settlement_record": [
+            {
+                "symbol": "BTC",
+                "contract_code": "BTC-USDT",
+                "settlement_time": 1593460800000,
+                "clawback_ratio": 0,
+                "settlement_price": 9133.21,
+                "settlement_type":"settlement"
+            }
+        ],
+        "current_page": 1,
+        "total_page": 1,
+        "total_size": 5
+    }
+}
+```
+
+### Return Parameter
+
+| Parameter Name        | Mandatory  | Type     | Desc   | Value Range                                    |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status            | true | string  | Request Processing Result        | "ok" , "error" |
+| ts                | true | long    | 	Response generation time point, unit: millisecond |                |
+| \<data\>          |  true    |   object array    |               |          |
+| \<settlement_record\>          |  true    |   object array    |               |          |
+| symbol        | true | string | Token Code         |             |
+| contract_code        | true | string | Contract Code          |   "BTC-USDT" ...             |
+| settlement_time        | true | long | Settlement Time（timestamp，unit: millisecond）（when the settlement_type is delivery, the time is delivery time; when the settlement_type is settlement, the time is settlement time）          |             |
+| clawback_ratio        | true | decimal | Clawback Ratio      |             |
+| settlement_price        | true | decimal |  Settlement Price（when the settlement_type is delivery, the price is delivery price; when the settlement_type is settlement, the price is settlement price；）          |              |
+| settlement_type        | true | string | Settlement Type         |  “delivery”：Delivery，“settlement”：Settlement            |
+| \</settlement_record\>         |      |         |         |                |
+| total_page        | true | int | Total Pages   |                |
+| current_page        | true | int | Current Page   |                |
+| total_size        | true | int | Total page items   |                |
+| \</data\>         |      |         |        |                |
 
 
 ## Query funding rate
@@ -7447,7 +7535,9 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 |  contract_code      |  string  |   swap code    E.G.: "BTC-USDT" |
 | direction                 | string  | Long or short                                                     |
 | offset              | string | Open or close                                                     |
-| volume                 | decimal | quantity(Cont.)                                                      |
+| volume                 | decimal | liquidation volume (Cont.)                                                      |
+| amount                 | decimal | liquidation amount (token)                                                   |
+| trade-turnover                 | decimal |liquidation amount (quotation token)                                                     |
 | price              | decimal  | bankruptcy price             |
 | created_at              | long  | Order Creation Time                                          |
 | \</data\> | object array |  | |
