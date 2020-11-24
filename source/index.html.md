@@ -3095,7 +3095,7 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 | ts                     | true     | long    | 时间戳                |              |
 
 
-## 查询平台历史结算记录接口
+## 查询平台历史结算记录
 
 - POST `/api/v1/contract_settlement_records`
 
