@@ -2436,6 +2436,8 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
                 "direction": "buy",
                 "offset": "close",
                 "volume": 13.000000000000000000,
+                "amount": 13.000000000000000000,
+                "trade_turnover": 1.300000000000000000,
                 "price": 13395.300000000000000000,
                 "created_at": 1603597296671
             }
@@ -2474,7 +2476,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
 
 ## 查询平台历史结算记录
 
-- POST `/linear-swap-api/v1/swap_settlement_records`
+- GET `/linear-swap-api/v1/swap_settlement_records`
 
 ### 请求参数
 
@@ -7536,6 +7538,8 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
             "direction":"buy",
             "offset":"close",
             "volume":7,
+            "amount":7,
+            "trade_turnover":0.7,
             "price":4.236,
             "created_at":1580815422296
         }
