@@ -2040,7 +2040,7 @@ contract_code             |  true           |  string     |  合约代码       
 ch  |  true  |  string  |    数据所属的 channel，格式： market.\$contract_code.detail.merged   |     |
 status  |    true  |  string  |    请求处理结果  |  "ok" , "error"  |
 ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    | 
- \<tick\>    |               |    |  24小时成交量、开盘价和收盘价（从当天零点开始）     |            | 
+ \<tick\>    |               |    |  24小时成交量、开盘价和收盘价（从当天零点(UTC+8)开始）     |            | 
   id    |     true          | long   | K线ID,也就是K线时间戳   |            
   vol    |     true          | string   |  成交量张数     |            
   count    |     true          | int   |  成交笔数     |            
