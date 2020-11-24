@@ -48,7 +48,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
   
   - Interface URL: linear-swap-api/v1/swap_settlement_records
 
-### 2、Added fields of return parameter for "Query Liquidation Orders" interface（“amount” and “trade-turnover”  are added for return parameter “data". "amount" represents the liquidation amount (token); “trade-turnover”represents the liquidation amount (quotation token) ）
+### 2、Added fields of return parameter for "Query Liquidation Orders" interface（“amount” and “trade_turnover”  are added for return parameter “data". "amount" represents the liquidation amount (token); “trade_turnover” represents the liquidation amount (quotation token) ）
  
   - Interface Name: Query Liquidation Orders
  
@@ -57,7 +57,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
   - Interface URL: linear-swap-api/v1/swap_liquidation_orders
 
 
-### 3、Added fields of return parameter for "Subscribe Liquidation Order Data" interface（“amount” and “trade-turnover”  are added for return parameter “data". "amount" represents the liquidation amount (token); “trade-turnover”represents the liquidation amount (quotation token)）
+### 3、Added fields of return parameter for "Subscribe Liquidation Order Data" interface（“amount” and “trade_turnover”  are added for return parameter “data". "amount" represents the liquidation amount (token); “trade_turnover” represents the liquidation amount (quotation token)）
  
   - Interface Name: Subscribe Liquidation Order Data
  
@@ -2270,6 +2270,8 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
                 "direction": "buy",
                 "offset": "close",
                 "volume": 13.000000000000000000,
+                "amount": 13.000000000000000000,
+                "trade_turnover": 1.3000000000000000000,
                 "price": 13395.300000000000000000,
                 "created_at": 1603597296671
             }
@@ -2296,7 +2298,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
 | offset              | true     | string  | "open":open "close":  close      |              
 | volume           | true     | decimal |liquidation volume (cont)           |              |
 | amount           | true         | decimal | liquidation amount (token)                                                   |
-| trade-turnover    | true        | decimal |liquidation amount (quotation token)                                                     |
+| trade_turnover    | true        | decimal |liquidation amount (quotation token)                                                     |
 | price      | true     | decimal | bankruptcy price            |              |
 | created_at            | true     | long    | liquidation time            |              |
 | \</orders\>              |          |         |                    |              |
@@ -2308,7 +2310,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
 
 ## Query historical settlement records of the platform interface 
 
- - POST `/linear-swap-api/v1/swap_settlement_records`
+ - GET `/linear-swap-api/v1/swap_settlement_records`
 
 ### Request Parameter
 
@@ -7515,6 +7517,8 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
             "direction":"buy",
             "offset":"close",
             "volume":7,
+            "amount":7,
+            "trade_turnover":0.7,
             "price":4.236,
             "created_at":1580815422296
         }
@@ -7537,7 +7541,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | offset              | string | Open or close                                                     |
 | volume                 | decimal | liquidation volume (Cont.)                                                      |
 | amount                 | decimal | liquidation amount (token)                                                   |
-| trade-turnover                 | decimal |liquidation amount (quotation token)                                                     |
+| trade_turnover                 | decimal |liquidation amount (quotation token)                                                     |
 | price              | decimal  | bankruptcy price             |
 | created_at              | long  | Order Creation Time                                          |
 | \</data\> | object array |  | |
