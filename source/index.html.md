@@ -1979,7 +1979,7 @@ curl "https://api.hbdm.com/swap-ex/market/detail/merged?contract_code=BTC-USD"
 | ch                 | true          | string        | Data belonged channel，format： market.$contract_code.detail.merged |                 |
 | status             | true          | string        | Request Processing Result                                    | "ok" , "error"  |
 | ts                 | true          | long        | Time of Respond Generation, Unit: Millisecond                |                 |
-|  \<dict\>(attr name: tick)    |               |kline data    |      |            | 
+|  \<tick\>    |               |     | kline data (Start at 00:00(UTC+8) of the day)      |            | 
 |  id    |     true          | long   |  kline id,the same as kline timestamp   |            
 |  vol    |     true          | string   |  Trade Volume(Cont.)    |            
 | count    |     true          | decimal   |   Order Quantity  |            
@@ -1991,7 +1991,7 @@ curl "https://api.hbdm.com/swap-ex/market/detail/merged?contract_code=BTC-USD"
 | ask | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 | bid | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
 | ts  | true          | long        | Timestamp               |                 |
-|  \</dict\>    |               |     |      |  
+|  \</tick\>    |               |     |      |  
 
 
 ## Query The Last Trade of a Contract
