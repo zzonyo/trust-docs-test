@@ -4230,6 +4230,9 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 
 属性 | 数据类型 | 是否必填 | 说明   |
 -----  | -----  | -----  | -----  |
+status   | true   | string  | 请求处理结果  "ok" , "error" |
+ts       | long | long    | 响应生成时间点，单位：毫秒        |                |
+\<data\> |    true    |  object array       |                      |                |
 symbol | string | true | 合约品种                                    |
 margin_balance | decimal | true | 账户权益                            |
 margin_position | decimal | true | 持仓保证金                          |
@@ -4260,7 +4263,7 @@ lever_rate | int | true | 杠杆倍数                                          
 direction | string  | true  | "buy":买 "sell":卖	                                                    |
 last_price | decimal  | true  | 最新价                                                                 |
 \</positions\>                  |              |          |                            |
-
+\</data\>               |              |          |                            |
 
 ## 母子账户划转
 
