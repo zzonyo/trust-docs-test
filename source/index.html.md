@@ -8227,6 +8227,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
             "direction":"sell",
             "offset":"close",
             "volume":465,
+            "amount":465,
             "price":390.79,
             "created_at":1603879731275
         }
