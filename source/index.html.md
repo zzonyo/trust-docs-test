@@ -2662,6 +2662,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC
                 "direction": "buy",
                 "offset": "close",
                 "volume": 93.000000000000000000,
+                "amount": 93.000000000000000000,
                 "price": 13860.500000000000000000,
                 "created_at": 1603865955650
             }
@@ -2699,7 +2700,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC
 
 ## Query historical settlement records of the platform interface 
 
-- POST `/swap-api/v1/swap_settlement_records`
+- GET `/swap-api/v1/swap_settlement_records`
 
 ### Request Parameter
 
@@ -8248,6 +8249,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
             "direction":"sell",
             "offset":"close",
             "volume":465,
+            "amount":465,
             "price":390.79,
             "created_at":1603879731275
         }
