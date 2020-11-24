@@ -2907,7 +2907,7 @@ total_size             | true     | int     | 总条数                |        
 ts                     | true     | long    | 时间戳                |              |
 
 
-## 查询平台历史结算记录接口
+## 查询平台历史结算记录
 
 - POST `/swap-api/v1/swap_settlement_records`
 
@@ -2917,7 +2917,7 @@ ts                     | true     | long    | 时间戳                |        
 | ------------- | ----- | ------ | ------------- | ---------------------------------------- |
 | contract_code        | true  | string | 合约代码          | "BTC-USD","ETH-USD"...                           |
 | start_time   | false  | long    | 起始时间（时间戳，单位毫秒）         |  取值范围：[(当前时间 - 90天), 当前时间] ，默认取当前时间- 90天   |
-| end_time   | false  | long    | 结束时间（时间戳，单位毫秒）         | 取值范围：(start_time, 当前时间]，默认取当前时间  |
+| end_time   | false  | long    | 结束时间（时间戳，单位毫秒）         | 取值范围：(start_time, 当前时间)，默认取当前时间  |
 | page_index        | false  | int |    页码，不填默认第1页       |                        |
 | page_size        | false  | int | 页长，不填默认20，不得多于50         |                          |
 
