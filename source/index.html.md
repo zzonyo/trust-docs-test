@@ -1644,7 +1644,7 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
 | -------------- | -------- | -------- | ------------------------------------------------------------ | -------------- |
 | ch             | true     | string   | Data belonged channel，Format:  market.$contract_code.detail.merged |                |
 | status         | true     | string   | Request Processing Result                                                 | "ok" , "error" |
-| \<tick\>         | true     | object   |                                                              |                |
+| \<tick\>         | true     | object   |      kline data (Start at 00:00(UTC+8) of the day)                |                |
 | id             | true     | long     | kline id,the same as kline timestamp   |                |
 | amount         | true     | decimal  | Trading Amount(coin), that is (Trading volume(conts)*Face value of a single contract)                     |                |
 | ask            | true     | array    | [Sell_1 price; Sell_1 quantity (conts)]                                          |                |
