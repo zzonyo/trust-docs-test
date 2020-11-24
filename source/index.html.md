@@ -2909,7 +2909,7 @@ ts                     | true     | long    | 时间戳                |        
 
 ## 查询平台历史结算记录
 
-- POST `/swap-api/v1/swap_settlement_records`
+- GET `/swap-api/v1/swap_settlement_records`
 
 ### 请求参数
 
