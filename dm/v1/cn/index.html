@@ -5968,6 +5968,7 @@ step6是不合并小数；
                 </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">14149.98</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604299146147</span><span class="w">
             </span><span class="p">}</span><span class="w">
@@ -6111,7 +6112,7 @@ step6是不合并小数；
 </tbody></table>
 <h2 id='7fbc5ed0d3'>查询平台历史结算记录</h2>
 <ul>
-<li>POST <code>/api/v1/contract_settlement_records</code></li>
+<li>GET <code>/api/v1/contract_settlement_records</code></li>
 </ul>
 <h3 id='1f9ac54b15-20'>请求参数</h3>
 <table><thead>
@@ -9117,6 +9118,24 @@ step6是不合并小数；
 </tr>
 </thead><tbody>
 <tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果  &quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>long</td>
+<td>响应生成时间点，单位：毫秒</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+</tr>
+<tr>
 <td>symbol</td>
 <td>string</td>
 <td>true</td>
@@ -9292,6 +9311,12 @@ step6是不合并小数；
 </tr>
 <tr>
 <td>&lt;/positions&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -19501,6 +19526,7 @@ step6是不合并小数；
             </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"offset"</span><span class="p">:</span><span class="s2">"close"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="w">
             </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">4.236</span><span class="p">,</span><span class="w">
             </span><span class="s2">"created_at"</span><span class="p">:</span><span class="mi">1580815422296</span><span class="w">
         </span><span class="p">}</span><span class="w">
