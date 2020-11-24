@@ -4170,6 +4170,9 @@ symbol | true | string | symbol	 |Case-Insenstive.Both uppercase and lowercase a
 
 attr | type | Mandatory | desc     |
 -----  | -----  | -----  | -----  |
+status     |  string  | true  | Request Processing Result  "ok" , "error" |
+ts       | long | true    | Time of Respond Generation, Unit: Millisecond                 |
+\<data\> |   object array     |  true       |                             |
 symbol | string | true | contract type                                     |
 margin_balance | decimal | true | Balance Margin                            |
 margin_position | decimal | true | Postion Margin                           |
@@ -4183,7 +4186,7 @@ liquidation_price | decimal | true | Estimated Liquidation Price            |
 lever_rate | decimal | true | Leverage Rate                                 |
 adjust_factor | decimal | true | Adjustment Factor                          |
 margin_static | decimal  | true  | Static Margin                          |
-\<list\>(Attrs: positions) |              |          |                            |
+\<positions\> |              |          |                            |
 symbol | string | true | Variety Code                                                    |
 contract_code |  string | true  | Contract Code	"BTC180914" ...                         |
 contract_type  | string |  true | Contract Type	"this_week", "next_week", "quarter"  "next_quarter"    |
@@ -4199,7 +4202,8 @@ position_margin |  decimal |  true | Position Margin                            
 lever_rate | int | true | Leverage Rate                                               |
 direction | string  | true  | "buy" "sell"	                                            |
 last_price | decimal  | true  | Last Price                                              |
-\</list\>                  |              |          |                            |
+\</positions\>                  |              |          |                            |
+\</data\>                  |              |          |                            |
 
 ## Transfer between master and sub account
 
