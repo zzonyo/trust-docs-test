@@ -35,6 +35,32 @@ search: True
 
 # 更新日志
 
+## 1.2.0 2020年11月24日 【新增：查询平台历史结算记录；修改：获取强平订单接口新增返参字段，订阅强平订单数据接口新增返参字段】
+
+### 新增查询平台历史结算记录接口
+
+  - 接口名称：查询平台历史结算记录
+  
+  - 接口类型：公共接口
+  
+  - 接口URL：api/v1/contract_settlement_records
+
+### 获取强平订单接口新增返参字段（返回参数中的 orders 参数下增加 amount 字段，表示强平数量(币)）
+
+  - 接口名称：获取强平订单接口
+  
+  - 接口类型：公共接口
+  
+  - 接口URL：api/v1/contract_liquidation_orders
+
+### 订阅强平订单数据接口新增返参字段（返回参数中的data参数下增加amount字段，表示强平数量(币)）
+
+  -  接口名称：订阅强平订单数据
+  
+  -  接口类型：公共接口
+  
+  -  订阅主题：public.$symbol.liquidation_orders
+
 ## 1.1.9 2020年10月28日 【新增：1、新增组合查询财务记录接口、组合查询合约历史委托接口、组合查询历史成交记录接口。】
 
 ### 1、新增组合查询合约历史成交记录接口
@@ -801,6 +827,7 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
 读取     |  市场行情接口           |  api/v1/contract_elite_account_ratio |   GET       |  精英账户多空持仓对比-账户数            |  否  |
 读取     |  市场行情接口           |  api/v1/contract_elite_position_ratio |   GET       |  精英账户多空持仓对比-持仓量            |  否  |
 读取     |  市场行情接口           |  api/v1/contract_liquidation_orders |   GET       |  获取强平订单            |  否  |
+读取     |  市场行情接口           |  api/v1/contract_settlement_records |     GET       |  查询平台历史结算记录            |  否  |
 读取     |  市场行情接口           |  api/v1/index/market/history/index |   GET       |  获取指数K线数据            |  否  |
 读取     |  市场行情接口           |  api/v1/index/market/history/basis |   GET       |  获取基差数据            |  否  |
 读取     |  资产接口           |   api/v1/contract_account_info |               POST        |  获取用户账户信息              |  是  | 
@@ -3056,7 +3083,8 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 | contract_code          | true     | string  | 合约代码               |"BTC180914" ...  |
 | direction              | true     | string  | "buy":买 "sell":卖         |              |
 | offset              | true     | string  | "open":开 "close":平        |              
-| volume           | true     | decimal | 强平数量               |              |
+| volume           | true     | decimal | 强平数量（张）              |              |
+| amount           | true     | decimal | 强平数量（币）               |              |
 | price      | true     | decimal | 破产价格               |              |
 | created_at            | true     | long    | 强平时间               |              |
 | \</orders\>              |          |         |                    |              |
@@ -3065,6 +3093,86 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 | total_size             | true     | int     | 总条数                |              |
 | \</data\>            |          |         |                    |              |
 | ts                     | true     | long    | 时间戳                |              |
+
+
+## 查询平台历史结算记录接口
+
+- POST `/api/v1/contract_settlement_records`
+
+### 请求参数
+
+| 参数名称          | 是否必须  | 类型     | 描述   | 取值范围                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| symbol        | true  | string | 品种代码          | "BTC","ETH"...                           |
+| start_time    | false  | long    | 起始时间 （时间戳，单位毫秒）        |  取值范围：[(当前时间 - 90天), 当前时间] ，默认取当前时间- 90天   |
+| end_time      | false  | long    | 结束时间（时间戳，单位毫秒）         | 取值范围：(start_time, 当前时间)，默认取当前时间  |
+| page_index    | false  | int     | 页码，不填默认第1页                |                        |
+| page_size     | false  | int     | 页长，不填默认20，不得多于50         |                          |
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "ts": 1578127363768,
+    "data": {
+        "settlement_record": [
+            {
+                "symbol": "BTC",
+                "settlement_time": 1593432000000,
+                "clawback_ratio": 0,
+                "list": [
+                    {
+                        "contract_code": "BTC200626",
+                        "settlement_price": 9133.21,
+                        "settlement_type": "delivery"
+                    },
+                    {
+                        "contract_code": "BTC200703",
+                        "settlement_price": 9233.21,
+                        "settlement_type": "settlement"
+                    },
+                    {
+                        "contract_code": "BTC200925",
+                        "settlement_price": 9533.21,
+                        "settlement_type": "settlement"
+                    },
+                    {
+                        "contract_code": "BTC201225",
+                        "settlement_price": 9833.21,
+                        "settlement_type": "settlement"
+                    }
+                ]
+            }
+        ],
+        "current_page": 1,
+        "total_page": 1,
+        "total_size": 5
+    }
+}
+
+```
+
+### 返回参数
+
+| 参数名称                   | 是否必须 | 类型      | 描述                 | 取值范围                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                | true | string  | 请求处理结果        | "ok" , "error" |
+| ts                    | true | long    | 响应生成时间点，单位：毫秒 |                |
+| \<settlement_record\>    |  true    |   object array    |               |          |
+| symbol                 | true | string | 品种代码          |             |
+| settlement_time        | true | long | 结算时间（时间戳，单位毫秒） （当settlement_type为交割时，该时间为交割时间；当settlement_type为结算时，该时间为结算时间；）         |             |
+| clawback_ratio        | true | decimal | 分摊比例        |             |
+| \<list\>                |   true   |   object array   |         |                |
+| contract_code        | true | string | 合约代码          |   "BTC180914" ...             |
+| settlement_price        | true | decimal | 结算价格（当settlement_type为交割时，该价格为交割价格；当settlement_type为结算时，该价格为结算价格；）          |              |
+| settlement_type        | true | string | 结算类型         |  “delivery”：交割，“settlement”：结算            |
+| \</list\>         |      |         |         |                |
+| \</settlement_record\>         |      |         |         |                |
+| total_page        | true | int | 总页数   |                |
+| current_page        | true | int | 当前页   |                |
+| total_size        | true | int | 总条数   |                |
+| \</data\>         |      |         |        |                |
 
 ## 获取指数K线数据
 
@@ -8326,7 +8434,8 @@ direction  |  true  |  string  |  买卖方向  |   |
 | contract_code   | true | string  | 合约代码  |   |
 | direction   | true | string  | 仓位方向 | "buy":买 "sell":卖    |
 | offset   | true | string  | 开平方向 | "open":开 "close":平    |
-| volume   | true | decimal  | 数量（张）  |   |
+| volume   | true | decimal  | 强平数量（张）  |   |
+| amount   | true | decimal  | 	强平数量（币）  |   |
 | price   | true | decimal  | 破产价格  |   |
 | created_at   | true | long  | 订单创建时间  |   |
 | \</data> | | |  | |
