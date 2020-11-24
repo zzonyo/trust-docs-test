@@ -1585,7 +1585,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC
 | ch                 | true          | string        | Data belonged channel，format： market.$contract_code.detail.merged |                 |
 | status             | true          | string        | Request Processing Result                                    | "ok" , "error"  |
 | ts                 | true          | long        | Time of Respond Generation, Unit: Millisecond                |                 |
-|  \<tick\>    |    true           | object   |      |            | 
+|  \<tick\>    |    true           | object   |    kline data (Start at 00:00(UTC+8) of the day)   |            | 
 |  id    |     true          | long   |  kline id,the same as kline timestamp   |            
 |  vol    |     true          | string   |  Trade Volume(Cont.)    |            
 |  count    |     true          | decimal   |   Order Quantity  |            
