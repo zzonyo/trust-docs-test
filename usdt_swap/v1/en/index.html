@@ -268,6 +268,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-0-2-2020-11-24-added-query-historical-settlement-records-of-the-platform-interface-modified-added-fields-of-return-parameter-for-quot-query-liquidation-orders-quot-interface-and-quot-subscribe-liquidation-order-data-quot-interface" class="toc-h2 toc-link" data-title="1.0.2 2020-11-24 【 Added: Query historical settlement records of the platform interface. Modified:  Added fields of return parameter for "Query Liquidation Orders" interface and "Subscribe Liquidation Order Data" interface】">1.0.2 2020-11-24 【 Added: Query historical settlement records of the platform interface. Modified:  Added fields of return parameter for "Query Liquidation Orders" interface and "Subscribe Liquidation Order Data" interface】</a>
+                  </li>
+                  <li>
                     <a href="#1-0-1-2020-10-29-updated-websocket-messages-of-account-topic-will-be-pushed-when-leverage-switch-succeeds-websocket-messages-of-position-topic-will-be-pushed-when-leverage-switch-succeeds" class="toc-h2 toc-link" data-title="1.0.1 2020-10-29 【Updated: websocket messages of account topic will be pushed when leverage switch succeeds; websocket messages of position topic will be pushed when leverage switch succeeds;】">1.0.1 2020-10-29 【Updated: websocket messages of account topic will be pushed when leverage switch succeeds; websocket messages of position topic will be pushed when leverage switch succeeds;】</a>
                   </li>
                   <li>
@@ -383,6 +386,9 @@
                   </li>
                   <li>
                     <a href="#query-liquidation-orders" class="toc-h2 toc-link" data-title="Query Liquidation Orders">Query Liquidation Orders</a>
+                  </li>
+                  <li>
+                    <a href="#query-historical-settlement-records-of-the-platform-interface" class="toc-h2 toc-link" data-title="Query historical settlement records of the platform interface">Query historical settlement records of the platform interface</a>
                   </li>
                   <li>
                     <a href="#query-funding-rate" class="toc-h2 toc-link" data-title="Query funding rate">Query funding rate</a>
@@ -700,7 +706,25 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-0-1-2020-10-29-updated-websocket-messages-of-account-topic-will-be-pushed-when-leverage-switch-succeeds-websocket-messages-of-position-topic-will-be-pushed-when-leverage-switch-succeeds'>1.0.1 2020-10-29 【Updated: websocket messages of account topic will be pushed when leverage switch succeeds; websocket messages of position topic will be pushed when leverage switch succeeds;】</h2><h3 id='1-subscribe-account-equity-updates-data-return-parameters-added-switch_lever_rate-event-type-to-represent-switching-leverages-when-the-leverage-is-successfully-switched-a-latest-information-on-assets-will-be-pushed-with-event-switch_lever_rate-quot'>1、Subscribe Account Equity Updates Data（Return parameters added “switch_lever_rate” event type to represent switching leverages. When the leverage is successfully switched, a latest information on assets will be pushed with event “switch_lever_rate&quot;.）</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-0-2-2020-11-24-added-query-historical-settlement-records-of-the-platform-interface-modified-added-fields-of-return-parameter-for-quot-query-liquidation-orders-quot-interface-and-quot-subscribe-liquidation-order-data-quot-interface'>1.0.2 2020-11-24 【 Added: Query historical settlement records of the platform interface. Modified:  Added fields of return parameter for &quot;Query Liquidation Orders&quot; interface and &quot;Subscribe Liquidation Order Data&quot; interface】</h2><h3 id='1-added-query-historical-settlement-records-of-the-platform-interface'>1、Added “Query historical settlement records of the platform” interface</h3>
+<ul>
+<li><p>Interface Name: Query historical settlement records of the platform</p></li>
+<li><p>Interface Type: public</p></li>
+<li><p>Interface URL: linear-swap-api/v1/swap_settlement_records</p></li>
+</ul>
+<h3 id='2-added-fields-of-return-parameter-for-quot-query-liquidation-orders-quot-interface-amount-and-trade-turnover-are-added-for-return-parameter-data-quot-quot-amount-quot-represents-the-liquidation-amount-token-trade-turnover-represents-the-liquidation-amount-quotation-token'>2、Added fields of return parameter for &quot;Query Liquidation Orders&quot; interface（“amount” and “trade-turnover”  are added for return parameter “data&quot;. &quot;amount&quot; represents the liquidation amount (token); “trade-turnover”represents the liquidation amount (quotation token) ）</h3>
+<ul>
+<li><p>Interface Name: Query Liquidation Orders</p></li>
+<li><p>Interface Type: public</p></li>
+<li><p>Interface URL: linear-swap-api/v1/swap_liquidation_orders</p></li>
+</ul>
+<h3 id='3-added-fields-of-return-parameter-for-quot-subscribe-liquidation-order-data-quot-interface-amount-and-trade-turnover-are-added-for-return-parameter-data-quot-quot-amount-quot-represents-the-liquidation-amount-token-trade-turnover-represents-the-liquidation-amount-quotation-token'>3、Added fields of return parameter for &quot;Subscribe Liquidation Order Data&quot; interface（“amount” and “trade-turnover”  are added for return parameter “data&quot;. &quot;amount&quot; represents the liquidation amount (token); “trade-turnover”represents the liquidation amount (quotation token)）</h3>
+<ul>
+<li><p>Interface Name: Subscribe Liquidation Order Data</p></li>
+<li><p>Interface Type: public</p></li>
+<li><p>Subscription topic: public.$contract_code.liquidation_orders</p></li>
+</ul>
+<h2 id='1-0-1-2020-10-29-updated-websocket-messages-of-account-topic-will-be-pushed-when-leverage-switch-succeeds-websocket-messages-of-position-topic-will-be-pushed-when-leverage-switch-succeeds'>1.0.1 2020-10-29 【Updated: websocket messages of account topic will be pushed when leverage switch succeeds; websocket messages of position topic will be pushed when leverage switch succeeds;】</h2><h3 id='1-subscribe-account-equity-updates-data-return-parameters-added-switch_lever_rate-event-type-to-represent-switching-leverages-when-the-leverage-is-successfully-switched-a-latest-information-on-assets-will-be-pushed-with-event-switch_lever_rate-quot'>1、Subscribe Account Equity Updates Data（Return parameters added “switch_lever_rate” event type to represent switching leverages. When the leverage is successfully switched, a latest information on assets will be pushed with event “switch_lever_rate&quot;.）</h3>
 <ul>
 <li><p>Interface Name：Subscribe Account Equity Updates Data</p></li>
 <li><p>Interface Type：private</p></li>
@@ -809,6 +833,14 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>linear-swap-api/v1/swap_liquidation_orders</td>
 <td>GET</td>
 <td>Query Liquidation Order Information</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Market Data</td>
+<td>linear-swap-api/v1/swap_settlement_records</td>
+<td>GET</td>
+<td>Query historical settlement records of the platform interface</td>
 <td>No</td>
 </tr>
 <tr>
@@ -5281,7 +5313,21 @@ You are recommended to read the status code from the returned message. If the ab
 <td>volume</td>
 <td>true</td>
 <td>decimal</td>
-<td>liquidated order quantity</td>
+<td>liquidation volume (cont)</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>liquidation amount (token)</td>
+<td></td>
+</tr>
+<tr>
+<td>trade-turnover</td>
+<td>true</td>
+<td>decimal</td>
+<td>liquidation amount (quotation token)</td>
 <td></td>
 </tr>
 <tr>
@@ -5338,6 +5384,195 @@ You are recommended to read the status code from the returned message. If the ab
 <td>true</td>
 <td>long</td>
 <td>timestamp</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='query-historical-settlement-records-of-the-platform-interface'>Query historical settlement records of the platform interface</h2>
+<ul>
+<li>POST <code>/linear-swap-api/v1/swap_settlement_records</code></li>
+</ul>
+<h3 id='request-parameter-18'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>Contract Code</td>
+<td>&quot;BTC-USDT&quot;,&quot;ETH-USDT&quot;...</td>
+</tr>
+<tr>
+<td>start_time</td>
+<td>false</td>
+<td>long</td>
+<td>Start time（timestamp，unit: millisecond）</td>
+<td>Value range: [(Current time minus 90 days), Current time] ，default current time minus 90 days</td>
+</tr>
+<tr>
+<td>end_time</td>
+<td>false</td>
+<td>long</td>
+<td>End time（timestamp，unit: millisecond）</td>
+<td>Value range: (start_time, current time)，default current time</td>
+</tr>
+<tr>
+<td>page_index</td>
+<td>false</td>
+<td>int</td>
+<td>Page, default page 1 if not filled</td>
+<td></td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>false</td>
+<td>int</td>
+<td>Page items, default 20, shall not exceed 50</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1578127363768</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"settlement_record"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"settlement_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1593460800000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"clawback_ratio"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"settlement_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">9133.21</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"settlement_type"</span><span class="p">:</span><span class="s2">"settlement"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='return-parameter'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request Processing Result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Response generation time point, unit: millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;settlement_record&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>Token Code</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>Contract Code</td>
+<td>&quot;BTC-USDT&quot; ...</td>
+</tr>
+<tr>
+<td>settlement_time</td>
+<td>true</td>
+<td>long</td>
+<td>Settlement Time（timestamp，unit: millisecond）（when the settlement_type is delivery, the time is delivery time; when the settlement_type is settlement, the time is settlement time）</td>
+<td></td>
+</tr>
+<tr>
+<td>clawback_ratio</td>
+<td>true</td>
+<td>decimal</td>
+<td>Clawback Ratio</td>
+<td></td>
+</tr>
+<tr>
+<td>settlement_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>Settlement Price（when the settlement_type is delivery, the price is delivery price; when the settlement_type is settlement, the price is settlement price；）</td>
+<td></td>
+</tr>
+<tr>
+<td>settlement_type</td>
+<td>true</td>
+<td>string</td>
+<td>Settlement Type</td>
+<td>“delivery”：Delivery，“settlement”：Settlement</td>
+</tr>
+<tr>
+<td>&lt;/settlement_record&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>total_page</td>
+<td>true</td>
+<td>int</td>
+<td>Total Pages</td>
+<td></td>
+</tr>
+<tr>
+<td>current_page</td>
+<td>true</td>
+<td>int</td>
+<td>Current Page</td>
+<td></td>
+</tr>
+<tr>
+<td>total_size</td>
+<td>true</td>
+<td>int</td>
+<td>Total page items</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 </tbody></table>
@@ -6159,7 +6394,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_account_info</code><br></li>
 </ul>
-<h3 id='request-parameter-18'>Request Parameter</h3>
+<h3 id='request-parameter-19'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6352,7 +6587,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST  <code>/linear-swap-api/v1/swap_position_info</code> </li>
 </ul>
-<h3 id='request-parameter-19'>Request Parameter</h3>
+<h3 id='request-parameter-20'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7764,7 +7999,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>linear-swap-api/v1/swap_available_level_rate</code></li>
 </ul>
-<h3 id='request-parameter-20'>Request Parameter：</h3>
+<h3 id='request-parameter-21'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -7855,7 +8090,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_order_limit</code></li>
 </ul>
-<h3 id='request-parameter-21'>Request Parameter</h3>
+<h3 id='request-parameter-22'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7992,7 +8227,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_fee</code></li>
 </ul>
-<h3 id='request-parameter-22'>Request Parameter</h3>
+<h3 id='request-parameter-23'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8122,7 +8357,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_transfer_limit</code></li>
 </ul>
-<h3 id='request-parameter-23'>Request Parameter</h3>
+<h3 id='request-parameter-24'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8276,7 +8511,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_position_limit</code></li>
 </ul>
-<h3 id='request-parameter-24'>Request Parameter</h3>
+<h3 id='request-parameter-25'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8725,7 +8960,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>post <code>linear-swap-api/v1/swap_transfer_inner</code></li>
 </ul>
-<h3 id='request-parameter-25'>Request Parameter</h3>
+<h3 id='request-parameter-26'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -9051,7 +9286,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_order</code></li>
 </ul>
-<h3 id='request-parameter-26'>Request Parameter</h3>
+<h3 id='request-parameter-27'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9205,7 +9440,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_batchorder</code></li>
 </ul>
-<h3 id='request-parameter-27'>Request Parameter</h3>
+<h3 id='request-parameter-28'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9437,7 +9672,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST  <code>/linear-swap-api/v1/swap_cancel</code></li>
 </ul>
-<h3 id='request-parameter-28'>Request Parameter</h3>
+<h3 id='request-parameter-29'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9573,7 +9808,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_cancelall</code></li>
 </ul>
-<h3 id='request-parameter-29'>Request Parameter</h3>
+<h3 id='request-parameter-30'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9693,7 +9928,7 @@ You are recommended to read the status code from the returned message. If the ab
 <li><p>Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.</p></li>
 <li><p>The interface limits the number of requests to 1 time per 3 seconds.</p></li>
 </ul>
-<h3 id='request-parameter-30'>Request Parameter</h3>
+<h3 id='request-parameter-31'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -9811,7 +10046,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_lightning_close_position</code></li>
 </ul>
-<h3 id='request-parameter-31'>Request Parameter</h3>
+<h3 id='request-parameter-32'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9947,7 +10182,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_order_info</code></li>
 </ul>
-<h3 id='request-parameter-32'>Request Parameter</h3>
+<h3 id='request-parameter-33'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10238,7 +10473,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_order_detail</code></li>
 </ul>
-<h3 id='request-parameter-33'>Request Parameter</h3>
+<h3 id='request-parameter-34'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10679,7 +10914,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST  <code>/linear-swap-api/v1/swap_openorders</code></li>
 </ul>
-<h3 id='request-parameter-34'>Request Parameter</h3>
+<h3 id='request-parameter-35'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11013,7 +11248,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_hisorders</code></li>
 </ul>
-<h3 id='request-parameter-35'>Request Parameter</h3>
+<h3 id='request-parameter-36'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11367,7 +11602,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_matchresults</code></li>
 </ul>
-<h3 id='request-parameter-36'>Request Parameter</h3>
+<h3 id='request-parameter-37'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12100,7 +12335,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>linear-swap-api/v1/swap_trigger_openorders</code></li>
 </ul>
-<h3 id='request-parameter-37'>Request Parameter</h3>
+<h3 id='request-parameter-38'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12375,7 +12610,7 @@ You are recommended to read the status code from the returned message. If the ab
   </span><span class="s2">"page_size"</span><span class="p">:</span><span class="mi">10</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-38'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-39'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12734,7 +12969,7 @@ You are recommended to read the status code from the returned message. If the ab
 <p>API rate limit for this interface is 1 times/second.</p>
 
 <p>Transferring margin between Spot account and USDT Margined Swap account Interface, sets 8 decimal places for transferring amount of all coins.</p>
-<h3 id='request-parameter-39'>Request Parameter</h3>
+<h3 id='request-parameter-40'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13763,7 +13998,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-40'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-41'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13835,7 +14070,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-2'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13953,7 +14188,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573106298</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-41'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-42'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14071,7 +14306,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-2'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-3'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14189,7 +14424,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-42'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-43'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14320,7 +14555,7 @@ Details are below:</p></li>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-3'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-4'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14428,7 +14663,7 @@ Details are below:</p></li>
 </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-43'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-44'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14522,7 +14757,7 @@ Details are below:</p></li>
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603707712357</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-4'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-5'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14643,7 +14878,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-44'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-45'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14707,7 +14942,7 @@ Details are below:</p></li>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-5'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-6'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14819,7 +15054,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-45'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-46'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14883,7 +15118,7 @@ Details are below:</p></li>
         </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USDT.bbo"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='return-parameter-6'><strong>Return Parameter</strong>：</h3>
+</span></code></pre><h3 id='return-parameter-7'><strong>Return Parameter</strong>：</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15000,7 +15235,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-46'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-47'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15076,7 +15311,7 @@ Details are below:</p></li>
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603708046534</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-7'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-8'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15184,7 +15419,7 @@ Details are below:</p></li>
 
 </span></code></pre><h3 id='note-27'>Note:</h3>
 <p>Clients can only access the recent 300 trade detail data </p>
-<h3 id='request-parameter-47'>Request Parameter</h3>
+<h3 id='request-parameter-48'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15250,7 +15485,7 @@ Details are below:</p></li>
 </span><span class="p">}</span><span class="w">
 
 
-</span></code></pre><h3 id='return-parameter-8'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-9'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15374,7 +15609,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-48'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-49'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15449,7 +15684,7 @@ Details are below:</p></li>
         </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='return-parameter-9'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-10'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -15574,7 +15809,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-49'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-50'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15807,7 +16042,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-50'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-51'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16007,7 +16242,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-51'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-52'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16235,7 +16470,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-52'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-53'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16407,7 +16642,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-53'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-54'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16441,7 +16676,7 @@ Details are below:</p></li>
 <td>end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameter-54'>Request Parameter：</h3>
+<h3 id='request-parameter-55'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -18010,7 +18245,7 @@ Details are below:</p></li>
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-10'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-11'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -18061,7 +18296,17 @@ Details are below:</p></li>
 <tr>
 <td>volume</td>
 <td>decimal</td>
-<td>quantity(Cont.)</td>
+<td>liquidation volume (Cont.)</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>decimal</td>
+<td>liquidation amount (token)</td>
+</tr>
+<tr>
+<td>trade-turnover</td>
+<td>decimal</td>
+<td>liquidation amount (quotation token)</td>
 </tr>
 <tr>
 <td>price</td>
@@ -18637,7 +18882,7 @@ Details are below:</p></li>
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-55'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-56'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
