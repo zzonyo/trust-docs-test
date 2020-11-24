@@ -40,6 +40,33 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.2.0 2020-11-24 【 Added: Query historical settlement records of the platform interface. Modified:  Added fields of return parameter for "Query Liquidation Orders" interface and "Subscribe Liquidation Order Data" interface】
+
+### 1、Added “Query historical settlement records of the platform” interface 
+ 
+  - Interface Name: Query historical settlement records of the platform
+ 
+  - Interface Type: public
+ 
+  - Interface URL: api/v1/contract_settlement_records
+
+### 2、Added fields of return parameter for "Query Liquidation Orders" interface（“amount” are added for return parameter “data". "amount" represents the liquidation amount (token);）
+ 
+  - Interface Name: Query Liquidation Orders
+ 
+  - Interface Type: pubic
+  
+  - Interface URL: api/v1/contract_liquidation_orders
+
+
+### 3、Added fields of return parameter for "Subscribe Liquidation Order Data" interface（“amount” are added for return parameter “data". "amount" represents the liquidation amount (token);）
+ 
+  - Interface Name: Subscribe Liquidation Order Data
+ 
+  - Interface Type: public
+ 
+  - Subscription topic: public.$symbol.liquidation_orders
+
 ## 1.1.9 2020-10-28 【Newly added：Query financial records via multiple fields, Query history orders via multiple fields, Query history transactions via multiple fields.】
 
 ### 1、Query history transactions via multiple fields
@@ -776,6 +803,7 @@ Read    |  Market Data           |  api/v1/contract_his_open_interest |    GET  
 Read     |   Market Data           |  api/v1/contract_elite_account_ratio |   GET       | Query Top Trader Sentiment Index Function-Account            |  No  |
 Read     |   Market Data           |  api/v1/contract_elite_position_ratio |   GET       | Query Top Trader Sentiment Index Function-Position            |  No  |
 Read     |   Market Data           |  api/v1/contract_liquidation_orders |   GET       |  Query Liquidation Order Information            |  No  |
+Read     |  Account                |  api/v1/contract_settlement_records |     GET       |  Query historical settlement records of the platform interface          |  No  |
 Read     |  Market Data           |  api/v1/index/market/history/index |   GET       |  Query Index Kline Data            |  No  |
 Read     |  Market Data           |  api/v1/index/market/history/basis |   GET       |  Query Basis Data            |  No  |
 Read  | Account          | api/v1/contract_account_info   |  POST             | Query User’s Account Information                     | Yes                    |
@@ -3027,7 +3055,8 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 | contract_code          | true     | string  | contract code         |"BTC180914" ...  |
 | direction              | true     | string  | "buy":buy"sell": sell     |              |
 | offset              | true     | string  | "open":open "close":  close      |              
-| volume           | true     | decimal | liquidated order quantity            |              |
+| volume           | true     | decimal | liquidated volume(cont)            |              |
+| amount          | true     | decimal | liquidation amount (token)           |              |
 | price      | true     | decimal | bankruptcy price            |              |
 | created_at            | true     | long    | liquidation time            |              |
 | \</list\>              |          |         |                    |              |
@@ -3036,6 +3065,89 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 | total_size             | true     | int     |   total size             |              |
 | \</object\>            |          |         |                    |              |
 | ts                     | true     | long    |   timestamp             |              |
+
+
+## Query historical settlement records of the platform interface 
+
+- POST `/api/v1/contract_settlement_records`
+
+### Request Parameter
+
+| Parameter Name        | Mandatory  | Type     | Desc   | Value Range                                    |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| symbol        | true  | string | Token Code          | "BTC","ETH"...                           |
+| start_time    | false  | long    | Start time（timestamp，unit: millisecond）        |  Value range: [(Current time minus 90 days), Current time] ，default current time minus 90 days  |
+| end_time      | false  | long    | End time（timestamp，unit: millisecond）         |   Value range: (start_time, current time]，default current time  |
+| page_index    | false  | int     |  Page, default page 1 if not filled            |                        |
+| page_size     | false  | int     | Page items, default 20, shall not exceed 50    |      [1-50]                    |
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "ts": 1578127363768,
+    "data": {
+        "settlement_record": [
+            {
+                "symbol": "BTC",
+                "settlement_time": 1593432000000,
+                "clawback_ratio": 0,
+                "list": [
+                    {
+                        "contract_code": "BTC200626",
+                        "settlement_price": 9133.21,
+                        "settlement_type": "delivery"
+                    },
+                    {
+                        "contract_code": "BTC200703",
+                        "settlement_price": 9233.21,
+                        "settlement_type": "settlement"
+                    },
+                    {
+                        "contract_code": "BTC200925",
+                        "settlement_price": 9533.21,
+                        "settlement_type": "settlement"
+                    },
+                    {
+                        "contract_code": "BTC201225",
+                        "settlement_price": 9833.21,
+                        "settlement_type": "settlement"
+                    }
+                ]
+            },...
+        ],
+        "current_page": 1,
+        "total_page": 1,
+        "total_size": 5
+    }
+}
+
+```
+
+### Return Parameter
+
+| Parameter Name        | Mandatory  | Type     | Desc   | Value Range                                    |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                | true | string  | Request Processing Result       | "ok" , "error" |
+| ts                    | true | long    | Response generation time point, unit: millisecond |                |
+| \<settlement_record\>    |  true    |   object array    |               |          |
+| symbol                 | true | string | Token Code       |             |
+| settlement_time        | true | long | Settlement Time（timestamp，unit: millisecond）（when the settlement_type is delivery, the time is delivery time; when the settlement_type is settlement, the time is settlement time）         |             |
+| clawback_ratio        | true | decimal | Clawback Ratio        |             |
+| \<list\>                |   true   |   object array   |         |                |
+| contract_code        | true | string | Contract Code     |   "BTC180914" ...             |
+| settlement_price        | true | decimal | Settlement Price（when the settlement_type is delivery, the price is delivery price; when the settlement_type is settlement, the price is settlement price；）         |              |
+| settlement_type        | true | string | Settlement Type    |  “delivery”：Delivery，“settlement”：Settlement           |
+| \</list\>         |      |         |         |                |
+| \</settlement_record\>         |      |         |         |                |
+| total_page        | true | int | Total Pages   |                |
+| current_page        | true | int |  Current Page    |                |
+| total_size        | true | int | Total page items   |                |
+| \</data\>         |      |         |        |                |
+
+
+
 
 ## Query Index Kline Data
 
@@ -8214,7 +8326,8 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | contract_code          | string  | contract code                                    |
 | direction                 | string  | Long or short                                                     |
 | offset              | string | Open or close                                                     |
-| volume                 | decimal | quantity(volume)                                                      |
+| volume        | decimal | liquidated volume(cont)            |              |
+| amount       | decimal | liquidation amount (token)           |              |
 | price              | decimal  | bankruptcy price               |
 | created_at              | long  | Order Creation Time                                          |
 | \<\data> | | |  | |
