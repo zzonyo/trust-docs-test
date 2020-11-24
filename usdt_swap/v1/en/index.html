@@ -712,13 +712,13 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li><p>Interface Type: public</p></li>
 <li><p>Interface URL: linear-swap-api/v1/swap_settlement_records</p></li>
 </ul>
-<h3 id='2-added-fields-of-return-parameter-for-quot-query-liquidation-orders-quot-interface-amount-and-trade-turnover-are-added-for-return-parameter-data-quot-quot-amount-quot-represents-the-liquidation-amount-token-trade-turnover-represents-the-liquidation-amount-quotation-token'>2、Added fields of return parameter for &quot;Query Liquidation Orders&quot; interface（“amount” and “trade-turnover”  are added for return parameter “data&quot;. &quot;amount&quot; represents the liquidation amount (token); “trade-turnover”represents the liquidation amount (quotation token) ）</h3>
+<h3 id='2-added-fields-of-return-parameter-for-quot-query-liquidation-orders-quot-interface-amount-and-trade_turnover-are-added-for-return-parameter-data-quot-quot-amount-quot-represents-the-liquidation-amount-token-trade_turnover-represents-the-liquidation-amount-quotation-token'>2、Added fields of return parameter for &quot;Query Liquidation Orders&quot; interface（“amount” and “trade_turnover”  are added for return parameter “data&quot;. &quot;amount&quot; represents the liquidation amount (token); “trade_turnover” represents the liquidation amount (quotation token) ）</h3>
 <ul>
 <li><p>Interface Name: Query Liquidation Orders</p></li>
 <li><p>Interface Type: public</p></li>
 <li><p>Interface URL: linear-swap-api/v1/swap_liquidation_orders</p></li>
 </ul>
-<h3 id='3-added-fields-of-return-parameter-for-quot-subscribe-liquidation-order-data-quot-interface-amount-and-trade-turnover-are-added-for-return-parameter-data-quot-quot-amount-quot-represents-the-liquidation-amount-token-trade-turnover-represents-the-liquidation-amount-quotation-token'>3、Added fields of return parameter for &quot;Subscribe Liquidation Order Data&quot; interface（“amount” and “trade-turnover”  are added for return parameter “data&quot;. &quot;amount&quot; represents the liquidation amount (token); “trade-turnover”represents the liquidation amount (quotation token)）</h3>
+<h3 id='3-added-fields-of-return-parameter-for-quot-subscribe-liquidation-order-data-quot-interface-amount-and-trade_turnover-are-added-for-return-parameter-data-quot-quot-amount-quot-represents-the-liquidation-amount-token-trade_turnover-represents-the-liquidation-amount-quotation-token'>3、Added fields of return parameter for &quot;Subscribe Liquidation Order Data&quot; interface（“amount” and “trade_turnover”  are added for return parameter “data&quot;. &quot;amount&quot; represents the liquidation amount (token); “trade_turnover” represents the liquidation amount (quotation token)）</h3>
 <ul>
 <li><p>Interface Name: Subscribe Liquidation Order Data</p></li>
 <li><p>Interface Type: public</p></li>
@@ -5239,6 +5239,8 @@ You are recommended to read the status code from the returned message. If the ab
                 </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.000000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.000000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.3000000000000000000</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">13395.300000000000000000</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603597296671</span><span class="w">
             </span><span class="p">}</span><span class="w">
@@ -5324,7 +5326,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 <tr>
-<td>trade-turnover</td>
+<td>trade_turnover</td>
 <td>true</td>
 <td>decimal</td>
 <td>liquidation amount (quotation token)</td>
@@ -5389,7 +5391,7 @@ You are recommended to read the status code from the returned message. If the ab
 </tbody></table>
 <h2 id='query-historical-settlement-records-of-the-platform-interface'>Query historical settlement records of the platform interface</h2>
 <ul>
-<li>POST <code>/linear-swap-api/v1/swap_settlement_records</code></li>
+<li>GET <code>/linear-swap-api/v1/swap_settlement_records</code></li>
 </ul>
 <h3 id='request-parameter-18'>Request Parameter</h3>
 <table><thead>
@@ -18239,6 +18241,8 @@ Details are below:</p></li>
             </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"offset"</span><span class="p">:</span><span class="s2">"close"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="mf">0.7</span><span class="p">,</span><span class="w">
             </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">4.236</span><span class="p">,</span><span class="w">
             </span><span class="s2">"created_at"</span><span class="p">:</span><span class="mi">1580815422296</span><span class="w">
         </span><span class="p">}</span><span class="w">
@@ -18304,7 +18308,7 @@ Details are below:</p></li>
 <td>liquidation amount (token)</td>
 </tr>
 <tr>
-<td>trade-turnover</td>
+<td>trade_turnover</td>
 <td>decimal</td>
 <td>liquidation amount (quotation token)</td>
 </tr>
