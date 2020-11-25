@@ -3132,7 +3132,7 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
                     },
                     {
                         "contract_code": "BTC201127",
-                        "settle_price": 18292.24,
+                        "settlement_price": 18292.24,
                         "settlement_type": "settlement"
                     },
                     {
