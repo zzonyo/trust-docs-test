@@ -3054,14 +3054,14 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
     "data": {
         "orders": [
             {
-                "contract_code": "BTC210326",
+                "contract_code": "BTC201225",
                 "symbol": "BTC",
                 "direction": "buy",
                 "offset": "close",
-                "volume": 100,
-                "amount": 100,
-                "price": 14149.98,
-                "created_at": 1604299146147
+                "volume": 26,
+                "price": 19674.96,
+                "created_at": 1606293144641,
+                "amount": 0.132147663832607537
             }
         ],
         "total_page": 114,
@@ -3115,41 +3115,41 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 ```json
 {
     "status": "ok",
-    "ts": 1578127363768,
     "data": {
+        "total_page": 13,
+        "current_page": 1,
+        "total_size": 13,
         "settlement_record": [
             {
                 "symbol": "BTC",
-                "settlement_time": 1593432000000,
+                "settlement_time": 1605859200000,
                 "clawback_ratio": 0,
                 "list": [
                     {
-                        "contract_code": "BTC200626",
-                        "settlement_price": 9133.21,
+                        "contract_code": "BTC201120",
+                        "settle_price": 18217.62,
                         "settlement_type": "delivery"
                     },
                     {
-                        "contract_code": "BTC200703",
-                        "settlement_price": 9233.21,
-                        "settlement_type": "settlement"
-                    },
-                    {
-                        "contract_code": "BTC200925",
-                        "settlement_price": 9533.21,
+                        "contract_code": "BTC201127",
+                        "settle_price": 18292.24,
                         "settlement_type": "settlement"
                     },
                     {
                         "contract_code": "BTC201225",
-                        "settlement_price": 9833.21,
+                        "settle_price": 18490.42,
+                        "settlement_type": "settlement"
+                    },
+                    {
+                        "contract_code": "BTC210326",
+                        "settle_price": 18788.7,
                         "settlement_type": "settlement"
                     }
                 ]
             }
-        ],
-        "current_page": 1,
-        "total_page": 1,
-        "total_size": 5
-    }
+        ]
+    },
+    "ts": 1606295834648
 }
 
 ```
@@ -3160,6 +3160,7 @@ curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_t
 | ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
 | status                | true | string  | 请求处理结果        | "ok" , "error" |
 | ts                    | true | long    | 响应生成时间点，单位：毫秒 |                |
+| \<data\>    |  true    |   object array    |               |          |
 | \<settlement_record\>    |  true    |   object array    |               |          |
 | symbol                 | true | string | 品种代码          |             |
 | settlement_time        | true | long | 结算时间（时间戳，单位毫秒） （当settlement_type为交割时，该时间为交割时间；当settlement_type为结算时，该时间为结算时间；）         |             |
@@ -4857,7 +4858,7 @@ ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   |
 {
     "status": "ok",
     "data": {
-        "contract_code": "ada",
+        "symbol": "ada",
         "lever_rate": 20
     },
     "ts": 1604369902689
@@ -8451,18 +8452,18 @@ direction  |  true  |  string  |  买卖方向  |   |
 
 {
     "op":"notify",
-    "topic":"public.eos.liquidation_orders",
+    "topic":"public.BTC.liquidation_orders",
     "ts":1580815422403,
     "data":[
         {
-            "symbol":"EOS",
-            "contract_code":"EOS191227",
-            "direction":"buy",
-            "offset":"close",
-            "volume":7,
-            "amount":7,
-            "price":4.236,
-            "created_at":1580815422296
+            "contract_code": "BTC201225",
+            "symbol": "BTC",
+            "direction": "buy",
+            "offset": "close",
+            "volume": 26,
+            "price": 19674.96,
+            "created_at": 1606293144641,
+            "amount": 0.132147663832607537
         }
     ]
 }
