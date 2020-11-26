@@ -128,7 +128,7 @@ permission type  |  Content Type  |   Context           |   Request Type   |   D
  Read  | Account    | linear-swap-api/v1/swap_account_position_info                     | POST   |      Query Assets And Positions               |     Yes        |
 Trade  | Account    | linear-swap-api/v1/swap_master_sub_transfer                       | POST   |      Transfer between master account and sub-accounts                         |     Yes        |
  Read  | Account    | linear-swap-api/v1/swap_master_sub_transfer_record                | POST   |      Query transfer records of master account    |     Yes        |
- Read  | Account    | linear-swap-api/v1/swap_transfer_inner                            | POST   |      Transfer between different margin accounts under the same account          |     Yes        |
+Trade  | Account    | linear-swap-api/v1/swap_transfer_inner                            | POST   |      Transfer between different margin accounts under the same account          |     Yes        |
  Read  | Account    | linear-swap-api/v1/swap_api_trading_status                        | GET    |      Query user's API indicator disable information              |     Yes        |
 Trade  | Trade      | linear-swap-api/v1/swap_order                                     | POST   |      Place an Order                              |     Yes        |
 Trade  | Trade      | linear-swap-api/v1/swap_batchorder                                | POST   |      Place a Batch of Orders                         |     Yes        |
@@ -2267,20 +2267,20 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
             {
                 "contract_code": "BTC-USDT",
                 "symbol": "BTC",
-                "direction": "buy",
+                "direction": "sell",
                 "offset": "close",
-                "volume": 13.000000000000000000,
-                "amount": 13.000000000000000000,
-                "trade_turnover": 1.3000000000000000000,
-                "price": 13395.300000000000000000,
-                "created_at": 1603597296671
+                "volume": 624,
+                "price": 16701.4,
+                "created_at": 1606380004694,
+                "amount": 0.624,
+                "trade_turnover": 10421.6736
             }
         ],
         "total_page": 10,
         "current_page": 1,
         "total_size": 10
     },
-    "ts": 1603696886350
+    "ts": 1606380004694
 }
 
 ```
@@ -2327,22 +2327,22 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
 ```json
 {
     "status": "ok",
-    "ts": 1578127363768,
     "data": {
+        "total_page": 108,
+        "current_page": 1,
+        "total_size": 108,
         "settlement_record": [
             {
                 "symbol": "BTC",
                 "contract_code": "BTC-USDT",
-                "settlement_time": 1593460800000,
+                "settlement_time": 1606377600000,
                 "clawback_ratio": 0,
-                "settlement_price": 9133.21,
-                "settlement_type":"settlement"
+                "settlement_price": 17600.1,
+                "settlement_type": "settlement"
             }
-        ],
-        "current_page": 1,
-        "total_page": 1,
-        "total_size": 5
-    }
+        ]
+    },
+    "ts": 1606383650761
 }
 ```
 
@@ -7512,15 +7512,15 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
     "ts":1580815422403,
     "data":[
         {
-            "symbol":"BTC",
-            "contract_code":"BTC-USDT",
-            "direction":"buy",
-            "offset":"close",
-            "volume":7,
-            "amount":7,
-            "trade_turnover":0.7,
-            "price":4.236,
-            "created_at":1580815422296
+            "contract_code": "BTC-USDT",
+            "symbol": "BTC",
+            "direction": "sell",
+            "offset": "close",
+            "volume": 624,
+            "price": 16701.4,
+            "created_at": 1606380004694,
+            "amount": 0.624,
+            "trade_turnover": 10421.6736
         }
     ]
 }
