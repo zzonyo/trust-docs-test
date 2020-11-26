@@ -514,7 +514,7 @@ Read     | Account           |  /swap-api/v1/swap_fee |       POST       | Query
 Read     | Account           |  /swap-api/v1/swap_transfer_limit |     POST       |  Query information on Transfer Limit            |  Yes  |
 Read     |  Account           |  /swap-api/v1/swap_position_limit |     POST       |  Query information on position limit            |  Yes  |
 Read     |  Account           |   /swap-api/v1/swap_master_sub_transfer_record   |                  GET        |  Query transfer records of master account    |  No  |
-Write     |  Account           |   /swap-api/v1/swap_master_sub_transfer  |                  POST        |  transfer between master account and sub-accounts  |  No  |
+Trade     |  Account           |   /swap-api/v1/swap_master_sub_transfer  |                  POST        |  transfer between master account and sub-accounts  |  No  |
 Trade  | Trade            |  /swap-api/v1/swap_order          |  POST             | Place an Order                                 | Yes                    |
 Trade | Trade            | /swap-api/v1/swap_batchorder       |  POST             | Place a Batch of Orders                        | Yes                    |
 Trade | Trade            | /swap-api/v1/swap_cancel           |  POST             | Cancel an Order                                | Yes                    |
@@ -524,8 +524,8 @@ Trade     |  Trade           |  /swap-api/v1/swap_lightning_close_position |   P
 Trade  | Trade            |  /swap-api/v1/swap_trigger_order          |  POST             | Place an Trigger Order                                 | Yes                    |
 Trade  | Trade            |  /swap-api/v1/swap_trigger_cancel          |  POST             | Cancel a Trigger Order                                 | Yes                    |
 Trade  | Trade            |  swap-api/v1/swap_trigger_cancelall          |  POST             | Cancel all trigger Orders                                 | Yes                    |
-Trade  | Trade            |  swap-api/v1/swap_trigger_openorders          |  POST             | Get all open trigger Orders                                 | Yes                    |
-Trade  | Trade            |  swap-api/v1/swap_trigger_hisorders          |  POST             | Get all history trigger Orders                                 | Yes                    |
+Read  | Trade            |  swap-api/v1/swap_trigger_openorders          |  POST             | Get all open trigger Orders                                 | Yes                    |
+Read  | Trade            |  swap-api/v1/swap_trigger_hisorders          |  POST             | Get all history trigger Orders                                 | Yes                    |
 Read  | User Order Info  | /swap-api/v1/swap_order_info       |  POST             | Get Information of an Order                    | Yes                    |
 Read  | User Order Info  |  /swap-api/v1/swap_order_detail   |  POST             | Get Trade Details of an Order                  | Yes                    |
 Read  | User Order Info  |  /swap-api/v1/swap_openorders     |  POST             | Get Current Orders                             | Yes                    |
@@ -2661,17 +2661,17 @@ curl "https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC
                 "symbol": "BTC",
                 "direction": "buy",
                 "offset": "close",
-                "volume": 93.000000000000000000,
-                "amount": 93.000000000000000000,
-                "price": 13860.500000000000000000,
-                "created_at": 1603865955650
+                "volume": 173,
+                "price": 17102.9,
+                "created_at": 1606381842485,
+                "amount": 1.011524361365616357
             }
         ],
         "total_page": 4141,
         "current_page": 1,
         "total_size": 4141
     },
-    "ts": 1603866516655
+    "ts": 1606381842485
 }
 ```
 
@@ -2718,22 +2718,22 @@ curl "https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC
 ```json
 {
     "status": "ok",
-    "ts": 1578127363768,
     "data": {
+        "total_page": 271,
+        "current_page": 1,
+        "total_size": 271,
         "settlement_record": [
             {
                 "symbol": "BTC",
                 "contract_code": "BTC-USD",
-                "settlement_time": 1593460800000,
+                "settlement_time": 1606377600000,
                 "clawback_ratio": 0,
-                "settlement_price": 9133.21,
-                "settlement_type":“settlement”
+                "settlement_price": 17596.8,
+                "settlement_type": "settlement"
             }
-        ],
-        "current_page": 1,
-        "total_page": 1,
-        "total_size": 5
-    }
+        ]
+    },
+    "ts": 1606379293628
 }
 
 ```
@@ -8240,18 +8240,18 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 
 {
     "op":"notify",
-    "topic":"public.ETH-USD.liquidation_orders",
+    "topic":"public.BTC-USD.liquidation_orders",
     "ts":1603879731301,
     "data":[
         {
-            "symbol":"ETH",
-            "contract_code":"ETH-USD",
-            "direction":"sell",
-            "offset":"close",
-            "volume":465,
-            "amount":465,
-            "price":390.79,
-            "created_at":1603879731275
+            "contract_code": "BTC-USD",
+            "symbol": "BTC",
+            "direction": "buy",
+            "offset": "close",
+            "volume": 173,
+            "price": 17102.9,
+            "created_at": 1606381842485,
+            "amount": 1.011524361365616357
         }
     ]
 }
