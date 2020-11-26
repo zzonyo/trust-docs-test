@@ -843,7 +843,7 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
 读取     |  账户接口           |  api/v1/contract_transfer_limit |  POST       |  查询用户当前的划转限制            |  是  |
 读取     |  账户接口           |  api/v1/contract_position_limit |   POST       |  用户持仓量限制的查询            |  是  |
 读取     |  账户接口           |  api/v1/contract_account_position_info |   POST       |  查询用户账户和持仓信息            |  是  |
-划转     | 账户接口   | api/v1/contract_master_sub_transfer    | POST | 母子账户划转         | 是    |
+交易     | 账户接口   | api/v1/contract_master_sub_transfer    | POST | 母子账户划转         | 是    |
 读取     | 账户接口   | api/v1/contract_master_sub_transfer_record    | POST | 获取母账户下的所有母子账户划转记录         | 是    
 交易     |  交易接口           |  api/v1/contract_order |                        POST       |  合约下单                      |  是  |
 交易     |  交易接口           |  api/v1/contract_batchorder |                    POST       |  合约批量下单                  |  是  |
@@ -859,7 +859,7 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
 读取     |  交易接口           |  api/v1/contract_matchresults_exact |                    POST       |  组合查询合约历史成交记录   |  是  |
 读取     |  账户接口           |  api/v1/contract_trigger_openorders |    POST       |  获取计划委托当前委托接口            |  是  |
 读取     |  账户接口           |  api/v1/contract_trigger_hisorders |    POST       |       获取计划委托历史委托接口       |  是  |
-划转     |  账户接口           |  v1/futures/transfer |                    POST       |  币币账户和合约账户间进行资金的划转            |  是  |
+交易     |  账户接口           |  v1/futures/transfer |                    POST       |  币币账户和合约账户间进行资金的划转            |  是  |
 交易     |  交易接口           |  api/v1/lightning_close_position |    POST       |  闪电平仓下单            |  是  |
 交易     |  交易接口           |  api/v1/contract_trigger_order |    POST       |  合约计划委托下单            |  是  |
 交易     |  交易接口           |  api/v1/contract_trigger_cancel |    POST       |  合约计划委托撤单            |  是  |
