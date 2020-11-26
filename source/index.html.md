@@ -2871,10 +2871,10 @@ page_size | false     | int    | 不填默认20，不得多于50            |   
                 "symbol": "BTC",
                 "direction": "buy",
                 "offset": "close",
-                "volume": 93.000000000000000000,
-                "amount": 93.000000000000000000,
-                "price": 13860.500000000000000000,
-                "created_at": 1603865955650
+                "volume": 173,
+                "price": 17102.9,
+                "created_at": 1606381842485,
+                "amount": 1.011524361365616357
             }
         ],
         "total_page": 4141,
@@ -7887,9 +7887,9 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
   
   `"op": "sub",`
   
-  `"cid": "positions.$contract_code",`
+  `"cid": "topic to sub",`
   
-  `"topic": "topic to sub"`
+  `"topic": "positions.$contract_code"`
   
   `}`
 
@@ -8219,18 +8219,18 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 
 {
     "op":"notify",
-    "topic":"public.ETH-USD.liquidation_orders",
+    "topic":"public.BTC-USD.liquidation_orders",
     "ts":1603879731301,
     "data":[
         {
-            "symbol":"ETH",
-            "contract_code":"ETH-USD",
-            "direction":"sell",
-            "offset":"close",
-            "volume":465,
-            "amount":465,
-            "price":390.79,
-            "created_at":1603879731275
+            "contract_code": "BTC-USD",
+            "symbol": "BTC",
+            "direction": "buy",
+            "offset": "close",
+            "volume": 173,
+            "price": 17102.9,
+            "created_at": 1606381842485,
+            "amount": 1.011524361365616357
         }
     ]
 }
