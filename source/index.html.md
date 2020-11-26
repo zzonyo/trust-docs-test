@@ -819,6 +819,7 @@ Read     |  User Account           |  api/v1/contract_available_level_rate |  PO
 Read     |  User Account           |  api/v1/contract_fee |       POST       | Query information on contract trading fee            |  Yes  |       
 Read     |  User Account           |  api/v1/contract_transfer_limit |     POST       |  Query information on Transfer Limit            |  Yes  |
 Read     |  User Account           |  api/v1/contract_position_limit |     POST       |  Query information on position limit            |  Yes  |
+Trade     |  User Account           |  api/v1/contract_master_sub_transfer |     POST       |  Transfer between master and sub account            |  Yes  |
 Read     |  User Account           |  api/v1/contract_account_position_info |     POST       | User’s position Information And User’s position Information            |  Yes  |
 Read | Trade  |  api/v1/contract_trigger_openorders       | POST             |   Query Trigger Order Open Orders                              | Yes  |
 Read | Trade  |  api/v1/contract_trigger_hisorders       | POST             |  Query Trigger Order History                          | Yes  |
@@ -826,8 +827,8 @@ Trade  | Trade            |  api/v1/contract_order          |  POST             
 Trade | Trade            | api/v1/contract_batchorder       |  POST             | Place a Batch of Orders                        | Yes                    |
 Trade | Trade            | api/v1/contract_cancel           |  POST             | Cancel an Order                                | Yes                    |
 Trade | Trade            | api/v1/contract_cancelall        |  POST             | Cancel All Orders                              | Yes                    |
-Trade     |  Trade           |  api/v1/contract_switch_lever_rate |             POST       |  Switch Leverage                  |  Yes  |
-Trade     |  Trade           |  api/v1/lightning_close_position |   POST       |  Place Flash Close Order            |  Yes  |
+Trade  |  Trade           |  api/v1/contract_switch_lever_rate |             POST       |  Switch Leverage                  |  Yes  |
+Trade  |  Trade           |  api/v1/lightning_close_position |   POST       |  Place Flash Close Order            |  Yes  |
 Read  | User Order Info  | api/v1/contract_order_info       |  POST             | Get Information of an Order                    | Yes                    |
 Read  | User Order Info  |  api/v1/contract_order_detail   |  POST             | Get Trade Details of an Order                  | Yes                    |
 Read  | User Order Info  |  api/v1/contract_openorders     |  POST             | Get Current Orders                             | Yes                    |
