@@ -1429,7 +1429,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>No</td>
 </tr>
 <tr>
-<td>Write</td>
+<td>Trade</td>
 <td>Account</td>
 <td>/swap-api/v1/swap_master_sub_transfer</td>
 <td>POST</td>
@@ -1509,7 +1509,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Yes</td>
 </tr>
 <tr>
-<td>Trade</td>
+<td>Read</td>
 <td>Trade</td>
 <td>swap-api/v1/swap_trigger_openorders</td>
 <td>POST</td>
@@ -1517,7 +1517,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Yes</td>
 </tr>
 <tr>
-<td>Trade</td>
+<td>Read</td>
 <td>Trade</td>
 <td>swap-api/v1/swap_trigger_hisorders</td>
 <td>POST</td>
@@ -5687,17 +5687,17 @@ You are recommended to read the status code from the returned message. If the ab
                 </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">93.000000000000000000</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">93.000000000000000000</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">13860.500000000000000000</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603865955650</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">173</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">17102.9</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606381842485</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.011524361365616357</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
         </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">4141</span><span class="p">,</span><span class="w">
         </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">4141</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603866516655</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606381842485</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='returning-parameter-19'>Returning Parameter</h3>
 <table><thead>
@@ -5885,22 +5885,22 @@ You are recommended to read the status code from the returned message. If the ab
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1578127363768</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">271</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">271</span><span class="p">,</span><span class="w">
         </span><span class="s2">"settlement_record"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"settlement_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1593460800000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"settlement_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606377600000</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"clawback_ratio"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"settlement_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">9133.21</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"settlement_type"</span><span class="p">:</span><span class="err">“settlement”</span><span class="w">
+                </span><span class="s2">"settlement_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">17596.8</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"settlement_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"settlement"</span><span class="w">
             </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606379293628</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='return-parameter'>Return Parameter</h3>
@@ -19818,18 +19818,18 @@ Details are below:</p></li>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"topic"</span><span class="p">:</span><span class="s2">"public.ETH-USD.liquidation_orders"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="s2">"public.BTC-USD.liquidation_orders"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603879731301</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"ETH-USD"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"offset"</span><span class="p">:</span><span class="s2">"close"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">465</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">465</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">390.79</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="mi">1603879731275</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">173</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">17102.9</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606381842485</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.011524361365616357</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
