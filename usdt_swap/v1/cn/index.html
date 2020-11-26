@@ -1043,7 +1043,7 @@
 <td>是</td>
 </tr>
 <tr>
-<td>读取</td>
+<td>交易</td>
 <td>账户接口</td>
 <td>linear-swap-api/v1/swap_transfer_inner</td>
 <td>POST</td>
@@ -5545,13 +5545,13 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.000000000000000000</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.000000000000000000</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.300000000000000000</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">13395.300000000000000000</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603597296671</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">624</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">16701.4</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606380004694</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.624</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mf">10421.6736</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
         </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
@@ -5754,22 +5754,22 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1578127363768</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">108</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">108</span><span class="p">,</span><span class="w">
         </span><span class="s2">"settlement_record"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"settlement_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1593460800000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"settlement_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606377600000</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"clawback_ratio"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"settlement_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">9133.21</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"settlement_type"</span><span class="p">:</span><span class="s2">"settlement"</span><span class="w">
+                </span><span class="s2">"settlement_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">17600.1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"settlement_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"settlement"</span><span class="w">
             </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606383650761</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='70bdef7e25-21'>返回参数</h3>
 <table><thead>
@@ -17791,9 +17791,9 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 
 <p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
 
-<p><code>&quot;cid&quot;: &quot;positions.$contract_code&quot;,</code></p>
+<p><code>&quot;topic&quot;: &quot;positions.$contract_code&quot;,</code></p>
 
-<p><code>&quot;topic&quot;: &quot;topic to sub&quot;</code></p>
+<p><code>&quot;cid&quot;: &quot;topic to sub&quot;</code></p>
 
 <p><code>}</code></p>
 
@@ -18513,19 +18513,19 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"op"</span><span class="p">:</span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"topic"</span><span class="p">:</span><span class="s2">"public.btc-usdt.liquidation_orders"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="s2">"public.BTC-USDT.liquidation_orders"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1580815422403</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"offset"</span><span class="p">:</span><span class="s2">"close"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="mf">0.7</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">4.236</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="mi">1580815422296</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">624</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">16701.4</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606380004694</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.624</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mf">10421.6736</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
