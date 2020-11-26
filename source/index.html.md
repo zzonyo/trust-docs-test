@@ -127,7 +127,7 @@ search: true
 读取  | 账户接口    | linear-swap-api/v1/swap_account_position_info                     | POST   |      获取用户资产和持仓信息               |     是         |
 交易  | 账户接口    | linear-swap-api/v1/swap_master_sub_transfer                       | POST   |      母子账户划转                         |     是         |
 读取  | 账户接口    | linear-swap-api/v1/swap_master_sub_transfer_record                | POST   |      获取母账户下的所有母子账户划转记录   |     是         |
-读取  | 账户接口    | linear-swap-api/v1/swap_transfer_inner                            | POST   |      同账号不同保证金账户的划转           |     是         |
+交易  | 账户接口    | linear-swap-api/v1/swap_transfer_inner                            | POST   |      同账号不同保证金账户的划转           |     是         |
 读取  | 账户接口    | linear-swap-api/v1/swap_api_trading_status                        | GET    |      获取用户API指标禁用信息              |     是         |
 交易  | 交易接口    | linear-swap-api/v1/swap_order                                     | POST   |      合约下单                             |     是         |
 交易  | 交易接口    | linear-swap-api/v1/swap_batchorder                                | POST   |      合约批量下单                         |     是         |
@@ -2433,13 +2433,13 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
             {
                 "contract_code": "BTC-USDT",
                 "symbol": "BTC",
-                "direction": "buy",
+                "direction": "sell",
                 "offset": "close",
-                "volume": 13.000000000000000000,
-                "amount": 13.000000000000000000,
-                "trade_turnover": 1.300000000000000000,
-                "price": 13395.300000000000000000,
-                "created_at": 1603597296671
+                "volume": 624,
+                "price": 16701.4,
+                "created_at": 1606380004694,
+                "amount": 0.624,
+                "trade_turnover": 10421.6736
             }
         ],
         "total_page": 10,
@@ -2493,22 +2493,22 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
 ```json
 {
     "status": "ok",
-    "ts": 1578127363768,
     "data": {
+        "total_page": 108,
+        "current_page": 1,
+        "total_size": 108,
         "settlement_record": [
             {
                 "symbol": "BTC",
                 "contract_code": "BTC-USDT",
-                "settlement_time": 1593460800000,
+                "settlement_time": 1606377600000,
                 "clawback_ratio": 0,
-                "settlement_price": 9133.21,
-                "settlement_type":"settlement"
+                "settlement_price": 17600.1,
+                "settlement_type": "settlement"
             }
-        ],
-        "current_page": 1,
-        "total_page": 1,
-        "total_size": 5
-    }
+        ]
+    },
+    "ts": 1606383650761
 }
 ```
 
@@ -7194,9 +7194,9 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
   
   `"op": "sub",`
   
-  `"cid": "positions.$contract_code",`
+  `"topic": "positions.$contract_code",`
   
-  `"topic": "topic to sub"`
+  `"cid": "topic to sub"`
   
   `}`
 
@@ -7529,19 +7529,19 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 ```json
 {
     "op":"notify",
-    "topic":"public.btc-usdt.liquidation_orders",
+    "topic":"public.BTC-USDT.liquidation_orders",
     "ts":1580815422403,
     "data":[
         {
-            "symbol":"BTC",
-            "contract_code":"BTC-USDT",
-            "direction":"buy",
-            "offset":"close",
-            "volume":7,
-            "amount":7,
-            "trade_turnover":0.7,
-            "price":4.236,
-            "created_at":1580815422296
+            "contract_code": "BTC-USDT",
+            "symbol": "BTC",
+            "direction": "sell",
+            "offset": "close",
+            "volume": 624,
+            "price": 16701.4,
+            "created_at": 1606380004694,
+            "amount": 0.624,
+            "trade_turnover": 10421.6736
         }
     ]
 }
