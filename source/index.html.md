@@ -22,115 +22,116 @@ table th {
 }
 </style>
 
-| 生效时间<BR>(UTC +8) | 接口 | 变化      | 摘要 |
-|-----|-----|-----|-----|
-| 2020.10.16 19:00 | `orders#${symbol}` | 优化 | 订单创建事件新增accountId |
-| 2020.10.10 19:00 | `POST /v2/account/repayment`,<BR>`GET /v2/account/repayment` | 新增 | 新增通用还币接口及还币交易记录查询接口 |
-|2020.8.28 19:00|`GET /v1/common/symbols`|优化|新增API交易使能标记 |
-|2020.8.21 19:00|`accounts.update#${mode}`, <BR>`accounts`|优化|新增账户变更事件类型deposit，withdraw |
-|2020.8.11 19:00|`GET /v1/common/symbols`,<BR> `GET /market/etp`, <BR>`market.$symbol.etp`,<BR> `GET /market/history/kline`, <BR>`market.$symbol$.kline.$period$`,<BR> `GET /v2/etp/reference`, <BR>`POST /v2/etp/creation`,<BR> `POST /v2/etp/redemption`,<BR> `GET /v2/etp/transactions`,<BR> `GET /v2/etp/transaction`, <BR>`GET /v2/etp/rebalance`|新增+优化|新增/优化相关接口支持杠杆ETP |
-|2020.8.10 19:00|`GET v1/stable-coin/quote`, <BR>`POST v1/stable-coin/exchange`|优化|新增稳定币兑换手续费字段 |
-|2020.8.4 19:00|`GET /v1/account/history`|优化|新增返回字段“next-id” |
-|2020.8.3 19:00|`POST /v2/algo-orders`, <BR>`GET /v2/algo-orders/opening`, <BR>`GET /v2/algo-orders/history`, <BR>`GET /v2/algo-orders/specific`|优化|新增追踪委托 |
-|2020.7.24 19:00|`trade.clearing#${symbol}#${mode}`|优化|新增撤单推送 |
-|2020.7.17 19:00|`GET /v2/account/asset-valuation`|新增|新增账户资产估值查询节点 |
-|2020.7.16 19:00|`GET /v1/common/symbols`|优化|新增返回字段 |
-|2020.7.10 19:00|`GET /v2/point/account`,<BR> `POST /v2/point/transfer`|新增|新增点卡余额查询节点及点卡划转节点 |
-|2020.7.10 19:00|`POST /v1/order/batch-orders`|优化|限频值调整 |
-|2020.7.8 19:00|`orders#{symbol}`|优化|新增两个事件类型 |
-|2020.6.27 19:00|`GET /v2/market-status`|新增|新增市场状态查询节点 |
-|2020.6.27 19:00|`market.$symbol.mbp.$levels`|优化|新增五档MBP逐笔增量订阅 |
-|2020.6.27 19:00|若干新增节点|新增|新增策略委托相关节点 |
-|2020.6.24 19:00|`GET /v1/order/orders/{order-id}/matchresults` <BR> `GET /v1/order/matchresults`|优化|增加fee-currency字段 |
-|2020.6.24 19:00|`GET /v2/account/withdraw/address`|新增|提币地址查询 |
-|2020.6.23 19:00|若干新增节点|新增|新增C2C杠借币相关节点 |
-|2020.6.16 10:00|`GET /v2/sub-user/user-list`,<BR> `GET /v2/sub-user/user-state`, <BR>`GET /v2/sub-user/account-list`|新增|新增子用户列表查询、子用户状态查询、子用户账户查询接口 |
-|2020.6.15 19:00|`POST /v2/sub-user/api-key-generation`,<BR>`POST /v2/sub-user/api-key-modification`|优化|增加单用户可创建API Key数量以及增加单个API Key可绑定IP地址数量 |
-|2020.6.11 19:00|`POST /v1/account/transfer`|优化|新增币币账户与逐仓杠杠账户的划转，逐仓杠杠账户内部的划转 |
-|2020.6.11 19:00|`GET /v1/query/deposit-withdraw`|优化|新增返回提币失败原因 |
-|2020.6.5 19:00|`POST /v2/sub-user/api-key-generation`,<BR> `GET /v2/user/api-key`, <BR>`POST /v2/sub-user/api-key-modification`,<BR> `POST /v2/sub-user/api-key-deletion`|新增|新增母子用户API key管理接口 |
-|2020.6.4 19:00|若干私有REST接口|优化|变更限频值 |
-|2020.6.1 19:00|`orders#${symbol}`|优化|Taker订单成交前首推创建事件 |
-|2020.6.1 19:00|`GET /v2/reference/transact-fee-rate`, <BR>`GET /v1/order/orders/{order-id}/matchresults`,<BR> `GET /v1/order/matchresults`, <BR>`trade.clearing#${symbol}`, <BR>`GET /v1/account/history`, <BR>`accounts`, `accounts.update#${mode}`|优化|支持交易手续费返佣相关字段 |
-|2020.5.29 19:00|`POST /v2/sub-user/tradable-market` |新增|新增母用户设置子用户交易权限接口 |
-|2020.5.29 19:00|`POST /v2/sub-user/transferability` |新增|新增母用户设置子用户资产转出权限接口 |
-|2020.5.29 19:00|`POST /v2/sub-user/creation` |新增|新增子用户创建接口 |
-|2020.5.29 19:00|`POST /v1/account/transfer` |新增|新增通用资产划转接口 |
-|2020.4.28 11:00|`market.$symbol.mbp.$levels` & `market.$symbol.mbp.refresh.$levels`|优化|支持所有交易对 |
-|2020.4.27 11:00|`orders#${symbol}`|优化|更改IOC订单的更新行为 |
-|2020.4.17 11:00|`GET /v2/account/deposit/address`,<BR>`GET /v2/sub-user/deposit-address`,<BR>`GET /v1/query/deposit-withdraw`,<BR>`GET /v2/sub-user/query-deposit`|新增|支持子用户充值|
-|2020.4.3 11:00|`orders#${symbol}`|新增|新增v2版本订单更新推送主题|
-|2020.3.31 21:00|`accounts.update#${mode}`|优化|订阅成功后首推各账户初始值|
-|2020.3.31 11:00|`GET /v2/account/ledger`|新增|新增财务流水查询接口|
-|2020.3.30 19:00|`market.$symbol.mbp.refresh.$levels`|新增|新增MBP全量推送接口|
-|2020.3.30 19:00|`POST /v1/order/orders/place`,<BR>`POST /v1/order/batch-orders`,<BR>`GET /v1/order/openOrders`,<BR>`GET /v1/order/orders/{order-id}`,<BR>`GET /v1/order/orders/getClientOrder`,<BR>`GET /v1/order/orders/`<BR>`{order-id}/matchresults`,<BR>`GET /v1/order/orders`,<BR>`GET /v1/order/history`,<BR>`GET /v1/order/matchresults`,<BR>`orders.$symbol`,<BR>`trade.clearing#${symbol}`,<BR>`orders.$symbol.update`|优化|增加FOK订单类型|
-|2020.3.27 19:00|`GET /v1/order/orders`<BR>`GET /v1/order/history`|优化|已完全撤销订单的可查询范围缩短为2小时|
-|2020.3.24 19:00|`market.$symbol.mbp.$levels`|优化|增加可请求交易代码|
-|2020.3.17 19:00|`GET /v1/order/matchresults`|优化|size取值上限由100上调至500|
-|2020.3.12 19:00|`GET /market/tickers`|优化|增加买一卖一字段|
-|2020.3.5 19:00|`GET /v1/fee/fee-rate/get`|删除|移除旧版费率查询接口|
-|2020.3.2 11:00| `GET https://status.huobigroup.com`<BR>`/api/v2/summary.json` |新增|新增获取当前系统状态接口|
-|2020.2.28 11:00|母子用户相关接口  |优化|将文档中“母子账号”的称谓更改为“母子用户”|
-|2020.2.28 11:00| `GET /v1/cross-margin/loan-orders`,<br>`GET /v1/cross-margin/accounts/balance`  |优化|新增可选请求参数|
-|2020.2.28 11:00| `GET /v1/subuser/aggregate-balance`,<br>`GET /v1/account/accounts/{sub-uid}` |优化|新增账户类型字段枚举值|
-|2020.2.28 11:00| `POST /v1/cross-margin/transfer-in`,<br>`POST /v1/cross-margin/transfer-out`,<br>`GET /v1/cross-margin/loan-info`,<br>`POST /v1/cross-margin/orders`,<br>`POST /v1/cross-margin/orders/`<br>`{order-id}/repay`,<br>`GET /v1/cross-margin/loan-orders`,<br>`GET /v1/cross-margin/accounts/balance` |优化|允许授权子用户调用该接口|
-|2020.2.5 19:00| `GET /v1/order/orders/{order-id}`,<BR>`GET /v1/order/orders/getClientOrder`,<BR>`GET /v1/order/openOrders`,<BR>`GET /v1/order/orders`,<BR>`GET /v1/order/history` |优化|新增client-order-id字段|
-|2020.2.5 19:00| `GET /v1/order/orders`  |优化|新增start-time/end-time请求参数|
-|2020.2.3 19:00| `GET /v2/reference/transact-fee-rate`  |新增|新增交易手续费率查询节点|
-|2020.2.3 19:00| `GET /v2/reference/currencies`  |优化|增加底层链字段|
-|2020.2.3 19:00| `GET /v1/margin/loan-info`  |优化|增加抵扣后实际币息率字段|
-|2020.1.10 19:00| `GET /v1/cross-margin/loan-info`  |优化|增加抵扣后实际币息率字段|
-|2020.1.7 19:00| `GET /v1/account/history`  |优化|允许子用户调用此节点|
-|2019.12.27 19:00| `POST /v2/sub-user/management`  |新增|新增冻结/解冻子用户接口|
-|2019.12.27 19:00| `POST /v1/order/orders/batchcancel`  |优化|允许以client order ID为请求参数批量撤单|
-|2019.12.27 19:00| `POST /v1/order/batch-orders`  |新增|新增批量下单节点|
-|2019.12.23 15:00| `market.$symbol.mbp.$levels`  |新增|新增深度行情增量推送订阅主题|
-|2019.12.05 11:00| `trade.clearing#${symbol}` & `accounts.update#${mode}`  |新增|新增v2版本资产及订单推送订阅主题|
-|2019.11.22 15:00| `GET /v1/order/orders`<br />`GET /v1/order/history` |优化|已完全撤销的历史订单可查询时间范围缩短为最近1天|
-|2019.11.13 19:00| `GET /v1/margin/loan-info`<br />`GET /v1/cross-margin/loan-info` |新增|新增借币币息及额度查询节点|
-|2019.11.08 19:45| `GET /v1/order/orders/{order-id}/matchresult`<br />`GET /v1/order/matchresults` |新增|新增返回字段trade-id|
-|2019.10.18 19:00| `GET /v1/account/history` |新增|新增账户流水查询节点|
-|2019.10.12 11:00| `POST /v1/dw/withdraw/api/create` |优化|设置ERC20为USDT的默认链|
-|2019.10.11 10:00| 支持全仓杠杆资产划转、借币、还币、查询借币订单、查询账户余额等相关节点  |新增|新增全仓杠杆相关节点|
-|2019.10.09 20:00| `GET /market/trade`<br />`GET /market/history/trade`<br />`market.$symbol.trade.detail` |优化|新增返回字段trade id|
-|2019.09.25 20:00| `GET /v2/account/withdraw/quota` |新增|新增提币额度查询节点|
-|2019.09.23 15:00| `POST /v1/order/orders/`<BR>`{order-id}/submitcancel` <br />`POST /v1/order/orders/batchcancel` |优化|优化错误码返回|
-|2019.09.20 10:00| `GET /v2/reference/currencies` |新增|新增币链参考信息节点|
-|2019.09.19 16:00| `market.$symbol.bbo` |新增|新增买一卖一逐笔推送|
-|2019.09.18 20:00| `GET /v1/subuser/aggregate-balance`<br />`GET /v1/account/accounts/{sub-uid}`<br />`GET /v1/margin/loan-orders`<br />`GET /v1/margin/accounts/balance` |新增|支持子用户逐仓杠杆交易|
-|2019.09.16 15:00| `GET /v2/account/deposit/address` |新增|新增APIv2节点 - 充币地址查询|
-|2019.09.11 17:00| `GET /v1/stable-coin/quote`<br />`POST /v1/stable-coin/exchange` |新增|新增稳定币兑换节点|
-|2019.09.11 16:00| 删除部分代码示例  |删除|删除部分代码示例|
-|2019.09.10 10:00| 除了`POST /v1/order/orders/submitCancelClientOrder` <BR> `GET /v1/order/openOrders`<BR>之外其他订单相关API |修改|除节点"POST /v1/order/orders/submitCancelClientOrder" & "GET /v1/order/openOrders"以外，去除了其它节点中订单状态取值submitting以及cancelling|
-|2019.09.09 11:00| `POST /v1/order/orders/submitCancelClientOrder` |修改|修改返回数据描述|
-|2019.09.09 10:00| `GET /v1/order/orders`<br />`GET /v1/order/matchresults` |修改|修改请求字段start-date与end-date的默认值及取值范围的描述|
-|2019.09.02 18:00| `POST /v1/order/orders/batchCancelOpenOrders`|优化|更改请求字段"symbol"的描述|
-|2019.09.02 16:00| 删除稳定币兑换相关节点。|删除||
-|2019.08.29 21:00| 下单、查询、订阅接口|新增|支持止盈止损订单类型。|
-|2019.08.21 18:00| `GET /v1/order/openOrders` |优化|修改请求字段列表。|
-|2019.08.05 18:00| `orders.$symbol.update` |新增|新增字段"client-order-id"和"order-type"。|
-|2019.08.02 18:00| `orders.$symbol.update`|优化|修改对字段"unfilled-amount"的描述。|
-|2019.07.23 21:00| `GET /v1/order/orders/{order-id}/matchresult`<br>`GET /v1/order/matchresults`|新增|新增手续费抵扣详情字段。|
-|2019.07.23 20:00| `GET /v1/fee/fee-rate/get`|新增|新增费率查询接口。|
-|2019.07.22 12:00| `GET /v1/order/orders/{order-id}/matchresults`<br/>`GET /v1/order/matchresults` |新增|新增成交角色"role"字段以标识每笔成交角色是"taker"还是"maker"。|
-|2019.07.11 20:00| `POST /v1/order/orders/place`<br/>`POST /v1/order/orders/submitCancelClientOrder`<br/>`GET /v1/order/orders/getClientOrder` |优化/新增|下单/撤单/查询可基于client order ID。|
-|2019.07.08 12:00| Websocket 订单资产推送接口|优化|优化Websocket 订单资产推送接口[心跳和限频](#5ea2e0cde2-3)。|
-|2019.06.14 16:00| `POST /v1/dw/withdraw/api/create`|优化|支持快速提币|
-|2019.06.17 16:00| `GET /v1/stable_coin/exchange_rate`<br/>`POST /v1/stable_coin/exchange` |新增|新增接口支持用户随时获取最新的稳定币兑换汇率信息，并对稳定币执行兑入或兑出。|
-|2019.06.12 16:00| `GET /v1/common/symbols`|优化|对交易对基础信息接口返回的内容进行优化，该优化向后兼容|
-|2019.06.06 18:00| `GET /v1/query/deposit-withdraw`|优化|对充提记录查询接口的请求参数进行优化，该优化向后兼容|
-|2019.06.05 20:00| 所有需要验签的接口|优化|访问验签接口时，API Key需要有适当的权限，现有的API Key都默认有全部权限。权限分为3类：读取，交易和提币。每个接口相应的权限类别均已更新在各接口说明中|
-|2019.06.10 00:00| `GET /v1/order/orders`<br/>`GET /v1/order/matchresults` |修改|查询窗口调整为48小时，可查询整体时间范围不变|
-|2019.05.15 10:00| `POST /v1/futures/transfer` |新增|提供币币与合约账户间的资产划转|
-|2019.04.29 19:00| `GET /v1/order/history` |新增|新增最近48小时内历史订单查询节点。新节点的上线后，现有订单查询节点“GET /v1/order/orders”仍将被保留。然而，新节点“GET /v1/order/history”被赋予更高服务等级。极端情况下，当服务荷载超过系统既定阈值时，节点“GET /v1/order/orders”的服务可能会不可用，而新节点“GET /v1/order/history”仍将继续提供服务。另外，火币正在计划支持另一个新节点专门用于用户48小时外的历史订单查询。此新节点上线的同时，现有节点“GET /v1/order/orders”将被弃用。火币将及时告知用户这一变更，一旦变更时间确定。|
-|2019.04.17 10:00| `GET /v1/order/orders` |修改|文档优化，增加Start-date限制说明|
-| 2019.04.16 10:00 | `GET /v1/order/openOrders` | 修改 | 文档错误，参数account-id和symbol都是必填参数 |
-| 2019.01.17 07:00 | Websocket accounts           | 修改 | 增加订阅参数 model；<br>订阅返回的内容中不再推送交易子账户冻结余额的变化。 |
-| 2018.07.10 11:00 | `GET /market/history/kline`  | 修改 | `size` 取值范围由 [1-1000] 修改为 [1-2000]。 |
-| 2018.07.06 16:00 | `POST /v1/order/orders/place`| 修改 | 添加 `buy-limit-maker`，`sell-limit-maker` 两种下单类型支持；<br>新增获取某个帐号下指定交易对或者所有交易对的所有尚未成交订单接口: `/v1/order/openOrders`。 |
-| 2018.07.06 16:00 | `GET /v1/order/openOrders`<br/>`POST /v1/order/orders/batchCancelOpenOrders` | 新增 | 新增获取某个帐号下指定交易对或者所有交易对的所有尚未成交订单接口；<br>新增批量取消某个帐号下指定的订单列表中所有订单接口。 |
-| 2018.07.02 16:00 | ETF 相关接口 | 新增 | 本次接口变更主要是支持 HB10 ETF 的换入和换出。 |
-| 2018.06.20 16:00 | `GET /market/tickers` | 新增 | 新增 Tickers 接口，Tickers 为当前所有交易对行情数据。 |
+| 生效时间<BR>(UTC +8) | 接口                                                         | 变化      | 摘要                                                         |
+| -------------------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
+| 2020.11.26 19:00     | `GET /v2/user/uid`                                           | 新增      | 新增获取用户UID接口                                          |
+| 2020.10.16 19:00     | `orders#${symbol}`                                           | 优化      | 订单创建事件新增accountId                                    |
+| 2020.10.10 19:00     | `POST /v2/account/repayment`,<BR>`GET /v2/account/repayment` | 新增      | 新增通用还币接口及还币交易记录查询接口                       |
+| 2020.8.28 19:00      | `GET /v1/common/symbols`                                     | 优化      | 新增API交易使能标记                                          |
+| 2020.8.21 19:00      | `accounts.update#${mode}`, <BR>`accounts`                    | 优化      | 新增账户变更事件类型deposit，withdraw                        |
+| 2020.8.11 19:00      | `GET /v1/common/symbols`,<BR> `GET /market/etp`, <BR>`market.$symbol.etp`,<BR> `GET /market/history/kline`, <BR>`market.$symbol$.kline.$period$`,<BR> `GET /v2/etp/reference`, <BR>`POST /v2/etp/creation`,<BR> `POST /v2/etp/redemption`,<BR> `GET /v2/etp/transactions`,<BR> `GET /v2/etp/transaction`, <BR>`GET /v2/etp/rebalance` | 新增+优化 | 新增/优化相关接口支持杠杆ETP                                 |
+| 2020.8.10 19:00      | `GET v1/stable-coin/quote`, <BR>`POST v1/stable-coin/exchange` | 优化      | 新增稳定币兑换手续费字段                                     |
+| 2020.8.4 19:00       | `GET /v1/account/history`                                    | 优化      | 新增返回字段“next-id”                                        |
+| 2020.8.3 19:00       | `POST /v2/algo-orders`, <BR>`GET /v2/algo-orders/opening`, <BR>`GET /v2/algo-orders/history`, <BR>`GET /v2/algo-orders/specific` | 优化      | 新增追踪委托                                                 |
+| 2020.7.24 19:00      | `trade.clearing#${symbol}#${mode}`                           | 优化      | 新增撤单推送                                                 |
+| 2020.7.17 19:00      | `GET /v2/account/asset-valuation`                            | 新增      | 新增账户资产估值查询节点                                     |
+| 2020.7.16 19:00      | `GET /v1/common/symbols`                                     | 优化      | 新增返回字段                                                 |
+| 2020.7.10 19:00      | `GET /v2/point/account`,<BR> `POST /v2/point/transfer`       | 新增      | 新增点卡余额查询节点及点卡划转节点                           |
+| 2020.7.10 19:00      | `POST /v1/order/batch-orders`                                | 优化      | 限频值调整                                                   |
+| 2020.7.8 19:00       | `orders#{symbol}`                                            | 优化      | 新增两个事件类型                                             |
+| 2020.6.27 19:00      | `GET /v2/market-status`                                      | 新增      | 新增市场状态查询节点                                         |
+| 2020.6.27 19:00      | `market.$symbol.mbp.$levels`                                 | 优化      | 新增五档MBP逐笔增量订阅                                      |
+| 2020.6.27 19:00      | 若干新增节点                                                 | 新增      | 新增策略委托相关节点                                         |
+| 2020.6.24 19:00      | `GET /v1/order/orders/{order-id}/matchresults` <BR> `GET /v1/order/matchresults` | 优化      | 增加fee-currency字段                                         |
+| 2020.6.24 19:00      | `GET /v2/account/withdraw/address`                           | 新增      | 提币地址查询                                                 |
+| 2020.6.23 19:00      | 若干新增节点                                                 | 新增      | 新增C2C杠借币相关节点                                        |
+| 2020.6.16 10:00      | `GET /v2/sub-user/user-list`,<BR> `GET /v2/sub-user/user-state`, <BR>`GET /v2/sub-user/account-list` | 新增      | 新增子用户列表查询、子用户状态查询、子用户账户查询接口       |
+| 2020.6.15 19:00      | `POST /v2/sub-user/api-key-generation`,<BR>`POST /v2/sub-user/api-key-modification` | 优化      | 增加单用户可创建API Key数量以及增加单个API Key可绑定IP地址数量 |
+| 2020.6.11 19:00      | `POST /v1/account/transfer`                                  | 优化      | 新增币币账户与逐仓杠杠账户的划转，逐仓杠杠账户内部的划转     |
+| 2020.6.11 19:00      | `GET /v1/query/deposit-withdraw`                             | 优化      | 新增返回提币失败原因                                         |
+| 2020.6.5 19:00       | `POST /v2/sub-user/api-key-generation`,<BR> `GET /v2/user/api-key`, <BR>`POST /v2/sub-user/api-key-modification`,<BR> `POST /v2/sub-user/api-key-deletion` | 新增      | 新增母子用户API key管理接口                                  |
+| 2020.6.4 19:00       | 若干私有REST接口                                             | 优化      | 变更限频值                                                   |
+| 2020.6.1 19:00       | `orders#${symbol}`                                           | 优化      | Taker订单成交前首推创建事件                                  |
+| 2020.6.1 19:00       | `GET /v2/reference/transact-fee-rate`, <BR>`GET /v1/order/orders/{order-id}/matchresults`,<BR> `GET /v1/order/matchresults`, <BR>`trade.clearing#${symbol}`, <BR>`GET /v1/account/history`, <BR>`accounts`, `accounts.update#${mode}` | 优化      | 支持交易手续费返佣相关字段                                   |
+| 2020.5.29 19:00      | `POST /v2/sub-user/tradable-market`                          | 新增      | 新增母用户设置子用户交易权限接口                             |
+| 2020.5.29 19:00      | `POST /v2/sub-user/transferability`                          | 新增      | 新增母用户设置子用户资产转出权限接口                         |
+| 2020.5.29 19:00      | `POST /v2/sub-user/creation`                                 | 新增      | 新增子用户创建接口                                           |
+| 2020.5.29 19:00      | `POST /v1/account/transfer`                                  | 新增      | 新增通用资产划转接口                                         |
+| 2020.4.28 11:00      | `market.$symbol.mbp.$levels` & `market.$symbol.mbp.refresh.$levels` | 优化      | 支持所有交易对                                               |
+| 2020.4.27 11:00      | `orders#${symbol}`                                           | 优化      | 更改IOC订单的更新行为                                        |
+| 2020.4.17 11:00      | `GET /v2/account/deposit/address`,<BR>`GET /v2/sub-user/deposit-address`,<BR>`GET /v1/query/deposit-withdraw`,<BR>`GET /v2/sub-user/query-deposit` | 新增      | 支持子用户充值                                               |
+| 2020.4.3 11:00       | `orders#${symbol}`                                           | 新增      | 新增v2版本订单更新推送主题                                   |
+| 2020.3.31 21:00      | `accounts.update#${mode}`                                    | 优化      | 订阅成功后首推各账户初始值                                   |
+| 2020.3.31 11:00      | `GET /v2/account/ledger`                                     | 新增      | 新增财务流水查询接口                                         |
+| 2020.3.30 19:00      | `market.$symbol.mbp.refresh.$levels`                         | 新增      | 新增MBP全量推送接口                                          |
+| 2020.3.30 19:00      | `POST /v1/order/orders/place`,<BR>`POST /v1/order/batch-orders`,<BR>`GET /v1/order/openOrders`,<BR>`GET /v1/order/orders/{order-id}`,<BR>`GET /v1/order/orders/getClientOrder`,<BR>`GET /v1/order/orders/`<BR>`{order-id}/matchresults`,<BR>`GET /v1/order/orders`,<BR>`GET /v1/order/history`,<BR>`GET /v1/order/matchresults`,<BR>`orders.$symbol`,<BR>`trade.clearing#${symbol}`,<BR>`orders.$symbol.update` | 优化      | 增加FOK订单类型                                              |
+| 2020.3.27 19:00      | `GET /v1/order/orders`<BR>`GET /v1/order/history`            | 优化      | 已完全撤销订单的可查询范围缩短为2小时                        |
+| 2020.3.24 19:00      | `market.$symbol.mbp.$levels`                                 | 优化      | 增加可请求交易代码                                           |
+| 2020.3.17 19:00      | `GET /v1/order/matchresults`                                 | 优化      | size取值上限由100上调至500                                   |
+| 2020.3.12 19:00      | `GET /market/tickers`                                        | 优化      | 增加买一卖一字段                                             |
+| 2020.3.5 19:00       | `GET /v1/fee/fee-rate/get`                                   | 删除      | 移除旧版费率查询接口                                         |
+| 2020.3.2 11:00       | `GET https://status.huobigroup.com`<BR>`/api/v2/summary.json` | 新增      | 新增获取当前系统状态接口                                     |
+| 2020.2.28 11:00      | 母子用户相关接口                                             | 优化      | 将文档中“母子账号”的称谓更改为“母子用户”                     |
+| 2020.2.28 11:00      | `GET /v1/cross-margin/loan-orders`,<br>`GET /v1/cross-margin/accounts/balance` | 优化      | 新增可选请求参数                                             |
+| 2020.2.28 11:00      | `GET /v1/subuser/aggregate-balance`,<br>`GET /v1/account/accounts/{sub-uid}` | 优化      | 新增账户类型字段枚举值                                       |
+| 2020.2.28 11:00      | `POST /v1/cross-margin/transfer-in`,<br>`POST /v1/cross-margin/transfer-out`,<br>`GET /v1/cross-margin/loan-info`,<br>`POST /v1/cross-margin/orders`,<br>`POST /v1/cross-margin/orders/`<br>`{order-id}/repay`,<br>`GET /v1/cross-margin/loan-orders`,<br>`GET /v1/cross-margin/accounts/balance` | 优化      | 允许授权子用户调用该接口                                     |
+| 2020.2.5 19:00       | `GET /v1/order/orders/{order-id}`,<BR>`GET /v1/order/orders/getClientOrder`,<BR>`GET /v1/order/openOrders`,<BR>`GET /v1/order/orders`,<BR>`GET /v1/order/history` | 优化      | 新增client-order-id字段                                      |
+| 2020.2.5 19:00       | `GET /v1/order/orders`                                       | 优化      | 新增start-time/end-time请求参数                              |
+| 2020.2.3 19:00       | `GET /v2/reference/transact-fee-rate`                        | 新增      | 新增交易手续费率查询节点                                     |
+| 2020.2.3 19:00       | `GET /v2/reference/currencies`                               | 优化      | 增加底层链字段                                               |
+| 2020.2.3 19:00       | `GET /v1/margin/loan-info`                                   | 优化      | 增加抵扣后实际币息率字段                                     |
+| 2020.1.10 19:00      | `GET /v1/cross-margin/loan-info`                             | 优化      | 增加抵扣后实际币息率字段                                     |
+| 2020.1.7 19:00       | `GET /v1/account/history`                                    | 优化      | 允许子用户调用此节点                                         |
+| 2019.12.27 19:00     | `POST /v2/sub-user/management`                               | 新增      | 新增冻结/解冻子用户接口                                      |
+| 2019.12.27 19:00     | `POST /v1/order/orders/batchcancel`                          | 优化      | 允许以client order ID为请求参数批量撤单                      |
+| 2019.12.27 19:00     | `POST /v1/order/batch-orders`                                | 新增      | 新增批量下单节点                                             |
+| 2019.12.23 15:00     | `market.$symbol.mbp.$levels`                                 | 新增      | 新增深度行情增量推送订阅主题                                 |
+| 2019.12.05 11:00     | `trade.clearing#${symbol}` & `accounts.update#${mode}`       | 新增      | 新增v2版本资产及订单推送订阅主题                             |
+| 2019.11.22 15:00     | `GET /v1/order/orders`<br />`GET /v1/order/history`          | 优化      | 已完全撤销的历史订单可查询时间范围缩短为最近1天              |
+| 2019.11.13 19:00     | `GET /v1/margin/loan-info`<br />`GET /v1/cross-margin/loan-info` | 新增      | 新增借币币息及额度查询节点                                   |
+| 2019.11.08 19:45     | `GET /v1/order/orders/{order-id}/matchresult`<br />`GET /v1/order/matchresults` | 新增      | 新增返回字段trade-id                                         |
+| 2019.10.18 19:00     | `GET /v1/account/history`                                    | 新增      | 新增账户流水查询节点                                         |
+| 2019.10.12 11:00     | `POST /v1/dw/withdraw/api/create`                            | 优化      | 设置ERC20为USDT的默认链                                      |
+| 2019.10.11 10:00     | 支持全仓杠杆资产划转、借币、还币、查询借币订单、查询账户余额等相关节点 | 新增      | 新增全仓杠杆相关节点                                         |
+| 2019.10.09 20:00     | `GET /market/trade`<br />`GET /market/history/trade`<br />`market.$symbol.trade.detail` | 优化      | 新增返回字段trade id                                         |
+| 2019.09.25 20:00     | `GET /v2/account/withdraw/quota`                             | 新增      | 新增提币额度查询节点                                         |
+| 2019.09.23 15:00     | `POST /v1/order/orders/`<BR>`{order-id}/submitcancel` <br />`POST /v1/order/orders/batchcancel` | 优化      | 优化错误码返回                                               |
+| 2019.09.20 10:00     | `GET /v2/reference/currencies`                               | 新增      | 新增币链参考信息节点                                         |
+| 2019.09.19 16:00     | `market.$symbol.bbo`                                         | 新增      | 新增买一卖一逐笔推送                                         |
+| 2019.09.18 20:00     | `GET /v1/subuser/aggregate-balance`<br />`GET /v1/account/accounts/{sub-uid}`<br />`GET /v1/margin/loan-orders`<br />`GET /v1/margin/accounts/balance` | 新增      | 支持子用户逐仓杠杆交易                                       |
+| 2019.09.16 15:00     | `GET /v2/account/deposit/address`                            | 新增      | 新增APIv2节点 - 充币地址查询                                 |
+| 2019.09.11 17:00     | `GET /v1/stable-coin/quote`<br />`POST /v1/stable-coin/exchange` | 新增      | 新增稳定币兑换节点                                           |
+| 2019.09.11 16:00     | 删除部分代码示例                                             | 删除      | 删除部分代码示例                                             |
+| 2019.09.10 10:00     | 除了`POST /v1/order/orders/submitCancelClientOrder` <BR> `GET /v1/order/openOrders`<BR>之外其他订单相关API | 修改      | 除节点"POST /v1/order/orders/submitCancelClientOrder" & "GET /v1/order/openOrders"以外，去除了其它节点中订单状态取值submitting以及cancelling |
+| 2019.09.09 11:00     | `POST /v1/order/orders/submitCancelClientOrder`              | 修改      | 修改返回数据描述                                             |
+| 2019.09.09 10:00     | `GET /v1/order/orders`<br />`GET /v1/order/matchresults`     | 修改      | 修改请求字段start-date与end-date的默认值及取值范围的描述     |
+| 2019.09.02 18:00     | `POST /v1/order/orders/batchCancelOpenOrders`                | 优化      | 更改请求字段"symbol"的描述                                   |
+| 2019.09.02 16:00     | 删除稳定币兑换相关节点。                                     | 删除      |                                                              |
+| 2019.08.29 21:00     | 下单、查询、订阅接口                                         | 新增      | 支持止盈止损订单类型。                                       |
+| 2019.08.21 18:00     | `GET /v1/order/openOrders`                                   | 优化      | 修改请求字段列表。                                           |
+| 2019.08.05 18:00     | `orders.$symbol.update`                                      | 新增      | 新增字段"client-order-id"和"order-type"。                    |
+| 2019.08.02 18:00     | `orders.$symbol.update`                                      | 优化      | 修改对字段"unfilled-amount"的描述。                          |
+| 2019.07.23 21:00     | `GET /v1/order/orders/{order-id}/matchresult`<br>`GET /v1/order/matchresults` | 新增      | 新增手续费抵扣详情字段。                                     |
+| 2019.07.23 20:00     | `GET /v1/fee/fee-rate/get`                                   | 新增      | 新增费率查询接口。                                           |
+| 2019.07.22 12:00     | `GET /v1/order/orders/{order-id}/matchresults`<br/>`GET /v1/order/matchresults` | 新增      | 新增成交角色"role"字段以标识每笔成交角色是"taker"还是"maker"。 |
+| 2019.07.11 20:00     | `POST /v1/order/orders/place`<br/>`POST /v1/order/orders/submitCancelClientOrder`<br/>`GET /v1/order/orders/getClientOrder` | 优化/新增 | 下单/撤单/查询可基于client order ID。                        |
+| 2019.07.08 12:00     | Websocket 订单资产推送接口                                   | 优化      | 优化Websocket 订单资产推送接口[心跳和限频](#5ea2e0cde2-3)。  |
+| 2019.06.14 16:00     | `POST /v1/dw/withdraw/api/create`                            | 优化      | 支持快速提币                                                 |
+| 2019.06.17 16:00     | `GET /v1/stable_coin/exchange_rate`<br/>`POST /v1/stable_coin/exchange` | 新增      | 新增接口支持用户随时获取最新的稳定币兑换汇率信息，并对稳定币执行兑入或兑出。 |
+| 2019.06.12 16:00     | `GET /v1/common/symbols`                                     | 优化      | 对交易对基础信息接口返回的内容进行优化，该优化向后兼容       |
+| 2019.06.06 18:00     | `GET /v1/query/deposit-withdraw`                             | 优化      | 对充提记录查询接口的请求参数进行优化，该优化向后兼容         |
+| 2019.06.05 20:00     | 所有需要验签的接口                                           | 优化      | 访问验签接口时，API Key需要有适当的权限，现有的API Key都默认有全部权限。权限分为3类：读取，交易和提币。每个接口相应的权限类别均已更新在各接口说明中 |
+| 2019.06.10 00:00     | `GET /v1/order/orders`<br/>`GET /v1/order/matchresults`      | 修改      | 查询窗口调整为48小时，可查询整体时间范围不变                 |
+| 2019.05.15 10:00     | `POST /v1/futures/transfer`                                  | 新增      | 提供币币与合约账户间的资产划转                               |
+| 2019.04.29 19:00     | `GET /v1/order/history`                                      | 新增      | 新增最近48小时内历史订单查询节点。新节点的上线后，现有订单查询节点“GET /v1/order/orders”仍将被保留。然而，新节点“GET /v1/order/history”被赋予更高服务等级。极端情况下，当服务荷载超过系统既定阈值时，节点“GET /v1/order/orders”的服务可能会不可用，而新节点“GET /v1/order/history”仍将继续提供服务。另外，火币正在计划支持另一个新节点专门用于用户48小时外的历史订单查询。此新节点上线的同时，现有节点“GET /v1/order/orders”将被弃用。火币将及时告知用户这一变更，一旦变更时间确定。 |
+| 2019.04.17 10:00     | `GET /v1/order/orders`                                       | 修改      | 文档优化，增加Start-date限制说明                             |
+| 2019.04.16 10:00     | `GET /v1/order/openOrders`                                   | 修改      | 文档错误，参数account-id和symbol都是必填参数                 |
+| 2019.01.17 07:00     | Websocket accounts                                           | 修改      | 增加订阅参数 model；<br>订阅返回的内容中不再推送交易子账户冻结余额的变化。 |
+| 2018.07.10 11:00     | `GET /market/history/kline`                                  | 修改      | `size` 取值范围由 [1-1000] 修改为 [1-2000]。                 |
+| 2018.07.06 16:00     | `POST /v1/order/orders/place`                                | 修改      | 添加 `buy-limit-maker`，`sell-limit-maker` 两种下单类型支持；<br>新增获取某个帐号下指定交易对或者所有交易对的所有尚未成交订单接口: `/v1/order/openOrders`。 |
+| 2018.07.06 16:00     | `GET /v1/order/openOrders`<br/>`POST /v1/order/orders/batchCancelOpenOrders` | 新增      | 新增获取某个帐号下指定交易对或者所有交易对的所有尚未成交订单接口；<br>新增批量取消某个帐号下指定的订单列表中所有订单接口。 |
+| 2018.07.02 16:00     | ETF 相关接口                                                 | 新增      | 本次接口变更主要是支持 HB10 ETF 的换入和换出。               |
+| 2018.06.20 16:00     | `GET /market/tickers`                                        | 新增      | 新增 Tickers 接口，Tickers 为当前所有交易对行情数据。        |
 
 # 简介
 
@@ -474,45 +475,45 @@ api.huobi.pro\n
 
 子用户可以访问所有公共接口，包括基本信息和市场行情，子用户可以访问的私有接口如下：
 
-接口|说明|
-----------------------|---------------------|
-[POST /v1/order/orders/place](#fd6ce2a756)	|创建并执行订单|
-[POST /v1/order/orders/{order-id}/submitcancel](#4e53c0fccd)	|撤销一个订单|
-[POST /v1/order/orders/submitCancelClientOrder](#client-order-id)	|撤销订单（基于client order ID）|
-[POST /v1/order/orders/batchcancel](#ad00632ed5)	|批量撤销订单|
-[POST /v1/order/orders/batchCancelOpenOrders](#open-orders)	|撤销当前委托订单|
-[GET /v1/order/orders/{order-id}](#92d59b6aad)	|查询一个订单详情|
-[GET /v1/order/orders](#d72a5b49e7)	|查询当前委托、历史委托|
-[GET /v1/order/openOrders](#95f2078356)	|查询当前委托订单|
-[GET /v1/order/matchresults](#0fa6055598)	|查询成交|
-[GET /v1/order/orders/{order-id}/matchresults](#56c6c47284)	|查询某个订单的成交明细|
-[GET /v1/account/accounts](#bd9157656f)	|查询当前用户的所有账户|
-[GET /v1/account/accounts/{account-id}/balance](#870c0ab88b)	|查询指定账户的余额|
-[POST /v1/futures/transfer](#e227a2a3e8)	|币币与合约账户间的资产划转|
-[POST /v1/dw/transfer-in/margin](#0d3c2e7382)|从币币交易账户划转至杠杆账户|
-[POST /v1/dw/transfer-out/margin](#0d3c2e7382)|从杠杆账户划转至币币交易账户|
-[POST /v1/margin/orders](#48cca1ce88)|申请借币|
-[POST /v1/margin/orders/{order-id}/repay](#48aa7c8199)|归还借币|
-[GET /v1/margin/loan-orders](#e52396720a)|查询借币记录|
-[GET /v1/margin/accounts/balance](#6e79ba8e80)|查询杠杆账户余额|
-[GET /v1/account/history](#84f1b5486d)|查询账户流水|
-[POST /v1/cross-margin/transfer-in](#0d3c2e7382-2)|资产划转|
-[POST /v1/cross-margin/transfer-out](#0d3c2e7382-2)|资产划转|
-[GET /v1/cross-margin/loan-info](#e257b9b6a0-2)|查询借币币息率及额度|
-[POST /v1/cross-margin/orders](#0ef2de08fa-2)|申请借币|
-[POST /v1/cross-margin/orders/{order-id}/repay](#097277f9fc-2)|归还借币|
-[GET /v1/cross-margin/loan-orders](#1e90599f7f-2)|查询借币订单|
-[GET /v1/cross-margin/accounts/balance](#bf3a643133-2)|借币账户详情|
-[GET /v2/account/ledger](#2f6797c498)|查询财务流水|
-[POST /v1/account/transfer](#0d3c2e7382)|资产划转|
-[GET /v2/point/account](#0d7f115f63)|查询点卡余额|
-[POST /v2/point/transfer](#c71521e5d9)|点卡划转|
-[GET /v2/etp/reference](#8bb7c6b75e)|杠杆ETP基础参考信息|
-[POST /v2/etp/creation](#etp-4)|杠杆ETP换入|
-[POST /v2/etp/redemption](#etp-5)|杠杆ETP换出|
-[GET /v2/etp/transactions](#etp-6)|获取杠杆ETP换入换出记录|
-[GET /v2/etp/transaction](#etp-7)|获取特定杠杆ETP换入换出记录|
-[GET /v2/etp/rebalance](#etp-8)|获取杠杆ETP调仓记录|
+| 接口                                                         | 说明                            |      |
+| ------------------------------------------------------------ | ------------------------------- | ---- |
+| [POST /v1/order/orders/place](#fd6ce2a756)                   | 创建并执行订单                  |      |
+| [POST /v1/order/orders/{order-id}/submitcancel](#4e53c0fccd) | 撤销一个订单                    |      |
+| [POST /v1/order/orders/submitCancelClientOrder](#client-order-id) | 撤销订单（基于client order ID） |      |
+| [POST /v1/order/orders/batchcancel](#ad00632ed5)             | 批量撤销订单                    |      |
+| [POST /v1/order/orders/batchCancelOpenOrders](#open-orders)  | 撤销当前委托订单                |      |
+| [GET /v1/order/orders/{order-id}](#92d59b6aad)               | 查询一个订单详情                |      |
+| [GET /v1/order/orders](#d72a5b49e7)                          | 查询当前委托、历史委托          |      |
+| [GET /v1/order/openOrders](#95f2078356)                      | 查询当前委托订单                |      |
+| [GET /v1/order/matchresults](#0fa6055598)                    | 查询成交                        |      |
+| [GET /v1/order/orders/{order-id}/matchresults](#56c6c47284)  | 查询某个订单的成交明细          |      |
+| [GET /v1/account/accounts](#bd9157656f)                      | 查询当前用户的所有账户          |      |
+| [GET /v1/account/accounts/{account-id}/balance](#870c0ab88b) | 查询指定账户的余额              |      |
+| [POST /v1/futures/transfer](#e227a2a3e8)                     | 币币与合约账户间的资产划转      |      |
+| [POST /v1/dw/transfer-in/margin](#0d3c2e7382)                | 从币币交易账户划转至杠杆账户    |      |
+| [POST /v1/dw/transfer-out/margin](#0d3c2e7382)               | 从杠杆账户划转至币币交易账户    |      |
+| [POST /v1/margin/orders](#48cca1ce88)                        | 申请借币                        |      |
+| [POST /v1/margin/orders/{order-id}/repay](#48aa7c8199)       | 归还借币                        |      |
+| [GET /v1/margin/loan-orders](#e52396720a)                    | 查询借币记录                    |      |
+| [GET /v1/margin/accounts/balance](#6e79ba8e80)               | 查询杠杆账户余额                |      |
+| [GET /v1/account/history](#84f1b5486d)                       | 查询账户流水                    |      |
+| [POST /v1/cross-margin/transfer-in](#0d3c2e7382-2)           | 资产划转                        |      |
+| [POST /v1/cross-margin/transfer-out](#0d3c2e7382-2)          | 资产划转                        |      |
+| [GET /v1/cross-margin/loan-info](#e257b9b6a0-2)              | 查询借币币息率及额度            |      |
+| [POST /v1/cross-margin/orders](#0ef2de08fa-2)                | 申请借币                        |      |
+| [POST /v1/cross-margin/orders/{order-id}/repay](#097277f9fc-2) | 归还借币                        |      |
+| [GET /v1/cross-margin/loan-orders](#1e90599f7f-2)            | 查询借币订单                    |      |
+| [GET /v1/cross-margin/accounts/balance](#bf3a643133-2)       | 借币账户详情                    |      |
+| [GET /v2/account/ledger](#2f6797c498)                        | 查询财务流水                    |      |
+| [POST /v1/account/transfer](#0d3c2e7382)                     | 资产划转                        |      |
+| [GET /v2/point/account](#0d7f115f63)                         | 查询点卡余额                    |      |
+| [POST /v2/point/transfer](#c71521e5d9)                       | 点卡划转                        |      |
+| [GET /v2/etp/reference](#8bb7c6b75e)                         | 杠杆ETP基础参考信息             |      |
+| [POST /v2/etp/creation](#etp-4)                              | 杠杆ETP换入                     |      |
+| [POST /v2/etp/redemption](#etp-5)                            | 杠杆ETP换出                     |      |
+| [GET /v2/etp/transactions](#etp-6)                           | 获取杠杆ETP换入换出记录         |      |
+| [GET /v2/etp/transaction](#etp-7)                            | 获取特定杠杆ETP换入换出记录     |      |
+| [GET /v2/etp/rebalance](#etp-8)                              | 获取杠杆ETP调仓记录             |      |
 
 <aside class="notice">
 其他接口子用户不可访问，如果尝试访问，系统会返回 “error-code 403”。
@@ -582,14 +583,14 @@ account-id可通过/v1/account/accounts接口获取，并根据account-type区�
 
 ## 接口概览
 
-接口分类| 分类链接 | 概述
---------- | --------- | -----------
-基础类 |/v1/common/* | 基础类接口，包括币种、币种对、时间戳等接口
-行情类 |/market/*| 公共行情类接口，包括成交、深度、行情等
-账户类 |/v1/account/*  /v1/subuser/* | 账户类接口，包括账户信息，子用户等
-订单类 |/v1/order/* | 订单类接口，包括下单、撤单、订单查询、成交查询等
-逐仓杠杆类|/v1/margin/* | 逐仓杠杆类接口，包括借币、还币、查询等
-全仓杠杆类接口| /v1/cross-margin/* | 全仓杠杆类接口，包括借币、还币、查询等
+| 接口分类       | 分类链接                     | 概述                                             |
+| -------------- | ---------------------------- | ------------------------------------------------ |
+| 基础类         | /v1/common/*                 | 基础类接口，包括币种、币种对、时间戳等接口       |
+| 行情类         | /market/*                    | 公共行情类接口，包括成交、深度、行情等           |
+| 账户类         | /v1/account/*  /v1/subuser/* | 账户类接口，包括账户信息，子用户等               |
+| 订单类         | /v1/order/*                  | 订单类接口，包括下单、撤单、订单查询、成交查询等 |
+| 逐仓杠杆类     | /v1/margin/*                 | 逐仓杠杆类接口，包括借币、还币、查询等           |
+| 全仓杠杆类接口 | /v1/cross-margin/*           | 全仓杠杆类接口，包括借币、还币、查询等           |
 
 该分类为大类整理，部分接口未遵循此规则，请根据需求查看有关接口文档。
 
@@ -636,12 +637,12 @@ account-id可通过/v1/account/accounts接口获取，并根据account-type区�
 }
 ```
 
-参数名称| 数据类型 | 描述
---------- | --------- | -----------
-status    | string    | API接口返回状态
-ch        | string    | 接口数据对应的数据流。部分接口没有对应数据流因此不返回此字段
-ts        | long   | 接口返回的UTC时间的时间戳，单位毫秒 
-data      | object    | 接口返回数据主体
+| 参数名称 | 数据类型 | 描述                                                         |
+| -------- | -------- | ------------------------------------------------------------ |
+| status   | string   | API接口返回状态                                              |
+| ch       | string   | 接口数据对应的数据流。部分接口没有对应数据流因此不返回此字段 |
+| ts       | long     | 接口返回的UTC时间的时间戳，单位毫秒                          |
+| data     | object   | 接口返回数据主体                                             |
 
 **v2接口返回格式**：最上层有三个字段：`code`, `message` 和 `data`。前两个字段表示返回码和错误消息，实际的业务数据在`data`字段里。
 
@@ -655,11 +656,11 @@ data      | object    | 接口返回数据主体
 }
 ```
 
-参数名称| 数据类型 | 描述
---------- | --------- | -----------
-code    | int    | API接口返回码
-message        | string    | 错误消息（如果有）
-data      | object    | 接口返回数据主体
+| 参数名称 | 数据类型 | 描述               |
+| -------- | -------- | ------------------ |
+| code     | int      | API接口返回码      |
+| message  | string   | 错误消息（如果有） |
+| data     | object   | 接口返回数据主体   |
 
 ## 数据类型
 
@@ -956,11 +957,11 @@ A：因安全考虑，API创建提币时仅支持已在提币地址列表中的�
 ### Q2：为什么USDT提币时返回Invaild-Address错误？
 A：USDT币种为典型的一币多链币种， 创建提币订单时应填写chain参数对应地址类型。以下表格展示了链和chain参数的对应关系：
 
-| 链             | chain 参数  |
-| -------------- | ----------- |
-| ERC20 （默认） | usdterc20|
-| OMNI           | usdt     |
-| TRX            | trc20usdt |
+| 链             | chain 参数 |
+| -------------- | ---------- |
+| ERC20 （默认） | usdterc20  |
+| OMNI           | usdt       |
+| TRX            | trc20usdt  |
 
 如果chain参数为空，则默认的链为ERC20，或者也可以显示将参数赋值为`usdterc20`。
 
@@ -1281,33 +1282,33 @@ curl "https://api.huobi.pro/v1/common/symbols"
 
 ### 返回字段
 
-| 字段名称            | 是否必须 |数据类型 | 描述 |
-| ---------       | --------- | --------- |----------- |
-| base-currency   | true | string    | 交易对中的基础币种 |
-| quote-currency  | true | string    | 交易对中的报价币种 |
-| price-precision |true |  integer   | 交易对报价的精度（小数点后位数）|
-| amount-precision|true |  integer   | 交易对基础币种计数精度（小数点后位数）|
-| symbol-partition| true | string    | 交易区，可能值: [main，innovation] |
-| symbol          | true | string    | 交易对 |
-| state           | true | string    | 交易对状态；可能值: [online，offline,suspend] online - 已上线；offline - 交易对已下线，不可交易；suspend -- 交易暂停；pre-online - 即将上线 |
-| value-precision | true | integer   | 交易对交易金额的精度（小数点后位数）|
-| min-order-amt   | true | float  |  交易对限价单最小下单量 ，以基础币种为单位（即将废弃）|
-| max-order-amt   |true |  float  | 交易对限价单最大下单量 ，以基础币种为单位（即将废弃）|
-| limit-order-min-order-amt  | true | float  | 交易对限价单最小下单量 ，以基础币种为单位（NEW）|
-| limit-order-max-order-amt   | true | float  | 交易对限价单最大下单量 ，以基础币种为单位（NEW）|
-| sell-market-min-order-amt   | true | float  | 交易对市价卖单最小下单量，以基础币种为单位（NEW）|
-| sell-market-max-order-amt  | true | float  | 交易对市价卖单最大下单量，以基础币种为单位（NEW）|
-| buy-market-max-order-value   | true | float  | 交易对市价买单最大下单金额，以计价币种为单位（NEW）|
-| min-order-value | true | float | 交易对限价单和市价买单最小下单金额 ，以计价币种为单位 |
-| max-order-value |false |  float | 交易对限价单和市价买单最大下单金额 ，以折算后的USDT为单位（NEW）|
-| leverage-ratio  | true | float  | 交易对杠杆最大倍数(仅对逐仓杠杆交易对、全仓杠杆交易对、杠杆ETP交易对有效） |
-|	underlying	|false |	string	|	标的交易代码 (仅对杠杆ETP交易对有效)	|
-|	mgmt-fee-rate	|false |	float	|	持仓管理费费率 (仅对杠杆ETP交易对有效)	|
-|	charge-time	|false |	string	|	持仓管理费收取时间 (24小时制，GMT+8，格式：HH:MM:SS，仅对杠杆ETP交易对有效)	|
-|	rebal-time	|false |	string	|	每日调仓时间 (24小时制，GMT+8，格式：HH:MM:SS，仅对杠杆ETP交易对有效)	|
-|	rebal-threshold	|false |	float	|	临时调仓阈值 (以实际杠杆率计，仅对杠杆ETP交易对有效)	|
-|	init-nav	|false |	float	|	初始净值（仅对杠杆ETP交易对有效）	|
-|	api-trading	|true |	string	|	API交易使能标记（有效值：enabled, disabled）	|
+| 字段名称                   | 是否必须 | 数据类型 | 描述                                                         |
+| -------------------------- | -------- | -------- | ------------------------------------------------------------ |
+| base-currency              | true     | string   | 交易对中的基础币种                                           |
+| quote-currency             | true     | string   | 交易对中的报价币种                                           |
+| price-precision            | true     | integer  | 交易对报价的精度（小数点后位数）                             |
+| amount-precision           | true     | integer  | 交易对基础币种计数精度（小数点后位数）                       |
+| symbol-partition           | true     | string   | 交易区，可能值: [main，innovation]                           |
+| symbol                     | true     | string   | 交易对                                                       |
+| state                      | true     | string   | 交易对状态；可能值: [online，offline,suspend] online - 已上线；offline - 交易对已下线，不可交易；suspend -- 交易暂停；pre-online - 即将上线 |
+| value-precision            | true     | integer  | 交易对交易金额的精度（小数点后位数）                         |
+| min-order-amt              | true     | float    | 交易对限价单最小下单量 ，以基础币种为单位（即将废弃）        |
+| max-order-amt              | true     | float    | 交易对限价单最大下单量 ，以基础币种为单位（即将废弃）        |
+| limit-order-min-order-amt  | true     | float    | 交易对限价单最小下单量 ，以基础币种为单位（NEW）             |
+| limit-order-max-order-amt  | true     | float    | 交易对限价单最大下单量 ，以基础币种为单位（NEW）             |
+| sell-market-min-order-amt  | true     | float    | 交易对市价卖单最小下单量，以基础币种为单位（NEW）            |
+| sell-market-max-order-amt  | true     | float    | 交易对市价卖单最大下单量，以基础币种为单位（NEW）            |
+| buy-market-max-order-value | true     | float    | 交易对市价买单最大下单金额，以计价币种为单位（NEW）          |
+| min-order-value            | true     | float    | 交易对限价单和市价买单最小下单金额 ，以计价币种为单位        |
+| max-order-value            | false    | float    | 交易对限价单和市价买单最大下单金额 ，以折算后的USDT为单位（NEW） |
+| leverage-ratio             | true     | float    | 交易对杠杆最大倍数(仅对逐仓杠杆交易对、全仓杠杆交易对、杠杆ETP交易对有效） |
+| underlying                 | false    | string   | 标的交易代码 (仅对杠杆ETP交易对有效)                         |
+| mgmt-fee-rate              | false    | float    | 持仓管理费费率 (仅对杠杆ETP交易对有效)                       |
+| charge-time                | false    | string   | 持仓管理费收取时间 (24小时制，GMT+8，格式：HH:MM:SS，仅对杠杆ETP交易对有效) |
+| rebal-time                 | false    | string   | 每日调仓时间 (24小时制，GMT+8，格式：HH:MM:SS，仅对杠杆ETP交易对有效) |
+| rebal-threshold            | false    | float    | 临时调仓阈值 (以实际杠杆率计，仅对杠杆ETP交易对有效)         |
+| init-nav                   | false    | float    | 初始净值（仅对杠杆ETP交易对有效）                            |
+| api-trading                | true     | string   | API交易使能标记（有效值：enabled, disabled）                 |
 
 ## 获取所有币种
 
@@ -1356,10 +1357,10 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
 
 ### 请求参数
 
-| 字段名称       | 是否必需 | 类型     | 字段描述     |取值范围 |
-| ---------- | ---- | ------ | ------ | ---- |
-| currency | false | string | 币种   |  btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`) |
-| authorizedUser | false | boolean | 已认证用户   |  true or false (如不填，缺省为true) |
+| 字段名称       | 是否必需 | 类型    | 字段描述   | 取值范围                                                     |
+| -------------- | -------- | ------- | ---------- | ------------------------------------------------------------ |
+| currency       | false    | string  | 币种       | btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`) |
+| authorizedUser | false    | boolean | 已认证用户 | true or false (如不填，缺省为true)                           |
 
 > Response:
 
@@ -1442,43 +1443,43 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
 ### 响应数据
 
 
-| 字段名称 | 是否必需  | 数据类型 | 字段描述   | 取值范围 |
-| ---- | ----- | ---- | ---- | ---- |
-| code| true | int | 状态码 |      |
-| message| false | string | 错误描述（如有） |      |
-| data| true | object |  |      |
-|   { currency | true | string | 币种 |      |
-|      { chains| true | object |  |      |
-|        chain| true | string | 链名称 |      |
-|        displayName| true | string | 链显示名称 |      |
-|        baseChain| false | string | 底层链名称 |      |
-|        baseChainProtocol| false | string | 底层链协议 |      |
-|        isDynamic | false | boolean | 是否动态手续费（仅对固定类型有效，withdrawFeeType=fixed） | true,false     |
-|        numOfConfirmations| true | int | 安全上账所需确认次数（达到确认次数后允许提币） |      |
-|        numOfFastConfirmations| true | int | 快速上账所需确认次数（达到确认次数后允许交易但不允许提币） |      |
-|        minDepositAmt| true | string | 单次最小充币金额 |      |
-|        depositStatus| true | string | 充币状态 | allowed,prohibited     |
-|        minWithdrawAmt| true | string | 单次最小提币金额 |      |
-|        maxWithdrawAmt| true | string | 单次最大提币金额 |      |
-|        withdrawQuotaPerDay| true | string | 当日提币额度（新加坡时区） |      |
-|        withdrawQuotaPerYear| true | string | 当年提币额度 |      |
-|        withdrawQuotaTotal| true | string |总提币额度 |      |
-|        withdrawPrecision| true | int |提币精度 |      |
-|        withdrawFeeType| true | string |提币手续费类型（特定币种在特定链上的提币手续费类型唯一） | fixed,circulated,ratio     |
-|        transactFeeWithdraw| false | string |单次提币手续费（仅对固定类型有效，withdrawFeeType=fixed） |      |
-|        minTransactFeeWithdraw| false | string |最小单次提币手续费（仅对区间类型和有下限的比例类型有效，withdrawFeeType=circulated or ratio） |      |
-|        maxTransactFeeWithdraw| false | string |最大单次提币手续费（仅对区间类型和有上限的比例类型有效，withdrawFeeType=circulated or ratio） |      |
-|        transactFeeRateWithdraw| false | string |单次提币手续费率（仅对比例类型有效，withdrawFeeType=ratio） |      |
-|        withdrawStatus}| true | string | 提币状态 | allowed,prohibited     |
-|      instStatus }| true | string | 币种状态 | normal,delisted     |
+| 字段名称                | 是否必需 | 数据类型 | 字段描述                                                     | 取值范围               |
+| ----------------------- | -------- | -------- | ------------------------------------------------------------ | ---------------------- |
+| code                    | true     | int      | 状态码                                                       |                        |
+| message                 | false    | string   | 错误描述（如有）                                             |                        |
+| data                    | true     | object   |                                                              |                        |
+| { currency              | true     | string   | 币种                                                         |                        |
+| { chains                | true     | object   |                                                              |                        |
+| chain                   | true     | string   | 链名称                                                       |                        |
+| displayName             | true     | string   | 链显示名称                                                   |                        |
+| baseChain               | false    | string   | 底层链名称                                                   |                        |
+| baseChainProtocol       | false    | string   | 底层链协议                                                   |                        |
+| isDynamic               | false    | boolean  | 是否动态手续费（仅对固定类型有效，withdrawFeeType=fixed）    | true,false             |
+| numOfConfirmations      | true     | int      | 安全上账所需确认次数（达到确认次数后允许提币）               |                        |
+| numOfFastConfirmations  | true     | int      | 快速上账所需确认次数（达到确认次数后允许交易但不允许提币）   |                        |
+| minDepositAmt           | true     | string   | 单次最小充币金额                                             |                        |
+| depositStatus           | true     | string   | 充币状态                                                     | allowed,prohibited     |
+| minWithdrawAmt          | true     | string   | 单次最小提币金额                                             |                        |
+| maxWithdrawAmt          | true     | string   | 单次最大提币金额                                             |                        |
+| withdrawQuotaPerDay     | true     | string   | 当日提币额度（新加坡时区）                                   |                        |
+| withdrawQuotaPerYear    | true     | string   | 当年提币额度                                                 |                        |
+| withdrawQuotaTotal      | true     | string   | 总提币额度                                                   |                        |
+| withdrawPrecision       | true     | int      | 提币精度                                                     |                        |
+| withdrawFeeType         | true     | string   | 提币手续费类型（特定币种在特定链上的提币手续费类型唯一）     | fixed,circulated,ratio |
+| transactFeeWithdraw     | false    | string   | 单次提币手续费（仅对固定类型有效，withdrawFeeType=fixed）    |                        |
+| minTransactFeeWithdraw  | false    | string   | 最小单次提币手续费（仅对区间类型和有下限的比例类型有效，withdrawFeeType=circulated or ratio） |                        |
+| maxTransactFeeWithdraw  | false    | string   | 最大单次提币手续费（仅对区间类型和有上限的比例类型有效，withdrawFeeType=circulated or ratio） |                        |
+| transactFeeRateWithdraw | false    | string   | 单次提币手续费率（仅对比例类型有效，withdrawFeeType=ratio）  |                        |
+| withdrawStatus}         | true     | string   | 提币状态                                                     | allowed,prohibited     |
+| instStatus }            | true     | string   | 币种状态                                                     | normal,delisted        |
 
 ### 状态码
 
-| 状态码 | 错误信息  | 错误场景描述 |
-| ---- | ----- | ---- |
-| 200| success | 请求成功 |
-| 500| error | 系统错误 |
-| 2002| invalid field value in "field name" | 非法字段取值 |
+| 状态码 | 错误信息                            | 错误场景描述 |
+| ------ | ----------------------------------- | ------------ |
+| 200    | success                             | 请求成功     |
+| 500    | error                               | 系统错误     |
+| 2002   | invalid field value in "field name" | 非法字段取值 |
 
 ## 获取当前系统时间戳
 
@@ -1510,15 +1511,15 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 
 以下是行情数据接口返回的错误码、错误消息以及说明。
 
-|错误码       | 错误消息 | 说明 |
-|---------           | -----------|--------- |
-|invalid-parameter| invalid symbol   |无效的交易对|
-|invalid-parameter| invalid period  |请求K线，period参数错误|
-|invalid-parameter| invalid depth    |深度depth参数错误|
-|invalid-parameter| invalid type   |深度type 参数错误|
-|invalid-parameter| invalid size   |size参数错误|
-|invalid-parameter| invalid size,valid range: [1, 2000]   |size参数错误|
-|invalid-parameter| request timeout   |请求超时|
+| 错误码            | 错误消息                            | 说明                    |
+| ----------------- | ----------------------------------- | ----------------------- |
+| invalid-parameter | invalid symbol                      | 无效的交易对            |
+| invalid-parameter | invalid period                      | 请求K线，period参数错误 |
+| invalid-parameter | invalid depth                       | 深度depth参数错误       |
+| invalid-parameter | invalid type                        | 深度type 参数错误       |
+| invalid-parameter | invalid size                        | size参数错误            |
+| invalid-parameter | invalid size,valid range: [1, 2000] | size参数错误            |
+| invalid-parameter | request timeout                     | 请求超时                |
 
 
 ## K 线数据（蜡烛图）
@@ -1535,11 +1536,11 @@ curl "https://api.huobi.pro/market/history/kline?period=1day&size=200&symbol=btc
 
 ### 请求参数
 
-参数       | 数据类型 | 是否必须 | 默认值 | 描述 | 取值范围
---------- | --------- | -------- | ------- | ------ | ------
-symbol    | string    | true     | NA      | 交易对 |btcusdt, ethbtc等（如需获取杠杆ETP净值K线，净值symbol = 杠杆ETP交易对symbol + 后缀‘nav’，例如：btc3lusdtnav）
-period    | string    | true     | NA      | 返回数据时间粒度，也就是每根蜡烛的时间区间 | 1min, 5min, 15min, 30min, 60min, 4hour, 1day, 1mon, 1week, 1year
-size      | integer   | false    | 150     | 返回 K 线数据条数 | [1, 2000]
+| 参数   | 数据类型 | 是否必须 | 默认值 | 描述                                       | 取值范围                                                     |
+| ------ | -------- | -------- | ------ | ------------------------------------------ | ------------------------------------------------------------ |
+| symbol | string   | true     | NA     | 交易对                                     | btcusdt, ethbtc等（如需获取杠杆ETP净值K线，净值symbol = 杠杆ETP交易对symbol + 后缀‘nav’，例如：btc3lusdtnav） |
+| period | string   | true     | NA     | 返回数据时间粒度，也就是每根蜡烛的时间区间 | 1min, 5min, 15min, 30min, 60min, 4hour, 1day, 1mon, 1week, 1year |
+| size   | integer  | false    | 150    | 返回 K 线数据条数                          | [1, 2000]                                                    |
 
 <aside class="notice">当前 REST API 不支持自定义时间区间，如需要历史固定时间范围的数据，请参考 Websocket API 中的 K 线接口。</aside>
 <aside class="notice">获取 hb10 净值时， symbol 请填写 “hb10”。</aside>
@@ -1563,16 +1564,16 @@ size      | integer   | false    | 150     | 返回 K 线数据条数 | [1, 2000
 
 ### 响应数据
 
-字段名称      | 数据类型 | 描述
---------- | --------- | -----------
-id        | long | 调整为新加坡时间的时间戳，单位秒，并以此作为此K线柱的id 
-amount    | float     | 以基础币种计量的交易量
-count     | integer   | 交易次数
-open      | float     | 本阶段开盘价
-close     | float     | 本阶段收盘价
-low       | float     | 本阶段最低价
-high      | float     | 本阶段最高价
-vol       | float     | 以报价币种计量的交易量
+| 字段名称 | 数据类型 | 描述                                                    |
+| -------- | -------- | ------------------------------------------------------- |
+| id       | long     | 调整为新加坡时间的时间戳，单位秒，并以此作为此K线柱的id |
+| amount   | float    | 以基础币种计量的交易量                                  |
+| count    | integer  | 交易次数                                                |
+| open     | float    | 本阶段开盘价                                            |
+| close    | float    | 本阶段收盘价                                            |
+| low      | float    | 本阶段最低价                                            |
+| high     | float    | 本阶段最高价                                            |
+| vol      | float    | 以报价币种计量的交易量                                  |
 
 
 
@@ -1589,9 +1590,9 @@ curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
 
 ### 请求参数
 
-参数      | 数据类型   | 是否必须  | 默认值  | 描述 | 取值范围
---------- | --------- | -------- | ------- | ------| -----
-symbol    | string    | true     | NA      | 交易对 | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）
+| 参数   | 数据类型 | 是否必须 | 默认值 | 描述   | 取值范围                                               |
+| ------ | -------- | -------- | ------ | ------ | ------------------------------------------------------ |
+| symbol | string   | true     | NA     | 交易对 | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`） |
 
 > Response:
 
@@ -1613,18 +1614,18 @@ symbol    | string    | true     | NA      | 交易对 | btcusdt, ethbtc...（�
 
 ### 响应数据
 
-字段名称      | 数据类型 | 描述
---------- | --------- | -----------
-id        | long | NA
-amount    | float     | 以基础币种计量的交易量（以滚动24小时计）
-count     | integer   | 交易次数（以滚动24小时计）
-open      | float     | 本阶段开盘价（以滚动24小时计）
-close     | float     | 本阶段最新价（以滚动24小时计）
-low       | float     | 本阶段最低价（以滚动24小时计）
-high      | float     | 本阶段最高价（以滚动24小时计）
-vol       | float     | 以报价币种计量的交易量（以滚动24小时计）
-bid       | object    | 当前的最高买价 [price, size]
-ask       | object    | 当前的最低卖价 [price, size]
+| 字段名称 | 数据类型 | 描述                                     |
+| -------- | -------- | ---------------------------------------- |
+| id       | long     | NA                                       |
+| amount   | float    | 以基础币种计量的交易量（以滚动24小时计） |
+| count    | integer  | 交易次数（以滚动24小时计）               |
+| open     | float    | 本阶段开盘价（以滚动24小时计）           |
+| close    | float    | 本阶段最新价（以滚动24小时计）           |
+| low      | float    | 本阶段最低价（以滚动24小时计）           |
+| high     | float    | 本阶段最高价（以滚动24小时计）           |
+| vol      | float    | 以报价币种计量的交易量（以滚动24小时计） |
+| bid      | object   | 当前的最高买价 [price, size]             |
+| ask      | object   | 当前的最低卖价 [price, size]             |
 
 ## 所有交易对的最新 Tickers
 
@@ -1680,20 +1681,20 @@ curl "https://api.huobi.pro/market/tickers"
 
 核心响应数据为一个对象列，每个对象包含下面的字段
 
-字段名称      | 数据类型   | 描述
---------- | --------- | -----------
-amount    | float     | 以基础币种计量的交易量（以滚动24小时计）
-count     | integer   | 交易笔数（以滚动24小时计）
-open      | float     | 开盘价（以新加坡时间自然日计）
-close     | float     | 最新价（以新加坡时间自然日计）
-low       | float     | 最低价（以新加坡时间自然日计）
-high      | float     | 最高价（以新加坡时间自然日计）
-vol       | float     | 以报价币种计量的交易量（以滚动24小时计）
-symbol    | string    | 交易对，例如btcusdt, ethbtc
-bid      | float     | 买一价
-bidSize     | float     | 买一量
-ask       | float     | 卖一价
-askSize      | float     | 卖一量
+| 字段名称 | 数据类型 | 描述                                     |
+| -------- | -------- | ---------------------------------------- |
+| amount   | float    | 以基础币种计量的交易量（以滚动24小时计） |
+| count    | integer  | 交易笔数（以滚动24小时计）               |
+| open     | float    | 开盘价（以新加坡时间自然日计）           |
+| close    | float    | 最新价（以新加坡时间自然日计）           |
+| low      | float    | 最低价（以新加坡时间自然日计）           |
+| high     | float    | 最高价（以新加坡时间自然日计）           |
+| vol      | float    | 以报价币种计量的交易量（以滚动24小时计） |
+| symbol   | string   | 交易对，例如btcusdt, ethbtc              |
+| bid      | float    | 买一价                                   |
+| bidSize  | float    | 买一量                                   |
+| ask      | float    | 卖一价                                   |
+| askSize  | float    | 卖一量                                   |
 
 ## 市场深度数据
 
@@ -1709,23 +1710,23 @@ curl "https://api.huobi.pro/market/depth?symbol=btcusdt&type=step2"
 
 ### 请求参数
 
-参数      | 数据类型   | 必须     | 默认值 | 描述 | 取值范围 |
---------- | --------- | -------- | ------| ---- | --- |
-symbol    | string    | true     | NA    | 交易对 | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）|
-depth     | integer   | false    | 20    | 返回深度的数量 | 5，10，20 |
-type      | string    | true     | step0 | 深度的价格聚合度，具体说明见下方 | step0，step1，step2，step3，step4，step5 |
+| 参数   | 数据类型 | 必须  | 默认值 | 描述                             | 取值范围                                               |      |
+| ------ | -------- | ----- | ------ | -------------------------------- | ------------------------------------------------------ | ---- |
+| symbol | string   | true  | NA     | 交易对                           | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`） |      |
+| depth  | integer  | false | 20     | 返回深度的数量                   | 5，10，20                                              |      |
+| type   | string   | true  | step0  | 深度的价格聚合度，具体说明见下方 | step0，step1，step2，step3，step4，step5               |      |
 
 <aside class="notice">当type值为‘step0’时，‘depth’的默认值为150而非20。 </aside>
 **参数type的各值说明**
 
-取值      | 说明
---------- | ---------
-step0     | 无聚合
-step1     | 聚合度为报价精度*10
-step2     | 聚合度为报价精度*100
-step3     | 聚合度为报价精度*1000
-step4     | 聚合度为报价精度*10000
-step5     | 聚合度为报价精度*100000
+| 取值  | 说明                    |
+| ----- | ----------------------- |
+| step0 | 无聚合                  |
+| step1 | 聚合度为报价精度*10     |
+| step2 | 聚合度为报价精度*100    |
+| step3 | 聚合度为报价精度*1000   |
+| step4 | 聚合度为报价精度*10000  |
+| step5 | 聚合度为报价精度*100000 |
 
 > Response:
 
@@ -1755,12 +1756,12 @@ step5     | 聚合度为报价精度*100000
 ### 响应数据
 
 <aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'。</aside>
-字段名称      | 数据类型    | 描述
---------- | --------- | -----------
-ts        | integer   | 调整为新加坡时间的时间戳，单位毫秒 
-version   | integer   | 内部字段
-bids      | object    | 当前的所有买单 [price, size]
-asks      | object    | 当前的所有卖单 [price, size]
+| 字段名称 | 数据类型 | 描述                               |
+| -------- | -------- | ---------------------------------- |
+| ts       | integer  | 调整为新加坡时间的时间戳，单位毫秒 |
+| version  | integer  | 内部字段                           |
+| bids     | object   | 当前的所有买单 [price, size]       |
+| asks     | object   | 当前的所有卖单 [price, size]       |
 
 ## 最近市场成交记录
 
@@ -1775,9 +1776,9 @@ curl "https://api.huobi.pro/market/trade?symbol=ethusdt"
 
 ### 请求参数
 
-参数      | 数据类型   | 是否必须  | 默认值   | 描述
---------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）|
+| 参数   | 数据类型 | 是否必须 | 默认值 | 描述                                                   |
+| ------ | -------- | -------- | ------ | ------------------------------------------------------ |
+| symbol | string   | true     | NA     | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`） |
 
 > Response:
 
@@ -1801,14 +1802,14 @@ symbol    | string    | true     | NA      | btcusdt, ethbtc...（取值参考`G
 ### 响应数据
 
 <aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'。</aside>
-字段名称       | 数据类型 | 描述
---------- | --------- | -----------
-id        | integer   | 唯一交易id（将被废弃）
-trade-id|integer|唯一成交ID（NEW）
-amount    | float     | 以基础币种为单位的交易量
-price     | float     | 以报价币种为单位的成交价格
-ts        | integer   | 调整为新加坡时间的时间戳，单位毫秒 
-direction | string    | 交易方向：“buy” 或 “sell”, “buy” 即买，“sell” 即卖
+| 字段名称  | 数据类型 | 描述                                               |
+| --------- | -------- | -------------------------------------------------- |
+| id        | integer  | 唯一交易id（将被废弃）                             |
+| trade-id  | integer  | 唯一成交ID（NEW）                                  |
+| amount    | float    | 以基础币种为单位的交易量                           |
+| price     | float    | 以报价币种为单位的成交价格                         |
+| ts        | integer  | 调整为新加坡时间的时间戳，单位毫秒                 |
+| direction | string   | 交易方向：“buy” 或 “sell”, “buy” 即买，“sell” 即卖 |
 
 ## 获得近期交易记录
 
@@ -1823,10 +1824,10 @@ curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
 
 ### 请求参数
 
-参数       | 数据类型  | 是否必须   | 默认值 | 描述
---------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      |btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）|
-size      | integer   | false    | 1       | 返回的交易记录数量，最大值2000
+| 参数   | 数据类型 | 是否必须 | 默认值 | 描述                                                   |
+| ------ | -------- | -------- | ------ | ------------------------------------------------------ |
+| symbol | string   | true     | NA     | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`） |
+| size   | integer  | false    | 1      | 返回的交易记录数量，最大值2000                         |
 
 > Response:
 
@@ -1874,14 +1875,14 @@ size      | integer   | false    | 1       | 返回的交易记录数量，最�
 ### 响应数据
 
 <aside class="notice">返回的数据对象是一个对象数组，每个数组元素为一个调整为新加坡时间的时间戳（单位毫秒）下的所有交易记录，这些交易记录以数组形式呈现。</aside>
-参数      | 数据类型 | 描述
---------- | --------- | -----------
-id        | integer   | 唯一交易id（将被废弃）
-trade-id|integer|唯一成交ID（NEW）
-amount    | float     | 以基础币种为单位的交易量
-price     | float     | 以报价币种为单位的成交价格
-ts        | integer   | 调整为新加坡时间的时间戳，单位毫秒 
-direction | string    | 交易方向：“buy” 或 “sell”, “buy” 即买，“sell” 即卖
+| 参数      | 数据类型 | 描述                                               |
+| --------- | -------- | -------------------------------------------------- |
+| id        | integer  | 唯一交易id（将被废弃）                             |
+| trade-id  | integer  | 唯一成交ID（NEW）                                  |
+| amount    | float    | 以基础币种为单位的交易量                           |
+| price     | float    | 以报价币种为单位的成交价格                         |
+| ts        | integer  | 调整为新加坡时间的时间戳，单位毫秒                 |
+| direction | string   | 交易方向：“buy” 或 “sell”, “buy” 即买，“sell” 即卖 |
 
 ## 最近24小时行情数据
 
@@ -1897,9 +1898,9 @@ curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
 
 ### 请求参数
 
-参数      | 数据类型 | 是否必须 | 默认值 | 描述
---------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）
+| 参数   | 数据类型 | 是否必须 | 默认值 | 描述                                                   |
+| ------ | -------- | -------- | ------ | ------------------------------------------------------ |
+| symbol | string   | true     | NA     | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`） |
 
 > Response:
 
@@ -1920,17 +1921,17 @@ symbol    | string    | true     | NA      | btcusdt, ethbtc...（取值参考`G
 ### 响应数据
 
 <aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'。</aside>
-字段名称      | 数据类型   | 描述
---------- | --------- | -----------
-id        | integer   | 响应id
-amount    | float     | 以基础币种计量的交易量（以滚动24小时计）
-count     | integer   | 交易次数（以滚动24小时计）
-open      | float     | 本阶段开盘价（以滚动24小时计）
-close     | float     | 本阶段收盘价（以滚动24小时计）
-low       | float     | 本阶段最低价（以滚动24小时计）
-high      | float     | 本阶段最高价（以滚动24小时计）
-vol       | float     | 以报价币种计量的交易量（以滚动24小时计）
-version   | integer   | 内部数据
+| 字段名称 | 数据类型 | 描述                                     |
+| -------- | -------- | ---------------------------------------- |
+| id       | integer  | 响应id                                   |
+| amount   | float    | 以基础币种计量的交易量（以滚动24小时计） |
+| count    | integer  | 交易次数（以滚动24小时计）               |
+| open     | float    | 本阶段开盘价（以滚动24小时计）           |
+| close    | float    | 本阶段收盘价（以滚动24小时计）           |
+| low      | float    | 本阶段最低价（以滚动24小时计）           |
+| high     | float    | 本阶段最高价（以滚动24小时计）           |
+| vol      | float    | 以报价币种计量的交易量（以滚动24小时计） |
+| version  | integer  | 内部数据                                 |
 
 ## 获取杠杆ETP实时净值
 
@@ -1946,9 +1947,9 @@ curl "https://api.huobi.pro/market/etp?symbol=btc3lusdt"
 
 ### 请求参数
 
-参数      | 数据类型 | 是否必须 | 默认值 | 描述
---------- | --------- | -------- | ------- | -----------
-symbol    | string    | true     | NA      | 杠杆ETP交易对
+| 参数   | 数据类型 | 是否必须 | 默认值 | 描述          |
+| ------ | -------- | -------- | ------ | ------------- |
+| symbol | string   | true     | NA     | 杠杆ETP交易对 |
 
 > Response
 
@@ -1981,16 +1982,16 @@ symbol    | string    | true     | NA      | 杠杆ETP交易对
 
 <aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'。</aside>
 
-|	字段名称	|	数据类型	|	描述	|
-|--------- | --------- | -----------|
-|	symbol	|	string	|	杠杆ETP交易代码	|
-|	nav	|	float	|	最新净值	|
-|	navTime	|	long	|	最新净值更新时间 (unix time in millisecond)	|
-|	outstanding	|	float	|	ETP总份额	|
-|	basket	|	object	|	篮子	|
-|	{ currency	|	float	|	币种	|
-|	amount }	|	float	|	金额	|
-|	actualLeverage	|	float	|	实际杠杆率	|
+| 字段名称       | 数据类型 | 描述                                        |
+| -------------- | -------- | ------------------------------------------- |
+| symbol         | string   | 杠杆ETP交易代码                             |
+| nav            | float    | 最新净值                                    |
+| navTime        | long     | 最新净值更新时间 (unix time in millisecond) |
+| outstanding    | float    | ETP总份额                                   |
+| basket         | object   | 篮子                                        |
+| { currency     | float    | 币种                                        |
+| amount }       | float    | 金额                                        |
+| actualLeverage | float    | 实际杠杆率                                  |
 
 # 账户相关
 
@@ -2002,17 +2003,17 @@ symbol    | string    | true     | NA      | 杠杆ETP交易对
 
 以下是账户相关接口返回的错误码、错误消息以及说明。
 
-| 错误码 | 错误消息 | 说明 |
-|---------  |-----------  |---------  |
-| 500 | system error | 调用内部服务异常|
-| 1002 | forbidden |禁止操作，如用户入参中accountId与UID不一致 |
-| 2002 | "invalid field value in `currency`" |currency不符合正则规则^[a-z0-9]{2,10}$ |
-| 2002 | "invalid field value in `transactTypes`" | 变动类型transactTypes不是“transfer” |
-| 2002 | "invalid field value in `sort`" |分页请求参数不是合法的"asc或desc" |
-| 2002 | "value in `fromId` is not found in record” | 未找到fromId |
-| 2002 | "invalid field value in `accountId`" | 查询参数中accountId为空 |
-| 2002 | "value in `startTime` exceeded valid range"  | 入参查询时间大于当前时间，或者距离当前时间超过180天 |
-| 2002 | "value in `endTime` exceeded valid range") | 查询结束时间小于开始时间，或者查询时间跨度大于10天 |
+| 错误码 | 错误消息                                    | 说明                                                |
+| ------ | ------------------------------------------- | --------------------------------------------------- |
+| 500    | system error                                | 调用内部服务异常                                    |
+| 1002   | forbidden                                   | 禁止操作，如用户入参中accountId与UID不一致          |
+| 2002   | "invalid field value in `currency`"         | currency不符合正则规则^[a-z0-9]{2,10}$              |
+| 2002   | "invalid field value in `transactTypes`"    | 变动类型transactTypes不是“transfer”                 |
+| 2002   | "invalid field value in `sort`"             | 分页请求参数不是合法的"asc或desc"                   |
+| 2002   | "value in `fromId` is not found in record”  | 未找到fromId                                        |
+| 2002   | "invalid field value in `accountId`"        | 查询参数中accountId为空                             |
+| 2002   | "value in `startTime` exceeded valid range" | 入参查询时间大于当前时间，或者距离当前时间超过180天 |
+| 2002   | "value in `endTime` exceeded valid range")  | 查询结束时间小于开始时间，或者查询时间跨度大于10天  |
 
 ## 账户信息 
 
@@ -2058,12 +2059,12 @@ API Key 权限：读取<br>
 
 ### 响应数据
 
-| 参数名称  | 是否必须 | 数据类型 | 描述 | 取值范围 |
-| ----- | ---- | ------ | ----- | ----  |
-| id    | true | long   | account-id |    |
-| state | true | string | 账户状态  | working：正常, lock：账户被锁定 |
-| type  | true | string | 账户类型  | spot：现货账户, margin：逐仓杠杆账户, otc：OTC 账户, point：点卡账户, super-margin：全仓杠杆账户, investment: C2C杠杆借出账户, borrow: C2C杠杆借入账户，矿池账户: minepool, ETF账户: etf, 抵押借贷账户: crypto-loans |
-| subtype  | false | string | 子账户类型（仅对逐仓杠杆账户有效）  | 逐仓杠杆交易标的，例如btcusdt  |
+| 参数名称 | 是否必须 | 数据类型 | 描述                               | 取值范围                                                     |
+| -------- | -------- | -------- | ---------------------------------- | ------------------------------------------------------------ |
+| id       | true     | long     | account-id                         |                                                              |
+| state    | true     | string   | 账户状态                           | working：正常, lock：账户被锁定                              |
+| type     | true     | string   | 账户类型                           | spot：现货账户, margin：逐仓杠杆账户, otc：OTC 账户, point：点卡账户, super-margin：全仓杠杆账户, investment: C2C杠杆借出账户, borrow: C2C杠杆借入账户，矿池账户: minepool, ETF账户: etf, 抵押借贷账户: crypto-loans |
+| subtype  | false    | string   | 子账户类型（仅对逐仓杠杆账户有效） | 逐仓杠杆交易标的，例如btcusdt                                |
 
 <aside class="notice">逐仓/全仓/C2C杠杆账户（margin/super-margin/borrow）会在第一次划转资产时创建，如果未划转过资产则不会有杠杆账户。</aside>
 
@@ -2083,9 +2084,9 @@ spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，point：
 
 ### 请求参数
 
-| 参数名称   | 是否必须 | 类型   | 描述   | 默认值  | 取值范围 |
-| ---------- | ---- | ------ | --------------- | ---- | ---- |
-| account-id | true | string | account-id，填在 path 中，取值参考 `GET /v1/account/accounts` |  |      |
+| 参数名称   | 是否必须 | 类型   | 描述                                                         | 默认值 | 取值范围 |
+| ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
+| account-id | true     | string | account-id，填在 path 中，取值参考 `GET /v1/account/accounts` |        |          |
 
 > Response:
 
@@ -2113,20 +2114,20 @@ spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，point：
 
 ### 响应数据
 
-| 参数名称  | 是否必须  | 数据类型   | 描述    | 取值范围   |
-| ----- | ----- | ------ | ----- | ----- |
-| id    | true  | long   | 账户 ID |      |
-| state | true  | string | 账户状态  | working：正常  lock：账户被锁定 |
-| type  | true  | string | 账户类型  | spot：现货账户, margin：逐仓杠杆账户, otc：OTC 账户, point：点卡账户, super-margin：全仓杠杆账户, investment: C2C杠杆借出账户, borrow: C2C杠杆借入账户，矿池账户: minepool, ETF账户: etf, 抵押借贷账户: crypto-loans |
-| list  | false | Array  |      |     |
+| 参数名称 | 是否必须 | 数据类型 | 描述     | 取值范围                                                     |
+| -------- | -------- | -------- | -------- | ------------------------------------------------------------ |
+| id       | true     | long     | 账户 ID  |                                                              |
+| state    | true     | string   | 账户状态 | working：正常  lock：账户被锁定                              |
+| type     | true     | string   | 账户类型 | spot：现货账户, margin：逐仓杠杆账户, otc：OTC 账户, point：点卡账户, super-margin：全仓杠杆账户, investment: C2C杠杆借出账户, borrow: C2C杠杆借入账户，矿池账户: minepool, ETF账户: etf, 抵押借贷账户: crypto-loans |
+| list     | false    | Array    |          |                                                              |
 
 list字段说明
 
-| 参数名称   | 是否必须 | 数据类型   | 描述   | 取值范围    |
-| -------- | ---- | ------ | ---- |  ------ |
-| balance  | true | string | 余额   |    |
-| currency | true | string | 币种   |    |
-| type     | true | string | 类型   | trade: 交易余额，frozen: 冻结余额, loan: 待还借贷本金, interest: 待还借贷利息, lock: 锁仓, bank: 储蓄 |
+| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围                                                     |
+| -------- | -------- | -------- | ---- | ------------------------------------------------------------ |
+| balance  | true     | string   | 余额 |                                                              |
+| currency | true     | string   | 币种 |                                                              |
+| type     | true     | string   | 类型 | trade: 交易余额，frozen: 冻结余额, loan: 待还借贷本金, interest: 待还借贷利息, lock: 锁仓, bank: 储蓄 |
 
 ## 获取账户资产估值
 
@@ -2142,11 +2143,11 @@ API Key 权限：读取
 
 ### 请求参数
 
-|参数|是否必填 | 数据类型 |描述 | 默认值 | 取值范围 |
-| -----------|------------|-----------|------------|----------|-- |
-|accountType | true | string |  账户类型  |	NA  | spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，super-margin：全仓杠杆账户  |
-|valuationCurrency | false | string |资产估值法币，即资产按哪个法币为单位进行估值。 | BTC | 可选法币有：BTC、CNY、USD、JPY、KRW、GBP、TRY、EUR、RUB、VND、HKD、TWD、MYR、SGD、AED、SAR （大小写敏感） |
-|subUid | false | long | 子用户的 UID，若不填，则返回API key所属用户的账户资产估值 | NA  |  |
+| 参数              | 是否必填 | 数据类型 | 描述                                                      | 默认值 | 取值范围                                                     |
+| ----------------- | -------- | -------- | --------------------------------------------------------- | ------ | ------------------------------------------------------------ |
+| accountType       | true     | string   | 账户类型                                                  | NA     | spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，super-margin：全仓杠杆账户 |
+| valuationCurrency | false    | string   | 资产估值法币，即资产按哪个法币为单位进行估值。            | BTC    | 可选法币有：BTC、CNY、USD、JPY、KRW、GBP、TRY、EUR、RUB、VND、HKD、TWD、MYR、SGD、AED、SAR （大小写敏感） |
+| subUid            | false    | long     | 子用户的 UID，若不填，则返回API key所属用户的账户资产估值 | NA     |                                                              |
 
 > Responds:
 
@@ -2162,10 +2163,10 @@ API Key 权限：读取
 ```
 
 ### 返回字段
-|参数|是否必须 | 数据类型  | 说明 |
-|-----------|------------|-----------|------------|----------|
-| balance  | true | string | 按照某一个法币为单位的总资产估值 |
-| timestamp | true | long | 数据返回时间，为unix time in millisecond  |
+| 参数      | 是否必须 | 数据类型 | 说明                                     |
+| --------- | -------- | -------- | ---------------------------------------- |
+| balance   | true     | string   | 按照某一个法币为单位的总资产估值         |
+| timestamp | true     | long     | 数据返回时间，为unix time in millisecond |
 
 
 ## 资产划转
@@ -2194,16 +2195,16 @@ API Key 权限：交易<br>
 
 ### 请求参数
 
-| 参数 |是否必填 |数据类型 |说明 |取值范围 |
-| -------- | -------- | -------- | ---- | ---- |
-| from-user |true |long |转出用户uid |母用户uid,子用户uid   |
-| from-account-type |true |string |转出账户类型 | spot,margin|
-| from-account |true |long |转出账户id |   |
-| to-user|true |long |转入用户uid | 母用户uid,子用户uid|
-| to-account-type |true |string |转入账户类型 | spot,margin |
-| to-account |true |long |转入账户id |   |
-| currency |true |string |币种，即btc, ltc, bch, eth, etc ... |取值参考GET /v1/common/currencys|
-| amount |true |string |划转金额 |  |
+| 参数              | 是否必填 | 数据类型 | 说明                                | 取值范围                         |
+| ----------------- | -------- | -------- | ----------------------------------- | -------------------------------- |
+| from-user         | true     | long     | 转出用户uid                         | 母用户uid,子用户uid              |
+| from-account-type | true     | string   | 转出账户类型                        | spot,margin                      |
+| from-account      | true     | long     | 转出账户id                          |                                  |
+| to-user           | true     | long     | 转入用户uid                         | 母用户uid,子用户uid              |
+| to-account-type   | true     | string   | 转入账户类型                        | spot,margin                      |
+| to-account        | true     | long     | 转入账户id                          |                                  |
+| currency          | true     | string   | 币种，即btc, ltc, bch, eth, etc ... | 取值参考GET /v1/common/currencys |
+| amount            | true     | string   | 划转金额                            |                                  |
 
 
 > Response:
@@ -2219,12 +2220,12 @@ API Key 权限：交易<br>
 ```
 
 ### 响应数据
-| 参数 |是否必须 |数据类型 |说明 |取值范围 |
-| -------- | -------- | -------- | ---- | ---- |
-| status |true |string |状态 | "ok" or "error"  |
-| data |true |list |   |  |
-| { transact-id |true |int | 交易流水号 |  |
-| transact-time } |true |long | 交易时间 |  |
+| 参数            | 是否必须 | 数据类型 | 说明       | 取值范围        |
+| --------------- | -------- | -------- | ---------- | --------------- |
+| status          | true     | string   | 状态       | "ok" or "error" |
+| data            | true     | list     |            |                 |
+| { transact-id   | true     | int      | 交易流水号 |                 |
+| transact-time } | true     | long     | 交易时间   |                 |
 
 
 ## 账户流水
@@ -2240,16 +2241,16 @@ API Key 权限：读取<br>
 
 ### 请求参数
 
-| 参数名称 | 是否必需 | 数据类型 | 描述 | 缺省值 | 取值范围 |
-|--------| --------- | -------- | ------- | ------ | ------ |
-|account-id     | true  | string | 账户编号,取值参考 `GET /v1/account/accounts`      |     |  |
-|currency      | false | string | 币种,即btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`)   |       |  |
-|transact-types | false | string | 变动类型，可多选，以逗号分隔  | all     |trade (交易),etf（ETF申购）, transact-fee（交易手续费）, fee-deduction（手续费抵扣）, transfer（划转）, credit（借币）, liquidation（清仓）, interest（币息）, deposit（充币），withdraw（提币）, withdraw-fee（提币手续费）, exchange（兑换）, other-types（其他）,rebate（交易返佣） |
-|start-time   | false | long | 远点时间 unix time in millisecond. 以transact-time为key进行检索. 查询窗口最大为1小时. 窗口平移范围为最近30天. | ((end-time) – 1hour)     | [((end-time) – 1hour), (end-time)]   |
-|end-time     | false  | long | 近点时间unix time in millisecond. 以transact-time为key进行检索. 查询窗口最大为1小时. 窗口平移范围为最近30天.  |  current-time    |[(current-time) – 29days,(current-time)]|
-|sort     | false  | string | 检索方向  |  asc    |asc or desc|
-|size     | false  | int | 最大条目数量  |   100   |[1,500]|
-|from-id     | false  | long | 起始编号（仅在下页查询时有效，见注2）  |      | |
+| 参数名称       | 是否必需 | 数据类型 | 描述                                                         | 缺省值               | 取值范围                                                     |
+| -------------- | -------- | -------- | ------------------------------------------------------------ | -------------------- | ------------------------------------------------------------ |
+| account-id     | true     | string   | 账户编号,取值参考 `GET /v1/account/accounts`                 |                      |                                                              |
+| currency       | false    | string   | 币种,即btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`) |                      |                                                              |
+| transact-types | false    | string   | 变动类型，可多选，以逗号分隔                                 | all                  | trade (交易),etf（ETF申购）, transact-fee（交易手续费）, fee-deduction（手续费抵扣）, transfer（划转）, credit（借币）, liquidation（清仓）, interest（币息）, deposit（充币），withdraw（提币）, withdraw-fee（提币手续费）, exchange（兑换）, other-types（其他）,rebate（交易返佣） |
+| start-time     | false    | long     | 远点时间 unix time in millisecond. 以transact-time为key进行检索. 查询窗口最大为1小时. 窗口平移范围为最近30天. | ((end-time) – 1hour) | [((end-time) – 1hour), (end-time)]                           |
+| end-time       | false    | long     | 近点时间unix time in millisecond. 以transact-time为key进行检索. 查询窗口最大为1小时. 窗口平移范围为最近30天. | current-time         | [(current-time) – 29days,(current-time)]                     |
+| sort           | false    | string   | 检索方向                                                     | asc                  | asc or desc                                                  |
+| size           | false    | int      | 最大条目数量                                                 | 100                  | [1,500]                                                      |
+| from-id        | false    | long     | 起始编号（仅在下页查询时有效，见注2）                        |                      |                                                              |
 
 > Response:
 
@@ -2283,19 +2284,19 @@ API Key 权限：读取<br>
 
 ### 响应数据
 
-字段名称               | 数据类型 | 描述              | 取值范围
----------           | --------- | -----------              | -----------
-status                 | string   | 状态码        | 
-data               | object    |             | 
-{ account-id  | long   | 账户编号|
-currency               | string    | 币种|
-transact-amt                 | string   | 变动金额（入账为正 or 出账为负）        | 
-transact-type                 | string   | 变动类型        | 
-avail-balance                 | string   | 可用余额        | 
-acct-balance                | string   | 账户余额       | 
-transact-time                 | long   | 交易时间（数据库记录时间）      | 
-record-id }                 | long | 数据库记录编号（全局唯一）      | 
-next-id               | long    |    下页起始编号（仅在查询结果需要分页返回时包含此字段，见注2）
+| 字段名称      | 数据类型 | 描述                                                        | 取值范围 |
+| ------------- | -------- | ----------------------------------------------------------- | -------- |
+| status        | string   | 状态码                                                      |          |
+| data          | object   |                                                             |          |
+| { account-id  | long     | 账户编号                                                    |          |
+| currency      | string   | 币种                                                        |          |
+| transact-amt  | string   | 变动金额（入账为正 or 出账为负）                            |          |
+| transact-type | string   | 变动类型                                                    |          |
+| avail-balance | string   | 可用余额                                                    |          |
+| acct-balance  | string   | 账户余额                                                    |          |
+| transact-time | long     | 交易时间（数据库记录时间）                                  |          |
+| record-id }   | long     | 数据库记录编号（全局唯一）                                  |          |
+| next-id       | long     | 下页起始编号（仅在查询结果需要分页返回时包含此字段，见注2） |          |
 
 注1：<br>
 账户流水中返回的交易返佣为到账金额，多笔成交产生的多笔返佣可能会合并到帐，成为一笔流水。<br>
@@ -2322,16 +2323,16 @@ API Key 权限：读取
 
 ### 请求参数
 
-| 参数名称 | 数据类型 | 是否必需 | 描述 |
-| -------- | -------- | -------- | ---- |
-|accountId	|string		|TRUE		|账户编号												|
-|currency	|string		|FALSE		|币种 （缺省值所有币种）										|
-|transactTypes|string	|FALSE		|变动类型，可多填 （缺省值all） 枚举值： transfer						|
-|startTime	|long		|FALSE		|远点时间（取值范围及缺省值见注1）								|
-|endTime	|long		|FALSE		|近点时间（取值范围及缺省值见注2）								|
-|sort		|string		|FALSE		|检索方向（asc 由远及近, desc 由近及远，缺省值desc）					|
-|limit		|int		|FALSE		|单页最大返回条目数量 [1,500] （缺省值100）							|
-|fromId	|long		|FALSE		|起始编号（仅在下页查询时有效，见注3）							|
+| 参数名称      | 数据类型 | 是否必需 | 描述                                                |
+| ------------- | -------- | -------- | --------------------------------------------------- |
+| accountId     | string   | TRUE     | 账户编号                                            |
+| currency      | string   | FALSE    | 币种 （缺省值所有币种）                             |
+| transactTypes | string   | FALSE    | 变动类型，可多填 （缺省值all） 枚举值： transfer    |
+| startTime     | long     | FALSE    | 远点时间（取值范围及缺省值见注1）                   |
+| endTime       | long     | FALSE    | 近点时间（取值范围及缺省值见注2）                   |
+| sort          | string   | FALSE    | 检索方向（asc 由远及近, desc 由近及远，缺省值desc） |
+| limit         | int      | FALSE    | 单页最大返回条目数量 [1,500] （缺省值100）          |
+| fromId        | long     | FALSE    | 起始编号（仅在下页查询时有效，见注3）               |
 
 注1：<br>
 startTime取值范围：[(endTime - 10天), endTime], unix time in millisecond<br>
@@ -2376,21 +2377,21 @@ endTime缺省值：当前时间
 
 ### 响应数据
 
-| 字段名称 | 数据类型 | 是否必需 | 描述 | 取值范围 |
-| -------- | -------- | -------- | ---- | ---- |
-|	code		|	integer	|	TRUE		|	状态码								|									|
-|	message	|	string		|	FALSE		|	错误描述（如有）							|								|
-|	data		|	object		|	TRUE		|	按用户请求参数sort中定义的顺序排列				|					|
-|	{ accountId	|	integer	|	TRUE		|	账户编号								|									|
-|	currency	|	string		|	TRUE		|	币种									|										|
-|	transactAmt	|	number	|	TRUE		|	变动金额（入账为正 or 出账为负）				|					|
-|	transactType	|	string		|	TRUE		|	变动类型								| transfer（划转） |
-|	transferType	|	string		|	FALSE		|	划转类型（仅对transactType=transfer有效）								|	otc-to-pro（otc到现货）, pro-to-otc（现货到otc）, futures-to-pro（交割合约到现货）, pro-to-futures（现货到交割合约）, dm-swap-to-pro（币本位永续合约到现货）, dm-pro-to-swap（现货到币本位永续合约）, margin-transfer-in（转入到逐仓杠杆）, margin-transfer-out（从逐仓杠杆转出）, pro-to-super-margin（现货到全仓杠杆）, super-margin-to-pro（全仓杠杆到现货）, master-transfer-in（转入到母用户）, master-transfer-out（从母用户转出）, sub-transfer-in（转入到子用户）, sub-transfer-out（从子用户转出）	|
-|	transactId	|	integer	|	TRUE		|	交易流水号								|									|
-|	transactTime	|	integer	|	TRUE		|	交易时间								|									|
-|	transferer	|	integer	|	FALSE		|	付款方账户ID			|				|
-|	transferee }	|	integer	|	FALSE		|	收款方账户ID			|				|
-|	nextId		|	integer	|	FALSE		|	下页起始编号（仅在查询结果需要分页返回时包含此字段，见注3。）|	|
+| 字段名称     | 数据类型 | 是否必需 | 描述                                                         | 取值范围                                                     |
+| ------------ | -------- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| code         | integer  | TRUE     | 状态码                                                       |                                                              |
+| message      | string   | FALSE    | 错误描述（如有）                                             |                                                              |
+| data         | object   | TRUE     | 按用户请求参数sort中定义的顺序排列                           |                                                              |
+| { accountId  | integer  | TRUE     | 账户编号                                                     |                                                              |
+| currency     | string   | TRUE     | 币种                                                         |                                                              |
+| transactAmt  | number   | TRUE     | 变动金额（入账为正 or 出账为负）                             |                                                              |
+| transactType | string   | TRUE     | 变动类型                                                     | transfer（划转）                                             |
+| transferType | string   | FALSE    | 划转类型（仅对transactType=transfer有效）                    | otc-to-pro（otc到现货）, pro-to-otc（现货到otc）, futures-to-pro（交割合约到现货）, pro-to-futures（现货到交割合约）, dm-swap-to-pro（币本位永续合约到现货）, dm-pro-to-swap（现货到币本位永续合约）, margin-transfer-in（转入到逐仓杠杆）, margin-transfer-out（从逐仓杠杆转出）, pro-to-super-margin（现货到全仓杠杆）, super-margin-to-pro（全仓杠杆到现货）, master-transfer-in（转入到母用户）, master-transfer-out（从母用户转出）, sub-transfer-in（转入到子用户）, sub-transfer-out（从子用户转出） |
+| transactId   | integer  | TRUE     | 交易流水号                                                   |                                                              |
+| transactTime | integer  | TRUE     | 交易时间                                                     |                                                              |
+| transferer   | integer  | FALSE    | 付款方账户ID                                                 |                                                              |
+| transferee } | integer  | FALSE    | 收款方账户ID                                                 |                                                              |
+| nextId       | integer  | FALSE    | 下页起始编号（仅在查询结果需要分页返回时包含此字段，见注3。） |                                                              |
 
 注3：<br>
 仅当用户请求查询的时间范围内的数据条目超出单页限制（由“limit“字段设定）时，服务器才返回”nextId“字段。用户收到服务器返回的”nextId“后 –<br>
@@ -2442,53 +2443,53 @@ API Key 权限：交易<br>
 
 ### 响应数据
 
-参数名称 | 数据类型 | 描述
------- | ------- | -----
-data   | Long | Transfer id
-status |string| "ok" or "error"
-err-code|string|错误码，具体错误码请见列表
-err-msg|string|错误消息，具体消息内容请列表
+| 参数名称 | 数据类型 | 描述                         |
+| -------- | -------- | ---------------------------- |
+| data     | Long     | Transfer id                  |
+| status   | string   | "ok" or "error"              |
+| err-code | string   | 错误码，具体错误码请见列表   |
+| err-msg  | string   | 错误消息，具体消息内容请列表 |
 
 ### err-code列表
 
-err-code | err-msg(中文） | err-msg(Englis)|补充说明
------- | ------- | -----|-------------
-|base-msg|||其他错误，具体的err-msg, 请参照对应的错误消息列表。
-|base-currency-error|币种无效|The currency is invalid|
-|frequent-invoke|操作过于频繁，请稍后重试。（如果超过1分钟10次，系统返回该error-code）|the operation is too frequent. Please try again later|如果请求次数超过1分钟10次，系统返回该error-code
-|banned-by-blacklist|黑名单限制|Blacklist restriction|
-|dw-insufficient-balance|可划转余额不足，最大可划转 {0}。（币币账户的余额不足。）|Insufficient balance. You can only transfer {0} at most.|币币账户的余额不足。
-|dw-account-transfer-unavailable|转账暂时不可用|account transfer unavailable|该接口暂时不可用
-|dw-account-transfer-error|由于其他服务不可用导致的划转失败|account transfer error|
-|dw-account-transfer-failed|划转失败。请稍后重试或联系客服 |Failed to transfer. Please try again later.|由于系统异常导致的划转失败
-|dw-account-transfer-failed-account-abnormality|账户异常，划转失败。请稍后重试或联系客服|Account abnormality, failed to transfer。Please try again later.|
+| err-code | err-msg(中文）                                 | err-msg(Englis)                                              | 补充说明                                                     |
+| -------- | ---------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+|          | base-msg                                       |                                                              |                                                              |
+|          | base-currency-error                            | 币种无效                                                     | The currency is invalid                                      |
+|          | frequent-invoke                                | 操作过于频繁，请稍后重试。（如果超过1分钟10次，系统返回该error-code） | the operation is too frequent. Please try again later        |
+|          | banned-by-blacklist                            | 黑名单限制                                                   | Blacklist restriction                                        |
+|          | dw-insufficient-balance                        | 可划转余额不足，最大可划转 {0}。（币币账户的余额不足。）     | Insufficient balance. You can only transfer {0} at most.     |
+|          | dw-account-transfer-unavailable                | 转账暂时不可用                                               | account transfer unavailable                                 |
+|          | dw-account-transfer-error                      | 由于其他服务不可用导致的划转失败                             | account transfer error                                       |
+|          | dw-account-transfer-failed                     | 划转失败。请稍后重试或联系客服                               | Failed to transfer. Please try again later.                  |
+|          | dw-account-transfer-failed-account-abnormality | 账户异常，划转失败。请稍后重试或联系客服                     | Account abnormality, failed to transfer。Please try again later. |
 
 ### base-msg对应的err-msg列表
-err-code | err-msg(中文） | err-msg(Englis)|补充说明
------- | ------- | -----|-------------
-|base-msg|用户没有入金权限|Unable to transfer in currently. Please contact customer service.|
-|base-msg|用户没有出金权限|Unable to transfer out currently. Please contact customer service.|
-|base-msg|合约状态异常，无法出入金|Abnormal contracts status. Can’t transfer.|
-|base-msg|子账号没有入金权限，请联系客服|Sub-account doesn't own the permissions to transfer in. Please contact customer service.|
-|base-msg|子账号没有出金权限，请联系客服|Sub-account doesn't own the permissions to transfer out. Please contact customer service.|
-|base-msg|子账号没有划转权限，请登录主账号授权|The sub-account does not have transfer permissions. Please login main account to authorize.|
-|base-msg|可划转余额不足|Insufficient amount available.|合约账户的余额不足
-|base-msg|单笔转出的数量不能低于{0}{1}|The single transfer-out amount must be no less than {0}{1}.|
-|base-msg|单笔转出的数量不能高于{0}{1}|The single transfer-out amount must be no more than {0}{1}.|
-|base-msg|单笔转入的数量不能低于{0}{1}|The single transfer-in amount must be no less than {0}{1}.|
-|base-msg|单笔转入的数量不能高于{0}{1}|The single transfer-in amount must be no more than {0}{1}.|
-|base-msg|您当日累计转出量超过{0}{1}，暂无法转出|Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.|
-|base-msg|您当日累计转入量超过{0}{1}，暂无法转入|Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.|
-|base-msg|您当日累计净转出量超过{0}{1}，暂无法转出|Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.|
-|base-msg|您当日累计净转入量超过{0}{1}，暂无法转入|Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.|
-|base-msg|超过平台当日累计最大转出量限制，暂无法转出|The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being.|
-|base-msg|超过平台当日累计最大转入量限制，暂无法转入|The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being.|
-|base-msg|超过平台当日累计最大净转出量限制，暂无法转出|The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being.|
-|base-msg|超过平台当日累计最大净转入量限制，暂无法转入|The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being.|
-|base-msg|划转失败，请稍后重试或联系客服|Transfer failed. Please try again later or contact customer service.|
-|base-msg|服务异常，划转失败，请稍后再试|Abnormal service, transfer failed. Please try again later.|
-|base-msg|您尚未开通合约交易，无访问权限|You don’t have access permission as you have not opened contracts trading.|
-|base-msg|合约品种不存在|This contract type doesn't exist.|没有相应币种的合约
+| err-code | err-msg(中文） | err-msg(Englis)                              | 补充说明                                                     |
+| -------- | -------------- | -------------------------------------------- | ------------------------------------------------------------ |
+|          | base-msg       | 用户没有入金权限                             | Unable to transfer in currently. Please contact customer service. |
+|          | base-msg       | 用户没有出金权限                             | Unable to transfer out currently. Please contact customer service. |
+|          | base-msg       | 合约状态异常，无法出入金                     | Abnormal contracts status. Can’t transfer.                   |
+|          | base-msg       | 子账号没有入金权限，请联系客服               | Sub-account doesn't own the permissions to transfer in. Please contact customer service. |
+|          | base-msg       | 子账号没有出金权限，请联系客服               | Sub-account doesn't own the permissions to transfer out. Please contact customer service. |
+|          | base-msg       | 子账号没有划转权限，请登录主账号授权         | The sub-account does not have transfer permissions. Please login main account to authorize. |
+|          | base-msg       | 可划转余额不足                               | Insufficient amount available.                               |
+|          | base-msg       | 单笔转出的数量不能低于{0}{1}                 | The single transfer-out amount must be no less than {0}{1}.  |
+|          | base-msg       | 单笔转出的数量不能高于{0}{1}                 | The single transfer-out amount must be no more than {0}{1}.  |
+|          | base-msg       | 单笔转入的数量不能低于{0}{1}                 | The single transfer-in amount must be no less than {0}{1}.   |
+|          | base-msg       | 单笔转入的数量不能高于{0}{1}                 | The single transfer-in amount must be no more than {0}{1}.   |
+|          | base-msg       | 您当日累计转出量超过{0}{1}，暂无法转出       | Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being. |
+|          | base-msg       | 您当日累计转入量超过{0}{1}，暂无法转入       | Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being. |
+|          | base-msg       | 您当日累计净转出量超过{0}{1}，暂无法转出     | Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being. |
+|          | base-msg       | 您当日累计净转入量超过{0}{1}，暂无法转入     | Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being. |
+|          | base-msg       | 超过平台当日累计最大转出量限制，暂无法转出   | The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being. |
+|          | base-msg       | 超过平台当日累计最大转入量限制，暂无法转入   | The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being. |
+|          | base-msg       | 超过平台当日累计最大净转出量限制，暂无法转出 | The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being. |
+|          | base-msg       | 超过平台当日累计最大净转入量限制，暂无法转入 | The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being. |
+|          | base-msg       | 划转失败，请稍后重试或联系客服               | Transfer failed. Please try again later or contact customer service. |
+|          | base-msg       | 服务异常，划转失败，请稍后再试               | Abnormal service, transfer failed. Please try again later.   |
+|          | base-msg       | 您尚未开通合约交易，无访问权限               | You don’t have access permission as you have not opened contracts trading. |
+|          | base-msg       | 合约品种不存在                               | This contract type doesn't exist.                            |
 
 ## 点卡余额查询
 
@@ -2571,12 +2572,12 @@ API Key 权限：交易<br>
 
 ### 请求参数
 
-| 名称 | 类型 | 是否必需 | 描述 |
-| ---- | ---- | -------- | ---- |
-|	fromUid |	string	|	TRUE	|转出方UID	|
-|	toUid    |	string	|	TRUE	|转入方UID	|
-|	groupId	|	long	|	TRUE	| 点卡分组ID	|
-|	amount	|	string	|	TRUE	| 划转数量（最高精度: 8位小数）	|
+| 名称    | 类型   | 是否必需 | 描述                          |
+| ------- | ------ | -------- | ----------------------------- |
+| fromUid | string | TRUE     | 转出方UID                     |
+| toUid   | string | TRUE     | 转入方UID                     |
+| groupId | long   | TRUE     | 点卡分组ID                    |
+| amount  | string | TRUE     | 划转数量（最高精度: 8位小数） |
 
 注：<br>
 - 如传参点卡分组ID=0，意味着该笔划转为不限时点卡划转。<br>
@@ -2596,13 +2597,13 @@ API Key 权限：交易<br>
 
 ### 响应数据
 
-| 名称 | 类型 | 是否必需 | 描述 |
-| ---- | ---- | -------- | ---- |
-|	code	|	integer	|	TRUE	|状态码	|
-|	message	|	string	|	FALSE	|错误描述（如有）	|
-|	data	|	object	|	TRUE	|	|
-|	{ transactId	|	string	|	TRUE	|划转交易ID	|
-|	transactTime }	|	long	|	TRUE	|划转交易时间（unix time in millisecond）|
+| 名称           | 类型    | 是否必需 | 描述                                     |
+| -------------- | ------- | -------- | ---------------------------------------- |
+| code           | integer | TRUE     | 状态码                                   |
+| message        | string  | FALSE    | 错误描述（如有）                         |
+| data           | object  | TRUE     |                                          |
+| { transactId   | string  | TRUE     | 划转交易ID                               |
+| transactTime } | long    | TRUE     | 划转交易时间（unix time in millisecond） |
 
 # 钱包（充提相关）
 
@@ -2614,14 +2615,14 @@ API Key 权限：交易<br>
 
 以下是充提相关接口返回的返回码、返回消息以及说明。
 
-|返回码       | 返回消息 | 说明|
-|---------           | -----------|---------|
-|200	|success	|请求成功|
-|500	|error	|系统错误|
-|1002	|unauthorized	|未授权|
-|1003	|invalid signature	|验签失败|
-|2002	|invalid field value in "field name"	|非法字段取值|
-|2003	|missing mandatory field "field name"	|强制字段缺失|
+| 返回码 | 返回消息                             | 说明         |
+| ------ | ------------------------------------ | ------------ |
+| 200    | success                              | 请求成功     |
+| 500    | error                                | 系统错误     |
+| 1002   | unauthorized                         | 未授权       |
+| 1003   | invalid signature                    | 验签失败     |
+| 2002   | invalid field value in "field name"  | 非法字段取值 |
+| 2003   | missing mandatory field "field name" | 强制字段缺失 |
 
 ## 充币地址查询
 
@@ -2642,9 +2643,9 @@ curl "https://api.huobi.pro/v2/account/deposit/address?currency=btc"
 
 ### 请求参数
 
-| 字段名称       | 是否必需 | 类型     | 字段描述     |取值范围 |
-| ---------- | ---- | ------ | ------ | ---- |
-| currency | true | string | 币种   |btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`) |
+| 字段名称 | 是否必需 | 类型   | 字段描述 | 取值范围                                                     |
+| -------- | -------- | ------ | -------- | ------------------------------------------------------------ |
+| currency | true     | string | 币种     | btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`) |
 
 > Response:
 
@@ -2665,26 +2666,26 @@ curl "https://api.huobi.pro/v2/account/deposit/address?currency=btc"
 ### 响应数据
 
 
-| 字段名称 | 是否必需  | 数据类型 | 字段描述   | 取值范围 |
-| ---- | ----- | ---- | ---- | ---- |
-| code| true | int | 状态码 |      |
-| message| false | string | 错误描述（如有） |      |
-| data| true | object |  |      |
-|   {currency | true | string | 币种 |      |
-|    address| true | string | 充币地址 |      |
-|    addressTag| true | string | 充币地址标签 |      |
-|    chain }| true | string | 链名称 |      |
+| 字段名称   | 是否必需 | 数据类型 | 字段描述         | 取值范围 |
+| ---------- | -------- | -------- | ---------------- | -------- |
+| code       | true     | int      | 状态码           |          |
+| message    | false    | string   | 错误描述（如有） |          |
+| data       | true     | object   |                  |          |
+| {currency  | true     | string   | 币种             |          |
+| address    | true     | string   | 充币地址         |          |
+| addressTag | true     | string   | 充币地址标签     |          |
+| chain }    | true     | string   | 链名称           |          |
 
 ### 状态码
 
-| 状态码 | 错误信息  | 错误场景描述 |
-| ---- | ----- | ---- |
-| 200| success | 请求成功 |
-| 500| error | 系统错误 |
-| 1002| unauthorized | 未授权 |
-| 1003| invalid signature | 验签失败 |
-| 2002| invalid field value in "field name" | 非法字段取值 |
-| 2003| missing mandatory field "field name" | 强制字段缺失 |
+| 状态码 | 错误信息                             | 错误场景描述 |
+| ------ | ------------------------------------ | ------------ |
+| 200    | success                              | 请求成功     |
+| 500    | error                                | 系统错误     |
+| 1002   | unauthorized                         | 未授权       |
+| 1003   | invalid signature                    | 验签失败     |
+| 2002   | invalid field value in "field name"  | 非法字段取值 |
+| 2003   | missing mandatory field "field name" | 强制字段缺失 |
 
 ## 提币额度查询
 
@@ -2703,9 +2704,9 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
 
 ### 请求参数
 
-| 字段名称       | 是否必需 | 类型     | 字段描述     |取值范围 |
-| ---------- | ---- | ------ | ------ | ---- |
-| currency | true | string | 币种   | btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`) |
+| 字段名称 | 是否必需 | 类型   | 字段描述 | 取值范围                                                     |
+| -------- | -------- | ------ | -------- | ------------------------------------------------------------ |
+| currency | true     | string | 币种     | btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`) |
 
 > Response:
 
@@ -2733,31 +2734,31 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
 
 ### 响应数据
 
-| 字段名称 | 是否必需  | 数据类型 | 字段描述   | 取值范围 |
-| ---- | ----- | ---- | ---- | ---- |
-| code| true | int | 状态码 |      |
-| message| false | string | 错误描述（如有） |      |
-| data| true | object |  |      |
-|  currency | true | string | 币种 |      |
-|    chains| true | object |  |      |
-|      { chain | true | string | 链名称 |      |
-|        maxWithdrawAmt | true | string | 单次最大提币金额 |      |
-|        withdrawQuotaPerDay | true | string | 当日提币额度 |      |
-|         remainWithdrawQuotaPerDay | true | string | 当日提币剩余额度 |      |
-|         withdrawQuotaPerYear | true | string | 当年提币额度 |      |
-|         remainWithdrawQuotaPerYear | true | string | 当年提币剩余额度 |      |
-|         withdrawQuotaTotal | true | string | 总提币额度 |      |
-|         remainWithdrawQuotaTotal } | true | string | 总提币剩余额度 |      |
+| 字段名称                   | 是否必需 | 数据类型 | 字段描述         | 取值范围 |
+| -------------------------- | -------- | -------- | ---------------- | -------- |
+| code                       | true     | int      | 状态码           |          |
+| message                    | false    | string   | 错误描述（如有） |          |
+| data                       | true     | object   |                  |          |
+| currency                   | true     | string   | 币种             |          |
+| chains                     | true     | object   |                  |          |
+| { chain                    | true     | string   | 链名称           |          |
+| maxWithdrawAmt             | true     | string   | 单次最大提币金额 |          |
+| withdrawQuotaPerDay        | true     | string   | 当日提币额度     |          |
+| remainWithdrawQuotaPerDay  | true     | string   | 当日提币剩余额度 |          |
+| withdrawQuotaPerYear       | true     | string   | 当年提币额度     |          |
+| remainWithdrawQuotaPerYear | true     | string   | 当年提币剩余额度 |          |
+| withdrawQuotaTotal         | true     | string   | 总提币额度       |          |
+| remainWithdrawQuotaTotal } | true     | string   | 总提币剩余额度   |          |
 
 ### 状态码
 
-| 状态码 | 错误信息  | 错误场景描述 |
-| ---- | ----- | ---- |
-| 200| success | 请求成功 |
-| 500| error | 系统错误 |
-| 1002| unauthorized | 未授权 |
-| 1003| invalid signature | 验签失败 |
-| 2002| invalid field value in "field name" | 非法字段取值 |
+| 状态码 | 错误信息                            | 错误场景描述 |
+| ------ | ----------------------------------- | ------------ |
+| 200    | success                             | 请求成功     |
+| 500    | error                               | 系统错误     |
+| 1002   | unauthorized                        | 未授权       |
+| 1003   | invalid signature                   | 验签失败     |
+| 2002   | invalid field value in "field name" | 非法字段取值 |
 
 ## 提币地址查询
 
@@ -2771,13 +2772,13 @@ API Key 权限：读取<br>
 
 ### 请求参数
 
-| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
-| ----------- | ---- | ---- | ------------ | ---- | ---- |
-| currency | true | string | 币种  |    |  btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`)     |
-| chain | false | string | 链名称  | 如不填，返回所有链的提币地址   |    |
-| note   | false | string | 地址备注 | 如不填，返回所有备注的提币地址 |   |
-| limit  | false | int | 单页最大返回条目数量 | 100  | [1,500]  |
-| fromId  | false | long | 起始编号（提币地址ID，仅在下页查询时有效，详细见备注） |  NA  |   |
+| 参数名称 | 是否必须 | 类型   | 描述                                                   | 默认值                         | 取值范围                                                     |
+| -------- | -------- | ------ | ------------------------------------------------------ | ------------------------------ | ------------------------------------------------------------ |
+| currency | true     | string | 币种                                                   |                                | btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`) |
+| chain    | false    | string | 链名称                                                 | 如不填，返回所有链的提币地址   |                                                              |
+| note     | false    | string | 地址备注                                               | 如不填，返回所有备注的提币地址 |                                                              |
+| limit    | false    | int    | 单页最大返回条目数量                                   | 100                            | [1,500]                                                      |
+| fromId   | false    | long   | 起始编号（提币地址ID，仅在下页查询时有效，详细见备注） | NA                             |                                                              |
 > Response:
 
 ```json
@@ -2796,17 +2797,17 @@ API Key 权限：读取<br>
 ```
 
 ### 响应数据
-| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
-|-----|-----|-----|-----|------|
-| code| true | int | 状态码 |      |
-| message| false | string | 错误描述（如有） |      |
-| data| true | object |  |      |
-| { currency  |  true  |  string  |  币种 | |
-| chain | true | string | 链名称 | |
-| note | true | string | 地址备注 | |
-| addressTag | false | string | 地址标签，如有 | |
-| address } | true | string | 地址 | |
-| nextId  | false | long | 下页起始编号（提币地址ID，仅在查询结果需要分页返回时，包含此字段，详细见备注）  | |
+| 参数名称   | 是否必须 | 数据类型 | 描述                                                         | 取值范围 |
+| ---------- | -------- | -------- | ------------------------------------------------------------ | -------- |
+| code       | true     | int      | 状态码                                                       |          |
+| message    | false    | string   | 错误描述（如有）                                             |          |
+| data       | true     | object   |                                                              |          |
+| { currency | true     | string   | 币种                                                         |          |
+| chain      | true     | string   | 链名称                                                       |          |
+| note       | true     | string   | 地址备注                                                     |          |
+| addressTag | false    | string   | 地址标签，如有                                               |          |
+| address }  | true     | string   | 地址                                                         |          |
+| nextId     | false    | long     | 下页起始编号（提币地址ID，仅在查询结果需要分页返回时，包含此字段，详细见备注） |          |
 
 备注：<br>
 仅当用户请求查询的数据条目超出单页限制（由“limit“字段设定）时，服务器才返回”nextId“字段。用户收到服务器返回的”nextId“后 –<br>
@@ -2842,14 +2843,14 @@ API Key 权限：提币<br>
 
 ### 请求参数
 
-| 参数名称       | 是否必须 | 类型     | 描述     |取值范围 |
-| ---------- | ---- | ------ | ------ | ---- |
-| address | true | string   | 提币地址 |仅支持在官网上相应币种[地址列表](https://www.hbg.com/zh-cn/withdraw_address/) 中的地址  |
-| amount     | true | string | 提币数量   |      |
-| currency | true | string | 资产类型   | btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`) |
-| fee     | true | string | 转账手续费  |     |
-| chain   | false | string | 取值参考`GET /v2/reference/currencies`,例如提USDT至OMNI时须设置此参数为"usdt"，提USDT至TRX时须设置此参数为"trc20usdt"，其他币种提币无须设置此参数  |     |
-| addr-tag|false | string | 虚拟币共享地址tag，适用于xrp，xem，bts，steem，eos，xmr | 格式, "123"类的整数字符串|
+| 参数名称 | 是否必须 | 类型   | 描述                                                         | 取值范围                                                     |
+| -------- | -------- | ------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| address  | true     | string | 提币地址                                                     | 仅支持在官网上相应币种[地址列表](https://www.hbg.com/zh-cn/withdraw_address/) 中的地址 |
+| amount   | true     | string | 提币数量                                                     |                                                              |
+| currency | true     | string | 资产类型                                                     | btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`) |
+| fee      | true     | string | 转账手续费                                                   |                                                              |
+| chain    | false    | string | 取值参考`GET /v2/reference/currencies`,例如提USDT至OMNI时须设置此参数为"usdt"，提USDT至TRX时须设置此参数为"trc20usdt"，其他币种提币无须设置此参数 |                                                              |
+| addr-tag | false    | string | 虚拟币共享地址tag，适用于xrp，xem，bts，steem，eos，xmr      | 格式, "123"类的整数字符串                                    |
 
 > Response:
 
@@ -2862,9 +2863,9 @@ API Key 权限：提币<br>
 ### 响应数据
 
 
-| 参数名称 | 是否必须  | 数据类型 | 描述   | 取值范围 |
-| ---- | ----- | ---- | ---- | ---- |
-| data | false | long | 提币 ID |      |
+| 参数名称 | 是否必须 | 数据类型 | 描述    | 取值范围 |
+| -------- | -------- | -------- | ------- | -------- |
+| data     | false    | long     | 提币 ID |          |
 
 
 ## 取消提币
@@ -2880,9 +2881,9 @@ API Key 权限：提币<br>
 
 ### 请求参数
 
-| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
-| ----------- | ---- | ---- | ------------ | ---- | ---- |
-| withdraw-id | true | long | 提币 ID，填在 path 中 |      |      |
+| 参数名称    | 是否必须 | 类型 | 描述                  | 默认值 | 取值范围 |
+| ----------- | -------- | ---- | --------------------- | ------ | -------- |
+| withdraw-id | true     | long | 提币 ID，填在 path 中 |        |          |
 
 
 > Response:
@@ -2896,9 +2897,9 @@ API Key 权限：提币<br>
 ### 响应数据
 
 
-| 参数名称 | 是否必须  | 数据类型 | 描述    | 取值范围 |
-| ---- | ----- | ---- | ----- | ---- |
-| data | false | long | 提币 ID |      |
+| 参数名称 | 是否必须 | 数据类型 | 描述    | 取值范围 |
+| -------- | -------- | -------- | ------- | -------- |
+| data     | false    | long     | 提币 ID |          |
 
 ## 充提记录
 
@@ -2913,13 +2914,13 @@ API Key 权限：读取<br>
 
 ### 请求参数
 
-| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
-| ----------- | ---- | ---- | ------------ | ---- | ---- |
-| currency | false | string | 币种  |  |btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`) |
-| type | true | string | 充值或提币 |     |  deposit 或 withdraw,子用户仅可用deposit |
-| from   | false | string | 查询起始 ID  |缺省时，默认值direct相关。当direct为‘prev’时，from 为1 ，从旧到新升序返回；当direct为’next‘时，from为最新的一条记录的ID，从新到旧降序返回    |     |
-| size   | false | string | 查询记录大小  | 100   |1-500     |
-| direct  | false | string | 返回记录排序方向  | 缺省时，默认为“prev” （升序）  |“prev” （升序）or “next” （降序）    |
+| 参数名称 | 是否必须 | 类型   | 描述             | 默认值                                                       | 取值范围                                                     |
+| -------- | -------- | ------ | ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| currency | false    | string | 币种             |                                                              | btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`) |
+| type     | true     | string | 充值或提币       |                                                              | deposit 或 withdraw,子用户仅可用deposit                      |
+| from     | false    | string | 查询起始 ID      | 缺省时，默认值direct相关。当direct为‘prev’时，from 为1 ，从旧到新升序返回；当direct为’next‘时，from为最新的一条记录的ID，从新到旧降序返回 |                                                              |
+| size     | false    | string | 查询记录大小     | 100                                                          | 1-500                                                        |
+| direct   | false    | string | 返回记录排序方向 | 缺省时，默认为“prev” （升序）                                | “prev” （升序）or “next” （降序）                            |
 
 > Response:
 
@@ -2947,51 +2948,51 @@ API Key 权限：读取<br>
 
 ### 响应数据
 
-| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
-|-----|-----|-----|-----|------|
-|   id  |  true  |  long  | 充币订单id  | |
-|   type  |  true  |  string  | 类型 | 'deposit', 'withdraw', 子用户仅有deposit |
-|   currency  |  true  |  string  |  币种 | |
-| tx-hash | true |string | 交易哈希 | |
-| chain | true | string | 链名称 | |
-| amount | true | float | 个数 | |
-| address | true | string | 目的地址 | |
-| address-tag | true | string | 地址标签 | |
-| fee | true | float | 手续费 | |
-| state | true | string | 状态 | 状态参见下表 |
-| error-code | false | string | 提币失败错误码，仅type为”withdraw“，且state为”reject“、”wallet-reject“和”failed“时有。 |  |
-| error-msg | false | string | 提币失败错误描述，仅type为”withdraw“，且state为”reject“、”wallet-reject“和”failed“时有。 |  |
-| created-at | true | long | 发起时间 | |
-| updated-at | true | long | 最后更新时间 | |
+| 参数名称    | 是否必须 | 数据类型 | 描述                                                         | 取值范围                                 |
+| ----------- | -------- | -------- | ------------------------------------------------------------ | ---------------------------------------- |
+| id          | true     | long     | 充币订单id                                                   |                                          |
+| type        | true     | string   | 类型                                                         | 'deposit', 'withdraw', 子用户仅有deposit |
+| currency    | true     | string   | 币种                                                         |                                          |
+| tx-hash     | true     | string   | 交易哈希                                                     |                                          |
+| chain       | true     | string   | 链名称                                                       |                                          |
+| amount      | true     | float    | 个数                                                         |                                          |
+| address     | true     | string   | 目的地址                                                     |                                          |
+| address-tag | true     | string   | 地址标签                                                     |                                          |
+| fee         | true     | float    | 手续费                                                       |                                          |
+| state       | true     | string   | 状态                                                         | 状态参见下表                             |
+| error-code  | false    | string   | 提币失败错误码，仅type为”withdraw“，且state为”reject“、”wallet-reject“和”failed“时有。 |                                          |
+| error-msg   | false    | string   | 提币失败错误描述，仅type为”withdraw“，且state为”reject“、”wallet-reject“和”failed“时有。 |                                          |
+| created-at  | true     | long     | 发起时间                                                     |                                          |
+| updated-at  | true     | long     | 最后更新时间                                                 |                                          |
 
 
 - 虚拟币充值状态定义：
 
-|状态|描述|
-|--|--|
-|unknown|状态未知|
-|confirming|确认中|
-|confirmed|已确认|
-|safe|已完成|
-|orphan| 待确认|
+| 状态       | 描述     |
+| ---------- | -------- |
+| unknown    | 状态未知 |
+| confirming | 确认中   |
+| confirmed  | 已确认   |
+| safe       | 已完成   |
+| orphan     | 待确认   |
 
 - 虚拟币提币状态定义：
 
-| 状态 | 描述  |
-|--|--|
-| verifying | 待验证 |
-| failed | 验证失败 |
-| submitted | 已提交 |
-| reexamine | 审核中 |
-| canceled  | 已撤销 |
-| pass    | 审批通过 |
-| reject  | 审批拒绝 |
-| pre-transfer | 处理中 |
-| wallet-transfer | 已汇出 |
-| wallet-reject   | 钱包拒绝 |
-| confirmed      | 区块已确认 |
-| confirm-error  | 区块确认错误 |
-| repealed       | 已撤销 |
+| 状态            | 描述         |
+| --------------- | ------------ |
+| verifying       | 待验证       |
+| failed          | 验证失败     |
+| submitted       | 已提交       |
+| reexamine       | 审核中       |
+| canceled        | 已撤销       |
+| pass            | 审批通过     |
+| reject          | 审批拒绝     |
+| pre-transfer    | 处理中       |
+| wallet-transfer | 已汇出       |
+| wallet-reject   | 钱包拒绝     |
+| confirmed       | 区块已确认   |
+| confirm-error   | 区块确认错误 |
+| repealed        | 已撤销       |
 
 
 # 子用户管理
@@ -3004,14 +3005,98 @@ API Key 权限：读取<br>
 
 以下是子用户相关接口返回的返回码、返回消息以及说明。
 
-| 错误码 | 返回消息 | 说明 |
-| ------ | -------- | ---- |
-| 1002 | "forbidden"|禁止操作，如该账户不允许创建子用户|
-| 1003 | "unauthorized”| 未认证 |
-| 2002 | invalid field value | 参数错误 |
-| 2014 | number of sub account in the request exceeded valid range | 子账户数量达到限制 |
-| 2014 | number of api key in the request exceeded valid range | API Key数量超过限制 |
-| 2016 | invalid request while value specified in sub user states | 冻结/解冻失败 |
+| 错误码 | 返回消息                                                  | 说明                               |
+| ------ | --------------------------------------------------------- | ---------------------------------- |
+| 1002   | "forbidden"                                               | 禁止操作，如该账户不允许创建子用户 |
+| 1003   | "unauthorized”                                            | 未认证                             |
+| 2002   | invalid field value                                       | 参数错误                           |
+| 2014   | number of sub account in the request exceeded valid range | 子账户数量达到限制                 |
+| 2014   | number of api key in the request exceeded valid range     | API Key数量超过限制                |
+| 2016   | invalid request while value specified in sub user states  | 冻结/解冻失败                      |
+
+## 母子用户API key信息查询
+
+此接口用于母用户查询自身的API key信息，以及母用户查询子用户的API key信息
+
+API Key 权限：读取
+
+### HTTP 请求
+
+- GET `/v2/user/api-key`
+
+### 请求参数
+| 参数名称  | 是否必须 | 类型   | 描述                                                        | 默认值 | 取值范围 |
+| --------- | -------- | ------ | ----------------------------------------------------------- | ------ | -------- |
+| uid       | true     | long   | 母用户UID，子用户UID                                        | NA     |          |
+| accessKey | false    | string | API key的access key，若缺省，则返回UID对应用户的所有API key | NA     |          |
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "message": "success",
+    "data": [
+        {
+            "accessKey": "4ba5cdf2-4a92c5da-718ba144-dbuqg6hkte",
+            "status": "normal",
+            "note": "62924133",
+            "permission": "readOnly,trade",
+            "ipAddresses": "1.1.1.1,1.1.1.2",
+            "validDays": -1,
+            "createTime": 1591348751000,
+            "updateTime": 1591348751000
+        }
+    ]
+}
+```
+
+### 响应数据
+| 参数名称      | 是否必须 | 数据类型 | 描述                    | 取值范围                      |
+| ------------- | -------- | -------- | ----------------------- | ----------------------------- |
+| code          | true     | int      | 状态码                  |                               |
+| message       | false    | string   | 错误描述（如有）        |                               |
+| data          | true     | object   |                         |                               |
+| [{ accessKey  | true     | string   | access key              |                               |
+| note          | true     | string   | API key备注             |                               |
+| permission    | true     | string   | API key权限             |                               |
+| ipAddresses   | false    | string   | API key绑定的IP地址     |                               |
+| validDays     | true     | int      | API key剩余有效天数     | 若为-1，则表示永久有效        |
+| status        | true     | string   | API key当前状态         | normal(正常)，expired(已过期) |
+| createTime    | true     | long     | API key创建时间         |                               |
+| updateTime }] | true     | long     | API key最近一次修改时间 |                               |
+
+## 母子用户获取用户UID
+
+此接口用于母子用户查询本用户UID
+
+API Key 权限：读取
+
+### HTTP 请求
+
+- GET `/v2/user/uid`
+
+### 请求参数
+无
+
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": 63628520
+}
+```
+
+### 响应数据
+| 参数名称      | 是否必须 | 数据类型 | 描述   | 取值范围          |
+| ------------- | -------- | -------- | ------------ | ------------- |
+| code          | true     | int      | 状态码                  |        |
+| message       | false    | string   | 错误描述（如有）        |         |
+| data          | true     | long    |        用户UID       |     |
+
+
 
 
 ## 子用户创建
@@ -3043,11 +3128,11 @@ API Key 权限：交易
 ```
 
 ### 请求参数
-| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
-| ----------- | ---- | ---- | ------------ | ---- | ---- |
-| userList | true | object |  |  |    |
-| [{ userName | true | string | 子用户名，子用户身份的重要标识，要求火币平台内唯一 | NA  | 6至20位字母和数字的组合，可为纯字母；若字母和数字的组合，需以字母开头；字母不区分大小写； |
-| note }] | false | string | 子用户备注，无唯一性要求 | NA  |  最多20位字符，字符类型不限    |
+| 参数名称    | 是否必须 | 类型   | 描述                                               | 默认值 | 取值范围                                                     |
+| ----------- | -------- | ------ | -------------------------------------------------- | ------ | ------------------------------------------------------------ |
+| userList    | true     | object |                                                    |        |                                                              |
+| [{ userName | true     | string | 子用户名，子用户身份的重要标识，要求火币平台内唯一 | NA     | 6至20位字母和数字的组合，可为纯字母；若字母和数字的组合，需以字母开头；字母不区分大小写； |
+| note }]     | false    | string | 子用户备注，无唯一性要求                           | NA     | 最多20位字符，字符类型不限                                   |
 
 > Response:
 
@@ -3071,16 +3156,16 @@ API Key 权限：交易
 ```
 
 ### 响应数据
-| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
-|-----|-----|-----|-----|------|
-| code| true | int | 状态码 |      |
-| message| false | string | 错误描述（如有） |      |
-| data| true | object |  |      |
-| [{ userName | true | string | 子用户名 | |
-| note | false | string | 子用户备注（仅对有备注的子用户有效） | |
-| uid |  false  |  long  |  子用户UID（仅对创建成功的子用户有效）  | |
-| errCode |  false  |  string  |  创建失败错误码（仅对创建失败的子用户有效） | |
-| errMessage }] |  false  |  string  |  创建失败错误原因（仅对创建失败的子用户有效） | |
+| 参数名称      | 是否必须 | 数据类型 | 描述                                         | 取值范围 |
+| ------------- | -------- | -------- | -------------------------------------------- | -------- |
+| code          | true     | int      | 状态码                                       |          |
+| message       | false    | string   | 错误描述（如有）                             |          |
+| data          | true     | object   |                                              |          |
+| [{ userName   | true     | string   | 子用户名                                     |          |
+| note          | false    | string   | 子用户备注（仅对有备注的子用户有效）         |          |
+| uid           | false    | long     | 子用户UID（仅对创建成功的子用户有效）        |          |
+| errCode       | false    | string   | 创建失败错误码（仅对创建失败的子用户有效）   |          |
+| errMessage }] | false    | string   | 创建失败错误原因（仅对创建失败的子用户有效） |          |
 
 ## 获取子用户列表
 
@@ -3094,9 +3179,9 @@ API Key 权限：读取
 
 ### 请求参数
 
-| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
-| ----------- | ---- | ---- | ------------ | ---- | ---- |
-| fromId | FALSE | long | 查询起始编号（仅对翻页查询有效） |  |    |
+| 参数名称 | 是否必须 | 类型 | 描述                             | 默认值 | 取值范围 |
+| -------- | -------- | ---- | -------------------------------- | ------ | -------- |
+| fromId   | FALSE    | long | 查询起始编号（仅对翻页查询有效） |        |          |
 
 > Response:
 
@@ -3118,14 +3203,14 @@ API Key 权限：读取
 
 ### 响应数据
 
-| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
-|-----|-----|-----|-----|------|
-| code| TRUE | int | 状态码 |      |
-| message| FALSE | string | 错误描述（如有） |      |
-| data| TRUE | object |  |      |
-| { uid |  TRUE  |  long  |  子用户UID  | |
-| userState } |  TRUE  |  string  |  子用户状态 |lock, normal |
-| nextId |  FALSE  |  long  |  下页查询起始编号（仅在存在下页数据时返回） | |
+| 参数名称    | 是否必须 | 数据类型 | 描述                                       | 取值范围     |
+| ----------- | -------- | -------- | ------------------------------------------ | ------------ |
+| code        | TRUE     | int      | 状态码                                     |              |
+| message     | FALSE    | string   | 错误描述（如有）                           |              |
+| data        | TRUE     | object   |                                            |              |
+| { uid       | TRUE     | long     | 子用户UID                                  |              |
+| userState } | TRUE     | string   | 子用户状态                                 | lock, normal |
+| nextId      | FALSE    | long     | 下页查询起始编号（仅在存在下页数据时返回） |              |
 
 ##冻结/解冻子用户
 
@@ -3140,10 +3225,10 @@ API Key 权限：交易<br>
 
 ### 请求参数
 
-|参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
-|-----------|------------|-----------|------------|----------|--|
-|subUid|true|	long|	-|	子用户的UID|-|
-|action|true|	string|	-|	操作类型|lock(冻结)，unlock(解冻)|
+| 参数   | 是否必填 | 数据类型 | 长度 | 说明        | 取值范围                 |
+| ------ | -------- | -------- | ---- | ----------- | ------------------------ |
+| subUid | true     | long     | -    | 子用户的UID | -                        |
+| action | true     | string   | -    | 操作类型    | lock(冻结)，unlock(解冻) |
 
 > Response:
 
@@ -3158,10 +3243,10 @@ API Key 权限：交易<br>
 
 ### 响应数据
 
-|参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
-|-----------|------------|-----------|------------|----------|--|
-|subUid|	true	|long|	-	|子用户UID|-|
-|userState| true	|string|	-	|子用户状态|lock(已冻结)，normal(正常)|
+| 参数      | 是否必填 | 数据类型 | 长度 | 说明       | 取值范围                   |
+| --------- | -------- | -------- | ---- | ---------- | -------------------------- |
+| subUid    | true     | long     | -    | 子用户UID  | -                          |
+| userState | true     | string   | -    | 子用户状态 | lock(已冻结)，normal(正常) |
 
 
 ## 获取特定子用户的用户状态
@@ -3176,9 +3261,9 @@ API Key 权限：读取
 
 ### 请求参数
 
-| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
-| ----------- | ---- | ---- | ------------ | ---- | ---- |
-| subUid | TRUE | long | 子用户UID |  |    |
+| 参数名称 | 是否必须 | 类型 | 描述      | 默认值 | 取值范围 |
+| -------- | -------- | ---- | --------- | ------ | -------- |
+| subUid   | TRUE     | long | 子用户UID |        |          |
 
 > Response:
 
@@ -3194,13 +3279,13 @@ API Key 权限：读取
 
 ### 响应数据
 
-| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
-|-----|-----|-----|-----|------|
-| code| TRUE | int | 状态码 |      |
-| message| FALSE | string | 错误描述（如有） |      |
-| data| TRUE | object |  |      |
-| { uid |  TRUE  |  long  |  子用户UID  | |
-| userState } |  TRUE  |  string  |  子用户状态 |lock, normal |
+| 参数名称    | 是否必须 | 数据类型 | 描述             | 取值范围     |
+| ----------- | -------- | -------- | ---------------- | ------------ |
+| code        | TRUE     | int      | 状态码           |              |
+| message     | FALSE    | string   | 错误描述（如有） |              |
+| data        | TRUE     | object   |                  |              |
+| { uid       | TRUE     | long     | 子用户UID        |              |
+| userState } | TRUE     | string   | 子用户状态       | lock, normal |
 
 ##设置子用户交易权限
 
@@ -3215,11 +3300,11 @@ API Key 权限：交易
 
 ### 请求参数
 
-|参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
-|-----------|------------|-----------|------------|----------|--|
-|subUids|true| string |	-|	子用户UID列表（支持多填，最多50个，逗号分隔）|-|
-|accountType|true|	string|	-|	账户类型|isolated-margin,cross-margin|
-|activation|true|	string|	-|	账户激活状态	|activated,deactivated|
+| 参数        | 是否必填 | 数据类型 | 长度 | 说明                                          | 取值范围                     |
+| ----------- | -------- | -------- | ---- | --------------------------------------------- | ---------------------------- |
+| subUids     | true     | string   | -    | 子用户UID列表（支持多填，最多50个，逗号分隔） | -                            |
+| accountType | true     | string   | -    | 账户类型                                      | isolated-margin,cross-margin |
+| activation  | true     | string   | -    | 账户激活状态                                  | activated,deactivated        |
 
 > Response:
 
@@ -3238,16 +3323,16 @@ API Key 权限：交易
 
 ### 响应数据
 
-|参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
-|-----------|------------|-----------|------------|----------|--|
-| code| true | int |  -	|状态码 |      |
-| message| false | string |  -	|错误描述（如有） |      |
-| data| true | object |  |      ||
-|{subUid|	true	|string|	-	|子用户UID|-|
-|accountType|true|	string|	-|	账户类型|isolated-margin,cross-margin|
-|activation|true|	string|	-|	账户激活状态	|activated,deactivated|
-|errCode|false|	int|	-|	请求被拒错误码（仅在设置该subUid市场准入权限错误时返回）	||
-|errMessage}|false|	string|	-|	请求被拒错误消息（仅在设置该subUid市场准入权限错误时返回）		||
+| 参数        | 是否必填 | 数据类型 | 长度 | 说明                                                       | 取值范围                     |
+| ----------- | -------- | -------- | ---- | ---------------------------------------------------------- | ---------------------------- |
+| code        | true     | int      | -    | 状态码                                                     |                              |
+| message     | false    | string   | -    | 错误描述（如有）                                           |                              |
+| data        | true     | object   |      |                                                            |                              |
+| {subUid     | true     | string   | -    | 子用户UID                                                  | -                            |
+| accountType | true     | string   | -    | 账户类型                                                   | isolated-margin,cross-margin |
+| activation  | true     | string   | -    | 账户激活状态                                               | activated,deactivated        |
+| errCode     | false    | int      | -    | 请求被拒错误码（仅在设置该subUid市场准入权限错误时返回）   |                              |
+| errMessage} | false    | string   | -    | 请求被拒错误消息（仅在设置该subUid市场准入权限错误时返回） |                              |
 
 ## 设置子用户资产转出权限
 
@@ -3264,11 +3349,11 @@ API Key 权限：交易
 
 ### 请求参数
 
-|参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
-|-----------|------------|-----------|------------|----------|--|
-|subUids|true| string |	-|	子用户UID列表（支持多填，最多50个，逗号分隔）|-|
-|accountType|false|	string|	-|	账户类型（如不填，缺省值spot）|spot|
-|transferrable|true|	bool|	-|	可划转权限	|true,false|
+| 参数          | 是否必填 | 数据类型 | 长度 | 说明                                          | 取值范围   |
+| ------------- | -------- | -------- | ---- | --------------------------------------------- | ---------- |
+| subUids       | true     | string   | -    | 子用户UID列表（支持多填，最多50个，逗号分隔） | -          |
+| accountType   | false    | string   | -    | 账户类型（如不填，缺省值spot）                | spot       |
+| transferrable | true     | bool     | -    | 可划转权限                                    | true,false |
 
 > Response:
 
@@ -3287,16 +3372,16 @@ API Key 权限：交易
 
 ### 响应数据
 
-|参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
-|-----------|------------|-----------|------------|----------|--|
-| code| true | int |  -	|状态码 |      |
-| message| false | string |  -	|错误描述（如有） |      |
-| data| true | object |  |      |
-|{subUid|	true	|long|	-	|子用户UID|-|
-|accountType|true|	string|	-|	账户类型|spot|
-|transferrable|true|	bool|	-|	可划转权限	|true,false|
-|errCode|false|	int|	-|	请求被拒错误码（仅在设置该subUid市场准入权限错误时返回）	||
-|errMessage}|false|	string|	-|	请求被拒错误消息（仅在设置该subUid市场准入权限错误时返回）		||
+| 参数          | 是否必填 | 数据类型 | 长度 | 说明                                                       | 取值范围   |
+| ------------- | -------- | -------- | ---- | ---------------------------------------------------------- | ---------- |
+| code          | true     | int      | -    | 状态码                                                     |            |
+| message       | false    | string   | -    | 错误描述（如有）                                           |            |
+| data          | true     | object   |      |                                                            |            |
+| {subUid       | true     | long     | -    | 子用户UID                                                  | -          |
+| accountType   | true     | string   | -    | 账户类型                                                   | spot       |
+| transferrable | true     | bool     | -    | 可划转权限                                                 | true,false |
+| errCode       | false    | int      | -    | 请求被拒错误码（仅在设置该subUid市场准入权限错误时返回）   |            |
+| errMessage}   | false    | string   | -    | 请求被拒错误消息（仅在设置该subUid市场准入权限错误时返回） |            |
 
 ## 获取特定子用户的账户列表
 
@@ -3310,9 +3395,9 @@ API Key 权限：读取
 
 ### 请求参数
 
-| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
-| ----------- | ---- | ---- | ------------ | ---- | ---- |
-| subUid | TRUE | long | 子用户UID |  |    |
+| 参数名称 | 是否必须 | 类型 | 描述      | 默认值 | 取值范围 |
+| -------- | -------- | ---- | --------- | ------ | -------- |
+| subUid   | TRUE     | long | 子用户UID |        |          |
 
 > Response:
 
@@ -3348,20 +3433,20 @@ API Key 权限：读取
 
 ### 响应数据
 
-| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
-|-----|-----|-----|-----|------|
-| code| TRUE | int | 状态码 |      |
-| message| FALSE | string | 错误描述（如有） |      |
-| data| TRUE | object |  |      |
-| { uid |  TRUE  |  long  |  子用户UID  | |
-| list |  TRUE  |  object  |    | |
-| { accountType |  TRUE  |  string  |  账户类型 |spot, isolated-margin, cross-margin, futures,swap |
-| activation |  TRUE  |  string  |  账户激活状态 |activated, deactivated |
-| transferrable |  FALSE  |  bool  |  可划转权限（仅对accountType=spot有效） |true, false |
-| accountIds |  FALSE  |  object  |    | |
-| { accountId |  TRUE  |  string  |  账户ID  | |
-| subType |  FALSE  |  string  |  账户子类型（仅对accountType=isolated-margin有效）  | |
-| accountStatus }}}|  TRUE  |  string  |  账户状态  |normal, locked |
+| 参数名称          | 是否必须 | 数据类型 | 描述                                              | 取值范围                                          |
+| ----------------- | -------- | -------- | ------------------------------------------------- | ------------------------------------------------- |
+| code              | TRUE     | int      | 状态码                                            |                                                   |
+| message           | FALSE    | string   | 错误描述（如有）                                  |                                                   |
+| data              | TRUE     | object   |                                                   |                                                   |
+| { uid             | TRUE     | long     | 子用户UID                                         |                                                   |
+| list              | TRUE     | object   |                                                   |                                                   |
+| { accountType     | TRUE     | string   | 账户类型                                          | spot, isolated-margin, cross-margin, futures,swap |
+| activation        | TRUE     | string   | 账户激活状态                                      | activated, deactivated                            |
+| transferrable     | FALSE    | bool     | 可划转权限（仅对accountType=spot有效）            | true, false                                       |
+| accountIds        | FALSE    | object   |                                                   |                                                   |
+| { accountId       | TRUE     | string   | 账户ID                                            |                                                   |
+| subType           | FALSE    | string   | 账户子类型（仅对accountType=isolated-margin有效） |                                                   |
+| accountStatus }}} | TRUE     | string   | 账户状态                                          | normal, locked                                    |
 
 ## 子用户API key创建
 
@@ -3374,13 +3459,13 @@ API Key 权限：交易
 - POST `/v2/sub-user/api-key-generation`
 
 ### 请求参数
-| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
-| ----------- | ---- | ---- | ------------ | ---- | ---- |
-| otpToken | true | string | 母用户的谷歌验证码，母用户须在官网页面启用GA二次验证 | NA  |   6个字符，纯数字   |
-| subUid | true | long | 子用户UID | NA  |      |
-| note | ture | string | API key备注 | NA  | 最多255位字符，字符类型不限     |
-| permission  | true | string | API key权限 | NA  | 取值范围：readOnly、trade，其中readOnly必传，trade选传，两个间用半角逗号分隔。  |
-| ipAddresses  | false | string | API key绑定的IPv4/IPv6主机地址或IPv4网络地址 | NA  | 最多绑定20个，多个IP地址用半角逗号分隔，如：192.168.1.1,202.106.96.0/24。如果未绑定任何IP地址，API key有效期仅为90天。     |
+| 参数名称    | 是否必须 | 类型   | 描述                                                 | 默认值 | 取值范围                                                     |
+| ----------- | -------- | ------ | ---------------------------------------------------- | ------ | ------------------------------------------------------------ |
+| otpToken    | true     | string | 母用户的谷歌验证码，母用户须在官网页面启用GA二次验证 | NA     | 6个字符，纯数字                                              |
+| subUid      | true     | long   | 子用户UID                                            | NA     |                                                              |
+| note        | ture     | string | API key备注                                          | NA     | 最多255位字符，字符类型不限                                  |
+| permission  | true     | string | API key权限                                          | NA     | 取值范围：readOnly、trade，其中readOnly必传，trade选传，两个间用半角逗号分隔。 |
+| ipAddresses | false    | string | API key绑定的IPv4/IPv6主机地址或IPv4网络地址         | NA     | 最多绑定20个，多个IP地址用半角逗号分隔，如：192.168.1.1,202.106.96.0/24。如果未绑定任何IP地址，API key有效期仅为90天。 |
 
 > Response:
 
@@ -3398,68 +3483,17 @@ API Key 权限：交易
 ```
 
 ### 响应数据
-| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
-|-----|-----|-----|-----|------|
-| code| true | int | 状态码 |      |
-| message| false | string | 错误描述（如有） |      |
-| data| true | object |  |      |
-| { note | true | string | API key备注 | |
-| accessKey | true | string | access key | |
-| secretKey  | true | string | secret key  | |
-| permission | true | string | API key权限  | |
-| ipAddresses } | false | string | API key绑定的IP地址  | |
+| 参数名称      | 是否必须 | 数据类型 | 描述                | 取值范围 |
+| ------------- | -------- | -------- | ------------------- | -------- |
+| code          | true     | int      | 状态码              |          |
+| message       | false    | string   | 错误描述（如有）    |          |
+| data          | true     | object   |                     |          |
+| { note        | true     | string   | API key备注         |          |
+| accessKey     | true     | string   | access key          |          |
+| secretKey     | true     | string   | secret key          |          |
+| permission    | true     | string   | API key权限         |          |
+| ipAddresses } | false    | string   | API key绑定的IP地址 |          |
 
-## 母子用户API key信息查询
-
-此接口用于母用户查询自身的API key信息，以及母用户查询子用户的API key信息
-
-API Key 权限：读取
-
-### HTTP 请求
-
-- GET `/v2/user/api-key`
-
-### 请求参数
-| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
-| ----------- | ---- | ---- | ------------ | ---- | ---- |
-| uid | true | long |母用户UID，子用户UID | NA  |      |
-| accessKey | false | string | API key的access key，若缺省，则返回UID对应用户的所有API key | NA  |      |
-
-> Response:
-
-```json
-{
-    "code": 200,
-    "message": "success",
-    "data": [
-        {
-            "accessKey": "4ba5cdf2-4a92c5da-718ba144-dbuqg6hkte",
-            "status": "normal",
-            "note": "62924133",
-            "permission": "readOnly,trade",
-            "ipAddresses": "1.1.1.1,1.1.1.2",
-            "validDays": -1,
-            "createTime": 1591348751000,
-            "updateTime": 1591348751000
-        }
-    ]
-}
-```
-
-### 响应数据
-| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
-|-----|-----|-----|-----|------|
-| code| true | int | 状态码 |      |
-| message| false | string | 错误描述（如有） |      |
-| data| true | object |  |      |
-|[{ accessKey | true | string | access key | |
-|  note | true | string | API key备注 | |
-| permission | true | string | API key权限  | |
-| ipAddresses  | false  | string | API key绑定的IP地址  | |
-| validDays | true | int |API key剩余有效天数  |若为-1，则表示永久有效 |
-| status | true | string |API key当前状态  |normal(正常)，expired(已过期)|
-| createTime | true | long | API key创建时间 | |
-| updateTime }] | true | long | API key最近一次修改时间 | |
 
 ## 修改子用户API key
 
@@ -3472,13 +3506,13 @@ API Key 权限：交易
 - POST `/v2/sub-user/api-key-modification`
 
 ### 请求参数
-| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
-| ----------- | ---- | ---- | ------------ | ---- | ---- |
-| subUid | true | long | 子用户的uid | NA  |      |
-| accessKey | true | string | 子用户API key的access key | NA  |      |
-| note | false | string | API key备注 | NA  | 最多255位字符     |
-| permission  | false | string | API key权限 | NA  |  取值范围：readOnly、trade，其中readOnly必传，trade选传，两个间用半角逗号分隔。   |
-| ipAddresses  | false | string | API key绑定的IP地址 | NA  | IPv4/IPv6主机地址或IPv4网络地址，最多绑定20个，多个IP地址用半角逗号分隔，如：192.168.1.1,202.106.96.0/24。如果未绑定任何IP地址，API key有效期仅为90天。   |
+| 参数名称    | 是否必须 | 类型   | 描述                      | 默认值 | 取值范围                                                     |
+| ----------- | -------- | ------ | ------------------------- | ------ | ------------------------------------------------------------ |
+| subUid      | true     | long   | 子用户的uid               | NA     |                                                              |
+| accessKey   | true     | string | 子用户API key的access key | NA     |                                                              |
+| note        | false    | string | API key备注               | NA     | 最多255位字符                                                |
+| permission  | false    | string | API key权限               | NA     | 取值范围：readOnly、trade，其中readOnly必传，trade选传，两个间用半角逗号分隔。 |
+| ipAddresses | false    | string | API key绑定的IP地址       | NA     | IPv4/IPv6主机地址或IPv4网络地址，最多绑定20个，多个IP地址用半角逗号分隔，如：192.168.1.1,202.106.96.0/24。如果未绑定任何IP地址，API key有效期仅为90天。 |
 
 > Response:
 
@@ -3494,14 +3528,15 @@ API Key 权限：交易
 ```
 
 ### 响应数据
-| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
-|-----|-----|-----|-----|------|
-| code| true | int | 状态码 |      |
-| message| false | string | 错误描述（如有） |      |
-| data| true | object |  |      |
-| { note | false | string | API key备注 | |
-| permission | false | string | API key权限  | |
-| ipAddresses } | false | string | API key绑定的IP地址  | |
+| 参数名称      | 是否必须 | 数据类型 | 描述                | 取值范围 |
+| ------------- | -------- | -------- | ------------------- | -------- |
+| code          | true     | int      | 状态码              |          |
+| message       | false    | string   | 错误描述（如有）    |          |
+| data          | true     | object   |                     |          |
+| { note        | false    | string   | API key备注         |          |
+| permission    | false    | string   | API key权限         |          |
+| ipAddresses } | false    | string   | API key绑定的IP地址 |          |
+
 
 ## 删除子用户API key
 
@@ -3514,10 +3549,10 @@ API Key 权限：交易
 - POST `/v2/sub-user/api-key-deletion`
 
 ### 请求参数
-| 参数名称        | 是否必须 | 类型   | 描述 | 默认值  | 取值范围 |
-| ----------- | ---- | ---- | ------------ | ---- | ---- |
-| subUid | true | long | 子用户的uid | NA  |      |
-| accessKey | true | string | 子用户API key的access key | NA  |      |
+| 参数名称  | 是否必须 | 类型   | 描述                      | 默认值 | 取值范围 |
+| --------- | -------- | ------ | ------------------------- | ------ | -------- |
+| subUid    | true     | long   | 子用户的uid               | NA     |          |
+| accessKey | true     | string | 子用户API key的access key | NA     |          |
 
 > Response:
 
@@ -3529,10 +3564,10 @@ API Key 权限：交易
 ```
 
 ### 响应数据
-| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
-|-----|-----|-----|-----|------|
-| code| true | int | 状态码 |      |
-| message| false | string | 错误描述（如有） |      |
+| 参数名称 | 是否必须 | 数据类型 | 描述             | 取值范围 |
+| -------- | -------- | -------- | ---------------- | -------- |
+| code     | true     | int      | 状态码           |          |
+| message  | false    | string   | 错误描述（如有） |          |
 
 
 ## 资产划转（母子用户之间）
@@ -3548,12 +3583,12 @@ API Key 权限：交易<br>
 
 ### 请求参数
 
-参数|是否必填 | 数据类型 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|
-sub-uid	|true|	long|子用户uid	|-|
-currency|true|	string|币种，即btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`)	|-|
-amount|true|	decimal|划转金额|-|	
-type|true|string|划转类型| master-transfer-in（子用户划转给母用户虚拟币）/ master-transfer-out （母用户划转给子用户虚拟币）/master-point-transfer-in （子用户划转给母用户点卡）/master-point-transfer-out（母用户划转给子用户点卡） |
+| 参数     | 是否必填 | 数据类型 | 说明                                                         | 取值范围                                                     |      |
+| -------- | -------- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
+| sub-uid  | true     | long     | 子用户uid                                                    | -                                                            |      |
+| currency | true     | string   | 币种，即btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`) | -                                                            |      |
+| amount   | true     | decimal  | 划转金额                                                     | -                                                            |      |
+| type     | true     | string   | 划转类型                                                     | master-transfer-in（子用户划转给母用户虚拟币）/ master-transfer-out （母用户划转给子用户虚拟币）/master-point-transfer-in （子用户划转给母用户点卡）/master-point-transfer-out（母用户划转给子用户点卡） |      |
 
 > Response:
 
@@ -3566,17 +3601,17 @@ type|true|string|划转类型| master-transfer-in（子用户划转给母用户�
 
 ### 响应数据
 
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
-data | true| int | - | 划转订单id|   - |
-status | true|   | - |  状态| "OK" or "Error"    |
+| 参数   | 是否必填 | 数据类型 | 长度 | 说明       | 取值范围        |      |
+| ------ | -------- | -------- | ---- | ---------- | --------------- | ---- |
+| data   | true     | int      | -    | 划转订单id | -               |      |
+| status | true     |          | -    | 状态       | "OK" or "Error" |      |
 
 ### 错误码
 
-error_code|	说明|	类型|
-------------------|------------|-----------|
-account-transfer-balance-insufficient-error|	账户余额不足|	string|
-base-operation-forbidden|	禁止操作（母子用户关系错误时报）	|string|
+| error_code                                  | 说明                             | 类型   |      |
+| ------------------------------------------- | -------------------------------- | ------ | ---- |
+| account-transfer-balance-insufficient-error | 账户余额不足                     | string |      |
+| base-operation-forbidden                    | 禁止操作（母子用户关系错误时报） | string |      |
 
 ## 子用户充币地址查询
 
@@ -3590,10 +3625,10 @@ API Key 权限：读取
 
 ### 请求参数
 
-|字段名称|是否必需|类型|描述|默认值|取值范围|
-|----------|----|------|------ | ----|----|
-|subUid|true|long|子用户UID|NA  |限填1个|
-|currency|true|string|币种|NA |btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`)|
+| 字段名称 | 是否必需 | 类型   | 描述      | 默认值 | 取值范围                                                     |
+| -------- | -------- | ------ | --------- | ------ | ------------------------------------------------------------ |
+| subUid   | true     | long   | 子用户UID | NA     | 限填1个                                                      |
+| currency | true     | string | 币种      | NA     | btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`) |
 
 > Response:
 
@@ -3613,15 +3648,15 @@ API Key 权限：读取
 
 ### 响应数据
 
-| 字段名称 | 是否必需  | 数据类型 | 字段描述   | 取值范围 |
-| ---- | ----- | ---- | ---- | ---- |
-| code| true | int | 状态码 |      |
-| message| false | string | 错误描述（如有） |      |
-| data| true | object |  |      |
-|  { currency | true | string | 币种 |      |
-|    address| true | string | 充币地址 |      |
-|    addressTag| true | string | 充币地址标签 |      |
-|    chain }| true | string | 链名称 |      |
+| 字段名称   | 是否必需 | 数据类型 | 字段描述         | 取值范围 |
+| ---------- | -------- | -------- | ---------------- | -------- |
+| code       | true     | int      | 状态码           |          |
+| message    | false    | string   | 错误描述（如有） |          |
+| data       | true     | object   |                  |          |
+| { currency | true     | string   | 币种             |          |
+| address    | true     | string   | 充币地址         |          |
+| addressTag | true     | string   | 充币地址标签     |          |
+| chain }    | true     | string   | 链名称           |          |
 
 
 ## 子用户充币记录查询
@@ -3636,15 +3671,15 @@ API Key 权限：读取
 
 ### 请求参数
 
-|参数名称|数据类型|是否必需|描述|
-|-------|-------|-------|-------|
-|subUid|long|TRUE|子用户UID，限填1个|
-|currency|string|FALSE|币种，缺省值所有币种|
-|startTime|long|FALSE|远点时间，以createTime进行检索，取值范围及缺省值见注1|
-|endTime|long|FALSE|近点时间，以createTime进行检索，取值范围及缺省值见注2|
-|sort|string|FALSE|检索方向，asc 由远及近, desc 由近及远，缺省值desc|
-|limit|int|FALSE|单页最大返回条目数量 [1,500] （缺省值100）|
-|fromId|long|FALSE|起始充币订单ID，仅在下页查询时有效见注3|
+| 参数名称  | 数据类型 | 是否必需 | 描述                                                  |
+| --------- | -------- | -------- | ----------------------------------------------------- |
+| subUid    | long     | TRUE     | 子用户UID，限填1个                                    |
+| currency  | string   | FALSE    | 币种，缺省值所有币种                                  |
+| startTime | long     | FALSE    | 远点时间，以createTime进行检索，取值范围及缺省值见注1 |
+| endTime   | long     | FALSE    | 近点时间，以createTime进行检索，取值范围及缺省值见注2 |
+| sort      | string   | FALSE    | 检索方向，asc 由远及近, desc 由近及远，缺省值desc     |
+| limit     | int      | FALSE    | 单页最大返回条目数量 [1,500] （缺省值100）            |
+| fromId    | long     | FALSE    | 起始充币订单ID，仅在下页查询时有效见注3               |
 
 注1：<br>
 startTime取值范围：[(endTime - 30天), endTime]<br>
@@ -3685,32 +3720,32 @@ endTime缺省值：当前时间<br>
 
 ### 响应数据
 
-| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
-|-----|-----|-----|-----|------|
-| code| true | int | 状态码 |      |
-| message| false | string | 错误描述（如有） |      |
-| data| true | object |  |      |
-| {  id  |  true  |  long  | 充币订单id  | |
-|  currency  |  true  |  string  |  币种 | |
-| txHash | true |string | 交易哈希 | |
-| chain | true | string | 链名称 | |
-| amount | true | bigdecimal | 个数 | |
-| address | true | string | 地址 | |
-| addressTag | true | string | 地址标签 | |
-| state | true | string | 状态 | 状态参见下表 |
-| createTime | true | long | 发起时间 | |
-| updateTime } | true | long | 最后更新时间 | |
-| nextId  | false | long | 下页起始编号（充币订单ID，仅在查询结果需要分页返回时，包含此字段） | |
+| 参数名称     | 是否必须 | 数据类型   | 描述                                                         | 取值范围     |
+| ------------ | -------- | ---------- | ------------------------------------------------------------ | ------------ |
+| code         | true     | int        | 状态码                                                       |              |
+| message      | false    | string     | 错误描述（如有）                                             |              |
+| data         | true     | object     |                                                              |              |
+| {  id        | true     | long       | 充币订单id                                                   |              |
+| currency     | true     | string     | 币种                                                         |              |
+| txHash       | true     | string     | 交易哈希                                                     |              |
+| chain        | true     | string     | 链名称                                                       |              |
+| amount       | true     | bigdecimal | 个数                                                         |              |
+| address      | true     | string     | 地址                                                         |              |
+| addressTag   | true     | string     | 地址标签                                                     |              |
+| state        | true     | string     | 状态                                                         | 状态参见下表 |
+| createTime   | true     | long       | 发起时间                                                     |              |
+| updateTime } | true     | long       | 最后更新时间                                                 |              |
+| nextId       | false    | long       | 下页起始编号（充币订单ID，仅在查询结果需要分页返回时，包含此字段） |              |
 
 - 虚拟币充值状态定义：
 
-|状态|描述|
-|--|--|
-|unknown|状态未知|
-|confirming|确认中|
-|confirmed|已确认|
-|safe|已完成|
-|orphan| 待确认|
+| 状态       | 描述     |
+| ---------- | -------- |
+| unknown    | 状态未知 |
+| confirming | 确认中   |
+| confirmed  | 已确认   |
+| safe       | 已完成   |
+| orphan     | 待确认   |
 
 ## 子用户余额（汇总）
 
@@ -3755,18 +3790,18 @@ API Key 权限：读取<br>
 
 ### 响应数据
 
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
-status | true|   | - |  状态| "OK" or "Error"    |
-data | true| list | - | |   - |
+| 参数   | 是否必填 | 数据类型 | 长度 | 说明 | 取值范围        |      |
+| ------ | -------- | -------- | ---- | ---- | --------------- | ---- |
+| status | true     |          | -    | 状态 | "OK" or "Error" |      |
+| data   | true     | list     | -    |      | -               |      |
 
 - data 
 
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
-currency|	是|	string|	-|币种|-|	
-type|	是	|string|	-	|账户类型|	spot：现货账户，point：点卡账户, margin:逐仓杠杆账户，super-margin：全仓杠杆账户|
-balance|	是|	string|	-|账户余额（可用余额和冻结余额的总和）|-|
+| 参数     | 是否必填 | 数据类型 | 长度 | 说明                                 | 取值范围                                                     |      |
+| -------- | -------- | -------- | ---- | ------------------------------------ | ------------------------------------------------------------ | ---- |
+| currency | 是       | string   | -    | 币种                                 | -                                                            |      |
+| type     | 是       | string   | -    | 账户类型                             | spot：现货账户，point：点卡账户, margin:逐仓杠杆账户，super-margin：全仓杠杆账户 |      |
+| balance  | 是       | string   | -    | 账户余额（可用余额和冻结余额的总和） | -                                                            |      |
 
 ## 子用户余额
 
@@ -3781,9 +3816,9 @@ API Key 权限：读取<br>
 
 ### 请求参数
 
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
-sub-uid|true|	long|	-|	子用户的 UID|-|
+| 参数    | 是否必填 | 数据类型 | 长度 | 说明         | 取值范围 |      |
+| ------- | -------- | -------- | ---- | ------------ | -------- | ---- |
+| sub-uid | true     | long     | -    | 子用户的 UID | -        |      |
 
 > Response:
 
@@ -3820,19 +3855,19 @@ sub-uid|true|	long|	-|	子用户的 UID|-|
 ### 响应数据
 
 
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
-id|	-	|long|	-	|子用户 UID|-|	
-type|	-	|string|	-	|账户类型|	spot：现货账户，point：点卡账户, margin:逐仓杠杆账户，super-margin：全仓杠杆账户|
-list|	-	|object|	-	|-|-|
+| 参数 | 是否必填 | 数据类型 | 长度 | 说明       | 取值范围                                                     |      |
+| ---- | -------- | -------- | ---- | ---------- | ------------------------------------------------------------ | ---- |
+| id   | -        | long     | -    | 子用户 UID | -                                                            |      |
+| type | -        | string   | -    | 账户类型   | spot：现货账户，point：点卡账户, margin:逐仓杠杆账户，super-margin：全仓杠杆账户 |      |
+| list | -        | object   | -    | -          | -                                                            |      |
 
 - list
 	
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
-currency|	-	|string|	-	|币种	|-|
-type|	-	|string|	-	|账户类型	|trade：交易账户，frozen：冻结账户|
-balance|-|decimal|-		|账户余额	|-|
+| 参数     | 是否必填 | 数据类型 | 长度 | 说明     | 取值范围                          |      |
+| -------- | -------- | -------- | ---- | -------- | --------------------------------- | ---- |
+| currency | -        | string   | -    | 币种     | -                                 |      |
+| type     | -        | string   | -    | 账户类型 | trade：交易账户，frozen：冻结账户 |      |
+| balance  | -        | decimal  | -    | 账户余额 | -                                 |      |
 
 
 # 现货 / 杠杆交易
@@ -3845,63 +3880,63 @@ balance|-|decimal|-		|账户余额	|-|
 
 以下是交易相关接口返回的返回码以及说明。
 
-| 返回码 | 说明 |
-|---------   |----------- |
-| base-argument-unsupported | 某参数不支持，请检查参数 |
-| base-system-error | 系统错误，如果是撤单：缓存中查不到订单状态，该订单无法撤单；如果是下单：订单入缓存失败，请再次尝试 |
-| login-required | url中没有Signature参数或找不到此用户（key与账户id不对应等情况）|
-| parameter-required |止盈止损订单缺少参数 stop-price或operator |
-| base-record-invalid |暂时未找到数据，请稍后重试 |
-| order-amount-over-limit | 订单数量超出限额 |
-| base-symbol-trade-disabled | 该交易对被禁止交易 |
-| base-operation-forbidden | 用户不在白名单内或该币种不允许OTC交易等禁止行为 |
-| account-get-accounts-inexistent-error | 该账户在该用户下不存在 |
-| account-account-id-inexistent | 该账户不存在 |
-| operation-forbidden-for-fl-account-state |    账户爆仓状态下禁止订单操作 |
-| sub-user-auth-required | 子用户未开通逐仓杠杆权限 |
-| order-disabled | 交易对暂停，无法下单 |
-| cancel-disabled | 交易对暂停，无法撤单 |
-| order-invalid-price |下单价格非法（如市价单不能有价格，或限价单价格超过市场价10%） |
-| order-accountbalance-error |  账户余额不足 |
-| order-limitorder-price-min-error | 卖出价格不能低于指定价格 |
-| order-limitorder-price-max-error | 买入价格不能高于指定价格 |
-| order-limitorder-amount-min-error  | 下单数量不能低于指定数量 |
-| order-limitorder-amount-max-error | 下单数量不能高于指定数量 |
-| order-etp-nav-price-min-error  | 下单价格不能低于净值的指定比率 |
-| order-etp-nav-price-max-error  | 下单价格不能高于净值等指定比率 |
-| order-orderprice-precision-error | 交易价格精度错误 |
-| order-orderamount-precision-error | 交易数额精度错误 |
-| order-value-min-error | 订单交易额不能低于指定额度 |
-| order-marketorder-amount-min-error | 卖出数量不能低于指定数量 |
-| order-marketorder-amount-buy-max-error | 市价单买入额度不能高于指定额度 |
-| order-marketorder-amount-sell-max-error | 市价单卖出数量不能高于指定数量 |
-| order-holding-limit-failed | 下单超出该币种的持仓限额 |
-| order-type-invalid | 订单类型非法 |
-| order-orderstate-error | 订单状态错误 |
-| order-date-limit-error | 查询时间不能超过系统限制 |
-| order-source-invalid | 订单来源非法 |
-| order-update-error | 更新数据错误 |
-| order-fl-cancellation-is-disallowed | 禁止撤销爆仓单 |
-| operation-forbidden-for-fl-account-state | 账户爆仓状态下禁止订单操作 |
-| operation-forbidden-for-lock-account-state | 账户lock状态下禁止订单操作或c2c借款账户被禁止下撤单 |
-| fl-order-already-existed | 爆仓单已经存在 而且未成交 |
-| order-user-cancel-forbidden | 订单类型为IOC或FOK 不允许撤单 |
-| account-state-invalid  | 不支持的爆仓账户状态 |
-| order-price-greater-than-limit | 下单价格高于开盘前下单限制价格，请重新下单|
-| order-price-less-than-limit | 下单价格低于开盘前下单限制价格，请重新下单|
-| order-stop-order-hit-trigger | 止盈止损单下单被当前价触发 |
-| market-orders-not-support-during-limit-price-trading  | 限时下单不支持市价单 |
-| price-exceeds-the-protective-price-during-limit-price-trading  | 限价时间内价格超出保护价 |
-| invalid-client-order-id | client order id 已重复 |
-| invalid-interval | 查询起止窗口设置错误 |
-| invalid-start-date | 查询起始日期含非法取值 |
-| invalid-end-date | 查询起始日期含非法取值 |
-| invalid-start-time | 查询起始时间含非法取值 |
-| invalid-end-time | 查询起始时间含非法取值 |
-| validation-constraints-required | 指定的必填参数缺失 |
-| symbol-not-support | 交易对不支持，全仓杠杆或c2c |
-| not-found | 撤单时订单不存在 |
-| base-not-found| 撤单时无效clientorderid撤单过多，一个小时后再重试 |
+| 返回码                                                       | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| base-argument-unsupported                                    | 某参数不支持，请检查参数                                     |
+| base-system-error                                            | 系统错误，如果是撤单：缓存中查不到订单状态，该订单无法撤单；如果是下单：订单入缓存失败，请再次尝试 |
+| login-required                                               | url中没有Signature参数或找不到此用户（key与账户id不对应等情况） |
+| parameter-required                                           | 止盈止损订单缺少参数 stop-price或operator                    |
+| base-record-invalid                                          | 暂时未找到数据，请稍后重试                                   |
+| order-amount-over-limit                                      | 订单数量超出限额                                             |
+| base-symbol-trade-disabled                                   | 该交易对被禁止交易                                           |
+| base-operation-forbidden                                     | 用户不在白名单内或该币种不允许OTC交易等禁止行为              |
+| account-get-accounts-inexistent-error                        | 该账户在该用户下不存在                                       |
+| account-account-id-inexistent                                | 该账户不存在                                                 |
+| operation-forbidden-for-fl-account-state                     | 账户爆仓状态下禁止订单操作                                   |
+| sub-user-auth-required                                       | 子用户未开通逐仓杠杆权限                                     |
+| order-disabled                                               | 交易对暂停，无法下单                                         |
+| cancel-disabled                                              | 交易对暂停，无法撤单                                         |
+| order-invalid-price                                          | 下单价格非法（如市价单不能有价格，或限价单价格超过市场价10%） |
+| order-accountbalance-error                                   | 账户余额不足                                                 |
+| order-limitorder-price-min-error                             | 卖出价格不能低于指定价格                                     |
+| order-limitorder-price-max-error                             | 买入价格不能高于指定价格                                     |
+| order-limitorder-amount-min-error                            | 下单数量不能低于指定数量                                     |
+| order-limitorder-amount-max-error                            | 下单数量不能高于指定数量                                     |
+| order-etp-nav-price-min-error                                | 下单价格不能低于净值的指定比率                               |
+| order-etp-nav-price-max-error                                | 下单价格不能高于净值等指定比率                               |
+| order-orderprice-precision-error                             | 交易价格精度错误                                             |
+| order-orderamount-precision-error                            | 交易数额精度错误                                             |
+| order-value-min-error                                        | 订单交易额不能低于指定额度                                   |
+| order-marketorder-amount-min-error                           | 卖出数量不能低于指定数量                                     |
+| order-marketorder-amount-buy-max-error                       | 市价单买入额度不能高于指定额度                               |
+| order-marketorder-amount-sell-max-error                      | 市价单卖出数量不能高于指定数量                               |
+| order-holding-limit-failed                                   | 下单超出该币种的持仓限额                                     |
+| order-type-invalid                                           | 订单类型非法                                                 |
+| order-orderstate-error                                       | 订单状态错误                                                 |
+| order-date-limit-error                                       | 查询时间不能超过系统限制                                     |
+| order-source-invalid                                         | 订单来源非法                                                 |
+| order-update-error                                           | 更新数据错误                                                 |
+| order-fl-cancellation-is-disallowed                          | 禁止撤销爆仓单                                               |
+| operation-forbidden-for-fl-account-state                     | 账户爆仓状态下禁止订单操作                                   |
+| operation-forbidden-for-lock-account-state                   | 账户lock状态下禁止订单操作或c2c借款账户被禁止下撤单          |
+| fl-order-already-existed                                     | 爆仓单已经存在 而且未成交                                    |
+| order-user-cancel-forbidden                                  | 订单类型为IOC或FOK 不允许撤单                                |
+| account-state-invalid                                        | 不支持的爆仓账户状态                                         |
+| order-price-greater-than-limit                               | 下单价格高于开盘前下单限制价格，请重新下单                   |
+| order-price-less-than-limit                                  | 下单价格低于开盘前下单限制价格，请重新下单                   |
+| order-stop-order-hit-trigger                                 | 止盈止损单下单被当前价触发                                   |
+| market-orders-not-support-during-limit-price-trading         | 限时下单不支持市价单                                         |
+| price-exceeds-the-protective-price-during-limit-price-trading | 限价时间内价格超出保护价                                     |
+| invalid-client-order-id                                      | client order id 已重复                                       |
+| invalid-interval                                             | 查询起止窗口设置错误                                         |
+| invalid-start-date                                           | 查询起始日期含非法取值                                       |
+| invalid-end-date                                             | 查询起始日期含非法取值                                       |
+| invalid-start-time                                           | 查询起始时间含非法取值                                       |
+| invalid-end-time                                             | 查询起始时间含非法取值                                       |
+| validation-constraints-required                              | 指定的必填参数缺失                                           |
+| symbol-not-support                                           | 交易对不支持，全仓杠杆或c2c                                  |
+| not-found                                                    | 撤单时订单不存在                                             |
+| base-not-found                                               | 撤单时无效clientorderid撤单过多，一个小时后再重试            |
 
 ## 下单
 
@@ -3930,17 +3965,17 @@ API Key 权限：交易
 
 ### 请求参数
 
-参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
----------  | --------- | -------- | ------- | -----------
-account-id | string    | true     | NA      | 账户 ID，取值参考 `GET /v1/account/accounts`。现货交易使用 ‘spot’ 账户的 account-id；逐仓杠杆交易，请使用 ‘margin’ 账户的 account-id；全仓杠杆交易，请使用 ‘super-margin’ 账户的 account-id
-symbol     | string    | true     | NA      | 交易对,即btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）
-type       | string    | true     | NA      | 订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker（说明见下文）, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
-amount     | string    | true     | NA      | 订单交易量（市价买单为订单交易额） 
-price      | string    | false    | NA      | 订单价格（对市价单无效） 
-source     | string    | false    | spot-api     | 现货交易填写“spot-api”，逐仓杠杆交易填写“margin-api”，全仓杠杆交易填写“super-margin-api”, C2C杠杆交易填写"c2c-margin-api"
-client-order-id| string    | false    | NA     | 用户自编订单号（最大长度64个字符，须在24小时内保持唯一性）
-stop-price|string|false|NA|止盈止损订单触发价格
-operator|string|false|NA|止盈止损订单触发价运算符 gte – greater than and equal (>=), lte – less than and equal (<=)
+| 参数名称        | 数据类型 | 是否必需 | 默认值   | 描述                                                         |
+| --------------- | -------- | -------- | -------- | ------------------------------------------------------------ |
+| account-id      | string   | true     | NA       | 账户 ID，取值参考 `GET /v1/account/accounts`。现货交易使用 ‘spot’ 账户的 account-id；逐仓杠杆交易，请使用 ‘margin’ 账户的 account-id；全仓杠杆交易，请使用 ‘super-margin’ 账户的 account-id |
+| symbol          | string   | true     | NA       | 交易对,即btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`） |
+| type            | string   | true     | NA       | 订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker（说明见下文）, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
+| amount          | string   | true     | NA       | 订单交易量（市价买单为订单交易额）                           |
+| price           | string   | false    | NA       | 订单价格（对市价单无效）                                     |
+| source          | string   | false    | spot-api | 现货交易填写“spot-api”，逐仓杠杆交易填写“margin-api”，全仓杠杆交易填写“super-margin-api”, C2C杠杆交易填写"c2c-margin-api" |
+| client-order-id | string   | false    | NA       | 用户自编订单号（最大长度64个字符，须在24小时内保持唯一性）   |
+| stop-price      | string   | false    | NA       | 止盈止损订单触发价格                                         |
+| operator        | string   | false    | NA       | 止盈止损订单触发价运算符 gte – greater than and equal (>=), lte – less than and equal (<=) |
 
 
 **buy-limit-maker**
@@ -4005,17 +4040,17 @@ API Key 权限：交易<br>
 
 ### 请求参数
 
-参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
----------  | --------- | -------- | ------- | -----------
-[{ account-id | string    | true     | NA      | 账户 ID，取值参考 `GET /v1/account/accounts`。现货交易使用 ‘spot’ 账户的 account-id；逐仓杠杆交易，请使用 ‘margin’ 账户的 account-id；全仓杠杆交易，请使用 ‘super-margin’ 账户的 account-id; C2C杠杆交易，请使用borrow账户的account-id
-symbol     | string    | true     | NA      | 交易对,即btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）
-type       | string    | true     | NA      | 订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker（说明见下文）, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
-amount     | string    | true     | NA      | 订单交易量（市价买单为订单交易额） 
-price      | string    | false    | NA      | 订单价格（对市价单无效） 
-source     | string    | false    | spot-api     | 现货交易填写“spot-api”，逐仓杠杆交易填写“margin-api”，全仓杠杆交易填写“super-margin-api”, C2C杠杆交易填写"c2c-margin-api"
-client-order-id| string    | false    | NA     | 用户自编订单号（最大长度64个字符，须在24小时内保持唯一性）
-stop-price|string|false|NA|止盈止损订单触发价格
-operator }]|string|false|NA|止盈止损订单触发价运算符 gte – greater than and equal (>=), lte – less than and equal (<=)
+| 参数名称        | 数据类型 | 是否必需 | 默认值   | 描述                                                         |
+| --------------- | -------- | -------- | -------- | ------------------------------------------------------------ |
+| [{ account-id   | string   | true     | NA       | 账户 ID，取值参考 `GET /v1/account/accounts`。现货交易使用 ‘spot’ 账户的 account-id；逐仓杠杆交易，请使用 ‘margin’ 账户的 account-id；全仓杠杆交易，请使用 ‘super-margin’ 账户的 account-id; C2C杠杆交易，请使用borrow账户的account-id |
+| symbol          | string   | true     | NA       | 交易对,即btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`） |
+| type            | string   | true     | NA       | 订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker（说明见下文）, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
+| amount          | string   | true     | NA       | 订单交易量（市价买单为订单交易额）                           |
+| price           | string   | false    | NA       | 订单价格（对市价单无效）                                     |
+| source          | string   | false    | spot-api | 现货交易填写“spot-api”，逐仓杠杆交易填写“margin-api”，全仓杠杆交易填写“super-margin-api”, C2C杠杆交易填写"c2c-margin-api" |
+| client-order-id | string   | false    | NA       | 用户自编订单号（最大长度64个字符，须在24小时内保持唯一性）   |
+| stop-price      | string   | false    | NA       | 止盈止损订单触发价格                                         |
+| operator }]     | string   | false    | NA       | 止盈止损订单触发价运算符 gte – greater than and equal (>=), lte – less than and equal (<=) |
 
 **buy-limit-maker**
 
@@ -4049,12 +4084,12 @@ operator }]|string|false|NA|止盈止损订单触发价运算符 gte – greater
 
 ### 响应数据
 
-字段名称          | 数据类型 | 描述
----------           | --------- | -----------
-[{ order-id                  | integer   | 订单编号
-client-order-id              | string    | 用户自编订单号（如有）
-err-code            | string    | 订单被拒错误码（仅对被拒订单有效）
-err-msg }]| string    | 订单被拒错误信息（仅对被拒订单有效）
+| 字段名称        | 数据类型 | 描述                                 |
+| --------------- | -------- | ------------------------------------ |
+| [{ order-id     | integer  | 订单编号                             |
+| client-order-id | string   | 用户自编订单号（如有）               |
+| err-code        | string   | 订单被拒错误码（仅对被拒订单有效）   |
+| err-msg }]      | string   | 订单被拒错误信息（仅对被拒订单有效） |
 
 如client order ID（在24小时内）被复用，节点返回先前订单的order ID及client order ID。
 
@@ -4073,9 +4108,9 @@ API Key 权限：交易<br>
 
 ### 请求参数
 
-| 参数名称     | 是否必须 | 类型     | 描述           | 默认值  | 取值范围 |
-| -------- | ---- | ------ | ------------ | ---- | ---- |
-| order-id | true | string | 订单ID，填在path中 |      |      |
+| 参数名称 | 是否必须 | 类型   | 描述               | 默认值 | 取值范围 |
+| -------- | -------- | ------ | ------------------ | ------ | -------- |
+| order-id | true     | string | 订单ID，填在path中 |        |          |
 
 
 > Success response:
@@ -4105,13 +4140,13 @@ API Key 权限：交易<br>
 
 返回字段列表中，order-state的可能取值包括 -
 
-order-state           |  Description
----------       | -----------
--1| order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)
-5| partial-canceled
-6| filled
-7| canceled
-10| cancelling
+| order-state | Description                                                  |
+| ----------- | ------------------------------------------------------------ |
+| -1          | order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled) |
+| 5           | partial-canceled                                             |
+| 6           | filled                                                       |
+| 7           | canceled                                                     |
+| 10          | cancelling                                                   |
 
 ## 撤销订单（基于client order ID）
 
@@ -4135,9 +4170,9 @@ API Key 权限：交易<br>
 
 ### 请求参数
 
-| 参数名称     | 是否必须 | 类型     | 描述           | 默认值  | 取值范围 |
-| -------- | ---- | ------ | ------------ | ---- | ---- |
-| client-order-id | true | string | 用户自编订单号 |      |      |
+| 参数名称        | 是否必须 | 类型   | 描述           | 默认值 | 取值范围 |
+| --------------- | -------- | ------ | -------------- | ------ | -------- |
+| client-order-id | true     | string | 用户自编订单号 |        |          |
 
 
 > Response:
@@ -4149,18 +4184,18 @@ API Key 权限：交易<br>
 ```
 ### 响应数据
 
-字段名称          | 数据类型 | 描述
----------           | --------- | -----------
-data                  | integer   | 撤单状态码
+| 字段名称 | 数据类型 | 描述       |
+| -------- | -------- | ---------- |
+| data     | integer  | 撤单状态码 |
 
-Status Code           |  Description
----------       | -----------
--1| order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)
-0| client-order-id not found
-5| partial-canceled
-6| filled
-7| canceled
-10| cancelling
+| Status Code | Description                                                  |
+| ----------- | ------------------------------------------------------------ |
+| -1          | order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled) |
+| 0           | client-order-id not found                                    |
+| 5           | partial-canceled                                             |
+| 6           | filled                                                       |
+| 7           | canceled                                                     |
+| 10          | cancelling                                                   |
 
 
 ## 查询当前未成交订单
@@ -4186,14 +4221,14 @@ API Key 权限：读取<br>
 
 ### 请求参数
 
-参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
----------  | --------- | -------- | ------- | -----------
-account-id | string    | true    | NA      | 账户 ID，取值参考 `GET /v1/account/accounts`。现货交易使用‘spot’账户的 account-id；逐仓杠杆交易，请使用 ‘margin’ 账户的 account-id；全仓杠杆交易，请使用 ‘super-margin’ 账户的 account-id；c2c杠杆交易，请使用borrow账户的account-id
-symbol     | string    | ture    | NA      | 交易对,即btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）
-side       | string    | false    | both    | 指定只返回某一个方向的订单，可能的值有: buy, sell. 默认两个方向都返回。
-from       | string | false | |查询起始 ID，如果是向后查询，则赋值为上一次查询结果中得到的最后一条id ；如果是向前查询，则赋值为上一次查询结果中得到的第一条id
-direct     | string | false (如字段'from'已设定，此字段'direct'为必填) | |查询方向，prev 向前；next 向后
-size       | int       | false    | 100      | 返回订单的数量，最大值500。
+| 参数名称   | 数据类型 | 是否必需                                         | 默认值 | 描述                                                         |
+| ---------- | -------- | ------------------------------------------------ | ------ | ------------------------------------------------------------ |
+| account-id | string   | true                                             | NA     | 账户 ID，取值参考 `GET /v1/account/accounts`。现货交易使用‘spot’账户的 account-id；逐仓杠杆交易，请使用 ‘margin’ 账户的 account-id；全仓杠杆交易，请使用 ‘super-margin’ 账户的 account-id；c2c杠杆交易，请使用borrow账户的account-id |
+| symbol     | string   | ture                                             | NA     | 交易对,即btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`） |
+| side       | string   | false                                            | both   | 指定只返回某一个方向的订单，可能的值有: buy, sell. 默认两个方向都返回。 |
+| from       | string   | false                                            |        | 查询起始 ID，如果是向后查询，则赋值为上一次查询结果中得到的最后一条id ；如果是向前查询，则赋值为上一次查询结果中得到的第一条id |
+| direct     | string   | false (如字段'from'已设定，此字段'direct'为必填) |        | 查询方向，prev 向前；next 向后                               |
+| size       | int      | false                                            | 100    | 返回订单的数量，最大值500。                                  |
 
 > Response:
 
@@ -4220,21 +4255,21 @@ size       | int       | false    | 100      | 返回订单的数量，最大值
 
 ### 响应数据
 
-字段名称          | 数据类型 | 描述
----------           | --------- | -----------
-id                  | integer   | 订单id，无大小顺序，可作为下一次翻页查询请求的from字段 
-client-order-id                | string |   用户自编订单号（所有open订单可返回client-order-id）   
-symbol              | string    | 交易对, 例如btcusdt, ethbtc
-price               | string    | limit order的交易价格
-created-at          | int       | 订单创建的调整为新加坡时间的时间戳，单位毫秒 
-type                | string    | 订单类型
-filled-amount       | string    | 订单中已成交部分的数量
-filled-cash-amount  | string    | 订单中已成交部分的总价格
-filled-fees         | string    | 已交交易手续费总额
-source              | string    | 现货交易填写“api”
-state               | string    | 订单状态，包括submitted, partial-filled, cancelling, created
-stop-price|string|止盈止损订单触发价格
-operator|string|止盈止损订单触发价运算符
+| 字段名称           | 数据类型 | 描述                                                         |
+| ------------------ | -------- | ------------------------------------------------------------ |
+| id                 | integer  | 订单id，无大小顺序，可作为下一次翻页查询请求的from字段       |
+| client-order-id    | string   | 用户自编订单号（所有open订单可返回client-order-id）          |
+| symbol             | string   | 交易对, 例如btcusdt, ethbtc                                  |
+| price              | string   | limit order的交易价格                                        |
+| created-at         | int      | 订单创建的调整为新加坡时间的时间戳，单位毫秒                 |
+| type               | string   | 订单类型                                                     |
+| filled-amount      | string   | 订单中已成交部分的数量                                       |
+| filled-cash-amount | string   | 订单中已成交部分的总价格                                     |
+| filled-fees        | string   | 已交交易手续费总额                                           |
+| source             | string   | 现货交易填写“api”                                            |
+| state              | string   | 订单状态，包括submitted, partial-filled, cancelling, created |
+| stop-price         | string   | 止盈止损订单触发价格                                         |
+| operator           | string   | 止盈止损订单触发价运算符                                     |
 
 ## 批量撤销订单（open orders）
 
@@ -4251,12 +4286,12 @@ API Key 权限：交易<br>
 
 ### 请求参数
 
-| 参数名称     | 是否必须 | 类型     | 描述           | 默认值  | 取值范围 |
-| -------- | ---- | ------ | ------------ | ---- | ---- |
-| account-id | false | string | 账户ID，取值参考 `GET /v1/account/accounts`     |     |      |
-| symbol     | false | string | 交易代码列表（最多10 个symbols，多个交易代码间以逗号分隔），btcusdt, ethbtc...（取值参考`/v1/common/symbols`）     |  all    |     |
-| side | false | string | 主动交易方向 |      |   “buy”或“sell”，缺省将返回所有符合条件尚未成交订单   |
-| size | false | int | 所需返回记录数  |  100 |   [0,100]   |
+| 参数名称   | 是否必须 | 类型   | 描述                                                         | 默认值 | 取值范围                                          |
+| ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | ------------------------------------------------- |
+| account-id | false    | string | 账户ID，取值参考 `GET /v1/account/accounts`                  |        |                                                   |
+| symbol     | false    | string | 交易代码列表（最多10 个symbols，多个交易代码间以逗号分隔），btcusdt, ethbtc...（取值参考`/v1/common/symbols`） | all    |                                                   |
+| side       | false    | string | 主动交易方向                                                 |        | “buy”或“sell”，缺省将返回所有符合条件尚未成交订单 |
+| size       | false    | int    | 所需返回记录数                                               | 100    | [0,100]                                           |
 
 
 > Response:
@@ -4276,11 +4311,11 @@ API Key 权限：交易<br>
 ### 响应数据
 
 
-| 参数名称 | 是否必须 | 数据类型   | 描述    | 取值范围 |
-| ---- | ---- | ------ | ----- | ---- |
-| success-count | true | int | 成功取消的订单数 |     |
-| failed-count | true | int | 取消失败的订单数 |     |
-| next-id | true | long | 下一个符合取消条件的订单号 |    |
+| 参数名称      | 是否必须 | 数据类型 | 描述                       | 取值范围 |
+| ------------- | -------- | -------- | -------------------------- | -------- |
+| success-count | true     | int      | 成功取消的订单数           |          |
+| failed-count  | true     | int      | 取消失败的订单数           |          |
+| next-id       | true     | long     | 下一个符合取消条件的订单号 |          |
 
 ## 批量撤销订单
 
@@ -4305,10 +4340,10 @@ API Key 权限：交易<br>
 
 ### 请求参数
 
-| 参数名称  | 是否必须 | 类型   | 描述   | 默认值  | 取值范围 |
-| ---- | ---- | ---- | ----  | ---- | ---- |
-| order-ids | false | string[] | 订单编号列表（order-ids和client-order-ids必须且只能选一个填写，不超过50张订单） |  |单次不超过50个订单|
-| client-order-ids | false | string[] | 用户自编订单号列表（order-ids和client-order-ids必须且只能选一个填写，不超过50张订单） |  |单次不超过50个订单|
+| 参数名称         | 是否必须 | 类型     | 描述                                                         | 默认值 | 取值范围           |
+| ---------------- | -------- | -------- | ------------------------------------------------------------ | ------ | ------------------ |
+| order-ids        | false    | string[] | 订单编号列表（order-ids和client-order-ids必须且只能选一个填写，不超过50张订单） |        | 单次不超过50个订单 |
+| client-order-ids | false    | string[] | 用户自编订单号列表（order-ids和client-order-ids必须且只能选一个填写，不超过50张订单） |        | 单次不超过50个订单 |
 
 > Response:
 
@@ -4347,30 +4382,30 @@ API Key 权限：交易<br>
 
 ### 响应数据
 
-| 字段名称 | 数据类型 | 描述 |
-| ---- | ----- | ---- |
-| { success | string[] | 撤单成功订单列表（可为order-id列表或client-order-id列表，以用户请求为准）|
-| failed } | string[] | 撤单失败订单列表（可为order-id列表或client-order-id列表，以用户请求为准）|
+| 字段名称  | 数据类型 | 描述                                                         |
+| --------- | -------- | ------------------------------------------------------------ |
+| { success | string[] | 撤单成功订单列表（可为order-id列表或client-order-id列表，以用户请求为准） |
+| failed }  | string[] | 撤单失败订单列表（可为order-id列表或client-order-id列表，以用户请求为准） |
 
 撤单失败订单列表 -
 
-| 字段名称 | 数据类型 | 描述|
-| ---- | ----- | ---- |
-| [{ order-id | string | 订单编号（如用户创建订单时包含order-id，返回中也须包含此字段）|
-| client-order-id | string | 用户自编订单号（如用户创建订单时包含client-order-id，返回中也须包含此字段）|
-| err-code | string | 订单被拒错误码（仅对被拒订单有效）|
-| err-msg | string | 订单被拒错误信息（仅对被拒订单有效）|
-| order-state }] | string | 当前订单状态（若有）|
+| 字段名称        | 数据类型 | 描述                                                         |
+| --------------- | -------- | ------------------------------------------------------------ |
+| [{ order-id     | string   | 订单编号（如用户创建订单时包含order-id，返回中也须包含此字段） |
+| client-order-id | string   | 用户自编订单号（如用户创建订单时包含client-order-id，返回中也须包含此字段） |
+| err-code        | string   | 订单被拒错误码（仅对被拒订单有效）                           |
+| err-msg         | string   | 订单被拒错误信息（仅对被拒订单有效）                         |
+| order-state }]  | string   | 当前订单状态（若有）                                         |
 
 返回字段列表中，order-state的可能取值包括 -
 
-order-state           |  Description
----------       | -----------
--1| order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)
-5| partial-canceled
-6| filled
-7| canceled
-10| cancelling
+| order-state | Description                                                  |
+| ----------- | ------------------------------------------------------------ |
+| -1          | order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled) |
+| 5           | partial-canceled                                             |
+| 6           | filled                                                       |
+| 7           | canceled                                                     |
+| 10          | cancelling                                                   |
 
 ## 查询订单详情
 
@@ -4386,9 +4421,9 @@ API Key 权限：读取<br>
 
 ### 请求参数
 
-| 参数名称     | 是否必须 | 类型  | 描述   | 默认值  | 取值范围 |
-| -------- | ---- | ------ | -----  | ---- | ---- |
-| order-id | true | string | 订单ID，填在path中 |      |      |
+| 参数名称 | 是否必须 | 类型   | 描述               | 默认值 | 取值范围 |
+| -------- | -------- | ------ | ------------------ | ------ | -------- |
+| order-id | true     | string | 订单ID，填在path中 |        |          |
 
 
 > Response:
@@ -4418,25 +4453,25 @@ API Key 权限：读取<br>
 
 ### 响应数据
 
-| 字段名称     | 是否必须  | 数据类型   | 描述   | 取值范围     |
-| ----------------- | ----- | ------ | -------  | ----  |
-| account-id        | true  | long   | 账户 ID    |       |
-| amount            | true  | string | 订单数量              |    |
-| canceled-at       | false | long   | 订单撤销时间    |     |
-| created-at        | true  | long   | 订单创建时间    |   |
-| field-amount      | true  | string | 已成交数量    |     |
-| field-cash-amount | true  | string | 已成交总金额     |      |
-| field-fees        | true  | string | 已成交手续费（买入为币，卖出为钱） |     |
-| finished-at       | false | long   | 订单变为终结态的时间，不是成交时间，包含“已撤单”状态    |     |
-| id                | true  | long   | 订单ID    |     |
-| client-order-id                | false  | string   | 用户自编订单号（所有open订单可返回client-order-id（如有）；仅7天内（基于订单创建时间）的closed订单（state <> canceled）可返回client-order-id（如有）；仅24小时内（基于订单创建时间）的closed订单（state = canceled）可返回client-order-id（如有））    |     |
-| price             | true  | string | 订单价格       |     |
-| source            | true  | string | 订单来源   | api |
-| state             | true  | string | 订单状态   | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销， created |
-| symbol            | true  | string | 交易对   | btcusdt, ethbtc, rcneth ... |
-| type              | true  | string | 订单类型   | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok  |
-| stop-price              | false  | string | 止盈止损订单触发价格   | |
-| operator              | false  | string | 止盈止损订单触发价运算符   | gte,lte |
+| 字段名称          | 是否必须 | 数据类型 | 描述                                                         | 取值范围                                                     |
+| ----------------- | -------- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| account-id        | true     | long     | 账户 ID                                                      |                                                              |
+| amount            | true     | string   | 订单数量                                                     |                                                              |
+| canceled-at       | false    | long     | 订单撤销时间                                                 |                                                              |
+| created-at        | true     | long     | 订单创建时间                                                 |                                                              |
+| field-amount      | true     | string   | 已成交数量                                                   |                                                              |
+| field-cash-amount | true     | string   | 已成交总金额                                                 |                                                              |
+| field-fees        | true     | string   | 已成交手续费（买入为币，卖出为钱）                           |                                                              |
+| finished-at       | false    | long     | 订单变为终结态的时间，不是成交时间，包含“已撤单”状态         |                                                              |
+| id                | true     | long     | 订单ID                                                       |                                                              |
+| client-order-id   | false    | string   | 用户自编订单号（所有open订单可返回client-order-id（如有）；仅7天内（基于订单创建时间）的closed订单（state <> canceled）可返回client-order-id（如有）；仅24小时内（基于订单创建时间）的closed订单（state = canceled）可返回client-order-id（如有）） |                                                              |
+| price             | true     | string   | 订单价格                                                     |                                                              |
+| source            | true     | string   | 订单来源                                                     | api                                                          |
+| state             | true     | string   | 订单状态                                                     | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销， created |
+| symbol            | true     | string   | 交易对                                                       | btcusdt, ethbtc, rcneth ...                                  |
+| type              | true     | string   | 订单类型                                                     | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
+| stop-price        | false    | string   | 止盈止损订单触发价格                                         |                                                              |
+| operator          | false    | string   | 止盈止损订单触发价运算符                                     | gte,lte                                                      |
 
 
 ## 查询订单详情（基于client order ID）
@@ -4452,9 +4487,9 @@ API Key 权限：读取<br>
 
 ### 请求参数
 
-| 参数名称     | 是否必须 | 类型  | 描述   | 默认值  | 取值范围 |
-| -------- | ---- | ------ | -----  | ---- | ---- |
-| clientOrderId | true | string | 用户自编订单号 |      |      |
+| 参数名称      | 是否必须 | 类型   | 描述           | 默认值 | 取值范围 |
+| ------------- | -------- | ------ | -------------- | ------ | -------- |
+| clientOrderId | true     | string | 用户自编订单号 |        |          |
 
 > Response:
 
@@ -4483,25 +4518,25 @@ API Key 权限：读取<br>
 
 ### 响应数据
 
-| 字段名称     | 是否必须  | 数据类型   | 描述   | 取值范围     |
-| ----------------- | ----- | ------ | -------  | ----  |
-| account-id        | true  | long   | 账户 ID    |       |
-| amount            | true  | string | 订单数量              |    |
-| canceled-at       | false | long   | 订单撤销时间    |     |
-| created-at        | true  | long   | 订单创建时间    |   |
-| field-amount      | true  | string | 已成交数量    |     |
-| field-cash-amount | true  | string | 已成交总金额     |      |
-| field-fees        | true  | string | 已成交手续费（买入为币，卖出为钱） |     |
-| finished-at       | false | long   | 订单变为终结态的时间，不是成交时间，包含“已撤单”状态    |     |
-| id                | true  | long   | 订单ID    |     |
-| client-order-id                | false  | string   | 用户自编订单号（仅24小时内（基于订单创建时间）的订单可被查询.）    |     |
-| price             | true  | string | 订单价格       |     |
-| source            | true  | string | 订单来源   | api |
-| state             | true  | string | 订单状态   | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销，created |
-| symbol            | true  | string | 交易对   | btcusdt, ethbtc, rcneth ... |
-| type              | true  | string | 订单类型   | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
-| stop-price              | false  | string | 止盈止损订单触发价格   | |
-| operator              | false  | string | 止盈止损订单触发价运算符   | gte,lte |
+| 字段名称          | 是否必须 | 数据类型 | 描述                                                         | 取值范围                                                     |
+| ----------------- | -------- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| account-id        | true     | long     | 账户 ID                                                      |                                                              |
+| amount            | true     | string   | 订单数量                                                     |                                                              |
+| canceled-at       | false    | long     | 订单撤销时间                                                 |                                                              |
+| created-at        | true     | long     | 订单创建时间                                                 |                                                              |
+| field-amount      | true     | string   | 已成交数量                                                   |                                                              |
+| field-cash-amount | true     | string   | 已成交总金额                                                 |                                                              |
+| field-fees        | true     | string   | 已成交手续费（买入为币，卖出为钱）                           |                                                              |
+| finished-at       | false    | long     | 订单变为终结态的时间，不是成交时间，包含“已撤单”状态         |                                                              |
+| id                | true     | long     | 订单ID                                                       |                                                              |
+| client-order-id   | false    | string   | 用户自编订单号（仅24小时内（基于订单创建时间）的订单可被查询.） |                                                              |
+| price             | true     | string   | 订单价格                                                     |                                                              |
+| source            | true     | string   | 订单来源                                                     | api                                                          |
+| state             | true     | string   | 订单状态                                                     | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销，created |
+| symbol            | true     | string   | 交易对                                                       | btcusdt, ethbtc, rcneth ...                                  |
+| type              | true     | string   | 订单类型                                                     | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
+| stop-price        | false    | string   | 止盈止损订单触发价格                                         |                                                              |
+| operator          | false    | string   | 止盈止损订单触发价运算符                                     | gte,lte                                                      |
 
 如client order ID不存在，返回如下错误信息 
 {
@@ -4524,9 +4559,9 @@ API Key 权限：读取<br>
 
 ### 请求参数
 
-| 参数名称  | 是否必须 | 类型  | 描述  | 默认值  | 取值范围 |
-| -------- | ---- | ------ | -----  | ---- | ---- |
-| order-id | true | string | 订单ID，填在path中 |      |      |
+| 参数名称 | 是否必须 | 类型   | 描述               | 默认值 | 取值范围 |
+| -------- | -------- | ------ | ------------------ | ------ | -------- |
+| order-id | true     | string | 订单ID，填在path中 |        |          |
 
 
 > Response:
@@ -4558,23 +4593,23 @@ API Key 权限：读取<br>
 ### 响应数据
 
 <aside class="notice">返回的主数据对象为一个对象数组，其中每一个元件代表一个交易结果。</aside>
-| 字段名称    | 是否必须 | 数据类型   | 描述   | 取值范围     |
-| ------------- | ---- | ------ | -------- | -------- |
-| created-at    | true | long   | 成交时间戳timestamp |    |
-| filled-amount | true | string | 成交数量     |    |
-| filled-fees   | true | string | 交易手续费（正值）或交易返佣金（负值）    |     |
-| fee-currency | true | string | 交易手续费或交易返佣币种（买单的交易手续费币种为基础币种，卖单的交易手续费币种为计价币种；买单的交易返佣币种为计价币种，卖单的交易返佣币种为基础币种）     |    |
-| id            | true | long   | 订单成交记录ID |     |
-| match-id      | true | long   | 撮合ID，订单在撮合中执行的顺序ID     |     |
-| order-id      | true | long   | 订单ID，成交所属订单的ID    |      |
-| trade-id      | false | integer   | Unique trade ID (NEW)唯一成交编号，成交时产生的唯一编号ID    |     |
-| price         | true | string | 成交价格  |    |
-| source        | true | string | 订单来源  | api      |
-| symbol        | true | string | 交易对   | btcusdt, ethbtc, rcneth ...  |
-| type          | true | string | 订单类型   | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
-| role      | true | string   | 成交角色    |maker,taker      |
-| filled-points      | true | string   | 抵扣数量（可为ht或hbpoint）    |     |
-| fee-deduct-currency      | true | string   | 抵扣类型    |如果为空，代表扣除的手续费是原币；如果为"ht"，代表抵扣手续费的是HT；如果为"hbpoint"，代表抵扣手续费的是点卡     |
+| 字段名称            | 是否必须 | 数据类型 | 描述                                                         | 取值范围                                                     |
+| ------------------- | -------- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| created-at          | true     | long     | 成交时间戳timestamp                                          |                                                              |
+| filled-amount       | true     | string   | 成交数量                                                     |                                                              |
+| filled-fees         | true     | string   | 交易手续费（正值）或交易返佣金（负值）                       |                                                              |
+| fee-currency        | true     | string   | 交易手续费或交易返佣币种（买单的交易手续费币种为基础币种，卖单的交易手续费币种为计价币种；买单的交易返佣币种为计价币种，卖单的交易返佣币种为基础币种） |                                                              |
+| id                  | true     | long     | 订单成交记录ID                                               |                                                              |
+| match-id            | true     | long     | 撮合ID，订单在撮合中执行的顺序ID                             |                                                              |
+| order-id            | true     | long     | 订单ID，成交所属订单的ID                                     |                                                              |
+| trade-id            | false    | integer  | Unique trade ID (NEW)唯一成交编号，成交时产生的唯一编号ID    |                                                              |
+| price               | true     | string   | 成交价格                                                     |                                                              |
+| source              | true     | string   | 订单来源                                                     | api                                                          |
+| symbol              | true     | string   | 交易对                                                       | btcusdt, ethbtc, rcneth ...                                  |
+| type                | true     | string   | 订单类型                                                     | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
+| role                | true     | string   | 成交角色                                                     | maker,taker                                                  |
+| filled-points       | true     | string   | 抵扣数量（可为ht或hbpoint）                                  |                                                              |
+| fee-deduct-currency | true     | string   | 抵扣类型                                                     | 如果为空，代表扣除的手续费是原币；如果为"ht"，代表抵扣手续费的是HT；如果为"hbpoint"，代表抵扣手续费的是点卡 |
 
 注：<br>
 - filled-fees中的交易返佣金额可能不会实时到账。<br>
@@ -4617,18 +4652,18 @@ API Key 权限：读取<br>
 
 ### 请求参数
 
-| 参数名称   | 是否必须  | 类型     | 描述   | 默认值  | 取值范围   |
-| ---------- | ----- | ------ | ------  | ---- | ----  |
-| symbol    | true  | string | 交易对 |      |btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）  |
-| types      | false | string | 查询的订单类型组合，使用逗号分割 |      | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
-| start-time | false | long | 查询开始时间, 时间格式UTC time in millisecond。 以订单生成时间进行查询 | -48h 查询结束时间的前48小时 | 取值范围 [((end-time) – 48h), (end-time)] ，查询窗口最大为48小时，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state="canceled") |
-| end-time   | false | long | 查询结束时间, 时间格式UTC time in millisecond。 以订单生成时间进行查询 | present     | 取值范围 [(present-179d), present] ，查询窗口最大为48小时，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state="canceled")  |
-| start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询 | -1d 查询结束日期的前1天 | 取值范围 [((end-date) – 1), (end-date)] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state="canceled") |
-| end-date   | false | string | 查询结束日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询 | today     | 取值范围 [(today-179), today] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state="canceled")   |
-| states     | true  | string | 查询的订单状态组合，使用','分割  |      | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销，created|
-| from       | false | string | 查询起始 ID   |      | 如果是向后查询，则赋值为上一次查询结果中得到的最后一条id ；如果是向前查询，则赋值为上一次查询结果中得到的第一条id |
-| direct     | false | string | 查询方向   |      | prev 向前；next 向后    |
-| size       | false | string | 查询记录大小      | 100     |  [1, 100]       |
+| 参数名称   | 是否必须 | 类型   | 描述                                                         | 默认值                      | 取值范围                                                     |
+| ---------- | -------- | ------ | ------------------------------------------------------------ | --------------------------- | ------------------------------------------------------------ |
+| symbol     | true     | string | 交易对                                                       |                             | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）       |
+| types      | false    | string | 查询的订单类型组合，使用逗号分割                             |                             | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
+| start-time | false    | long   | 查询开始时间, 时间格式UTC time in millisecond。 以订单生成时间进行查询 | -48h 查询结束时间的前48小时 | 取值范围 [((end-time) – 48h), (end-time)] ，查询窗口最大为48小时，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state="canceled") |
+| end-time   | false    | long   | 查询结束时间, 时间格式UTC time in millisecond。 以订单生成时间进行查询 | present                     | 取值范围 [(present-179d), present] ，查询窗口最大为48小时，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state="canceled") |
+| start-date | false    | string | 查询开始日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询    | -1d 查询结束日期的前1天     | 取值范围 [((end-date) – 1), (end-date)] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state="canceled") |
+| end-date   | false    | string | 查询结束日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询    | today                       | 取值范围 [(today-179), today] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state="canceled") |
+| states     | true     | string | 查询的订单状态组合，使用','分割                              |                             | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销，created |
+| from       | false    | string | 查询起始 ID                                                  |                             | 如果是向后查询，则赋值为上一次查询结果中得到的最后一条id ；如果是向前查询，则赋值为上一次查询结果中得到的第一条id |
+| direct     | false    | string | 查询方向                                                     |                             | prev 向前；next 向后                                         |
+| size       | false    | string | 查询记录大小                                                 | 100                         | [1, 100]                                                     |
 
 
 > Response:
@@ -4660,33 +4695,33 @@ API Key 权限：读取<br>
 
 ### 响应数据
 
-| 参数名称    | 是否必须  | 数据类型   | 描述   | 取值范围   |
-| ----------------- | ----- | ------ | ----------------- | ----  |
-| account-id        | true  | long   | 账户 ID    |     |
-| amount            | true  | string | 订单数量    |   |
-| canceled-at       | false | long   | 接到撤单申请的时间   |    |
-| created-at        | true  | long   | 订单创建时间   |    |
-| field-amount      | true  | string | 已成交数量   |    |
-| field-cash-amount | true  | string | 已成交总金额    |    |
-| field-fees        | true  | string | 已成交手续费（买入为基础币，卖出为计价币） |       |
-| finished-at       | false | long   | 最后成交时间    |   |
-| id                | true  | long   | 订单ID，无大小顺序，可作为下一次翻页查询请求的from字段 |    |
-| client-order-id                | false  | string   | 用户自编订单号（所有open订单可返回client-order-id（如有）；仅7天内（基于订单创建时间）的closed订单（state <> canceled）可返回client-order-id（如有）；仅24小时内（基于订单创建时间）的closed订单（state = canceled）可被查询）    |     |
-| price             | true  | string | 订单价格  |    |
-| source            | true  | string | 订单来源   | api  |
-| state             | true  | string | 订单状态    | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销，created |
-| symbol            | true  | string | 交易对    | btcusdt, ethbtc, rcneth ... |
-| type              | true  | string | 订单类型  | submit-cancel：已提交撤单申请  ,buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
-| stop-price              | false  | string | 止盈止损订单触发价格   | |
-| operator              | false  | string | 止盈止损订单触发价运算符   | gte,lte |
+| 参数名称          | 是否必须 | 数据类型 | 描述                                                         | 取值范围                                                     |
+| ----------------- | -------- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| account-id        | true     | long     | 账户 ID                                                      |                                                              |
+| amount            | true     | string   | 订单数量                                                     |                                                              |
+| canceled-at       | false    | long     | 接到撤单申请的时间                                           |                                                              |
+| created-at        | true     | long     | 订单创建时间                                                 |                                                              |
+| field-amount      | true     | string   | 已成交数量                                                   |                                                              |
+| field-cash-amount | true     | string   | 已成交总金额                                                 |                                                              |
+| field-fees        | true     | string   | 已成交手续费（买入为基础币，卖出为计价币）                   |                                                              |
+| finished-at       | false    | long     | 最后成交时间                                                 |                                                              |
+| id                | true     | long     | 订单ID，无大小顺序，可作为下一次翻页查询请求的from字段       |                                                              |
+| client-order-id   | false    | string   | 用户自编订单号（所有open订单可返回client-order-id（如有）；仅7天内（基于订单创建时间）的closed订单（state <> canceled）可返回client-order-id（如有）；仅24小时内（基于订单创建时间）的closed订单（state = canceled）可被查询） |                                                              |
+| price             | true     | string   | 订单价格                                                     |                                                              |
+| source            | true     | string   | 订单来源                                                     | api                                                          |
+| state             | true     | string   | 订单状态                                                     | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销，created |
+| symbol            | true     | string   | 交易对                                                       | btcusdt, ethbtc, rcneth ...                                  |
+| type              | true     | string   | 订单类型                                                     | submit-cancel：已提交撤单申请  ,buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
+| stop-price        | false    | string   | 止盈止损订单触发价格                                         |                                                              |
+| operator          | false    | string   | 止盈止损订单触发价运算符                                     | gte,lte                                                      |
 
 ### start-date, end-date相关错误码
 
-|错误码|对应错误场景|
-|------------|----------------------------------------------|
-|invalid_interval| start date小于end date; 或者 start date 与end date之间的时间间隔大于2天|
-|invalid_start_date|start date是一个180天之前的日期；或者start date是一个未来的日期|
-|invalid_end_date|end date 是一个180天之前的日期；或者end date是一个未来的日期|
+| 错误码             | 对应错误场景                                                 |
+| ------------------ | ------------------------------------------------------------ |
+| invalid_interval   | start date小于end date; 或者 start date 与end date之间的时间间隔大于2天 |
+| invalid_start_date | start date是一个180天之前的日期；或者start date是一个未来的日期 |
+| invalid_end_date   | end date 是一个180天之前的日期；或者end date是一个未来的日期 |
 
 ## 搜索最近48小时内历史订单
 
@@ -4713,13 +4748,13 @@ API Key 权限：读取<br>
 
 ### 请求参数
 
-| 参数名称   | 是否必须  | 类型     | 描述   | 默认值  | 取值范围   |
-| ---------- | ----- | ------ | ------  | ---- | ----  |
-| symbol     | false  | string | 交易对      |all      |btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）  |
-| start-time      | false | long | 查询起始时间（含）  |48小时前的时刻      |UTC time in millisecond |
-| end-time | false | long | 查询结束时间（含） | 查询时刻     |UTC time in millisecond |
-| direct   | false | string | 订单查询方向（注：仅在检索出的总条目数量超出size字段限定时起作用；如果检索出的总条目数量在size 字段限定内，direct 字段不起作用。） | next     |prev 向前, next 向后   |
-| size     | false  | int | 每次返回条目数量  |100      | [10,1000] |
+| 参数名称   | 是否必须 | 类型   | 描述                                                         | 默认值         | 取值范围                                               |
+| ---------- | -------- | ------ | ------------------------------------------------------------ | -------------- | ------------------------------------------------------ |
+| symbol     | false    | string | 交易对                                                       | all            | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`） |
+| start-time | false    | long   | 查询起始时间（含）                                           | 48小时前的时刻 | UTC time in millisecond                                |
+| end-time   | false    | long   | 查询结束时间（含）                                           | 查询时刻       | UTC time in millisecond                                |
+| direct     | false    | string | 订单查询方向（注：仅在检索出的总条目数量超出size字段限定时起作用；如果检索出的总条目数量在size 字段限定内，direct 字段不起作用。） | next           | prev 向前, next 向后                                   |
+| size       | false    | int    | 每次返回条目数量                                             | 100            | [10,1000]                                              |
 
 > Response:
 
@@ -4749,26 +4784,26 @@ API Key 权限：读取<br>
 
 ### 响应数据
 
-| 参数名称    | 是否必须  | 数据类型   | 描述   | 取值范围   |
-| ----------------- | ----- | ------ | ----------------- | ----  |
-| {account-id        | true  | long   | 账户 ID    |     |
-| amount            | true  | string | 订单数量    |   |
-| canceled-at       | false | long   | 接到撤单申请的时间   |    |
-| created-at        | true  | long   | 订单创建时间   |    |
-| field-amount      | true  | string | 已成交数量   |    |
-| field-cash-amount | true  | string | 已成交总金额    |    |
-| field-fees        | true  | string | 已成交手续费（买入为基础币，卖出为计价币） |       |
-| finished-at       | false | long   | 最后成交时间    |   |
-| id                | true  | long   | 订单ID，无大小顺序 |    |
-| client-order-id                | false  | string   | 用户自编订单号（仅48小时内（基于订单创建时间）的closed订单（state <> canceled）可返回client-order-id（如有）；仅24小时内（基于订单创建时间）的closed订单（state = canceled）可被查询）    |     |
-| price             | true  | string | 订单价格  |    |
-| source            | true  | string | 订单来源   | api  |
-| state             | true  | string | 订单状态    | partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销 |
-| symbol            | true  | string | 交易对    | btcusdt, ethbtc, rcneth ... |
-| stop-price              | false  | string | 止盈止损订单触发价格   | |
-| operator              | false  | string | 止盈止损订单触发价运算符   | gte,lte |
-| type}              | true  | string | 订单类型  | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单, buy-limit-maker, sell-limit-maker, buy-limit-maker, sell-limit-maker, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
-| next-time            | false  | long |下一查询起始时间（当请求字段”direct”为”prev”时有效）, 下一查询结束时间（当请求字段”direct”为”next”时有效）。注：仅在检索出的总条目数量超出size字段限定时，此返回字段存在。 |UTC time in millisecond   |
+| 参数名称          | 是否必须 | 数据类型 | 描述                                                         | 取值范围                                                     |
+| ----------------- | -------- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| {account-id       | true     | long     | 账户 ID                                                      |                                                              |
+| amount            | true     | string   | 订单数量                                                     |                                                              |
+| canceled-at       | false    | long     | 接到撤单申请的时间                                           |                                                              |
+| created-at        | true     | long     | 订单创建时间                                                 |                                                              |
+| field-amount      | true     | string   | 已成交数量                                                   |                                                              |
+| field-cash-amount | true     | string   | 已成交总金额                                                 |                                                              |
+| field-fees        | true     | string   | 已成交手续费（买入为基础币，卖出为计价币）                   |                                                              |
+| finished-at       | false    | long     | 最后成交时间                                                 |                                                              |
+| id                | true     | long     | 订单ID，无大小顺序                                           |                                                              |
+| client-order-id   | false    | string   | 用户自编订单号（仅48小时内（基于订单创建时间）的closed订单（state <> canceled）可返回client-order-id（如有）；仅24小时内（基于订单创建时间）的closed订单（state = canceled）可被查询） |                                                              |
+| price             | true     | string   | 订单价格                                                     |                                                              |
+| source            | true     | string   | 订单来源                                                     | api                                                          |
+| state             | true     | string   | 订单状态                                                     | partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销 |
+| symbol            | true     | string   | 交易对                                                       | btcusdt, ethbtc, rcneth ...                                  |
+| stop-price        | false    | string   | 止盈止损订单触发价格                                         |                                                              |
+| operator          | false    | string   | 止盈止损订单触发价运算符                                     | gte,lte                                                      |
+| type}             | true     | string   | 订单类型                                                     | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单, buy-limit-maker, sell-limit-maker, buy-limit-maker, sell-limit-maker, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
+| next-time         | false    | long     | 下一查询起始时间（当请求字段”direct”为”prev”时有效）, 下一查询结束时间（当请求字段”direct”为”next”时有效）。注：仅在检索出的总条目数量超出size字段限定时，此返回字段存在。 | UTC time in millisecond                                      |
 
 
 ## 当前和历史成交
@@ -4785,15 +4820,15 @@ API Key 权限：读取<br>
 
 ### 请求参数
 
-| 参数名称   | 是否必须  | 类型  | 描述   | 默认值  | 取值范围    |
-| ---------- | ----- | ------ | ------ | ---- | ----------- |
-| symbol     | true  | string | 交易对   | N/A |  btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）|
-| types      | false | string | 查询的订单类型组合，使用','分割   |  all    | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit |
-| start-date | false | string | 查询开始日期（新加坡时区）日期格式yyyy-mm-dd | -1d 查询结束日期的前1天     | 取值范围 [((end-date) – 1), (end-date)] ，查询窗口最大为2天，窗口平移范围为最近61天。 |
-| end-date   | false | string | 查询结束日期（新加坡时区）, 日期格式yyyy-mm-dd |   today   | 取值范围 [(today-60), today] ，查询窗口最大为2天，窗口平移范围为最近61天  |
-| from       | false | string | 查询起始 ID    |   N/A   | 如果是向后查询，则赋值为上一次查询结果中得到的最后一条id（不是trade-id） ；如果是向前查询，则赋值为上一次查询结果中得到的第一条id（不是trade-id） |
-| direct     | false | string | 查询方向    |   next   | prev 向前；next 向后   |
-| size       | false | string | 查询记录大小    |   100   | [1，500]  |
+| 参数名称   | 是否必须 | 类型   | 描述                                           | 默认值                  | 取值范围                                                     |
+| ---------- | -------- | ------ | ---------------------------------------------- | ----------------------- | ------------------------------------------------------------ |
+| symbol     | true     | string | 交易对                                         | N/A                     | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）       |
+| types      | false    | string | 查询的订单类型组合，使用','分割                | all                     | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit |
+| start-date | false    | string | 查询开始日期（新加坡时区）日期格式yyyy-mm-dd   | -1d 查询结束日期的前1天 | 取值范围 [((end-date) – 1), (end-date)] ，查询窗口最大为2天，窗口平移范围为最近61天。 |
+| end-date   | false    | string | 查询结束日期（新加坡时区）, 日期格式yyyy-mm-dd | today                   | 取值范围 [(today-60), today] ，查询窗口最大为2天，窗口平移范围为最近61天 |
+| from       | false    | string | 查询起始 ID                                    | N/A                     | 如果是向后查询，则赋值为上一次查询结果中得到的最后一条id（不是trade-id） ；如果是向前查询，则赋值为上一次查询结果中得到的第一条id（不是trade-id） |
+| direct     | false    | string | 查询方向                                       | next                    | prev 向前；next 向后                                         |
+| size       | false    | string | 查询记录大小                                   | 100                     | [1，500]                                                     |
 
 > Response:
 
@@ -4824,34 +4859,34 @@ API Key 权限：读取<br>
 ### 响应数据
 
 <aside class="notice">返回的主数据对象为一个对象数组，其中每一个元件代表一个交易结果。</aside>
-| 参数名称   | 是否必须 | 数据类型   | 描述   | 取值范围   |
-| ------------- | ---- | ------ | -------- | ------- |
-| created-at    | true | long   | 成交时间戳timestamp |    |
-| filled-amount | true | string | 成交数量     |    |
-| filled-fees   | true | string | 交易手续费（正值）或交易返佣（负值）    |    |
-| fee-currency | true | string | 交易手续费或交易返佣币种（买单的交易手续费币种为基础币种，卖单的交易手续费币种为计价币种；买单的交易返佣币种为计价币种，卖单的交易返佣币种为基础币种）     |    |
-| id            | true | long   | 订单成交记录 ID，无大小顺序，可作为下一次翻页查询请求的from字段 |    |
-| match-id      | true | long   | 撮合 ID     |    |
-| order-id      | true | long   | 订单 ID    |    |
-| trade-id      | false | integer   | 唯一成交编号    |      |
-| price         | true | string | 成交价格     |    |
-| source        | true | string | 订单来源     | api   |
-| symbol        | true | string | 交易对      | btcusdt, ethbtc, rcneth ...  |
-| type          | true | string | 订单类型     | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
-| role      | true | string   | 成交角色    |maker,taker      |
-| filled-points      | true | string   | 抵扣数量（可为ht或hbpoint）    |     |
-| fee-deduct-currency      | true | string   | 抵扣类型    |ht,hbpoint     |
+| 参数名称            | 是否必须 | 数据类型 | 描述                                                         | 取值范围                                                     |
+| ------------------- | -------- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| created-at          | true     | long     | 成交时间戳timestamp                                          |                                                              |
+| filled-amount       | true     | string   | 成交数量                                                     |                                                              |
+| filled-fees         | true     | string   | 交易手续费（正值）或交易返佣（负值）                         |                                                              |
+| fee-currency        | true     | string   | 交易手续费或交易返佣币种（买单的交易手续费币种为基础币种，卖单的交易手续费币种为计价币种；买单的交易返佣币种为计价币种，卖单的交易返佣币种为基础币种） |                                                              |
+| id                  | true     | long     | 订单成交记录 ID，无大小顺序，可作为下一次翻页查询请求的from字段 |                                                              |
+| match-id            | true     | long     | 撮合 ID                                                      |                                                              |
+| order-id            | true     | long     | 订单 ID                                                      |                                                              |
+| trade-id            | false    | integer  | 唯一成交编号                                                 |                                                              |
+| price               | true     | string   | 成交价格                                                     |                                                              |
+| source              | true     | string   | 订单来源                                                     | api                                                          |
+| symbol              | true     | string   | 交易对                                                       | btcusdt, ethbtc, rcneth ...                                  |
+| type                | true     | string   | 订单类型                                                     | buy-market：市价买, sell-market：市价卖, buy-limit：限价买, sell-limit：限价卖, buy-ioc：IOC买单, sell-ioc：IOC卖单， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
+| role                | true     | string   | 成交角色                                                     | maker,taker                                                  |
+| filled-points       | true     | string   | 抵扣数量（可为ht或hbpoint）                                  |                                                              |
+| fee-deduct-currency | true     | string   | 抵扣类型                                                     | ht,hbpoint                                                   |
 
 注：<br>
 - filled-fees中的交易返佣金额可能不会实时到账；<br>
 
 ### start-date, end-date相关错误码 
 
-|错误码|对应错误场景|
-|------------|----------------------------------------------|
-|invalid_interval| start date小于end date; 或者 start date 与end date之间的时间间隔大于2天|
-|invalid_start_date|start date是一个61天之前的日期；或者start date是一个未来的日期|
-|invalid_end_date|end date 是一个61天之前的日期；或者end date是一个未来的日期|
+| 错误码             | 对应错误场景                                                 |
+| ------------------ | ------------------------------------------------------------ |
+| invalid_interval   | start date小于end date; 或者 start date 与end date之间的时间间隔大于2天 |
+| invalid_start_date | start date是一个61天之前的日期；或者start date是一个未来的日期 |
+| invalid_end_date   | end date 是一个61天之前的日期；或者end date是一个未来的日期  |
 
 
 ## 获取用户当前手续费率
@@ -4870,9 +4905,9 @@ curl "https://api.huobi.pro/v2/reference/transact-fee-rate?symbols=btcusdt,ethus
 
 ### 请求参数
 
-参数       | 数据类型 | 是否必须 | 默认值 | 描述 | 取值范围
---------- | --------- | -------- | ------- | ------ | ------
-symbols    | string    | true     | NA      | 交易对，可多填，逗号分隔 |btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）>
+| 参数    | 数据类型 | 是否必须 | 默认值 | 描述                     | 取值范围                                                |
+| ------- | -------- | -------- | ------ | ------------------------ | ------------------------------------------------------- |
+| symbols | string   | true     | NA     | 交易对，可多填，逗号分隔 | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）> |
 
 > Response:
 
@@ -4906,16 +4941,16 @@ symbols    | string    | true     | NA      | 交易对，可多填，逗号分�
 ```
 ### 响应数据
 
-|	字段名称	|	数据类型	|	描述	|
---------- | --------- | -----------|
-|	code	|	integer	|	状态码	|
-|	message	|	string	|	错误描述（如有）	|
-|	data	|	object	|		|
-|	{ symbol	|	string	|	交易代码	|
-|	makerFeeRate	|	string	|	基础费率 - 被动方，如适用交易手续费返佣，返回返佣费率（负值）	|
-|	takerFeeRate	|	string	|	基础费率 - 主动方	|
-|	actualMakerRate	|	string	|	抵扣后费率 - 被动方，如不适用抵扣或未启用抵扣，返回基础费率；如适用交易手续费返佣，返回返佣费率（负值）	|
-|	actualTakerRate }	|	string	|	抵扣后费率 – 主动方，如不适用抵扣或未启用抵扣，返回基础费率	|
+|      | 字段名称          | 数据类型 | 描述                                                         |      |
+| ---- | ----------------- | -------- | ------------------------------------------------------------ | ---- |
+|      | code              | integer  | 状态码                                                       |      |
+|      | message           | string   | 错误描述（如有）                                             |      |
+|      | data              | object   |                                                              |      |
+|      | { symbol          | string   | 交易代码                                                     |      |
+|      | makerFeeRate      | string   | 基础费率 - 被动方，如适用交易手续费返佣，返回返佣费率（负值） |      |
+|      | takerFeeRate      | string   | 基础费率 - 主动方                                            |      |
+|      | actualMakerRate   | string   | 抵扣后费率 - 被动方，如不适用抵扣或未启用抵扣，返回基础费率；如适用交易手续费返佣，返回返佣费率（负值） |      |
+|      | actualTakerRate } | string   | 抵扣后费率 – 主动方，如不适用抵扣或未启用抵扣，返回基础费率  |      |
 
 注：<br>
 - 如makerFeeRate/actualMakerRate为正值，该字段意为交易手续费率；<br>
@@ -4936,26 +4971,26 @@ symbols    | string    | true     | NA      | 交易对，可多填，逗号分�
 
 以下是策略委托接口返回的错误码和说明。
 
-|错误码|说明|
-|----- | -----|
-|2002 |参数无效|
-|1001 |无效的url|
-|1002 |请重新登录后重试|
-|1003 |API签名无效|
-|1005 |访问权重不足|
-|1006 |超出访问限制|
-|1007 |未查询到记录|
-|2003 |交易功能暂停|
-|3002 |订单数量精度错误|
-|3003 |触发价格精度错误|
-|3004 |低于限价单最小订单数量限制|
-|3005 |超出限价单最大订单数量限制|
-|3006 |超出限价单最高订单价格限制|
-|3007 |低于限价单最低订单价格限制|
-|3008| 低于最小订单金额限制|
-|3009 |低于市价单最小订单数量限制|
-|3010 |超出市价单最大订单数量限制|
-|3100 |限价交易期间不接受市价申报|
+| 错误码 | 说明                       |
+| ------ | -------------------------- |
+| 2002   | 参数无效                   |
+| 1001   | 无效的url                  |
+| 1002   | 请重新登录后重试           |
+| 1003   | API签名无效                |
+| 1005   | 访问权重不足               |
+| 1006   | 超出访问限制               |
+| 1007   | 未查询到记录               |
+| 2003   | 交易功能暂停               |
+| 3002   | 订单数量精度错误           |
+| 3003   | 触发价格精度错误           |
+| 3004   | 低于限价单最小订单数量限制 |
+| 3005   | 超出限价单最大订单数量限制 |
+| 3006   | 超出限价单最高订单价格限制 |
+| 3007   | 低于限价单最低订单价格限制 |
+| 3008   | 低于最小订单金额限制       |
+| 3009   | 低于市价单最小订单数量限制 |
+| 3010   | 超出市价单最大订单数量限制 |
+| 3100   | 限价交易期间不接受市价申报 |
 
 ## 策略委托下单
 
@@ -5259,36 +5294,36 @@ API Key 权限：读取<br>
 
 以下是逐仓杠杆接口的返回码和说明。
 
-|返回码          | 说明 |
-|---------           | ---------  |
-|account-transfer-balance-insufficient-error | 账户余额不足 |
-|account-transfer-balance-overflow-error |负账户余额溢出 |
-|account-transfer-balance-insufficient_error| 账户余额不足（不区分动作类型）|
-|base-msg |自定义错误消息 |
-|base-system-error |系统异常 |
-|base-currency-error | currency不存在|
-|base-symbol-error | symbol不存在|
-|base-margin-symbol-invalid | 非法借贷交易对(非法交易对或者被禁止借贷的交易对) |
-|base-record-invalid | 记录无效|
-|base-request-timeout |请求超时，请稍后再试 |
-|base_request_exceed_number_limit| 请求人数过多，请稍后再试 |
-|base-date-limit-error | 日期错误 |
-|base-update-error | 更新数据错误 |
-|base-operation-forbidden 禁止操作 | 非计息状态 禁止还款|
-|dw-insufficient-balance | 余额不足|
-|dw-account-transfer-error | 转账错误|
-|frequent-invoke | 操作过于频繁，请稍后重试 |
-|loan-order-not-found | 订单未找到 |
-|loan-amount-scale-limit | 借贷&还款 金额精度限制 |
-|loan-repay-max-limit | 偿还大于借贷 |
-|loan-insufficient-balance | 余额不足 |
-|login-required | 需要登录 |
-|margin-country-not-allow | 国家未开放借贷|
-|margin-country-auth-required | 国家未开放借贷，需要认证 |
-|margin-trading-is-not-available| 暂不支持逐仓杠杆交易--禁止土耳其籍或通过土耳其KYC的用户进行逐仓杠杆借币|
-|margin-account-state-error|账户状态异常(爆仓中) |
-|risk-verification-failed |风控拦截通用错误码 |
-|sub-user-auth-required |需要母用户授权子用户 |
+| 返回码                                      | 说明                                                         |
+| ------------------------------------------- | ------------------------------------------------------------ |
+| account-transfer-balance-insufficient-error | 账户余额不足                                                 |
+| account-transfer-balance-overflow-error     | 负账户余额溢出                                               |
+| account-transfer-balance-insufficient_error | 账户余额不足（不区分动作类型）                               |
+| base-msg                                    | 自定义错误消息                                               |
+| base-system-error                           | 系统异常                                                     |
+| base-currency-error                         | currency不存在                                               |
+| base-symbol-error                           | symbol不存在                                                 |
+| base-margin-symbol-invalid                  | 非法借贷交易对(非法交易对或者被禁止借贷的交易对)             |
+| base-record-invalid                         | 记录无效                                                     |
+| base-request-timeout                        | 请求超时，请稍后再试                                         |
+| base_request_exceed_number_limit            | 请求人数过多，请稍后再试                                     |
+| base-date-limit-error                       | 日期错误                                                     |
+| base-update-error                           | 更新数据错误                                                 |
+| base-operation-forbidden 禁止操作           | 非计息状态 禁止还款                                          |
+| dw-insufficient-balance                     | 余额不足                                                     |
+| dw-account-transfer-error                   | 转账错误                                                     |
+| frequent-invoke                             | 操作过于频繁，请稍后重试                                     |
+| loan-order-not-found                        | 订单未找到                                                   |
+| loan-amount-scale-limit                     | 借贷&还款 金额精度限制                                       |
+| loan-repay-max-limit                        | 偿还大于借贷                                                 |
+| loan-insufficient-balance                   | 余额不足                                                     |
+| login-required                              | 需要登录                                                     |
+| margin-country-not-allow                    | 国家未开放借贷                                               |
+| margin-country-auth-required                | 国家未开放借贷，需要认证                                     |
+| margin-trading-is-not-available             | 暂不支持逐仓杠杆交易--禁止土耳其籍或通过土耳其KYC的用户进行逐仓杠杆借币 |
+| margin-account-state-error                  | 账户状态异常(爆仓中)                                         |
+| risk-verification-failed                    | 风控拦截通用错误码                                           |
+| sub-user-auth-required                      | 需要母用户授权子用户                                         |
 
 以下是全仓杆接口的返回码和说明。
 
@@ -5352,11 +5387,11 @@ API Key 权限：交易<br>
 
 ### 请求参数
 
-参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
----------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | 交易对, e.g. btcusdt, ethbtc
-currency   | string    | true     | NA      | 币种
-amount     | string    | true     | NA      | 划转数量
+| 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述                         |
+| -------- | -------- | -------- | ------ | ---------------------------- |
+| symbol   | string   | true     | NA     | 交易对, e.g. btcusdt, ethbtc |
+| currency | string   | true     | NA     | 币种                         |
+| amount   | string   | true     | NA     | 划转数量                     |
 
 
 > Response:
@@ -5370,9 +5405,9 @@ amount     | string    | true     | NA      | 划转数量
 ### 响应数据
 
 
-参数名称 | 数据类型 | 描述
------- | ------- | -----
-data   | integer | Transfer id
+| 参数名称 | 数据类型 | 描述        |
+| -------- | -------- | ----------- |
+| data     | integer  | Transfer id |
 
 ## 查询借币币息率及额度（逐仓）
 
@@ -5391,9 +5426,9 @@ curl "https://api.huobi.pro/v1/margin/loan-info?symbols=btcusdt"
 
 ### 请求参数
 
-参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
----------  | --------- | -------- | ------- | -----------
-symbols     | string    | false     | all      | 交易代码 (可多选，以逗号分隔)
+| 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述                          |
+| -------- | -------- | -------- | ------ | ----------------------------- |
+| symbols  | string   | false    | all    | 交易代码 (可多选，以逗号分隔) |
 
 > Response:
 
@@ -5428,16 +5463,16 @@ symbols     | string    | false     | all      | 交易代码 (可多选，以�
 
 ### 响应数据
 
-参数名称 | 数据类型 | 描述
------- | ------- | -----
-{ symbol|string|交易代码
-  currencies   | object | 
-  { currency   | string | 币种
-interest-rate|string|基础日币息率
-min-loan-amt|string|最小允许借币金额
-max-loan-amt|string|最大允许借币金额
-loanable-amt|string|最大可借金额
-actual-rate }}|string|抵扣后的实际借币币息率，如不适用抵扣或未启用抵扣，返回基础日币息率
+| 参数名称       | 数据类型 | 描述                                                         |
+| -------------- | -------- | ------------------------------------------------------------ |
+| { symbol       | string   | 交易代码                                                     |
+| currencies     | object   |                                                              |
+| { currency     | string   | 币种                                                         |
+| interest-rate  | string   | 基础日币息率                                                 |
+| min-loan-amt   | string   | 最小允许借币金额                                             |
+| max-loan-amt   | string   | 最大允许借币金额                                             |
+| loanable-amt   | string   | 最大可借金额                                                 |
+| actual-rate }} | string   | 抵扣后的实际借币币息率，如不适用抵扣或未启用抵扣，返回基础日币息率 |
 
 ## 申请借币（逐仓）
 
@@ -5462,11 +5497,11 @@ API Key 权限：交易<br>
 
 ### 请求参数
 
-参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
----------  | --------- | -------- | ------- | -----------
-symbol     | string    | true     | NA      | 交易对
-currency   | string    | true     | NA      | 币种
-amount     | string    | true     | NA      | 借币数量（精度：3位小数）
+| 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述                      |
+| -------- | -------- | -------- | ------ | ------------------------- |
+| symbol   | string   | true     | NA     | 交易对                    |
+| currency | string   | true     | NA     | 币种                      |
+| amount   | string   | true     | NA     | 借币数量（精度：3位小数） |
 
 > Response:
 
@@ -5479,10 +5514,10 @@ amount     | string    | true     | NA      | 借币数量（精度：3位小数
 
 ### 响应数据
 
-字段名称| 数据类型 | 描述
--------| ------  | ----
-status| string | 状态 
-data   | integer | 订单id 
+| 字段名称 | 数据类型 | 描述   |
+| -------- | -------- | ------ |
+| status   | string   | 状态   |
+| data     | integer  | 订单id |
 
 ## 归还借币（逐仓）
 
@@ -5505,10 +5540,10 @@ API Key 权限：交易<br>
 
 ### 请求参数
 
-参数名称 | 数据类型 | 是否必需 | 描述
----------  | --------- | -------- | -----------
-order-id   | string    | true     | 借币订单 ID，写在 url path 中
-amount     | string    | true     | 归还币种数量
+| 参数名称 | 数据类型 | 是否必需 | 描述                          |
+| -------- | -------- | -------- | ----------------------------- |
+| order-id | string   | true     | 借币订单 ID，写在 url path 中 |
+| amount   | string   | true     | 归还币种数量                  |
 
 > Response:
 
@@ -5521,9 +5556,9 @@ amount     | string    | true     | 归还币种数量
 ### 响应数据
 
 
-参数名称     | 数据类型 | 描述
--------  | ------- | -----------
-data     | integer | Margin order id
+| 参数名称 | 数据类型 | 描述            |
+| -------- | -------- | --------------- |
+| data     | integer  | Margin order id |
 
 
 ## 查询借币订单（逐仓）
@@ -5539,16 +5574,16 @@ API Key 权限：读取<br>
 
 ### 请求参数
 
-| 参数名称       | 是否必须  | 类型     | 描述    | 默认值  | 取值范围   |
-| ----- | ----- | ------ |  -------  | ---- |  ----  |
-| symbol | true | string | 交易对  |  | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`） |
-| start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd  |     |    |
-| end-date | false | string | 查询结束日期, 日期格式yyyy-mm-dd  |    |    |
-| states | false | string | 状态列表，可以支持多个状态，用逗号分隔 |     | created 未放款，accrual 已放款，cleared 已还清，invalid 异常 |
-| from   | false | string | 查询起始 ID  |    |     |
-| direct | false | string | 查询方向     |    | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序） |
-| size   | false | string | 查询记录大小  | 100 | [1, 100] |
-| sub-uid   | false | int | 子用户编号（母用户查询子用户借币订单时，此字段必填）  |如不填，缺省查询当前用户借币订单    |     |
+| 参数名称   | 是否必须 | 类型   | 描述                                                 | 默认值                           | 取值范围                                                     |
+| ---------- | -------- | ------ | ---------------------------------------------------- | -------------------------------- | ------------------------------------------------------------ |
+| symbol     | true     | string | 交易对                                               |                                  | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）       |
+| start-date | false    | string | 查询开始日期, 日期格式yyyy-mm-dd                     |                                  |                                                              |
+| end-date   | false    | string | 查询结束日期, 日期格式yyyy-mm-dd                     |                                  |                                                              |
+| states     | false    | string | 状态列表，可以支持多个状态，用逗号分隔               |                                  | created 未放款，accrual 已放款，cleared 已还清，invalid 异常 |
+| from       | false    | string | 查询起始 ID                                          |                                  |                                                              |
+| direct     | false    | string | 查询方向                                             |                                  | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序） |
+| size       | false    | string | 查询记录大小                                         | 100                              | [1, 100]                                                     |
+| sub-uid    | false    | int    | 子用户编号（母用户查询子用户借币订单时，此字段必填） | 如不填，缺省查询当前用户借币订单 |                                                              |
 
 > Response:
 
@@ -5586,29 +5621,29 @@ API Key 权限：读取<br>
 ### 响应数据
 
 
-| 字段名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
-|-----|-----|-----|-----|------|
-|   id  |  true  |  long  |  订单号 | |
-|   user-id  |  true  |  long  | 用户ID | |
-|   account-id  |  true  |  long  |  账户ID | |
-|   symbol  |  true  |  string  |  交易对 | |
-|   currency  |  true  |  string  |  币种 | |
-| loan-amount | true |string | 借币本金总额 | |
-| loan-balance | true | string | 未还本金 | |
-| interest-rate | true | string | 币息率 | |
-| interest-amount | true | string | 币息总额 | |
-| interest-balance | true | string | 未还币息 | |
-| created-at | true | long | 借币发起时间 | |
-| accrued-at | true | long | 最近一次计息时间 | |
-| state | true | string | 订单状态 |created 未放款，accrual 已放款，cleared 已还清，invalid 异常|
-|   paid-point  |  true  |  string  |  已支付点卡金额（用于还息） | |
-| paid-coin | true | string | 已支付原币金额（用于还息） | |
-|   deduct-rate  |  true  |  string  |  抵扣率（用于还息） | |
-| deduct-currency | true | string | 抵扣币种（用于还息） | |
-| deduct-amount | true | string | 抵扣金额（用于还息） | |
-| updated-at | true | long | 更新时间 | |
-| hour-interest-rate | true | string | 时息率 | |
-| day-interest-rate | true | string | 日息率 | |
+| 字段名称           | 是否必须 | 数据类型 | 描述                       | 取值范围                                                     |
+| ------------------ | -------- | -------- | -------------------------- | ------------------------------------------------------------ |
+| id                 | true     | long     | 订单号                     |                                                              |
+| user-id            | true     | long     | 用户ID                     |                                                              |
+| account-id         | true     | long     | 账户ID                     |                                                              |
+| symbol             | true     | string   | 交易对                     |                                                              |
+| currency           | true     | string   | 币种                       |                                                              |
+| loan-amount        | true     | string   | 借币本金总额               |                                                              |
+| loan-balance       | true     | string   | 未还本金                   |                                                              |
+| interest-rate      | true     | string   | 币息率                     |                                                              |
+| interest-amount    | true     | string   | 币息总额                   |                                                              |
+| interest-balance   | true     | string   | 未还币息                   |                                                              |
+| created-at         | true     | long     | 借币发起时间               |                                                              |
+| accrued-at         | true     | long     | 最近一次计息时间           |                                                              |
+| state              | true     | string   | 订单状态                   | created 未放款，accrual 已放款，cleared 已还清，invalid 异常 |
+| paid-point         | true     | string   | 已支付点卡金额（用于还息） |                                                              |
+| paid-coin          | true     | string   | 已支付原币金额（用于还息） |                                                              |
+| deduct-rate        | true     | string   | 抵扣率（用于还息）         |                                                              |
+| deduct-currency    | true     | string   | 抵扣币种（用于还息）       |                                                              |
+| deduct-amount      | true     | string   | 抵扣金额（用于还息）       |                                                              |
+| updated-at         | true     | long     | 更新时间                   |                                                              |
+| hour-interest-rate | true     | string   | 时息率                     |                                                              |
+| day-interest-rate  | true     | string   | 日息率                     |                                                              |
 
 ## 借币账户详情（逐仓）
 
@@ -5627,10 +5662,10 @@ curl "https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"
 
 ### 请求参数
 
-| 参数名称 | 是否必须 | 类型 | 描述 | 默认值 | 取值范围 |
-|---------|---------|-----|-----|-------|--------|
-| symbol | false | string | 交易对，作为get参数<br />如果不传则不返回可转余额(transfer-out-available)和可借余额(loan-available) |  |  |
-| sub-uid | false | int | 子用户编号（母用户查询子用户借币详情时，此字段必填）  | 如不填，缺省查询当前用户借币详情 |  |
+| 参数名称 | 是否必须 | 类型   | 描述                                                         | 默认值                           | 取值范围 |
+| -------- | -------- | ------ | ------------------------------------------------------------ | -------------------------------- | -------- |
+| symbol   | false    | string | 交易对，作为get参数<br />如果不传则不返回可转余额(transfer-out-available)和可借余额(loan-available) |                                  |          |
+| sub-uid  | false    | int    | 子用户编号（母用户查询子用户借币详情时，此字段必填）         | 如不填，缺省查询当前用户借币详情 |          |
 
 > Response:
 
@@ -5684,16 +5719,16 @@ curl "https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"
 
 ### 响应数据
 
-| 字段名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
-|-----|-----|-----|-----|------|
-| symbol  |  true  |  string  |  交易对 | |
-| state  |  true  |  string  |  账户状态 | working 正常,fl-sys 系统自动爆仓,fl-mgt 手动爆仓,fl-end 爆仓结束 |
-| risk-rate | true | string | 风险率 | |
-| fl-price | true | string | 爆仓价 | |
-| list | true | array | 借币账户详情列表 | |
-| { currency | true | string | 币种 | |
-| type | true | string | 类型 | type: 交易余额, frozen: 冻结余额, loan: 待还借贷本金, interest: 待还借贷利息 |
-| balance } | true | string | 余额，负数表示应还金额 |  |
+| 字段名称   | 是否必须 | 数据类型 | 描述                   | 取值范围                                                     |
+| ---------- | -------- | -------- | ---------------------- | ------------------------------------------------------------ |
+| symbol     | true     | string   | 交易对                 |                                                              |
+| state      | true     | string   | 账户状态               | working 正常,fl-sys 系统自动爆仓,fl-mgt 手动爆仓,fl-end 爆仓结束 |
+| risk-rate  | true     | string   | 风险率                 |                                                              |
+| fl-price   | true     | string   | 爆仓价                 |                                                              |
+| list       | true     | array    | 借币账户详情列表       |                                                              |
+| { currency | true     | string   | 币种                   |                                                              |
+| type       | true     | string   | 类型                   | type: 交易余额, frozen: 冻结余额, loan: 待还借贷本金, interest: 待还借贷利息 |
+| balance }  | true     | string   | 余额，负数表示应还金额 |                                                              |
 
 ## 资产划转（全仓）
 
@@ -5719,10 +5754,10 @@ API Key 权限：交易
 
 ### 请求参数
 
-参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
----------  | --------- | -------- | ------- | -----------
-currency   | string    | true     | NA      | 币种
-amount     | string    | true     | NA      | 划转数量
+| 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述     |
+| -------- | -------- | -------- | ------ | -------- |
+| currency | string   | true     | NA     | 币种     |
+| amount   | string   | true     | NA     | 划转数量 |
 
 
 > Response:
@@ -5737,9 +5772,9 @@ amount     | string    | true     | NA      | 划转数量
 ### 响应数据
 
 
-参数名称 | 数据类型 | 描述
------- | ------- | -----
-data   | integer | Transfer id
+| 参数名称 | 数据类型 | 描述        |
+| -------- | -------- | ----------- |
+| data     | integer  | Transfer id |
 
 ## 查询借币币息率及额度（全仓）
 
@@ -5823,14 +5858,14 @@ API Key 权限：读取
 
 ### 响应数据
 
-参数名称 | 数据类型 | 描述
------- | ------- | -----
-{ currency   | string | 币种
-interest-rate|string|基础日币息率
-min-loan-amt|string|最小允许借币金额
-max-loan-amt|string|最大允许借币金额
-loanable-amt |string|最大可借金额
-actual-rate }|string|抵扣后的实际币息率，如不适用抵扣或未启用抵扣则返回基础日币息率
+| 参数名称      | 数据类型 | 描述                                                         |
+| ------------- | -------- | ------------------------------------------------------------ |
+| { currency    | string   | 币种                                                         |
+| interest-rate | string   | 基础日币息率                                                 |
+| min-loan-amt  | string   | 最小允许借币金额                                             |
+| max-loan-amt  | string   | 最大允许借币金额                                             |
+| loanable-amt  | string   | 最大可借金额                                                 |
+| actual-rate } | string   | 抵扣后的实际币息率，如不适用抵扣或未启用抵扣则返回基础日币息率 |
 
 ## 申请借币（全仓）
 
@@ -5853,10 +5888,10 @@ API Key 权限：交易
 
 ### 请求参数
 
-参数名称 | 数据类型 | 是否必需 | 默认值 | 描述
----------  | --------- | -------- | ------- | -----------
-currency   | string    | true     | NA      | 币种
-amount     | string    | true     | NA      | 借币数量（精度：3位小数）
+| 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述                      |
+| -------- | -------- | -------- | ------ | ------------------------- |
+| currency | string   | true     | NA     | 币种                      |
+| amount   | string   | true     | NA     | 借币数量（精度：3位小数） |
 
 > Response:
 
@@ -5869,9 +5904,9 @@ amount     | string    | true     | NA      | 借币数量（精度：3位小数
 
 ### 响应数据
 
-字段名称| 数据类型 | 描述
--------| ------  | ----
-data   | integer | Margin order id
+| 字段名称 | 数据类型 | 描述            |
+| -------- | -------- | --------------- |
+| data     | integer  | Margin order id |
 
 ## 归还借币（全仓）
 
@@ -5893,10 +5928,10 @@ API Key 权限：交易
 
 ### 请求参数
 
-参数名称 | 数据类型 | 是否必需 | 描述
----------  | --------- | -------- | -----------
-order-id   | string    | true     | 借币订单 ID，写在 url path 中
-amount     | string    | true     | 归还币种数量
+| 参数名称 | 数据类型 | 是否必需 | 描述                          |
+| -------- | -------- | -------- | ----------------------------- |
+| order-id | string   | true     | 借币订单 ID，写在 url path 中 |
+| amount   | string   | true     | 归还币种数量                  |
 
 > Response:
 
@@ -5909,9 +5944,9 @@ amount     | string    | true     | 归还币种数量
 
 ### 响应数据
 
-参数名称     | 数据类型 | 描述
--------  | ------- | -----------
-data     | null | -
+| 参数名称 | 数据类型 | 描述 |
+| -------- | -------- | ---- |
+| data     | null     | -    |
 
 ## 查询借币订单（全仓）
 
@@ -5925,11 +5960,11 @@ API Key 权限：读取
 
 ### 请求参数
 
-| 参数名称       | 是否必须  | 类型     | 描述    | 默认值  | 取值范围   |
-| ----- | ----- | ------ |  -------  | ---- |  ----  |
-| start-date | false | string | 查询开始日期, 日期格式yyyy-mm-dd  |     |    |
-| end-date | false | string | 查询结束日期, 日期格式yyyy-mm-dd  |    |    |
-| currency | false | string | 币种   |   |
+| 参数名称   | 是否必须 | 类型   | 描述                             | 默认值 | 取值范围 |
+| ---------- | -------- | ------ | -------------------------------- | ------ | -------- |
+| start-date | false    | string | 查询开始日期, 日期格式yyyy-mm-dd |        |          |
+| end-date   | false    | string | 查询结束日期, 日期格式yyyy-mm-dd |        |          |
+| currency   | false    | string | 币种                             |        |          |
 | state | false | string | 状态   |all   |created 未放款，accrual 已放款，cleared 已还清，invalid 异常
 | from   | false | string | 查询起始 ID  | 0   |     |
 | direct | false | string | 查询方向     |    | prev 向前，时间（或 ID）正序；next 向后，时间（或 ID）倒序） |
@@ -5963,21 +5998,21 @@ API Key 权限：读取
 
 ### 响应数据
 
-| 字段名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
-|-----|-----|-----|-----|------|
-|   id  |  true  |  long  |  订单号 | |
-|   user-id  |  true  |  long  | 用户ID | |
-|   account-id  |  true  |  long  |  账户ID | |
-|   currency  |  true  |  string  |  币种 | |
-| loan-amount | true |string | 借币本金总额 | |
-| loan-balance | true | string | 未还本金 | |
-| interest-amount | true | string | 币息总额 | |
-| interest-balance | true | string | 未还币息 | |
-| filled-points | true | string | 点卡抵扣数量 | |
-| filled-ht | true | string | HT抵扣数量 | |
-| created-at | true | long | 借币发起时间 | |
-| accrued-at | true | long | 最近一次计息时间 | |
-| state | true | string | 订单状态 |created 未放款，accrual 已放款，cleared 已还清，invalid 异常|
+| 字段名称         | 是否必须 | 数据类型 | 描述             | 取值范围                                                     |
+| ---------------- | -------- | -------- | ---------------- | ------------------------------------------------------------ |
+| id               | true     | long     | 订单号           |                                                              |
+| user-id          | true     | long     | 用户ID           |                                                              |
+| account-id       | true     | long     | 账户ID           |                                                              |
+| currency         | true     | string   | 币种             |                                                              |
+| loan-amount      | true     | string   | 借币本金总额     |                                                              |
+| loan-balance     | true     | string   | 未还本金         |                                                              |
+| interest-amount  | true     | string   | 币息总额         |                                                              |
+| interest-balance | true     | string   | 未还币息         |                                                              |
+| filled-points    | true     | string   | 点卡抵扣数量     |                                                              |
+| filled-ht        | true     | string   | HT抵扣数量       |                                                              |
+| created-at       | true     | long     | 借币发起时间     |                                                              |
+| accrued-at       | true     | long     | 最近一次计息时间 |                                                              |
+| state            | true     | string   | 订单状态         | created 未放款，accrual 已放款，cleared 已还清，invalid 异常 |
 
 ## 借币账户详情（全仓）
 
@@ -5991,9 +6026,9 @@ API Key 权限：读取
 
 ### 请求参数
 
-| 参数名称       | 是否必须  | 类型     | 描述    | 默认值  | 取值范围   |
-| ----- | ----- | ------ |  -------  | ---- |  ----  |
-|sub-uid|false|long|子用户UID|如不填，缺省查询当前用户借贷订单||
+| 参数名称 | 是否必须 | 类型 | 描述      | 默认值                           | 取值范围 |
+| -------- | -------- | ---- | --------- | -------------------------------- | -------- |
+| sub-uid  | false    | long | 子用户UID | 如不填，缺省查询当前用户借贷订单 |          |
 
 > Response:
 
@@ -6046,18 +6081,18 @@ API Key 权限：读取
 
 ### 响应数据
 
-| 字段名称 | 是否必须 | 数据类型 | 描述 | 取值范围 |
-|-----|-----|-----|-----|------|
-| id | true | integer | Account ID 账户编号 | |
-| type | true | integer | 账户类型 (margin or cross-margin) |cross-margin |
-| state  |  true  |  string  |  账户状态 | working 正常,fl-sys 系统自动爆仓,fl-end 爆仓结束,fl-negative 穿仓 |
-| risk-rate | true | string | 风险率 | |
-| acct-balance-sum | true | string | 总持有usdt折合 | |
-| debt-balance-sum | true | string | 总负债usdt折合 | |
-| list | true | array | 借币账户详情列表 | |
-| { currency | true | string | 币种| |
-|   type | true | string | 账户类型| trade,frozen,loan,interest,transfer-out-available,loan-available|
-|   balance } | true | string | 余额（注：当type= transfer-out-available时，如果balance=-1，意味着该币种余额可全部转出）| |
+| 字段名称         | 是否必须 | 数据类型 | 描述                                                         | 取值范围                                                     |
+| ---------------- | -------- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| id               | true     | integer  | Account ID 账户编号                                          |                                                              |
+| type             | true     | integer  | 账户类型 (margin or cross-margin)                            | cross-margin                                                 |
+| state            | true     | string   | 账户状态                                                     | working 正常,fl-sys 系统自动爆仓,fl-end 爆仓结束,fl-negative 穿仓 |
+| risk-rate        | true     | string   | 风险率                                                       |                                                              |
+| acct-balance-sum | true     | string   | 总持有usdt折合                                               |                                                              |
+| debt-balance-sum | true     | string   | 总负债usdt折合                                               |                                                              |
+| list             | true     | array    | 借币账户详情列表                                             |                                                              |
+| { currency       | true     | string   | 币种                                                         |                                                              |
+| type             | true     | string   | 账户类型                                                     | trade,frozen,loan,interest,transfer-out-available,loan-available |
+| balance }        | true     | string   | 余额（注：当type= transfer-out-available时，如果balance=-1，意味着该币种余额可全部转出） |                                                              |
 
 ## 归还借币（全仓）
 
@@ -6204,36 +6239,36 @@ C2C借币相关接口提供了用户对用户之间的借入、借出、还币�
 
 以下是C2C借币相关接口的错误码、错误消息和说明。
 
-| 错误码 | 错误消息 | 说明 |
-| -- | -- | -- |
-|40301| Insufficient available balance | 可用余额不足 |
-|40302| Failed to get the account | 获取账户信息失败 |
-|40307| Existence of an ongoing loan order | 存在正在进行中的借贷单 |
-|40309| Wrong order status | 订单状态错误 |
-|40310| Order does not exist | 借贷单不存在 |
-|40311| User has OTC loans | 用户存在场外借贷 |
-|40312| Only normal and bankrupt users can be included | 爆仓中账户不能转入资产 |
-|40315| There is no liquidation or forced liquidation setting | 缺少强平或爆仓设置 |
-|40317| Failed to get sub-loan order | 获取子借贷单失败 |
-|40319| No less than the minimum borrowing amount | 不能低于最小借出量 |
-|40320| borrowing configuration does not exist | 借贷配置不存在 |
-|40322| The user has not passed advanced verification | 用户未通过高级认证 |
-|40324| The amount of repayment exceeds the amount borrowed | 还款数量超过借贷量 |
-|40326| White list users only| 非白名单用户 |
-|40327| Exceeding the maximum accuracy | 超过最大精度 |
-|40328| Cannot exceed the maximum amount of borrowing | 不能超过最大借贷量 |
-|40329| Interest rate out of the set range | 利率超出设定范围 |
-|40330| Cannot be less than the minimum loan amount | 不能低于最小借入量 |
-|40331| cannot exceed the maximum loan amount | 不能超过最大借入量 |
-|40332| Cannot be less than the minimum repayment amount | 不能低于最小还款量 |
-|40333| the ending time must be greater than the starting time | 结束时间必须大于开始时间 |
-|40335| in repayment | 还款中 |
-|40336| This feature is not open to users in China, the United States, Turkey, Japan, Singapore | 该功能不对中国、美国、土耳其、日本、新加坡用户开放 |
-|40337| C2C lending transaction is not currently available | 暂不支持C2C借贷交易 |
-|40339| Debit and credit function is closed | 借贷功能已关闭 |
-|40340| The current account ID does not belong to the current user | 当前账户ID不属于当前用户所持有 |
-|40345| This account is not a C2C account | 该账户非C2C账户 |
-|40346| This order is not allowed to change renew state | 当前订单不能修改续借状态 |
+| 错误码 | 错误消息                                                     | 说明                                               |
+| ------ | ------------------------------------------------------------ | -------------------------------------------------- |
+| 40301  | Insufficient available balance                               | 可用余额不足                                       |
+| 40302  | Failed to get the account                                    | 获取账户信息失败                                   |
+| 40307  | Existence of an ongoing loan order                           | 存在正在进行中的借贷单                             |
+| 40309  | Wrong order status                                           | 订单状态错误                                       |
+| 40310  | Order does not exist                                         | 借贷单不存在                                       |
+| 40311  | User has OTC loans                                           | 用户存在场外借贷                                   |
+| 40312  | Only normal and bankrupt users can be included               | 爆仓中账户不能转入资产                             |
+| 40315  | There is no liquidation or forced liquidation setting        | 缺少强平或爆仓设置                                 |
+| 40317  | Failed to get sub-loan order                                 | 获取子借贷单失败                                   |
+| 40319  | No less than the minimum borrowing amount                    | 不能低于最小借出量                                 |
+| 40320  | borrowing configuration does not exist                       | 借贷配置不存在                                     |
+| 40322  | The user has not passed advanced verification                | 用户未通过高级认证                                 |
+| 40324  | The amount of repayment exceeds the amount borrowed          | 还款数量超过借贷量                                 |
+| 40326  | White list users only                                        | 非白名单用户                                       |
+| 40327  | Exceeding the maximum accuracy                               | 超过最大精度                                       |
+| 40328  | Cannot exceed the maximum amount of borrowing                | 不能超过最大借贷量                                 |
+| 40329  | Interest rate out of the set range                           | 利率超出设定范围                                   |
+| 40330  | Cannot be less than the minimum loan amount                  | 不能低于最小借入量                                 |
+| 40331  | cannot exceed the maximum loan amount                        | 不能超过最大借入量                                 |
+| 40332  | Cannot be less than the minimum repayment amount             | 不能低于最小还款量                                 |
+| 40333  | the ending time must be greater than the starting time       | 结束时间必须大于开始时间                           |
+| 40335  | in repayment                                                 | 还款中                                             |
+| 40336  | This feature is not open to users in China, the United States, Turkey, Japan, Singapore | 该功能不对中国、美国、土耳其、日本、新加坡用户开放 |
+| 40337  | C2C lending transaction is not currently available           | 暂不支持C2C借贷交易                                |
+| 40339  | Debit and credit function is closed                          | 借贷功能已关闭                                     |
+| 40340  | The current account ID does not belong to the current user   | 当前账户ID不属于当前用户所持有                     |
+| 40345  | This account is not a C2C account                            | 该账户非C2C账户                                    |
+| 40346  | This order is not allowed to change renew state              | 当前订单不能修改续借状态                           |
 
 ## 借入借出下单
 
@@ -6933,16 +6968,16 @@ Websocket服务器同时支持一次性请求数据（pull）。
 
 以下是WebSocket行情接口的错误码、错误消息和说明。
 
-| 错误码 | 错误消息 | 说明 |
-|---------  | -----------|--------- |
-| bad-request | invalid topic | topic错误 |
-| bad-request |invalid symbol | symbol错误 |
-| bad-request |symbol trade not open now   | 该交易对未到开始交易时间 |
-| bad-request |429 too many request | req 请求太频繁 |
-| bad-request | unsub with not subbed topic  |  未订阅该主题 |
-| bad-request | not json string   | 发送的请求不是JSON格式 |
-| 1008 | header required correct cloud-exchange  | exchangeCode 参数错误 |
-| bad-request | request timeout | 请求超时 |
+| 错误码      | 错误消息                               | 说明                     |
+| ----------- | -------------------------------------- | ------------------------ |
+| bad-request | invalid topic                          | topic错误                |
+| bad-request | invalid symbol                         | symbol错误               |
+| bad-request | symbol trade not open now              | 该交易对未到开始交易时间 |
+| bad-request | 429 too many request                   | req 请求太频繁           |
+| bad-request | unsub with not subbed topic            | 未订阅该主题             |
+| bad-request | not json string                        | 发送的请求不是JSON格式   |
+| 1008        | header required correct cloud-exchange | exchangeCode 参数错误    |
+| bad-request | request timeout                        | 请求超时                 |
 
 ## K线数据
 
@@ -6963,10 +6998,10 @@ Websocket服务器同时支持一次性请求数据（pull）。
 
 ### 参数
 
-参数 | 数据类型 | 是否必需 | 描述                      | 取值范围
---------- | --------- | -------- | -----------                      | -----------
-symbol    | string    | true     | 交易代码     | btcusdt, ethbtc...等（如需获取杠杆ETP净值K线，净值symbol = 杠杆ETP交易对symbol + 后缀‘nav’，例如：btc3lusdtnav）
-period     | string    | true     | K线周期   | 1min, 5min, 15min, 30min, 60min, 4hour, 1day, 1mon, 1week, 1year
+| 参数   | 数据类型 | 是否必需 | 描述     | 取值范围                                                     |
+| ------ | -------- | -------- | -------- | ------------------------------------------------------------ |
+| symbol | string   | true     | 交易代码 | btcusdt, ethbtc...等（如需获取杠杆ETP净值K线，净值symbol = 杠杆ETP交易对symbol + 后缀‘nav’，例如：btc3lusdtnav） |
+| period | string   | true     | K线周期  | 1min, 5min, 15min, 30min, 60min, 4hour, 1day, 1mon, 1week, 1year |
 
 > Response
 
@@ -7000,16 +7035,16 @@ period     | string    | true     | K线周期   | 1min, 5min, 15min, 30min, 60m
 
 ### 数据更新字段列表
 
-字段     | 数据类型 | 描述
---------- | --------- | -----------
-id        | integer   | unix时间，同时作为K线ID
-amount    | float     | 成交量
-count     | integer   | 成交笔数
-open      | float     | 开盘价
-close     | float     | 收盘价（当K线为最晚的一根时，是最新成交价）
-low       | float     | 最低价
-high      | float     | 最高价
-vol       | float     | 成交额, 即 sum(每一笔成交价 * 该笔的成交量)
+| 字段   | 数据类型 | 描述                                        |
+| ------ | -------- | ------------------------------------------- |
+| id     | integer  | unix时间，同时作为K线ID                     |
+| amount | float    | 成交量                                      |
+| count  | integer  | 成交笔数                                    |
+| open   | float    | 开盘价                                      |
+| close  | float    | 收盘价（当K线为最晚的一根时，是最新成交价） |
+| low    | float    | 最低价                                      |
+| high   | float    | 最高价                                      |
+| vol    | float    | 成交额, 即 sum(每一笔成交价 * 该笔的成交量) |
 
 <aside class="notice">当symbol被设为“hb10”或“huobi10”时，amount，count，vol均为零值。</aside>
 ### 数据请求
@@ -7026,10 +7061,10 @@ vol       | float     | 成交额, 即 sum(每一笔成交价 * 该笔的成交�
 }
 ```
 
-参数 | 数据类型 | 是否必需 | 缺省值                          | 描述      | 取值范围
---------- | --------- | -------- | -------------                          | -----------      | -----------
-from      | integer   | false    | 1501174800(2017-07-28T00:00:00+08:00)  | 起始时间 (epoch time in second)   | [1501174800, 2556115200]
-to        | integer   | false    | 2556115200(2050-01-01T00:00:00+08:00)  | 结束时间 (epoch time in second)      | [1501174800, 2556115200] or ($from, 2556115200] if "from" is set
+| 参数 | 数据类型 | 是否必需 | 缺省值                                | 描述                            | 取值范围                                                     |
+| ---- | -------- | -------- | ------------------------------------- | ------------------------------- | ------------------------------------------------------------ |
+| from | integer  | false    | 1501174800(2017-07-28T00:00:00+08:00) | 起始时间 (epoch time in second) | [1501174800, 2556115200]                                     |
+| to   | integer  | false    | 2556115200(2050-01-01T00:00:00+08:00) | 结束时间 (epoch time in second) | [1501174800, 2556115200] or ($from, 2556115200] if "from" is set |
 
 ## 市场深度行情数据
 
@@ -7050,21 +7085,21 @@ to        | integer   | false    | 2556115200(2050-01-01T00:00:00+08:00)  | 结�
 
 ### 参数
 
-参数 | 数据类型 | 是否必需 | 缺省值         | 描述                                       | 取值范围
---------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | 交易代码                   | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）
-type      | string    | true     | step0                 | 合并深度类型     | step0, step1, step2, step3, step4, step5
+| 参数   | 数据类型 | 是否必需 | 缺省值 | 描述         | 取值范围                                               |
+| ------ | -------- | -------- | ------ | ------------ | ------------------------------------------------------ |
+| symbol | string   | true     | NA     | 交易代码     | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`） |
+| type   | string   | true     | step0  | 合并深度类型 | step0, step1, step2, step3, step4, step5               |
 
 **"type" 合并深度类型**
 
-Value     | Description
---------- | ---------
-step0     | 不合并深度
-step1     | Aggregation level = precision*10
-step2     | Aggregation level = precision*100
-step3     | Aggregation level = precision*1000
-step4     | Aggregation level = precision*10000
-step5     | Aggregation level = precision*100000
+| Value | Description                          |
+| ----- | ------------------------------------ |
+| step0 | 不合并深度                           |
+| step1 | Aggregation level = precision*10     |
+| step2 | Aggregation level = precision*100    |
+| step3 | Aggregation level = precision*1000   |
+| step4 | Aggregation level = precision*10000  |
+| step5 | Aggregation level = precision*100000 |
 
 当type值为‘step0’时，默认深度为150档;
 当type值为‘step1’,‘step2’,‘step3’,‘step4’,‘step5’时，默认深度为20档。
@@ -7104,12 +7139,12 @@ step5     | Aggregation level = precision*100000
 ### 数据更新字段列表
 
 <aside class="notice">在'tick'object下方呈现买盘卖盘深度列表</aside>
-字段     | 数据类型 | 描述
---------- | --------- | -----------
-bids      | object    | 当前的所有买单 [price, size]
-asks      | object    | 当前的所有卖单 [price, size]
-version   | integer   | 内部字段
-ts        | integer   | 新加坡时间的时间戳，单位毫秒 
+| 字段    | 数据类型 | 描述                         |
+| ------- | -------- | ---------------------------- |
+| bids    | object   | 当前的所有买单 [price, size] |
+| asks    | object   | 当前的所有卖单 [price, size] |
+| version | integer  | 内部字段                     |
+| ts      | integer  | 新加坡时间的时间戳，单位毫秒 |
 
 <aside class="notice">当symbol被设为"hb10"时，amount, count, vol均为零值 </aside>
 ### 数据请求
@@ -7226,10 +7261,10 @@ REQ频道支持5档/20档/150档全量数据的获取。<br>
 
 ### 参数
 
-参数 | 数据类型 | 是否必需 | 缺省值         | 描述                                       | 取值范围
---------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | 交易代码（不支持通配符）| 
-levels      | integer    | true     | NA                 | 深度档位（取值：5, 20, 150）     | 当前仅支持5档，20档，或150档深度
+| 参数   | 数据类型 | 是否必需 | 缺省值 | 描述                         | 取值范围                         |
+| ------ | -------- | -------- | ------ | ---------------------------- | -------------------------------- |
+| symbol | string   | true     | NA     | 交易代码（不支持通配符）     |                                  |
+| levels | integer  | true     | NA     | 深度档位（取值：5, 20, 150） | 当前仅支持5档，20档，或150档深度 |
 
 > Response (增量订阅)
 
@@ -7287,12 +7322,12 @@ levels      | integer    | true     | NA                 | 深度档位（取值
 
 ### 数据更新字段列表
 
-字段     | 数据类型 | 描述
---------- | --------- | -----------
-seqNum   | integer   | 消息序列号
-prevSeqNum        | integer   | 上一消息序列号 
-bids      | object    | 买盘，按price降序排列，["price","size"]
-asks      | object    | 卖盘，按price升序排列，["price","size"]
+| 字段       | 数据类型 | 描述                                    |
+| ---------- | -------- | --------------------------------------- |
+| seqNum     | integer  | 消息序列号                              |
+| prevSeqNum | integer  | 上一消息序列号                          |
+| bids       | object   | 买盘，按price降序排列，["price","size"] |
+| asks       | object   | 卖盘，按price升序排列，["price","size"] |
 
 ## 市场深度MBP行情数据（全量推送）
 
@@ -7313,10 +7348,10 @@ asks      | object    | 卖盘，按price升序排列，["price","size"]
 
 ### 参数
 
-参数 | 数据类型 | 是否必需 | 缺省值         | 描述                                       | 取值范围
---------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | 交易代码（不支持通配符）| 
-levels      | integer    | true     | NA                 | 深度档位   | 5,10,20
+| 参数   | 数据类型 | 是否必需 | 缺省值 | 描述                     | 取值范围 |
+| ------ | -------- | -------- | ------ | ------------------------ | -------- |
+| symbol | string   | true     | NA     | 交易代码（不支持通配符） |          |
+| levels | integer  | true     | NA     | 深度档位                 | 5,10,20  |
 
 > Response
 
@@ -7358,11 +7393,11 @@ levels      | integer    | true     | NA                 | 深度档位   | 5,10
 
 ### 数据更新字段列表
 
-字段     | 数据类型 | 描述
---------- | --------- | -----------
-seqNum   | integer   | 消息序列号
-bids      | object    | 买盘，按price降序排列，["price","size"]
-asks      | object    | 卖盘，按price升序排列，["price","size"]
+| 字段   | 数据类型 | 描述                                    |
+| ------ | -------- | --------------------------------------- |
+| seqNum | integer  | 消息序列号                              |
+| bids   | object   | 买盘，按price降序排列，["price","size"] |
+| asks   | object   | 卖盘，按price升序排列，["price","size"] |
 
 
 ## 买一卖一逐笔行情
@@ -7384,9 +7419,9 @@ asks      | object    | 卖盘，按price升序排列，["price","size"]
 
 ### 参数
 
-参数 | 数据类型 | 是否必需 | 缺省值         | 描述                                       | 取值范围
---------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | 交易代码                   |btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）
+| 参数   | 数据类型 | 是否必需 | 缺省值 | 描述     | 取值范围                                               |
+| ------ | -------- | -------- | ------ | -------- | ------------------------------------------------------ |
+| symbol | string   | true     | NA     | 交易代码 | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`） |
 
 > Response
 
@@ -7419,15 +7454,15 @@ symbol    | string    | true     | NA                    | 交易代码         
 
 ### 数据更新字段列表
 
-字段     | 数据类型 | 描述
---------- | --------- | -----------
-symbol     | string    | 交易代码
-quoteTime      | long    | 盘口更新时间
-bid      | float    | 买一价
-bidSize      | float    | 买一量
-ask      | float    | 卖一价
-askSize      | float    | 卖一量
-seqId|int|消息序号
+| 字段      | 数据类型 | 描述         |
+| --------- | -------- | ------------ |
+| symbol    | string   | 交易代码     |
+| quoteTime | long     | 盘口更新时间 |
+| bid       | float    | 买一价       |
+| bidSize   | float    | 买一量       |
+| ask       | float    | 卖一价       |
+| askSize   | float    | 卖一量       |
+| seqId     | int      | 消息序号     |
 
 
 ## 成交明细
@@ -7449,9 +7484,9 @@ seqId|int|消息序号
 
 ### 参数
 
-参数 | 数据类型 | 是否必需 | 缺省值         | 描述                                       | 取值范围
---------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | 交易代码                     | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）
+| 参数   | 数据类型 | 是否必需 | 缺省值 | 描述     | 取值范围                                               |
+| ------ | -------- | -------- | ------ | -------- | ------------------------------------------------------ |
+| symbol | string   | true     | NA     | 交易代码 | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`） |
 
 > Response
 
@@ -7490,14 +7525,14 @@ symbol    | string    | true     | NA                    | 交易代码         
 
 ### 数据更新字段列表
 
-字段      | 数据类型 | 描述
---------- | --------- | -----------
-id        | integer   | 唯一成交ID（将被废弃）
-tradeId|integer|唯一成交ID（NEW）
-amount    | float     | 成交量（买或卖一方） 
-price     | float     | 成交价
-ts        | integer   | 成交时间 (UNIX epoch time in millisecond)
-direction | string    | 成交主动方 (taker的订单方向) : 'buy' or 'sell'
+| 字段      | 数据类型 | 描述                                           |
+| --------- | -------- | ---------------------------------------------- |
+| id        | integer  | 唯一成交ID（将被废弃）                         |
+| tradeId   | integer  | 唯一成交ID（NEW）                              |
+| amount    | float    | 成交量（买或卖一方）                           |
+| price     | float    | 成交价                                         |
+| ts        | integer  | 成交时间 (UNIX epoch time in millisecond)      |
+| direction | string   | 成交主动方 (taker的订单方向) : 'buy' or 'sell' |
 
 ### 数据请求
 
@@ -7529,9 +7564,9 @@ direction | string    | 成交主动方 (taker的订单方向) : 'buy' or 'sell'
 
 ### 参数
 
-参数 | 数据类型 | 是否必需 | 缺省值         | 描述                                       | 取值范围
---------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | 交易代码                     |btcusdt, ethbtc...等
+| 参数   | 数据类型 | 是否必需 | 缺省值 | 描述     | 取值范围             |
+| ------ | -------- | -------- | ------ | -------- | -------------------- |
+| symbol | string   | true     | NA     | 交易代码 | btcusdt, ethbtc...等 |
 
 > Response
 
@@ -7565,16 +7600,16 @@ symbol    | string    | true     | NA                    | 交易代码         
 
 ### 数据更新字段列表
 
-字段     | 数据类型 | 描述
---------- | --------- | -----------
-id        | integer   | unix时间，同时作为消息ID
-amount    | float     | 24小时成交量
-count     | integer   | 24小时成交笔数
-open      | float     | 24小时开盘价
-close     | float     | 最新价
-low       | float     | 24小时最低价
-high      | float     | 24小时最高价
-vol       | float     | 24小时成交额
+| 字段   | 数据类型 | 描述                     |
+| ------ | -------- | ------------------------ |
+| id     | integer  | unix时间，同时作为消息ID |
+| amount | float    | 24小时成交量             |
+| count  | integer  | 24小时成交笔数           |
+| open   | float    | 24小时开盘价             |
+| close  | float    | 最新价                   |
+| low    | float    | 24小时最低价             |
+| high   | float    | 24小时最高价             |
+| vol    | float    | 24小时成交额             |
 
 ### 数据请求
 
@@ -7597,22 +7632,22 @@ vol       | float     | 24小时成交额
 
 ### 参数
 
-参数 | 数据类型 | 是否必需 | 缺省值         | 描述                                       | 取值范围
---------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | 交易代码                     |杠杆ETP交易对
+| 参数   | 数据类型 | 是否必需 | 缺省值 | 描述     | 取值范围      |
+| ------ | -------- | -------- | ------ | -------- | ------------- |
+| symbol | string   | true     | NA     | 交易代码 | 杠杆ETP交易对 |
 
 ### 数据更新字段列表
 
-字段     | 数据类型 | 描述
---------- | --------- | -----------
-|	symbol	|	string	|	杠杆ETP交易代码	|
-|	nav	|	float	|	最新净值	|
-|	navTime	|	long	|	最新净值更新时间 (unix time in millisecond)	|
-|	outstanding	|	float	|	ETP总份额	|
-|	basket	|	object	|	篮子	|
-|	{ currency	|	float	|	币种	|
-|	amount }	|	float	|	金额	|
-|	actualLeverage	|	float	|	实际杠杆率	|
+| 字段 | 数据类型       | 描述   |
+| ---- | -------------- | ------ |
+|      | symbol         | string |
+|      | nav            | float  |
+|      | navTime        | long   |
+|      | outstanding    | float  |
+|      | basket         | object |
+|      | { currency     | float  |
+|      | amount }       | float  |
+|      | actualLeverage | float  |
 
 # Websocket资产及订单（即将废弃）
 
@@ -7641,16 +7676,16 @@ WebSocket 资产及订单v1版本返回的所有数据都进行了 GZIP 压缩�
 当用户的Websocket客户端连接到火币Websocket服务器后，服务器会定期（当前设为20秒）向其发送`ping`消息并包含一整数值如下：
 
 > {
-    "op":"ping",
-    "ts":1492420473027
-} (资产订单推送)
+> "op":"ping",
+> "ts":1492420473027
+> } (资产订单推送)
 
 当用户的Websocket客户端接收到此心跳消息后，应返回`pong`消息并包含同一整数值：
 
 > {
-    "op":"pong",
-    "ts":1492420473027
-} （资产订单推送）
+> "op":"pong",
+> "ts":1492420473027
+> } （资产订单推送）
 
 <aside class="warning">当Websocket服务器连续三次发送了`ping`消息却没有收到任何一次`pong`消息返回后，服务器将主动断开与此客户端的连接。</aside>
 **2019/07/08之前**
@@ -7658,16 +7693,16 @@ WebSocket 资产及订单v1版本返回的所有数据都进行了 GZIP 压缩�
 当用户的Websocket客户端连接到火币Websocket服务器后，服务器会定期（设为30秒）向其发送`ping`消息并包含一整数值如下：
 
 > {
-    "op":"ping",
-    "ts":1492420473027
-}
+> "op":"ping",
+> "ts":1492420473027
+> }
 
 当用户的Websocket客户端接收到此心跳消息后，应返回`pong`消息并包含同一整数值：
 
 > {
-    "op":"pong",
-    "ts":1492420473027
-}
+> "op":"pong",
+> "ts":1492420473027
+> }
 
 <aside class="warning">当Websocket服务器连续两次发送了`ping`消息却没有收到任何一次`pong`消息返回后，服务器将主动断开与此客户端的连接。</aside>
 ### 订阅主题
@@ -7776,15 +7811,15 @@ Websocket服务器同时支持一次性请求数据（pull）。
 
 **鉴权请求数据格式说明**
 
-  filed              |type   |  instruction|
-  ------------------ |----   |  -----------------------------------------------------
-  op                 |string | 必填；操作名称，鉴权固定值为 auth；
-  cid                |string | 选填；Client 请求唯一 ID
-  AccessKeyId        |string | 必填； 您申请的 API Key 中的 AccessKey
-  SignatureMethod    |string | 必填；签名方法, 用户计算签名的基于哈希的协议，此处使用 HmacSHA256
-  SignatureVersion   |string | 必填；签名协议的版本，此处使用 2
-  Timestamp          |string | 必填；时间戳, 您发出请求的时间 (UTC 时区) (UTC 时区) (UTC 时区) 。在查询请求中包含此值有助于防止第三方截取您的请求。如：2017-05-11T16:22:06。再次强调是 (UTC 时区)
-  Signature          |string |必填；签名, 计算得出的值，用于确保签名有效和未被篡改
+| filed            | type   | instruction                                                  |      |
+| ---------------- | ------ | ------------------------------------------------------------ | ---- |
+| op               | string | 必填；操作名称，鉴权固定值为 auth；                          |      |
+| cid              | string | 选填；Client 请求唯一 ID                                     |      |
+| AccessKeyId      | string | 必填； 您申请的 API Key 中的 AccessKey                       |      |
+| SignatureMethod  | string | 必填；签名方法, 用户计算签名的基于哈希的协议，此处使用 HmacSHA256 |      |
+| SignatureVersion | string | 必填；签名协议的版本，此处使用 2                             |      |
+| Timestamp        | string | 必填；时间戳, 您发出请求的时间 (UTC 时区) (UTC 时区) (UTC 时区) 。在查询请求中包含此值有助于防止第三方截取您的请求。如：2017-05-11T16:22:06。再次强调是 (UTC 时区) |      |
+| Signature        | string | 必填；签名, 计算得出的值，用于确保签名有效和未被篡改         |      |
 
 **注：**
 
@@ -7815,9 +7850,9 @@ API Key 权限：读取
 
 ### 参数
 
-参数 | 数据类型 | 是否必需 | 缺省值         | 描述                                       | 取值范围
---------- | --------- | -------- | -------------         | -----------                                       | -----------
-model     | string    | false    | 0                     | 是否包含已冻结余额                 | 1 to include frozen balance, 0 to not
+| 参数  | 数据类型 | 是否必需 | 缺省值 | 描述               | 取值范围                              |
+| ----- | -------- | -------- | ------ | ------------------ | ------------------------------------- |
+| model | string   | false    | 0      | 是否包含已冻结余额 | 1 to include frozen balance, 0 to not |
 
 <aside class="notice">如果同时订阅可用和总余额，需要为 0 和 1 各开启一条websocket连接</aside>
 > Response
@@ -7856,13 +7891,13 @@ model     | string    | false    | 0                     | 是否包含已冻结
 
 ### 数据更新字段列表
 
-字段     | 数据类型 | 描述
---------- | --------- | -----------
-event     | string    | 资产变化通知相关事件说明，比如订单创建(order.place) 、订单成交(order.match)、订单成交退款（order.refund)、订单撤销(order.cancel) 、点卡抵扣交易手续费（order.fee-refund)、杠杆账户划转（margin.transfer)、借币本金（margin.loan)、借币计息（margin.interest)、归还借币本金币息(margin.repay)、其他资产变化(other)、充币（deposit）、提币（withdraw）
-account-id| integer   | 账户 id
-currency  | string    | 币种
-type      | string    | 账户类型, 交易子账户（trade),借币子账户（loan），币息子账户（interest)
-balance   | string    | 账户余额 (当订阅model=0时，该余额为可用余额；当订阅model=1时，该余额为总余额）
+| 字段       | 数据类型 | 描述                                                         |
+| ---------- | -------- | ------------------------------------------------------------ |
+| event      | string   | 资产变化通知相关事件说明，比如订单创建(order.place) 、订单成交(order.match)、订单成交退款（order.refund)、订单撤销(order.cancel) 、点卡抵扣交易手续费（order.fee-refund)、杠杆账户划转（margin.transfer)、借币本金（margin.loan)、借币计息（margin.interest)、归还借币本金币息(margin.repay)、其他资产变化(other)、充币（deposit）、提币（withdraw） |
+| account-id | integer  | 账户 id                                                      |
+| currency   | string   | 币种                                                         |
+| type       | string   | 账户类型, 交易子账户（trade),借币子账户（loan），币息子账户（interest) |
+| balance    | string   | 账户余额 (当订阅model=0时，该余额为可用余额；当订阅model=1时，该余额为总余额） |
 
 注：<br>
 账户更新推送的是到账金额，多笔成交产生的多笔交易返佣可能会合并到帐。<br>
@@ -7890,9 +7925,9 @@ API Key 权限：读取
 
 ### 参数
 
-参数 | 数据类型 | 是否必需 | 缺省值         | 描述                                    | 取值范围
---------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | 交易代码                       | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）, 支持通配符"*".
+| 参数   | 数据类型 | 是否必需 | 缺省值 | 描述     | 取值范围                                                     |
+| ------ | -------- | -------- | ------ | -------- | ------------------------------------------------------------ |
+| symbol | string   | true     | NA     | 交易代码 | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）, 支持通配符"*". |
 
 > Response
 
@@ -7936,24 +7971,24 @@ symbol    | string    | true     | NA                    | 交易代码         
 
 ### 数据更新字段列表
 
-字段               | 数据类型 | 描述
----------           | --------- | -----------
-seq-id              | integer   | 流水号(不连续)
-order-id            | integer   | 订单 id
-symbol              | string    | 交易对
-account-id          | string    | 账户 id
-order-amount        | string    | 订单数量
-order-price         | string    | 订单价格
-created-at          | int       | 订单创建时间 (UNIX epoch time in millisecond)
-order-type          | string    | 订单类型, 有效取值: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit,sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
-order-source        | string    | 订单来源, 有效取值: sys, web, api, app
-order-state         | string    | 订单状态, 有效取值: submitted, partial-filled, filled, canceled, partial-canceled
-role                | string    | 成交角色: taker or maker
-price               | string    | 成交价格
-filled-amount       | string    | 单次成交数量
-unfilled-amount  | string    | 单次未成交数量
-filled-cash-amount         | string    | 单次成交金额
-filled-fees     | string    | 单次成交手续费（买入为币，卖出为钱）
+| 字段               | 数据类型 | 描述                                                         |
+| ------------------ | -------- | ------------------------------------------------------------ |
+| seq-id             | integer  | 流水号(不连续)                                               |
+| order-id           | integer  | 订单 id                                                      |
+| symbol             | string   | 交易对                                                       |
+| account-id         | string   | 账户 id                                                      |
+| order-amount       | string   | 订单数量                                                     |
+| order-price        | string   | 订单价格                                                     |
+| created-at         | int      | 订单创建时间 (UNIX epoch time in millisecond)                |
+| order-type         | string   | 订单类型, 有效取值: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit,sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
+| order-source       | string   | 订单来源, 有效取值: sys, web, api, app                       |
+| order-state        | string   | 订单状态, 有效取值: submitted, partial-filled, filled, canceled, partial-canceled |
+| role               | string   | 成交角色: taker or maker                                     |
+| price              | string   | 成交价格                                                     |
+| filled-amount      | string   | 单次成交数量                                                 |
+| unfilled-amount    | string   | 单次未成交数量                                               |
+| filled-cash-amount | string   | 单次成交金额                                                 |
+| filled-fees        | string   | 单次成交手续费（买入为币，卖出为钱）                         |
 
 ## 订阅订单更新 (即将废弃)
 
@@ -7977,9 +8012,9 @@ API Key 权限：读取
 
 ### 参数
 
-参数 | 数据类型 | 是否必需 | 缺省值         | 描述                                       | 取值范围
---------- | --------- | -------- | -------------         | -----------                                       | -----------
-symbol    | string    | true     | NA                    | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）, 支持通配符"*".
+| 参数   | 数据类型 | 是否必需 | 缺省值 | 描述                                                         | 取值范围 |
+| ------ | -------- | -------- | ------ | ------------------------------------------------------------ | -------- |
+| symbol | string   | true     | NA     | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）, 支持通配符"*". |          |
 
 
 
@@ -8020,19 +8055,19 @@ symbol    | string    | true     | NA                    | btcusdt, ethbtc...（
 
 ### 数据更新字段列表
 
-Field               | Data Type | Description
----------           | --------- | -----------
-match-id              | integer   | 最近撮合编号（当order-state = submitted, canceled, partial-canceled时，match-id 为消息序列号；当order-state = filled, partial-filled 时，match-id 为最近撮合编号。）
-order-id            | integer   | 订单编号
-symbol              | string    | 交易代码
-order-state         | string    | 订单状态, 有效取值: submitted, partial-filled, filled, canceled, partial-canceled
-role                | string    | 最近成交角色（当order-state = submitted, canceled, partial-canceled时，role 为缺省值taker；当order-state = filled, partial-filled 时，role 取值为taker 或maker。）
-price               | string    | 最新价（当order-state = submitted 时，price 为订单价格；当order-state = canceled, partial-canceled 时，price 为零；当order-state = filled, partial-filled 时，price 为最近成交价。）
-filled-amount       | string    | 最近成交数量
-filled-cash-amount  | string    | 最近成交数额
-unfilled-amount     | string    | 最近未成交数量（当order-state = submitted 时，unfilled-amount 为原始订单量；当order-state = canceled OR partial-canceled 时，unfilled-amount 为未成交数量；当order-state = filled 时，如果 order-type = buy-market，unfilled-amount 可能为一极小值；如果order-type <> buy-market 时，unfilled-amount 为零；当order-state = partial-filled AND role = taker 时，unfilled-amount 为未成交数量；当order-state = partial-filled AND role = maker 时，unfilled-amount 为未成交数量。）
-client-order-id|string|用户自编订单号
-order-type|string|订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit => buy-limit,sell-stop-limit => sell-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok => buy-limit-fok, sell-stop-limit-fok => sell-limit-fok
+| Field              | Data Type | Description                                                  |
+| ------------------ | --------- | ------------------------------------------------------------ |
+| match-id           | integer   | 最近撮合编号（当order-state = submitted, canceled, partial-canceled时，match-id 为消息序列号；当order-state = filled, partial-filled 时，match-id 为最近撮合编号。） |
+| order-id           | integer   | 订单编号                                                     |
+| symbol             | string    | 交易代码                                                     |
+| order-state        | string    | 订单状态, 有效取值: submitted, partial-filled, filled, canceled, partial-canceled |
+| role               | string    | 最近成交角色（当order-state = submitted, canceled, partial-canceled时，role 为缺省值taker；当order-state = filled, partial-filled 时，role 取值为taker 或maker。） |
+| price              | string    | 最新价（当order-state = submitted 时，price 为订单价格；当order-state = canceled, partial-canceled 时，price 为零；当order-state = filled, partial-filled 时，price 为最近成交价。） |
+| filled-amount      | string    | 最近成交数量                                                 |
+| filled-cash-amount | string    | 最近成交数额                                                 |
+| unfilled-amount    | string    | 最近未成交数量（当order-state = submitted 时，unfilled-amount 为原始订单量；当order-state = canceled OR partial-canceled 时，unfilled-amount 为未成交数量；当order-state = filled 时，如果 order-type = buy-market，unfilled-amount 可能为一极小值；如果order-type <> buy-market 时，unfilled-amount 为零；当order-state = partial-filled AND role = taker 时，unfilled-amount 为未成交数量；当order-state = partial-filled AND role = maker 时，unfilled-amount 为未成交数量。） |
+| client-order-id    | string    | 用户自编订单号                                               |
+| order-type         | string    | 订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit => buy-limit,sell-stop-limit => sell-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok => buy-limit-fok, sell-stop-limit-fok => sell-limit-fok |
 
 
 ## 请求用户资产数据（即将废弃）
@@ -8056,11 +8091,11 @@ API Key 权限：读取
 ```
 成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来查询账户数据：
 
-参数  | 数据类型   |  描述|
-----------| --------| -------------------------------------------------------|
-op         |string  | 必填；操作名称，固定值为 req|
-cid        |string  | 选填；Client 请求唯一 ID|
-topic      |string   |必填；固定值为accounts.list|
+| 参数  | 数据类型 | 描述                         |      |
+| ----- | -------- | ---------------------------- | ---- |
+| op    | string   | 必填；操作名称，固定值为 req |      |
+| cid   | string   | 选填；Client 请求唯一 ID     |      |
+| topic | string   | 必填；固定值为accounts.list  |      |
 
 ### 返回
 
@@ -8125,15 +8160,15 @@ topic      |string   |必填；固定值为accounts.list|
     }
 ```
 
-字段                |数据类型 |    描述|
--------------------- |--------| ------------------------------------|
-{ id                   |long    | 账户ID|
-type              |string   |账户类型|
-state           |string     |账户状态|
-list               |string   |账户列表|
-{currency                |string   |子账户币种|
-type           |string     |子账户类型|
-balance }}           |string     |子账户余额|
+| 字段       | 数据类型 | 描述       |      |
+| ---------- | -------- | ---------- | ---- |
+| { id       | long     | 账户ID     |      |
+| type       | string   | 账户类型   |      |
+| state      | string   | 账户状态   |      |
+| list       | string   | 账户列表   |      |
+| {currency  | string   | 子账户币种 |      |
+| type       | string   | 子账户类型 |      |
+| balance }} | string   | 子账户余额 |      |
 
 ## 请求当前及历史订单（即将废弃）
 
@@ -8159,17 +8194,17 @@ API Key 权限：读取
 
 ### 参数
 
-参数  | 数据类型 | 是否必需 | 缺省值 | 描述                                   | 取值范围
----------  | --------- | -------- | ------- | -----------                                   | ----------
-account-id | int       | true     | NA      | 账户 id                        | NA
-symbol     | string    | true     | NA      | 交易对                | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）
-types      | string    | false    | NA      | 查询的订单类型组合，使用','分割   | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok
-states     | string    | true    | NA      | 查询的订单状态组合，使用','分割  | submitted, partial-filled, partial-canceled, filled, canceled，created
-start-date | string    | false    | -61d    | 查询开始日期, 日期格式yyyy-mm-dd      | NA
-end-date   | string    | false    | today   | 查询结束日期, 日期格式yyyy-mm-dd        | NA
-from       | string    | false    | NA      | 查询起始 ID                 | NA
-direct     | string    | false    | next    | 查询方向          | next, prev
-size       | string       | false    | 100     | 查询记录大小               | [1, 100]
+| 参数       | 数据类型 | 是否必需 | 缺省值 | 描述                             | 取值范围                                                     |
+| ---------- | -------- | -------- | ------ | -------------------------------- | ------------------------------------------------------------ |
+| account-id | int      | true     | NA     | 账户 id                          | NA                                                           |
+| symbol     | string   | true     | NA     | 交易对                           | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）       |
+| types      | string   | false    | NA     | 查询的订单类型组合，使用','分割  | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc， buy-limit-maker, sell-limit-maker, buy-stop-limit，sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
+| states     | string   | true     | NA     | 查询的订单状态组合，使用','分割  | submitted, partial-filled, partial-canceled, filled, canceled，created |
+| start-date | string   | false    | -61d   | 查询开始日期, 日期格式yyyy-mm-dd | NA                                                           |
+| end-date   | string   | false    | today  | 查询结束日期, 日期格式yyyy-mm-dd | NA                                                           |
+| from       | string   | false    | NA     | 查询起始 ID                      | NA                                                           |
+| direct     | string   | false    | next   | 查询方向                         | next, prev                                                   |
+| size       | string   | false    | 100    | 查询记录大小                     | [1, 100]                                                     |
 
 ### 数据更新字段列表
 
@@ -8203,24 +8238,24 @@ size       | string       | false    | 100     | 查询记录大小             
 }
 ```
 
-字段                 |数据类型 |    描述|
--------------------- |--------| ------------------------------------|
-id                   |long    | 订单ID|
-symbol               |string   |交易对|
-account-id           |long     |账户ID|
-amount               |string   |订单数量|
-price                |string   |订单价格|
-created-at           |long     |订单创建时间|
-type                 |string   |订单类型，请参考订单类型说明|
-filled-amount        |string   |已成交数量|
-filled-cash-amount   |string   |已成交总金额|
-filled-fees          |string   |已成交手续费|
-finished-at          |string   |最后成交时间|
-source               |string   |订单来源，请参考订单来源说明|
-state                |string   |订单状态，请参考订单状态说明|
-cancel-at            |long     |撤单时间|
-stop-price              | string  | 止盈止损订单触发价格   | 
-operator              | string  |  止盈止损订单触发价运算符   |
+| 字段               | 数据类型 | 描述                         |      |
+| ------------------ | -------- | ---------------------------- | ---- |
+| id                 | long     | 订单ID                       |      |
+| symbol             | string   | 交易对                       |      |
+| account-id         | long     | 账户ID                       |      |
+| amount             | string   | 订单数量                     |      |
+| price              | string   | 订单价格                     |      |
+| created-at         | long     | 订单创建时间                 |      |
+| type               | string   | 订单类型，请参考订单类型说明 |      |
+| filled-amount      | string   | 已成交数量                   |      |
+| filled-cash-amount | string   | 已成交总金额                 |      |
+| filled-fees        | string   | 已成交手续费                 |      |
+| finished-at        | string   | 最后成交时间                 |      |
+| source             | string   | 订单来源，请参考订单来源说明 |      |
+| state              | string   | 订单状态，请参考订单状态说明 |      |
+| cancel-at          | long     | 撤单时间                     |      |
+| stop-price         | string   | 止盈止损订单触发价格         |      |
+| operator           | string   | 止盈止损订单触发价运算符     |      |
 
 
 ## 以订单编号请求订单（即将废弃）
@@ -8246,12 +8281,12 @@ API Key 权限：读取
 
 ### 参数
 
-参数  | 是否必需 |  数据类型    | 描述       |                                      缺省值  | 取值范围|
-----------| ----------| --------| ------------------------------------------------ |--------| ----------|
-op         |true       |string   |操作名称，固定值为 req    |||                                
-cid        |true       |string   |Client 请求唯一 ID        |||                                
-topic      |false      |string   |固定值为 orders.detail  |||          
-order-id   |true       |string   |订单ID    |||                                                
+| 参数     | 是否必需 | 数据类型 | 描述                   | 缺省值 | 取值范围 |      |
+| -------- | -------- | -------- | ---------------------- | ------ | -------- | ---- |
+| op       | true     | string   | 操作名称，固定值为 req |        |          |      |
+| cid      | true     | string   | Client 请求唯一 ID     |        |          |      |
+| topic    | false    | string   | 固定值为 orders.detail |        |          |      |
+| order-id | true     | string   | 订单ID                 |        |          |      |
 
 
 ### 返回
@@ -8283,24 +8318,24 @@ order-id   |true       |string   |订单ID    |||
   }
 }
 ```
-字段                 |数据类型 |    描述|
--------------------- |--------| ------------------------------------|
-id                   |long    | 订单ID|
-symbol               |string   |交易对|
-account-id           |long     |账户ID|
-amount               |string   |订单数量|
-price                |string   |订单价格|
-created-at           |long     |订单创建时间|
-type                 |string   |订单类型，请参考订单类型说明|
-filled-amount        |string   |已成交数量|
-filled-cash-amount   |string   |已成交总金额|
-filled-fees          |string   |已成交手续费|
-finished-at          |string   |最后成交时间|
-source               |string   |订单来源，请参考订单来源说明|
-state                |string   |订单状态，请参考订单状态说明|
-cancel-at            |long     |撤单时间|
-stop-price              | string  | 止盈止损订单触发价格   | 
-operator              | string  |  止盈止损订单触发价运算符   |
+| 字段               | 数据类型 | 描述                         |      |
+| ------------------ | -------- | ---------------------------- | ---- |
+| id                 | long     | 订单ID                       |      |
+| symbol             | string   | 交易对                       |      |
+| account-id         | long     | 账户ID                       |      |
+| amount             | string   | 订单数量                     |      |
+| price              | string   | 订单价格                     |      |
+| created-at         | long     | 订单创建时间                 |      |
+| type               | string   | 订单类型，请参考订单类型说明 |      |
+| filled-amount      | string   | 已成交数量                   |      |
+| filled-cash-amount | string   | 已成交总金额                 |      |
+| filled-fees        | string   | 已成交手续费                 |      |
+| finished-at        | string   | 最后成交时间                 |      |
+| source             | string   | 订单来源，请参考订单来源说明 |      |
+| state              | string   | 订单状态，请参考订单状态说明 |      |
+| cancel-at          | long     | 撤单时间                     |      |
+| stop-price         | string   | 止盈止损订单触发价格         |      |
+| operator           | string   | 止盈止损订单触发价运算符     |      |
 
 
 # Websocket资产及订单（v2）
@@ -8349,12 +8384,12 @@ operator              | string  |  止盈止损订单触发价运算符   |
 
 ### `action`的有效取值
 
-| 有效取值| 取值说明|
-| -----| -----|
-| sub | 订阅数据|
-| req | 数据请求|
-|ping、pong| 心跳数据|
-|push| 推送数据，服务端发送至客户端数据类型|
+| 有效取值   | 取值说明                             |
+| ---------- | ------------------------------------ |
+| sub        | 订阅数据                             |
+| req        | 数据请求                             |
+| ping、pong | 心跳数据                             |
+| push       | 推送数据，服务端发送至客户端数据类型 |
 
 ### 限频
 
@@ -8397,16 +8432,16 @@ operator              | string  |  止盈止损订单触发价运算符   |
 
 参数说明
 
-|字段| 是否必需|数据类型| 描述|
-|----| ----|--------| ----|
-|action|true| string| Websocket数据操作类型，鉴权固定值为req|
-|ch|true|string|请求主题，鉴权固定值为auth|
-|authType| true|string|鉴权类型，鉴权固定值为api。注意，该参数不在签名计算中。|
-|accessKey|true|string|您申请的API Key中的AccessKey|
-|signatureMethod| true| string| 签名方法，用户计算签名寄语哈希的协议，固定值为HmacSHA256|
-|signatureVersion| true|string|签名协议版本，固定值为2.1|
-|timestamp|true|string|时间戳，您发出请求的时间（UTC时间）在查询请求中包含此值有助于防止第三方截取您的请求。如：2017-05-11T16:22:06。再次强调是 (UTC 时区)|
-|signature| true| string| 签名, 计算得出的值，用于确保签名有效和未被篡改|
+| 字段             | 是否必需 | 数据类型 | 描述                                                         |
+| ---------------- | -------- | -------- | ------------------------------------------------------------ |
+| action           | true     | string   | Websocket数据操作类型，鉴权固定值为req                       |
+| ch               | true     | string   | 请求主题，鉴权固定值为auth                                   |
+| authType         | true     | string   | 鉴权类型，鉴权固定值为api。注意，该参数不在签名计算中。      |
+| accessKey        | true     | string   | 您申请的API Key中的AccessKey                                 |
+| signatureMethod  | true     | string   | 签名方法，用户计算签名寄语哈希的协议，固定值为HmacSHA256     |
+| signatureVersion | true     | string   | 签名协议版本，固定值为2.1                                    |
+| timestamp        | true     | string   | 时间戳，您发出请求的时间（UTC时间）在查询请求中包含此值有助于防止第三方截取您的请求。如：2017-05-11T16:22:06。再次强调是 (UTC 时区) |
+| signature        | true     | string   | 签名, 计算得出的值，用于确保签名有效和未被篡改               |
 
 ### 签名步骤
 
@@ -8479,27 +8514,27 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatur
 
 以下是WebSocket资产和订单接口的错误码、错误消息和说明。
 
-|错误码 | 错误消息 | 说明 |
-|--------- | -----------|--------- |
-|200 | 正确 | 正确返回 |
-|100| 超时关闭 | 超时关闭 |
-|400| Bad Request | 请求错误 |
-|404 | Not Found | 找不到服务 |
-|429 | Too Many Requests | 超过单机服务最大连接数或者超过单IP最大连接数 |
-|500 | 系统异常 | 系统错误 |
-|2000 | invalid.ip | 无效的ip |
-|2001 | nvalid.json | 无效的请求json |
-|2001 | invalid.authType | 验签方式错误 |
-|2001 | invalid.action | 无效的订阅事件 |
-|2001 | invalid.symbol | 无效的交易对 |
-|2001 | invalid.ch | 无效的订阅 |
-|2001 | invalid.exchange | 无效的交易所code |
-|2001 | missing.param.auth | 缺少验签参数 |
-|2002 | invalid.auth.state | 认证未通过 |
-|2002 | auth.fail|验签失败 |
-|2003 | query.account.list.error | 查询账户列表失败 |
-|4000 | too.many.request | 客户端上行请求限频 |
-|4000 | too.many.connection | 同一个key的建联数量 |
+| 错误码 | 错误消息                 | 说明                                         |
+| ------ | ------------------------ | -------------------------------------------- |
+| 200    | 正确                     | 正确返回                                     |
+| 100    | 超时关闭                 | 超时关闭                                     |
+| 400    | Bad Request              | 请求错误                                     |
+| 404    | Not Found                | 找不到服务                                   |
+| 429    | Too Many Requests        | 超过单机服务最大连接数或者超过单IP最大连接数 |
+| 500    | 系统异常                 | 系统错误                                     |
+| 2000   | invalid.ip               | 无效的ip                                     |
+| 2001   | nvalid.json              | 无效的请求json                               |
+| 2001   | invalid.authType         | 验签方式错误                                 |
+| 2001   | invalid.action           | 无效的订阅事件                               |
+| 2001   | invalid.symbol           | 无效的交易对                                 |
+| 2001   | invalid.ch               | 无效的订阅                                   |
+| 2001   | invalid.exchange         | 无效的交易所code                             |
+| 2001   | missing.param.auth       | 缺少验签参数                                 |
+| 2002   | invalid.auth.state       | 认证未通过                                   |
+| 2002   | auth.fail                | 验签失败                                     |
+| 2003   | query.account.list.error | 查询账户列表失败                             |
+| 4000   | too.many.request         | 客户端上行请求限频                           |
+| 4000   | too.many.connection      | 同一个key的建联数量                          |
 
 ## 订阅订单更新
 
@@ -8543,9 +8578,9 @@ API Key 权限：读取
 }
 ```
 
-|参数 | 数据类型 |  描述 |
-|--------- | --------- | -------- |
-|symbol     | string    | 交易代码（支持通配符 * ）|
+| 参数   | 数据类型 | 描述                      |
+| ------ | -------- | ------------------------- |
+| symbol | string   | 交易代码（支持通配符 * ） |
 
 
 ### 数据更新字段列表
@@ -8572,16 +8607,16 @@ API Key 权限：读取
 
 当计划委托/追踪委托触发失败后 –
 
-| 字段 | 数据类型 | 描述 |
-| ---- | -------- | ---- |
-|	eventType	|	string	|	事件类型，有效值：trigger（本事件仅对计划委托/追踪委托有效）	|
-|	symbol	|	string	|	交易代码	|
-|	clientOrderId	|	string	|	用户自编订单号	|
-|	orderSide	|	string	|	订单方向，有效值：buy,sell	|
-|	orderStatus	|	string	|	订单状态，有效值：rejected	|
-|	errCode	|	int	|	订单触发失败错误码	|
-|	errMessage	|	string	|	订单触发失败错误消息	|
-|	lastActTime	|	long	|	订单触发失败时间	|
+| 字段          | 数据类型 | 描述                                                         |
+| ------------- | -------- | ------------------------------------------------------------ |
+| eventType     | string   | 事件类型，有效值：trigger（本事件仅对计划委托/追踪委托有效） |
+| symbol        | string   | 交易代码                                                     |
+| clientOrderId | string   | 用户自编订单号                                               |
+| orderSide     | string   | 订单方向，有效值：buy,sell                                   |
+| orderStatus   | string   | 订单状态，有效值：rejected                                   |
+| errCode       | int      | 订单触发失败错误码                                           |
+| errMessage    | string   | 订单触发失败错误消息                                         |
+| lastActTime   | long     | 订单触发失败时间                                             |
 
 > Update example
 
@@ -8603,14 +8638,14 @@ API Key 权限：读取
 
 当计划委托/追踪委托在触发前被撤销后 –
 
-| 字段 | 数据类型 | 描述 |
-| ---- | -------- | ---- |
-|	eventType	|	string	|	事件类型，有效值：deletion（本事件仅对计划委托/追踪委托有效）	|
-|	symbol	|	string	|	交易代码	|
-|	clientOrderId	|	string	|	用户自编订单号	|
-|	orderSide	|	string	|	订单方向，有效值：buy,sell	|
-|	orderStatus	|	string	|	订单状态，有效值：canceled	|
-|	lastActTime	|	long	|	订单撤销时间	|
+| 字段          | 数据类型 | 描述                                                         |
+| ------------- | -------- | ------------------------------------------------------------ |
+| eventType     | string   | 事件类型，有效值：deletion（本事件仅对计划委托/追踪委托有效） |
+| symbol        | string   | 交易代码                                                     |
+| clientOrderId | string   | 用户自编订单号                                               |
+| orderSide     | string   | 订单方向，有效值：buy,sell                                   |
+| orderStatus   | string   | 订单状态，有效值：canceled                                   |
+| lastActTime   | long     | 订单撤销时间                                                 |
 
 > Update example
 
@@ -8636,19 +8671,19 @@ API Key 权限：读取
 
 当订单挂单后 –
 
-| 字段 | 数据类型 | 描述 |
-| ---- | -------- | ---- |
-|	eventType		|	string		|	事件类型，有效值：creation							|
-|	symbol		|	string		|	交易代码										|
-|	accountId	|	long	|	账户ID	|
-|	orderId		|	long		|	订单ID										|
-|	clientOrderId		|	string		|	用户自编订单号（如有）								|
-|	orderPrice		|	string		|	订单价格										|
-|	orderSize		|	string		|	订单数量（对市价买单无效）									|
-|	orderValue		|	string		|	订单金额（仅对市价买单有效）										|
-|	type			|	string		|	订单类型，有效值：buy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok	|
-|	orderStatus		|	string		|	订单状态，有效值：submitted							|
-|	orderCreateTime	|	long		|	订单创建时间									|
+| 字段            | 数据类型 | 描述                                                         |
+| --------------- | -------- | ------------------------------------------------------------ |
+| eventType       | string   | 事件类型，有效值：creation                                   |
+| symbol          | string   | 交易代码                                                     |
+| accountId       | long     | 账户ID                                                       |
+| orderId         | long     | 订单ID                                                       |
+| clientOrderId   | string   | 用户自编订单号（如有）                                       |
+| orderPrice      | string   | 订单价格                                                     |
+| orderSize       | string   | 订单数量（对市价买单无效）                                   |
+| orderValue      | string   | 订单金额（仅对市价买单有效）                                 |
+| type            | string   | 订单类型，有效值：buy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok |
+| orderStatus     | string   | 订单状态，有效值：submitted                                  |
+| orderCreateTime | long     | 订单创建时间                                                 |
 
 注：<BR>
 - 止盈止损订单在尚未被触发时，接口将不会推送此订单的创建；<br>
@@ -8681,20 +8716,20 @@ API Key 权限：读取
 
 当订单成交后 –
 
-| 字段 | 数据类型 | 描述 |
-| ---- | -------- | ---- |
-|	eventType		|	string		|	事件类型，有效值：trade							|
-|	symbol		|	string		|	交易代码										|
-|	tradePrice		|	string		|	成交价										|
-|	tradeVolume		|	string		|	成交量										|
-|	orderId		|	long		|	订单ID										|
-|	type			|	string		|	订单类型，有效值：buy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok	|
-|	clientOrderId		|	string		|	用户自编订单号（如有）								|
-|	tradeId		|	long		|	成交ID										|
-|	tradeTime		|	long		|	成交时间										|
-|	aggressor		|	bool		|	是否交易主动方，有效值： true (taker), false (maker)	|
-|	orderStatus		|	string		|	订单状态，有效值：partial-filled, filled						|
-|	remainAmt		|	string		|	未成交数量（市价买单为未成交金额）										|
+| 字段          | 数据类型 | 描述                                                         |
+| ------------- | -------- | ------------------------------------------------------------ |
+| eventType     | string   | 事件类型，有效值：trade                                      |
+| symbol        | string   | 交易代码                                                     |
+| tradePrice    | string   | 成交价                                                       |
+| tradeVolume   | string   | 成交量                                                       |
+| orderId       | long     | 订单ID                                                       |
+| type          | string   | 订单类型，有效值：buy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok |
+| clientOrderId | string   | 用户自编订单号（如有）                                       |
+| tradeId       | long     | 成交ID                                                       |
+| tradeTime     | long     | 成交时间                                                     |
+| aggressor     | bool     | 是否交易主动方，有效值： true (taker), false (maker)         |
+| orderStatus   | string   | 订单状态，有效值：partial-filled, filled                     |
+| remainAmt     | string   | 未成交数量（市价买单为未成交金额）                           |
 
 注：<BR>
 - 止盈止损订单的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<BR>
@@ -8722,16 +8757,16 @@ API Key 权限：读取
 
 当订单被撤销后 –
 
-| 字段 | 数据类型 | 描述 |
-| ---- | -------- | ---- |
-|	eventType		|	string		|	事件类型，有效值：cancellation							|
-|	symbol		|	string		|	交易代码										|
-|	orderId		|	long		|	订单ID										|
-|	type			|	string		|	订单类型，有效值：buy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok	|
-|	clientOrderId		|	string		|	用户自编订单号（如有）								|
-|	orderStatus		|	string		|	订单状态，有效值：partial-canceled, canceled					|
-|	remainAmt		|	string		|	未成交数量（市价买单为未成交金额）										|
-|	lastActTime		|	long		|	订单最近更新时间									|
+| 字段          | 数据类型 | 描述                                                         |
+| ------------- | -------- | ------------------------------------------------------------ |
+| eventType     | string   | 事件类型，有效值：cancellation                               |
+| symbol        | string   | 交易代码                                                     |
+| orderId       | long     | 订单ID                                                       |
+| type          | string   | 订单类型，有效值：buy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok |
+| clientOrderId | string   | 用户自编订单号（如有）                                       |
+| orderStatus   | string   | 订单状态，有效值：partial-canceled, canceled                 |
+| remainAmt     | string   | 未成交数量（市价买单为未成交金额）                           |
+| lastActTime   | long     | 订单最近更新时间                                             |
 注：<BR>
 - 止盈止损订单的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<BR>
 
@@ -8749,10 +8784,10 @@ API Key 权限：读取
 
 ### 订阅参数
 
-|参数 | 数据类型 |  是否必需 |描述 |
-|--------- | --------- | -------- |-------- |
-|symbol     | string    | TRUE|交易代码（支持通配符 * ）|
-|mode     | int    |FALSE| 推送模式（0 - 仅在订单成交时推送；1 - 在订单成交、撤销时均推送；缺省值：0）|
+| 参数   | 数据类型 | 是否必需 | 描述                                                         |
+| ------ | -------- | -------- | ------------------------------------------------------------ |
+| symbol | string   | TRUE     | 交易代码（支持通配符 * ）                                    |
+| mode   | int      | FALSE    | 推送模式（0 - 仅在订单成交时推送；1 - 在订单成交、撤销时均推送；缺省值：0） |
 
 注：<br>
 可选订阅参数 mode，如不填或填0，仅推送成交事件；如填1，推送成交及撤销事件。<br>
@@ -8810,56 +8845,56 @@ API Key 权限：读取
 
 ### 数据更新字段列表（当订单成交后）
 
-|字段     | 数据类型 | 描述|
-|--------- | --------- | -----------|
-|	eventType	|	string	|	事件类型（trade）	|
-|	symbol	|	string	|	交易代码	|
-|	orderId	|	long	|	订单ID	|
-|	tradePrice	|	string	|	成交价	|
-|	tradeVolume	|	string	|	成交量	|
-|	orderSide	|	string	|	订单方向，有效值： buy, sell	|
-|	orderType	|	string	|	订单类型，有效值： buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit,buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok	|
-|	aggressor	|	bool	|	是否交易主动方，有效值： true, false	|
-|	tradeId	|	long	|	交易ID	|
-|	tradeTime	|	long	|	成交时间，unix time in millisecond	|
-|	transactFee	|	string	|	交易手续费（正值）或交易手续费返佣（负值）	|
-|	feeCurrency	|	string	|	交易手续费或交易手续费返佣币种（买单的交易手续费币种为基础币种，卖单的交易手续费币种为计价币种；买单的交易手续费返佣币种为计价币种，卖单的交易手续费返佣币种为基础币种）	|
-|	feeDeduct	|	string	|	交易手续费抵扣	|
-|	feeDeductType	|	string	|	交易手续费抵扣类型，有效值： ht, point	|
-|	accountId	|	long	|	账户编号	|
-|	source	|	string	|	订单来源	|
-|	orderPrice	|	string	|	订单价格 （市价单无此字段）	|
-|	orderSize	|	string	|	订单数量（市价买单无此字段）	|
-|	orderValue	|	string	|	订单金额（仅市价买单有此字段）	|
-|	clientOrderId	|	string	|	用户自编订单号	|
-|	stopPrice	|	string	|	订单触发价（仅止盈止损订单有此字段）	|
-|	operator	|	string	|	订单触发方向（仅止盈止损订单有此字段）	|
-|	orderCreateTime	|	long	|	订单创建时间	|
-|	orderStatus	|	string	|	订单状态，有效值：filled, partial-filled	|
+| 字段            | 数据类型 | 描述                                                         |
+| --------------- | -------- | ------------------------------------------------------------ |
+| eventType       | string   | 事件类型（trade）                                            |
+| symbol          | string   | 交易代码                                                     |
+| orderId         | long     | 订单ID                                                       |
+| tradePrice      | string   | 成交价                                                       |
+| tradeVolume     | string   | 成交量                                                       |
+| orderSide       | string   | 订单方向，有效值： buy, sell                                 |
+| orderType       | string   | 订单类型，有效值： buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit,buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
+| aggressor       | bool     | 是否交易主动方，有效值： true, false                         |
+| tradeId         | long     | 交易ID                                                       |
+| tradeTime       | long     | 成交时间，unix time in millisecond                           |
+| transactFee     | string   | 交易手续费（正值）或交易手续费返佣（负值）                   |
+| feeCurrency     | string   | 交易手续费或交易手续费返佣币种（买单的交易手续费币种为基础币种，卖单的交易手续费币种为计价币种；买单的交易手续费返佣币种为计价币种，卖单的交易手续费返佣币种为基础币种） |
+| feeDeduct       | string   | 交易手续费抵扣                                               |
+| feeDeductType   | string   | 交易手续费抵扣类型，有效值： ht, point                       |
+| accountId       | long     | 账户编号                                                     |
+| source          | string   | 订单来源                                                     |
+| orderPrice      | string   | 订单价格 （市价单无此字段）                                  |
+| orderSize       | string   | 订单数量（市价买单无此字段）                                 |
+| orderValue      | string   | 订单金额（仅市价买单有此字段）                               |
+| clientOrderId   | string   | 用户自编订单号                                               |
+| stopPrice       | string   | 订单触发价（仅止盈止损订单有此字段）                         |
+| operator        | string   | 订单触发方向（仅止盈止损订单有此字段）                       |
+| orderCreateTime | long     | 订单创建时间                                                 |
+| orderStatus     | string   | 订单状态，有效值：filled, partial-filled                     |
 
 注：<br>
 - transactFee中的交易返佣金额可能不会实时到账；<br>
 
 ### 数据更新字段列表（当订单撤销后）
 
-|字段     | 数据类型 | 描述|
-|--------- | --------- | -----------|
-|	eventType	|	string	|	事件类型（cancellation）	|
-|	symbol	|	string	|	交易代码	|
-|	orderId	|	long	|	订单ID	|
-|	orderSide	|	string	|	订单方向，有效值： buy, sell	|
-|	orderType	|	string	|	订单类型，有效值： buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit,buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok	|
-|	accountId	|	long	|	账户编号	|
-|	source	|	string	|	订单来源	|
-|	orderPrice	|	string	|	订单价格 （市价单无此字段）	|
-|	orderSize	|	string	|	订单数量（市价买单无此字段）	|
-|	orderValue	|	string	|	订单金额（仅市价买单有此字段）	|
-|	clientOrderId	|	string	|	用户自编订单号	|
-|	stopPrice	|	string	|	订单触发价（仅止盈止损订单有此字段）	|
-|	operator	|	string	|	订单触发方向（仅止盈止损订单有此字段）	|
-|	orderCreateTime	|	long	|	订单创建时间	|
-|	remainAmt	|	string	|	未成交量（对于市价买单，该字段定义为未成交额）	|
-|	orderStatus	|	string	|	订单状态，有效值：canceled, partial-canceled	|
+| 字段            | 数据类型 | 描述                                                         |
+| --------------- | -------- | ------------------------------------------------------------ |
+| eventType       | string   | 事件类型（cancellation）                                     |
+| symbol          | string   | 交易代码                                                     |
+| orderId         | long     | 订单ID                                                       |
+| orderSide       | string   | 订单方向，有效值： buy, sell                                 |
+| orderType       | string   | 订单类型，有效值： buy-market, sell-market,buy-limit,sell-limit,buy-ioc,sell-ioc,buy-limit-maker,sell-limit-maker,buy-stop-limit,sell-stop-limit,buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
+| accountId       | long     | 账户编号                                                     |
+| source          | string   | 订单来源                                                     |
+| orderPrice      | string   | 订单价格 （市价单无此字段）                                  |
+| orderSize       | string   | 订单数量（市价买单无此字段）                                 |
+| orderValue      | string   | 订单金额（仅市价买单有此字段）                               |
+| clientOrderId   | string   | 用户自编订单号                                               |
+| stopPrice       | string   | 订单触发价（仅止盈止损订单有此字段）                         |
+| operator        | string   | 订单触发方向（仅止盈止损订单有此字段）                       |
+| orderCreateTime | long     | 订单创建时间                                                 |
+| remainAmt       | string   | 未成交量（对于市价买单，该字段定义为未成交额）               |
+| orderStatus     | string   | 订单状态，有效值：canceled, partial-canceled                 |
 
 
 ## 订阅账户变更
@@ -8882,9 +8917,9 @@ API Key 权限：读取
 
 ### 订阅参数
 
-| 参数 | 数据类型 |  描述 |
-| --------- | --------- | --------- |
-| mode    | integer   | 推送方式，有效值：0, 1，默认值：0|
+| 参数 | 数据类型 | 描述                              |
+| ---- | -------- | --------------------------------- |
+| mode | integer  | 推送方式，有效值：0, 1，默认值：0 |
 
 订阅示例  
 1、不填mode：  
@@ -8965,15 +9000,15 @@ accounts.update#1：
 
 ### 数据更新字段列表
 
-|字段               | 数据类型 | 描述|
-|---------           | --------- | -----------|
-|	currency	|	string	|	币种|
-|	accountId	|	long	|	账户ID|
-|	balance	|	string	|	账户余额（仅当账户余额发生变动时推送）|
-|	available	|	string	|	可用余额（仅当可用余额发生变动时推送）|
-|	changeType	|	string	| 余额变动类型，有效值：order-place(订单创建)，order-match(订单成交)，order-refund(订单成交退款)，order-cancel(订单撤销)，order-fee-refund(点卡抵扣交易手续费)，margin-transfer(杠杆账户划转)，margin-loan(借币本金)，margin-interest(借币计息)，margin-repay(归还借币本金币息)，deposit (充币）, withdraw (提币)，other(其他资产变化) |
-|	accountType	|	string	|	账户类型，有效值：trade, frozen, loan, interest|
-|	changeTime	|	long	|	余额变动时间，unix time in millisecond|
+| 字段        | 数据类型 | 描述                                                         |
+| ----------- | -------- | ------------------------------------------------------------ |
+| currency    | string   | 币种                                                         |
+| accountId   | long     | 账户ID                                                       |
+| balance     | string   | 账户余额（仅当账户余额发生变动时推送）                       |
+| available   | string   | 可用余额（仅当可用余额发生变动时推送）                       |
+| changeType  | string   | 余额变动类型，有效值：order-place(订单创建)，order-match(订单成交)，order-refund(订单成交退款)，order-cancel(订单撤销)，order-fee-refund(点卡抵扣交易手续费)，margin-transfer(杠杆账户划转)，margin-loan(借币本金)，margin-interest(借币计息)，margin-repay(归还借币本金币息)，deposit (充币）, withdraw (提币)，other(其他资产变化) |
+| accountType | string   | 账户类型，有效值：trade, frozen, loan, interest              |
+| changeTime  | long     | 余额变动时间，unix time in millisecond                       |
 
 注：<br>
 账户更新推送的是到账金额，多笔成交产生的多笔交易返佣可能会合并到帐。<br>
@@ -8987,19 +9022,19 @@ accounts.update#1：
 
 以下是是稳定币接口的错误码和说明。
 
-| 响应码 | 说明  |
-| ---- | ----- |
-| invalid-currency | 币种无效 |
-| invalid-amount | 币种数量小于最低值（1000）或大于当前可兑换额度 |
-| invalid-type | type不为sell或buy |
-| quote-exceed-price-limit | 报价超过合理范围（小于0.9或者大于1.1） |
-| quote-exceed-time-limit | 报价时间已经过期 |
-| quote-failure | 后端其他错误引起的后端其他错误引起的价格查询失败 |
-| invalid-quote-id | 无效的quote-id |
-| insufficient-balance | 可用余额不足 |
-| insufficient-quota | 稳定币限额不足/超出稳定币限额 |
-| exchange-failure | 后端其他错误引起的兑换失败 |
-| Base-user-request-exceed-limit | 您的操作太频繁，请稍后再试 |
+| 响应码                         | 说明                                             |
+| ------------------------------ | ------------------------------------------------ |
+| invalid-currency               | 币种无效                                         |
+| invalid-amount                 | 币种数量小于最低值（1000）或大于当前可兑换额度   |
+| invalid-type                   | type不为sell或buy                                |
+| quote-exceed-price-limit       | 报价超过合理范围（小于0.9或者大于1.1）           |
+| quote-exceed-time-limit        | 报价时间已经过期                                 |
+| quote-failure                  | 后端其他错误引起的后端其他错误引起的价格查询失败 |
+| invalid-quote-id               | 无效的quote-id                                   |
+| insufficient-balance           | 可用余额不足                                     |
+| insufficient-quota             | 稳定币限额不足/超出稳定币限额                    |
+| exchange-failure               | 后端其他错误引起的兑换失败                       |
+| Base-user-request-exceed-limit | 您的操作太频繁，请稍后再试                       |
 
 ## 稳定币兑换价格查询
 
@@ -9008,23 +9043,23 @@ API Key 权限：读取
 
 ### 请求参数
 
-| 参数名称       | 是否必须 | 类型     | 描述     |取值范围 |
-| ---------- | ---- | ------ | ------ | ---- |
-| currency | true | string | 与HUSD兑换的稳定币币种   |  PAX/USDC/TUSD |
-| amount     | true | string | 与HUSD兑换的稳定币币种数量   |amount必须为整数      |
-| type     | true | string | 兑换方向  |buy兑入/sell兑出     |
+| 参数名称 | 是否必须 | 类型   | 描述                       | 取值范围         |
+| -------- | -------- | ------ | -------------------------- | ---------------- |
+| currency | true     | string | 与HUSD兑换的稳定币币种     | PAX/USDC/TUSD    |
+| amount   | true     | string | 与HUSD兑换的稳定币币种数量 | amount必须为整数 |
+| type     | true     | string | 兑换方向                   | buy兑入/sell兑出 |
 
 ### 响应数据
 
-| 参数名称 | 是否必须  | 数据类型 | 描述   | 取值范围 |
-| ---- | ----- | ---- | ---- | ---- |
-| currency | true | string | 与HUSD兑换的稳定币币种   |  PAX/USDC/TUSD |
-| amount     | true | string | 与HUSD兑换的稳定币币种数量   |因兑换账户额度等因素影响，返回的amount可能会比请求的amount小      |
-| type     | true | string | 兑换方向  |buy兑入/sell兑出     |
-| exchangeAmount     | true | string | 匹配的HUSD数量  |type=buy时，exchangeAmount为用户所需支付的husd数量；type=sell时，exchangeAmount为用户可获得的husd数量     |
-| exchangeFee   | true | string | 手续费金额 （单位：HUSD）  |     |
-| quoteId     | true | string | 该次稳定币报价唯一ID  |     |
-| expiration     | true | string | 确认兑换有效期  |时间（一般为接口请求时间向后延伸10秒）     |
+| 参数名称       | 是否必须 | 数据类型 | 描述                       | 取值范围                                                     |
+| -------------- | -------- | -------- | -------------------------- | ------------------------------------------------------------ |
+| currency       | true     | string   | 与HUSD兑换的稳定币币种     | PAX/USDC/TUSD                                                |
+| amount         | true     | string   | 与HUSD兑换的稳定币币种数量 | 因兑换账户额度等因素影响，返回的amount可能会比请求的amount小 |
+| type           | true     | string   | 兑换方向                   | buy兑入/sell兑出                                             |
+| exchangeAmount | true     | string   | 匹配的HUSD数量             | type=buy时，exchangeAmount为用户所需支付的husd数量；type=sell时，exchangeAmount为用户可获得的husd数量 |
+| exchangeFee    | true     | string   | 手续费金额 （单位：HUSD）  |                                                              |
+| quoteId        | true     | string   | 该次稳定币报价唯一ID       |                                                              |
+| expiration     | true     | string   | 确认兑换有效期             | 时间（一般为接口请求时间向后延伸10秒）                       |
 
 ## 兑换稳定币
 
@@ -9033,21 +9068,21 @@ API Key 权限：交易
 
 ### 请求参数
 
-| 参数名称       | 是否必须 | 类型     | 描述     |取值范围 |
-| ---------- | ---- | ------ | ------ | ---- |
-| quote-id | true | string | 该次稳定币报价唯一ID   |   |
+| 参数名称 | 是否必须 | 类型   | 描述                 | 取值范围 |
+| -------- | -------- | ------ | -------------------- | -------- |
+| quote-id | true     | string | 该次稳定币报价唯一ID |          |
 
 ### 响应数据
 
-| 参数名称 | 是否必须  | 数据类型 | 描述   | 取值范围 |
-| ---- | ----- | ---- | ---- | ---- |
-| transact-id | true | long | 兑换记录ID   |   |
-| currency | true | string | 与HUSD兑换的稳定币币种   |  PAX/USDC/TUSD |
-| amount     | true | string | 与HUSD兑换的稳定币币种数量   |      |
-| type     | true | string | 兑换方向  |buy兑入/sell兑出     |
-| exchange-amount     | true | string | 匹配的HUSD数量  |type=buy时，exchange-amount为用户所需支付的husd数量；type=sell时，exchange-amount为用户可获得的husd数量     |
-| exchange-fee     | true | string | 手续费金额 （单位：HUSD）  |     |
-| time     | true | long | 时间戳  |     |
+| 参数名称        | 是否必须 | 数据类型 | 描述                       | 取值范围                                                     |
+| --------------- | -------- | -------- | -------------------------- | ------------------------------------------------------------ |
+| transact-id     | true     | long     | 兑换记录ID                 |                                                              |
+| currency        | true     | string   | 与HUSD兑换的稳定币币种     | PAX/USDC/TUSD                                                |
+| amount          | true     | string   | 与HUSD兑换的稳定币币种数量 |                                                              |
+| type            | true     | string   | 兑换方向                   | buy兑入/sell兑出                                             |
+| exchange-amount | true     | string   | 匹配的HUSD数量             | type=buy时，exchange-amount为用户所需支付的husd数量；type=sell时，exchange-amount为用户可获得的husd数量 |
+| exchange-fee    | true     | string   | 手续费金额 （单位：HUSD）  |                                                              |
+| time            | true     | long     | 时间戳                     |                                                              |
 
 # ETF（HB10）
 
@@ -9057,18 +9092,18 @@ ETF接口提供了ETF基本信息、换入、换出、查询等功能。
 
 以下是ETF接口的错误码、错误消息和说明。
 
-| 错误码 | 错误消息 | 说明 |
-| ---------   | -----------|--------- |
-| 504 | Missing Parameter: [name] | 缺失参数[参数名] |
-| 10404 | The fund does not exist | 基金名称不存在（当前只支持hb10）|
-| 13404 | Exchange ratio of the coin and etf is missing | 基金调整中，不能换入换出 |
-| 13406 | Non-API calls. The request is rejected | 非API调用，请求被拒绝 |
-| 13410 | API signature error | API签名错误 |
-| 13601 | Position adjustment phase: swap-in and swap-out are suspended | 调仓期：暂停换入换出 |
-| 13603 | Swap-in and swap-out have been suspended | 换入换出已暂停 |
-| 13604 | Swap-in has been suspended | 换入已暂停 |
-| 13605 | Swap-out has been suspended | 换出已暂停 |
-| 13606 | Incorrect transaction share | 申购或赎回份额超出上限或者低于下限 |
+| 错误码 | 错误消息                                                     | 说明                               |
+| ------ | ------------------------------------------------------------ | ---------------------------------- |
+| 504    | Missing Parameter: [name]                                    | 缺失参数[参数名]                   |
+| 10404  | The fund does not exist                                      | 基金名称不存在（当前只支持hb10）   |
+| 13404  | Exchange ratio of the coin and etf is missing                | 基金调整中，不能换入换出           |
+| 13406  | Non-API calls. The request is rejected                       | 非API调用，请求被拒绝              |
+| 13410  | API signature error                                          | API签名错误                        |
+| 13601  | Position adjustment phase: swap-in and swap-out are suspended | 调仓期：暂停换入换出               |
+| 13603  | Swap-in and swap-out have been suspended                     | 换入换出已暂停                     |
+| 13604  | Swap-in has been suspended                                   | 换入已暂停                         |
+| 13605  | Swap-out has been suspended                                  | 换出已暂停                         |
+| 13606  | Incorrect transaction share                                  | 申购或赎回份额超出上限或者低于下限 |
 
 ## 基本信息
 
@@ -9080,9 +9115,9 @@ ETF接口提供了ETF基本信息、换入、换出、查询等功能。
 
 ### 请求参数
 
-参数|是否必填|数据类型|长度|说明|取值范围|
------|-----|-----|------|-------|------|
-etf_name| true | string |- | etf基金名称 | hb10|
+| 参数     | 是否必填 | 数据类型 | 长度 | 说明        | 取值范围 |      |
+| -------- | -------- | -------- | ---- | ----------- | -------- | ---- |
+| etf_name | true     | string   | -    | etf基金名称 | hb10     |      |
 
 > Response:
 
@@ -9116,23 +9151,23 @@ etf_name| true | string |- | etf基金名称 | hb10|
 
 ### 响应数据
 
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
-purchase_min_amount | true| int | - | 最小单次换入数量|      |
-purchase_max_amount  | False| int | - | 最大单次换入数量 |      |
-redemption_min_amount  | true| int | - | 最小单次换出数量 |      |
-redemption_max_amount  | False| int | - | 最大单次换出数量 |      |
-purchase_fee_rate  | true| double | (5,4)  | 换入费率 |      |
-redemption_fee_rate  | true| double | (5,4) | 换出费率 |      |
-etf_status  | true| int | - | 换入换出状态 | 状态： 正常 – 1;  由调仓引起的换入换出暂停 - 2; 其他原因引起的换入换出暂停 - 3; 换入暂停 - 4; 换出暂停 – 5  |
-unit_price  | true| Array | - | ETF成分信息，包含成分币代码和对应的数量 | 调仓会引起成分信息发生变化  |
+| 参数                  | 是否必填 | 数据类型 | 长度  | 说明                                    | 取值范围                                                     |      |
+| --------------------- | -------- | -------- | ----- | --------------------------------------- | ------------------------------------------------------------ | ---- |
+| purchase_min_amount   | true     | int      | -     | 最小单次换入数量                        |                                                              |      |
+| purchase_max_amount   | False    | int      | -     | 最大单次换入数量                        |                                                              |      |
+| redemption_min_amount | true     | int      | -     | 最小单次换出数量                        |                                                              |      |
+| redemption_max_amount | False    | int      | -     | 最大单次换出数量                        |                                                              |      |
+| purchase_fee_rate     | true     | double   | (5,4) | 换入费率                                |                                                              |      |
+| redemption_fee_rate   | true     | double   | (5,4) | 换出费率                                |                                                              |      |
+| etf_status            | true     | int      | -     | 换入换出状态                            | 状态： 正常 – 1;  由调仓引起的换入换出暂停 - 2; 其他原因引起的换入换出暂停 - 3; 换入暂停 - 4; 换出暂停 – 5 |      |
+| unit_price            | true     | Array    | -     | ETF成分信息，包含成分币代码和对应的数量 | 调仓会引起成分信息发生变化                                   |      |
 
 - unit_price
 
-参数|是否必填|数据类型|长度|说明|
------|-----|-----|------|-------|
-currency| true | string |- | 成分币币种 |
-amount| true | double |- | 成分币数量 |
+| 参数     | 是否必填 | 数据类型 | 长度 | 说明       |      |
+| -------- | -------- | -------- | ---- | ---------- | ---- |
+| currency | true     | string   | -    | 成分币币种 |      |
+| amount   | true     | double   | -    | 成分币数量 |      |
 
 
 ## 换入换出
@@ -9150,10 +9185,10 @@ API Key 权限：交易
 
 ### 请求参数
 
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
-etf_name  | true| string | - | etf基金名称|    hb10  |
-amount  | true| int | - | 换入数量  (POST /etf/swap/in) 或 换出数量 (POST /etf/swap/out) | 换入换出数量的范围请参照接口GET /etf/swap/config 提供的相应范围 |
+| 参数     | 是否必填 | 数据类型 | 长度 | 说明                                                         | 取值范围                                                     |      |
+| -------- | -------- | -------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---- |
+| etf_name | true     | string   | -    | etf基金名称                                                  | hb10                                                         |      |
+| amount   | true     | int      | -    | 换入数量  (POST /etf/swap/in) 或 换出数量 (POST /etf/swap/out) | 换入换出数量的范围请参照接口GET /etf/swap/config 提供的相应范围 |      |
 
 
 > Response:
@@ -9171,12 +9206,12 @@ amount  | true| int | - | 换入数量  (POST /etf/swap/in) 或 换出数量 (PO
 ### 响应数据
 
 
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
-code | true| int | - | 结果返回码|   请参照返回码解释表 |
-data | true|   | - |  |     |
-message | true|   | - |  |     |
-success | true| Boolean | - | 请求是否成功|  true or false |
+| 参数    | 是否必填 | 数据类型 | 长度 | 说明         | 取值范围           |      |
+| ------- | -------- | -------- | ---- | ------------ | ------------------ | ---- |
+| code    | true     | int      | -    | 结果返回码   | 请参照返回码解释表 |      |
+| data    | true     |          | -    |              |                    |      |
+| message | true     |          | -    |              |                    |      |
+| success | true     | Boolean  | -    | 请求是否成功 | true or false      |      |
 
 ## 操作记录
 
@@ -9191,11 +9226,11 @@ API Key 权限：读取
 
 ### 请求参数
 
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
------------|------------|-----------|------------|----------|--|
-etf_name | true| string | - | etf基金名称|   hb10 |
-offset | true|  int | - | 开始位置 | >=0. 比如，当offset=0, 开始位置就 是最新的这一条记录。 |
-limit | true|  int  | - |最大返回记录条数|  [1, 100]  |
+| 参数     | 是否必填 | 数据类型 | 长度 | 说明             | 取值范围                                               |      |
+| -------- | -------- | -------- | ---- | ---------------- | ------------------------------------------------------ | ---- |
+| etf_name | true     | string   | -    | etf基金名称      | hb10                                                   |      |
+| offset   | true     | int      | -    | 开始位置         | >=0. 比如，当offset=0, 开始位置就 是最新的这一条记录。 |      |
+| limit    | true     | int      | -    | 最大返回记录条数 | [1, 100]                                               |      |
 
 > Response:
 
@@ -9276,32 +9311,32 @@ limit | true|  int  | - |最大返回记录条数|  [1, 100]  |
 ### 响应数据
 
 
-参数|是否必填 | 数据类型 | 长度 | 说明 | 取值范围 |
----|------- |------   |---- |-----|--------|
-id | true| long | - |操作ID |     |
-gmt_created | true| long | - |操作时间（毫秒） |     |
-currency | true| string | - |基金名称 |     |
-amount | true| double | - |基金数量 |     |
-type | true| int | - |操作类型 |    换入-1；换出-2 |
-status | true| int | - |操作结果状态 |     成功-2|
-detail | true| Detail[] | - |详情 |     |
+| 参数        | 是否必填 | 数据类型 | 长度 | 说明             | 取值范围       |      |
+| ----------- | -------- | -------- | ---- | ---------------- | -------------- | ---- |
+| id          | true     | long     | -    | 操作ID           |                |      |
+| gmt_created | true     | long     | -    | 操作时间（毫秒） |                |      |
+| currency    | true     | string   | -    | 基金名称         |                |      |
+| amount      | true     | double   | -    | 基金数量         |                |      |
+| type        | true     | int      | -    | 操作类型         | 换入-1；换出-2 |      |
+| status      | true     | int      | -    | 操作结果状态     | 成功-2         |      |
+| detail      | true     | Detail[] | -    | 详情             |                |      |
 
 Detail
 
-参数|是否必填|数据类型|长度|说明|
------|-----|-----|------|-------|-------
-used_currency_list| ture| Currency[]| -| 换出的资产列表。如果是换入，该参数包括的是用于换入的成分币详情。如果是换出，该参数则是用于换出的基金详情。|
-rate|ture| double| -|费率|
-fee|ture| double| -|实际收取的手续费|
-point_card_amount| ture| double|-|用点卡折扣的手续费|
-obtain_currency_list| ture| Currency[]| -|换回的资产列表。如果是换入，该参数包括的是用 于换出的基金详情。如果是换出，该参数则是用于 换入的成分币详情。 |
+| 参数                 | 是否必填 | 数据类型   | 长度 | 说明                                                         |      |
+| -------------------- | -------- | ---------- | ---- | ------------------------------------------------------------ | ---- |
+| used_currency_list   | ture     | Currency[] | -    | 换出的资产列表。如果是换入，该参数包括的是用于换入的成分币详情。如果是换出，该参数则是用于换出的基金详情。 |      |
+| rate                 | ture     | double     | -    | 费率                                                         |      |
+| fee                  | ture     | double     | -    | 实际收取的手续费                                             |      |
+| point_card_amount    | ture     | double     | -    | 用点卡折扣的手续费                                           |      |
+| obtain_currency_list | ture     | Currency[] | -    | 换回的资产列表。如果是换入，该参数包括的是用 于换出的基金详情。如果是换出，该参数则是用于 换入的成分币详情。 |      |
 
 Currency
 
-参数|是否必填|数据类型|长度|说明|
------|-----|-----|------|-------|
-currency| true | string |- | 成分币名称或基金名称 |
-amount| true | double |- | 数量 |
+| 参数     | 是否必填 | 数据类型 | 长度 | 说明                 |      |
+| -------- | -------- | -------- | ---- | -------------------- | ---- |
+| currency | true     | string   | -    | 成分币名称或基金名称 |      |
+| amount   | true     | double   | -    | 数量                 |      |
 
 # 杠杆ETP
 
@@ -9311,28 +9346,28 @@ amount| true | double |- | 数量 |
 
 以下是杠杆ETP接口的错误码、错误消息和说明。
 
-| 错误码 | 错误消息 | 说明 |
-| -- | -- | -- |
-| 1002 | 您所在的国家禁止申购赎回 | 用户注册或认证国籍不允许申赎 |
-| 80007 | 申购关闭，订单已取消 | 申购关闭 |
-| 80008 | 赎回关闭，订单已取消 | 赎回关闭 |
-| 80009 | 申购金额不得低于{0} | 小于最小下单量 |
-| 80010 | 申购金额不得高于{0} | 高于最大下单量 |
-| 80011 | 个人今日可申购额度超限 | 个人单日申购已超出限额 |
-| 80012 | 平台今日可申购额度超限 | 平台整体申购超出 |
-| 80013 | 赎回数量不得低于{0} | 小于最小下单量 |
-| 80014 | 赎回数量不得高于{0} | 高于最大下单量 |
-| 80015 | 个人今日可赎回额度超限 | 人单日赎回已超出限额 |
-| 80016 | 平台今日可赎回额度超限 | 平台整体赎回超出限额 |
-| 80018 | 资产余额不足 | 资产余额不足 |
-| 80019 | 下单失败，请重试 | broker返回非已知错误异常 |
-| 80021 | 申购失败，订单已取消 | 用户申购金额过小，不足合约1张 |
-| 80022 | 赎回失败，订单已取消 | 用户赎回金额过小，不足合约1张 |
-| 80023 | 申购失败，订单已取消 | 行情波动较大，合约下单后计算用户需扣款金额大于下单金额 |
-| 80024 | 赎回失败，订单已取消 | 行情波动较大，合约下单后计算用户需扣款金额大于下单金额 |
-| 80026 | 系统繁忙，请稍后再试。| 超出订单排队队列 |
-| 80027 | 赎回失败，订单已取消 | 没有份额可供用户赎回 |
-| 80028 | 下单失败，超出该币种的持仓限额 | 下单失败，超出该币种的持仓限额 |
+| 错误码 | 错误消息                       | 说明                                                   |
+| ------ | ------------------------------ | ------------------------------------------------------ |
+| 1002   | 您所在的国家禁止申购赎回       | 用户注册或认证国籍不允许申赎                           |
+| 80007  | 申购关闭，订单已取消           | 申购关闭                                               |
+| 80008  | 赎回关闭，订单已取消           | 赎回关闭                                               |
+| 80009  | 申购金额不得低于{0}            | 小于最小下单量                                         |
+| 80010  | 申购金额不得高于{0}            | 高于最大下单量                                         |
+| 80011  | 个人今日可申购额度超限         | 个人单日申购已超出限额                                 |
+| 80012  | 平台今日可申购额度超限         | 平台整体申购超出                                       |
+| 80013  | 赎回数量不得低于{0}            | 小于最小下单量                                         |
+| 80014  | 赎回数量不得高于{0}            | 高于最大下单量                                         |
+| 80015  | 个人今日可赎回额度超限         | 人单日赎回已超出限额                                   |
+| 80016  | 平台今日可赎回额度超限         | 平台整体赎回超出限额                                   |
+| 80018  | 资产余额不足                   | 资产余额不足                                           |
+| 80019  | 下单失败，请重试               | broker返回非已知错误异常                               |
+| 80021  | 申购失败，订单已取消           | 用户申购金额过小，不足合约1张                          |
+| 80022  | 赎回失败，订单已取消           | 用户赎回金额过小，不足合约1张                          |
+| 80023  | 申购失败，订单已取消           | 行情波动较大，合约下单后计算用户需扣款金额大于下单金额 |
+| 80024  | 赎回失败，订单已取消           | 行情波动较大，合约下单后计算用户需扣款金额大于下单金额 |
+| 80026  | 系统繁忙，请稍后再试。         | 超出订单排队队列                                       |
+| 80027  | 赎回失败，订单已取消           | 没有份额可供用户赎回                                   |
+| 80028  | 下单失败，超出该币种的持仓限额 | 下单失败，超出该币种的持仓限额                         |
 
 ## 基础参考信息
 
@@ -9346,9 +9381,9 @@ amount| true | double |- | 数量 |
 
 ### 请求参数
 
- 名称	|	类型	|	是否必需	|	描述	|
------|-----|-----|------|
-etpName| true | string | 杠杆ETP名称 (for example: btc3l) |
+| 名称    | 类型 | 是否必需 | 描述                             |      |
+| ------- | ---- | -------- | -------------------------------- | ---- |
+| etpName | true | string   | 杠杆ETP名称 (for example: btc3l) |      |
 
 > Response:
 
@@ -9618,4 +9653,4 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
 |	rebalType }	|	string	|	TRUE	|调仓类型（daily, adhoc）	|
 |	nextId	|	long	|	FALSE	| 下页查询起始编号（仅在存在下页数据时返回）	|
 
-<br>
+##### <br>
