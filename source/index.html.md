@@ -1649,11 +1649,11 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
 
 ```
 "tick": {
-  "id": Message id,
+  "id": Unique Order Id(symbol level).,
   "ts": Latest Transaction time,
   "data": [
     {
-      "id": Transaction id,
+      "id": Unique Transaction Id(symbol level),
       "price": Transaction price,
       "amount": transaction amount,
       "direction": Active transaction direction,
@@ -1696,10 +1696,10 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
 | status             | true          | string   |               |             | "ok","error"    |
 | ts                 | true          | long   | Sending time                                                |             |                 |
 |  \<tick\>    |               |    |      | 
-| id  |  true  |  long  |  ID  |   |    
+| id  |  true  |  long  |  Unique Order Id(symbol level).  |   |    
 | ts  |  true  |  long  |  Latest Creation Time |   |    
 |  \<data\>  |               |    |      | 
-| id  |  true  |  long  |  ID  |   |    
+| id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
 | price  |  true  |  string  |  Price |   |    
 | amount  |  true  |  string  |  Quantity(Cont.)  |   |    
 | direction  |  true  |  string  |  Order Direction  |   |    
@@ -1729,11 +1729,11 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
 
 ```
 "data": {
-  "id": Message id,
+  "id": Unique Order Id(symbol level).,
   "ts": Latest transaction time,
   "data": [
     {
-      "id": Transaction id,
+      "id": Unique Transaction Id(symbol level),
       "price": transaction price,
       "amount": transaction (amount),
       "direction": active transaction direction
@@ -1777,11 +1777,11 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
 | \<data\>  | true | object array |           |      |       |
 | amount     | true | decimal | Quantity(Cont.)       |      |            |
 | direction     | true | string |  Order Direction       |      |            |
-| id     | true | long | Transaction id       |      |            |
+| id     | true | long | Unique Transaction Id(symbol level)      |      |            |
 | price     | true | decimal | Price       |      |            |
 | ts     | true | long |  Order Creation Time       |      |            |
 |\</data\>    |  |  |              |      |            |
-| id     | true | long | Message id       |      |            |
+| id     | true | long | Unique Order Id(symbol level).     |      |            |
 | ts     | true | long | Latest transaction time       |      |            |
 |\</data\>    |  |  |              |      |            |
 | status | true | string |                                          | "ok"，"error" |
@@ -6213,11 +6213,11 @@ Parameter Name  |  Mandatory  |    Type  |     Description   |  Default   |  Val
 
 Parameter Name     |    Mandatory |  Type  | Description |  Default   | 
 --------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ | 
-rep  |  true  |  string  |  Data Channel，Format： market.\$contract_code.trade.detail  |  |   
+rep  |  true  |  string  |  Data Channel，Format： market.$contract_code.trade.detail  |  |   
 status  |  true  |  string  |  Request Status  |   |    
-id  |  true  |  long  |  ID  |   |    
+id  |  true  |  long  |  Request ID  |   |    
  \<data\>    |               |    |      | 
-id  |  true  |  long  |  ID  |   |    
+id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
 price  |  true  |  string  |  Price |   |    
 amount  |  true  |  string  |  Quantity(Cont.)  |   |    
 direction  |  true  |  string  |  Order Direction  |   |    
@@ -6298,12 +6298,12 @@ Parameter Name     | Mandatory | Type  |  Description |  Default  |
 ch  |  true  |  string  |  Data channel,format: market.$contract_code.trade.detail  |  |   
 ts  |  true  |  long  |  Request time  |   |    
  \<tick\>    |               |    |      | 
-id  |  true  |  long  |  ID  |   |    
+id  |  true  |  long  |  Unique Order Id(symbol level).  |   |    
 ts  |  true  |  long  |  tick time  |   |    
  \<data\>    |               |    |      | 
 amount  |  true  |  decimal  |  quantity(Cont.) |   |    
 ts  |  true  |  long  |  trade timestamp  |   |    
-id  |  true  |  long  |  tick id  |   |    
+id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
 price  |  true  |  decimal  |  Price  |   |    
 direction  |  true  |  string  |  Order direction  |   |    
  \</data\>    |               |    |      | 
