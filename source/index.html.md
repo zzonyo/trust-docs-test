@@ -66,8 +66,7 @@ search: True
 | 读取   | 市场行情接口 | /option-ex/market/history/kline                         | GET      | 获取K线数据                       |  否       
 | 读取   | 市场行情接口 | /option-ex/market/detail/merged                         | GET      | 获取聚合行情                       |  否      
 | 读取   | 市场行情接口 | /option-ex/market/trade                                 | GET      | 获取市场最近成交记录                |  否     
-| 读取   | 市场行情接口 | /option-ex/market/history/trade                         | GET      | 批量获取最近的交易记录              |  否     
-| 读取   | 市场行情接口 | https://api.hbdm.com/api/v1/timestamp                   | GET      | 获取当前系统时间戳                |  否  
+| 读取   | 市场行情接口 | /option-ex/market/history/trade                         | GET      | 批量获取最近的交易记录              |  否    
 | 读取   | 资产接口     | /option-api/v1/option_account_info                     | POST     | 获取用户账户信息                    | 是       
 | 读取   | 资产接口     | /option-api/v1/option_position_info                    | POST     | 获取用户持仓信息                    | 是       
 | 读取   | 账户接口     | /option-api/v1/option_sub_account_list                 | POST     | 查询母账户下所有子账户资产信息         | 是    
@@ -1658,12 +1657,12 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-201225-
 | ch     | true | string | 数据所属的 channel，格式： market.$contract_code.trade.detail |      |
 | status | true | string |     | "ok","error" |
 | \<tick\>      | true | object |           |      |
-| id     | true | long | 消息id       |      |
+| id     | true | long | 订单唯一id（品种唯一）   |      |
 | ts     | true | long | 最新成交时间       |      |
 | \<data\>      | true | object array |        |      |
 | amount     | true | string | 成交量(张)，买卖双边成交量之和       |      |
 | direction     | true | string | 主动成交方向       |      |
-| id     | true | long | 成交id       |      |
+| id     | true | long | 成交唯一id（品种唯一）      |      |
 | price     | true | string | 成交价       |      |
 | ts     | true | long | 成交时间       |      |
 |\</data\>      |  |  |              |      |
@@ -1744,11 +1743,11 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | \<data\>    | true | object array |           |      |       |
 | amount     | true | decimal | 成交量(张)，买卖双边成交量之和       |      |            |
 | direction     | true | string | 主动成交方向       |      |            |
-| id     | true | long | 成交id       |      |            |
+| id     | true | long | 成交唯一id（品种唯一）    |      |            |
 | price     | true | decimal | 成交价格       |      |            |
 | ts     | true | long | 成交时间       |      |            |
 |\</data\>      |  |  |              |      |            |
-| id     | true | long | 消息id       |      |            |
+| id     | true | long | 订单唯一id（品种唯一）   |      |            |
 | ts     | true | long | 最新成交时间       |      |            |
 |\</data\>      |  |  |              |      |            |
 | status | true | string |                                          | "ok"，"error" |
