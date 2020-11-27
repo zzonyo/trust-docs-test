@@ -112,7 +112,7 @@ search: true
 读取  | 市场行情接口 | index/market/history/linear_swap_premium_index_kline              | GET    |      获取溢价指数K线数据                 |       否          |
 读取  | 市场行情接口 | index/market/history/linear_swap_estimated_rate_kline             | GET    |      获取预测资金费率的K线数据           |       否          |
 读取  | 市场行情接口 | linear-swap-ex/market/trade                                       | GET    |      获取市场最近成交记录                |       否          |
-读取  | 账户接口    | linear-swap-ex/market/history/trade                               | GET    |      批量获取最近的交易记录               |     否         |
+读取  | 市场行情接口 | linear-swap-ex/market/history/trade                               | GET    |      批量获取最近的交易记录               |     否         |
 读取  | 账户接口    | linear-swap-api/v1/swap_account_info                              | POST   |      获取用户的合约账户信息               |     是         |
 读取  | 账户接口    | linear-swap-api/v1/swap_position_info                             | POST   |      获取用户的合约持仓信息               |     是         |
 读取  | 账户接口    | linear-swap-api/v1/swap_available_level_rate                      | POST   |      查询用户可用杠杆倍数          |     是         |
@@ -1672,12 +1672,12 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
 
 ```
     "tick": {
-      "id": 消息id,
+      "id": 订单唯一id（品种唯一）,
       "ts": 最新成交时间,
       "data": [
         {
-       "id": 成交id,
-        "price": 成交价钱,
+                  "id": 成交唯一id（品种唯一）,
+                  "price": 成交价钱,
          "amount": 成交量(张)，买卖双边成交量之和,
          "direction": 主动成交方向,
          "ts": 成交时间
@@ -1719,12 +1719,12 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
 | ch     | true | string | 数据所属的 channel，格式： market.$symbol.trade.detail |      |
 | status | true | string |     | "ok","error" |
 | \<tick\>    | true | object |           |      |
-| id     | true | long | 消息id       |      |
+| id     | true | long | 订单唯一id（品种唯一）       |      |
 | ts     | true | long | 最新成交时间       |      |
 | \<data\>    | true | object array |        |      |
 | amount     | true | string | 成交量(张)，买卖双边成交量之和       |      |
 | direction     | true | string | 主动成交方向       |      |
-| id     | true | long | 成交id       |      |
+| id     | true | long | 成交唯一id（品种唯一）      |      |
 | price     | true | string | 成交价       |      |
 | ts     | true | long | 成交时间       |      |
 | \</data\>    |  |  |              |      |
@@ -1757,11 +1757,11 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
 ```
 
     "data": {
-      "id": 消息id,
+         "id": 订单唯一id（品种唯一）,
       "ts": 最新成交时间,
       "data": [
         {
-          "id": 成交id,
+          "id": 成交唯一id（品种唯一）,
           "price": 成交价,
           "amount": 成交量(张)，买卖双边成交量之和,
           "direction": 主动成交方向,
@@ -1808,11 +1808,11 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
 | \<data\>  | true | object array |           |      |       |
 | amount     | true | decimal | 成交量(张)，买卖双边成交量之和       |      |            |
 | direction     | true | string | 主动成交方向       |      |            |
-| id     | true | long | 成交id       |      |            |
+| id     | true | long | 成交唯一id（品种唯一）     |      |            |
 | price     | true | decimal | 成交价格       |      |            |
 | ts     | true | long | 成交时间       |      |            |
 | \</data\>    |  |  |              |      |            |
-| id     | true | long | 消息id       |      |            |
+| id     | true | long | 订单唯一id（品种唯一）    |      |            |
 | ts     | true | long | 最新成交时间       |      |            |
 | \</data\>    |  |  |              |      |            |
 | status | true | string |                                          | "ok"，"error" |
@@ -6240,9 +6240,9 @@ count  |  true  |  decimal  |   成交笔数  |
 --------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ | 
 rep  |  true  |  string  |  数据所属的 channel，格式： market.$contract_code.trade.detail  |  |   
 status  |  true  |  string  |  返回状态  |  |   
-id  |  true  |  long  |  ID  |   |    
+id  |  true  |  long  |  请求唯一 ID  |   |    
 \<list\>(属性名称: data)    |               |    |      | 
-id  |  true  |  long  |  ID  |   |    
+id  |  true  |  long  |  成交唯一id（品种唯一）  |   |    
 price  |  true  |  string  |  价格  |   |    
 amount  |  true  |  string  |  数量（张）  |   |    
 direction  |  true  |  string  |  买卖方向  |   |    
@@ -6320,12 +6320,12 @@ ts  |  true  |  long  |  发送时间  |   |
 ch  |  true  |  string  |  数据所属的 channel，格式： market.$contract_code.trade.detail  |  |   
 ts  |  true  |  long  |  发送时间  |   |    
 \<list\>(属性名称: tick)    |               |    |      | 
-id  |  true  |  long  |  ID  |   |    
+id  |  true  |  long  |  订单唯一id（品种唯一）  |   |    
 ts  |  true  |  long  |  tick数据戳  |   |    
 \<list\>(属性名称: data)    |               |    |      | 
 amount  |  true  |  decimal  |  数量（张）  |   |    
 ts  |  true  |  long  |  订单时间戳  |   |    
-id  |  true  |  long  |  tick id  |   |    
+id  |  true  |  long  |   成交唯一id（品种唯一）  |   |    
 price  |  true  |  decimal  |  价格  |   |    
 direction  |  true  |  string  |  买卖方向  |   |    
  \</list\>    |               |    |      | 
