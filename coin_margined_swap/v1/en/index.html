@@ -1167,22 +1167,6 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <tr>
 <td>Read</td>
 <td>Market Data</td>
-<td>/swap/heartbeat/</td>
-<td>GET</td>
-<td>Query whether the system is available</td>
-<td>No</td>
-</tr>
-<tr>
-<td>Read</td>
-<td>Market Data</td>
-<td>/api/v1/timestamp</td>
-<td>GET</td>
-<td>Get current system timestamp</td>
-<td>No</td>
-</tr>
-<tr>
-<td>Read</td>
-<td>Market Data</td>
 <td>/swap-api/v1/swap_api_state</td>
 <td>GET</td>
 <td>Query information on system status</td>
@@ -4205,11 +4189,11 @@ You are recommended to read the status code from the returned message. If the ab
 <p>Tick Illustration：</p>
 </blockquote>
 <pre class="highlight plaintext"><code>"tick": {
-  "id": Message id,
+  "id": Unique Order Id(symbol level),
   "ts": Latest Transaction time,
   "data": [
     {
-      "id": Transaction id,
+      "id": Unique Transaction Id(symbol level),
       "price": Transaction price,
       "amount": transaction amount,
       "direction": Active transaction direction,
@@ -4288,7 +4272,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>ID</td>
+<td>Unique Order Id(symbol level)</td>
 <td></td>
 <td></td>
 </tr>
@@ -4312,7 +4296,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>ID</td>
+<td>Unique Transaction Id(symbol level)</td>
 <td></td>
 <td></td>
 </tr>
@@ -4403,11 +4387,11 @@ You are recommended to read the status code from the returned message. If the ab
 <p>data Illustration：</p>
 </blockquote>
 <pre class="highlight plaintext"><code>"data": {
-  "id": Message id,
+  "id": Unique Order Id(symbol level),
   "ts": Latest transaction time,
   "data": [
     {
-      "id": Transaction id,
+      "id": Unique Transaction Id(symbol level),
       "price": transaction price,
       "amount": transaction (amount),
       "direction": active transaction direction
@@ -4495,7 +4479,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>ID</td>
+<td>Unique Order Id(symbol level)</td>
 <td></td>
 </tr>
 <tr>
@@ -4516,7 +4500,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>ID</td>
+<td>Unique Transaction Id(symbol level)</td>
 <td></td>
 </tr>
 <tr>
@@ -16906,7 +16890,7 @@ Details are below:</p></li>
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>ID</td>
+<td>Request ID</td>
 <td></td>
 </tr>
 <tr>
@@ -16920,7 +16904,7 @@ Details are below:</p></li>
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>ID</td>
+<td>Unique Transaction Id(symbol level)</td>
 <td></td>
 </tr>
 <tr>
@@ -17084,7 +17068,7 @@ Details are below:</p></li>
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>ID</td>
+<td>Unique Order Id(symbol level)</td>
 <td></td>
 </tr>
 <tr>
@@ -17119,7 +17103,7 @@ Details are below:</p></li>
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>tick id</td>
+<td>Unique Transaction Id(symbol level)</td>
 <td></td>
 </tr>
 <tr>
