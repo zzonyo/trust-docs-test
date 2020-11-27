@@ -66,7 +66,6 @@ Read  | Market Data      | /option-ex/market/history/kline          |  GET      
 Read  | Market Data      |  /option-ex/market/detail/merged         |  GET              | Query Market Data Overview                       | No                     |
 Read  | Market Data      |  /option-ex/market/trade                  |  GET              | Query The Last Trade of a Contract                   | No                     |
 Read  | Market Data      | /option-ex/market/history/trade           |  GET              | Query a Batch of Trade Records of a Contract | No                     |
-Read  | Market Data      | https://api.hbdm.com/api/v1/timestamp           |  GET              | Get current system timestamp | No   
 Read  | Account          | /option-api/v1/option_account_info   |  POST             | Query User’s Account Information                     | Yes                    |
 Read  | Account          | /option-api/v1/option_position_info  |  POST             | Query User’s position Information                    | Yes                    |
 Read   | Account | /option-api/v1/option_sub_account_list    | POST             |     Query assets information of all sub-accounts under the master account (Query by coins)     | Yes   |
@@ -78,7 +77,7 @@ Read     | Account           |  /option-api/v1/option_fee |       POST       | Q
 Read     | Account           |  /option-api/v1/option_transfer_limit |     POST       |  Query information on Transfer Limit            |  Yes  |
 Read     |  Account           |  /option-api/v1/option_position_limit |     POST       |  Query information on position limit            |  Yes  |
 Read     |  Account           |   /option-api/v1/option_master_sub_transfer_record   |                  GET        |  Query transfer records of master account    |  No  |
-Write     |  Account           |   /option-api/v1/option_master_sub_transfer  |                  POST        |  transfer between master account and sub-accounts  |  No  |
+Trade     |  Account           |   /option-api/v1/option_master_sub_transfer  |                  POST        |  transfer between master account and sub-accounts  |  No  |
 Read     |  Account           |  /option-api/v1/option_api_trading_status |     POST       |  Query API trading status            |  Yes  |
 Trade  | Trade            |  /option-api/v1/option_order          |  POST             | Place an Order                                 | Yes                    |
 Trade | Trade            | /option-api/v1/option_batchorder       |  POST             | Place a Batch of Orders                        | Yes                    |
@@ -88,13 +87,13 @@ Trade     |  Trade           |  /option-api/v1/option_lightning_close_position |
 Trade  | Trade            |  /option-api/v1/option_trigger_order          |  POST             | Place an Trigger Order                                 | Yes                    |
 Trade  | Trade            |  /option-api/v1/option_trigger_cancel          |  POST             | Cancel a Trigger Order                                 | Yes                    |
 Trade  | Trade            |  /option-api/v1/option_trigger_cancelall          |  POST             | Cancel all trigger Orders                                 | Yes                    |
-Trade  | Trade            |  /option-api/v1/option_trigger_openorders          |  POST             | Get all open trigger Orders                                 | Yes                    |
-Trade  | Trade            |  /option-api/v1/option_trigger_hisorders          |  POST             | Get all history trigger Orders                                 | Yes                    |
-Read  | User Order Info  | /option-api/v1/option_order_info       |  POST             | Get Information of an Order                    | Yes                    |
-Read  | User Order Info  |  /option-api/v1/option_order_detail   |  POST             | Get Trade Details of an Order                  | Yes                    |
-Read  | User Order Info  |  /option-api/v1/option_openorders     |  POST             | Get Current Orders                             | Yes                    |
-Read  | User Order Info  |  /option-api/v1/option_hisorders      |  POST             | Get History Orders                             | Yes                    |
-Read  | User Order Info  |  /option-api/v1/option_matchresults       |  POST             | Acquire History Match Results                             | Yes   |
+Read  | Trade            |  /option-api/v1/option_trigger_openorders          |  POST             | Get all open trigger Orders                                 | Yes                    |
+Read | Trade            |  /option-api/v1/option_trigger_hisorders          |  POST             | Get all history trigger Orders                                 | Yes                    |
+Read  | Trade  | /option-api/v1/option_order_info       |  POST             | Get Information of an Order                    | Yes                    |
+Read  | Trade  |  /option-api/v1/option_order_detail   |  POST             | Get Trade Details of an Order                  | Yes                    |
+Read  | Trade  |  /option-api/v1/option_openorders     |  POST             | Get Current Orders                             | Yes                    |
+Read  | Trade  |  /option-api/v1/option_hisorders      |  POST             | Get History Orders                             | Yes                    |
+Read  | Trade  |  /option-api/v1/option_matchresults       |  POST             | Acquire History Match Results                             | Yes   |
 
 ##  Address
 
@@ -1681,11 +1680,11 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-201225-
 
 ```
 "tick": {
-  "id": Message id,
+  "id": Unique Order Id(symbol level),
   "ts": Latest Transaction time,
   "data": [
     {
-      "id": Transaction id,
+      "id": Unique Transaction Id(symbol level),
       "price": Transaction price,
       "amount": transaction amount,
       "direction": Active transaction direction,
@@ -1726,12 +1725,12 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-201225-
 | ch        | true     | string       | Data belonged channel，Format:  market.$contract_code.trade.detail |              |
 | status    | true     | string       |                                                              | "ok","error" |
 | \<tick\>    | true     | object       |                                                              |              |
-| id        | true     | long         | Message id                                                      |              |
+| id        | true     | long         | Unique Order Id(symbol level)                                         |              |
 | ts        | true     | long         | Latest Transaction Time                                               |              |
 | \<data\>    | true     | object array |                                                              |              |
 | amount    | true     | string       | Trading Amount (conts)，the sum of bilateral (buy & sell) trading Amount.                                |              |
 | direction | true     | string       | Active Transaction Direction                                                 |              |
-| id        | true     | long         | Transaction id                                                       |              |
+| id        | true     | long         | Unique Transaction Id(symbol level)                                        |              |
 | price     | true     | string       | Transaction Price                                                       |              |
 | ts        | true     | long         | Transaction Time                                                   |              |
 | \</data\>   |          |              |                                                              |              |
@@ -1760,11 +1759,11 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 
 ```
 "data": {
-  "id": Message id,
+  "id": Unique Order Id(symbol level),
   "ts": Latest transaction time,
   "data": [
     {
-      "id": Transaction id,
+      "id": Unique Transaction Id(symbol level),
       "price": transaction price,
       "amount": transaction (amount),
       "direction": active transaction direction
@@ -1828,11 +1827,11 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | \<data\>    | true     | object array |                                                              |               |
 | amount    | true     | decimal      | Trading Amount (conts)，the sum of bilateral (buy & sell) trading Amount.                                |               |
 | direction | true     | string       | Active Transaction Direction                                                 |               |
-| id        | true     | long         | Transaction id                                                       |               |
+| id        | true     | long         | Unique Transaction Id(symbol level)                                           |               |
 | price     | true     | decimal      | Transaction Price                                                    |               |
 | ts        | true     | long         | Transaction Time                                                   |               |
 | \</data\>   |          |              |                                                              |               |
-| id        | true     | long         | Message id                                                      |               |
+| id        | true     | long         | Unique Order Id(symbol level)                                          |               |
 | ts        | true     | long         | Latest Transaction Time                                               |               |
 | \</data\>   |          |              |                                                              |               |
 | status    | true     | string       |                                                              | "ok"，"error" |
