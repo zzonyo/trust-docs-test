@@ -619,7 +619,7 @@
 Market makers will not be able to use point cards, VIP rate, rebate or any other fee promotions.
 </aside>
 <h3 id='eligibility-criteria-as-a-market-maker-on-huobi-futures'>Eligibility Criteria as a Market Maker on Huobi Futures</h3>
-<p>Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Futures long-term Market Maker project.If you have more than 5 BTC in your Huobi future account, or more than 3 BTC in your Huobi coin margined swap account, or you have more than 3 BTC in your Huobi option account,or more than 30000 USDT in your Huobi USDT Margined swap account, please send the following information to dm_mm@huobi.com:</p>
+<p>Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Futures long-term Market Maker project.If you have more than 3 BTC in your Huobi future account, or more than 3 BTC in your Huobi coin margined swap account, or you have more than 3 BTC in your Huobi option account,or more than 30000 USDT in your Huobi USDT Margined swap account, please send the following information to dm_mm@huobi.com:</p>
 
 <ol>
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
@@ -748,14 +748,6 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </tr>
 <tr>
 <td>Read</td>
-<td>Market Data</td>
-<td>https://api.hbdm.com/api/v1/timestamp</td>
-<td>GET</td>
-<td>Get current system timestamp</td>
-<td>No</td>
-</tr>
-<tr>
-<td>Read</td>
 <td>Account</td>
 <td>/option-api/v1/option_account_info</td>
 <td>POST</td>
@@ -843,7 +835,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>No</td>
 </tr>
 <tr>
-<td>Write</td>
+<td>Trade</td>
 <td>Account</td>
 <td>/option-api/v1/option_master_sub_transfer</td>
 <td>POST</td>
@@ -923,7 +915,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Yes</td>
 </tr>
 <tr>
-<td>Trade</td>
+<td>Read</td>
 <td>Trade</td>
 <td>/option-api/v1/option_trigger_openorders</td>
 <td>POST</td>
@@ -931,7 +923,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Yes</td>
 </tr>
 <tr>
-<td>Trade</td>
+<td>Read</td>
 <td>Trade</td>
 <td>/option-api/v1/option_trigger_hisorders</td>
 <td>POST</td>
@@ -940,7 +932,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </tr>
 <tr>
 <td>Read</td>
-<td>User Order Info</td>
+<td>Trade</td>
 <td>/option-api/v1/option_order_info</td>
 <td>POST</td>
 <td>Get Information of an Order</td>
@@ -948,7 +940,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </tr>
 <tr>
 <td>Read</td>
-<td>User Order Info</td>
+<td>Trade</td>
 <td>/option-api/v1/option_order_detail</td>
 <td>POST</td>
 <td>Get Trade Details of an Order</td>
@@ -956,7 +948,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </tr>
 <tr>
 <td>Read</td>
-<td>User Order Info</td>
+<td>Trade</td>
 <td>/option-api/v1/option_openorders</td>
 <td>POST</td>
 <td>Get Current Orders</td>
@@ -964,7 +956,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </tr>
 <tr>
 <td>Read</td>
-<td>User Order Info</td>
+<td>Trade</td>
 <td>/option-api/v1/option_hisorders</td>
 <td>POST</td>
 <td>Get History Orders</td>
@@ -972,7 +964,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </tr>
 <tr>
 <td>Read</td>
-<td>User Order Info</td>
+<td>Trade</td>
 <td>/option-api/v1/option_matchresults</td>
 <td>POST</td>
 <td>Acquire History Match Results</td>
@@ -996,9 +988,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </tr>
 </tbody></table>
 <h3 id='notice'>Notice</h3>
-<ul>
-<li>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot;.</li>
-</ul>
+<p>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot; for debug purpose. If your server is deployed in AWS, we recommend using &quot;https://api.hbdm.vn&quot;.</p>
 <h2 id='signature-authentication-amp-verification'>Signature Authentication &amp; Verification</h2><h3 id='signature-guide'>Signature Guide</h3>
 <p>Considering that API requests may get tampered in the process of transmission, to keep the transmission secure, you have to use your API Key to do Signature Authentication for all private interface except for public interface (used for acuqiring basic information and market data), in this way to verify whether the parameters/ parameter value get tampered or not in the process of transmission</p>
 
@@ -1144,7 +1134,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <li>Please note that the prohibition from placing orders will cause no effect on order cancellation via API as well as order placement and cancellation via other terminals. We’ll keep you notified on each prohibition via SMS and email.</li>
 <li>Only four API order price types will be prohibited which are Limit order, Post_only, FOK and IOC. Please note that you can still use freely other order price types during the banned period, such as Lightning Close, BBO, Optimal 5, Optimal 10 and Optimal 20, opponent_ioc, lightning_ioc, optimal_5_ioc, optimal_10_ioc，optimal_20_ioc，opponent_fok，lightning_fok，optimal_5_fok，optimal_10_fok，optimal_20_fok,etc.</li>
 <li>When placing order by using the four prohibited order price types during the prohibition period, the message header returned by interface will include the field: &quot;recovery-time: recovery timestamp&quot; whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; if you are not in the prohibition period, the field is not included in returned header;</li>
-<li>Please note that our system calculates order cancellation ratio according to UID and therefore, the master account UID and sub-accounts UIDs will be counted separately. The calculation period is 10 min/time.</li>
+<li>Please note that our system calculates order cancellation ratio according to UID and therefore, the master account UID and sub-accounts UIDs will be counted separately. The calculation period is 10 min/time(The start time starts at 00:00 and the end time is 00:10. Every 10 minutes is a cycle.).</li>
 <li><p>Definition of Indicators：</p>
 
 <ul>
@@ -2333,7 +2323,7 @@ It will be pushed only when position event is updated.</p>
 <td>true</td>
 <td>string</td>
 <td>Contract Code (If the strike price has a decimal point, &quot;+&quot; will be used to indicate the decimal point. eg, if the strike price of BTC Weekly call options is 9002.35, the contract code is BTC-USDT-200508-C-9002+35)</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot;</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot;</td>
 </tr>
 <tr>
 <td>contract_type</td>
@@ -3710,21 +3700,21 @@ It will be pushed only when position event is updated.</p>
 <tr>
 <td>size</td>
 <td>false</td>
-<td>integer</td>
+<td>int</td>
 <td>Request Amount, default 150</td>
 <td>[1,2000]</td>
 </tr>
 <tr>
 <td>from</td>
 <td>false</td>
-<td>integer</td>
+<td>long</td>
 <td>Start Timestamp, 10 digits, seconds</td>
 <td></td>
 </tr>
 <tr>
 <td>to</td>
 <td>false</td>
-<td>integer</td>
+<td>long</td>
 <td>End Timestamp, 10 digits, seconds</td>
 <td></td>
 </tr>
@@ -3994,7 +3984,7 @@ It will be pushed only when position event is updated.</p>
 <td>&lt;tick&gt;</td>
 <td>true</td>
 <td>object</td>
-<td></td>
+<td>kline data (Start at 00:00(UTC+8) of the day)</td>
 <td></td>
 </tr>
 <tr>
@@ -4124,11 +4114,11 @@ It will be pushed only when position event is updated.</p>
 <p>Tick Illustration：</p>
 </blockquote>
 <pre class="highlight plaintext"><code>"tick": {
-  "id": Message id,
+  "id": Unique Order Id(symbol level),
   "ts": Latest Transaction time,
   "data": [
     {
-      "id": Transaction id,
+      "id": Unique Transaction Id(symbol level),
       "price": Transaction price,
       "amount": transaction amount,
       "direction": Active transaction direction,
@@ -4194,7 +4184,7 @@ It will be pushed only when position event is updated.</p>
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>Message id</td>
+<td>Unique Order Id(symbol level)</td>
 <td></td>
 </tr>
 <tr>
@@ -4229,7 +4219,7 @@ It will be pushed only when position event is updated.</p>
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>Transaction id</td>
+<td>Unique Transaction Id(symbol level)</td>
 <td></td>
 </tr>
 <tr>
@@ -4303,11 +4293,11 @@ It will be pushed only when position event is updated.</p>
 <p>data Illustration：</p>
 </blockquote>
 <pre class="highlight plaintext"><code>"data": {
-  "id": Message id,
+  "id": Unique Order Id(symbol level),
   "ts": Latest transaction time,
   "data": [
     {
-      "id": Transaction id,
+      "id": Unique Transaction Id(symbol level),
       "price": transaction price,
       "amount": transaction (amount),
       "direction": active transaction direction
@@ -4408,7 +4398,7 @@ It will be pushed only when position event is updated.</p>
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>Transaction id</td>
+<td>Unique Transaction Id(symbol level)</td>
 <td></td>
 </tr>
 <tr>
@@ -4436,7 +4426,7 @@ It will be pushed only when position event is updated.</p>
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>Message id</td>
+<td>Unique Order Id(symbol level)</td>
 <td></td>
 </tr>
 <tr>
@@ -5727,7 +5717,7 @@ It will be pushed only when position event is updated.</p>
 <td>false</td>
 <td>string</td>
 <td>Query all type if not filled,【Separate with commas if querying multiple types】</td>
-<td>open long: 1, open short: 2, close long: 3，close short: 4，fees for opening positions-taker: 5，fees for opening positions - maker: 6，fees for closing positions - taker: 7，fees for closing positions - maker: 8，delivery to close long: 9，delivery to close short: 10，delivery fee: 11，Tranfer in from exchange account: 14，Transfer out to exchange account: 15，system: 26，activity rewards: 28，rebate: 29, Transfer out to contract sub-account: 34，Transfer in from contract sub-account: 35, Transfer out to contract main-account: 36，Transfer in from contract main-account: 37</td>
+<td>1:open long; 2:open short; 3:close long; 4:close short; 5:fees for open positions-taker; 6:fees for open positions-maker; 7:fees for close positions-taker; 8:fees for close positions-maker; 9:close long for delivery; 10:close short for delivery; 11:delivery fee; 12:close long for liquidation; 13:lose short for liquidation; 14:transfer from spot exchange to contract exchange; 15:tranfer from contract exchange to spot exchange; 16:settle unrealized PnL-long positions; 17:settle unrealized PnL-short positions; 19:clawback; 26:system; 28:activity prize rewards; 29:rebate; 34:transfer to sub; 35:transfer from sub; 36:transfer to master; 37:transfer from master;</td>
 </tr>
 <tr>
 <td>create_date</td>
@@ -5863,7 +5853,7 @@ It will be pushed only when position event is updated.</p>
 <td>true</td>
 <td>int</td>
 <td>TradeType</td>
-<td>open long: 1, open short: 2, close long: 3，close short: 4，fees for opening positions-taker: 5，fees for opening positions - maker: 6，fees for closing positions - taker: 7，fees for closing positions - maker: 8，delivery to close long: 9，delivery to close short: 10，delivery fee: 11，Tranfer in from exchange account: 14，Transfer out to exchange account: 15，system: 26，activity rewards: 28，rebate: 29, Transfer out to contract sub-account: 34，Transfer in from contract sub-account: 35, Transfer out to contract main-account: 36，Transfer in from contract main-account: 37</td>
+<td>1:open long; 2:open short; 3:close long; 4:close short; 5:fees for open positions-taker; 6:fees for open positions-maker; 7:fees for close positions-taker; 8:fees for close positions-maker; 9:close long for delivery; 10:close short for delivery; 11:delivery fee; 12:close long for liquidation; 13:lose short for liquidation; 14:transfer from spot exchange to contract exchange; 15:tranfer from contract exchange to spot exchange; 16:settle unrealized PnL-long positions; 17:settle unrealized PnL-short positions; 19:clawback; 26:system; 28:activity prize rewards; 29:rebate; 34:transfer to sub; 35:transfer from sub; 36:transfer to master; 37:transfer from master;</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -7449,7 +7439,7 @@ It will be pushed only when position event is updated.</p>
 <td>true</td>
 <td>int</td>
 <td>Transfer Type</td>
-<td>Transfer in from contract sub-account: 35，Transfer out to contract sub-account:34</td>
+<td>35:Transfer in from contract sub-account;  34:Transfer out to contract sub-account;</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -11567,8 +11557,8 @@ It will be pushed only when position event is updated.</p>
 <td>trigger_type</td>
 <td>true</td>
 <td>string</td>
-<td>Trigger Type:  ge equals to or greater than；le equals to or lower than</td>
-<td></td>
+<td>Trigger Type</td>
+<td>ge equals to or greater than；le equals to or lower than</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -11616,7 +11606,7 @@ It will be pushed only when position event is updated.</p>
 <td>relation_order_id</td>
 <td>true</td>
 <td>string</td>
-<td>The field is the related field of the related limit orders. It associates the value of the order_id field in the t_trigger_order list with the value of user_order_id in the t_order list; the value is -1 before the order is trigged.</td>
+<td>The field is the related field of the related limit orders. the value is -1 before the order is trigged.</td>
 <td></td>
 </tr>
 <tr>
@@ -12285,7 +12275,7 @@ It will be pushed only when position event is updated.</p>
 
 <p>System status updates subscription ：wss://api.hbdm.com/center-notification</p>
 
-<p>If you fail visiting the two addresses above, you can also visit: </p>
+<p>If the url: api.hbdm.com can&#39;t be accessed, please use the url below:</p>
 
 <p>Market Data Request and Subscription Address: wss://api.btcgateway.pro/option-ws;</p>
 
@@ -12294,7 +12284,8 @@ It will be pushed only when position event is updated.</p>
 <p>System status updates subscription ：wss://api.btcgateway.pro/center-notification</p>
 <h4 id='note-26'>Note:</h4>
 <ul>
-<li>If you have further queries about Huobi Option order push subscription, please refer to <a href="https://docs.huobigroup.com/docs/option/v1/en/#code-demo">Demo</a></li>
+<li><p>If you have further queries about Huobi Option order push subscription, please refer to <a href="https://docs.huobigroup.com/docs/option/v1/en/#code-demo">Demo</a></p></li>
+<li><p>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot; for debug purpose. If your server is deployed in AWS, we recommend using &quot;https://api.hbdm.vn&quot;.</p></li>
 </ul>
 <h2 id='api-rate-limit-illustration-2'>API Rate Limit Illustration</h2>
 <p>There is rate limit for both public and private interfaces. More details are laid out as below:
@@ -12407,12 +12398,14 @@ It will be pushed only when position event is updated.</p>
 <p><code>}</code></p>
 <h2 id='order-push-address'>Order Push Address</h2>
 <ul>
-<li>Huobi Option uses one official address:
-<code>wss://api.hbdm.com/option-notification</code></li>
+<li>Huobi Option uses one official address:</li>
 </ul>
+
+<p><code>wss://api.hbdm.com/option-notification</code></p>
 <h4 id='note-28'>Note:</h4>
 <ul>
-<li>Please note that the WS request connection should not go over 30 normally.</li>
+<li><p>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot; for debug purpose. If your server is deployed in AWS, we recommend using &quot;https://api.hbdm.vn&quot;.</p></li>
+<li><p>Please note that the WS request connection should not go over 30 normally.</p></li>
 </ul>
 <h3 id='data-compression'>Data Compression</h3>
 <p>All response data from WebSocket server are compressed into GZIP format. Clients have to decompress them for further use.</p>
