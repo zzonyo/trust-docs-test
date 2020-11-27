@@ -618,7 +618,7 @@
 做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动。
 </aside>  
 
-<p>欢迎有优秀 maker 策略交易量大的用户参与长期合约做市商项目。如果您的火币交割合约账户中有折合大于 5 BTC 资产，或火币币本位永续合约账户中有折合大于 3 BTC 资产，或火币期权合约账户中有折合大于 3 BTC 资产，或火币USDT本位永续合约账户中有大于 30000 USDT 资产，请提供以下信息到 dm_mm@huobi.com（做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动）:</p>
+<p>欢迎有优秀 maker 策略交易量大的用户参与长期合约做市商项目。如果您的火币交割合约账户中有折合大于 3 BTC 资产，或火币币本位永续合约账户中有折合大于 3 BTC 资产，或火币期权合约账户中有折合大于 3 BTC 资产，或火币USDT本位永续合约账户中有大于 30000 USDT 资产，请提供以下信息到 dm_mm@huobi.com（做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动）:</p>
 
 <ol>
 <li>提供火币 UID （需不存在返佣关系的 UID）；</li>
@@ -743,14 +743,6 @@
 <td>/option-ex/market/history/trade</td>
 <td>GET</td>
 <td>批量获取最近的交易记录</td>
-<td>否</td>
-</tr>
-<tr>
-<td>读取</td>
-<td>市场行情接口</td>
-<td>https://api.hbdm.com/api/v1/timestamp</td>
-<td>GET</td>
-<td>获取当前系统时间戳</td>
 <td>否</td>
 </tr>
 <tr>
@@ -1011,7 +1003,7 @@
 </tr>
 </tbody></table>
 <h3 id='e0361480e3'>备注</h3>
-<p>&quot;https://api.hbdm.com&quot;如果无法访问请使用：&quot;https://api.btcgateway.pro&quot;。</p>
+<p>如果api.hbdm.com无法访问，可以使用api.btcgateway.pro来做调试，AWS服务器用户推荐使用api.hbdm.vn；</p>
 <h2 id='c64cd15fdc'>签名认证</h2><h3 id='34addae335'>签名说明</h3>
 <p>API 请求在通过 internet 传输的过程中极有可能被篡改，为了确保请求未被更改，除公共接口（基础信息，行情数据）外的私有接口均必须使用您的 API Key 做签名认证，以校验参数或参数值在传输途中是否发生了更改。</p>
 
@@ -1160,7 +1152,7 @@ api.hbdm.com\n
 <li><p>其他客户端挂撤单以及API撤单将不受影响，每次禁用会以短信和邮件形式通知；</p></li>
 <li><p>被禁用的API下单类型仅包括：限价委托、Post_only、FOK、IOC四种订单价格类型，其他下单方式如lightning（闪电平仓下单），opponent(对手价下单)，optimal_5（最优5档），optimal_10(最优10档下单），optimal_20（最优20档下单），opponent_ioc（对手价-IOC下单），lightning_ioc（闪电平仓-IOC下单），optimal_5_ioc（最优5档-IOC下单），optimal_10_ioc（最优10档-IOC下单），optimal_20_ioc（最优20档-IOC下单），opponent_fok（对手价-FOK下单），lightning_fok（闪电平仓-FOK下单），optimal_5_fok（最优5档-FOK下单），optimal_10_fok（最优10档-FOK下单），optimal_20_fok（最优20档-FOK下单）等在禁用期间将仍然可用；</p></li>
 <li><p>禁用期间下单类型为被禁用的四种类型时，接口返回信息header中会包括字段：&quot;recovery-time：禁用的恢复时间戳&quot;，单位为毫秒，表示禁用结束时间，可恢复访问的时间戳；如果不在禁用期间，header中不返回该字段；</p></li>
-<li><p>委托单总笔数与撤单率的计算是基于UID，母子UID是分开单独计算的。计算撤单率的时间周期为10分钟/次；</p></li>
+<li><p>委托单总笔数与撤单率的计算是基于UID，母子UID是分开单独计算的。计算撤单率的时间周期为10分钟/次（开始时间从00:00开始,结束时间00:10。每10分钟一个周期。）；</p></li>
 <li><p>指标说明：</p>
 
 <ul>
@@ -2257,7 +2249,7 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_contract_info?c
 <td>true</td>
 <td>string</td>
 <td>合约代码 （若行权价存在小数点，则用”+“表示小数点，如BTC当周看涨期权行权价为9002.35，则合约代码为BTC-USDT-200508-C-9002+35）</td>
-<td>&quot;BTC-USDT-200508-C-8800&quot;</td>
+<td>&quot;BTC-USDT-201225-C-13000&quot;</td>
 </tr>
 <tr>
 <td>contract_type</td>
@@ -3641,21 +3633,21 @@ curl <span class="s2">"https://api.hbdm.com//option-ex/market/history/kline?peri
 <tr>
 <td>size</td>
 <td>false</td>
-<td>integer</td>
+<td>int</td>
 <td>获取数量，默认150</td>
 <td>[1,2000]</td>
 </tr>
 <tr>
 <td>from</td>
 <td>false</td>
-<td>integer</td>
+<td>long</td>
 <td>开始时间戳 10位 单位S</td>
 <td></td>
 </tr>
 <tr>
 <td>to</td>
 <td>false</td>
-<td>integer</td>
+<td>ling</td>
 <td>结束时间戳 10位 单位S</td>
 <td></td>
 </tr>
@@ -3892,7 +3884,7 @@ curl <span class="s2">"https://api.hbdm.com/option-ex/market/detail/merged?contr
 <td>&lt;tick&gt;</td>
 <td>true</td>
 <td>object</td>
-<td></td>
+<td>24小时成交量、开盘价和收盘价（从当天零点(UTC+8)开始）</td>
 <td></td>
 </tr>
 <tr>
@@ -4077,7 +4069,7 @@ curl <span class="s2">"https://api.hbdm.com/option-ex/market/trade?contract_code
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>消息id</td>
+<td>订单唯一id（品种唯一）</td>
 <td></td>
 </tr>
 <tr>
@@ -4112,7 +4104,7 @@ curl <span class="s2">"https://api.hbdm.com/option-ex/market/trade?contract_code
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>成交id</td>
+<td>成交唯一id（品种唯一）</td>
 <td></td>
 </tr>
 <tr>
@@ -4277,7 +4269,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>成交id</td>
+<td>成交唯一id（品种唯一）</td>
 <td></td>
 </tr>
 <tr>
@@ -4305,7 +4297,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>消息id</td>
+<td>订单唯一id（品种唯一）</td>
 <td></td>
 </tr>
 <tr>
@@ -5614,7 +5606,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>false</td>
 <td>string</td>
 <td>不填查询全部类型,【查询多类型中间用，隔开】</td>
-<td>开多：1，开空：2，平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，从币币转入：14，转出至币币：15，系统：26，活动奖励：28，返利：29 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37</td>
+<td>1:开多; 2:开空; 3:平多; 4:平空; 5:开仓手续费-吃单; 6:开仓手续费-挂单; 7:平仓手续费-吃单; 8:平仓手续费-挂单; 9:交割平多; 10:交割平空; 11:交割手续费; 12:强制平多; 13:强制平空; 14:从币币转入; 15:转出至币币; 16:结算未实现盈亏-多仓; 17:结算未实现盈亏-空仓; 19:穿仓分摊; 26:系统; 28:活动奖励; 29:返利; 30:资金费-收入; 31:资金费-支出; 34:转出到子账号合约账户; 35:从子账号合约账户转入; 36:转出到母账号合约账户; 37:从母账号合约账户转入;</td>
 </tr>
 <tr>
 <td>create_date</td>
@@ -5750,7 +5742,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>int</td>
 <td>交易类型</td>
-<td>开多：1，开空：2，平多：3，平空：4，开仓手续费-吃单：5，开仓手续费-挂单：6，平仓手续费-吃单：7，平仓手续费-挂单：8，交割平多：9，交割平空：10，交割手续费：11，从币币转入：14，转出至币币：15，系统：26，活动奖励：28，返利：29 ，转出到子账号合约账号：34，从子账号合约账号转入: 35, 转出到母账号合约账号: 36，从母账号合约账号转入：37</td>
+<td>1:开多; 2:开空; 3:平多; 4:平空; 5:开仓手续费-吃单; 6:开仓手续费-挂单; 7:平仓手续费-吃单; 8:平仓手续费-挂单; 9:交割平多; 10:交割平空; 11:交割手续费; 12:强制平多; 13:强制平空; 14:从币币转入; 15:转出至币币; 16:结算未实现盈亏-多仓; 17:结算未实现盈亏-空仓; 19:穿仓分摊; 26:系统; 28:活动奖励; 29:返利; 30:资金费-收入; 31:资金费-支出; 34:转出到子账号合约账户; 35:从子账号合约账户转入; 36:转出到母账号合约账户; 37:从母账号合约账户转入;</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -7348,7 +7340,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>int</td>
 <td>划转类型</td>
-<td>从子账号合约账户转入：35，转出到子账号合约账户:34</td>
+<td>35:从子账号合约账户转入; 34:转出到子账号合约账户;</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -11435,8 +11427,8 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>trigger_type</td>
 <td>true</td>
 <td>string</td>
-<td>触发类型： ge大于等于；le小于等于</td>
-<td></td>
+<td>触发类型</td>
+<td>ge大于等于；le小于等于;</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -11484,7 +11476,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>relation_order_id</td>
 <td>true</td>
 <td>string</td>
-<td>该字段为关联限价单的关联字段，是t_trigger_order 表中的order_id 字段值，关联t_order表中的user_order_id 值，未触发前数值为-1</td>
+<td>该字段为关联限价单的关联字段，未触发前数值为-1</td>
 <td></td>
 </tr>
 <tr>
@@ -12161,6 +12153,8 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 
 <p>合约站系统状态更新订阅地址：wss://api.hbdm.com/center-notification</p>
 
+<p>如果api.hbdm.com域名访问不了，可使用：</p>
+
 <p>合约站行情请求以及订阅地址为：wss://api.btcgateway.pro/option-ws</p>
 
 <p>合约站订单推送订阅地址：wss://api.btcgateway.pro/option-notification</p>
@@ -12168,6 +12162,8 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <p>合约站系统状态更新订阅地址：wss://api.btcgateway.pro/center-notification</p>
 
 <p>如果对合约订单推送订阅有疑问，可以参考<a href='https://docs.huobigroup.com/docs/option/v1/cn/#2cff7db524'> Demo </a></p>
+<h3 id='e0361480e3-17'>备注</h3>
+<p>如果api.hbdm.com无法访问，可以使用api.btcgateway.pro来做调试，AWS服务器用户推荐使用api.hbdm.vn；</p>
 <h2 id='4977e9e52a-2'>访问次数限制</h2>
 <p>公开行情接口和用户私有接口都有访问次数限制</p>
 
@@ -12257,7 +12253,9 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </ul>
 
 <p>合约站订单推送订阅地址：wss://api.hbdm.com/option-notification</p>
-<h4 id='9852b06629-16'>备注：</h4>
+<h3 id='e0361480e3-18'>备注</h3>
+<p>如果api.hbdm.com无法访问，可以使用api.btcgateway.pro来做调试，AWS服务器用户推荐使用api.hbdm.vn；</p>
+
 <p>正常ws请求连接不能同时超过30个</p>
 <h3 id='7ee1785123'>数据压缩</h3>
 <p>WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在收到数据之后解压</p>
@@ -12832,7 +12830,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-17'>备注</h4>
+<h4 id='e0361480e3-19'>备注</h4>
 <p>[t1, t5] 假设有 t1 ~ t5 的K线：</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -13075,7 +13073,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>获得150档深度数据，使用step0, step1, step2, step3, step4, step5，step14，step15（step1至step5以及step14、step15是进行了深度合并后的深度），使用step0时，不合并深度获取150档数据;获得20档深度数据，使用 step6, step7, step8, step9, step10, step11, step12, step13（step7至step13是进行了深度合并后的深度），使用step6时，不合并深度获取20档数据</td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-18'>备注</h4>
+<h4 id='e0361480e3-20'>备注</h4>
 <ul>
 <li><p>用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</p></li>
 <li><p>step1至step5,step14,step15是进行了深度合并后的150档深度数据，step7至step13是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
@@ -13375,7 +13373,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>20:表示20档不合并的深度，150:表示150档不合并的深度</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-19'>备注</h3>
+<h3 id='e0361480e3-21'>备注</h3>
 <ul>
 <li>用户选择“合并深度”时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</li>
 </ul>
@@ -13511,7 +13509,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-20'>备注</h3>
+<h3 id='e0361480e3-22'>备注</h3>
 <p>1、 当&quot;data_type&quot;为incremental时，首次推送的&quot;event&quot;为&quot;snapshot&quot;的数据，且当重新发送订阅请求时，首次返回都是&quot;snapshot&quot;的数据；</p>
 
 <p>2、version（版本号），是自增的序号，每次增加1，不管是增量还是全量数据,每个连接是唯一的。多个websocket连接的version是可能不同的。</p>
@@ -13737,7 +13735,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
   </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT-201225-C-13000.trade.detail"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='e0361480e3-21'>备注</h3>
+</span></code></pre><h3 id='e0361480e3-23'>备注</h3>
 <ul>
 <li>仅返回当前 Trade Detail。</li>
 </ul>
@@ -14684,7 +14682,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-17'>备注：</h4>
+<h4 id='9852b06629-16'>备注：</h4>
 <ul>
 <li>推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果5秒内某合约资产已触发过推送，则该合约资产跳过此次推送。</li>
 </ul>
@@ -14932,7 +14930,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-18'>备注：</h3>
+<h3 id='9852b06629-17'>备注：</h3>
 <ul>
 <li><p>USDT资产为该交易区下所有品种期权共用的；</p></li>
 <li><p>USDT资产下的期权市值为USDT区下所有品种期权持仓的价值；BTC资产下的期权市值为BTC期权持仓的价值；ETH资产下的期权市值为ETH期权持仓的价值；</p></li>
@@ -15081,7 +15079,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-19'>备注：</h4>
+<h4 id='9852b06629-18'>备注：</h4>
 <ul>
 <li>推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果5秒内某仓位已触发过推送，则该仓位跳过此次推送。</li>
 </ul>
@@ -15925,7 +15923,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-22'>备注</h3>
+<h3 id='e0361480e3-24'>备注</h3>
 <ul>
 <li>这个推送由于是轮询判断状态的，所以推送可能存在1—2秒的延迟。</li>
 </ul>
