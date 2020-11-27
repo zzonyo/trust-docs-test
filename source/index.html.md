@@ -539,8 +539,6 @@ search: True
 读取     |  市场行情接口           |   /index/market/history/swap_premium_index_kline  |                  GET        |  获取溢价指数K线   |  否  |
 读取     |  市场行情接口           |   /index/market/history/swap_estimated_rate_kline  |                  GET        |  获取实时预测资金费率的K线数据   |  否  |
 读取     |  市场行情接口           |   /index/market/history/swap_basis  |                  GET        |  获取基差数据   |  否  |
-读取     |  市场行情接口           |   /heartbeat   |                  GET        |  查询系统是否可用   |  否  |
-读取     |  市场行情接口           |   /api/v1/timestamp   |                  GET        |  获取当前系统时间戳   |  否  |
 读取     |  账户接口           |   swap-api/v1/swap_account_info   |                  POST        |  获取用户账户信息   |  是  |
 读取     |  账户接口           |   swap-api/v1/swap_position_info   |                  POST        |  获取用户持仓信息   |  是  |
 读取     |  账户接口           |   swap-api/v1/swap_sub_account_list   |                  POST        |  查询母账户下所有子账户资产信息   |  是  |
@@ -2105,12 +2103,12 @@ contract_code             |  true           |  string     |  合约代码,支持
 
 ```
     "tick": {
-      "id": 消息id,
+      "id": 订单唯一id（品种唯一）,
       "ts": 最新成交时间,
       "data": [
         {
-       "id": 成交id,
-        "price": 成交价钱,
+                  "id":  成交唯一id（品种唯一）,
+                  "price": 成交价钱,
          "amount": 成交量(张)，买卖双边成交量之和,
          "direction": 主动成交方向,
          "ts": 成交时间
@@ -2154,13 +2152,13 @@ status  |  true  |  string  |  |  |  "ok","error" |
 ts  |  true  |  long |  发送时间  |   |    |
  \<list\>(属性名称: tick)    |               |    |  Trade数据     |            | 
  \<data\>   |               |    |       |            | 
-id  |  true  |  long  |  ID  |   |    
+id  |  true  |  long  |   成交唯一id（品种唯一）  |   |    
 price  |  true  |  string  |  价格  |   |    
 amount  |  true  |  string  |  数量（张）  |   |    
 direction  |  true  |  string  |  买卖方向  |   |    
 ts  |  true  |  long  |  订单成交时间  |   |  
  \</data\>    |               |     |      | 
-id  |  true  |  long  |  ID  |   |    
+id  |  true  |  long  | 订单唯一id（品种唯一）  |   |    
 ts  |  true  |  long  |  最新成交时间 |   |    
  \</list\>    |               |     |      | 
 
@@ -2188,11 +2186,11 @@ size  |  true  |  int  |    获取交易记录的数量  | 1  |  [1, 2000]  |
 ```
 
     "data": {
-      "id": 消息id,
+         "id": 订单唯一id（品种唯一）,
       "ts": 最新成交时间,
       "data": [
         {
-          "id": 成交id,
+          "id": 成交唯一id（品种唯一）,
           "price": 成交价,
           "amount": 成交量(张)，买卖双边成交量之和,
           "direction": 主动成交方向,
@@ -2253,13 +2251,13 @@ status  |  true  |  string  |    |    "ok"，"error" |
 ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    |
  \<list\>(属性名称: data)    |               |    |  Trade数据     |            | 
  \<list\>(属性名称: data)    |               |    |       |            | 
-id  |  true  |  long  |  ID  |   |    
+id  |  true  |  long  |   成交唯一id（品种唯一）  |   |    
 price  |  true  |  decimal  |  价格  |   |    
 amount  |  true  |  int  |  数量（张）  |   |    
 direction  |  true  |  string  |  买卖方向  |   |    
 ts  |  true  |  long  |  订单成交时间  |   |  
   \</list\>    |               |     |      |
-id  |  true  |  long  |  ID  |   |    
+id  |  true  |  long  |  订单唯一id（品种唯一）  |   |    
 ts  |  true  |  long  |  最新成交时间 |   |    
 \</list\>    |               |     |      |
 
@@ -6894,9 +6892,9 @@ count  |  true  |  decimal  |   成交笔数  |
 --------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ | 
 rep  |  true  |  string  |  数据所属的 channel，格式： market.$contract_code.trade.detail  |  |   
 status  |  true  |  string  |  返回状态  |  |   
-id  |  true  |  long  |  ID  |   |    
+id  |  true  |  long  | 请求 ID  |   |    
 \<list\>(属性名称: data)    |               |    |      | 
-id  |  true  |  long  |  ID  |   |    
+id  |  true  |  long  |   成交唯一id（品种唯一） |   |    
 price  |  true  |  string  |  价格  |   |    
 amount  |  true  |  string  |  数量（张）  |   |    
 direction  |  true  |  string  |  买卖方向  |   |    
@@ -6994,12 +6992,12 @@ ts  |  true  |  long  |  发送时间  |   |
 ch  |  true  |  string  |  数据所属的 channel，格式： market.$contract_code.trade.detail  |  |   
 ts  |  true  |  long  |  发送时间  |   |    
 \<list\>(属性名称: tick)    |               |    |      | 
-id  |  true  |  long  |  ID  |   |    
+id  |  true  |  long  |  订单唯一id（品种唯一） |   |    
 ts  |  true  |  long  |  tick数据戳  |   |    
 \<list\>(属性名称: data)    |               |    |      | 
 amount  |  true  |  decimal  |  数量（张）  |   |    
 ts  |  true  |  long  |  订单时间戳  |   |    
-id  |  true  |  long  |  tick id  |   |    
+id  |  true  |  long  |   成交唯一id（品种唯一）  |   |    
 price  |  true  |  decimal  |  价格  |   |    
 direction  |  true  |  string  |  买卖方向  |   |    
  \</list\>    |               |    |      | 
