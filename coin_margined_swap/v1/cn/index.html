@@ -1292,22 +1292,6 @@
 </tr>
 <tr>
 <td>读取</td>
-<td>市场行情接口</td>
-<td>/heartbeat</td>
-<td>GET</td>
-<td>查询系统是否可用</td>
-<td>否</td>
-</tr>
-<tr>
-<td>读取</td>
-<td>市场行情接口</td>
-<td>/api/v1/timestamp</td>
-<td>GET</td>
-<td>获取当前系统时间戳</td>
-<td>否</td>
-</tr>
-<tr>
-<td>读取</td>
 <td>账户接口</td>
 <td>swap-api/v1/swap_account_info</td>
 <td>POST</td>
@@ -4183,12 +4167,12 @@ curl <span class="s2">"https://api.hbdm.com/swap-ex/market/trade?contract_code=B
 <p>Tick说明：</p>
 </blockquote>
 <pre class="highlight plaintext"><code>    "tick": {
-      "id": 消息id,
+      "id": 订单唯一id（品种唯一）,
       "ts": 最新成交时间,
       "data": [
         {
-       "id": 成交id,
-        "price": 成交价钱,
+                  "id":  成交唯一id（品种唯一）,
+                  "price": 成交价钱,
          "amount": 成交量(张)，买卖双边成交量之和,
          "direction": 主动成交方向,
          "ts": 成交时间
@@ -4274,7 +4258,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-ex/market/trade?contract_code=B
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>ID</td>
+<td>成交唯一id（品种唯一）</td>
 <td></td>
 <td></td>
 </tr>
@@ -4322,7 +4306,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-ex/market/trade?contract_code=B
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>ID</td>
+<td>订单唯一id（品种唯一）</td>
 <td></td>
 <td></td>
 </tr>
@@ -4384,11 +4368,11 @@ curl <span class="s2">"https://api.hbdm.com/swap-ex/market/history/trade?contrac
 </blockquote>
 <pre class="highlight plaintext"><code>
     "data": {
-      "id": 消息id,
+         "id": 订单唯一id（品种唯一）,
       "ts": 最新成交时间,
       "data": [
         {
-          "id": 成交id,
+          "id": 成交唯一id（品种唯一）,
           "price": 成交价,
           "amount": 成交量(张)，买卖双边成交量之和,
           "direction": 主动成交方向,
@@ -4486,7 +4470,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-ex/market/history/trade?contrac
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>ID</td>
+<td>成交唯一id（品种唯一）</td>
 <td></td>
 </tr>
 <tr>
@@ -4528,7 +4512,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-ex/market/history/trade?contrac
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>ID</td>
+<td>订单唯一id（品种唯一）</td>
 <td></td>
 </tr>
 <tr>
@@ -16991,7 +16975,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>ID</td>
+<td>请求 ID</td>
 <td></td>
 </tr>
 <tr>
@@ -17005,7 +16989,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>ID</td>
+<td>成交唯一id（品种唯一）</td>
 <td></td>
 </tr>
 <tr>
@@ -17190,7 +17174,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>ID</td>
+<td>订单唯一id（品种唯一）</td>
 <td></td>
 </tr>
 <tr>
@@ -17225,7 +17209,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>tick id</td>
+<td>成交唯一id（品种唯一）</td>
 <td></td>
 </tr>
 <tr>
