@@ -16665,7 +16665,7 @@ Details are below:</p></li>
 <td>string</td>
 <td>Pairs</td>
 <td></td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g. &quot;BTC_CW&quot; stands for BTC Weekly contract, &quot;BTC_NW&quot; stands for BTC Bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC Quarterly contract,&quot;BTC_NQ&quot; stands for BTC next quarterly contract. contract code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..E.g.： &quot;BTC_CW&quot; stands for BTC Weekly contract, &quot;BTC_NW&quot; stands for BTC Bi-weekly contract, &quot;BTC_CQ&quot; stands for BTC Quarterly contract,&quot;BTC_NQ&quot; stands for BTC next quarterly contract. contract code is supported too, e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 </tbody></table>
 <h3 id='return-parameter-7'>Return Parameter</h3>
@@ -16891,7 +16891,7 @@ Details are below:</p></li>
 <td>rep</td>
 <td>true</td>
 <td>string</td>
-<td>Data Channel，Format格式： market.\$symbol.trade.detail</td>
+<td>Data Channel，Format： market.$symbol.trade.detail</td>
 <td></td>
 </tr>
 <tr>
@@ -17262,7 +17262,7 @@ Details are below:</p></li>
 <td>ch</td>
 <td>true</td>
 <td>string</td>
-<td>Data channel，Format： market.period</td>
+<td>Data channel，Format：market.$symbol.index.$period</td>
 <td></td>
 </tr>
 <tr>
@@ -17474,7 +17474,7 @@ Details are below:</p></li>
 <td>req</td>
 <td>true</td>
 <td>string</td>
-<td>Data channel，Format： market.period</td>
+<td>Data channel，Format：market.$symbol.index.$period</td>
 <td></td>
 </tr>
 <tr>
@@ -17681,7 +17681,7 @@ Details are below:</p></li>
 <td>ch</td>
 <td>true</td>
 <td>string</td>
-<td>Data channel，Format： market.period</td>
+<td>Data channel，Format：market.$symbol.basis.$period.$basis_price_type</td>
 <td></td>
 </tr>
 <tr>
@@ -17884,7 +17884,7 @@ Details are below:</p></li>
 <td>req</td>
 <td>true</td>
 <td>string</td>
-<td>Data channel，Format： market.period</td>
+<td>Data channel，Format：market.$symbol.basis.$period.$basis_price_type</td>
 <td></td>
 </tr>
 <tr>
@@ -18013,7 +18013,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Required；format: orders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
+<td>Required；Topic name format: orders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported. e.g.:&quot;BTC,ETH&quot;</td>
 </tr>
 </tbody></table>
 <h4 id='note-38'>Note:</h4>
@@ -18223,7 +18223,7 @@ Details are below:</p></li>
 <td>0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover</td>
 </tr>
 <tr>
-<td>&lt;list&gt;( Attribute Name: trade)</td>
+<td>&lt;trade&gt;</td>
 <td></td>
 <td></td>
 </tr>
@@ -18273,7 +18273,7 @@ Details are below:</p></li>
 <td>fee asset</td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/trade&gt;</td>
 <td></td>
 <td></td>
 </tr>
@@ -18322,7 +18322,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Optional; Unsubscribe Topic Name，format: orders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot; ;</td>
+<td>Required；Unsubscribe topic name: orders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g: &quot;BTC,ETH&quot; ; when $symbol value is *, it stands for unsubscribing the data of all coins;</td>
 </tr>
 </tbody></table>
 <h3 id='rules-on-subscribe-and-unsubscribe'>Rules on Subscribe and Unsubscribe</h3>
@@ -18403,7 +18403,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Required；format: matchOrders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
+<td>Required；Topic name format: matchOrders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported. e.g.:&quot;BTC,ETH&quot;</td>
 </tr>
 </tbody></table>
 
@@ -18539,7 +18539,7 @@ Details are below:</p></li>
 <td>total volume of the order</td>
 </tr>
 <tr>
-<td>&lt;list&gt;(attr: trade)</td>
+<td>&lt;trade&gt;</td>
 <td></td>
 <td></td>
 </tr>
@@ -18579,7 +18579,7 @@ Details are below:</p></li>
 <td>taker or maker</td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/trade&gt;</td>
 <td></td>
 <td></td>
 </tr>
@@ -18663,7 +18663,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Optional; format: matchOrders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
+<td>Required；Unsubscribe topic name: matchOrders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g: &quot;BTC,ETH&quot; ; when $symbol value is *, it stands for unsubscribing the data of all coins;</td>
 </tr>
 </tbody></table>
 <h3 id='rules-on-subscribe-and-unsubscribe-2'>Rules on Subscribe and Unsubscribe</h3>
@@ -18744,7 +18744,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Required； Subscribe Topic Name，Required subscribe accounts.$symbol   Subscribe/unsubscribe the balance change of a given coin，when the value of $symbol is “*”, it means to subscribe/unsubscribe the balance change of all coins; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
+<td>Required；Topic name format: accounts.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported. e.g.:&quot;BTC,ETH&quot;</td>
 </tr>
 </tbody></table>
 
@@ -18933,7 +18933,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Required;Required； Required； Subscribe Topic，Subscribe accounts.$symbol required  unsubscribe/unsubscribe account equity change of a given coin，when the $symbol value is *, it stands for subscribing/unsubscribing data of all coins; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
+<td>Required；Unsubscribe topic name: accounts.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g: &quot;BTC,ETH&quot; ; when $symbol value is *, it stands for unsubscribing the data of all coins;</td>
 </tr>
 </tbody></table>
 <h3 id='rules-on-subscribe-and-unsubscribe-3'>Rules on Subscribe and Unsubscribe</h3>
@@ -19014,7 +19014,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td style="text-align: left">string</td>
-<td style="text-align: left">Required； Subscribe Topic, Subscribe (positions.$symbol) Required  Subscribe/unsubscribe the position data of a single coin, when the $symbol value is *, it stands for subscribing the data of all coins.symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
+<td style="text-align: left">Required；Topic name format: positions.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported. e.g.:&quot;BTC,ETH&quot;</td>
 </tr>
 </tbody></table>
 
@@ -19216,7 +19216,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Required;Required；Required；Subscribe topic，Subscribe positions.$symbol required  Subscribe or unsubscribe the position updates of a single coin; when $symbol value is *, it stands for subscribing the data of all coins; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
+<td>Required；Unsubscribe topic name: positions.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g: &quot;BTC,ETH&quot; ; when $symbol value is *, it stands for unsubscribing the data of all coins;</td>
 </tr>
 </tbody></table>
 <h3 id='rules-on-subscribe-and-unsubscribe-4'>Rules on Subscribe and Unsubscribe</h3>
@@ -19295,7 +19295,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Required；Topic name format: public.$symbol.liquidation_orders. symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
+<td>Required；Topic name format: public.$symbol.liquidation_orders. symbol is case-insenstive.Both uppercase and lowercase are supported. e.g:&quot;BTC&quot;</td>
 </tr>
 </tbody></table>
 <h3 id='return-parameter-10'>Return Parameter</h3>
@@ -19436,52 +19436,10 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Required；Topic name format: public.$symbol.liquidation_orders. symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
+<td>Required；Unsubscribe topic name: public.$symbol.liquidation_orders; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g: &quot;BTC,ETH&quot; ; when $symbol value is *, it stands for unsubscribing the data of all coins;</td>
 </tr>
 </tbody></table>
-<h3 id='return-parameter-11'>Return Parameter</h3>
-<table><thead>
-<tr>
-<th>Field Name</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>op</td>
-<td>string</td>
-<td>Required; Operator Name，subscribe value is unsub;</td>
-</tr>
-<tr>
-<td>cid</td>
-<td>string</td>
-<td>Optional;   Client requests unique ID</td>
-</tr>
-<tr>
-<td>topic</td>
-<td>string</td>
-<td>Subscribe topic name，Require subscribe public.$symbol.liquidation_orders.Subscribe/unsubscribe the data of a given coin; when the $symbol value is *, it stands for subscribing/unsubscribing the data of all coins;symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
-</tr>
-<tr>
-<td>ts</td>
-<td>long</td>
-<td>Required; Time of Respond Generation, Unit: Millisecond</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Example of a successful subscription</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsub"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.BTC.liquidation_orders"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1489474081631</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><h3 id='rules-on-subscribe-and-unsubscribe-5'>Rules on Subscribe and Unsubscribe</h3>
+<h3 id='rules-on-subscribe-and-unsubscribe-5'>Rules on Subscribe and Unsubscribe</h3>
 <table><thead>
 <tr>
 <th>Subscribe(sub)</th>
@@ -19559,7 +19517,7 @@ Details are below:</p></li>
 <tr>
 <td>topic</td>
 <td>string</td>
-<td>Required；Topic name format: public.$symbol.contract_info.; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC&quot;</td>
+<td>Required；Topic name format: public.$symbol.contract_info.; symbol is case-insenstive.Both uppercase and lowercase are supported. e.g:&quot;BTC,ETH&quot;</td>
 </tr>
 </tbody></table>
 
@@ -19758,7 +19716,7 @@ Details are below:</p></li>
 <tr>
 <td style="text-align: left">topic</td>
 <td style="text-align: left">string</td>
-<td style="text-align: left">Required；Unsubscribe topic name: public.$symbol.contract_info;   symbol is case-insenstive.Both uppercase and lowercase are supported.e.g: &quot;BTC,ETH&quot; ; when $symbol value is *, it stands for unsubscribing the data of all coins;</td>
+<td style="text-align: left">Required；Unsubscribe topic name: public.$symbol.contract_info; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g: &quot;BTC,ETH&quot; ; when $symbol value is *, it stands for unsubscribing the data of all coins;</td>
 </tr>
 </tbody></table>
 <h3 id='data-format-of-subscription-and-unsubscription-of-contract-info'>Data format of subscription and unsubscription of contract info</h3>
