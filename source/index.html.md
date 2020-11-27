@@ -787,9 +787,7 @@ Read  | Market Data      | api/v1/contract_contract_info      |  GET            
 Read  | Market Data      | api/v1/contract_index             |  GET              | Get contract Index Price Information           | No                     |
 Read  | Market Data      |  api/v1/contract_price_limit       |  GET              | Get Contract Price Limitation                     | No                     |
 Read  | Market Data      |  api/v1/contract_open_interest     |  GET              | Get Contract Open Interest Information         | No                     |
-Read  | Market Data      |  api/v1/contract_delivery_price     |  GET              |  Get the estimated delivery price         | No                     |
-Read  | Market Data      |  https://api.hbdm.com/heartbeat/     |  GET              |  Query whether the system is available         | No                     |
-Read  | Market Data      |  https://api.hbdm.com/api/v1/timestamp     |  GET              | Get current system timestamp         | No                     |
+Read  | Market Data      |  api/v1/contract_delivery_price     |  GET              |  Get the estimated delivery price         | No                     |          
 Read     |  Market Data           |   api/v1/contract_api_state   |                  GET        |  Query information on system status    |  No  |
 Read  | Market Data      |  /market/depth                  |  GET              | Get Market Depth                               | No                     |
 Read  | Market Data      | /market/history/kline          |  GET              | Get Kline Data                                | No                     |
@@ -2442,11 +2440,11 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 
 ```
 "tick": {
-  "id": Message id,
+  "id": Unique Order Id(symbol level),
   "ts": Latest Transaction time,
   "data": [
     {
-      "id": Transaction id,
+      "id": Unique Transaction Id(symbol level),
       "price": Transaction price,
       "amount": transaction amount,
       "direction": Active transaction direction,
@@ -2489,10 +2487,10 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 | status             | true          | string   |                                                             |             | "ok","error"    |
 | ts                 | true          | long   | Sending time                                                |             |                 |
 |  \<dict\> (attrs: tick)   |               |    |      | 
-| id  |  true  |  long  |  ID  |   |    
+| id  |  true  |  long  |  Unique Order Id(symbol level)  |   |    
 | ts  |  true  |  long  |  Latest Creation Time |   |    
 |  \<list\>  (attrs: data)  |               |    |      | 
-| id  |  true  |  long  |  ID  |   |    
+| id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
 | price  |  true  |  decimal  |  Price |   |    
 | amount  |  true  |  decimal  |  Quantity(Cont.)  |   |    
 | direction  |  true  |  string  |  Order Direction  |   |    
@@ -2522,11 +2520,11 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 ```
 "data": {
-  "id": Message id,
+  "id": Unique Order Id(symbol level),
   "ts": Latest transaction time,
   "data": [
     {
-      "id": Transaction id,
+      "id": Unique Transaction Id(symbol level),
       "price": transaction price,
       "amount": transaction (amount),
       "direction": active transaction direction
@@ -2582,10 +2580,10 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | status             | true          | string   |                                                             |             | "ok","error"    |
 | ts                 | true          | long   | Sending time                                                |             |                 |
 |  \<dict\> (attrs: tick)   |               |    |      | 
-| id  |  true  |  long  |  ID  |   |    
+| id  |  true  |  long  |  Unique Order Id(symbol level)  |   |    
 | ts  |  true  |  long  |  Latest Creation Time |   |    
 |  \<list\>  (attrs: data)  |               |    |      | 
-| id  |  true  |  long  |  ID  |   |    
+| id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
 | price  |  true  |  decimal  |  Price |   |    
 | amount  |  true  |  decimal  |  Quantity(Cont.)  |   |    
 | direction  |  true  |  string  |  Order Direction  |   |    
@@ -7176,9 +7174,9 @@ Parameter Name     |    Mandatory |  Type  | Description |  Default   |
 --------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ | 
 rep  |  true  |  string  |  Data Channel，Format： market.$symbol.trade.detail  |  |   
 status  |  true  |  string  |  Request Status  |   |    
-id  |  true  |  string  |  ID  |   |    
+id  |  true  |  string  | Request ID  |   |    
  \<data\>    |               |    |      | 
-id  |  true  |  long  |  ID  |   |    
+id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
 price  |  true  |  string  |  Price |   |    
 amount  |  true  |  string  | Trade amount(Coin), trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)   |   |    
 direction  |  true  |  string  |  Active transaction direction   |   |    
@@ -7233,12 +7231,12 @@ Parameter Name     | Mandatory | Type  |  Description |  Default  |
 ch  |  true  |  string  |  Data channel,format: market.$symbol.trade.detail  |  |   
 ts  |  true  |  long  |  server response time  |   |    
  \<tick\>    |               |    |      | 
-id  |  true  |  long    |  tick ID.  |   |    
+id  |  true  |  long    |  Unique Order Id(symbol level).  |   |    
 ts  |  true  |  long  |   tick time  |   |    
  \<data\>    |               |    |      | 
 amount  |  true  |  decimal  |  quantity(Cont.) |   |    
 ts  |  true  |  long  |  trade timestamp  |   |    
-id  |  true  |  long  |  trade id  |   |    
+id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
 price  |  true  |  decimal  |  Price  |   |    
 direction  |  true  |  string  |  Order direction  |   |    
  \</data\>    |               |    |      | 
