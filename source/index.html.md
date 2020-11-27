@@ -5531,9 +5531,9 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | -------------- | ---- | ------- | -------------------------- | --- |
 | rep   | true | string  | 数据所属的 channel      | 格式： market.$contract_code.trade.detail|
 | status   | true | string  | 返回状态   | |
-| id   | true | string  | ID    | |
+| id   | true | string  | 请求 ID    | |
 | \<data\>     | true | object array  |     | |
-| id   | true | long  | ID    | |
+| id   | true | long  | 成交唯一id（品种唯一）   | |
 | price   | true | string  | 价格    | |
 | amount   | true | string  | 数量（张）    | |
 | direction   | true | string  | 买卖方向    | |
@@ -5611,12 +5611,12 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | ch   | true | string  | 数据所属的 channel    | 格式： market.period  |
 | ts   | true | long  | 响应生成时间点，单位：毫秒    |   |
 | \<tick\>     | true | object  |     |   |
-| id   | true | long  | ID    |   |
+| id   | true | long  | 订单唯一id（品种唯一）   |   |
 | ts | true | long  | 发送时间    |   |
 | \<data\>     | true | object array |     |   |
 | amount   | true | decimal  | 数量（张） |   |
 | ts   | true | long  | 发送时间  |   |
-| id   | true | long  | tick id  |   |
+| id   | true | long  | 成交唯一id（品种唯一）  |   |
 | price   | true | decimal  |价格  |   |
 | direction   | true | string  | 买卖方向 |   |
 | \</data\>     |  |   |     |   |
