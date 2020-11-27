@@ -481,9 +481,7 @@ Read  | Market Data      | /swap-api/v1/swap_index             |  GET           
 Read  | Market Data      |  /swap-api/v1/swap_price_limit       |  GET              | Query Swap Price Limitation                      | No                     |
 Read  | Market Data      |  /swap-api/v1/swap_open_interest     |  GET              | Get Swap Open Interest Information        | No                     |
 Read  | Market Data      |  /swap-api/v1/swap_delivery_price     |  GET              |  Get the estimated delivery price         | No                     |
-Read  | Market Data      |  /swap/heartbeat/     |  GET              |  Query whether the system is available         | No                     |
-Read  | Market Data      |  /api/v1/timestamp     |  GET              |    Get current system timestamp       | No                     |
-Read     |  Market Data           |   /swap-api/v1/swap_api_state   |                  GET        |  Query information on system status    |  No  |
+Read  |  Market Data     |   /swap-api/v1/swap_api_state   |          GET        |  Query information on system status    |  No  |
 Read  | Market Data      |  /swap-ex/market/depth                  |  GET              | Get Market Depth                               | No                     |
 Read  | Market Data      | /swap-ex/market/history/kline          |  GET              | Get KLine Data                                | No                     |
 Read  | Market Data      |  /swap-ex/market/detail/merged         |  GET              | Get Market Data Overview                       | No                     |
@@ -2042,11 +2040,11 @@ curl "https://api.hbdm.com/swap-ex/market/trade?contract_code=BTC-USD"
 
 ```
 "tick": {
-  "id": Message id,
+  "id": Unique Order Id(symbol level),
   "ts": Latest Transaction time,
   "data": [
     {
-      "id": Transaction id,
+      "id": Unique Transaction Id(symbol level),
       "price": Transaction price,
       "amount": transaction amount,
       "direction": Active transaction direction,
@@ -2089,10 +2087,10 @@ curl "https://api.hbdm.com/swap-ex/market/trade?contract_code=BTC-USD"
 | status             | true          | string   |                                                             |             | "ok","error"    |
 | ts                 | true          | long   | Sending time                                                |             |                 |
 |  \<tick\> (attrs: tick)   |               |    |      | 
-| id  |  true  |  long  |  ID  |   |    
+| id  |  true  |  long  |  Unique Order Id(symbol level)  |   |    
 | ts  |  true  |  long  |  Latest Creation Time |   |    
 |  \<list\>  (attrs: data)  |               |    |      | 
-| id  |  true  |  long  |  ID  |   |    
+| id  |  true  |  long  | Unique Transaction Id(symbol level)  |   |    
 | price  |  true  |  decimal  |  Price |   |    
 | amount  |  true  |  decimal  |  Quantity(Cont.)  |   |    
 | direction  |  true  |  string  |  Order Direction  |   |    
@@ -2122,11 +2120,11 @@ curl "https://api.hbdm.com/swap-ex/market/history/trade?contract_code=BTC-USD&si
 
 ```
 "data": {
-  "id": Message id,
+  "id": Unique Order Id(symbol level),
   "ts": Latest transaction time,
   "data": [
     {
-      "id": Transaction id,
+      "id": Unique Transaction Id(symbol level),
       "price": transaction price,
       "amount": transaction (amount),
       "direction": active transaction direction
@@ -2183,10 +2181,10 @@ curl "https://api.hbdm.com/swap-ex/market/history/trade?contract_code=BTC-USD&si
 | status             | true          | string        |                                                             | "ok"，"error"   |
 | ts                 | true          | long        | Time of Respond Generation, Unit: Millisecond               |                 |
 |  \<data\> (attrs: data)   |               |    |      | 
-| id  |  true  |  long  |  ID  |   |    
+| id  |  true  |  long  | Unique Order Id(symbol level)  |   |    
 | ts  |  true  |  long  |  Latest Creation Time |   |    
 |  \<list\>  (attrs: data)  |               |    |      | 
-| id  |  true  |  long  |  ID  |   |    
+| id  |  true  |  long  | Unique Transaction Id(symbol level) |   |    
 | price  |  true  |  decimal  |  Price |   |    
 | amount  |  true  |  decimal  |  Quantity(Cont.)  |   |    
 | direction  |  true  |  string  |  Order Direction  |   |    
@@ -6896,9 +6894,9 @@ Parameter Name     |    Mandatory |  Type  | Description |  Default   |
 --------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ | 
 rep  |  true  |  string  |  Data Channel，Format： market.$contract_code.trade.detail  |  |   
 status  |  true  |  string  |  Request Status  |   |    
-id  |  true  |  long  |  ID  |   |    
+id  |  true  |  long  | Request ID  |   |    
  \<data\>    |               |    |      | 
-id  |  true  |  long  |  ID  |   |    
+id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
 price  |  true  |  string  |  Price |   |    
 amount  |  true  |  string  |  Quantity(Cont.)  |   |    
 direction  |  true  |  string  |  Order Direction  |   |    
@@ -6975,12 +6973,12 @@ Parameter Name     | Mandatory | Type  |  Description |  Default  |
 ch  |  true  |  string  |  Data channel,format: market.$contract_code.trade.detail  |  |   
 ts  |  true  |  long  |  Request time  |   |    
  \<tick\>    |               |    |      | 
-id  |  true  |  long  |  ID  |   |    
+id  |  true  |  long  | Unique Order Id(symbol level)  |   |    
 ts  |  true  |  long  |  tick time  |   |    
  \<data\>    |               |    |      | 
 amount  |  true  |  decimal  |  quantity(Cont.) |   |    
 ts  |  true  |  long  |  trade timestamp  |   |    
-id  |  true  |  long  |  tick id  |   |    
+id  |  true  |  long  | Unique Transaction Id(symbol level)  |   |    
 price  |  true  |  decimal  |  Price  |   |    
 direction  |  true  |  string  |  Order direction  |   |    
  \</data\>    |               |    |      | 
