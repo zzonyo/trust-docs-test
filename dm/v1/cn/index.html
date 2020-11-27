@@ -1415,22 +1415,6 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 <tr>
 <td>读取</td>
 <td>基础信息接口</td>
-<td>https://api.hbdm.com/heartbeat/</td>
-<td>GET</td>
-<td>查询系统是否可用</td>
-<td>否</td>
-</tr>
-<tr>
-<td>读取</td>
-<td>基础信息接口</td>
-<td>https://api.hbdm.com//api/v1/timestamp</td>
-<td>GET</td>
-<td>获取当前系统时间戳</td>
-<td>否</td>
-</tr>
-<tr>
-<td>读取</td>
-<td>基础信息接口</td>
 <td>api/v1/contract_api_state</td>
 <td>GET</td>
 <td>查询系统状态</td>
@@ -4724,11 +4708,11 @@ step6是不合并小数；
 <p>Tick说明：</p>
 </blockquote>
 <pre class="highlight plaintext"><code>    "tick": {
-      "id": 消息id,
+      "id": 订单唯一id（品种唯一),
       "ts": 最新成交时间,
       "data": [
          {
-            "id": 成交id,
+            "id": 成交唯一id（品种唯一）,
             "price": 成交价钱,
             "amount": 成交量(张)，买卖双边成交量之和,
             "direction": 主动成交方向,
@@ -4794,7 +4778,7 @@ step6是不合并小数；
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>消息id</td>
+<td>订单唯一id（品种唯一）</td>
 <td></td>
 </tr>
 <tr>
@@ -4829,7 +4813,7 @@ step6是不合并小数；
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>成交id</td>
+<td>成交唯一id（品种唯一）</td>
 <td></td>
 </tr>
 <tr>
@@ -4906,11 +4890,11 @@ step6是不合并小数；
 <p>data说明：</p>
 </blockquote>
 <pre class="highlight plaintext"><code>    "data": {
-      "id": 消息id,
+      "id": 订单唯一id（品种唯一）,
       "ts": 最新成交时间,
       "data": [
         {
-          "id": 成交id,
+          "id": 成交唯一id（品种唯一）,
           "price": 成交价,
           "amount": 成交量(张)，买卖双边成交量之和,
           "direction": 主动成交方向,
@@ -5005,7 +4989,7 @@ step6是不合并小数；
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>成交id</td>
+<td>成交唯一id（品种唯一）</td>
 <td></td>
 </tr>
 <tr>
@@ -5033,7 +5017,7 @@ step6是不合并小数；
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>消息id</td>
+<td>订单唯一id（品种唯一）</td>
 <td></td>
 </tr>
 <tr>
@@ -17009,7 +16993,7 @@ step6是不合并小数；
 <td>id</td>
 <td>true</td>
 <td>string</td>
-<td>ID</td>
+<td>请求 ID</td>
 <td></td>
 </tr>
 <tr>
@@ -17023,7 +17007,7 @@ step6是不合并小数；
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>ID</td>
+<td>成交唯一id（品种唯一）</td>
 <td></td>
 </tr>
 <tr>
@@ -17196,7 +17180,7 @@ step6是不合并小数；
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>ID</td>
+<td>订单唯一id（品种唯一）</td>
 <td></td>
 </tr>
 <tr>
@@ -17231,7 +17215,7 @@ step6是不合并小数；
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>tick id</td>
+<td>成交唯一id（品种唯一）</td>
 <td></td>
 </tr>
 <tr>
