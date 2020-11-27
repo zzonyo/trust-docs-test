@@ -7057,7 +7057,7 @@ ch | true |  string | Data channel, Format： `market.$symbol.bbo` | |
 
 Parameter Name  |  Mandatory  |    Type  |     Description   |  Default   |  Value Range |
 -------------- |  -------------- |  ---------- |  ------------ |  ------------ |  --------------------------------------------------------------------------------  |
-  symbol         |  true           |  string     |     Pairs   |              |  Case-Insenstive.Both uppercase and lowercase are supported..E.g. "BTC_CW" stands for BTC Weekly contract, "BTC_NW" stands for BTC Bi-weekly contract, "BTC_CQ" stands for BTC Quarterly contract,"BTC_NQ" stands for BTC next quarterly contract. contract code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
+  symbol         |  true           |  string     |     Pairs   |              |  Case-Insenstive.Both uppercase and lowercase are supported..E.g.： "BTC_CW" stands for BTC Weekly contract, "BTC_NW" stands for BTC Bi-weekly contract, "BTC_CQ" stands for BTC Quarterly contract,"BTC_NQ" stands for BTC next quarterly contract. contract code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 
 
 ### Return Parameter
@@ -7174,7 +7174,7 @@ size         |  false           |  int     |  number of data; no more than 50; d
 
 Parameter Name     |    Mandatory |  Type  | Description |  Default   | 
 --------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ | 
-rep  |  true  |  string  |  Data Channel，Format格式： market.\$symbol.trade.detail  |  |   
+rep  |  true  |  string  |  Data Channel，Format： market.$symbol.trade.detail  |  |   
 status  |  true  |  string  |  Request Status  |   |    
 id  |  true  |  string  |  ID  |   |    
  \<data\>    |               |    |      | 
@@ -7342,7 +7342,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### Returning Parameter
 | **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| ch     | true | string | Data channel，Format： market.period |                | |
+| ch     | true | string | Data channel，Format：market.$symbol.index.$period |                | |
 | tick |   true   |    object array    |  Details：tick parameters             |                | |
 | ts     | true | long | Time of Respond Generation, Unit: Millisecond            |                | |
 
@@ -7443,7 +7443,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### Returning Parameter
 | **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| req     | true | string | Data channel，Format： market.period |                | |
+| req     | true | string | Data channel，Format：market.$symbol.index.$period |                | |
 | status | true | string | Request processing result          | "ok" , "error" | |
 | id     | true | string | ID       |                | |
 | wsid     | true | long | wsid           |                | |
@@ -7524,7 +7524,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### Returning Parameter
 | **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| ch     | true | string | Data channel，Format： market.period |                | |
+| ch     | true | string | Data channel，Format：market.$symbol.basis.$period.$basis_price_type |                | |
 | tick |   true   |    object array    |  Details：tick parameters             |                | |
 | ts     | true | long | Time of Respond Generation, Unit: Millisecond            |                | |
 
@@ -7616,7 +7616,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### Returning Parameter
 | **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| req     | true | string | Data channel，Format： market.period |                | |
+| req     | true | string | Data channel，Format：market.$symbol.basis.$period.$basis_price_type |                | |
 | status | true | string | Request processing result          | "ok" , "error" | |
 | id     | true | string | ID       |                | |
 | wsid     | true | long | wsid           |                | |
@@ -7669,7 +7669,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | ------- | ----- | ------------------------------------------ |
 | op       | string | Required； Operator Name，required subscribe value is  sub             |
 | cid      | string | Optional; ID Client requests unique ID                    |
-| topic    | string | Required；format: orders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" |
+| topic    | string | Required；Topic name format: orders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported. e.g.:"BTC,ETH"  |
 
 #### Note: 
  - The order status of 'post_only' type pushed by ws is ethier '7:canceled' or '3:submitted'.
@@ -7757,7 +7757,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | profit                  | decimal | Profits&Losses                                                       |
 | fee_asset   | string | the corresponding cryptocurrency to the given fee |
 | liquidation_type              | string     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
-| \<list\>( Attribute Name: trade) |         |                                                              |
+| \<trade\>  |         |                                                              |
 | id            | string| 	the global unique id of the trade.。                                                       |
 | trade_id                | long    | In this interface, trade_id is the same with match_id of api/v1/contract_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.      |
 | trade_volume            | decimal | trade volume                                                      |
@@ -7767,7 +7767,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | created_at              | long    | trade creation time                                                 |
 | role             | string  | taker or maker                                                |
 | fee_asset             | string  | fee asset                                                |
-| \</list\>                  |         |                                                             |
+| \</trade\>                  |         |                                                             |
 
 
 ## Unsubscribe Order Data（unsub）
@@ -7804,7 +7804,7 @@ To unsubscribe order data, the clients have to make connection to the server and
 | ------- | ----- | ------------------------------------------------- |
 | op       | string | Required;Operator Name，value for unsubscribe is unsub;                 |
 | cid      | string | Optional;  Client requests unique ID                        |
-| topic    | string | Optional; Unsubscribe Topic Name，format: orders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" ; |
+| topic    | string | Required；Unsubscribe topic name: orders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g: "BTC,ETH" ; when $symbol value is *, it stands for unsubscribing the data of all coins; |
 
 
 ### Rules on Subscribe and Unsubscribe
@@ -7853,7 +7853,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | ------- | ----- | ------------------------------------------ |
 | op       | string | Required； Operator Name，required subscribe value is  sub             |
 | cid      | string | Optional; ID Client requests unique ID                    |
-| topic    | string | Required；format: matchOrders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" |
+| topic    | string | Required；Topic name format: matchOrders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported. e.g.:"BTC,ETH"  |
 
 
 > Illustration on detailed data format of orders Notification
@@ -7926,7 +7926,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | order_type              | int     | Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order         |
 | trade_volume            | decimal | total filled volume of the order                                                       |
 | volume            | decimal | total volume of the order                   |
-| \<list\>(attr: trade) |         |                                                              |
+| \<trade\>  |         |                                                              |
 | id            | string| the global unique id of the trade.     |
 | trade_id                | long    | In this interface, trade_id is the same with match_id of api/v1/contract_matchresults. trade_id is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.             |
 | trade_volume            | decimal | trade volume        |
@@ -7934,7 +7934,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | trade_turnover          | decimal | trade turnover   |
 | created_at              | long    | created at   |
 | role             | string  | taker or maker                     |
-| \</list\>                  |         |                                                             |
+| \</trade\>                  |         |                                                             |
 | direction  | string    | 	direction "buy" or  "sell"   |
 | offset              | string    |	offset:  "open" or "close"   |
 | lever_rate              | int    | 	lever rate           |
@@ -7977,7 +7977,7 @@ To unsubscribe order data, the clients have to make connection to the server and
 | ------- | ----- | ------------------------------------------------- |
 | op       | string | Required;Operator Name，value for unsubscribe is unsub;                 |
 | cid      | string | Optional;  Client requests unique ID                        |
-| topic    | string | Optional; format: matchOrders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" |
+| topic    | string | Required；Unsubscribe topic name: matchOrders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g: "BTC,ETH" ; when $symbol value is *, it stands for unsubscribing the data of all coins; |
 
 
 ### Rules on Subscribe and Unsubscribe
@@ -8025,7 +8025,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | ------- | ----- | ------------------------------------------ |
 | op       | string | Required； Operator Name，Subscribe value is sub             |
 | cid      | string | Optional;  Client requests unique ID                  |
-| topic    | string | Required； Subscribe Topic Name，Required subscribe accounts.$symbol   Subscribe/unsubscribe the balance change of a given coin，when the value of $symbol is “*”, it means to subscribe/unsubscribe the balance change of all coins; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC"|
+| topic    | string | Required；Topic name format: accounts.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported. e.g.:"BTC,ETH"  |
 
 
 > When there is any balance change, the Server will send a notification with the return parameter. For example:
@@ -8122,7 +8122,7 @@ To unsubscribe account equity updates data, the client has to make connection to
 | ------- | ----- | ------------------------------------------------- |
 | op       | string | Required; Operator Name，Subscribe value is unsub;                 |
 | cid      | string | Optional; Client requests unique ID                          |
-| topic    | string | Required;Required； Required； Subscribe Topic，Subscribe accounts.$symbol required  unsubscribe/unsubscribe account equity change of a given coin，when the $symbol value is *, it stands for subscribing/unsubscribing data of all coins; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC"|
+| topic    | string | Required；Unsubscribe topic name: accounts.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g: "BTC,ETH" ; when $symbol value is *, it stands for unsubscribing the data of all coins; |
 
 
 ### Rules on Subscribe and Unsubscribe
@@ -8170,7 +8170,7 @@ To subscribe position updates data, the client has to make connection to the ser
 | ------- | :----- | :------------------------------------------ |
 | op       | string | Required；Operator Name，Subscribe value is sub             |
 | cid      | string | Optional ; Client requests unique ID                 |
-| topic    | string | Required； Subscribe Topic, Subscribe (positions.$symbol) Required  Subscribe/unsubscribe the position data of a single coin, when the $symbol value is *, it stands for subscribing the data of all coins.symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" |
+| topic    | string | Required；Topic name format: positions.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported. e.g.:"BTC,ETH"   |
 
 
 > When there is any position update, the server will send notification with return parameter. For example:
@@ -8273,7 +8273,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | ------- | ------- | ------------------------------------------------- |
 | op       | string | Required; Operator Name，Subscribe value is unsub;                 |
 | cid      | string | Optional;  Client requests unique ID                        |
-| topic    | string | Required;Required；Required；Subscribe topic，Subscribe positions.$symbol required  Subscribe or unsubscribe the position updates of a single coin; when $symbol value is *, it stands for subscribing the data of all coins; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" |
+| topic    | string | Required；Unsubscribe topic name: positions.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g: "BTC,ETH" ; when $symbol value is *, it stands for unsubscribing the data of all coins; |
 
 ### Rules on Subscribe and Unsubscribe
 
@@ -8318,7 +8318,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | ------- | ----- | ------------------------------------------ |
 | op       | string | Required； Operator Name，required subscribe value is  sub             |
 | cid      | string | Optional; ID Client requests unique ID                    |
-| topic    | string | Required；Topic name format: public.$symbol.liquidation_orders. symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC"  |
+| topic    | string | Required；Topic name format: public.$symbol.liquidation_orders. symbol is case-insenstive.Both uppercase and lowercase are supported. e.g:"BTC"    |
 
 
 ### Return Parameter
@@ -8396,31 +8396,8 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | ------- | ----- | ------------------------------------------ |
 | op       | string | Required； Operator Name，required subscribe value is  sub             |
 | cid      | string | Optional; ID Client requests unique ID                    |
-| topic    | string | Required；Topic name format: public.$symbol.liquidation_orders. symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" |
+| topic    | string | Required；Unsubscribe topic name: public.$symbol.liquidation_orders; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g: "BTC,ETH" ; when $symbol value is *, it stands for unsubscribing the data of all coins; |
 
-### Return Parameter
-
-| Field Name |Type   | Description                                              |
-| ------- | ------- | ------------------------------------------------- |
-| op       | string | Required; Operator Name，subscribe value is unsub;                 |
-| cid      | string | Optional;   Client requests unique ID                        |
-| topic    | string | Subscribe topic name，Require subscribe public.$symbol.liquidation_orders.Subscribe/unsubscribe the data of a given coin; when the $symbol value is *, it stands for subscribing/unsubscribing the data of all coins;symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC" |
-| ts    | long | Required; Time of Respond Generation, Unit: Millisecond	|
-
-
-> Example of a successful subscription
-
-```json
-
-{
-  "op": "unsub",
-  "topic": "public.BTC.liquidation_orders",
-  "cid": "id generated by client",
-  "err-code": 0,
-  "ts": 1489474081631
-}
-
-```
 
 ### Rules on Subscribe and Unsubscribe
 
@@ -8464,7 +8441,7 @@ To subscribe contract info, the client has to make connection to the server and 
 | ------- | ----- | ------------------------------------------ |
 | op       | string | Required； Operator Name，required subscribe value is  sub             |
 | cid      | string | Optional; ID Client requests unique ID                    |
-| topic    | string | Required；Topic name format: public.$symbol.contract_info.; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC"  |
+| topic    | string | Required；Topic name format: public.$symbol.contract_info.; symbol is case-insenstive.Both uppercase and lowercase are supported. e.g:"BTC,ETH"  |
 
 
 > Response example：
@@ -8580,7 +8557,7 @@ To unsubscribe contract info data, the client has to make connection to the serv
 | :------- | :----- | :------------------------------------------------- |
 | op       | string | Required; Operator Name，subscribe value is unsub;                 |
 | cid      | string | Optional;   Client requests unique ID                        |
-| topic    | string | Required；Unsubscribe topic name: public.$symbol.contract_info;   symbol is case-insenstive.Both uppercase and lowercase are supported.e.g: "BTC,ETH" ; when $symbol value is *, it stands for unsubscribing the data of all coins; |
+| topic    | string | Required；Unsubscribe topic name: public.$symbol.contract_info; symbol is case-insenstive.Both uppercase and lowercase are supported.e.g: "BTC,ETH" ; when $symbol value is *, it stands for unsubscribing the data of all coins; |
 
 ### Data format of subscription and unsubscription of contract info
 
