@@ -812,8 +812,6 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
 读取     |  基础信息接口           |  api/v1/contract_price_limit  |                 GET         |  获取合约最高限价和最低限价   |  否  |
 读取     |  基础信息接口           |   api/v1/contract_open_interest  |                  GET        |  获取当前可用合约总持仓量     |  否  |
 读取     |  基础信息接口           |   api/v1/contract_delivery_price  |                  GET        |  获取预估交割价    |  否  |
-读取     |  基础信息接口           |   https://api.hbdm.com/heartbeat/   |                  GET        |  查询系统是否可用    |  否  |
-读取     |  基础信息接口           |   https://api.hbdm.com//api/v1/timestamp   |                  GET        |  获取当前系统时间戳    |  否  |
 读取     |  基础信息接口           |   api/v1/contract_api_state   |                  GET        |  查询系统状态    |  否  |
 读取     |  市场行情接口           | /market/depth |                                GET        |  获取行情深度数据            |  否  |
 读取     |  市场行情接口           |  /market/history/kline |                        GET        |  获取K线数据                  |  否  |
@@ -2527,11 +2525,11 @@ symbol  |    true  |  string  |  合约名称  |  |  支持大小写，如"BTC_C
 
 ```
     "tick": {
-      "id": 消息id,
+      "id": 订单唯一id（品种唯一),
       "ts": 最新成交时间,
       "data": [
          {
-            "id": 成交id,
+            "id": 成交唯一id（品种唯一）,
             "price": 成交价钱,
             "amount": 成交量(张)，买卖双边成交量之和,
             "direction": 主动成交方向,
@@ -2573,12 +2571,12 @@ symbol  |    true  |  string  |  合约名称  |  |  支持大小写，如"BTC_C
 | ch     | true | string | 数据所属的 channel，格式： market.$symbol.trade.detail |      |
 | status | true | string |     | "ok","error" |
 | \<tick\>      | true | object |           |      |
-| id     | true | long | 消息id       |      |
+| id     | true | long | 订单唯一id（品种唯一）      |      |
 | ts     | true | long | 最新成交时间       |      |
 | \<data\>      | true | object array |        |      |
 | amount     | true | string | 成交量(张)，买卖双边成交量之和       |      |
 | direction     | true | string | 主动成交方向       |      |
-| id     | true | long | 成交id       |      |
+| id     | true | long | 成交唯一id（品种唯一）     |      |
 | price     | true | string | 成交价       |      |
 | ts     | true | long | 成交时间       |      |
 | \</data\>      |  |  |              |      |
@@ -2607,11 +2605,11 @@ size  |  true  |  int  |    获取交易记录的数量  |   |  [1, 2000]  |
 
 ```
     "data": {
-      "id": 消息id,
+      "id": 订单唯一id（品种唯一）,
       "ts": 最新成交时间,
       "data": [
         {
-          "id": 成交id,
+          "id": 成交唯一id（品种唯一）,
           "price": 成交价,
           "amount": 成交量(张)，买卖双边成交量之和,
           "direction": 主动成交方向,
@@ -2669,11 +2667,11 @@ size  |  true  |  int  |    获取交易记录的数量  |   |  [1, 2000]  |
 | \<data\>    | true | object array |           |      |       |
 | amount     | true | decimal | 成交量(张)，买卖双边成交量之和       |      |            |
 | direction     | true | string | 主动成交方向       |      |            |
-| id     | true | long | 成交id       |      |            |
+| id     | true | long | 成交唯一id（品种唯一）    |      |            |
 | price     | true | decimal | 成交价格       |      |            |
 | ts     | true | long | 成交时间       |      |            |
 |\</data\>      |  |  |              |      |            |
-| id     | true | long | 消息id       |      |            |
+| id     | true | long | 订单唯一id（品种唯一）     |      |            |
 | ts     | true | long | 最新成交时间       |      |            |
 |\</data\>      |  |  |              |      |            |
 | status | true | string |                                          | "ok"，"error" |
@@ -7290,9 +7288,9 @@ count  |  true  |  decimal  |   成交笔数  |
 --------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ | 
 rep  |  true  |  string  |  数据所属的 channel，格式： market.$symbol.trade.detail  |  |   
 status  |  true  |  string  |  返回状态  |  |   
-id  |  true  |  string  |  ID  |   |    
+id  |  true  |  string  | 请求 ID  |   |    
  \<data\>    |               |    |      | 
-id  |  true  |  long  |  ID  |   |    
+id  |  true  |  long  |  成交唯一id（品种唯一）  |   |    
 price  |  true  |  string  |  价格  |   |    
 amount  |  true  |  string  | 成交量(张)，买卖双边成交量之和  |   |    
 direction  |  true  |  string  |  主动成交方向  |   |    
@@ -7374,12 +7372,12 @@ ts  |  true  |  long  |  发送时间  |   |
 ch  |  true  |  string  |  数据所属的 channel，格式： market.$symbol.trade.detail  |  |   
 ts  |  true  |  long  |  发送时间  |   |    
 \<tick\>    |               |    |      | 
-id  |  true  |  long  |  ID  |   |    
+id  |  true  |  long  |  订单唯一id（品种唯一）  |   |    
 ts  |  true  |  long  |  tick数据戳  |   |    
 \<data\>    |               |    |      | 
 amount  |  true  |  decimal  |  数量（张）  |   |    
 ts  |  true  |  long  | 订单时间戳  |   |    
-id  |  true  |  long  |  tick id  |   |    
+id  |  true  |  long  | 成交唯一id（品种唯一）  |   |    
 price  |  true  |  decimal  |  价格  |   |    
 direction  |  true  |  string  |  买卖方向  |   |    
 \</data\>    |               |    |      | 
