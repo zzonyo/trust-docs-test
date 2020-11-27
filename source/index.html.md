@@ -5568,9 +5568,9 @@ Return to the current trade detail data only
 | --------- | -------- | ------------ | ------------------ | ----------------------------------------- |
 | rep       | true     | string       | Data belonged channel | Format:  market.$contract_code.trade.detail |
 | status    | true     | string       | Return Statu           |                                           |
-| id        | true     | string       | ID                 |                                           |
+| id        | true     | string       | Return ID                 |                                           |
 | \<data>    | true     | object array |                    |                                           |
-| id        | true     | long         | ID                 |                                           |
+| id        | true     | long         | Unique Transaction Id(symbol level)              |                                           |
 | price     | true     | string       | Price               |                                           |
 | amount    | true     | string       | Quantity (cont)         |                                           |
 | direction | true     | string       | Buy/Sell Direction           |                                           |
@@ -5641,12 +5641,12 @@ Return to the current trade detail data only
 | ch        | true     | string       | Data belonged channel         | Form:  market.period |
 | ts        | true     | long         | Time of Respond Generation, unit: millisecond |                      |
 | \<tick>    | true     | object       |                            |                      |
-| id        | true     | long         | ID                         |                      |
+| id        | true     | long         | Unique Order Id(symbol level)                   |                      |
 | ts        | true     | long         | Server response time                  |                      |
 | \<data>    | true     | object array |                            |                      |
 | amount    | true     | decimal      | Quantity (cont)                 |                      |
 | ts        | true     | long         | Server response time                  |                      |
-| id        | true     | long         | tick id                    |                      |
+| id        | true     | long         | Unique Transaction Id(symbol level)                 |                      |
 | price     | true     | decimal      | Price                      |                      |
 | direction | true     | string       | Buy/Sell Direction                   |                      |
 | \</data>   |          |              |                            |                      |
