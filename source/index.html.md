@@ -595,11 +595,29 @@ curl "https://status-linear-swap.huobigroup.com/api/v2/summary.json"
 
 
 
-## 查询系统是否可用
 
-通过接口`https://api.hbdm.com/heartbeat/`，可以查询系统是否可用,其中heartbeat为1是可用，为0不可用。
-“swap_heartbeat”，表示永续的系统状态， 系统的预估恢复时间；
-“swap_estimated_recovery_time”，表示永续的系统的预估恢复时间,单位：毫秒；注意后面必须带上"/"。
+## 查询系统是否可用  
+
+- Interface `https://api.hbdm.com/heartbeat/`
+
+### 备注：
+ -  注意请求时地址后面的“/”一定要带上。
+
+### 返回参数
+| 参数名称 |  类型  |   描述         |
+| ------------------ | ------------------ | ------------- | 
+| status             | string                   | "ok" 或 "error"... 
+| \<data\>             | dict object                 | 
+| heartbeat             | int                   | 交割合约 1: 可用 0: 不可用 
+| swap_heartbeat             | int                   | 币本位永续 1: 可用 0: 不可用 
+| estimated_recovery_time             | long                   | null: 正常. 交割合约预计恢复时间， 单位:毫秒
+| swap_estimated_recovery_time             | long                   | null: 正常. 币本位永续合约预计恢复时间，单位：毫秒.
+| option_heartbeat             | int                   | 期权合约 1: 可用 0: 不可用 
+| option_estimated_recovery_time             | long                   | null: 正常. 期权合约预计恢复时间，单位：毫秒.
+| linear_swap_heartbeat             | long                   | USDT本位永续 1: 可用 0: 不可用
+| linear_swap_estimated_recovery_time             | long                   | null: 正常. USDT本位永续合约预计恢复时间，单位：毫秒.
+| \</data\>             |                  | 
+
 
 > 返回数据
 
