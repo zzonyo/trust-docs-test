@@ -3927,7 +3927,7 @@ Below is the error code and description returned by Trading APIs
 | order-stop-order-hit-trigger                                 | The stop orders triggered immediately are not allowed        |
 | market-orders-not-support-during-limit-price-trading         | Market orders are not supported during limit-price trading   |
 | price-exceeds-the-protective-price-during-limit-price-trading | The price exceeds the protective price during limit-price trading |
-| invalid-client-order-id                                      | The client order id is duplicated (within last 24h)          |
+| invalid-client-order-id                                      | The parameter client order id is duplicated (within last 24h) in place or cancel order request |
 | invalid-interval                                             | Query window is zero, negative or greater than limitation    |
 | invalid-start-date                                           | The start date is invalid                                    |
 | invalid-end-date                                             | The end date is invalid                                      |
@@ -4149,9 +4149,9 @@ curl -X POST -H "Content-Type: application/json" "https://api.huobi.pro/v1/order
 
 ### Request Parameters
 
-| Parameter       | Data Type | Required | Default | Description     |
-| --------------- | --------- | -------- | ------- | --------------- |
-| client-order-id | string    | true     | NA      | Client order ID |
+| Parameter       | Data Type | Required | Default | Description                                                  |
+| --------------- | --------- | -------- | ------- | ------------------------------------------------------------ |
+| client-order-id | string    | true     | NA      | Client order ID, it must exist already, otherwise it is not allowed to use when placing a new order |
 
 > The above command returns JSON structured like this:
 
@@ -4311,7 +4311,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 | Parameter        | Data Type | Required | Description                                                  | Value Range         |
 | ---------------- | --------- | -------- | ------------------------------------------------------------ | ------------------- |
 | order-ids        | string[]  | false    | The order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request) | No more than 50 ids |
-| client-order-ids | string[]  | false    | The client order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request) | No more than 50 ids |
+| client-order-ids | string[]  | false    | The client order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request), it must exist already, otherwise it is not allowed to use when placing a new order | No more than 50 ids |
 
 > The above command returns JSON structured like this:
 
