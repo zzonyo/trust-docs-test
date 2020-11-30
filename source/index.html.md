@@ -3927,7 +3927,7 @@ API Key 权限：读取<br>
 | order-stop-order-hit-trigger                                 | 止盈止损单下单被当前价触发                                   |
 | market-orders-not-support-during-limit-price-trading         | 限时下单不支持市价单                                         |
 | price-exceeds-the-protective-price-during-limit-price-trading | 限价时间内价格超出保护价                                     |
-| invalid-client-order-id                                      | client order id 已重复                                       |
+| invalid-client-order-id                                      | client order id 在最近的下单和撤单参数中已被使用             |
 | invalid-interval                                             | 查询起止窗口设置错误                                         |
 | invalid-start-date                                           | 查询起始日期含非法取值                                       |
 | invalid-end-date                                             | 查询起始日期含非法取值                                       |
@@ -3973,7 +3973,7 @@ API Key 权限：交易
 | amount          | string   | true     | NA       | 订单交易量（市价买单为订单交易额）                           |
 | price           | string   | false    | NA       | 订单价格（对市价单无效）                                     |
 | source          | string   | false    | spot-api | 现货交易填写“spot-api”，逐仓杠杆交易填写“margin-api”，全仓杠杆交易填写“super-margin-api”, C2C杠杆交易填写"c2c-margin-api" |
-| client-order-id | string   | false    | NA       | 用户自编订单号（最大长度64个字符，须在24小时内保持唯一性）   |
+| client-order-id | string   | false    | NA       | 用户自编订单号（最大长度64个字符，须在24小时内的下单和撤单参数保持唯一性） |
 | stop-price      | string   | false    | NA       | 止盈止损订单触发价格                                         |
 | operator        | string   | false    | NA       | 止盈止损订单触发价运算符 gte – greater than and equal (>=), lte – less than and equal (<=) |
 
