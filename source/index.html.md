@@ -8662,6 +8662,7 @@ API Key 权限：读取
 		"type":"sell-limit",
 		"orderId":27163533,
 		"clientOrderId":"abc123",
+		"orderSource":"spot-api",
 		"orderStatus":"submitted",
 		"symbol":"btcusdt",
 		"eventType":"creation"
@@ -8678,6 +8679,7 @@ API Key 权限：读取
 | accountId       | long     | 账户ID                                                       |
 | orderId         | long     | 订单ID                                                       |
 | clientOrderId   | string   | 用户自编订单号（如有）                                       |
+| orderSource     | string   | 订单来源                                                     |
 | orderPrice      | string   | 订单价格                                                     |
 | orderSize       | string   | 订单数量（对市价买单无效）                                   |
 | orderValue      | string   | 订单金额（仅对市价买单有效）                                 |
@@ -8704,9 +8706,13 @@ API Key 权限：读取
 		"tradeTime":1583854188883,
 		"aggressor":true,
 		"remainAmt":"0.000000000000000400000000000000000000",
+		"execAmt":"2",
 		"orderId":27163536,
 		"type":"sell-limit",
 		"clientOrderId":"abc123",
+		"orderSource":"spot-api",
+		"orderPrice":"15000",
+		"orderSize":"0.01",
 		"orderStatus":"filled",
 		"symbol":"btcusdt",
 		"eventType":"trade"
@@ -8725,11 +8731,16 @@ API Key 权限：读取
 | orderId       | long     | 订单ID                                                       |
 | type          | string   | 订单类型，有效值：buy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok |
 | clientOrderId | string   | 用户自编订单号（如有）                                       |
+| orderSource   | string   | 订单来源                                                     |
+| orderPrice    | string   | 原始订单价（市价单无效）                                     |
+| orderSize     | string   | 原始订单数量（市价买单无效）                                 |
+| orderValue    | string   | 原始订单金额（仅对市价买单有效）                             |
 | tradeId       | long     | 成交ID                                                       |
 | tradeTime     | long     | 成交时间                                                     |
 | aggressor     | bool     | 是否交易主动方，有效值： true (taker), false (maker)         |
 | orderStatus   | string   | 订单状态，有效值：partial-filled, filled                     |
-| remainAmt     | string   | 未成交数量（市价买单为未成交金额）                           |
+| remainAmt     | string   | 该订单未成交数量（市价买单为未成交金额）                     |
+| execAmt       | string   | 该订单累计成交量                                             |
 
 注：<BR>
 - 止盈止损订单的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<BR>
@@ -8745,9 +8756,13 @@ API Key 权限：读取
 	{
 		"lastActTime":1583853475406,
 		"remainAmt":"2.000000000000000000",
+		"execAmt":"2",
 		"orderId":27163533,
 		"type":"sell-limit",
 		"clientOrderId":"abc123",
+		"orderSource":"spot-api",
+		"orderPrice":"15000",
+		"orderSize":"0.01",
 		"orderStatus":"canceled",
 		"symbol":"btcusdt",
 		"eventType":"cancellation"
@@ -8764,8 +8779,13 @@ API Key 权限：读取
 | orderId       | long     | 订单ID                                                       |
 | type          | string   | 订单类型，有效值：buy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok |
 | clientOrderId | string   | 用户自编订单号（如有）                                       |
+| orderSource   | string   | 订单来源                                                     |
+| orderPrice    | string   | 原始订单价（市价单无效）                                     |
+| orderSize     | string   | 原始订单数量（市价买单无效）                                 |
+| orderValue    | string   | 原始订单金额（仅对市价买单有效）                             |
 | orderStatus   | string   | 订单状态，有效值：partial-canceled, canceled                 |
-| remainAmt     | string   | 未成交数量（市价买单为未成交金额）                           |
+| remainAmt     | string   | 该订单未成交数量（市价买单为未成交金额）                     |
+| execAmt       | string   | 该订单累计成交量                                             |
 | lastActTime   | long     | 订单最近更新时间                                             |
 注：<BR>
 - 止盈止损订单的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<BR>
