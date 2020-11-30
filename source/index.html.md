@@ -381,20 +381,20 @@ Please note that, for both public interface and private interface, there are rat
   - 5. Please try to extend your request polling cycle when implementing your strategy.
     
 
-<!--
+
 ## Get system status
 
 This endpoint allows users to get system status, Incidents and planned maintenance.
 
-The system status can also be obtained through email, SMS, webhook, RSS/Atom feed. Users can You can click <a href='https://status-swap.huobigroup.com/'>here</a> to subscribe. The subscription function depends on Google services. Before you subscribe, please ensure that you can access Google services normally. 
+The system status can also be obtained through email, SMS, webhook, RSS/Atom feed. Users can You can click <a href='https://status-linear-swap.huobigroup.com/ '>here</a> to subscribe. The subscription function depends on Google services. Before you subscribe, please ensure that you can access Google services normally. 
 
 ```shell
-curl "https://status-swap.huobigroup.com/api/v2/summary.json"
+curl "https://status-linear-swap.huobigroup.com/api/v2/summary.json"
 ```
 
 ### HTTP Request
 
-- GET `https://status-swap.huobigroup.com/api/v2/summary.json`
+- GET `https://status-linear-swap.huobigroup.com/api/v2/summary.json`
 
 ### Request Parameters
 
@@ -406,9 +406,9 @@ No parameter is available for this endpoint.
 {
   "page": {  // Basic information of status page
     "id": "p0qjfl24znv5",  // page id
-    "name": "Huobi",  // page name
-    "url": "https://status-swap.huobigroup.com/", // page url
-    "time_zone": "Etc/UTC", // time zone
+    "name": "Huobi Futures-USDT-margined Swaps",  // page name
+    "url": "https://status-linear-swap.huobigroup.com", // page url
+    "time_zone": "Asia/Singapore", // time zone
     "updated_at": "2020-02-07T10:25:14.717Z" // page update time
   },
   "components": [  // System components and their status
@@ -579,7 +579,7 @@ No parameter is available for this endpoint.
 |{indicator        |    string                  | system indicator, value range: none, minor, major, critical, maintenance
 |description}     |      string                | system description, value range: All Systems Operational, Minor Service Outager, Partial System Outage, Partially Degraded Service, Service Under Maintenance
 
--->
+
 
 
 ## Query whether the system is available  
