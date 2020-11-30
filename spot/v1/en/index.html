@@ -18709,6 +18709,8 @@ About optional field ‘mode’: If not filled, or filled with 0, it implicates 
 <p>1、Whenever account balance is changed.</p>
 
 <p>2、Whenever account balance or available balance is changed. (Update separately.)</p>
+
+<p>Note that right now there is no account update when transferring between spot account and other accounts.</p>
 <h3 id='subscription-field-3'>Subscription Field</h3>
 <table><thead>
 <tr>
@@ -18829,7 +18831,7 @@ The topic disseminates the current static value of individual accounts first, at
 <tr>
 <td>changeType</td>
 <td>string</td>
-<td>Change type, valid value: order-place,order-match,order-refund,order-cancel,order-fee-refund,margin-transfer,margin-loan,margin-interest,margin-repay,other,deposit,withdraw</td>
+<td>Change type, valid value: order-place,order-match,order-refund,order-cancel,order-fee-refund,margin-transfer,margin-loan,margin-interest,margin-repay,deposit,withdraw,other</td>
 </tr>
 <tr>
 <td>accountType</td>
