@@ -395,20 +395,20 @@ api.hbdm.com\n
 
   - 5、适当延长策略轮询时间。
 
-<!-- 
+
 ## 获取当前系统状态
 
 此接口返回当前的系统状态，包含当前系统维护计划和故障进度等。
 
-如您需要通过邮件、短信、Webhook、RSS/Atom feed接收以上信息，可点击<a href='https://status-swap.huobigroup.com/'>这里</a>进入页面进行订阅。当前订阅依赖Google服务，订阅前请确保您可正常访问Google的服务，否则将订阅失败。
+如您需要通过邮件、短信、Webhook、RSS/Atom feed接收以上信息，可点击<a href='https://status-linear-swap.huobigroup.com/'>这里</a>进入页面进行订阅。当前订阅依赖Google服务，订阅前请确保您可正常访问Google的服务，否则将订阅失败。
 
 ```shell
-curl "https://status-swap.huobigroup.com/api/v2/summary.json"
+curl "https://status-linear-swap.huobigroup.com/api/v2/summary.json"
 ```
 
 ### HTTP 请求
 
-- GET `https://status-swap.huobigroup.com/api/v2/summary.json`
+- GET `https://status-linear-swap.huobigroup.com/api/v2/summary.json`
 
 ### 请求参数
 
@@ -420,9 +420,9 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 {
   "page": {  // 合约页面基本信息
     "id": "p0qjfl24znv5",  // 页面id
-    "name": "Huobi",  // 页面名称
-    "url": "https://status-swap.huobigroup.com", // 页面地址
-    "time_zone": "Etc/UTC", // 时区
+    "name": "Huobi Futures-USDT-margined Swaps",  // 页面名称
+    "url": "https://status-linear-swap.huobigroup.com", // 页面地址
+    "time_zone": "Asia/Singapore", // 时区
     "updated_at": "2020-02-07T10:25:14.717Z" // 页面最新一次更新时间
   },
   "components": [  // 系统组件及状态
@@ -593,7 +593,7 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 |{indicator        |    string                  | 系统状态指标，取值范围为：none，minor，major，critical，maintenance
 |description}     |      string                | 系统状态描述，取值范围为：All Systems Operational，Minor Service Outager，Partial System Outage，Partially Degraded Service，Service Under Maintenance
 
--->
+
 
 ## 查询系统是否可用
 
