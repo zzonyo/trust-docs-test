@@ -8664,6 +8664,7 @@ After conditional order being cancelled before triggering –
 		"type":"sell-limit",
 		"orderId":27163533,
 		"clientOrderId":"abc123",
+		"orderSource":"spot-api",
 		"orderStatus":"submitted",
 		"symbol":"btcusdt",
 		"eventType":"creation"
@@ -8681,6 +8682,7 @@ After order is submitted –
 | accountId       | long      | account ID                                                   |
 | orderId         | long      | Order ID                                                     |
 | clientOrderId   | string    | Client order ID (if any)                                     |
+| orderSource     | string    | Order source                                                 |
 | orderPrice      | string    | Order price                                                  |
 | orderSize       | string    | Order size (inapplicable for market buy order)               |
 | orderValue      | string    | Order value (only applicable for market buy order)           |
@@ -8705,9 +8707,13 @@ Note:<br>
 		"tradeTime":1583854188883,
 		"aggressor":true,
 		"remainAmt":"0.000000000000000400000000000000000000",
+		"execAmt":"2",
 		"orderId":27163536,
 		"type":"sell-limit",
 		"clientOrderId":"abc123",
+		"orderSource":"spot-api",
+		"orderPrice":"15000",
+		"orderSize":"0.01",
 		"orderStatus":"filled",
 		"symbol":"btcusdt",
 		"eventType":"trade"
@@ -8726,11 +8732,16 @@ After order matching –
 | orderId       | long      | Order ID                                                     |
 | type          | string    | Order type, valid value: buy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok |
 | clientOrderId | string    | Client order ID (if any)                                     |
+| orderSource   | string    | Order source                                                 |
+| orderPrice    | string    | Original order price (not available for market order)        |
+| orderSize     | string    | Original order amount (not available for buy-market order)   |
+| orderValue    | string    | Original order value (only available for buy-market order)   |
 | tradeId       | long      | Trade ID                                                     |
 | tradeTime     | long      | Trade time                                                   |
 | aggressor     | bool      | Aggressor or not, valid value: true (taker), false (maker)   |
 | orderStatus   | string    | Order status, valid value: partial-filled, filled            |
 | remainAmt     | string    | Remaining amount (for buy-market order it's remaining value) |
+| execAmt       | string    | Accumulative amount (for buy-market order it is accumulative value) |
 
 Note:<br>
 - Stop limit order's type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<br>
@@ -8744,9 +8755,13 @@ Note:<br>
 	{
 		"lastActTime":1583853475406,
 		"remainAmt":"2.000000000000000000",
+		"execAmt":"2",
 		"orderId":27163533,
 		"type":"sell-limit",
 		"clientOrderId":"abc123",
+		"orderSource":"spot-api",
+		"orderPrice":"15000",
+		"orderSize":"0.01",
 		"orderStatus":"canceled",
 		"symbol":"btcusdt",
 		"eventType":"cancellation"
@@ -8763,8 +8778,13 @@ After order cancellation –
 | orderId       | long      | Order ID                                                     |
 | type          | string    | Order type, valid value: buy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok |
 | clientOrderId | string    | Client order ID (if any)                                     |
+| orderSource   | string    | Order source                                                 |
+| orderPrice    | string    | Original order price (not available for market order)        |
+| orderSize     | string    | Original order amount (not available for buy-market order)   |
+| orderValue    | string    | Original order value (only available for buy-market order)   |
 | orderStatus   | string    | Order status, valid value: partial-canceled, canceled        |
 | remainAmt     | string    | Remaining amount	(for buy-market order it's remaining value) |
+| execAmt       | string    | Accumulative amount (for buy-market order it is accumulative value) |
 | lastActTime   | long      | Last activity time                                           |
 
 Note:<br>
