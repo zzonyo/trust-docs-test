@@ -3927,7 +3927,7 @@ API Key 权限：读取<br>
 | order-stop-order-hit-trigger                                 | 止盈止损单下单被当前价触发                                   |
 | market-orders-not-support-during-limit-price-trading         | 限时下单不支持市价单                                         |
 | price-exceeds-the-protective-price-during-limit-price-trading | 限价时间内价格超出保护价                                     |
-| invalid-client-order-id                                      | client order id 在最近的下单和撤单参数中已被使用             |
+| invalid-client-order-id                                      | client order id 在最近的下单或撤单参数中已被使用             |
 | invalid-interval                                             | 查询起止窗口设置错误                                         |
 | invalid-start-date                                           | 查询起始日期含非法取值                                       |
 | invalid-end-date                                             | 查询起始日期含非法取值                                       |
@@ -3973,7 +3973,7 @@ API Key 权限：交易
 | amount          | string   | true     | NA       | 订单交易量（市价买单为订单交易额）                           |
 | price           | string   | false    | NA       | 订单价格（对市价单无效）                                     |
 | source          | string   | false    | spot-api | 现货交易填写“spot-api”，逐仓杠杆交易填写“margin-api”，全仓杠杆交易填写“super-margin-api”, C2C杠杆交易填写"c2c-margin-api" |
-| client-order-id | string   | false    | NA       | 用户自编订单号（最大长度64个字符，须在24小时内的下单和撤单参数保持唯一性） |
+| client-order-id | string   | false    | NA       | 用户自编订单号（最大长度64个字符，须在24小时内保持唯一性）   |
 | stop-price      | string   | false    | NA       | 止盈止损订单触发价格                                         |
 | operator        | string   | false    | NA       | 止盈止损订单触发价运算符 gte – greater than and equal (>=), lte – less than and equal (<=) |
 
@@ -4170,9 +4170,9 @@ API Key 权限：交易<br>
 
 ### 请求参数
 
-| 参数名称        | 是否必须 | 类型   | 描述           | 默认值 | 取值范围 |
-| --------------- | -------- | ------ | -------------- | ------ | -------- |
-| client-order-id | true     | string | 用户自编订单号 |        |          |
+| 参数名称        | 是否必须 | 类型   | 描述                                                         | 默认值 | 取值范围 |
+| --------------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
+| client-order-id | true     | string | 用户自编订单号，必须已有该订单存在，否则下次下单时不允许用此值 |        |          |
 
 
 > Response:
@@ -4343,7 +4343,7 @@ API Key 权限：交易<br>
 | 参数名称         | 是否必须 | 类型     | 描述                                                         | 默认值 | 取值范围           |
 | ---------------- | -------- | -------- | ------------------------------------------------------------ | ------ | ------------------ |
 | order-ids        | false    | string[] | 订单编号列表（order-ids和client-order-ids必须且只能选一个填写，不超过50张订单） |        | 单次不超过50个订单 |
-| client-order-ids | false    | string[] | 用户自编订单号列表（order-ids和client-order-ids必须且只能选一个填写，不超过50张订单） |        | 单次不超过50个订单 |
+| client-order-ids | false    | string[] | 用户自编订单号列表（order-ids和client-order-ids必须且只能选一个填写，不超过50张订单），必须已有该订单存在，否则下次下单时不允许用此值 |        | 单次不超过50个订单 |
 
 > Response:
 
