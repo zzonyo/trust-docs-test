@@ -210,7 +210,7 @@ Note：It is safe to share your Access Key, which is to prove your identity, and
 
 ## Preparation
 
-Before you use API, you need to login the website to create API Key with proper permissions.
+Before you use API, you need to login the website to create API Key with proper permissions. The API key is shared for all business in Huobi including spot, futures, swap, options.
 
 You can manage your API Key <a href='https://www.hbg.com/zh-cn/apikey/'>here</a>.
 
@@ -230,8 +230,9 @@ Please remember below information after creation:
 The API Key can bind maximum 20 IP addresses (either host IP or network IP), we strongly suggest you bind IP address for security purpose. The API Key without IP binding will be expired after 90 days.
 </aside>
 <aside class="warning">
-<red><b>Warning</b></red>: These two keys are important to your account safety, please don't share <b>both</b> of them together to anyone else. If you find your API Key is disposed, please remove it immediately.
+<red><b>Warning</b></red>: These two keys are important to your account safety, please don't share <b>both</b> of them together to anyone else (including any product or person from Huobi). If you find your API Key is disposed, please remove it immediately.
 </aside> 
+
 
 ## SDK and Demo
 
