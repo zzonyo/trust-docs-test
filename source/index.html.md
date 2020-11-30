@@ -904,6 +904,8 @@ Error Code | Error Details Description|
 
 - <a href='https://github.com/hbdmapi/huobi_futures_CSharp'>CSharp</a>
 
+- <a href='https://github.com/hbdmapi/huobi_futures_Golang'>Golang</a>
+
 PS: USDT Margined swap api is similar to Coin margined swap api and future api.
 
 <!--
