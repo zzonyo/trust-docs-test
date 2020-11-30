@@ -8690,7 +8690,7 @@ Rate Limit (NEW): 20times/2s</p>
 </tr>
 <tr>
 <td>invalid-client-order-id</td>
-<td>The client order id is duplicated (within last 24h)</td>
+<td>The parameter client order id is duplicated (within last 24h) in place or cancel order request</td>
 </tr>
 <tr>
 <td>invalid-interval</td>
@@ -9089,7 +9089,7 @@ Rate Limit (NEW): 100times/2s</p>
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>Client order ID</td>
+<td>Client order ID, it must exist already, otherwise it is not allowed to use when placing a new order</td>
 </tr>
 </tbody></table>
 
@@ -9430,7 +9430,7 @@ Rate Limit (NEW): 50times/2s</p>
 <td>client-order-ids</td>
 <td>string[]</td>
 <td>false</td>
-<td>The client order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request)</td>
+<td>The client order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request), it must exist already, otherwise it is not allowed to use when placing a new order</td>
 <td>No more than 50 ids</td>
 </tr>
 </tbody></table>
