@@ -898,9 +898,9 @@ curl "https://status-linear-swap.huobigroup.com/api/v2/summary.json"
 
 - <a href='https://github.com/hbdmapi/huobi_futures_CSharp'>CSharp</a>
 
-<!--
+- <a href='https://github.com/hbdmapi/huobi_futures_Golang'>Golang</a>
 
-- <a href='https://github.com/hbdmapi/hbdm_swap_Rust'>Rust</a>
+<!--
 
 - <a href='https://github.com/hbdmapi/huobi_swap_Cpp'>C++</a>
 
