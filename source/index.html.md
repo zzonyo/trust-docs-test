@@ -8933,6 +8933,8 @@ Upon subscription field value specified, the update can be triggered by either o
 
 2、Whenever account balance or available balance is changed. (Update separately.)
 
+Note that right now there is no account update when transferring between spot account and other accounts.
+
 ### Subscription Field
 
 | Field | Data Type | Description                                       |
@@ -9025,7 +9027,7 @@ accounts.update#1：
 | accountId   | long      | Account ID                                                   |
 | balance     | string    | Account balance (only exists when account balance changed)   |
 | available   | string    | Available balance (only exists when available balance changed) |
-| changeType  | string    | Change type, valid value: order-place,order-match,order-refund,order-cancel,order-fee-refund,margin-transfer,margin-loan,margin-interest,margin-repay,other,deposit,withdraw |
+| changeType  | string    | Change type, valid value: order-place,order-match,order-refund,order-cancel,order-fee-refund,margin-transfer,margin-loan,margin-interest,margin-repay,deposit,withdraw,other |
 | accountType | string    | account type, valid value: trade, frozen, loan, interest     |
 | changeTime  | long      | Change time, unix time in millisecond                        |
 
