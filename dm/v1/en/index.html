@@ -16590,7 +16590,7 @@ Details are below:</p></li>
 <li><p>Once Best Bid/Ask Quotations (price,volume) change, it will be pushed.</p></li>
 <li><p>When the price and volume of Best Bid/Ask Quotations both change, only the latest BBO will be pushed.  </p></li>
 <li><p>When the data received by the client is failed or delayed, the old data buffer in the server will be discarded.The latest BBO will be pushed.</p></li>
-<li><p>The version id is the match id, global unique, and greater than the last one.</p></li>
+<li><p>version（version number). Use match id directly to ensure it is globally unique and the value of version number pushed is the largest.</p></li>
 </ul>
 <h2 id='subscribe-market-detail-data'>Subscribe Market Detail Data</h2><h3 id='to-subscribe-market-details-the-clients-have-to-make-connection-to-websocket-server-and-send-subscribe-request-in-the-format-below'>To subscribe market details, the clients have to make connection to WebSocket Server and send subscribe request in the format below:</h3>
 <p><code>{</code></p>
