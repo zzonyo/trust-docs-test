@@ -7018,7 +7018,7 @@ ch | true |  string | Data channel, Format： `market.$symbol.bbo` | |
 
 - When the data received by the client is failed or delayed, the old data buffer in the server will be discarded.The latest BBO will be pushed.
 
-- The version id is the match id, global unique, and greater than the last one.
+- version（version number). Use match id directly to ensure it is globally unique and the value of version number pushed is the largest.
 
 
 
