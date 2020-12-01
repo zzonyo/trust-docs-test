@@ -7747,8 +7747,6 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | topic    | string | Required；format: matchOrders.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 
 
-> Illustration on detailed data format of orders Notification
-
 #### Note: 
 - The order status of 'post_only' type pushed by ws is ethier '7:canceled' or '3:submitted'.
 - The orders will be pushed when matched by matching engine.
@@ -7757,6 +7755,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 - The netting and forced liquidation orders will not be pushed.
 - The orders will generally be pushed faster than the normal orders subscription.But It's not guranted.
 - If there is an order with N trades,including 1 taker and N maker,it will push N+1 trades at most.
+
 
 > response
 
