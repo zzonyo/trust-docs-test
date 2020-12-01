@@ -7387,6 +7387,15 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | cid | false| string | Client 请求唯一 ID	 | |
 | topic | true| string | 订阅主题名称，(matchOrders.$contract_code) 订阅某个品种下的合约变动信息；$contract_code为品种代码（BTC-USDT、ETH-USDT），如果值为 * 时代表订阅所有品种; contract_code支持大小写; | |
 
+#### 备注：
+- postOnly的报单收到的WS推送要么是报单成功，状态为3，要么是7，已撤单;
+- 撮合完成后就将订单的更新信息推送给客户端;
+- 强平以及轧差订单不会推送；
+- 外部划转或内部转账订单不作为订单推送；
+- 通常情况下，撮合完成后的推送要比清算完成后的推送快，但不能保证撮合完成后的推送一定比清算完成后的推送更快;
+- 撮合后的推送，假设1个matchresult包含N笔成交，包括1个taker和N个maker，那最多推送N+1笔；
+- 如果遇到推送的status状态为9或者10，可以直接忽略。
+
 > 返回的参数为：
 
 ```json
