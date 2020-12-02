@@ -1985,13 +1985,13 @@ curl "https://api.huobi.pro/market/etp?symbol=btc3lusdt"
 | 字段名称       | 数据类型 | 描述                                        |
 | -------------- | -------- | ------------------------------------------- |
 | symbol         | string   | 杠杆ETP交易代码                             |
-| nav            | float    | 最新净值                                    |
+| nav            | float    | 最新净值                                   |
 | navTime        | long     | 最新净值更新时间 (unix time in millisecond) |
-| outstanding    | float    | ETP总份额                                   |
-| basket         | object   | 篮子                                        |
-| { currency     | float    | 币种                                        |
-| amount }       | float    | 金额                                        |
-| actualLeverage | float    | 实际杠杆率                                  |
+| outstanding    | float    | ETP总份额                                 |
+| basket         | object   | 篮子                                      |
+| { currency     | float    | 币种                                      |
+| amount }       | float    | 金额                                      |
+| actualLeverage | float    | 实际杠杆率                                 |
 
 # 账户相关
 
@@ -2950,7 +2950,7 @@ API Key 权限：读取<br>
 
 | 参数名称    | 是否必须 | 数据类型 | 描述                                                         | 取值范围                                 |
 | ----------- | -------- | -------- | ------------------------------------------------------------ | ---------------------------------------- |
-| id          | true     | long     | 充币或者提币订单id，翻页查询时from参数取自此值               |                                          |
+| id          | true     | long     | 充币订单id                                                   |                                          |
 | type        | true     | string   | 类型                                                         | 'deposit', 'withdraw', 子用户仅有deposit |
 | currency    | true     | string   | 币种                                                         |                                          |
 | tx-hash     | true     | string   | 交易哈希                                                     |                                          |
@@ -3927,7 +3927,7 @@ API Key 权限：读取<br>
 | order-stop-order-hit-trigger                                 | 止盈止损单下单被当前价触发                                   |
 | market-orders-not-support-during-limit-price-trading         | 限时下单不支持市价单                                         |
 | price-exceeds-the-protective-price-during-limit-price-trading | 限价时间内价格超出保护价                                     |
-| invalid-client-order-id                                      | client order id 在最近的下单或撤单参数中已被使用             |
+| invalid-client-order-id                                      | client order id 已重复                                       |
 | invalid-interval                                             | 查询起止窗口设置错误                                         |
 | invalid-start-date                                           | 查询起始日期含非法取值                                       |
 | invalid-end-date                                             | 查询起始日期含非法取值                                       |
@@ -4170,9 +4170,9 @@ API Key 权限：交易<br>
 
 ### 请求参数
 
-| 参数名称        | 是否必须 | 类型   | 描述                                                         | 默认值 | 取值范围 |
-| --------------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
-| client-order-id | true     | string | 用户自编订单号，必须已有该订单存在，否则下次下单时不允许用此值 |        |          |
+| 参数名称        | 是否必须 | 类型   | 描述           | 默认值 | 取值范围 |
+| --------------- | -------- | ------ | -------------- | ------ | -------- |
+| client-order-id | true     | string | 用户自编订单号 |        |          |
 
 
 > Response:
@@ -4343,7 +4343,7 @@ API Key 权限：交易<br>
 | 参数名称         | 是否必须 | 类型     | 描述                                                         | 默认值 | 取值范围           |
 | ---------------- | -------- | -------- | ------------------------------------------------------------ | ------ | ------------------ |
 | order-ids        | false    | string[] | 订单编号列表（order-ids和client-order-ids必须且只能选一个填写，不超过50张订单） |        | 单次不超过50个订单 |
-| client-order-ids | false    | string[] | 用户自编订单号列表（order-ids和client-order-ids必须且只能选一个填写，不超过50张订单），必须已有该订单存在，否则下次下单时不允许用此值 |        | 单次不超过50个订单 |
+| client-order-ids | false    | string[] | 用户自编订单号列表（order-ids和client-order-ids必须且只能选一个填写，不超过50张订单） |        | 单次不超过50个订单 |
 
 > Response:
 
@@ -7638,16 +7638,16 @@ REQ频道支持5档/20档/150档全量数据的获取。<br>
 
 ### 数据更新字段列表
 
-| 字段 | 数据类型       | 描述   |
-| ---- | -------------- | ------ |
-|      | symbol         | string |
-|      | nav            | float  |
-|      | navTime        | long   |
-|      | outstanding    | float  |
-|      | basket         | object |
-|      | { currency     | float  |
-|      | amount }       | float  |
-|      | actualLeverage | float  |
+| 字段名称       | 数据类型 | 描述                                        |
+| -------------- | -------- | ------------------------------------------|
+| symbol         | string   | 杠杆ETP交易代码                             |
+| nav            | float    | 最新净值                                   |
+| navTime        | long     | 最新净值更新时间 (unix time in millisecond) |
+| outstanding    | float    | ETP总份额                                 |
+| basket         | object   | 篮子                                      |
+| { currency     | float    | 币种                                      |
+| amount }       | float    | 金额                                      |
+| actualLeverage | float    | 实际杠杆率                                 |
 
 # Websocket资产及订单（即将废弃）
 
@@ -8662,7 +8662,6 @@ API Key 权限：读取
 		"type":"sell-limit",
 		"orderId":27163533,
 		"clientOrderId":"abc123",
-		"orderSource":"spot-api",
 		"orderStatus":"submitted",
 		"symbol":"btcusdt",
 		"eventType":"creation"
@@ -8679,7 +8678,6 @@ API Key 权限：读取
 | accountId       | long     | 账户ID                                                       |
 | orderId         | long     | 订单ID                                                       |
 | clientOrderId   | string   | 用户自编订单号（如有）                                       |
-| orderSource     | string   | 订单来源                                                     |
 | orderPrice      | string   | 订单价格                                                     |
 | orderSize       | string   | 订单数量（对市价买单无效）                                   |
 | orderValue      | string   | 订单金额（仅对市价买单有效）                                 |
@@ -8706,13 +8704,9 @@ API Key 权限：读取
 		"tradeTime":1583854188883,
 		"aggressor":true,
 		"remainAmt":"0.000000000000000400000000000000000000",
-		"execAmt":"2",
 		"orderId":27163536,
 		"type":"sell-limit",
 		"clientOrderId":"abc123",
-		"orderSource":"spot-api",
-		"orderPrice":"15000",
-		"orderSize":"0.01",
 		"orderStatus":"filled",
 		"symbol":"btcusdt",
 		"eventType":"trade"
@@ -8731,16 +8725,11 @@ API Key 权限：读取
 | orderId       | long     | 订单ID                                                       |
 | type          | string   | 订单类型，有效值：buy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok |
 | clientOrderId | string   | 用户自编订单号（如有）                                       |
-| orderSource   | string   | 订单来源                                                     |
-| orderPrice    | string   | 原始订单价（市价单无效）                                     |
-| orderSize     | string   | 原始订单数量（市价买单无效）                                 |
-| orderValue    | string   | 原始订单金额（仅对市价买单有效）                             |
 | tradeId       | long     | 成交ID                                                       |
 | tradeTime     | long     | 成交时间                                                     |
 | aggressor     | bool     | 是否交易主动方，有效值： true (taker), false (maker)         |
 | orderStatus   | string   | 订单状态，有效值：partial-filled, filled                     |
-| remainAmt     | string   | 该订单未成交数量（市价买单为未成交金额）                     |
-| execAmt       | string   | 该订单累计成交量                                             |
+| remainAmt     | string   | 未成交数量（市价买单为未成交金额）                           |
 
 注：<BR>
 - 止盈止损订单的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<BR>
@@ -8756,13 +8745,9 @@ API Key 权限：读取
 	{
 		"lastActTime":1583853475406,
 		"remainAmt":"2.000000000000000000",
-		"execAmt":"2",
 		"orderId":27163533,
 		"type":"sell-limit",
 		"clientOrderId":"abc123",
-		"orderSource":"spot-api",
-		"orderPrice":"15000",
-		"orderSize":"0.01",
 		"orderStatus":"canceled",
 		"symbol":"btcusdt",
 		"eventType":"cancellation"
@@ -8779,13 +8764,8 @@ API Key 权限：读取
 | orderId       | long     | 订单ID                                                       |
 | type          | string   | 订单类型，有效值：buy-market, sell-market, buy-limit, sell-limit, buy-limit-maker, sell-limit-maker, buy-ioc, sell-ioc, buy-limit-fok, sell-limit-fok |
 | clientOrderId | string   | 用户自编订单号（如有）                                       |
-| orderSource   | string   | 订单来源                                                     |
-| orderPrice    | string   | 原始订单价（市价单无效）                                     |
-| orderSize     | string   | 原始订单数量（市价买单无效）                                 |
-| orderValue    | string   | 原始订单金额（仅对市价买单有效）                             |
 | orderStatus   | string   | 订单状态，有效值：partial-canceled, canceled                 |
-| remainAmt     | string   | 该订单未成交数量（市价买单为未成交金额）                     |
-| execAmt       | string   | 该订单累计成交量                                             |
+| remainAmt     | string   | 未成交数量（市价买单为未成交金额）                           |
 | lastActTime   | long     | 订单最近更新时间                                             |
 注：<BR>
 - 止盈止损订单的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<BR>
