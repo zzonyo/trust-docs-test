@@ -268,12 +268,21 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-0-3-2020-12-02-modified-order-details-acquisition-interface-when-querying-cancelation-data-of-orders-that-have-not-been-partially-filled-if-created_at-and-order_type-parameters-are-not-uploaded-the-data-that-can-be-queried-reduced-from-last-12-hours-to-last-2-hours-modified-query-history-orders-interface-when-querying-cancelation-data-of-orders-that-have-not-been-partially-filled-the-data-that-can-be-retained-reduced-from-last-24-hours-to-last-2-hours" class="toc-h2 toc-link" data-title="1.0.3 2020-12-02 【Modified “Order details acquisition” interface (When querying cancelation data of orders that have not been partially filled, if “created_at” and “order_type” parameters are not uploaded, the data that can be queried reduced from last 12 hours to last 2 hours.); modified “Query history orders” interface (When querying cancelation data of orders that have not been partially filled, the data that can be retained reduced from last 24 hours to last 2 hours.)】">1.0.3 2020-12-02 【Modified “Order details acquisition” interface (When querying cancelation data of orders that have not been partially filled, if “created_at” and “order_type” parameters are not uploaded, the data that can be queried reduced from last 12 hours to last 2 hours.); modified “Query history orders” interface (When querying cancelation data of orders that have not been partially filled, the data that can be retained reduced from last 24 hours to last 2 hours.)】</a>
+                  </li>
+                  <li>
+                    <a href="#1-0-2-2020-11-24-added-query-historical-settlement-records-of-the-platform-interface-modified-added-fields-of-return-parameter-for-quot-query-liquidation-orders-quot-interface-and-quot-subscribe-liquidation-order-data-quot-interface" class="toc-h2 toc-link" data-title="1.0.2 2020-11-24 【 Added: Query historical settlement records of the platform interface. Modified:  Added fields of return parameter for "Query Liquidation Orders" interface and "Subscribe Liquidation Order Data" interface】">1.0.2 2020-11-24 【 Added: Query historical settlement records of the platform interface. Modified:  Added fields of return parameter for "Query Liquidation Orders" interface and "Subscribe Liquidation Order Data" interface】</a>
+                  </li>
+                  <li>
+                    <a href="#1-0-1-2020-10-29-updated-websocket-messages-of-account-topic-will-be-pushed-when-leverage-switch-succeeds-websocket-messages-of-position-topic-will-be-pushed-when-leverage-switch-succeeds" class="toc-h2 toc-link" data-title="1.0.1 2020-10-29 【Updated: websocket messages of account topic will be pushed when leverage switch succeeds; websocket messages of position topic will be pushed when leverage switch succeeds;】">1.0.1 2020-10-29 【Updated: websocket messages of account topic will be pushed when leverage switch succeeds; websocket messages of position topic will be pushed when leverage switch succeeds;】</a>
+                  </li>
+                  <li>
                     <a href="#1-0-0-2020-10-26-14-00-gmt-8" class="toc-h2 toc-link" data-title="1.0.0 2020-10-26 14:00(GMT+8)">1.0.0 2020-10-26 14:00(GMT+8)</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#usdt-margined-swap-api-access-guide" class="toc-h1 toc-link" data-title="USDT Margined Swap API Access Guide">USDT Margined Swap API Access Guide</a>
+            <a href="#swap-api-access-guide" class="toc-h1 toc-link" data-title="Swap API Access Guide">Swap API Access Guide</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#api-list" class="toc-h2 toc-link" data-title="API List">API List</a>
@@ -289,6 +298,9 @@
                   </li>
                   <li>
                     <a href="#api-limitation-on-order-cancellation-ratio-unavailable-now" class="toc-h2 toc-link" data-title="API Limitation on Order Cancellation Ratio(unavailable now)">API Limitation on Order Cancellation Ratio(unavailable now)</a>
+                  </li>
+                  <li>
+                    <a href="#get-system-status" class="toc-h2 toc-link" data-title="Get system status">Get system status</a>
                   </li>
                   <li>
                     <a href="#query-whether-the-system-is-available" class="toc-h2 toc-link" data-title="Query whether the system is available">Query whether the system is available</a>
@@ -308,7 +320,7 @@
               </ul>
           </li>
           <li>
-            <a href="#usdt-margined-swap-api-faq" class="toc-h1 toc-link" data-title="USDT Margined Swap API FAQ">USDT Margined Swap API FAQ</a>
+            <a href="#swap-api-faq" class="toc-h1 toc-link" data-title="Swap API FAQ">Swap API FAQ</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#access-and-authentication" class="toc-h2 toc-link" data-title="Access and Authentication">Access and Authentication</a>
@@ -328,7 +340,7 @@
               </ul>
           </li>
           <li>
-            <a href="#usdt-margined-swap-market-data-interface" class="toc-h1 toc-link" data-title="USDT Margined Swap Market Data interface">USDT Margined Swap Market Data interface</a>
+            <a href="#swap-market-data-interface" class="toc-h1 toc-link" data-title="Swap Market Data interface">Swap Market Data interface</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#query-swap-info" class="toc-h2 toc-link" data-title="Query Swap Info">Query Swap Info</a>
@@ -382,6 +394,9 @@
                     <a href="#query-liquidation-orders" class="toc-h2 toc-link" data-title="Query Liquidation Orders">Query Liquidation Orders</a>
                   </li>
                   <li>
+                    <a href="#query-historical-settlement-records-of-the-platform-interface" class="toc-h2 toc-link" data-title="Query historical settlement records of the platform interface">Query historical settlement records of the platform interface</a>
+                  </li>
+                  <li>
                     <a href="#query-funding-rate" class="toc-h2 toc-link" data-title="Query funding rate">Query funding rate</a>
                   </li>
                   <li>
@@ -399,7 +414,7 @@
               </ul>
           </li>
           <li>
-            <a href="#usdt-margined-swap-account-interface" class="toc-h1 toc-link" data-title="USDT Margined Swap Account Interface">USDT Margined Swap Account Interface</a>
+            <a href="#swap-account-interface" class="toc-h1 toc-link" data-title="Swap Account Interface">Swap Account Interface</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#query-user-s-account-information" class="toc-h2 toc-link" data-title="Query User’s Account Information">Query User’s Account Information</a>
@@ -452,7 +467,7 @@
               </ul>
           </li>
           <li>
-            <a href="#usdt-margined-swap-trade-interface" class="toc-h1 toc-link" data-title="USDT Margined Swap Trade Interface">USDT Margined Swap Trade Interface</a>
+            <a href="#swap-trade-interface" class="toc-h1 toc-link" data-title="Swap Trade Interface">Swap Trade Interface</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#place-an-order" class="toc-h2 toc-link" data-title="Place an Order">Place an Order</a>
@@ -505,7 +520,7 @@
               </ul>
           </li>
           <li>
-            <a href="#usdt-margined-swap-transferring-interface" class="toc-h1 toc-link" data-title="USDT Margined Swap Transferring Interface">USDT Margined Swap Transferring Interface</a>
+            <a href="#swap-transferring-interface" class="toc-h1 toc-link" data-title="Swap Transferring Interface">Swap Transferring Interface</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#transfer-margin-between-spot-account-and-usdt-margined-swap-account" class="toc-h2 toc-link" data-title="Transfer margin between Spot account and USDT Margined Swap account">Transfer margin between Spot account and USDT Margined Swap account</a>
@@ -516,7 +531,7 @@
               </ul>
           </li>
           <li>
-            <a href="#usdt-margined-swap-websocket-reference" class="toc-h1 toc-link" data-title="USDT Margined Swap WebSocket Reference">USDT Margined Swap WebSocket Reference</a>
+            <a href="#swap-websocket-reference" class="toc-h1 toc-link" data-title="Swap WebSocket Reference">Swap WebSocket Reference</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#api-list-2" class="toc-h2 toc-link" data-title="API List">API List</a>
@@ -691,13 +706,55 @@
 Market makers will not be able to use point cards, VIP rate, rebate or any other fee promotions.
 </aside>
 <h3 id='eligibility-criteria-as-a-market-maker-on-huobi-futures'>Eligibility Criteria as a Market Maker on Huobi Futures</h3>
-<p>Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Futures long-term Market Maker project.If you have more than 5 BTC in your Huobi future account, or more than 3 BTC in your Huobi coin margined swap account, or you have more than 3 BTC in your Huobi option account,or more than 30000 USDT in your Huobi USDT Margined swap account, please send the following information to dm_mm@huobi.com:</p>
+<p>Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Futures long-term Market Maker project.If you have more than 3 BTC in your Huobi future account, or more than 3 BTC in your Huobi coin margined swap account, or you have more than 3 BTC in your Huobi option account,or more than 30000 USDT in your Huobi USDT Margined swap account, please send the following information to dm_mm@huobi.com:</p>
 
 <ol>
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-0-0-2020-10-26-14-00-gmt-8'>1.0.0 2020-10-26 14:00(GMT+8)</h2><h1 id='usdt-margined-swap-api-access-guide'>USDT Margined Swap API Access Guide</h1><h2 id='api-list'>API List</h2>
+<h1 id='changelog'>Changelog</h1><h2 id='1-0-3-2020-12-02-modified-order-details-acquisition-interface-when-querying-cancelation-data-of-orders-that-have-not-been-partially-filled-if-created_at-and-order_type-parameters-are-not-uploaded-the-data-that-can-be-queried-reduced-from-last-12-hours-to-last-2-hours-modified-query-history-orders-interface-when-querying-cancelation-data-of-orders-that-have-not-been-partially-filled-the-data-that-can-be-retained-reduced-from-last-24-hours-to-last-2-hours'>1.0.3 2020-12-02 【Modified “Order details acquisition” interface (When querying cancelation data of orders that have not been partially filled, if “created_at” and “order_type” parameters are not uploaded, the data that can be queried reduced from last 12 hours to last 2 hours.); modified “Query history orders” interface (When querying cancelation data of orders that have not been partially filled, the data that can be retained reduced from last 24 hours to last 2 hours.)】</h2><h3 id='1-modified-order-details-acquisition-interface-when-querying-cancelation-data-of-orders-that-have-not-been-partially-filled-if-created_at-and-order_type-parameters-are-not-uploaded-the-data-that-can-be-queried-reduced-from-last-12-hours-to-last-2-hours'>1、Modified “Order details acquisition” interface (When querying cancelation data of orders that have not been partially filled, if “created_at” and “order_type” parameters are not uploaded, the data that can be queried reduced from last 12 hours to last 2 hours.)</h3>
+<ul>
+<li><p>Interface Name：Order details acquisition</p></li>
+<li><p>Interface Type：private</p></li>
+<li><p>Interface URL：linear-swap-api/v1/swap_order_detail</p></li>
+</ul>
+<h3 id='2-modified-query-history-orders-interface-when-querying-cancelation-data-of-orders-that-have-not-been-partially-filled-the-data-that-can-be-retained-reduced-from-last-24-hours-to-last-2-hours'>2、modified “Query history orders” interface (When querying cancelation data of orders that have not been partially filled, the data that can be retained reduced from last 24 hours to last 2 hours.)</h3>
+<ul>
+<li><p>Interface Name：Get History Orders</p></li>
+<li><p>Interface Type：private</p></li>
+<li><p>Interface URL：linear-swap-api/v1/swap_hisorders</p></li>
+</ul>
+<h2 id='1-0-2-2020-11-24-added-query-historical-settlement-records-of-the-platform-interface-modified-added-fields-of-return-parameter-for-quot-query-liquidation-orders-quot-interface-and-quot-subscribe-liquidation-order-data-quot-interface'>1.0.2 2020-11-24 【 Added: Query historical settlement records of the platform interface. Modified:  Added fields of return parameter for &quot;Query Liquidation Orders&quot; interface and &quot;Subscribe Liquidation Order Data&quot; interface】</h2><h3 id='1-added-query-historical-settlement-records-of-the-platform-interface'>1、Added “Query historical settlement records of the platform” interface</h3>
+<ul>
+<li><p>Interface Name: Query historical settlement records of the platform</p></li>
+<li><p>Interface Type: public</p></li>
+<li><p>Interface URL: linear-swap-api/v1/swap_settlement_records</p></li>
+</ul>
+<h3 id='2-added-fields-of-return-parameter-for-quot-query-liquidation-orders-quot-interface-amount-and-trade_turnover-are-added-for-return-parameter-data-quot-quot-amount-quot-represents-the-liquidation-amount-token-trade_turnover-represents-the-liquidation-amount-quotation-token'>2、Added fields of return parameter for &quot;Query Liquidation Orders&quot; interface（“amount” and “trade_turnover”  are added for return parameter “data&quot;. &quot;amount&quot; represents the liquidation amount (token); “trade_turnover” represents the liquidation amount (quotation token) ）</h3>
+<ul>
+<li><p>Interface Name: Query Liquidation Orders</p></li>
+<li><p>Interface Type: public</p></li>
+<li><p>Interface URL: linear-swap-api/v1/swap_liquidation_orders</p></li>
+</ul>
+<h3 id='3-added-fields-of-return-parameter-for-quot-subscribe-liquidation-order-data-quot-interface-amount-and-trade_turnover-are-added-for-return-parameter-data-quot-quot-amount-quot-represents-the-liquidation-amount-token-trade_turnover-represents-the-liquidation-amount-quotation-token'>3、Added fields of return parameter for &quot;Subscribe Liquidation Order Data&quot; interface（“amount” and “trade_turnover”  are added for return parameter “data&quot;. &quot;amount&quot; represents the liquidation amount (token); “trade_turnover” represents the liquidation amount (quotation token)）</h3>
+<ul>
+<li><p>Interface Name: Subscribe Liquidation Order Data</p></li>
+<li><p>Interface Type: public</p></li>
+<li><p>Subscription topic: public.$contract_code.liquidation_orders</p></li>
+</ul>
+<h2 id='1-0-1-2020-10-29-updated-websocket-messages-of-account-topic-will-be-pushed-when-leverage-switch-succeeds-websocket-messages-of-position-topic-will-be-pushed-when-leverage-switch-succeeds'>1.0.1 2020-10-29 【Updated: websocket messages of account topic will be pushed when leverage switch succeeds; websocket messages of position topic will be pushed when leverage switch succeeds;】</h2><h3 id='1-subscribe-account-equity-updates-data-return-parameters-added-switch_lever_rate-event-type-to-represent-switching-leverages-when-the-leverage-is-successfully-switched-a-latest-information-on-assets-will-be-pushed-with-event-switch_lever_rate-quot'>1、Subscribe Account Equity Updates Data（Return parameters added “switch_lever_rate” event type to represent switching leverages. When the leverage is successfully switched, a latest information on assets will be pushed with event “switch_lever_rate&quot;.）</h3>
+<ul>
+<li><p>Interface Name：Subscribe Account Equity Updates Data</p></li>
+<li><p>Interface Type：private</p></li>
+<li><p>Subscribe topic：accounts.$contract_code</p></li>
+</ul>
+<h3 id='2-subscribe-position-updates-return-parameters-added-switch_lever_rate-event-type-to-represent-switching-leverages-when-the-leverage-is-successfully-switched-a-latest-information-on-positions-will-be-pushed-with-event-switch_lever_rate-quot-the-information-will-not-be-pushed-when-the-user-39-s-position-is-0'>2、Subscribe Position Updates（Return parameters added “switch_lever_rate” event type to represent switching leverages. When the leverage is successfully switched, a latest information on positions will be pushed with event “switch_lever_rate&quot; (the information will not be pushed when the user&#39;s position is 0).）</h3>
+<ul>
+<li><p>Interface Name：Subscribe Position Updates</p></li>
+<li><p>Interface Type：private</p></li>
+<li><p>Subscribe topic：positions.$contract_code</p></li>
+</ul>
+<h2 id='1-0-0-2020-10-26-14-00-gmt-8'>1.0.0 2020-10-26 14:00(GMT+8)</h2><h1 id='swap-api-access-guide'>Swap API Access Guide</h1><h2 id='api-list'>API List</h2>
 <table><thead>
 <tr>
 <th>permission type</th>
@@ -794,6 +851,14 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>linear-swap-api/v1/swap_liquidation_orders</td>
 <td>GET</td>
 <td>Query Liquidation Order Information</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Market Data</td>
+<td>linear-swap-api/v1/swap_settlement_records</td>
+<td>GET</td>
+<td>Query historical settlement records of the platform interface</td>
 <td>No</td>
 </tr>
 <tr>
@@ -997,7 +1062,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Yes</td>
 </tr>
 <tr>
-<td>Read</td>
+<td>Trade</td>
 <td>Account</td>
 <td>linear-swap-api/v1/swap_transfer_inner</td>
 <td>POST</td>
@@ -1166,7 +1231,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </tr>
 </tbody></table>
 <h3 id='notice'>Notice</h3>
-<p>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot;.</p>
+<p>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot; for debug purpose. If your server is deployed in AWS, we recommend using &quot;https://api.hbdm.vn&quot;.</p>
 <h2 id='signature-authentication-amp-verification'>Signature Authentication &amp; Verification</h2><h3 id='signature-guide'>Signature Guide</h3>
 <p>Considering that API requests may get tampered in the process of transmission, to keep the transmission secure, you have to use your API Key to do Signature Authentication for all private interface except for public interface (used for acuqiring basic information and market data), in this way to verify whether the parameters/ parameter value get tampered or not in the process of transmission</p>
 
@@ -1282,7 +1347,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <p>Please note that, for both public interface and private interface, there are rate limits, more details are as below:</p>
 
 <ul>
-<li><p>Generally, the private interface rate limit of API key is at most 30 times every 3 second for each UID (this 30 times every 3 second rate limit is shared by all the altcoins contracts).</p></li>
+<li><p>Generally, the private interface rate limit of API key is at most 45 times every 3 second for each UID (this 45 times every 3 second rate limit is shared by all the altcoins contracts).</p></li>
 <li><p>For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 120 times every 3 second at most for each IP (this 120 times every 3 second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).</p></li>
 <li><p>For public interface to get market data such as  Get Kline data, Get Market Data Overview, Get Contract Information,Get market in-depth data, Get premium index Kline, Get real-time forecast capital rate kline, Get basis data, Get the last Trade of a Contract and so on：</p>
 
@@ -1321,7 +1386,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 
 <ul>
 <li>When placing order by using the four prohibited order price types during the prohibition period, the message header returned by interface will include the field: &quot;recovery-time: recovery timestamp&quot; whose unit is millisecond, showing the end time of prohibition, or the access retrieval timestamp; if you are not in the prohibition period, the field is not included in returned header;</li>
-<li>Please note that our system calculates order cancellation ratio according to UID and therefore, the master account UID and sub-accounts UIDs will be counted separately. The calculation period is 10 min/time.</li>
+<li>Please note that our system calculates order cancellation ratio according to UID and therefore, the master account UID and sub-accounts UIDs will be counted separately. The calculation period is 10 min/time(The start time starts at 00:00 and the end time is 00:10. Every 10 minutes is a cycle.).</li>
 </ul></li>
 <li><p>Definition of Indicators：</p>
 
@@ -1351,206 +1416,327 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <li>5. Please try to extend your request polling cycle when implementing your strategy.</li>
 </ul></li>
 </ul>
+<h2 id='get-system-status'>Get system status</h2>
+<p>This endpoint allows users to get system status, Incidents and planned maintenance.</p>
 
-<!--
-## Get system status
+<p>The system status can also be obtained through email, SMS, webhook, RSS/Atom feed. Users can You can click <a href='https://status-linear-swap.huobigroup.com/ '>here</a> to subscribe. The subscription function depends on Google services. Before you subscribe, please ensure that you can access Google services normally. </p>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://status-linear-swap.huobigroup.com/api/v2/summary.json"</span>
+</code></pre><h3 id='http-request'>HTTP Request</h3>
+<ul>
+<li>GET <code>https://status-linear-swap.huobigroup.com/api/v2/summary.json</code></li>
+</ul>
+<h3 id='request-parameters'>Request Parameters</h3>
+<p>No parameter is available for this endpoint.</p>
 
-This endpoint allows users to get system status, Incidents and planned maintenance.
-
-The system status can also be obtained through email, SMS, webhook, RSS/Atom feed. Users can You can click <a href='https://status-swap.huobigroup.com/'>here</a> to subscribe. The subscription function depends on Google services. Before you subscribe, please ensure that you can access Google services normally. 
-
-```shell
-curl "https://status-swap.huobigroup.com/api/v2/summary.json"
-```
-
-### HTTP Request
-
-- GET `https://status-swap.huobigroup.com/api/v2/summary.json`
-
-### Request Parameters
-
-No parameter is available for this endpoint.
-
-> Response:
-
-```json
-{
-  "page": {  // Basic information of status page
-    "id": "p0qjfl24znv5",  // page id
-    "name": "Huobi",  // page name
-    "url": "https://status-swap.huobigroup.com/", // page url
-    "time_zone": "Etc/UTC", // time zone
-    "updated_at": "2020-02-07T10:25:14.717Z" // page update time
-  },
-  "components": [  // System components and their status
-    {
-      "id": "h028tnzw1n5l",  // component id
-      "name": "Deposit", // component name
-      "status": "operational", // component status
-      "created_at": "2019-12-05T02:07:12.372Z",  // component create time
-      "updated_at": "2020-02-07T09:27:15.563Z", // component update time
-      "position": 1,
-      "description": null,
-      "showcase": true,
-      "group_id": "gtd0nyr3pf0k",  
-      "page_id": "p0qjfl24znv5", 
-      "group": false,
-      "only_show_if_degraded": false
-    }
-  ],
-  "incidents": [ // System fault incidents and their status
-        {
-            "id": "rclfxz2g21ly",  // incident id
-            "name": "Market data is delayed",  // incident name
-            "status": "investigating",  // incident stutus
-            "created_at": "2020-02-11T03:15:01.913Z",  // incident create time
-            "updated_at": "2020-02-11T03:15:02.003Z",   // incident update time
-            "monitoring_at": null,
-            "resolved_at": null,
-            "impact": "minor",  // incident impact
-            "shortlink": "http://stspg.io/pkvbwp8jppf9",
-            "started_at": "2020-02-11T03:15:01.906Z",
-            "page_id": "p0qjfl24znv5",
-            "incident_updates": [ 
-                {
-                    "id": "dwfsk5ttyvtb",   
-                    "status": "investigating",   
-                    "body": "Market data is delayed", 
-                    "incident_id": "rclfxz2g21ly",   
-                    "created_at": "2020-02-11T03:15:02.000Z",    
-                    "updated_at": "2020-02-11T03:15:02.000Z",  
-                    "display_at": "2020-02-11T03:15:02.000Z",   
-                    "affected_components": [  
-                        {
-                            "code": "nctwm9tghxh6",  
-                            "name": "Market data",  
-                            "old_status": "operational",  
-                            "new_status": "degraded_performance"  
-                        }
-                    ],
-                    "deliver_notifications": true,
-                    "custom_tweet": null,
-                    "tweet_id": null
-                }
-            ],
-            "components": [  
-                {
-                    "id": "nctwm9tghxh6",   
-                    "name": "Market data",  
-                    "status": "degraded_performance", 
-                    "created_at": "2020-01-13T09:34:48.284Z", 
-                    "updated_at": "2020-02-11T03:15:01.951Z", 
-                    "position": 8,
-                    "description": null,
-                    "showcase": false,
-                    "group_id": null,
-                    "page_id": "p0qjfl24znv5",
-                    "group": false,
-                    "only_show_if_degraded": false
-                }
-            ]
-        }
-    ],
-      "scheduled_maintenances": [  // System scheduled maintenance events and their status
-        {
-            "id": "k7g299zl765l", // incident id
-            "name": "Schedule maintenance", // incident name
-            "status": "scheduled", // incident status
-            "created_at": "2020-02-11T03:16:31.481Z",  // incident create time
-            "updated_at": "2020-02-11T03:16:31.530Z",  // incident update time
-            "monitoring_at": null,
-            "resolved_at": null,
-            "impact": "maintenance",  // incident impact
-            "shortlink": "http://stspg.io/md4t4ym7nytd",
-            "started_at": "2020-02-11T03:16:31.474Z",
-            "page_id": "p0qjfl24znv5",
-            "incident_updates": [  
-                {
-                    "id": "8whgr3rlbld8",  
-                    "status": "scheduled", 
-                    "body": "We will be undergoing scheduled maintenance during this time.", 
-                    "incident_id": "k7g299zl765l",  
-                    "created_at": "2020-02-11T03:16:31.527Z",  
-                    "updated_at": "2020-02-11T03:16:31.527Z",  
-                    "display_at": "2020-02-11T03:16:31.527Z",  
-                    "affected_components": [  
-                        {
-                            "code": "h028tnzw1n5l",  
-                            "name": "Deposit And Withdraw - Deposit",  
-                            "old_status": "operational",  
-                            "new_status": "operational" 
-                        }
-                    ],
-                    "deliver_notifications": true,
-                    "custom_tweet": null,
-                    "tweet_id": null
-                }
-            ],
-            "components": [  
-                {
-                    "id": "h028tnzw1n5l",  
-                    "name": "Deposit", 
-                    "status": "operational", 
-                    "created_at": "2019-12-05T02:07:12.372Z",  
-                    "updated_at": "2020-02-10T12:34:52.970Z",  
-                    "position": 1,
-                    "description": null,
-                    "showcase": false,
-                    "group_id": "gtd0nyr3pf0k",
-                    "page_id": "p0qjfl24znv5",
-                    "group": false,
-                    "only_show_if_degraded": false
-                }
-            ],
-            "scheduled_for": "2020-02-15T00:00:00.000Z",  // scheduled maintenance start time
-            "scheduled_until": "2020-02-15T01:00:00.000Z"  // scheduled maintenance end time
-        }
-    ],
-    "status": {  // The overall current status of the system
-        "indicator": "minor",   // system indicator
-        "description": "Partially Degraded Service"  // system description
-    }
-}
-```
-
-### Response Content
-
-|Field | Data Type | Description
-|--------- |  -----------|  -----------
-|page    |                     | basic information of status page
-|{id        |  string                   | page id
-|name      |      string                | page name
-|url     |    string                  | page url
-|time_zone     |     string                 | time zone
-|updated_at}     |    string                  | page update time
-|components  |                      | System components and their status
-|[{id        |  string                    | component id
-|name        |    string                  | component name, including Order submission, Order cancellation, Deposit etc.
-|status        |    string                  | component status, value range: operational, degraded_performance, partial_outage, major_outage, under maintenance
-|created_at        |    string                  | component create time
-|updated_at        |    string                  | component update time
-|.......}]        |                     | for details of other fields, please refer to the return example
-|incidents  |           | System fault incident and their status. If there is no fault at present, it will return to null
-|[{id        |       string               | incident id
-|name        |      string                | incident name
-|status        |     string                 | incident staus, value range: investigating, identified, monitoring, resolved
-|created_at        |       string               | incident creat time
-|updated_at        |      string                | incident update time
-|.......}]        |                     | for details of other fields, please refer to the return example
-|scheduled_maintenances|                     | System scheduled maintenance incident and status. If there is no scheduled maintenance at present, it will return to null
-|[{id        |     string                 |  incident id
-|name        |      string                | incident name
-|status        |       string               | incident staus, value range: scheduled, in progress, verifying, completed
-|created_at        |     string                 | incident creat time
-|updated_at        |     string                 | incident update time
-|scheduled_for       |      string                | scheduled maintenance start time
-|scheduled_until       |     string                 | scheduled maintenance end time
-|.......}]        |                     | for details of other fields, please refer to the return example
-|status   |                       | The overall current status of the system
-|{indicator        |    string                  | system indicator, value range: none, minor, major, critical, maintenance
-|description}     |      string                | system description, value range: All Systems Operational, Minor Service Outager, Partial System Outage, Partially Degraded Service, Service Under Maintenance
-
--->
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"page"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">Basic</span><span class="w"> </span><span class="err">information</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">status</span><span class="w"> </span><span class="err">page</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">page</span><span class="w"> </span><span class="err">id</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Huobi Futures-USDT-margined Swaps"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">page</span><span class="w"> </span><span class="err">name</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://status-linear-swap.huobigroup.com"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">page</span><span class="w"> </span><span class="err">url</span><span class="w">
+    </span><span class="s2">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Asia/Singapore"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">time</span><span class="w"> </span><span class="err">zone</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-07T10:25:14.717Z"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">page</span><span class="w"> </span><span class="err">update</span><span class="w"> </span><span class="err">time</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">System</span><span class="w"> </span><span class="err">components</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">their</span><span class="w"> </span><span class="err">status</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"h028tnzw1n5l"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">component</span><span class="w"> </span><span class="err">id</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deposit"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">component</span><span class="w"> </span><span class="err">name</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operational"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">component</span><span class="w"> </span><span class="err">status</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-05T02:07:12.372Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">component</span><span class="w"> </span><span class="err">create</span><span class="w"> </span><span class="err">time</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-07T09:27:15.563Z"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">component</span><span class="w"> </span><span class="err">update</span><span class="w"> </span><span class="err">time</span><span class="w">
+      </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"showcase"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gtd0nyr3pf0k"</span><span class="p">,</span><span class="w">  
+      </span><span class="s2">"page_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"only_show_if_degraded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"incidents"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">System</span><span class="w"> </span><span class="err">fault</span><span class="w"> </span><span class="err">incidents</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">their</span><span class="w"> </span><span class="err">status</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rclfxz2g21ly"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">id</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Market data is delayed"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">name</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"investigating"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">stutus</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:01.913Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">create</span><span class="w"> </span><span class="err">time</span><span class="w">
+            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:02.003Z"</span><span class="p">,</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">update</span><span class="w"> </span><span class="err">time</span><span class="w">
+            </span><span class="s2">"monitoring_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"impact"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minor"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">impact</span><span class="w">
+            </span><span class="s2">"shortlink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://stspg.io/pkvbwp8jppf9"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:01.906Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"page_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"incident_updates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> 
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dwfsk5ttyvtb"</span><span class="p">,</span><span class="w">   
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"investigating"</span><span class="p">,</span><span class="w">   
+                    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Market data is delayed"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"incident_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rclfxz2g21ly"</span><span class="p">,</span><span class="w">   
+                    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:02.000Z"</span><span class="p">,</span><span class="w">    
+                    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:02.000Z"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"display_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:02.000Z"</span><span class="p">,</span><span class="w">   
+                    </span><span class="s2">"affected_components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nctwm9tghxh6"</span><span class="p">,</span><span class="w">  
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Market data"</span><span class="p">,</span><span class="w">  
+                            </span><span class="s2">"old_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operational"</span><span class="p">,</span><span class="w">  
+                            </span><span class="s2">"new_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"degraded_performance"</span><span class="w">  
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="s2">"deliver_notifications"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"custom_tweet"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"tweet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nctwm9tghxh6"</span><span class="p">,</span><span class="w">   
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Market data"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"degraded_performance"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-13T09:34:48.284Z"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:15:01.951Z"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"showcase"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"page_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"only_show_if_degraded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"scheduled_maintenances"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">System</span><span class="w"> </span><span class="err">scheduled</span><span class="w"> </span><span class="err">maintenance</span><span class="w"> </span><span class="err">events</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">their</span><span class="w"> </span><span class="err">status</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"k7g299zl765l"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">id</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Schedule maintenance"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">name</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scheduled"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">status</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.481Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">create</span><span class="w"> </span><span class="err">time</span><span class="w">
+            </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.530Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">update</span><span class="w"> </span><span class="err">time</span><span class="w">
+            </span><span class="s2">"monitoring_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"impact"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maintenance"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">incident</span><span class="w"> </span><span class="err">impact</span><span class="w">
+            </span><span class="s2">"shortlink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://stspg.io/md4t4ym7nytd"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"started_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.474Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"page_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"incident_updates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8whgr3rlbld8"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scheduled"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"We will be undergoing scheduled maintenance during this time."</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"incident_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"k7g299zl765l"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.527Z"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.527Z"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"display_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-11T03:16:31.527Z"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"affected_components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"h028tnzw1n5l"</span><span class="p">,</span><span class="w">  
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deposit And Withdraw - Deposit"</span><span class="p">,</span><span class="w">  
+                            </span><span class="s2">"old_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operational"</span><span class="p">,</span><span class="w">  
+                            </span><span class="s2">"new_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operational"</span><span class="w"> 
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="s2">"deliver_notifications"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"custom_tweet"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"tweet_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"components"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">  
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"h028tnzw1n5l"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deposit"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operational"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-05T02:07:12.372Z"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-10T12:34:52.970Z"</span><span class="p">,</span><span class="w">  
+                    </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"showcase"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"group_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gtd0nyr3pf0k"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"page_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p0qjfl24znv5"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"only_show_if_degraded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"scheduled_for"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-15T00:00:00.000Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">scheduled</span><span class="w"> </span><span class="err">maintenance</span><span class="w"> </span><span class="err">start</span><span class="w"> </span><span class="err">time</span><span class="w">
+            </span><span class="s2">"scheduled_until"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-15T01:00:00.000Z"</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">scheduled</span><span class="w"> </span><span class="err">maintenance</span><span class="w"> </span><span class="err">end</span><span class="w"> </span><span class="err">time</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">The</span><span class="w"> </span><span class="err">overall</span><span class="w"> </span><span class="err">current</span><span class="w"> </span><span class="err">status</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">system</span><span class="w">
+        </span><span class="s2">"indicator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minor"</span><span class="p">,</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="err">system</span><span class="w"> </span><span class="err">indicator</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Partially Degraded Service"</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">system</span><span class="w"> </span><span class="err">description</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-content'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td></td>
+<td>basic information of status page</td>
+</tr>
+<tr>
+<td>{id</td>
+<td>string</td>
+<td>page id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>page name</td>
+</tr>
+<tr>
+<td>url</td>
+<td>string</td>
+<td>page url</td>
+</tr>
+<tr>
+<td>time_zone</td>
+<td>string</td>
+<td>time zone</td>
+</tr>
+<tr>
+<td>updated_at}</td>
+<td>string</td>
+<td>page update time</td>
+</tr>
+<tr>
+<td>components</td>
+<td></td>
+<td>System components and their status</td>
+</tr>
+<tr>
+<td>[{id</td>
+<td>string</td>
+<td>component id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>component name, including Order submission, Order cancellation, Deposit etc.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>component status, value range: operational, degraded_performance, partial_outage, major_outage, under maintenance</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>string</td>
+<td>component create time</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>string</td>
+<td>component update time</td>
+</tr>
+<tr>
+<td>.......}]</td>
+<td></td>
+<td>for details of other fields, please refer to the return example</td>
+</tr>
+<tr>
+<td>incidents</td>
+<td></td>
+<td>System fault incident and their status. If there is no fault at present, it will return to null</td>
+</tr>
+<tr>
+<td>[{id</td>
+<td>string</td>
+<td>incident id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>incident name</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>incident staus, value range: investigating, identified, monitoring, resolved</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>string</td>
+<td>incident creat time</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>string</td>
+<td>incident update time</td>
+</tr>
+<tr>
+<td>.......}]</td>
+<td></td>
+<td>for details of other fields, please refer to the return example</td>
+</tr>
+<tr>
+<td>scheduled_maintenances</td>
+<td></td>
+<td>System scheduled maintenance incident and status. If there is no scheduled maintenance at present, it will return to null</td>
+</tr>
+<tr>
+<td>[{id</td>
+<td>string</td>
+<td>incident id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>incident name</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>incident staus, value range: scheduled, in progress, verifying, completed</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>string</td>
+<td>incident creat time</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>string</td>
+<td>incident update time</td>
+</tr>
+<tr>
+<td>scheduled_for</td>
+<td>string</td>
+<td>scheduled maintenance start time</td>
+</tr>
+<tr>
+<td>scheduled_until</td>
+<td>string</td>
+<td>scheduled maintenance end time</td>
+</tr>
+<tr>
+<td>.......}]</td>
+<td></td>
+<td>for details of other fields, please refer to the return example</td>
+</tr>
+<tr>
+<td>status</td>
+<td></td>
+<td>The overall current status of the system</td>
+</tr>
+<tr>
+<td>{indicator</td>
+<td>string</td>
+<td>system indicator, value range: none, minor, major, critical, maintenance</td>
+</tr>
+<tr>
+<td>description}</td>
+<td>string</td>
+<td>system description, value range: All Systems Operational, Minor Service Outager, Partial System Outage, Partially Degraded Service, Service Under Maintenance</td>
+</tr>
+</tbody></table>
 <h2 id='query-whether-the-system-is-available'>Query whether the system is available</h2>
 <ul>
 <li>Interface <code>https://api.hbdm.com/heartbeat/</code></li>
@@ -2437,6 +2623,8 @@ No parameter is available for this endpoint.
 <li><p><a href='https://github.com/hbdmapi/huobi_usdt_swap_Java'>Java</a></p></li>
 <li><p><a href='https://github.com/hbdmapi/hbdm_Python'>Python</a></p></li>
 <li><p><a href='https://github.com/hbdmapi/huobi_futures_Postman'>Postman</a></p></li>
+<li><p><a href='https://github.com/hbdmapi/huobi_futures_CSharp'>CSharp</a></p></li>
+<li><p><a href='https://github.com/hbdmapi/huobi_futures_Golang'>Golang</a></p></li>
 </ul>
 
 <p>PS: USDT Margined swap api is similar to Coin margined swap api and future api.</p>
@@ -2447,7 +2635,7 @@ No parameter is available for this endpoint.
 - <a href='https://github.com/hbdmapi/huobi_swap_Cpp'>C++</a>
 
 -->
-<h1 id='usdt-margined-swap-api-faq'>USDT Margined Swap API FAQ</h1><h2 id='access-and-authentication'>Access and Authentication</h2><h3 id='q1-is-the-api-key-for-swap-and-spot-the-same'>Q1: Is the API Key  for swap and spot the same ?</h3>
+<h1 id='swap-api-faq'>Swap API FAQ</h1><h2 id='access-and-authentication'>Access and Authentication</h2><h3 id='q1-is-the-api-key-for-swap-and-spot-the-same'>Q1: Is the API Key  for swap and spot the same ?</h3>
 <p>Yes. The Swap API key and spot API key are same. You can create API using the following link.<a href=https://www.hbg.com/zh-cn/apikey/> click here</a></p>
 <h3 id='q2-why-are-apis-disconnected-or-timeout'>Q2: Why are APIs  disconnected or timeout?</h3>
 <ol>
@@ -2619,7 +2807,7 @@ You are recommended to read the status code from the returned message. If the ab
 <p>When you report an API error, you need to attach your request URL, the original complete body of the request and the complete request URL parameters, and the original complete log of the server&#39;s response. If it is a websocket subscription, you need to provide the address of the subscription, the topic of the subscription, and the original complete log pushed by the server.</p>
 
 <p>If it is an order-related issue, use the API order query interface linear-swap-api/v1/swap_order_info to keep the complete log returned and provide your UID and order number.</p>
-<h1 id='usdt-margined-swap-market-data-interface'>USDT Margined Swap Market Data interface</h1><h2 id='query-swap-info'>Query Swap Info</h2><h3 id='example'>Example</h3>
+<h1 id='swap-market-data-interface'>Swap Market Data interface</h1><h2 id='query-swap-info'>Query Swap Info</h2><h3 id='example'>Example</h3>
 <ul>
 <li>GET  <code>linear-swap-api/v1/swap_contract_info</code></li>
 </ul>
@@ -3272,7 +3460,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>from</td>
 <td>false</td>
-<td>int</td>
+<td>long</td>
 <td>start timestamp seconds.</td>
 <td></td>
 <td></td>
@@ -3280,7 +3468,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>to</td>
 <td>false</td>
-<td>int</td>
+<td>long</td>
 <td>end timestamp seconds</td>
 <td></td>
 <td></td>
@@ -3550,7 +3738,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>&lt;tick&gt;</td>
 <td>true</td>
 <td>object</td>
-<td></td>
+<td>kline data (Start at 00:00(UTC+8) of the day)</td>
 <td></td>
 </tr>
 <tr>
@@ -3671,11 +3859,11 @@ You are recommended to read the status code from the returned message. If the ab
 <p>Tick Illustration：</p>
 </blockquote>
 <pre class="highlight plaintext"><code>"tick": {
-  "id": Message id,
+  "id": Unique Order Id(symbol level).,
   "ts": Latest Transaction time,
   "data": [
     {
-      "id": Transaction id,
+      "id": Unique Transaction Id(symbol level),
       "price": Transaction price,
       "amount": transaction amount,
       "direction": Active transaction direction,
@@ -3754,7 +3942,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>ID</td>
+<td>Unique Order Id(symbol level).</td>
 <td></td>
 <td></td>
 </tr>
@@ -3778,7 +3966,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>ID</td>
+<td>Unique Transaction Id(symbol level)</td>
 <td></td>
 <td></td>
 </tr>
@@ -3869,11 +4057,11 @@ You are recommended to read the status code from the returned message. If the ab
 <p>data Illustration：</p>
 </blockquote>
 <pre class="highlight plaintext"><code>"data": {
-  "id": Message id,
+  "id": Unique Order Id(symbol level).,
   "ts": Latest transaction time,
   "data": [
     {
-      "id": Transaction id,
+      "id": Unique Transaction Id(symbol level),
       "price": transaction price,
       "amount": transaction (amount),
       "direction": active transaction direction
@@ -3954,7 +4142,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>Transaction id</td>
+<td>Unique Transaction Id(symbol level)</td>
 <td></td>
 </tr>
 <tr>
@@ -3982,7 +4170,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>Message id</td>
+<td>Unique Order Id(symbol level).</td>
 <td></td>
 </tr>
 <tr>
@@ -5188,18 +5376,20 @@ You are recommended to read the status code from the returned message. If the ab
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">13.000000000000000000</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">13395.300000000000000000</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603597296671</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">624</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">16701.4</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606380004694</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.624</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mf">10421.6736</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
         </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
         </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603696886350</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606380004694</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><h3 id='returning-parameter-19'>Returning Parameter</h3>
@@ -5265,7 +5455,21 @@ You are recommended to read the status code from the returned message. If the ab
 <td>volume</td>
 <td>true</td>
 <td>decimal</td>
-<td>liquidated order quantity</td>
+<td>liquidation volume (cont)</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>liquidation amount (token)</td>
+<td></td>
+</tr>
+<tr>
+<td>trade_turnover</td>
+<td>true</td>
+<td>decimal</td>
+<td>liquidation amount (quotation token)</td>
 <td></td>
 </tr>
 <tr>
@@ -5325,12 +5529,201 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='query-historical-settlement-records-of-the-platform-interface'>Query historical settlement records of the platform interface</h2>
+<ul>
+<li>GET <code>/linear-swap-api/v1/swap_settlement_records</code></li>
+</ul>
+<h3 id='request-parameter-18'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>Contract Code</td>
+<td>&quot;BTC-USDT&quot;,&quot;ETH-USDT&quot;...</td>
+</tr>
+<tr>
+<td>start_time</td>
+<td>false</td>
+<td>long</td>
+<td>Start time（timestamp，unit: millisecond）</td>
+<td>Value range: [(Current time minus 90 days), Current time] ，default current time minus 90 days</td>
+</tr>
+<tr>
+<td>end_time</td>
+<td>false</td>
+<td>long</td>
+<td>End time（timestamp，unit: millisecond）</td>
+<td>Value range: (start_time, current time)，default current time</td>
+</tr>
+<tr>
+<td>page_index</td>
+<td>false</td>
+<td>int</td>
+<td>Page, default page 1 if not filled</td>
+<td></td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>false</td>
+<td>int</td>
+<td>Page items, default 20, shall not exceed 50</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">108</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">108</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"settlement_record"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"settlement_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606377600000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"clawback_ratio"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"settlement_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">17600.1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"settlement_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"settlement"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606383650761</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='return-parameter'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request Processing Result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Response generation time point, unit: millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;settlement_record&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>Token Code</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>Contract Code</td>
+<td>&quot;BTC-USDT&quot; ...</td>
+</tr>
+<tr>
+<td>settlement_time</td>
+<td>true</td>
+<td>long</td>
+<td>Settlement Time（timestamp，unit: millisecond）（when the settlement_type is delivery, the time is delivery time; when the settlement_type is settlement, the time is settlement time）</td>
+<td></td>
+</tr>
+<tr>
+<td>clawback_ratio</td>
+<td>true</td>
+<td>decimal</td>
+<td>Clawback Ratio</td>
+<td></td>
+</tr>
+<tr>
+<td>settlement_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>Settlement Price（when the settlement_type is delivery, the price is delivery price; when the settlement_type is settlement, the price is settlement price；）</td>
+<td></td>
+</tr>
+<tr>
+<td>settlement_type</td>
+<td>true</td>
+<td>string</td>
+<td>Settlement Type</td>
+<td>“delivery”：Delivery，“settlement”：Settlement</td>
+</tr>
+<tr>
+<td>&lt;/settlement_record&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>total_page</td>
+<td>true</td>
+<td>int</td>
+<td>Total Pages</td>
+<td></td>
+</tr>
+<tr>
+<td>current_page</td>
+<td>true</td>
+<td>int</td>
+<td>Current Page</td>
+<td></td>
+</tr>
+<tr>
+<td>total_size</td>
+<td>true</td>
+<td>int</td>
+<td>Total page items</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <h2 id='query-funding-rate'>Query funding rate</h2>
 <ul>
 <li>GET <code>linear-swap-api/v1/swap_funding_rate</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/linear-swap-api/v1/swap_funding_rate?contract_code=BTC-USDT"</span>
-</code></pre><h3 id='request-parameters'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-2'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5448,7 +5841,7 @@ You are recommended to read the status code from the returned message. If the ab
 <li>GET <code>linear-swap-api/v1/swap_historical_funding_rate</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/linear-swap-api/v1/swap_historical_funding_rate?contract_code=BTC-USDT"</span>
-</code></pre><h3 id='request-parameters-2'>Request Parameters</h3>
+</code></pre><h3 id='request-parameters-3'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>parameter name</th>
@@ -5617,7 +6010,7 @@ You are recommended to read the status code from the returned message. If the ab
 <li>GET <code>/index/market/history/linear_swap_premium_index_kline</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_premium_index_kline?contract_code=BTC-USDT&amp;period=1min&amp;size=1"</span>
-</code></pre><h3 id='request-parameters-3'>request parameters</h3>
+</code></pre><h3 id='request-parameters-4'>request parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -5806,7 +6199,7 @@ You are recommended to read the status code from the returned message. If the ab
 <li>GET <code>/index/market/history/linear_swap_estimated_rate_kline</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_estimated_rate_kline?contract_code=BTC-USDT&amp;period=1min&amp;size=1"</span>
-</code></pre><h3 id='request-parameters-4'>request parameters</h3>
+</code></pre><h3 id='request-parameters-5'>request parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -5994,7 +6387,7 @@ You are recommended to read the status code from the returned message. If the ab
 <li>GET <code>/index/market/history/linear_swap_basis</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=BTC-USDT&amp;period=1min&amp;size=150&amp;basis_price_type=open"</span>
-</code></pre><h3 id='request-parameters-5'>request parameters</h3>
+</code></pre><h3 id='request-parameters-6'>request parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -6093,7 +6486,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>contract_price</td>
 <td>true</td>
 <td>string</td>
-<td>contract price</td>
+<td>contract last price</td>
 <td></td>
 </tr>
 <tr>
@@ -6139,11 +6532,11 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='usdt-margined-swap-account-interface'>USDT Margined Swap Account Interface</h1><h2 id='query-user-s-account-information'>Query User’s Account Information</h2><h3 id='example-13'>Example</h3>
+<h1 id='swap-account-interface'>Swap Account Interface</h1><h2 id='query-user-s-account-information'>Query User’s Account Information</h2><h3 id='example-13'>Example</h3>
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_account_info</code><br></li>
 </ul>
-<h3 id='request-parameter-18'>Request Parameter</h3>
+<h3 id='request-parameter-19'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6336,7 +6729,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST  <code>/linear-swap-api/v1/swap_position_info</code> </li>
 </ul>
-<h3 id='request-parameter-19'>Request Parameter</h3>
+<h3 id='request-parameter-20'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6865,7 +7258,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_sub_account_list</code></li>
 </ul>
-<h3 id='request-parameters-6'>Request Parameters</h3>
+<h3 id='request-parameters-7'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -7018,7 +7411,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_sub_account_info</code></li>
 </ul>
-<h3 id='request-parameters-7'>Request Parameters</h3>
+<h3 id='request-parameters-8'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -7222,7 +7615,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_sub_position_info</code></li>
 </ul>
-<h3 id='request-parameters-8'>Request Parameters</h3>
+<h3 id='request-parameters-9'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -7420,7 +7813,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_financial_record</code></li>
 </ul>
-<h3 id='request-parameters-9'>Request Parameters</h3>
+<h3 id='request-parameters-10'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter name</strong></th>
@@ -7442,7 +7835,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>false</td>
 <td>string</td>
 <td>if not fill this parameter, it will query all types 【please use &quot;,&quot; to seperate multiple types】</td>
-<td>close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29，funding fee(income): 30, funding fee(pay): 31,  Transfer out to contract sub-account：34，Transfer in from contract sub-account：35，Transfer out to contract master account：36，Transfer in from contract master account：37，Transfer in from another margin account: 38,  Transder out to another margin account: 39</td>
+<td>3:close long; 4:close short; 5:fees for open positions-taker; 6:fees for open positions-maker; 7:fees for close positions-taker; 8:fees for close positions-maker; 9:close long for delivery; 10:close short for delivery; 11:delivery fee; 12:close long for liquidation; 13:lose short for liquidation; 14:transfer from spot exchange to contract exchange; 15:tranfer from contract exchange to spot exchange; 16:settle unrealized PnL-long positions; 17:settle unrealized PnL-short positions; 19:clawback; 26:system; 28:activity prize rewards; 29:rebate; 34:transfer to sub; 35:transfer from sub; 36:transfer to master; 37:transfer from master; 38:Transfer in from another margin account; 39:Transfer out to another margin account;</td>
 </tr>
 <tr>
 <td>create_date</td>
@@ -7581,7 +7974,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>true</td>
 <td>int</td>
 <td>transaction type</td>
-<td>close long：3，close short：4，fees for open positions-taker：5，fees for open positions-maker：6，fees for close positions-taker：7，fees for close positions-maker：8，close long for delivery：9，close short for delivery：10，delivery fee：11，close long for liquidation：12，lose short for liquidation：13，transfer from spot exchange to contract exchange：14，tranfer from contract exchange to spot exchange：15，settle unrealized PnL-long positions：16，settle unrealized PnL-short positions：17，clawback：19，system：26，activity prize rewards：28，rebate：29，funding fee(income): 30, funding fee(pay): 31,  Transfer out to contract sub-account：34，Transfer in from contract sub-account：35，Transfer out to contract master account：36，Transfer in from contract master account：37，Transfer in from another margin account: 38,  Transder out to another margin account: 39</td>
+<td>3:close long; 4:close short; 5:fees for open positions-taker; 6:fees for open positions-maker; 7:fees for close positions-taker; 8:fees for close positions-maker; 9:close long for delivery; 10:close short for delivery; 11:delivery fee; 12:close long for liquidation; 13:lose short for liquidation; 14:transfer from spot exchange to contract exchange; 15:tranfer from contract exchange to spot exchange; 16:settle unrealized PnL-long positions; 17:settle unrealized PnL-short positions; 19:clawback; 26:system; 28:activity prize rewards; 29:rebate; 34:transfer to sub; 35:transfer from sub; 36:transfer to master; 37:transfer from master; 38:Transfer in from another margin account; 39:Transfer out to another margin account;</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -7748,7 +8141,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>linear-swap-api/v1/swap_available_level_rate</code></li>
 </ul>
-<h3 id='request-parameter-20'>Request Parameter：</h3>
+<h3 id='request-parameter-21'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -7839,7 +8232,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_order_limit</code></li>
 </ul>
-<h3 id='request-parameter-21'>Request Parameter</h3>
+<h3 id='request-parameter-22'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7976,7 +8369,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_fee</code></li>
 </ul>
-<h3 id='request-parameter-22'>Request Parameter</h3>
+<h3 id='request-parameter-23'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8106,7 +8499,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_transfer_limit</code></li>
 </ul>
-<h3 id='request-parameter-23'>Request Parameter</h3>
+<h3 id='request-parameter-24'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8260,7 +8653,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_position_limit</code></li>
 </ul>
-<h3 id='request-parameter-24'>Request Parameter</h3>
+<h3 id='request-parameter-25'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8366,7 +8759,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>post <code>/linear-swap-api/v1/swap_master_sub_transfer</code></li>
 </ul>
-<h3 id='request-parameters-10'>Request Parameters</h3>
+<h3 id='request-parameters-11'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8660,7 +9053,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>true</td>
 <td>int</td>
 <td>transfer type</td>
-<td>transfer from subaccount：35，transfer to subaccount:34</td>
+<td>35:transfer from subaccount; 34:transfer to subaccount;</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -8709,7 +9102,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>post <code>linear-swap-api/v1/swap_transfer_inner</code></li>
 </ul>
-<h3 id='request-parameter-25'>Request Parameter</h3>
+<h3 id='request-parameter-26'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -9031,11 +9424,11 @@ You are recommended to read the status code from the returned message. If the ab
  </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h1 id='usdt-margined-swap-trade-interface'>USDT Margined Swap Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-15'>Example</h3>
+</span></code></pre><h1 id='swap-trade-interface'>Swap Trade Interface</h1><h2 id='place-an-order'>Place an Order</h2><h3 id='example-15'>Example</h3>
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_order</code></li>
 </ul>
-<h3 id='request-parameter-26'>Request Parameter</h3>
+<h3 id='request-parameter-27'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9084,7 +9477,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>lever_rate</td>
 <td>int</td>
 <td>true</td>
-<td>Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate</td>
+<td>Leverage rate [ if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate; Using Leverage greater than 20 times requires prior approval of high-leverage agreement for the first time. ]</td>
 </tr>
 <tr>
 <td>order_price_type</td>
@@ -9095,6 +9488,8 @@ You are recommended to read the status code from the returned message. If the ab
 </tbody></table>
 <h3 id='note-8'>Note ：</h3>
 <p>Post-Only orders are limit orders that will never take liquidity (also called maker-only order). There are order limit and position for post-only orders which the upper limit is 500,000 for open/close orders under weekly, bi-weekly and quarterly contract respectively.</p>
+
+<p>If you’re holding a position currently, the leverage you choose when placing an order should be the same as the leverage of your current positions, otherwise, the order will fail to be placed. If you need a new leverage to place an order, you should switch the leverage of current positions first by using the Switch Leverage interface. </p>
 
 <p>Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.</p>
 
@@ -9187,7 +9582,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_batchorder</code></li>
 </ul>
-<h3 id='request-parameter-27'>Request Parameter</h3>
+<h3 id='request-parameter-28'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9256,7 +9651,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>lever_rate</td>
 <td>int</td>
 <td>true</td>
-<td>Leverage rate [if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate</td>
+<td>Leverage rate [ if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate; Using Leverage greater than 20 times requires prior approval of high-leverage agreement for the first time. ]</td>
 </tr>
 <tr>
 <td>order_price_type</td>
@@ -9267,6 +9662,8 @@ You are recommended to read the status code from the returned message. If the ab
 </tbody></table>
 <h3 id='note-10'>Note  ：</h3>
 <p>Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.</p>
+
+<p>If you’re holding a position currently, the leverage you choose when placing an order should be the same as the leverage of your current positions, otherwise, the order will fail to be placed. If you need a new leverage to place an order, you should switch the leverage of current positions first by using the Switch Leverage interface. </p>
 
 <p>No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 optimal BBO price, optimal_10：top 10 optimal BBO price, optimal_20：top 20 optimal BBO price (No need to transfer price data) ，limit&quot;: limit order, &quot;post_only&quot;: maker order only (price data transfer is needed),IOC :Immediate-Or-Cancel Order,FOK:Fill-Or-Kill Order.</p>
 
@@ -9417,7 +9814,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST  <code>/linear-swap-api/v1/swap_cancel</code></li>
 </ul>
-<h3 id='request-parameter-28'>Request Parameter</h3>
+<h3 id='request-parameter-29'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9553,7 +9950,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_cancelall</code></li>
 </ul>
-<h3 id='request-parameter-29'>Request Parameter</h3>
+<h3 id='request-parameter-30'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9671,9 +10068,9 @@ You are recommended to read the status code from the returned message. If the ab
 <h4 id='note-13'>Note</h4>
 <ul>
 <li><p>Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.</p></li>
-<li><p>The interface limits the number of requests to 3 times/second.</p></li>
+<li><p>The interface limits the number of requests to 1 time per 3 seconds.</p></li>
 </ul>
-<h3 id='request-parameter-30'>Request Parameter</h3>
+<h3 id='request-parameter-31'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -9694,7 +10091,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>lever_rate</td>
 <td>true</td>
 <td>int</td>
-<td>Leverage to switch</td>
+<td>Leverage to switch [Using Leverage greater than 20 times requires prior approval of high-leverage agreement for the first time.]</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -9791,7 +10188,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_lightning_close_position</code></li>
 </ul>
-<h3 id='request-parameter-31'>Request Parameter</h3>
+<h3 id='request-parameter-32'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9811,7 +10208,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>volume</td>
 <td>true</td>
-<td>decimal</td>
+<td>long</td>
 <td>Order Quantity(Cont)</td>
 <td></td>
 </tr>
@@ -9927,7 +10324,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_order_info</code></li>
 </ul>
-<h3 id='request-parameter-32'>Request Parameter</h3>
+<h3 id='request-parameter-33'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10218,7 +10615,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_order_detail</code></li>
 </ul>
-<h3 id='request-parameter-33'>Request Parameter</h3>
+<h3 id='request-parameter-34'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10265,7 +10662,7 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 </tbody></table>
 <h3 id='note-15'>Note</h3>
-<p>When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 24-hour data, while users who don’t type in parameters “created_at” and “order_type” can only query last 12-hour data.</p>
+<p>When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 24-hour data, while users who don’t type in parameters “created_at” and “order_type” can only query last 2-hour data.</p>
 
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
 
@@ -10659,7 +11056,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST  <code>/linear-swap-api/v1/swap_openorders</code></li>
 </ul>
-<h3 id='request-parameter-34'>Request Parameter</h3>
+<h3 id='request-parameter-35'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10993,7 +11390,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_hisorders</code></li>
 </ul>
-<h3 id='request-parameter-35'>Request Parameter</h3>
+<h3 id='request-parameter-36'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11063,7 +11460,7 @@ You are recommended to read the status code from the returned message. If the ab
 </tbody></table>
 <h4 id='note-16'>Note:</h4>
 <ul>
-<li>When getting information on order cancellation via query history orders interface, users can only query last 24-hour data.</li>
+<li>When getting information on order cancellation via query history orders interface, users can only query last 2-hour data.</li>
 </ul>
 
 <blockquote>
@@ -11347,7 +11744,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_matchresults</code></li>
 </ul>
-<h3 id='request-parameter-36'>Request Parameter</h3>
+<h3 id='request-parameter-37'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11701,7 +12098,7 @@ You are recommended to read the status code from the returned message. If the ab
 <tr>
 <td>volume</td>
 <td>true</td>
-<td>decimal</td>
+<td>long</td>
 <td>volume</td>
 <td></td>
 </tr>
@@ -11723,13 +12120,14 @@ You are recommended to read the status code from the returned message. If the ab
 <td>lever_rate</td>
 <td>false</td>
 <td>int</td>
-<td>Long leverage shall be equal to short leverage.</td>
+<td>Long leverage shall be equal to short leverage.[Using Leverage greater than 20 times requires prior approval of high-leverage agreement for the first time.]</td>
 <td></td>
 </tr>
 </tbody></table>
 <h4 id='note-18'>Note</h4>
 <ul>
-<li>optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.</li>
+<li><p>optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.</p></li>
+<li><p>If you’re holding a position currently, the leverage you choose when placing an order should be the same as the leverage of your current positions, otherwise, the order will fail to be placed. If you need a new leverage to place an order, you should switch the leverage of current positions first by using the Switch Leverage interface. </p></li>
 </ul>
 
 <blockquote>
@@ -12079,7 +12477,7 @@ You are recommended to read the status code from the returned message. If the ab
 <ul>
 <li>POST <code>linear-swap-api/v1/swap_trigger_openorders</code></li>
 </ul>
-<h3 id='request-parameter-37'>Request Parameter</h3>
+<h3 id='request-parameter-38'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12354,7 +12752,7 @@ You are recommended to read the status code from the returned message. If the ab
   </span><span class="s2">"page_size"</span><span class="p">:</span><span class="mi">10</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-38'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-39'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12594,7 +12992,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>order_id</td>
 <td>long</td>
 <td>true</td>
-<td>Trigger order ID, the field value in user_order_id data under t_trigger_orders sheet</td>
+<td>Trigger order ID</td>
 <td></td>
 </tr>
 <tr>
@@ -12608,7 +13006,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>relation_order_id</td>
 <td>string</td>
 <td>true</td>
-<td>Relation order ID is the string related to the limit orders which is the field value in order_id under t_trigger_order list. The value is -1 before the trigger orders executed.</td>
+<td>Relation order ID is the string related to the limit orders  The value is -1 before the trigger orders executed.</td>
 <td></td>
 </tr>
 <tr>
@@ -12703,7 +13101,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='usdt-margined-swap-transferring-interface'>USDT Margined Swap Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-usdt-margined-swap-account'>Transfer margin between Spot account and USDT Margined Swap account</h2><h3 id='example-24'>Example</h3>
+<h1 id='swap-transferring-interface'>Swap Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-usdt-margined-swap-account'>Transfer margin between Spot account and USDT Margined Swap account</h2><h3 id='example-24'>Example</h3>
 <ul>
 <li>POST <code>https://api.huobi.pro/v2/account/transfer</code></li>
 </ul>
@@ -12713,7 +13111,7 @@ You are recommended to read the status code from the returned message. If the ab
 <p>API rate limit for this interface is 1 times/second.</p>
 
 <p>Transferring margin between Spot account and USDT Margined Swap account Interface, sets 8 decimal places for transferring amount of all coins.</p>
-<h3 id='request-parameter-39'>Request Parameter</h3>
+<h3 id='request-parameter-40'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12756,7 +13154,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>true</td>
 <td>string</td>
 <td>margin account</td>
-<td>e.g. USDT</td>
+<td>e.g. BTC-USDT，ETH-USDT</td>
 </tr>
 </tbody></table>
 
@@ -13141,7 +13539,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Exceeds limit of transfer accuracy (8 digits). Please modify it.</td>
 </tr>
 </tbody></table>
-<h1 id='usdt-margined-swap-websocket-reference'>USDT Margined Swap WebSocket Reference</h1><h2 id='api-list-2'>API List</h2>
+<h1 id='swap-websocket-reference'>Swap WebSocket Reference</h1><h2 id='api-list-2'>API List</h2>
 <table><thead>
 <tr>
 <th>Permission</th>
@@ -13218,7 +13616,7 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>Read</td>
-<td>Market Data Interface</td>
+<td>Index and Basis Interface</td>
 <td>market.$contract_code.basis.$period.$basis_price_type</td>
 <td>sub</td>
 <td>Subscribe Basis Data</td>
@@ -13226,7 +13624,7 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>Read</td>
-<td>Market Data Interface</td>
+<td>Index and Basis Interface</td>
 <td>market.$contract_code.basis.$period.$basis_price_type</td>
 <td>req</td>
 <td>Request Basis Data</td>
@@ -13234,7 +13632,7 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>Read</td>
-<td>Market Data Interface</td>
+<td>Index and Basis Interface</td>
 <td>market.$contract_code.premium_index.$period</td>
 <td>sub</td>
 <td>Subcribe Premium Index Kline Data</td>
@@ -13242,7 +13640,7 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>Read</td>
-<td>Market Data Interface</td>
+<td>Index and Basis Interface</td>
 <td>market.$contract_code.premium_index.$period</td>
 <td>req</td>
 <td>Request Premium Index Kline Data</td>
@@ -13250,7 +13648,7 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>Read</td>
-<td>Market Data Interface</td>
+<td>Index and Basis Interface</td>
 <td>market.$contract_code.estimated_rate.$period</td>
 <td>sub</td>
 <td>Subcribe Estimated Funding Rate Kline Data</td>
@@ -13258,7 +13656,7 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>Read</td>
-<td>Market Data Interface</td>
+<td>Index and Basis Interface</td>
 <td>market.$contract_code.estimated_rate.$period</td>
 <td>req</td>
 <td>Request Estimated Funding Rate Kline Data</td>
@@ -13266,7 +13664,7 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>Read</td>
-<td>Market Data Interface</td>
+<td>Trade Interface</td>
 <td>public.$contract_code.liquidation_orders</td>
 <td>sub</td>
 <td>Subscribe Liquidation Orders (no authentication) (sub)</td>
@@ -13274,7 +13672,7 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>Read</td>
-<td>Market Data Interface</td>
+<td>Trade Interface</td>
 <td>public.$contract_code.funding_rate</td>
 <td>sub</td>
 <td>Subscribe funding rate (no authentication)（sub）</td>
@@ -13282,7 +13680,7 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 <tr>
 <td>Read</td>
-<td>Market Data Interface</td>
+<td>Trade Interface</td>
 <td>public.$contract_code.contract_info</td>
 <td>sub</td>
 <td>Subscribe Contract Info (no authentication)（sub）</td>
@@ -13336,7 +13734,7 @@ You are recommended to read the status code from the returned message. If the ab
 
 <p>Index Kline Data and Basis Data Subscription: wss://api.hbdm.com/ws_index</p>
 
-<p>If you fail visiting the two addresses above, you can also visit: </p>
+<p>If the url: api.hbdm.com can&#39;t be accessed, please use the url below:</p>
 
 <p>Market Data Request and Subscription Address: wss://api.btcgateway.pro/linear-swap-ws;</p>
 
@@ -13345,11 +13743,13 @@ You are recommended to read the status code from the returned message. If the ab
 <p>Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index</p>
 
 <p>If you have further queries about Huobi USDT Margined Swap order push subscription, please refer to <a href="https://docs.huobigroup.com/docs/usdt_swap/v1/en/#code-demo">Demo</a></p>
+<h3 id='note-21'>Note:</h3>
+<p>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot; for debug purpose. If your server is deployed in AWS, we recommend using &quot;https://api.hbdm.vn&quot;.</p>
 <h2 id='api-rate-limit-illustration-2'>API Rate Limit Illustration</h2>
-<p>There is rate limit for both public and private interfaces. More details are laid out as below:
-- Generally, for the private interfaces, users need to user API keys. The rate limit for each UID is 30 times at most every 3 seconds. (Please note that the 30 times/3s of rate limit mentioned above are shared by all contracts (all coins and contracts types expiring at different date).</p>
+<p>There is rate limit for both public and private interfaces. More details are laid out as below:</p>
 
 <ul>
+<li><p>Generally, for the private interfaces, users need to user API keys. The rate limit for each UID is 45 times at most every 3 seconds. (Please note that the 45 times/3s of rate limit mentioned above are shared by all contracts (all coins and contracts types expiring at different date).</p></li>
 <li><p>For public interfaces used to get information of non-market data (such as request information of index, price limit, delivery and settlement, positions, etc.), the rate limit for each IP is 120 times every 3 seconds. (Please note that the 120 times/3s rate limit is shared by all the requests for non-market data under this UID)</p></li>
 <li><p>For public interface to get market data such as  Get Kline data, Get Market Data Overview, Get Contract Information,Get market in-depth data, Get premium index Kline, Get real-time forecast capital rate kline, Get basis data, Get the last Trade of a Contract and so on：</p></li>
 </ul>
@@ -13414,7 +13814,7 @@ You are recommended to read the status code from the returned message. If the ab
 <p><code>&quot;ts&quot;: &quot;1492420473058&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-21'>Note</h3>
+<h3 id='note-22'>Note</h3>
 <ul>
 <li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 5 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
 </ul>
@@ -13460,6 +13860,8 @@ You are recommended to read the status code from the returned message. If the ab
 </ul>
 
 <p><code>wss://api.hbdm.com/linear-swap-notification</code></p>
+<h3 id='note-23'>Note</h3>
+<p>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot; for debug purpose. If your server is deployed in AWS, we recommend using &quot;https://api.hbdm.vn&quot;.</p>
 
 <p>Please note that the WS request connection should not go over 30 normally.</p>
 <h3 id='data-compression'>Data Compression</h3>
@@ -13738,7 +14140,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-40'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-41'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13810,7 +14212,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-2'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13928,7 +14330,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573106298</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-41'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-42'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13990,7 +14392,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-22'>Note</h4>
+<h4 id='note-24'>Note</h4>
 <p>If between time range [t1, t5], there are t1-t5 KLines in quantity.</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -14046,7 +14448,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-2'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-3'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14164,7 +14566,7 @@ You are recommended to read the status code from the returned message. If the ab
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-42'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-43'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14214,7 +14616,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5,14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
-<h3 id='note-23'>Note:</h3>
+<h3 id='note-25'>Note:</h3>
 <ul>
 <li><p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p></li>
 <li><p>steps between step1 and step5, step14, step15 are merged orderbook data of step 150. 
@@ -14295,7 +14697,7 @@ Details are below:</p></li>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-3'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-4'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14403,7 +14805,7 @@ Details are below:</p></li>
 </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-43'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-44'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14497,7 +14899,7 @@ Details are below:</p></li>
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603707712357</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-4'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-5'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14592,7 +14994,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-24'>Note:</h3>
+<h3 id='note-26'>Note:</h3>
 <ul>
 <li>when <code>data_type</code> is <code>incremental</code>,<code>snapshot</code> data wil be pushed for the first time. When re-connection occurs, <code>snapshort</code> data will be pushed for the first time. </li>
 <li><code>version</code>: auto increment in single websocket connection. <code>version</code> may be different among several websocket subscription connections.</li>
@@ -14618,7 +15020,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-44'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-45'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14682,7 +15084,7 @@ Details are below:</p></li>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-5'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-6'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14794,7 +15196,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-45'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-46'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14858,7 +15260,7 @@ Details are below:</p></li>
         </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USDT.bbo"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='return-parameter-6'><strong>Return Parameter</strong>：</h3>
+</span></code></pre><h3 id='return-parameter-7'><strong>Return Parameter</strong>：</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14975,7 +15377,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-46'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-47'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15051,7 +15453,7 @@ Details are below:</p></li>
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603708046534</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-7'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-8'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15065,7 +15467,7 @@ Details are below:</p></li>
 <td>rep</td>
 <td>true</td>
 <td>string</td>
-<td>Data Channel，Format： market.\$contract_code.trade.detail</td>
+<td>Data Channel，Format： market.$contract_code.trade.detail</td>
 <td></td>
 </tr>
 <tr>
@@ -15079,7 +15481,7 @@ Details are below:</p></li>
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>ID</td>
+<td>Request ID</td>
 <td></td>
 </tr>
 <tr>
@@ -15093,7 +15495,7 @@ Details are below:</p></li>
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>ID</td>
+<td>Unique Transaction Id(symbol level)</td>
 <td></td>
 </tr>
 <tr>
@@ -15157,9 +15559,9 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='note-25'>Note:</h3>
+</span></code></pre><h3 id='note-27'>Note:</h3>
 <p>Clients can only access the recent 300 trade detail data </p>
-<h3 id='request-parameter-47'>Request Parameter</h3>
+<h3 id='request-parameter-48'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15225,7 +15627,7 @@ Details are below:</p></li>
 </span><span class="p">}</span><span class="w">
 
 
-</span></code></pre><h3 id='return-parameter-8'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-9'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15260,7 +15662,7 @@ Details are below:</p></li>
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>ID</td>
+<td>Unique Order Id(symbol level).</td>
 <td></td>
 </tr>
 <tr>
@@ -15295,7 +15697,7 @@ Details are below:</p></li>
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td>tick id</td>
+<td>Unique Transaction Id(symbol level)</td>
 <td></td>
 </tr>
 <tr>
@@ -15349,7 +15751,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-48'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-49'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15399,7 +15801,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-26'>Note</h4>
+<h4 id='note-28'>Note</h4>
 <ul>
 <li><p>Pushed once the index data is changed.</p></li>
 <li><p>Periodical Push when the index data hasn&#39;t changed according to the kline period.</p></li>
@@ -15424,7 +15826,7 @@ Details are below:</p></li>
         </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='return-parameter-9'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-10'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -15549,7 +15951,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-49'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-50'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15611,7 +16013,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-27'>Note：</h3>
+<h3 id='note-29'>Note：</h3>
 <ul>
 <li>Pushed once the index data is updated.</li>
 </ul>
@@ -15782,7 +16184,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-50'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-51'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15832,7 +16234,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-28'>Note:</h4>
+<h4 id='note-30'>Note:</h4>
 <ul>
 <li><p>Pushed once the kline data is changed.</p></li>
 <li><p>Periodical Push when the kline data hasn&#39;t changed according to the kline period.</p></li>
@@ -15982,7 +16384,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-51'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-52'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16210,7 +16612,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-52'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-53'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16319,7 +16721,7 @@ Details are below:</p></li>
 <tr>
 <td>contract_price</td>
 <td>string</td>
-<td>contract price</td>
+<td>contract last price</td>
 <td></td>
 <td></td>
 </tr>
@@ -16382,7 +16784,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-53'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-54'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16416,7 +16818,7 @@ Details are below:</p></li>
 <td>end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameter-54'>Request Parameter：</h3>
+<h3 id='request-parameter-55'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -16452,7 +16854,7 @@ Details are below:</p></li>
 <td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-29'>Note：</h3>
+<h3 id='note-31'>Note：</h3>
 <ul>
 <li>2000 data at most per request.</li>
 </ul>
@@ -16541,7 +16943,7 @@ Details are below:</p></li>
 <td>contract_price</td>
 <td>true</td>
 <td>string</td>
-<td>contract price</td>
+<td>contract last price</td>
 <td></td>
 </tr>
 <tr>
@@ -17004,7 +17406,7 @@ Details are below:</p></li>
 <td>Required；format: matchOrders.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-30'>Note:</h4>
+<h4 id='note-32'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 <li>The orders will be pushed when matched by matching engine.</li>
@@ -17203,7 +17605,7 @@ Details are below:</p></li>
 <td>true</td>
 <td>string</td>
 <td>order price type</td>
-<td>&quot;limit&quot;: Limit Order，&quot;opponent&quot;:BBO，&quot;lightning&quot;: Lightning Close，&quot;optimal_5&quot;: Optimal top 5 price，&quot;optimal_10&quot;:Optimal top 10 price，&quot;optimal_20&quot;:Optimal top 20 price,&quot;fok&quot;:FOK order,&quot;ioc&quot;:ioc order, &quot;opponent_ioc&quot;：IOC order using the BBO price，&quot;lightning_ioc&quot;：lightning IOC，&quot;optimal_5_ioc&quot;：optimal_5 IOC，&quot;optimal_10_ioc&quot;：optimal_10 IOC，&quot;optimal_20_ioc&quot;：optimal_20 IOC, &quot;opponent_fok&quot;：FOK order using the BBO price，&quot;lightning_fok&quot;：lightning FOK，&quot;optimal_5_fok&quot;：optimal_5 FOK，&quot;optimal_10_fok&quot;：optimal_10 FOK，&quot;optimal_20_fok&quot;：optimal_20 FOK</td>
+<td>&quot;limit&quot;:Limit,&quot;opponent&quot;:opponent,&quot;post_only&quot;:Post-Only Order, No order limit but position limit for post-only orders.，&quot;lightning&quot;:lightning, &quot;optimal_5&quot;:optimal 5，&quot;optimal_10&quot;:optimal 10，&quot;optimal_20&quot;:optimal 20，&quot;fok&quot;:FOK Order，&quot;ioc&quot;:IOC Order, &quot;opponent_ioc&quot;: opponent ioc，&quot;lightning_ioc&quot;: lightning ioc，&quot;optimal_5_ioc&quot;: optimal_5 ioc，&quot;optimal_10_ioc&quot;: optimal_10 ioc，&quot;optimal_20_ioc&quot;：optimal_20 ioc，&quot;opponent_fok&quot;： opponent fok，&quot;lightning_fok&quot;：lightning fok，&quot;optimal_5_fok&quot;：optimal_5 fok，&quot;optimal_10_fok&quot;：optimal_10 fok，&quot;optimal_20_fok&quot;：optimal_20 fok</td>
 </tr>
 <tr>
 <td>&lt;trade&gt;</td>
@@ -17397,9 +17799,9 @@ Details are below:</p></li>
 <td>Required； Subscribe Topic Name，Required subscribe accounts.$contract_code   Subscribe/unsubscribe the balance change of a given coin，when the value of $contract_code is “*”, it means to subscribe/unsubscribe the balance change of all coins; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-31'>Note:</h3>
+<h3 id='note-33'>Note:</h3>
 <ul>
-<li>Account topic will be pushed every 5s.</li>
+<li>A regular push of account is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</li>
 </ul>
 
 <blockquote>
@@ -17464,7 +17866,7 @@ Details are below:</p></li>
 <tr>
 <td>event</td>
 <td>string</td>
-<td>notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (ncluding transfer with exchange accounts, transfer between main account and sub-account, and tranfer between different margin accounts.), system (contract.system), other asset change(other), initial margin(init)</td>
+<td>notification on account asset change such as commit order(order.open), fulfill order(order.match)(excluding liquidated order and settled orders), settlement and delivery(settlement), fulfill liquidation order(order.liquidation)(including voluntarily fulfilled liquidation order and the fulfilled liquidation order taken over by system ) , cancel order(order.cancel), asset transfer（contract.transfer) (ncluding transfer with exchange accounts, transfer between main account and sub-account, and tranfer between different margin accounts.), system (contract.system), other asset change(other), switch leverage(switch_lever_rate), initial margin(init)</td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
@@ -17744,7 +18146,7 @@ Details are below:</p></li>
 <tr>
 <td>event</td>
 <td>string</td>
-<td>Related events of position change notification, such as order creation and position closing (order.close), order filled (order.match) (except for liquidation, settlement and delivery), settlement and delivery (settlement), order liquidation (order.liquidation), order cancellation (order.cancel),  initial positions (init), triggered by system periodic push (snapshot).</td>
+<td>Related events of position change notification, such as order creation and position closing (order.close), order filled (order.match) (except for liquidation, settlement and delivery), settlement and delivery (settlement), order liquidation (order.liquidation), order cancellation (order.cancel), switch leverage(switch_lever_rate),  initial positions (init), triggered by system periodic push (snapshot).</td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
@@ -17832,9 +18234,9 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-32'>Note:</h3>
+<h3 id='note-34'>Note:</h3>
 <ul>
-<li><p>Position topic will be pushed every 5s.</p></li>
+<li><p>A regular push of position is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</p></li>
 <li><p>When switching leverage with no positions, the event &quot;switch_lever_rate&quot; will not be pushed by the position topic.</p></li>
 </ul>
 <h2 id='unsubscribe-position-updates-data-unsub'>Unsubscribe Position Updates Data(unsub)</h2>
@@ -17974,18 +18376,20 @@ Details are below:</p></li>
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1580815422403</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"offset"</span><span class="p">:</span><span class="s2">"close"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">4.236</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="mi">1580815422296</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"close"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">624</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">16701.4</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606380004694</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.624</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mf">10421.6736</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-10'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-11'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -18036,12 +18440,22 @@ Details are below:</p></li>
 <tr>
 <td>volume</td>
 <td>decimal</td>
-<td>quantity(Cont.)</td>
+<td>liquidation volume (Cont.)</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>decimal</td>
+<td>liquidation amount (token)</td>
+</tr>
+<tr>
+<td>trade_turnover</td>
+<td>decimal</td>
+<td>liquidation amount (quotation token)</td>
 </tr>
 <tr>
 <td>price</td>
 <td>decimal</td>
-<td>Price</td>
+<td>bankruptcy price</td>
 </tr>
 <tr>
 <td>created_at</td>
@@ -18351,7 +18765,7 @@ Details are below:</p></li>
 <td>not allowed</td>
 </tr>
 </tbody></table>
-<h3 id='note-33'>Note</h3>
+<h3 id='note-35'>Note</h3>
 <ul>
 <li><p>Funding rate will be pushed every 60 seconds by default.Funding rate will not be calculated under conditions below:</p>
 
@@ -18501,7 +18915,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-34'>Note：</h3>
+<h3 id='note-36'>Note：</h3>
 <ul>
 <li>The websocket subscription of contract info event is pushed every 60 seconds, and the event is &quot;snapshot&quot;. </li>
 <li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is &quot;init&quot;.</li>
@@ -18612,7 +19026,7 @@ Details are below:</p></li>
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-55'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-56'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18810,7 +19224,7 @@ Details are below:</p></li>
 <td>relation_order_id</td>
 <td>true</td>
 <td>string</td>
-<td>Relation order ID is the string related to the limit orders which is the field value in order_id under t_trigger_order list. The value is -1 before the trigger orders executed.</td>
+<td>Relation order ID is the string related to the limit orders, The value is -1 before the trigger orders executed.</td>
 <td></td>
 </tr>
 <tr>
