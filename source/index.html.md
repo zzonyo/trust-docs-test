@@ -743,7 +743,7 @@ Error Code | Error Details Description|
 1077  |  In settlement or delivery. Unable to get assets.  | 
 1078  |  In settlement or delivery. Unable to get assets.  | 
 1079  |  In settlement or delivery. Unable to get positions.  | 
-1080  |  In settlement or delivery. Unable to get positions.  | 
+1080  |  In settlement or delivery. Unable to get positions of some contracts.  | 
 1081  |  The number of unfilled trigger order exceeds the limit.  | 
 1082  |  Trigger type parameter error.  | 
 1083  |  Your position is in the process of forced liquidation. Unable to place order temporarily.  | 
@@ -2818,7 +2818,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 #### Note
 
-- If there are symbols in the settlement or delivery period,error code 1080(1080  In settlement or delivery. Unable to get positions) will return without request parameters. It's suggested to query the position info with request parameters to avoid raising the error code and not being able to query the position.
+- If there are symbols in the settlement or delivery period,error code 1080(1080 In settlement or delivery. Unable to get positions of some contracts.) will return without request parameters. It's suggested to query the position info with request parameters to avoid raising the error code and not being able to query the position.
 
 ## Query Assets And Positions
 
