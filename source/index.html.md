@@ -463,7 +463,7 @@ Error Code | Error Details Description|
 1077  |  In settlement or delivery. Unable to get assets.  | 
 1078  |  In settlement or delivery. Unable to get assets.  | 
 1079  |  In settlement or delivery. Unable to get positions.  | 
-1080  |  In settlement or delivery. Unable to get positions.  | 
+1080  |  In settlement or delivery. Unable to get positions of some contracts. | 
 1081  |  The number of unfilled trigger order exceeds the limit.  | 
 1082  |  Trigger type parameter error.  | 
 1083  |  Your position is in the process of forced liquidation. Unable to place order temporarily.  | 
