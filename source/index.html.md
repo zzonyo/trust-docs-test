@@ -40,6 +40,32 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.2.1 2020-12-02 【 Modified “Order details acquisition” interface (When querying cancelation data of orders that have not been partially filled, if “created_at” and “order_type” parameters are not uploaded, the data that can be queried reduced from last 12 hours to last 2 hours.); modified “Query history orders” interface (When querying cancelation data of orders that have not been partially filled, the data that can be retained reduced from last 24 hours to last 2 hours.); modified “Query history orders via multiple fields” interface (When querying cancelation data of orders that have not been partially filled, the data that can be retained reduced from last 24 hours to last 2 hours.)】
+
+### 1、Modified “Order details acquisition” interface (When querying cancelation data of orders that have not been partially filled, if “created_at” and “order_type” parameters are not uploaded, the data that can be queried reduced from last 12 hours to last 2 hours.)
+
+  - Interface Name：Order details acquisition
+
+  - Interface Type：private
+
+  - Interface URL：api/v1/contract_order_detail
+
+### 2、modified “Query history orders” interface (When querying cancelation data of orders that have not been partially filled, the data that can be retained reduced from last 24 hours to last 2 hours.)
+
+  - Interface Name：Get History Orders
+
+  - Interface Type：private
+
+  - Interface URL：api/v1/contract_hisorders
+
+### 3、modified “Query history orders via multiple fields” interface (When querying cancelation data of orders that have not been partially filled, the data that can be retained reduced from last 24 hours to last 2 hours.)
+
+  - Interface Name：Query history orders via multiple fields
+
+  - Interface Type：private
+
+  - Interface URL：api/v1/contract_hisorders_exact
+
 ## 1.2.0 2020-11-24 【 Added: Query historical settlement records of the platform interface. Modified:  Added fields of return parameter for "Query Liquidation Orders" interface and "Subscribe Liquidation Order Data" interface】
 
 ### 1、Added “Query historical settlement records of the platform” interface 
@@ -1416,7 +1442,7 @@ Error Code | Error Details Description|
 1077  |  In settlement or delivery. Unable to get assets.  | 
 1078  |  In settlement or delivery. Unable to get assets.  | 
 1079  |  In settlement or delivery. Unable to get positions.  | 
-1080  |  In settlement or delivery. Unable to get positions.  | 
+1080  |  In settlement or delivery. Unable to get positions of some contracts.   | 
 1081  |  The number of unfilled trigger order exceeds the limit.  | 
 1082  |  Trigger type parameter error.  | 
 1083  |  Your position is in the process of forced liquidation. Unable to place order temporarily.  | 
@@ -3420,7 +3446,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 #### Note
 
-- If there are symbols in the settlement or delivery period,error code 1080(1080  In settlement or delivery. Unable to get positions) will return without request parameters. It's suggested to query the position info with request parameters to avoid raising the error code and not being able to query the position.
+- If there are symbols in the settlement or delivery period,error code 1080(1080  In settlement or delivery. Unable to get positions of some contracts.  ) will return without request parameters. It's suggested to query the position info with request parameters to avoid raising the error code and not being able to query the position.
 
 ## Query assets information of all sub-accounts under the master account
 
@@ -5003,7 +5029,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 | page_size          | false         | int      | Default 20，no more than 50   |
 
 ### Note
-When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 24-hour data, while users who don’t type in parameters “created_at” and “order_type” can only query last 12-hour data.
+When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 24-hour data, while users who don’t type in parameters “created_at” and “order_type” can only query last 2-hour data.
 
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jason-bigint package.
 
@@ -5255,7 +5281,7 @@ Please note that created_at can't send "0"
 
 ### Note
 
-When getting information on order cancellation via query history orders interface, users can only query last 24-hour data.
+When getting information on order cancellation via query history orders interface, users can only query last 2-hour data.
 
 > Response:
 
@@ -5364,7 +5390,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 #### Note：
 
-- Query history orders interface can only query the API order cancellation information within the last 24 hours.
+- Query history orders interface can only query the API order cancellation information within the last 2 hours.
 - Value range description of start_time and end_time:
    - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
    - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. 
