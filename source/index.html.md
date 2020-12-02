@@ -1983,15 +1983,15 @@ curl "https://api.huobi.pro/market/etp?symbol=btc3lusdt"
 <aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'。</aside>
 
 | 字段名称       | 数据类型 | 描述                                        |
-| -------------- | -------- | ------------------------------------------- |
+| -------------- | -------- | -----------------------------------------|
 | symbol         | string   | 杠杆ETP交易代码                             |
-| nav            | float    | 最新净值                                    |
+| nav            | float    | 最新净值                                  |
 | navTime        | long     | 最新净值更新时间 (unix time in millisecond) |
-| outstanding    | float    | ETP总份额                                   |
-| basket         | object   | 篮子                                        |
-| { currency     | float    | 币种                                        |
-| amount }       | float    | 金额                                        |
-| actualLeverage | float    | 实际杠杆率                                  |
+| outstanding    | float    | ETP总份额                                  |
+| basket         | object   | 篮子                                     |
+| { currency     | float    | 币种                                      |
+| amount }       | float    | 金额                                      |
+| actualLeverage | float    | 实际杠杆率                                |
 
 # 账户相关
 
@@ -7638,16 +7638,16 @@ REQ频道支持5档/20档/150档全量数据的获取。<br>
 
 ### 数据更新字段列表
 
-| 字段 | 数据类型       | 描述   |
-| ---- | -------------- | ------ |
-|      | symbol         | string |
-|      | nav            | float  |
-|      | navTime        | long   |
-|      | outstanding    | float  |
-|      | basket         | object |
-|      | { currency     | float  |
-|      | amount }       | float  |
-|      | actualLeverage | float  |
+| 字段名称       | 数据类型 | 描述                                        |
+| -------------- | -------- | -----------------------------------------|
+| symbol         | string   | 杠杆ETP交易代码                             |
+| nav            | float    | 最新净值                                  |
+| navTime        | long     | 最新净值更新时间 (unix time in millisecond) |
+| outstanding    | float    | ETP总份额                                  |
+| basket         | object   | 篮子                                     |
+| { currency     | float    | 币种                                      |
+| amount }       | float    | 金额                                      |
+| actualLeverage | float    | 实际杠杆率                                |
 
 # Websocket资产及订单（即将废弃）
 
@@ -9674,3 +9674,4 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
 |	nextId	|	long	|	FALSE	| 下页查询起始编号（仅在存在下页数据时返回）	|
 
 ##### <br>
+
