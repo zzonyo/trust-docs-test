@@ -38,6 +38,24 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.0.3 2020-12-02 【Modified “Order details acquisition” interface (When querying cancelation data of orders that have not been partially filled, if “created_at” and “order_type” parameters are not uploaded, the data that can be queried reduced from last 12 hours to last 2 hours.); modified “Query history orders” interface (When querying cancelation data of orders that have not been partially filled, the data that can be retained reduced from last 24 hours to last 2 hours.)】
+
+### 1、Modified “Order details acquisition” interface (When querying cancelation data of orders that have not been partially filled, if “created_at” and “order_type” parameters are not uploaded, the data that can be queried reduced from last 12 hours to last 2 hours.)
+
+   - Interface Name：Order details acquisition
+
+   - Interface Type：private
+
+   - Interface URL：linear-swap-api/v1/swap_order_detail
+
+### 2、modified “Query history orders” interface (When querying cancelation data of orders that have not been partially filled, the data that can be retained reduced from last 24 hours to last 2 hours.)
+
+   - Interface Name：Get History Orders
+
+   - Interface Type：private
+
+   - Interface URL：linear-swap-api/v1/swap_hisorders
+
 ## 1.0.2 2020-11-24 【 Added: Query historical settlement records of the platform interface. Modified:  Added fields of return parameter for "Query Liquidation Orders" interface and "Subscribe Liquidation Order Data" interface】
 
 ### 1、Added “Query historical settlement records of the platform” interface 
@@ -4233,7 +4251,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 
 ### Note
 
-When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 24-hour data, while users who don’t type in parameters “created_at” and “order_type” can only query last 12-hour data.
+When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 24-hour data, while users who don’t type in parameters “created_at” and “order_type” can only query last 2-hour data.
 
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.
 
@@ -4471,7 +4489,7 @@ Please note that created_at can't send "0"
 
 #### Note: 
 
- - When getting information on order cancellation via query history orders interface, users can only query last 24-hour data.
+ - When getting information on order cancellation via query history orders interface, users can only query last 2-hour data.
 
 > Response:
 
