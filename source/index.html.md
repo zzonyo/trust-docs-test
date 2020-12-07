@@ -7404,7 +7404,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ```json
 
   {
-    "req": "market.bct_cw.index.1min",
+    "req": "market.bct-usd.index.1min",
     "id": "id4",
     "from":1571000000,
     "to":1573098606
