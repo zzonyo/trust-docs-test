@@ -7118,7 +7118,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ```json
 
   {
-    "req": "market.bct_cw.index.1min",
+    "req": "market.btc-usd.index.1min",
     "id": "id4",
     "from":1571000000,
     "to":1573098606
@@ -7137,7 +7137,7 @@ direction  |  true  |  string  |  Order direction  |   |
 ### req Subscribe Parameter Rules：
 | **Parameter Name**    | **Mandotary** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| contract_code      | true     | string | contract code          |         | Case-Insenstive.Both uppercase and lowercase are supported.."BTC-USD","ETH-USD"...                           |
+| contract_code      | true     | string | index symbol          |         | Case-Insenstive.Both uppercase and lowercase are supported.."BTC-USD","ETH-USD"...                           |
 | period          | true     | string  | kline type               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon     |
 
 ### Note：
