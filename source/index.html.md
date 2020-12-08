@@ -1531,6 +1531,10 @@ market.$contract_code.depth.$type是全量数据，market.$contract_code.depth.s
 
 (4) 同一个websocket连接，增量数据version是递增的；如果 version不递增，您需要重新订阅并重新维护本地全量数据；
 
+### Q14:获取合约的历史资金费率（swap-api/v1/swap_historical_funding_rate）返回字段中“当期资金费率（funding_rate）”和“实际资金费率（realized_rate）”的区别？
+
+在正常情况下当期资金费率和实际资金费率是相等的。只有在支付资金费率会导致用户爆仓时，会少收或不收资金费率（少收或不收的资金费率值就是实际资金费率）。当期资金费率不变。
+
 ## 交易相关
 
 ### Q1: 币本位永续的资金费率结算周期是什么？资金费率结算时通过哪些接口可以查询状态？
