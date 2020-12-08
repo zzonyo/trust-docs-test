@@ -2003,15 +2003,15 @@ curl "https://api.huobi.pro/market/etp?symbol=btc3lusdt"
 
 以下是账户相关接口返回的错误码、错误消息以及说明。
 
-| 错误码 | 错误消息                                    | 说明                                                |
-| ------ | ------------------------------------------- | --------------------------------------------------- |
-| 500    | system error                                | 调用内部服务异常                                    |
-| 1002   | forbidden                                   | 禁止操作，如用户入参中accountId与UID不一致          |
-| 2002   | "invalid field value in `currency`"         | currency不符合正则规则^[a-z0-9]{2,10}$              |
-| 2002   | "invalid field value in `transactTypes`"    | 变动类型transactTypes不是“transfer”                 |
-| 2002   | "invalid field value in `sort`"             | 分页请求参数不是合法的"asc或desc"                   |
-| 2002   | "value in `fromId` is not found in record”  | 未找到fromId                                        |
-| 2002   | "invalid field value in `accountId`"        | 查询参数中accountId为空                             |
+| 错误码 | 错误消息  | 说明  |
+| ------ | ------ | ------ |
+| 500    | system error  | 调用内部服务异常 |
+| 1002   | forbidden   | 禁止操作，如用户入参中accountId与UID不一致 |
+| 2002   | "invalid field value in `currency`"  | currency不符合正则规则^[a-z0-9]{2,10}$  |
+| 2002   | "invalid field value in `transactTypes`"    | 变动类型transactTypes不是“transfer”   |
+| 2002   | "invalid field value in `sort`"    | 分页请求参数不是合法的"asc或desc"    |
+| 2002   | "value in `fromId` is not found in record” | 未找到fromId  |
+| 2002  | "invalid field value in `accountId`"  | 查询参数中accountId为空 |
 | 2002   | "value in `startTime` exceeded valid range" | 入参查询时间大于当前时间，或者距离当前时间超过180天 |
 | 2002   | "value in `endTime` exceeded valid range")  | 查询结束时间小于开始时间，或者查询时间跨度大于10天  |
 
@@ -2450,46 +2450,46 @@ API Key 权限：交易<br>
 | err-code | string   | 错误码，具体错误码请见列表   |
 | err-msg  | string   | 错误消息，具体消息内容请列表 |
 
-### err-code列表
+### 错误码
 
-| err-code | err-msg(中文）                                 | err-msg(Englis)                                              | 补充说明                                                     |
-| -------- | ---------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-|          | base-msg                                       |                                                              |                                                              |
-|          | base-currency-error                            | 币种无效                                                     | The currency is invalid                                      |
-|          | frequent-invoke                                | 操作过于频繁，请稍后重试。（如果超过1分钟10次，系统返回该error-code） | the operation is too frequent. Please try again later        |
-|          | banned-by-blacklist                            | 黑名单限制                                                   | Blacklist restriction                                        |
-|          | dw-insufficient-balance                        | 可划转余额不足，最大可划转 {0}。（币币账户的余额不足。）     | Insufficient balance. You can only transfer {0} at most.     |
-|          | dw-account-transfer-unavailable                | 转账暂时不可用                                               | account transfer unavailable                                 |
-|          | dw-account-transfer-error                      | 由于其他服务不可用导致的划转失败                             | account transfer error                                       |
-|          | dw-account-transfer-failed                     | 划转失败。请稍后重试或联系客服                               | Failed to transfer. Please try again later.                  |
-|          | dw-account-transfer-failed-account-abnormality | 账户异常，划转失败。请稍后重试或联系客服                     | Account abnormality, failed to transfer。Please try again later. |
+| 错误码 | 错误消息(中文）   | 错误消息(英文） |
+| -------- | ------- | ------- |
+| base-msg    | （具体内容参见之后的列表说明） |         |
+| base-currency-error    | 币种无效   | The currency is invalid   |
+| frequent-invoke   | 操作过于频繁，请稍后重试。（如果超过1分钟10次，系统返回该error-code） | the operation is too frequent. Please try again later |
+| banned-by-blacklist   | 黑名单限制 | Blacklist restriction  |
+| dw-insufficient-balance   | 可划转余额不足，最大可划转 {0}。（币币账户的余额不足。）     | Insufficient balance. You can only transfer {0} at most. |
+| dw-account-transfer-unavailable   | 转账暂时不可用  | account transfer unavailable   |
+| dw-account-transfer-error     | 由于其他服务不可用导致的划转失败  | account transfer error  |
+| dw-account-transfer-failed   | 划转失败。请稍后重试或联系客服  | Failed to transfer. Please try again later.  |
+| dw-account-transfer-failed-account-abnormality | 账户异常，划转失败。请稍后重试或联系客服                     | Account abnormality, failed to transfer。Please try again later. |
 
 ### base-msg对应的err-msg列表
-| err-code | err-msg(中文） | err-msg(Englis)                              | 补充说明                                                     |
-| -------- | -------------- | -------------------------------------------- | ------------------------------------------------------------ |
-|          | base-msg       | 用户没有入金权限                             | Unable to transfer in currently. Please contact customer service. |
-|          | base-msg       | 用户没有出金权限                             | Unable to transfer out currently. Please contact customer service. |
-|          | base-msg       | 合约状态异常，无法出入金                     | Abnormal contracts status. Can’t transfer.                   |
-|          | base-msg       | 子账号没有入金权限，请联系客服               | Sub-account doesn't own the permissions to transfer in. Please contact customer service. |
-|          | base-msg       | 子账号没有出金权限，请联系客服               | Sub-account doesn't own the permissions to transfer out. Please contact customer service. |
-|          | base-msg       | 子账号没有划转权限，请登录主账号授权         | The sub-account does not have transfer permissions. Please login main account to authorize. |
-|          | base-msg       | 可划转余额不足                               | Insufficient amount available.                               |
-|          | base-msg       | 单笔转出的数量不能低于{0}{1}                 | The single transfer-out amount must be no less than {0}{1}.  |
-|          | base-msg       | 单笔转出的数量不能高于{0}{1}                 | The single transfer-out amount must be no more than {0}{1}.  |
-|          | base-msg       | 单笔转入的数量不能低于{0}{1}                 | The single transfer-in amount must be no less than {0}{1}.   |
-|          | base-msg       | 单笔转入的数量不能高于{0}{1}                 | The single transfer-in amount must be no more than {0}{1}.   |
-|          | base-msg       | 您当日累计转出量超过{0}{1}，暂无法转出       | Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being. |
-|          | base-msg       | 您当日累计转入量超过{0}{1}，暂无法转入       | Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being. |
-|          | base-msg       | 您当日累计净转出量超过{0}{1}，暂无法转出     | Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being. |
-|          | base-msg       | 您当日累计净转入量超过{0}{1}，暂无法转入     | Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being. |
-|          | base-msg       | 超过平台当日累计最大转出量限制，暂无法转出   | The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being. |
-|          | base-msg       | 超过平台当日累计最大转入量限制，暂无法转入   | The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being. |
-|          | base-msg       | 超过平台当日累计最大净转出量限制，暂无法转出 | The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being. |
-|          | base-msg       | 超过平台当日累计最大净转入量限制，暂无法转入 | The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being. |
-|          | base-msg       | 划转失败，请稍后重试或联系客服               | Transfer failed. Please try again later or contact customer service. |
-|          | base-msg       | 服务异常，划转失败，请稍后再试               | Abnormal service, transfer failed. Please try again later.   |
-|          | base-msg       | 您尚未开通合约交易，无访问权限               | You don’t have access permission as you have not opened contracts trading. |
-|          | base-msg       | 合约品种不存在                               | This contract type doesn't exist.                            |
+| 错误码 | 错误消息(中文） | 错误消息(英文） |
+| ---------- | --------------- | --------------- |
+| base-msg   | 用户没有入金权限  | Unable to transfer in currently. Please contact customer service. |
+| base-msg   | 用户没有出金权限   | Unable to transfer out currently. Please contact customer service. |
+| base-msg   | 合约状态异常，无法出入金   | Abnormal contracts status. Can’t transfer.   |
+| base-msg  | 子账号没有入金权限，请联系客服    | Sub-account doesn't own the permissions to transfer in. Please contact customer service. |
+| base-msg  | 子账号没有出金权限，请联系客服   | Sub-account doesn't own the permissions to transfer out. Please contact customer service. |
+| base-msg  | 子账号没有划转权限，请登录主账号授权   | The sub-account does not have transfer permissions. Please login main account to authorize. |
+| base-msg  | 可划转余额不足     | Insufficient amount available. |
+| base-msg  | 单笔转出的数量不能低于{0}{1}  | The single transfer-out amount must be no less than {0}{1}.  |
+| base-msg  | 单笔转出的数量不能高于{0}{1}   | The single transfer-out amount must be no more than {0}{1}.  |
+| base-msg  | 单笔转入的数量不能低于{0}{1} | The single transfer-in amount must be no less than {0}{1}.   |
+| base-msg  | 单笔转入的数量不能高于{0}{1}  | The single transfer-in amount must be no more than {0}{1}.   |
+| base-msg  | 您当日累计转出量超过{0}{1}，暂无法转出  | Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being. |
+| base-msg       | 您当日累计转入量超过{0}{1}，暂无法转入       | Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being. |
+| base-msg       | 您当日累计净转出量超过{0}{1}，暂无法转出     | Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being. |
+| base-msg       | 您当日累计净转入量超过{0}{1}，暂无法转入     | Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being. |
+| base-msg       | 超过平台当日累计最大转出量限制，暂无法转出   | The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being. |
+| base-msg       | 超过平台当日累计最大转入量限制，暂无法转入   | The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being. |
+| base-msg       | 超过平台当日累计最大净转出量限制，暂无法转出 | The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being. |
+| base-msg       | 超过平台当日累计最大净转入量限制，暂无法转入 | The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being. |
+| base-msg       | 划转失败，请稍后重试或联系客服   | Transfer failed. Please try again later or contact customer service. |
+| base-msg       | 服务异常，划转失败，请稍后再试  | Abnormal service, transfer failed. Please try again later.   |
+| base-msg       | 您尚未开通合约交易，无访问权限   | You don’t have access permission as you have not opened contracts trading. |
+| base-msg       | 合约品种不存在  | This contract type doesn't exist. |
 
 ## 点卡余额查询
 
