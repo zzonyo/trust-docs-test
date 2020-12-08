@@ -1104,6 +1104,10 @@ Snapshot MBP data will be pushed for the first time, and the incremental MBP dat
 
 (4) For the same websocket connection, the incremental data version is incremented; if the version is not incremented, you need to re-subscribe and re-maintain the local full MBP data;
 
+### Q14: What's the difference between "funding_rate" and "realized_rate" in the response of linear-swap-api/v1/swap_historical_funding_rate interface?
+
+Generally, "funding_rate" is equal to "realized_rate".Only when the payment of funding fee will cause the liquidation of the user's position, the funding fee is under or not charged(And the fee is the actual funding fee:"realized_rate").The current funding rate:"funding_rate" remains unchanged.
+
 ## Order and Trade
 
 ### Q1: What is the USDT Margined Swap funding rate settlement cycle? Which interface can be used to check the status when the fund rate is settled? 
