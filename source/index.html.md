@@ -257,7 +257,7 @@ Please note that, for both public interface and private interface, there are rat
 
 * In terms of public interface used to get candle chart data, the latest transaction record and information of aggregate market, order book and so on, the rate limit is as below:
 
-    （1） For restful interface: 800 times/second for one IP at most.
+     (1) For restful interfaces：all products(futures, coin margined swap, usdt margined swap and option) 800 times/second for one IP at most
 
     （2）For websocket: The rate limit for “req” request is 50 times at once. No limit for “sub” request as the data will be pushed by sever voluntarily.
 
@@ -4665,7 +4665,7 @@ There is rate limit for both public and private interfaces. More details are lai
 
 - For public interface to get market data such as  Get kline data, Get Market Data Overview, Get Contract Information, Get the last Trade of a Contract and so on：
 
-   (1) For restful interface：800 times/second for one IP at most 
+   (1) For restful interfaces：all products(futures, coin margined swap, usdt margined swap and option) 800 times/second for one IP at most
 
    (2)  The rate limit for “req” request is 50 times/s at most. No limit for “sub” request as the data will be pushed by server voluntarily. 
 
