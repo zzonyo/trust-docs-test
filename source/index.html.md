@@ -4581,7 +4581,7 @@ No parameter is needed for this endpoint.
 | match-id            | string    | The match id of this match                                   |
 | trade-id            | int       | Unique trade ID (NEW)                                        |
 | price               | string    | The limit price of limit order                               |
-| created-at          | int       | The timestamp in milliseconds when the match and fill is done |
+| created-at          | int       | The timestamp in milliseconds when this record is created    |
 | type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
 | filled-amount       | string    | The amount which has been filled                             |
 | filled-fees         | string    | Transaction fee (positive value). If maker rebate applicable, revert maker rebate value per trade (negative value). |
@@ -4839,7 +4839,7 @@ curl "https://api.huobi.pro/v1/order/matchresults?symbol=ethusdt"
 | match-id            | long      | The match id of this match                                   |
 | trade-id            | long      | Unique trade ID                                              |
 | price               | string    | The limit price of limit order                               |
-| created-at          | int       | The timestamp in milliseconds when the match and fill is done |
+| created-at          | int       | The timestamp in milliseconds when this record is created    |
 | type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
 | filled-amount       | string    | The amount which has been filled                             |
 | filled-fees         | string    | Transaction fee (positive value). If maker rebate applicable, revert maker rebate value per trade (negative value). |
