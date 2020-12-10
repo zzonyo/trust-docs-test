@@ -9536,6 +9536,8 @@ endTime缺省值：当前时间<br></p>
 
 <p>此接口发送一个撤销订单的请求。</p>
 
+<aside class="notice">撤单个订单时建议通过接口/v1/order/orders/{order-id}/submitcancel来撤单，会更快更稳定</aside>
+
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
 <h3 id='http-48'>HTTP 请求</h3>
 <ul>
@@ -9920,7 +9922,7 @@ endTime缺省值：当前时间<br></p>
 <td>order-ids</td>
 <td>false</td>
 <td>string[]</td>
-<td>订单编号列表（order-ids和client-order-ids必须且只能选一个填写，不超过50张订单）</td>
+<td>订单编号列表（order-ids和client-order-ids必须且只能选一个填写，不超过50张订单），建议通过order-ids来撤单，比client-order-ids更快更稳定</td>
 <td></td>
 <td>单次不超过50个订单</td>
 </tr>
