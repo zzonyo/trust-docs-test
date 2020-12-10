@@ -9067,6 +9067,8 @@ Rate Limit (NEW): 100times/2s</p>
 
 <p>This endpoint submit a request to cancel an order.</p>
 
+<aside class="notice">It is suggested to use /v1/order/orders/{order-id}/submitcancel to cancel single order, which is faster and more stable</aside>
+
 <aside class="warning">This only submit the cancel request, the actual result of the canel request needs to be checked by order status or match result endpoints</aside>
 <h3 id='http-request-50'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/order/orders/submitCancelClientOrder</code></p>
@@ -9423,7 +9425,7 @@ Rate Limit (NEW): 50times/2s</p>
 <td>order-ids</td>
 <td>string[]</td>
 <td>false</td>
-<td>The order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request)</td>
+<td>The order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request). It is suggest to use order-ids rather than client-order-ids, the former is faster and more stable</td>
 <td>No more than 50 ids</td>
 </tr>
 <tr>
