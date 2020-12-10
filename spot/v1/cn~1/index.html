@@ -5426,65 +5426,55 @@ endTime缺省值：当前时间</p>
 <td>错误消息，具体消息内容请列表</td>
 </tr>
 </tbody></table>
-<h3 id='err-code'>err-code列表</h3>
+<h3 id='e08c1d4f9a'>错误码</h3>
 <table><thead>
 <tr>
-<th>err-code</th>
-<th>err-msg(中文）</th>
-<th>err-msg(Englis)</th>
-<th>补充说明</th>
+<th>错误码</th>
+<th>错误消息(中文）</th>
+<th>错误消息(英文）</th>
 </tr>
 </thead><tbody>
 <tr>
-<td></td>
 <td>base-msg</td>
-<td></td>
+<td>（具体内容参见之后的列表说明）</td>
 <td></td>
 </tr>
 <tr>
-<td></td>
 <td>base-currency-error</td>
 <td>币种无效</td>
 <td>The currency is invalid</td>
 </tr>
 <tr>
-<td></td>
 <td>frequent-invoke</td>
 <td>操作过于频繁，请稍后重试。（如果超过1分钟10次，系统返回该error-code）</td>
 <td>the operation is too frequent. Please try again later</td>
 </tr>
 <tr>
-<td></td>
 <td>banned-by-blacklist</td>
 <td>黑名单限制</td>
 <td>Blacklist restriction</td>
 </tr>
 <tr>
-<td></td>
 <td>dw-insufficient-balance</td>
 <td>可划转余额不足，最大可划转 {0}。（币币账户的余额不足。）</td>
 <td>Insufficient balance. You can only transfer {0} at most.</td>
 </tr>
 <tr>
-<td></td>
 <td>dw-account-transfer-unavailable</td>
 <td>转账暂时不可用</td>
 <td>account transfer unavailable</td>
 </tr>
 <tr>
-<td></td>
 <td>dw-account-transfer-error</td>
 <td>由于其他服务不可用导致的划转失败</td>
 <td>account transfer error</td>
 </tr>
 <tr>
-<td></td>
 <td>dw-account-transfer-failed</td>
 <td>划转失败。请稍后重试或联系客服</td>
 <td>Failed to transfer. Please try again later.</td>
 </tr>
 <tr>
-<td></td>
 <td>dw-account-transfer-failed-account-abnormality</td>
 <td>账户异常，划转失败。请稍后重试或联系客服</td>
 <td>Account abnormality, failed to transfer。Please try again later.</td>
@@ -5493,146 +5483,122 @@ endTime缺省值：当前时间</p>
 <h3 id='base-msg-err-msg'>base-msg对应的err-msg列表</h3>
 <table><thead>
 <tr>
-<th>err-code</th>
-<th>err-msg(中文）</th>
-<th>err-msg(Englis)</th>
-<th>补充说明</th>
+<th>错误码</th>
+<th>错误消息(中文）</th>
+<th>错误消息(英文）</th>
 </tr>
 </thead><tbody>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>用户没有入金权限</td>
 <td>Unable to transfer in currently. Please contact customer service.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>用户没有出金权限</td>
 <td>Unable to transfer out currently. Please contact customer service.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>合约状态异常，无法出入金</td>
 <td>Abnormal contracts status. Can’t transfer.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>子账号没有入金权限，请联系客服</td>
 <td>Sub-account doesn&#39;t own the permissions to transfer in. Please contact customer service.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>子账号没有出金权限，请联系客服</td>
 <td>Sub-account doesn&#39;t own the permissions to transfer out. Please contact customer service.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>子账号没有划转权限，请登录主账号授权</td>
 <td>The sub-account does not have transfer permissions. Please login main account to authorize.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>可划转余额不足</td>
 <td>Insufficient amount available.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>单笔转出的数量不能低于{0}{1}</td>
 <td>The single transfer-out amount must be no less than {0}{1}.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>单笔转出的数量不能高于{0}{1}</td>
 <td>The single transfer-out amount must be no more than {0}{1}.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>单笔转入的数量不能低于{0}{1}</td>
 <td>The single transfer-in amount must be no less than {0}{1}.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>单笔转入的数量不能高于{0}{1}</td>
 <td>The single transfer-in amount must be no more than {0}{1}.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>您当日累计转出量超过{0}{1}，暂无法转出</td>
 <td>Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can&#39;t transfer out for the time being.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>您当日累计转入量超过{0}{1}，暂无法转入</td>
 <td>Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can&#39;t transfer in for the time being.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>您当日累计净转出量超过{0}{1}，暂无法转出</td>
 <td>Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can&#39;t transfer out for the time being.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>您当日累计净转入量超过{0}{1}，暂无法转入</td>
 <td>Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can&#39;t transfer in for the time being.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>超过平台当日累计最大转出量限制，暂无法转出</td>
 <td>The platform&#39;s accumulative transfer-out amount is over the daily maximum. You can&#39;t transfer out for the time being.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>超过平台当日累计最大转入量限制，暂无法转入</td>
 <td>The platform&#39;s accumulative transfer-in amount is over the daily maximum. You can&#39;t transfer in for the time being.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>超过平台当日累计最大净转出量限制，暂无法转出</td>
 <td>The platform&#39;s accumulative net transfer-out amount is over the daily maximum. You can&#39;t transfer out for the time being.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>超过平台当日累计最大净转入量限制，暂无法转入</td>
 <td>The platform&#39;s accumulative net transfer-in amount is over the daily maximum. You can&#39;t transfer in for the time being.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>划转失败，请稍后重试或联系客服</td>
 <td>Transfer failed. Please try again later or contact customer service.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>服务异常，划转失败，请稍后再试</td>
 <td>Abnormal service, transfer failed. Please try again later.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>您尚未开通合约交易，无访问权限</td>
 <td>You don’t have access permission as you have not opened contracts trading.</td>
 </tr>
 <tr>
-<td></td>
 <td>base-msg</td>
 <td>合约品种不存在</td>
 <td>This contract type doesn&#39;t exist.</td>
@@ -8340,7 +8306,7 @@ endTime缺省值：当前时间</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e08c1d4f9a'>错误码</h3>
+<h3 id='e08c1d4f9a-2'>错误码</h3>
 <table><thead>
 <tr>
 <th>error_code</th>
@@ -9524,7 +9490,7 @@ endTime缺省值：当前时间<br></p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='2213f4c32f-43'>响应数据</h3>
 <p>返回的主数据对象是一个对应下单单号的字符串。</p>
-<h3 id='e08c1d4f9a-2'>错误码</h3>
+<h3 id='e08c1d4f9a-3'>错误码</h3>
 <blockquote>
 <p>Failure response:</p>
 </blockquote>
@@ -16261,7 +16227,7 @@ API Key 权限：读取<br></p>
 <p>数据请求（req）限频规则</p>
 
 <p>单个连接每两次请求不能小于100ms。</p>
-<h3 id='e08c1d4f9a-3'>错误码</h3>
+<h3 id='e08c1d4f9a-4'>错误码</h3>
 <p>以下是WebSocket行情接口的错误码、错误消息和说明。</p>
 
 <table><thead>
@@ -17261,50 +17227,50 @@ API Key 权限：读取<br></p>
 <h3 id='7bf990a9a9-8'>数据更新字段列表</h3>
 <table><thead>
 <tr>
-<th>字段</th>
+<th>字段名称</th>
 <th>数据类型</th>
 <th>描述</th>
 </tr>
 </thead><tbody>
 <tr>
-<td></td>
 <td>symbol</td>
 <td>string</td>
+<td>杠杆ETP交易代码</td>
 </tr>
 <tr>
-<td></td>
 <td>nav</td>
 <td>float</td>
+<td>最新净值</td>
 </tr>
 <tr>
-<td></td>
 <td>navTime</td>
 <td>long</td>
+<td>最新净值更新时间 (unix time in millisecond)</td>
 </tr>
 <tr>
-<td></td>
 <td>outstanding</td>
 <td>float</td>
+<td>ETP总份额</td>
 </tr>
 <tr>
-<td></td>
 <td>basket</td>
 <td>object</td>
+<td>篮子</td>
 </tr>
 <tr>
-<td></td>
 <td>{ currency</td>
 <td>float</td>
+<td>币种</td>
 </tr>
 <tr>
-<td></td>
 <td>amount }</td>
 <td>float</td>
+<td>金额</td>
 </tr>
 <tr>
-<td></td>
 <td>actualLeverage</td>
 <td>float</td>
+<td>实际杠杆率</td>
 </tr>
 </tbody></table>
 <h1 id='websocket-2'>Websocket资产及订单（即将废弃）</h1><h2 id='f1a575644b'>简介（即将废弃）</h2><h3 id='url-2'>接入URL</h3>
@@ -18685,7 +18651,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">请求数据体</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='e08c1d4f9a-4'>错误码</h3>
+</span></code></pre><h3 id='e08c1d4f9a-5'>错误码</h3>
 <p>以下是WebSocket资产和订单接口的错误码、错误消息和说明。</p>
 
 <table><thead>
@@ -18773,7 +18739,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
 <tr>
 <td>2002</td>
 <td>auth.fail</td>
-<td>验签失败</td>
+<td>验签失败，包括API Key绑定的IP错误</td>
 </tr>
 <tr>
 <td>2003</td>
@@ -18783,12 +18749,12 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
 <tr>
 <td>4000</td>
 <td>too.many.request</td>
-<td>客户端上行请求限频</td>
+<td>客户端上行请求限频（单个实例50次/秒）</td>
 </tr>
 <tr>
 <td>4000</td>
 <td>too.many.connection</td>
-<td>同一个key的建联数量</td>
+<td>同一个API Key的建联数量超过服务器单个实例限制（单个实例最多连接10个）</td>
 </tr>
 </tbody></table>
 <h2 id='f810bc2ca6'>订阅订单更新</h2>
