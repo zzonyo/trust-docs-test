@@ -4136,7 +4136,9 @@ Rate Limit (NEW): 100times/2s
 
 This endpoint submit a request to cancel an order.
 
+<aside class="notice">It is suggested to use /v1/order/orders/{order-id}/submitcancel to cancel single order, which is faster and more stable</aside>
 <aside class="warning">This only submit the cancel request, the actual result of the canel request needs to be checked by order status or match result endpoints</aside>
+
 ### HTTP Request
 
 `POST https://api.huobi.pro/v1/order/orders/submitCancelClientOrder`
@@ -4311,7 +4313,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 
 | Parameter        | Data Type | Required | Description                                                  | Value Range         |
 | ---------------- | --------- | -------- | ------------------------------------------------------------ | ------------------- |
-| order-ids        | string[]  | false    | The order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request) | No more than 50 ids |
+| order-ids        | string[]  | false    | The order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request). It is suggest to use order-ids rather than client-order-ids, the former is faster and more stable | No more than 50 ids |
 | client-order-ids | string[]  | false    | The client order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request), it must exist already, otherwise it is not allowed to use when placing a new order | No more than 50 ids |
 
 > The above command returns JSON structured like this:
