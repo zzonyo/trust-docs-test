@@ -4155,7 +4155,9 @@ API Key 权限：交易<br>
 
 此接口发送一个撤销订单的请求。
 
+<aside class="notice">撤单个订单时建议通过接口/v1/order/orders/{order-id}/submitcancel来撤单，会更快更稳定</aside>
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
+
 ### HTTP 请求
 
 - POST ` /v1/order/orders/submitCancelClientOrder`
@@ -4342,7 +4344,7 @@ API Key 权限：交易<br>
 
 | 参数名称         | 是否必须 | 类型     | 描述                                                         | 默认值 | 取值范围           |
 | ---------------- | -------- | -------- | ------------------------------------------------------------ | ------ | ------------------ |
-| order-ids        | false    | string[] | 订单编号列表（order-ids和client-order-ids必须且只能选一个填写，不超过50张订单） |        | 单次不超过50个订单 |
+| order-ids        | false    | string[] | 订单编号列表（order-ids和client-order-ids必须且只能选一个填写，不超过50张订单），建议通过order-ids来撤单，比client-order-ids更快更稳定 |        | 单次不超过50个订单 |
 | client-order-ids | false    | string[] | 用户自编订单号列表（order-ids和client-order-ids必须且只能选一个填写，不超过50张订单），必须已有该订单存在，否则下次下单时不允许用此值 |        | 单次不超过50个订单 |
 
 > Response:
