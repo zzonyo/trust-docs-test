@@ -4155,7 +4155,7 @@ API Key 权限：交易<br>
 
 此接口发送一个撤销订单的请求。
 
-<aside class="notice">撤单个订单时建议通过接口/v1/order/orders/{order-id}/submitcancel来撤单，会更快更稳定</aside>
+<aside class="notice">撤单个订单建议通过接口/v1/order/orders/{order-id}/submitcancel，会更快更稳定</aside>
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
 
 ### HTTP 请求
