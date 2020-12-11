@@ -2114,13 +2114,13 @@ status  |    true  |  string  |    请求处理结果  |  "ok" , "error"  |
 ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    | 
  \<tick\>    |               |    |  开盘价和收盘价（从当天零点(UTC+8)开始）     |            | 
   id    |     true          | long   | K线ID,也就是K线时间戳   |            
-  vol    |     true          | string   |  成交量张数（最近24（当前时间-24小时）小时成交量）    |            
+  vol    |     true          | string   |  成交量张数（最近24（当前时间-24小时）小时成交量张）    |            
   count    |     true          | int   |  成交笔数（最近24（当前时间-24小时）小时成交笔数）     |            
   open    |     true          | string   |    开盘价   |            
   close    |     true          | string   |  收盘价,当K线为最晚的一根时，是最新成交价     |            
   low    |     true          | string   |  最低价    |            
   high    |     true          | string   |  最高价    |            
-  amount    |     true          | string   |  成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价) （最近24（当前时间-24小时）小时成交额）   |            
+  amount    |     true          | string   |  成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)  成交量张数（最近24（当前时间-24小时）小时成交量币）   |            
 ask | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序 | | 
 bid| true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
 ts  |  true  |  long  |    时间戳  |    | 
