@@ -2537,13 +2537,13 @@ ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    |
 | **参数名称** | **类型** | **描述**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | id | int | K线id,也就是K线时间戳  |
-| vol | string  | 成交量张数（最近24（当前时间-24小时）小时成交量）             |
+| vol | string  | 成交量张数（最近24（当前时间-24小时）小时成交量张）             |
 | count | decimal  | 成交笔数（最近24（当前时间-24小时）小时成交笔数） |
 | open | string  | 开盘价               |
 | close | string  | 收盘价              |
 | low | string  |  最低价             |
 | high | string  | 最高价               |
-| amount | string  | 成交量(币) （最近24（当前时间-24小时）小时成交额）  |
+| amount | string  | 成交量(币) （最近24（当前时间-24小时）小时成交量币）  |
 | ts  | long  | 时间戳            |
 | ask | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序 | | 
 | bid | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
@@ -4569,9 +4569,9 @@ last_price | decimal  | true  | 最新价                                       
 
 参数名  |  参数类型    |  必填   |  描述  |
 -------------------- |  -------------- |  ----------  | ---------------------------------------------------------------  |
-symbol  |    string  |    true  | 支持大小写,"BTC","ETH"...  |
-contract_type  |  string  |    true  | 合约类型 ("this_week":当周 "next_week":下周 "quarter":当季 "next_quarter":次季)  |
-contract_code  |  string  |    true  |  BTC180914  |
+symbol  |    string  |    false  | 支持大小写,"BTC","ETH"...  |
+contract_type  |  string  |    false  | 合约类型 ("this_week":当周 "next_week":下周 "quarter":当季 "next_quarter":次季)  |
+contract_code  |  string  |    false  |  BTC180914  |
 client_order_id |   long  |  false  |  客户自己填写和维护，必须为数字,请注意必须小于等于9223372036854775807  |
 price  |  decimal  |   false  |  价格  |
 volume  |    long  |  true  |  委托数量(张)  |
