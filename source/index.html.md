@@ -2207,18 +2207,18 @@ curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC
 | ------ | ---- | ------ | ---------------------------------------- | -------------- |
 | ch     | true | string | 数据所属的 channel，格式： market.$contract_code.detail.merged |                |
 | status | true | string | 请求处理结果     | "ok" , "error" |
-| \<tick\> |true  | object |  24小时成交量、开盘价和收盘价（从当天零点(UTC+8)开始）         |                |
+| \<tick\> |true  | object |  开盘价和收盘价（从当天零点(UTC+8)开始）         |                |
 | id   | true | long | K线ID,也就是K线时间戳     |
-| amount   | true | string | 成交量(币), 即 (成交量(张)*单张合约面值)    |                |
+| amount   | true | string | 成交量(币), 即 (成交量(张)*单张合约面值)（最近24（当前时间-24小时）小时成交量币）    |                |
 | ask   | true | array | [卖1价,卖1量(张)] |                |
 | bid   | true | array | [买1价,买1量(张)] |                |
 | open     | true | string | 开盘价     |                |
 | close     | true | string | 收盘价,当K线为最晚的一根时，是最新成交价       |                |
-| count     | true | decimal | 成交笔数       |                |
+| count     | true | decimal | 成交笔数（最近24（当前时间-24小时）小时成交笔数）       |                |
 | high   | true | string | 最高价                                    |                |
 | low   | true | string | 最低价  |                |
-| vol   | true | string | 成交量（张），买卖双边成交量之和                                    |                |
-| trade_turnover     | true | string | 成交额，即 sum（每一笔成交张数 \* 合约面值 \* 成交价格）       |                |
+| vol   | true | string | 成交量（张），买卖双边成交量之和 （最近24（当前时间-24小时）小时成交量张）      |                |
+| trade_turnover     | true | string | 成交额，即 sum（每一笔成交张数 \* 合约面值 \* 成交价格）（最近24（当前时间-24小时）小时成交额）       |                |
 | ts   | true | long | 时间戳   |                |
 | \</tick\>            |      |        |               |                |
 | ts     | true | long | 响应生成时间点，单位：毫秒                            |                |
@@ -3596,7 +3596,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 #### 备注
  - 该接口仅支持全仓模式。
 
- ### 请求参数
+### 请求参数
 
 | 参数名称   | 是否必须  | 类型     | 描述   | 取值范围         |
 | ------ | ----- | ------ | ---- | ---------------------------- |
@@ -5591,7 +5591,7 @@ orders_data  | List\<Object\>   |    |    |
 | 参数名称                    | 是否必须 | 类型     | 描述                     | 取值范围           |
 | ----------------------- | ---- | ------ | ---------------------- | -------------- |
 | status                  | true | string | 请求处理结果                 | "ok" , "error" |
-| \<data\> |    true  |   object array     |                        |                |
+| \<data\> |    true  |   object      |                        |                |
 | \<errors\> |    true  |   object array     |                        |                |
 | index                   | true | int    | 订单索引                   |                |
 | err_code                | true | int    | 错误码                    |                |
@@ -5737,12 +5737,12 @@ order_id和client_order_id都可以用来撤单，同时只可以设置其中一
 参数名称  |  是否必须  |  类型  |  描述  |  取值范围  |
 ---------------------------- | -------------- | ---------- | -------------------------------------------------- | ---------------- |
 status  |  true  |  string  |  请求处理结果  | "ok" , "error"  | 
-\<data\>(属性名称: data)  |    |    |    |    |  
-\<list\>(属性名称: errors)  |    |    |    |    |  
+\<data\>  | true |  object  |    |    |  
+\<errors\>  | true  | object array   |    |    |  
 order_id  |    true  |  string  |  订单ID  |    |   
 err_code  |   true  |  int  |   错误码  |    |   
 err_msg  |  true  |  string  |  错误信息  |    | 
-\</list\>  |    |    |    |    |
+\</errors\>  |    |    |    |    |
 successes  |   true  |  string  |  撤销成功的订单的order_id或client_order_id列表  |   |
 \</data\>  |    |    |    |    |
 ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |   |
@@ -5794,7 +5794,7 @@ ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |   |
 | 参数名称                   | 是否必须 | 类型     | 描述                                 | 取值范围           |
 | ---------------------- | ---- | ------ | ---------------------------------- | -------------- |
 | status                 | true | string | 请求处理结果                             | "ok" , "error" |
-| \<data\> |  true    |   object array      |        |    |
+| \<data\> |  true    |   object       |        |    |
 | \<errors\>|  true    | object array       |                                    |                |
 | order_id               | true | string | 订单ID                               |                |
 | err_code               | true | int    | 错误码                                |                |
@@ -5840,12 +5840,12 @@ ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |   |
 参数名称  |  是否必须   |  类型  |  描述  |  取值范围  |
 ---------------------------- | -------------- | ---------- | ---------------------------- | ---------------- |
 status  |  true  |  string  |  请求处理结果  | "ok" , "error"  | 
-\<data\>(属性名称: data)  |    |    |    |    |
-\<list\>(属性名称: errors)  |    |    |    |    |
+\<data\>  |  true  | object   |    |    |
+\<errors\> |  true  | object array   |    |    |
 order_id  |    true  |  string  |  订单id  |   | 
 err_code  |    true  |  int  |   订单失败错误码  |   |   
 err_msg  |  true  |  string  |   订单失败信息  |    | 
-\</list\>    |    |    |    |    |
+\</errors\>    |    |    |    |    |
 successes  |    true  |  string  |  成功的订单  |    |   
 \</data\>    |    |    |    |    |
 ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   | 
@@ -5882,7 +5882,7 @@ ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   |
 | 参数名称                   | 是否必须 | 类型     | 描述            | 取值范围           |
 | ---------------------- | ---- | ------ | ------------- | -------------- |
 | status                 | true | string | 请求处理结果        | "ok" , "error" |
-| \<data\> |  true    |   object array      |        |    |
+| \<data\> |  true    |   object       |        |    |
 | \<errors\> |  true    | object array       |               |                |
 | order_id               | true | String | 订单id          |                |
 | err_code               | true | int    | 订单失败错误码       |                |
@@ -6535,7 +6535,7 @@ created_at禁止传0。
 参数名称  |   是否必须  |  类型   |  描述  |   取值范围  |
 -------------------------- | -------------- | ---------- | --------------------------------------------------------------- | ------------------------------------------------------ |
 status  |  true <img width=250/> |  string  |  请求处理结果 <img width=1000/>  | <img width=1100/>   |
-\<dict\>(属性名称: data)  |    |    |    |    |   
+\<data\>  |  true  | object   |    |    |   
 \<orders\>              |    |    |    |    |   
 symbol  |  true  |  string  |  品种代码  |    |  
 contract_code  |  true  |  string  |  合约代码  |  "BTC-USDT" ...  |
@@ -6568,7 +6568,7 @@ margin_account | true | string | 保证金账户  | 比如“BTC-USDT” |
 total_page  |  true  |  int  |   总页数  |    |
 current_page  |   true  |  int  |   当前页  |    |
 total_size  |  true  |  int  |   总条数  |    |
-\</dict\>  |    |    |    |    |
+\</data\>  |    |    |    |    |
 ts  |    true  |  long  |  时间戳  |    |
 
 ## 获取合约当前未成交委托（全仓模式）
