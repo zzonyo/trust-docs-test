@@ -3952,7 +3952,7 @@ curl <span class="s2">"https://api.hbdm.com/option-ex/market/detail/merged?contr
 <td>&lt;tick&gt;</td>
 <td>true</td>
 <td>object</td>
-<td>24小时成交量、开盘价和收盘价（从当天零点(UTC+8)开始）</td>
+<td>开盘价和收盘价（从当天零点(UTC+8)开始）</td>
 <td></td>
 </tr>
 <tr>
@@ -3966,7 +3966,7 @@ curl <span class="s2">"https://api.hbdm.com/option-ex/market/detail/merged?contr
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交量(币), 即 (成交量(张)*单张合约面值)</td>
+<td>成交量(币), 即 (成交量(张)*单张合约面值)（最近24（当前时间-24小时）小时成交量币）</td>
 <td></td>
 </tr>
 <tr>
@@ -4001,7 +4001,7 @@ curl <span class="s2">"https://api.hbdm.com/option-ex/market/detail/merged?contr
 <td>count</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交笔数</td>
+<td>成交笔数（最近24（当前时间-24小时）小时成交笔数）</td>
 <td></td>
 </tr>
 <tr>
@@ -4022,14 +4022,14 @@ curl <span class="s2">"https://api.hbdm.com/option-ex/market/detail/merged?contr
 <td>vol</td>
 <td>true</td>
 <td>string</td>
-<td>成交量（张），买卖双边成交量之和</td>
+<td>成交量（张），买卖双边成交量之和（最近24（当前时间-24小时）小时成交量张）</td>
 <td></td>
 </tr>
 <tr>
 <td>trade_turnover</td>
 <td>true</td>
 <td>string</td>
-<td>成交额（即成交的权利金总额），即 sum（每一笔成交张数*合约面值*成交价格）</td>
+<td>成交额（即成交的权利金总额），即 sum（每一笔成交张数*合约面值*成交价格）（最近24（当前时间-24小时）小时成交额）</td>
 <td></td>
 </tr>
 <tr>
