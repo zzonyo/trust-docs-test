@@ -1610,18 +1610,18 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
 | ------ | ---- | ------ | ---------------------------------------- | -------------- |
 | ch     | true | string | 数据所属的 channel，格式： market.$contract_code.detail.merged |                |
 | status | true | string | 请求处理结果     | "ok" , "error" |
-| \<tick\>   |true  | object |  24小时成交量、开盘价和收盘价（从当天零点(UTC+8)开始）         |                |
+| \<tick\>   |true  | object | 开盘价和收盘价（从当天零点(UTC+8)开始）         |                |
 | id   | true | long | K线ID,也就是K线时间戳  |                |
-| amount   | true | decimal | 成交量(币), 即 (成交量(张)\*单张合约面值)    |                |
+| amount   | true | decimal | 成交量(币), 即 (成交量(张)\*单张合约面值)（最近24（当前时间-24小时）小时成交量币）   |                |
 | ask   | true | array | [卖1价,卖1量(张)] |                |
 | bid   | true | array | [买1价,买1量(张)] |                |
 | open     | true | string | 开盘价     |                |
 | close     | true | string | 收盘价,当K线为最晚的一根时，是最新成交价       |                |
-| count     | true | decimal | 成交笔数       |                |
+| count     | true | decimal | 成交笔数（最近24（当前时间-24小时）小时成交笔数）       |                |
 | high   | true | string | 最高价                                    |                |
 | low   | true | string | 最低价  |                |
-| vol   | true | string | 成交量（张），买卖双边成交量之和                                    |                |
-| trade_turnover     | true | string | 成交额（即成交的权利金总额），即 sum（每一笔成交张数\*合约面值\*成交价格）       |                |
+| vol   | true | string | 成交量（张），买卖双边成交量之和（最近24（当前时间-24小时）小时成交量张）        |                |
+| trade_turnover     | true | string | 成交额（即成交的权利金总额），即 sum（每一笔成交张数\*合约面值\*成交价格）（最近24（当前时间-24小时）小时成交额）       |                |
 | ts   | true | long | 时间戳   |                |
 | \</tick\>              |      |        |               |                |
 | ts     | true | long | 响应生成时间点，单位：毫秒                            |                |
