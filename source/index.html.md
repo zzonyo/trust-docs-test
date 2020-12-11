@@ -2529,7 +2529,7 @@ symbol  |    true  |  string  |  合约名称  |    | 支持大小写，如"BTC_
 -------------- |  -------------- |  -------------- |  ----------------------------------------------------------| ----------------  |
 ch  |  true  |  string  |    数据所属的 channel，格式： market.$symbol.detail.merged   |     |
 status  |    true  |  string  |    请求处理结果  |  "ok" , "error"  |
-tick  |  true  |  object  |    24小时成交量、开盘价和收盘价（从当天零点(UTC+8)开始）  |    |
+tick  |  true  |  object  |    开盘价和收盘价（从当天零点(UTC+8)开始）  |    |
 ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    | 
 
 ### tick参数
@@ -2537,13 +2537,13 @@ ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    |
 | **参数名称** | **类型** | **描述**        |                                  |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | id | int | K线id,也就是K线时间戳  |
-| vol | string  | 成交量张数             |
-| count | decimal  | 成交笔数              |
+| vol | string  | 成交量张数（最近24（当前时间-24小时）小时成交量）             |
+| count | decimal  | 成交笔数（最近24（当前时间-24小时）小时成交笔数） |
 | open | string  | 开盘价               |
 | close | string  | 收盘价              |
 | low | string  |  最低价             |
 | high | string  | 最高价               |
-| amount | string  | 成交量(币)            |
+| amount | string  | 成交量(币) （最近24（当前时间-24小时）小时成交额）  |
 | ts  | long  | 时间戳            |
 | ask | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序 | | 
 | bid | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
