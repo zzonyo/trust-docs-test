@@ -1241,7 +1241,7 @@ contract_code | string   | false      | Case-insenstive.such as "BTC-USDT". All 
 Parameter Name               |   Mandatory   |   Type   |   Description                                |   Value Range                                                |
 ------------------------------ | ------------- | -------- | --------------------------------------------- | ------------------------------------------------------------ |
 status                         | true          | string   | Request Processing Result                     | "ok" , "error"                                               |
-data \<list\>|               |          |   
+\<data\>|               |          |   
 symbol                     |  true           |  string     |  symbol                          |  "BTC","ETH"...  |
 contract_code                  | true          | string   | Contract Code                                 | "BTC-USDT" ...                                              |
 contract_size                  | true          | decimal  | Contract Value (USDT of one contract)          | 10, 100...                                                   |
@@ -1249,7 +1249,7 @@ price_tick                     | true          | decimal  | Minimum Variation of
 settlement_date                  | true          | string   | Settlement  Date                        | eg "1490759594752"                                                |
 create_date                    | true          | string   | Listing Date                         | eg "20190808"                                                |
 contract_status                | true          | int      | Contract Status                               | 0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered |
-\</list\>                      |               |          |                                               |                                                              |
+\</data\>                      |               |          |                                               |                                                              |
 ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                                                              |
 
 
