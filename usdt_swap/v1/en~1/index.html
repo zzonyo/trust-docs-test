@@ -600,6 +600,12 @@
             <a href="#websocket-index-and-basis-interface" class="toc-h1 toc-link" data-title="WebSocket Index and Basis Interface">WebSocket Index and Basis Interface</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#subcribe-index-kline-data" class="toc-h2 toc-link" data-title="Subcribe Index Kline Data">Subcribe Index Kline Data</a>
+                  </li>
+                  <li>
+                    <a href="#request-index-kline-data" class="toc-h2 toc-link" data-title="Request Index Kline Data">Request Index Kline Data</a>
+                  </li>
+                  <li>
                     <a href="#subcribe-premium-index-kline-data" class="toc-h2 toc-link" data-title="Subcribe Premium Index Kline Data">Subcribe Premium Index Kline Data</a>
                   </li>
                   <li>
@@ -1351,7 +1357,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <li><p>For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 120 times every 3 second at most for each IP (this 120 times every 3 second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).</p></li>
 <li><p>For public interface to get market data such as  Get Kline data, Get Market Data Overview, Get Contract Information,Get market in-depth data, Get premium index Kline, Get real-time forecast capital rate kline, Get basis data, Get the last Trade of a Contract and so on：</p>
 
-<p>（1） For restful interface: 800 times/second for one IP at most.</p>
+<p>(1) For restful interfaces：all products(futures, coin margined swap, usdt margined swap and option) 800 times/second for one IP at most.</p>
 
 <p>（2）For websocket: The rate limit for “req” request is 50 times at once. No limit for “sub” request as the data will be pushed by sever voluntarily.</p></li>
 <li><p>WebSocket, the private order push interface, requires API KEY Verification:</p>
@@ -2152,7 +2158,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1080</td>
-<td>In settlement or delivery. Unable to get positions.</td>
+<td>In settlement or delivery. Unable to get positions of some contracts.</td>
 </tr>
 <tr>
 <td>1081</td>
@@ -2759,6 +2765,8 @@ It will be pushed only when position event is updated.</p>
 <p>(3) If a price level is gone, data such as [8100, 0] will be pushed.You have to remove the same price of local MBP data;</p>
 
 <p>(4) For the same websocket connection, the incremental data version is incremented; if the version is not incremented, you need to re-subscribe and re-maintain the local full MBP data;</p>
+<h3 id='q14-what-39-s-the-difference-between-quot-funding_rate-quot-and-quot-realized_rate-quot-in-the-response-of-linear-swap-api-v1-swap_historical_funding_rate-interface'>Q14: What&#39;s the difference between &quot;funding_rate&quot; and &quot;realized_rate&quot; in the response of linear-swap-api/v1/swap_historical_funding_rate interface?</h3>
+<p>Generally, &quot;funding_rate&quot; is equal to &quot;realized_rate&quot;.Only when the payment of funding fee will cause the liquidation of the user&#39;s position, the funding fee is under or not charged(And the fee is the actual funding fee:&quot;realized_rate&quot;).The current funding rate:&quot;funding_rate&quot; remains unchanged.</p>
 <h2 id='order-and-trade'>Order and Trade</h2><h3 id='q1-what-is-the-usdt-margined-swap-funding-rate-settlement-cycle-which-interface-can-be-used-to-check-the-status-when-the-fund-rate-is-settled'>Q1: What is the USDT Margined Swap funding rate settlement cycle? Which interface can be used to check the status when the fund rate is settled?</h3>
 <p>We warmly remind you that Huobi USDT Margined Swap is settled every 8 hours, and the settlement will be at the end of each period. For example, 00:00 - 08:00 is a period, and its settlement time would be at 08:00; 08:00 - 16:00 is a period, and its settlement time would be at 16:00; 16:00 - 00:00 (+1 day) is a period, and its settlement time would be at 00:00. All times mentioned above are Singapore Standard time (GMT+8).</p>
 
@@ -2867,7 +2875,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>data &lt;list&gt;</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -2923,7 +2931,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered</td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -6920,7 +6928,7 @@ You are recommended to read the status code from the returned message. If the ab
 </tbody></table>
 <h4 id='note-4'>Note</h4>
 <ul>
-<li>If there are symbols in the settlement or delivery period,error code 1080(1080  In settlement or delivery. Unable to get positions) will return without request parameters. It&#39;s suggested to query the position info with request parameters to avoid raising the error code and not being able to query the position.</li>
+<li>If there are symbols in the settlement or delivery period,error code 1080(1080 In settlement or delivery. Unable to get positions of some contracts.) will return without request parameters. It&#39;s suggested to query the position info with request parameters to avoid raising the error code and not being able to query the position.</li>
 </ul>
 <h2 id='query-assets-and-positions'>Query Assets And Positions</h2>
 <ul>
@@ -10353,7 +10361,7 @@ You are recommended to read the status code from the returned message. If the ab
 </tr>
 </tbody></table>
 <h3 id='note-14'>Note  ：</h3>
-<p>When getting information on order cancellation via get order Information interface, users can only query last 24-hour data</p>
+<p>When getting information on order cancellation via get order Information interface, users can only query last 4-hour data</p>
 
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id. The order completed( 5.partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled; ) will be deleted after the settlement of funding rate on 04:00(GMT+8), 12:00(GMT+8) and 20:00(GMT+8).</p>
 
@@ -13754,7 +13762,7 @@ You are recommended to read the status code from the returned message. If the ab
 <li><p>For public interface to get market data such as  Get Kline data, Get Market Data Overview, Get Contract Information,Get market in-depth data, Get premium index Kline, Get real-time forecast capital rate kline, Get basis data, Get the last Trade of a Contract and so on：</p></li>
 </ul>
 
-<p>(1) For restful interface：800 times/second for one IP at most 
+<p>(1) For restful interfaces：all products(futures, coin margined swap, usdt margined swap and option) 800 times/second for one IP at most.
 　　
    (2)  The rate limit for “req” request is 50 times/s at most. No limit for “sub” request as the data will be pushed by server voluntarily. </p>
 
@@ -15733,6 +15741,422 @@ Details are below:</p></li>
 <ul>
 <li>The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index </li>
 </ul>
+<h2 id='subcribe-index-kline-data'>Subcribe Index Kline Data</h2><h3 id='to-subscribe-index-kline-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below'>To subscribe index kline data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;sub&quot;: &quot;market.$contract_code.index.$period&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generate by client&quot;</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>example of the subscription of index kline data：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USD.index.1min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='request-parameter-49'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub</td>
+<td>true</td>
+<td>string</td>
+<td>the themes that need to be subscribed; the interface is fixed at: market.$contract_code.index.$period，For parameter details please check sub Subscribe Parameter Rules</td>
+</tr>
+<tr>
+<td>id</td>
+<td>false</td>
+<td>string</td>
+<td>id automatically generated by the business party</td>
+</tr>
+</tbody></table>
+<h3 id='sub-subscribe-parameter-rules-7'>sub Subscribe Parameter Rules</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>index symbol</td>
+<td></td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..&quot;BTC-USDT&quot;,&quot;ETH-USDT&quot;...</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>kline type</td>
+<td></td>
+<td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
+</tr>
+</tbody></table>
+<h3 id='note-28'>Note</h3>
+<ul>
+<li><p>Pushed once the index data is changed.</p></li>
+<li><p>Periodical Push when the index data hasn&#39;t changed according to the kline period.</p></li>
+</ul>
+
+<blockquote>
+<p>results pushed by the server</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USDT.index.15min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1607309592214</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1607309100</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"open"</span><span class="p">:</span><span class="s2">"19213.505"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"close"</span><span class="p">:</span><span class="s2">"19242.05"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"high"</span><span class="p">:</span><span class="s2">"19248.31"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"low"</span><span class="p">:</span><span class="s2">"19213.505"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vol"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='returning-parameter-42'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>type</strong></th>
+<th><strong>desc</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>Data channel，Format：market.$contract_code.index.$period</td>
+<td></td>
+</tr>
+<tr>
+<td>tick</td>
+<td>true</td>
+<td>object array</td>
+<td>Details：tick parameters</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='tick-parameters'>tick parameters</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>type</strong></th>
+<th><strong>desc</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>index kline id,the same as kline timestamp,kline start timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>string</td>
+<td>Trade Volume. The value is 0.</td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>decimal</td>
+<td>count. The value is 0.</td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>string</td>
+<td>open index price</td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>string</td>
+<td>close index price</td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>string</td>
+<td>lowest index price</td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>string</td>
+<td>highest index price</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>amount based on coins.</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='request-index-kline-data'>Request Index Kline Data</h2><h3 id='to-subscribe-index-kline-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below-2'>To subscribe index kline data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;req&quot;: &quot;market.$contract_code.index.$period&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generated by client&quot;,</code></p>
+
+<p><code>&quot;from&quot;: &quot;type: long, from 2017-07-28T00:00:00+08:00  to 2050-01-01T00:00:00+08:00&quot;,</code></p>
+
+<p><code>&quot;to&quot;: &quot;type: long, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00 .Larger than &#39;from&#39; value. &quot;,</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>example of the subscription of index kline data：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btc-usd.index.1min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id4"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-parameter-50'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>req</td>
+<td>true</td>
+<td>string</td>
+<td>the themes that need to be subscribed; the interface is fixed at: market.$contract_code.index.$period，For parameter details please check req Subscribe Parameter Rules</td>
+</tr>
+<tr>
+<td>id</td>
+<td>false</td>
+<td>string</td>
+<td>id automatically generated by the business party</td>
+</tr>
+<tr>
+<td>from</td>
+<td>true</td>
+<td>long</td>
+<td>start time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds</td>
+</tr>
+<tr>
+<td>to</td>
+<td>true</td>
+<td>long</td>
+<td>end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
+</tr>
+</tbody></table>
+<h3 id='req-subscribe-parameter-rules-3'>req Subscribe Parameter Rules：</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandotary</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td></td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..&quot;BTC-USDT&quot;,&quot;ETH-USDT&quot;...</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>kline type</td>
+<td></td>
+<td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
+</tr>
+</tbody></table>
+<h3 id='note-29'>Note：</h3>
+<ul>
+<li>Pushed once the index data is changed.</li>
+</ul>
+
+<blockquote>
+<p>response example：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"id4"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rep"</span><span class="p">:</span><span class="s2">"market.BTC-USDT.index.15min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"wsid"</span><span class="p">:</span><span class="mi">3673570133</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1607310136031</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1607309100</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open"</span><span class="p">:</span><span class="mf">19213.505</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"close"</span><span class="p">:</span><span class="mf">19207.245</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low"</span><span class="p">:</span><span class="mf">19207.245</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high"</span><span class="p">:</span><span class="mf">19248.31</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vol"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1607310000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open"</span><span class="p">:</span><span class="mf">19199.655</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"close"</span><span class="p">:</span><span class="mf">19174.48</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low"</span><span class="p">:</span><span class="mf">19174.48</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high"</span><span class="p">:</span><span class="mf">19208.11</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vol"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='returning-parameter-43'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>type</strong></th>
+<th><strong>desc</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>req</td>
+<td>true</td>
+<td>string</td>
+<td>Data channel，Format：market.$contract_code.index.$period</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>Request processing result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>string</td>
+<td>ID</td>
+<td></td>
+</tr>
+<tr>
+<td>wsid</td>
+<td>true</td>
+<td>long</td>
+<td>wsid</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>object array</td>
+<td>Details：data parameters</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='data-parameters'>data parameters</h3>
+<table><thead>
+<tr>
+<th><strong>parameter name</strong></th>
+<th><strong>type</strong></th>
+<th><strong>desc</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>index kline id,the same as kline timestamp,kline start timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>decimal</td>
+<td>Trade Volume. The value is 0.</td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>decimal</td>
+<td>count. The value is 0.</td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>decimal</td>
+<td>open index price</td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>decimal</td>
+<td>close index price</td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>decimal</td>
+<td>lowest index price</td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>decimal</td>
+<td>highest index price</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>decimal</td>
+<td>amount based on coins.</td>
+<td></td>
+</tr>
+</tbody></table>
 <h2 id='subcribe-premium-index-kline-data'>Subcribe Premium Index Kline Data</h2><h3 id='to-subscribe-premium-index-kline-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below'>To subscribe Premium index kline data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
 <p><code>{</code></p>
 
@@ -15751,7 +16175,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-49'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-51'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15773,7 +16197,7 @@ Details are below:</p></li>
 <td>id automatically generated by the business party</td>
 </tr>
 </tbody></table>
-<h3 id='sub-subscribe-parameter-rules-7'>sub Subscribe Parameter Rules</h3>
+<h3 id='sub-subscribe-parameter-rules-8'>sub Subscribe Parameter Rules</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -15801,7 +16225,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-28'>Note</h4>
+<h4 id='note-30'>Note</h4>
 <ul>
 <li><p>Pushed once the index data is changed.</p></li>
 <li><p>Periodical Push when the index data hasn&#39;t changed according to the kline period.</p></li>
@@ -15951,7 +16375,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-50'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-52'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15985,7 +16409,7 @@ Details are below:</p></li>
 <td>end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
 </tr>
 </tbody></table>
-<h3 id='req-subscribe-parameter-rules-3'>req Subscribe Parameter Rules：</h3>
+<h3 id='req-subscribe-parameter-rules-4'>req Subscribe Parameter Rules：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -16013,7 +16437,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-29'>Note：</h3>
+<h3 id='note-31'>Note：</h3>
 <ul>
 <li>Pushed once the index data is updated.</li>
 </ul>
@@ -16043,7 +16467,7 @@ Details are below:</p></li>
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='data-parameters'>data parameters</h3>
+</span></code></pre><h3 id='data-parameters-2'>data parameters</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -16184,7 +16608,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-51'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-53'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16206,7 +16630,7 @@ Details are below:</p></li>
 <td>id automatically generated by the business party</td>
 </tr>
 </tbody></table>
-<h3 id='sub-subscribe-parameter-rules-8'>sub Subscribe Parameter Rules</h3>
+<h3 id='sub-subscribe-parameter-rules-9'>sub Subscribe Parameter Rules</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -16234,7 +16658,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-30'>Note:</h4>
+<h4 id='note-32'>Note:</h4>
 <ul>
 <li><p>Pushed once the kline data is changed.</p></li>
 <li><p>Periodical Push when the kline data hasn&#39;t changed according to the kline period.</p></li>
@@ -16384,7 +16808,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-52'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-54'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16612,7 +17036,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-53'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-55'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16634,7 +17058,7 @@ Details are below:</p></li>
 <td>id automatically generated by the business party</td>
 </tr>
 </tbody></table>
-<h3 id='sub-subscribe-parameter-rules-9'>sub Subscribe Parameter Rules：</h3>
+<h3 id='sub-subscribe-parameter-rules-10'>sub Subscribe Parameter Rules：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -16784,7 +17208,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-54'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-56'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16818,7 +17242,7 @@ Details are below:</p></li>
 <td>end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameter-55'>Request Parameter：</h3>
+<h3 id='request-parameter-57'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -16854,7 +17278,7 @@ Details are below:</p></li>
 <td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-31'>Note：</h3>
+<h3 id='note-33'>Note：</h3>
 <ul>
 <li>2000 data at most per request.</li>
 </ul>
@@ -17406,7 +17830,7 @@ Details are below:</p></li>
 <td>Required；format: matchOrders.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-32'>Note:</h4>
+<h4 id='note-34'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 <li>The orders will be pushed when matched by matching engine.</li>
@@ -17799,7 +18223,7 @@ Details are below:</p></li>
 <td>Required； Subscribe Topic Name，Required subscribe accounts.$contract_code   Subscribe/unsubscribe the balance change of a given coin，when the value of $contract_code is “*”, it means to subscribe/unsubscribe the balance change of all coins; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-33'>Note:</h3>
+<h3 id='note-35'>Note:</h3>
 <ul>
 <li>A regular push of account is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</li>
 </ul>
@@ -18234,7 +18658,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-34'>Note:</h3>
+<h3 id='note-36'>Note:</h3>
 <ul>
 <li><p>A regular push of position is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</p></li>
 <li><p>When switching leverage with no positions, the event &quot;switch_lever_rate&quot; will not be pushed by the position topic.</p></li>
@@ -18765,7 +19189,7 @@ Details are below:</p></li>
 <td>not allowed</td>
 </tr>
 </tbody></table>
-<h3 id='note-35'>Note</h3>
+<h3 id='note-37'>Note</h3>
 <ul>
 <li><p>Funding rate will be pushed every 60 seconds by default.Funding rate will not be calculated under conditions below:</p>
 
@@ -18915,7 +19339,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-36'>Note：</h3>
+<h3 id='note-38'>Note：</h3>
 <ul>
 <li>The websocket subscription of contract info event is pushed every 60 seconds, and the event is &quot;snapshot&quot;. </li>
 <li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is &quot;init&quot;.</li>
@@ -19026,7 +19450,7 @@ Details are below:</p></li>
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-56'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-58'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
