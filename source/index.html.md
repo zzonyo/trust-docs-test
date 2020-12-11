@@ -38,6 +38,489 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.0.4 2020-12-11 【1-33 Added interfaces for cross margin mode. 34-60 Added fields to modify interface】
+
+### 1、Added Cross Margin Mode Query Information On Tiered Adjustment Factor
+
+  - Interface Name：Query Information On Tiered Adjustment Factor（cross margin mode）
+
+  - Interface Type：public
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_adjustfactor
+
+### 1、Added Cross Margin Mode Query Information On Transfer State
+
+  - Interface Name：Query Information On Transfer State（cross margin mode）
+
+  - Interface Type：public
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_transfer_state  
+
+### 1、Added Cross Margin Mode Query Information On Trade State
+
+  - Interface Name：Query Information On Trade State（cross margin mode）
+
+  - Interface Type：public
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_trade_state 
+
+### 1、Added Cross Margin Mode Query User's Account Information
+
+  - Interface Name：Query User's Account Information（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_account_info     
+
+### 1、Added Cross Margin Mode Query User's Position Information
+
+  - Interface Name：Query User's Position Information（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_position_info 
+
+### 1、Added Cross Margin Mode Query Assets Information Of All Sub-Accounts Under The Master Account
+
+  - Interface Name：Query Assets Information Of All Sub-Accounts Under The Master Account（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_sub_account_list  
+
+### 7、Added Cross Margin Mode Query A Sub-Account's Assets Information
+
+  - Interface Name：Query A Sub-Account's Assets Information（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_sub_account_info 
+
+### 8、Added Cross Margin Mode Query A Sub-Account's Position Information
+
+  - Interface Name：Query A Sub-Account's Position Information（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_sub_position_info   
+
+### 9、Added Cross Margin Mode Query Information On Transfer Limit
+
+  - Interface Name：Query Information On Transfer Limit（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_transfer_limit 
+
+### 10、Added Cross Margin Mode Query Information On Position Limit
+
+  - Interface Name：Query Information On Position Limit（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_position_limit
+
+### 11、Added Cross Margin Mode Query Assets And Positions
+
+  - Interface Name：Query Assets And Positions（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_account_position_info 
+
+### 12、Added Cross Margin Mode Query User’s Available Leverage
+
+  - Interface Name：Query User’s Available Leverage（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_available_level_rate  
+
+### 13、Added Cross Margin Mode Switch Leverage
+
+  - Interface Name：Switch Leverage（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_switch_lever_rate  
+
+### 14、Added Cross Margin Mode Place An Order 
+
+  - Interface Name：Place An Order（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_order  
+
+### 15、Added Cross Margin Mode Place A Batch Of Orders
+
+  - Interface Name：Place A Batch Of Orders（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_batchorder 
+
+### 16、Added Cross Margin Mode Cancel An Order
+
+  - Interface Name：Cancel An Order（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_cancel  
+
+### 17、Added Cross Margin Mode Cancel All Orders
+
+  - Interface Name：Cancel All Orders（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_cancelall 
+
+### 18、Added Cross Margin Mode Get Information of order
+
+  - Interface Name：Get Information of order（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_order_info  
+
+### 19、Added Cross Margin ModeGet Detail Information of order
+
+  - Interface Name：Get Detail Information of order（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_order_detail  
+
+### 20、Added Cross Margin Mode Current unfilled order acquisition
+
+  - Interface Name：Current unfilled order acquisition（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_openorders  
+
+### 21、Added Cross Margin Mode Get History Orders
+
+  - Interface Name：Get History Orders（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_hisorders 
+
+### 22、Added Cross Margin Mode Get History Match Results
+
+  - Interface Name：Get History Match Results（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_matchresults   
+
+### 23、Added Cross Margin Mode Place Lightning Close Position
+
+  - Interface Name：Place Lightning Close Position（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_lightning_close_position 
+
+### 24、Added Cross Margin Mode Place Trigger Order
+
+  - Interface Name：Place Trigger Order（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_trigger_order   
+
+### 25、Added Cross Margin Mode Cancel Trigger Order
+
+  - Interface Name：Cancel Trigger Order（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_trigger_cancel 
+
+### 26、Added Cross Margin Mode Cancel All Trigger Orders
+
+  - Interface Name：Cancel All Trigger Orders（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_trigger_cancelall  
+
+### 27、Added Cross Margin Mode Query Open Trigger Order
+
+  - Interface Name：Query Open Trigger Order（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_trigger_openorders  
+
+### 28、Added Cross Margin Mode Query Trigger Order History
+
+  - Interface Name：Query Trigger Order History（cross margin mode）
+
+  - Interface Type：private
+
+  - Interface URL：/linear-swap-api/v1/swap_cross_trigger_hisorders 
+
+### 29、Added Cross Margin Mode Subscribe Order Data
+
+  - Interface Name：Subscribe Order Data（cross margin mode）
+
+  - Interface Type：private
+
+  - Subscription topic：orders_cross.$contract_code 
+
+### 30、Added Cross Margin Mode Subscribe Account Equity Updates Data
+
+  - Interface Name：Subscribe Account Equity Updates Data（cross margin mode）
+
+  - Interface Type：private
+
+  - Subscription topic：accounts_cross.$margin_account  
+
+### 31、Added Cross Margin Mode Subscribe Position Updates
+
+  - Interface Name：Subscribe Position Updates（cross margin mode）
+
+  - Interface Type：private
+
+  - Subscription topic：positions_cross.$contract_code   
+
+### 32、Added Cross Margin Mode Subscribe Match Order Data
+
+  - Interface Name：Subscribe Match Order Data（cross margin mode）
+
+  - Interface Type：private
+
+  - Subscription topic：matchOrders_cross.$contract_code 
+
+### 33、Added Cross Margin Mode Subscribe trigger orders updates
+
+  - Interface Name：Subscribe trigger orders updates（cross margin mode）
+
+  - Interface Type：private
+
+  - Subscription topic：trigger_order_cross.$contract_code
+
+### 34、Query Swap Info Added fields (added “support_margin_mode” parameter; added “support_margin_mode” in return parameter “data” to represent the margin mode that a contract supports.)
+
+  - Interface Name：Query Swap Info
+
+  - Interface Type：public
+
+  - Interface URL：linear-swap-api/v1/swap_contract_info
+
+### 35、Query information on Tiered Adjustment Factor Added fields for return parameters ( added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Query information on Tiered Adjustment Factor
+
+  - Interface Type：public
+
+  - Interface URL：/linear-swap-api/v1/swap_adjustfactor
+
+### 36、Query information on system status Added fields for return parameters (added “margin_account” for return parameters to represent margin account; added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Query information on system status
+
+  - Interface Type：public
+
+  - Interface URL：/linear-swap-api/v1/swap_api_state
+
+### 37、Query User’s Account Information Added fields for return parameters (added “margin_account” for return parameters to represent margin account; added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Query User’s Account Information
+
+  - Interface Type：private
+
+  - Interface URL：linear-swap-api/v1/swap_account_info
+
+### 38、Query a single sub-account's assets information Added fields for return parameters (added “margin_account” for return parameters to represent margin account; added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Query a single sub-account's assets information
+
+  - Interface Type：private
+
+  - Interface URL：linear-swap-api/v1/swap_sub_account_info
+
+### 39、Query Assets And Positions Added fields for return parameters (added “margin_account” for return parameters to represent margin account; added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Query Assets And Positions
+
+  - Interface Type：private
+
+  - Interface URL：linear-swap-api/v1/swap_account_position_info
+
+### 40、Query assets information of all sub-accounts under the master account Added fields for return parameters (added “margin_account” for return parameters to represent margin account; added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Query assets information of all sub-accounts under the master account
+
+  - Interface Type：private
+
+  - Interface URL：linear-swap-api/v1/swap_sub_account_list
+
+### 41、Query User’s Position Information Added fields for return parameters (added “margin_account” for return parameters to represent margin account; added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Query User’s Position Information
+
+  - Interface Type：private
+
+  - Interface URL：linear-swap-api/v1/swap_position_info
+
+### 42、Query a single sub-account's position information Added fields for return parameters (added “margin_account” for return parameters to represent margin account; added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Query a single sub-account's position information
+
+  - Interface Type：private
+
+  - Interface URL：linear-swap-api/v1/swap_sub_position_info
+
+### 43、Query account financial records Added fields (added “contract_code” to represent contract code) 
+
+  - Interface Name：Query account financial records
+
+  - Interface Type：private
+
+  - Interface URL：linear-swap-api/v1/swap_financial_record
+
+### 44、Order details acquisition Added fields for return parameters (added “margin_account” for return parameters to represent margin account; added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Order details acquisition
+
+  - Interface Type：private
+
+  - Interface URL：linear-swap-api/v1/swap_order_detail
+
+### 45、Current unfilled order acquisition Added fields for return parameters (added “margin_account” for return parameters to represent margin account; added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Current unfilled order acquisition
+
+  - Interface Type：private
+
+  - Interface URL：linear-swap-api/v1/swap_openorders
+
+### 46、Get History Orders Added fields for return parameters (added “margin_account” for return parameters to represent margin account; added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Get History Orders
+
+  - Interface Type：private
+
+  - Interface URL：linear-swap-api/v1/swap_hisorders
+
+### 47、Acquire History Match Results Added fields for return parameters (added “margin_account” for return parameters to represent margin account; added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Acquire History Match Results
+
+  - Interface Type：private
+
+  - Interface URL：linear-swap-api/v1/swap_matchresults
+
+### 48、Query Trigger Order Open Orders Added fields for return parameters (added “margin_account” for return parameters to represent margin account; added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Query Trigger Order Open Orders
+
+  - Interface Type：private
+
+  - Interface URL：linear-swap-api/v1/swap_trigger_openorders
+
+### 49、Query Trigger Order History Added fields for return parameters (added “margin_account” for return parameters to represent margin account; added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Query Trigger Order History
+
+  - Interface Type：private
+
+  - Interface URL：linear-swap-api/v1/swap_trigger_hisorders
+
+### 50、Query information on Transfer Limit Added fields for return parameters (added “margin_account” for return parameters to represent margin account; added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Query information on Transfer Limit
+
+  - Interface Type：private
+
+  - Interface URL：linear-swap-api/v1/swap_transfer_limit  
+
+### 51、Query information on position limit Added fields for return parameters ( added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Query information on position limit
+
+  - Interface Type：private
+
+  - Interface URL：linear-swap-api/v1/swap_position_limit
+
+### 52、Query user’s available leverage Added fields for return parameters ( added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Query user’s available leverage
+
+  - Interface Type：private
+
+  - Interface URL：linear-swap-api/v1/swap_available_level_rate  
+
+### 53、Switch Leverage Added fields for return parameters ( added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Switch Leverage
+
+  - Interface Type：private
+
+  - Interface URL：linear-swap-api/v1/swap_switch_lever_rate
+
+### 54、Subscribe Order Data Added fields for return parameters (added “margin_account” for return parameters to represent margin account; added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Subscribe Order Data
+
+  - Interface Type：private
+
+  - Subscription topic：orders.$contract_code
+
+### 55、Subscribe Match Order Data Added fields for return parameters (added “margin_account” for return parameters to represent margin account; added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Subscribe Match Order Data
+
+  - Interface Type：private
+
+  - Subscription topic：matchOrders.$contract_code
+
+### 56、Subscribe trigger orders updates Added fields for return parameters (added “margin_account” for return parameters to represent margin account; added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Subscribe trigger orders updates
+
+  - Interface Type：private
+
+  - Subscription topic：trigger_order.$contract_code
+
+### 57、Subscribe Position Updates Added fields for return parameters (added “margin_account” for return parameters to represent margin account; added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Subscribe Position Updates
+
+  - Interface Type：private
+
+  - Subscription topic：positions.$contract_code
+
+### 58、Subscribe Account Equity Updates Data Added fields for return parameters (added “margin_account” for return parameters to represent margin account; added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Subscribe Account Equity Updates Data
+
+  - Interface Type：private
+
+  - Subscription topic：accounts.$contract_code
+
+### 59、Subscribe Contract Info (no authentication) Added fields for return parameters ( added “support_margin_mode” to represent support margin mode) 
+
+  - Interface Name：Subscribe Contract Info (no authentication)
+
+  - Interface Type：public
+
+  - Subscription topic：public.$contract_code.contract_info
+
+### 60、Get Information of an Order Added fields for return parameters (added “margin_account” for return parameters to represent margin account; added “margin_mode” to represent margin mode) 
+
+  - Interface Name：Get Information of an Order
+
+  - Interface Type：private
+
+  - Interface URL：linear-swap-api/v1/swap_order_info
+
+
 ## 1.0.3 2020-12-02 【Modified “Order details acquisition” interface (When querying cancelation data of orders that have not been partially filled, if “created_at” and “order_type” parameters are not uploaded, the data that can be queried reduced from last 12 hours to last 2 hours.); modified “Query history orders” interface (When querying cancelation data of orders that have not been partially filled, the data that can be retained reduced from last 24 hours to last 2 hours.)】
 
 ### 1、Modified “Order details acquisition” interface (When querying cancelation data of orders that have not been partially filled, if “created_at” and “order_type” parameters are not uploaded, the data that can be queried reduced from last 12 hours to last 2 hours.)
@@ -132,6 +615,9 @@ permission type  |  Content Type  |   Context           |   Request Type   |   D
  Read  | Market Data | index/market/history/linear_swap_estimated_rate_kline             | GET    |      Query Swap Market Data interface           |       No          |
  Read  | Market Data | linear-swap-ex/market/trade                                       | GET    |      Query The Last Trade of a Contract                |       No          |
  Read  | Market Data | linear-swap-ex/market/history/trade                               | GET    |      Query a Batch of Trade Records of a Contract               |     No         |
+ Read  | Market Data | linear-swap-api/v1/swap_cross_adjustfactor                          | GET    |     Query Information On Tiered Adjustment Factor（cross margin mode）                                                |       No          |
+ Read  | Market Data | linear-swap-api/v1/swap_cross_transfer_state                        | GET    |     Query Information On Transfer State（cross margin mode）                        |       No          |
+ Read  | Market Data | linear-swap-api/v1/swap_cross_trade_state                           | GET    |     Query Information On Trade State（cross margin mode）                        |       No          |
  Read  | Account    | linear-swap-api/v1/swap_account_info                              | POST   |      Query User’s Account Information                |     Yes        |
  Read  | Account    | linear-swap-api/v1/swap_position_info                             | POST   |      Query User’s position Information               |     Yes        |
  Read  | Account    | linear-swap-api/v1/swap_available_level_rate                      | POST   |      Query user’s available leverage              |     Yes        |
@@ -148,6 +634,15 @@ Trade  | Account    | linear-swap-api/v1/swap_master_sub_transfer               
  Read  | Account    | linear-swap-api/v1/swap_master_sub_transfer_record                | POST   |      Query transfer records of master account    |     Yes        |
 Trade  | Account    | linear-swap-api/v1/swap_transfer_inner                            | POST   |      Transfer between different margin accounts under the same account          |     Yes        |
  Read  | Account    | linear-swap-api/v1/swap_api_trading_status                        | GET    |      Query user's API indicator disable information              |     Yes        |
+ Read  | Account    | /linear-swap-api/v1/swap_cross_account_info                          | POST    |    Query User's Account Information（cross margin mode）              |       Yes          |
+ Read  | Account    | /linear-swap-api/v1/swap_cross_position_info                         | POST    |    Query User's Position Information（cross margin mode）               |       Yes          |
+ Read  | Account    | /linear-swap-api/v1/swap_cross_sub_account_list                      | POST    |    Query Assets Information Of All Sub-Accounts Under The Master Account（cross margin mode）       |       Yes          |
+ Read  | Account    | /linear-swap-api/v1/swap_cross_sub_account_info                      | POST    |    Query A Sub-Account's Assets Information（cross margin mode）   |       Yes          |
+ Read  | Account    | /linear-swap-api/v1/swap_cross_sub_position_info                     | POST    |    Query A Sub-Account's Position Information（cross margin mode）    |       Yes          |
+ Read  | Account    | /linear-swap-api/v1/swap_cross_transfer_limit                        | POST    |    Query Information On Transfer Limit（cross margin mode）           |       Yes          |
+ Read  | Account    | /linear-swap-api/v1/swap_cross_position_limit                        | POST    |    Query Information On Position Limit（cross margin mode）        |       Yes          |
+ Read  | Account    | /linear-swap-api/v1/swap_cross_account_position_info                 | POST    |    Query Assets And Positions（cross margin mode）          |       Yes          |
+ Read  | Account    | linear-swap-api/v1/swap_cross_available_level_rate                   | POST    |    Query User’s Available Leverage（cross margin mode）        |       Yes          |
 Trade  | Trade      | linear-swap-api/v1/swap_order                                     | POST   |      Place an Order                              |     Yes        |
 Trade  | Trade      | linear-swap-api/v1/swap_batchorder                                | POST   |      Place a Batch of Orders                         |     Yes        |
 Trade  | Trade      | linear-swap-api/v1/swap_switch_lever_rate                         | POST   |      Switch Leverage               |     Yes        |
@@ -164,6 +659,22 @@ Trade  | Trade      | linear-swap-api/v1/swap_trigger_cancel                    
 Trade  | Trade      | linear-swap-api/v1/swap_trigger_cancelall                         | POST   |      Cancel all trigger Orders                 |     Yes        |
  Read  | Trade      | linear-swap-api/v1/swap_trigger_openorders                        | POST   |      Get all open trigger Orders                 |     Yes        |
  Read  | Trade      | linear-swap-api/v1/swap_trigger_hisorders                         | POST   |      Get all history trigger Orders                 |     Yes        |
+Trade  | Trade    | /linear-swap-api/v1/swap_cross_switch_lever_rate                     | POST    |    Switch Leverage（cross margin mode）         |       Yes          |
+Trade  | Trade    | /linear-swap-api/v1/swap_cross_order                                 | POST    |    Place An Order（cross margin mode）           |       Yes          |
+Trade  | Trade    | /linear-swap-api/v1/swap_cross_batchorder                            | POST    |    Place A Batch Of Orders（cross margin mode）        |       Yes          |
+Trade  | Trade    | /linear-swap-api/v1/swap_cross_cancel                                | POST    |    Cancel An Order（cross margin mode）        |       Yes          |
+Trade  | Trade    | /linear-swap-api/v1/swap_cross_cancelall                             | POST    |    Cancel All Orders（cross margin mode）     |       Yes          |
+ Read  | Trade    | /linear-swap-api/v1/swap_cross_order_info                            | POST    |    Get Information of order（cross margin mode）             |       Yes          |
+ Read  | Trade    | /linear-swap-api/v1/swap_cross_order_detail                          | POST    |    Get Detail Information of order（cross margin mode）         |       Yes          |
+ Read  | Trade    | /linear-swap-api/v1/swap_cross_openorders                            | POST    |    Current unfilled order acquisition（cross margin mode）       |       Yes          |
+ Read  | Trade    | /linear-swap-api/v1/swap_cross_hisorders                             | POST    |    Get History Orders（cross margin mode）             |       Yes          |
+ Read  | Trade    | /linear-swap-api/v1/swap_cross_matchresults                          | POST    |    Get History Match Results（cross margin mode）         |       Yes          |
+Trade  | Trade    | /linear-swap-api/v1/swap_cross_lightning_close_position              | POST    |    Place Lightning Close Position（cross margin mode）           |       Yes          |
+Trade  | Trade    | /linear-swap-api/v1/swap_cross_trigger_order                         | POST    |    Place Trigger Order（cross margin mode）           |       Yes          |
+Trade  | Trade    | /linear-swap-api/v1/swap_cross_trigger_cancel                        | POST    |    Cancel Trigger Order（cross margin mode）           |       Yes          |
+Trade  | Trade    | /linear-swap-api/v1/swap_cross_trigger_cancelall                     | POST    |    Cancel All Trigger Orders（cross margin mode）       |       Yes          |
+ Read  | Trade    | /linear-swap-api/v1/swap_cross_trigger_openorders                    | POST    |    Query Open Trigger Order（cross margin mode）       |       Yes          |
+ Read  | Trade    | /linear-swap-api/v1/swap_cross_trigger_hisorders                     | POST    |    Query Trigger Order History（cross margin mode）       |       Yes          | 
 Trade  | Account    | https://api.huobi.pro/v2/account/transfer                         | POST   |      Transfer margin between Spot account and USDT Margined Swap account     |     Yes       |
 
 
@@ -330,7 +841,7 @@ Please note that, for both public interface and private interface, there are rat
 
 * For public interface to get market data such as  Get Kline data, Get Market Data Overview, Get Contract Information,Get market in-depth data, Get premium index Kline, Get real-time forecast capital rate kline, Get basis data, Get the last Trade of a Contract and so on：
 
-     (1) For restful interfaces：all products(futures, coin margined swap, usdt margined swap and option) 800 times/second for one IP at most.
+    （1）For restful interfaces, products,  (future, coin margined swap, usdt margined swap and option)800 times/second for one IP at most
 
     （2）For websocket: The rate limit for “req” request is 50 times at once. No limit for “sub” request as the data will be pushed by sever voluntarily.
 
@@ -1205,12 +1716,17 @@ If it is an order-related issue, use the API order query interface linear-swap-a
 ```shell
 curl "https://api.hbdm.com/linear-swap-api/v1/swap_contract_info"      
 ```
-                                                           
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
+                                                        
 ### Request Parameter
 
   Parameter Name   |   Type   |   Mandatory   |   Description   |
 ------------------ | -------- | ------------- | --------------- |
 contract_code | string   | false      | Case-insenstive.such as "BTC-USDT". All swaps default.|
+support_margin_mode | string   | false      | support margin mode cross："cross"；isolated："isolated"；all："all"|
 
 
 > Response
@@ -1227,7 +1743,8 @@ contract_code | string   | false      | Case-insenstive.such as "BTC-USDT". All 
             "price_tick": 0.100000000000000000,
             "create_date": "20201021",
             "contract_status": 1,
-            "settlement_date": "1603699200000"
+            "settlement_date": "1603699200000",
+            "support_margin_mode": "all"
         }
     ],
     "ts": 1603694455082
@@ -1241,7 +1758,7 @@ contract_code | string   | false      | Case-insenstive.such as "BTC-USDT". All 
 Parameter Name               |   Mandatory   |   Type   |   Description                                |   Value Range                                                |
 ------------------------------ | ------------- | -------- | --------------------------------------------- | ------------------------------------------------------------ |
 status                         | true          | string   | Request Processing Result                     | "ok" , "error"                                               |
-\<data\>|               |          |   
+data \<list\>|               |          |   
 symbol                     |  true           |  string     |  symbol                          |  "BTC","ETH"...  |
 contract_code                  | true          | string   | Contract Code                                 | "BTC-USDT" ...                                              |
 contract_size                  | true          | decimal  | Contract Value (USDT of one contract)          | 10, 100...                                                   |
@@ -1249,7 +1766,8 @@ price_tick                     | true          | decimal  | Minimum Variation of
 settlement_date                  | true          | string   | Settlement  Date                        | eg "1490759594752"                                                |
 create_date                    | true          | string   | Listing Date                         | eg "20190808"                                                |
 contract_status                | true          | int      | Contract Status                               | 0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered |
-\</data\>                      |               |          |                                               |                                                              |
+support_margin_mode             | false        | string      | support margin mode              |   cross："cross"；isolated："isolated"；all："all"|
+\</list\>                      |               |          |                                               |                                                              |
 ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                                                              |
 
 
@@ -1262,6 +1780,10 @@ ts                             | true          | long     | Time of Respond Gene
 ```shell
 curl "https://api.hbdm.com/linear-swap-api/v1/swap_index?contract_code=BTC-USDT"
 ```
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ### Request Parameter
 
@@ -1308,6 +1830,10 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_index?contract_code=BTC-USDT"
 ```shell
 curl "https://api.hbdm.com/linear-swap-api/v1/swap_price_limit?contract_code=BTC-USDT"
 ```
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ###  Request Parameter  
 
@@ -1356,6 +1882,10 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_price_limit?contract_code=BTC
 ```shell
 curl "https://api.hbdm.com/linear-swap-api/v1/swap_open_interest?contract_code=BTC-USDT"
 ```
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ###  Request Parameter  
 
@@ -1410,6 +1940,10 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_open_interest?contract_code=B
 ```shell
 curl "https://api.hbdm.com/linear-swap-ex/market/depth?contract_code=BTC-USDT&type=step5"
 ```  
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ###  Request Parameter  
 
@@ -1484,6 +2018,10 @@ curl "https://api.hbdm.com/linear-swap-ex/market/depth?contract_code=BTC-USDT&ty
 ```shell
 curl "https://api.hbdm.com/linear-swap-ex/market/history/kline?period=1min&size=200&contract_code=BTC-USDT"
 ```
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ###  Request Parameter  
 
@@ -1574,6 +2112,9 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/kline?period=1min&size=
 curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC-USDT"
 ```
 
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ###  Request Parameter  
 
@@ -1662,6 +2203,10 @@ curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC
 ```shell
 curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
 ```
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
  
 ###  Request Parameter  
 
@@ -1741,6 +2286,9 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
 ```shell 
 curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC-USDT&size=100"
 ```
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ###  Request Parameter  
 
@@ -1819,7 +2367,11 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
 ```shell
 curl "https://api.hbdm.com/linear-swap-api/v1/swap_risk_info"
 ```
- 
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
+
 ###  Request Parameter 
 
 |  Parameter Name                 |   Mandatory  |   Type   |   Desc              |   Value Range       |
@@ -1863,6 +2415,10 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_risk_info"
 ```shell
 curl "https://api.hbdm.com/linear-swap-api/v1/swap_insurance_fund?contract_code=ETH-USDT"
 ```
+ 
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
  
 ### Request Parameter 
 
@@ -1921,7 +2477,11 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_insurance_fund?contract_code=
 ```shell
 curl "https://api.hbdm.com/linear-swap-api/v1/swap_adjustfactor"
 ```
- 
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
+
 ### Request Parameter 
 
 |   Parameter Name                 |    Mandatory    |   Type   |    Desc             |    Data Value       |
@@ -1939,6 +2499,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_adjustfactor"
         {
             "symbol": "BTC",
             "contract_code": "BTC-USDT",
+            "margin_mode": "isolated",
             "list": [
                 {
                     "lever_rate": 125,
@@ -1981,6 +2542,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_adjustfactor"
 | \<data\> |  |  |  |  |
 | symbol | true  | string | symbol | "BTC","ETH"... |
 | contract_code    |   true   | string | contract code  | e.g. "BTC-USDT" |
+| margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
 | \<list\> |  |  |  |  |
 | lever_rate   | true     | decimal  | Leverage               |                |
 | \<ladders\> |  |  |  |  |
@@ -1992,6 +2554,98 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_adjustfactor"
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
+
+## Query Information On Tiered Adjustment Factor（cross margin mode）
+
+ - GET `linear-swap-api/v1/swap_cross_adjustfactor`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+### Request Parameter
+
+| Parameter Name   | Mandatory  | Type     | Desc   | Data Value           |
+| ------ | ----- | ------ | ---- | ---------------------------- |
+| contract_code | false | string | contract code |  Case-Insenstive.e.g. "BTC-USDT" |
+
+> Response:
+
+```json
+
+{
+    "status":"ok",
+    "data":[
+        {
+            "symbol":"BTC",
+            "contract_code":"BTC-USDT",
+            "margin_mode":"cross",
+            "list":[
+                {
+                    "lever_rate":1,
+                    "ladders":[
+                        {
+                            "ladder":0,
+                            "min_size":0,
+                            "max_size":999,
+                            "adjust_factor":0.005
+                        },
+                        {
+                            "ladder":1,
+                            "min_size":1000,
+                            "max_size":9999,
+                            "adjust_factor":0.11
+                        },
+                        {
+                            "ladder":2,
+                            "min_size":10000,
+                            "max_size":19999,
+                            "adjust_factor":0.015
+                        },
+                        {
+                            "ladder":3,
+                            "min_size":20000,
+                            "max_size":29999,
+                            "adjust_factor":0.02
+                        },
+                        {
+                            "ladder":4,
+                            "min_size":30000,
+                            "max_size":null,
+                            "adjust_factor":0.025
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "ts":1606905299391
+}
+
+````
+
+### Returning Parameter
+
+| Parameter Name     | Mandatory | Type      | Desc     | Data Value           |
+| ----------------- | ---- | ------- | ------------- | -------------- |
+| status            | true | string  | Request Processing Result        | "ok" , "error" |
+| ts                | true | long    | Time of Respond Generation, Unit: Millisecond |                |
+| \<data\>          |  true    |   object array     |               |          |
+| symbol            | true | string  | symbol           | "BTC","ETH"...|
+| contract_code            | true | string  | contract code       |  "BTC-USDT" ... |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| \<list\>          |   true   |   object array   |         |                |
+| lever_rate        | true | decimal | leverage          |                |
+| \<ladders\>  |    true  |  object array      |               |                |
+| min_size          | true | decimal | min net position limit      |                |
+| max_size          | true | decimal | max net position limit      |                |
+| ladder            | true | int     | tier            | from 0             |
+| adjust_factor     | true | decimal | adjustment factor          |                |
+| \</ladders\> |      |         |           |                |
+| \</list\>         |      |         |         |                |
+| \</data\>         |      |         |        |                |
+
+
 ## Query information on open interest
 
 - GET `/linear-swap-api/v1/swap_his_open_interest`
@@ -1999,6 +2653,10 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_adjustfactor"
 ```shell
 curl "https://api.hbdm.com/linear-swap-api/v1/swap_his_open_interest?contract_code=BTC-USDT&period=60min&amount_type=1"
 ```
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ### Request Parameter 
 
@@ -2062,6 +2720,10 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_his_open_interest?contract_co
 curl "https://api.hbdm.com/linear-swap-api/v1/swap_api_state"
 ```
 
+#### Remarks
+
+ - This interface only supports isolated margin mode.
+
 ### Request Parameter 
 
 |  Parameter Name                |   Mandatory   |   Type  |   Desc              |    Value Range       |
@@ -2078,6 +2740,8 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_api_state"
         {
             "symbol": "BTC",
             "contract_code": "BTC-USDT",
+            "margin_mode": "isolated",
+            "margin_account": "BTC-USDT",
             "open": 1,
             "close": 1,
             "cancel": 1,
@@ -2108,6 +2772,8 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_api_state"
 | \<data\> |  true    |  object array      |               |                |
 | symbol       | true | string | symbol         |   "BTC","ETH"...              |
 | contract_code | true | string | Contract Code         |    "BTC-USDT"...  |
+| margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
+| margin_account    |   true   | string | margin account  | "BTC-USDT"... |
 | open       | true | int | open order access：when “1”, then access available; when “0”, access unavailable"1"        |             |
 | close       | true | int | close order access：when “1”, then access available; when “0”, access unavailable "1"    |          |
 | cancel       | true | int | order cancellation access：when “1”, then access available; when “0”, access unavailable "1"    |    |
@@ -2124,33 +2790,119 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_api_state"
 | \</data\>            |      |        |               |                |
 
 
-### Notice
+##  Query Information On Transfer State（cross margin mode）
 
-- “open” is one of the trading access in “API-Open-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；
+ - GET `linear-swap-api/v1/swap_cross_transfer_state`
 
-- “close” is one of the trading access in “API-Close-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；
+#### Remarks
 
-- “cancel” is one of the trading access in “API-Cancel-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；
+ - The interface only supports cross margin mode.
 
-- “transfer_in” is one of the trading access in “Others-Transfer-Deposit”. “On” stands for opening this access; “Off” stands for closing this access；
+###  Request Parameter
 
-- transfer_out refers to the corresponding access "Others- Transfer- Transfer out to exchange account" in the trading accesses, and is available when enabled, unavailable when disabled；
+| Parameter Name  | Mandatory | Type | Desc  | Data Value |
+| ------------- | ------ | ----- | ---------------------------------------- | ---- |
+| margin_account | false | string |  margin account, return all margin when null |   "USDT"，only support USDT now    |
 
-- master_transfer_sub refers to the corresponding access "Transfer from main account to sub-account" in the trading accesses, and is available when enabled, unavailable when disabled；
+> Response 
 
-- sub_transfer_master refers to the corresponding access "Transfer from sub-account to main account" in the trading accesses, and is available when enabled, unavailable when disabled；
+```json
 
-- master_transfer_sub_inner_in refers to the corresponding access "Transfer from main account to sub-account - crossing account - transfer in from another account" in the trading accesses, and is available when enabled, unavailable when disabled；
+{
+    "status": "ok",
+    "data": [
+        {
+            "margin_mode": "cross",
+            "margin_account": "USDT",
+            "transfer_in": 1,
+            "transfer_out": 1,
+            "master_transfer_sub": 1,
+            "sub_transfer_master": 1,
+            "master_transfer_sub_inner_in": 1,
+            "master_transfer_sub_inner_out": 1,
+            "sub_transfer_master_inner_in": 1,
+            "sub_transfer_master_inner_out": 1,
+            "transfer_inner_in": 1,
+            "transfer_inner_out": 1
+        }
+    ],
+    "ts": 1606905619516
+}
+```
 
-- master_transfer_sub_inner_out refers to the corresponding access "Transfer from main account to sub-account - crossing account - transfer out to another account" in the trading accesses, and is available when enabled, unavailable when disabled；
+###  Returning Parameter
 
-- sub_transfer_master_inner_in refers to the corresponding access "Transfer from sub-account to main account - crossing account - transfer in from another account" in the trading accesses, and is available when enabled, unavailable when disabled；
+| Parameter Name   | Mandatory | Type     | Desc            | Data Value           |
+| -------------------- | ---- | ------ | ------------- | -------------- |
+| status               | true | string | Request Processing Result        | "ok" , "error" |
+| ts                   | true | long   | Time of Respond Generation, Unit: Millisecond |                |
+| \<data\> |  true    |  object array      |               |                |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| transfer_in       | true | int | deposit access：when “1”, then access available; when “0”, access unavailable "1"           |              |
+| transfer_out       | true | int | withdraw access： when “1”, then access available; when “0”, access unavailable "1"          |          |
+| master_transfer_sub       | true | int | transfer from master to sub account："1" is available，“0” is unavailable            |              |
+| sub_transfer_master       | true | int | transfer from sub to master account："1" is available，“0” is unavailable         |         |
+| master_transfer_sub_inner_in       | true | int | Transfer_in access for transfer from main account to sub-account - crossing account: "1" represents "available", "0" represents "unavailable"            |              |
+| master_transfer_sub_inner_out       | true | int | Transfer_out access for transfer from main account to sub-account - crossing account: "1" represents "available", "0" represents "unavailable"            |              |
+| sub_transfer_master_inner_in       | true | int | Transfer_in access for transfer from sub-account to main account - crossing account: "1" represents "available", "0" represents "unavailable"         |         |
+| sub_transfer_master_inner_out       | true | int | Transfer_out access for transfer from sub-account to main account - crossing account: "1" represents "available", "0" represents "unavailable"         |         |
+| transfer_inner_in       | true | int | Transfer_in access for transfer between different margin accounts under the same account："1" represents "available", "0" represents "unavailable"         |         |
+| transfer_inner_out       | true | int | Transfer_out access for transfer between different margin accounts under the same account："1" represents "available", "0" represents "unavailable"         |         |
+| \</data\>            |      |        |               |                |
 
-- sub_transfer_master_inner_out refers to the corresponding access "Transfer from sub-account to main account - crossing account - transfer out to another account" in the trading accesses, and is available when enabled, unavailable when disabled；
+       
+## Query Information On Trade State（cross margin mode）
 
-- transfer_inner_in refers to the corresponding access "Transfer between different margin accounts under the same account - transfer in from another account" in the trading accesses, and is available when enabled, unavailable when disabled；
+ - GET `linear-swap-api/v1/swap_cross_trade_state`
 
--  transfer_innerout refers to the corresponding access "Transfer between different margin accounts under the same account - transfer out to another account" in the trading accesses, and is available when enabled, unavailable when disabled；
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+###  Request Parameter
+
+| Parameter Name  | Mandatory | Type | Desc  | Data Value |
+| ------------- | ------ | ----- | ---------------------------------------- | ---- |
+| contract_code | false | string | contract code |   "BTC-USDT"... ,return all contract info when null    |
+
+> Response
+
+```json
+
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_code": "BTC-USDT",
+            "margin_mode": "cross",
+            "margin_account": "USDT",
+            "open": 1,
+            "close": 1,
+            "cancel": 1
+        }
+    ],
+    "ts": 1606905935710
+}
+
+```
+        
+###  Returning Parameter
+
+| Parameter Name   | Mandatory | Type     | Desc            | Data Value           |
+| -------------------- | ---- | ------ | ------------- | -------------- |
+| status               | true | string | Request Processing Result        | "ok" , "error" |
+| ts                   | true | long   | Time of Respond Generation, Unit: Millisecond |                |
+| \<data\> |  true    |  object array      |               |                |
+| symbol       | true | string | symbol         |   "BTC","ETH"...              |
+| contract_code | true | string | contract code         |    "BTC-USDT"...  |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| open       | true | int | open order access：when “1”, then access available; when “0”, access unavailable"1"         |             |
+| close       | true | int | close order access：when “1”, then access available; when “0”, access unavailable "1"           |          |
+| cancel       | true | int | order cancellation access：when “1”, then access available; when “0”, access unavailable "1"         |    |
+| \</data\>            |      |        |               |                | 
 
 
 ## Query Top Trader Sentiment Index Function-Account
@@ -2160,6 +2912,10 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_api_state"
 ```shell
 curl "https://api.hbdm.com/linear-swap-api/v1/swap_elite_account_ratio?contract_code=BTC-USDT&period=60min"
 ```
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ### Request Parameter 
 
@@ -2211,10 +2967,13 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_elite_account_ratio?contract_
 
 - GET `/linear-swap-api/v1/swap_elite_position_ratio`
 
-
 ```shell
 curl "https://api.hbdm.com/linear-swap-api/v1/swap_elite_position_ratio?contract_code=BTC-USDT&period=60min"
 ```
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ### Request Parameter 
 
@@ -2269,6 +3028,10 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_elite_position_ratio?contract
 ```shell
 curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_code=BTC-USDT&trade_type=0&create_date=7"
 ```
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ### Request Parameter 
 
@@ -2332,9 +3095,14 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
 | \</data\>            |          |         |                    |              |
 | ts                     | true     | long    |   timestamp             |              |
 
+
 ## Query historical settlement records of the platform interface 
 
  - GET `/linear-swap-api/v1/swap_settlement_records`
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ### Request Parameter
 
@@ -2399,6 +3167,10 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
 curl "https://api.hbdm.com/linear-swap-api/v1/swap_funding_rate?contract_code=BTC-USDT"
 ```
 
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
+
 ### Request Parameters
 
   Parameter Name   |   Mandatory   |    Type   |     Desc             |   Value Range     |
@@ -2441,6 +3213,7 @@ estimated_rate | string | estimated funding rate of current period |  |
 next_funding_time  | string |  estimated funding rate of next period     |   |
 \</data\> |  |  |  |  |
 
+
 ## Query historical funding rate
 
 - GET `linear-swap-api/v1/swap_historical_funding_rate`
@@ -2448,6 +3221,11 @@ next_funding_time  | string |  estimated funding rate of next period     |   |
 ```shell
 curl "https://api.hbdm.com/linear-swap-api/v1/swap_historical_funding_rate?contract_code=BTC-USDT"
 ```
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
+
 ### Request Parameters
 
   parameter name                 |  Required  |   Type   |   Desc              |   Value Range        |
@@ -2514,6 +3292,10 @@ total_size     | int     |  total size               |              |
 curl "https://api.hbdm.com/index/market/history/linear_swap_premium_index_kline?contract_code=BTC-USDT&period=1min&size=1"
 ```
 
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
+
 ### request parameters
 | **Parameter name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
@@ -2577,6 +3359,10 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_premium_index_kline?
 curl "https://api.hbdm.com/index/market/history/linear_swap_estimated_rate_kline?contract_code=BTC-USDT&period=1min&size=1"
 ```
 
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
+
 ### request parameters
 
 | **Parameter name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
@@ -2639,6 +3425,10 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_estimated_rate_kline
 curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=BTC-USDT&period=1min&size=150&basis_price_type=open"
 ```
 
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
+
 ### request parameters
 | **Parameter name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
@@ -2691,7 +3481,11 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 ###  Example          
                                       
-- POST `/linear-swap-api/v1/swap_account_info`  
+ - POST `/linear-swap-api/v1/swap_account_info`  
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 ###  Request Parameter  
 
@@ -2722,7 +3516,9 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
             "adjust_factor": 0.075000000000000000,
             "margin_static": 99.755058840000000000,
             "contract_code": "BTC-USDT",
-            "margin_asset": "USDT"
+            "margin_asset": "USDT",
+            "margin_mode": "isolated",
+            "margin_account": "BTC-USDT"
         }
     ],
     "ts": 1603697381238
@@ -2750,15 +3546,117 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | lever_rate                     | true          | decimal  | Leverage Rate                                 |                 |
 | adjust_factor                | true     | decimal  |  Adjustment Factor               |                |  
 | margin_static                | true     | decimal  | Static Margin                |                |
+| margin_mode                    |   true   | string | margin mode  | isolated : "isolated" |
+| margin_account                |   true   | string | margin account  | "BTC-USDT"... |
 | \</list\>                      |               |          |                                               |                 |
 | ts                             | true        | long     | Time of Respond Generation, Unit: Millisecond |                 |
+
+
+
+##  Query User's Account Information（cross margin mode）
+
+ - PSOT 'linear-swap-api/v1/swap_cross_account_info'
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+### Request Parameter
+
+| Parameter Name   | Mandatory  | Type     | Desc   | Data Value         |
+| ------ | ----- | ------ | ---- | ---------------------------- |
+| margin_account | false | string | margin account，return all margin account info when null |  "USDT"...，but now only USDT  |
+
+> Response
+
+```json
+{
+    "status":"ok",
+    "data":[
+        {
+            "margin_mode":"cross",
+            "margin_account":"USDT",
+            "margin_asset":"USDT",
+            "margin_balance":0.000000549410817836,
+            "margin_static":0.000000549410817836,
+            "margin_position":0,
+            "margin_frozen":0,
+            "profit_real":0,
+            "profit_unreal":0,
+            "withdraw_available":0.000000549410817836,
+            "risk_rate":null,
+            "contract_detail":[
+                {
+                    "symbol":"BTC",
+                    "contract_code":"BTC-USDT",
+                    "margin_position":0,
+                    "margin_frozen":0,
+                    "margin_available":0.000000549410817836,
+                    "profit_unreal":0,
+                    "liquidation_price":null,
+                    "lever_rate":100,
+                    "adjust_factor":0.55
+                },
+                {
+                    "symbol":"EOS",
+                    "contract_code":"EOS-USDT",
+                    "margin_position":0,
+                    "margin_frozen":0,
+                    "margin_available":0.000000549410817836,
+                    "profit_unreal":0,
+                    "liquidation_price":null,
+                    "lever_rate":5,
+                    "adjust_factor":0.06
+                }
+            ]
+        }
+    ],
+    "ts":1606906200680
+}
+
+```
+     
+###  Returning Parameter
+
+| Parameter Name  | Mandatory   | Type      | Desc    | Data Value           |
+| -------------------- | ------ | ------- | -------------------- | -------------- |
+| status               | true   | string  | Request Processing Result               | "ok" , "error" |
+| ts                   | long | long    | Time of Respond Generation, Unit: Millisecond        |                |
+| \<data\> |    true    |  object array       |                      |                |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| margin_asset       | true   | string | margin asset                 |                |
+| margin_balance       | true   | decimal | account equity                 |                |
+| margin_static        | true   | decimal | static margin                 |                |
+| margin_position      | true   | decimal | position margin (summary of all contract)|                |
+| margin_frozen        | true   | decimal | frozen margin (summary of all contract)               |                |
+| profit_real          | true   | decimal | realized profits and losses (summary of all contract)             |                |
+| profit_unreal        | true   | decimal | unrealized profits and losses (summary of all contract)               |                |
+| withdraw_available   | true   | decimal | available transfer amount               |                |
+| risk_rate            | true   | decimal | margin rate                 |                |
+| \<contract_detail\> |    true    |  object array       ｜                   |                |
+| symbol     | true   | string  | symbol                 | "BTC","ETH"... |
+| contract_code     | true   | string  | contract code                 |  "BTC-USDT" ... |
+| margin_position      | true   | decimal | position margin (the margin used by current positions)	 |                |
+| margin_frozen        | true   | decimal | frozen margin                |                |
+| margin_available     | true   | decimal | available margin                |                |
+| profit_unreal        | true   | decimal | unrealized profits and losses                |                |
+| liquidation_price | true | decimal | estimated liquidation price         |                |
+| lever_rate           | true   | decimal | leverage Rate                 |                |
+| adjust_factor        | true   | decimal | adjustment factor                 |                |
+| \</contract_detail\>            |        |         |                      |                |
+| \</data\>            |        |         |                      |                |
 
 
 ## Query User’s Position Information
 
 ###  Example                           
                      
-- POST  `/linear-swap-api/v1/swap_position_info` 
+ - POST  `/linear-swap-api/v1/swap_position_info` 
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 ### Request Parameter  
 
@@ -2788,7 +3686,9 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
             "direction": "buy",
             "profit": 0,
             "last_price": 13068,
-            "margin_asset": "USDT"
+            "margin_asset": "USDT",
+            "margin_mode": "isolated",
+            "margin_account": "BTC-USDT"
         }
     ],
     "ts": 1603697821846
@@ -2817,6 +3717,8 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | lever_rate                     | true          | int      | Leverage rate                                 |                                     |
 | direction                      | true          | string   | Transaction direction                         |                                     |
 | last_price                     | true          | decimal  | Latest price                                  |                                     |
+| margin_mode                    |   true   | string | margin mode  | isolated : "isolated" |
+| margin_account                |   true   | string | margin account  | "BTC-USDT"... |
 | \</list\>                      |               |          |                                               |                                     |
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                     |
 
@@ -2824,9 +3726,86 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 - If there are symbols in the settlement or delivery period,error code 1080(1080 In settlement or delivery. Unable to get positions of some contracts.) will return without request parameters. It's suggested to query the position info with request parameters to avoid raising the error code and not being able to query the position.
 
+
+## Query User's Position Information（cross margin mode）
+
+ - POST `linear-swap-api/v1/swap_cross_position_info`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+### Request Parameter
+
+| Parameter Name   | Mandatory  | Type     | Desc   | Data Value         |
+| ------ | ----- | ------ | ---- | ---------------------------- |
+| contract_code | false | string | contract code |  "BTC-USDT"... , return all contract info when null  |
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_code": "BTC-USDT",
+            "volume": 2,
+            "available": 2,
+            "frozen": 0,
+            "cost_open": 51179.1,
+            "cost_hold": 51179.1,
+            "profit_unreal": 0,
+            "profit_rate": 0,
+            "lever_rate": 100,
+            "position_margin": 10.23582,
+            "direction": "sell",
+            "profit": 0,
+            "last_price": 51179.1,
+            "margin_asset": "USDT",
+            "margin_mode": "cross",
+            "margin_account": "USDT"
+        }
+    ],
+    "ts": 1606962314205
+}
+```
+     
+###  Returning Parameter
+
+| Parameter Name  | Mandatory | Type      | Desc   | Data Value      |
+| -------------------- | ---- | ------- | ---------------- | ---------------------------------------- |
+| status               | true | string  | Request Processing Result           | "ok" , "error"                           |
+| ts                   | true | long    | Time of Respond Generation, Unit: Millisecond    |                                          |
+| \<data\> |  true    |   object array      |     |     |
+| symbol               | true | string  | symbol             | "BTC","ETH"...                           |
+| contract_code        | true | string  | contract code             | "BTC-USDT" ...                          |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| volume               | true | decimal | position quantity              |                                          |
+| available            | true | decimal | available position can be closed            |                                          |
+| frozen               | true | decimal | frozen quantity             |                                          |
+| cost_open            | true | decimal | opening average price             |                                          |
+| cost_hold            | true | decimal | average price of position             |                                          |
+| profit_unreal        | true | decimal | unrealized profits and losses            |                                          |
+| profit_rate          | true | decimal | profit rate              |                                          |
+| profit               | true | decimal | profit               |                                          |
+| margin_asset       | true   | string | margin asset                 |                |
+| position_margin      | true | decimal | position margin            |                                          |
+| lever_rate           | true | int     | leverage Rate             |                                          |
+| direction            | true | string  | "buy"/"sell" |                                          |
+| last_price           | true | decimal | latest price              |                                          |
+| \</data\>            |      |         |      |              |
+
+
 ## Query Assets And Positions
 
-- post `linear-swap-api/v1/swap_account_position_info`
+ - post `linear-swap-api/v1/swap_account_position_info`
+  
+#### Remarks
+
+ - This interface only supports isolated margin mode.
+
   
 ### params
 
@@ -2872,10 +3851,14 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
                     "direction": "buy",
                     "profit": 0.001900000000000000,
                     "last_price": 13069.9,
-                    "margin_asset": "USDT"
+                    "margin_asset": "USDT",
+                    "margin_mode": "isolated",
+                    "margin_account": "BTC-USDT"
                 }
             ],
-            "margin_asset": "USDT"
+            "margin_asset": "USDT",
+            "margin_mode": "isolated",
+            "margin_account": "BTC-USDT"
         }
     ],
     "ts": 1603697944138
@@ -2904,6 +3887,8 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | withdraw_available   | true   | decimal | Available Withdraw                 |                |
 | lever_rate           | true   | decimal | Leverage Rate                 |                |
 | adjust_factor        | true   | decimal | Adjustment Factor                 |                |
+| margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
+| margin_account    |   true   | string | margin account  | "BTC-USDT"... |
 | \<positions\> |    true    |  object array       |                      |                |
 | symbol               | true | string  | Variety Code             | "BTC","ETH"...                           |
 | contract_code        | true | string  | Contract Code             |"BTC-USDT" ...         |
@@ -2920,13 +3905,172 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | lever_rate           | true | int     | Leverage Rate             |                                          |
 | direction            | true | string  | "buy" "sell" |                                          |
 | last_price           | true | decimal | Last Price              |                                          |
+| margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
+| margin_account    |   true   | string | margin account  | "BTC-USDT"... |
 | \</positions\>            |        |         |                      |                |
 | \</data\>            |        |         |                      |                |
 
 
+## Query Assets And Positions（cross margin mode）
+
+ - POST `linear-swap-api/v1/swap_cross_account_position_info`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+### Request Parameter
+
+| Parameter Name   | Mandatory  | Type     | Desc   | Data Value         |
+| ------ | ----- | ------ | ---- | ---------------------------- |
+| margin_account | true | string | margin account |  "USDT"...，but now only USDT  |
+
+> Response
+
+```json
+{
+    "status":"ok",
+    "data":{
+        "positions":[
+            {
+                "symbol":"BTC",
+                "contract_code":"BTC-USDT",
+                "volume":2,
+                "available":2,
+                "frozen":0,
+                "cost_open":51179.1,
+                "cost_hold":51179.1,
+                "profit_unreal":0,
+                "profit_rate":0,
+                "lever_rate":100,
+                "position_margin":10.23582,
+                "direction":"sell",
+                "profit":0,
+                "last_price":51179.1,
+                "margin_asset":"USDT",
+                "margin_mode":"cross",
+                "margin_account":"USDT"
+            },
+            {
+                "symbol":"ETH",
+                "contract_code":"ETH-USDT",
+                "volume":1,
+                "available":1,
+                "frozen":0,
+                "cost_open":50,
+                "cost_hold":50,
+                "profit_unreal":0,
+                "profit_rate":0,
+                "lever_rate":5,
+                "position_margin":0.1,
+                "direction":"sell",
+                "profit":0,
+                "last_price":50,
+                "margin_asset":"USDT",
+                "margin_mode":"cross",
+                "margin_account":"USDT"
+            }
+        ],
+        "margin_mode":"cross",
+        "margin_account":"USDT",
+        "margin_asset":"USDT",
+        "margin_balance":999.488009549410817836,
+        "margin_static":999.488009549410817836,
+        "margin_position":10.33582,
+        "margin_frozen":0,
+        "profit_real":-0.511991,
+        "profit_unreal":0,
+        "withdraw_available":989.152189549410817836,
+        "risk_rate":176.349367815895629991,
+        "contract_detail":[
+            {
+                "symbol":"BTC",
+                "contract_code":"BTC-USDT",
+                "margin_position":10.23582,
+                "margin_frozen":0,
+                "margin_available":989.152189549410817836,
+                "profit_unreal":0,
+                "liquidation_price":100599.901021850363890402,
+                "lever_rate":100,
+                "adjust_factor":0.55
+            },
+            {
+                "symbol":"ETH",
+                "contract_code":"ETH-USDT",
+                "margin_position":0.1,
+                "margin_frozen":0,
+                "margin_available":989.152189549410817836,
+                "profit_unreal":0,
+                "liquidation_price":98256.749856661148007509,
+                "lever_rate":5,
+                "adjust_factor":0.06
+            }
+        ]
+    },
+    "ts":1606965138763
+}
+
+```
+
+###  Returning Parameter
+
+| Parameter Name  | Mandatory   | Type      | Desc    | Data Value           |
+| -------------------- | ------ | ------- | -------------------- | -------------- |
+| status               | true   | string  | Request Processing Result               | "ok" , "error" |
+| ts                   | long | long    | Time of Respond Generation, Unit: Millisecond        |                |
+| \<data\> |    true    |  object array       |                      |                |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| margin_asset       | true   | string | margin asset                 |                |
+| margin_balance       | true   | decimal | account equity                 |                |
+| margin_static        | true   | decimal | static margin                 |                |
+| margin_position      | true   | decimal | position margin (summary of all contract)|                |
+| margin_frozen        | true   | decimal | frozen margin (summary of all contract)               |                |
+| profit_real          | true   | decimal | realized profits and losses                |                |
+| profit_unreal        | true   | decimal | unrealized profits and losses (summary of all contract)               |                |
+| withdraw_available   | true   | decimal | available transfer amount               |                |
+| risk_rate            | true   | decimal | margin rate                 |                |
+| \<contract_detail\> |    true    |  object array       ｜                   |                |
+| symbol     | true   | string  | symbol                 | "BTC","ETH"... |
+| contract_code     | true   | string  | contract code                 |  "BTC-USDT" ... |
+| margin_position      | true   | decimal | position margin (the margin used by current positions)	 |                |
+| margin_frozen        | true   | decimal | frozen margin                |                |
+| margin_available     | true   | decimal | available margin                |                |
+| profit_unreal        | true   | decimal | unrealized profits and losses                |                |
+| liquidation_price | true | decimal | estimated liquidation price         |                |
+| lever_rate           | true   | decimal | leverage Rate                 |                |
+| adjust_factor        | true   | decimal | adjustment factor                 |                |
+| \</contract_detail\>            |        |         |                      |                |
+| \<positions\> |    true    |  object array       |                      |                |
+| symbol               | true | string  | symbol             | "BTC","ETH"...                           |
+| contract_code        | true | string  | contract code             | "BTC-USDT" ...                          |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| volume               | true | decimal | position quantity              |                                          |
+| available            | true | decimal | available position can be closed            |                                          |
+| frozen               | true | decimal | frozen quantity             |                                          |
+| cost_open            | true | decimal | opening average price             |                                          |
+| cost_hold            | true | decimal | average price of position             |                                          |
+| profit_unreal        | true | decimal | unrealized profits and losses            |                                          |
+| profit_rate          | true | decimal | profit rate              |                                          |
+| profit               | true | decimal | profit               |                                          |
+| margin_asset       | true   | string | margin asset                 |                |
+| position_margin      | true | decimal | position margin            |                                          |
+| lever_rate           | true | int     | leverage Rate             |                                          |
+| direction            | true | string  | "buy"/"sell" |                                          |
+| last_price           | true | decimal | latest price              |                                          |
+| \</positions\>            |        |         |                      |                |
+| \</data\>            |        |         |                      |                |
+
+
+
 ## Query assets information of all sub-accounts under the master account
 
-- POST `/linear-swap-api/v1/swap_sub_account_list`
+ - POST `/linear-swap-api/v1/swap_sub_account_list`
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 ### Request Parameters
 
@@ -2950,7 +4094,9 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
                     "liquidation_price": null,
                     "risk_rate": null,
                     "contract_code": "BTC-USDT",
-                    "margin_asset": "USDT"
+                    "margin_asset": "USDT",
+                    "margin_mode": "isolated",
+                    "margin_account": "BTC-USDT"
                 }
             ]
         }
@@ -2975,21 +4121,86 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | margin_balance | true | decimal | account equity |  |
 | liquidation_price | true | decimal | estimated liquidation price |  |
 | risk_rate | true | decimal | margin rate |  |
+| margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
+| margin_account    |   true   | string | margin account  | "BTC-USDT"... |
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
-
 
 #### Notice
 
  - Only return data for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission). 
 
 
+##  Query Assets Information Of All Sub-Accounts Under The Master Account（cross margin mode）    
+
+ - POST `linear-swap-api/v1/swap_cross_sub_account_list`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+### Request Parameter
+
+| Parameter Name   | Mandatory  | Type     | Desc   | Data Value         |
+| ------ | ----- | ------ | ---- | ---------------------------- |
+| margin_account | false | string | margin account，return all margin account info when null |  "USDT"...，but now only USDT  |
+
+> Response
+
+```json
+
+{
+    "status": "ok",
+    "data": [
+        {
+            "sub_uid": 123456789,
+            "list": [
+                {
+                    "margin_balance": 163.561708129559110889,
+                    "risk_rate": 78.896729392251481019,
+                    "margin_asset": "USDT",
+                    "margin_mode": "cross",
+                    "margin_account": "USDT"
+                }
+            ]
+        }
+    ],
+    "ts": 1606962745633
+}
+
+```
+
+### Returning Parameter
+
+| Parameter Name  | Mandatory | Type      | Desc     | Data Value           |
+| ----------------- | ---- | ------- | ------------- | -------------- |
+| status            | true | string  | Request Processing Result        | "ok" , "error" |
+| ts                | true | long    | Time of Respond Generation, Unit: Millisecond |                |
+| \<data\>          | true     |    object array     |               |                |
+| sub_uid           | true | long    | sub-account UID        |                |
+| \<list\>          |   true   |  object array       |               |                |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| margin_asset       | true   | string | margin asset                 |                |
+| margin_balance    | true | decimal | account equity          |                |
+| risk_rate         | true | decimal | margin rate          |                |
+| \</list\>         |      |         |               |                |
+| \</data\>         |      |         |               |                |           
+    
+#### Notice
+
+ - Only return data for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission).
+
+
 ## Query a single sub-account's assets information
 
-- POST `/linear-swap-api/v1/swap_sub_account_info`
+ - POST `/linear-swap-api/v1/swap_sub_account_info`
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 ### Request Parameters
-
 
 | **Parameter name**    | **Must fill or not** | **Type** | **Description**        | 
 | ----------- | -------- | ------ | ------------- | 
@@ -3018,7 +4229,9 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
             "adjust_factor": 0.040000000000000000,
             "margin_static": 20,
             "contract_code": "BTC-USDT",
-            "margin_asset": "USDT"
+            "margin_asset": "USDT",
+            "margin_mode": "isolated",
+            "margin_account": "BTC-USDT"
         }
     ],
     "ts": 1603698523200
@@ -3048,6 +4261,8 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | lever_rate                | true     | int  | leverage ratios               |                |
 | adjust_factor                | true     | decimal  |  Adjustment Factor               |                |  
 | margin_static                | true     | decimal  | Static Margin                |                |
+| margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
+| margin_account    |   true   | string | margin account  | "BTC-USDT"... |
 | \</data\> |  |  |  |  |
 
 
@@ -3057,9 +4272,117 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
   
   - No data return for sub-accounts which has logged in hbdm but have not gained trading permission/activated.
 
+
+##  Query A Sub-Account's Assets Information（cross margin mode）
+
+  - POST `linear-swap-api/v1/swap_cross_sub_account_info`  
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+###  Request Parameter*
+
+| Parameter Name    | Mandatory  | Type     | Desc    | Data Value |
+| ------- | ----- | ------ | ------- | ---------------------------- |
+| sub_uid | true  | long   | sub-account UID |       |
+| margin_account | false | string | margin account，return all margin account info when null |  "USDT"...，but now only USDT  |
+
+ > Response:
+
+ ```json
+
+{
+    "status": "ok",
+    "data": [
+        {
+            "margin_mode": "cross",
+            "margin_account": "USDT",
+            "margin_asset": "USDT",
+            "margin_balance": 163.561708129559110889,
+            "margin_static": 163.561708129559110889,
+            "margin_position": 102.3582,
+            "margin_frozen": 0,
+            "profit_real": 0,
+            "profit_unreal": 0,
+            "withdraw_available": 61.203508129559110889,
+            "risk_rate": 78.896729392251481019,
+            "contract_detail": [
+                {
+                    "symbol": "BTC",
+                    "contract_code": "BTC-USDT",
+                    "margin_position": 102.3582,
+                    "margin_frozen": 0,
+                    "margin_available": 61.203508129559110889,
+                    "profit_unreal": 0,
+                    "liquidation_price": 67266.205988999911443127,
+                    "lever_rate": 5,
+                    "adjust_factor": 0.02
+                },
+                {
+                    "symbol": "EOS",
+                    "contract_code": "EOS-USDT",
+                    "margin_position": 0,
+                    "margin_frozen": 0,
+                    "margin_available": 61.203508129559110889,
+                    "profit_unreal": 0,
+                    "liquidation_price": null,
+                    "lever_rate": 5,
+                    "adjust_factor": 0.06
+                }
+            ]
+        }
+    ],
+    "ts": 1606963336786
+}
+
+ ```  
+    
+###  Returning Parameter
+
+| Parameter Name  | Mandatory   | Type      | Desc    | Data Value           |
+| -------------------- | ------ | ------- | -------------------- | -------------- |
+| status               | true   | string  | Request Processing Result               | "ok" , "error" |
+| ts                   | long | long    | Time of Respond Generation, Unit: Millisecond        |                |
+| \<data\> |    true    |  object array       |                      |                |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| margin_asset       | true   | string | margin asset                 |                |
+| margin_balance       | true   | decimal | account equity                 |                |
+| margin_static        | true   | decimal | static margin                 |                |
+| margin_position      | true   | decimal | position margin (the margin used by current positions)	 |                |
+| margin_frozen        | true   | decimal | frozen margin                |                |
+| profit_real          | true   | decimal | realized profits and losses                |                |
+| profit_unreal        | true   | decimal | unrealized profits and losses                |                |
+| withdraw_available   | true   | decimal | available transfer amount               |                |
+| risk_rate            | true   | decimal | margin rate                 |                |
+| \<contract_detail\> |    true    |  object array       ｜                   |                |
+| symbol     | true   | string  | symbol                 | "BTC","ETH"... |
+| contract_code     | true   | string  | contract code                 |  "BTC-USDT" ... |
+| margin_position      | true   | decimal | position margin (the margin used by current positions)	 |                |
+| margin_frozen        | true   | decimal | frozen margin                |                |
+| margin_available     | true   | decimal | available margin                |                |
+| profit_unreal        | true   | decimal | unrealized profits and losses                |                |
+| liquidation_price | true | decimal | estimated liquidation price         |                |
+| lever_rate           | true   | decimal | leverage Rate                 |                |
+| adjust_factor        | true   | decimal | adjustment factor                 |                |
+| \</contract_detail\>            |        |         |                      |                |
+| \</data\>            |        |         |                      |                |
+
+#### Notice
+
+  - Only query account information for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission);
+  
+  - No data return for sub-accounts which has logged in hbdm but have not gained trading permission/activated.
+ 
+
 ## Query a single sub-account's position information
 
-- POST `/linear-swap-api/v1/swap_sub_position_info`
+ - POST `/linear-swap-api/v1/swap_sub_position_info`
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 ### Request Parameters
 
@@ -3090,7 +4413,9 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
             "direction": "buy",
             "profit": 0,
             "last_price": 13038.7,
-            "margin_asset": "USDT"
+            "margin_asset": "USDT",
+            "margin_mode": "isolated",
+            "margin_account": "BTC-USDT"
         }
     ],
     "ts": 1603699081114
@@ -3119,25 +4444,106 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | lever_rate               | true     | int	  | leverage ratios              |  |
 | direction               | true     | string	  |   transaction direction of positions           |  "buy":long "sell":short |
 | last_price                     | true          | decimal  | Latest price                                  |                                     |
+| margin_mode            |   true   | string | margin mode  | isolated : "isolated" |
+| margin_account         |   true   | string | margin account  | "BTC-USDT"... |
 | \</data\> |  |  |  |  |
+
+
+## Query A Sub-Account's Position Information（cross margin mode）
+
+ - POST `linear-swap-api/v1/swap_cross_sub_position_info`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+### Request Parameter
+
+| Parameter Name    | Mandatory  | Type     | Desc    | Data Value |
+| ------- | ----- | ------ |  ------------------ | ---- |
+| contract_code  | false | string | contract code    |  "BTC-USDT"..., return all contract info when null |      |
+| sub_uid | true  | long   | sub-account UID |                              |      |
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_code": "BTC-USDT",
+            "volume": 1,
+            "available": 1,
+            "frozen": 0,
+            "cost_open": 26666.2,
+            "cost_hold": 51179.1,
+            "profit_unreal": 0,
+            "profit_rate": -4.59624918436072631,
+            "lever_rate": 5,
+            "position_margin": 102.3582,
+            "direction": "sell",
+            "profit": -245.129,
+            "last_price": 51179.1,
+            "margin_asset": "USDT",
+            "margin_mode": "cross",
+            "margin_account": "USDT"
+        }
+    ],
+    "ts": 1606964256589
+}
+
+````
+
+###  Returning Parameter
+
+| Parameter Name  | Mandatory | Type      | Desc   | Data Value      |
+| -------------------- | ---- | ------- | ---------------- | ---------------------------------------- |
+| status               | true | string  | Request Processing Result           | "ok" , "error"                           |
+| ts                   | true | long    | Time of Respond Generation, Unit: Millisecond    |                                          |
+| \<data\> |  true    |   object array      |     |     |
+| symbol               | true | string  | symbol             | "BTC","ETH"...                           |
+| contract_code        | true | string  | contract code             | "BTC-USDT" ...                          |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| volume               | true | decimal | position quantity              |                                          |
+| available            | true | decimal | available position can be closed            |                                          |
+| frozen               | true | decimal | frozen quantity             |                                          |
+| cost_open            | true | decimal | opening average price             |                                          |
+| cost_hold            | true | decimal | average price of position             |                                          |
+| profit_unreal        | true | decimal | unrealized profits and losses            |                                          |
+| profit_rate          | true | decimal | profit rate              |                                          |
+| profit               | true | decimal | profit               |                                          |
+| margin_asset       | true   | string | margin asset                 |                |
+| position_margin      | true | decimal | position margin            |                                          |
+| lever_rate           | true | int     | leverage Rate             |                                          |
+| direction            | true | string  | "buy"/"sell" |                                          |
+| last_price           | true | decimal | latest price              |                                          |
+| \</data\>            |      |         |      |              |
 
 
 ## Query account financial records
 
 - POST `/linear-swap-api/v1/swap_financial_record`
- 
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
+
 ### Request Parameters
 
 | **Parameter name**                | **Must fill or not** | **Type**  | **Description**             | **Value range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | margin_account      | true <img width=250/>  | string <img width=250/> | Margin currency  <img width=1100/>    | "BTC-USDT"...     |
+| contract_code      | false   | string | contract code    | "BTC-USDT"...     |
 | type | false | string | if not fill this parameter, it will query all types 【please use "," to seperate multiple types】 | 3:close long; 4:close short; 5:fees for open positions-taker; 6:fees for open positions-maker; 7:fees for close positions-taker; 8:fees for close positions-maker; 9:close long for delivery; 10:close short for delivery; 11:delivery fee; 12:close long for liquidation; 13:lose short for liquidation; 14:transfer from spot exchange to contract exchange; 15:tranfer from contract exchange to spot exchange; 16:settle unrealized PnL-long positions; 17:settle unrealized PnL-short positions; 19:clawback; 26:system; 28:activity prize rewards; 29:rebate; 34:transfer to sub; 35:transfer from sub; 36:transfer to master; 37:transfer from master; 38:Transfer in from another margin account; 39:Transfer out to another margin account; |
 | create_date | false | int |  any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.  |  |
 | page_index | false | int | which page, default value is "1st page" when not fill this parameter |  |
 | page_size | false | int | the default value is "20" when not fill this parameter, should ≤50 |  |
 
 #### Note:
-- Transfer out to contract sub-account: 34, Transfer in from contract sub-account:35, Transfer out to contract main account: 36, Transfer in from contract main account: 37; All these 4 types include crossing account. No matter crossing account or not, the transfer will merge to the same type.
+
+ - It needs contract_code parameter for request in cross margin mode when query the trading financial records of a certain contract market. And it not need contract_code parameter in other scenarios.
 
 > Response:
 
@@ -3307,9 +4713,14 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
  - As long as the user has had funds, there will be settlement records. If the user queried has no settlement record, no data will be returned. (data will be an empty array)
 -->
 
+
 ## Query user’s available leverage
 
-- POST `linear-swap-api/v1/swap_available_level_rate`
+ - POST `linear-swap-api/v1/swap_available_level_rate`
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 ### Request Parameter：
 
@@ -3324,6 +4735,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | status | true | string | Request Processing Result	 | "ok" , "error" |
 | \<data\> | true  | object array |  |   |
 | contract_code | true  | string |  contract code |  "BTC-USDT"|
+| margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
 | available_level_rate | true  | string |  available level rate,splited by ','  | "1,5,10" |
 | \</data\> |  |  |  |  |
 | ts | true  | long | Response generation time point, unit: millisecond |  |
@@ -3337,6 +4749,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
     "data": [
         {
             "contract_code": "BTC-USDT",
+            "margin_mode": "isolated",
             "available_level_rate": "1,2,3,5,10,20,30,50,75,100,125"
         }
     ],
@@ -3346,10 +4759,59 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 ```
 
 
+## Query User’s Available Leverage（cross margin mode）
+
+ - POST `linear-swap-api/v1/swap_cross_available_level_rate`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+###  Request Parameter
+
+| Parameter Name              | Mandatory    | Type    | Desc    | Data Value |
+| ---------------- | ------- | ----- | ---------------------------------------- | -----------|
+| contract_code | false | string | contract code，return all contract info when null	 | “BTC-USDT”... |
+
+> Response
+
+```json
+
+{
+    "status": "ok",
+    "data": [
+        {
+            "contract_code": "BTC-USDT",
+            "available_level_rate": "1,2,3,5,10,20,30,50,75,100,125",
+            "margin_mode": "cross"
+        }
+    ],
+    "ts": 1606965620243
+}
+
+```
+
+### Returning Parameter
+
+| Parameter Name          | Mandatory | Type      | Desc  | Data Value |
+| ------------- | ---- | ------- | --------------- | ---------------------------------------- |
+| status | true | string | Request Processing Result	 | "ok" , "error" |
+| \<data\> | true  | object array |  |  |
+| contract_code | true  | string | contract code | "BTC-USDT"... |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| available_level_rate | true  | string | available level rate,splited by ',' | "1,5,10" |
+| \</data\> |  |  |  |  |
+| ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
+
+
 ## Query swap information on order limit
 
-- POST `/linear-swap-api/v1/swap_order_limit`
- 
+ - POST `/linear-swap-api/v1/swap_order_limit`
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
+
 ### Request Parameter
 
 |   Parameter Name                |   Mandatory  |   Type   |    Description             |   Value Range       |
@@ -3395,9 +4857,13 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \</data\> |  |  |  |  |
 
 ## Query information on swap trading fee
- 
-- POST `/linear-swap-api/v1/swap_fee`
- 
+
+ - POST `/linear-swap-api/v1/swap_fee`
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
+
 ### Request Parameter 
 
 |   Parameter Name                 |   Mandatory   |   Type    |    Desc              |   Value Range       |
@@ -3441,11 +4907,15 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "USDT"... |
 | \</data\> |  |  |  |  |
 
+
 ## Query information on Transfer Limit
 
-- POST `/linear-swap-api/v1/swap_transfer_limit`
- 
- 
+ - POST `/linear-swap-api/v1/swap_transfer_limit`
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
+
 ### Request Parameter 
 
 |   Parameter Name                 |    Mandatory    |   Type   |   Desc             |   Value Range       |
@@ -3469,7 +4939,8 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
             "transfer_in_max_daily": 1000000000.000000000000000000,
             "transfer_out_max_daily": 200000000.000000000000000000,
             "net_transfer_in_max_daily": 500000000.000000000000000000,
-            "net_transfer_out_max_daily": 100000000.000000000000000000
+            "net_transfer_out_max_daily": 100000000.000000000000000000,
+            "margin_mode": "isolated"
         }
     ],
     "ts": 1603699803580
@@ -3493,12 +4964,78 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | transfer_out_max_daily | true | decimal | Max daily limit of totally withdrawals |  |
 | net_transfer_in_max_daily | true | decimal | Max daily limit of net total deposits |  |
 | net_transfer_out_max_daily | true | decimal | Max daily limit of net total withdrawals |  |
+| margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
 | \</data\> |  |  |  |  |
+
+
+## Query Information On Transfer Limit（cross margin mode）
+
+ - POST `linear-swap-api/v1/swap_cross_transfer_limit`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+### Request Parameter
+
+| Parameter Name   | Mandatory  | Type     | Desc   | Data Value       |
+| ------ | ----- | ------ | ---- | ---------------------------- |
+| margin_account | false | string | margin account, return all margin account info when null  |  "USDT"...，but now only USDT  |
+
+> Response:
+
+```json
+
+{
+    "status": "ok",
+    "data": [
+        {
+            "transfer_in_max_each": 999999999999999999,
+            "transfer_in_min_each": 0.0001,
+            "transfer_out_max_each": 999999999999999999,
+            "transfer_out_min_each": 0.0001,
+            "transfer_in_max_daily": 900000000999999999,
+            "transfer_out_max_daily": 900000099999999999,
+            "net_transfer_in_max_daily": 900000000099999999,
+            "net_transfer_out_max_daily": 123456789012345678.12345678,
+            "margin_account": "USDT",
+            "margin_mode": "cross"
+        }
+    ],
+    "ts": 1606964432217
+}
+
+```
+
+### Returning Parameter
+
+| Parameter Name   | Mandatory | Type      | Desc       | Data Value           |
+| -------------------------- | ---- | ------- | ------------- | -------------- |
+| status                     | true | string  | Request Processing Result        | "ok" , "error" |
+| ts                         | true | long    | Time of Respond Generation, Unit: Millisecond |                |
+| \<data\>     |  true    |  object array       |               |                |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| transfer_in_max_each       | true | decimal | max limit of a single deposit       |                |
+| transfer_in_min_each       | true | decimal | min limit of a single deposit       |                |
+| transfer_out_max_each      | true | decimal | max limit of a single withdrawal       |                |
+| transfer_out_min_each      | true | decimal | min limit of a single withdrawal       |                |
+| transfer_in_max_daily      | true | decimal | max daily limit of total deposits     |                |
+| transfer_out_max_daily     | true | decimal | max daily limit of totally withdrawals     |                |
+| net_transfer_in_max_daily  | true | decimal | max daily limit of net total deposits    |                |
+| net_transfer_out_max_daily | true | decimal | max daily limit of net total withdrawals    |                |
+| \</data\>                  |      |         |               |                |
+
+
 
 ##  Query information on position limit
 
-- POST `/linear-swap-api/v1/swap_position_limit`
-  
+ - POST `/linear-swap-api/v1/swap_position_limit`
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
+
 ### Request Parameter 
 
 |  Parameter Name                |   Mandatory  |   Type   |   Desc             |   Value Range      |
@@ -3517,7 +5054,8 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
             "symbol": "BTC",
             "contract_code": "BTC-USDT",
             "buy_limit": 700000.000000000000000000,
-            "sell_limit": 700000.000000000000000000
+            "sell_limit": 700000.000000000000000000,
+            "margin_mode": "isolated"
         }
     ],
     "ts": 1603699957489
@@ -3535,12 +5073,73 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | contract_code | true | string | contract type code   | "BTC-USDT",... |
 | buy_limit | true | decimal | Max long position limit, Unit: Cont |  |
 | sell_limit | true | decimal | Max short position limit, Unit: Cont |  |
+| margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
 | \</data\> |  |  |  |  |
+
+
+## Query Information On Position Limit（cross margin mode）
+
+ - POST `linear-swap-api/v1/swap_cross_position_limit`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+### Request Parameter
+
+| Parameter Name   | Mandatory  | Type     | Desc   | Data Value      |
+| ------ | ----- | ------ | ---- | ---------------------------- |
+| contract_code | false | string | contract code |   "BTC-USDT"... ,return all contract info when null |
+
+> Response
+
+```json
+
+{
+    "status":"ok",
+    "data":[
+        {
+            "symbol":"BSV",
+            "contract_code":"BSV-USDT",
+            "margin_mode":"cross",
+            "buy_limit":50000,
+            "sell_limit":50000
+        },
+        {
+            "symbol":"BTC",
+            "contract_code":"BTC-USDT",
+            "margin_mode":"cross",
+            "buy_limit":999999993424398,
+            "sell_limit":999943243299997
+        }
+    ],
+    "ts":1606964793311
+}
+
+````
+
+### Returning Parameter
+
+| Parameter Name          | Mandatory | Type      | Desc   | Data Value   |
+| ------------- | ---- | ------- | --------------- | ---------------------------------------- |
+| status        | true | string  | Request Processing Result          | "ok" , "error"                           |
+| ts            | true | long    | Time of Respond Generation, Unit: Millisecond   |                                          |
+| \<data\>      | true     |  object array       |      |   |
+| symbol        | true | string  | symbol            | "BTC","ETH"...                           |
+| contract_code | true | string  | contract code            |   "BTC-USDT" ... |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| buy_limit     | true | decimal | max long position limit, Unit: quantity |                                          |
+| sell_limit    | true | decimal | max short position limit, Unit: quantity |                                          |
+| \</data\>     |      |         |                 |   |
 
 
 ## Transfer between master and sub account
 
-- post `/linear-swap-api/v1/swap_master_sub_transfer`
+ - post `/linear-swap-api/v1/swap_master_sub_transfer`
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ### Request Parameters
 
@@ -3557,7 +5156,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 - represents transfer from transfer_out margin account to transfer_in margin account. The currency transferred shall be the same as the denominated currency of the transfer_out margin account.；
 - The denominated currency of the transfer_out margin account and transfer_in margin account must be the same. (eg, USDT can be transferred from BTC-USDT to ETH-USDT, but cannot be transferred from BTC-USDT to ETH-HUSD account).
 - the rate limit between the master account and each subaccount is 10 times/ minute
-  
+
 > Response:
 
 ```json
@@ -3583,7 +5182,11 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 
 ## Query transfer records between master and sub account
 
-- post `/linear-swap-api/v1/swap_master_sub_transfer_record`
+ - post `/linear-swap-api/v1/swap_master_sub_transfer_record`
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ### request
 
@@ -3653,6 +5256,9 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 
 - post `linear-swap-api/v1/swap_transfer_inner`
 
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ### Request Parameter
 
@@ -3691,10 +5297,14 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \</data\> |  |  |  |  |
 | ts | true  | long | response millionseconds.  |  |
 
+
 ## Query user's API indicator disable information
 
 - get `/linear-swap-api/v1/swap_api_trading_status`
 
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ### request body
  
@@ -3729,8 +5339,8 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \</TDN>       | true | dict object  |  |
 | \</data\>     |      |         |         |   |
 
- > eg：
- 
+ > Response：
+
 ```json
   {
   "status": "ok",
@@ -3772,7 +5382,11 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 
 ###  Example  
 
-- POST `/linear-swap-api/v1/swap_order`
+ - POST `/linear-swap-api/v1/swap_order`
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 ###  Request Parameter  
 
@@ -3837,11 +5451,83 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
 
+
+## Place An Order（cross margin mode）
+
+ - POST `linear-swap-api/v1/swap_cross_order`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+###  Request Parameter
+
+| Parameter Name           | Mandatory  | Type | Desc                                             | Data Value                                                     |
+| ---------------- | ----- | -------- | ------------------------------------------------ | ------------------------------------------------------------ |
+| contract_code    | TRUE  | string   | contract code                                         | "BTC-USDT"...                                                |
+| client_order_id  | FALSE | long     | Clients fill and maintain themselves.must be Less or Equal than 9223372036854775807                   |                                                              |
+| price            | FALSE | decimal  | price                                            |                                                              |
+| volume           | TRUE  | long     | Numbers of orders (volume)                                    |                                                              |
+| direction        | TRUE  | string   | Transaction direction                                         | "buy"/"sell"                                           |
+| offset           | TRUE  | string   | "open", "close"                                         | "open"/"close"                                        |
+| lever_rate       | TRUE  | int      | leverage [ if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate; Using Leverage greater than 20 times requires prior approval of high-leverage agreement for the first time. ] |                                                              |
+| order_price_type | TRUE  | string   | type of order price                                     | "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,fok：FOK Order, "opponent_ioc"：IOC order using the BBO price，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK |
+
+####  Note
+
+ - "limit"，"post_only"，"ioc" and "fok" the four order price type need price value and the other don't need.
+
+### direction and offset
+
+open long: direction - buy、offset - open
+
+close long: direction -sell、offset - close
+
+open short: direction -sell、offset - open
+
+close short: direction -buy、offset - close
+
+> Response
+
+```json
+
+{
+    "status": "ok",
+    "data": {
+        "order_id": 784017187857760256,
+        "order_id_str": "784017187857760256"
+    },
+    "ts": 1606965863952
+}
+
+```
+
+###  Returning Parameter
+
+| Parameter Name            | Mandatory | Type     | Desc                     | Data Value           |
+| --------------- | ---- | ------ | ---------------------- | -------------- |
+| status          | true | string | Request Processing Result                 | "ok" , "error" |
+| \<data\>      | true     |  object       |      |   |
+| order_id        | true | long   | order ID                   |                |
+| order_id_str        | true | string   | order ID                  |                |
+| client_order_id | false | long   | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                |
+| \</data\>     |      |         |                 |    |
+| ts    | true | long   | Time of Respond Generation, Unit: Millisecond          |     |
+
+#### Note
+ - The return order_id is 18 bits, it will make mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
+
+
+
 ##  Place a Batch of Orders
 
 ###  Example  
 
-- POST `/linear-swap-api/v1/swap_batchorder`
+ - POST `/linear-swap-api/v1/swap_batchorder`
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 ###  Request Parameter  
 
@@ -3925,11 +5611,94 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
 
 
+## Place A Batch Of Orders（cross margin mode） 
+
+ - POST `linear-swap-api/v1/swap_cross_batchorder`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+###  Request Parameter
+
+| Parameter Name            | Mandatory | Type     | Desc                     | Data Value           |
+| --------------- | ---- | ------ | ---------------------- | -------------- |
+| \<orders_data\>   | true | object array |     |  |
+| contract_code        | true | string   | contract code      |        "BTC-USDT"...          |
+| client_order_id       |  false   |  long| Clients fill and maintain themselves.must be Less or Equal than 9223372036854775807                          |      |
+| price       |false  | decimal | price|      |
+| volume   | true    |  long | Numbers of orders (volume) |      |
+| direction   |true   |  string | Transaction direction   | "buy"/"sell"    |
+| offset   | true  |  string |   offset    | "open"/"close"    |
+| lever_rate     |  true    | int  | leverage [ if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate; Using Leverage greater than 20 times requires prior approval of high-leverage agreement for the first time. ]             |      |
+| order_price_type            |  true |  string | type of order price  | "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order, "opponent_ioc"：IOC order using the BBO price，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK |
+| \</orders_data\>     |         |       |   |      |
+
+### Note
+
+ - "limit"，"post_only"，"ioc" and "fok" the four order price type need price value and the other don't need.
+
+ - 10 orders at most 
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "index": 2,
+                "err_code": 1045,
+                "err_msg": "Unable to switch leverage due to open orders."
+            }
+        ],
+        "success": [
+            {
+                "order_id": 784022175422087168,
+                "index": 1,
+                "order_id_str": "784022175422087168"
+            }
+        ]
+    },
+    "ts": 1606967053089
+}
+
+```
+
+###  Returning Parameter
+
+| Parameter Name                    | Mandatory | Type     | Desc                     | Data Value           |
+| ----------------------- | ---- | ------ | ---------------------- | -------------- |
+| status                  | true | string | Request Processing Result                 | "ok" , "error" |
+| \<data\> |    true  |   object     |                        |                |
+| \<errors\> |    true  |   object array     |                        |                |
+| index                   | true | int    | order index                   |                |
+| err_code                | true | int    | error code                    |                |
+| err_msg                 | true | string | error message                  |                |
+| \</errors\>               |      |        |                        |                |
+| \<success\>|      |        |                        |                |
+| index                   | true | int    | order index                   |                |
+| order_id                | true | long   | order ID                   |                |
+| order_id_str                | true | string   | order ID                   |                |
+| client_order_id         | true | long   | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                |
+| \</success\>               |      |        |                        |                |
+| \</data\>               |      |        |                        |                |
+| ts                      | true | long   | Time of Respond Generation, Unit: Millisecond          |
+
+#### Note
+ - The return order_id is 18 bits, it will make mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
+
+
 ## Cancel an Order 
 
 ###  Example   
 
-- POST  `/linear-swap-api/v1/swap_cancel`
+ - POST  `/linear-swap-api/v1/swap_cancel`
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 ###  Request Parameter  
 
@@ -3981,12 +5750,73 @@ The return data from Cancel An Order Interface only means that order cancelation
 | ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond             |                 |
 
 
+## Cancel An Order（cross margin mode）
+
+ - POST `linear-swap-api/v1/swap_cross_cancel`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+###  Request Parameter
+
+| Parameter Name            | Mandatory | Type     | Desc                     | Data Value           |
+| --------------- | ---- | ------ | ---------------------- | -------------- |
+| order_id        | false | string | order ID（different IDs are separated by ",", maximum 10 orders can be withdrew at one time） |      |
+| client_order_id | false | string | Client order ID (different IDs are separated by ",", maximum 10 orders can be withdrew at one time) |      |
+| contract_code          | true  | string | contract code                       |    "BTC-USDT" ...  |
+
+### Note:
+
+ - Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。
+
+ - The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.
+
+> Response
+
+```json
+
+{
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "order_id": "784054331179532288",
+                "err_code": 1062,
+                "err_msg": "Cancelling. Please be patient."
+            }
+        ],
+        "successes": "784054331179532288"
+    },
+    "ts": 1606974744952
+}
+```
+
+###  Returning Parameter
+
+| Parameter Name                   | Mandatory | Type     | Desc                                 | Data Value           |
+| ---------------------- | ---- | ------ | ---------------------------------- | -------------- |
+| status                 | true | string | Request Processing Result                             | "ok" , "error" |
+| \<data\> |  true    |   object array      |        |    |
+| \<errors\> |  true    | object array       |                                    |                |
+| order_id               | true | string | order ID                               |                |
+| err_code               | true | int    | error code                                |                |
+| err_msg                | true | string | error message                              |                |
+| \</errors\>              |      |        |                                    |                |
+| successes              | true | string | successfully withdrew list of order_id or client_order_id |                |
+| \</data\>        |      |         |        |         |
+| ts                     | true | long   | Time of Respond Generation, Unit: Millisecond                      |                |
+
+
 ## Cancel All Orders 
 
 ###  Example  
 
-- POST `/linear-swap-api/v1/swap_cancelall`
+ - POST `/linear-swap-api/v1/swap_cancelall`
 
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 ###  Request Parameter  
 
@@ -3994,12 +5824,9 @@ The return data from Cancel An Order Interface only means that order cancelation
 | ------------------ | ------------- | -------- | ------------------------------- |
 | contract_code      | true             | string       | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USDT"   |
 
-
-
 > Response:result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
  
 ```json
-
 
 {
     "status": "ok",
@@ -4017,26 +5844,73 @@ The return data from Cancel An Order Interface only means that order cancelation
 |   Parameter Name                 |   Mandatory   |   Type   |   Desc                                        |   Value Range   |
 | -------------------------------- | ------------- | -------- | --------------------------------------------- | --------------- |
 | status                           | true          | string   | Request Processing Result                     | "ok" , "error"  |
-| data: \<dict\> |               |          |                                               |                 |
-| errors: \<list\> |               |          |                                               |                 |
+| \<data\> |               |          |                                               |                 |
+| \<errors\> |               |          |                                               |                 |
 | order_id                         | true          | string   | Order ID                                      |                 |
 | err_code                         | true          | int      | failed order error messageError code          |                 |
 | err_msg                          | true          | string      | failed order information                      |                 |
-| \</list\>                        |               |          |                                               |                 |
+| \</errors\>                        |               |          |                                               |                 |
 | successes                        | true          | string   | Successful order                              |                 |
-| \</dict\>                        |               |          |                                               |                 |
+| \</data\>                        |               |          |                                               |                 |
 | ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond |                 |
+
+
+## Cancel All Orders（cross margin mode）
+
+ - POST `linear-swap-api/v1/swap_cross_cancelall`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+
+###  Request Parameter
+
+| Parameter Name  | Mandatory | Type | Desc  | Data Value |
+| ------------- | ------ | ----- | ---------------------------------------- | ---- |
+| contract_code | true |  string | contract code |   "BTC-USDT"    |
+
+> Response
+
+```json
+
+{
+    "status": "ok",
+    "data": {
+        "errors": [],
+        "successes": "784055473531781120,784055473842159616"
+    },
+    "ts": 1606974998510
+}
+```
+
+###  Returning Parameter
+
+| Parameter Name                   | Mandatory | Type     | Desc            | Data Value           |
+| ---------------------- | ---- | ------ | ------------- | -------------- |
+| status                 | true | string | Request Processing Result        | "ok" , "error" |
+| \<data\> |  true    |   object array      |        |    |
+| \<errors\> |  true    | object array       |               |                |
+| order_id               | true | String | order ID          |                |
+| err_code               | true | int    | error code       |                |
+| err_msg                | true | string    | error message        |                |
+| \</errors\>              |      |        |               |                |
+| successes              | true | string | the list order which's successful         |                |
+| \</data\>        |      |         |        |         |
+| ts                     | true | long   | Time of Respond Generation, Unit: Millisecond |                |
 
 
 ## Switch Leverage
 
-- POST `/linear-swap-api/v1/swap_switch_lever_rate`
+ - POST `/linear-swap-api/v1/swap_switch_lever_rate`
 
 #### Note
 
-- Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.
+ - This interface only supports isolated margin mode.
 
-- The interface limits the number of requests to 1 time per 3 seconds.
+ - Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.
+
+ - The interface limits the number of requests to 1 time per 3 seconds.
 
 ###  Request Parameter
 
@@ -4054,6 +5928,7 @@ OK：
     "status": "ok",
     "data": {
         "contract_code": "btc-usdt",
+        "margin_mode": "isolated",
         "lever_rate": 10
     },
     "ts": 1603699417036
@@ -4075,6 +5950,7 @@ No：
 | status                 | true | string  | status: ok,error            |                                          |
 | \<data\> | false     |  object      |                    |                                          |
 | contract_code               | false | string    | contract code      |                                          |
+| margin_mode                |   false   | string | margin mode  | isolated : "isolated" |
 | lever_rate               | false | int    | Switched leverage      |                                          |
 | \</data\>            |      |         |                    |                                          |
 | err_code | false | int | error code | |
@@ -4082,10 +5958,63 @@ No：
 | ts                     | true | long    | Timestamp                |    
 
 
+## Switch Leverage（cross margin mode）
+
+ - POST `linear-swap-api/v1/swap_cross_switch_lever_rate`
+
+#### Note
+
+ - The interface only supports cross margin mode.
+
+ - Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.
+
+ - The interface limits the number of requests to 1 time per 3 seconds.
+
+###  Request Parameter
+
+| Parameter Name  | Mandatory | Type | Desc  | Data Value |
+| ------------- | ------ | ----- | ---------------------------------------- | ---- |
+| contract_code | true | String | contract code	 | "BTC-USDT", |
+| lever_rate | true | int | Leverage to switch [Using Leverage greater than 20 times requires prior approval of high-leverage agreement for the first time.] | |
+
+> Response
+
+```json
+
+{
+    "status": "ok",
+    "data": {
+        "contract_code": "eth-usdt",
+        "lever_rate": 30,
+        "margin_mode": "cross"
+    },
+    "ts": 1606975779177
+}
+
+```
+
+###  Returning Parameter
+
+| Parameter Name                   | Mandatory | Type     | Desc            | Data Value           |
+| ---------------------- | ---- | ------ | ------------- | -------------- |
+| status                 | true | string  | ok/error            |                                          |
+| \<data\> | false     |  object      |                    |                                          |
+| contract_code               | false | string    | contract code      |                                          |
+| margin_mode               | false | string | margin mode  | cross: cross margin mode  |
+| lever_rate               | false | int    | switched leverage      |                                          |
+| \</data\>            |      |         |                    |                                          |
+| err-code | false | int | error code| |
+| err-msg| false| string | error message | |
+| ts                     | true | long    | timestamp                |                                          |
+
 
 ## Place Lightning Close Order
 
-- POST ` /linear-swap-api/v1/swap_lightning_close_position`
+ - POST ` /linear-swap-api/v1/swap_lightning_close_position`
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 ### Request Parameter 
 
@@ -4138,11 +6067,63 @@ No：
 ```
 
 
+## Place Lightning Close Position（cross margin mode）
+
+ - POST `linear-swap-api/v1/swap_cross_lightning_close_position`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+### Request Parameter
+
+| Parameter Name            | Mandatory  | Type     | Desc                    | Data Value                                     |
+| --------------- | ----- | ------ | --------------------- | ---------------------------------------- |
+| contract_code          | true | String | contract code                  | "BTC-USDT"...                           |
+| volume          | true  | decimal | place volume               |                                          |
+| direction       | true  | String | direction      |        “buy”/“sell” |
+| client_order_id | false | long | client order ID | unique ID |
+| order_price_type | false | string | type of order price | "lightning" by default. "lightning_fok": lightning FOK type,"lightning_ioc": lightning IOC type |
+
+#### Note
+ - Lightning Close Position，is order with rival price and optimal 30 grades. And the unsettled part will be automatically converted into a limited price order.
+
+ - The closing price of lightning closing position has a predictable effect, which can avoid the loss of users when the order cannot be completed when the market price rises sharply and falls sharply.
+
+> Response
+
+```json
+
+{
+    "status": "ok",
+    "data": {
+        "order_id": 784063527799226368,
+        "order_id_str": "784063527799226368"
+    },
+    "ts": 1606976912267
+}
+```
+
+### Returning Parameter
+
+| Parameter Name            | Mandatory  | Type     | Desc                            | Data Value                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status          | true  | string | Request Processing Result                        | "ok"/"error" |
+| ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |                      |
+| \<data\>        |   true    |   object     |                               | |
+| order_id        | true  | long | order ID[Different users may share the same order ID] |                      |
+| order_id_str        | true  | string | order ID |                      |
+| client_order_id | false | int | client order ID                     |                      |
+| \</data\>       |       |        |     |  |
+
+
 ## Get Information of an Order
 
-###  Example   
+ - POST `/linear-swap-api/v1/swap_order_info`
 
-- POST `/linear-swap-api/v1/swap_order_info`
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 ###  Request Parameter  
 
@@ -4192,7 +6173,9 @@ client_order_id，order status query is available for orders placed within 24 ho
             "fee_asset": "USDT",
             "liquidation_type": "0",
             "canceled_at": 0,
-            "margin_asset": "USDT"
+            "margin_asset": "USDT",
+            "margin_mode": "isolated",
+            "margin_account": "BTC-USDT"
         }
     ],
     "ts": 1603703631815
@@ -4231,16 +6214,120 @@ client_order_id，order status query is available for orders placed within 24 ho
 | order_source                   | true          | string   | Order source（system、web、api、m、risk、settlement、ios、android、windows、mac、trigger） |                                     |
 | fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "USDT"... |
 | liquidation_type | true  | string | Liquidation type | 0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated |
+| margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
+| margin_account    |   true   | string | margin account  | "BTC-USDT"... |
 | \</data\>                      |               |          |                                                              |                                     |
 | ts                             | true          | long     | Timestamp                                                    |                                     |
 
 
+## Get Information of order（cross margin mode）
+
+ - PSOT `linear-swap-api/v1/swap_cross_order_info`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+###  Request Parameter
+
+| Parameter Name            | Mandatory  | Type     | Desc                                   | Data Value     |
+| --------------- | ----- | ------ | ------------------------------------ | ---- |
+| order_id        | false | string | order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time）   |      |
+| client_order_id | false | string | client order ID Order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time) |      |
+| contract_code          | true  | string | contract code |"BTC-USDT"...                       |
+
+####  备注：
+
+ - When getting information on order cancellation via get order Information interface, users can only query last 4-hour data
+
+ - Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id. The order completed( 5.partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled; ) will be deleted after the settlement of funding rate on 04:00(GMT+8), 12:00(GMT+8) and 20:00(GMT+8).
+ 
+ - client_order_id，order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.
+
+> Response
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "ETH",
+            "contract_code": "ETH-USDT",
+            "volume": 1,
+            "price": 17,
+            "order_price_type": "optimal_10_ioc",
+            "order_type": 1,
+            "direction": "sell",
+            "offset": "open",
+            "lever_rate": 5,
+            "order_id": 784056956650258432,
+            "client_order_id": null,
+            "created_at": 1606975345528,
+            "trade_volume": 1,
+            "trade_turnover": 0.5,
+            "fee": -0.0002,
+            "trade_avg_price": 50,
+            "margin_frozen": 0,
+            "profit": 0,
+            "status": 6,
+            "order_source": "api",
+            "order_id_str": "784056956650258432",
+            "fee_asset": "USDT",
+            "liquidation_type": "0",
+            "canceled_at": 0,
+            "margin_asset": "USDT",
+            "margin_account": "USDT",
+            "margin_mode": "cross"
+        }
+    ],
+    "ts": 1606975356655
+}
+```
+
+### Returning Parameter
+
+| Parameter Name                 | Mandatory | Type      | Desc     | Data Value                                     |
+| -------------------- | ---- | ------- | ------ | ---------------------------------------- |
+| status               | true | string  | Request Processing Result | "ok" , "error"                           |
+| \<data\> |  true    |   object array      |        |    |
+| symbol               | true | string  | symbol   |       |
+| contract_code        | true | string  | contract code   | "BTC-USDT" ...   |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| volume               | true | decimal | place volume   |   |
+| price                | true | decimal | place price   |            |
+| order_price_type     | true | string  | type of order price | "limit":Limit,"opponent":opponent,"post_only":Post-Only Order, No order limit but position limit for post-only orders.，"lightning":lightning, "optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20，"fok":FOK Order，"ioc":IOC Order, "opponent_ioc": opponent ioc，"lightning_ioc": lightning ioc，"optimal_5_ioc": optimal_5 ioc，"optimal_10_ioc": optimal_10 ioc，"optimal_20_ioc"：optimal_20 ioc，"opponent_fok"： opponent fok，"lightning_fok"：lightning fok，"optimal_5_fok"：optimal_5 fok，"optimal_10_fok"：optimal_10 fok，"optimal_20_fok"：optimal_20 fok |
+| direction            | true | string  | direction  | "buy"/"sell"  |
+| offset  | true | string  | offset   | "open"/"close"   |
+| lever_rate           | true | int     | leverage   |    |
+| order_id             | true | long    | order ID   |    |
+| order_id_str             | true | string    | order ID  |    |
+| client_order_id      | true | long    | client order ID |    |
+| created_at           | true | long    | created time   |     |
+| trade_volume         | true | decimal | trade quantity   |   |
+| trade_turnover       | true | decimal | trade amount |     |
+| fee                  | true | decimal | service fee   |     |
+| trade_avg_price      | true | decimal | trade average price   |   |
+| margin_asset       | true   | string | margin asset                 |                |
+| margin_frozen        | true | decimal | frozen margin  |     |
+| profit               | true | decimal | profit     |        |
+| status               | true | int     | status  |  1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling. |
+| order_type           | true | int  | order type  | 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order|
+| order_source         | true | string  | order source   | system、web、api、m、risk、settlement、ios、android、windows、mac、trigger |
+| fee_asset         | true | string  | fee asset   | （"USDT"...）|
+| liquidation_type               | true     | string    | 0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated |  |
+| canceled_at               | true     | long    | canceled time           |  |
+| \</data\>        |      |         |        |         |
+| ts                   | true | long    | timestamp    |      |
+
 
 ## Order details acquisition
 
-###  Example   
-
 - POST `/linear-swap-api/v1/swap_order_detail`
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 ###  Request Parameter  
 
@@ -4315,7 +6402,9 @@ Please note that created_at can't send "0"
         "trade_avg_price": 13059.800000000000000000,
         "trade_turnover": 13.059800000000000000,
         "trade_volume": 1.000000000000000000,
-        "margin_asset": "USDT"
+        "margin_asset": "USDT",
+        "margin_mode": "isolated",
+        "margin_account": "BTC-USDT"
     },
     "ts": 1603703678477
 }
@@ -4359,6 +6448,8 @@ Please note that created_at can't send "0"
 | fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "USDT"... |
 | fee | true  | decimal |  total amount of fees|
 | liquidation_type | true  | string | Liquidation type | 0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated |
+| margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
+| margin_account    |   true   | string | margin account  | "BTC-USDT"... |
 | \<trades\>  |               |          |                                                              |                                   |
 | id                          | true          | string     |  the global unique ID of the trade.                                         |                                   |
 | trade_id                          | true          | long     | In this interface, trade_id is the same with match_id of linear-swap-api/v1/swap_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.                                              |                                   |
@@ -4373,11 +6464,143 @@ Please note that created_at can't send "0"
 | ts                                | true          | long     | Timestamp                                                    |                                   |
 
 
+## Get Detail Information of order（cross margin mode）
+
+ - POST `linear-swap-api/v1/swap_cross_order_detail`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+###  Request Parameter
+
+| Parameter Name       | Mandatory  | Type     | Desc | Data Value  |
+| ---------- | ----- | ------ | ---------------------------- | ---- |
+| contract_code     | true  | string | contract code| "BTC-USDT"...     |
+| order_id   | true  | long   | order ID                         |      |
+| created_at | false  | long   | created timestamp                        |      |
+| order_type | false  | int    | order type | 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order |
+| page_index | false | int    | page number, default 1st page                    |      |
+| page_size  | false | int    | default 20，no more than 50                |      |
+
+
+> Response
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "symbol": "ETH",
+        "contract_code": "ETH-USDT",
+        "instrument_price": 0,
+        "final_interest": 0,
+        "adjust_value": 0,
+        "lever_rate": 5,
+        "direction": "sell",
+        "offset": "open",
+        "volume": 1,
+        "price": 17,
+        "created_at": 1606975345528,
+        "canceled_at": 0,
+        "order_source": "api",
+        "order_price_type": "optimal_10_ioc",
+        "margin_frozen": 0,
+        "profit": 0,
+        "trades": [
+            {
+                "trade_id": 33142,
+                "trade_price": 50,
+                "trade_volume": 1,
+                "trade_turnover": 0.5,
+                "trade_fee": -0.0002,
+                "created_at": 1606975346393,
+                "role": "taker",
+                "fee_asset": "USDT",
+                "id": "33142-784056956650258432-1"
+            }
+        ],
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 1,
+        "liquidation_type": "0",
+        "fee_asset": "USDT",
+        "fee": -0.0002,
+        "order_id": 784056956650258432,
+        "order_id_str": "784056956650258432",
+        "client_order_id": null,
+        "order_type": "1",
+        "status": 6,
+        "trade_avg_price": 50,
+        "trade_turnover": 0.5,
+        "trade_volume": 1,
+        "margin_asset": "USDT",
+        "margin_account": "USDT",
+        "margin_mode": "cross"
+    },
+    "ts": 1606975532569
+}
+```
+
+### Returning Parameter
+
+| Parameter Name                    | Mandatory | Type      | Desc          | Data Value                                     |
+| ----------------------- | ---- | ------- | ----------- | ---------------------------------------- |
+| status                  | true | string  | Request Processing Result      | "ok" , "error"                           |
+| \<data\> |  true    |  object       |             |    |
+| symbol                  | true | string  | symbol        |      |
+| contract_code           | true | string  | contract code     | "BTC-USDT"  |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| lever_rate              | true | int     | leverage        | |
+| direction               | true | string  | direction        | "buy"/"sell"         |
+| offset                  | true | string  | offset | "open"/"close"    |
+| volume                  | true | decimal | place volume        | |
+| price                   | true | decimal | place price        |  |
+| created_at              | true | long    | created time        |  |
+| order_source            | true | string  | order source        |    |
+| order_price_type        | true | string  | type of order price      | "limit":Limit,"opponent":opponent,"post_only":Post-Only Order, No order limit but position limit for post-only orders.，"lightning":lightning, "optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20，"fok":FOK Order，"ioc":IOC Order, "opponent_ioc": opponent ioc，"lightning_ioc": lightning ioc，"optimal_5_ioc": optimal_5 ioc，"optimal_10_ioc": optimal_10 ioc，"optimal_20_ioc"：optimal_20 ioc，"opponent_fok"： opponent fok，"lightning_fok"：lightning fok，"optimal_5_fok"：optimal_5 fok，"optimal_10_fok"：optimal_10 fok，"optimal_20_fok"：optimal_20 fok |
+| margin_asset       | true   | string | margin asset                 |                |
+| margin_frozen           | true | decimal | frozen margin       |    |
+| profit                  | true | decimal | profit          |     |
+| instrument_price        | true | decimal | liquidation price	     |     |
+| final_interest          | true | decimal | account balance after liquidation     |     |
+| adjust_value            | true | decimal | adjustment factor of liquidating order     |      |
+| fee              | true | decimal     | total fee        |     |
+| fee_asset              | true | string     | fee asset        |   （"USDT"...）                                       |
+| liquidation_type              | true | string     | liquidation type    |      |
+| canceled_at              | true | long     | canceled time        |        |
+| order_id               | true     | long    | order ID            |  |
+| order_id_str               | true     | string    | order ID             |  |
+| client_order_id               | true     | long    | client order ID             |  |
+| order_type               | true     | string    | order type            | 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order |
+| status               | true     | int    | order status           | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling.  |
+| trade_avg_price               | true     | decimal    | trade average price             |  |
+| trade_turnover               | true     | decimal    | trade total amount |  |
+| trade_volume               | true     | decimal    | trade total amount           |  |
+| total_page              | true | int     | total page       |  |
+| current_page            | true | int     | current page        |    |
+| total_size              | true | int     | total size         |      |
+| \<trades\>  |  true    |   object array      |        |   |      |
+| id                | true | string    | the global unique ID of the trade      |   |
+| trade_id                | true | long    | In this interface, trade_id is the same with match_id of linear-swap-api/v1/swap_cross_matchresults. trade_id is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.  |  |
+| trade_price             | true | decimal | trade price        |   |
+| trade_volume            | true | decimal | trade volume         |   |
+| trade_turnover          | true | decimal | trade amount        |     |
+| trade_fee               | true | decimal | trade fee       |      |
+| role                    | true | string  | taker/maker |   |
+| created_at              | true | long    | created time        |      |
+| \</trades\>               |      |         |             |     |
+| \</data\>            |      |         |             |         |
+| ts                      | true | long    | timestamp         |      |
+
+
 ## Current unfilled order acquisition
 
-###  Example  
+ - POST  `/linear-swap-api/v1/swap_openorders`
 
-- POST  `/linear-swap-api/v1/swap_openorders`
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 ###  Request Parameter  
 
@@ -4421,7 +6644,9 @@ Please note that created_at can't send "0"
                 "fee_asset": "USDT",
                 "liquidation_type": null,
                 "canceled_at": null,
-                "margin_asset": "USDT"
+                "margin_asset": "USDT",
+                "margin_mode": "isolated",
+                "margin_account": "BTC-USDT"
             }
         ],
         "total_page": 2,
@@ -4465,6 +6690,8 @@ Please note that created_at can't send "0"
 | fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "USDT"... |
 | liquidation_type                      | true   | string | liquidation type                 |                |
 | canceled_at                      | true   | long | order Cancellation time               |                |
+| margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
+| margin_account    |   true   | string | margin account  | "BTC-USDT"... |
 | \</orders\>                      |               |          |                                                              |                                   |
 | total_page                     | true          | int      | Total Pages                                                  |                                   |
 | current_page                   | true          | int      | Current Page                                                 |                                   |
@@ -4472,11 +6699,115 @@ Please note that created_at can't send "0"
 | \</data\>                      |               |          |                                                              |                                   |
 | ts                             | true          | long     | Timestamp                                                    |                                   |
 
+
+## Current unfilled order acquisition（cross margin mode）
+
+ - POST `linear-swap-api/v1/swap_cross_openorders`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+###  Request Parameter
+
+| Parameter Name       | Mandatory  | Type     | Desc       | Data Value           |
+| ---------- | ----- | ------ | ---------- | -------------- |
+| contract_code     | true  | string | contract code       |   "BTC-USDT" ...  |
+| page_index | false | int    | page index, default 1st page |               |
+| page_size  | false | int    | page size, default 20，no more than 50          |    |
+
+> Response
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "symbol": "ETH",
+                "contract_code": "ETH-USDT",
+                "volume": 1,
+                "price": 80,
+                "order_price_type": "limit",
+                "order_type": 1,
+                "direction": "sell",
+                "offset": "open",
+                "lever_rate": 30,
+                "order_id": 784059619752280064,
+                "client_order_id": null,
+                "created_at": 1606975980467,
+                "trade_volume": 0,
+                "trade_turnover": 0,
+                "fee": 0,
+                "trade_avg_price": null,
+                "margin_frozen": 0.026666666666666666,
+                "profit": 0,
+                "status": 3,
+                "order_source": "api",
+                "order_id_str": "784059619752280064",
+                "fee_asset": "USDT",
+                "liquidation_type": null,
+                "canceled_at": null,
+                "margin_asset": "USDT",
+                "margin_account": "USDT",
+                "margin_mode": "cross"
+            }
+        ],
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 2
+    },
+    "ts": 1606975988388
+}
+```
+
+###  Returning Parameter
+
+| Parameter Name                 | Mandatory | Type      | Desc                                       | Data Value                                     |
+| -------------------- | ---- | ------- | ---------------------------------------- | ---------------------------------------- |
+| status               | true | string  | Request Processing Result                                   |                                          |
+| \<data\> | true     |    object     |                   |                                          |
+| symbol               | true | string  | symbol                                     |                                          |
+| contract_code        | true | string  | contract code                                     | "BTC-USDT" ...                          |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| volume               | true | decimal | place volume                                     |                                          |
+| price                | true | decimal | place price                                     |                                          |
+| order_price_type     | true | string  | type of order price | "limit":Limit,"opponent":opponent,"post_only":Post-Only Order, No order limit but position limit for post-only orders.，"lightning":lightning, "optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20，"fok":FOK Order，"ioc":IOC Order, "opponent_ioc": opponent ioc，"lightning_ioc": lightning ioc，"optimal_5_ioc": optimal_5 ioc，"optimal_10_ioc": optimal_10 ioc，"optimal_20_ioc"：optimal_20 ioc，"opponent_fok"： opponent fok，"lightning_fok"：lightning fok，"optimal_5_fok"：optimal_5 fok，"optimal_10_fok"：optimal_10 fok，"optimal_20_fok"：optimal_20 fok |
+| order_type         | true | int  | order type        | 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order |
+| direction            | true | string  | "buy"/"sell"                         |                                          |
+| offset               | true | string  | "open"/"close"                      |                                          |
+| lever_rate           | true | int     | leverage                                     |                       |
+| order_id             | true | long    | order ID    | |
+| order_id_str             | true | string    | order ID                                     |      |
+| client_order_id      | true | long    | client order ID                                   |                                          |
+| order_source         | true | string  | order source                                     |        |
+| created_at           | true | long    | created time                                   |                                          |
+| trade_volume         | true | decimal | trade total volume                                     |                                          |
+| trade_turnover       | true | decimal | trade total amount                                    |                                          |
+| fee                  | true | decimal | service fee                                     |
+| fee_asset         | true | string  | fee asset       |  （"USDT"...）      ||
+| trade_avg_price      | true | decimal | trade average price                                     |                                          |
+| margin_asset       | true   | string | margin asset                 |                |
+| margin_frozen        | true | decimal | frozen margin                                    |                                          |
+| profit               | true | decimal | profit                                       |                                          |
+| status               | true | int     | order status                                    | 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled         |
+| liquidation_type              | true | string     | liquidation type    |      |
+| canceled_at              | true | long     | canceled time        |        |
+| \</data\>            |      |         |                     |      |
+| total_page           | true | int     | total page                                     |                                          |
+| current_page         | true | int     | current page                                      |                                          |
+| total_size           | true | int     | total size                                      |                                          |
+| ts                   | true | long    | timestamp                                      |                                          |
+
+
 ## Get History Orders
 
-###  Example  
+ - POST `/linear-swap-api/v1/swap_hisorders`
 
-- POST `/linear-swap-api/v1/swap_hisorders`
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 ###  Request Parameter  
 
@@ -4526,7 +6857,9 @@ Please note that created_at can't send "0"
                 "order_id_str": "770336866451992576",
                 "fee_asset": "USDT",
                 "liquidation_type": "0",
-                "margin_asset": "USDT"
+                "margin_asset": "USDT",
+                "margin_mode": "isolated",
+                "margin_account": "BTC-USDT"
             }
         ],
         "total_page": 10,
@@ -4568,6 +6901,8 @@ Please note that created_at can't send "0"
 | fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "USDT"... |
 | order_type | true  | int | order type | 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
 | liquidation_type | true  | string | Liquidation type | 0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated |
+| margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
+| margin_account    |   true   | string | margin account  | "BTC-USDT"... |
 | \</orders\>                        |               |          |                                                              |                                   |
 | total_page                       | true          | int      | Total Pages                                                  |                                   |
 | current_page                     | true          | int      | Current Page                                                 |                                   |
@@ -4580,11 +6915,119 @@ Please note that created_at can't send "0"
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
 
 
+## Get History Orders（cross margin mode）
+
+ - POST `linear-swap-api/v1/swap_cross_hisorders`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+###  Request Parameter
+
+| Parameter Name        | Mandatory  | Type     | Desc              | Data Value   |
+| ----------- | ----- | ----------- | ---------------------------------------- | ------ |
+| contract_code      | true  | string | contract code        |  "BTC-USDT" ...                          |
+| trade_type  | true  | int    | trade type        | 0:all,1: buy long,2: sell short,3: buy short,4: sell long,5: sell liquidation,6: buy liquidation,7:Delivery long,8: Delivery short,11:reduce positions to close long,12:reduce positions to close short|        |
+| type        | true  | int    | type          | 1:All Orders,2:Order in Finished Status                       |
+| status      | true  | string    | order status       | support multiple query seperated by ',',such as '3,4,5', 0: all. 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled; |
+| create_date | true  | int    | date          | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default. |
+| page_index  | false | int    | page index, default 1st page           |                               |
+| page_size   | false | int    | page size, default 20 no more than 50      |  |
+
+### Note:
+ - When getting information on order cancellation via query history orders interface, users can only query last 2-hour data.
+
+> Response
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "order_id": 784059619752280064,
+                "contract_code": "ETH-USDT",
+                "symbol": "ETH",
+                "lever_rate": 30,
+                "direction": "sell",
+                "offset": "open",
+                "volume": 1,
+                "price": 80,
+                "create_date": 1606975980467,
+                "order_source": "api",
+                "order_price_type": 1,
+                "order_type": 1,
+                "margin_frozen": 0.026666666666666666,
+                "profit": 0,
+                "trade_volume": 0,
+                "trade_turnover": 0,
+                "fee": 0,
+                "trade_avg_price": 0,
+                "status": 3,
+                "order_id_str": "784059619752280064",
+                "fee_asset": "USDT",
+                "liquidation_type": "0",
+                "margin_asset": "USDT",
+                "margin_mode": "cross",
+                "margin_account": "USDT"
+            }
+        ],
+        "total_page": 6,
+        "current_page": 1,
+        "total_size": 12
+    },
+    "ts": 1606976252777
+}
+```
+
+###  Returning Parameter
+
+| Parameter Name                   | Mandatory | Type      | Desc     | Data Value                                     |
+| ---------------------- | ---- | ------- | ------ | ---------------------------------------- |
+| status                 | true | string  | Request Processing Result |   |
+| \<data\>| true     |   object      |        |     |
+| \<orders\> |  true    |  object array       |        |     |
+| order_id               | true | long    | order ID   |       |
+| order_id_str   | true | string    | order ID    |      |
+| symbol                 | true | string  | symbol   |   |
+| contract_code          | true | string  | contract code   | "BTC-USDT" ... |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| lever_rate             | true | int     | leverage   |    |
+| direction              | true | string  | direction | "buy"/"sell"  |
+| offset                 | true | string  | "open", "close"   | "open"/"close"  |
+| volume                 | true | decimal | place volume   |   |
+| price                  | true | decimal | place price   |    |
+| create_date            | true | long    | created time   |     |
+| order_source           | true | string  | order source   |    |
+| order_price_type       | true | int  | type of order price | 1：limit，2：market，3：opponent，4：lightning，5：trigger，6：post_only ，7：optimal_5 ，8：optimal_10 ，9：optimal_20，10：FOK ，11：IOC ，12：opponent_ioc，13：lightning_ioc，14：optimal_5_ioc，15：optimal_10_ioc，16：optimal_20_ioc，17：opponent_fok，18：lightning_fok，19：optimal_5_fok，40：optimal_10_fok，41：optimal_20_fok  |
+| margin_asset       | true   | string | margin asset                 |                |
+| margin_frozen          | true | decimal | frozen margin  |   |
+| profit                 | true | decimal | profit     |    |
+| trade_volume           | true | decimal | trade quantity   |     |
+| trade_turnover         | true | decimal | trade amount  |         |
+| fee                    | true | decimal | service fee   |      |
+| trade_avg_price        | true | decimal | trade average price   |    |
+| status                 | true | int     | order status  |     |
+| order_type             | true | int     | order type  | 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order|
+| fee_asset         | true | string  | fee asset       |  （"USDT"...）      |
+| liquidation_type              | true | string     | liquidation type        |  0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated |
+| \</orders\>     |      |         |        |                          |
+| current_page           | true | int     | current page    |      |
+| total_page             | true | int     | total page   |    |
+| total_size             | true | int     | total size    |     |
+| \</data\>            |      |         |        |      |
+| ts                     | true | long    | timestamp    |      |
+
+
 ## Acquire History Match Results
 
-###  Example 
+ - POST `/linear-swap-api/v1/swap_matchresults`
 
-- POST `/linear-swap-api/v1/swap_matchresults`
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 ### Request Parameter
 
@@ -4621,7 +7064,9 @@ Parameter Name |  Mandatory  |  Type  |  Desc                    |  Default  |  
                 "order_source": "api",
                 "order_id_str": "770334322963152896",
                 "id": "131560927-770334322963152896-1",
-                "fee_asset": "USDT"
+                "fee_asset": "USDT",
+                "margin_mode": "isolated",
+                "margin_account": "BTC-USDT"
             }
         ],
         "total_page": 2,
@@ -4656,6 +7101,8 @@ offset_profitloss                 | true     | decimal | profits and losses gene
 trade_fee                    | true     | decimal | fees charged by platform                |              |
 role                        | true          | string |   taker or maker     |                  |
 fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "USDT"... |
+margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
+margin_account    |   true   | string | margin account  | "BTC-USDT"... |
 \</trades\>              |          |         |                    |              |
 total_page             | true     | int     | total pages                |              |
 current_page           | true     | int     | current page                |              |
@@ -4670,9 +7117,103 @@ ts                     | true     | long    | timestamp                |        
 - The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
 
 
+## Get History Match Results（cross margin mode）
+
+ - POST `linear-swap-api/v1/swap_cross_matchresults`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+### Request Parameter
+
+| Parameter Name          | Mandatory  | Type     | Desc   | Data Value                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| contract_code        | true  | string | contract code          | "BTC-USDT"...                           |
+| trade_type    | true  | int    | trade type        | 0:All; 1: Open long; 2: Open short; 3: Close short; 4: Close long; 5: Liquidate long positions; 6: Liquidate short positions |
+| create_date   | true  | int    | date        | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.    |
+| page_index    | false | int    | page index, default 1st page     |                                          |
+| page_size     | false | int    | default 20，no more than 50    |                                          |
+
+> Response
+
+```json
+
+{
+    "status": "ok",
+    "data": {
+        "trades": [
+            {
+                "match_id": 33161,
+                "order_id": 784059498905993216,
+                "symbol": "ETH",
+                "contract_code": "ETH-USDT",
+                "direction": "sell",
+                "offset": "open",
+                "trade_volume": 1,
+                "trade_price": 50,
+                "trade_turnover": 0.5,
+                "trade_fee": -0.0002,
+                "offset_profitloss": 0,
+                "create_date": 1606975951808,
+                "role": "Taker",
+                "order_source": "api",
+                "order_id_str": "784059498905993216",
+                "id": "33161-784059498905993216-1",
+                "fee_asset": "USDT",
+                "margin_mode": "cross",
+                "margin_account": "USDT"
+            }
+        ],
+        "total_page": 6,
+        "current_page": 1,
+        "total_size": 6
+    },
+    "ts": 1606976521624
+}
+```
+
+### Returning Parameter
+
+| Parameter Name                   | Mandatory | Type      | Desc                 | Data Value                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | Request Processing Result             |   |
+| \<data\> | true     |  object       |                    |     |
+| \<trades\>| true     |  object array       |                    |    |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| id               | true | string    | the global unique ID of the trade.      |   |
+| match_id               | true | long    | match_id is the same with trade_id of the websocket subscriptions: orders_cross.$contract_code match_id is the result of sets of order execution and trade confirmation. NOTE: match_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same match_id.   |   |
+| order_id               | true | long    | order ID               |   |
+| order_id_str      | true | string    | order ID   |       |
+| symbol                 | true | string  | symbol               | |
+| order_source           | true | string  | order source   |   |
+| contract_code          | true | string  | contract code               | "BTC-USDT" ...                          |
+| direction              | true | string  | direction | "buy"/"sell" |
+| offset                 | true | string  | offset | "open"/"close" |
+| trade_volume           | true | decimal | trade quantity               |     |
+| trade_price            | true | decimal | trade price               |  |
+| trade_turnover         | true | decimal | trade amount       |       |
+| create_date            | true | long    | trade time               |  |
+| offset_profitloss      | true | decimal | profits and losses generated from closing positions	               |    |
+| trade_fee             | true | decimal | trade fee              |    |
+| role                   | true | string  | taker/maker        |    |
+| fee_asset         | true | string  | fee asset   | （"USDT"...）  |
+| \</trades\>              |      |         |                    |   |
+| current_page           | true | int     | current page                |  |
+| total_page             | true | int     | total page               |    |
+| total_size             | true | int     | total size                |      |
+| \</data\>            |      |         |                    |     |
+| ts                     | true | long    | timestamp                |    |
+
+
 ## Place Trigger Order
 
-- POST `linear-swap-api/v1/swap_trigger_order`
+ - POST `linear-swap-api/v1/swap_trigger_order`
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 > Request:
 
@@ -4756,9 +7297,71 @@ ts                     | true     | long    | timestamp                |        
 }
 ```
 
+
+## Place Trigger Order（cross margin mode）
+
+ - POST `linear-swap-api/v1/swap_cross_trigger_order`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+### Request Parameter
+
+| Parameter Name            | Mandatory  | Type     | Desc                    | Data Value                                     |
+| --------------- | ----- | ------ | --------------------- | ---------------------------------------- |
+| contract_code | true | String | contract code |BTC-USDT |
+| trigger_type | true | String | trigger type | ge: Equal to or Greater than；le: Less than or Equal to |
+| trigger_price | true | decimal | trigger price |  |
+| order_price | false | decimal | order price |  |
+| order_price_type | false | string | order price type | "limit" by default;"optimal_5", "optimal_10"，"optimal_20" |
+| volume | true | decimal | Numbers of orders (volume)|  |
+| direction | true | String | direction | buy/sell |
+| offset | true | String | offset | open/close |
+| lever_rate | false | int | leverage rate | Long leverage shall be equal to short leverage.[Using Leverage greater than 20 times requires prior approval of high-leverage agreement for the first time.] |
+
+> Response
+
+```json
+
+Success：
+{
+    "status": "ok",
+    "data": {
+        "order_id": 1880,
+        "order_id_str": "1880"
+    },
+    "ts": 1606977456766
+}
+
+Error：
+{
+    "status": "error",
+    "err_code": 1085,
+    "err_msg": "Trigger order failed, please modify the price and place the order again or contact the customer service.",
+    "ts": 1606977396756
+}
+```
+
+### Returning Parameter
+
+| Parameter Name            | Mandatory  | Type     | Desc                            | Data Value                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status                     | true         | string   | Request Processing Result               | "ok" , "error" |
+| ts |  true  | long | timestamp | |
+| \<data\> |  true  | object |   | |
+| order_id  |  true  | int | order ID order id may be same among different users  | |
+| order_id_str |  true  | string | order id   | |
+| \</data\> |   | |  | |
+
+
 ## Cancel Trigger Order
 
 - POST `/linear-swap-api/v1/swap_trigger_cancel`
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 ### request params
 
@@ -4804,9 +7407,63 @@ ts                     | true     | long    | timestamp                |        
 | ts                         | true         | long     | response timestamp millseconds |  |
 
 
+## Cancel Trigger Order（cross margin mode）
+
+ - POST `linear-swap-api/v1/swap_cross_trigger_cancel`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+### Request Parameter
+
+| Parameter Name            | Mandatory  | Type     | Desc                    | Data Value                                     |
+| --------------- | ----- | ------ | --------------------- | ---------------------------------------- |
+| contract_code | true | String | contract code | BTC-USDT |
+| order_id | true | String | order id. multiple orderids need to be joined by ",".Max number of order ids is 10 once. |  |
+
+> Response
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "order_id": "1888",
+                "err_code": 1061,
+                "err_msg": "This order doesnt exist."
+            }
+        ],
+        "successes": "1880"
+    },
+    "ts": 1606977508308
+}
+```
+
+### Returning Parameter
+
+| Parameter Name            | Mandatory  | Type     | Desc                            | Data Value                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status                     | true         | string   | Request Processing Result               | "ok" , "error" |
+| \<data\> |  true  | object |   | |
+| \<errors\>|   true          |    object array      |                       |                |
+| order_id                   | false         | string   | order ID                     |                |
+| err_code                   | false         | int      | error code             |                |
+| err_msg                    | false         | string      | error message               |                |
+| \</errors\>                  |              |          |                            |                |
+| successes                  | true        | string   | the list order which's successful，joined by ","                 |                |
+| \</data\> |   | |  | |
+| ts                         | true         | long     | Time of Respond Generation, Unit: Millisecond |  |
+
+
 ## Cancel All Trigger Orders
 
 - POST `/linear-swap-api/v1/swap_trigger_cancelall`
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 ### Params
 
@@ -4857,12 +7514,59 @@ ts                     | true     | long    | timestamp                |        
     "err_msg": "No orders to cancel.",
     "ts": 1603705063592
 }
-
 ```
+
+
+## Cancel All Trigger Orders（cross margin mode）
+
+ - POST ‘linear-swap-api/v1/swap_cross_trigger_cancelall’
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+### Request Parameter
+
+| Parameter Name            | Mandatory  | Type     | Desc                    | Data Value                                     |
+| --------------- | ----- | ------ | --------------------- | ---------------------------------------- |
+| contract_code | true | String | contract code | BTC-USDT |
+
+> Response
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "errors": [],
+        "successes": "1879,1878"
+    },
+    "ts": 1606977712328
+}
+```
+
+### Returning Parameter
+
+| Parameter Name            | Mandatory  | Type     | Desc                            | Data Value                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status                     | true         | string   | Request Processing Result               | "ok" , "error" |
+| \<data\> |  true  | object |  | |
+| \<errors\> |   true          |    object array      |                           |                |
+| order_id                   | false         | string   | order ID                     |                |
+| err_code                   | false         | int      | error code             |                |
+| err_msg                    | false         | string      | error message               |                |
+| \</errors\>                  |              |          |                            |                |
+| successes                  | true        | string   | the list order which's successful，joined by ","                 |                |
+| \</data\> |   | |  | |
+| ts                         | true         | long     | Time of Respond Generation, Unit: Millisecond |  |
+
 
 ## Query Trigger Order Open Orders
 
-- POST `linear-swap-api/v1/swap_trigger_openorders`
+ - POST `linear-swap-api/v1/swap_trigger_openorders`
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 ### Request Parameter
  
@@ -4896,7 +7600,9 @@ ts                     | true     | long    | timestamp                |        
                 "order_price": 13900.000000000000000000,
                 "created_at": 1603705215654,
                 "order_price_type": "limit",
-                "status": 2
+                "status": 2,
+                "margin_mode": "isolated",
+                "margin_account": "BTC-USDT"
             }
         ],
         "total_page": 1,
@@ -4940,12 +7646,103 @@ ts                     | true     | long    | timestamp                |        
 | created_at | long | true | order creation time
 | order_price_type | string | true | order price type "limit": limit order，"optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20
 | status | int | true | order status：1:ready to submit、2:submited、3:order accepted 、8：canceled orders but not found、9：canceling order、10：failed'
+| margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
+| margin_account    |   true   | string | margin account  | "BTC-USDT"... |
 | \</orders\>                  |              |          |                            |                |
+
+
+## Query Trigger Order Open Orders（cross margin mode）
+
+ - POST `linear-swap-api/v1/swap_cross_trigger_openorders`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+### Request Parameter
+
+| Parameter Name            | Mandatory  | Type     | Desc                    | Data Value                                     |
+| --------------- | ----- | ------ | --------------------- | ---------------------------------------- |
+| contract_code | true | String | contract code |BTC-USDT |
+| page_index | false | int | page index, default 1st | |
+| page_size | false | int | page size default 20，no more than 50 | |
+
+> Response
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "symbol": "ETH",
+                "contract_code": "ETH-USDT",
+                "trigger_type": "ge",
+                "volume": 1,
+                "order_type": 1,
+                "direction": "sell",
+                "offset": "open",
+                "lever_rate": 30,
+                "order_id": 1881,
+                "order_id_str": "1881",
+                "order_source": "api",
+                "trigger_price": 90,
+                "order_price": 90,
+                "created_at": 1606978152937,
+                "order_price_type": "limit",
+                "status": 2,
+                "margin_mode": "cross",
+                "margin_account": "USDT"
+            }
+        ],
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 1
+    },
+    "ts": 1606978195074
+}
+```
+
+### Returning Parameter
+
+| Parameter Name            | Mandatory  | Type     | Desc                            | Data Value                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status                     | true         | string   | Request Processing Result               | "ok" , "error" |
+| \<data\> |  true  | object |  | |
+| total_page |true | int | total page | |
+| current_page | true |int | current page | |
+| total_size | true |int | total size | |
+| \<orders\>|   true          |    object array      |                            |                |
+| symbol |true |string | symbol | |
+| contract_code |true | string  | contract code | |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| trigger_type | true |string  | trigger type： gegreat than or equal to；leless than or equal to | |
+| volume | true |decimal  | place volume | |
+| order_type | true |int  | order type 1. Place orders 2. cancel orders | |
+| direction | true |string  | direction [buy/sell] | |
+| offset | true |string  | offset [open/close] | |
+| lever_rate | true |int | leverage  | |
+| order_id | true |long  | order id | |
+| order_id_str | true | string  | order id  | |
+| order_source | true | string | order source | |
+| trigger_price | true | decimal | trigger price | |
+| order_price | true | decimal | order price | |
+| created_at | true | long | created time | |
+| order_price_type | true | string | type of order price  "limit": limit order，"optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20 | |
+| status | true | int | order status：1:ready to submit、2:submited、3:order accepted 、8：canceled orders but not found、9：canceling order、10：failed' | |
+| \</orders\>                  |              |          |                            |                |
+| \</data\> |   | |  | |
+| ts                         | true         | long     | Time of Respond Generation, Unit: Millisecond |  |
 
 
 ## Query Trigger Order History
 
-- POST `/linear-swap-api/v1/swap_trigger_hisorders`
+ - POST `/linear-swap-api/v1/swap_trigger_hisorders`
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 > Request:
 
@@ -5009,7 +7806,9 @@ ts                     | true     | long    | timestamp                |        
                 "order_insert_at": 0,
                 "canceled_at": 1603705159520,
                 "fail_code": null,
-                "fail_reason": null
+                "fail_reason": null,
+                "margin_mode": "isolated",
+                "margin_account": "BTC-USDT"
             }
         ],
         "total_page": 3,
@@ -5037,7 +7836,7 @@ ts                     | true     | long    | timestamp                |        
 | total_page   | int | true | Total page
 | current_page | int | true | Current page
 | total_size   | int | true | Total Size
-| \ <list\>(Attribute Name: orders)|              |          |                            |                |
+| \<orders\> |              |          |                            |                |
 | symbol |string| true | symbol
 | contract_code | string | true | Contract Code
 | trigger_type | string | true | trigger： `ge` Equal to or Greater than；`le` Less than or Equal to
@@ -5061,8 +7860,116 @@ ts                     | true     | long    | timestamp                |        
 | canceled_at | long | true | Order cancelation time
 | fail_code | int | true | the error code when the triggered orders failed to be filled
 | fail_reason | string | true | the error message with failure reason when triggered orders failed to filled.
-| \</list\>                  |              |          |                            |                |
+| margin_mode    |  string    | true | margin mode  | isolated : "isolated" |
+| margin_account    |  string    | true | margin account  | "BTC-USDT"... |
+| \</orders\>                  |              |          |                            |                |
 
+
+## Query Trigger Order History（cross margin mode）
+
+ - POST `linear-swap-api/v1/swap_cross_trigger_hisorders`
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+### Request Parameter
+
+| Parameter Name            | Mandatory  | Type     | Desc                    | Value Range                                     |
+| --------------- | ----- | ------ | --------------------- | ---------------------------------------- |
+| contract_code | true        | string   | contract code |  BTC-USDT|
+| trade_type        | true         | int      | trade type            | 0: All ,1: Open Long,2: Close Short,3: Open Short,4: Close Long；the system will transfer these parameters into offset and direction and query the requested data. Please note that no data can be requested with parameter out of this range. |
+| status        | true         | String      | order status           | data divided with several commas, trigger orders ready to be submitted：0: All (All filled orders),4: Trigger orders successfully submitted,5: Trigger orders failed being submitted, 6: Trigger orders cancelled |
+| create_date   | true         | int      | date           | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.      |
+| page_index    | false        | int      | page index, default 1st page         | page index, default 1st |
+| page_size     | false        | int      | default 20，no more than 50    | default 20，no more than 50 |
+
+#### Notice：
+  - query closed trigger order（status is 4、5、6）；
+
+> Response
+
+```json
+
+{
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "symbol": "ETH",
+                "contract_code": "ETH-USDT",
+                "trigger_type": "ge",
+                "volume": 1,
+                "order_type": 1,
+                "direction": "sell",
+                "offset": "open",
+                "lever_rate": 30,
+                "order_id": 1880,
+                "order_id_str": "1880",
+                "relation_order_id": "-1",
+                "order_price_type": "limit",
+                "status": 6,
+                "order_source": "api",
+                "trigger_price": 90,
+                "triggered_price": null,
+                "order_price": 90,
+                "created_at": 1606977456761,
+                "triggered_at": null,
+                "order_insert_at": 0,
+                "canceled_at": 1606977508571,
+                "fail_code": null,
+                "fail_reason": null,
+                "margin_mode": "cross",
+                "margin_account": "USDT"
+            }
+        ],
+        "total_page": 2,
+        "current_page": 1,
+        "total_size": 2
+    },
+    "ts": 1606978565722
+}
+
+```
+
+### Returning Parameter
+
+| Parameter Name            | Mandatory  | Type     | Desc                            | Data Value                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status                     | true         | string   | Request Processing Result               | "ok" , "error" |
+| \<data\> |  true  | object |  | |
+| total_page |true | int | total page | |
+| current_page | true |int | current page | |
+| total_size | true |int | total size | |
+| \<orders\>|   true          |    object array      |     订单信息                       |                |
+| symbol |true |string | symbol | |
+| contract_code |true | string  | contract code | |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| trigger_type | true |string  | trigger type： ge: Equal to or Greater than；le: Less than or Equal to | |
+| volume | true |decimal  | place volume | |
+| order_type | true |int  | order type：1、Place orders 2、Cancel orders | |
+| direction | true |string  | direction [buy/sell] | |
+| offset | true |string  | offset [open/close] | |
+| lever_rate | true |int | leverage  | |
+| order_id | true |long  | order id | |
+| order_id_str | true |string  | order id  | |
+| **relation_order_id** | true | string  | **relation order ID is the string related to the limit orders The value is -1 before the trigger orders executed**| |
+| order_price_type | true |string | order type "limit": Limit order price，"optimal_5": Optimal 5 price level，"optimal_10":Optimal 10 price level，"optimal_20": the Optimal 20 price level | |
+| status | true |int  | status (4:Orders accepted、5: Orders failing being placed、6: Orders canceled ) | |
+| order_source | true |string | order source | |
+| trigger_price | true |decimal | trigger price | |
+| triggered_price | true |decimal  | triggered price | |
+| order_price | true |decimal  | order price | |
+| created_at | true | long  | created time | |
+| triggered_at | true |long  | trigger time | |
+| order_insert_at | true |long  | insert time | |
+| canceled_at | true |long | canceled time| |
+| fail_code | true |int | fail code | |
+| fail_reason | true |string | fail reason | |
+| \</orders\>                  |              |          |                            |                |
+| \</data\> |   | |  | |
+| ts                         | true         | long     | Time of Respond Generation, Unit: Millisecond |  |
 
 
 # Swap Transferring Interface
@@ -5074,6 +7981,8 @@ ts                     | true     | long    | timestamp                |        
 - POST `https://api.huobi.pro/v2/account/transfer`
 
 ### Notice
+
+The interface supports cross margin mode and isolated margin mode.
 
 This interface is used to transfer assets between Spot account and USDT Margined Swap account.
 
@@ -5191,10 +8100,6 @@ Response Code | Desc in Chinese |  Desc in English  |
 
 
 
-
-
-
-
 # Swap WebSocket Reference 
 
 ## API List
@@ -5209,6 +8114,8 @@ Response Code | Desc in Chinese |  Desc in English  |
 | Read    |  Market Data Interface | market.$contract_code.detail                           | sub  | Subscribe Market Detail Data     |       No      |
 | Read    |  Market Data Interface | market.$contract_code.trade.detail                     | req  | Request Trade Detail Data        |       No      |
 | Read    |  Market Data Interface | market.$contract_code.trade.detail                     | sub  | Subscribe Trade Detail Data       |       No      |
+| Read    |  Index and Basis Interface | market.$contract_code.index.$period  | sub  | Subscribe Index Kline Data                  |       No      |
+| Read    |  Index and Basis Interface | market.$contract_code.index.$period  | sub  | Request Index Kline Data                  |       No      |
 | Read    |  Index and Basis Interface | market.$contract_code.basis.$period.$basis_price_type  | sub  | Subscribe Basis Data                  |       No      |
 | Read    |  Index and Basis Interface | market.$contract_code.basis.$period.$basis_price_type  | req  | Request Basis Data                  |       No      |
 | Read    |  Index and Basis Interface | market.$contract_code.premium_index.$period            | sub  | Subcribe Premium Index Kline Data          |       No      |
@@ -5222,7 +8129,12 @@ Response Code | Desc in Chinese |  Desc in English  |
 | Read    |  Account Interface	 | accounts.$contract_code                                | sub  | Subscribe Account Equity Updates Data(sub)             |    Yes      |
 | Read    |  Account Interface	 | positions.$contract_code                               | sub  | Subscribe Position Updates(sub)      |    Yes      |
 | Read    |  Trade Interface	 | matchOrders.$contract_code                             | sub  | Subscribe Match Order Data（sub)    |    Yes      |
-| Read    |  Trade Interface	 | trigger_order.$contract_code                             | sub  | Subscribe trigger orders updates(sub)    |    Yes      |                                                                                                                                      
+| Read    |  Trade Interface	 | trigger_order.$contract_code                             | sub  | Subscribe trigger orders updates(sub)    |    Yes      |  
+| Read  | Account Interface | orders_cross.$contract_code                               | sub    |   Subscribe Order Data（cross margin mode）         |       Yes          |
+| Read  | Account Interface | accounts_cross.$margin_account                            | sub    |   Subscribe Account Equity Updates Data（cross margin mode）         |       Yes          |
+| Read  | Trade Interface | positions_cross.$contract_code                            | sub    |   Subscribe Position Updates（cross margin mode）     |       Yes          |
+| Read  | Trade Interface | matchOrders_cross.$contract_code                          | sub    |   Subscribe Match Order Data（cross margin mode）     |       Yes          |
+| Read  | Trade Interface | trigger_order_cross.$contract_code                        | sub    |   Subscribe trigger orders updates(sub)（cross margin mode）     |       Yes          |                                                                                                                                    
 
 ## WebSocket Subscription Address
 
@@ -5256,9 +8168,9 @@ There is rate limit for both public and private interfaces. More details are lai
 
 - For public interface to get market data such as  Get Kline data, Get Market Data Overview, Get Contract Information,Get market in-depth data, Get premium index Kline, Get real-time forecast capital rate kline, Get basis data, Get the last Trade of a Contract and so on：
 
-   (1) For restful interfaces：all products(futures, coin margined swap, usdt margined swap and option) 800 times/second for one IP at most.
+   (1) For restful interfaces, products,  (future, coin margined swap, usdt margined swap and option)800 times/second for one IP at most
 　　
-   (2)  The rate limit for “req” request is 50 times/s at most. No limit for “sub” request as the data will be pushed by server voluntarily. 
+   (2) The rate limit for “req” request is 50 times/s at most. No limit for “sub” request as the data will be pushed by server voluntarily. 
 
 - The order push private WebSocket interface requires API Key for authentication.
 
@@ -5575,6 +8487,10 @@ Add computed value into the Signature parameter in API request. Please note  the
 
 ## Subscribe Kline data
 
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
+
 ### To subscribe Kline data, clients have to connect WebSocket API server and send subscribe request with the format below：
 
 `{`
@@ -5655,6 +8571,10 @@ Add computed value into the Signature parameter in API request. Please note  the
 
 
 ## Request Kline data
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ### To request Kline data, clients have to make connection to WebSocket API Server and send subscribe request in the format below：
 
@@ -5783,6 +8703,10 @@ Clients can request 2000 Klines at most in one request
 
 ## Subscribe Market Depth Data
 
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
+
 ### To subscribe market depth data, clients have to make connection to WebSokcet API Server and send subscribe request in the format below：
 
 `{`
@@ -5894,6 +8818,10 @@ ch | true |  string | Data channel, Format： market.period | |
 
 ## Subscribe Incremental Market Depth Data
 
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
+
 ### To subscribe incremental market depth data, clients have to make connection to WebSokcet API Server and send subscribe request in the format below：
 
 `{`
@@ -5999,6 +8927,10 @@ ch | true |  string | Data channel, Format： `market.$contract_code.depth.size_
 
 ## Subscribe Market Detail Data
 
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
+
 ### To subscribe market details, the clients have to make connection to WebSocket Server and send subscribe request in the format below:
 
 `{`
@@ -6078,13 +9010,17 @@ trade_turnover  |  true  |  decimal  |  Transaction amount, that is, sum (transa
 
 ## Subscribe market BBO data push
 
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
+
 ### clients have to make connection to WebSocket API Server and send subscribe request in the format below：
 
   `{`
   
   `"req": "market.$contract_code.bbo", `
   
-  `"id": "id generated by client" `
+  `"id": "id generated by client"`
   
   `}`
 
@@ -6163,6 +9099,10 @@ trade_turnover  |  true  |  decimal  |  Transaction amount, that is, sum (transa
 
 
 ## Request Trade Detail Data
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ### To request Trade detail data, Clients have to make connection to the WebSocket Server and send request data in the format below：
 
@@ -6251,6 +9191,10 @@ ts  |  true  |  long  |  server response time |   |
 
 
 ## Subscribe Trade Detail Data 
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ### To subscribe trade detail data, the Client has to make connection to the Server and send subscribe request in the format below：
 
@@ -6342,6 +9286,10 @@ direction  |  true  |  string  |  Order direction  |   |
 
 ## Subcribe Index Kline Data
 
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
+
 ### To subscribe index kline data, the Client has to make connection to the Server and send subscribe request in the format below:
 
 `{`
@@ -6421,6 +9369,10 @@ direction  |  true  |  string  |  Order direction  |   |
 
 
 ## Request Index Kline Data
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ### To subscribe index kline data, the Client has to make connection to the Server and send subscribe request in the format below:
 
@@ -6527,6 +9479,10 @@ direction  |  true  |  string  |  Order direction  |   |
 
 ## Subcribe Premium Index Kline Data
 
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
+
 ### To subscribe Premium index kline data, the Client has to make connection to the Server and send subscribe request in the format below:
 
 `{`
@@ -6606,6 +9562,10 @@ direction  |  true  |  string  |  Order direction  |   |
 
 
 ## Request Premium Index Kline Data
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ### To subscribe premium index kline data, the Client has to make connection to the Server and send subscribe request in the format below:
 
@@ -6698,7 +9658,12 @@ direction  |  true  |  string  |  Order direction  |   |
 | trade_turnover     | true | string | Transaction amount, the value is 0.       |                | |
 | \</data\>            |      |        |               |                | |
 
+
 ## Subcribe Estimated Funding Rate Kline Data
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ### To subscribe Estimated Funding Rate kline data, the Client has to make connection to the Server and send subscribe request in the format below:
 
@@ -6777,7 +9742,12 @@ direction  |  true  |  string  |  Order direction  |   |
 | \</tick\>            |      |        |               |                | |
 | ts     | true | long |  Time of Respond Generation, Unit: Millisecond                   |                | |
 
+
 ## Request Estimated Funding Rate Kline Data
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ### To subscribe Estimated Funding Rate kline data, the Client has to make connection to the Server and send subscribe request in the format below:
 
@@ -6867,7 +9837,12 @@ direction  |  true  |  string  |  Order direction  |   |
 | trade_turnover     | true | string | Transaction amount, the value is 0.       |                | |
 | \</data\>            |      |        |               |                | |
 
+
 ## Subscribe Basis Data
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ### To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:
 
@@ -6936,6 +9911,10 @@ direction  |  true  |  string  |  Order direction  |   |
 | ts      | long | Time of Respond Generation, unit: millisecond        |                | |
 
 ## Request Basis Data
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 ### To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:
 
@@ -7028,6 +10007,10 @@ direction  |  true  |  string  |  Order direction  |   |
 
 ## Subscribe Order Data(sub)
 
+#### Remarks
+
+ - This interface only supports isolated margin mode.
+
 To subscribe order data, Clients have to make connection to the Server and send subscribe request in the format below:
 
 ### Subscribe Request Format
@@ -7097,6 +10080,8 @@ To subscribe order data, Clients have to make connection to the Server and send 
     "profit": 2,
     "canceled_at": 1408076414000, 
     "fee_asset": "USDT",
+    "margin_mode": "isolated",
+    "margin_account": "BTC-USDT",
     "trade": [{
         "trade_id":14469,
         "id":"14469-758684042347171840-1",
@@ -7144,6 +10129,8 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | liquidation_type  | string | Liquidation type, 0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated |
 | canceled_at  | long   |  Canceled time  |
 | fee_asset  | string   |  the corresponding cryptocurrency to the given fee  |
+| margin_mode     | string | margin mode   isolated : "isolated" |
+| margin_account    | string | margin account  "BTC-USDT"... |
 | \<list\>( Attribute Name: trade) |         |                                                              |
 | id            | string| 	the global unique ID of the trade.                                                       |
 | trade_id                | long    | In this interface, trade_id is the same with match_id of linear-swap-api/v1/swap_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.                                                  |
@@ -7158,6 +10145,10 @@ To subscribe order data, Clients have to make connection to the Server and send 
 
 
 ## Unsubscribe Order Data（unsub）
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 To unsubscribe order data, the clients have to make connection to the server and send unsubscribe request in the format below: 
 
@@ -7205,10 +10196,201 @@ To unsubscribe order data, the clients have to make connection to the server and
 | orders.*       | orders.contract_code1  | Not Allowed |
 
 
+## Subscribe Order Data（cross margin mode）（sub）
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+To subscribe order data, Clients have to make connection to the Server and send subscribe request in the format below:
+
+### Subscribe Request Format
+
+  `{ `
+  
+  `"op": "sub",`
+  
+  `"cid": "cid",`
+  
+  `"topic": "orders_cross.$contract_code"`
+  
+  `} `
+
+> Example of a successful subscribe request:
+
+```json
+
+{
+  "op": "sub",
+  "cid": "40sG903yz80oDFWr",
+  "topic": "orders_cross.btc-usdt"
+}
+```
+
+### Data format illustration of orders subscription
+
+|Field Name | Type  |Description                                       |
+| ------- | ----- | ------------------------------------------ |
+| op       | string | Required； Operator Name，required subscribe value is  sub             |
+| cid      | string | Optional; ID Client requests unique ID                    |
+| topic    | string | Required；format: orders_cross.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT"  |
+
+> Illustration on detailed data format of orders Notification
+
+```json
+
+{
+    "op":"notify",
+    "topic":"orders_cross.btc-usdt",
+    "ts":1606878438414,
+    "symbol":"BTC",
+    "contract_code":"BTC-USDT",
+    "volume":8,
+    "price":50000,
+    "order_price_type":"limit",
+    "direction":"buy",
+    "offset":"close",
+    "status":6,
+    "lever_rate":100,
+    "order_id":783650498317316098,
+    "order_id_str":"783650498317316098",
+    "client_order_id":null,
+    "order_source":"risk",
+    "order_type":3,
+    "created_at":1606878438320,
+    "trade_volume":8,
+    "trade_turnover":4000,
+    "fee":0,
+    "trade_avg_price":50000,
+    "margin_frozen":0,
+    "profit":-1866.704,
+    "trade":[
+        {
+            "trade_fee":0,
+            "fee_asset":"USDT",
+            "trade_id":783650498317316098,
+            "id":"783650498317316098-783650498317316098-1",
+            "trade_volume":8,
+            "trade_price":50000,
+            "trade_turnover":4000,
+            "created_at":1606878438320,
+            "role":"taker"
+        }
+    ],
+    "canceled_at":0,
+    "fee_asset":"USDT",
+    "margin_asset":"USDT",
+    "uid":"123456789",
+    "liquidation_type":"1",
+    "margin_mode":"cross",
+    "margin_account":"USDT"
+}
+```
+
+###  Pushed Data Parameter
+
+| Parameter Name   | Mandatory | Type  | Desc   |取值范围           |
+| -------------- | ---- | ------- | -------------------------- | ----- |
+| op   | true | string  | operation name, fixed as notify   |    |
+| topic   | true | string  | topic   |    |
+| ts   | true | long  | server response timestamp   |    |
+| uid   | true | string  | uid  |    |
+| symbol   | true | string  | symbol   |  "BTC","ETH"...  |
+| contract_code   | true | string  | contract code   |    |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| volume   | true | decimal  | place volume   |    |
+| price   | true | decimal  | place price   |    |
+| order_price_type   | true | string  | type of order price    | "limit":Limit,"opponent":opponent,"post_only":Post-Only Order, No order limit but position limit for post-only orders.，"lightning":lightning, "optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20，"fok":FOK Order，"ioc":IOC Order, "opponent_ioc": opponent ioc，"lightning_ioc": lightning ioc，"optimal_5_ioc": optimal_5 ioc，"optimal_10_ioc": optimal_10 ioc，"optimal_20_ioc"：optimal_20 ioc，"opponent_fok"： opponent fok，"lightning_fok"：lightning fok，"optimal_5_fok"：optimal_5 fok，"optimal_10_fok"：optimal_10 fok，"optimal_20_fok"：optimal_20 fok  |
+| direction   | true | string  | direction  | "buy"/"sell"  |
+| offset   | true | string  | offset  | "open"/"close" |
+| status   | true | int  | order status  | 1. Placing orders to order book; 2 Placing orders to order book; 3. Placed to order book 4. Partially fulfilled; 5 partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled; 11Cancelling |
+| lever_rate   | true | int  | leverage   |     |
+| order_id   | true | bingint  | order ID   |    |
+| order_id_str   | true | string  | order ID   |    |
+| client_order_id   | true | long  | client order ID   |    |
+| order_source   | true | string  | order source   | system、web、api、m、risk、settlement、ios、android、windows、mac、trigger |
+| order_type   | true | int  | order type   | 1. Requested orders; 2. Cancelled orders; 3. Liquidated orders; 4. Delivered orders |
+| created_at   | true | long  | created time   |    |
+| trade_volume   | true | decimal  | trade total amount   |    |
+| trade_turnover   | true | decimal  | trade amount   |    |
+| fee   | true | decimal  | service fee  |    |
+| trade_avg_price   | true | decimal  | trade average price   |    |
+| margin_asset       | true   | string | margin asset                 |                |
+| margin_frozen   | true | decimal  | frozen margin   |    |
+| profit   | true | decimal  | profit   |    |
+| liquidation_type   | true | decimal  | liquidation type 0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated   |    |
+| canceled_at               | true     | long    | canceled time   |  |
+| fee_asset               | true     | string    | fee asset          | “USDT” |
+| \<trade\>   | true | object array |     |    |
+| id   | true | string  | the global unique ID of the trade.    |    |
+| trade_id | true | long  | In this interface, trade_id is the same with match_id of linear-swap-api/v1/swap_cross_matchresults. trade_id is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.    |    |
+| trade_volume   | true | decimal  | trade quantity    |    |
+| trade_price   | true | decimal  | trade price    |    |
+| trade_fee   | true | decimal  | trade fee    |    |
+| trade_turnover   | true | decimal  | trade amount    |    |
+| created_at   | true | long  | trade time   |    |
+| role   | true | string  | taker/maker    |    |
+| fee_asset   | true | string  | fee asset   |  “USDT”  |
+| \</trade\>   |  |   |     |
+
+
+## Unsubscribe Order Data（cross margin mode）（unsub）
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+To unsubscribe order data, the clients have to make connection to the server and send unsubscribe request in the format below: 
+
+### Format of Unsubscribe order data
+
+  `{`
+
+  `"op": "unsub",`
+  
+  `"topic": "orders_cross.$contract_code", `
+  
+  `"cid": "id generated by client",`
+  
+  `}`
+
+> Example of a successful unsubscribe request：
+
+```json
+
+{                                
+  "op": "unsub",                   
+  "topic": "orders_cross.BTC-USDT",       
+  "cid": "40sG903yz80oDFWr"        
+}                                  
+```                                
+
+
+### Format illustration of unsubscribe order data
+
+| Filed  | Type   | Description                                              |
+| ------- | ----- | ------------------------------------------------- |
+| op       | string | Required;Operator Name，value for unsubscribe is unsub;                 |
+| cid      | string | Optional;  Client requests unique ID                        |
+| topic    | string | Optional; Unsubscribe Topic Name，format: orders_cross.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT"  |
+
+### Rules on Subscribe and Unsubscribe
+
+| Subscribe(sub)   | Unsubscribe( unsub ) | Rule   |
+| -------------- | --------------- | ------ |
+| orders_cross.*       | orders_cross.*        | Allowed  |
+| orders_cross.contract_code1| orders_cross.*        | Allowed|
+| orders_cross.contract_code1 | orders_cross.contract_code2  | Allowed |
+| orders_cross.contract_code1 | orders_cross.contract_code2  | Not Allowed |
+| orders_cross.*       | orders_cross.contract_code1  | Not Allowed |
 
 
 ## Subscribe Match Order Data（sub)
 
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 To subscribe order data, Clients have to make connection to the Server and send subscribe request in the format below:
 
@@ -7290,7 +10472,9 @@ To subscribe order data, Clients have to make connection to the Server and send 
     "lever_rate":5,
     "price":10329.11,
     "order_source":"web",
-    "order_price_type":"opponent"
+    "order_price_type":"opponent",
+    "margin_mode": "isolated",
+    "margin_account": "BTC-USDT"
 }
 
 ```
@@ -7319,6 +10503,8 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | created_at       | true     | long         | created time                                                     |                                                              |
 | order_source     | true     | string       | order source                                                     |                                                              |
 | order_price_type | true     | string       | order price type     | "limit":Limit,"opponent":opponent,"post_only":Post-Only Order, No order limit but position limit for post-only orders.，"lightning":lightning, "optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20，"fok":FOK Order，"ioc":IOC Order, "opponent_ioc": opponent ioc，"lightning_ioc": lightning ioc，"optimal_5_ioc": optimal_5 ioc，"optimal_10_ioc": optimal_10 ioc，"optimal_20_ioc"：optimal_20 ioc，"opponent_fok"： opponent fok，"lightning_fok"：lightning fok，"optimal_5_fok"：optimal_5 fok，"optimal_10_fok"：optimal_10 fok，"optimal_20_fok"：optimal_20 fok  |
+| margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
+| margin_account    |   true   | string | margin account  | "BTC-USDT"... |
 | \<trade\>   | true | object array |     |    |
 | id   | true | string  | the global unique id of the trade. |   |
 | trade_id   | true | long  | In this interface, trade_id is the same with match_id of linear-swap-api/v1/swap_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.  |   |
@@ -7330,6 +10516,10 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | \</trade\>   |  |  |     |    |
 
 ## Unsubscribe Match Order Data（unsub）
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 To unsubscribe order data, the clients have to make connection to the server and send unsubscribe request in the format below: 
 
@@ -7377,9 +10567,188 @@ To unsubscribe order data, the clients have to make connection to the server and
 | matchOrders.*       | matchOrders.contract_code1  | Not Allowed |
 
 
+## Subscribe Match Order Data（cross margin mode）（sub）
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+To subscribe order data, Clients have to make connection to the Server and send subscribe request in the format below:
+
+### Subscribe Request Format
+
+  `{`
+  
+  `"op": "sub",`
+  
+  `"cid": "40sG903yz80oDFWr",`
+  
+  `"topic": "matchOrders_cross.$contract_code"`
+  
+  `}`
+  
+> Example of a successful ubscribe request：
+
+```json
+
+{                                    
+  "op": "sub",                     
+  "topic": "matchOrders_cross.BTC-USDT",      
+  "cid": "40sG903yz80oDFWr"          
+}                                    
+``` 
+
+### Format of subscribe match order data
+
+| attr | type   | desc                                        |
+| ------- | ----- | ------------------------------------------ |
+| op       | string | Required； Operator Name，required subscribe value is  sub             |
+| cid      | string | Optional; ID Client requests unique ID                    |
+| topic    | string | Required；format: matchOrders_cross.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT" |
+
+#### Note: 
+ - The order status of 'post_only' type pushed by ws is ethier '7:canceled' or '3:submitted'.
+ - The orders will be pushed when matched by matching engine.
+ - The delivery orders will not be pushed.
+ - The orders transfered from future or to future will not be pushed.
+ - The netting and forced liquidation orders will not be pushed.
+ - The orders will generally be pushed faster than the normal orders subscription.But It's not guranted.
+ - If there is an order with N trades,including 1 taker and N maker,it will push N+1 trades at most.
+
+> response
+
+```json
+
+{
+    "op":"notify",
+    "topic":"matchOrders_cross.btc-usdt",
+    "ts":1606981093177,
+    "uid":"123456789",
+    "symbol":"BTC",
+    "contract_code":"BTC-USDT",
+    "status":6,
+    "order_id":784081061787873280,
+    "order_id_str":"784081061787873280",
+    "client_order_id":null,
+    "order_type":1,
+    "volume":1,
+    "trade_volume":1,
+    "created_at":1606981092647,
+    "direction":"sell",
+    "offset":"open",
+    "lever_rate":100,
+    "price":51179.1,
+    "order_source":"web",
+    "order_price_type":"opponent",
+    "trade":[
+        {
+            "trade_id":33380,
+            "id":"33380-784081061787873280-1",
+            "trade_volume":1,
+            "trade_price":51179.1,
+            "trade_turnover":511.791,
+            "created_at":1606981093104,
+            "role":"taker"
+        }
+    ],
+    "margin_mode":"cross",
+    "margin_account":"USDT"
+}
+
+```
+
+###  Pushed Data Parameter
+
+| Parameter Name   | Mandatory | Type  | Desc   |  取值范围   |
+| -------------- | ---- | ------- | -------------------------- |  ---- |
+| op   | true | string  | operaton name, fixed as  notify;    |   |
+| topic   | true | string  | topic   |   |
+| ts   | true | long  | server response timestamp   |   |
+| uid   | true | string  | uid  |    |
+| symbol   | true | string  | symbol  |  "BTC","ETH"...  |
+| contract_code   | true | string  | contract code  |   |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| status   | true | int  | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled; |    |
+| order_id   | true | long  | order ID |    |
+| order_id_str   | true | string  | order ID  |   |
+| client_order_id               | true     | long    | client order ID             |  |
+| order_type   | true | int  | order type | 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
+| trade_volume    | true     | decimal  |   trade volume    |                |
+| volume                  | true     | decimal  |      order volume        |                |
+| direction   | true | string  | direction  | "buy"/"sell"  |
+| offset   | true | string  | offset  |    "open"/"close" |
+| lever_rate              | true | int     | leverage        |                  |
+| price            | true     | decimal      | place price                                                     |                                                              |
+| created_at       | true     | long         | created time                                                     |                                                              |
+| order_source     | true     | string       | order source                                                     |                                                              |
+| order_price_type | true     | string       | type of order price                                                 |  "limit":Limit,"opponent":opponent,"post_only":Post-Only Order, No order limit but position limit for post-only orders.，"lightning":lightning, "optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20，"fok":FOK Order，"ioc":IOC Order, "opponent_ioc": opponent ioc，"lightning_ioc": lightning ioc，"optimal_5_ioc": optimal_5 ioc，"optimal_10_ioc": optimal_10 ioc，"optimal_20_ioc"：optimal_20 ioc，"opponent_fok"： opponent fok，"lightning_fok"：lightning fok，"optimal_5_fok"：optimal_5 fok，"optimal_10_fok"：optimal_10 fok，"optimal_20_fok"：optimal_20 fok |
+| \<trade\>   | true | object array |     |    |
+| id   | true | string  | the global unique id of the trade  |   |
+| trade_id   | true | long  | In this interface, trade_id is the same with match_id of linear-swap-api/v1/swap_cross_matchresults. trade_id is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.  |   |
+| trade_price   | true | decimal  | trade price  |   |
+| trade_volume   | true | decimal  | trade volume  |   |
+| trade_turnover   | true | decimal  | trade amount  |   |
+| created_at   | true | long  | created time  |   |
+| role   | true | string  | taker/maker  |   |
+| \</trade\>   |  |  |     |    |
+
+
+## Unsubscribe Match Order Data（cross margin mode）（unsub）
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+To unsubscribe order data, the clients have to make connection to the server and send unsubscribe request in the format below: 
+
+### Format of Unsubscribe order data
+
+  `{`
+  
+  `"op": "unsub",`
+  
+  `"topic": "matchOrders_cross.$contract_code",`
+  
+  `"cid": "id generated by client",`
+  
+  `}`
+ 
+> Example of a successful unsubscribe request：
+
+```json
+                                  
+{                                    
+  "op": "unsub",                     
+  "topic": "matchOrders_cross.BTC-USDT",   
+  "cid": "40sG903yz80oDFWr"          
+}                                    
+```                                  
+ 
+### Format illustration of unsubscribe order data
+
+| Filed  | Type   | Description                                              |
+| ------- | ----- | ------------------------------------------------- |
+| op       | string | Required;Operator Name，value for unsubscribe is unsub;                 |
+| cid      | string | Optional;  Client requests unique ID                        |
+| topic    | string | Optional; format: matchOrders_cross.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT" |
+
+### Rules on Subscribe and Unsubscribe
+
+| Subscribe(sub)   | Unsubscribe( unsub) ) | Rule   |
+| -------------- | --------------- | ------ |
+| matchOrders_cross.*       | matchOrders_cross.*       | allowed   |
+| matchOrders_cross.contract_code1 | matchOrders_cross.*        | allowed   |
+| matchOrders_cross.contract_code1 | matchOrders_cross.contract_code1 | allowed   |
+| matchOrders_cross.contract_code1 | matchOrders_cross.contract_code2  | Not Allowed |
+| matchOrders_cross.*       | matchOrders_cross.contract_code1  | Not Allowed |
 
 
 ## Subscribe Account Equity Updates Data(sub)
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 To subscribe accounts equity data updates, the client has to make connection to the server and send subscribe request in the format below:
 
@@ -7443,7 +10812,9 @@ To subscribe accounts equity data updates, the client has to make connection to 
             "liquidation_price":92163.420962779156327543,
             "lever_rate":10,
             "adjust_factor":0.075,
-            "margin_asset":"USDT"
+            "margin_asset":"USDT",
+            "margin_mode": "isolated",
+            "margin_account": "BTC-USDT"
         }
     ],
     "uid":"123456789"
@@ -7476,10 +10847,16 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | withdraw_available        | decimal     | Assets available to withdraw                                                     |
 | lever_rate                | int   | Leverage                                                      |
 | adjust_factor                | decimal    | Adjustment Factor                                                      |
+| margin_mode              | string | margin mode   isolated : "isolated" |
+| margin_account           | string | margin account   "BTC-USDT"... |
 | \</data\>            |   |                                                        |
 
 
 ## Unsubscribe Account Equity Updates Data (ubsub)
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 To unsubscribe account equity updates data, the client has to make connection to the server and send unsubscribe request in the format below:
 
@@ -7527,7 +10904,184 @@ To unsubscribe account equity updates data, the client has to make connection to
 | accounts.*       | accounts.contract_code1  | Not Allowed |
 
 
+## Subscribe Account Equity Updates Data（cross margin mode）（sub）
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+To subscribe accounts equity data updates, the client has to make connection to the server and send subscribe request in the format below:
+
+### Request Format for Subscribe Account Equity Updates Data
+
+  `{`
+  
+  `"op": "sub",`
+  
+  `"topic": "accounts_cross.$margin_account",`
+  
+  `"cid": "id generated by client",`
+  
+  `}`
+
+
+> Example of a successful subscribe request:                        
+                                    
+```json                             
+                                    
+{                                   
+  "op": "sub",                      
+  "cid": "40sG903yz80oDFWr",        
+  "topic": "accounts_cross.USDT"       
+}                                   
+                                    
+```                                 
+
+#### Subscribe Request Parameter
+
+| Field Name| Type   | Description                                        |
+| ------- | ----- | ------------------------------------------ |
+| op       | string | Mandatory；Operator Name，required subscribe value is sub             |
+| cid      | string | Optional; Client requests unique ID                     |
+| topic    | string | Mandatory；topic name: accounts_cross.$margin_account，$margin_account now only（USDT） |
+
+### Note:
+
+ - A regular push of account is performed every 5 sedconds.The event field of the reponse is "snapshot".If there is a push in 5 seconds, snapshot push will be skipped.
+
+> When there is any balance change, the Server will send a notification with the return parameter. For example:
+
+```json
+
+{
+    "op":"notify",
+    "topic":"accounts_cross.usdt",
+    "ts":1606878438415,
+    "event":"order.liquidation",
+    "data":[
+        {
+            "margin_mode":"cross",
+            "margin_account":"USDT",
+            "margin_asset":"USDT",
+            "margin_balance":1591.122082549410817836,
+            "margin_static":1591.122082549410817836,
+            "margin_position":47.99916,
+            "margin_frozen":0,
+            "profit_real":-1866.704,
+            "profit_unreal":0,
+            "withdraw_available":1543.122922549410817836,
+            "risk_rate":59.270830593679738555,
+            "contact_detail":[
+                {
+                    "symbol":"BTC",
+                    "contract_code":"BTC-USDT",
+                    "margin_position":47.99916,
+                    "margin_frozen":0,
+                    "margin_available":1497.561881274705408918,
+                    "profit_unreal":0,
+                    "liquidation_price":42160.036464495601721318,
+                    "lever_rate":100,
+                    "adjust_factor":0.55
+                }
+            ]
+        }
+    ],
+    "uid":"123456789"
+}
+
+```
+
+#### Pushed Data Parameter
+
+| Parameter Name   | Mandatory | Type  | Desc   | Data Value   |
+| -------------- | ---- | ------- | -------------------------- |---- |
+| op   | true | string  | operaton name, fixed as  notify;    |   |
+| topic   | true | string  | topic   |   |
+| ts   | true | long  | server response timestamp   |   |
+| uid   | true | string  | uid  |    |
+| event   | true | string  | event of margin account update |  order.open 、order.match)、settlement、order.liquidation、order.cancel)、contract.transfer、ontract.system、other)、init、napshot |
+| \<data\>   | true | object array |     |   |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| margin_asset       | true   | string | margin asset                 |                |
+| margin_balance       | true   | decimal | account equity                 |                |
+| margin_static        | true   | decimal | static margin                 |                |
+| margin_position      | true   | decimal | position margin (the margin used by current positions)	 |                |
+| margin_frozen        | true   | decimal | frozen margin                |                |
+| profit_real          | true   | decimal | realized profits and losses                |                |
+| profit_unreal        | true   | decimal | unrealized profits and losses                |                |
+| withdraw_available   | true   | decimal | available transfer amount               |                |
+| risk_rate            | true   | decimal | margin rate                 |                |
+| \<contract_detail\> |    true    |  object array       |                      |                |
+| symbol     | true   | string  | symbol                 | "BTC","ETH"... |
+| contract_code     | true   | string  | contract code                 |  "BTC-USDT" ... |
+| margin_position      | true   | decimal | position margin (the margin used by current positions)	 |                |
+| margin_frozen        | true   | decimal | frozen margin                |                |
+| margin_available     | true   | decimal | available margin                |                |
+| profit_unreal        | true   | decimal | unrealized profits and losses                |                |
+| liquidation_price | true | decimal | estimated liquidation price         |                |
+| lever_rate           | true   | decimal | leverage Rate                 |                |
+| adjust_factor        | true   | decimal | adjustment factor                 |                |
+| \</contract_detail\>            |        |         |                      |                |
+| \</data\>   |  |   |     |   |
+
+
+## Unsubscribe Account Equity Updates Data（cross margin mode）（unsub）
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+To unsubscribe account equity updates data, the client has to make connection to the server and send unsubscribe request in the format below:
+
+### Request Format of Unsubscribe Account Equity Updates Data
+
+  `{`
+  
+  `"op": "unsub",`
+  
+  `"topic": "accounts_cross.$margin_account",`
+  
+  `"cid": "id generated by client",`
+  
+  `}`
+
+> Example of a successful subscription request
+
+```json
+                               
+{                                 
+  "op": "unsub",                  
+  "topic": "accounts_cross.USDT",    
+  "cid": "40sG903yz80oDFWr"       
+}   
+                                 
+```  
+                             
+#### Unsubscribe Request Parameter
+
+| Field Name| Type   | Description                                               |
+| ------- | ----- | ------------------------------------------------- |
+| op       | string | Mandatory;Operator Name，required subscribe value is unsub                 |
+| cid      | string | Optional; Client requests unique ID                            |
+| topic    | string | Mandatory;topic name: accounts_cross.$margin_account，$margin_account now only（USDT） |
+
+### Rules on Subscribe and Unsubscribe
+
+| Subscribe(sub)    | Unsubscribe(unsub) | Rule |
+| -------------- | --------------- | ------ |
+| accounts_cross.*       | accounts_cross.*        | Allowed   |
+| accounts_cross.margin_account1 | accounts_cross.*        | Allowed   |
+| accounts_cross.margin_account1 | accounts_cross.margin_account1  | Allowed   |
+| accounts_cross.margin_account1 | accounts_cross.margin_account2  | Not Allowed |
+| accounts_cross.*       | accounts_cross.margin_account1  | Not Allowed |
+
+
 ## Subscribe Position Updates(sub)
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 To subscribe position updates data, the client has to make connection to the server and send subscribe request in the format below:
 
@@ -7590,7 +11144,9 @@ To subscribe position updates data, the client has to make connection to the ser
             "lever_rate":10,
             "direction":"sell",
             "last_price":13130.3,
-            "margin_asset":"USDT"
+            "margin_asset":"USDT",
+            "margin_mode": "isolated",
+            "margin_account": "BTC-USDT"
         }
     ],
     "uid":"123456789"
@@ -7599,7 +11155,6 @@ To subscribe position updates data, the client has to make connection to the ser
 ```
 
 ### Return Parameter Illustration
-
 
 |   Filed Name           | Type    | Description                                                        |
 | ----------------------- | ------- | ------------------------------------------------------- |
@@ -7624,6 +11179,8 @@ To subscribe position updates data, the client has to make connection to the ser
 | direction              | string    | Position direction   "buy":Long "sell":Short                                                     |
 | last_price              | decimal    | Last Price                                                     |
 | margin_asset              | string    | Margin Asset                                                    |
+| margin_mode        | string | margin mode    isolated : "isolated" |
+| margin_account     | string | margin account   "BTC-USDT"... |
 | \</data\>            |   |                                                        |
 
 ### Note:
@@ -7632,7 +11189,12 @@ To subscribe position updates data, the client has to make connection to the ser
  
  - When switching leverage with no positions, the event "switch_lever_rate" will not be pushed by the position topic.
 
+
 ## Unsubscribe Position Updates Data(unsub)
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 To unsubscribe, the client has to make connection to the server and send unsubscribe request in the format below:
 
@@ -7678,7 +11240,177 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | positions.contract_code1 | positions.contract_code2  | Not Allowed |
 | positions.*       | positions.symbol1  | Not Allowed |
 
+
+## Subscribe Position Updates（cross margin mode）（sub）
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+To subscribe position updates data, the client has to make connection to the server and send subscribe request in the format below:
+
+### Subscribe Request Format
+
+  `{`
+  
+  `"op": "sub",`
+  
+  `"topic": "positions_cross.$contract_code",`
+  
+  `"cid": "topic to sub"`
+  
+  `}`
+
+> Example of a successful subscribe request:
+
+```json
+                               
+{                                 
+  "op": "sub",                    
+  "cid": "40sG903yz80oDFWr",      
+  "topic": "positions_cross.BTC-USDT"    
+}
+                                 
+```                               
+
+### Format Illustration of Subscribe Position Updates
+
+| Filed Name |Type   | Description                                       |
+| ------- | :----- | :------------------------------------------ |
+| op       | string | Required；Operator Name，Subscribe value is sub             |
+| cid      | string | Optional ; Client requests unique ID                 |
+| topic    | string | Required； Subscribe Topic, Subscribe (positions_cross.$contract_code) Required  Subscribe/unsubscribe the position data of a single coin, when the $contract_code value is *, it stands for subscribing the data of all coins. contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT" |
+
+> When there is any position update, the server will send notification with return parameter. For example:
+
+```json
+
+{
+    "op":"notify",
+    "topic":"positions_cross.btc-usdt",
+    "ts":1606878438415,
+    "event":"order.liquidation",
+    "data":[
+        {
+            "symbol":"BTC",
+            "contract_code":"BTC-USDT",
+            "volume":18,
+            "available":18,
+            "frozen":0,
+            "cost_open":19361.088515384615384611,
+            "cost_hold":26666.2,
+            "profit_unreal":0,
+            "profit_rate":-37.7308924485864104,
+            "profit":-1314.92006723076923077,
+            "margin_asset":"USDT",
+            "position_margin":47.99916,
+            "lever_rate":100,
+            "direction":"sell",
+            "last_price":26666.2,
+            "margin_mode":"cross",
+            "margin_account":"USDT"
+        }
+    ],
+    "uid":"123456789"
+}
+
+```
+
+
+ 
+### Pushed Data Parameter
+
+| Parameter Name   | Mandatory | Type  | Desc   | Data Value   |
+| -------------- | ---- | ------- | -------------------------- | ----- |
+| op   | true | string  | operaton name, fixed as  notify;    |    |
+| topic   | true | string  | topic   |    |
+| ts   | true | long  | server response timestamp   |    |
+| uid   | true | string  | uid  |    |
+| event   | true | string  | event | order.close 、order.match、settlement、order.liquidation、order.cancel、init、snapshot   |
+| \<data\>   | true | object array |     |    |
+| symbol   | true | string  | symbol    | "BTC","ETH"...   |
+| contract_code   | true | string  | contract code  |    |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| volume   | true | decimal  | position quantity  |    |
+| available   | true | decimal  | positions available to close  |    |
+| frozen   | true | decimal  |  positions frozen |    |
+| cost_open   | true | decimal  | opening average price  |    |
+| cost_hold   | true | decimal  | average price of position  |    |
+| profit_unreal   | true | decimal  | unrealized profits and losses  |    |
+| profit_rate   | true | decimal  | profit rate  |    |
+| profit   | true | decimal  | profit  |    |
+| margin_asset       | true   | string | margin asset                 |                |
+| position_margin   | true | decimal  | position margin  |    |
+| lever_rate   | true | int  | leverage  |    |
+| direction   | true | string  | Transaction direction|   "buy"/"sell"    |
+| last_price   | true | decimal  | latest trade price  |    |
+| \</data\>   |  |   |     |    |
+
+
+### Note:
+
+ - A regular push of position is performed every 5 sedconds.The event field of the reponse is "snapshot".If there is a push in 5 seconds, snapshot push will be skipped.
+
+ - When switching leverage with no positions, the event "switch_lever_rate" will not be pushed by the position topic.
+
+
+## Unsubscribe Position Updates Data（cross margin mode）（unsub）
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+To unsubscribe, the client has to make connection to the server and send unsubscribe request in the format below:
+
+### Request Format of Unsubscribe Position Updates
+
+  `{`
+  
+  `"op": "unsub",`
+  
+  `"topic": "positions_cross.$contract_code",`
+  
+  `"cid": "id generated by client", `
+  
+  `} `
+
+> Example of a successful unsubscribe request:
+
+```json
+                                 
+{                                    
+  "op": "unsub",                     
+  "topic": "positions_cross.BTC-USDT",      
+  "cid": "40sG903yz80oDFWr"          
+}                                    
+```                                  
+
+### Format Illustration of Unsubscribe Position Updates
+
+| Field Name | Type   | Description                                              |
+| ------- | ------- | ------------------------------------------------- |
+| op       | string | Required; Operator Name，Subscribe value is unsub;                 |
+| cid      | string | Optional;  Client requests unique ID                        |
+| topic    | string | Required;Required；Required；Subscribe topic，Subscribe positions_cross.$contract_code required  Subscribe or unsubscribe the position updates of a single coin; when $contract_code value is *, it stands for subscribing the data of all coins; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT" |
+
+### Rules on Subscribe and Unsubscribe
+
+| Subscribe(sub)      | Unsubscribe(ubsub) |  Rule |
+| -------------- | --------------- | ------ |
+| positions_cross.*       | positions_cross.*        | Allowed  |
+| positions_cross.contract_code1 | positions_cross.*        | Allowed |
+| positions_cross.contract_code1 | positions_cross.contract_code1  |  Allowed |
+| positions_cross.contract_code1 | positions_cross.contract_code2  | Not Allowed |
+| positions_cross.*       | positions_cross.contract_code1  | Not Allowed |
+
+
 ## Subscribe Liquidation Orders (no authentication) (sub)
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
+
 
 ### Subscription Request Format of Liquidation order data
 
@@ -7760,6 +11492,10 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 
 ## Unsubscribe Liquidation Order Data (unsub)
 
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
+
 ### Unsubscribe Request Format
 
 `{`
@@ -7805,6 +11541,10 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 
 
 ## Subscribe funding rate (no authentication)（sub）
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 To subscribe funding rate data, the client has to make connection to the server and send subscribe request in the format below:
 
@@ -7882,6 +11622,9 @@ To subscribe funding rate data, the client has to make connection to the server 
 
 ## Unsubscribe Funding Rate Data(no authentication)(unsub)
 
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 To unsubscribe funding rate data, the client has to make connection to the server and send subscribe request in the format below:
 
@@ -7930,12 +11673,17 @@ To unsubscribe funding rate data, the client has to make connection to the serve
 
  - Funding rate will be pushed every 60 seconds by default.Funding rate will not be calculated under conditions below:
 
-- the contract can't be traded.eg:Pending Listing、Suspension、Delisting、In settlement、Delivering、Settlement Completed、Delivered,etc.  
-- the 'update_time' field of index data hasn't been changed over 5 minutes.
-- the 'update_time' field of orderbook data hasn't been changed over 5 minutes.
-- If the value is equal to last value over 5 continuous counts calculated by md5 of 150 bids data and 150 asks data. 
+ - the contract can't be traded.eg:Pending Listing、Suspension、Delisting、In settlement、Delivering、Settlement Completed、Delivered,etc.  
+ - the 'update_time' field of index data hasn't been changed over 5 minutes.
+ - the 'update_time' field of orderbook data hasn't been changed over 5 minutes.
+ - If the value is equal to last value over 5 continuous counts calculated by md5 of 150 bids data and 150 asks data. 
+
 
 ## Subscribe Contract Info (no authentication)（sub）
+
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
 
 To subscribe contract infodata, the client has to make connection to the server and send subscribe request in the format below:
 
@@ -7986,7 +11734,8 @@ To subscribe contract infodata, the client has to make connection to the server 
             "price_tick":0.1,
             "settlement_date":"1603785600000",
             "create_date":"20201021",
-            "contract_status":1
+            "contract_status":1,
+            "support_margin_mode": "all"
         }
     ]
 }
@@ -8009,11 +11758,11 @@ To subscribe contract infodata, the client has to make connection to the server 
 | settlement_date  |  string  | settlement date：such as "1490759594752"  |
 | create_date   |  string  | Contract Listing Date ：such as "20180706" |
 | contract_status      |  int     | contract status ： 0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered |
+| support_margin_mode   | string      | support margin mode   cross："cross"；isolated："isolated"；all："all"|
 | \</data\>   | object array |     |    |
 
 
 ### Note：
-
 
 - The websocket subscription of contract info event is pushed every 60 seconds, and the event is "snapshot". 
 - When the subscription is successful, the latest contract information will be pushed immediately, and the event is "init".
@@ -8023,7 +11772,11 @@ To subscribe contract infodata, the client has to make connection to the server 
 
 ## Unsubscribe Contract Info Data(no authentication)(unsub)
 
-- To unsubscribe contract info data, the client has to make connection to the server and send subscribe request in the format below:
+#### Remarks
+
+ - The interface supports cross margin mode and isolated margin mode.
+
+To unsubscribe contract info data, the client has to make connection to the server and send subscribe request in the format below:
 
 ### request format of unsubscribing contract info
 
@@ -8068,6 +11821,10 @@ To subscribe contract infodata, the client has to make connection to the server 
 
 
 ## Subscribe trigger orders updates(sub)
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 ### To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:
 
@@ -8135,7 +11892,9 @@ To subscribe contract infodata, the client has to make connection to the server 
             "order_insert_at":0,
             "canceled_at":0,
             "fail_code":null,
-            "fail_reason":null
+            "fail_reason":null,
+            "margin_mode": "isolated",
+            "margin_account": "BTC-USDT"
         }
     ]
 }
@@ -8175,6 +11934,8 @@ To subscribe contract infodata, the client has to make connection to the server 
 | canceled_at        | true  | long | Order cancelation time |                      |
 | fail_code        | true  | int | the error code when the triggered orders failed to be filled |                      |
 | fail_reason        | true  | string | the error message with failure reason when triggered orders failed to filled |                      |
+| margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
+| margin_account    |   true   | string | margin account  | "BTC-USDT"... |
 | \</data\>   |      |         |        |       |
 
 #### Rules:
@@ -8188,6 +11949,10 @@ To subscribe contract infodata, the client has to make connection to the server 
 
 
 ## Unsubscribe trigger orders updates（unsub）
+
+#### Remarks
+
+ - This interface only supports isolated margin mode.
 
 To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:
 
@@ -8232,6 +11997,180 @@ To subscribe basis data, the Client has to make connection to the Server and sen
 | trigger_order.contract_code1 | trigger_order.contract_code2  | Not Allowed |
 | trigger_order.*       | trigger_order.contract_code1  | Not Allowed |
 
+
+## Subscribe trigger orders updates（cross margin mode）(sub)
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+### To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:
+
+  `{`
+  
+  `"op": "sub",`
+  
+  `"cid": "id generated by client",`
+  
+  `"topic": "trigger_order_cross.$contract_code"`
+  
+  `}`
+  
+> Example of a successful return data:
+
+```json
+
+{
+  "op": "sub",
+  "topic": "trigger_order_cross.BTC-USDT",
+  "cid": "40sG903yz80oDFWr"
+}
+
+```
+
+### Request Parameter
+
+| Parameter Name    | Mandotary | Type     | Desc   | Value Range           |
+| ------ | ---- | ------ | -------- | -------------- |
+| op | true | string | Required； Operator Name，required subscribe value is  sub	 |  |
+| cid | false| string | Optional; ID Client requests unique ID	 | |
+| topic | true| string | Required；format: trigger_order_cross.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT" | |
+
+> **Return example**:
+
+```json
+
+{
+    "op":"notify",
+    "topic":"trigger_order_cross.btc-usdt",
+    "ts":1603778055069,
+    "event":"order",
+    "uid":"123456789",
+    "data":[
+        {
+            "symbol":"BTC-USDT",
+            "contract_code":"BTC-USDT",
+            "trigger_type":"ge",
+            "volume":1,
+            "order_type":1,
+            "direction":"sell",
+            "offset":"open",
+            "lever_rate":10,
+            "order_id":5,
+            "order_id_str":"5",
+            "relation_order_id":"-1",
+            "order_price_type":"limit",
+            "status":2,
+            "order_source":"web",
+            "trigger_price":15000,
+            "triggered_price":null,
+            "order_price":15000,
+            "created_at":1603778055064,
+            "triggered_at":0,
+            "order_insert_at":0,
+            "canceled_at":0,
+            "fail_code":null,
+            "fail_reason":null
+        }
+    ]
+}
+```
+
+###  Pushed Data Parameter
+
+| Parameter Name   |   Mandatory  |   Type   |   Desc   |   Data Value    |
+| -------- | -------- | -------- |  --------------------------------------- | -------------- |
+| op | true |  string | operaton name, fixed as  notify | |
+| topic | true |  string | topic | |
+| ts     | true | long    | Time of Respond Generation, Unit: Millisecond    |     |
+| uid     | true | string    | uid    |     |
+| event | true  | string | event |   order，cancel，trigger_success，trigger_fail  |
+| \<data\> |   true   |  object array   |   |   |
+| symbol                 | true | string  | symbol               |                                          |
+| contract_code          | true | string  | contract code               | "BTC-USDT" ...                          |
+| margin_mode | true | string | margin mode  | cross: cross margin mode  |
+| margin_account | true | string | margin account  | "USDT"... |
+| trigger_type              | true | string  | trigger type： ge great than or equal to；le less than or equal to  |              |
+| volume                 | true | decimal  | place volume |      |
+| order_type           | true | int | order type             |  1. Place orders     |
+| direction            | true | string | direction               | "buy"/"sell" |
+| offset         | true | string | "open", "close"             | "open"/"close" |
+| lever_rate            | true | int    | leverage              |                         |
+| order_id      | true | decimal | order ID                |                                          |
+| order_id_str             | true | string | order ID              |                                          |
+| relation_order_id             | true | string | Relation order ID is the string related to the limit orders, The value is -1 before the trigger orders executed.  |         |
+| order_price_type        | true  | string | type of order price | "limit"，"optimal_5"，"optimal_10"，"optimal_20"    |
+| status        | true  | int | order status | 2. Ready to submit the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; |
+| order_source      | true | string  | order source         |                                          |
+| trigger_price         | true | decimal  | trigger price       |       |
+| triggered_price         | true | decimal  | triggered price       |       |
+| order_price           | true | decimal  | order price   |                                          |
+| created_at        | true  | long | created time |                      |
+| triggered_at        | true  | long | triggered time |                      |
+| order_insert_at        | true  | long | insert time |                      |
+| canceled_at        | true  | long | canceled time |                      |
+| fail_code        | true  | int | fail code |                      |
+| fail_reason        | true  | string | fail reason |                      |
+| \</data\>   |      |         |        |       |
+
+#### Rules:
+
+- The intermediate states processed by the order status system will not be pushed, such as in the progress of placing an order, The descriptions of specific event notifications are as below: 
+   -  when the order status is 2（Submitted），event notification is order（trigger order placed successfully）；
+   -  when the order status is 4（Order placed successfully），event notification is trigger_success（trigger order triggered successfully）；
+   -  when the order status is 6（Canceled），event notification is cancel（trigger order canceled successfully）；
+   -  when the order status is 5（Order failed to be placed），event notification is trigger_fail（trigger order failed to be triggered）；
+- Single coin cannot be re-suscribed, and all coins subscription can cover single coin subscription; single coin cannot be subscribed after subscribing all coins. 
+
+
+## Unsubscribe trigger orders updates（cross margin mode）（unsub）
+
+#### Remarks
+
+ - The interface only supports cross margin mode.
+
+To subscribe basis data, the Client has to make connection to the Server and send subscribe request in the format below:
+
+### Format of Unsubscribe order data
+
+  `{`
+  
+  `"op": "unsub",`
+  
+  `"topic": "trigger_order_cross.$contract_code",`
+  
+  `"cid": "id generated by client",`
+  
+  `}`
+ 
+> Example of a successful unsubscribe request:
+
+```json
+                                  
+{                                    
+  "op": "unsub",                     
+  "topic": "trigger_order_cross.BTC-USDT",   
+  "cid": "40sG903yz80oDFWr"          
+}                                    
+```                                  
+ 
+### Format illustration of unsubscribe order data
+
+| Filed | Type   | Description                                               |
+| :------- | :----- | :------------------------------------------------- |
+| op       | string | Required;Operator Name，value for unsubscribe is unsub;                 |
+| cid      | string | Optional;  Client requests unique ID                           |
+| topic    | string | Optional; Unsubscribe Topic Name，format: trigger_order_cross.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT" |
+
+### Rules on Subscribe and Unsubscribe
+
+| Subscribe(sub)     | Unsubscribe( unsub) | Rule   |
+| -------------- | --------------- | ------ |
+| trigger_order_cross.*       | trigger_order_cross.*      | Allowed   |
+| trigger_order_cross.contract_code1 | trigger_order_cross.*       | Allowed   |
+| trigger_order_cross.contract_code1 | trigger_order_cross.contract_code1 | Allowed   |
+| trigger_order_cross.contract_code1 | trigger_order_cross.contract_code2  |  Not Allowed |
+| trigger_order_cross.*       | trigger_order_cross.contract_code1  |  Not Allowed |
 
 
 # Appendix
