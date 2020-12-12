@@ -40,7 +40,7 @@ search: true
 
 ### 1、新增全仓模式查询平台阶梯调整系数
 
-  - 接口名称：查询平台阶梯调整系数（全仓模式）
+  - 接口名称：【全仓】查询平台阶梯调整系数
 
   - 接口类型：公共接口
 
@@ -48,7 +48,7 @@ search: true
 
 ### 2、新增全仓模式查询系统划转权限
 
-  - 接口名称：查询系统划转权限（全仓模式）
+  - 接口名称：【全仓】查询系统划转权限
 
   - 接口类型：公共接口
 
@@ -56,7 +56,7 @@ search: true
 
 ### 3、新增全仓模式查询系统交易权限
 
-  - 接口名称：查询系统交易权限（全仓模式）
+  - 接口名称：【全仓】查询系统交易权限
 
   - 接口类型：公共接口
 
@@ -64,7 +64,7 @@ search: true
 
 ### 4、新增全仓模式获取用户账户信息
 
-  - 接口名称：获取用户账户信息（全仓模式）
+  - 接口名称：【全仓】获取用户账户信息
 
   - 接口类型：私有接口
 
@@ -72,7 +72,7 @@ search: true
 
 ### 5、新增全仓模式获取用户持仓信息
 
-  - 接口名称：获取用户持仓信息（全仓模式）
+  - 接口名称：【全仓】获取用户持仓信息
 
   - 接口类型：私有接口
 
@@ -80,7 +80,7 @@ search: true
 
 ### 6、新增全仓模式查询母账户下所有子账户资产信息
 
-  - 接口名称：查询母账户下所有子账户资产信息（全仓模式）
+  - 接口名称：【全仓】查询母账户下所有子账户资产信息
 
   - 接口类型：私有接口
 
@@ -88,7 +88,7 @@ search: true
 
 ### 7、新增全仓模式查询单个子账户资产信息
 
-  - 接口名称：查询单个子账户资产信息（全仓模式）
+  - 接口名称：【全仓】查询单个子账户资产信息
 
   - 接口类型：私有接口
 
@@ -96,7 +96,7 @@ search: true
 
 ### 8、新增全仓模式查询单个子账户持仓信息
 
-  - 接口名称：查询单个子账户持仓信息（全仓模式）
+  - 接口名称：【全仓】查询单个子账户持仓信息
 
   - 接口类型：私有接口
 
@@ -104,7 +104,7 @@ search: true
 
 ### 9、新增全仓模式查询用户当前的划转限制
 
-  - 接口名称：查询用户当前的划转限制（全仓模式）
+  - 接口名称：【全仓】查询用户当前的划转限制
 
   - 接口类型：私有接口
 
@@ -112,7 +112,7 @@ search: true
 
 ### 10、新增全仓模式用户持仓量限制的查询
 
-  - 接口名称：用户持仓量限制的查询（全仓模式）
+  - 接口名称：【全仓】用户持仓量限制的查询
 
   - 接口类型：私有接口
 
@@ -120,7 +120,7 @@ search: true
 
 ### 11、新增全仓模式获取用户资产和持仓信息
 
-  - 接口名称：获取用户资产和持仓信息（全仓模式）
+  - 接口名称：【全仓】获取用户资产和持仓信息
 
   - 接口类型：私有接口
 
@@ -128,7 +128,7 @@ search: true
 
 ### 12、新增全仓模式查询用户可用杠杆倍数
 
-  - 接口名称：查询用户可用杠杆倍数（全仓模式）
+  - 接口名称：【全仓】查询用户可用杠杆倍数
 
   - 接口类型：私有接口
 
@@ -136,7 +136,7 @@ search: true
 
 ### 13、新增全仓模式切换杠杆
 
-  - 接口名称：切换杠杆（全仓模式）
+  - 接口名称：【全仓】切换杠杆
 
   - 接口类型：私有接口
 
@@ -144,7 +144,7 @@ search: true
 
 ### 14、新增全仓模式合约下单
 
-  - 接口名称：合约下单（全仓模式）
+  - 接口名称：【全仓】合约下单
 
   - 接口类型：私有接口
 
@@ -152,7 +152,7 @@ search: true
 
 ### 15、新增全仓模式合约批量下单
 
-  - 接口名称：合约批量下单（全仓模式）
+  - 接口名称：【全仓】合约批量下单
 
   - 接口类型：私有接口
 
@@ -160,7 +160,7 @@ search: true
 
 ### 16、新增全仓模式撤销订单
 
-  - 接口名称：撤销订单（全仓模式）
+  - 接口名称：【全仓】撤销订单
 
   - 接口类型：私有接口
 
@@ -168,7 +168,7 @@ search: true
 
 ### 17、新增全仓模式全部撤单
 
-  - 接口名称：全部撤单（全仓模式）
+  - 接口名称：【全仓】全部撤单
 
   - 接口类型：私有接口
 
@@ -176,7 +176,7 @@ search: true
 
 ### 18、新增全仓模式获取合约订单信息
 
-  - 接口名称：获取合约订单信息（全仓模式）
+  - 接口名称：【全仓】获取合约订单信息
 
   - 接口类型：私有接口
 
@@ -184,7 +184,7 @@ search: true
 
 ### 19、新增全仓模式获取订单明细信息
 
-  - 接口名称：获取订单明细信息（全仓模式）
+  - 接口名称：【全仓】获取订单明细信息
 
   - 接口类型：私有接口
 
@@ -192,7 +192,7 @@ search: true
 
 ### 20、新增全仓模式获取合约当前未成交委托
 
-  - 接口名称：获取合约当前未成交委托（全仓模式）
+  - 接口名称：【全仓】获取合约当前未成交委托
 
   - 接口类型：私有接口
 
@@ -200,7 +200,7 @@ search: true
 
 ### 21、新增全仓模式获取合约历史委托
 
-  - 接口名称：获取合约历史委托（全仓模式）
+  - 接口名称：【全仓】获取合约历史委托
 
   - 接口类型：私有接口
 
@@ -208,7 +208,7 @@ search: true
 
 ### 22、新增全仓模式获取历史成交记录
 
-  - 接口名称：获取历史成交记录（全仓模式）
+  - 接口名称：【全仓】获取历史成交记录
 
   - 接口类型：私有接口
 
@@ -216,7 +216,7 @@ search: true
 
 ### 23、新增全仓模式闪电平仓下单
 
-  - 接口名称：闪电平仓下单（全仓模式）
+  - 接口名称：【全仓】闪电平仓下单
 
   - 接口类型：私有接口
 
@@ -224,7 +224,7 @@ search: true
 
 ### 24、新增全仓模式合约计划委托下单
 
-  - 接口名称：合约计划委托下单（全仓模式）
+  - 接口名称：【全仓】合约计划委托下单
 
   - 接口类型：私有接口
 
@@ -232,7 +232,7 @@ search: true
 
 ### 25、新增全仓模式合约计划委托撤单
 
-  - 接口名称：合约计划委托撤单（全仓模式）
+  - 接口名称：【全仓】合约计划委托撤单
 
   - 接口类型：私有接口
 
@@ -240,7 +240,7 @@ search: true
 
 ### 26、新增全仓模式合约计划委托全部撤单
 
-  - 接口名称：合约计划委托全部撤单（全仓模式）
+  - 接口名称：【全仓】合约计划委托全部撤单
 
   - 接口类型：私有接口
 
@@ -248,7 +248,7 @@ search: true
 
 ### 27、新增全仓模式获取计划委托当前委托
 
-  - 接口名称：获取计划委托当前委托（全仓模式）
+  - 接口名称：【全仓】获取计划委托当前委托
 
   - 接口类型：私有接口
 
@@ -256,7 +256,7 @@ search: true
 
 ### 28、新增全仓模式获取计划委托历史委托
 
-  - 接口名称：获取计划委托历史委托（全仓模式）
+  - 接口名称：【全仓】获取计划委托历史委托
 
   - 接口类型：私有接口
 
@@ -264,7 +264,7 @@ search: true
 
 ### 29、新增全仓模式订阅订单成交数据
 
-  - 接口名称：订阅订单成交数据（全仓模式）
+  - 接口名称：【全仓】订阅订单成交数据
 
   - 接口类型：私有接口
 
@@ -272,7 +272,7 @@ search: true
 
 ### 30、新增全仓模式订阅资产变动数据
 
-  - 接口名称：订阅资产变动数据（全仓模式）
+  - 接口名称：【全仓】订阅资产变动数据
 
   - 接口类型：私有接口
 
@@ -280,7 +280,7 @@ search: true
 
 ### 31、新增全仓模式订阅持仓变动更新数据
 
-  - 接口名称：订阅持仓变动更新数据（全仓模式）
+  - 接口名称：【全仓】订阅持仓变动更新数据
 
   - 接口类型：私有接口
 
@@ -288,7 +288,7 @@ search: true
 
 ### 32、新增全仓模式订阅撮合订单成交数据
 
-  - 接口名称：订阅撮合订单成交数据（全仓模式）
+  - 接口名称：【全仓】订阅撮合订单成交数据
 
   - 接口类型：私有接口
 
@@ -296,7 +296,7 @@ search: true
 
 ### 33、新增全仓模式订阅计划委托订单变动
 
-  - 接口名称：订阅计划委托订单变动（全仓模式）
+  - 接口名称：【全仓】订阅计划委托订单变动
 
   - 接口类型：私有接口
 
@@ -588,92 +588,92 @@ search: true
 
 ### 接口列表
 
-  权限类型  |    接口数据类型   |   请求方法      |          类型  |   描述                     |   需要验签  |
------------ |  ------------------ | ---------------------------------------- |  ---------- |  ------------------------------- |  --------------  |
-读取  | 基础信息接口 | linear-swap-api/v1/swap_contract_info                             | GET    |      获取合约信息                        |       否          |
-读取  | 基础信息接口 | linear-swap-api/v1/swap_index                                     | GET    |      获取合约指数信息                    |       否          |                     
-读取  | 基础信息接口 | linear-swap-api/v1/swap_price_limit                               | GET    |      获取合约最高限价和最低限价          |       否          |           
-读取  | 基础信息接口 | linear-swap-api/v1/swap_open_interest                             | GET    |      获取当前可用合约总持仓量            |       否          |            
-读取  | 基础信息接口 | linear-swap-api/v1/swap_risk_info                                 | GET    |      查询合约风险准备金和预估分摊比例    |       否          |
-读取  | 基础信息接口 | linear-swap-api/v1/swap_insurance_fund                            | GET    |      获取风险准备金历史数据              |       否          |
-读取  | 基础信息接口 | linear-swap-api/v1/swap_adjustfactor                              | GET    |      查询平台阶梯调整系数                |       否          |
-读取  | 基础信息接口 | linear-swap-api/v1/swap_his_open_interest                         | GET    |      获取平台持仓量                      |       否          |
-读取  | 基础信息接口 | linear-swap-api/v1/swap_elite_account_ratio                       | GET    |      精英账户多空持仓对比-账户数         |       否          |
-读取  | 基础信息接口 | linear-swap-api/v1/swap_elite_position_ratio                      | GET    |      精英账户多空持仓对比-持仓量         |       否          |
-读取  | 基础信息接口 | linear-swap-api/v1/swap_liquidation_orders                        | GET    |      获取强平订单                        |       否          |
-读取  | 基础信息接口 | linear-swap-api/v1/swap_settlement_records                        | GET    |      平台历史结算记录                    |       否          |
-读取  | 基础信息接口 | linear-swap-api/v1/swap_api_state                                 | GET    |      查询系统状态                        |       否          |
-读取  | 市场行情接口 | linear-swap-api/v1/swap_funding_rate                              | GET    |      获取合约的资金费率                  |       否          |
-读取  | 市场行情接口 | linear-swap-api/v1/swap_historical_funding_rate                   | GET    |      获取合约的历史资金费率              |       否          |
-读取  | 市场行情接口 | linear-swap-ex/market/depth                                       | GET    |      获取行情深度数据                    |       否          |
-读取  | 市场行情接口 | linear-swap-ex/market/history/kline                               | GET    |      获取K线数据                         |       否          |
-读取  | 市场行情接口 | linear-swap-ex/market/detail/merged                               | GET    |      获取聚合行情                        |       否          |
-读取  | 市场行情接口 | index/market/history/linear_swap_basis                            | GET    |      获取基差数据                        |       否          |
-读取  | 市场行情接口 | index/market/history/linear_swap_premium_index_kline              | GET    |      获取溢价指数K线数据                 |       否          |
-读取  | 市场行情接口 | index/market/history/linear_swap_estimated_rate_kline             | GET    |      获取预测资金费率的K线数据           |       否          |
-读取  | 市场行情接口 | linear-swap-ex/market/trade                                       | GET    |      获取市场最近成交记录                |       否          |
-读取  | 市场行情接口 | linear-swap-ex/market/history/trade                               | GET    |      批量获取最近的交易记录               |     否         |
-读取  | 基础信息接口 | /linear-swap-api/v1/swap_cross_adjustfactor                          | GET    |     查询平台阶梯调整系数（全仓模式）                                                |       否          |
-读取  | 基础信息接口 | /linear-swap-api/v1/swap_cross_transfer_state                        | GET    |     查询系统划转权限（全仓模式）                        |       否          |
-读取  | 基础信息接口 | /linear-swap-api/v1/swap_cross_trade_state                           | GET    |     查询系统交易权限（全仓模式）                        |       否          |
-读取  | 账户接口    | linear-swap-api/v1/swap_account_info                              | POST   |      获取用户的合约账户信息               |     是         |
-读取  | 账户接口    | linear-swap-api/v1/swap_position_info                             | POST   |      获取用户的合约持仓信息               |     是         |
-读取  | 账户接口    | linear-swap-api/v1/swap_available_level_rate                      | POST   |      查询用户可用杠杆倍数          |     是         |
-读取  | 账户接口    | linear-swap-api/v1/swap_sub_account_list                          | POST   |      查询母账户下所有子账户资产信息       |     是         |
-读取  | 账户接口    | linear-swap-api/v1/swap_sub_account_info                          | POST   |      查询母账户下的单个子账户资产信息     |     是         |
-读取  | 账户接口    | linear-swap-api/v1/swap_sub_position_info                         | POST   |      查询母账户下的单个子账户持仓信息     |     是         |
-读取  | 账户接口    | linear-swap-api/v1/swap_financial_record                          | POST   |      查询用户财务记录                     |     是         |
-读取  | 账户接口    | linear-swap-api/v1/swap_order_limit                               | POST   |      获取用户的合约下单量限制             |     是         |
-读取  | 账户接口    | linear-swap-api/v1/swap_fee                                       | POST   |      获取用户的合约手续费费率             |     是         |
-读取  | 账户接口    | linear-swap-api/v1/swap_transfer_limit                            | POST   |      获取用户的合约划转限制               |     是         |
-读取  | 账户接口    | linear-swap-api/v1/swap_position_limit                            | POST   |      获取用户的合约持仓量限制             |     是         |
-读取  | 账户接口    | linear-swap-api/v1/swap_account_position_info                     | POST   |      获取用户资产和持仓信息               |     是         |
-交易  | 账户接口    | linear-swap-api/v1/swap_master_sub_transfer                       | POST   |      母子账户划转                         |     是         |
-读取  | 账户接口    | linear-swap-api/v1/swap_master_sub_transfer_record                | POST   |      获取母账户下的所有母子账户划转记录   |     是         |
-交易  | 账户接口    | linear-swap-api/v1/swap_transfer_inner                            | POST   |      同账号不同保证金账户的划转           |     是         |
-读取  | 账户接口    | linear-swap-api/v1/swap_api_trading_status                        | GET    |      获取用户API指标禁用信息              |     是         |
-读取  | 账户接口    | /linear-swap-api/v1/swap_cross_account_info                          | POST    |     获取用户的合约账户信息（全仓模式）              |       是          |
-读取  | 账户接口    | /linear-swap-api/v1/swap_cross_position_info                         | POST    |     获取用户的合约持仓信息（全仓模式）               |       是          |
-读取  | 账户接口    | /linear-swap-api/v1/swap_cross_sub_account_list                      | POST    |     查询母账户下所有子账户资产信息（全仓模式）       |       是          |
-读取  | 账户接口    | /linear-swap-api/v1/swap_cross_sub_account_info                      | POST    |     查询母账户下的单个子账户资产信息（全仓模式）   |       是          |
-读取  | 账户接口    | /linear-swap-api/v1/swap_cross_sub_position_info                     | POST    |     查询母账户下的单个子账户持仓信息（全仓模式）    |       是          |
-读取  | 账户接口    | /linear-swap-api/v1/swap_cross_transfer_limit                        | POST    |     获取用户的合约划转限制（全仓模式）           |       是          |
-读取  | 账户接口    | /linear-swap-api/v1/swap_cross_position_limit                        | POST    |     获取用户的合约持仓量限制（全仓模式）        |       是          |
-读取  | 账户接口    | /linear-swap-api/v1/swap_cross_account_position_info                 | POST    |     获取用户资产和持仓信息（全仓模式）          |       是          |
-读取  | 账户接口    | linear-swap-api/v1/swap_cross_available_level_rate                   | POST    |     获取用户当前合约杠杆倍数（全仓模式）        |       是          |
-交易  | 交易接口    | linear-swap-api/v1/swap_order                                     | POST   |      合约下单                             |     是         |
-交易  | 交易接口    | linear-swap-api/v1/swap_batchorder                                | POST   |      合约批量下单                         |     是         |
-交易  | 交易接口    | linear-swap-api/v1/swap_switch_lever_rate                         | POST   |      切换杠杆                          |     是         |
-交易  | 交易接口    | linear-swap-api/v1/swap_cancel                                    | POST   |      撤销合约订单                         |     是         |
-交易  | 交易接口    | linear-swap-api/v1/swap_cancelall                                 | POST   |      撤销全部合约单                       |     是         |
-读取  | 交易接口    | linear-swap-api/v1/swap_order_info                                | POST   |      获取用户的合约订单信息               |     是         |
-读取  | 交易接口    | linear-swap-api/v1/swap_order_detail                              | POST   |      获取用户的合约订单明细信息           |     是         |
-读取  | 交易接口    | linear-swap-api/v1/swap_openorders                                | POST   |      获取用户的合约当前未成交委托         |     是         |
-读取  | 交易接口    | linear-swap-api/v1/swap_hisorders                                 | POST   |      获取用户的合约历史委托               |     是         |
-读取  | 交易接口    | linear-swap-api/v1/swap_matchresults                              | POST   |      获取用户的合约历史成交记录           |     是         |
-交易  | 交易接口    | linear-swap-api/v1/swap_lightning_close_position                  | POST   |      合约闪电平仓下单                     |     是         |
-交易  | 交易接口    | linear-swap-api/v1/swap_trigger_order                             | POST   |      合约计划委托下单                     |     是          |
-交易  | 交易接口    | linear-swap-api/v1/swap_trigger_cancel                            | POST   |      合约计划委托撤单                     |     是         |
-交易  | 交易接口    | linear-swap-api/v1/swap_trigger_cancelall                         | POST   |      合约计划委托全部撤单                 |     是         |
-读取  | 交易接口    | linear-swap-api/v1/swap_trigger_openorders                        | POST   |      获取计划委托当前委托                 |     是         |
-读取  | 交易接口    | linear-swap-api/v1/swap_trigger_hisorders                         | POST   |      获取计划委托历史委托                 |     是         |
-交易  | 交易接口    | /linear-swap-api/v1/swap_cross_switch_lever_rate                     | POST    |     切换杠杆（全仓模式）         |       是          |
-交易  | 交易接口    | /linear-swap-api/v1/swap_cross_order                                 | POST    |     合约下单（全仓模式）           |       是          |
-交易  | 交易接口    | /linear-swap-api/v1/swap_cross_batchorder                            | POST    |     合约批量下单（全仓模式）        |       是          |
-交易  | 交易接口    | /linear-swap-api/v1/swap_cross_cancel                                | POST    |     撤销合约订单（全仓模式）        |       是          |
-交易  | 交易接口    | /linear-swap-api/v1/swap_cross_cancelall                             | POST    |     撤销全部合约单（全仓模式）     |       是          |
-读取  | 交易接口    | /linear-swap-api/v1/swap_cross_order_info                            | POST    |     获取用户的合约订单信息（全仓模式）             |       是          |
-读取  | 交易接口    | /linear-swap-api/v1/swap_cross_order_detail                          | POST    |     获取用户的合约订单明细信息（全仓模式）         |       是          |
-读取  | 交易接口    | /linear-swap-api/v1/swap_cross_openorders                            | POST    |     获取用户的合约当前未成交委托（全仓模式）       |       是          |
-读取  | 交易接口    | /linear-swap-api/v1/swap_cross_hisorders                             | POST    |     获取用户的合约历史委托（全仓模式）             |       是          |
-读取  | 交易接口    | /linear-swap-api/v1/swap_cross_matchresults                          | POST    |     获取用户的合约历史成交记录（全仓模式）         |       是          |
-交易  | 交易接口    | /linear-swap-api/v1/swap_cross_lightning_close_position              | POST    |     合约闪电平仓下单（全仓模式）           |       是          |
-交易  | 交易接口    | /linear-swap-api/v1/swap_cross_trigger_order                         | POST    |     合约计划委托下单（全仓模式）           |       是          |
-交易  | 交易接口    | /linear-swap-api/v1/swap_cross_trigger_cancel                        | POST    |     合约计划委托撤单（全仓模式）           |       是          |
-交易  | 交易接口    | /linear-swap-api/v1/swap_cross_trigger_cancelall                     | POST    |     合约计划委托全部撤单（全仓模式）       |       是          |
-读取  | 交易接口    | /linear-swap-api/v1/swap_cross_trigger_openorders                    | POST    |     获取计划委托当前委托（全仓模式）       |       是          |
-读取  | 交易接口    | /linear-swap-api/v1/swap_cross_trigger_hisorders                     | POST    |     获取计划委托历史委托（全仓模式）       |       是          |
-交易  | 账户接口    | https://api.huobi.pro/v2/account/transfer                         | POST   |      现货-USDT本位永续账户间进行资金的划转              |     是        |
+  权限类型  |    接口数据类型   |  接口模式 | 请求方法      |          类型  |   描述                     |   需要验签  |
+----------- |  ------------------ | ------------- |---------------------------------------- |  ---------- |  ------------------------------- |  --------------  |
+读取  | 基础信息接口 |  通用   | linear-swap-api/v1/swap_contract_info                             | GET    |      【通用】获取合约信息                        |       否          |
+读取  | 基础信息接口 |  通用   | linear-swap-api/v1/swap_index                                     | GET    |      【通用】获取合约指数信息                    |       否          |                     
+读取  | 基础信息接口 |  通用   | linear-swap-api/v1/swap_price_limit                               | GET    |      【通用】获取合约最高限价和最低限价          |       否          |           
+读取  | 基础信息接口 |  通用   | linear-swap-api/v1/swap_open_interest                             | GET    |      【通用】获取当前可用合约总持仓量            |       否          |            
+读取  | 基础信息接口 |  通用   | linear-swap-api/v1/swap_risk_info                                 | GET    |      【通用】查询合约风险准备金和预估分摊比例    |       否          |
+读取  | 基础信息接口 |  通用   | linear-swap-api/v1/swap_insurance_fund                            | GET    |      【通用】获取风险准备金历史数据              |       否          |
+读取  | 基础信息接口 |  逐仓   | linear-swap-api/v1/swap_adjustfactor                              | GET    |      【逐仓】查询平台阶梯调整系数                |       否          |
+读取  | 基础信息接口 |  通用   | linear-swap-api/v1/swap_his_open_interest                         | GET    |      【通用】获取平台持仓量                      |       否          |
+读取  | 基础信息接口 |  通用   | linear-swap-api/v1/swap_elite_account_ratio                       | GET    |      【通用】精英账户多空持仓对比-账户数         |       否          |
+读取  | 基础信息接口 |  通用   | linear-swap-api/v1/swap_elite_position_ratio                      | GET    |      【通用】精英账户多空持仓对比-持仓量         |       否          |
+读取  | 基础信息接口 |  通用   | linear-swap-api/v1/swap_liquidation_orders                        | GET    |      【通用】获取强平订单                        |       否          |
+读取  | 基础信息接口 |  通用   | linear-swap-api/v1/swap_settlement_records                        | GET    |      【通用】平台历史结算记录                    |       否          |
+读取  | 基础信息接口 |  逐仓   | linear-swap-api/v1/swap_api_state                                 | GET    |      【逐用】查询系统状态                        |       否          |
+读取  | 市场行情接口 |  通用   | linear-swap-api/v1/swap_funding_rate                              | GET    |      【通用】获取合约的资金费率                  |       否          |
+读取  | 市场行情接口 |  通用   | linear-swap-api/v1/swap_historical_funding_rate                   | GET    |      【通用】获取合约的历史资金费率              |       否          |
+读取  | 市场行情接口 |  通用   | linear-swap-ex/market/depth                                       | GET    |      【通用】获取行情深度数据                    |       否          |
+读取  | 市场行情接口 |  通用   | linear-swap-ex/market/history/kline                               | GET    |      【通用】获取K线数据                         |       否          |
+读取  | 市场行情接口 |  通用   | linear-swap-ex/market/detail/merged                               | GET    |      【通用】获取聚合行情                        |       否          |
+读取  | 市场行情接口 |  通用   | index/market/history/linear_swap_basis                            | GET    |      【通用】获取基差数据                        |       否          |
+读取  | 市场行情接口 |  通用   | index/market/history/linear_swap_premium_index_kline              | GET    |      【通用】获取溢价指数K线数据                 |       否          |
+读取  | 市场行情接口 |  通用   | index/market/history/linear_swap_estimated_rate_kline             | GET    |      【通用】获取预测资金费率的K线数据           |       否          |
+读取  | 市场行情接口 |  通用   | linear-swap-ex/market/trade                                       | GET    |      【通用】获取市场最近成交记录                |       否          |
+读取  | 市场行情接口 |  通用   | linear-swap-ex/market/history/trade                               | GET    |      【通用】批量获取最近的交易记录               |     否         |
+读取  | 基础信息接口 |  全仓    | /linear-swap-api/v1/swap_cross_adjustfactor                          | GET    |     【全仓】查询平台阶梯调整系数                                                |       否          |
+读取  | 基础信息接口 |  全仓    | /linear-swap-api/v1/swap_cross_transfer_state                        | GET    |     【全仓】查询系统划转权限                        |       否          |
+读取  | 基础信息接口 |  全仓    | /linear-swap-api/v1/swap_cross_trade_state                           | GET    |     【全仓】查询系统交易权限                        |       否          |
+读取  | 账户接口    |  逐仓  |  linear-swap-api/v1/swap_account_info                              | POST   |      【逐仓】获取用户的合约账户信息               |     是         |
+读取  | 账户接口    |  逐仓  |  linear-swap-api/v1/swap_position_info                             | POST   |      【逐仓】获取用户的合约持仓信息               |     是         |
+读取  | 账户接口    |  逐仓  |  linear-swap-api/v1/swap_available_level_rate                      | POST   |      【逐仓】查询用户可用杠杆倍数          |     是         |
+读取  | 账户接口    |  逐仓  |  linear-swap-api/v1/swap_sub_account_list                          | POST   |      【逐仓】查询母账户下所有子账户资产信息       |     是         |
+读取  | 账户接口    |  逐仓  |  linear-swap-api/v1/swap_sub_account_info                          | POST   |      【逐仓】查询母账户下的单个子账户资产信息     |     是         |
+读取  | 账户接口    |  逐仓  |  linear-swap-api/v1/swap_sub_position_info                         | POST   |      【逐仓】查询母账户下的单个子账户持仓信息     |     是         |
+读取  | 账户接口    |  通用  |  linear-swap-api/v1/swap_financial_record                          | POST   |      【通用】查询用户财务记录                     |     是         |
+读取  | 账户接口    |  通用  |  linear-swap-api/v1/swap_order_limit                               | POST   |      【通用】获取用户的合约下单量限制             |     是         |
+读取  | 账户接口    |  通用  |  linear-swap-api/v1/swap_fee                                       | POST   |      【通用】获取用户的合约手续费费率             |     是         |
+读取  | 账户接口    |  逐仓 |  linear-swap-api/v1/swap_transfer_limit                            | POST   |      【逐仓】获取用户的合约划转限制               |     是         |
+读取  | 账户接口    |  逐仓  |  linear-swap-api/v1/swap_position_limit                            | POST   |      【逐仓】获取用户的合约持仓量限制             |     是         |
+读取  | 账户接口    |  逐仓  |  linear-swap-api/v1/swap_account_position_info                     | POST   |      【逐仓】获取用户资产和持仓信息               |     是         |
+交易  | 账户接口    |  通用  |  linear-swap-api/v1/swap_master_sub_transfer                       | POST   |      【通用】母子账户划转                         |     是         |
+读取  | 账户接口    |  通用  |  linear-swap-api/v1/swap_master_sub_transfer_record                | POST   |      【通用】获取母账户下的所有母子账户划转记录   |     是         |
+交易  | 账户接口    |  通用  |  linear-swap-api/v1/swap_transfer_inner                            | POST   |      【通用】同账号不同保证金账户的划转           |     是         |
+读取  | 账户接口    |  通用  |  linear-swap-api/v1/swap_api_trading_status                        | GET    |      【通用】获取用户API指标禁用信息              |     是         |
+读取  | 账户接口    |  全仓  |  /linear-swap-api/v1/swap_cross_account_info                          | POST    |     【全仓】获取用户的合约账户信息              |       是          |
+读取  | 账户接口    |  全仓  |  /linear-swap-api/v1/swap_cross_position_info                         | POST    |     【全仓】获取用户的合约持仓信息               |       是          |
+读取  | 账户接口    |  全仓  |  /linear-swap-api/v1/swap_cross_sub_account_list                      | POST    |     【全仓】查询母账户下所有子账户资产信息       |       是          |
+读取  | 账户接口    |  全仓  |  /linear-swap-api/v1/swap_cross_sub_account_info                      | POST    |     【全仓】查询母账户下的单个子账户资产信息   |       是          |
+读取  | 账户接口    |  全仓  |  /linear-swap-api/v1/swap_cross_sub_position_info                     | POST    |     【全仓】查询母账户下的单个子账户持仓信息    |       是          |
+读取  | 账户接口    |  全仓  |  /linear-swap-api/v1/swap_cross_transfer_limit                        | POST    |     【全仓】获取用户的合约划转限制           |       是          |
+读取  | 账户接口    |  全仓  |  /linear-swap-api/v1/swap_cross_position_limit                        | POST    |     【全仓】获取用户的合约持仓量限制        |       是          |
+读取  | 账户接口    |  全仓  |  /linear-swap-api/v1/swap_cross_account_position_info                 | POST    |     【全仓】获取用户资产和持仓信息          |       是          |
+读取  | 账户接口    |  全仓  |  linear-swap-api/v1/swap_cross_available_level_rate                   | POST    |     【全仓】获取用户当前合约杠杆倍数        |       是          |
+交易  | 交易接口    |  逐仓  |  linear-swap-api/v1/swap_order                                     | POST   |      【逐仓】合约下单                             |     是         |
+交易  | 交易接口    |  逐仓  |  linear-swap-api/v1/swap_batchorder                                | POST   |      【逐仓】合约批量下单                         |     是         |
+交易  | 交易接口    |  逐仓  |  linear-swap-api/v1/swap_switch_lever_rate                         | POST   |      【逐仓】切换杠杆                          |     是         |
+交易  | 交易接口    |  逐仓  |  linear-swap-api/v1/swap_cancel                                    | POST   |      【逐仓】撤销合约订单                         |     是         |
+交易  | 交易接口    |  逐仓  |  linear-swap-api/v1/swap_cancelall                                 | POST   |      【逐仓】撤销全部合约单                       |     是         |
+读取  | 交易接口    |  逐仓  |  linear-swap-api/v1/swap_order_info                                | POST   |      【逐仓】获取用户的合约订单信息               |     是         |
+读取  | 交易接口    |  逐仓  |  linear-swap-api/v1/swap_order_detail                              | POST   |      【逐仓】获取用户的合约订单明细信息           |     是         |
+读取  | 交易接口    |  逐仓  |  linear-swap-api/v1/swap_openorders                                | POST   |      【逐仓】获取用户的合约当前未成交委托         |     是         |
+读取  | 交易接口    |  逐仓  |  linear-swap-api/v1/swap_hisorders                                 | POST   |      【逐仓】获取用户的合约历史委托               |     是         |
+读取  | 交易接口    |  逐仓  |  linear-swap-api/v1/swap_matchresults                              | POST   |      【逐仓】获取用户的合约历史成交记录           |     是         |
+交易  | 交易接口    |  逐仓  |  linear-swap-api/v1/swap_lightning_close_position                  | POST   |      【逐仓】合约闪电平仓下单                     |     是         |
+交易  | 交易接口    |  逐仓  |  linear-swap-api/v1/swap_trigger_order                             | POST   |      【逐仓】合约计划委托下单                     |     是          |
+交易  | 交易接口    |  逐仓  |  linear-swap-api/v1/swap_trigger_cancel                            | POST   |      【逐仓】合约计划委托撤单                     |     是         |
+交易  | 交易接口    |  逐仓  |  linear-swap-api/v1/swap_trigger_cancelall                         | POST   |      【逐仓】合约计划委托全部撤单                 |     是         |
+读取  | 交易接口    |  逐仓  |  linear-swap-api/v1/swap_trigger_openorders                        | POST   |      【逐仓】获取计划委托当前委托                 |     是         |
+读取  | 交易接口    |  逐仓  |  linear-swap-api/v1/swap_trigger_hisorders                         | POST   |      【逐仓】获取计划委托历史委托                 |     是         |
+交易  | 交易接口    |  全仓  |  /linear-swap-api/v1/swap_cross_switch_lever_rate                     | POST    |     【全仓】切换杠杆         |       是          |
+交易  | 交易接口    |  全仓  |  /linear-swap-api/v1/swap_cross_order                                 | POST    |     【全仓】合约下单           |       是          |
+交易  | 交易接口    |  全仓  |  /linear-swap-api/v1/swap_cross_batchorder                            | POST    |     【全仓】合约批量下单        |       是          |
+交易  | 交易接口    |  全仓  |  /linear-swap-api/v1/swap_cross_cancel                                | POST    |     【全仓】撤销合约订单        |       是          |
+交易  | 交易接口    |  全仓  |  /linear-swap-api/v1/swap_cross_cancelall                             | POST    |     【全仓】撤销全部合约单     |       是          |
+读取  | 交易接口    |  全仓  |  /linear-swap-api/v1/swap_cross_order_info                            | POST    |     【全仓】获取用户的合约订单信息             |       是          |
+读取  | 交易接口    |  全仓  |  /linear-swap-api/v1/swap_cross_order_detail                          | POST    |     【全仓】获取用户的合约订单明细信息         |       是          |
+读取  | 交易接口    |  全仓  |  /linear-swap-api/v1/swap_cross_openorders                            | POST    |     【全仓】获取用户的合约当前未成交委托       |       是          |
+读取  | 交易接口    |  全仓  |  /linear-swap-api/v1/swap_cross_hisorders                             | POST    |     【全仓】获取用户的合约历史委托             |       是          |
+读取  | 交易接口    |  全仓  |  /linear-swap-api/v1/swap_cross_matchresults                          | POST    |     【全仓】获取用户的合约历史成交记录         |       是          |
+交易  | 交易接口    |  全仓  |  /linear-swap-api/v1/swap_cross_lightning_close_position              | POST    |     【全仓】合约闪电平仓下单           |       是          |
+交易  | 交易接口    |  全仓  |  /linear-swap-api/v1/swap_cross_trigger_order                         | POST    |     【全仓】合约计划委托下单           |       是          |
+交易  | 交易接口    |  全仓  |  /linear-swap-api/v1/swap_cross_trigger_cancel                        | POST    |     【全仓】合约计划委托撤单           |       是          |
+交易  | 交易接口    |  全仓  |  /linear-swap-api/v1/swap_cross_trigger_cancelall                     | POST    |     【全仓】合约计划委托全部撤单       |       是          |
+读取  | 交易接口    |  全仓  |  /linear-swap-api/v1/swap_cross_trigger_openorders                    | POST    |     【全仓】获取计划委托当前委托       |       是          |
+读取  | 交易接口    |  全仓  |  /linear-swap-api/v1/swap_cross_trigger_hisorders                     | POST    |     【全仓】获取计划委托历史委托       |       是          |
+交易  | 账户接口    |  通用  |  https://api.huobi.pro/v2/account/transfer                         | POST   |      【通用】现货-USDT本位永续账户间进行资金的划转              |     是        |
 
 ## 访问地址
 
@@ -1692,15 +1692,26 @@ WS订阅私有账户，订单，仓位时，请注意也要定时维护好心跳
 
 1032代表您的访问次数超出限制，币本位永续合约、交割合约、期权合约和USDT本位永续合约都分开限制频率，请查看合约交易接入说明中的访问次数限制，并且可以在api接口response中的header打印当前的频率限制次数来看是否超出限制频率。建议加大请求间隔延时避免超出限制频率。
 
+## 全仓模式和逐仓模式的区别与使用
+
+1、全仓模式下，全仓账户中的USDT会为每个品种合约的仓位提供担保，即全仓下所有品种合约的仓位共享一个账户权益，账户中的盈亏、占用担保资产、担保资产率等数据合并计算；逐仓模式下，USDT本位永续合约各品种合约的账户权益单独计算各品种合约下的仓位担保资产，盈亏互不影响。
+
+2、全仓模式与逐仓模式使用不同的保证金账户，资产互相独立，可同时进行两个模式的交易，也可同时拥有两个模式的仓位。例如在BTC-USDT合约市场下，全仓模式交易的保证金账户为USDT，而逐仓模式交易的保证金账户为BTC-USDT。
+
+3、API用户可通过API接口【获取合约信息：linear-swap-api/v1/swap_contract_info】的support_margin_mode字段（合约支持的保证金模式），来查看合约是否支持全仓模式或逐仓模式。
+
+4、API接口分为三种模式类型，【全仓】、【逐仓】和【通用】，这三个模式类型标注在API接口名称以及接口列表上。其中【全仓】表示该API接口仅支持全仓模式使用，【逐仓】表示该API接口仅支持逐仓模式调用，【通用】则表示该API接口不区分全仓和逐仓，即逐仓模式和全仓模式均可调用。
+
 ## 如何更有效的解决问题
 
   您在反馈API错误时，需要附上您的请求URL，请求request的原始的完整body以及完整请求URL参数，服务器的回复response的原始完整log。如果是websocket订阅，需要您提供订阅的地址，订阅的主题，server推送的原始完整log。
 
   如果是订单相关问题，在使用API订单查询接口linear-swap-api/v1/swap_order_info请求后保留返回的完整log，并提供您的UID以及订单号。
 
+
 # 合约市场行情接口
 
-## 获取合约信息 
+## 【通用】获取合约信息 
 
 ###  示例
 
@@ -1761,7 +1772,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_contract_info?contract_code=B
 | \</data\>   |      |         |        |       |
 | ts     | true | long    | 响应生成时间点，单位：毫秒    |     |   
 
-## 获取合约指数信息
+## 【通用】获取合约指数信息
 
 ###  示例
 
@@ -1811,7 +1822,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_index?contract_code=BTC-USDT"
 | \</data\>   |      |         |        |                |
 | ts   | true | long    | 时间戳，单位：毫秒     |                |
 
-## 获取合约最高限价和最低限价
+## 【通用】获取合约最高限价和最低限价
 
 ###  示例
 
@@ -1862,8 +1873,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_price_limit?contract_code=BTC
 | \<data\>   |      |         |     |   |
 | ts                   | true | long    | 响应生成时间点，单位：毫秒 |  |
 
-
-## 获取当前可用合约总持仓量 
+## 【通用】获取当前可用合约总持仓量 
 
 ###  示例
 
@@ -1922,7 +1932,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_open_interest?contract_code=B
 - 持仓量（币）= 持仓量（张）*合约面值
 - 总持仓额 = 持仓量（张）* 合约面值 * 最新价 
 
-## 获取行情深度数据
+## 【通用】获取行情深度数据
 
 ###  示例
 
@@ -2032,8 +2042,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/depth?contract_code=BTC-USDT&ty
 |step14、step12|1|
 |step15、step13|10|
 
-
-## 获取K线数据
+## 【通用】获取K线数据
 
 ###  示例
 
@@ -2127,8 +2136,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/kline?contract_code=BTC
 | status | true | string | 请求处理结果                          | "ok" , "error" |
 | ts     | true | long | 响应生成时间点，单位：毫秒                   |                |
 
-
-## 获取聚合行情
+## 【通用】获取聚合行情
 
 ###  示例
 
@@ -2214,16 +2222,16 @@ curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC
 | bid   | true | array | [买1价,买1量(张)] |                |
 | open     | true | string | 开盘价     |                |
 | close     | true | string | 收盘价,当K线为最晚的一根时，是最新成交价       |                |
-| count     | true | decimal | 成交笔数（最近24（当前时间-24小时）小时成交笔数）       |                |
+| count     | true | decimal | 成交笔数（当前时间-24小时）小时成交笔数）       |                |
 | high   | true | string | 最高价                                    |                |
 | low   | true | string | 最低价  |                |
 | vol   | true | string | 成交量（张），买卖双边成交量之和 （最近24（当前时间-24小时）小时成交量张）      |                |
-| trade_turnover     | true | string | 成交额，即 sum（每一笔成交张数 \* 合约面值 \* 成交价格）（最近24（当前时间-24小时）小时成交额）       |                |
+| trade_turnover     | true | string | 成交额，即 sum（每一笔成交张数 \* 合约面值 \* 成交价格）（当前时间-24小时）小时成交额）       |                |
 | ts   | true | long | 时间戳   |                |
 | \</tick\>            |      |        |               |                |
 | ts     | true | long | 响应生成时间点，单位：毫秒                            |                |
 
-## 获取市场最近成交记录
+## 【通用】获取市场最近成交记录
 
 ###  示例
 
@@ -2307,9 +2315,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
 | \</tick\>    |  |  |              |      |
 | ts     | true | long | 发送时间       |      |
 
-
-
-## 批量获取最近的交易记录
+## 【通用】批量获取最近的交易记录
 
 ###  示例
 
@@ -2396,8 +2402,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
 | status | true | string |                                          | "ok"，"error" |
 | ts     | true | long | 响应生成时间点，单位：毫秒                            |              |
 
-
-## 查询合约风险准备金余额和预估分摊比例
+## 【通用】查询合约风险准备金余额和预估分摊比例
 
 - GET `linear-swap-api/v1/swap_risk_info`
 
@@ -2446,7 +2451,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_risk_info?contract_code=BTC-U
 | contract_code             | true | string  | 合约代码          | "BTC-USDT" ... |
 | \</data\>          |      |         |               |                |
 
-## 查询合约风险准备金余额历史数据
+## 【通用】查询合约风险准备金余额历史数据
 
 - GET `linear-swap-api/v1/swap_insurance_fund`
 
@@ -2509,7 +2514,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_insurance_fund?contract_code=
 |total_size|	true	|int	|总条数| |
 | \</data\>      |      |         |               |                |
 
-## 查询平台阶梯调整系数
+## 【逐仓】查询平台阶梯调整系数
 
 - GET `linear-swap-api/v1/swap_adjustfactor`
 
@@ -2592,8 +2597,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_adjustfactor?contract_code=BT
 | \</tick\>         |      |         |         |                |
 | \</data\>         |      |         |        |                |
 
-
-## 查询平台阶梯调整系数（全仓模式）
+## 【全仓】查询平台阶梯调整系数
 
  - GET `linear-swap-api/v1/swap_cross_adjustfactor`
 
@@ -2682,8 +2686,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_adjustfactor?contract_code=BT
 | \</list\>         |      |         |         |                |
 | \</data\>         |      |         |        |                |
 
-
-## 平台持仓量的查询
+## 【通用】平台持仓量的查询
 
 ### 实例
 
@@ -2751,7 +2754,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_his_open_interest?contract_co
 - 总持仓额 = 持仓量（张）* 合约面值 * 最新价 
 - tick字段：数组内的数据按照时间倒序排列；
 
-## 精英账户多空持仓对比-账户数
+## 【通用】精英账户多空持仓对比-账户数
 
 - GET `linear-swap-api/v1/swap_elite_account_ratio`
 
@@ -2811,8 +2814,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_elite_account_ratio?contract_
 | \</list\>         |      |         |         |                |
 | \</data\>         |      |         |        |                |
 
-
-## 精英账户多空持仓对比-持仓量
+## 【通用】精英账户多空持仓对比-持仓量
 
 - GET `linear-swap-api/v1/swap_elite_position_ratio`
 
@@ -2870,7 +2872,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_elite_position_ratio?contract
 | \</list\>         |      |         |         |                |
 | \</data\>         |      |         |        |                |
 
-## 查询系统状态
+## 【逐仓】查询系统状态
 
 - GET `linear-swap-api/v1/swap_api_state`
 
@@ -2948,8 +2950,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_api_state?contract_code=BTC-U
 | transfer_inner_out       | true | int | 同账号不同保证金账户划转的转出权限："1"表示可用，“0”表示不可用         |         |
 | \</data\>            |      |        |               |                |
 
-
-## 查询系统划转权限（全仓模式）
+## 【全仓】查询系统划转权限
 
  - GET `linear-swap-api/v1/swap_cross_transfer_state`
 
@@ -3009,8 +3010,9 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_api_state?contract_code=BTC-U
 | transfer_inner_out       | true | int | 同账号不同保证金账户划转的转出权限："1"表示可用，“0”表示不可用         |         |
 | \</data\>            |      |        |               |                |
 
-        
-## 查询系统交易权限（全仓模式）
+      
+
+## 【全仓】查询系统交易权限
 
  - GET `linear-swap-api/v1/swap_cross_trade_state`
 
@@ -3061,8 +3063,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_api_state?contract_code=BTC-U
 | cancel       | true | int | 撤单权限："1"表示可用，“0”表示不可用         |    |
 | \</data\>            |      |        |               |                |       
 
-
-## 获取合约的资金费率
+## 【通用】获取合约的资金费率
 
 - GET `linear-swap-api/v1/swap_funding_rate`
 
@@ -3116,8 +3117,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_funding_rate?contract_code=BT
 | next_funding_time        | true | string | 下一期资金费率时间         |                |
 | \</data\>         |      |         |        |                |
 
-
-## 获取合约的历史资金费率
+## 【通用】获取合约的历史资金费率
 
 - GET `linear-swap-api/v1/swap_historical_funding_rate`
 
@@ -3186,8 +3186,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_historical_funding_rate?contr
 | total_size        | true | int | 总条数   |                |
 | \</data\>         |      |         |        |                |
 
-
-## 获取强平订单
+## 【通用】获取强平订单
 
 - GET `linear-swap-api/v1/swap_liquidation_orders`
 
@@ -3262,7 +3261,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
 | total_size        | true | int | 总条数   |                |
 | \</data\>         |      |         |        |                |
 
-## 查询平台历史结算记录
+## 【通用】查询平台历史结算记录
 
 - GET `/linear-swap-api/v1/swap_settlement_records`
 
@@ -3323,7 +3322,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
 | total_size        | true | int | 总条数   |                |
 | \</data\>         |      |         |        |                |
 
-## 获取合约的溢价指数K线
+## 【通用】获取合约的溢价指数K线
 
 - GET `/index/market/history/linear_swap_premium_index_kline`
 
@@ -3388,8 +3387,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_premium_index_kline?
 | status | true | string | 请求处理结果                          | "ok" , "error" | 
 | ts     | true | long | 响应生成时间点，单位：毫秒                   |                | 
 
-
-## 获取实时预测资金费率的K线数据
+## 【通用】获取实时预测资金费率的K线数据
 
 - GET `/index/market/history/linear_swap_estimated_rate_kline`
 
@@ -3453,8 +3451,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_estimated_rate_kline
 | status | true | string | 请求处理结果                          | "ok" , "error" | |
 | ts     | true | long | 响应生成时间点，单位：毫秒                   |                | |
 
-
-## 获取基差数据
+## 【通用】获取基差数据
 
 - GET `index/market/history/linear_swap_basis`
 
@@ -3512,10 +3509,9 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | status | true | string | 请求处理结果                          | "ok" , "error" | |
 | ts | true  | long | 生成时间 |  |
 
-
 # 合约资产接口
 
-## 获取用户账户信息
+## 【逐仓】获取用户账户信息
 
 ###  示例
 
@@ -3588,10 +3584,9 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | margin_account       | true | string | 保证金账户  | 比如“BTC-USDT” |
 | \</data\>            |        |         |                      |                |
 
+## 【全仓】获取用户账户信息
 
-##  获取用户账户信息（全仓模式）
-
- - PSOT `linear-swap-api/v1/swap_cross_account_info`
+ - POST `linear-swap-api/v1/swap_cross_account_info`
 
 #### 备注
  - 该接口仅支持全仓模式。
@@ -3683,11 +3678,11 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | \</data\>            |        |         |                      |                |
  
 
-## 获取用户持仓信息
+## 【逐仓】获取用户持仓信息
 
 ###  示例
 
-- POST `linear-swap-api/v1/swap_position_info`
+- POST `linear-swap-api/v1/swap_position_info`
 
 #### 备注
  - 该接口仅支持逐仓模式。
@@ -3760,7 +3755,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 - 如果有某个品种在结算中，不带请求参数去查询持仓，会返回错误码1080(1080  In settlement or delivery. Unable to get positions of some contracts.)。建议您带上请求参数去查询持仓，避免报错查询不到持仓。
 
-## 获取用户持仓信息（全仓模式）
+## 【全仓】获取用户持仓信息
 
  - POST `linear-swap-api/v1/swap_cross_position_info`
 
@@ -3829,8 +3824,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | last_price           | true | decimal | 最新价              |                                          |
 | \</data\>            |      |         |      |              |
 
-
-## 查询用户账户和持仓信息
+## 【逐仓】查询用户账户和持仓信息
 
 - post `linear-swap-api/v1/swap_account_position_info`
   
@@ -3944,7 +3938,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | \</positions\>            |        |         |                      |                |
 | \</data\>            |        |         |                      |                |
 
-## 查询用户账户和持仓信息（全仓模式）
+## 【全仓】查询用户账户和持仓信息
 
  - POST `linear-swap-api/v1/swap_cross_account_position_info`
 
@@ -4094,8 +4088,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | \</positions\>            |        |         |                      |                |
 | \</data\>            |        |         |                      |                |
 
-
-## 查询母账户下所有子账户资产信息
+## 【逐仓】查询母账户下所有子账户资产信息
 
 - POST `linear-swap-api/v1/swap_sub_account_list`
 
@@ -4159,7 +4152,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
   - 只返回已经开通合约交易的子账户数据.
 
-##  查询母账户下所有子账户资产信息（全仓模式）    
+## 【全仓】查询母账户下所有子账户资产信息   
 
  - POST `linear-swap-api/v1/swap_cross_sub_account_list`
 
@@ -4217,8 +4210,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
  - 只返回已经开通合约交易的子账户数据.   
 
-
-## 查询单个子账户资产信息
+## 【逐仓】查询单个子账户资产信息
 
 - POST ` linear-swap-api/v1/swap_sub_account_info`
 
@@ -4294,7 +4286,8 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
   - 只能查询到开通合约交易的子账户信息；
   
-##  查询单个子账户资产信息（全仓模式）
+  
+## 【全仓】查询单个子账户资产信息
 
   - POST `linear-swap-api/v1/swap_cross_sub_account_info`  
     
@@ -4396,7 +4389,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
   - 子账户来过合约系统但是未开通合约交易也不返回对应的数据；
  
 
-## 查询单个子账户持仓信息
+## 【逐仓】查询单个子账户持仓信息
 
 - POST `linear-swap-api/v1/swap_sub_position_info`
 
@@ -4468,7 +4461,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | margin_account | true | string | 保证金账户  | 比如“BTC-USDT” |
 | \</data\>       |      |         |               |                                          |
 
-## 查询单个子账户持仓信息（全仓模式）
+## 【全仓】查询单个子账户持仓信息
 
  - POST `linear-swap-api/v1/swap_cross_sub_position_info`
 
@@ -4539,8 +4532,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | last_price           | true | decimal | 最新价              |                                          |
 | \</data\>            |      |         |      |              |
 
-
-## 查询用户财务记录
+## 【通用】查询用户财务记录
 
 - POST `linear-swap-api/v1/swap_financial_record`
 
@@ -4730,8 +4722,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
  
  -->
 
-
-## 查询用户可用杠杆倍数
+## 【逐仓】查询用户可用杠杆倍数
 
 - POST `linear-swap-api/v1/swap_available_level_rate`
 
@@ -4774,8 +4765,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | \</data\> |  |  |  |  |
 | ts | true  | long | 响应生成时间点，单位：毫秒 |  |
 
-
-## 查询用户可用杠杆倍数（全仓模式）
+## 【全仓】查询用户可用杠杆倍数
 
  - POST `linear-swap-api/v1/swap_cross_available_level_rate`
 
@@ -4818,8 +4808,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | \</data\> |  |  |  |  |
 | ts | true  | long | 响应生成时间点，单位：毫秒 |  |
 
-
-## 查询用户当前的下单量限制
+## 【通用】查询用户当前的下单量限制
 
 - POST `linear-swap-api/v1/swap_order_limit`
 
@@ -4871,7 +4860,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
  \</list\>  |  |  |  |  |
  \</dict\> |  |  |  |  |
 
-## 查询用户当前的手续费费率
+## 【通用】查询用户当前的手续费费率
 
 - POST `linear-swap-api/v1/swap_fee`
 
@@ -4922,8 +4911,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | fee_asset    | true | string | 手续费币种   |    "USDT"...    |
 | \</data\>       |      |        |                 |                |
 
-
-## 查询用户当前的划转限制
+## 【逐仓】查询用户当前的划转限制
 
 - POST `linear-swap-api/v1/swap_transfer_limit`
 
@@ -4984,8 +4972,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | net_transfer_out_max_daily | true | decimal | 单日累计最大净转出量    |                |
 | \</data\>                  |      |         |               |                |
 
-
-## 查询用户当前的划转限制（全仓模式）
+## 【全仓】查询用户当前的划转限制
 
  - POST `linear-swap-api/v1/swap_cross_transfer_limit`
 
@@ -5042,8 +5029,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | net_transfer_out_max_daily | true | decimal | 单日累计最大净转出量    |                |
 | \</data\>                  |      |         |               |                |
 
-
-## 用户持仓量限制的查询
+## 【逐仓】用户持仓量限制的查询
 
 - post `linear-swap-api/v1/swap_position_limit`
 
@@ -5090,8 +5076,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | sell_limit    | true | decimal | 合约空仓持仓的最大值，单位为张 |                                          |
 | \</data\>     |      |         |                 |   |
 
-
-## 用户持仓量限制的查询（全仓模式）
+## 【全仓】用户持仓量限制的查询
 
  - POST `linear-swap-api/v1/swap_cross_position_limit`
 
@@ -5145,8 +5130,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | sell_limit    | true | decimal | 合约空仓持仓的最大值，单位为张 |                                          |
 | \</data\>     |      |         |                 |   |
 
-
-## 母子账户划转
+## 【通用】母子账户划转
 
 - post `linear-swap-api/v1/swap_master_sub_transfer`
 
@@ -5159,12 +5143,13 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | ------ | ----- | ------ | ---- | ---------------------------- |
 | sub_uid | true | long | 子账号uid   |  |
 | asset | true | string | 币种	 |  "USDT"... |
-| from_margin_account | true | string | 转出的保证金账户	 |  "BTC-USDT"... |
-| to_margin_account | true | string | 转入的保证金账户	 |  "BTC-USDT"... |
+| from_margin_account | true | string | 转出的保证金账户	 |  "BTC-USDT"，"USDT"... |
+| to_margin_account | true | string | 转入的保证金账户	 |  "BTC-USDT"，"USDT"... |
 | amount | true | decimal | 划转金额 ||
 | type | true | string | 划转类型 | master_to_sub：母账户划转到子账户， sub_to_master：子账户划转到母账户 |
 
 #### 备注：
+ - 当from_margin_account或to_margin_account 为USDT时，代表是从全仓保证金中转入或划出。
  - 从转出的保证金账户划转到转入的保证金账户，币种必须为转出的保证金账户的计价币种；
  - 转出的保证金账户与转入的保证金账户的计价币种必须一致（如BTC-USDT可以划转USDT到ETH-USDT，而没办法划转到ETH-HUSD）.
  - 母账户与每个子账户相互划转限频10次/分钟。
@@ -5192,7 +5177,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | order_id        | true | string  | 划转订单ID            |  |
 | \</data\>     |      |         |         |   |
 
-## 获取母账户下的所有母子账户划转记录
+## 【通用】获取母账户下的所有母子账户划转记录
 
 - post `linear-swap-api/v1/swap_master_sub_transfer_record`
 
@@ -5203,7 +5188,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 | 参数名称   | 是否必须  | 类型     | 描述   | 取值范围      |
 | ------ | ----- | ------ | ---- | ---------------------------- |
-| margin_account | true | string | 保证金账户	 |  "BTC-USDT"... |
+| margin_account | true | string | 保证金账户	 |  "BTC-USDT"，"USDT"... |
 | transfer_type | false | string | 划转类型，不填查询全部类型,【查询多类型中间用，隔开】 | 34:转出到子账号合约账户;  35:从子账号合约账户转入; |
 | create_date | true | int | 日期 | 可随意输入正整数，如果参数超过90则默认查询90天的数据 |
 | page_index | false | int | 页码，不填默认第1页 | 1 |
@@ -5262,7 +5247,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | total_size        | true | int  | 总条数            |  |
 | \</data\>     |      |         |         |   |
 
-## 同账号不同保证金账户的划转
+## 【通用】同账号不同保证金账户的划转
 
 - post `linear-swap-api/v1/swap_transfer_inner`
 
@@ -5274,11 +5259,12 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | asset | true | string | 币种	 |  "USDT"... |
-| from_margin_account | true | string | 转出的保证金账户	 |  "BTC-USDT"... |
-| to_margin_account | true | string | 转入的保证金账户	 |  "ETH-USDT"... |
+| from_margin_account | true | string | 转出的保证金账户	 |  "BTC-USDT"，"USDT"... |
+| to_margin_account | true | string | 转入的保证金账户	 |  "ETH-USDT"，"USDT"... |
 | amount | true | decimal | 划转数额（单位为合约的计价币种）	 |  |
 
 #### **备注：**
+- 当from_margin_account或to_margin_account 为USDT时，代表是从全仓保证金中转入或划出。
 - 从转出的保证金账户划转到转入的保证金账户，划转的币种必须为转出的保证金账户的计价币种；
 - 转出的保证金账户与转入的保证金账户的计价币种必须一致（如BTC-USDT可以划转USDT到ETH-USDT，而没办法划转到ETH-HUSD）。
 - 此接口的访问频次的限制为1分钟10次。
@@ -5306,8 +5292,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | \</data\> |  |  |  |  |
 | ts | true  | long | 响应生成时间点，单位：毫秒 |  |
 
-
-## 获取用户的API指标禁用信息
+## 【通用】获取用户的API指标禁用信息
 
 - get `linear-swap-api/v1/swap_api_trading_status`
 
@@ -5383,11 +5368,9 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | \</TDN\>     |      |         |         |   |
 | \</data\>     |      |         |         |   |
 
-
-
 # 合约交易接口
 
-## 合约下单 
+## 【逐仓】合约下单 
 
 ###  示例
 
@@ -5456,7 +5439,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 #### 备注
  - order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。
 
-## 合约下单（全仓模式）
+## 【全仓】合约下单
 
  - POST `linear-swap-api/v1/swap_cross_order`
 
@@ -5521,8 +5504,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。
 
-
-## 合约批量下单 
+## 【逐仓】合约批量下单 
 
 ###  示例
 
@@ -5591,7 +5573,7 @@ orders_data  | List\<Object\>   |    |    |
 | 参数名称                    | 是否必须 | 类型     | 描述                     | 取值范围           |
 | ----------------------- | ---- | ------ | ---------------------- | -------------- |
 | status                  | true | string | 请求处理结果                 | "ok" , "error" |
-| \<data\> |    true  |   object      |                        |                |
+| \<data\> |    true  |   object array     |                        |                |
 | \<errors\> |    true  |   object array     |                        |                |
 | index                   | true | int    | 订单索引                   |                |
 | err_code                | true | int    | 错误码                    |                |
@@ -5609,7 +5591,7 @@ orders_data  | List\<Object\>   |    |    |
 ### 备注
  - order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。
 
-## 合约批量下单（全仓模式） 
+## 【全仓】合约批量下单 
 
  - POST `linear-swap-api/v1/swap_cross_batchorder`
 
@@ -5687,8 +5669,7 @@ orders_data  | List\<Object\>   |    |    |
 
  - order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和javascript里面JSON.parse默认是int，超过18位的数字用json-bigint的包解析。
 
-
-## 撤销订单 
+## 【逐仓】撤销订单 
 
 ###  示例
 
@@ -5737,18 +5718,17 @@ order_id和client_order_id都可以用来撤单，同时只可以设置其中一
 参数名称  |  是否必须  |  类型  |  描述  |  取值范围  |
 ---------------------------- | -------------- | ---------- | -------------------------------------------------- | ---------------- |
 status  |  true  |  string  |  请求处理结果  | "ok" , "error"  | 
-\<data\>  | true |  object  |    |    |  
-\<errors\>  | true  | object array   |    |    |  
+\<data\>(属性名称: data)  |    |    |    |    |  
+\<list\>(属性名称: errors)  |    |    |    |    |  
 order_id  |    true  |  string  |  订单ID  |    |   
 err_code  |   true  |  int  |   错误码  |    |   
 err_msg  |  true  |  string  |  错误信息  |    | 
-\</errors\>  |    |    |    |    |
+\</list\>  |    |    |    |    |
 successes  |   true  |  string  |  撤销成功的订单的order_id或client_order_id列表  |   |
 \</data\>  |    |    |    |    |
 ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |   |
 
-
-## 撤销订单（全仓模式）
+## 【全仓】撤销订单
 
  - POST `linear-swap-api/v1/swap_cross_cancel`
 
@@ -5794,7 +5774,7 @@ ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |   |
 | 参数名称                   | 是否必须 | 类型     | 描述                                 | 取值范围           |
 | ---------------------- | ---- | ------ | ---------------------------------- | -------------- |
 | status                 | true | string | 请求处理结果                             | "ok" , "error" |
-| \<data\> |  true    |   object       |        |    |
+| \<data\> |  true    |   object array      |        |    |
 | \<errors\>|  true    | object array       |                                    |                |
 | order_id               | true | string | 订单ID                               |                |
 | err_code               | true | int    | 错误码                                |                |
@@ -5804,8 +5784,7 @@ ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |   |
 | \</data\>        |      |         |        |         |
 | ts                     | true | long   | 响应生成时间点，单位：毫秒                      |                |
 
-
-## 全部撤单 
+## 【逐仓】全部撤单 
 
 ###  示例
 
@@ -5840,17 +5819,17 @@ ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |   |
 参数名称  |  是否必须   |  类型  |  描述  |  取值范围  |
 ---------------------------- | -------------- | ---------- | ---------------------------- | ---------------- |
 status  |  true  |  string  |  请求处理结果  | "ok" , "error"  | 
-\<data\>  |  true  | object   |    |    |
-\<errors\> |  true  | object array   |    |    |
+\<data\>(属性名称: data)  |    |    |    |    |
+\<list\>(属性名称: errors)  |    |    |    |    |
 order_id  |    true  |  string  |  订单id  |   | 
 err_code  |    true  |  int  |   订单失败错误码  |   |   
 err_msg  |  true  |  string  |   订单失败信息  |    | 
-\</errors\>    |    |    |    |    |
+\</list\>    |    |    |    |    |
 successes  |    true  |  string  |  成功的订单  |    |   
 \</data\>    |    |    |    |    |
 ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   | 
 
-## 全部撤单（全仓模式）
+## 【全仓】全部撤单
 
  - POST `linear-swap-api/v1/swap_cross_cancelall`
 
@@ -5882,7 +5861,7 @@ ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   |
 | 参数名称                   | 是否必须 | 类型     | 描述            | 取值范围           |
 | ---------------------- | ---- | ------ | ------------- | -------------- |
 | status                 | true | string | 请求处理结果        | "ok" , "error" |
-| \<data\> |  true    |   object       |        |    |
+| \<data\> |  true    |   object array      |        |    |
 | \<errors\> |  true    | object array       |               |                |
 | order_id               | true | String | 订单id          |                |
 | err_code               | true | int    | 订单失败错误码       |                |
@@ -5892,13 +5871,12 @@ ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   |
 | \</data\>        |      |         |        |         |
 | ts                     | true | long   | 响应生成时间点，单位：毫秒 |                |
 
-
-## 切换杠杆
+## 【逐仓】切换杠杆
 
 - POST `/linear-swap-api/v1/swap_switch_lever_rate`
 
 #### 备注
- - 该接口仅支持逐仓模式。
+- 该接口仅支持逐仓模式。
 
 - 只有在单个品种下只有持仓，且没有挂单的场景下，才可以切换该品种当前的倍数。
 
@@ -5947,7 +5925,7 @@ ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   |
 | err_msg| false| string | 错误信息| |
 | ts                     | true | long    | 时间戳                |                                          |
 
-## 切换杠杆（全仓模式）
+## 【全仓】切换杠杆
 
  - POST `linear-swap-api/v1/swap_cross_switch_lever_rate`
 
@@ -5995,8 +5973,7 @@ ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   |
 |err-msg| false| string | 错误信息| |
 | ts                     | true | long    | 时间戳                |                                          |
 
-
-## 获取合约订单信息
+## 【逐仓】获取合约订单信息
 
 ###  示例
 
@@ -6099,9 +6076,9 @@ ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   |
 | \</data\>        |      |         |        |         |
 | ts                   | true | long    | 时间戳    |      |
 
-## 获取合约订单信息（全仓模式）
+## 【全仓】获取合约订单信息
 
- - PSOT `linear-swap-api/v1/swap_cross_order_info`
+ - POST `linear-swap-api/v1/swap_cross_order_info`
 
 #### 备注
  - 该接口仅支持全仓模式。
@@ -6196,8 +6173,7 @@ ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   |
 | \</data\>        |      |         |        |         |
 | ts                   | true | long    | 时间戳    |      |
 
-
-## 获取订单明细信息
+## 【逐仓】获取订单明细信息
 
 ###  示例
 
@@ -6339,7 +6315,7 @@ created_at禁止传0。
 | \</data\>            |      |         |             |         |
 | ts                      | true | long    | 时间戳         |      |
 
-## 获取订单明细信息（全仓模式）
+## 【全仓】获取订单明细信息
 
  - POST `linear-swap-api/v1/swap_cross_order_detail`
 
@@ -6466,8 +6442,7 @@ created_at禁止传0。
 | \</data\>            |      |         |             |         |
 | ts                      | true | long    | 时间戳         |      |
 
-
-## 获取合约当前未成交委托 
+## 【逐仓】获取合约当前未成交委托 
 
 ###  示例
 
@@ -6535,7 +6510,7 @@ created_at禁止传0。
 参数名称  |   是否必须  |  类型   |  描述  |   取值范围  |
 -------------------------- | -------------- | ---------- | --------------------------------------------------------------- | ------------------------------------------------------ |
 status  |  true <img width=250/> |  string  |  请求处理结果 <img width=1000/>  | <img width=1100/>   |
-\<data\>  |  true  | object   |    |    |   
+\<dict\>(属性名称: data)  |    |    |    |    |   
 \<orders\>              |    |    |    |    |   
 symbol  |  true  |  string  |  品种代码  |    |  
 contract_code  |  true  |  string  |  合约代码  |  "BTC-USDT" ...  |
@@ -6568,10 +6543,10 @@ margin_account | true | string | 保证金账户  | 比如“BTC-USDT” |
 total_page  |  true  |  int  |   总页数  |    |
 current_page  |   true  |  int  |   当前页  |    |
 total_size  |  true  |  int  |   总条数  |    |
-\</data\>  |    |    |    |    |
+\</dict\>  |    |    |    |    |
 ts  |    true  |  long  |  时间戳  |    |
 
-## 获取合约当前未成交委托（全仓模式）
+## 【全仓】获取合约当前未成交委托
 
  - POST `linear-swap-api/v1/swap_cross_openorders`
 
@@ -6670,8 +6645,7 @@ ts  |    true  |  long  |  时间戳  |    |
 | total_size           | true | int     | 总条数                                      |                                          |
 | ts                   | true | long    | 时间戳                                      |                                          |
 
-
-## 获取合约历史委托
+## 【逐仓】获取合约历史委托
 
 - POST `linear-swap-api/v1/swap_hisorders` 
 
@@ -6777,7 +6751,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | \</data\>            |      |         |        |      |
 | ts                     | true | long    | 时间戳    |      |
 
-## 获取合约历史委托（全仓模式）
+## 【全仓】获取合约历史委托
 
  - POST `linear-swap-api/v1/swap_cross_hisorders`
 
@@ -6881,8 +6855,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | \</data\>            |      |         |        |      |
 | ts                     | true | long    | 时间戳    |      |
 
-
-## 获取历史成交记录
+## 【逐仓】获取历史成交记录
 
 - POST `linear-swap-api/v1/swap_matchresults`
 
@@ -6974,8 +6947,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 ### 备注
 - 如果不传page_index和page_size，默认只查第一页的20条数据，详情请看参数说明
 
-
-## 获取历史成交记录（全仓模式）
+## 【全仓】获取历史成交记录
 
  - POST `linear-swap-api/v1/swap_cross_matchresults`
 
@@ -7063,8 +7035,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | \</data\>            |      |         |                    |     |
 | ts                     | true | long    | 时间戳                |    |
 
-
-## 闪电平仓下单
+## 【逐仓】闪电平仓下单
 
 - POST `linear-swap-api/v1/swap_lightning_close_position`
 
@@ -7124,7 +7095,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 
 ```
 
-## 闪电平仓下单（全仓模式）
+## 【全仓】闪电平仓下单
 
  - POST `linear-swap-api/v1/swap_cross_lightning_close_position`
 
@@ -7172,8 +7143,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | client_order_id | false | int | 用户自己的订单id                     |                      |
 | </data>       |       |        |     |  |
 
-
-## 合约计划委托下单
+## 【逐仓】合约计划委托下单
 
 - POST `linear-swap-api/v1/swap_trigger_order`
 
@@ -7258,7 +7228,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 
 ```
 
-## 合约计划委托下单（全仓模式）
+## 【全仓】合约计划委托下单
 
  - POST `linear-swap-api/v1/swap_cross_trigger_order`
 
@@ -7313,8 +7283,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | order_id_str |  true  | string | 字符串类型的订单ID   | |
 | \</data\> |   | |  | |
 
-
-## 合约计划委托撤单
+## 【逐仓】合约计划委托撤单
 
 - POST `linear-swap-api/v1/swap_trigger_cancel`
 
@@ -7366,7 +7335,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | \</data\> |   | |  | |
 | ts                         | true         | long     | 响应生成时间点，单位：毫秒 |  |
 
-## 合约计划委托撤单（全仓模式）
+## 【全仓】合约计划委托撤单
 
  - POST `linear-swap-api/v1/swap_cross_trigger_cancel`
 
@@ -7414,8 +7383,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | \</data\> |   | |  | |
 | ts                         | true         | long     | 响应生成时间点，单位：毫秒 |  |
 
-
-## 合约计划委托全部撤单
+## 【逐仓】合约计划委托全部撤单
 
 - POST `linear-swap-api/v1/swap_trigger_cancelall`
 
@@ -7471,7 +7439,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 
 ```
 
-## 合约计划委托全部撤单（全仓模式）
+## 【全仓】合约计划委托全部撤单
 
  - POST `linear-swap-api/v1/swap_cross_trigger_cancelall`
 
@@ -7512,8 +7480,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | \</data\> |   | |  | |
 | ts                         | true         | long     | 响应生成时间点，单位：毫秒 |  |
 
-
-## 获取计划委托当前委托
+## 【逐仓】获取计划委托当前委托
 
 - POST `linear-swap-api/v1/swap_trigger_openorders`
 
@@ -7599,8 +7566,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | \</data\> |   | |  | |
 | ts                         | true         | long     | 响应生成时间点，单位：毫秒 |  |
 
-
-## 获取计划委托当前委托（全仓模式）
+## 【全仓】获取计划委托当前委托
 
  - POST `linear-swap-api/v1/swap_cross_trigger_openorders`
 
@@ -7683,8 +7649,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | \</data\> |   | |  | |
 | ts                         | true         | long     | 响应生成时间点，单位：毫秒 |  |
 
-
-## 获取计划委托历史委托
+## 【逐仓】获取计划委托历史委托
 
 - POST `linear-swap-api/v1/swap_trigger_hisorders`
 
@@ -7791,8 +7756,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | \</data\> |   | |  | |
 | ts                         | true         | long     | 响应生成时间点，单位：毫秒 |  |
 
-
-## 获取计划委托历史委托（全仓模式）
+## 【全仓】获取计划委托历史委托
 
  - POST `linear-swap-api/v1/swap_cross_trigger_hisorders`
 
@@ -7900,7 +7864,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 
 # USDT本位永续合约划转接口
 
-## 现货-USDT本位永续账户间进行资金的划转
+## 【通用】现货-USDT本位永续账户间进行资金的划转
 
 ### 实例
 
@@ -7926,7 +7890,10 @@ from  |    true  |  string  |  来源业务线账户，取值：spot(币币)、l
 to  |    true  |  string  |  目标业务线账户，取值：spot(币币)、linear-swap(USDT本位永续合约)  | e.g. linear-swap  |
 currency  |    true  |  string  |  币种,支持大小写  |   e.g. usdt  |
 amount  |   true  |  decimal  |   划转金额  |      |
-margin-account  |   true  |  string  |   保证金账户	  | e.g. btc-usdt、eth-usdt     |
+margin-account  |   true  |  string  |   保证金账户	  | e.g. btc-usdt、eth-usdt、USDT     |
+
+#### 备注
+- 当"margin-account"为USDT时，表示从全仓账户划出或转入。
 
 > Response:
 
@@ -8035,38 +8002,37 @@ message |    true  |   string    |   响应信息	 |   |
 
 ## 接口列表
 
-
-| 权限类型  |   接口数据类型   |  请求方法   |  类型    |  描述                     |  需要验签       |    
------------ | ------------------ | ------------------ |---------- |---------------------------- |--------------|
-| 读取    |  市场行情接口 | market.$contract_code.kline.$period                    | sub  | 订阅 KLine 数据               |       否      |
-| 读取    |  市场行情接口 | market.$contract_code.kline.$period                    | req  | 请求 KLine 数据               |       否      |
-| 读取    |  市场行情接口 | market.$contract_code.depth.$type                      | sub  | 订阅 Market Depth 数据        |       否      |
-| 读取    |  市场行情接口 | market.$contract_code.depth.size_${size}.high_freq     | sub  | 订阅 Market Depth增量推送数据 |       否      |
-| 读取    |  市场行情接口 | market.$contract_code.bbo                              | sub  | 买一卖一逐笔行情推送         |       否      |
-| 读取    |  市场行情接口 | market.$contract_code.detail                           | sub  | 订阅 Market detail 数据       |       否      |
-| 读取    |  市场行情接口 | market.$contract_code.trade.detail                     | req  | 请求 Trade detail 数据        |       否      |
-| 读取    |  市场行情接口 | market.$contract_code.trade.detail                     | sub  | 订阅 Trade Detail 数据        |       否      |
-| 读取    |  指数与基差接口 | market.$contract_code.index.$period                    | sub  | 订阅指数K线数据                  |       否      |
-| 读取    |  指数与基差接口 | market.$contract_code.index.$period                    | req  | 请求指数K线数据                  |       否      |
-| 读取    |  指数与基差接口 | market.$contract_code.basis.$period.$basis_price_type  | sub  | 订阅基差数据                  |       否      |
-| 读取    |  指数与基差接口 | market.$contract_code.basis.$period.$basis_price_type  | req  | 请求基差数据                  |       否      |
-| 读取    |  指数与基差接口 | market.$contract_code.premium_index.$period            | sub  | 订阅溢价指数K线数据           |       否      |
-| 读取    |  指数与基差接口 | market.$contract_code.premium_index.$period            | req  | 请求溢价指数K线数据           |       否      |
-| 读取    |  指数与基差接口 | market.$contract_code.estimated_rate.$period           | sub  | 订阅预测资金费率K线数据       |       否      |
-| 读取    |  指数与基差接口 | market.$contract_code.estimated_rate.$period           | req  | 请求预测资金费率K线数据       |       否      |
-| 读取    |  交易接口 | public.$contract_code.liquidation_orders               | sub  | 订阅强平订单数据（免鉴权）    |       否      |
-| 读取    |  交易接口 | public.$contract_code.funding_rate                     | sub  | 订阅资金费率变动数据（免鉴权）|       否      |
-| 读取    |  交易接口 | public.$contract_code.contract_info                    | sub  | 订阅合约信息变动数据（免鉴权）|       否      |
-| 读取    |  交易接口	 | orders.$contract_code                                  | sub  | 订阅订单成交数据              |    是       |
-| 读取    |  资产接口	 | accounts.$contract_code                                | sub  | 订阅资产变动数据              |    是       |
-| 读取    |  资产接口	 | positions.$contract_code                               | sub  | 订阅持仓变动更新数据          |    是       |
-| 读取    |  交易接口	 | matchOrders.$contract_code                             | sub  | 订阅撮合订单成交数据          |    是       |
-| 读取    |  交易接口	 | trigger_order.$contract_code                             | sub  | 订阅计划委托订单更新ws推送   |    是       |
-| 读取    |  资产接口  | orders_cross.$contract_code                               | sub    |   订阅订单成交数据（全仓模式）         |       是          |
-| 读取    |  资产接口  | accounts_cross.$margin_account                            | sub    |   订阅资产变动数据（全仓模式）         |       是          |
-| 读取    |  交易接口  | positions_cross.$contract_code                            | sub    |   订阅持仓变动更新数据（全仓模式）     |       是          |
-| 读取    |  交易接口  | matchOrders_cross.$contract_code                          | sub    |   订阅撮合订单成交数据（全仓模式）     |       是          |
-| 读取    |  交易接口  | trigger_order_cross.$contract_code                        | sub    |   订阅计划委托订单变动（全仓模式）     |       是          |
+| 权限类型  |   接口数据类型    | 接口模式 |  请求方法   |  类型    |  描述                     |  需要验签       |    
+----------- | ----------- | ----- | ------------------ |---------- |---------------------------- |--------------|
+| 读取    |  市场行情接口 | 通用 |  market.$contract_code.kline.$period                    | sub  | 【通用】订阅 KLine 数据               |       否      |
+| 读取    |  市场行情接口 | 通用 |  market.$contract_code.kline.$period                    | req  | 【通用】请求 KLine 数据               |       否      |
+| 读取    |  市场行情接口 | 通用 |  market.$contract_code.depth.$type                      | sub  | 【通用】订阅 Market Depth 数据        |       否      |
+| 读取    |  市场行情接口 | 通用 |  market.$contract_code.depth.size_${size}.high_freq     | sub  | 【通用】订阅 Market Depth增量推送数据 |       否      |
+| 读取    |  市场行情接口 | 通用 |  market.$contract_code.bbo                              | sub  | 【通用】买一卖一逐笔行情推送         |       否      |
+| 读取    |  市场行情接口 | 通用 |  market.$contract_code.detail                           | sub  | 【通用】订阅 Market detail 数据       |       否      |
+| 读取    |  市场行情接口 | 通用 |  market.$contract_code.trade.detail                     | req  | 【通用】请求 Trade detail 数据        |       否      |
+| 读取    |  市场行情接口 | 通用 |  market.$contract_code.trade.detail                     | sub  | 【通用】订阅 Trade Detail 数据        |       否      |
+| 读取    |  指数与基差接口 |  通用  | market.$contract_code.index.$period                    | sub  | 【通用】订阅指数K线数据                  |       否      |
+| 读取    |  指数与基差接口 |  通用  | market.$contract_code.index.$period                    | req  | 【通用】请求指数K线数据                  |       否      |
+| 读取    |  指数与基差接口 |  通用  | market.$contract_code.basis.$period.$basis_price_type  | sub  | 【通用】订阅基差数据                  |       否      |
+| 读取    |  指数与基差接口 |  通用  | market.$contract_code.basis.$period.$basis_price_type  | req  | 【通用】请求基差数据                  |       否      |
+| 读取    |  指数与基差接口 |  通用  | market.$contract_code.premium_index.$period            | sub  | 【通用】订阅溢价指数K线数据           |       否      |
+| 读取    |  指数与基差接口 |  通用  | market.$contract_code.premium_index.$period            | req  | 【通用】请求溢价指数K线数据           |       否      |
+| 读取    |  指数与基差接口 |  通用  | market.$contract_code.estimated_rate.$period           | sub  | 【通用】订阅预测资金费率K线数据       |       否      |
+| 读取    |  指数与基差接口 |  通用  | market.$contract_code.estimated_rate.$period           | req  | 【通用】请求预测资金费率K线数据       |       否      |
+| 读取    |  交易接口 |  通用 | public.$contract_code.liquidation_orders               | sub  | 【通用】订阅强平订单数据（免鉴权）    |       否      |
+| 读取    |  交易接口 |  通用 | public.$contract_code.funding_rate                     | sub  | 【通用】订阅资金费率变动数据（免鉴权）|       否      |
+| 读取    |  交易接口 |  通用 | public.$contract_code.contract_info                    | sub  | 【通用】订阅合约信息变动数据（免鉴权）|       否      |
+| 读取    |  交易接口 |  逐仓 | orders.$contract_code                                  | sub  | 【逐仓】订阅订单成交数据              |    是       |
+| 读取    |  资产接口 |  逐仓 | accounts.$contract_code                                | sub  | 【逐仓】订阅资产变动数据              |    是       |
+| 读取    |  资产接口 |  逐仓 | positions.$contract_code                               | sub  | 【逐仓】订阅持仓变动更新数据          |    是       |
+| 读取    |  交易接口 |  逐仓 | matchOrders.$contract_code                             | sub  | 【逐仓】订阅撮合订单成交数据          |    是       |
+| 读取    |  交易接口 |  逐仓 | trigger_order.$contract_code                             | sub  | 【逐仓】订阅计划委托订单更新ws推送   |    是       |
+| 读取    |  资产接口 | 全仓 | orders_cross.$contract_code                               | sub    |  【全仓】订阅订单成交数据         |       是          |
+| 读取    |  资产接口 | 全仓 | accounts_cross.$margin_account                            | sub    |  【全仓】订阅资产变动数据         |       是          |
+| 读取    |  交易接口 | 全仓 | positions_cross.$contract_code                            | sub    |  【全仓】订阅持仓变动更新数据     |       是          |
+| 读取    |  交易接口 | 全仓 | matchOrders_cross.$contract_code                          | sub    |  【全仓】订阅撮合订单成交数据     |       是          |
+| 读取    |  交易接口 | 全仓 | trigger_order_cross.$contract_code                        | sub    |  【全仓】订阅计划委托订单变动     |       是          |
 
 ## 合约订阅地址
 
@@ -8403,7 +8369,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 
 # WebSocket市场行情接口
 
-## 订阅 KLine 数据
+## 【通用】订阅 KLine 数据
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -8496,7 +8462,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 
 ```
 
-## 请求 KLine 数据 
+## 【通用】请求 KLine 数据 
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -8623,8 +8589,7 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
   trade_turnover   | true | decimal  | 成交额, 即sum（每一笔成交张数 * 合约面值 * 成交价格）   |    |         
   \</list\>    |               |     |      |          
 
-
-## 订阅 Market Depth 数据 
+## 【通用】订阅 Market Depth 数据 
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -8741,8 +8706,7 @@ version | true | long | 版本号 | |
 ch | true |  string | 数据所属的 channel，格式： market.period | | 
  \</list\>    |               |    |      |            | | 
 
-
-##  订阅Market Depth增量数据
+## 【通用】订阅Market Depth增量数据
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -8850,8 +8814,7 @@ event | true |  string | 事件类型；"update":更新，表示推送买卖各2
 
 5、如果是增量数据，要自己维护好本地的orderbook bids\asks 数据。
 
-
-## 订阅 Market Detail 数据
+## 【通用】订阅 Market Detail 数据
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -8933,7 +8896,7 @@ count  |  true  |  decimal  |   成交笔数  |
  \</list\>    |               |    |      |  
  
 
-## 订阅买一卖一逐笔行情推送
+## 【通用】订阅买一卖一逐笔行情推送
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -9019,8 +8982,7 @@ count  |  true  |  decimal  |   成交笔数  |
 - 由于客户端网络等原因导致接收数据失败，服务端会丢弃旧的队列数据；
 - version（版本号），直接取撮合id，保证全局唯一并且最新的推送版本号都是数值最大的。
 
-
-## 请求 Trade Detail 数据
+## 【通用】请求 Trade Detail 数据
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -9108,8 +9070,7 @@ ts  |  true  |  long  |  订单成交时间  |   |
  \</list\>    |               |    |      | 
 ts  |  true  |  long  |  发送时间  |   |  
 
-
-## 订阅 Trade Detail 数据
+## 【通用】订阅 Trade Detail 数据
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -9193,12 +9154,11 @@ direction  |  true  |  string  |  买卖方向  |   |
  \</list\>    |               |    |      | 
 
 
-
 # WebSocket指数与基差数据接口
 
 - 指数与基差数据订阅ws地址：wss://api.hbdm.com/ws_index
 
-## 订阅(sub)指数K线数据
+## 【通用】订阅(sub)指数K线数据
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -9280,8 +9240,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | high | string  | 最高指数价               |
 | amount | string  | 数值为0              |
 
-
-## 请求(req)指数K线数据
+## 【通用】请求(req)指数K线数据
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -9388,9 +9347,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | high | decimal  | 最高指数价               |
 | amount | decimal  | 数值为0              |
 
-
-
-## 订阅溢价指数K线数据
+## 【通用】订阅溢价指数K线数据
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -9469,8 +9426,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | \</tick\>            |      |        |               |                | |
 | ts     | true | long | 响应生成时间点，单位：毫秒                   |                | |
 
-
-## 请求溢价指数K线数据
+## 【通用】请求溢价指数K线数据
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -9571,9 +9527,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | trade_turnover     | true | string | 成交额, 数值为0        |                | |
 | \</data\>            |      |        |               |                | |
 
-
-
-## 订阅预测资金费率K线数据
+## 【通用】订阅预测资金费率K线数据
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -9653,9 +9607,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | \</tick\>            |      |        |               |                | |
 | ts     | true | long | 响应生成时间点，单位：毫秒                   |                | |
 
-
-
-## 请求预测资金费率K线数据
+## 【通用】请求预测资金费率K线数据
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -9757,8 +9709,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | trade_turnover     | true | string | 成交额 数值为0        |                | |
 | \</data\>            |      |        |               |                | |
 
-
-## 订阅基差数据
+## 【通用】订阅基差数据
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -9830,9 +9781,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | \</tick\>            |      |        |               |                | |
 | ts      | long | 响应生成时间点，单位：毫秒                   |                | |
 
-
-
-## 请求基差数据
+## 【通用】请求基差数据
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -9925,7 +9874,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 
 # WebSocket订单和用户数据接口
 
-## 订阅订单成交数据（sub）
+## 【逐仓】订阅订单成交数据（sub）
 
 #### 备注
  - 该接口仅支持逐仓模式。
@@ -10059,9 +10008,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | fee_asset   | true | string  | 手续费币种   |  “USDT”  |
 | \</trade\>   |  |   |     |
 
-
-
-## 取消订阅订单成交数据（unsub）
+## 【逐仓】取消订阅订单成交数据（unsub）
 
 #### 备注
  - 该接口仅支持逐仓模式。
@@ -10111,8 +10058,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | orders.contract_code1 | orders.contract_code2  | 不允许 |
 | orders.*       | orders.contract_code1  | 不允许 |
 
-
-## 订阅订单成交数据（全仓模式）（sub）
+## 【全仓】订阅订单成交数据（sub）
 
 #### 备注
  - 该接口仅支持全仓模式。
@@ -10248,8 +10194,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | fee_asset   | true | string  | 手续费币种   |  “USDT”  |
 | \</trade\>   |  |   |     |
 
-
-## 取消订阅订单成交数据（全仓模式）（unsub）
+## 【全仓】取消订阅订单成交数据（unsub）
 
 #### 备注
  - 该接口仅支持全仓模式。
@@ -10299,8 +10244,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | orders_cross.contract_code1 | orders_cross.contract_code2  | 不允许 |
 | orders_cross.*       | orders_cross.contract_code1  | 不允许 |
 
-
-## 资产变动数据（sub）
+## 【逐仓】资产变动数据（sub）
 
 #### 备注
  - 该接口仅支持逐仓模式。
@@ -10409,8 +10353,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | margin_mode | true | string | 保证金模式  | isolated：逐仓模式 |
 | \</data\>   |  |   |     |   |
 
-
-## 取消订阅资产变动数据（unsub）
+## 【逐仓】取消订阅资产变动数据（unsub）
 
 #### 备注
  - 该接口仅支持逐仓模式。
@@ -10459,8 +10402,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | accounts.contract_code1 | accounts.contract_code2  | 不允许 |
 | accounts.*       | accounts.contract_code1  | 不允许 |
 
-
-## 资产变动数据（全仓模式）（sub）
+## 【全仓】资产变动数据（sub）
 
 #### 备注
  - 该接口仅支持全仓模式。
@@ -10581,8 +10523,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | \</contract_detail\>            |        |         |                      |                |
 | \</data\>   |  |   |     |   |
 
-
-## 取消订阅资产变动数据（全仓模式）（unsub）
+## 【全仓】取消订阅资产变动数据（unsub）
 
 #### 备注
  - 该接口仅支持全仓模式。
@@ -10631,8 +10572,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | accounts_cross.margin_account1 | accounts_cross.margin_account2  | 不允许 |
 | accounts_cross.*       | accounts_cross.margin_account1  | 不允许 |
 
-
-## 持仓变动更新数据（sub）
+## 【逐仓】持仓变动更新数据（sub）
 
 #### 备注
  - 该接口仅支持逐仓模式。
@@ -10743,7 +10683,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 
 - 当用户持仓量为0时使用切换杠杆的接口，持仓推送接口不会推送"switch_lever_rate"。
 
-## 取消订阅持仓变动数据（unsub）
+## 【逐仓】取消订阅持仓变动数据（unsub）
 
 #### 备注
  - 该接口仅支持逐仓模式。
@@ -10792,8 +10732,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | positions.contract_code1 | positions.contract_code2  | 不允许 |
 | positions.*       | positions.contract_code1  | 不允许 |
 
-
-## 持仓变动更新数据（全仓模式）（sub）
+## 【全仓】持仓变动更新数据（sub）
 
 #### 备注
  - 该接口仅支持全仓模式。
@@ -10904,7 +10843,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 
 - 当用户持仓量为0时使用切换杠杆的接口，持仓推送接口不会推送"switch_lever_rate"。
 
-## 取消订阅持仓变动数据（全仓模式）（unsub）
+## 【全仓】取消订阅持仓变动数据（unsub）
 
 #### 备注
  - 该接口仅支持全仓模式。
@@ -10953,9 +10892,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | positions_cross.contract_code1 | positions_cross.contract_code2  | 不允许 |
 | positions_cross.*       | positions_cross.contract_code1  | 不允许 |
 
-
-
-## 订阅合约订单撮合数据（sub）
+## 【逐仓】订阅合约订单撮合数据（sub）
 
 #### 备注
  - 该接口仅支持逐仓模式。
@@ -11078,8 +11015,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | role   | true | string  | taker或maker  |   |
 | \</trade\>   |  |  |     |    |
 
-
-## 取消订阅合约订单撮合数据（unsub）
+## 【逐仓】取消订阅合约订单撮合数据（unsub）
 
 #### 备注
  - 该接口仅支持逐仓模式。
@@ -11127,8 +11063,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | matchOrders.contract_code1 | matchOrders.contract_code2  | 不允许 |
 | matchOrders.*       | matchOrders.contract_code1  | 不允许 |
 
-
-## 订阅合约订单撮合数据（全仓模式）（sub）
+## 【全仓】订阅合约订单撮合数据（sub）
 
 #### 备注
  - 该接口仅支持全仓模式。
@@ -11251,8 +11186,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | role   | true | string  | taker或maker  |   |
 | \</trade\>   |  |  |     |    |
 
-
-## 取消订阅合约订单撮合数据（全仓模式）（unsub）
+## 【全仓】取消订阅合约订单撮合数据（unsub）
 
 #### 备注
  - 该接口仅支持全仓模式。
@@ -11300,9 +11234,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | matchOrders_cross.contract_code1 | matchOrders_cross.contract_code2  | 不允许 |
 | matchOrders_cross.*       | matchOrders_cross.contract_code1  | 不允许 |
 
-
-
-##  订阅强平订单数据(免鉴权)（sub）
+## 【通用】订阅强平订单数据(免鉴权)（sub）
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -11380,8 +11312,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | created_at   | true | long  | 订单创建时间  |   |
 | \</data\> | | |  | |
 
-
-## 取消订阅强平订单(免鉴权)（unsub）
+## 【通用】取消订阅强平订单(免鉴权)（unsub）
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -11428,8 +11359,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | public.contract_code1.liquidation_orders | public.contract_code2.liquidation_orders  | 不允许 |
 | public.*.liquidation_orders      | public.contract_code1.liquidation_orders  | 不允许 |
 
-
-## 订阅资金费率推送(免鉴权)（sub）
+## 【通用】订阅资金费率推送(免鉴权)（sub）
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -11505,8 +11435,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | settlement_time   | true | string  | 结算时间  |如"1490759594752"   |
 | \</data\>   |  |   |     |    |
 
-
-## 取消订阅资金费率(免鉴权)（unsub）
+## 【通用】取消订阅资金费率(免鉴权)（unsub）
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -11563,8 +11492,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 - 深度数据的updateTime超过5分钟没有更新，不计算资金费率
 - 每次读取到的150档买盘深度和卖盘深度进行md5加密，如果连续5次（或以上）和前一个点的数值一致，则认为系统处于停服状态，此时不计算该点位的资金费率
 
-
-## 订阅合约信息变动(免鉴权)（sub）
+## 【通用】订阅合约信息变动(免鉴权)（sub）
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -11651,7 +11579,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 - 当合约状态流转为“交割完成”时，合约下次结算时间为空字符串。
 - 只有状态为1：上市，才能够正常交易，其他状态不可交易；
 
-## 取消订阅合约信息变动(免鉴权)（unsub）
+## 【通用】取消订阅合约信息变动(免鉴权)（unsub）
 
 #### 备注
  - 该接口支持全仓模式和逐仓模式
@@ -11699,9 +11627,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | public.contract_code1.contract_info | public.contract_code2.contract_info  | 不允许 |
 | public.*.contract_info       | public.contract_code1.contract_info  | 不允许 |
 
-
-
-## 订阅计划委托订单更新(sub)
+## 【逐仓】订阅计划委托订单更新(sub)
 
 #### 备注
  - 该接口仅支持逐仓模式。
@@ -11826,8 +11752,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
    -  当订单状态流转到5（报单失败），event通知事件为trigger_fail（计划委托触发失败）；
 - 订阅时，单合约无法重复订阅，全合约订阅可覆盖单合约的订阅，订阅全合约后无法订阅单合约；
 
-
-## 取消订阅计划委托订单更新（unsub）
+## 【逐仓】取消订阅计划委托订单更新（unsub）
 
 #### 备注
  - 该接口仅支持逐仓模式。
@@ -11875,8 +11800,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | trigger_order.contract_code1 | trigger_order.contract_code2  | 不允许 |
 | trigger_order.*       | trigger_order.contract_code1  | 不允许 |
 
-
-## 订阅计划委托订单更新（全仓模式）(sub)
+## 【全仓】订阅计划委托订单更新(sub)
 
 #### 备注
  - 该接口仅支持全仓模式。
@@ -12001,8 +11925,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
    -  当订单状态流转到5（报单失败），event通知事件为trigger_fail（计划委托触发失败）；
 - 订阅时，单合约无法重复订阅，全合约订阅可覆盖单合约的订阅，订阅全合约后无法订阅单合约；
 
-
-## 取消订阅计划委托订单更新（全仓模式）（unsub）
+## 【全仓】取消订阅计划委托订单更新（unsub）
 
 #### 备注
  - 该接口仅支持全仓模式。
@@ -12049,7 +11972,6 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | trigger_order_cross.contract_code1 | trigger_order_cross.contract_code1 | 允许   |
 | trigger_order_cross.contract_code1 | trigger_order_cross.contract_code2  | 不允许 |
 | trigger_order_cross.*       | trigger_order_cross.contract_code1  | 不允许 |
-
 
 
 # WebSocket附录
