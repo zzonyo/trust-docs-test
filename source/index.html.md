@@ -3481,7 +3481,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 ###  Example          
                                       
- - POST `/linear-swap-api/v1/swap_account_info`  
+ - POST /linear-swap-api/v1/swap_account_info
 
 #### Remarks
 
@@ -3555,7 +3555,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 ##  Query User's Account Information（cross margin mode）
 
- - PSOT 'linear-swap-api/v1/swap_cross_account_info'
+ - POST linear-swap-api/v1/swap_cross_account_info
 
 #### Remarks
 
@@ -5591,8 +5591,8 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 |   Parameter Name                  |   Mandatory   |   Type   |   Desc                                                       |   Value Range   |
 | --------------------------------- | ------------- | -------- | ------------------------------------------------------------ | --------------- |
 | status                            | true          | string   | Request Processing Result                                    | "ok" , "error"  |
-| \<data\>                          |               |          |                                                              |                 |
-| \<errors\>         |               |          |                                                              |                 |
+| \<data\>                          |               |  object  |                                                              |                 |
+| \<errors\>                        |               |  array   |                                                              |                 |
 | index                             | true          | int      | order Index                                                  |                 |
 | err_code                          | true          | int      | Error code                                                   |                 |
 | err_msg                           | true          | string   | Error information                                            |                 |
@@ -5739,12 +5739,12 @@ The return data from Cancel An Order Interface only means that order cancelation
 |   Parameter Name                 |   Mandatory   |   Type   |   Desc                                                    |   Value Range   |
 | -------------------------------- | ------------- | -------- | --------------------------------------------------------- | --------------- |
 | status                           | true          | string   | Request Processing Result                                 | "ok" , "error"  |
-| \<data\> |               |          |                                                           |                 |
-| \<errors\> |               |          |                                                           |                 |
+| \<data\>                         |               | object   |                                                           |                 |
+| \<errors\>                       |               | array    |                                                           |                 |
 | order_id                         | true          | string   | Order ID                                                  |                 |
 | err_code                         | true          | int      | Error code                                                |                 |
 | err_msg                          | true          | string   | Error information                                         |                 |
-| \</errors\>                        |               |          |                                                           |                 |
+| \</errors\>                      |               |          |                                                           |                 |
 | successes                        | true          | string   | Successfully withdrew list of order_id or client_order_id |                 |
 | \</data\>                        |               |          |                                                           |                 |
 | ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond             |                 |
@@ -5794,18 +5794,18 @@ The return data from Cancel An Order Interface only means that order cancelation
 
 ###  Returning Parameter
 
-| Parameter Name                   | Mandatory | Type     | Desc                                 | Data Value           |
+| Parameter Name         | Mandatory | Type     | Desc                        | Data Value     |
 | ---------------------- | ---- | ------ | ---------------------------------- | -------------- |
-| status                 | true | string | Request Processing Result                             | "ok" , "error" |
-| \<data\> |  true    |   object array      |        |    |
-| \<errors\> |  true    | object array       |                                    |                |
-| order_id               | true | string | order ID                               |                |
-| err_code               | true | int    | error code                                |                |
-| err_msg                | true | string | error message                              |                |
-| \</errors\>              |      |        |                                    |                |
-| successes              | true | string | successfully withdrew list of order_id or client_order_id |                |
-| \</data\>        |      |         |        |         |
-| ts                     | true | long   | Time of Respond Generation, Unit: Millisecond                      |                |
+| status                 | true | string | Request Processing Result          | "ok" , "error" |
+| \<data\>               | true | object |                                    |                |
+| \<errors\>             | true | array  |                                    |                |
+| order_id               | true | string | order ID                           |                |
+| err_code               | true | int    | error code                         |                |
+| err_msg                | true | string | error message                      |                |
+| \</errors\>            |      |        |                                    |                |
+| successes              | true | string | successfully withdrew list of order_id or client_order_id |
+| \</data\>              |      |        |                                    |                |
+| ts                     | true | long   | Time of Respond Generation, Unit: Millisecond       | 
 
 
 ## Cancel All Orders 
@@ -5844,8 +5844,8 @@ The return data from Cancel An Order Interface only means that order cancelation
 |   Parameter Name                 |   Mandatory   |   Type   |   Desc                                        |   Value Range   |
 | -------------------------------- | ------------- | -------- | --------------------------------------------- | --------------- |
 | status                           | true          | string   | Request Processing Result                     | "ok" , "error"  |
-| \<data\> |               |          |                                               |                 |
-| \<errors\> |               |          |                                               |                 |
+| \<data\> |               | object     |                                               |                 |
+| \<errors\> |               | array    |                                               |                 |
 | order_id                         | true          | string   | Order ID                                      |                 |
 | err_code                         | true          | int      | failed order error messageError code          |                 |
 | err_msg                          | true          | string      | failed order information                      |                 |
@@ -5889,8 +5889,8 @@ The return data from Cancel An Order Interface only means that order cancelation
 | Parameter Name                   | Mandatory | Type     | Desc            | Data Value           |
 | ---------------------- | ---- | ------ | ------------- | -------------- |
 | status                 | true | string | Request Processing Result        | "ok" , "error" |
-| \<data\> |  true    |   object array      |        |    |
-| \<errors\> |  true    | object array       |               |                |
+| \<data\> |  true    | object      |        |    |
+| \<errors\> |  true    | array       |               |                |
 | order_id               | true | String | order ID          |                |
 | err_code               | true | int    | error code       |                |
 | err_msg                | true | string    | error message        |                |
@@ -6663,8 +6663,8 @@ Please note that created_at can't send "0"
 |   Parameter Name               |   Mandatory   |   Type   |   Desc                                                       |   Value Range                     |
 | ------------------------------ | ------------- | -------- | ------------------------------------------------------------ | --------------------------------- |
 | status                         | true          | string   | Request Processing Result                                    |                                   |
-|  \<data\> |               |          |                                                              |                                   |
-|  \<orders\> |               |          |                                                              |                                   |
+|  \<data\> |               | object      |                                                              |                                   |
+|  \<orders\> |               | array    |                                                              |                                   |
 | symbol                         | true          | string   | Variety code                                                 |                                   |
 | contract_code                  | true          | string   | Contract Code                                                | "BTC-USDT" ...                   |
 | volume                         | true          | decimal  | Number of Order                                              |                                   |
@@ -6876,8 +6876,8 @@ Please note that created_at can't send "0"
 |   Parameter Name                 |   Mandatory   |   Type   |   Desc                                                       |   Value Range                     |
 | -------------------------------- | ------------- | -------- | ------------------------------------------------------------ | --------------------------------- |
 | status                           | true          | string   | Request Processing Result                                    |                                   |
-| \<data\> |               |          |                                                              |                                   |
-| \<orders\> |               |          |                                                              |                                   |
+| \<data\> |               | object     |                                                              |                                   |
+| \<orders\> |               | array       |                                                              |                                   |
 | order_id                         | true          | long     | Order ID                                                     |                                   |
 | order_id_str                         | true          | string     | Order ID                                                     |                                   |
 | symbol                           | true          | string   | Variety code                                                 |                                   |
