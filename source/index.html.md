@@ -1698,6 +1698,17 @@ If you encounter errors such as {'index': 1, 'err_code': 1048, 'err_msg': 'Insuf
 
 1032 means that your request exceeds the ratelimit. The coin margined swap, future, option swap and USDT margined swap limit the rate separately. Please check the ratelimit in the api ratelimit instructions, and you can print the current ratelimit in the header of the API response to check whether the ratelimit is exceeded. It is recommended to increase the request interval delay to avoid exceeding the ratelimit.
 
+##The useage of and difference between cross margin mode and isolated margin mode
+
+1. In cross margin mode, account amount will provide guarantee for the positions of every variety contract. That is position of every varieties contracts is share equity, profit, loss, occupation of guaranteed assets.Guaranteed asset ratio of every varieties contract is calculated together. 
+In isolated margin mode, the equity of every variety contract is calculated separately. And the profit and losse of the secured assets do not affect each other.
+
+2. Cross margin mode and isolated margin mode use different margin accounts. And each mode's assets are independent of the other. You can carry out the transaction of two modes at the same time, and have the positions of two modes at the same time. For example, in the btc-usdt contract, the margin account of cross margin mode is usdt, while the margin account of isolated margin mode is btc-usdt.
+
+3. You can query contract information with the API interface [linear-swap-api/v1/swap_contract_info] and in the response field support_margin_modethe it shows the contract supports which margin mode,  cross margin mode or isolated margin mode or both.
+
+4. The API interface is marked with one of mode types, i.e., [cross margin mode], [isolated margin mode] and [general mode], and which are marked on the API interface name and interface list. [cross margin mode] indicates that the API interface only supports cross margin mode. [isolated margin mode] indicates that the API interface only supports isolated margin mode, and [general mode] indicates that the API interface does not distinguish between cross margin mode and isolated margin mode, that is, both of cross margin mode and isolated margin mode can call it.
+
 ## How to solve problems more effectively?
 
 When you report an API error, you need to attach your request URL, the original complete body of the request and the complete request URL parameters, and the original complete log of the server's response. If it is a websocket subscription, you need to provide the address of the subscription, the topic of the subscription, and the original complete log pushed by the server.
