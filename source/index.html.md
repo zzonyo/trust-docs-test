@@ -3591,7 +3591,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 ##  获取用户账户信息（全仓模式）
 
- - PSOT 'linear-swap-api/v1/swap_cross_account_info'
+ - PSOT `linear-swap-api/v1/swap_cross_account_info`
 
 #### 备注
  - 该接口仅支持全仓模式。
@@ -3687,7 +3687,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 ###  示例
 
-- POST `linear-swap-api/v1/swap_position_info`
+- POST `linear-swap-api/v1/swap_position_info`
 
 #### 备注
  - 该接口仅支持逐仓模式。
