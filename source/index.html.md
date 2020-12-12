@@ -590,21 +590,21 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ##  API List
 
-permission type  |  Content Type  | Margin Mode |  Context           |   Request Type   |   Desc          | Signature Required   |
------------ |  ------------------ | ---------------------------------------- |  ---------- |  ------------------------------- |  --------------  |
+permission type  |  Content Type  | Interface Mode |  Context           |   Request Type   |   Desc          | Signature Required   |
+---------------- |  ------------- | ---------------|------------------- |  --------------- |---------------- |  ------------------  |
  Read  | Market Data | general | linear-swap-api/v1/swap_contract_info                             | GET    |      Get Contracts Information                          |       No          |
  Read  | Market Data | general | linear-swap-api/v1/swap_index                                     | GET    |      Get contract Index Price Information                    |       No          |                     
  Read  | Market Data | general | linear-swap-api/v1/swap_price_limit                               | GET    |      Get Contract Price Limits           |       No          |           
  Read  | Market Data | general | linear-swap-api/v1/swap_open_interest                             | GET    |      Get Contract Open Interest Information             |       No          |            
  Read  | Market Data | general | linear-swap-api/v1/swap_risk_info                                 | GET    |      Query information on contract insurance fund balance and estimated clawback rate     |       No          |
- Read  | Market Data | lgeneral | inear-swap-api/v1/swap_insurance_fund                            | GET    |      Query history records of insurance fund balance               |       No          |
- Read  | Market Data | isolated | linear-swap-api/v1/swap_adjustfactor                              | GET    |      Query information on Tiered Adjustment Factor                |       No          |
+ Read  | Market Data | general | inear-swap-api/v1/swap_insurance_fund                            | GET    |      Query history records of insurance fund balance               |       No          |
+ Read  | Market Data | isolated margin | linear-swap-api/v1/swap_adjustfactor                              | GET    |      Query information on Tiered Adjustment Factor                |       No          |
  Read  | Market Data | general | linear-swap-api/v1/swap_his_open_interest                         | GET    |      Query information on open interest                      |       No          |
  Read  | Market Data | general | linear-swap-api/v1/swap_elite_account_ratio                       | GET    |      Query Top Trader Sentiment Index Function-Account          |       No          |
  Read  | Market Data | general | linear-swap-api/v1/swap_elite_position_ratio                      | GET    |      Query Top Trader Sentiment Index Function-Position        |       No          |
  Read  | Market Data | general | linear-swap-api/v1/swap_liquidation_orders                        | GET    |      Query Liquidation Order Information       |       No          |
  Read  | Market Data | general | linear-swap-api/v1/swap_settlement_records                       | GET    |      Query historical settlement records of the platform interface       |       No          |
- Read  | Market Data | isolated | linear-swap-api/v1/swap_api_state                                 | GET    |      Query information on system status                      |       No          |
+ Read  | Market Data | isolated margin | linear-swap-api/v1/swap_api_state                                 | GET    |      Query information on system status                      |       No          |
  Read  | Market Data | general | linear-swap-api/v1/swap_funding_rate                              | GET    |      Query funding rate                 |       No          |
  Read  | Market Data | general | linear-swap-api/v1/swap_historical_funding_rate                   | GET    |      Query Historical Funding Rate             |       No          |
  Read  | Market Data | general | linear-swap-ex/market/depth                                       | GET    |      Get Market Depth                     |       No          |
@@ -615,67 +615,67 @@ permission type  |  Content Type  | Margin Mode |  Context           |   Request
  Read  | Market Data | general | index/market/history/linear_swap_estimated_rate_kline             | GET    |      Query Swap Market Data interface           |       No          |
  Read  | Market Data | general | linear-swap-ex/market/trade                                       | GET    |      Query The Last Trade of a Contract                |       No          |
  Read  | Market Data | general | linear-swap-ex/market/history/trade                               | GET    |      Query a Batch of Trade Records of a Contract               |     No         |
- Read  | Market Data | cross | linear-swap-api/v1/swap_cross_adjustfactor                          | GET    |     Query Information On Tiered Adjustment Factor                                                |       No          |
- Read  | Market Data | cross | linear-swap-api/v1/swap_cross_transfer_state                        | GET    |     Query Information On Transfer State                        |       No          |
- Read  | Market Data | cross | linear-swap-api/v1/swap_cross_trade_state                           | GET    |     Query Information On Trade State                        |       No          |
- Read  | Account    | isolated | linear-swap-api/v1/swap_account_info                              | POST   |      Query User’s Account Information                |     Yes        |
- Read  | Account    | isolated | linear-swap-api/v1/swap_position_info                             | POST   |      Query User’s position Information               |     Yes        |
- Read  | Account    | isolated | linear-swap-api/v1/swap_available_level_rate                      | POST   |      Query user’s available leverage              |     Yes        |
- Read  | Account    | isolated | linear-swap-api/v1/swap_sub_account_list                          | POST   |      Query assets information of all sub-accounts under the master account (Query by coins)       |     Yes        |
- Read  | Account    | isolated | linear-swap-api/v1/swap_sub_account_info                          | POST   |      Query a single sub-account's assets information     |     Yes        |
- Read  | Account    | isolated | linear-swap-api/v1/swap_sub_position_info                         | POST   |      Query a single sub-account's position information      |     Yes        |
+ Read  | Market Data | cross margin | linear-swap-api/v1/swap_cross_adjustfactor                          | GET    |     Query Information On Tiered Adjustment Factor                                                |       No          |
+ Read  | Market Data | cross margin | linear-swap-api/v1/swap_cross_transfer_state                        | GET    |     Query Information On Transfer State                        |       No          |
+ Read  | Market Data | cross margin | linear-swap-api/v1/swap_cross_trade_state                           | GET    |     Query Information On Trade State                        |       No          |
+ Read  | Account    | isolated margin | linear-swap-api/v1/swap_account_info                              | POST   |      Query User’s Account Information                |     Yes        |
+ Read  | Account    | isolated margin | linear-swap-api/v1/swap_position_info                             | POST   |      Query User’s position Information               |     Yes        |
+ Read  | Account    | isolated margin | linear-swap-api/v1/swap_available_level_rate                      | POST   |      Query user’s available leverage              |     Yes        |
+ Read  | Account    | isolated margin | linear-swap-api/v1/swap_sub_account_list                          | POST   |      Query assets information of all sub-accounts under the master account (Query by coins)       |     Yes        |
+ Read  | Account    | isolated margin | linear-swap-api/v1/swap_sub_account_info                          | POST   |      Query a single sub-account's assets information     |     Yes        |
+ Read  | Account    | isolated margin | linear-swap-api/v1/swap_sub_position_info                         | POST   |      Query a single sub-account's position information      |     Yes        |
  Read  | Account    | general | linear-swap-api/v1/swap_financial_record                          | POST   |      Query account financial records                     |     Yes        |
  Read  | Account    | general | linear-swap-api/v1/swap_order_limit                               | POST   |      Query contract information on order limit              |     Yes        |
  Read  | Account    | general | linear-swap-api/v1/swap_fee                                       | POST   |      Query information on contract trading fee             |     Yes        |
- Read  | Account    | isolated | linear-swap-api/v1/swap_transfer_limit                            | POST   |      Query information on Transfer Limit               |     Yes        |
- Read  | Account    | isolated | linear-swap-api/v1/swap_position_limit                            | POST   |      Query information on position limit             |     Yes        |
- Read  | Account    | isolated | linear-swap-api/v1/swap_account_position_info                     | POST   |      Query Assets And Positions               |     Yes        |
+ Read  | Account    | isolated margin | linear-swap-api/v1/swap_transfer_limit                            | POST   |      Query information on Transfer Limit               |     Yes        |
+ Read  | Account    | isolated margin | linear-swap-api/v1/swap_position_limit                            | POST   |      Query information on position limit             |     Yes        |
+ Read  | Account    | isolated margin | linear-swap-api/v1/swap_account_position_info                     | POST   |      Query Assets And Positions               |     Yes        |
 Trade  | Account    | general | linear-swap-api/v1/swap_master_sub_transfer                       | POST   |      Transfer between master account and sub-accounts                         |     Yes        |
  Read  | Account    | general | linear-swap-api/v1/swap_master_sub_transfer_record                | POST   |      Query transfer records of master account    |     Yes        |
 Trade  | Account    | general | linear-swap-api/v1/swap_transfer_inner                            | POST   |      Transfer between different margin accounts under the same account          |     Yes        |
  Read  | Account    | general | linear-swap-api/v1/swap_api_trading_status                        | GET    |      Query user's API indicator disable information              |     Yes        |
- Read  | Account    | cross | linear-swap-api/v1/swap_cross_account_info                          | POST    |    Query User's Account Information              |       Yes          |
- Read  | Account    | cross | linear-swap-api/v1/swap_cross_position_info                         | POST    |    Query User's Position Information               |       Yes          |
- Read  | Account    | cross | linear-swap-api/v1/swap_cross_sub_account_list                      | POST    |    Query Assets Information Of All Sub-Accounts Under The Master Account       |       Yes          |
- Read  | Account    | cross | linear-swap-api/v1/swap_cross_sub_account_info                      | POST    |    Query A Sub-Account's Assets Information   |       Yes          |
- Read  | Account    | cross | linear-swap-api/v1/swap_cross_sub_position_info                     | POST    |    Query A Sub-Account's Position Information    |       Yes          |
- Read  | Account    | cross | linear-swap-api/v1/swap_cross_transfer_limit                        | POST    |    Query Information On Transfer Limit           |       Yes          |
- Read  | Account    | cross | linear-swap-api/v1/swap_cross_position_limit                        | POST    |    Query Information On Position Limit        |       Yes          |
- Read  | Account    | cross | linear-swap-api/v1/swap_cross_account_position_info                 | POST    |    Query Assets And Positions          |       Yes          |
- Read  | Account    | cross | linear-swap-api/v1/swap_cross_available_level_rate                   | POST    |    Query User’s Available Leverage        |       Yes          |
-Trade  | Trade      | isolated | linear-swap-api/v1/swap_order                                     | POST   |      Place an Order                              |     Yes        |
-Trade  | Trade      | isolated | linear-swap-api/v1/swap_batchorder                                | POST   |      Place a Batch of Orders                         |     Yes        |
-Trade  | Trade      | isolated | linear-swap-api/v1/swap_switch_lever_rate                         | POST   |      Switch Leverage               |     Yes        |
-Trade  | Trade      | isolated | linear-swap-api/v1/swap_cancel                                    | POST   |      Cancel an Order                          |     Yes        |
-Trade  | Trade      | isolated | linear-swap-api/v1/swap_cancelall                                 | POST   |      Cancel All Orders                       |     Yes        |
- Read  | Trade      | isolated | linear-swap-api/v1/swap_order_info                                | POST   |      Get Information of an Order               |     Yes        |
- Read  | Trade      | isolated | linear-swap-api/v1/swap_order_detail                              | POST   |      Get Trade Details of an Order           |     Yes        |
- Read  | Trade      | isolated | linear-swap-api/v1/swap_openorders                                | POST   |      Get Current Orders         |     Yes        |
- Read  | Trade      | isolated | linear-swap-api/v1/swap_hisorders                                 | POST   |      Get History Orders               |     Yes        |
- Read  | Trade      | isolated | linear-swap-api/v1/swap_matchresults                              | POST   |      Acquire History Match Results           |     Yes        |
-Trade  | Trade      | isolated | linear-swap-api/v1/swap_lightning_close_position                  | POST   |      Place Lightning Close Order                    |     Yes        |
-Trade  | Trade      | isolated | linear-swap-api/v1/swap_trigger_order                             | POST   |      Place an Trigger Order                      |     Yes         |
-Trade  | Trade      | isolated | linear-swap-api/v1/swap_trigger_cancel                            | POST   |      Cancel a Trigger Order                     |     Yes        |
-Trade  | Trade      | isolated | linear-swap-api/v1/swap_trigger_cancelall                         | POST   |      Cancel all trigger Orders                 |     Yes        |
- Read  | Trade      | isolated | linear-swap-api/v1/swap_trigger_openorders                        | POST   |      Get all open trigger Orders                 |     Yes        |
- Read  | Trade      | isolated | linear-swap-api/v1/swap_trigger_hisorders                         | POST   |      Get all history trigger Orders                 |     Yes        |
-Trade  | Trade    | cross | linear-swap-api/v1/swap_cross_switch_lever_rate                     | POST    |    Switch Leverage         |       Yes          |
-Trade  | Trade    | cross | linear-swap-api/v1/swap_cross_order                                 | POST    |    Place An Order           |       Yes          |
-Trade  | Trade    | cross | linear-swap-api/v1/swap_cross_batchorder                            | POST    |    Place A Batch Of Orders        |       Yes          |
-Trade  | Trade    | cross | linear-swap-api/v1/swap_cross_cancel                                | POST    |    Cancel An Order       |       Yes          |
-Trade  | Trade    | cross | linear-swap-api/v1/swap_cross_cancelall                             | POST    |    Cancel All Orders     |       Yes          |
- Read  | Trade    | cross | linear-swap-api/v1/swap_cross_order_info                            | POST    |    Get Information of order             |       Yes          |
- Read  | Trade    | cross | linear-swap-api/v1/swap_cross_order_detail                          | POST    |    Get Detail Information of order         |       Yes          |
- Read  | Trade    | cross | linear-swap-api/v1/swap_cross_openorders                            | POST    |    Current unfilled order acquisition       |       Yes          |
- Read  | Trade    | cross | linear-swap-api/v1/swap_cross_hisorders                             | POST    |    Get History Orders             |       Yes          |
- Read  | Trade    | cross | linear-swap-api/v1/swap_cross_matchresults                          | POST    |    Get History Match Results         |       Yes          |
-Trade  | Trade    | cross | linear-swap-api/v1/swap_cross_lightning_close_position              | POST    |    Place Lightning Close Position           |       Yes          |
-Trade  | Trade    | cross | linear-swap-api/v1/swap_cross_trigger_order                         | POST    |    Place Trigger Order           |       Yes          |
-Trade  | Trade    | cross | linear-swap-api/v1/swap_cross_trigger_cancel                        | POST    |    Cancel Trigger Order           |       Yes          |
-Trade  | Trade    | general | linear-swap-api/v1/swap_cross_trigger_cancelall                     | POST    |    Cancel All Trigger Orders       |       Yes          |
- Read  | Trade    | general | linear-swap-api/v1/swap_cross_trigger_openorders                    | POST    |    Query Open Trigger Order       |       Yes          |
- Read  | Trade    | general | inear-swap-api/v1/swap_cross_trigger_hisorders                     | POST    |    Query Trigger Order History       |       Yes          | 
-Trade  | Account    | https://api.huobi.pro/v2/account/transfer                         | POST   |      Transfer margin between Spot account and USDT Margined Swap account     |     Yes       |
+ Read  | Account    | cross margin | linear-swap-api/v1/swap_cross_account_info                          | POST    |    Query User's Account Information              |       Yes          |
+ Read  | Account    | cross margin | linear-swap-api/v1/swap_cross_position_info                         | POST    |    Query User's Position Information               |       Yes          |
+ Read  | Account    | cross margin | linear-swap-api/v1/swap_cross_sub_account_list                      | POST    |    Query Assets Information Of All Sub-Accounts Under The Master Account       |       Yes          |
+ Read  | Account    | cross margin | linear-swap-api/v1/swap_cross_sub_account_info                      | POST    |    Query A Sub-Account's Assets Information   |       Yes          |
+ Read  | Account    | cross margin | linear-swap-api/v1/swap_cross_sub_position_info                     | POST    |    Query A Sub-Account's Position Information    |       Yes          |
+ Read  | Account    | cross margin | linear-swap-api/v1/swap_cross_transfer_limit                        | POST    |    Query Information On Transfer Limit           |       Yes          |
+ Read  | Account    | cross margin | linear-swap-api/v1/swap_cross_position_limit                        | POST    |    Query Information On Position Limit        |       Yes          |
+ Read  | Account    | cross margin | linear-swap-api/v1/swap_cross_account_position_info                 | POST    |    Query Assets And Positions          |       Yes          |
+ Read  | Account    | cross margin | linear-swap-api/v1/swap_cross_available_level_rate                   | POST    |    Query User’s Available Leverage        |       Yes          |
+Trade  | Trade      | isolated margin | linear-swap-api/v1/swap_order                                     | POST   |      Place an Order                              |     Yes        |
+Trade  | Trade      | isolated margin | linear-swap-api/v1/swap_batchorder                                | POST   |      Place a Batch of Orders                         |     Yes        |
+Trade  | Trade      | isolated margin | linear-swap-api/v1/swap_switch_lever_rate                         | POST   |      Switch Leverage               |     Yes        |
+Trade  | Trade      | isolated margin | linear-swap-api/v1/swap_cancel                                    | POST   |      Cancel an Order                          |     Yes        |
+Trade  | Trade      | isolated margin | linear-swap-api/v1/swap_cancelall                                 | POST   |      Cancel All Orders                       |     Yes        |
+ Read  | Trade      | isolated margin | linear-swap-api/v1/swap_order_info                                | POST   |      Get Information of an Order               |     Yes        |
+ Read  | Trade      | isolated margin | linear-swap-api/v1/swap_order_detail                              | POST   |      Get Trade Details of an Order           |     Yes        |
+ Read  | Trade      | isolated margin | linear-swap-api/v1/swap_openorders                                | POST   |      Get Current Orders         |     Yes        |
+ Read  | Trade      | isolated margin | linear-swap-api/v1/swap_hisorders                                 | POST   |      Get History Orders               |     Yes        |
+ Read  | Trade      | isolated margin | linear-swap-api/v1/swap_matchresults                              | POST   |      Acquire History Match Results           |     Yes        |
+Trade  | Trade      | isolated margin | linear-swap-api/v1/swap_lightning_close_position                  | POST   |      Place Lightning Close Order                    |     Yes        |
+Trade  | Trade      | isolated margin | linear-swap-api/v1/swap_trigger_order                             | POST   |      Place an Trigger Order                      |     Yes         |
+Trade  | Trade      | isolated margin | linear-swap-api/v1/swap_trigger_cancel                            | POST   |      Cancel a Trigger Order                     |     Yes        |
+Trade  | Trade      | isolated margin | linear-swap-api/v1/swap_trigger_cancelall                         | POST   |      Cancel all trigger Orders                 |     Yes        |
+ Read  | Trade      | isolated margin | linear-swap-api/v1/swap_trigger_openorders                        | POST   |      Get all open trigger Orders                 |     Yes        |
+ Read  | Trade      | isolated margin | linear-swap-api/v1/swap_trigger_hisorders                         | POST   |      Get all history trigger Orders                 |     Yes        |
+Trade  | Trade    | cross margin | linear-swap-api/v1/swap_cross_switch_lever_rate                     | POST    |    Switch Leverage         |       Yes          |
+Trade  | Trade    | cross margin | linear-swap-api/v1/swap_cross_order                                 | POST    |    Place An Order           |       Yes          |
+Trade  | Trade    | cross margin | linear-swap-api/v1/swap_cross_batchorder                            | POST    |    Place A Batch Of Orders        |       Yes          |
+Trade  | Trade    | cross margin | linear-swap-api/v1/swap_cross_cancel                                | POST    |    Cancel An Order       |       Yes          |
+Trade  | Trade    | cross margin | linear-swap-api/v1/swap_cross_cancelall                             | POST    |    Cancel All Orders     |       Yes          |
+ Read  | Trade    | cross margin | linear-swap-api/v1/swap_cross_order_info                            | POST    |    Get Information of order             |       Yes          |
+ Read  | Trade    | cross margin | linear-swap-api/v1/swap_cross_order_detail                          | POST    |    Get Detail Information of order         |       Yes          |
+ Read  | Trade    | cross margin | linear-swap-api/v1/swap_cross_openorders                            | POST    |    Current unfilled order acquisition       |       Yes          |
+ Read  | Trade    | cross margin | linear-swap-api/v1/swap_cross_hisorders                             | POST    |    Get History Orders             |       Yes          |
+ Read  | Trade    | cross margin | linear-swap-api/v1/swap_cross_matchresults                          | POST    |    Get History Match Results         |       Yes          |
+Trade  | Trade    | cross margin | linear-swap-api/v1/swap_cross_lightning_close_position              | POST    |    Place Lightning Close Position           |       Yes          |
+Trade  | Trade    | cross margin | linear-swap-api/v1/swap_cross_trigger_order                         | POST    |    Place Trigger Order           |       Yes          |
+Trade  | Trade    | cross margin | linear-swap-api/v1/swap_cross_trigger_cancel                        | POST    |    Cancel Trigger Order           |       Yes          |
+Trade  | Trade    | cross margin | linear-swap-api/v1/swap_cross_trigger_cancelall                     | POST    |    Cancel All Trigger Orders       |       Yes          |
+ Read  | Trade    | cross margin | linear-swap-api/v1/swap_cross_trigger_openorders                    | POST    |    Query Open Trigger Order       |       Yes          |
+ Read  | Trade    | cross margin | inear-swap-api/v1/swap_cross_trigger_hisorders                     | POST    |    Query Trigger Order History       |       Yes          | 
+Trade  | Account  | general |https://api.huobi.pro/v2/account/transfer                         | POST   |      Transfer margin between Spot account and USDT Margined Swap account     |     Yes       |
 
 
 
@@ -1716,9 +1716,9 @@ When you report an API error, you need to attach your request URL, the original 
 If it is an order-related issue, use the API order query interface linear-swap-api/v1/swap_order_info to keep the complete log returned and provide your UID and order number.
 
 
-# [General Mode] Swap Market Data interface
+# Swap Market Data interface
 
-## Query Swap Info 
+## [General Mode] Query Swap Info 
 
 ### Example              
                                    
@@ -2566,7 +2566,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_adjustfactor"
 | \</data\> |  |  |  |  |
 
 
-## Query Information On Tiered Adjustment Factor（cross margin mode）
+## [Cross Margin Mode] Query Information On Tiered Adjustment Factor
 
  - GET `linear-swap-api/v1/swap_cross_adjustfactor`
 
@@ -2633,7 +2633,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_adjustfactor"
     "ts":1606905299391
 }
 
-````
+```
 
 ### Returning Parameter
 
@@ -2657,7 +2657,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_adjustfactor"
 | \</data\>         |      |         |        |                |
 
 
-## Query information on open interest
+## [General Mode] Query information on open interest
 
 - GET `/linear-swap-api/v1/swap_his_open_interest`
 
@@ -2723,7 +2723,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_his_open_interest?contract_co
 - tick field：Tick data is arranged in reverse chronological order；
 
 
-##  Query information on system status
+## [Isolated Margin Mode] Query information on system status
 
 - GET `/linear-swap-api/v1/swap_api_state`
 
@@ -2801,7 +2801,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_api_state"
 | \</data\>            |      |        |               |                |
 
 
-##  Query Information On Transfer State（cross margin mode）
+## [Cross Margin Mode] Query Information On Transfer State
 
  - GET `linear-swap-api/v1/swap_cross_transfer_state`
 
@@ -2863,7 +2863,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_api_state"
 | \</data\>            |      |        |               |                |
 
        
-## Query Information On Trade State（cross margin mode）
+## [Cross Margin Mode] Query Information On Trade State
 
  - GET `linear-swap-api/v1/swap_cross_trade_state`
 
@@ -2916,7 +2916,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_api_state"
 | \</data\>            |      |        |               |                | 
 
 
-## Query Top Trader Sentiment Index Function-Account
+## [General Mode] Query Top Trader Sentiment Index Function-Account
 
 - GET `/linear-swap-api/v1/swap_elite_account_ratio`
 
@@ -2974,7 +2974,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_elite_account_ratio?contract_
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
-## Query Top Trader Sentiment Index Function-Position
+## [General Mode] Query Top Trader Sentiment Index Function-Position
 
 - GET `/linear-swap-api/v1/swap_elite_position_ratio`
 
@@ -3032,7 +3032,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_elite_position_ratio?contract
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
-##  Query Liquidation Orders
+##  [General Mode] Query Liquidation Orders
 
 - GET `/linear-swap-api/v1/swap_liquidation_orders`
 
@@ -3107,7 +3107,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
 | ts                     | true     | long    |   timestamp             |              |
 
 
-## Query historical settlement records of the platform interface 
+## [General Mode] Query historical settlement records of the platform interface 
 
  - GET `/linear-swap-api/v1/swap_settlement_records`
 
@@ -3170,7 +3170,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
 | \</data\>         |      |         |        |                |
 
 
-## Query funding rate
+## [General Mode] Query funding rate
 
 - GET `linear-swap-api/v1/swap_funding_rate`
 
@@ -3225,7 +3225,7 @@ next_funding_time  | string |  estimated funding rate of next period     |   |
 \</data\> |  |  |  |  |
 
 
-## Query historical funding rate
+## [General Mode] Query historical funding rate
 
 - GET `linear-swap-api/v1/swap_historical_funding_rate`
 
@@ -3293,7 +3293,7 @@ current_page   | int     | current page               |              |
 total_size     | int     |  total size               |              |
 \</data\> |  |  |  |  |
 
-## Query Premium Index Kline Data
+## [General Mode] Query Premium Index Kline Data
 
 ### example
 
@@ -3360,7 +3360,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_premium_index_kline?
 
 
 
-## Query Estimated Funding Rate Kline Data
+## [General Mode] Query Estimated Funding Rate Kline Data
 
 ### example
 
@@ -3426,7 +3426,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_estimated_rate_kline
 
 
 
-## Query Basis Data
+## [General Mode] Query Basis Data
 
 ### example
 
@@ -3488,7 +3488,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 # Swap Account Interface
 
-## Query User’s Account Information
+## [Isolated Margin Mode] Query User’s Account Information
 
 ###  Example          
                                       
@@ -3564,7 +3564,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 
 
-##  Query User's Account Information（cross margin mode）
+## [Cross Margin Mode] Query User's Account Information
 
  - POST linear-swap-api/v1/swap_cross_account_info
 
@@ -3659,7 +3659,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | \</data\>            |        |         |                      |                |
 
 
-## Query User’s Position Information
+## [Isolated Margin Mode] Query User’s Position Information
 
 ###  Example                           
                      
@@ -3738,7 +3738,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 - If there are symbols in the settlement or delivery period,error code 1080(1080 In settlement or delivery. Unable to get positions of some contracts.) will return without request parameters. It's suggested to query the position info with request parameters to avoid raising the error code and not being able to query the position.
 
 
-## Query User's Position Information（cross margin mode）
+## [Cross Margin Mode] Query User's Position Information
 
  - POST `linear-swap-api/v1/swap_cross_position_info`
 
@@ -3809,7 +3809,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | \</data\>            |      |         |      |              |
 
 
-## Query Assets And Positions
+## [Isolated Margin Mode] Query Assets And Positions
 
  - post `linear-swap-api/v1/swap_account_position_info`
   
@@ -3922,7 +3922,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \</data\>            |        |         |                      |                |
 
 
-## Query Assets And Positions（cross margin mode）
+## [Cross Margin Mode] Query Assets And Positions
 
  - POST `linear-swap-api/v1/swap_cross_account_position_info`
 
@@ -4075,7 +4075,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 
 
 
-## Query assets information of all sub-accounts under the master account
+## [Isolated Margin Mode] Query assets information of all sub-accounts under the master account
 
  - POST `/linear-swap-api/v1/swap_sub_account_list`
 
@@ -4142,7 +4142,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
  - Only return data for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission). 
 
 
-##  Query Assets Information Of All Sub-Accounts Under The Master Account（cross margin mode）    
+## [Cross Margin Mode] Query Assets Information Of All Sub-Accounts Under The Master Account    
 
  - POST `linear-swap-api/v1/swap_cross_sub_account_list`
 
@@ -4203,7 +4203,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
  - Only return data for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission).
 
 
-## Query a single sub-account's assets information
+## [Isolated Margin Mode] Query a single sub-account's assets information
 
  - POST `/linear-swap-api/v1/swap_sub_account_info`
 
@@ -4284,7 +4284,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
   - No data return for sub-accounts which has logged in hbdm but have not gained trading permission/activated.
 
 
-##  Query A Sub-Account's Assets Information（cross margin mode）
+## [Cross Margin Mode] Query A Sub-Account's Assets Information
 
   - POST `linear-swap-api/v1/swap_cross_sub_account_info`  
 
@@ -4387,7 +4387,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
   - No data return for sub-accounts which has logged in hbdm but have not gained trading permission/activated.
  
 
-## Query a single sub-account's position information
+## [Isolated Margin Mode] Query a single sub-account's position information
 
  - POST `/linear-swap-api/v1/swap_sub_position_info`
 
@@ -4460,7 +4460,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \</data\> |  |  |  |  |
 
 
-## Query A Sub-Account's Position Information（cross margin mode）
+## [Cross Margin Mode] Query A Sub-Account's Position Information
 
  - POST `linear-swap-api/v1/swap_cross_sub_position_info`
 
@@ -4504,7 +4504,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
     "ts": 1606964256589
 }
 
-````
+```
 
 ###  Returning Parameter
 
@@ -4533,7 +4533,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \</data\>            |      |         |      |              |
 
 
-## Query account financial records
+## [General Mode] Query account financial records
 
 - POST `/linear-swap-api/v1/swap_financial_record`
 
@@ -4725,7 +4725,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 -->
 
 
-## Query user’s available leverage
+## [Isolated Margin Mode] Query user’s available leverage
 
  - POST `linear-swap-api/v1/swap_available_level_rate`
 
@@ -4770,7 +4770,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 ```
 
 
-## Query User’s Available Leverage（cross margin mode）
+## [Cross Margin Mode] Query User’s Available Leverage
 
  - POST `linear-swap-api/v1/swap_cross_available_level_rate`
 
@@ -4815,7 +4815,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
 
 
-## Query swap information on order limit
+## [General Mode] Query swap information on order limit
 
  - POST `/linear-swap-api/v1/swap_order_limit`
 
@@ -4867,7 +4867,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
-## Query information on swap trading fee
+## [General Mode] Query information on swap trading fee
 
  - POST `/linear-swap-api/v1/swap_fee`
 
@@ -4919,7 +4919,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \</data\> |  |  |  |  |
 
 
-## Query information on Transfer Limit
+## [Isolated Margin Mode] Query information on Transfer Limit
 
  - POST `/linear-swap-api/v1/swap_transfer_limit`
 
@@ -4979,7 +4979,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \</data\> |  |  |  |  |
 
 
-## Query Information On Transfer Limit（cross margin mode）
+## [Cross Margin Mode] Query Information On Transfer Limit
 
  - POST `linear-swap-api/v1/swap_cross_transfer_limit`
 
@@ -5039,7 +5039,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 
 
 
-##  Query information on position limit
+## [Isolated Margin Mode] Query information on position limit
 
  - POST `/linear-swap-api/v1/swap_position_limit`
 
@@ -5088,7 +5088,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \</data\> |  |  |  |  |
 
 
-## Query Information On Position Limit（cross margin mode）
+## [Cross Margin Mode] Query Information On Position Limit
 
  - POST `linear-swap-api/v1/swap_cross_position_limit`
 
@@ -5127,7 +5127,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
     "ts":1606964793311
 }
 
-````
+```
 
 ### Returning Parameter
 
@@ -5144,7 +5144,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \</data\>     |      |         |                 |   |
 
 
-## Transfer between master and sub account
+## [General Mode] Transfer between master and sub account
 
  - post `/linear-swap-api/v1/swap_master_sub_transfer`
 
@@ -5158,12 +5158,13 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | ------ | ----- | ------ | ---- | ---------------------------- |
 | sub_uid | true | long | uid of sub account  |  |
 | asset | true | string | asset	 |  "USDT"... |
-| from_margin_account | true | string | from margin account	 |  "BTC-USDT"... |
-| to_margin_account | true | string | to margin account	 |  "BTC-USDT"... |
+| from_margin_account | true | string | from margin account	 |  "BTC-USDT","USDT"... |
+| to_margin_account | true | string | to margin account	 |  "BTC-USDT","USDT"... |
 | amount | true | decimal | transfer amount ||
 | type | true | string | transfer type | "master_to_sub" or "sub_to_master" |
 
 #### Note：
+- When from_margin_account or to_margin_account is USDT, it means the transfer in or transfer out from cross margin account
 - represents transfer from transfer_out margin account to transfer_in margin account. The currency transferred shall be the same as the denominated currency of the transfer_out margin account.；
 - The denominated currency of the transfer_out margin account and transfer_in margin account must be the same. (eg, USDT can be transferred from BTC-USDT to ETH-USDT, but cannot be transferred from BTC-USDT to ETH-HUSD account).
 - the rate limit between the master account and each subaccount is 10 times/ minute
@@ -5191,7 +5192,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | order_id        | true | string  | order id            |  |
 | \</data\>     |      |         |         |   |
 
-## Query transfer records between master and sub account
+## [General Mode] Query transfer records between master and sub account
 
  - post `/linear-swap-api/v1/swap_master_sub_transfer_record`
 
@@ -5203,7 +5204,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 
 |   Parameter Name                |   Mandatory    |   Type   |   Desc              |   Value Range       |
 | ------ | ----- | ------ | ---- | ---------------------------- |
-| margin_account | true | string | margin account	 |  "BTC-USDT"... |
+| margin_account | true | string | margin account	 |  "BTC-USDT","USDT"... |
 | transfer_type | false | string |  All by default【multiple types need to be joined with ';'】 | 34:transfer to sub account 35:transfer from sub account |
 | create_date | true | int | days | days need to be less than or equal to 90 |
 | page_index | false | int | 1 by default | 1 |
@@ -5263,7 +5264,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \</data\>     |      |         |         |   |
 
 
-## Transfer between different margin accounts under the same account
+## [General Mode] Transfer between different margin accounts under the same account
 
 - post `linear-swap-api/v1/swap_transfer_inner`
 
@@ -5276,11 +5277,12 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | **Parameter Name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | asset | true | string | asset	 |  "USDT"... |
-| from_margin_account | true | string | from margin account	 |  "BTC-USDT"... |
-| to_margin_account | true | string | to margin account	 |  "ETH-USDT"... |
+| from_margin_account | true | string | from margin account	 |  "BTC-USDT","USDT"... |
+| to_margin_account | true | string | to margin account	 |  "ETH-USDT","USDT"... |
 | amount | true | decimal | amount（The unit is the denominated currency of the contract.）	 |  |
 
 #### **Note:**
+- When from_margin_account or to_margin_account is USDT, it means the transfer in or transfer out from cross margin account
 - represents transfer from transfer_out margin account to transfer_in margin account. The currency transferred shall be the same as the denominated currency of the transfer_out margin account.；
 - The denominated currency of the transfer_out margin account and transfer_in margin account must be the same. (eg, USDT can be transferred from BTC-USDT to ETH-USDT, but cannot be transferred from BTC-USDT to ETH-HUSD account)。
 - API rate limit for this interface is up to 10 times per minute.
@@ -5309,7 +5311,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | ts | true  | long | response millionseconds.  |  |
 
 
-## Query user's API indicator disable information
+## [General Mode] Query user's API indicator disable information
 
 - get `/linear-swap-api/v1/swap_api_trading_status`
 
@@ -5389,7 +5391,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 
 # Swap Trade Interface
 
-##  Place an Order 
+## [Isolated Margin Mode] Place an Order 
 
 ###  Example  
 
@@ -5463,7 +5465,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
 
 
-## Place An Order（cross margin mode）
+## [Cross Margin Mode] Place An Order
 
  - POST `linear-swap-api/v1/swap_cross_order`
 
@@ -5530,7 +5532,7 @@ close short: direction -buy、offset - close
 
 
 
-##  Place a Batch of Orders
+## [Isolated Margin Mode] Place a Batch of Orders
 
 ###  Example  
 
@@ -5622,7 +5624,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
 
 
-## Place A Batch Of Orders（cross margin mode） 
+## [Cross Margin Mode] Place A Batch Of Orders 
 
  - POST `linear-swap-api/v1/swap_cross_batchorder`
 
@@ -5701,7 +5703,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
  - The return order_id is 18 bits, it will make mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
 
 
-## Cancel an Order 
+## [Isolated Margin Mode] Cancel an Order 
 
 ###  Example   
 
@@ -5761,7 +5763,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond             |                 |
 
 
-## Cancel An Order（cross margin mode）
+## [Cross Margin Mode] Cancel An Order
 
  - POST `linear-swap-api/v1/swap_cross_cancel`
 
@@ -5819,7 +5821,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | ts                     | true | long   | Time of Respond Generation, Unit: Millisecond       | 
 
 
-## Cancel All Orders 
+## [Isolated Margin Mode] Cancel All Orders 
 
 ###  Example  
 
@@ -5866,7 +5868,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond |                 |
 
 
-## Cancel All Orders（cross margin mode）
+## [Cross Margin Mode] Cancel All Orders
 
  - POST `linear-swap-api/v1/swap_cross_cancelall`
 
@@ -5911,7 +5913,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | ts                     | true | long   | Time of Respond Generation, Unit: Millisecond |                |
 
 
-## Switch Leverage
+## [Isolated Margin Mode] Switch Leverage
 
  - POST `/linear-swap-api/v1/swap_switch_lever_rate`
 
@@ -5969,7 +5971,7 @@ No：
 | ts                     | true | long    | Timestamp                |    
 
 
-## Switch Leverage（cross margin mode）
+## [Cross Margin Mode] Switch Leverage
 
  - POST `linear-swap-api/v1/swap_cross_switch_lever_rate`
 
@@ -6019,9 +6021,9 @@ No：
 | ts                     | true | long    | timestamp                |                                          |
 
 
-## Place Lightning Close Order
+## [Isolated Margin Mode] Place Lightning Close Order
 
- - POST ` /linear-swap-api/v1/swap_lightning_close_position`
+ - POST `/linear-swap-api/v1/swap_lightning_close_position`
 
 #### Remarks
 
@@ -6078,7 +6080,7 @@ No：
 ```
 
 
-## Place Lightning Close Position（cross margin mode）
+## [Cross Margin Mode] Place Lightning Close Position
 
  - POST `linear-swap-api/v1/swap_cross_lightning_close_position`
 
@@ -6128,7 +6130,7 @@ No：
 | \</data\>       |       |        |     |  |
 
 
-## Get Information of an Order
+## [Isolated Margin Mode] Get Information of an Order
 
  - POST `/linear-swap-api/v1/swap_order_info`
 
@@ -6231,9 +6233,9 @@ client_order_id，order status query is available for orders placed within 24 ho
 | ts                             | true          | long     | Timestamp                                                    |                                     |
 
 
-## Get Information of order（cross margin mode）
+## [Cross Margin Mode] Get Information of order
 
- - PSOT `linear-swap-api/v1/swap_cross_order_info`
+ - POST `linear-swap-api/v1/swap_cross_order_info`
 
 #### Remarks
 
@@ -6332,7 +6334,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 | ts                   | true | long    | timestamp    |      |
 
 
-## Order details acquisition
+## [Isolated Margin Mode] Order details acquisition
 
 - POST `/linear-swap-api/v1/swap_order_detail`
 
@@ -6475,7 +6477,7 @@ Please note that created_at can't send "0"
 | ts                                | true          | long     | Timestamp                                                    |                                   |
 
 
-## Get Detail Information of order（cross margin mode）
+## [Cross Margin Mode] Get Detail Information of order
 
  - POST `linear-swap-api/v1/swap_cross_order_detail`
 
@@ -6605,7 +6607,7 @@ Please note that created_at can't send "0"
 | ts                      | true | long    | timestamp         |      |
 
 
-## Current unfilled order acquisition
+## [Isolated Margin Mode] Current unfilled order acquisition
 
  - POST  `/linear-swap-api/v1/swap_openorders`
 
@@ -6711,7 +6713,7 @@ Please note that created_at can't send "0"
 | ts                             | true          | long     | Timestamp                                                    |                                   |
 
 
-## Current unfilled order acquisition（cross margin mode）
+## [Cross Margin Mode] Current unfilled order acquisition
 
  - POST `linear-swap-api/v1/swap_cross_openorders`
 
@@ -6812,7 +6814,7 @@ Please note that created_at can't send "0"
 | ts                   | true | long    | timestamp                                      |                                          |
 
 
-## Get History Orders
+## [Isolated Margin Mode] Get History Orders
 
  - POST `/linear-swap-api/v1/swap_hisorders`
 
@@ -6926,7 +6928,7 @@ Please note that created_at can't send "0"
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
 
 
-## Get History Orders（cross margin mode）
+## [Cross Margin Mode] Get History Orders
 
  - POST `linear-swap-api/v1/swap_cross_hisorders`
 
@@ -7032,7 +7034,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | ts                     | true | long    | timestamp    |      |
 
 
-## Acquire History Match Results
+## [Isolated Margin Mode] Acquire History Match Results
 
  - POST `/linear-swap-api/v1/swap_matchresults`
 
@@ -7128,7 +7130,7 @@ ts                     | true     | long    | timestamp                |        
 - The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
 
 
-## Get History Match Results（cross margin mode）
+## [Cross Margin Mode] Get History Match Results
 
  - POST `linear-swap-api/v1/swap_cross_matchresults`
 
@@ -7218,7 +7220,7 @@ ts                     | true     | long    | timestamp                |        
 | ts                     | true | long    | timestamp                |    |
 
 
-## Place Trigger Order
+## [Isolated Margin Mode] Place Trigger Order
 
  - POST `linear-swap-api/v1/swap_trigger_order`
 
@@ -7309,7 +7311,7 @@ ts                     | true     | long    | timestamp                |        
 ```
 
 
-## Place Trigger Order（cross margin mode）
+## [Cross Margin Mode] Place Trigger Order
 
  - POST `linear-swap-api/v1/swap_cross_trigger_order`
 
@@ -7366,7 +7368,7 @@ Error：
 | \</data\> |   | |  | |
 
 
-## Cancel Trigger Order
+## [Isolated Margin Mode] Cancel Trigger Order
 
 - POST `/linear-swap-api/v1/swap_trigger_cancel`
 
@@ -7418,7 +7420,7 @@ Error：
 | ts                         | true         | long     | response timestamp millseconds |  |
 
 
-## Cancel Trigger Order（cross margin mode）
+## [Cross Margin Mode] Cancel Trigger Order
 
  - POST `linear-swap-api/v1/swap_cross_trigger_cancel`
 
@@ -7468,7 +7470,7 @@ Error：
 | ts                         | true         | long     | Time of Respond Generation, Unit: Millisecond |  |
 
 
-## Cancel All Trigger Orders
+## [Isolated Margin Mode] Cancel All Trigger Orders
 
 - POST `/linear-swap-api/v1/swap_trigger_cancelall`
 
@@ -7528,7 +7530,7 @@ Error：
 ```
 
 
-## Cancel All Trigger Orders（cross margin mode）
+## [Cross Margin Mode] Cancel All Trigger Orders
 
  - POST ‘linear-swap-api/v1/swap_cross_trigger_cancelall’
 
@@ -7571,7 +7573,7 @@ Error：
 | ts                         | true         | long     | Time of Respond Generation, Unit: Millisecond |  |
 
 
-## Query Trigger Order Open Orders
+## [Isolated Margin Mode] Query Trigger Order Open Orders
 
  - POST `linear-swap-api/v1/swap_trigger_openorders`
 
@@ -7662,7 +7664,7 @@ Error：
 | \</orders\>                  |              |          |                            |                |
 
 
-## Query Trigger Order Open Orders（cross margin mode）
+## [Cross Margin Mode] Query Trigger Order Open Orders
 
  - POST `linear-swap-api/v1/swap_cross_trigger_openorders`
 
@@ -7747,7 +7749,7 @@ Error：
 | ts                         | true         | long     | Time of Respond Generation, Unit: Millisecond |  |
 
 
-## Query Trigger Order History
+## [Isolated Margin Mode] Query Trigger Order History
 
  - POST `/linear-swap-api/v1/swap_trigger_hisorders`
 
@@ -7876,7 +7878,7 @@ Error：
 | \</orders\>                  |              |          |                            |                |
 
 
-## Query Trigger Order History（cross margin mode）
+## [Cross Margin Mode] Query Trigger Order History
 
  - POST `linear-swap-api/v1/swap_cross_trigger_hisorders`
 
@@ -7985,7 +7987,7 @@ Error：
 
 # Swap Transferring Interface
 
-##  Transfer margin between Spot account and USDT Margined Swap account 
+##  [General Mode] Transfer margin between Spot account and USDT Margined Swap account 
 
 ### Example
 
@@ -8009,7 +8011,10 @@ Transferring margin between Spot account and USDT Margined Swap account Interfac
 | to  |    true  |  string  |  destination，value：spot、linear-swap |   e.g. linear-swap  |
 | currency      | true     | string | currency.Both uppercase and lowercase are supported.          |       e.g. USDT                          |
 | amount  | true     | decimal    | Transferring amount         |         |   |
-| margin-account  | true     | string    | margin account        |  e.g. BTC-USDT，ETH-USDT            |   |
+| margin-account  | true     | string    | margin account        |  e.g. BTC-USDT，ETH-USDT, USDT           |   |
+
+#### note
+- when "margin-account" is USDT，it means the transfer in or transfer out from cross margin account.
 
 > Response:
 
@@ -8115,37 +8120,37 @@ Response Code | Desc in Chinese |  Desc in English  |
 
 ## API List
 
-| Permission |   Content Type   | Request Method |  Type  |  Description        |  Authentication Required   |
-|----------- | ------------------ | ------------------ |---------- |---------------------------- |--------------|
-| Read    |  Market Data Interface | market.$contract_code.kline.$period                    | sub  | Subscribe KLine data               |       No      |
-| Read    |  Market Data Interface | market.$contract_code.kline.$period                    | req  | Request Kline Data              |       No      |
-| Read    |  Market Data Interface | market.$contract_code.depth.$type                      | sub  | Subscribe Market Depth Data      |       No      |
-| Read    |  Market Data Interface | market.$contract_code.depth.size_${size}.high_freq     | sub  | Subscribe Incremental Market Depth Data |       No      |
-| Read    |  Market Data Interface | market.$contract_code.bbo                              | sub  | Subscribe market BBO data push    |       No      |
-| Read    |  Market Data Interface | market.$contract_code.detail                           | sub  | Subscribe Market Detail Data     |       No      |
-| Read    |  Market Data Interface | market.$contract_code.trade.detail                     | req  | Request Trade Detail Data        |       No      |
-| Read    |  Market Data Interface | market.$contract_code.trade.detail                     | sub  | Subscribe Trade Detail Data       |       No      |
-| Read    |  Index and Basis Interface | market.$contract_code.index.$period  | sub  | Subscribe Index Kline Data                  |       No      |
-| Read    |  Index and Basis Interface | market.$contract_code.index.$period  | sub  | Request Index Kline Data                  |       No      |
-| Read    |  Index and Basis Interface | market.$contract_code.basis.$period.$basis_price_type  | sub  | Subscribe Basis Data                  |       No      |
-| Read    |  Index and Basis Interface | market.$contract_code.basis.$period.$basis_price_type  | req  | Request Basis Data                  |       No      |
-| Read    |  Index and Basis Interface | market.$contract_code.premium_index.$period            | sub  | Subcribe Premium Index Kline Data          |       No      |
-| Read    |  Index and Basis Interface | market.$contract_code.premium_index.$period            | req  | Request Premium Index Kline Data       |       No      |
-| Read    |  Index and Basis Interface| market.$contract_code.estimated_rate.$period           | sub  | Subcribe Estimated Funding Rate Kline Data     |       No      |
-| Read    |  Index and Basis Interface | market.$contract_code.estimated_rate.$period           | req  | Request Estimated Funding Rate Kline Data     |       No      |
-| Read    |  Trade Interface | public.$contract_code.liquidation_orders               | sub  | Subscribe Liquidation Orders (no authentication) (sub)    |       No      |
-| Read    |  Trade Interface | public.$contract_code.funding_rate                     | sub  | Subscribe funding rate (no authentication)（sub）|       No      |
-| Read    |  Trade Interface | public.$contract_code.contract_info                    | sub  | Subscribe Contract Info (no authentication)（sub） |       No      |
-| Read    |  Trade Interface	 | orders.$contract_code                                  | sub  | Subscribe Order Data(sub)              |    Yes      |
-| Read    |  Account Interface	 | accounts.$contract_code                                | sub  | Subscribe Account Equity Updates Data(sub)             |    Yes      |
-| Read    |  Account Interface	 | positions.$contract_code                               | sub  | Subscribe Position Updates(sub)      |    Yes      |
-| Read    |  Trade Interface	 | matchOrders.$contract_code                             | sub  | Subscribe Match Order Data（sub)    |    Yes      |
-| Read    |  Trade Interface	 | trigger_order.$contract_code                             | sub  | Subscribe trigger orders updates(sub)    |    Yes      |  
-| Read  | Account Interface | orders_cross.$contract_code                               | sub    |   Subscribe Order Data（cross margin mode）         |       Yes          |
-| Read  | Account Interface | accounts_cross.$margin_account                            | sub    |   Subscribe Account Equity Updates Data（cross margin mode）         |       Yes          |
-| Read  | Trade Interface | positions_cross.$contract_code                            | sub    |   Subscribe Position Updates（cross margin mode）     |       Yes          |
-| Read  | Trade Interface | matchOrders_cross.$contract_code                          | sub    |   Subscribe Match Order Data（cross margin mode）     |       Yes          |
-| Read  | Trade Interface | trigger_order_cross.$contract_code                        | sub    |   Subscribe trigger orders updates(sub)（cross margin mode）     |       Yes          |                                                                                                                                    
+| Permission |   Content Type   | Interface Mode | Request Method |  Type  |  Description        |  Authentication Required   |
+|----------- | ---------------- | ---------------|--------------- |--------| ------------------- |----------------------------|
+| Read    |  Market Data Interface | general | market.$contract_code.kline.$period                    | sub  | Subscribe KLine data               |       No      |
+| Read    |  Market Data Interface | general | market.$contract_code.kline.$period                    | req  | Request Kline Data              |       No      |
+| Read    |  Market Data Interface | general | market.$contract_code.depth.$type                      | sub  | Subscribe Market Depth Data      |       No      |
+| Read    |  Market Data Interface | general | market.$contract_code.depth.size_${size}.high_freq     | sub  | Subscribe Incremental Market Depth Data |       No      |
+| Read    |  Market Data Interface | general | market.$contract_code.bbo                              | sub  | Subscribe market BBO data push    |       No      |
+| Read    |  Market Data Interface | general | market.$contract_code.detail                           | sub  | Subscribe Market Detail Data     |       No      |
+| Read    |  Market Data Interface | general | market.$contract_code.trade.detail                     | req  | Request Trade Detail Data        |       No      |
+| Read    |  Market Data Interface | general | market.$contract_code.trade.detail                     | sub  | Subscribe Trade Detail Data       |       No      |
+| Read    |  Index and Basis Interface | general | market.$contract_code.index.$period  | sub  | Subscribe Index Kline Data                  |       No      |
+| Read    |  Index and Basis Interface | general | market.$contract_code.index.$period  | sub  | Request Index Kline Data                  |       No      |
+| Read    |  Index and Basis Interface | general | market.$contract_code.basis.$period.$basis_price_type  | sub  | Subscribe Basis Data                  |       No      |
+| Read    |  Index and Basis Interface | general | market.$contract_code.basis.$period.$basis_price_type  | req  | Request Basis Data                  |       No      |
+| Read    |  Index and Basis Interface | general | market.$contract_code.premium_index.$period            | sub  | Subcribe Premium Index Kline Data          |       No      |
+| Read    |  Index and Basis Interface | general | market.$contract_code.premium_index.$period            | req  | Request Premium Index Kline Data       |       No      |
+| Read    |  Index and Basis Interface| general | market.$contract_code.estimated_rate.$period           | sub  | Subcribe Estimated Funding Rate Kline Data     |       No      |
+| Read    |  Index and Basis Interface | general | market.$contract_code.estimated_rate.$period           | req  | Request Estimated Funding Rate Kline Data     |       No      |
+| Read    |  Trade Interface | general | public.$contract_code.liquidation_orders               | sub  | Subscribe Liquidation Orders (no authentication) (sub)    |       No      |
+| Read    |  Trade Interface | general | public.$contract_code.funding_rate                     | sub  | Subscribe funding rate (no authentication)（sub）|       No      |
+| Read    |  Trade Interface | general | public.$contract_code.contract_info                    | sub  | Subscribe Contract Info (no authentication)（sub） |       No      |
+| Read    |  Trade Interface	 | Isolated Margin | orders.$contract_code                                  | sub  | Subscribe Order Data(sub)              |    Yes      |
+| Read    |  Account Interface	 | Isolated Margin | accounts.$contract_code                                | sub  | Subscribe Account Equity Updates Data(sub)             |    Yes      |
+| Read    |  Account Interface	 | Isolated Margin | positions.$contract_code                               | sub  | Subscribe Position Updates(sub)      |    Yes      |
+| Read    |  Trade Interface	 | Isolated Margin | matchOrders.$contract_code                             | sub  | Subscribe Match Order Data（sub)    |    Yes      |
+| Read    |  Trade Interface	 | Isolated Margin | trigger_order.$contract_code                             | sub  | Subscribe trigger orders updates(sub)    |    Yes      |  
+| Read  | Account Interface | cross margin | orders_cross.$contract_code                               | sub    |   Subscribe Order Data         |       Yes          |
+| Read  | Account Interface | cross margin | accounts_cross.$margin_account                            | sub    |   Subscribe Account Equity Updates Data         |       Yes          |
+| Read  | Trade Interface | cross margin | positions_cross.$contract_code                            | sub    |   Subscribe Position Updates     |       Yes          |
+| Read  | Trade Interface | cross margin | matchOrders_cross.$contract_code                          | sub    |   Subscribe Match Order Data     |       Yes          |
+| Read  | Trade Interface | cross margin | trigger_order_cross.$contract_code                        | sub    |   Subscribe trigger orders updates(sub)     |       Yes          |                                                                                                                                    
 
 ## WebSocket Subscription Address
 
@@ -8496,7 +8501,7 @@ Add computed value into the Signature parameter in API request. Please note  the
  
 #  WebSocket Market Interface
 
-## Subscribe Kline data
+## [General Mode] Subscribe Kline data
 
 #### Remarks
 
@@ -8581,7 +8586,7 @@ Add computed value into the Signature parameter in API request. Please note  the
 
 
 
-## Request Kline data
+## [General Mode] Request Kline data
 
 #### Remarks
 
@@ -8712,7 +8717,7 @@ Clients can request 2000 Klines at most in one request
 
 
 
-## Subscribe Market Depth Data
+## [General Mode] Subscribe Market Depth Data
 
 #### Remarks
 
@@ -8827,7 +8832,7 @@ ch | true |  string | Data channel, Format： market.period | |
 
 
 
-## Subscribe Incremental Market Depth Data
+## [General Mode] Subscribe Incremental Market Depth Data
 
 #### Remarks
 
@@ -8936,7 +8941,7 @@ ch | true |  string | Data channel, Format： `market.$contract_code.depth.size_
 
 
 
-## Subscribe Market Detail Data
+## [General Mode] Subscribe Market Detail Data
 
 #### Remarks
 
@@ -9019,7 +9024,7 @@ trade_turnover  |  true  |  decimal  |  Transaction amount, that is, sum (transa
 
 
 
-## Subscribe market BBO data push
+## [General Mode] Subscribe market BBO data push
 
 #### Remarks
 
@@ -9109,7 +9114,7 @@ trade_turnover  |  true  |  decimal  |  Transaction amount, that is, sum (transa
 
 
 
-## Request Trade Detail Data
+## [General Mode] Request Trade Detail Data
 
 #### Remarks
 
@@ -9201,7 +9206,7 @@ ts  |  true  |  long  |  Order Creation Time |   |
 ts  |  true  |  long  |  server response time |   | 
 
 
-## Subscribe Trade Detail Data 
+## [General Mode] Subscribe Trade Detail Data 
 
 #### Remarks
 
@@ -9295,7 +9300,7 @@ direction  |  true  |  string  |  Order direction  |   |
  - The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index 
 
 
-## Subcribe Index Kline Data
+## [General Mode] Subcribe Index Kline Data
 
 #### Remarks
 
@@ -9379,7 +9384,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | amount | string  |amount based on coins.            |
 
 
-## Request Index Kline Data
+## [General Mode] Request Index Kline Data
 
 #### Remarks
 
@@ -9488,7 +9493,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | amount | decimal  |amount based on coins.            |
 
 
-## Subcribe Premium Index Kline Data
+## [General Mode] Subcribe Premium Index Kline Data
 
 #### Remarks
 
@@ -9572,7 +9577,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | ts     | true | long | Time of Respond Generation, Unit: Millisecond            |                | |
 
 
-## Request Premium Index Kline Data
+## [General Mode] Request Premium Index Kline Data
 
 #### Remarks
 
@@ -9670,7 +9675,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | \</data\>            |      |        |               |                | |
 
 
-## Subcribe Estimated Funding Rate Kline Data
+## [General Mode] Subcribe Estimated Funding Rate Kline Data
 
 #### Remarks
 
@@ -9754,7 +9759,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | ts     | true | long |  Time of Respond Generation, Unit: Millisecond                   |                | |
 
 
-## Request Estimated Funding Rate Kline Data
+## [General Mode] Request Estimated Funding Rate Kline Data
 
 #### Remarks
 
@@ -9849,7 +9854,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | \</data\>            |      |        |               |                | |
 
 
-## Subscribe Basis Data
+## [General Mode] Subscribe Basis Data
 
 #### Remarks
 
@@ -9921,7 +9926,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | \</tick\>            |      |        |               |                | |
 | ts      | long | Time of Respond Generation, unit: millisecond        |                | |
 
-## Request Basis Data
+## [General Mode] Request Basis Data
 
 #### Remarks
 
@@ -10016,7 +10021,7 @@ direction  |  true  |  string  |  Order direction  |   |
 
 # Orders and Accounts WebSocket Interfaces
 
-## Subscribe Order Data(sub)
+## [Isolated Margin Mode] Subscribe Order Data(sub)
 
 #### Remarks
 
@@ -10155,7 +10160,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | \</list\>                  |         |                                                             |
 
 
-## Unsubscribe Order Data（unsub）
+## [Isolated Margin Mode] Unsubscribe Order Data（unsub）
 
 #### Remarks
 
@@ -10207,7 +10212,7 @@ To unsubscribe order data, the clients have to make connection to the server and
 | orders.*       | orders.contract_code1  | Not Allowed |
 
 
-## Subscribe Order Data（cross margin mode）（sub）
+## [Cross Margin Mode] Subscribe Order Data（sub）
 
 #### Remarks
 
@@ -10346,7 +10351,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | \</trade\>   |  |   |     |
 
 
-## Unsubscribe Order Data（cross margin mode）（unsub）
+## [Cross Margin Mode] Unsubscribe Order Data（unsub）
 
 #### Remarks
 
@@ -10397,7 +10402,7 @@ To unsubscribe order data, the clients have to make connection to the server and
 | orders_cross.*       | orders_cross.contract_code1  | Not Allowed |
 
 
-## Subscribe Match Order Data（sub)
+## [Isolated Margin Mode] Subscribe Match Order Data（sub)
 
 #### Remarks
 
@@ -10526,7 +10531,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | role   | true | string  | taker or maker  |   |
 | \</trade\>   |  |  |     |    |
 
-## Unsubscribe Match Order Data（unsub）
+## [Isolated Margin Mode] Unsubscribe Match Order Data（unsub）
 
 #### Remarks
 
@@ -10578,7 +10583,7 @@ To unsubscribe order data, the clients have to make connection to the server and
 | matchOrders.*       | matchOrders.contract_code1  | Not Allowed |
 
 
-## Subscribe Match Order Data（cross margin mode）（sub）
+## [Cross Margin Mode] Subscribe Match Order Data（sub）
 
 #### Remarks
 
@@ -10705,7 +10710,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | \</trade\>   |  |  |     |    |
 
 
-## Unsubscribe Match Order Data（cross margin mode）（unsub）
+## [Cross Margin Mode] Unsubscribe Match Order Data（unsub）
 
 #### Remarks
 
@@ -10755,7 +10760,7 @@ To unsubscribe order data, the clients have to make connection to the server and
 | matchOrders_cross.*       | matchOrders_cross.contract_code1  | Not Allowed |
 
 
-## Subscribe Account Equity Updates Data(sub)
+## [Isolated Margin Mode] Subscribe Account Equity Updates Data(sub)
 
 #### Remarks
 
@@ -10863,7 +10868,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | \</data\>            |   |                                                        |
 
 
-## Unsubscribe Account Equity Updates Data (ubsub)
+## [Isolated Margin Mode] Unsubscribe Account Equity Updates Data (ubsub)
 
 #### Remarks
 
@@ -10915,7 +10920,7 @@ To unsubscribe account equity updates data, the client has to make connection to
 | accounts.*       | accounts.contract_code1  | Not Allowed |
 
 
-## Subscribe Account Equity Updates Data（cross margin mode）（sub）
+## [Cross Margin Mode] Subscribe Account Equity Updates Data（sub）
 
 #### Remarks
 
@@ -11037,7 +11042,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | \</data\>   |  |   |     |   |
 
 
-## Unsubscribe Account Equity Updates Data（cross margin mode）（unsub）
+## [Cross Margin Mode] Unsubscribe Account Equity Updates Data（unsub）
 
 #### Remarks
 
@@ -11088,7 +11093,7 @@ To unsubscribe account equity updates data, the client has to make connection to
 | accounts_cross.*       | accounts_cross.margin_account1  | Not Allowed |
 
 
-## Subscribe Position Updates(sub)
+## [Isolated Margin Mode] Subscribe Position Updates(sub)
 
 #### Remarks
 
@@ -11201,7 +11206,7 @@ To subscribe position updates data, the client has to make connection to the ser
  - When switching leverage with no positions, the event "switch_lever_rate" will not be pushed by the position topic.
 
 
-## Unsubscribe Position Updates Data(unsub)
+## [Isolated Margin Mode] Unsubscribe Position Updates Data(unsub)
 
 #### Remarks
 
@@ -11252,7 +11257,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | positions.*       | positions.symbol1  | Not Allowed |
 
 
-## Subscribe Position Updates（cross margin mode）（sub）
+## [Cross Margin Mode] Subscribe Position Updates（sub）
 
 #### Remarks
 
@@ -11366,7 +11371,7 @@ To subscribe position updates data, the client has to make connection to the ser
  - When switching leverage with no positions, the event "switch_lever_rate" will not be pushed by the position topic.
 
 
-## Unsubscribe Position Updates Data（cross margin mode）（unsub）
+## [Cross Margin Mode] Unsubscribe Position Updates Data（unsub）
 
 #### Remarks
 
@@ -11416,7 +11421,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | positions_cross.*       | positions_cross.contract_code1  | Not Allowed |
 
 
-## Subscribe Liquidation Orders (no authentication) (sub)
+## [General Mode] Subscribe Liquidation Orders (no authentication) (sub)
 
 #### Remarks
 
@@ -11501,7 +11506,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 
 
 
-## Unsubscribe Liquidation Order Data (unsub)
+## [General Mode] Unsubscribe Liquidation Order Data (unsub)
 
 #### Remarks
 
@@ -11551,7 +11556,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | public.*.liquidation_orders      | public.contract_code1.liquidation_orders  | Not Allowed |
 
 
-## Subscribe funding rate (no authentication)（sub）
+## [General Mode] Subscribe funding rate (no authentication)（sub）
 
 #### Remarks
 
@@ -11631,7 +11636,7 @@ To subscribe funding rate data, the client has to make connection to the server 
 | \</data\>   |  |     |    |
 
 
-## Unsubscribe Funding Rate Data(no authentication)(unsub)
+## [General Mode] Unsubscribe Funding Rate Data(no authentication)(unsub)
 
 #### Remarks
 
@@ -11690,7 +11695,7 @@ To unsubscribe funding rate data, the client has to make connection to the serve
  - If the value is equal to last value over 5 continuous counts calculated by md5 of 150 bids data and 150 asks data. 
 
 
-## Subscribe Contract Info (no authentication)（sub）
+## [General Mode] Subscribe Contract Info (no authentication)（sub）
 
 #### Remarks
 
@@ -11781,7 +11786,7 @@ To subscribe contract infodata, the client has to make connection to the server 
 - When the contract status is "delivery completed", the next settlement time of the contract is an empty string.
 - Only when the status is 1(Listing),  can it be traded normally, other statuses are not tradable;
 
-## Unsubscribe Contract Info Data(no authentication)(unsub)
+## [General Mode] Unsubscribe Contract Info Data(no authentication)(unsub)
 
 #### Remarks
 
@@ -11831,7 +11836,7 @@ To unsubscribe contract info data, the client has to make connection to the serv
 | public.*.contract_info       | public.contract_code1.contract_info  | Not Allowed |
 
 
-## Subscribe trigger orders updates(sub)
+## [Isolated Margin Mode] Subscribe trigger orders updates(sub)
 
 #### Remarks
 
@@ -11959,7 +11964,7 @@ To unsubscribe contract info data, the client has to make connection to the serv
 - Single coin cannot be re-suscribed, and all coins subscription can cover single coin subscription; single coin cannot be subscribed after subscribing all coins. 
 
 
-## Unsubscribe trigger orders updates（unsub）
+## [Isolated Margin Mode] Unsubscribe trigger orders updates（unsub）
 
 #### Remarks
 
@@ -12009,7 +12014,7 @@ To subscribe basis data, the Client has to make connection to the Server and sen
 | trigger_order.*       | trigger_order.contract_code1  | Not Allowed |
 
 
-## Subscribe trigger orders updates（cross margin mode）(sub)
+## [Cross Margin Mode] Subscribe trigger orders updates(sub)
 
 #### Remarks
 
@@ -12134,7 +12139,7 @@ To subscribe basis data, the Client has to make connection to the Server and sen
 - Single coin cannot be re-suscribed, and all coins subscription can cover single coin subscription; single coin cannot be subscribed after subscribing all coins. 
 
 
-## Unsubscribe trigger orders updates（cross margin mode）（unsub）
+## [Cross Margin Mode] Unsubscribe trigger orders updates（unsub）
 
 #### Remarks
 
