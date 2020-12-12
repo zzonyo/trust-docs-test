@@ -42,7 +42,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 1、Added Cross Margin Mode Query Information On Tiered Adjustment Factor
 
-  - Interface Name：Query Information On Tiered Adjustment Factor（cross margin mode）
+  - Interface Name：[cross margin mode]Query Information On Tiered Adjustment Factor
 
   - Interface Type：public
 
@@ -50,7 +50,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 1、Added Cross Margin Mode Query Information On Transfer State
 
-  - Interface Name：Query Information On Transfer State（cross margin mode）
+  - Interface Name：[cross margin mode]Query Information On Transfer State
 
   - Interface Type：public
 
@@ -58,7 +58,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 1、Added Cross Margin Mode Query Information On Trade State
 
-  - Interface Name：Query Information On Trade State（cross margin mode）
+  - Interface Name：[cross margin mode]Query Information On Trade State
 
   - Interface Type：public
 
@@ -66,7 +66,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 1、Added Cross Margin Mode Query User's Account Information
 
-  - Interface Name：Query User's Account Information（cross margin mode）
+  - Interface Name：[cross margin mode]Query User's Account Information
 
   - Interface Type：private
 
@@ -74,7 +74,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 1、Added Cross Margin Mode Query User's Position Information
 
-  - Interface Name：Query User's Position Information（cross margin mode）
+  - Interface Name：[cross margin mode]Query User's Position Information
 
   - Interface Type：private
 
@@ -82,7 +82,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 1、Added Cross Margin Mode Query Assets Information Of All Sub-Accounts Under The Master Account
 
-  - Interface Name：Query Assets Information Of All Sub-Accounts Under The Master Account（cross margin mode）
+  - Interface Name：[cross margin mode]Query Assets Information Of All Sub-Accounts Under The Master Account
 
   - Interface Type：private
 
@@ -90,7 +90,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 7、Added Cross Margin Mode Query A Sub-Account's Assets Information
 
-  - Interface Name：Query A Sub-Account's Assets Information（cross margin mode）
+  - Interface Name：[cross margin mode]Query A Sub-Account's Assets Information
 
   - Interface Type：private
 
@@ -98,7 +98,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 8、Added Cross Margin Mode Query A Sub-Account's Position Information
 
-  - Interface Name：Query A Sub-Account's Position Information（cross margin mode）
+  - Interface Name：[cross margin mode]Query A Sub-Account's Position Information
 
   - Interface Type：private
 
@@ -106,7 +106,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 9、Added Cross Margin Mode Query Information On Transfer Limit
 
-  - Interface Name：Query Information On Transfer Limit（cross margin mode）
+  - Interface Name：[cross margin mode]Query Information On Transfer Limit
 
   - Interface Type：private
 
@@ -114,7 +114,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 10、Added Cross Margin Mode Query Information On Position Limit
 
-  - Interface Name：Query Information On Position Limit（cross margin mode）
+  - Interface Name：[cross margin mode]Query Information On Position Limit
 
   - Interface Type：private
 
@@ -122,7 +122,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 11、Added Cross Margin Mode Query Assets And Positions
 
-  - Interface Name：Query Assets And Positions（cross margin mode）
+  - Interface Name：[cross margin mode]Query Assets And Positions
 
   - Interface Type：private
 
@@ -130,7 +130,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 12、Added Cross Margin Mode Query User’s Available Leverage
 
-  - Interface Name：Query User’s Available Leverage（cross margin mode）
+  - Interface Name：[cross margin mode]Query User’s Available Leverage
 
   - Interface Type：private
 
@@ -138,7 +138,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 13、Added Cross Margin Mode Switch Leverage
 
-  - Interface Name：Switch Leverage（cross margin mode）
+  - Interface Name：[cross margin mode]Switch Leverage
 
   - Interface Type：private
 
@@ -146,7 +146,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 14、Added Cross Margin Mode Place An Order 
 
-  - Interface Name：Place An Order（cross margin mode）
+  - Interface Name：[cross margin mode]Place An Order
 
   - Interface Type：private
 
@@ -154,7 +154,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 15、Added Cross Margin Mode Place A Batch Of Orders
 
-  - Interface Name：Place A Batch Of Orders（cross margin mode）
+  - Interface Name：[cross margin mode]Place A Batch Of Orders
 
   - Interface Type：private
 
@@ -162,7 +162,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 16、Added Cross Margin Mode Cancel An Order
 
-  - Interface Name：Cancel An Order（cross margin mode）
+  - Interface Name：[cross margin mode]Cancel An Order
 
   - Interface Type：private
 
@@ -170,7 +170,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 17、Added Cross Margin Mode Cancel All Orders
 
-  - Interface Name：Cancel All Orders（cross margin mode）
+  - Interface Name：[cross margin mode]Cancel All Orders
 
   - Interface Type：private
 
@@ -178,7 +178,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 18、Added Cross Margin Mode Get Information of order
 
-  - Interface Name：Get Information of order（cross margin mode）
+  - Interface Name：[cross margin mode]Get Information of order
 
   - Interface Type：private
 
@@ -186,7 +186,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 19、Added Cross Margin ModeGet Detail Information of order
 
-  - Interface Name：Get Detail Information of order（cross margin mode）
+  - Interface Name：[cross margin mode]Get Detail Information of order
 
   - Interface Type：private
 
@@ -194,7 +194,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 20、Added Cross Margin Mode Current unfilled order acquisition
 
-  - Interface Name：Current unfilled order acquisition（cross margin mode）
+  - Interface Name：[cross margin mode]Current unfilled order acquisition
 
   - Interface Type：private
 
@@ -202,7 +202,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 21、Added Cross Margin Mode Get History Orders
 
-  - Interface Name：Get History Orders（cross margin mode）
+  - Interface Name：[cross margin mode]Get History Orders
 
   - Interface Type：private
 
@@ -210,7 +210,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 22、Added Cross Margin Mode Get History Match Results
 
-  - Interface Name：Get History Match Results（cross margin mode）
+  - Interface Name：[cross margin mode]Get History Match Results
 
   - Interface Type：private
 
@@ -218,7 +218,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 23、Added Cross Margin Mode Place Lightning Close Position
 
-  - Interface Name：Place Lightning Close Position（cross margin mode）
+  - Interface Name：[cross margin mode]Place Lightning Close Position
 
   - Interface Type：private
 
@@ -226,7 +226,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 24、Added Cross Margin Mode Place Trigger Order
 
-  - Interface Name：Place Trigger Order（cross margin mode）
+  - Interface Name：[cross margin mode]Place Trigger Order
 
   - Interface Type：private
 
@@ -234,7 +234,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 25、Added Cross Margin Mode Cancel Trigger Order
 
-  - Interface Name：Cancel Trigger Order（cross margin mode）
+  - Interface Name：[cross margin mode]Cancel Trigger Order
 
   - Interface Type：private
 
@@ -242,7 +242,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 26、Added Cross Margin Mode Cancel All Trigger Orders
 
-  - Interface Name：Cancel All Trigger Orders（cross margin mode）
+  - Interface Name：[cross margin mode]Cancel All Trigger Orders
 
   - Interface Type：private
 
@@ -250,7 +250,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 27、Added Cross Margin Mode Query Open Trigger Order
 
-  - Interface Name：Query Open Trigger Order（cross margin mode）
+  - Interface Name：[cross margin mode]Query Open Trigger Order
 
   - Interface Type：private
 
@@ -258,7 +258,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 28、Added Cross Margin Mode Query Trigger Order History
 
-  - Interface Name：Query Trigger Order History（cross margin mode）
+  - Interface Name：[cross margin mode]Query Trigger Order History
 
   - Interface Type：private
 
@@ -266,7 +266,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 29、Added Cross Margin Mode Subscribe Order Data
 
-  - Interface Name：Subscribe Order Data（cross margin mode）
+  - Interface Name：[cross margin mode]Subscribe Order Data
 
   - Interface Type：private
 
@@ -274,7 +274,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 30、Added Cross Margin Mode Subscribe Account Equity Updates Data
 
-  - Interface Name：Subscribe Account Equity Updates Data（cross margin mode）
+  - Interface Name：[cross margin mode]Subscribe Account Equity Updates Data
 
   - Interface Type：private
 
@@ -282,7 +282,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 31、Added Cross Margin Mode Subscribe Position Updates
 
-  - Interface Name：Subscribe Position Updates（cross margin mode）
+  - Interface Name：[cross margin mode]Subscribe Position Updates
 
   - Interface Type：private
 
@@ -290,7 +290,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 32、Added Cross Margin Mode Subscribe Match Order Data
 
-  - Interface Name：Subscribe Match Order Data（cross margin mode）
+  - Interface Name：[cross margin mode]Subscribe Match Order Data
 
   - Interface Type：private
 
@@ -298,7 +298,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 33、Added Cross Margin Mode Subscribe trigger orders updates
 
-  - Interface Name：Subscribe trigger orders updates（cross margin mode）
+  - Interface Name：[cross margin mode]Subscribe trigger orders updates
 
   - Interface Type：private
 
@@ -590,91 +590,91 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ##  API List
 
-permission type  |  Content Type  |   Context           |   Request Type   |   Desc          | Signature Required   |
+permission type  |  Content Type  | Margin Mode |  Context           |   Request Type   |   Desc          | Signature Required   |
 ----------- |  ------------------ | ---------------------------------------- |  ---------- |  ------------------------------- |  --------------  |
- Read  | Market Data | linear-swap-api/v1/swap_contract_info                             | GET    |      Get Contracts Information                          |       No          |
- Read  | Market Data | linear-swap-api/v1/swap_index                                     | GET    |      Get contract Index Price Information                    |       No          |                     
- Read  | Market Data | linear-swap-api/v1/swap_price_limit                               | GET    |      Get Contract Price Limits           |       No          |           
- Read  | Market Data | linear-swap-api/v1/swap_open_interest                             | GET    |      Get Contract Open Interest Information             |       No          |            
- Read  | Market Data | linear-swap-api/v1/swap_risk_info                                 | GET    |      Query information on contract insurance fund balance and estimated clawback rate     |       No          |
- Read  | Market Data | linear-swap-api/v1/swap_insurance_fund                            | GET    |      Query history records of insurance fund balance               |       No          |
- Read  | Market Data | linear-swap-api/v1/swap_adjustfactor                              | GET    |      Query information on Tiered Adjustment Factor                |       No          |
- Read  | Market Data | linear-swap-api/v1/swap_his_open_interest                         | GET    |      Query information on open interest                      |       No          |
- Read  | Market Data | linear-swap-api/v1/swap_elite_account_ratio                       | GET    |      Query Top Trader Sentiment Index Function-Account          |       No          |
- Read  | Market Data | linear-swap-api/v1/swap_elite_position_ratio                      | GET    |      Query Top Trader Sentiment Index Function-Position        |       No          |
- Read  | Market Data | linear-swap-api/v1/swap_liquidation_orders                        | GET    |      Query Liquidation Order Information       |       No          |
- Read  | Market Data | linear-swap-api/v1/swap_settlement_records                       | GET    |      Query historical settlement records of the platform interface       |       No          |
- Read  | Market Data | linear-swap-api/v1/swap_api_state                                 | GET    |      Query information on system status                      |       No          |
- Read  | Market Data | linear-swap-api/v1/swap_funding_rate                              | GET    |      Query funding rate                 |       No          |
- Read  | Market Data | linear-swap-api/v1/swap_historical_funding_rate                   | GET    |      Query Historical Funding Rate             |       No          |
- Read  | Market Data | linear-swap-ex/market/depth                                       | GET    |      Get Market Depth                     |       No          |
- Read  | Market Data | linear-swap-ex/market/history/kline                               | GET    |      Get KLine Data                          |       No          |
- Read  | Market Data | linear-swap-ex/market/detail/merged                               | GET    |      Get Market Data Overview                        |       No          |
- Read  | Market Data | index/market/history/linear_swap_basis                            | GET    |      Query Basis Data                        |       No          |
- Read  | Market Data | index/market/history/linear_swap_premium_index_kline              | GET    |      Query Liquidation Order Information                 |       No          |
- Read  | Market Data | index/market/history/linear_swap_estimated_rate_kline             | GET    |      Query Swap Market Data interface           |       No          |
- Read  | Market Data | linear-swap-ex/market/trade                                       | GET    |      Query The Last Trade of a Contract                |       No          |
- Read  | Market Data | linear-swap-ex/market/history/trade                               | GET    |      Query a Batch of Trade Records of a Contract               |     No         |
- Read  | Market Data | linear-swap-api/v1/swap_cross_adjustfactor                          | GET    |     Query Information On Tiered Adjustment Factor（cross margin mode）                                                |       No          |
- Read  | Market Data | linear-swap-api/v1/swap_cross_transfer_state                        | GET    |     Query Information On Transfer State（cross margin mode）                        |       No          |
- Read  | Market Data | linear-swap-api/v1/swap_cross_trade_state                           | GET    |     Query Information On Trade State（cross margin mode）                        |       No          |
- Read  | Account    | linear-swap-api/v1/swap_account_info                              | POST   |      Query User’s Account Information                |     Yes        |
- Read  | Account    | linear-swap-api/v1/swap_position_info                             | POST   |      Query User’s position Information               |     Yes        |
- Read  | Account    | linear-swap-api/v1/swap_available_level_rate                      | POST   |      Query user’s available leverage              |     Yes        |
- Read  | Account    | linear-swap-api/v1/swap_sub_account_list                          | POST   |      Query assets information of all sub-accounts under the master account (Query by coins)       |     Yes        |
- Read  | Account    | linear-swap-api/v1/swap_sub_account_info                          | POST   |      Query a single sub-account's assets information     |     Yes        |
- Read  | Account    | linear-swap-api/v1/swap_sub_position_info                         | POST   |      Query a single sub-account's position information      |     Yes        |
- Read  | Account    | linear-swap-api/v1/swap_financial_record                          | POST   |      Query account financial records                     |     Yes        |
- Read  | Account    | linear-swap-api/v1/swap_order_limit                               | POST   |      Query contract information on order limit              |     Yes        |
- Read  | Account    | linear-swap-api/v1/swap_fee                                       | POST   |      Query information on contract trading fee             |     Yes        |
- Read  | Account    | linear-swap-api/v1/swap_transfer_limit                            | POST   |      Query information on Transfer Limit               |     Yes        |
- Read  | Account    | linear-swap-api/v1/swap_position_limit                            | POST   |      Query information on position limit             |     Yes        |
- Read  | Account    | linear-swap-api/v1/swap_account_position_info                     | POST   |      Query Assets And Positions               |     Yes        |
-Trade  | Account    | linear-swap-api/v1/swap_master_sub_transfer                       | POST   |      Transfer between master account and sub-accounts                         |     Yes        |
- Read  | Account    | linear-swap-api/v1/swap_master_sub_transfer_record                | POST   |      Query transfer records of master account    |     Yes        |
-Trade  | Account    | linear-swap-api/v1/swap_transfer_inner                            | POST   |      Transfer between different margin accounts under the same account          |     Yes        |
- Read  | Account    | linear-swap-api/v1/swap_api_trading_status                        | GET    |      Query user's API indicator disable information              |     Yes        |
- Read  | Account    | /linear-swap-api/v1/swap_cross_account_info                          | POST    |    Query User's Account Information（cross margin mode）              |       Yes          |
- Read  | Account    | /linear-swap-api/v1/swap_cross_position_info                         | POST    |    Query User's Position Information（cross margin mode）               |       Yes          |
- Read  | Account    | /linear-swap-api/v1/swap_cross_sub_account_list                      | POST    |    Query Assets Information Of All Sub-Accounts Under The Master Account（cross margin mode）       |       Yes          |
- Read  | Account    | /linear-swap-api/v1/swap_cross_sub_account_info                      | POST    |    Query A Sub-Account's Assets Information（cross margin mode）   |       Yes          |
- Read  | Account    | /linear-swap-api/v1/swap_cross_sub_position_info                     | POST    |    Query A Sub-Account's Position Information（cross margin mode）    |       Yes          |
- Read  | Account    | /linear-swap-api/v1/swap_cross_transfer_limit                        | POST    |    Query Information On Transfer Limit（cross margin mode）           |       Yes          |
- Read  | Account    | /linear-swap-api/v1/swap_cross_position_limit                        | POST    |    Query Information On Position Limit（cross margin mode）        |       Yes          |
- Read  | Account    | /linear-swap-api/v1/swap_cross_account_position_info                 | POST    |    Query Assets And Positions（cross margin mode）          |       Yes          |
- Read  | Account    | linear-swap-api/v1/swap_cross_available_level_rate                   | POST    |    Query User’s Available Leverage（cross margin mode）        |       Yes          |
-Trade  | Trade      | linear-swap-api/v1/swap_order                                     | POST   |      Place an Order                              |     Yes        |
-Trade  | Trade      | linear-swap-api/v1/swap_batchorder                                | POST   |      Place a Batch of Orders                         |     Yes        |
-Trade  | Trade      | linear-swap-api/v1/swap_switch_lever_rate                         | POST   |      Switch Leverage               |     Yes        |
-Trade  | Trade      | linear-swap-api/v1/swap_cancel                                    | POST   |      Cancel an Order                          |     Yes        |
-Trade  | Trade      | linear-swap-api/v1/swap_cancelall                                 | POST   |      Cancel All Orders                       |     Yes        |
- Read  | Trade      | linear-swap-api/v1/swap_order_info                                | POST   |      Get Information of an Order               |     Yes        |
- Read  | Trade      | linear-swap-api/v1/swap_order_detail                              | POST   |      Get Trade Details of an Order           |     Yes        |
- Read  | Trade      | linear-swap-api/v1/swap_openorders                                | POST   |      Get Current Orders         |     Yes        |
- Read  | Trade      | linear-swap-api/v1/swap_hisorders                                 | POST   |      Get History Orders               |     Yes        |
- Read  | Trade      | linear-swap-api/v1/swap_matchresults                              | POST   |      Acquire History Match Results           |     Yes        |
-Trade  | Trade      | linear-swap-api/v1/swap_lightning_close_position                  | POST   |      Place Lightning Close Order                    |     Yes        |
-Trade  | Trade      | linear-swap-api/v1/swap_trigger_order                             | POST   |      Place an Trigger Order                      |     Yes         |
-Trade  | Trade      | linear-swap-api/v1/swap_trigger_cancel                            | POST   |      Cancel a Trigger Order                     |     Yes        |
-Trade  | Trade      | linear-swap-api/v1/swap_trigger_cancelall                         | POST   |      Cancel all trigger Orders                 |     Yes        |
- Read  | Trade      | linear-swap-api/v1/swap_trigger_openorders                        | POST   |      Get all open trigger Orders                 |     Yes        |
- Read  | Trade      | linear-swap-api/v1/swap_trigger_hisorders                         | POST   |      Get all history trigger Orders                 |     Yes        |
-Trade  | Trade    | /linear-swap-api/v1/swap_cross_switch_lever_rate                     | POST    |    Switch Leverage（cross margin mode）         |       Yes          |
-Trade  | Trade    | /linear-swap-api/v1/swap_cross_order                                 | POST    |    Place An Order（cross margin mode）           |       Yes          |
-Trade  | Trade    | /linear-swap-api/v1/swap_cross_batchorder                            | POST    |    Place A Batch Of Orders（cross margin mode）        |       Yes          |
-Trade  | Trade    | /linear-swap-api/v1/swap_cross_cancel                                | POST    |    Cancel An Order（cross margin mode）        |       Yes          |
-Trade  | Trade    | /linear-swap-api/v1/swap_cross_cancelall                             | POST    |    Cancel All Orders（cross margin mode）     |       Yes          |
- Read  | Trade    | /linear-swap-api/v1/swap_cross_order_info                            | POST    |    Get Information of order（cross margin mode）             |       Yes          |
- Read  | Trade    | /linear-swap-api/v1/swap_cross_order_detail                          | POST    |    Get Detail Information of order（cross margin mode）         |       Yes          |
- Read  | Trade    | /linear-swap-api/v1/swap_cross_openorders                            | POST    |    Current unfilled order acquisition（cross margin mode）       |       Yes          |
- Read  | Trade    | /linear-swap-api/v1/swap_cross_hisorders                             | POST    |    Get History Orders（cross margin mode）             |       Yes          |
- Read  | Trade    | /linear-swap-api/v1/swap_cross_matchresults                          | POST    |    Get History Match Results（cross margin mode）         |       Yes          |
-Trade  | Trade    | /linear-swap-api/v1/swap_cross_lightning_close_position              | POST    |    Place Lightning Close Position（cross margin mode）           |       Yes          |
-Trade  | Trade    | /linear-swap-api/v1/swap_cross_trigger_order                         | POST    |    Place Trigger Order（cross margin mode）           |       Yes          |
-Trade  | Trade    | /linear-swap-api/v1/swap_cross_trigger_cancel                        | POST    |    Cancel Trigger Order（cross margin mode）           |       Yes          |
-Trade  | Trade    | /linear-swap-api/v1/swap_cross_trigger_cancelall                     | POST    |    Cancel All Trigger Orders（cross margin mode）       |       Yes          |
- Read  | Trade    | /linear-swap-api/v1/swap_cross_trigger_openorders                    | POST    |    Query Open Trigger Order（cross margin mode）       |       Yes          |
- Read  | Trade    | /linear-swap-api/v1/swap_cross_trigger_hisorders                     | POST    |    Query Trigger Order History（cross margin mode）       |       Yes          | 
+ Read  | Market Data | commom | linear-swap-api/v1/swap_contract_info                             | GET    |      Get Contracts Information                          |       No          |
+ Read  | Market Data | commom | linear-swap-api/v1/swap_index                                     | GET    |      Get contract Index Price Information                    |       No          |                     
+ Read  | Market Data | commom | linear-swap-api/v1/swap_price_limit                               | GET    |      Get Contract Price Limits           |       No          |           
+ Read  | Market Data | commom | linear-swap-api/v1/swap_open_interest                             | GET    |      Get Contract Open Interest Information             |       No          |            
+ Read  | Market Data | commom | linear-swap-api/v1/swap_risk_info                                 | GET    |      Query information on contract insurance fund balance and estimated clawback rate     |       No          |
+ Read  | Market Data | lcommom | inear-swap-api/v1/swap_insurance_fund                            | GET    |      Query history records of insurance fund balance               |       No          |
+ Read  | Market Data | isolated | linear-swap-api/v1/swap_adjustfactor                              | GET    |      Query information on Tiered Adjustment Factor                |       No          |
+ Read  | Market Data | commom | linear-swap-api/v1/swap_his_open_interest                         | GET    |      Query information on open interest                      |       No          |
+ Read  | Market Data | commom | linear-swap-api/v1/swap_elite_account_ratio                       | GET    |      Query Top Trader Sentiment Index Function-Account          |       No          |
+ Read  | Market Data | commom | linear-swap-api/v1/swap_elite_position_ratio                      | GET    |      Query Top Trader Sentiment Index Function-Position        |       No          |
+ Read  | Market Data | commom | linear-swap-api/v1/swap_liquidation_orders                        | GET    |      Query Liquidation Order Information       |       No          |
+ Read  | Market Data | commom | linear-swap-api/v1/swap_settlement_records                       | GET    |      Query historical settlement records of the platform interface       |       No          |
+ Read  | Market Data | isolated | linear-swap-api/v1/swap_api_state                                 | GET    |      Query information on system status                      |       No          |
+ Read  | Market Data | commom | linear-swap-api/v1/swap_funding_rate                              | GET    |      Query funding rate                 |       No          |
+ Read  | Market Data | commom | linear-swap-api/v1/swap_historical_funding_rate                   | GET    |      Query Historical Funding Rate             |       No          |
+ Read  | Market Data | commom | linear-swap-ex/market/depth                                       | GET    |      Get Market Depth                     |       No          |
+ Read  | Market Data | commom | linear-swap-ex/market/history/kline                               | GET    |      Get KLine Data                          |       No          |
+ Read  | Market Data | commom | linear-swap-ex/market/detail/merged                               | GET    |      Get Market Data Overview                        |       No          |
+ Read  | Market Data | commom | index/market/history/linear_swap_basis                            | GET    |      Query Basis Data                        |       No          |
+ Read  | Market Data | commom | index/market/history/linear_swap_premium_index_kline              | GET    |      Query Liquidation Order Information                 |       No          |
+ Read  | Market Data | commom | index/market/history/linear_swap_estimated_rate_kline             | GET    |      Query Swap Market Data interface           |       No          |
+ Read  | Market Data | commom | linear-swap-ex/market/trade                                       | GET    |      Query The Last Trade of a Contract                |       No          |
+ Read  | Market Data | commom | linear-swap-ex/market/history/trade                               | GET    |      Query a Batch of Trade Records of a Contract               |     No         |
+ Read  | Market Data | cross | linear-swap-api/v1/swap_cross_adjustfactor                          | GET    |     Query Information On Tiered Adjustment Factor                                                |       No          |
+ Read  | Market Data | cross | linear-swap-api/v1/swap_cross_transfer_state                        | GET    |     Query Information On Transfer State                        |       No          |
+ Read  | Market Data | cross | linear-swap-api/v1/swap_cross_trade_state                           | GET    |     Query Information On Trade State                        |       No          |
+ Read  | Account    | isolated | linear-swap-api/v1/swap_account_info                              | POST   |      Query User’s Account Information                |     Yes        |
+ Read  | Account    | isolated | linear-swap-api/v1/swap_position_info                             | POST   |      Query User’s position Information               |     Yes        |
+ Read  | Account    | isolated | linear-swap-api/v1/swap_available_level_rate                      | POST   |      Query user’s available leverage              |     Yes        |
+ Read  | Account    | isolated | linear-swap-api/v1/swap_sub_account_list                          | POST   |      Query assets information of all sub-accounts under the master account (Query by coins)       |     Yes        |
+ Read  | Account    | isolated | linear-swap-api/v1/swap_sub_account_info                          | POST   |      Query a single sub-account's assets information     |     Yes        |
+ Read  | Account    | isolated | linear-swap-api/v1/swap_sub_position_info                         | POST   |      Query a single sub-account's position information      |     Yes        |
+ Read  | Account    | commom | linear-swap-api/v1/swap_financial_record                          | POST   |      Query account financial records                     |     Yes        |
+ Read  | Account    | commom | linear-swap-api/v1/swap_order_limit                               | POST   |      Query contract information on order limit              |     Yes        |
+ Read  | Account    | commom | linear-swap-api/v1/swap_fee                                       | POST   |      Query information on contract trading fee             |     Yes        |
+ Read  | Account    | isolated | linear-swap-api/v1/swap_transfer_limit                            | POST   |      Query information on Transfer Limit               |     Yes        |
+ Read  | Account    | isolated | linear-swap-api/v1/swap_position_limit                            | POST   |      Query information on position limit             |     Yes        |
+ Read  | Account    | isolated | linear-swap-api/v1/swap_account_position_info                     | POST   |      Query Assets And Positions               |     Yes        |
+Trade  | Account    | commom | linear-swap-api/v1/swap_master_sub_transfer                       | POST   |      Transfer between master account and sub-accounts                         |     Yes        |
+ Read  | Account    | commom | linear-swap-api/v1/swap_master_sub_transfer_record                | POST   |      Query transfer records of master account    |     Yes        |
+Trade  | Account    | commom | linear-swap-api/v1/swap_transfer_inner                            | POST   |      Transfer between different margin accounts under the same account          |     Yes        |
+ Read  | Account    | commom | linear-swap-api/v1/swap_api_trading_status                        | GET    |      Query user's API indicator disable information              |     Yes        |
+ Read  | Account    | cross | linear-swap-api/v1/swap_cross_account_info                          | POST    |    Query User's Account Information              |       Yes          |
+ Read  | Account    | cross | linear-swap-api/v1/swap_cross_position_info                         | POST    |    Query User's Position Information               |       Yes          |
+ Read  | Account    | cross | linear-swap-api/v1/swap_cross_sub_account_list                      | POST    |    Query Assets Information Of All Sub-Accounts Under The Master Account       |       Yes          |
+ Read  | Account    | cross | linear-swap-api/v1/swap_cross_sub_account_info                      | POST    |    Query A Sub-Account's Assets Information   |       Yes          |
+ Read  | Account    | cross | linear-swap-api/v1/swap_cross_sub_position_info                     | POST    |    Query A Sub-Account's Position Information    |       Yes          |
+ Read  | Account    | cross | linear-swap-api/v1/swap_cross_transfer_limit                        | POST    |    Query Information On Transfer Limit           |       Yes          |
+ Read  | Account    | cross | linear-swap-api/v1/swap_cross_position_limit                        | POST    |    Query Information On Position Limit        |       Yes          |
+ Read  | Account    | cross | linear-swap-api/v1/swap_cross_account_position_info                 | POST    |    Query Assets And Positions          |       Yes          |
+ Read  | Account    | cross | linear-swap-api/v1/swap_cross_available_level_rate                   | POST    |    Query User’s Available Leverage        |       Yes          |
+Trade  | Trade      | isolated | linear-swap-api/v1/swap_order                                     | POST   |      Place an Order                              |     Yes        |
+Trade  | Trade      | isolated | linear-swap-api/v1/swap_batchorder                                | POST   |      Place a Batch of Orders                         |     Yes        |
+Trade  | Trade      | isolated | linear-swap-api/v1/swap_switch_lever_rate                         | POST   |      Switch Leverage               |     Yes        |
+Trade  | Trade      | isolated | linear-swap-api/v1/swap_cancel                                    | POST   |      Cancel an Order                          |     Yes        |
+Trade  | Trade      | isolated | linear-swap-api/v1/swap_cancelall                                 | POST   |      Cancel All Orders                       |     Yes        |
+ Read  | Trade      | isolated | linear-swap-api/v1/swap_order_info                                | POST   |      Get Information of an Order               |     Yes        |
+ Read  | Trade      | isolated | linear-swap-api/v1/swap_order_detail                              | POST   |      Get Trade Details of an Order           |     Yes        |
+ Read  | Trade      | isolated | linear-swap-api/v1/swap_openorders                                | POST   |      Get Current Orders         |     Yes        |
+ Read  | Trade      | isolated | linear-swap-api/v1/swap_hisorders                                 | POST   |      Get History Orders               |     Yes        |
+ Read  | Trade      | isolated | linear-swap-api/v1/swap_matchresults                              | POST   |      Acquire History Match Results           |     Yes        |
+Trade  | Trade      | isolated | linear-swap-api/v1/swap_lightning_close_position                  | POST   |      Place Lightning Close Order                    |     Yes        |
+Trade  | Trade      | isolated | linear-swap-api/v1/swap_trigger_order                             | POST   |      Place an Trigger Order                      |     Yes         |
+Trade  | Trade      | isolated | linear-swap-api/v1/swap_trigger_cancel                            | POST   |      Cancel a Trigger Order                     |     Yes        |
+Trade  | Trade      | isolated | linear-swap-api/v1/swap_trigger_cancelall                         | POST   |      Cancel all trigger Orders                 |     Yes        |
+ Read  | Trade      | isolated | linear-swap-api/v1/swap_trigger_openorders                        | POST   |      Get all open trigger Orders                 |     Yes        |
+ Read  | Trade      | isolated | linear-swap-api/v1/swap_trigger_hisorders                         | POST   |      Get all history trigger Orders                 |     Yes        |
+Trade  | Trade    | cross | linear-swap-api/v1/swap_cross_switch_lever_rate                     | POST    |    Switch Leverage         |       Yes          |
+Trade  | Trade    | cross | linear-swap-api/v1/swap_cross_order                                 | POST    |    Place An Order           |       Yes          |
+Trade  | Trade    | cross | linear-swap-api/v1/swap_cross_batchorder                            | POST    |    Place A Batch Of Orders        |       Yes          |
+Trade  | Trade    | cross | linear-swap-api/v1/swap_cross_cancel                                | POST    |    Cancel An Order       |       Yes          |
+Trade  | Trade    | cross | linear-swap-api/v1/swap_cross_cancelall                             | POST    |    Cancel All Orders     |       Yes          |
+ Read  | Trade    | cross | linear-swap-api/v1/swap_cross_order_info                            | POST    |    Get Information of order             |       Yes          |
+ Read  | Trade    | cross | linear-swap-api/v1/swap_cross_order_detail                          | POST    |    Get Detail Information of order         |       Yes          |
+ Read  | Trade    | cross | linear-swap-api/v1/swap_cross_openorders                            | POST    |    Current unfilled order acquisition       |       Yes          |
+ Read  | Trade    | cross | linear-swap-api/v1/swap_cross_hisorders                             | POST    |    Get History Orders             |       Yes          |
+ Read  | Trade    | cross | linear-swap-api/v1/swap_cross_matchresults                          | POST    |    Get History Match Results         |       Yes          |
+Trade  | Trade    | cross | linear-swap-api/v1/swap_cross_lightning_close_position              | POST    |    Place Lightning Close Position           |       Yes          |
+Trade  | Trade    | cross | linear-swap-api/v1/swap_cross_trigger_order                         | POST    |    Place Trigger Order           |       Yes          |
+Trade  | Trade    | cross | linear-swap-api/v1/swap_cross_trigger_cancel                        | POST    |    Cancel Trigger Order           |       Yes          |
+Trade  | Trade    | commom | linear-swap-api/v1/swap_cross_trigger_cancelall                     | POST    |    Cancel All Trigger Orders       |       Yes          |
+ Read  | Trade    | commom | linear-swap-api/v1/swap_cross_trigger_openorders                    | POST    |    Query Open Trigger Order       |       Yes          |
+ Read  | Trade    | commom | inear-swap-api/v1/swap_cross_trigger_hisorders                     | POST    |    Query Trigger Order History       |       Yes          | 
 Trade  | Account    | https://api.huobi.pro/v2/account/transfer                         | POST   |      Transfer margin between Spot account and USDT Margined Swap account     |     Yes       |
 
 
