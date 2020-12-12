@@ -592,29 +592,29 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 permission type  |  Content Type  | Margin Mode |  Context           |   Request Type   |   Desc          | Signature Required   |
 ----------- |  ------------------ | ---------------------------------------- |  ---------- |  ------------------------------- |  --------------  |
- Read  | Market Data | commom | linear-swap-api/v1/swap_contract_info                             | GET    |      Get Contracts Information                          |       No          |
- Read  | Market Data | commom | linear-swap-api/v1/swap_index                                     | GET    |      Get contract Index Price Information                    |       No          |                     
- Read  | Market Data | commom | linear-swap-api/v1/swap_price_limit                               | GET    |      Get Contract Price Limits           |       No          |           
- Read  | Market Data | commom | linear-swap-api/v1/swap_open_interest                             | GET    |      Get Contract Open Interest Information             |       No          |            
- Read  | Market Data | commom | linear-swap-api/v1/swap_risk_info                                 | GET    |      Query information on contract insurance fund balance and estimated clawback rate     |       No          |
- Read  | Market Data | lcommom | inear-swap-api/v1/swap_insurance_fund                            | GET    |      Query history records of insurance fund balance               |       No          |
+ Read  | Market Data | general | linear-swap-api/v1/swap_contract_info                             | GET    |      Get Contracts Information                          |       No          |
+ Read  | Market Data | general | linear-swap-api/v1/swap_index                                     | GET    |      Get contract Index Price Information                    |       No          |                     
+ Read  | Market Data | general | linear-swap-api/v1/swap_price_limit                               | GET    |      Get Contract Price Limits           |       No          |           
+ Read  | Market Data | general | linear-swap-api/v1/swap_open_interest                             | GET    |      Get Contract Open Interest Information             |       No          |            
+ Read  | Market Data | general | linear-swap-api/v1/swap_risk_info                                 | GET    |      Query information on contract insurance fund balance and estimated clawback rate     |       No          |
+ Read  | Market Data | lgeneral | inear-swap-api/v1/swap_insurance_fund                            | GET    |      Query history records of insurance fund balance               |       No          |
  Read  | Market Data | isolated | linear-swap-api/v1/swap_adjustfactor                              | GET    |      Query information on Tiered Adjustment Factor                |       No          |
- Read  | Market Data | commom | linear-swap-api/v1/swap_his_open_interest                         | GET    |      Query information on open interest                      |       No          |
- Read  | Market Data | commom | linear-swap-api/v1/swap_elite_account_ratio                       | GET    |      Query Top Trader Sentiment Index Function-Account          |       No          |
- Read  | Market Data | commom | linear-swap-api/v1/swap_elite_position_ratio                      | GET    |      Query Top Trader Sentiment Index Function-Position        |       No          |
- Read  | Market Data | commom | linear-swap-api/v1/swap_liquidation_orders                        | GET    |      Query Liquidation Order Information       |       No          |
- Read  | Market Data | commom | linear-swap-api/v1/swap_settlement_records                       | GET    |      Query historical settlement records of the platform interface       |       No          |
+ Read  | Market Data | general | linear-swap-api/v1/swap_his_open_interest                         | GET    |      Query information on open interest                      |       No          |
+ Read  | Market Data | general | linear-swap-api/v1/swap_elite_account_ratio                       | GET    |      Query Top Trader Sentiment Index Function-Account          |       No          |
+ Read  | Market Data | general | linear-swap-api/v1/swap_elite_position_ratio                      | GET    |      Query Top Trader Sentiment Index Function-Position        |       No          |
+ Read  | Market Data | general | linear-swap-api/v1/swap_liquidation_orders                        | GET    |      Query Liquidation Order Information       |       No          |
+ Read  | Market Data | general | linear-swap-api/v1/swap_settlement_records                       | GET    |      Query historical settlement records of the platform interface       |       No          |
  Read  | Market Data | isolated | linear-swap-api/v1/swap_api_state                                 | GET    |      Query information on system status                      |       No          |
- Read  | Market Data | commom | linear-swap-api/v1/swap_funding_rate                              | GET    |      Query funding rate                 |       No          |
- Read  | Market Data | commom | linear-swap-api/v1/swap_historical_funding_rate                   | GET    |      Query Historical Funding Rate             |       No          |
- Read  | Market Data | commom | linear-swap-ex/market/depth                                       | GET    |      Get Market Depth                     |       No          |
- Read  | Market Data | commom | linear-swap-ex/market/history/kline                               | GET    |      Get KLine Data                          |       No          |
- Read  | Market Data | commom | linear-swap-ex/market/detail/merged                               | GET    |      Get Market Data Overview                        |       No          |
- Read  | Market Data | commom | index/market/history/linear_swap_basis                            | GET    |      Query Basis Data                        |       No          |
- Read  | Market Data | commom | index/market/history/linear_swap_premium_index_kline              | GET    |      Query Liquidation Order Information                 |       No          |
- Read  | Market Data | commom | index/market/history/linear_swap_estimated_rate_kline             | GET    |      Query Swap Market Data interface           |       No          |
- Read  | Market Data | commom | linear-swap-ex/market/trade                                       | GET    |      Query The Last Trade of a Contract                |       No          |
- Read  | Market Data | commom | linear-swap-ex/market/history/trade                               | GET    |      Query a Batch of Trade Records of a Contract               |     No         |
+ Read  | Market Data | general | linear-swap-api/v1/swap_funding_rate                              | GET    |      Query funding rate                 |       No          |
+ Read  | Market Data | general | linear-swap-api/v1/swap_historical_funding_rate                   | GET    |      Query Historical Funding Rate             |       No          |
+ Read  | Market Data | general | linear-swap-ex/market/depth                                       | GET    |      Get Market Depth                     |       No          |
+ Read  | Market Data | general | linear-swap-ex/market/history/kline                               | GET    |      Get KLine Data                          |       No          |
+ Read  | Market Data | general | linear-swap-ex/market/detail/merged                               | GET    |      Get Market Data Overview                        |       No          |
+ Read  | Market Data | general | index/market/history/linear_swap_basis                            | GET    |      Query Basis Data                        |       No          |
+ Read  | Market Data | general | index/market/history/linear_swap_premium_index_kline              | GET    |      Query Liquidation Order Information                 |       No          |
+ Read  | Market Data | general | index/market/history/linear_swap_estimated_rate_kline             | GET    |      Query Swap Market Data interface           |       No          |
+ Read  | Market Data | general | linear-swap-ex/market/trade                                       | GET    |      Query The Last Trade of a Contract                |       No          |
+ Read  | Market Data | general | linear-swap-ex/market/history/trade                               | GET    |      Query a Batch of Trade Records of a Contract               |     No         |
  Read  | Market Data | cross | linear-swap-api/v1/swap_cross_adjustfactor                          | GET    |     Query Information On Tiered Adjustment Factor                                                |       No          |
  Read  | Market Data | cross | linear-swap-api/v1/swap_cross_transfer_state                        | GET    |     Query Information On Transfer State                        |       No          |
  Read  | Market Data | cross | linear-swap-api/v1/swap_cross_trade_state                           | GET    |     Query Information On Trade State                        |       No          |
@@ -624,16 +624,16 @@ permission type  |  Content Type  | Margin Mode |  Context           |   Request
  Read  | Account    | isolated | linear-swap-api/v1/swap_sub_account_list                          | POST   |      Query assets information of all sub-accounts under the master account (Query by coins)       |     Yes        |
  Read  | Account    | isolated | linear-swap-api/v1/swap_sub_account_info                          | POST   |      Query a single sub-account's assets information     |     Yes        |
  Read  | Account    | isolated | linear-swap-api/v1/swap_sub_position_info                         | POST   |      Query a single sub-account's position information      |     Yes        |
- Read  | Account    | commom | linear-swap-api/v1/swap_financial_record                          | POST   |      Query account financial records                     |     Yes        |
- Read  | Account    | commom | linear-swap-api/v1/swap_order_limit                               | POST   |      Query contract information on order limit              |     Yes        |
- Read  | Account    | commom | linear-swap-api/v1/swap_fee                                       | POST   |      Query information on contract trading fee             |     Yes        |
+ Read  | Account    | general | linear-swap-api/v1/swap_financial_record                          | POST   |      Query account financial records                     |     Yes        |
+ Read  | Account    | general | linear-swap-api/v1/swap_order_limit                               | POST   |      Query contract information on order limit              |     Yes        |
+ Read  | Account    | general | linear-swap-api/v1/swap_fee                                       | POST   |      Query information on contract trading fee             |     Yes        |
  Read  | Account    | isolated | linear-swap-api/v1/swap_transfer_limit                            | POST   |      Query information on Transfer Limit               |     Yes        |
  Read  | Account    | isolated | linear-swap-api/v1/swap_position_limit                            | POST   |      Query information on position limit             |     Yes        |
  Read  | Account    | isolated | linear-swap-api/v1/swap_account_position_info                     | POST   |      Query Assets And Positions               |     Yes        |
-Trade  | Account    | commom | linear-swap-api/v1/swap_master_sub_transfer                       | POST   |      Transfer between master account and sub-accounts                         |     Yes        |
- Read  | Account    | commom | linear-swap-api/v1/swap_master_sub_transfer_record                | POST   |      Query transfer records of master account    |     Yes        |
-Trade  | Account    | commom | linear-swap-api/v1/swap_transfer_inner                            | POST   |      Transfer between different margin accounts under the same account          |     Yes        |
- Read  | Account    | commom | linear-swap-api/v1/swap_api_trading_status                        | GET    |      Query user's API indicator disable information              |     Yes        |
+Trade  | Account    | general | linear-swap-api/v1/swap_master_sub_transfer                       | POST   |      Transfer between master account and sub-accounts                         |     Yes        |
+ Read  | Account    | general | linear-swap-api/v1/swap_master_sub_transfer_record                | POST   |      Query transfer records of master account    |     Yes        |
+Trade  | Account    | general | linear-swap-api/v1/swap_transfer_inner                            | POST   |      Transfer between different margin accounts under the same account          |     Yes        |
+ Read  | Account    | general | linear-swap-api/v1/swap_api_trading_status                        | GET    |      Query user's API indicator disable information              |     Yes        |
  Read  | Account    | cross | linear-swap-api/v1/swap_cross_account_info                          | POST    |    Query User's Account Information              |       Yes          |
  Read  | Account    | cross | linear-swap-api/v1/swap_cross_position_info                         | POST    |    Query User's Position Information               |       Yes          |
  Read  | Account    | cross | linear-swap-api/v1/swap_cross_sub_account_list                      | POST    |    Query Assets Information Of All Sub-Accounts Under The Master Account       |       Yes          |
@@ -672,9 +672,9 @@ Trade  | Trade    | cross | linear-swap-api/v1/swap_cross_cancelall             
 Trade  | Trade    | cross | linear-swap-api/v1/swap_cross_lightning_close_position              | POST    |    Place Lightning Close Position           |       Yes          |
 Trade  | Trade    | cross | linear-swap-api/v1/swap_cross_trigger_order                         | POST    |    Place Trigger Order           |       Yes          |
 Trade  | Trade    | cross | linear-swap-api/v1/swap_cross_trigger_cancel                        | POST    |    Cancel Trigger Order           |       Yes          |
-Trade  | Trade    | commom | linear-swap-api/v1/swap_cross_trigger_cancelall                     | POST    |    Cancel All Trigger Orders       |       Yes          |
- Read  | Trade    | commom | linear-swap-api/v1/swap_cross_trigger_openorders                    | POST    |    Query Open Trigger Order       |       Yes          |
- Read  | Trade    | commom | inear-swap-api/v1/swap_cross_trigger_hisorders                     | POST    |    Query Trigger Order History       |       Yes          | 
+Trade  | Trade    | general | linear-swap-api/v1/swap_cross_trigger_cancelall                     | POST    |    Cancel All Trigger Orders       |       Yes          |
+ Read  | Trade    | general | linear-swap-api/v1/swap_cross_trigger_openorders                    | POST    |    Query Open Trigger Order       |       Yes          |
+ Read  | Trade    | general | inear-swap-api/v1/swap_cross_trigger_hisorders                     | POST    |    Query Trigger Order History       |       Yes          | 
 Trade  | Account    | https://api.huobi.pro/v2/account/transfer                         | POST   |      Transfer margin between Spot account and USDT Margined Swap account     |     Yes       |
 
 
