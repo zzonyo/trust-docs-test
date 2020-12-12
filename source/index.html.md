@@ -1698,7 +1698,7 @@ If you encounter errors such as {'index': 1, 'err_code': 1048, 'err_msg': 'Insuf
 
 1032 means that your request exceeds the ratelimit. The coin margined swap, future, option swap and USDT margined swap limit the rate separately. Please check the ratelimit in the api ratelimit instructions, and you can print the current ratelimit in the header of the API response to check whether the ratelimit is exceeded. It is recommended to increase the request interval delay to avoid exceeding the ratelimit.
 
-##The useage of and difference between cross margin mode and isolated margin mode
+## The useage of and difference between cross margin mode and isolated margin mode
 
 1. In cross margin mode, account amount will provide guarantee for the positions of every variety contract. That is position of every varieties contracts is share equity, profit, loss, occupation of guaranteed assets.Guaranteed asset ratio of every varieties contract is calculated together. 
 In isolated margin mode, the equity of every variety contract is calculated separately. And the profit and losse of the secured assets do not affect each other.
@@ -1716,7 +1716,7 @@ When you report an API error, you need to attach your request URL, the original 
 If it is an order-related issue, use the API order query interface linear-swap-api/v1/swap_order_info to keep the complete log returned and provide your UID and order number.
 
 
-# Swap Market Data interface
+# [General Mode] Swap Market Data interface
 
 ## Query Swap Info 
 
@@ -1782,7 +1782,7 @@ support_margin_mode             | false        | string      | support margin mo
 ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                                                              |
 
 
-## Query Swap Index Price Information 
+## [General Mode] Query Swap Index Price Information 
 
 ### Example                                                
                                                             
@@ -1832,7 +1832,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_index?contract_code=BTC-USDT"
 | ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                 |
 
   
-## Query Swap Price Limitation
+## [General Mode] Query Swap Price Limitation
 
 ###  Example      
                                                                           
@@ -1884,7 +1884,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_price_limit?contract_code=BTC
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
 
 
-## Get Swap Open Interest Information
+## [General Mode] Get Swap Open Interest Information
 
 ###  Example   
                                                                                  
@@ -1942,7 +1942,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_open_interest?contract_code=B
  - Position volume (coin) = position quantity (cont) * contract face value
  - Total position amount = position quantity (cont)* contract face value * latest price
 
-## Get Market Depth
+## [General Mode] Get Market Depth
 
 ###  Example            
                                             
@@ -2020,7 +2020,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/depth?contract_code=BTC-USDT&ty
 |  \</tick\>    |               |    |      |            | | 
 
 
-## Get KLine Data
+## [General Mode] Get KLine Data
 
 ###  Example     
                                                                    
@@ -2113,7 +2113,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/kline?period=1min&size=
 |  \</data\>    |               |     |      |      
 
 
-##  Get Market Data Overview
+##  [General Mode] Get Market Data Overview
 
 ###  Example            
                                          
@@ -2191,21 +2191,21 @@ curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC
 | ts                 | true          | long        | Time of Respond Generation, Unit: Millisecond                |                 |
 |  \<tick\>    |    true           | object   |    kline data (Start at 00:00(UTC+8) of the day)   |            | 
 |  id    |     true          | long   |  kline id,the same as kline timestamp   |            
-|  vol    |     true          | string   |  Trade Volume(Cont.)    |            
-|  count    |     true          | decimal   |   Order Quantity  |            
+|  vol    |     true          | string   |  Trade Volume(Cont.), from nowtime - 24 hours   |            
+|  count    |     true          | decimal   |   Order Quantity, from nowtime - 24 hours  |            
 |  open    |     true          | string   |   Opening Price  |            
 |  close    |     true          | string   |  Closing Price,  the price in the last kline is the latest order price   |            
 |  low    |     true          | string   |  Low    |            
 |  high    |     true          | string   |  High   |            
-|  amount    |     true          | string   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
+|  amount    |     true          | string   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price),from nowtime - 24 hours  |            
 | ask | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 | bid | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
-| trade_turnover     | true | string | Transaction amount, that is, sum (transaction quantity * contract face value * transaction price)      |  
+| trade_turnover     | true | string | Transaction amount, that is, sum (transaction quantity * contract face value * transaction price),from nowtime - 24 hours      |  
 | ts                 | true          | long        |    Timestamp             |                 ||
 |  \</tick\>    |               |     |      |  
 
 
-## Query The Last Trade of a Contract
+## [General Mode] Query The Last Trade of a Contract
 
 ###  Example   
                                           
@@ -2288,7 +2288,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
 |  \</tick\>    |               |    |      | 
 
 
-## Query a Batch of Trade Records of a Contract
+## [General Mode] Query a Batch of Trade Records of a Contract
 
 ###  Example  
                                                             
@@ -2371,7 +2371,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
 | ts     | true | long | Time of Respond Generation, Unit: Millisecond                    |              |
 
 
-## Query information on contract insurance fund balance and estimated clawback rate
+## [General Mode] Query information on contract insurance fund balance and estimated clawback rate
 
 - GET `/linear-swap-api/v1/swap_risk_info`
 
@@ -2419,7 +2419,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_risk_info"
 | estimated_clawback | true  | decimal | Estimated Clawback Rate |  |
 | \</data\> |  |  |  |  |
 
-## Query history records of insurance fund balance
+## [General Mode] Query history records of insurance fund balance
 
 - GET `/swap-api/v1/linear-swap-api/v1/swap_insurance_fund`
 
@@ -2481,7 +2481,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_insurance_fund?contract_code=
 | total_size           | true     | int     |  total size               |              |
 | \</data\> |  |  |  |  |
 
-## Query information on Tiered Adjustment Factor
+## [Isolated Margin Mode] Query information on Tiered Adjustment Factor
 
 - GET `/linear-swap-api/v1/swap_adjustfactor`
 
