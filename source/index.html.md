@@ -42,7 +42,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 1、Added Cross Margin Mode Query Information On Tiered Adjustment Factor
 
-  - Interface Name：[cross margin mode]Query Information On Tiered Adjustment Factor
+  - Interface Name：[Cross]Query Information On Tiered Adjustment Factor
 
   - Interface Type：public
 
@@ -50,7 +50,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 1、Added Cross Margin Mode Query Information On Transfer State
 
-  - Interface Name：[cross margin mode]Query Information On Transfer State
+  - Interface Name：[Cross]Query Information On Transfer State
 
   - Interface Type：public
 
@@ -58,7 +58,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 1、Added Cross Margin Mode Query Information On Trade State
 
-  - Interface Name：[cross margin mode]Query Information On Trade State
+  - Interface Name：[Cross]Query Information On Trade State
 
   - Interface Type：public
 
@@ -66,7 +66,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 1、Added Cross Margin Mode Query User's Account Information
 
-  - Interface Name：[cross margin mode]Query User's Account Information
+  - Interface Name：[Cross]Query User's Account Information
 
   - Interface Type：private
 
@@ -74,7 +74,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 1、Added Cross Margin Mode Query User's Position Information
 
-  - Interface Name：[cross margin mode]Query User's Position Information
+  - Interface Name：[Cross]Query User's Position Information
 
   - Interface Type：private
 
@@ -82,7 +82,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 1、Added Cross Margin Mode Query Assets Information Of All Sub-Accounts Under The Master Account
 
-  - Interface Name：[cross margin mode]Query Assets Information Of All Sub-Accounts Under The Master Account
+  - Interface Name：[Cross]Query Assets Information Of All Sub-Accounts Under The Master Account
 
   - Interface Type：private
 
@@ -90,7 +90,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 7、Added Cross Margin Mode Query A Sub-Account's Assets Information
 
-  - Interface Name：[cross margin mode]Query A Sub-Account's Assets Information
+  - Interface Name：[Cross]Query A Sub-Account's Assets Information
 
   - Interface Type：private
 
@@ -98,7 +98,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 8、Added Cross Margin Mode Query A Sub-Account's Position Information
 
-  - Interface Name：[cross margin mode]Query A Sub-Account's Position Information
+  - Interface Name：[Cross]Query A Sub-Account's Position Information
 
   - Interface Type：private
 
@@ -106,7 +106,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 9、Added Cross Margin Mode Query Information On Transfer Limit
 
-  - Interface Name：[cross margin mode]Query Information On Transfer Limit
+  - Interface Name：[Cross]Query Information On Transfer Limit
 
   - Interface Type：private
 
@@ -114,7 +114,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 10、Added Cross Margin Mode Query Information On Position Limit
 
-  - Interface Name：[cross margin mode]Query Information On Position Limit
+  - Interface Name：[Cross]Query Information On Position Limit
 
   - Interface Type：private
 
@@ -122,7 +122,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 11、Added Cross Margin Mode Query Assets And Positions
 
-  - Interface Name：[cross margin mode]Query Assets And Positions
+  - Interface Name：[Cross]Query Assets And Positions
 
   - Interface Type：private
 
@@ -130,7 +130,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 12、Added Cross Margin Mode Query User’s Available Leverage
 
-  - Interface Name：[cross margin mode]Query User’s Available Leverage
+  - Interface Name：[Cross]Query User’s Available Leverage
 
   - Interface Type：private
 
@@ -138,7 +138,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 13、Added Cross Margin Mode Switch Leverage
 
-  - Interface Name：[cross margin mode]Switch Leverage
+  - Interface Name：[Cross]Switch Leverage
 
   - Interface Type：private
 
@@ -146,7 +146,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 14、Added Cross Margin Mode Place An Order 
 
-  - Interface Name：[cross margin mode]Place An Order
+  - Interface Name：[Cross]Place An Order
 
   - Interface Type：private
 
@@ -154,7 +154,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 15、Added Cross Margin Mode Place A Batch Of Orders
 
-  - Interface Name：[cross margin mode]Place A Batch Of Orders
+  - Interface Name：[Cross]Place A Batch Of Orders
 
   - Interface Type：private
 
@@ -162,7 +162,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 16、Added Cross Margin Mode Cancel An Order
 
-  - Interface Name：[cross margin mode]Cancel An Order
+  - Interface Name：[Cross]Cancel An Order
 
   - Interface Type：private
 
@@ -170,7 +170,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 17、Added Cross Margin Mode Cancel All Orders
 
-  - Interface Name：[cross margin mode]Cancel All Orders
+  - Interface Name：[Cross]Cancel All Orders
 
   - Interface Type：private
 
@@ -178,7 +178,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 18、Added Cross Margin Mode Get Information of order
 
-  - Interface Name：[cross margin mode]Get Information of order
+  - Interface Name：[Cross]Get Information of order
 
   - Interface Type：private
 
@@ -186,7 +186,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 19、Added Cross Margin ModeGet Detail Information of order
 
-  - Interface Name：[cross margin mode]Get Detail Information of order
+  - Interface Name：[Cross]Get Detail Information of order
 
   - Interface Type：private
 
@@ -194,7 +194,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 20、Added Cross Margin Mode Current unfilled order acquisition
 
-  - Interface Name：[cross margin mode]Current unfilled order acquisition
+  - Interface Name：[Cross]Current unfilled order acquisition
 
   - Interface Type：private
 
@@ -202,7 +202,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 21、Added Cross Margin Mode Get History Orders
 
-  - Interface Name：[cross margin mode]Get History Orders
+  - Interface Name：[Cross]Get History Orders
 
   - Interface Type：private
 
@@ -210,7 +210,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 22、Added Cross Margin Mode Get History Match Results
 
-  - Interface Name：[cross margin mode]Get History Match Results
+  - Interface Name：[Cross]Get History Match Results
 
   - Interface Type：private
 
@@ -218,7 +218,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 23、Added Cross Margin Mode Place Lightning Close Position
 
-  - Interface Name：[cross margin mode]Place Lightning Close Position
+  - Interface Name：[Cross]Place Lightning Close Position
 
   - Interface Type：private
 
@@ -226,7 +226,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 24、Added Cross Margin Mode Place Trigger Order
 
-  - Interface Name：[cross margin mode]Place Trigger Order
+  - Interface Name：[Cross]Place Trigger Order
 
   - Interface Type：private
 
@@ -234,7 +234,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 25、Added Cross Margin Mode Cancel Trigger Order
 
-  - Interface Name：[cross margin mode]Cancel Trigger Order
+  - Interface Name：[Cross]Cancel Trigger Order
 
   - Interface Type：private
 
@@ -242,7 +242,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 26、Added Cross Margin Mode Cancel All Trigger Orders
 
-  - Interface Name：[cross margin mode]Cancel All Trigger Orders
+  - Interface Name：[Cross]Cancel All Trigger Orders
 
   - Interface Type：private
 
@@ -250,7 +250,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 27、Added Cross Margin Mode Query Open Trigger Order
 
-  - Interface Name：[cross margin mode]Query Open Trigger Order
+  - Interface Name：[Cross]Query Open Trigger Order
 
   - Interface Type：private
 
@@ -258,7 +258,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 28、Added Cross Margin Mode Query Trigger Order History
 
-  - Interface Name：[cross margin mode]Query Trigger Order History
+  - Interface Name：[Cross]Query Trigger Order History
 
   - Interface Type：private
 
@@ -266,7 +266,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 29、Added Cross Margin Mode Subscribe Order Data
 
-  - Interface Name：[cross margin mode]Subscribe Order Data
+  - Interface Name：[Cross]Subscribe Order Data
 
   - Interface Type：private
 
@@ -274,7 +274,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 30、Added Cross Margin Mode Subscribe Account Equity Updates Data
 
-  - Interface Name：[cross margin mode]Subscribe Account Equity Updates Data
+  - Interface Name：[Cross]Subscribe Account Equity Updates Data
 
   - Interface Type：private
 
@@ -282,7 +282,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 31、Added Cross Margin Mode Subscribe Position Updates
 
-  - Interface Name：[cross margin mode]Subscribe Position Updates
+  - Interface Name：[Cross]Subscribe Position Updates
 
   - Interface Type：private
 
@@ -290,7 +290,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 32、Added Cross Margin Mode Subscribe Match Order Data
 
-  - Interface Name：[cross margin mode]Subscribe Match Order Data
+  - Interface Name：[Cross]Subscribe Match Order Data
 
   - Interface Type：private
 
@@ -298,7 +298,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 ### 33、Added Cross Margin Mode Subscribe trigger orders updates
 
-  - Interface Name：[cross margin mode]Subscribe trigger orders updates
+  - Interface Name：[Cross]Subscribe trigger orders updates
 
   - Interface Type：private
 
@@ -1707,7 +1707,7 @@ In isolated margin mode, the equity of every variety contract is calculated sepa
 
 3. You can query contract information with the API interface [linear-swap-api/v1/swap_contract_info] and in the response field support_margin_modethe it shows the contract supports which margin mode,  cross margin mode or isolated margin mode or both.
 
-4. The API interface is marked with one of mode types, i.e., [cross margin mode], [isolated margin mode] and [general mode], and which are marked on the API interface name and interface list. [cross margin mode] indicates that the API interface only supports cross margin mode. [isolated margin mode] indicates that the API interface only supports isolated margin mode, and [general mode] indicates that the API interface does not distinguish between cross margin mode and isolated margin mode, that is, both of cross margin mode and isolated margin mode can call it.
+4. The API interface is marked with one of mode types, i.e., [Cross], [Isolated] and [General], and which are marked on the API interface name and interface list. [Cross] indicates that the API interface only supports cross margin mode. [Isolated] indicates that the API interface only supports isolated margin mode, and [General] indicates that the API interface does not distinguish between cross margin mode and isolated margin mode, that is, both of cross margin mode and isolated margin mode can call it.
 
 ## How to solve problems more effectively?
 
@@ -1718,7 +1718,7 @@ If it is an order-related issue, use the API order query interface linear-swap-a
 
 # Swap Market Data interface
 
-## [General Mode] Query Swap Info 
+## [General] Query Swap Info 
 
 ### Example              
                                    
@@ -1782,7 +1782,7 @@ support_margin_mode             | false        | string      | support margin mo
 ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                                                              |
 
 
-## [General Mode] Query Swap Index Price Information 
+## [General] Query Swap Index Price Information 
 
 ### Example                                                
                                                             
@@ -1832,7 +1832,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_index?contract_code=BTC-USDT"
 | ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                 |
 
   
-## [General Mode] Query Swap Price Limitation
+## [General] Query Swap Price Limitation
 
 ###  Example      
                                                                           
@@ -1884,7 +1884,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_price_limit?contract_code=BTC
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
 
 
-## [General Mode] Get Swap Open Interest Information
+## [General] Get Swap Open Interest Information
 
 ###  Example   
                                                                                  
@@ -1942,7 +1942,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_open_interest?contract_code=B
  - Position volume (coin) = position quantity (cont) * contract face value
  - Total position amount = position quantity (cont)* contract face value * latest price
 
-## [General Mode] Get Market Depth
+## [General] Get Market Depth
 
 ###  Example            
                                             
@@ -2020,7 +2020,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/depth?contract_code=BTC-USDT&ty
 |  \</tick\>    |               |    |      |            | | 
 
 
-## [General Mode] Get KLine Data
+## [General] Get KLine Data
 
 ###  Example     
                                                                    
@@ -2113,7 +2113,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/kline?period=1min&size=
 |  \</data\>    |               |     |      |      
 
 
-##  [General Mode] Get Market Data Overview
+##  [General] Get Market Data Overview
 
 ###  Example            
                                          
@@ -2205,7 +2205,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC
 |  \</tick\>    |               |     |      |  
 
 
-## [General Mode] Query The Last Trade of a Contract
+## [General] Query The Last Trade of a Contract
 
 ###  Example   
                                           
@@ -2288,7 +2288,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
 |  \</tick\>    |               |    |      | 
 
 
-## [General Mode] Query a Batch of Trade Records of a Contract
+## [General] Query a Batch of Trade Records of a Contract
 
 ###  Example  
                                                             
@@ -2371,7 +2371,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
 | ts     | true | long | Time of Respond Generation, Unit: Millisecond                    |              |
 
 
-## [General Mode] Query information on contract insurance fund balance and estimated clawback rate
+## [General] Query information on contract insurance fund balance and estimated clawback rate
 
 - GET `/linear-swap-api/v1/swap_risk_info`
 
@@ -2419,7 +2419,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_risk_info"
 | estimated_clawback | true  | decimal | Estimated Clawback Rate |  |
 | \</data\> |  |  |  |  |
 
-## [General Mode] Query history records of insurance fund balance
+## [General] Query history records of insurance fund balance
 
 - GET `/swap-api/v1/linear-swap-api/v1/swap_insurance_fund`
 
@@ -2481,7 +2481,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_insurance_fund?contract_code=
 | total_size           | true     | int     |  total size               |              |
 | \</data\> |  |  |  |  |
 
-## [Isolated Margin Mode] Query information on Tiered Adjustment Factor
+## [Isolated] Query information on Tiered Adjustment Factor
 
 - GET `/linear-swap-api/v1/swap_adjustfactor`
 
@@ -2566,7 +2566,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_adjustfactor"
 | \</data\> |  |  |  |  |
 
 
-## [Cross Margin Mode] Query Information On Tiered Adjustment Factor
+## [Cross] Query Information On Tiered Adjustment Factor
 
  - GET `linear-swap-api/v1/swap_cross_adjustfactor`
 
@@ -2657,7 +2657,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_adjustfactor"
 | \</data\>         |      |         |        |                |
 
 
-## [General Mode] Query information on open interest
+## [General] Query information on open interest
 
 - GET `/linear-swap-api/v1/swap_his_open_interest`
 
@@ -2723,7 +2723,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_his_open_interest?contract_co
 - tick field：Tick data is arranged in reverse chronological order；
 
 
-## [Isolated Margin Mode] Query information on system status
+## [Isolated] Query information on system status
 
 - GET `/linear-swap-api/v1/swap_api_state`
 
@@ -2801,7 +2801,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_api_state"
 | \</data\>            |      |        |               |                |
 
 
-## [Cross Margin Mode] Query Information On Transfer State
+## [Cross] Query Information On Transfer State
 
  - GET `linear-swap-api/v1/swap_cross_transfer_state`
 
@@ -2863,7 +2863,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_api_state"
 | \</data\>            |      |        |               |                |
 
        
-## [Cross Margin Mode] Query Information On Trade State
+## [Cross] Query Information On Trade State
 
  - GET `linear-swap-api/v1/swap_cross_trade_state`
 
@@ -2916,7 +2916,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_api_state"
 | \</data\>            |      |        |               |                | 
 
 
-## [General Mode] Query Top Trader Sentiment Index Function-Account
+## [General] Query Top Trader Sentiment Index Function-Account
 
 - GET `/linear-swap-api/v1/swap_elite_account_ratio`
 
@@ -2974,7 +2974,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_elite_account_ratio?contract_
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
-## [General Mode] Query Top Trader Sentiment Index Function-Position
+## [General] Query Top Trader Sentiment Index Function-Position
 
 - GET `/linear-swap-api/v1/swap_elite_position_ratio`
 
@@ -3032,7 +3032,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_elite_position_ratio?contract
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
-##  [General Mode] Query Liquidation Orders
+##  [General] Query Liquidation Orders
 
 - GET `/linear-swap-api/v1/swap_liquidation_orders`
 
@@ -3107,7 +3107,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
 | ts                     | true     | long    |   timestamp             |              |
 
 
-## [General Mode] Query historical settlement records of the platform interface 
+## [General] Query historical settlement records of the platform interface 
 
  - GET `/linear-swap-api/v1/swap_settlement_records`
 
@@ -3170,7 +3170,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_liquidation_orders?contract_c
 | \</data\>         |      |         |        |                |
 
 
-## [General Mode] Query funding rate
+## [General] Query funding rate
 
 - GET `linear-swap-api/v1/swap_funding_rate`
 
@@ -3225,7 +3225,7 @@ next_funding_time  | string |  estimated funding rate of next period     |   |
 \</data\> |  |  |  |  |
 
 
-## [General Mode] Query historical funding rate
+## [General] Query historical funding rate
 
 - GET `linear-swap-api/v1/swap_historical_funding_rate`
 
@@ -3293,7 +3293,7 @@ current_page   | int     | current page               |              |
 total_size     | int     |  total size               |              |
 \</data\> |  |  |  |  |
 
-## [General Mode] Query Premium Index Kline Data
+## [General] Query Premium Index Kline Data
 
 ### example
 
@@ -3360,7 +3360,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_premium_index_kline?
 
 
 
-## [General Mode] Query Estimated Funding Rate Kline Data
+## [General] Query Estimated Funding Rate Kline Data
 
 ### example
 
@@ -3426,7 +3426,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_estimated_rate_kline
 
 
 
-## [General Mode] Query Basis Data
+## [General] Query Basis Data
 
 ### example
 
@@ -3488,7 +3488,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 # Swap Account Interface
 
-## [Isolated Margin Mode] Query User’s Account Information
+## [Isolated] Query User’s Account Information
 
 ###  Example          
                                       
@@ -3564,7 +3564,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 
 
-## [Cross Margin Mode] Query User's Account Information
+## [Cross] Query User's Account Information
 
  - POST linear-swap-api/v1/swap_cross_account_info
 
@@ -3659,7 +3659,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | \</data\>            |        |         |                      |                |
 
 
-## [Isolated Margin Mode] Query User’s Position Information
+## [Isolated] Query User’s Position Information
 
 ###  Example                           
                      
@@ -3738,7 +3738,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 - If there are symbols in the settlement or delivery period,error code 1080(1080 In settlement or delivery. Unable to get positions of some contracts.) will return without request parameters. It's suggested to query the position info with request parameters to avoid raising the error code and not being able to query the position.
 
 
-## [Cross Margin Mode] Query User's Position Information
+## [Cross] Query User's Position Information
 
  - POST `linear-swap-api/v1/swap_cross_position_info`
 
@@ -3809,7 +3809,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | \</data\>            |      |         |      |              |
 
 
-## [Isolated Margin Mode] Query Assets And Positions
+## [Isolated] Query Assets And Positions
 
  - post `linear-swap-api/v1/swap_account_position_info`
   
@@ -3922,7 +3922,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \</data\>            |        |         |                      |                |
 
 
-## [Cross Margin Mode] Query Assets And Positions
+## [Cross] Query Assets And Positions
 
  - POST `linear-swap-api/v1/swap_cross_account_position_info`
 
@@ -4075,7 +4075,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 
 
 
-## [Isolated Margin Mode] Query assets information of all sub-accounts under the master account
+## [Isolated] Query assets information of all sub-accounts under the master account
 
  - POST `/linear-swap-api/v1/swap_sub_account_list`
 
@@ -4142,7 +4142,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
  - Only return data for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission). 
 
 
-## [Cross Margin Mode] Query Assets Information Of All Sub-Accounts Under The Master Account    
+## [Cross] Query Assets Information Of All Sub-Accounts Under The Master Account    
 
  - POST `linear-swap-api/v1/swap_cross_sub_account_list`
 
@@ -4203,7 +4203,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
  - Only return data for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission).
 
 
-## [Isolated Margin Mode] Query a single sub-account's assets information
+## [Isolated] Query a single sub-account's assets information
 
  - POST `/linear-swap-api/v1/swap_sub_account_info`
 
@@ -4284,7 +4284,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
   - No data return for sub-accounts which has logged in hbdm but have not gained trading permission/activated.
 
 
-## [Cross Margin Mode] Query A Sub-Account's Assets Information
+## [Cross] Query A Sub-Account's Assets Information
 
   - POST `linear-swap-api/v1/swap_cross_sub_account_info`  
 
@@ -4387,7 +4387,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
   - No data return for sub-accounts which has logged in hbdm but have not gained trading permission/activated.
  
 
-## [Isolated Margin Mode] Query a single sub-account's position information
+## [Isolated] Query a single sub-account's position information
 
  - POST `/linear-swap-api/v1/swap_sub_position_info`
 
@@ -4460,7 +4460,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \</data\> |  |  |  |  |
 
 
-## [Cross Margin Mode] Query A Sub-Account's Position Information
+## [Cross] Query A Sub-Account's Position Information
 
  - POST `linear-swap-api/v1/swap_cross_sub_position_info`
 
@@ -4533,7 +4533,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \</data\>            |      |         |      |              |
 
 
-## [General Mode] Query account financial records
+## [General] Query account financial records
 
 - POST `/linear-swap-api/v1/swap_financial_record`
 
@@ -4725,7 +4725,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 -->
 
 
-## [Isolated Margin Mode] Query user’s available leverage
+## [Isolated] Query user’s available leverage
 
  - POST `linear-swap-api/v1/swap_available_level_rate`
 
@@ -4770,7 +4770,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 ```
 
 
-## [Cross Margin Mode] Query User’s Available Leverage
+## [Cross] Query User’s Available Leverage
 
  - POST `linear-swap-api/v1/swap_cross_available_level_rate`
 
@@ -4815,7 +4815,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
 
 
-## [General Mode] Query swap information on order limit
+## [General] Query swap information on order limit
 
  - POST `/linear-swap-api/v1/swap_order_limit`
 
@@ -4867,7 +4867,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
-## [General Mode] Query information on swap trading fee
+## [General] Query information on swap trading fee
 
  - POST `/linear-swap-api/v1/swap_fee`
 
@@ -4919,7 +4919,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \</data\> |  |  |  |  |
 
 
-## [Isolated Margin Mode] Query information on Transfer Limit
+## [Isolated] Query information on Transfer Limit
 
  - POST `/linear-swap-api/v1/swap_transfer_limit`
 
@@ -4979,7 +4979,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \</data\> |  |  |  |  |
 
 
-## [Cross Margin Mode] Query Information On Transfer Limit
+## [Cross] Query Information On Transfer Limit
 
  - POST `linear-swap-api/v1/swap_cross_transfer_limit`
 
@@ -5039,7 +5039,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 
 
 
-## [Isolated Margin Mode] Query information on position limit
+## [Isolated] Query information on position limit
 
  - POST `/linear-swap-api/v1/swap_position_limit`
 
@@ -5088,7 +5088,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \</data\> |  |  |  |  |
 
 
-## [Cross Margin Mode] Query Information On Position Limit
+## [Cross] Query Information On Position Limit
 
  - POST `linear-swap-api/v1/swap_cross_position_limit`
 
@@ -5144,7 +5144,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \</data\>     |      |         |                 |   |
 
 
-## [General Mode] Transfer between master and sub account
+## [General] Transfer between master and sub account
 
  - post `/linear-swap-api/v1/swap_master_sub_transfer`
 
@@ -5192,7 +5192,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | order_id        | true | string  | order id            |  |
 | \</data\>     |      |         |         |   |
 
-## [General Mode] Query transfer records between master and sub account
+## [General] Query transfer records between master and sub account
 
  - post `/linear-swap-api/v1/swap_master_sub_transfer_record`
 
@@ -5264,7 +5264,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | \</data\>     |      |         |         |   |
 
 
-## [General Mode] Transfer between different margin accounts under the same account
+## [General] Transfer between different margin accounts under the same account
 
 - post `linear-swap-api/v1/swap_transfer_inner`
 
@@ -5311,7 +5311,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | ts | true  | long | response millionseconds.  |  |
 
 
-## [General Mode] Query user's API indicator disable information
+## [General] Query user's API indicator disable information
 
 - get `/linear-swap-api/v1/swap_api_trading_status`
 
@@ -5391,7 +5391,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 
 # Swap Trade Interface
 
-## [Isolated Margin Mode] Place an Order 
+## [Isolated] Place an Order 
 
 ###  Example  
 
@@ -5465,7 +5465,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
 
 
-## [Cross Margin Mode] Place An Order
+## [Cross] Place An Order
 
  - POST `linear-swap-api/v1/swap_cross_order`
 
@@ -5532,7 +5532,7 @@ close short: direction -buy、offset - close
 
 
 
-## [Isolated Margin Mode] Place a Batch of Orders
+## [Isolated] Place a Batch of Orders
 
 ###  Example  
 
@@ -5624,7 +5624,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
 
 
-## [Cross Margin Mode] Place A Batch Of Orders 
+## [Cross] Place A Batch Of Orders 
 
  - POST `linear-swap-api/v1/swap_cross_batchorder`
 
@@ -5703,7 +5703,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
  - The return order_id is 18 bits, it will make mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
 
 
-## [Isolated Margin Mode] Cancel an Order 
+## [Isolated] Cancel an Order 
 
 ###  Example   
 
@@ -5763,7 +5763,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond             |                 |
 
 
-## [Cross Margin Mode] Cancel An Order
+## [Cross] Cancel An Order
 
  - POST `linear-swap-api/v1/swap_cross_cancel`
 
@@ -5821,7 +5821,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | ts                     | true | long   | Time of Respond Generation, Unit: Millisecond       | 
 
 
-## [Isolated Margin Mode] Cancel All Orders 
+## [Isolated] Cancel All Orders 
 
 ###  Example  
 
@@ -5868,7 +5868,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond |                 |
 
 
-## [Cross Margin Mode] Cancel All Orders
+## [Cross] Cancel All Orders
 
  - POST `linear-swap-api/v1/swap_cross_cancelall`
 
@@ -5913,7 +5913,7 @@ The return data from Cancel An Order Interface only means that order cancelation
 | ts                     | true | long   | Time of Respond Generation, Unit: Millisecond |                |
 
 
-## [Isolated Margin Mode] Switch Leverage
+## [Isolated] Switch Leverage
 
  - POST `/linear-swap-api/v1/swap_switch_lever_rate`
 
@@ -5971,7 +5971,7 @@ No：
 | ts                     | true | long    | Timestamp                |    
 
 
-## [Cross Margin Mode] Switch Leverage
+## [Cross] Switch Leverage
 
  - POST `linear-swap-api/v1/swap_cross_switch_lever_rate`
 
@@ -6021,7 +6021,7 @@ No：
 | ts                     | true | long    | timestamp                |                                          |
 
 
-## [Isolated Margin Mode] Place Lightning Close Order
+## [Isolated] Place Lightning Close Order
 
  - POST `/linear-swap-api/v1/swap_lightning_close_position`
 
@@ -6080,7 +6080,7 @@ No：
 ```
 
 
-## [Cross Margin Mode] Place Lightning Close Position
+## [Cross] Place Lightning Close Position
 
  - POST `linear-swap-api/v1/swap_cross_lightning_close_position`
 
@@ -6130,7 +6130,7 @@ No：
 | \</data\>       |       |        |     |  |
 
 
-## [Isolated Margin Mode] Get Information of an Order
+## [Isolated] Get Information of an Order
 
  - POST `/linear-swap-api/v1/swap_order_info`
 
@@ -6233,7 +6233,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 | ts                             | true          | long     | Timestamp                                                    |                                     |
 
 
-## [Cross Margin Mode] Get Information of order
+## [Cross] Get Information of order
 
  - POST `linear-swap-api/v1/swap_cross_order_info`
 
@@ -6334,7 +6334,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 | ts                   | true | long    | timestamp    |      |
 
 
-## [Isolated Margin Mode] Order details acquisition
+## [Isolated] Order details acquisition
 
 - POST `/linear-swap-api/v1/swap_order_detail`
 
@@ -6477,7 +6477,7 @@ Please note that created_at can't send "0"
 | ts                                | true          | long     | Timestamp                                                    |                                   |
 
 
-## [Cross Margin Mode] Get Detail Information of order
+## [Cross] Get Detail Information of order
 
  - POST `linear-swap-api/v1/swap_cross_order_detail`
 
@@ -6607,7 +6607,7 @@ Please note that created_at can't send "0"
 | ts                      | true | long    | timestamp         |      |
 
 
-## [Isolated Margin Mode] Current unfilled order acquisition
+## [Isolated] Current unfilled order acquisition
 
  - POST  `/linear-swap-api/v1/swap_openorders`
 
@@ -6713,7 +6713,7 @@ Please note that created_at can't send "0"
 | ts                             | true          | long     | Timestamp                                                    |                                   |
 
 
-## [Cross Margin Mode] Current unfilled order acquisition
+## [Cross] Current unfilled order acquisition
 
  - POST `linear-swap-api/v1/swap_cross_openorders`
 
@@ -6814,7 +6814,7 @@ Please note that created_at can't send "0"
 | ts                   | true | long    | timestamp                                      |                                          |
 
 
-## [Isolated Margin Mode] Get History Orders
+## [Isolated] Get History Orders
 
  - POST `/linear-swap-api/v1/swap_hisorders`
 
@@ -6928,7 +6928,7 @@ Please note that created_at can't send "0"
 The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
 
 
-## [Cross Margin Mode] Get History Orders
+## [Cross] Get History Orders
 
  - POST `linear-swap-api/v1/swap_cross_hisorders`
 
@@ -7034,7 +7034,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | ts                     | true | long    | timestamp    |      |
 
 
-## [Isolated Margin Mode] Acquire History Match Results
+## [Isolated] Acquire History Match Results
 
  - POST `/linear-swap-api/v1/swap_matchresults`
 
@@ -7130,7 +7130,7 @@ ts                     | true     | long    | timestamp                |        
 - The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
 
 
-## [Cross Margin Mode] Get History Match Results
+## [Cross] Get History Match Results
 
  - POST `linear-swap-api/v1/swap_cross_matchresults`
 
@@ -7220,7 +7220,7 @@ ts                     | true     | long    | timestamp                |        
 | ts                     | true | long    | timestamp                |    |
 
 
-## [Isolated Margin Mode] Place Trigger Order
+## [Isolated] Place Trigger Order
 
  - POST `linear-swap-api/v1/swap_trigger_order`
 
@@ -7311,7 +7311,7 @@ ts                     | true     | long    | timestamp                |        
 ```
 
 
-## [Cross Margin Mode] Place Trigger Order
+## [Cross] Place Trigger Order
 
  - POST `linear-swap-api/v1/swap_cross_trigger_order`
 
@@ -7368,7 +7368,7 @@ Error：
 | \</data\> |   | |  | |
 
 
-## [Isolated Margin Mode] Cancel Trigger Order
+## [Isolated] Cancel Trigger Order
 
 - POST `/linear-swap-api/v1/swap_trigger_cancel`
 
@@ -7420,7 +7420,7 @@ Error：
 | ts                         | true         | long     | response timestamp millseconds |  |
 
 
-## [Cross Margin Mode] Cancel Trigger Order
+## [Cross] Cancel Trigger Order
 
  - POST `linear-swap-api/v1/swap_cross_trigger_cancel`
 
@@ -7470,7 +7470,7 @@ Error：
 | ts                         | true         | long     | Time of Respond Generation, Unit: Millisecond |  |
 
 
-## [Isolated Margin Mode] Cancel All Trigger Orders
+## [Isolated] Cancel All Trigger Orders
 
 - POST `/linear-swap-api/v1/swap_trigger_cancelall`
 
@@ -7530,7 +7530,7 @@ Error：
 ```
 
 
-## [Cross Margin Mode] Cancel All Trigger Orders
+## [Cross] Cancel All Trigger Orders
 
  - POST ‘linear-swap-api/v1/swap_cross_trigger_cancelall’
 
@@ -7573,7 +7573,7 @@ Error：
 | ts                         | true         | long     | Time of Respond Generation, Unit: Millisecond |  |
 
 
-## [Isolated Margin Mode] Query Trigger Order Open Orders
+## [Isolated] Query Trigger Order Open Orders
 
  - POST `linear-swap-api/v1/swap_trigger_openorders`
 
@@ -7664,7 +7664,7 @@ Error：
 | \</orders\>                  |              |          |                            |                |
 
 
-## [Cross Margin Mode] Query Trigger Order Open Orders
+## [Cross] Query Trigger Order Open Orders
 
  - POST `linear-swap-api/v1/swap_cross_trigger_openorders`
 
@@ -7749,7 +7749,7 @@ Error：
 | ts                         | true         | long     | Time of Respond Generation, Unit: Millisecond |  |
 
 
-## [Isolated Margin Mode] Query Trigger Order History
+## [Isolated] Query Trigger Order History
 
  - POST `/linear-swap-api/v1/swap_trigger_hisorders`
 
@@ -7878,7 +7878,7 @@ Error：
 | \</orders\>                  |              |          |                            |                |
 
 
-## [Cross Margin Mode] Query Trigger Order History
+## [Cross] Query Trigger Order History
 
  - POST `linear-swap-api/v1/swap_cross_trigger_hisorders`
 
@@ -7987,7 +7987,7 @@ Error：
 
 # Swap Transferring Interface
 
-##  [General Mode] Transfer margin between Spot account and USDT Margined Swap account 
+##  [General] Transfer margin between Spot account and USDT Margined Swap account 
 
 ### Example
 
@@ -8501,7 +8501,7 @@ Add computed value into the Signature parameter in API request. Please note  the
  
 #  WebSocket Market Interface
 
-## [General Mode] Subscribe Kline data
+## [General] Subscribe Kline data
 
 #### Remarks
 
@@ -8586,7 +8586,7 @@ Add computed value into the Signature parameter in API request. Please note  the
 
 
 
-## [General Mode] Request Kline data
+## [General] Request Kline data
 
 #### Remarks
 
@@ -8717,7 +8717,7 @@ Clients can request 2000 Klines at most in one request
 
 
 
-## [General Mode] Subscribe Market Depth Data
+## [General] Subscribe Market Depth Data
 
 #### Remarks
 
@@ -8832,7 +8832,7 @@ ch | true |  string | Data channel, Format： market.period | |
 
 
 
-## [General Mode] Subscribe Incremental Market Depth Data
+## [General] Subscribe Incremental Market Depth Data
 
 #### Remarks
 
@@ -8941,7 +8941,7 @@ ch | true |  string | Data channel, Format： `market.$contract_code.depth.size_
 
 
 
-## [General Mode] Subscribe Market Detail Data
+## [General] Subscribe Market Detail Data
 
 #### Remarks
 
@@ -9024,7 +9024,7 @@ trade_turnover  |  true  |  decimal  |  Transaction amount, that is, sum (transa
 
 
 
-## [General Mode] Subscribe market BBO data push
+## [General] Subscribe market BBO data push
 
 #### Remarks
 
@@ -9114,7 +9114,7 @@ trade_turnover  |  true  |  decimal  |  Transaction amount, that is, sum (transa
 
 
 
-## [General Mode] Request Trade Detail Data
+## [General] Request Trade Detail Data
 
 #### Remarks
 
@@ -9206,7 +9206,7 @@ ts  |  true  |  long  |  Order Creation Time |   |
 ts  |  true  |  long  |  server response time |   | 
 
 
-## [General Mode] Subscribe Trade Detail Data 
+## [General] Subscribe Trade Detail Data 
 
 #### Remarks
 
@@ -9300,7 +9300,7 @@ direction  |  true  |  string  |  Order direction  |   |
  - The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index 
 
 
-## [General Mode] Subcribe Index Kline Data
+## [General] Subcribe Index Kline Data
 
 #### Remarks
 
@@ -9384,7 +9384,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | amount | string  |amount based on coins.            |
 
 
-## [General Mode] Request Index Kline Data
+## [General] Request Index Kline Data
 
 #### Remarks
 
@@ -9493,7 +9493,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | amount | decimal  |amount based on coins.            |
 
 
-## [General Mode] Subcribe Premium Index Kline Data
+## [General] Subcribe Premium Index Kline Data
 
 #### Remarks
 
@@ -9577,7 +9577,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | ts     | true | long | Time of Respond Generation, Unit: Millisecond            |                | |
 
 
-## [General Mode] Request Premium Index Kline Data
+## [General] Request Premium Index Kline Data
 
 #### Remarks
 
@@ -9675,7 +9675,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | \</data\>            |      |        |               |                | |
 
 
-## [General Mode] Subcribe Estimated Funding Rate Kline Data
+## [General] Subcribe Estimated Funding Rate Kline Data
 
 #### Remarks
 
@@ -9759,7 +9759,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | ts     | true | long |  Time of Respond Generation, Unit: Millisecond                   |                | |
 
 
-## [General Mode] Request Estimated Funding Rate Kline Data
+## [General] Request Estimated Funding Rate Kline Data
 
 #### Remarks
 
@@ -9854,7 +9854,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | \</data\>            |      |        |               |                | |
 
 
-## [General Mode] Subscribe Basis Data
+## [General] Subscribe Basis Data
 
 #### Remarks
 
@@ -9926,7 +9926,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | \</tick\>            |      |        |               |                | |
 | ts      | long | Time of Respond Generation, unit: millisecond        |                | |
 
-## [General Mode] Request Basis Data
+## [General] Request Basis Data
 
 #### Remarks
 
@@ -10021,7 +10021,7 @@ direction  |  true  |  string  |  Order direction  |   |
 
 # Orders and Accounts WebSocket Interfaces
 
-## [Isolated Margin Mode] Subscribe Order Data(sub)
+## [Isolated] Subscribe Order Data(sub)
 
 #### Remarks
 
@@ -10160,7 +10160,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | \</list\>                  |         |                                                             |
 
 
-## [Isolated Margin Mode] Unsubscribe Order Data（unsub）
+## [Isolated] Unsubscribe Order Data（unsub）
 
 #### Remarks
 
@@ -10212,7 +10212,7 @@ To unsubscribe order data, the clients have to make connection to the server and
 | orders.*       | orders.contract_code1  | Not Allowed |
 
 
-## [Cross Margin Mode] Subscribe Order Data（sub）
+## [Cross] Subscribe Order Data（sub）
 
 #### Remarks
 
@@ -10351,7 +10351,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | \</trade\>   |  |   |     |
 
 
-## [Cross Margin Mode] Unsubscribe Order Data（unsub）
+## [Cross] Unsubscribe Order Data（unsub）
 
 #### Remarks
 
@@ -10402,7 +10402,7 @@ To unsubscribe order data, the clients have to make connection to the server and
 | orders_cross.*       | orders_cross.contract_code1  | Not Allowed |
 
 
-## [Isolated Margin Mode] Subscribe Match Order Data（sub)
+## [Isolated] Subscribe Match Order Data（sub)
 
 #### Remarks
 
@@ -10531,7 +10531,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | role   | true | string  | taker or maker  |   |
 | \</trade\>   |  |  |     |    |
 
-## [Isolated Margin Mode] Unsubscribe Match Order Data（unsub）
+## [Isolated] Unsubscribe Match Order Data（unsub）
 
 #### Remarks
 
@@ -10583,7 +10583,7 @@ To unsubscribe order data, the clients have to make connection to the server and
 | matchOrders.*       | matchOrders.contract_code1  | Not Allowed |
 
 
-## [Cross Margin Mode] Subscribe Match Order Data（sub）
+## [Cross] Subscribe Match Order Data（sub）
 
 #### Remarks
 
@@ -10710,7 +10710,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | \</trade\>   |  |  |     |    |
 
 
-## [Cross Margin Mode] Unsubscribe Match Order Data（unsub）
+## [Cross] Unsubscribe Match Order Data（unsub）
 
 #### Remarks
 
@@ -10760,7 +10760,7 @@ To unsubscribe order data, the clients have to make connection to the server and
 | matchOrders_cross.*       | matchOrders_cross.contract_code1  | Not Allowed |
 
 
-## [Isolated Margin Mode] Subscribe Account Equity Updates Data(sub)
+## [Isolated] Subscribe Account Equity Updates Data(sub)
 
 #### Remarks
 
@@ -10868,7 +10868,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | \</data\>            |   |                                                        |
 
 
-## [Isolated Margin Mode] Unsubscribe Account Equity Updates Data (ubsub)
+## [Isolated] Unsubscribe Account Equity Updates Data (ubsub)
 
 #### Remarks
 
@@ -10920,7 +10920,7 @@ To unsubscribe account equity updates data, the client has to make connection to
 | accounts.*       | accounts.contract_code1  | Not Allowed |
 
 
-## [Cross Margin Mode] Subscribe Account Equity Updates Data（sub）
+## [Cross] Subscribe Account Equity Updates Data（sub）
 
 #### Remarks
 
@@ -11042,7 +11042,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
 | \</data\>   |  |   |     |   |
 
 
-## [Cross Margin Mode] Unsubscribe Account Equity Updates Data（unsub）
+## [Cross] Unsubscribe Account Equity Updates Data（unsub）
 
 #### Remarks
 
@@ -11093,7 +11093,7 @@ To unsubscribe account equity updates data, the client has to make connection to
 | accounts_cross.*       | accounts_cross.margin_account1  | Not Allowed |
 
 
-## [Isolated Margin Mode] Subscribe Position Updates(sub)
+## [Isolated] Subscribe Position Updates(sub)
 
 #### Remarks
 
@@ -11206,7 +11206,7 @@ To subscribe position updates data, the client has to make connection to the ser
  - When switching leverage with no positions, the event "switch_lever_rate" will not be pushed by the position topic.
 
 
-## [Isolated Margin Mode] Unsubscribe Position Updates Data(unsub)
+## [Isolated] Unsubscribe Position Updates Data(unsub)
 
 #### Remarks
 
@@ -11257,7 +11257,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | positions.*       | positions.symbol1  | Not Allowed |
 
 
-## [Cross Margin Mode] Subscribe Position Updates（sub）
+## [Cross] Subscribe Position Updates（sub）
 
 #### Remarks
 
@@ -11371,7 +11371,7 @@ To subscribe position updates data, the client has to make connection to the ser
  - When switching leverage with no positions, the event "switch_lever_rate" will not be pushed by the position topic.
 
 
-## [Cross Margin Mode] Unsubscribe Position Updates Data（unsub）
+## [Cross] Unsubscribe Position Updates Data（unsub）
 
 #### Remarks
 
@@ -11421,7 +11421,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | positions_cross.*       | positions_cross.contract_code1  | Not Allowed |
 
 
-## [General Mode] Subscribe Liquidation Orders (no authentication) (sub)
+## [General] Subscribe Liquidation Orders (no authentication) (sub)
 
 #### Remarks
 
@@ -11506,7 +11506,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 
 
 
-## [General Mode] Unsubscribe Liquidation Order Data (unsub)
+## [General] Unsubscribe Liquidation Order Data (unsub)
 
 #### Remarks
 
@@ -11556,7 +11556,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | public.*.liquidation_orders      | public.contract_code1.liquidation_orders  | Not Allowed |
 
 
-## [General Mode] Subscribe funding rate (no authentication)（sub）
+## [General] Subscribe funding rate (no authentication)（sub）
 
 #### Remarks
 
@@ -11636,7 +11636,7 @@ To subscribe funding rate data, the client has to make connection to the server 
 | \</data\>   |  |     |    |
 
 
-## [General Mode] Unsubscribe Funding Rate Data(no authentication)(unsub)
+## [General] Unsubscribe Funding Rate Data(no authentication)(unsub)
 
 #### Remarks
 
@@ -11695,7 +11695,7 @@ To unsubscribe funding rate data, the client has to make connection to the serve
  - If the value is equal to last value over 5 continuous counts calculated by md5 of 150 bids data and 150 asks data. 
 
 
-## [General Mode] Subscribe Contract Info (no authentication)（sub）
+## [General] Subscribe Contract Info (no authentication)（sub）
 
 #### Remarks
 
@@ -11786,7 +11786,7 @@ To subscribe contract infodata, the client has to make connection to the server 
 - When the contract status is "delivery completed", the next settlement time of the contract is an empty string.
 - Only when the status is 1(Listing),  can it be traded normally, other statuses are not tradable;
 
-## [General Mode] Unsubscribe Contract Info Data(no authentication)(unsub)
+## [General] Unsubscribe Contract Info Data(no authentication)(unsub)
 
 #### Remarks
 
@@ -11836,7 +11836,7 @@ To unsubscribe contract info data, the client has to make connection to the serv
 | public.*.contract_info       | public.contract_code1.contract_info  | Not Allowed |
 
 
-## [Isolated Margin Mode] Subscribe trigger orders updates(sub)
+## [Isolated] Subscribe trigger orders updates(sub)
 
 #### Remarks
 
@@ -11964,7 +11964,7 @@ To unsubscribe contract info data, the client has to make connection to the serv
 - Single coin cannot be re-suscribed, and all coins subscription can cover single coin subscription; single coin cannot be subscribed after subscribing all coins. 
 
 
-## [Isolated Margin Mode] Unsubscribe trigger orders updates（unsub）
+## [Isolated] Unsubscribe trigger orders updates（unsub）
 
 #### Remarks
 
@@ -12014,7 +12014,7 @@ To subscribe basis data, the Client has to make connection to the Server and sen
 | trigger_order.*       | trigger_order.contract_code1  | Not Allowed |
 
 
-## [Cross Margin Mode] Subscribe trigger orders updates(sub)
+## [Cross] Subscribe trigger orders updates(sub)
 
 #### Remarks
 
@@ -12139,7 +12139,7 @@ To subscribe basis data, the Client has to make connection to the Server and sen
 - Single coin cannot be re-suscribed, and all coins subscription can cover single coin subscription; single coin cannot be subscribed after subscribing all coins. 
 
 
-## [Cross Margin Mode] Unsubscribe trigger orders updates（unsub）
+## [Cross] Unsubscribe trigger orders updates（unsub）
 
 #### Remarks
 
