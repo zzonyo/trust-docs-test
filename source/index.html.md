@@ -828,8 +828,8 @@ Read     |   Market Data           |  api/v1/contract_elite_account_ratio |   GE
 Read     |   Market Data           |  api/v1/contract_elite_position_ratio |   GET       | Query Top Trader Sentiment Index Function-Position            |  No  |
 Read     |   Market Data           |  api/v1/contract_liquidation_orders |   GET       |  Query Liquidation Order Information            |  No  |
 Read     |  Market Data            |  api/v1/contract_settlement_records |     GET       |  Query historical settlement records of the platform interface          |  No  |
-Read     |  Market Data           |  api/v1/index/market/history/index |   GET       |  Query Index Kline Data            |  No  |
-Read     |  Market Data           |  api/v1/index/market/history/basis |   GET       |  Query Basis Data            |  No  |
+Read     |  Market Data           |  /index/market/history/index |   GET       |  Query Index Kline Data            |  No  |
+Read     |  Market Data           |  /index/market/history/basis |   GET       |  Query Basis Data            |  No  |
 Read  | Account          | api/v1/contract_account_info   |  POST             | Query User’s Account Information                     | Yes                    |
 Read  | Account          | api/v1/contract_position_info  |  POST             | Query User’s Position Information                    | Yes                    |
 Read   | Account | api/v1/contract_sub_account_list    | POST             |     Query assets information of all sub-accounts under the master account (Query by coins)     | Yes   |
