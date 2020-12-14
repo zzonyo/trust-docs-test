@@ -1698,16 +1698,17 @@ If you encounter errors such as {'index': 1, 'err_code': 1048, 'err_msg': 'Insuf
 
 1032 means that your request exceeds the ratelimit. The coin margined swap, future, option swap and USDT margined swap limit the rate separately. Please check the ratelimit in the api ratelimit instructions, and you can print the current ratelimit in the header of the API response to check whether the ratelimit is exceeded. It is recommended to increase the request interval delay to avoid exceeding the ratelimit.
 
-## The useage of and difference between cross margin mode and isolated margin mode
+## The usage of and the difference between cross margin mode and isolated margin mode
 
-1. In cross margin mode, account amount will provide guarantee for the positions of every variety contract. That is position of every varieties contracts is share equity, profit, loss, occupation of guaranteed assets.Guaranteed asset ratio of every varieties contract is calculated together. 
-In isolated margin mode, the equity of every variety contract is calculated separately. And the profit and losse of the secured assets do not affect each other.
+1. Under the cross margin mode, all swaps share the USDT in the cross margin account as the margin, which indicates that all positions under the cross margin mode share the same account equity, and their PnL, occupied margin and margin ratio are calculated jointly. Under the isolated margin mode, the account equity for each swaps are calculated separately, and the position margin and PnL of each swaps will not affect each other. 
 
-2. Cross margin mode and isolated margin mode use different margin accounts. And each mode's assets are independent of the other. You can carry out the transaction of two modes at the same time, and have the positions of two modes at the same time. For example, in the btc-usdt contract, the margin account of cross margin mode is usdt, while the margin account of isolated margin mode is btc-usdt.
+2. The cross margin mode and the isolated margin mode use different margin accounts, and the assets are independent of each other. Users can trade, or hold positions under the two modes at the same time. For example, in BTC/USDT swaps trading, the margin account for cross margin trading is USDT, while the margin account for isolated margin trading is BTC-USDT.
 
-3. You can query contract information with the API interface [linear-swap-api/v1/swap_contract_info] and in the response field support_margin_modethe it shows the contract supports which margin mode,  cross margin mode or isolated margin mode or both.
 
-4. The API interface is marked with one of mode types, i.e., [Cross], [Isolated] and [General], and which are marked on the API interface name and interface list. [Cross] indicates that the API interface only supports cross margin mode. [Isolated] indicates that the API interface only supports isolated margin mode, and [General] indicates that the API interface does not distinguish between cross margin mode and isolated margin mode, that is, both of cross margin mode and isolated margin mode can call it.
+3. API users can use the support_margin_mode field (margin mode supported by the contract) of the API interface [Query Swap Info: linear-swap-api/v1/swap_contract_info] to check which mode (cross/isolated) the contract supports.
+
+
+4. The API interface is divided into three modes, [Cross], [Isolated] and [General]. These three modes are marked on the API interface name and the interface list. [Cross] indicates that the API interface only supports cross margin mode. [Isolated] indicates that the API interface only supports isolated margin mode, and [General] indicates that the API interface supports both two modes, indicating that it can be called by both the cross margin mode and isolated margin mode.
 
 ## How to solve problems more effectively?
 
