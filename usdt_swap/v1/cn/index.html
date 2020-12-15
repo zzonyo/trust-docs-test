@@ -2223,8 +2223,15 @@ api.hbdm.com\n
 </ul></li>
 </ul>
 <h2 id='e09f675bbd'>停服维护</h2>
-<p>业务系统停服维护期间，除了以下2个提供给用户查询系统状态的接口外（<a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#cd63bde415'>获取当前系统状态</a>、<a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#bef5ec9210'>查询系统是否可用</a>），该业务所有rest接口都会固定返回{&quot;status&quot;: &quot;maintain&quot;}报文。</p>
-<h4 id='2-2'>2个接口为：</h4>
+<p>业务系统停服维护期间，除了以下2个提供给用户查询系统状态的接口能够正常使用外（<a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#cd63bde415'>获取当前系统状态</a>、<a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#bef5ec9210'>查询系统是否可用</a>），该业务所有rest接口都会固定返回响应报文:<code>{&quot;status&quot;: &quot;maintain&quot;}</code></p>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maintain"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h4 id='2-2'>2个接口为：</h4>
 <ul>
 <li>查询系统是否可用：https://api.hbdm.com/heartbeat/</li>
 <li>statuspage查询系统状态：https://status-linear-swap.huobigroup.com/api/v2/summary.json</li>
@@ -2579,12 +2586,12 @@ api.hbdm.com\n
 <tr>
 <td>heartbeat</td>
 <td>int</td>
-<td>交割合约 1: 可用 0: 不可用</td>
+<td>交割合约 1: 可用 0: 不可用(即停服维护)</td>
 </tr>
 <tr>
 <td>swap_heartbeat</td>
 <td>int</td>
-<td>币本位永续 1: 可用 0: 不可用</td>
+<td>币本位永续 1: 可用 0: 不可用(即停服维护)</td>
 </tr>
 <tr>
 <td>estimated_recovery_time</td>
@@ -2599,7 +2606,7 @@ api.hbdm.com\n
 <tr>
 <td>option_heartbeat</td>
 <td>int</td>
-<td>期权合约 1: 可用 0: 不可用</td>
+<td>期权合约 1: 可用 0: 不可用(即停服维护)</td>
 </tr>
 <tr>
 <td>option_estimated_recovery_time</td>
@@ -2609,7 +2616,7 @@ api.hbdm.com\n
 <tr>
 <td>linear_swap_heartbeat</td>
 <td>long</td>
-<td>USDT本位永续 1: 可用 0: 不可用</td>
+<td>USDT本位永续 1: 可用 0: 不可用(即停服维护)</td>
 </tr>
 <tr>
 <td>linear_swap_estimated_recovery_time</td>
