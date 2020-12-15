@@ -8135,9 +8135,9 @@ Response Code | Desc in Chinese |  Desc in English  |
 | Read    |  Index and Basis Interface | general | market.$contract_code.index.$period  | sub  | Request Index Kline Data                  |       No      |
 | Read    |  Index and Basis Interface | general | market.$contract_code.basis.$period.$basis_price_type  | sub  | Subscribe Basis Data                  |       No      |
 | Read    |  Index and Basis Interface | general | market.$contract_code.basis.$period.$basis_price_type  | req  | Request Basis Data                  |       No      |
-| Read    |  Index and Basis Interface | general | market.$contract_code.premium_index.$period            | sub  | Subcribe Premium Index Kline Data          |       No      |
+| Read    |  Index and Basis Interface | general | market.$contract_code.premium_index.$period            | sub  | Subscribe Premium Index Kline Data          |       No      |
 | Read    |  Index and Basis Interface | general | market.$contract_code.premium_index.$period            | req  | Request Premium Index Kline Data       |       No      |
-| Read    |  Index and Basis Interface| general | market.$contract_code.estimated_rate.$period           | sub  | Subcribe Estimated Funding Rate Kline Data     |       No      |
+| Read    |  Index and Basis Interface| general | market.$contract_code.estimated_rate.$period           | sub  | Subscribe Estimated Funding Rate Kline Data     |       No      |
 | Read    |  Index and Basis Interface | general | market.$contract_code.estimated_rate.$period           | req  | Request Estimated Funding Rate Kline Data     |       No      |
 | Read    |  Trade Interface | general | public.$contract_code.liquidation_orders               | sub  | Subscribe Liquidation Orders (no authentication) (sub)    |       No      |
 | Read    |  Trade Interface | general | public.$contract_code.funding_rate                     | sub  | Subscribe funding rate (no authentication)（sub）|       No      |
@@ -9301,7 +9301,7 @@ direction  |  true  |  string  |  Order direction  |   |
  - The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index 
 
 
-## [General] Subcribe Index Kline Data
+## [General] Subscribe Index Kline Data
 
 #### Remarks
 
@@ -9494,7 +9494,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | amount | decimal  |amount based on coins.            |
 
 
-## [General] Subcribe Premium Index Kline Data
+## [General] Subscribe Premium Index Kline Data
 
 #### Remarks
 
@@ -9676,7 +9676,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | \</data\>            |      |        |               |                | |
 
 
-## [General] Subcribe Estimated Funding Rate Kline Data
+## [General] Subscribe Estimated Funding Rate Kline Data
 
 #### Remarks
 
