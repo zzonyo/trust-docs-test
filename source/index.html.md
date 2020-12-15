@@ -851,7 +851,15 @@ api.hbdm.com\n
   
 ## 停服维护
 
-业务系统停服维护期间，除了以下2个提供给用户查询系统状态的接口外（<a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#cd63bde415'>获取当前系统状态</a>、<a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#bef5ec9210'>查询系统是否可用</a>），该业务所有rest接口都会固定返回{"status": "maintain"}报文。
+业务系统停服维护期间，除了以下2个提供给用户查询系统状态的接口能够正常使用外（<a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#cd63bde415'>获取当前系统状态</a>、<a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#bef5ec9210'>查询系统是否可用</a>），该业务所有rest接口都会固定返回响应报文:`{"status": "maintain"}`
+
+>Response
+
+```json
+{
+    "status": "maintain"
+}
+``` 
 
 #### 2个接口为：
  - 查询系统是否可用：https://api.hbdm.com/heartbeat/
@@ -1068,13 +1076,13 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 | ------------------ | ------------------ | ------------- | 
 | status             | string                   | "ok" 或 "error"... 
 | \<data\>             | dict object                 | 
-| heartbeat             | int                   | 交割合约 1: 可用 0: 不可用 
-| swap_heartbeat             | int                   | 币本位永续 1: 可用 0: 不可用 
+| heartbeat             | int                   | 交割合约 1: 可用 0: 不可用(即停服维护) 
+| swap_heartbeat             | int                   | 币本位永续 1: 可用 0: 不可用(即停服维护) 
 | estimated_recovery_time             | long                   | null: 正常. 交割合约预计恢复时间， 单位:毫秒
 | swap_estimated_recovery_time             | long                   | null: 正常. 币本位永续合约预计恢复时间，单位：毫秒.
-| option_heartbeat             | int                   | 期权合约 1: 可用 0: 不可用 
+| option_heartbeat             | int                   | 期权合约 1: 可用 0: 不可用(即停服维护) 
 | option_estimated_recovery_time             | long                   | null: 正常. 期权合约预计恢复时间，单位：毫秒.
-| linear_swap_heartbeat             | long                   | USDT本位永续 1: 可用 0: 不可用
+| linear_swap_heartbeat             | long                   | USDT本位永续 1: 可用 0: 不可用(即停服维护)
 | linear_swap_estimated_recovery_time             | long                   | null: 正常. USDT本位永续合约预计恢复时间，单位：毫秒.
 | \</data\>             |                  | 
 
@@ -9047,7 +9055,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | event   | true | string  | 通知相关事件说明   |  订阅成功返回的初始系统状态信息（init），系统状态变化触发（update） |
 | ts   | true | long  | 服务端应答时间戳   |   |
 | \<data\> |  |  |  | |
-| heartbeat | true | int | 系统状态	 |  1是可用，0为不可用 |
+| heartbeat | true | int | 系统状态	 |  1是可用，0为不可用(即停服维护) |
 | estimated_recovery_time | true | long |  系统预估恢复时间，单位：毫秒	 |  当系统状态为可用时，返回空值 |
 | \</data\> | | |  | |
 
