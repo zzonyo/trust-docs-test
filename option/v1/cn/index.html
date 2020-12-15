@@ -217,9 +217,6 @@
               <li>
                 <a href="/docs/spot/v1/en/" id="v1_url">v1</a>
               </li>
-              <li>
-                <a href="/docs/spot/v2/en/" id="v2_url">v2</a>
-              </li>
             </ul>
           </span>
           <span class="nav_cell nav_tab">
@@ -16122,7 +16119,6 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
       const btn_usdt_swap = document.getElementById('btn_usdt_swap')
       const btn_option = document.getElementById('btn_option');
       const v1_url = document.getElementById('v1_url');
-      const v2_url = document.getElementById('v2_url');
       const url = GetUrlRelativePath();
 
       if(url.indexOf('cn') != -1){
@@ -16140,7 +16136,6 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
         btn_usdt_swap.href = btn_usdt_swap.href.replace('en/', 'cn/');
         btn_option.href = btn_option.href.replace('en/', 'cn/');
         v1_url.href = '/docs/spot/v1/cn/';
-        v2_url.href = '/docs/spot/v2/cn/';
       }else{
         //如果是英文环境
         lang_btn.innerHTML = '中文';
@@ -16158,7 +16153,6 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
         btn_usdt_swap.href = btn_usdt_swap.href.replace('cn/', 'en/');
         btn_option.href = btn_option.href.replace('cn/', 'en/');
         v1_url.href = '/docs/spot/v1/en/';
-        v2_url.href = '/docs/spot/v2/en/';
       }
 
       if(location.href.indexOf('docs/dm/v') > 0){
