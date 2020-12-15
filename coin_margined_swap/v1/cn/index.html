@@ -11464,7 +11464,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>order_price_type</td>
@@ -11799,7 +11799,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 <tr>
-<td>&lt;dict&gt;(属性名称: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -11851,22 +11851,22 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>order_type</td>
 <td>true</td>
 <td>int</td>
-<td>订单类型，1:报单 、 2:撤单 、 3:强平、4:交割</td>
-<td></td>
+<td>订单类型</td>
+<td>1:报单 、 2:撤单 、 3:强平、4:交割</td>
 </tr>
 <tr>
 <td>direction</td>
 <td>true</td>
 <td>string</td>
+<td>订单方向</td>
 <td>&quot;buy&quot;:买 &quot;sell&quot;:卖</td>
-<td></td>
 </tr>
 <tr>
 <td>offset</td>
 <td>true</td>
 <td>string</td>
+<td>开平方向</td>
 <td>&quot;open&quot;:开 &quot;close&quot;:平</td>
-<td></td>
 </tr>
 <tr>
 <td>lever_rate</td>
@@ -11964,7 +11964,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>&lt;/orders&gt;</td>
@@ -11995,7 +11995,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 <tr>
-<td>&lt;/dict&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -12143,14 +12143,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 <tr>
-<td>&lt;dict&gt;(属性名称: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(属性名称: orders)</td>
+<td>&lt;orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -12231,7 +12231,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>order_price_type</td>
@@ -12311,7 +12311,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管</td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -12339,7 +12339,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 <tr>
-<td>&lt;/dict&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -12661,7 +12661,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>买卖方</td>
+<td>买卖方向</td>
 <td>&quot;buy&quot;:买 &quot;sell&quot;:卖</td>
 </tr>
 <tr>
@@ -12697,7 +12697,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>order_price_type</td>
@@ -12926,14 +12926,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 <tr>
-<td>&lt;dict&gt;(属性名称: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(属性名称: trades)</td>
+<td>&lt;trades&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -12979,7 +12979,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -12992,15 +12992,15 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>direction</td>
 <td>true</td>
 <td>string</td>
+<td>订单方向</td>
 <td>&quot;buy&quot;:买 &quot;sell&quot;:卖</td>
-<td></td>
 </tr>
 <tr>
 <td>offset</td>
 <td>true</td>
 <td>string</td>
+<td>开平方向</td>
 <td>&quot;open&quot;:开 &quot;close&quot;:平</td>
-<td></td>
 </tr>
 <tr>
 <td>trade_volume</td>
@@ -13059,7 +13059,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/trades&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -13087,7 +13087,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 <tr>
-<td>&lt;/dict&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -13101,10 +13101,6 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-10'>备注</h3>
-<ul>
-<li>如果不传page_index和page_size，默认只查第一页的20条数据，详情请看参数说明:</li>
-</ul>
 <h2 id='9a36ad3eef'>组合查询用户历史成交记录</h2>
 <ul>
 <li>POST <code>swap-api/v1/swap_matchresults_exact</code></li>
@@ -13465,7 +13461,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>&lt;/trades&gt;</td>
@@ -14206,8 +14202,8 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>trigger_type</td>
 <td>true</td>
 <td>string</td>
-<td>触发类型： <code>ge</code>大于等于；<code>le</code>小于等于</td>
-<td></td>
+<td>触发类型</td>
+<td><code>ge</code>大于等于；<code>le</code>小于等于</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -14220,22 +14216,22 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>order_type</td>
 <td>true</td>
 <td>int</td>
-<td>订单类型：1、报单  2、撤单</td>
-<td></td>
+<td>订单类型</td>
+<td>1、报单  2、撤单</td>
 </tr>
 <tr>
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>订单方向 [买(buy),卖(sell)]</td>
-<td></td>
+<td>订单方向</td>
+<td>[买(buy),卖(sell)]</td>
 </tr>
 <tr>
 <td>offset</td>
 <td>true</td>
 <td>string</td>
-<td>开平标志 [开(open),平(close)]</td>
-<td></td>
+<td>开平标志</td>
+<td>[开(open),平(close)]</td>
 </tr>
 <tr>
 <td>lever_rate</td>
@@ -14263,7 +14259,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>true</td>
 <td>string</td>
 <td>来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>trigger_price</td>
@@ -14297,8 +14293,8 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>status</td>
 <td>true</td>
 <td>int</td>
-<td>订单状态：1:准备提交、2:已提交、3:报单中、8：撤单未找到、9：撤单中、10：失败&#39;</td>
-<td></td>
+<td>订单状态</td>
+<td>1:准备提交、2:已提交、3:报单中、8：撤单未找到、9：撤单中、10：失败&#39;</td>
 </tr>
 <tr>
 <td>&lt;/orders&gt;</td>
@@ -14502,8 +14498,8 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>trigger_type</td>
 <td>true</td>
 <td>string</td>
-<td>触发类型： <code>ge</code>大于等于；<code>le</code>小于等于</td>
-<td></td>
+<td>触发类型</td>
+<td><code>ge</code>大于等于；<code>le</code>小于等于</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -14516,22 +14512,22 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>order_type</td>
 <td>true</td>
 <td>int</td>
-<td>订单类型：1、报单  2、撤单</td>
-<td></td>
+<td>订单类型</td>
+<td>1、报单  2、撤单</td>
 </tr>
 <tr>
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>订单方向 [买(buy),卖(sell)]</td>
-<td></td>
+<td>订单方向</td>
+<td>[买(buy),卖(sell)]</td>
 </tr>
 <tr>
 <td>offset</td>
 <td>true</td>
 <td>string</td>
-<td>开平标志 [开(open),平(close)]</td>
-<td></td>
+<td>开平标志</td>
+<td>[开(open),平(close)]</td>
 </tr>
 <tr>
 <td>lever_rate</td>
@@ -14565,22 +14561,22 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>order_price_type</td>
 <td>true</td>
 <td>string</td>
-<td>订单报价类型 限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20</td>
-<td></td>
+<td>订单报价类型</td>
+<td>限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20</td>
 </tr>
 <tr>
 <td>status</td>
 <td>true</td>
 <td>int</td>
-<td>订单状态(4:报单成功、5:报单失败、6:已撤单 )</td>
-<td></td>
+<td>订单状态</td>
+<td>(4:报单成功、5:报单失败、6:已撤单 )</td>
 </tr>
 <tr>
 <td>order_source</td>
 <td>true</td>
 <td>string</td>
 <td>来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>trigger_price</td>
@@ -14671,7 +14667,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <ul>
 <li>POST <code>https://api.huobi.pro/v2/account/transfer</code></li>
 </ul>
-<h3 id='e0361480e3-11'>备注</h3>
+<h3 id='e0361480e3-10'>备注</h3>
 <p>此接口用户币币现货账户与币本位永续合约账户之间的资金划转。</p>
 
 <p>该接口的访问频次的限制为1秒/1次。</p>
@@ -15317,7 +15313,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <p>合约站系统状态更新订阅地址：wss://api.btcgateway.pro/center-notification</p>
 
 <p>如果对合约订单推送订阅有疑问，可以参考<a href="https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#2cff7db524">Demo</a></p>
-<h3 id='e0361480e3-12'>备注</h3>
+<h3 id='e0361480e3-11'>备注</h3>
 <p>如果api.hbdm.com无法访问，可以使用api.btcgateway.pro来做调试，AWS服务器用户推荐使用api.hbdm.vn； </p>
 <h2 id='4977e9e52a-2'>访问次数限制</h2>
 <p>公开行情接口和用户私有接口都有访问次数限制</p>
@@ -15408,7 +15404,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </ul>
 
 <p>合约站订单推送订阅地址：wss://api.hbdm.com/swap-notification</p>
-<h3 id='e0361480e3-13'>备注</h3>
+<h3 id='e0361480e3-12'>备注</h3>
 <p>如果api.hbdm.com无法访问，可以使用api.btcgateway.pro来做调试，AWS服务器用户推荐使用api.hbdm.vn；</p>
 
 <p>正常ws请求连接不能同时超过30个</p>
@@ -15959,7 +15955,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-14'>备注</h4>
+<h4 id='e0361480e3-13'>备注</h4>
 <p>[t1, t5] 假设有 t1  ~ t5 的K线：</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -16178,7 +16174,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>(150档数据)  step0, step1, step2, step3, step4, step5, step14, step15（合并深度1-5,14-15）,step0时，不合并深度;(20档数据)  step6, step7, step8, step9, step10, step11, step12, step13（合并深度7-13）；step6时，不合并深度；step12（表示合并精度1的20档深度数据，表示整数位的个位）、step13（表示合并精度10的20档深度数据，表示整数位的十位）、step14（表示合并精度1的150档深度数据，表示整数位的个位）、step15（表示合并精度10的150档深度数据，表示整数位的十位）</td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-15'>备注</h4>
+<h4 id='e0361480e3-14'>备注</h4>
 <ul>
 <li><p>合并深度时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</p></li>
 <li><p>step1至step5, step14, step15是进行了深度合并后的150档深度数据，step7至step13是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
@@ -17410,7 +17406,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>仅支持小写,1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-16'>备注</h3>
+<h3 id='e0361480e3-15'>备注</h3>
 <ul>
 <li><p>当指数有变化时会推送;</p></li>
 <li><p>指数无变化时会根据订阅的周期推送；</p></li>
@@ -19228,12 +19224,12 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <tr>
 <td>direction</td>
 <td>string</td>
-<td>&quot;buy&quot;:买 &quot;sell&quot;:卖</td>
+<td>买卖方向 &quot;buy&quot;:买 &quot;sell&quot;:卖</td>
 </tr>
 <tr>
 <td>offset</td>
 <td>string</td>
-<td>&quot;open&quot;:开 &quot;close&quot;:平</td>
+<td>开平方向 &quot;open&quot;:开 &quot;close&quot;:平</td>
 </tr>
 <tr>
 <td>status</td>
@@ -20317,7 +20313,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>order_price_type</td>
@@ -20927,7 +20923,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-17'>备注</h3>
+<h3 id='e0361480e3-16'>备注</h3>
 <p>推送逻辑一般是1分钟一次，但是出现以下情况时不会计算资金费率：</p>
 
 <ul>
@@ -21445,7 +21441,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>true</td>
 <td>string</td>
 <td>来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>trigger_price</td>
@@ -21767,7 +21763,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-18'>备注</h3>
+<h3 id='e0361480e3-17'>备注</h3>
 <ul>
 <li>这个推送由于是轮询判断状态的，所以推送可能存在1—2秒的延迟。</li>
 </ul>
