@@ -1142,7 +1142,7 @@ api.hbdm.com\n
 
 ## 停服维护
 
-业务系统停服维护期间，除了以下2个提供给用户查询系统状态的接口外（<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#cd63bde415'>获取当前系统状态</a>、<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#bef5ec9210'>查询系统是否可用</a>），该业务所有rest接口都会固定返回报文：
+业务系统停服维护期间，除了以下2个提供给用户查询系统状态的接口外（<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#cd63bde415'>获取当前系统状态</a>、<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#bef5ec9210'>查询系统是否可用</a>），该业务所有rest接口都会固定返回`{"status": "maintain"}`报文：
 
 ```json
 {
