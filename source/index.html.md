@@ -307,7 +307,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 #### 14.3、Add fields: canceled_at, fee_asset
 
-- Interface Name: Subcribe Orders
+- Interface Name: Subscribe Orders
 - Interface Type: private interface
 - Subscribe Topic: orders.$contract_code
 
@@ -5905,9 +5905,9 @@ Response Code | Desc in Chinese |  Desc in English  |
 | Read    |  Market Data Interface | market.$contract_code.trade.detail                     | sub  | Subscribe Trade Detail Data       |       No      |
 | Read    |  Index and Basis Interface | market.$contract_code.basis.$period.$basis_price_type  | sub  | Subscribe Basis Data                  |       No      |
 | Read    |  Index and Basis Interface | market.$contract_code.basis.$period.$basis_price_type  | req  | Request Basis Data                  |       No      |
-| Read    |  Index and Basis Interface | market.$contract_code.premium_index.$period            | sub  | Subcribe Premium Index Kline Data          |       No      |
+| Read    |  Index and Basis Interface | market.$contract_code.premium_index.$period            | sub  | Subscribe Premium Index Kline Data          |       No      |
 | Read    |  Index and Basis Interface | market.$contract_code.premium_index.$period            | req  | Request Premium Index Kline Data       |       No      |
-| Read    |  Index and Basis Interface| market.$contract_code.estimated_rate.$period           | sub  | Subcribe Estimated Funding Rate Kline Data     |       No      |
+| Read    |  Index and Basis Interface| market.$contract_code.estimated_rate.$period           | sub  | Subscribe Estimated Funding Rate Kline Data     |       No      |
 | Read    |  Index and Basis Interface | market.$contract_code.estimated_rate.$period           | req  | Request Estimated Funding Rate Kline Data     |       No      |
 | Read    |  Trade Interface | public.$contract_code.liquidation_orders               | sub  | Subscribe Liquidation Orders (no authentication) (sub)    |       No      |
 | Read    |  Trade Interface | public.$contract_code.funding_rate                     | sub  | Subscribe funding rate (no authentication)（sub）|       No      |
@@ -7021,7 +7021,7 @@ direction  |  true  |  string  |  Order direction  |   |
 - The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index 
 
 
-## Subcribe Index Kline Data
+## Subscribe Index Kline Data
 
 ### To subscribe index kline data, the Client has to make connection to the Server and send subscribe request in the format below:
 
@@ -7205,7 +7205,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | amount | decimal  |amount based on coins.            |
 
 
-## Subcribe Premium Index Kline Data
+## Subscribe Premium Index Kline Data
 
 ### To subscribe Premium index kline data, the Client has to make connection to the Server and send subscribe request in the format below:
 
@@ -7391,7 +7391,7 @@ direction  |  true  |  string  |  Order direction  |   |
 | amount | string  |amount based on coins.            |
 
 
-## Subcribe Estimated Funding Rate Kline Data
+## Subscribe Estimated Funding Rate Kline Data
 
 ### To subscribe Estimated Funding Rate kline data, the Client has to make connection to the Server and send subscribe request in the format below:
 
