@@ -5384,7 +5384,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | 参数名              | 参数类型    | 必填    | 描述    | 取值范围 |
 | ---------------- | ------- | ----- | ---------------------------------------- | -----------|
 | contract_code     | string <img width=250/>  | true  <img width=250/> | 合约代码 <img width=1000/> | "BTC-USDT"...                           |
-| client_order_id  | long    | false | 客户自己填写和维护，必须为数字                          | |
+| client_order_id  | long    | false | 客户自己填写和维护，必须为数字,请注意必须小于等于9223372036854775807   | |
 | price            | decimal | false | 价格                                       | |
 | volume           | long    | true  | 委托数量(张)                                  | |
 | direction        | string  | true  | 仓位方向 | "buy":买 "sell":卖 |
@@ -5451,7 +5451,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | 参数名           | 必填  | 参数类型 | 描述                                             | 取值范围                                                     |
 | ---------------- | ----- | -------- | ------------------------------------------------ | ------------------------------------------------------------ |
 | contract_code    | true  | string   | 合约代码                                         | "BTC-USDT"...                    |
-| client_order_id  | false | long     | 客户自己填写和维护，必须为数字                   |                                                              |
+| client_order_id  | false | long     | 客户自己填写和维护，必须为数字,请注意必须小于等于9223372036854775807 |                                                              |
 | price            | false | decimal  | 价格                                             |                                                              |
 | volume           | true  | long     | 委托数量(张)                                     |                                                              |
 | direction        | true  | string   | 仓位方向                                         | "buy":买 "sell":卖                                           |
@@ -5524,7 +5524,7 @@ orders_data  | List\<Object\>   |    |    |
 | 参数名  |    参数类型   |  必填   |  描述  |   取值范围   |
 | -------- | -------------- |  ---------- | ---------- | ---------- |
 | contract_code        | true <img width=250/> | string <img width=250/>  |  合约代码 <img width=1000/>  |        "BTC-USDT"...          |
-| client_order_id       |  false   |  long| 客户自己填写和维护，必须为数字                          |      |
+| client_order_id       |  false   |  long| 客户自己填写和维护，必须为数字,请注意必须小于等于9223372036854775807  |      |
 | price       |false  | decimal | 价格 |      |
 | volume   | true    |  long | 委托数量(张)  |      |
 | direction   |true   |  string | 仓位方向   |  "buy":买 "sell":卖    |
@@ -5604,7 +5604,7 @@ orders_data  | List\<Object\>   |    |    |
 | --------------- | ---- | ------ | ---------------------- | -------------- |
 | \<orders_data\>   | true | object array |     |  |
 | contract_code        | true | string   |  合约代码      |        "BTC-USDT"...          |
-| client_order_id       |  false   |  long| 客户自己填写和维护，必须为数字                          |      |
+| client_order_id       |  false   |  long| 客户自己填写和维护，必须为数字,请注意必须小于等于9223372036854775807  |      |
 | price       |false  | decimal | 价格 |      |
 | volume   | true    |  long | 委托数量(张)  |      |
 | direction   |true   |  string | 仓位方向   |  "buy":买 "sell":卖    |
@@ -6278,7 +6278,7 @@ created_at禁止传0。
 | price                   | true | decimal | 委托价格        |  |
 | created_at              | true | long    | 创建时间        |  |
 | canceled_at              | true | long     | 撤单时间        |        |
-| order_source            | true | string  | 订单来源        |    |
+| order_source            | true | string  | 订单来源        | （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）   |
 | order_price_type        | true | string  | 订单报价类型      | "limit":限价，"opponent":对手价，"post_only":只做maker单,post only下单只受用户持仓数量限制，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单, "opponent_ioc": 对手价-IOC下单，"lightning_ioc": 闪电平仓-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"lightning_fok"：闪电平仓-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 |
 | margin_asset       | true   | string | 保证金币种（计价币种）                 |                |
 | margin_frozen           | true | decimal | 冻结保证金       |    |
@@ -6406,7 +6406,7 @@ created_at禁止传0。
 | volume                  | true | decimal | 委托数量        | |
 | price                   | true | decimal | 委托价格        |  |
 | created_at              | true | long    | 创建时间        |  |
-| order_source            | true | string  | 订单来源        |    |
+| order_source            | true | string  | 订单来源        | （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发） |
 | order_price_type        | true | string  | 订单报价类型      |  "limit":限价，"opponent":对手价，"post_only":只做maker单,post only下单只受用户持仓数量限制，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单, "opponent_ioc": 对手价-IOC下单，"lightning_ioc": 闪电平仓-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"lightning_fok"：闪电平仓-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 |
 | margin_asset       | true   | string | 保证金币种（计价币种）                 |                |
 | margin_frozen           | true | decimal | 冻结保证金       |    |
@@ -6534,7 +6534,7 @@ margin_frozen  |  true  |  decimal    |  冻结保证金  |    |
 margin_asset   | true   | string | 保证金币种（计价币种）                 |                |
 profit  |  true  |  decimal   | 收益  |    |  
 status  |  true  |  int  |   订单状态  |  (3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单)  |  
-order_source|   true  |  string  |  订单来源|    |
+order_source|   true  |  string  |  订单来源| （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发） |
 liquidation_type|   true  |  string  | 强平类型	 |    |
 canceled_at|   true  |  long  |  撤单时间 |    |
 margin_mode | true | string | 保证金模式  | isolated：逐仓模式 |
@@ -6619,14 +6619,14 @@ ts  |    true  |  long  |  时间戳  |    |
 | volume               | true | decimal | 委托数量                                     |                                          |
 | price                | true | decimal | 委托价格                                     |                                          |
 | order_price_type     | true | string  | 订单报价类型 |   "limit":限价，"opponent":对手价，"post_only":只做maker单,post only下单只受用户持仓数量限制，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单, "opponent_ioc": 对手价-IOC下单，"lightning_ioc": 闪电平仓-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"lightning_fok"：闪电平仓-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单  |
-| order_type         | true | int  | 订单类型，1:报单 、 2:撤单 、 3:强平、4:交割        |        |
-| direction            | true | string  | "buy":买 "sell":卖                         |                                          |
-| offset               | true | string  | "open":开 "close":平                       |                                          |
+| order_type         | true | int  | 订单类型        |   1:报单 、 2:撤单 、 3:强平、4:交割      |
+| direction            | true | string  |买卖方向   | "buy":买 "sell":卖                         |                                        
+| offset               | true | string  | 开平方向   |  "open":开 "close":平                       |                                 
 | lever_rate           | true | int     | 杠杆倍数                                     |                       |
 | order_id             | true | long    | 订单ID    | |
 | order_id_str             | true | string    | string格式的订单ID                                     |      |
 | client_order_id      | true | long    | 客户订单ID                                   |                                          |
-| order_source         | true | string  | 订单来源                                     |        |
+| order_source         | true | string  | 订单来源                                     | （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）  |
 | created_at           | true | long    | 订单创建时间                                   |                                          |
 | trade_volume         | true | decimal | 成交总数量                                     |                                          |
 | trade_turnover       | true | decimal | 成交总金额，即sum（每一笔成交张数*合约面值*成交价格）                                    |                                          |
@@ -6729,7 +6729,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | volume                 | true | decimal | 委托数量   |   |
 | price                  | true | decimal | 委托价格   |    |
 | create_date            | true | long    | 创建时间   |     |
-| order_source           | true | string  | 订单来源   |    |
+| order_source           | true | string  | 订单来源   | （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发） |
 | order_price_type       | true | int  | 订单报价类型 | 	1：限价单（limit），2：市价单（market），3：对手价（opponent），4：闪电平仓（lightning），5：计划委托（trigger），6：post_only ，7：最优5档（optimal_5） ，8：最优10档（optimal_10） ，9：最优20档（optimal_20），10：FOK ，11：IOC ，12：对手价_IOC（opponent_ioc），13：闪电平仓_IOC（lightning_ioc），14：最优5档_IOC（optimal_5_ioc），15：最优10档_IOC（optimal_10_ioc），16：最优20档_IOC（optimal_20_ioc），17：对手价_FOK（opponent_fok），18：闪电平仓_FOK（lightning_fok），19：最优5档_FOK（optimal_5_fok），40：最优10档_FOK（optimal_10_fok），41：最优20档_FOK（optimal_20_fok）。    |
 | margin_asset       | true   | string | 保证金币种（计价币种）                 |                |
 | margin_frozen          | true | decimal | 冻结保证金  |   |
@@ -6830,12 +6830,12 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | margin_mode | true | string | 保证金模式  | cross：全仓模式； |
 | margin_account | true | string | 保证金账户  | 比如“USDT” |
 | lever_rate             | true | int     | 杠杆倍数   |    |
-| direction              | true | string  | 买卖方 | "buy":买 "sell":卖  |
+| direction              | true | string  | 买卖方向 | "buy":买 "sell":卖  |
 | offset                 | true | string  | 开平方向   | "open":开 "close":平   |
 | volume                 | true | decimal | 委托数量   |   |
 | price                  | true | decimal | 委托价格   |    |
 | create_date            | true | long    | 创建时间   |     |
-| order_source           | true | string  | 订单来源   |    |
+| order_source           | true | string  | 订单来源   | （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）   |
 | order_price_type       | true | int  | 订单报价类型 | 1：限价单（limit），2：市价单（market），3：对手价（opponent），4：闪电平仓（lightning），5：计划委托（trigger），6：post_only ，7：最优5档（optimal_5） ，8：最优10档（optimal_10） ，9：最优20档（optimal_20），10：FOK ，11：IOC ，12：对手价_IOC（opponent_ioc），13：闪电平仓_IOC（lightning_ioc），14：最优5档_IOC（optimal_5_ioc），15：最优10档_IOC（optimal_10_ioc），16：最优20档_IOC（optimal_20_ioc），17：对手价_FOK（opponent_fok），18：闪电平仓_FOK（lightning_fok），19：最优5档_FOK（optimal_5_fok），40：最优10档_FOK（optimal_10_fok），41：最优20档_FOK（optimal_20_fok）。       |
 | margin_asset       | true   | string | 保证金币种（计价币种）                 |                |
 | margin_frozen          | true | decimal | 冻结保证金  |   |
@@ -6923,9 +6923,9 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | order_id               | true | long    | 订单ID               |   |
 | order_id_str      | true | string    | string格式的订单ID   |       |
 | symbol                 | true | string  | 品种代码               | |
-| order_source           | true | string  | 订单来源   |   |
+| order_source           | true | string  | 订单来源   | （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）  |
 | contract_code          | true | string  | 合约代码               | "BTC-USDT" ...                          |
-| direction              | true | string  |  买卖方向  |       "buy":买 "sell":卖                                   |
+| direction              | true | string  | 买卖方向  |       "buy":买 "sell":卖                                   |
 | offset                 | true | string  | 开平方向 |    "open":开 "close":平          |
 | trade_volume           | true | decimal | 成交数量               |     |
 | trade_price            | true | decimal | 成交价格               |  |
@@ -6944,8 +6944,6 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | \</data\>           |      |         |                    |     |
 | ts                     | true | long    | 时间戳                |    |
 
-### 备注
-- 如果不传page_index和page_size，默认只查第一页的20条数据，详情请看参数说明
 
 ## 【全仓】获取历史成交记录
 
@@ -7016,7 +7014,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | order_id               | true | long    | 订单ID               |   |
 | order_id_str      | true | string    | string格式的订单ID   |       |
 | symbol                 | true | string  | 品种代码               | |
-| order_source           | true | string  | 订单来源   |   |
+| order_source           | true | string  | 订单来源   |  （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发） |
 | contract_code          | true | string  | 合约代码               | "BTC-USDT" ...                          |
 | direction              | true | string  |  买卖方向  |       "buy":买 "sell":卖                                   |
 | offset                 | true | string  | 开平方向 |    "open":开 "close":平          |
@@ -7049,7 +7047,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | contract_code          | true | string | 合约代码                  | "BTC-USDT"...                           |
 | volume          | true  | long | 委托数量（张）               |                                          |
 | direction       | true  | string | 买卖方向      |        “buy”:买，“sell”:卖       |
-| client_order_id | false | long | （API）客户自己填写和维护，必须保持唯一 | |
+| client_order_id | false | long | （API）客户自己填写和维护，必须保持唯一,请注意必须小于等于9223372036854775807 | |
 | order_price_type | false | string | 订单报价类型 |不填，默认为“闪电平仓”，"lightning"：闪电平仓，"lightning_ioc"：闪电平仓-IOC，"lightning_fok"：闪电平仓-FOK |
 
 > Response:
@@ -7109,7 +7107,7 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | contract_code          | true | String | 合约代码                  | "BTC-USDT"...                           |
 | volume          | true  | decimal | 委托数量（张）               |                                          |
 | direction       | true  | String | 买卖方向      |        “buy”:买，“sell”:卖       |
-| client_order_id | false | long | （API）客户自己填写和维护，必须保持唯一 | |
+| client_order_id | false | long | （API）客户自己填写和维护，必须保持唯一,请注意必须小于等于9223372036854775807 | |
 | order_price_type | false | string | 订单报价类型 |不填，默认为“闪电平仓”，"lightning"：闪电平仓，"lightning_ioc"：闪电平仓-IOC，"lightning_fok"：闪电平仓-FOK |
 
 #### 备注
@@ -7546,20 +7544,20 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | \<orders\>|   true          |    object array      |     订单信息                       |                |
 | symbol |true |string |合约品种 | |
 | contract_code |true | string  | 合约代码 | |
-| trigger_type | true |string  | 触发类型： `ge`大于等于；`le`小于等于 | |
+| trigger_type | true |string  | 触发类型  | `ge`大于等于；`le`小于等于 |
 | volume | true |decimal  | 委托数量 | |
-| order_type | true |int  | 订单类型：1、报单  2、撤单 | |
-| direction | true |string  | 订单方向 [买(buy),卖(sell)] | |
-| offset | true |string  | 开平标志 [开(open),平(close)] | |
+| order_type | true |int  | 订单类型  |  1、报单  2、撤单 |
+| direction | true |string  | 订单方向  | [买(buy),卖(sell)] |
+| offset | true |string  | 开平标志 |  [开(open),平(close)] |
 | lever_rate | true |int | 杠杆倍数  | |
 | order_id | true |long  | 计划委托单订单ID | |
 | order_id_str | true |string  | 字符串类型的订单ID  | |
-| order_source | true |string | 来源 | |
+| order_source | true |string | 来源  |（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发） |
 | trigger_price | true |decimal |  触发价 | |
 | order_price | true |decimal | 委托价 | |
 | created_at | true |long | 订单创建时间 | |
-| order_price_type | true |string | 订单报价类型  限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20| |
-| status | true |int | 订单状态：1:准备提交、2:已提交、3:报单中、8：撤单未找到、9：撤单中、10：失败' | |
+| order_price_type | true |string | 订单报价类型 |  限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20 |
+| status | true |int | 订单状态  | 1:准备提交、2:已提交、3:报单中、8：撤单未找到、9：撤单中、10：失败' |
 | margin_mode | true | string | 保证金模式  | isolated：逐仓模式 |
 | margin_account | true | string | 保证金账户  | 比如“BTC-USDT” |
 | \</orders\>                  |              |          |                            |                |
@@ -7631,20 +7629,20 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | contract_code |true | string  | 合约代码 | |
 | margin_mode | true | string | 保证金模式  | cross：全仓模式； |
 | margin_account | true | string | 保证金账户  | 比如“USDT” |
-| trigger_type | true |string  | 触发类型： `ge`大于等于；`le`小于等于 | |
+| trigger_type | true |string  | 触发类型   | `ge`大于等于；`le`小于等于 |
 | volume | true |decimal  | 委托数量 | |
-| order_type | true |int  | 订单类型：1、报单  2、撤单 | |
-| direction | true |string  | 订单方向 [买(buy),卖(sell)] | |
-| offset | true |string  | 开平标志 [开(open),平(close)] | |
+| order_type | true |int  | 订单类型  |1、报单  2、撤单 |
+| direction | true |string  | 订单方向  |[买(buy),卖(sell)] |
+| offset | true |string  | 开平标志  | [开(open),平(close)] |
 | lever_rate | true |int | 杠杆倍数  | |
 | order_id | true |long  | 计划委托单订单ID | |
 | order_id_str | true |string  | 字符串类型的订单ID  | |
-| order_source | true |string | 来源 | |
+| order_source | true |string | 来源 |（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发） |
 | trigger_price | true |decimal |  触发价 | |
 | order_price | true |decimal | 委托价 | |
 | created_at | true |long | 订单创建时间 | |
-| order_price_type | true |string | 订单报价类型  限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20| |
-| status | true |int | 订单状态：1:准备提交、2:已提交、3:报单中、8：撤单未找到、9：撤单中、10：失败' | |
+| order_price_type | true |string | 订单报价类型 |  限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20 |
+| status | true |int | 订单状态 |  1:准备提交、2:已提交、3:报单中、8：撤单未找到、9：撤单中、10：失败' |
 | \</orders\>                  |              |          |                            |                |
 | \</data\> |   | |  | |
 | ts                         | true         | long     | 响应生成时间点，单位：毫秒 |  |
@@ -7729,18 +7727,18 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | \<orders\>|   true          |    object array      |     订单信息                       |                |
 | symbol |true |string |合约品种 | |
 | contract_code |true | string  | 合约代码 | |
-| trigger_type | true |string  | 触发类型： `ge`大于等于；`le`小于等于 | |
+| trigger_type | true |string  | 触发类型   |`ge`大于等于；`le`小于等于 |
 | volume | true |decimal  | 委托数量 | |
-| order_type | true |int  | 订单类型：1、报单  2、撤单 | |
-| direction | true |string  | 订单方向 [买(buy),卖(sell)] | |
-| offset | true |string  | 开平标志 [开(open),平(close)] | |
+| order_type | true |int  | 订单类型  | 1、报单  2、撤单 |
+| direction | true |string  | 订单方向  | [买(buy),卖(sell)] |
+| offset | true |string  | 开平标志  | [开(open),平(close)] |
 | lever_rate | true |int | 杠杆倍数  | |
 | order_id | true |long  | 计划委托单订单ID | |
 | order_id_str | true |string  | 字符串类型的订单ID  | |
 | relation_order_id | true | string  | 该字段为关联限价单的订单id，未触发前数值为-1 | |
-| order_price_type | true |string | 订单报价类型 限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20| |
-| status | true |int  | 订单状态(4:报单成功、5:报单失败、6:已撤单 )| |
-| order_source | true |string | 来源| |
+| order_price_type | true |string | 订单报价类型 |  限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20 |
+| status | true |int  | 订单状态 | (4:报单成功、5:报单失败、6:已撤单 ) |
+| order_source | true |string | 来源 | （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发） |
 | trigger_price | true |decimal | 触发价| |
 | triggered_price | true |decimal  | 被触发时的价格| |
 | order_price | true |decimal  | 委托价| |
@@ -7836,18 +7834,18 @@ page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得�
 | contract_code |true | string  | 合约代码 | |
 | margin_mode | true | string | 保证金模式  | cross：全仓模式； |
 | margin_account | true | string | 保证金账户  | 比如“USDT” |
-| trigger_type | true |string  | 触发类型： `ge`大于等于；`le`小于等于 | |
+| trigger_type | true |string  | 触发类型   | `ge`大于等于；`le`小于等于 |
 | volume | true |decimal  | 委托数量 | |
-| order_type | true |int  | 订单类型：1、报单  2、撤单 | |
-| direction | true |string  | 订单方向 [买(buy),卖(sell)] | |
-| offset | true |string  | 开平标志 [开(open),平(close)] | |
+| order_type | true |int  | 订单类型  | 1、报单  2、撤单 |
+| direction | true |string  | 订单方向  | [买(buy),卖(sell)] |
+| offset | true |string  | 开平标志 | [开(open),平(close)]  |
 | lever_rate | true |int | 杠杆倍数  | |
 | order_id | true |long  | 计划委托单订单ID | |
 | order_id_str | true |string  | 字符串类型的订单ID  | |
 | relation_order_id | true | string  | 该字段为关联限价单的关联字段，未触发前数值为-1 | |
-| order_price_type | true |string | 订单报价类型 限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20| |
-| status | true |int  | 订单状态(4:报单成功、5:报单失败、6:已撤单 )| |
-| order_source | true |string | 来源| |
+| order_price_type | true |string | 订单报价类型 |  限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20 |
+| status | true |int  | 订单状态 | (4:报单成功、5:报单失败、6:已撤单 ) |
+| order_source | true |string | 来源 | （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发） |
 | trigger_price | true |decimal | 触发价| |
 | triggered_price | true |decimal  | 被触发时的价格| |
 | order_price | true |decimal  | 委托价| |
@@ -10989,7 +10987,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | uid   | true | string  | 用户uid  |    |
 | symbol   | true | string  | 品种代码  |  "BTC","ETH"...  |
 | contract_code   | true | string  | 合约代码  |   |
-| status   | true | int  | 订单状态(3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单) |    |
+| status   | true | int  | 订单状态 | (3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单)   |
 | order_id   | true | long  | 订单ID  |    |
 | order_id_str   | true | string  |订单ID ,字符串类型  |   |
 | client_order_id               | true     | long    | 客户订单id             |  |
@@ -11001,7 +10999,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | lever_rate              | true | int     | 杠杆倍数        |                  |
 | price            | true     | decimal      | 委托价格                                                     |                                                              |
 | created_at       | true     | long         | 创建时间                                                     |                                                              |
-| order_source     | true     | string       | 订单来源                                                     |                                                              |
+| order_source     | true     | string       | 订单来源                                                     | （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）    |
 | order_price_type | true     | string       | 订单报价类型                                                 |  "limit":限价，"opponent":对手价，"post_only":只做maker单,post only下单只受用户持仓数量限制，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单, "opponent_ioc": 对手价-IOC下单，"lightning_ioc": 闪电平仓-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"lightning_fok"：闪电平仓-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单    |
 | margin_account | true | string | 保证金账户  | 比如“BTC-USDT” |
 | margin_mode | true | string | 保证金模式  | isolated：逐仓模式 |
@@ -11162,8 +11160,8 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | contract_code   | true | string  | 合约代码  |   |
 | margin_mode | true | string | 保证金模式  | cross：全仓模式； |
 | margin_account | true | string | 保证金账户  | 比如“USDT” |
-| status   | true | int  | 订单状态(3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单) |    |
-| order_id   | true | long  | 订单ID，在系统存储的字段为user_order_id |    |
+| status   | true | int  | 订单状态 | (3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单)   |
+| order_id   | true | long  | 订单ID  |    |
 | order_id_str   | true | string  |订单ID ,字符串类型  |   |
 | client_order_id               | true     | long    | 客户订单id             |  |
 | order_type   | true | int  | 订单类型  | 1:报单 、 2:撤单 、 3:强平、4:交割  |
@@ -11174,7 +11172,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | lever_rate              | true | int     | 杠杆倍数        |                  |
 | price            | true     | decimal      | 委托价格                                                     |                                                              |
 | created_at       | true     | long         | 创建时间                                                     |                                                              |
-| order_source     | true     | string       | 订单来源                                                     |                                                              |
+| order_source     | true     | string       | 订单来源                                                     |  （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）     |
 | order_price_type | true     | string       | 订单报价类型                                                 |  "limit":限价，"opponent":对手价，"post_only":只做maker单,post only下单只受用户持仓数量限制，"lightning":闪电平仓，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档，"fok":FOK订单，"ioc":IOC订单, "opponent_ioc": 对手价-IOC下单，"lightning_ioc": 闪电平仓-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"lightning_fok"：闪电平仓-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单    |
 | \<trade\>   | true | object array |     |    |
 | id   | true | string  | 全局唯一的交易标识  |   |
@@ -11718,7 +11716,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | \<data\> |   true   |  object array   |   |   |
 | symbol                 | true | string  | 品种代码               |                                          |
 | contract_code          | true | string  | 合约代码               | "BTC-USDT" ...                          |
-| trigger_type              | true | string  | 触发类型： ge大于等于；le小于等于  |              |
+| trigger_type              | true | string  | 触发类型    |  ge大于等于；le小于等于   |
 | volume                 | true | decimal  | 委托数量 |      |
 | order_type           | true | int | 订单类型              |  1、报单     |
 | direction            | true | string | 买卖方向               |             买："buy",卖："sell"          |
@@ -11729,7 +11727,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | relation_order_id             | true | string | 该字段为关联限价单的关联字段，未触发前数值为-1  |         |
 | order_price_type        | true  | string | 订单报价类型 |                  "limit":限价，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档     |
 | status        | true  | int | 订单状态|    2:已提交、4:报单成功、5:报单失败、6:已撤单    |
-| order_source      | true | string  | 来源        |                                          |
+| order_source      | true | string  | 来源        |  （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）   |
 | trigger_price         | true | decimal  | 触发价       |       |
 | triggered_price         | true | decimal  | 被触发时的价格       |       |
 | order_price           | true | decimal  | 委托价   |                                          |
@@ -11893,7 +11891,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | contract_code          | true | string  | 合约代码               | "BTC-USDT" ...                          |
 | margin_mode | true | string | 保证金模式  | cross：全仓模式； |
 | margin_account | true | string | 保证金账户  | 比如“USDT” |
-| trigger_type              | true | string  | 触发类型： ge大于等于；le小于等于  |              |
+| trigger_type              | true | string  | 触发类型   |  ge大于等于；le小于等于    |
 | volume                 | true | decimal  | 委托数量 |      |
 | order_type           | true | int | 订单类型              |  1、报单     |
 | direction            | true | string | 买卖方向               |             买："buy",卖："sell"          |
@@ -11904,7 +11902,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | relation_order_id             | true | string | 该字段为关联限价单的关联字段，未触发前数值为-1  |         |
 | order_price_type        | true  | string | 订单报价类型 |                  "limit":限价，"optimal_5":最优5档，"optimal_10":最优10档，"optimal_20":最优20档     |
 | status        | true  | int | 订单状态|    2:已提交、4:报单成功、5:报单失败、6:已撤单、7:错单     |
-| order_source      | true | string  | 来源        |                                          |
+| order_source      | true | string  | 来源        | （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）   |
 | trigger_price         | true | decimal  | 触发价       |       |
 | triggered_price         | true | decimal  | 被触发时的价格       |       |
 | order_price           | true | decimal  | 委托价   |                                          |
