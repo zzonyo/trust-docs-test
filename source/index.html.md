@@ -321,7 +321,15 @@ Please note that, for both public interface and private interface, there are rat
   - 5. Please try to extend your request polling cycle when implementing your strategy.
 
 ## Maintenance with service suspended
-During the maintenance of the business system, in addition to the below one interface(<a href='https://docs.huobigroup.com/docs/option/v1/en/#query-whether-the-system-is-available'>Query whether the system is available</a >) for users to query the system status, all “rest” interfaces of the API business will return {"status": "maintain"} in a fixed manner.
+During the maintenance of the business system, in addition to the below one interface(<a href='https://docs.huobigroup.com/docs/option/v1/en/#query-whether-the-system-is-available'>Query whether the system is available</a >) for users to query the system status, all “rest” interfaces of the API business will return this in a fixed manner:`{"status": "maintain"}`
+
+>Response
+
+```json
+{
+    "status": "maintain"
+}
+``` 
 
 ### The one interfaces is:
 - Query whether the system is available: https://api.hbdm.com/heartbeat/
@@ -337,13 +345,13 @@ During the maintenance of the business system, in addition to the below one inte
 | ------------------ | ------------------ | ------------- | -------------- |
 | status             | string                   | "ok" or "error"... 
 | \<data\>             | dict object                 | 
-| heartbeat             | int                   | future 1: avaiable 0: not available 
-| swap_heartbeat             | int                   | coin margined swap 1: avaiable 0: not available 
+| heartbeat             | int                   | future 1: avaiable 0: not available(maintenance with service suspended)
+| swap_heartbeat             | int                   | coin margined swap 1: avaiable 0: not available(maintenance with service suspended)
 | estimated_recovery_time             | long                   | null: normal. estimated recovery time :millionseconds.
 | swap_estimated_recovery_time             | long                   | null: normal. coin margined swap estimated recovery time millionseconds.
-| option_heartbeat             | int                   | option 1: avaiable 0: not available 
+| option_heartbeat             | int                   | option 1: avaiable 0: not available(maintenance with service suspended)
 | option_estimated_recovery_time             | long                   | null: normal. option estimated recovery time :millionseconds.
-| linear_swap_heartbeat             | long                   | USDT margined swap 1: avaiable 0: not available 
+| linear_swap_heartbeat             | long                   | USDT margined swap 1: avaiable 0: not available(maintenance with service suspended)
 | linear_swap_estimated_recovery_time             | long                   | null: normal. USDT margined swap estimated recovery time millionseconds.
 | \</data\>             |                  | 
 
@@ -6369,7 +6377,7 @@ Return to the current trade detail data only
 | event   | true | string  | Description on notification related event | The initial system status information returned by a successful subscription (init), triggered by system status change (update) |
 | ts   | true | long  | Server response timestamp   |   |
 | \<data\> |  |  |  | |
-| heartbeat | true | int | System Status	 |  1 is available, 0 is not available |
+| heartbeat | true | int | System Status	 |  1 is available, 0 is not available(maintenance with service suspended) |
 | estimated_recovery_time | true | long |  Estimated system recovery time, unit: millisecond	 |  When the system status is available, return NULL |
 | \</data\> | | |  | |
 
