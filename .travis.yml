@@ -3,14 +3,12 @@ sudo: false
 language: ruby
 
 rvm:
-  - 2.4.0
+  - 2.5.3
 
 branches:
   only:
     - v1_cn
     - v1_en
-    - v2_cn
-    - v2_en
     - dm_cn
     - dm_en
     - coin_margined_swap_cn
