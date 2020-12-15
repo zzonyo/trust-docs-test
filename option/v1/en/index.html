@@ -291,6 +291,9 @@
                     <a href="#api-limitation-on-order-cancellation-ratio-not-enabled-yet" class="toc-h2 toc-link" data-title="API Limitation on Order Cancellation Ratio【Not enabled yet】">API Limitation on Order Cancellation Ratio【Not enabled yet】</a>
                   </li>
                   <li>
+                    <a href="#maintenance-with-service-suspended" class="toc-h2 toc-link" data-title="Maintenance with service suspended">Maintenance with service suspended</a>
+                  </li>
+                  <li>
                     <a href="#query-whether-the-system-is-available" class="toc-h2 toc-link" data-title="Query whether the system is available">Query whether the system is available</a>
                   </li>
                   <li>
@@ -1160,6 +1163,11 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <li>5. Please try to extend your request polling cycle when implementing your strategy.</li>
 </ul></li>
 </ul>
+<h2 id='maintenance-with-service-suspended'>Maintenance with service suspended</h2>
+<p>During the maintenance of the business system, in addition to the below one interfaces(<a href='https://docs.huobigroup.com/docs/option/v1/en/#query-whether-the-system-is-available'>Query whether the system is available</a >) for users to query the system status, all “rest” interfaces of the API business will return {&quot;status&quot;: &quot;maintain&quot;} in a fixed manner.</p>
+
+<p>The one interfaces is:
+Query whether the system is available: https://api.hbdm.com/heartbeat/</p>
 <h2 id='query-whether-the-system-is-available'>Query whether the system is available</h2>
 <ul>
 <li>Interface <code>https://api.hbdm.com/heartbeat/</code></li>
