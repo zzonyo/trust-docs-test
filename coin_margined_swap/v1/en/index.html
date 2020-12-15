@@ -217,9 +217,6 @@
               <li>
                 <a href="/docs/spot/v1/en/" id="v1_url">v1</a>
               </li>
-              <li>
-                <a href="/docs/spot/v2/en/" id="v2_url">v2</a>
-              </li>
             </ul>
           </span>
           <span class="nav_cell nav_tab">
@@ -232,7 +229,7 @@
             <a href="/docs/coin_margined_swap/v1/en/" id="btn_coin_margined_swap">币本位永续合约</a>
           </span>
           <span class="nav_cell nav_tab">
-            <a href="/docs/usdt_swap/v1/en/" id="btn_usdt_swap">USDT永续合约</a>
+            <a href="/docs/usdt_swap/v1/en/" id="btn_usdt_swap">USDT本位永续合约</a>
           </span>
           <span class="nav_cell nav_tab">
             <a href="/docs/option/v1/en/" id="btn_option">期权合约</a>
@@ -633,19 +630,19 @@
             <a href="#websocket-index-and-basis-interface" class="toc-h1 toc-link" data-title="WebSocket Index and Basis Interface">WebSocket Index and Basis Interface</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#subcribe-index-kline-data" class="toc-h2 toc-link" data-title="Subcribe Index Kline Data">Subcribe Index Kline Data</a>
+                    <a href="#subscribe-index-kline-data" class="toc-h2 toc-link" data-title="Subscribe Index Kline Data">Subscribe Index Kline Data</a>
                   </li>
                   <li>
                     <a href="#request-index-kline-data" class="toc-h2 toc-link" data-title="Request Index Kline Data">Request Index Kline Data</a>
                   </li>
                   <li>
-                    <a href="#subcribe-premium-index-kline-data" class="toc-h2 toc-link" data-title="Subcribe Premium Index Kline Data">Subcribe Premium Index Kline Data</a>
+                    <a href="#subscribe-premium-index-kline-data" class="toc-h2 toc-link" data-title="Subscribe Premium Index Kline Data">Subscribe Premium Index Kline Data</a>
                   </li>
                   <li>
                     <a href="#request-premium-index-kline-data" class="toc-h2 toc-link" data-title="Request Premium Index Kline Data">Request Premium Index Kline Data</a>
                   </li>
                   <li>
-                    <a href="#subcribe-estimated-funding-rate-kline-data" class="toc-h2 toc-link" data-title="Subcribe Estimated Funding Rate Kline Data">Subcribe Estimated Funding Rate Kline Data</a>
+                    <a href="#subscribe-estimated-funding-rate-kline-data" class="toc-h2 toc-link" data-title="Subscribe Estimated Funding Rate Kline Data">Subscribe Estimated Funding Rate Kline Data</a>
                   </li>
                   <li>
                     <a href="#request-estimated-funding-rate-kline-data" class="toc-h2 toc-link" data-title="Request Estimated Funding Rate Kline Data">Request Estimated Funding Rate Kline Data</a>
@@ -971,7 +968,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </ul>
 <h4 id='14-3-add-fields-canceled_at-fee_asset'>14.3、Add fields: canceled_at, fee_asset</h4>
 <ul>
-<li>Interface Name: Subcribe Orders</li>
+<li>Interface Name: Subscribe Orders</li>
 <li>Interface Type: private interface</li>
 <li>Subscribe Topic: orders.$contract_code</li>
 </ul>
@@ -15091,7 +15088,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Index and Basis Interface</td>
 <td>market.$contract_code.premium_index.$period</td>
 <td>sub</td>
-<td>Subcribe Premium Index Kline Data</td>
+<td>Subscribe Premium Index Kline Data</td>
 <td>No</td>
 </tr>
 <tr>
@@ -15107,7 +15104,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Index and Basis Interface</td>
 <td>market.$contract_code.estimated_rate.$period</td>
 <td>sub</td>
-<td>Subcribe Estimated Funding Rate Kline Data</td>
+<td>Subscribe Estimated Funding Rate Kline Data</td>
 <td>No</td>
 </tr>
 <tr>
@@ -17168,7 +17165,7 @@ Details are below:</p></li>
 <ul>
 <li>The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index </li>
 </ul>
-<h2 id='subcribe-index-kline-data'>Subcribe Index Kline Data</h2><h3 id='to-subscribe-index-kline-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below'>To subscribe index kline data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
+<h2 id='subscribe-index-kline-data'>Subscribe Index Kline Data</h2><h3 id='to-subscribe-index-kline-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below'>To subscribe index kline data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$contract_code.index.$period&quot;,</code></p>
@@ -17583,7 +17580,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='subcribe-premium-index-kline-data'>Subcribe Premium Index Kline Data</h2><h3 id='to-subscribe-premium-index-kline-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below'>To subscribe Premium index kline data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
+<h2 id='subscribe-premium-index-kline-data'>Subscribe Premium Index Kline Data</h2><h3 id='to-subscribe-premium-index-kline-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below'>To subscribe Premium index kline data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$contract_code.premium_index.$period&quot;,</code></p>
@@ -17996,7 +17993,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='subcribe-estimated-funding-rate-kline-data'>Subcribe Estimated Funding Rate Kline Data</h2><h3 id='to-subscribe-estimated-funding-rate-kline-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below'>To subscribe Estimated Funding Rate kline data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
+<h2 id='subscribe-estimated-funding-rate-kline-data'>Subscribe Estimated Funding Rate Kline Data</h2><h3 id='to-subscribe-estimated-funding-rate-kline-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below'>To subscribe Estimated Funding Rate kline data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$contract_code.estimated_rate.$period&quot;,</code></p>
@@ -21478,7 +21475,6 @@ Details are below:</p></li>
       const btn_usdt_swap = document.getElementById('btn_usdt_swap')
       const btn_option = document.getElementById('btn_option');
       const v1_url = document.getElementById('v1_url');
-      const v2_url = document.getElementById('v2_url');
       const url = GetUrlRelativePath();
 
       if(url.indexOf('cn') != -1){
@@ -21487,7 +21483,7 @@ Details are below:</p></li>
         btn_spot.innerHTML = '现货';
         btn_dm.innerHTML = '交割合约';
         btn_coin_margined_swap.innerHTML = '币本位永续合约';
-        btn_usdt_swap.innerHTML = 'USDT永续合约';
+        btn_usdt_swap.innerHTML = 'USDT本位永续合约';
         btn_option.innerHTML = '期权合约';
         lang_btn.href = url.replace('cn/', 'en/');
         btn_spot.href = btn_spot.href.replace('en/', 'cn/');
@@ -21496,7 +21492,6 @@ Details are below:</p></li>
         btn_usdt_swap.href = btn_usdt_swap.href.replace('en/', 'cn/');
         btn_option.href = btn_option.href.replace('en/', 'cn/');
         v1_url.href = '/docs/spot/v1/cn/';
-        v2_url.href = '/docs/spot/v2/cn/';
       }else{
         //如果是英文环境
         lang_btn.innerHTML = '中文';
@@ -21514,7 +21509,6 @@ Details are below:</p></li>
         btn_usdt_swap.href = btn_usdt_swap.href.replace('cn/', 'en/');
         btn_option.href = btn_option.href.replace('cn/', 'en/');
         v1_url.href = '/docs/spot/v1/en/';
-        v2_url.href = '/docs/spot/v2/en/';
       }
 
       if(location.href.indexOf('docs/dm/v') > 0){
