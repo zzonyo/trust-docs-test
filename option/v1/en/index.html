@@ -1164,8 +1164,15 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </ul></li>
 </ul>
 <h2 id='maintenance-with-service-suspended'>Maintenance with service suspended</h2>
-<p>During the maintenance of the business system, in addition to the below one interface(<a href='https://docs.huobigroup.com/docs/option/v1/en/#query-whether-the-system-is-available'>Query whether the system is available</a >) for users to query the system status, all “rest” interfaces of the API business will return {&quot;status&quot;: &quot;maintain&quot;} in a fixed manner.</p>
-<h3 id='the-one-interfaces-is'>The one interfaces is:</h3>
+<p>During the maintenance of the business system, in addition to the below one interface(<a href='https://docs.huobigroup.com/docs/option/v1/en/#query-whether-the-system-is-available'>Query whether the system is available</a >) for users to query the system status, all “rest” interfaces of the API business will return this in a fixed manner:<code>{&quot;status&quot;: &quot;maintain&quot;}</code></p>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maintain"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='the-one-interfaces-is'>The one interfaces is:</h3>
 <ul>
 <li>Query whether the system is available: https://api.hbdm.com/heartbeat/</li>
 </ul>
@@ -1194,12 +1201,12 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <tr>
 <td>heartbeat</td>
 <td>int</td>
-<td>future 1: avaiable 0: not available</td>
+<td>future 1: avaiable 0: not available(maintenance with service suspended)</td>
 </tr>
 <tr>
 <td>swap_heartbeat</td>
 <td>int</td>
-<td>coin margined swap 1: avaiable 0: not available</td>
+<td>coin margined swap 1: avaiable 0: not available(maintenance with service suspended)</td>
 </tr>
 <tr>
 <td>estimated_recovery_time</td>
@@ -1214,7 +1221,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <tr>
 <td>option_heartbeat</td>
 <td>int</td>
-<td>option 1: avaiable 0: not available</td>
+<td>option 1: avaiable 0: not available(maintenance with service suspended)</td>
 </tr>
 <tr>
 <td>option_estimated_recovery_time</td>
@@ -1224,7 +1231,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <tr>
 <td>linear_swap_heartbeat</td>
 <td>long</td>
-<td>USDT margined swap 1: avaiable 0: not available</td>
+<td>USDT margined swap 1: avaiable 0: not available(maintenance with service suspended)</td>
 </tr>
 <tr>
 <td>linear_swap_estimated_recovery_time</td>
@@ -15969,7 +15976,7 @@ It will be pushed only when position event is updated.</p>
 <td>true</td>
 <td>int</td>
 <td>System Status</td>
-<td>1 is available, 0 is not available</td>
+<td>1 is available, 0 is not available(maintenance with service suspended)</td>
 </tr>
 <tr>
 <td>estimated_recovery_time</td>
