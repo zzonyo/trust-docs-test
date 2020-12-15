@@ -10988,7 +10988,7 @@ To subscribe accounts equity data updates, the client has to make connection to 
             "profit_unreal":0,
             "withdraw_available":1543.122922549410817836,
             "risk_rate":59.270830593679738555,
-            "contact_detail":[
+            "contract_detail":[
                 {
                     "symbol":"BTC",
                     "contract_code":"BTC-USDT",
