@@ -924,6 +924,15 @@ api.hbdm.com\n
   - 5、适当延长策略轮询时间。
 
 
+## 停服维护
+
+业务系统停服维护期间，除了以下2个提供给用户查询系统状态的接口外（<a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#cd63bde415'>获取当前系统状态</a>、<a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#bef5ec9210'>查询系统是否可用</a>），该业务所有rest接口都会固定返回{"status": "maintain"}报文。
+
+#### 2个接口为：
+ - 查询系统是否可用：https://api.hbdm.com/heartbeat/
+ - statuspage查询系统状态：https://status-linear-swap.huobigroup.com/api/v2/summary.json
+
+
 ## 获取当前系统状态
 
 此接口返回当前的系统状态，包含当前系统维护计划和故障进度等。
