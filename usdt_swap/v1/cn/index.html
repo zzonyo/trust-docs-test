@@ -217,9 +217,6 @@
               <li>
                 <a href="/docs/spot/v1/en/" id="v1_url">v1</a>
               </li>
-              <li>
-                <a href="/docs/spot/v2/en/" id="v2_url">v2</a>
-              </li>
             </ul>
           </span>
           <span class="nav_cell nav_tab">
@@ -13145,7 +13142,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>client_order_id</td>
 <td>long</td>
 <td>false</td>
-<td>客户自己填写和维护，必须为数字</td>
+<td>客户自己填写和维护，必须为数字,请注意必须小于等于9223372036854775807</td>
 <td></td>
 </tr>
 <tr>
@@ -13312,7 +13309,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>client_order_id</td>
 <td>false</td>
 <td>long</td>
-<td>客户自己填写和维护，必须为数字</td>
+<td>客户自己填写和维护，必须为数字,请注意必须小于等于9223372036854775807</td>
 <td></td>
 </tr>
 <tr>
@@ -13493,7 +13490,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>client_order_id</td>
 <td>false</td>
 <td>long</td>
-<td>客户自己填写和维护，必须为数字</td>
+<td>客户自己填写和维护，必须为数字,请注意必须小于等于9223372036854775807</td>
 <td></td>
 </tr>
 <tr>
@@ -13728,7 +13725,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>client_order_id</td>
 <td>false</td>
 <td>long</td>
-<td>客户自己填写和维护，必须为数字</td>
+<td>客户自己填写和维护，必须为数字,请注意必须小于等于9223372036854775807</td>
 <td></td>
 </tr>
 <tr>
@@ -15563,7 +15560,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>order_price_type</td>
@@ -16027,7 +16024,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>order_price_type</td>
@@ -16543,7 +16540,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>liquidation_type</td>
@@ -16777,22 +16774,22 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>order_type</td>
 <td>true</td>
 <td>int</td>
-<td>订单类型，1:报单 、 2:撤单 、 3:强平、4:交割</td>
-<td></td>
+<td>订单类型</td>
+<td>1:报单 、 2:撤单 、 3:强平、4:交割</td>
 </tr>
 <tr>
 <td>direction</td>
 <td>true</td>
 <td>string</td>
+<td>买卖方向</td>
 <td>&quot;buy&quot;:买 &quot;sell&quot;:卖</td>
-<td></td>
 </tr>
 <tr>
 <td>offset</td>
 <td>true</td>
 <td>string</td>
+<td>开平方向</td>
 <td>&quot;open&quot;:开 &quot;close&quot;:平</td>
-<td></td>
 </tr>
 <tr>
 <td>lever_rate</td>
@@ -16827,7 +16824,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>created_at</td>
@@ -17178,7 +17175,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>order_price_type</td>
@@ -17517,7 +17514,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>买卖方</td>
+<td>买卖方向</td>
 <td>&quot;buy&quot;:买 &quot;sell&quot;:卖</td>
 </tr>
 <tr>
@@ -17553,7 +17550,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>order_price_type</td>
@@ -17845,7 +17842,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -17981,15 +17978,11 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-90'>备注</h3>
-<ul>
-<li>如果不传page_index和page_size，默认只查第一页的20条数据，详情请看参数说明</li>
-</ul>
 <h2 id='db011d6921'>【全仓】获取历史成交记录</h2>
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_cross_matchresults</code></li>
 </ul>
-<h4 id='e0361480e3-91'>备注</h4>
+<h4 id='e0361480e3-90'>备注</h4>
 <ul>
 <li>该接口仅支持全仓模式。</li>
 </ul>
@@ -18161,7 +18154,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -18287,7 +18280,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_lightning_close_position</code></li>
 </ul>
-<h4 id='e0361480e3-92'>备注</h4>
+<h4 id='e0361480e3-91'>备注</h4>
 <ul>
 <li>该接口仅支持逐仓模式。</li>
 </ul>
@@ -18326,7 +18319,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>client_order_id</td>
 <td>false</td>
 <td>long</td>
-<td>（API）客户自己填写和维护，必须保持唯一</td>
+<td>（API）客户自己填写和维护，必须保持唯一,请注意必须小于等于9223372036854775807</td>
 <td></td>
 </tr>
 <tr>
@@ -18428,7 +18421,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_cross_lightning_close_position</code></li>
 </ul>
-<h4 id='e0361480e3-93'>备注</h4>
+<h4 id='e0361480e3-92'>备注</h4>
 <ul>
 <li>该接口仅支持全仓模式。</li>
 </ul>
@@ -18467,7 +18460,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>client_order_id</td>
 <td>false</td>
 <td>long</td>
-<td>（API）客户自己填写和维护，必须保持唯一</td>
+<td>（API）客户自己填写和维护，必须保持唯一,请注意必须小于等于9223372036854775807</td>
 <td></td>
 </tr>
 <tr>
@@ -18478,7 +18471,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>不填，默认为“闪电平仓”，&quot;lightning&quot;：闪电平仓，&quot;lightning_ioc&quot;：闪电平仓-IOC，&quot;lightning_fok&quot;：闪电平仓-FOK</td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-94'>备注</h4>
+<h4 id='e0361480e3-93'>备注</h4>
 <ul>
 <li><p>闪电平仓，是指在对手价平仓的基础上，实行&#39;最优30档&#39;成交，即用户发出的平仓订单能够迅速以30档范围内对手方价格进行成交，未成交部分自动转为限价委托单。</p></li>
 <li><p>闪电平仓的平仓价格具备可预期的效果，避免在行情急涨急跌时订单无法成交时造成用户损失。</p></li>
@@ -18560,7 +18553,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_trigger_order</code></li>
 </ul>
-<h4 id='e0361480e3-95'>备注</h4>
+<h4 id='e0361480e3-94'>备注</h4>
 <ul>
 <li>该接口仅支持逐仓模式。</li>
 </ul>
@@ -18742,7 +18735,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_cross_trigger_order</code></li>
 </ul>
-<h4 id='e0361480e3-96'>备注</h4>
+<h4 id='e0361480e3-95'>备注</h4>
 <ul>
 <li>该接口仅支持全仓模式。</li>
 </ul>
@@ -18899,7 +18892,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_trigger_cancel</code></li>
 </ul>
-<h4 id='e0361480e3-97'>备注</h4>
+<h4 id='e0361480e3-96'>备注</h4>
 <ul>
 <li>该接口仅支持逐仓模式。</li>
 </ul>
@@ -19033,7 +19026,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_cross_trigger_cancel</code></li>
 </ul>
-<h4 id='e0361480e3-98'>备注</h4>
+<h4 id='e0361480e3-97'>备注</h4>
 <ul>
 <li>该接口仅支持全仓模式。</li>
 </ul>
@@ -19165,7 +19158,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_trigger_cancelall</code></li>
 </ul>
-<h4 id='e0361480e3-99'>备注</h4>
+<h4 id='e0361480e3-98'>备注</h4>
 <ul>
 <li>该接口仅支持逐仓模式。</li>
 </ul>
@@ -19298,7 +19291,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_cross_trigger_cancelall</code></li>
 </ul>
-<h4 id='e0361480e3-100'>备注</h4>
+<h4 id='e0361480e3-99'>备注</h4>
 <ul>
 <li>该接口仅支持全仓模式。</li>
 </ul>
@@ -19417,7 +19410,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_trigger_openorders</code></li>
 </ul>
-<h4 id='e0361480e3-101'>备注</h4>
+<h4 id='e0361480e3-100'>备注</h4>
 <ul>
 <li>该接口仅支持逐仓模式。</li>
 </ul>
@@ -19560,8 +19553,8 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>trigger_type</td>
 <td>true</td>
 <td>string</td>
-<td>触发类型： <code>ge</code>大于等于；<code>le</code>小于等于</td>
-<td></td>
+<td>触发类型</td>
+<td><code>ge</code>大于等于；<code>le</code>小于等于</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -19574,22 +19567,22 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>order_type</td>
 <td>true</td>
 <td>int</td>
-<td>订单类型：1、报单  2、撤单</td>
-<td></td>
+<td>订单类型</td>
+<td>1、报单  2、撤单</td>
 </tr>
 <tr>
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>订单方向 [买(buy),卖(sell)]</td>
-<td></td>
+<td>订单方向</td>
+<td>[买(buy),卖(sell)]</td>
 </tr>
 <tr>
 <td>offset</td>
 <td>true</td>
 <td>string</td>
-<td>开平标志 [开(open),平(close)]</td>
-<td></td>
+<td>开平标志</td>
+<td>[开(open),平(close)]</td>
 </tr>
 <tr>
 <td>lever_rate</td>
@@ -19617,7 +19610,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>true</td>
 <td>string</td>
 <td>来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>trigger_price</td>
@@ -19644,15 +19637,15 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>order_price_type</td>
 <td>true</td>
 <td>string</td>
-<td>订单报价类型  限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20</td>
-<td></td>
+<td>订单报价类型</td>
+<td>限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20</td>
 </tr>
 <tr>
 <td>status</td>
 <td>true</td>
 <td>int</td>
-<td>订单状态：1:准备提交、2:已提交、3:报单中、8：撤单未找到、9：撤单中、10：失败&#39;</td>
-<td></td>
+<td>订单状态</td>
+<td>1:准备提交、2:已提交、3:报单中、8：撤单未找到、9：撤单中、10：失败&#39;</td>
 </tr>
 <tr>
 <td>margin_mode</td>
@@ -19694,7 +19687,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_cross_trigger_openorders</code></li>
 </ul>
-<h4 id='e0361480e3-102'>备注</h4>
+<h4 id='e0361480e3-101'>备注</h4>
 <ul>
 <li>该接口仅支持全仓模式。</li>
 </ul>
@@ -19849,8 +19842,8 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>trigger_type</td>
 <td>true</td>
 <td>string</td>
-<td>触发类型： <code>ge</code>大于等于；<code>le</code>小于等于</td>
-<td></td>
+<td>触发类型</td>
+<td><code>ge</code>大于等于；<code>le</code>小于等于</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -19863,22 +19856,22 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>order_type</td>
 <td>true</td>
 <td>int</td>
-<td>订单类型：1、报单  2、撤单</td>
-<td></td>
+<td>订单类型</td>
+<td>1、报单  2、撤单</td>
 </tr>
 <tr>
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>订单方向 [买(buy),卖(sell)]</td>
-<td></td>
+<td>订单方向</td>
+<td>[买(buy),卖(sell)]</td>
 </tr>
 <tr>
 <td>offset</td>
 <td>true</td>
 <td>string</td>
-<td>开平标志 [开(open),平(close)]</td>
-<td></td>
+<td>开平标志</td>
+<td>[开(open),平(close)]</td>
 </tr>
 <tr>
 <td>lever_rate</td>
@@ -19906,7 +19899,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>true</td>
 <td>string</td>
 <td>来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>trigger_price</td>
@@ -19933,15 +19926,15 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>order_price_type</td>
 <td>true</td>
 <td>string</td>
-<td>订单报价类型  限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20</td>
-<td></td>
+<td>订单报价类型</td>
+<td>限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20</td>
 </tr>
 <tr>
 <td>status</td>
 <td>true</td>
 <td>int</td>
-<td>订单状态：1:准备提交、2:已提交、3:报单中、8：撤单未找到、9：撤单中、10：失败&#39;</td>
-<td></td>
+<td>订单状态</td>
+<td>1:准备提交、2:已提交、3:报单中、8：撤单未找到、9：撤单中、10：失败&#39;</td>
 </tr>
 <tr>
 <td>&lt;/orders&gt;</td>
@@ -19969,7 +19962,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_trigger_hisorders</code></li>
 </ul>
-<h4 id='e0361480e3-103'>备注</h4>
+<h4 id='e0361480e3-102'>备注</h4>
 <ul>
 <li>该接口仅支持逐仓模式。</li>
 </ul>
@@ -20151,8 +20144,8 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>trigger_type</td>
 <td>true</td>
 <td>string</td>
-<td>触发类型： <code>ge</code>大于等于；<code>le</code>小于等于</td>
-<td></td>
+<td>触发类型</td>
+<td><code>ge</code>大于等于；<code>le</code>小于等于</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -20165,22 +20158,22 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>order_type</td>
 <td>true</td>
 <td>int</td>
-<td>订单类型：1、报单  2、撤单</td>
-<td></td>
+<td>订单类型</td>
+<td>1、报单  2、撤单</td>
 </tr>
 <tr>
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>订单方向 [买(buy),卖(sell)]</td>
-<td></td>
+<td>订单方向</td>
+<td>[买(buy),卖(sell)]</td>
 </tr>
 <tr>
 <td>offset</td>
 <td>true</td>
 <td>string</td>
-<td>开平标志 [开(open),平(close)]</td>
-<td></td>
+<td>开平标志</td>
+<td>[开(open),平(close)]</td>
 </tr>
 <tr>
 <td>lever_rate</td>
@@ -20214,22 +20207,22 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>order_price_type</td>
 <td>true</td>
 <td>string</td>
-<td>订单报价类型 限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20</td>
-<td></td>
+<td>订单报价类型</td>
+<td>限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20</td>
 </tr>
 <tr>
 <td>status</td>
 <td>true</td>
 <td>int</td>
-<td>订单状态(4:报单成功、5:报单失败、6:已撤单 )</td>
-<td></td>
+<td>订单状态</td>
+<td>(4:报单成功、5:报单失败、6:已撤单 )</td>
 </tr>
 <tr>
 <td>order_source</td>
 <td>true</td>
 <td>string</td>
 <td>来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>trigger_price</td>
@@ -20334,7 +20327,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_cross_trigger_hisorders</code></li>
 </ul>
-<h4 id='e0361480e3-104'>备注</h4>
+<h4 id='e0361480e3-103'>备注</h4>
 <ul>
 <li>该接口仅支持全仓模式。</li>
 </ul>
@@ -20345,6 +20338,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <th>是否必须</th>
 <th>类型</th>
 <th>描述</th>
+<th>默认值</th>
 <th>取值范围</th>
 </tr>
 </thead><tbody>
@@ -20354,6 +20348,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>string</td>
 <td>合约代码</td>
 <td></td>
+<td>BTC-USDT</td>
 </tr>
 <tr>
 <td>trade_type</td>
@@ -20361,6 +20356,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>int</td>
 <td>交易类型</td>
 <td></td>
+<td>0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多；后台是根据该值转换为offset和direction，然后去查询的； 其他值无法查询出结果</td>
 </tr>
 <tr>
 <td>status</td>
@@ -20368,6 +20364,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>String</td>
 <td>订单状态</td>
 <td></td>
+<td>多个以英文逗号隔开，计划委托单状态：0:全部（表示全部结束状态的订单）、4:已委托、5:委托失败、6:已撤单</td>
 </tr>
 <tr>
 <td>create_date</td>
@@ -20375,6 +20372,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>int</td>
 <td>日期</td>
 <td></td>
+<td>可随意输入正整数，如果参数超过90则默认查询90天的数据</td>
 </tr>
 <tr>
 <td>page_index</td>
@@ -20382,6 +20380,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>int</td>
 <td>页码，不填默认第1页</td>
 <td>1</td>
+<td>第几页，不填默认第一页</td>
 </tr>
 <tr>
 <td>page_size</td>
@@ -20389,6 +20388,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>int</td>
 <td>不填默认20，不得多于50</td>
 <td>20</td>
+<td>不填默认20，不得多于50</td>
 </tr>
 </tbody></table>
 <h4 id='9852b06629-13'>备注：</h4>
@@ -20523,8 +20523,8 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>trigger_type</td>
 <td>true</td>
 <td>string</td>
-<td>触发类型： <code>ge</code>大于等于；<code>le</code>小于等于</td>
-<td></td>
+<td>触发类型</td>
+<td><code>ge</code>大于等于；<code>le</code>小于等于</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -20537,22 +20537,22 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>order_type</td>
 <td>true</td>
 <td>int</td>
-<td>订单类型：1、报单  2、撤单</td>
-<td></td>
+<td>订单类型</td>
+<td>1、报单  2、撤单</td>
 </tr>
 <tr>
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>订单方向 [买(buy),卖(sell)]</td>
-<td></td>
+<td>订单方向</td>
+<td>[买(buy),卖(sell)]</td>
 </tr>
 <tr>
 <td>offset</td>
 <td>true</td>
 <td>string</td>
-<td>开平标志 [开(open),平(close)]</td>
-<td></td>
+<td>开平标志</td>
+<td>[开(open),平(close)]</td>
 </tr>
 <tr>
 <td>lever_rate</td>
@@ -20586,22 +20586,22 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>order_price_type</td>
 <td>true</td>
 <td>string</td>
-<td>订单报价类型 限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20</td>
-<td></td>
+<td>订单报价类型</td>
+<td>限价：limit ，最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20</td>
 </tr>
 <tr>
 <td>status</td>
 <td>true</td>
 <td>int</td>
-<td>订单状态(4:报单成功、5:报单失败、6:已撤单 )</td>
-<td></td>
+<td>订单状态</td>
+<td>(4:报单成功、5:报单失败、6:已撤单 )</td>
 </tr>
 <tr>
 <td>order_source</td>
 <td>true</td>
 <td>string</td>
 <td>来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>trigger_price</td>
@@ -20692,7 +20692,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <ul>
 <li>POST <code>https://api.huobi.pro/v2/account/transfer</code></li>
 </ul>
-<h3 id='e0361480e3-105'>备注</h3>
+<h3 id='e0361480e3-104'>备注</h3>
 <p>该接口支持全仓模式和逐仓模式</p>
 
 <p>此接口用户币币现货账户与USDT本位永续合约账户之间的资金划转。</p>
@@ -20748,7 +20748,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>e.g. btc-usdt、eth-usdt、USDT</td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-106'>备注</h4>
+<h4 id='e0361480e3-105'>备注</h4>
 <ul>
 <li>当&quot;margin-account&quot;为USDT时，表示从全仓账户划出或转入。</li>
 </ul>
@@ -21425,7 +21425,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <p>合约站指数K线及基差数据订阅地址：wss://api.btcgateway.pro/ws_index</p>
 
 <p>如果对合约订单推送订阅有疑问，可以参考 <a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#2cff7db524'> Demo </a></p>
-<h3 id='e0361480e3-107'>备注</h3>
+<h3 id='e0361480e3-106'>备注</h3>
 <p>如果api.hbdm.com无法访问，可以使用api.btcgateway.pro来做调试，AWS服务器用户推荐使用api.hbdm.vn； </p>
 <h2 id='4977e9e52a-2'>访问次数限制</h2>
 <p>公开行情接口和用户私有接口都有访问次数限制</p>
@@ -21516,7 +21516,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </ul>
 
 <p>合约站订单推送订阅地址：wss://api.hbdm.com/linear-swap-notification</p>
-<h3 id='e0361480e3-108'>备注</h3>
+<h3 id='e0361480e3-107'>备注</h3>
 <p>如果api.hbdm.com无法访问，可以使用api.btcgateway.pro来做调试，AWS服务器用户推荐使用api.hbdm.vn； </p>
 
 <p>正常ws请求连接不能同时超过30个</p>
@@ -21785,7 +21785,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 "err-msg": ”详细的错误信息“
 }
 
-</code></pre><h1 id='websocket-3'>WebSocket市场行情接口</h1><h2 id='kline'>【通用】订阅 KLine 数据</h2><h4 id='e0361480e3-109'>备注</h4>
+</code></pre><h1 id='websocket-3'>WebSocket市场行情接口</h1><h2 id='kline'>【通用】订阅 KLine 数据</h2><h4 id='e0361480e3-108'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -21987,7 +21987,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h2 id='kline-2'>【通用】请求 KLine 数据</h2><h4 id='e0361480e3-110'>备注</h4>
+</span></code></pre><h2 id='kline-2'>【通用】请求 KLine 数据</h2><h4 id='e0361480e3-109'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -22082,7 +22082,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-111'>备注</h4>
+<h4 id='e0361480e3-110'>备注</h4>
 <p>[t1, t5] 假设有 t1  ~ t5 的K线：</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -22238,7 +22238,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='market-depth'>【通用】订阅 Market Depth 数据</h2><h4 id='e0361480e3-112'>备注</h4>
+<h2 id='market-depth'>【通用】订阅 Market Depth 数据</h2><h4 id='e0361480e3-111'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -22313,7 +22313,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>(150档数据)  step0, step1, step2, step3, step4, step5, step14, step15（合并深度1-5,14-15）,step0时，不合并深度;(20档数据)  step6, step7, step8, step9, step10, step11, step12, step13（合并深度7-13）；step6时，不合并深度；step12（表示合并精度1的20档深度数据，表示整数位的个位）、step13（表示合并精度10的20档深度数据，表示整数位的十位）、step14（表示合并精度1的150档深度数据，表示整数位的个位）、step15（表示合并精度10的150档深度数据，表示整数位的十位）</td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-113'>备注</h4>
+<h4 id='e0361480e3-112'>备注</h4>
 <ul>
 <li><p>合并深度仅改变显示方式，不改变实际成交价格。</p></li>
 <li><p>step1至step5, step14, step15是进行了深度合并后的150档深度数据，step7至step13是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
@@ -22532,7 +22532,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='market-depth-2'>【通用】订阅Market Depth增量数据</h2><h4 id='e0361480e3-114'>备注</h4>
+<h2 id='market-depth-2'>【通用】订阅Market Depth增量数据</h2><h4 id='e0361480e3-113'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -22747,7 +22747,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-115'>备注</h3>
+<h3 id='e0361480e3-114'>备注</h3>
 <p>1、当&quot;data_type&quot;为incremental时，首次推送的&quot;event&quot;为&quot;snapshot&quot;的数据，且当重新发送订阅请求时，首次返回都是&quot;snapshot&quot;的数据；</p>
 
 <p>2、深度即可以按照合约周期订阅，也可以按照合约代码订阅，行情系统在进行数据计算时，需要更新对应类型的数据；</p>
@@ -22757,7 +22757,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <p>4、每30ms检查一次orderbook，如果有更新，则推送，如果没有更新，则不推送。</p>
 
 <p>5、如果是增量数据，要自己维护好本地的orderbook bids\asks 数据。</p>
-<h2 id='market-detail'>【通用】订阅 Market Detail 数据</h2><h4 id='e0361480e3-116'>备注</h4>
+<h2 id='market-detail'>【通用】订阅 Market Detail 数据</h2><h4 id='e0361480e3-115'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -22938,7 +22938,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='db0972ceb0'>【通用】订阅买一卖一逐笔行情推送</h2><h4 id='e0361480e3-117'>备注</h4>
+<h2 id='db0972ceb0'>【通用】订阅买一卖一逐笔行情推送</h2><h4 id='e0361480e3-116'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -23123,7 +23123,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <li>由于客户端网络等原因导致接收数据失败，服务端会丢弃旧的队列数据；</li>
 <li>version（版本号），直接取撮合id，保证全局唯一并且最新的推送版本号都是数值最大的。</li>
 </ul>
-<h2 id='trade-detail'>【通用】请求 Trade Detail 数据</h2><h4 id='e0361480e3-118'>备注</h4>
+<h2 id='trade-detail'>【通用】请求 Trade Detail 数据</h2><h4 id='e0361480e3-117'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -23313,7 +23313,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='trade-detail-2'>【通用】订阅 Trade Detail 数据</h2><h4 id='e0361480e3-119'>备注</h4>
+<h2 id='trade-detail-2'>【通用】订阅 Trade Detail 数据</h2><h4 id='e0361480e3-118'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -23507,7 +23507,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <ul>
 <li>指数与基差数据订阅ws地址：wss://api.hbdm.com/ws_index</li>
 </ul>
-<h2 id='sub-k'>【通用】订阅(sub)指数K线数据</h2><h4 id='e0361480e3-120'>备注</h4>
+<h2 id='sub-k'>【通用】订阅(sub)指数K线数据</h2><h4 id='e0361480e3-119'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -23582,7 +23582,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>仅支持小写,1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-121'>备注</h3>
+<h3 id='e0361480e3-120'>备注</h3>
 <ul>
 <li><p>当指数有变化时会推送;</p></li>
 <li><p>指数无变化时会根据订阅的周期推送；</p></li>
@@ -23696,7 +23696,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='req-k'>【通用】请求(req)指数K线数据</h2><h4 id='e0361480e3-122'>备注</h4>
+<h2 id='req-k'>【通用】请求(req)指数K线数据</h2><h4 id='e0361480e3-121'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -23939,7 +23939,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='k-4'>【通用】订阅溢价指数K线数据</h2><h4 id='e0361480e3-123'>备注</h4>
+<h2 id='k-4'>【通用】订阅溢价指数K线数据</h2><h4 id='e0361480e3-122'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -24151,7 +24151,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='k-5'>【通用】请求溢价指数K线数据</h2><h4 id='e0361480e3-124'>备注</h4>
+<h2 id='k-5'>【通用】请求溢价指数K线数据</h2><h4 id='e0361480e3-123'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -24416,7 +24416,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='k-6'>【通用】订阅预测资金费率K线数据</h2><h4 id='e0361480e3-125'>备注</h4>
+<h2 id='k-6'>【通用】订阅预测资金费率K线数据</h2><h4 id='e0361480e3-124'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -24628,7 +24628,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='k-7'>【通用】请求预测资金费率K线数据</h2><h4 id='e0361480e3-126'>备注</h4>
+<h2 id='k-7'>【通用】请求预测资金费率K线数据</h2><h4 id='e0361480e3-125'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -24894,7 +24894,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='4427b892b6'>【通用】订阅基差数据</h2><h4 id='e0361480e3-127'>备注</h4>
+<h2 id='4427b892b6'>【通用】订阅基差数据</h2><h4 id='e0361480e3-126'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -25067,7 +25067,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='39a868638b'>【通用】请求基差数据</h2><h4 id='e0361480e3-128'>备注</h4>
+<h2 id='39a868638b'>【通用】请求基差数据</h2><h4 id='e0361480e3-127'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -25287,7 +25287,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='websocket-5'>WebSocket订单和用户数据接口</h1><h2 id='sub-11'>【逐仓】订阅订单成交数据（sub）</h2><h4 id='e0361480e3-129'>备注</h4>
+<h1 id='websocket-5'>WebSocket订单和用户数据接口</h1><h2 id='sub-11'>【逐仓】订阅订单成交数据（sub）</h2><h4 id='e0361480e3-128'>备注</h4>
 <ul>
 <li>该接口仅支持逐仓模式。</li>
 </ul>
@@ -25691,7 +25691,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='unsub'>【逐仓】取消订阅订单成交数据（unsub）</h2><h4 id='e0361480e3-130'>备注</h4>
+<h2 id='unsub'>【逐仓】取消订阅订单成交数据（unsub）</h2><h4 id='e0361480e3-129'>备注</h4>
 <ul>
 <li>该接口仅支持逐仓模式。</li>
 </ul>
@@ -25775,7 +25775,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-12'>【全仓】订阅订单成交数据（sub）</h2><h4 id='e0361480e3-131'>备注</h4>
+<h2 id='sub-12'>【全仓】订阅订单成交数据（sub）</h2><h4 id='e0361480e3-130'>备注</h4>
 <ul>
 <li>该接口仅支持全仓模式。</li>
 </ul>
@@ -26181,7 +26181,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='unsub-2'>【全仓】取消订阅订单成交数据（unsub）</h2><h4 id='e0361480e3-132'>备注</h4>
+<h2 id='unsub-2'>【全仓】取消订阅订单成交数据（unsub）</h2><h4 id='e0361480e3-131'>备注</h4>
 <ul>
 <li>该接口仅支持全仓模式。</li>
 </ul>
@@ -26265,7 +26265,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-13'>【逐仓】资产变动数据（sub）</h2><h4 id='e0361480e3-133'>备注</h4>
+<h2 id='sub-13'>【逐仓】资产变动数据（sub）</h2><h4 id='e0361480e3-132'>备注</h4>
 <ul>
 <li>该接口仅支持逐仓模式。</li>
 </ul>
@@ -26533,7 +26533,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='unsub-3'>【逐仓】取消订阅资产变动数据（unsub）</h2><h4 id='e0361480e3-134'>备注</h4>
+<h2 id='unsub-3'>【逐仓】取消订阅资产变动数据（unsub）</h2><h4 id='e0361480e3-133'>备注</h4>
 <ul>
 <li>该接口仅支持逐仓模式。</li>
 </ul>
@@ -26618,7 +26618,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-14'>【全仓】资产变动数据（sub）</h2><h4 id='e0361480e3-135'>备注</h4>
+<h2 id='sub-14'>【全仓】资产变动数据（sub）</h2><h4 id='e0361480e3-134'>备注</h4>
 <ul>
 <li>该接口仅支持全仓模式。</li>
 </ul>
@@ -26928,7 +26928,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='unsub-4'>【全仓】取消订阅资产变动数据（unsub）</h2><h4 id='e0361480e3-136'>备注</h4>
+<h2 id='unsub-4'>【全仓】取消订阅资产变动数据（unsub）</h2><h4 id='e0361480e3-135'>备注</h4>
 <ul>
 <li>该接口仅支持全仓模式。</li>
 </ul>
@@ -27013,7 +27013,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-15'>【逐仓】持仓变动更新数据（sub）</h2><h4 id='e0361480e3-137'>备注</h4>
+<h2 id='sub-15'>【逐仓】持仓变动更新数据（sub）</h2><h4 id='e0361480e3-136'>备注</h4>
 <ul>
 <li>该接口仅支持逐仓模式。</li>
 </ul>
@@ -27232,7 +27232,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <li><p>推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果5秒内某仓位已触发过推送，则该仓位跳过此次推送。</p></li>
 <li><p>当用户持仓量为0时使用切换杠杆的接口，持仓推送接口不会推送&quot;switch_lever_rate&quot;。</p></li>
 </ul>
-<h2 id='unsub-5'>【逐仓】取消订阅持仓变动数据（unsub）</h2><h4 id='e0361480e3-138'>备注</h4>
+<h2 id='unsub-5'>【逐仓】取消订阅持仓变动数据（unsub）</h2><h4 id='e0361480e3-137'>备注</h4>
 <ul>
 <li>该接口仅支持逐仓模式。</li>
 </ul>
@@ -27316,7 +27316,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-16'>【全仓】持仓变动更新数据（sub）</h2><h4 id='e0361480e3-139'>备注</h4>
+<h2 id='sub-16'>【全仓】持仓变动更新数据（sub）</h2><h4 id='e0361480e3-138'>备注</h4>
 <ul>
 <li>该接口仅支持全仓模式。</li>
 </ul>
@@ -27585,7 +27585,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <li><p>推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果5秒内某仓位已触发过推送，则该仓位跳过此次推送。</p></li>
 <li><p>当用户持仓量为0时使用切换杠杆的接口，持仓推送接口不会推送&quot;switch_lever_rate&quot;。</p></li>
 </ul>
-<h2 id='unsub-6'>【全仓】取消订阅持仓变动数据（unsub）</h2><h4 id='e0361480e3-140'>备注</h4>
+<h2 id='unsub-6'>【全仓】取消订阅持仓变动数据（unsub）</h2><h4 id='e0361480e3-139'>备注</h4>
 <ul>
 <li>该接口仅支持全仓模式。</li>
 </ul>
@@ -27669,7 +27669,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-17'>【逐仓】订阅合约订单撮合数据（sub）</h2><h4 id='e0361480e3-141'>备注</h4>
+<h2 id='sub-17'>【逐仓】订阅合约订单撮合数据（sub）</h2><h4 id='e0361480e3-140'>备注</h4>
 <ul>
 <li>该接口仅支持逐仓模式。</li>
 </ul>
@@ -27834,8 +27834,8 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>status</td>
 <td>true</td>
 <td>int</td>
-<td>订单状态(3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单)</td>
-<td></td>
+<td>订单状态</td>
+<td>(3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单)</td>
 </tr>
 <tr>
 <td>order_id</td>
@@ -27919,7 +27919,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>order_price_type</td>
@@ -28006,7 +28006,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='unsub-7'>【逐仓】取消订阅合约订单撮合数据（unsub）</h2><h4 id='e0361480e3-142'>备注</h4>
+<h2 id='unsub-7'>【逐仓】取消订阅合约订单撮合数据（unsub）</h2><h4 id='e0361480e3-141'>备注</h4>
 <ul>
 <li>该接口仅支持逐仓模式。</li>
 </ul>
@@ -28090,7 +28090,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-18'>【全仓】订阅合约订单撮合数据（sub）</h2><h4 id='e0361480e3-143'>备注</h4>
+<h2 id='sub-18'>【全仓】订阅合约订单撮合数据（sub）</h2><h4 id='e0361480e3-142'>备注</h4>
 <ul>
 <li>该接口仅支持全仓模式。</li>
 </ul>
@@ -28269,14 +28269,14 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>status</td>
 <td>true</td>
 <td>int</td>
-<td>订单状态(3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单)</td>
-<td></td>
+<td>订单状态</td>
+<td>(3未成交 4部分成交 5部分成交已撤单 6全部成交 7已撤单)</td>
 </tr>
 <tr>
 <td>order_id</td>
 <td>true</td>
 <td>long</td>
-<td>订单ID，在系统存储的字段为user_order_id</td>
+<td>订单ID</td>
 <td></td>
 </tr>
 <tr>
@@ -28354,7 +28354,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>order_price_type</td>
@@ -28427,7 +28427,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='unsub-8'>【全仓】取消订阅合约订单撮合数据（unsub）</h2><h4 id='e0361480e3-144'>备注</h4>
+<h2 id='unsub-8'>【全仓】取消订阅合约订单撮合数据（unsub）</h2><h4 id='e0361480e3-143'>备注</h4>
 <ul>
 <li>该接口仅支持全仓模式。</li>
 </ul>
@@ -28511,7 +28511,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-19'>【通用】订阅强平订单数据(免鉴权)（sub）</h2><h4 id='e0361480e3-145'>备注</h4>
+<h2 id='sub-19'>【通用】订阅强平订单数据(免鉴权)（sub）</h2><h4 id='e0361480e3-144'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -28699,7 +28699,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='unsub-9'>【通用】取消订阅强平订单(免鉴权)（unsub）</h2><h4 id='e0361480e3-146'>备注</h4>
+<h2 id='unsub-9'>【通用】取消订阅强平订单(免鉴权)（unsub）</h2><h4 id='e0361480e3-145'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -28782,7 +28782,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-20'>【通用】订阅资金费率推送(免鉴权)（sub）</h2><h4 id='e0361480e3-147'>备注</h4>
+<h2 id='sub-20'>【通用】订阅资金费率推送(免鉴权)（sub）</h2><h4 id='e0361480e3-146'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -28958,7 +28958,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='unsub-10'>【通用】取消订阅资金费率(免鉴权)（unsub）</h2><h4 id='e0361480e3-148'>备注</h4>
+<h2 id='unsub-10'>【通用】取消订阅资金费率(免鉴权)（unsub）</h2><h4 id='e0361480e3-147'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -29042,7 +29042,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-149'>备注</h3>
+<h3 id='e0361480e3-148'>备注</h3>
 <p>推送逻辑一般是1分钟一次，但是出现以下情况时不会计算资金费率：</p>
 
 <ul>
@@ -29051,7 +29051,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <li>深度数据的updateTime超过5分钟没有更新，不计算资金费率</li>
 <li>每次读取到的150档买盘深度和卖盘深度进行md5加密，如果连续5次（或以上）和前一个点的数值一致，则认为系统处于停服状态，此时不计算该点位的资金费率</li>
 </ul>
-<h2 id='sub-21'>【通用】订阅合约信息变动(免鉴权)（sub）</h2><h4 id='e0361480e3-150'>备注</h4>
+<h2 id='sub-21'>【通用】订阅合约信息变动(免鉴权)（sub）</h2><h4 id='e0361480e3-149'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -29250,7 +29250,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <li>当合约状态流转为“交割完成”时，合约下次结算时间为空字符串。</li>
 <li>只有状态为1：上市，才能够正常交易，其他状态不可交易；</li>
 </ul>
-<h2 id='unsub-11'>【通用】取消订阅合约信息变动(免鉴权)（unsub）</h2><h4 id='e0361480e3-151'>备注</h4>
+<h2 id='unsub-11'>【通用】取消订阅合约信息变动(免鉴权)（unsub）</h2><h4 id='e0361480e3-150'>备注</h4>
 <ul>
 <li>该接口支持全仓模式和逐仓模式</li>
 </ul>
@@ -29334,7 +29334,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-22'>【逐仓】订阅计划委托订单更新(sub)</h2><h4 id='e0361480e3-152'>备注</h4>
+<h2 id='sub-22'>【逐仓】订阅计划委托订单更新(sub)</h2><h4 id='e0361480e3-151'>备注</h4>
 <ul>
 <li>该接口仅支持逐仓模式。</li>
 </ul>
@@ -29504,8 +29504,8 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>trigger_type</td>
 <td>true</td>
 <td>string</td>
-<td>触发类型： ge大于等于；le小于等于</td>
-<td></td>
+<td>触发类型</td>
+<td>ge大于等于；le小于等于</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -29582,7 +29582,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>true</td>
 <td>string</td>
 <td>来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>trigger_price</td>
@@ -29681,7 +29681,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </ul></li>
 <li>订阅时，单合约无法重复订阅，全合约订阅可覆盖单合约的订阅，订阅全合约后无法订阅单合约；</li>
 </ul>
-<h2 id='unsub-12'>【逐仓】取消订阅计划委托订单更新（unsub）</h2><h4 id='e0361480e3-153'>备注</h4>
+<h2 id='unsub-12'>【逐仓】取消订阅计划委托订单更新（unsub）</h2><h4 id='e0361480e3-152'>备注</h4>
 <ul>
 <li>该接口仅支持逐仓模式。</li>
 </ul>
@@ -29765,7 +29765,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-23'>【全仓】订阅计划委托订单更新(sub)</h2><h4 id='e0361480e3-154'>备注</h4>
+<h2 id='sub-23'>【全仓】订阅计划委托订单更新(sub)</h2><h4 id='e0361480e3-153'>备注</h4>
 <ul>
 <li>该接口仅支持全仓模式。</li>
 </ul>
@@ -29949,8 +29949,8 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>trigger_type</td>
 <td>true</td>
 <td>string</td>
-<td>触发类型： ge大于等于；le小于等于</td>
-<td></td>
+<td>触发类型</td>
+<td>ge大于等于；le小于等于</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -30027,7 +30027,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>true</td>
 <td>string</td>
 <td>来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>trigger_price</td>
@@ -30112,7 +30112,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 </ul></li>
 <li>订阅时，单合约无法重复订阅，全合约订阅可覆盖单合约的订阅，订阅全合约后无法订阅单合约；</li>
 </ul>
-<h2 id='unsub-13'>【全仓】取消订阅计划委托订单更新（unsub）</h2><h4 id='e0361480e3-155'>备注</h4>
+<h2 id='unsub-13'>【全仓】取消订阅计划委托订单更新（unsub）</h2><h4 id='e0361480e3-154'>备注</h4>
 <ul>
 <li>该接口仅支持全仓模式。</li>
 </ul>
@@ -30323,7 +30323,6 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
       const btn_usdt_swap = document.getElementById('btn_usdt_swap')
       const btn_option = document.getElementById('btn_option');
       const v1_url = document.getElementById('v1_url');
-      const v2_url = document.getElementById('v2_url');
       const url = GetUrlRelativePath();
 
       if(url.indexOf('cn') != -1){
@@ -30341,7 +30340,6 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
         btn_usdt_swap.href = btn_usdt_swap.href.replace('en/', 'cn/');
         btn_option.href = btn_option.href.replace('en/', 'cn/');
         v1_url.href = '/docs/spot/v1/cn/';
-        v2_url.href = '/docs/spot/v2/cn/';
       }else{
         //如果是英文环境
         lang_btn.innerHTML = '中文';
@@ -30359,7 +30357,6 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
         btn_usdt_swap.href = btn_usdt_swap.href.replace('cn/', 'en/');
         btn_option.href = btn_option.href.replace('cn/', 'en/');
         v1_url.href = '/docs/spot/v1/en/';
-        v2_url.href = '/docs/spot/v2/en/';
       }
 
       if(location.href.indexOf('docs/dm/v') > 0){
