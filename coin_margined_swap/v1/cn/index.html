@@ -321,6 +321,9 @@
                     <a href="#4ef8c513f5" class="toc-h2 toc-link" data-title="撤单率限制">撤单率限制</a>
                   </li>
                   <li>
+                    <a href="#e09f675bbd" class="toc-h2 toc-link" data-title="停服维护">停服维护</a>
+                  </li>
+                  <li>
                     <a href="#cd63bde415" class="toc-h2 toc-link" data-title="获取当前系统状态">获取当前系统状态</a>
                   </li>
                   <li>
@@ -1785,6 +1788,13 @@ api.hbdm.com\n
 </ul></li>
 <li>5、适当延长策略轮询时间。</li>
 </ul></li>
+</ul>
+<h2 id='e09f675bbd'>停服维护</h2>
+<p>业务系统停服维护期间，除了以下2个提供给用户查询系统状态的接口外（<a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#cd63bde415'>获取当前系统状态</a>、<a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#bef5ec9210'>查询系统是否可用</a>），该业务所有rest接口都会固定返回{&quot;status&quot;: &quot;maintain&quot;}报文。</p>
+<h4 id='2-3'>2个接口为：</h4>
+<ul>
+<li>查询系统是否可用：https://api.hbdm.com/heartbeat/</li>
+<li>statuspage查询系统状态：https://status-swap.huobigroup.com/api/v2/summary.json</li>
 </ul>
 <h2 id='cd63bde415'>获取当前系统状态</h2>
 <p>此接口返回当前的系统状态，包含当前系统维护计划和故障进度等。</p>
