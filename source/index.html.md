@@ -4042,7 +4042,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | profit_unreal        | true   | decimal | unrealized profits and losses (summary of all contract)               |                |
 | withdraw_available   | true   | decimal | available transfer amount               |                |
 | risk_rate            | true   | decimal | margin rate                 |                |
-| \<contract_detail\> |    true    |  object array       ｜                   |                |
+| \<contract_detail\> |    true    |  object array                         |                |
 | symbol     | true   | string  | symbol                 | "BTC","ETH"... |
 | contract_code     | true   | string  | contract code                 |  "BTC-USDT" ... |
 | margin_position      | true   | decimal | position margin (the margin used by current positions)	 |                |
@@ -4368,7 +4368,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | profit_unreal        | true   | decimal | unrealized profits and losses                |                |
 | withdraw_available   | true   | decimal | available transfer amount               |                |
 | risk_rate            | true   | decimal | margin rate                 |                |
-| \<contract_detail\> |    true    |  object array       ｜                   |                |
+| \<contract_detail\> |    true    |  object array       |                 |                |
 | symbol     | true   | string  | symbol                 | "BTC","ETH"... |
 | contract_code     | true   | string  | contract code                 |  "BTC-USDT" ... |
 | margin_position      | true   | decimal | position margin (the margin used by current positions)	 |                |
@@ -5478,14 +5478,14 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 | Parameter Name           | Mandatory  | Type | Desc                                             | Data Value                                                     |
 | ---------------- | ----- | -------- | ------------------------------------------------ | ------------------------------------------------------------ |
-| contract_code    | TRUE  | string   | contract code                                         | "BTC-USDT"...                                                |
-| client_order_id  | FALSE | long     | Clients fill and maintain themselves.must be Less or Equal than 9223372036854775807                   |                                                              |
-| price            | FALSE | decimal  | price                                            |                                                              |
-| volume           | TRUE  | long     | Numbers of orders (volume)                                    |                                                              |
-| direction        | TRUE  | string   | Transaction direction                                         | "buy"/"sell"                                           |
-| offset           | TRUE  | string   | "open", "close"                                         | "open"/"close"                                        |
-| lever_rate       | TRUE  | int      | leverage [ if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate; Using Leverage greater than 20 times requires prior approval of high-leverage agreement for the first time. ] |                                                              |
-| order_price_type | TRUE  | string   | type of order price                                     | "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,fok：FOK Order, "opponent_ioc"：IOC order using the BBO price，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK |
+| contract_code    | true  | string   | contract code                                         | "BTC-USDT"...                                                |
+| client_order_id  | false | long     | Clients fill and maintain themselves.must be Less or Equal than 9223372036854775807                   |                                                              |
+| price            | false | decimal  | price                                            |                                                              |
+| volume           | true  | long     | Numbers of orders (volume)                                    |                                                              |
+| direction        | true  | string   | Transaction direction                                         | "buy"/"sell"                                           |
+| offset           | true  | string   | "open", "close"                                         | "open"/"close"                                        |
+| lever_rate       | true  | int      | leverage [ if“Open”is multiple orders in 10 rate, there will be not multiple orders in 20 rate; Using Leverage greater than 20 times requires prior approval of high-leverage agreement for the first time. ] |                                                              |
+| order_price_type | true  | string   | type of order price                                     | "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,fok：FOK Order, "opponent_ioc"：IOC order using the BBO price，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK |
 
 ####  Note
 
