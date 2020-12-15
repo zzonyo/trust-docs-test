@@ -333,7 +333,7 @@ During the maintenance of the business system, in addition to the below one inte
 
 ### The one interfaces is:
 - Query whether the system is available: https://api.hbdm.com/heartbeat/
-
+- Besides the above one rest interface, for getting the infomation that system maintenance with service suspended, could by subscrib system status updates websocket interface（<a href='https://docs.huobigroup.com/docs/option/v1/en/#subscribe-system-status-updates'>Subscribe system status updates</a>）
 
 ## Query whether the system is available  
 
