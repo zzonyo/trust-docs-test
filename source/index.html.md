@@ -864,6 +864,7 @@ api.hbdm.com\n
 #### 2个接口为：
  - 查询系统是否可用：https://api.hbdm.com/heartbeat/
  - statuspage查询系统状态：https://status-swap.huobigroup.com/api/v2/summary.json
+ - 除了以上两个rest接口获取系统维护停服信息外，也可以通过订阅WebSocket系统状态更新接口获取系统维护停服信息（<a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#websocket-6'>WebSocket系统状态更新接口</a>）
 
 ## 获取当前系统状态
 
