@@ -217,9 +217,6 @@
               <li>
                 <a href="/docs/spot/v1/en/" id="v1_url">v1</a>
               </li>
-              <li>
-                <a href="/docs/spot/v2/en/" id="v2_url">v2</a>
-              </li>
             </ul>
           </span>
           <span class="nav_cell nav_tab">
@@ -11420,7 +11417,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>order_price_type</td>
@@ -11913,7 +11910,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>fee_asset</td>
@@ -12227,7 +12224,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>order_price_type</td>
@@ -12712,7 +12709,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>order_price_type</td>
@@ -13014,7 +13011,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>contract_type</td>
@@ -13521,7 +13518,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>订单来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>&lt;/trades&gt;</td>
@@ -14411,7 +14408,7 @@ step6是不合并小数；
 <td>order_source</td>
 <td>string</td>
 <td>true</td>
-<td>来源</td>
+<td>来源（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 <td></td>
 </tr>
 <tr>
@@ -14752,7 +14749,7 @@ step6是不合并小数；
 <td>string</td>
 <td>true</td>
 <td>来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>trigger_price</td>
@@ -18792,7 +18789,7 @@ step6是不合并小数；
 <tr>
 <td>order_source</td>
 <td>string</td>
-<td>订单来源</td>
+<td>订单来源（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>order_price_type</td>
@@ -20236,7 +20233,7 @@ step6是不合并小数；
 <td>true</td>
 <td>string</td>
 <td>来源</td>
-<td></td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>trigger_price</td>
@@ -20689,7 +20686,6 @@ step6是不合并小数；
       const btn_usdt_swap = document.getElementById('btn_usdt_swap')
       const btn_option = document.getElementById('btn_option');
       const v1_url = document.getElementById('v1_url');
-      const v2_url = document.getElementById('v2_url');
       const url = GetUrlRelativePath();
 
       if(url.indexOf('cn') != -1){
@@ -20707,7 +20703,6 @@ step6是不合并小数；
         btn_usdt_swap.href = btn_usdt_swap.href.replace('en/', 'cn/');
         btn_option.href = btn_option.href.replace('en/', 'cn/');
         v1_url.href = '/docs/spot/v1/cn/';
-        v2_url.href = '/docs/spot/v2/cn/';
       }else{
         //如果是英文环境
         lang_btn.innerHTML = '中文';
@@ -20725,7 +20720,6 @@ step6是不合并小数；
         btn_usdt_swap.href = btn_usdt_swap.href.replace('cn/', 'en/');
         btn_option.href = btn_option.href.replace('cn/', 'en/');
         v1_url.href = '/docs/spot/v1/en/';
-        v2_url.href = '/docs/spot/v2/en/';
       }
 
       if(location.href.indexOf('docs/dm/v') > 0){
