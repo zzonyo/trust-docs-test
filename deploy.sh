@@ -287,7 +287,7 @@ parse_args "$@"
 if [[ -n "$source_only" ]]; then
   echo "source only"
   run_build
-elif [[ -n "$source_only" ]]; then
+elif [[ -n "$push_only" ]]; then
   echo "push only"  
   main
 else
