@@ -352,7 +352,8 @@ api.hbdm.com\n
 
 #### 接口为：
  - 查询系统是否可用：https://api.hbdm.com/heartbeat/
-  
+ - 除了以上rest接口获取系统维护停服信息外，也可以通过订阅WebSocket系统状态更新接口获取系统维护停服信息（<a href='https://docs.huobigroup.com/docs/option/v1/cn/#websocket-5'>WebSocket系统状态更新接口</a>）
+
 ## 查询系统是否可用  
 
 - Interface `https://api.hbdm.com/heartbeat/`
