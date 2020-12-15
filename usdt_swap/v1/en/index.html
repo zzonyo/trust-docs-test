@@ -217,9 +217,6 @@
               <li>
                 <a href="/docs/spot/v1/en/" id="v1_url">v1</a>
               </li>
-              <li>
-                <a href="/docs/spot/v2/en/" id="v2_url">v2</a>
-              </li>
             </ul>
           </span>
           <span class="nav_cell nav_tab">
@@ -232,7 +229,7 @@
             <a href="/docs/coin_margined_swap/v1/en/" id="btn_coin_margined_swap">币本位永续合约</a>
           </span>
           <span class="nav_cell nav_tab">
-            <a href="/docs/usdt_swap/v1/en/" id="btn_usdt_swap">USDT永续合约</a>
+            <a href="/docs/usdt_swap/v1/en/" id="btn_usdt_swap">USDT本位永续合约</a>
           </span>
           <span class="nav_cell nav_tab">
             <a href="/docs/option/v1/en/" id="btn_option">期权合约</a>
@@ -690,19 +687,19 @@
             <a href="#websocket-index-and-basis-interface" class="toc-h1 toc-link" data-title="WebSocket Index and Basis Interface">WebSocket Index and Basis Interface</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#general-subcribe-index-kline-data" class="toc-h2 toc-link" data-title="[General] Subcribe Index Kline Data">[General] Subcribe Index Kline Data</a>
+                    <a href="#general-subscribe-index-kline-data" class="toc-h2 toc-link" data-title="[General] Subscribe Index Kline Data">[General] Subscribe Index Kline Data</a>
                   </li>
                   <li>
                     <a href="#general-request-index-kline-data" class="toc-h2 toc-link" data-title="[General] Request Index Kline Data">[General] Request Index Kline Data</a>
                   </li>
                   <li>
-                    <a href="#general-subcribe-premium-index-kline-data" class="toc-h2 toc-link" data-title="[General] Subcribe Premium Index Kline Data">[General] Subcribe Premium Index Kline Data</a>
+                    <a href="#general-subscribe-premium-index-kline-data" class="toc-h2 toc-link" data-title="[General] Subscribe Premium Index Kline Data">[General] Subscribe Premium Index Kline Data</a>
                   </li>
                   <li>
                     <a href="#general-request-premium-index-kline-data" class="toc-h2 toc-link" data-title="[General] Request Premium Index Kline Data">[General] Request Premium Index Kline Data</a>
                   </li>
                   <li>
-                    <a href="#general-subcribe-estimated-funding-rate-kline-data" class="toc-h2 toc-link" data-title="[General] Subcribe Estimated Funding Rate Kline Data">[General] Subcribe Estimated Funding Rate Kline Data</a>
+                    <a href="#general-subscribe-estimated-funding-rate-kline-data" class="toc-h2 toc-link" data-title="[General] Subscribe Estimated Funding Rate Kline Data">[General] Subscribe Estimated Funding Rate Kline Data</a>
                   </li>
                   <li>
                     <a href="#general-request-estimated-funding-rate-kline-data" class="toc-h2 toc-link" data-title="[General] Request Estimated Funding Rate Kline Data">[General] Request Estimated Funding Rate Kline Data</a>
@@ -21175,7 +21172,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>general</td>
 <td>market.$contract_code.premium_index.$period</td>
 <td>sub</td>
-<td>Subcribe Premium Index Kline Data</td>
+<td>Subscribe Premium Index Kline Data</td>
 <td>No</td>
 </tr>
 <tr>
@@ -21193,7 +21190,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>general</td>
 <td>market.$contract_code.estimated_rate.$period</td>
 <td>sub</td>
-<td>Subcribe Estimated Funding Rate Kline Data</td>
+<td>Subscribe Estimated Funding Rate Kline Data</td>
 <td>No</td>
 </tr>
 <tr>
@@ -23361,7 +23358,7 @@ Details are below:</p></li>
 <ul>
 <li>The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index </li>
 </ul>
-<h2 id='general-subcribe-index-kline-data'>[General] Subcribe Index Kline Data</h2><h4 id='remarks-90'>Remarks</h4>
+<h2 id='general-subscribe-index-kline-data'>[General] Subscribe Index Kline Data</h2><h4 id='remarks-90'>Remarks</h4>
 <ul>
 <li>The interface supports cross margin mode and isolated margin mode.</li>
 </ul>
@@ -23785,7 +23782,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='general-subcribe-premium-index-kline-data'>[General] Subcribe Premium Index Kline Data</h2><h4 id='remarks-92'>Remarks</h4>
+<h2 id='general-subscribe-premium-index-kline-data'>[General] Subscribe Premium Index Kline Data</h2><h4 id='remarks-92'>Remarks</h4>
 <ul>
 <li>The interface supports cross margin mode and isolated margin mode.</li>
 </ul>
@@ -24226,7 +24223,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='general-subcribe-estimated-funding-rate-kline-data'>[General] Subcribe Estimated Funding Rate Kline Data</h2><h4 id='remarks-94'>Remarks</h4>
+<h2 id='general-subscribe-estimated-funding-rate-kline-data'>[General] Subscribe Estimated Funding Rate Kline Data</h2><h4 id='remarks-94'>Remarks</h4>
 <ul>
 <li>The interface supports cross margin mode and isolated margin mode.</li>
 </ul>
@@ -29826,7 +29823,6 @@ Details are below:</p></li>
       const btn_usdt_swap = document.getElementById('btn_usdt_swap')
       const btn_option = document.getElementById('btn_option');
       const v1_url = document.getElementById('v1_url');
-      const v2_url = document.getElementById('v2_url');
       const url = GetUrlRelativePath();
 
       if(url.indexOf('cn') != -1){
@@ -29835,7 +29831,7 @@ Details are below:</p></li>
         btn_spot.innerHTML = '现货';
         btn_dm.innerHTML = '交割合约';
         btn_coin_margined_swap.innerHTML = '币本位永续合约';
-        btn_usdt_swap.innerHTML = 'USDT永续合约';
+        btn_usdt_swap.innerHTML = 'USDT本位永续合约';
         btn_option.innerHTML = '期权合约';
         lang_btn.href = url.replace('cn/', 'en/');
         btn_spot.href = btn_spot.href.replace('en/', 'cn/');
@@ -29844,7 +29840,6 @@ Details are below:</p></li>
         btn_usdt_swap.href = btn_usdt_swap.href.replace('en/', 'cn/');
         btn_option.href = btn_option.href.replace('en/', 'cn/');
         v1_url.href = '/docs/spot/v1/cn/';
-        v2_url.href = '/docs/spot/v2/cn/';
       }else{
         //如果是英文环境
         lang_btn.innerHTML = '中文';
@@ -29862,7 +29857,6 @@ Details are below:</p></li>
         btn_usdt_swap.href = btn_usdt_swap.href.replace('cn/', 'en/');
         btn_option.href = btn_option.href.replace('cn/', 'en/');
         v1_url.href = '/docs/spot/v1/en/';
-        v2_url.href = '/docs/spot/v2/en/';
       }
 
       if(location.href.indexOf('docs/dm/v') > 0){
