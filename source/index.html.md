@@ -7303,7 +7303,7 @@ direction  |  true  |  string  |  Order direction  |   |
 
 ### The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index 
 
-## Subcribe Index Kline Data
+## Subscribe Index Kline Data
 
 ### To subscribe index kline data, the Client has to make connection to the Server and send subscribe request in the format below:
 
