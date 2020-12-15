@@ -357,6 +357,9 @@
                     <a href="#api-limitation-on-order-cancellation-ratio" class="toc-h2 toc-link" data-title="API Limitation on Order Cancellation Ratio">API Limitation on Order Cancellation Ratio</a>
                   </li>
                   <li>
+                    <a href="#maintenance-with-service-suspended" class="toc-h2 toc-link" data-title="Maintenance with service suspended">Maintenance with service suspended</a>
+                  </li>
+                  <li>
                     <a href="#get-system-status" class="toc-h2 toc-link" data-title="Get system status">Get system status</a>
                   </li>
                   <li>
@@ -2042,6 +2045,12 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <li>5. Please try to extend your request polling cycle when implementing your strategy.</li>
 </ul></li>
 </ul>
+<h2 id='maintenance-with-service-suspended'>Maintenance with service suspended</h2>
+<p>During the maintenance of the business system, in addition to the below two interfaces(<a href='https://docs.huobigroup.com/docs/dm/v1/en/#get-system-status'>Get system status</a >, <a href='https://docs.huobigroup.com/docs/dm/v1/en/#query-whether-the-system-is-available'>Query whether the system is available</a >) for users to query the system status, all “rest” interfaces of the API business will return {&quot;status&quot;: &quot;maintain&quot;} in a fixed manner.</p>
+
+<p>The two interfaces are:
+Get system status: https://status-dm.huobigroup.com/api/v2/summary.json
+Query whether the system is available: https://api.hbdm.com/heartbeat/</p>
 <h2 id='get-system-status'>Get system status</h2>
 <p>This endpoint allows users to get system status, Incidents and planned maintenance.</p>
 
