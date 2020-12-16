@@ -1623,7 +1623,7 @@ WS订阅私有账户，订单，仓位时，请注意也要定时维护好心跳
 撤单命令执行成功一般几十ms，实际撤单状态要查询订单状态swap-api/v1/swap_order_info获取。
 
 ### Q13: 获取历史强平订单的方法？
-需要获取历史强平订单，可以通过：获取合约历史委托（/api/v1/contract_hisorders）、获取历史成交记录（/api/v1/contract_matchresults）、组合查询合约历史委托（/api/v1/contract_hisorders_exact）、组合查询历史成交记录接口（/api/v1/contract_matchresults_exact）这四个接口中的返回字段order_source(订单来源)来判断，当order_source返回的为“risk”说明这个订单就是被强平的订单。
+需要获取历史强平订单，可以通过：获取合约历史委托（/swap-api/v1/swap_hisorders）、获取历史成交记录（/swap-api/v1/swap_matchresults）、组合查询合约历史委托（/swap-api/v1/swap_hisorders_exact）、组合查询历史成交记录接口（/swap-api/v1/swap_matchresults_exact）这四个接口中的返回字段order_source(订单来源)来判断，当order_source返回的为“risk”说明这个订单就是被强平的订单。
 
 
 ## 错误码相关
