@@ -321,7 +321,7 @@ Please note that, for both public interface and private interface, there are rat
   - 5. Please try to extend your request polling cycle when implementing your strategy.
 
 ## Maintenance with service suspended
-During the maintenance of the business system, in addition to the below one interface(<a href='https://docs.huobigroup.com/docs/option/v1/en/#query-whether-the-system-is-available'>Query whether the system is available</a >) for users to query the system status, all “rest” interfaces of the API business will return this in a fixed manner:`{"status": "maintain"}`
+During the maintenance of the business system, in addition to the below one interface(<a href='https://docs.huobigroup.com/docs/option/v1/en/#query-whether-the-system-is-available'>Query whether the system is available</a >) for users to query the system status, all “rest” interfaces of the API business will return this in a fixed manner:`{"status": "maintain"}`. During maintenance with service suspended，all websocket notify interfaces except subscribing system status updates（<a href='https://docs.huobigroup.com/docs/option/v1/en/#subscribe-system-status-updates'>Subscribe system status updates</a>）can't work，and will push 1006 error code to clients.
 
 >Response
 
@@ -334,7 +334,7 @@ During the maintenance of the business system, in addition to the below one inte
 ### The one interfaces is:
 - Query whether the system is available: https://api.hbdm.com/heartbeat/
 
-Besides the above one rest interface, for getting the infomation that system maintenance with service suspended, could by subscrib system status updates websocket interface（<a href='https://docs.huobigroup.com/docs/option/v1/en/#subscribe-system-status-updates'>Subscribe system status updates</a>）
+Besides the above one rest interface, for getting the infomation that system maintenance with service suspended, could by subscrib system status updates websocket interface.
 
 ## Query whether the system is available  
 
