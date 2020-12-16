@@ -1491,7 +1491,7 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 
 # 行情数据
 
-## 行情接口简介
+## 简介
 
 行情数据接口提供了多种K线、深度以及最新成交记录等行情数据。
 
@@ -1500,7 +1500,7 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 
 ## K 线数据（蜡烛图）
 
-此接口返回历史K线数据。K线周期以新加坡时间为基准开始计算，例如日K线的起始周期为新加坡时间0时-新加坡时间次日0时。
+此接口返回历史K线数据。K线周期以新加坡时间为基准开始计算，例如日K线的起始周期为新加坡时间0时至新加坡时间次日0时。
 
 <aside class="notice">当前 REST API 不支持自定义时间区间，如需要历史固定时间范围的数据，请参考 Websocket API 中的 K 线接口。</aside>
 <aside class="notice">获取 hb10 净值时， symbol 请填写 “hb10”。</aside>
@@ -1971,7 +1971,7 @@ curl "https://api.huobi.pro/market/etp?symbol=btc3lusdt"
 | amount }       | float    | 金额                                      |
 | actualLeverage | float    | 实际杠杆率                                |
 
-## 行情接口错误码
+## 常见错误码
 
 以下是行情数据接口返回的错误码、错误消息以及说明。
 
