@@ -1156,7 +1156,7 @@ api.hbdm.com\n
  - 查询系统是否可用：https://api.hbdm.com/heartbeat/
  - statuspage查询系统状态：https://status-dm.huobigroup.com/api/v2/summary.json
  
-除了以上两个rest接口获取系统维护停服信息外，也可以通过订阅WebSocket系统状态更新接口获取系统维护停服信息（<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#websocket-6'>WebSocket系统状态更新接口</a>）
+除了以上两个rest接口获取系统维护停服信息外，也可以通过订阅WebSocket系统状态更新接口获取系统维护停服信息 
 
 ## 获取当前系统状态
 
