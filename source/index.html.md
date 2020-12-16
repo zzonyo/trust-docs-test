@@ -2671,11 +2671,7 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
                     "chain": "btc",
                     "maxWithdrawAmt": "200.00000000",
                     "withdrawQuotaPerDay": "200.00000000",
-                    "remainWithdrawQuotaPerDay": "200.000000000000000000",
-                    "withdrawQuotaPerYear": "700000.00000000",
-                    "remainWithdrawQuotaPerYear": "700000.000000000000000000",
-                    "withdrawQuotaTotal": "7000000.00000000",
-                    "remainWithdrawQuotaTotal": "7000000.000000000000000000"
+                    "remainWithdrawQuotaPerDay": "200.000000000000000000"
                 }
         }
     ]
@@ -2695,10 +2691,6 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
 | maxWithdrawAmt             | true     | string   | 单次最大提币金额 |          |
 | withdrawQuotaPerDay        | true     | string   | 当日提币额度     |          |
 | remainWithdrawQuotaPerDay  | true     | string   | 当日提币剩余额度 |          |
-| withdrawQuotaPerYear       | true     | string   | 当年提币额度     |          |
-| remainWithdrawQuotaPerYear | true     | string   | 当年提币剩余额度 |          |
-| withdrawQuotaTotal         | true     | string   | 总提币额度       |          |
-| remainWithdrawQuotaTotal } | true     | string   | 总提币剩余额度   |          |
 
 ### 状态码
 
@@ -4607,6 +4599,7 @@ API Key 权限：读取<br>
 | role                | true     | string   | 成交角色                                                     | maker,taker                                                  |
 | filled-points       | true     | string   | 抵扣数量（可为ht或hbpoint）                                  |                                                              |
 | fee-deduct-currency | true     | string   | 抵扣类型                                                     | 如果为空，代表扣除的手续费是原币；如果为"ht"，代表抵扣手续费的是HT；如果为"hbpoint"，代表抵扣手续费的是点卡 |
+| fee-deduct-state | true     | string   | 抵扣状态 | 抵扣中：ongoing，抵扣完成：done  |
 
 注：<br>
 - filled-fees中的交易返佣金额可能不会实时到账。<br>
@@ -4873,6 +4866,7 @@ API Key 权限：读取<br>
 | role                | true     | string   | 成交角色                                                     | maker,taker                                                  |
 | filled-points       | true     | string   | 抵扣数量（可为ht或hbpoint）                                  |                                                              |
 | fee-deduct-currency | true     | string   | 抵扣类型                                                     | ht,hbpoint                                                   |
+| fee-deduct-state | true     | string   | 抵扣状态 | 抵扣中：ongoing，抵扣完成：done  |
 
 注：<br>
 - filled-fees中的交易返佣金额可能不会实时到账；<br>
@@ -9671,4 +9665,101 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
 |	nextId	|	long	|	FALSE	| 下页查询起始编号（仅在存在下页数据时返回）	|
 
 ##### <br>
+
+## 杠杆ETP单个撤单
+
+用户可以通过该接口进行杠杆ETP撤单。
+
+### HTTP 请求
+
+- POST /v2/etp/{transactId}/cancel
+
+API Key 权限：交易<br>限频值：1次/秒<br>
+
+### 请求参数
+
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	----	|	------	|	-----	|
+|	transactId	|	long	|	TRUE	| ETP交易ID|
+
+
+
+> Response
+
+```json
+
+{
+"code": 80042,
+"message": "撤单失败，订单不存在"
+}
+
+```
+
+### 响应数据
+
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	----	|	--------	|	-----	|
+|	code	|	integer	|	TRUE	|状态码	|
+|	message	|	string	|	FALSE	|错误描述（如有）	|
+
+
+
+##### <br>
+
+## 杠杆ETP批量撤单
+
+用户可以通过该接口进行杠杆ETP批量撤单。
+
+### HTTP 请求
+
+- POST /v2/etp/batch-cancel
+
+API Key 权限：交易<br>限频值：1次/5秒<br>
+
+### 请求参数
+
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	----	|	------	|	-----	|
+|	transactId	|	long	|	TRUE	| ETP交易ID|
+
+
+
+
+
+> Response
+
+```json
+{
+    "code":200,
+    "data":{
+        "success":[
+            "5983466"
+        ],
+        "failed":[
+            {
+                "errMsg":"撤单失败，订单不存在",
+                "transactId":"65445",
+                "errCode":80043
+            }
+        ]
+    },
+    "message":null
+}
+
+```
+
+### 响应数据
+
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	----	|	--------	|	-----	|
+|	code	|	integer	|	TRUE	|状态码	|
+|	message	|	string	|	FALSE	|错误描述（如有）	|
+|	data	|	object	|	TRUE	|	|
+|	{ success	|	string	|	TRUE	|ETP撤单成功交易列表	|
+|	errMsg	|	long	|	TRUE	|撤单失败错误信息	|
+|	errCode 	|	string	|	TRUE	|撤单失败错误码	|
+|	transactId}	|	long	|	FALSE	| 交易ID	|
+
+
+
 
