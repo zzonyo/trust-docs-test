@@ -2046,6 +2046,7 @@ api.hbdm.com\n
 </ul>
 <h3 id='4-option-api-v1-option_order_detail'>4、option-api/v1/option_order_detail 获取订单明细接口：</h3>
 <ul>
+<li><p>请求参数没有带上created_at等参数查询订单时，可能会发生查询结果延迟。建议您在使用此接口时请求字段带上：created_at（下单时间戳）和 order_type(订单类型，默认填1)，会直接查询数据库，查询结果会更及时。</p></li>
 <li><p>查询条件created_at使用13位long类型时间戳（包含毫秒时间），如果输入准确的时间戳，查询性能将会提升。</p></li>
 <li><p>例如:&quot;2019/10/18 10:26:22&quot;转换为时间戳为：1571365582123。也可以直接从option_order下单接口返回报文中的ts中获取时间戳作为参数查询接口option-api/v1/option_order_detail获取订单明细，同时created_at禁止传0；；</p></li>
 </ul>
