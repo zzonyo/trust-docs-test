@@ -1410,6 +1410,8 @@ curl "https://status-linear-swap.huobigroup.com/api/v2/summary.json"
 
 ### 4、/linear-swap-api/v1/swap_order_detail 获取订单明细接口：
 
+- 请求参数没有带上created_at等参数查询订单时，可能会发生查询结果延迟。建议您在使用此接口时请求字段带上：created_at（下单时间戳）和 order_type(订单类型，默认填1)，会直接查询数据库，查询结果会更及时。
+
 - 查询条件created_at使用13位long类型时间戳（包含毫秒时间），如果输入准确的时间戳，查询性能将会提升。
 
 - 例如:"2019/10/18 10:26:22"转换为时间戳为：1571365582123。也可以直接从swap_order下单接口返回报文中的ts中获取时间戳作为参数查询接口/linear-swap-api/v1/swap_order_detail获取订单明细，同时created_at禁止传0；；
@@ -1694,6 +1696,11 @@ WS订阅私有账户，订单，仓位时，请注意也要定时维护好心跳
 ### Q12: API一般从撤单开始到撤单成功需要多久？
 
 撤单命令执行成功一般几十ms，实际撤单状态要查询订单状态/linear-swap-api/v1/swap_order_info获取。
+
+### Q13: 获取历史强平订单的方法？
+
+需要获取历史强平订单，可以通过：获取合约历史委托（/linear-swap-api/v1/swap_hisorders【逐仓】或/linear-swap-api/v1/swap_cross_hisorders【全仓】）、获取历史成交记录（/linear-swap-api/v1/swap_matchresults【逐仓】或/linear-swap-api/v1/swap_cross_matchresults【全仓】）这两个接口中的返回字段order_source(订单来源)来判断，当order_source返回的为“risk”说明这个订单就是被强平的订单。
+
 
 ## 错误码相关
 
