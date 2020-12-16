@@ -852,20 +852,6 @@ A：Please check below possible reasons:
 
 A: It indicates the request path doesn't exist, please check the path spelling carefully. Due to the Nginx setting, the request path is case sensitive, please follow the path definition in document.
 
-## Market Data
-
-### Q1：What is the update frequency of market depth?
-A：The data is updated **once per second**. But, the BBO (Best Bid/Offer) feed upon WebSocket subscription to `market.$symbol.bbo` is updating in tick by tick mode.
-
-### Q2：Could the total volume of Last 24h Market Summary (GET /v1/market/detail) decrease?
-A：Yes, it is possible that the accumulated volume and the accumulated value counted for current 24h window is smaller than previous.
-
-### Q3：How to retrieve the last trade price in market?
-A：It is suggested to request to `GET /v1/market/trade` to get last market price, or to subscribe WebSocket topic `market.$symbol.trade.detail` for getting the same.
-
-### Q4：Which timezone the start time of candlesticks falls into?
-A： The start time for candlesticks is based on Singapore time (GMT+8), for example, the duration for daily candlesticks is from 00:00:00 to 23:59:59 Singapore time.
-
 ## Order and Trade
 
 ### Q1：What is account-id?
@@ -1501,17 +1487,7 @@ The returned "Data" field contains an integer represents the timestamp in millis
 
 Market data APIs provide public market information such as varies of candlestick, depth and trade information.
 
-Below is the error code, error message and description returned by Market data APIs.
-
-| Error Code        | Error Message                       | Description                                      |
-| ----------------- | ----------------------------------- | ------------------------------------------------ |
-| invalid-parameter | invalid symbol                      | Parameter symbol is invalid                      |
-| invalid-parameter | invalid period                      | Parameter period is invalid for candlestick data |
-| invalid-parameter | invalid depth                       | Parameter depth is invalid for depth data        |
-| invalid-parameter | invalid type                        | Parameter type is invalid                        |
-| invalid-parameter | invalid size                        | Parameter size is invalid                        |
-| invalid-parameter | invalid size,valid range: [1, 2000] | Parameter size range is invalide                 |
-| invalid-parameter | request timeout                     | Request timeout please try again                 |
+The market data is updated **once per second**. 
 
 ## Get Klines(Candles)
 
@@ -1911,6 +1887,8 @@ curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
 
 This endpoint retrieves the summary of trading in the market for the last 24 hours.
 
+<aside class="notice">It is possible that the accumulated volume and the accumulated value counted for current 24h window is smaller than previous.</aside>
+
 ### HTTP Request
 
 `GET https://api.huobi.pro/market/detail/`
@@ -2013,6 +1991,20 @@ curl "https://api.huobi.pro/market/etp?symbol=btc3lusdt"
 | { currency     | float     | Currency                               |
 | amount }       | float     | Amount                                 |
 | actualLeverage | float     | Actual leverage ratio                  |
+
+## Error Code
+
+Below is the error code, error message and description returned by Market data APIs.
+
+| Error Code        | Error Message                       | Description                                      |
+| ----------------- | ----------------------------------- | ------------------------------------------------ |
+| invalid-parameter | invalid symbol                      | Parameter symbol is invalid                      |
+| invalid-parameter | invalid period                      | Parameter period is invalid for candlestick data |
+| invalid-parameter | invalid depth                       | Parameter depth is invalid for depth data        |
+| invalid-parameter | invalid type                        | Parameter type is invalid                        |
+| invalid-parameter | invalid size                        | Parameter size is invalid                        |
+| invalid-parameter | invalid size,valid range: [1, 2000] | Parameter size range is invalide                 |
+| invalid-parameter | request timeout                     | Request timeout please try again                 |
 
 # Account
 
