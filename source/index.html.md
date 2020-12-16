@@ -1142,7 +1142,7 @@ api.hbdm.com\n
 
 ## 停服维护
 
-当该业务系统停服维护期间，除了以下2个提供给用户查询系统状态的接口能够正常使用外（<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#cd63bde415'>获取当前系统状态</a>、<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#bef5ec9210'>查询系统是否可用</a>），该业务所有rest接口都会固定返回响应报文:`{"status": "maintain"}`
+当该业务系统停服维护期间，除了以下2个提供给用户查询系统状态的接口能够正常使用外（<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#cd63bde415'>获取当前系统状态</a>、<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#bef5ec9210'>查询系统是否可用</a>），该业务所有rest接口都会固定返回响应报文:`{"status": "maintain"}`。websocket推送接口在停服维护时，除了WebSocket系统状态更新的推送接口可以正常调用外，其他推送接口都会返回1006的错误码。
 
 >Response
 
@@ -6101,7 +6101,7 @@ client_order_id | false | long | 用户自己的订单id |  |
 | lever_rate | int | true | 杠杆倍数 |  1，5，10，20
 | order_id | int | true | 计划委托单订单ID
 | order_id_str | string | true | 字符串类型的订单ID 
-| order_source | string | true | 来源（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）
+| order_source | string | true | 订单来源  | （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）
 | trigger_price | decimal | true | 触发价
 | order_price | decimal | true | 委托价
 | created_at | long | true | 订单创建时间
