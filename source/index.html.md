@@ -1103,7 +1103,7 @@ Please note that, for both public interface and private interface, there are rat
   - 5. Please try to extend your request polling cycle when implementing your strategy.
 
 ## Maintenance with service suspended
-During the maintenance of the business system, in addition to the below two interfaces(<a href='https://docs.huobigroup.com/docs/dm/v1/en/#get-system-status'>Get system status</a >, <a href='https://docs.huobigroup.com/docs/dm/v1/en/#query-whether-the-system-is-available'>Query whether the system is available</a >) for users to query the system status, all “rest” interfaces of the API business will return this in a fixed manner::`{"status": "maintain"}`
+During the maintenance of the business system, in addition to the below two interfaces(<a href='https://docs.huobigroup.com/docs/dm/v1/en/#get-system-status'>Get system status</a >, <a href='https://docs.huobigroup.com/docs/dm/v1/en/#query-whether-the-system-is-available'>Query whether the system is available</a >) for users to query the system status, all “rest” interfaces of the API business will return this in a fixed manner::`{"status": "maintain"}`. During maintenance with service suspended，all websocket notify interfaces except subscribing system status updates(（<a href='https://docs.huobigroup.com/docs/dm/v1/en/#subscribe-system-status-updates'>Subscribe system status updates</a>）) can't work，and will push 1006 error code to clients.
 
 >Response
 
@@ -1117,7 +1117,7 @@ During the maintenance of the business system, in addition to the below two inte
 - Get system status: https://status-dm.huobigroup.com/api/v2/summary.json
 - Query whether the system is available: https://api.hbdm.com/heartbeat/
 
-Besides the above two rest interfaces, for getting the infomation that system maintenance with service suspended, could by subscrib system status updates websocket interface（<a href='https://docs.huobigroup.com/docs/dm/v1/en/#subscribe-system-status-updates'>Subscribe system status updates</a>）
+Besides the above two rest interfaces, for getting the infomation that system maintenance with service suspended, could by subscribing system status updates websocket interface.
 
 
 ## Get system status
