@@ -1790,7 +1790,7 @@ api.hbdm.com\n
 </ul></li>
 </ul>
 <h2 id='e09f675bbd'>停服维护</h2>
-<p>当该业务系统停服维护期间，除了以下2个提供给用户查询系统状态的接口能够正常使用外（<a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#cd63bde415'>获取当前系统状态</a>、<a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#bef5ec9210'>查询系统是否可用</a>），该业务所有rest接口都会固定返回响应报文:<code>{&quot;status&quot;: &quot;maintain&quot;}</code></p>
+<p>当该业务系统停服维护期间，除了以下2个提供给用户查询系统状态的接口能够正常使用外（<a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#cd63bde415'>获取当前系统状态</a>、<a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#bef5ec9210'>查询系统是否可用</a>），该业务所有rest接口都会固定返回响应报文:<code>{&quot;status&quot;: &quot;maintain&quot;}</code>。websocket推送接口在停服维护时，除了WebSocket系统状态更新的推送接口可以正常调用外（<a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#websocket-6'>WebSocket系统状态更新接口</a>），其他推送接口都会返回1006的错误码。</p>
 
 <blockquote>
 <p>Response</p>
@@ -1804,7 +1804,7 @@ api.hbdm.com\n
 <li>statuspage查询系统状态：https://status-swap.huobigroup.com/api/v2/summary.json</li>
 </ul>
 
-<p>除了以上两个rest接口获取系统维护停服信息外，也可以通过订阅WebSocket系统状态更新接口获取系统维护停服信息（<a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#websocket-6'>WebSocket系统状态更新接口</a>）</p>
+<p>除了以上两个rest接口获取系统维护停服信息外，也可以通过订阅WebSocket系统状态更新接口获取系统维护停服信息</p>
 <h2 id='cd63bde415'>获取当前系统状态</h2>
 <p>此接口返回当前的系统状态，包含当前系统维护计划和故障进度等。</p>
 
