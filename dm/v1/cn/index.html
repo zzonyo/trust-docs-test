@@ -2050,7 +2050,7 @@ api.hbdm.com\n
 </ul></li>
 </ul>
 <h2 id='e09f675bbd'>停服维护</h2>
-<p>当该业务系统停服维护期间，除了以下2个提供给用户查询系统状态的接口能够正常使用外（<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#cd63bde415'>获取当前系统状态</a>、<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#bef5ec9210'>查询系统是否可用</a>），该业务所有rest接口都会固定返回响应报文:<code>{&quot;status&quot;: &quot;maintain&quot;}</code></p>
+<p>当该业务系统停服维护期间，除了以下2个提供给用户查询系统状态的接口能够正常使用外（<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#cd63bde415'>获取当前系统状态</a>、<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#bef5ec9210'>查询系统是否可用</a>），该业务所有rest接口都会固定返回响应报文:<code>{&quot;status&quot;: &quot;maintain&quot;}</code>。websocket推送接口在停服维护时，除了WebSocket系统状态更新的推送接口可以正常调用外，其他推送接口都会返回1006的错误码。</p>
 
 <blockquote>
 <p>Response</p>
@@ -14427,8 +14427,8 @@ step6是不合并小数；
 <td>order_source</td>
 <td>string</td>
 <td>true</td>
-<td>来源（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
-<td></td>
+<td>订单来源</td>
+<td>（system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）</td>
 </tr>
 <tr>
 <td>trigger_price</td>
