@@ -340,7 +340,7 @@ api.hbdm.com\n
 
 ## 停服维护
 
-当该业务系统停服维护期间，除了以下提供给用户查询系统状态的接口能够正常使用外（<a href='https://docs.huobigroup.com/docs/option/v1/cn/#bef5ec9210'>获取当前系统状态</a>），该业务所有rest接口都会固定返回响应报文:`{"status": "maintain"}`
+当该业务系统停服维护期间，除了以下提供给用户查询系统状态的接口能够正常使用外（<a href='https://docs.huobigroup.com/docs/option/v1/cn/#bef5ec9210'>获取当前系统状态</a>），该业务所有rest接口都会固定返回响应报文:`{"status": "maintain"}`。websocket推送接口在停服维护时，除了WebSocket系统状态更新的推送接口可以正常调用外（<a href='https://docs.huobigroup.com/docs/option/v1/cn/#websocket-5'>WebSocket系统状态更新接口</a>），其他推送接口都会返回1006的错误码。
 
 >Response
 
@@ -353,7 +353,7 @@ api.hbdm.com\n
 #### 接口为：
  - 查询系统是否可用：https://api.hbdm.com/heartbeat/
 
-除了以上rest接口获取系统维护停服信息外，也可以通过订阅WebSocket系统状态更新接口获取系统维护停服信息（<a href='https://docs.huobigroup.com/docs/option/v1/cn/#websocket-5'>WebSocket系统状态更新接口</a>）
+除了以上rest接口获取系统维护停服信息外，也可以通过订阅WebSocket系统状态更新接口获取系统维护停服信息
 
 ## 查询系统是否可用  
 
