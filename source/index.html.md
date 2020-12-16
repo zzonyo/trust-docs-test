@@ -936,38 +936,7 @@ A: 您可以根据` GET /v1/common/symbols`接口返回数据中的字段区分�
 
 A: 用户可借额度不仅取决于用户账户的可借额度，也取决于系统可借总额度。按照风险控制要求系统每天有一个借币的总额度，为所有用户共享。如果超过了这个额度，即使账户自己的额度够也无法借币。系统当天总额度用尽时，只有当天有用户还币之后，才可以继续借币。我们目前正在实现对用户更友好的解决方案，尝试将更准确的信息通过API提供给用户。
 
-## 账户充提相关
-### Q1：为什么创建提币时返回api-not-support-temp-addr错误？
-A：因安全考虑，API创建提币时仅支持已在提币地址列表中的地址，暂不支持使用API添加地址至提币地址列表中，需在网页端或APP端添加地址后才可在API中进行提币操作。
 
-### Q2：为什么USDT提币时返回Invaild-Address错误？
-A：USDT币种为典型的一币多链币种， 创建提币订单时应填写chain参数对应地址类型。以下表格展示了链和chain参数的对应关系：
-
-| 链             | chain 参数 |
-| -------------- | ---------- |
-| ERC20 （默认） | usdterc20  |
-| OMNI           | usdt       |
-| TRX            | trc20usdt  |
-
-如果chain参数为空，则默认的链为ERC20，或者也可以显示将参数赋值为`usdterc20`。
-
-如果要提币到OMNI或者TRX，则chain参数应该填写usdt或者trc20usdt。chain参数可使用值请参考 `GET /v2/reference/currencies` 接口。
-
-
-### Q3：创建提币时fee字段应该怎么填？
-A：请参考 GET /v2/reference/currencies接口返回值，返回信息中withdrawFeeType为提币手续费类型，根据类型选择对应字段设置提币手续费。 
-
-提币手续费类型包含：  
-
-- transactFeeWithdraw : 单次提币手续费（仅对固定类型有效，withdrawFeeType=fixed）  
-- minTransactFeeWithdraw : 最小单次提币手续费（仅对区间类型有效，withdrawFeeType=circulated or ratio） 
-- maxTransactFeeWithdraw : 最大单次提币手续费（仅对区间类型和有上限的比例类型有效，withdrawFeeType=circulated or ratio
-- transactFeeRateWithdraw :  单次提币手续费率（仅对比例类型有效，withdrawFeeType=ratio）
-
-### Q4：如何查看我的提币额度？
-A：请参考/v2/account/withdraw/quota接口返回值，返回信息中包含您查询币种的单次、当日、当前、总提币额度以及剩余额度的信息。 
-
-若您有大额提币需求，且提币数额超出相关限额，可联系官方客服进行沟通。  
 
 # 基础信息
 
@@ -2605,17 +2574,6 @@ API Key 权限：交易<br>
 
 <aside class="notice">访问充提相关的接口需要进行签名认证。</aside>
 
-以下是充提相关接口返回的返回码、返回消息以及说明。
-
-| 返回码 | 返回消息                             | 说明         |
-| ------ | ------------------------------------ | ------------ |
-| 200    | success                              | 请求成功     |
-| 500    | error                                | 系统错误     |
-| 1002   | unauthorized                         | 未授权       |
-| 1003   | invalid signature                    | 验签失败     |
-| 2002   | invalid field value in "field name"  | 非法字段取值 |
-| 2003   | missing mandatory field "field name" | 强制字段缺失 |
-
 ## 充币地址查询
 
 此节点用于查询特定币种（IOTA除外）在其所在区块链中的充币地址，母子用户均可用
@@ -2986,6 +2944,51 @@ API Key 权限：读取<br>
 | confirm-error   | 区块确认错误 |
 | repealed        | 已撤销       |
 
+## 常见错误码
+
+以下是充提相关接口返回的返回码、返回消息以及说明。
+
+| 返回码 | 返回消息                             | 说明         |
+| ------ | ------------------------------------ | ------------ |
+| 200    | success                              | 请求成功     |
+| 500    | error                                | 系统错误     |
+| 1002   | unauthorized                         | 未授权       |
+| 1003   | invalid signature                    | 验签失败     |
+| 2002   | invalid field value in "field name"  | 非法字段取值 |
+| 2003   | missing mandatory field "field name" | 强制字段缺失 |
+
+## 常见问题
+
+### Q1：为什么创建提币时返回api-not-support-temp-addr错误？
+A：因安全考虑，API创建提币时仅支持已在提币地址列表中的地址，暂不支持使用API添加地址至提币地址列表中，需在网页端或APP端添加地址后才可在API中进行提币操作。
+
+### Q2：为什么USDT提币时返回Invaild-Address错误？
+A：USDT币种为典型的一币多链币种， 创建提币订单时应填写chain参数对应地址类型。以下表格展示了链和chain参数的对应关系：
+
+| 链             | chain 参数 |
+| -------------- | ---------- |
+| ERC20 （默认） | usdterc20  |
+| OMNI           | usdt       |
+| TRX            | trc20usdt  |
+
+如果chain参数为空，则默认的链为ERC20，或者也可以显示将参数赋值为`usdterc20`。
+
+如果要提币到OMNI或者TRX，则chain参数应该填写usdt或者trc20usdt。chain参数可使用值请参考 `GET /v2/reference/currencies` 接口。
+
+### Q3：创建提币时fee字段应该怎么填？
+A：请参考 GET /v2/reference/currencies接口返回值，返回信息中withdrawFeeType为提币手续费类型，根据类型选择对应字段设置提币手续费。 
+
+提币手续费类型包含：  
+
+- transactFeeWithdraw : 单次提币手续费（仅对固定类型有效，withdrawFeeType=fixed）  
+- minTransactFeeWithdraw : 最小单次提币手续费（仅对区间类型有效，withdrawFeeType=circulated or ratio） 
+- maxTransactFeeWithdraw : 最大单次提币手续费（仅对区间类型和有上限的比例类型有效，withdrawFeeType=circulated or ratio
+- transactFeeRateWithdraw :  单次提币手续费率（仅对比例类型有效，withdrawFeeType=ratio）
+
+### Q4：如何查看我的提币额度？
+A：请参考/v2/account/withdraw/quota接口返回值，返回信息中包含您查询币种的单次、当日、当前、总提币额度以及剩余额度的信息。 
+
+若您有大额提币需求，且提币数额超出相关限额，可联系官方客服进行沟通。  
 
 # 子用户管理
 
