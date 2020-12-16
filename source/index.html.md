@@ -927,40 +927,6 @@ The value `0` indicates that the trading symbols doesn't support margin trading.
 ### Q1: I can see I have loanable amount in my margin account, why the API returns no sufficient amount error when I apply margin loan?
 A: The available amount depends on not only account available amount, but also the system available amount. Due to risk control, the system has a max available amount everyday. If the total loan amount reaches the max value, user will fail to apply loan, unless someone repays the loan in the same day. Right now we are implementing a more friendly solution that tries to provide more accurate information to API users.
 
-## Deposit and Withdraw
-
-### Q1：Why the API returns error 'api-not-support-temp-addr' when withdrawing?
-A：User has to include the address into the pre-defined address table on Huobi official website before withdrawing through API.
-
-### Q2：Why the API returns error 'Invaild-Address' when withdraw USDT?
-A：USDT locates on multiple chains, therefore the withdraw order should clearly specify which chain the withdrawal goes to. See the table below:
-
-| Chain           | Field Value |
-| --------------- | ----------- |
-| ERC20 (default) | `usdterc20` |
-| OMNI            | `usdt`      |
-| TRX             | `trc20usdt` |
-
-If leaving the field empty, default target chain is `ERC20`, or you can explicitly set the chain to `usdterc20`.
-
-If the target chain is `OMNI` or `TRX`, the field value should be `usdt` or `trc20usdt`.
-
-The full chain name list for all currencies can be retrieved from endpoint `GET /v2/reference/currencies`.
-
-### Q3：How to specify 'fee' when creating a withdraw request?
-
-A：Please refer to the response from endpoint `GET /v2/reference/currencies`, where the field `withdrawFeeType` defining different fee types below: 
-
-- transactFeeWithdraw : The withdraw fee per request (only applicable when withdrawFeeType=fixed).    	
-- minTransactFeeWithdraw : The minimum withdraw fee per request (only applicable when withdrawFeeType=circulated or ratio).
-- maxTransactFeeWithdraw : The maximum withdraw fee per request (only applicable when withdrawFeeType=circulated or ratio).
-- transactFeeRateWithdraw : The withdraw fee rate per request (only applicable when withdrawFeeType=ratio).
-
-### Q4：How to query my withdraw quota?
-A：Please refer to the response from endpoint `GET /v2/account/withdraw/quota`, where quota per request, daily quota, annual quota, overall quota are available.
-
-Note: If you need to withdraw large amount which breaking the limitation, you can contact customer support for assistance.
-
 # Reference Data
 
 ## Introduction
@@ -2618,16 +2584,6 @@ Note:<br>
 Wallet APIs provide query functionality for deposit address, withdraw address, withdraw quota, deposit and withdraw history, and also provide withdraw and cancel-withdraw functionality.
 
 <aside class="notice">All endpoints in this section require authentication</aside>
-Below is the response code, message and description returned by Wallet APIs.
-
-| Response Code | Message                              | Description            |
-| ------------- | ------------------------------------ | ---------------------- |
-| 200           | success                              | Successful             |
-| 500           | error                                | Server internal error  |
-| 1002          | unauthorized                         | User is unautherized   |
-| 1003          | invalid signature                    | API signature is wrong |
-| 2002          | invalid field value in "field name"  | Parameter is invalid   |
-| 2003          | missing mandatory field "field name" | Parameter is missing   |
 
 ## Query Deposit Address
 
@@ -3002,6 +2958,54 @@ curl "https://api.huobi.pro/v1/query/deposit-withdraw?currency=xrp&type=deposit&
 | safe       | Multiple on-chain confirmation happened            |
 | orphan     | Confirmed but currently in an orphan branch        |
 
+## Error Code
+
+Below is the response code, message and description returned by Wallet APIs.
+| Response Code | Message                              | Description            |
+| ------------- | ------------------------------------ | ---------------------- |
+| 200           | success                              | Successful             |
+| 500           | error                                | Server internal error  |
+| 1002          | unauthorized                         | User is unautherized   |
+| 1003          | invalid signature                    | API signature is wrong |
+| 2002          | invalid field value in "field name"  | Parameter is invalid   |
+| 2003          | missing mandatory field "field name" | Parameter is missing   |
+
+## FAQ
+
+### Q1：Why the API returns error 'api-not-support-temp-addr' when withdrawing?
+
+A：User has to include the address into the pre-defined address table on Huobi official website before withdrawing through API.
+
+### Q2：Why the API returns error 'Invaild-Address' when withdraw USDT?
+
+A：USDT locates on multiple chains, therefore the withdraw order should clearly specify which chain the withdrawal goes to. See the table below:
+
+| Chain           | Field Value |
+| --------------- | ----------- |
+| ERC20 (default) | `usdterc20` |
+| OMNI            | `usdt`      |
+| TRX             | `trc20usdt` |
+
+If leaving the field empty, default target chain is `ERC20`, or you can explicitly set the chain to `usdterc20`.
+
+If the target chain is `OMNI` or `TRX`, the field value should be `usdt` or `trc20usdt`.
+
+The full chain name list for all currencies can be retrieved from endpoint `GET /v2/reference/currencies`.
+
+### Q3：How to specify 'fee' when creating a withdraw request?
+
+A：Please refer to the response from endpoint `GET /v2/reference/currencies`, where the field `withdrawFeeType` defining different fee types below: 
+
+- transactFeeWithdraw : The withdraw fee per request (only applicable when withdrawFeeType=fixed).    	
+- minTransactFeeWithdraw : The minimum withdraw fee per request (only applicable when withdrawFeeType=circulated or ratio).
+- maxTransactFeeWithdraw : The maximum withdraw fee per request (only applicable when withdrawFeeType=circulated or ratio).
+- transactFeeRateWithdraw : The withdraw fee rate per request (only applicable when withdrawFeeType=ratio).
+
+### Q4：How to query my withdraw quota?
+
+A：Please refer to the response from endpoint `GET /v2/account/withdraw/quota`, where quota per request, daily quota, annual quota, overall quota are available.
+
+Note: If you need to withdraw large amount which breaking the limitation, you can contact customer support for assistance.
 
 # Sub user management
 
