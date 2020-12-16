@@ -6484,15 +6484,46 @@ Rate Limit (NEW): 20times/2s</p>
 </tr>
 </tbody></table>
 <h2 id='error-code-3'>Error Code</h2>
-<p>Below is the response code, message and description returned by Wallet APIs.
-| Response Code | Message                              | Description            |
-| ------------- | ------------------------------------ | ---------------------- |
-| 200           | success                              | Successful             |
-| 500           | error                                | Server internal error  |
-| 1002          | unauthorized                         | User is unautherized   |
-| 1003          | invalid signature                    | API signature is wrong |
-| 2002          | invalid field value in &quot;field name&quot;  | Parameter is invalid   |
-| 2003          | missing mandatory field &quot;field name&quot; | Parameter is missing   |</p>
+<p>Below is the response code, message and description returned by Wallet APIs.</p>
+
+<table><thead>
+<tr>
+<th>Response Code</th>
+<th>Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>success</td>
+<td>Successful</td>
+</tr>
+<tr>
+<td>500</td>
+<td>error</td>
+<td>Server internal error</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>unauthorized</td>
+<td>User is unautherized</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>invalid signature</td>
+<td>API signature is wrong</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid field value in &quot;field name&quot;</td>
+<td>Parameter is invalid</td>
+</tr>
+<tr>
+<td>2003</td>
+<td>missing mandatory field &quot;field name&quot;</td>
+<td>Parameter is missing</td>
+</tr>
+</tbody></table>
 <h2 id='faq'>FAQ</h2><h3 id='q1-why-the-api-returns-error-39-api-not-support-temp-addr-39-when-withdrawing'>Q1：Why the API returns error &#39;api-not-support-temp-addr&#39; when withdrawing?</h3>
 <p>A：User has to include the address into the pre-defined address table on Huobi official website before withdrawing through API.</p>
 <h3 id='q2-why-the-api-returns-error-39-invaild-address-39-when-withdraw-usdt'>Q2：Why the API returns error &#39;Invaild-Address&#39; when withdraw USDT?</h3>
