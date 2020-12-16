@@ -24,6 +24,9 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口                                                         | 变化      | 摘要                                                         |
 | -------------------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
+| 2020.12.16 19:00     | `GET /v1/order/matchresults`,<BR>`GET /v1/order/orders/{order-id}/matchresults`                                    | 优化      | 新增参数抵扣状态：fee-deduct-state（ 抵扣中：ongoing/ 抵扣完成：done），来代表手续费抵扣中和抵扣完成的状态                                   |
+| 2020.12.14 19:00     | `POST /v2/etp/{transactId}/cancel`                                           | 新增      | 新增杠杆ETP单个撤单接口                                          |
+| 2020.12.14 19:00     | `POST /v2/etp/batch-cancel`                                           | 新增      | 新增杠杆ETP批量撤单接口                                          |
 | 2020.11.26 19:00     | `GET /v2/user/uid`                                           | 新增      | 新增获取用户UID接口                                          |
 | 2020.10.16 19:00     | `orders#${symbol}`                                           | 优化      | 订单创建事件新增accountId                                    |
 | 2020.10.10 19:00     | `POST /v2/account/repayment`,<BR>`GET /v2/account/repayment` | 新增      | 新增通用还币接口及还币交易记录查询接口                       |
@@ -9759,7 +9762,6 @@ API Key 权限：交易<br>限频值：1次/5秒<br>
 |	errMsg	|	long	|	TRUE	|撤单失败错误信息	|
 |	errCode 	|	string	|	TRUE	|撤单失败错误码	|
 |	transactId}	|	long	|	FALSE	| 交易ID	|
-
 
 
 
