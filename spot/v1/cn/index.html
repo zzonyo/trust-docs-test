@@ -855,6 +855,24 @@ table th {
 </tr>
 </thead><tbody>
 <tr>
+<td>2020.12.16 19:00</td>
+<td><code>GET /v1/order/matchresults</code>,<BR><code>GET /v1/order/orders/{order-id}/matchresults</code></td>
+<td>优化</td>
+<td>新增参数抵扣状态：fee-deduct-state（ 抵扣中：ongoing/ 抵扣完成：done），来代表手续费抵扣中和抵扣完成的状态</td>
+</tr>
+<tr>
+<td>2020.12.14 19:00</td>
+<td><code>POST /v2/etp/{transactId}/cancel</code></td>
+<td>新增</td>
+<td>新增杠杆ETP单个撤单接口</td>
+</tr>
+<tr>
+<td>2020.12.14 19:00</td>
+<td><code>POST /v2/etp/batch-cancel</code></td>
+<td>新增</td>
+<td>新增杠杆ETP批量撤单接口</td>
+</tr>
+<tr>
 <td>2020.11.26 19:00</td>
 <td><code>GET /v2/user/uid</code></td>
 <td>新增</td>
