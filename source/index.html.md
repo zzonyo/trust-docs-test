@@ -863,20 +863,6 @@ A：请检查是否属于以下情况：
 
 A：该错误表明调用了不存在的Rest接口，请检查Rest接口路径是否准确。由于Nginx的设置，请求路径(Path)是大小写敏感的，请严格按照文档声明的大小写。
 
-## 行情相关
-
-### Q1：当前盘口数据多久更新一次？
-A：当前盘口数据数据一秒更新一次，无论是RESTful查询或是Websocket推送都是一秒一次。若需要实时的买一卖一价格数据，可使用WebSocket订阅market.$symbol.bbo主题，该主题会实时推送最新的买一卖一价格数据。
-
-### Q2：24小时行情接口(/market/detail)数据接口的成交量会出现负增长吗？
-A：/market/detail接口中的成交量、成交金额为24小时滚动数据（平移窗口大小24小时），有可能会出现后一个窗口内的累计成交量、累计成交额小于前一窗口的情况。
-
-### Q3：如何获取最新成交价格？
-A：推荐使用REST API `GET /market/trade` 接口请求最新成交，或使用WebSocket订阅market.$symbol.trade.detail主题，根据返回数据中的price获取。
-
-### Q4：K线是按照什么时间开始计算的？
-A： K线周期以新加坡时间为基准开始计算，例如日K线的起始周期为新加坡时间0时-新加坡时间次日0时。
-
 ## 交易相关
 ### Q1：account-id是什么？
 A： account-id对应用户不同业务账户的ID，可通过/v1/account/accounts接口获取，并根据account-type区分具体账户。
@@ -1505,26 +1491,19 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 
 # 行情数据
 
-## 简介
+## 行情接口简介
 
 行情数据接口提供了多种K线、深度以及最新成交记录等行情数据。
 
-以下是行情数据接口返回的错误码、错误消息以及说明。
-
-| 错误码            | 错误消息                            | 说明                    |
-| ----------------- | ----------------------------------- | ----------------------- |
-| invalid-parameter | invalid symbol                      | 无效的交易对            |
-| invalid-parameter | invalid period                      | 请求K线，period参数错误 |
-| invalid-parameter | invalid depth                       | 深度depth参数错误       |
-| invalid-parameter | invalid type                        | 深度type 参数错误       |
-| invalid-parameter | invalid size                        | size参数错误            |
-| invalid-parameter | invalid size,valid range: [1, 2000] | size参数错误            |
-| invalid-parameter | request timeout                     | 请求超时                |
+行情接口提供的数据每1分钟更新一次
 
 
 ## K 线数据（蜡烛图）
 
-此接口返回历史K线数据。
+此接口返回历史K线数据。K线周期以新加坡时间为基准开始计算，例如日K线的起始周期为新加坡时间0时-新加坡时间次日0时。
+
+<aside class="notice">当前 REST API 不支持自定义时间区间，如需要历史固定时间范围的数据，请参考 Websocket API 中的 K 线接口。</aside>
+<aside class="notice">获取 hb10 净值时， symbol 请填写 “hb10”。</aside>
 
 ```shell
 curl "https://api.huobi.pro/market/history/kline?period=1day&size=200&symbol=btcusdt"
@@ -1542,9 +1521,6 @@ curl "https://api.huobi.pro/market/history/kline?period=1day&size=200&symbol=btc
 | period | string   | true     | NA     | 返回数据时间粒度，也就是每根蜡烛的时间区间 | 1min, 5min, 15min, 30min, 60min, 4hour, 1day, 1mon, 1week, 1year |
 | size   | integer  | false    | 150    | 返回 K 线数据条数                          | [1, 2000]                                                    |
 
-<aside class="notice">当前 REST API 不支持自定义时间区间，如需要历史固定时间范围的数据，请参考 Websocket API 中的 K 线接口。</aside>
-<aside class="notice">获取 hb10 净值时， symbol 请填写 “hb10”。</aside>
-<aside class="notice">K线周期以新加坡时间为基准开始计算，例如日K线的起始周期为新加坡时间0时-新加坡时间次日0时。</aside>
 > Response:
 
 ```json
@@ -1888,6 +1864,8 @@ curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
 
 此接口返回最近24小时的行情数据汇总。
 
+<aside class="notice">此接口返回的成交量、成交金额为24小时滚动数据（平移窗口大小24小时），有可能会出现后一个窗口内的累计成交量、累计成交额小于前一窗口的情况。</aside>
+
 ```shell
 curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
 ```
@@ -1992,6 +1970,20 @@ curl "https://api.huobi.pro/market/etp?symbol=btc3lusdt"
 | { currency     | float    | 币种                                      |
 | amount }       | float    | 金额                                      |
 | actualLeverage | float    | 实际杠杆率                                |
+
+## 行情接口错误码
+
+以下是行情数据接口返回的错误码、错误消息以及说明。
+
+| 错误码            | 错误消息                            | 说明                    |
+| ----------------- | ----------------------------------- | ----------------------- |
+| invalid-parameter | invalid symbol                      | 无效的交易对            |
+| invalid-parameter | invalid period                      | 请求K线，period参数错误 |
+| invalid-parameter | invalid depth                       | 深度depth参数错误       |
+| invalid-parameter | invalid type                        | 深度type 参数错误       |
+| invalid-parameter | invalid size                        | size参数错误            |
+| invalid-parameter | invalid size,valid range: [1, 2000] | size参数错误            |
+| invalid-parameter | request timeout                     | 请求超时                |
 
 # 账户相关
 
