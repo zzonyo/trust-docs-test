@@ -2961,6 +2961,7 @@ curl "https://api.huobi.pro/v1/query/deposit-withdraw?currency=xrp&type=deposit&
 ## Error Code
 
 Below is the response code, message and description returned by Wallet APIs.
+
 | Response Code | Message                              | Description            |
 | ------------- | ------------------------------------ | ---------------------- |
 | 200           | success                              | Successful             |
