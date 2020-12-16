@@ -820,6 +820,12 @@
                   <li>
                     <a href="#etp-8" class="toc-h2 toc-link" data-title="获取杠杆ETP调仓记录">获取杠杆ETP调仓记录</a>
                   </li>
+                  <li>
+                    <a href="#etp-9" class="toc-h2 toc-link" data-title="杠杆ETP单个撤单">杠杆ETP单个撤单</a>
+                  </li>
+                  <li>
+                    <a href="#etp-10" class="toc-h2 toc-link" data-title="杠杆ETP批量撤单">杠杆ETP批量撤单</a>
+                  </li>
               </ul>
           </li>
       </ul>
@@ -5973,11 +5979,7 @@ endTime缺省值：当前时间</p>
                     </span><span class="s2">"chain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"maxWithdrawAmt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200.00000000"</span><span class="p">,</span><span class="w">
                     </span><span class="s2">"withdrawQuotaPerDay"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200.00000000"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"remainWithdrawQuotaPerDay"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200.000000000000000000"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"withdrawQuotaPerYear"</span><span class="p">:</span><span class="w"> </span><span class="s2">"700000.00000000"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"remainWithdrawQuotaPerYear"</span><span class="p">:</span><span class="w"> </span><span class="s2">"700000.000000000000000000"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"withdrawQuotaTotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7000000.00000000"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"remainWithdrawQuotaTotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7000000.000000000000000000"</span><span class="w">
+                    </span><span class="s2">"remainWithdrawQuotaPerDay"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200.000000000000000000"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
@@ -6053,34 +6055,6 @@ endTime缺省值：当前时间</p>
 <td>true</td>
 <td>string</td>
 <td>当日提币剩余额度</td>
-<td></td>
-</tr>
-<tr>
-<td>withdrawQuotaPerYear</td>
-<td>true</td>
-<td>string</td>
-<td>当年提币额度</td>
-<td></td>
-</tr>
-<tr>
-<td>remainWithdrawQuotaPerYear</td>
-<td>true</td>
-<td>string</td>
-<td>当年提币剩余额度</td>
-<td></td>
-</tr>
-<tr>
-<td>withdrawQuotaTotal</td>
-<td>true</td>
-<td>string</td>
-<td>总提币额度</td>
-<td></td>
-</tr>
-<tr>
-<td>remainWithdrawQuotaTotal }</td>
-<td>true</td>
-<td>string</td>
-<td>总提币剩余额度</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -10593,6 +10567,13 @@ endTime缺省值：当前时间<br></p>
 <td>抵扣类型</td>
 <td>如果为空，代表扣除的手续费是原币；如果为&quot;ht&quot;，代表抵扣手续费的是HT；如果为&quot;hbpoint&quot;，代表抵扣手续费的是点卡</td>
 </tr>
+<tr>
+<td>fee-deduct-state</td>
+<td>true</td>
+<td>string</td>
+<td>抵扣状态</td>
+<td>抵扣中：ongoing，抵扣完成：done</td>
+</tr>
 </tbody></table>
 
 <p>注：<br>
@@ -11348,6 +11329,13 @@ endTime缺省值：当前时间<br></p>
 <td>string</td>
 <td>抵扣类型</td>
 <td>ht,hbpoint</td>
+</tr>
+<tr>
+<td>fee-deduct-state</td>
+<td>true</td>
+<td>string</td>
+<td>抵扣状态</td>
+<td>抵扣中：ongoing，抵扣完成：done</td>
 </tr>
 </tbody></table>
 
@@ -21473,7 +21461,160 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
 <td>下页查询起始编号（仅在存在下页数据时返回）</td>
 </tr>
 </tbody></table>
-<h5 id='01298c0163'><br></h5>
+<h5 id='01298c0163'><br></h5><h2 id='etp-9'>杠杆ETP单个撤单</h2>
+<p>用户可以通过该接口进行杠杆ETP撤单。</p>
+<h3 id='http-82'>HTTP 请求</h3>
+<ul>
+<li>POST /v2/etp/{transactId}/cancel</li>
+</ul>
+
+<p>API Key 权限：交易<br>限频值：1次/秒<br></p>
+<h3 id='1f9ac54b15-101'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transactId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>ETP交易ID</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">80042</span><span class="p">,</span><span class="w">
+</span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"撤单失败，订单不存在"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='2213f4c32f-95'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+</tbody></table>
+<h5 id='01298c0163-2'><br></h5><h2 id='etp-10'>杠杆ETP批量撤单</h2>
+<p>用户可以通过该接口进行杠杆ETP批量撤单。</p>
+<h3 id='http-83'>HTTP 请求</h3>
+<ul>
+<li>POST /v2/etp/batch-cancel</li>
+</ul>
+
+<p>API Key 权限：交易<br>限频值：1次/5秒<br></p>
+<h3 id='1f9ac54b15-102'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transactId</td>
+<td>long</td>
+<td>TRUE</td>
+<td>ETP交易ID</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"success"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"5983466"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"failed"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"errMsg"</span><span class="p">:</span><span class="s2">"撤单失败，订单不存在"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"transactId"</span><span class="p">:</span><span class="s2">"65445"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"errCode"</span><span class="p">:</span><span class="mi">80043</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='2213f4c32f-96'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>{ success</td>
+<td>string</td>
+<td>TRUE</td>
+<td>ETP撤单成功交易列表</td>
+</tr>
+<tr>
+<td>errMsg</td>
+<td>long</td>
+<td>TRUE</td>
+<td>撤单失败错误信息</td>
+</tr>
+<tr>
+<td>errCode</td>
+<td>string</td>
+<td>TRUE</td>
+<td>撤单失败错误码</td>
+</tr>
+<tr>
+<td>transactId}</td>
+<td>long</td>
+<td>FALSE</td>
+<td>交易ID</td>
+</tr>
+</tbody></table>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
