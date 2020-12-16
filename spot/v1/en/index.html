@@ -340,9 +340,6 @@
                   <li>
                     <a href="#margin-and-loan" class="toc-h2 toc-link" data-title="Margin and Loan">Margin and Loan</a>
                   </li>
-                  <li>
-                    <a href="#deposit-and-withdraw" class="toc-h2 toc-link" data-title="Deposit and Withdraw">Deposit and Withdraw</a>
-                  </li>
               </ul>
           </li>
           <li>
@@ -464,6 +461,12 @@
                   </li>
                   <li>
                     <a href="#search-for-existed-withdraws-and-deposits" class="toc-h2 toc-link" data-title="Search for Existed Withdraws and Deposits">Search for Existed Withdraws and Deposits</a>
+                  </li>
+                  <li>
+                    <a href="#error-code-3" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
+                  </li>
+                  <li>
+                    <a href="#faq" class="toc-h2 toc-link" data-title="FAQ">FAQ</a>
                   </li>
               </ul>
           </li>
@@ -2409,49 +2412,6 @@ Each user could create up to 200 sub users, and each sub user could create 5 API
 <p>The value <code>0</code> indicates that the trading symbols doesn&#39;t support margin trading.</p>
 <h2 id='margin-and-loan'>Margin and Loan</h2><h3 id='q1-i-can-see-i-have-loanable-amount-in-my-margin-account-why-the-api-returns-no-sufficient-amount-error-when-i-apply-margin-loan'>Q1: I can see I have loanable amount in my margin account, why the API returns no sufficient amount error when I apply margin loan?</h3>
 <p>A: The available amount depends on not only account available amount, but also the system available amount. Due to risk control, the system has a max available amount everyday. If the total loan amount reaches the max value, user will fail to apply loan, unless someone repays the loan in the same day. Right now we are implementing a more friendly solution that tries to provide more accurate information to API users.</p>
-<h2 id='deposit-and-withdraw'>Deposit and Withdraw</h2><h3 id='q1-why-the-api-returns-error-39-api-not-support-temp-addr-39-when-withdrawing'>Q1：Why the API returns error &#39;api-not-support-temp-addr&#39; when withdrawing?</h3>
-<p>A：User has to include the address into the pre-defined address table on Huobi official website before withdrawing through API.</p>
-<h3 id='q2-why-the-api-returns-error-39-invaild-address-39-when-withdraw-usdt'>Q2：Why the API returns error &#39;Invaild-Address&#39; when withdraw USDT?</h3>
-<p>A：USDT locates on multiple chains, therefore the withdraw order should clearly specify which chain the withdrawal goes to. See the table below:</p>
-
-<table><thead>
-<tr>
-<th>Chain</th>
-<th>Field Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ERC20 (default)</td>
-<td><code>usdterc20</code></td>
-</tr>
-<tr>
-<td>OMNI</td>
-<td><code>usdt</code></td>
-</tr>
-<tr>
-<td>TRX</td>
-<td><code>trc20usdt</code></td>
-</tr>
-</tbody></table>
-
-<p>If leaving the field empty, default target chain is <code>ERC20</code>, or you can explicitly set the chain to <code>usdterc20</code>.</p>
-
-<p>If the target chain is <code>OMNI</code> or <code>TRX</code>, the field value should be <code>usdt</code> or <code>trc20usdt</code>.</p>
-
-<p>The full chain name list for all currencies can be retrieved from endpoint <code>GET /v2/reference/currencies</code>.</p>
-<h3 id='q3-how-to-specify-39-fee-39-when-creating-a-withdraw-request'>Q3：How to specify &#39;fee&#39; when creating a withdraw request?</h3>
-<p>A：Please refer to the response from endpoint <code>GET /v2/reference/currencies</code>, where the field <code>withdrawFeeType</code> defining different fee types below: </p>
-
-<ul>
-<li>transactFeeWithdraw : The withdraw fee per request (only applicable when withdrawFeeType=fixed).<br></li>
-<li>minTransactFeeWithdraw : The minimum withdraw fee per request (only applicable when withdrawFeeType=circulated or ratio).</li>
-<li>maxTransactFeeWithdraw : The maximum withdraw fee per request (only applicable when withdrawFeeType=circulated or ratio).</li>
-<li>transactFeeRateWithdraw : The withdraw fee rate per request (only applicable when withdrawFeeType=ratio).</li>
-</ul>
-<h3 id='q4-how-to-query-my-withdraw-quota'>Q4：How to query my withdraw quota?</h3>
-<p>A：Please refer to the response from endpoint <code>GET /v2/account/withdraw/quota</code>, where quota per request, daily quota, annual quota, overall quota are available.</p>
-
-<p>Note: If you need to withdraw large amount which breaking the limitation, you can contact customer support for assistance.</p>
 <h1 id='reference-data'>Reference Data</h1><h2 id='introduction-2'>Introduction</h2>
 <p>Reference data APIs provide public reference information such as system status, market status, symbol info, currency info, chain info and server timestamp.</p>
 <h2 id='get-system-status'>Get system status</h2>
@@ -5697,47 +5657,6 @@ Callable by sub user<br></p>
 <p>Wallet APIs provide query functionality for deposit address, withdraw address, withdraw quota, deposit and withdraw history, and also provide withdraw and cancel-withdraw functionality.</p>
 
 <aside class="notice">All endpoints in this section require authentication</aside>
-
-<p>Below is the response code, message and description returned by Wallet APIs.</p>
-
-<table><thead>
-<tr>
-<th>Response Code</th>
-<th>Message</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td>success</td>
-<td>Successful</td>
-</tr>
-<tr>
-<td>500</td>
-<td>error</td>
-<td>Server internal error</td>
-</tr>
-<tr>
-<td>1002</td>
-<td>unauthorized</td>
-<td>User is unautherized</td>
-</tr>
-<tr>
-<td>1003</td>
-<td>invalid signature</td>
-<td>API signature is wrong</td>
-</tr>
-<tr>
-<td>2002</td>
-<td>invalid field value in &quot;field name&quot;</td>
-<td>Parameter is invalid</td>
-</tr>
-<tr>
-<td>2003</td>
-<td>missing mandatory field &quot;field name&quot;</td>
-<td>Parameter is missing</td>
-</tr>
-</tbody></table>
 <h2 id='query-deposit-address'>Query Deposit Address</h2>
 <p>Parent user and sub user could query deposit address of corresponding chain, for a specific crypto currency (except IOTA).</p>
 
@@ -6564,6 +6483,59 @@ Rate Limit (NEW): 20times/2s</p>
 <td>Confirmed but currently in an orphan branch</td>
 </tr>
 </tbody></table>
+<h2 id='error-code-3'>Error Code</h2>
+<p>Below is the response code, message and description returned by Wallet APIs.
+| Response Code | Message                              | Description            |
+| ------------- | ------------------------------------ | ---------------------- |
+| 200           | success                              | Successful             |
+| 500           | error                                | Server internal error  |
+| 1002          | unauthorized                         | User is unautherized   |
+| 1003          | invalid signature                    | API signature is wrong |
+| 2002          | invalid field value in &quot;field name&quot;  | Parameter is invalid   |
+| 2003          | missing mandatory field &quot;field name&quot; | Parameter is missing   |</p>
+<h2 id='faq'>FAQ</h2><h3 id='q1-why-the-api-returns-error-39-api-not-support-temp-addr-39-when-withdrawing'>Q1：Why the API returns error &#39;api-not-support-temp-addr&#39; when withdrawing?</h3>
+<p>A：User has to include the address into the pre-defined address table on Huobi official website before withdrawing through API.</p>
+<h3 id='q2-why-the-api-returns-error-39-invaild-address-39-when-withdraw-usdt'>Q2：Why the API returns error &#39;Invaild-Address&#39; when withdraw USDT?</h3>
+<p>A：USDT locates on multiple chains, therefore the withdraw order should clearly specify which chain the withdrawal goes to. See the table below:</p>
+
+<table><thead>
+<tr>
+<th>Chain</th>
+<th>Field Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ERC20 (default)</td>
+<td><code>usdterc20</code></td>
+</tr>
+<tr>
+<td>OMNI</td>
+<td><code>usdt</code></td>
+</tr>
+<tr>
+<td>TRX</td>
+<td><code>trc20usdt</code></td>
+</tr>
+</tbody></table>
+
+<p>If leaving the field empty, default target chain is <code>ERC20</code>, or you can explicitly set the chain to <code>usdterc20</code>.</p>
+
+<p>If the target chain is <code>OMNI</code> or <code>TRX</code>, the field value should be <code>usdt</code> or <code>trc20usdt</code>.</p>
+
+<p>The full chain name list for all currencies can be retrieved from endpoint <code>GET /v2/reference/currencies</code>.</p>
+<h3 id='q3-how-to-specify-39-fee-39-when-creating-a-withdraw-request'>Q3：How to specify &#39;fee&#39; when creating a withdraw request?</h3>
+<p>A：Please refer to the response from endpoint <code>GET /v2/reference/currencies</code>, where the field <code>withdrawFeeType</code> defining different fee types below: </p>
+
+<ul>
+<li>transactFeeWithdraw : The withdraw fee per request (only applicable when withdrawFeeType=fixed).<br></li>
+<li>minTransactFeeWithdraw : The minimum withdraw fee per request (only applicable when withdrawFeeType=circulated or ratio).</li>
+<li>maxTransactFeeWithdraw : The maximum withdraw fee per request (only applicable when withdrawFeeType=circulated or ratio).</li>
+<li>transactFeeRateWithdraw : The withdraw fee rate per request (only applicable when withdrawFeeType=ratio).</li>
+</ul>
+<h3 id='q4-how-to-query-my-withdraw-quota'>Q4：How to query my withdraw quota?</h3>
+<p>A：Please refer to the response from endpoint <code>GET /v2/account/withdraw/quota</code>, where quota per request, daily quota, annual quota, overall quota are available.</p>
+
+<p>Note: If you need to withdraw large amount which breaking the limitation, you can contact customer support for assistance.</p>
 <h1 id='sub-user-management'>Sub user management</h1><h2 id='introduction-6'>Introduction</h2>
 <p>Sub user management APIs provide sub user account management (creation, query, permission, transfer), sub user API key management (creation, update, query, deletion), sub user address (deposit, withdraw) query and balance query.</p>
 
@@ -9014,7 +8986,7 @@ Rate Limit (NEW): 100times/2s</p>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59378"</span><span class="w">
 </span></code></pre><h3 id='response-content-45'>Response Content</h3>
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
-<h3 id='error-code-3'>Error Code</h3>
+<h3 id='error-code-4'>Error Code</h3>
 <blockquote>
 <p>Response:</p>
 </blockquote>
@@ -15417,7 +15389,7 @@ or
 <p><strong>Rate limt of pull style query (req)</strong></p>
 
 <p>The limitation of single connection is 100 ms.</p>
-<h3 id='error-code-4'>Error Code</h3>
+<h3 id='error-code-5'>Error Code</h3>
 <p>Below is the error code, error message and description</p>
 
 <table><thead>
@@ -17813,7 +17785,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Upon success, Websocket client should receive a response below:</p>
-<h3 id='error-code-5'>Error Code</h3>
+<h3 id='error-code-6'>Error Code</h3>
 <p>Below is the return code, return message and the description returend from Asset and Order WebSocket</p>
 
 <table><thead>
