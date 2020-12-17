@@ -171,7 +171,7 @@ Huobi will publish API announcement in advance for any API change, please subscr
 
 You can click <a href='https://huobiglobal.zendesk.com/hc/en-us/sections/360000070201-API-Announcements'>Here</a> to subscribe the announcements. 
 
-How to subscribe: Login to API Announcements page, click "Follow" button in the top right of the page, then choose the type you want to follow. After you subscribe, the button will changed to "Following". If you don't have any account, you need to register first. 
+How to subscribe: Login to [API Announcements page](https://huobiglobal.zendesk.com/hc/en-us/sections/360000070201-API-Announcements), click "Follow" button in the top right of the page, then choose the type you want to follow. After you subscribe, the button will changed to "Following". If you don't have any account, you need to register first. 
 
 ## Contact Us
 
@@ -722,13 +722,6 @@ The JSON data type described in this document is defined as below:
 
 # Frequently Asked Questions
 
-## API Announcements
-Huobi will publish API announcement in advance for any API change, please subscribe our announcements so that you can get latest update. 
-
-How to subscribe: Login to [API Announcements page](https://huobiglobal.zendesk.com/hc/en-us/sections/360000070201-API-Announcements), click "Follow" button in the top right of the page, then choose the type you want to follow. After you subscribe, the button will changed to "Following". If you don't have any account, you need to register first. 
-
-## Access and Authentication
-
 ### Q1：How many API Keys one user can apply?
 A:  Every user can create 5 API Keys, and each API Key can be granted with 3 permissions: **read**, **trade** and **withdraw**.
 Each user could create up to 200 sub users, and each sub user could create 5 API Keys, each API key can be granted with 2 permissions: **read** and **trade**.
@@ -829,13 +822,11 @@ Right now the official [SDK](https://github.com/HuobiRDCenter) supports multiple
 ### Q6：Why the API return 'gateway-internal-error'?
 A：Please check below possible reasons:
 
-1、Check the `account-id`, it could be returned from `GET /v1/account/accounts`.
+1、The data format should be correct (standard JSON).
 
-2、It may be due to network issue, please try again later.
+2、The `Content-Type` in POST header should be `application/json` .
 
-3、The data format should be correct (standard JSON).
-
-4、The `Content-Type` in POST header should be `application/json` .
+3、It may be due to network issue, please try again later.
 
 ### Q7：Why the API return 'login-required'?
 A：Please check below possible reasons:
@@ -844,18 +835,9 @@ A：Please check below possible reasons:
 
 2、The parameter should include `Signature`.
 
-3、Check the `account-id` it could be returned from `GET /v1/account/accounts`.
-
-4、It may happen if previous request reach the rate limitation.
-
 ### Q8: Why the API return HTTP 405 'method-not-allowed'?
 
 A: It indicates the request path doesn't exist, please check the path spelling carefully. Due to the Nginx setting, the request path is case sensitive, please follow the path definition in document.
-
-## Margin and Loan
-
-### Q1: I can see I have loanable amount in my margin account, why the API returns no sufficient amount error when I apply margin loan?
-A: The available amount depends on not only account available amount, but also the system available amount. Due to risk control, the system has a max available amount everyday. If the total loan amount reaches the max value, user will fail to apply loan, unless someone repays the loan in the same day. Right now we are implementing a more friendly solution that tries to provide more accurate information to API users.
 
 # Reference Data
 
@@ -5263,72 +5245,6 @@ Isolated/cross margin loan APIs provide loan related functionality such as reque
 <aside class="notice">Currently loan only supports base currency of USDT, HUSD, and BTC</aside>
 <aside class="notice">Once completed a margin loan or transfer, please wait for 10 seconds before requesting for next margin loan or transfer.</aside>
 
-Below is the error code and description for Isolated margin loan APIs
-
-| Error Code                                  | Description                                     |
-| ------------------------------------------- | ----------------------------------------------- |
-| account-transfer-balance-insufficient-error | Account balance is insufficient                 |
-| account-transfer-balance-overflow-error     | To account balance is overflow                  |
-| base-msg                                    | Customized error, check error message           |
-| base-system-error                           | Server internal error                           |
-| base-currency-error                         | currency is invalid                             |
-| base-symbol-error                           | symbol is invalid                               |
-| base-margin-symbol-invalid                  | symbol is invalid for margin                    |
-| base-record-invalid                         | The data is not found                           |
-| base-request-timeout                        | Request timeout, try again later                |
-| base_request_exceed_number_limit            | Request exceed number limit, try again later    |
-| base-date-limit-error                       | Date is invalid                                 |
-| base-update-error                           | Update operation error                          |
-| base-operation-forbidden                    | Operation is forbidden                          |
-| dw-insufficient-balance                     | Account balance is insufficient                 |
-| dw-account-transfer-error                   | Transfer error                                  |
-| frequent-invoke                             | Operates too frequently, try again later        |
-| loan-order-not-found                        | Loan order is not found                         |
-| loan-amount-scale-limit                     | Loan order amount precision error               |
-| loan-repay-max-limit                        | Repay amount is greater than requested          |
-| loan-insufficient-balance                   | Loan account balance is insufficient            |
-| login-required                              | Signature is missing                            |
-| margin-country-not-allow                    | Your country is not allowed                     |
-| margin-country-auth-required                | Your IP is not allowed, require ID verification |
-| margin-trading-is-not-available             | Isolated margin trading is not available        |
-| margin-account-state-error                  | Margin account state is abnormal (liquidation)  |
-| risk-verification-failed                    | Risk verification failed                        |
-| sub-user-auth-required                      | Sub user is not authorized                      |
-
-Below is the error code and description for Cross margin loan APIs (including general margin)
-
-| Error Code                               | Description                                     |
-| ---------------------------------------- | ----------------------------------------------- |
-| abnormal-users-cannot-transfer           | Abnormal user cannot transfer                   |
-| account-explosion-in-prohibited-transfer | Account is explosion and transfer is prohibited |
-| account-is-abnormal-retry-after-refresh  | Account is abnormal, try again later            |
-| account-balance-insufficient-error       | Account balance is insufficient                 |
-| account-cannot-be-inquired               | Account is not found                            |
-| base-not-in-white-list                   | Operation is not allowed for current user       |
-| base-currency-error                      | Currency is not found                           |
-| base-operation-forbidden                 | Operation is forbidden                          |
-| base-user-request-exceed-limit           | Operates too frequently, try again later        |
-| base-currency-not-open                   | The currency is not enabled                     |
-| beyond-maximum-number-of-rollover        | Transfer amount exceed the limit                |
-| exceed-maximum-amount                    | Exceed the limit                                |
-| start-date-cannot-greater-than-end-date  | Start date cannot be greater than end date      |
-| frequent-invoke                          | Operates too frequently                         |
-| loan-order-not-found                     | Loan order is not found                         |
-| loan-amount-scale-limit                  | Loan order amount precision error               |
-| loan-repay-max-limit                     | Repay amount is greater than requested          |
-| loan-insufficient-balance                | Loan account balance is insufficient            |
-| loan-fee-rate-compute-fail               | Loan fee is abnormal                            |
-| login-required                           | Signature is missing                            |
-| margin-subuser-no-permission             | Sub user has no permission                      |
-| normal-and-warehouse-can-transfer        | Normal and warehouse user can transfer          |
-| order-orderamount-precision-error        | Order amount precision error                    |
-| require-exchange-id                      | Exchange id is required                         |
-| subacount-currency-not-exit              | Sub account for this currency does not exist    |
-| system-busy                              | System is busy                                  |
-| unsupport-kyc-info                       | KYC info is unsupported                         |
-| uc-network-error                         | Network error for User Center, try again later  |
-| uncreated-currency-cannot-be-drawn       | Uncreated sub account cannot be drawn           |
-
 ## Transfer Asset from Spot Trading Account to Isolated Margin Account（Isolated）
 
 API Key Permission：Trade<br>
@@ -6272,6 +6188,80 @@ Sort by “repayTime”
 | paidHt          | string    | TRUE      | HT paid                                                      |
 | paidPoint }}    | string    | TRUE      | point paid                                                   |
 | nextId          | long      | FALSE     | search the start ID in the next page  (return only when there is data in the  next page) |
+
+## Error Code
+
+**Below is the error code and description for Isolated margin loan APIs**
+
+| Error Code                                  | Description                                     |
+| ------------------------------------------- | ----------------------------------------------- |
+| account-transfer-balance-insufficient-error | Account balance is insufficient                 |
+| account-transfer-balance-overflow-error     | To account balance is overflow                  |
+| base-msg                                    | Customized error, check error message           |
+| base-system-error                           | Server internal error                           |
+| base-currency-error                         | currency is invalid                             |
+| base-symbol-error                           | symbol is invalid                               |
+| base-margin-symbol-invalid                  | symbol is invalid for margin                    |
+| base-record-invalid                         | The data is not found                           |
+| base-request-timeout                        | Request timeout, try again later                |
+| base_request_exceed_number_limit            | Request exceed number limit, try again later    |
+| base-date-limit-error                       | Date is invalid                                 |
+| base-update-error                           | Update operation error                          |
+| base-operation-forbidden                    | Operation is forbidden                          |
+| dw-insufficient-balance                     | Account balance is insufficient                 |
+| dw-account-transfer-error                   | Transfer error                                  |
+| frequent-invoke                             | Operates too frequently, try again later        |
+| loan-order-not-found                        | Loan order is not found                         |
+| loan-amount-scale-limit                     | Loan order amount precision error               |
+| loan-repay-max-limit                        | Repay amount is greater than requested          |
+| loan-insufficient-balance                   | Loan account balance is insufficient            |
+| login-required                              | Signature is missing                            |
+| margin-country-not-allow                    | Your country is not allowed                     |
+| margin-country-auth-required                | Your IP is not allowed, require ID verification |
+| margin-trading-is-not-available             | Isolated margin trading is not available        |
+| margin-account-state-error                  | Margin account state is abnormal (liquidation)  |
+| risk-verification-failed                    | Risk verification failed                        |
+| sub-user-auth-required                      | Sub user is not authorized                      |
+
+**Below is the error code and description for Cross margin loan APIs (including general margin)**
+
+| Error Code                               | Description                                     |
+| ---------------------------------------- | ----------------------------------------------- |
+| abnormal-users-cannot-transfer           | Abnormal user cannot transfer                   |
+| account-explosion-in-prohibited-transfer | Account is explosion and transfer is prohibited |
+| account-is-abnormal-retry-after-refresh  | Account is abnormal, try again later            |
+| account-balance-insufficient-error       | Account balance is insufficient                 |
+| account-cannot-be-inquired               | Account is not found                            |
+| base-not-in-white-list                   | Operation is not allowed for current user       |
+| base-currency-error                      | Currency is not found                           |
+| base-operation-forbidden                 | Operation is forbidden                          |
+| base-user-request-exceed-limit           | Operates too frequently, try again later        |
+| base-currency-not-open                   | The currency is not enabled                     |
+| beyond-maximum-number-of-rollover        | Transfer amount exceed the limit                |
+| exceed-maximum-amount                    | Exceed the limit                                |
+| start-date-cannot-greater-than-end-date  | Start date cannot be greater than end date      |
+| frequent-invoke                          | Operates too frequently                         |
+| loan-order-not-found                     | Loan order is not found                         |
+| loan-amount-scale-limit                  | Loan order amount precision error               |
+| loan-repay-max-limit                     | Repay amount is greater than requested          |
+| loan-insufficient-balance                | Loan account balance is insufficient            |
+| loan-fee-rate-compute-fail               | Loan fee is abnormal                            |
+| login-required                           | Signature is missing                            |
+| margin-subuser-no-permission             | Sub user has no permission                      |
+| normal-and-warehouse-can-transfer        | Normal and warehouse user can transfer          |
+| order-orderamount-precision-error        | Order amount precision error                    |
+| require-exchange-id                      | Exchange id is required                         |
+| subacount-currency-not-exit              | Sub account for this currency does not exist    |
+| system-busy                              | System is busy                                  |
+| unsupport-kyc-info                       | KYC info is unsupported                         |
+| uc-network-error                         | Network error for User Center, try again later  |
+| uncreated-currency-cannot-be-drawn       | Uncreated sub account cannot be drawn           |
+
+
+## FAQ
+
+### Q1: I can see I have loanable amount in my margin account, why the API returns no sufficient amount error when I apply margin loan?
+A: The available amount depends on not only account available amount, but also the system available amount. Due to risk control, the system has a max available amount everyday. If the total loan amount reaches the max value, user will fail to apply loan, unless someone repays the loan in the same day. Right now we are implementing a more friendly solution that tries to provide more accurate information to API users.
 
 # Margin Loan (C2C)
 
