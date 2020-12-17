@@ -1574,27 +1574,25 @@ Error Code | Error Details Description|
 
 - For users who use interface “query contract history orders” (URL: /api/v1/contract_hisorders), please enter as many query conditions as possible (including symbol, trade_type（recommended to send “0” to query all）, type, status, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
 
- 
 
 ### 2. Query contract match results interface: /api/v1/contract_matchresults
 
 - To improve query performance and response speed, please enter as many querying conditions as possible (including symbol, trade_type（recommended to send “0” to query all）, contract_code, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
 
- 
 
 ### 3. Query contract financial record interface: /api/v1/contract_financial_record
 
 - To improve query performance and response speed, please enter as many querying conditions as possible (including symbol, type(recommended to leave it blank to query all), create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
 
- 
 
 ### 4. Query contract order detail interface: api/v1/contract_order_detail
+
+- When querying orders without parameter(such as the parameter: created_at), the query result data may be delayed. It is recommended to pass the two parameters of the interface: created_at (order timestamp) and order_type (order type, default 1), the database will be directly queried, and the query results data will be more timely.
 
 - Querying condition “created_at” uses 13-bit long type time stamp (including milliseconds). Querying performance will be improved when accurate time stamps are entered.
 
 - For example: the converted time stamp of "2019/10/18 10:26:22" is 1571365582123. The returned ts from interface “contract_order” can be used as time stamp to query corresponding order. 0 is not allowed in parameter “created_at”.
 
- 
 
 ### 5. Query contract trigger order history orders interface:
 
@@ -1602,7 +1600,6 @@ Error Code | Error Details Description|
 
 - To improve query performance and response speed, please enter as many parameters as possible (including symbol, contract_code, trade_type, status, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
 
- 
 
 ### 6. WebSocket subscription to Market Depth data:
 
@@ -1892,21 +1889,26 @@ Most of the network connectivity problems ,(such as Connection reset or network 
   
  When subscribing private accounts, orders and positions, the heartbeat should also be maintained regularly ,which is different from the market heartbeat format . Please refer to the <a href=https://docs.huobigroup.com/docs/dm/v1/en/#websocket-heartbeat-and-authentication-interface >"websocket Heartbeat and Authentication Interface" </a>. if the it is disconnected ,please try to reconnect.
 
-### Q8. What is the difference between order status 1 and 2 ? what is the status 3 ?
+### Q8: What is the difference between order status 1 and 2 ? what is the status 3 ?
  
  Status 1 is the preparation for submission. status 2 is the sequential submission  of internal process, which can be considered that it has been accepted by the system.  Status 3 indicated that the order has been  already submitted to market.
 
-### Q9. Is there an interface to get the total assets in BTC of my account ? 
+### Q9: Is there an interface to get the total assets in BTC of my account ? 
   
  No.
 
-### Q10. Why is the order filled after the order is withdrawed successfully by placing API cancellation ?
+### Q10: Why is the order filled after the order is withdrawed successfully by placing API cancellation ?
   
  The success return of order cancellation or placement  only represents that the command is excuted successfully and doesn't mean that the order has been cancelled . You can check the order status through the interface api/v1/contract_order_info.
 
-### Q11. How long does it generally take for an API from withdrawing to cancelling successfully ?
+### Q11: How long does it generally take for an API from withdrawing to cancelling successfully ?
 
 The order cancellation command generally takes several tens of ms. The actual status of order cancellation can be obtained by invoking the interface: api/v1/contract_order_info.
+
+### Q12: How to get historical liquidation orders?
+
+To obtain historical liquidation orders, you can access the one of four api interfaces: Get History Orders (/api/v1/contract_hisorders), Get History Match Results (/api/v1/contract_matchresults), Query history orders via multiple fields (/api/v1/contract_hisorders_exact), Query history transactions via multiple fields (/api/v1/contract_matchresults_exact), with the return field order_source (order source) to judge. When order_source returns "risk", it means that this order is a liquidated order.
+
 
 
 ## Error Codes
