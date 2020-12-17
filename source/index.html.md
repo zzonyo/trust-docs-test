@@ -1910,7 +1910,6 @@ The order cancellation command generally takes several tens of ms. The actual st
 To obtain historical liquidation orders, you can access the one of four api interfaces: Get History Orders (/api/v1/contract_hisorders), Get History Match Results (/api/v1/contract_matchresults), Query history orders via multiple fields (/api/v1/contract_hisorders_exact), Query history transactions via multiple fields (/api/v1/contract_matchresults_exact), with the return field order_source (order source) to judge. When order_source returns "risk", it means that this order is a liquidated order.
 
 
-
 ## Error Codes
 
 ### Q1: What is the reason for 1030 error code?
