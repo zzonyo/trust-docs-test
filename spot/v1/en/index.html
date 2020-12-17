@@ -329,13 +329,28 @@
             <a href="#frequently-asked-questions" class="toc-h1 toc-link" data-title="Frequently Asked Questions">Frequently Asked Questions</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#api-announcements" class="toc-h2 toc-link" data-title="API Announcements">API Announcements</a>
+                    <a href="#q1-how-many-api-keys-one-user-can-apply" class="toc-h2 toc-link" data-title="Q1：How many API Keys one user can apply?">Q1：How many API Keys one user can apply?</a>
                   </li>
                   <li>
-                    <a href="#access-and-authentication" class="toc-h2 toc-link" data-title="Access and Authentication">Access and Authentication</a>
+                    <a href="#q2-why-apis-are-always-disconnected-or-timeout" class="toc-h2 toc-link" data-title="Q2：Why APIs are always disconnected or timeout?">Q2：Why APIs are always disconnected or timeout?</a>
                   </li>
                   <li>
-                    <a href="#margin-and-loan" class="toc-h2 toc-link" data-title="Margin and Loan">Margin and Loan</a>
+                    <a href="#q3-why-the-websocket-is-often-disconnected" class="toc-h2 toc-link" data-title="Q3：Why the WebSocket is often disconnected?">Q3：Why the WebSocket is often disconnected?</a>
+                  </li>
+                  <li>
+                    <a href="#q4-what-is-the-difference-between-api-huobi-pro-and-api-aws-huobi-pro" class="toc-h2 toc-link" data-title="Q4：What is the difference between api.huobi.pro and api-aws.huobi.pro?">Q4：What is the difference between <u>api.huobi.pro</u> and <u>api-aws.huobi.pro</u>?</a>
+                  </li>
+                  <li>
+                    <a href="#q5-why-the-signature-authentication-always-fail" class="toc-h2 toc-link" data-title="Q5：Why the signature authentication always fail?">Q5：Why the signature authentication always fail?</a>
+                  </li>
+                  <li>
+                    <a href="#q6-why-the-api-return-39-gateway-internal-error-39" class="toc-h2 toc-link" data-title="Q6：Why the API return 'gateway-internal-error'?">Q6：Why the API return 'gateway-internal-error'?</a>
+                  </li>
+                  <li>
+                    <a href="#q7-why-the-api-return-39-login-required-39" class="toc-h2 toc-link" data-title="Q7：Why the API return 'login-required'?">Q7：Why the API return 'login-required'?</a>
+                  </li>
+                  <li>
+                    <a href="#q8-why-the-api-return-http-405-39-method-not-allowed-39" class="toc-h2 toc-link" data-title="Q8: Why the API return HTTP 405 'method-not-allowed'?">Q8: Why the API return HTTP 405 'method-not-allowed'?</a>
                   </li>
               </ul>
           </li>
@@ -658,6 +673,12 @@
                   </li>
                   <li>
                     <a href="#repayment-record-reference-cross" class="toc-h2 toc-link" data-title="Repayment Record Reference（Cross）">Repayment Record Reference（Cross）</a>
+                  </li>
+                  <li>
+                    <a href="#error-code-6" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
+                  </li>
+                  <li>
+                    <a href="#faq-3" class="toc-h2 toc-link" data-title="FAQ">FAQ</a>
                   </li>
               </ul>
           </li>
@@ -1533,7 +1554,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 
 <p>You can click <a href='https://huobiglobal.zendesk.com/hc/en-us/sections/360000070201-API-Announcements'>Here</a> to subscribe the announcements. </p>
 
-<p>How to subscribe: Login to API Announcements page, click &quot;Follow&quot; button in the top right of the page, then choose the type you want to follow. After you subscribe, the button will changed to &quot;Following&quot;. If you don&#39;t have any account, you need to register first. </p>
+<p>How to subscribe: Login to <a href="https://huobiglobal.zendesk.com/hc/en-us/sections/360000070201-API-Announcements">API Announcements page</a>, click &quot;Follow&quot; button in the top right of the page, then choose the type you want to follow. After you subscribe, the button will changed to &quot;Following&quot;. If you don&#39;t have any account, you need to register first. </p>
 <h2 id='contact-us'>Contact Us</h2>
 <p>If you have any other questions on API, you can contact us by below ways:</p>
 
@@ -2231,11 +2252,7 @@ The types include:</p>
 <li>It is suggested to subscribe both WebSocket topic <code>orders.$symbol.update</code> and <code>account.update#${mode}</code>. The former one tells the order status update and arrives earlier than the latter one, and the latter one confirms the final asset balance.</li>
 <li>It is suggested not to subscribe WebSocket topic <code>accounts</code>, which is replaced by <code>accounts.update#${mode}</code>, and will be retired later.</li>
 </ul>
-<h1 id='frequently-asked-questions'>Frequently Asked Questions</h1><h2 id='api-announcements'>API Announcements</h2>
-<p>Huobi will publish API announcement in advance for any API change, please subscribe our announcements so that you can get latest update. </p>
-
-<p>How to subscribe: Login to <a href="https://huobiglobal.zendesk.com/hc/en-us/sections/360000070201-API-Announcements">API Announcements page</a>, click &quot;Follow&quot; button in the top right of the page, then choose the type you want to follow. After you subscribe, the button will changed to &quot;Following&quot;. If you don&#39;t have any account, you need to register first. </p>
-<h2 id='access-and-authentication'>Access and Authentication</h2><h3 id='q1-how-many-api-keys-one-user-can-apply'>Q1：How many API Keys one user can apply?</h3>
+<h1 id='frequently-asked-questions'>Frequently Asked Questions</h1><h3 id='q1-how-many-api-keys-one-user-can-apply'>Q1：How many API Keys one user can apply?</h3>
 <p>A:  Every user can create 5 API Keys, and each API Key can be granted with 3 permissions: <strong>read</strong>, <strong>trade</strong> and <strong>withdraw</strong>.
 Each user could create up to 200 sub users, and each sub user could create 5 API Keys, each API key can be granted with 2 permissions: <strong>read</strong> and <strong>trade</strong>.</p>
 
@@ -2332,27 +2349,19 @@ Each user could create up to 200 sub users, and each sub user could create 5 API
 <h3 id='q6-why-the-api-return-39-gateway-internal-error-39'>Q6：Why the API return &#39;gateway-internal-error&#39;?</h3>
 <p>A：Please check below possible reasons:</p>
 
-<p>1、Check the <code>account-id</code>, it could be returned from <code>GET /v1/account/accounts</code>.</p>
+<p>1、The data format should be correct (standard JSON).</p>
 
-<p>2、It may be due to network issue, please try again later.</p>
+<p>2、The <code>Content-Type</code> in POST header should be <code>application/json</code> .</p>
 
-<p>3、The data format should be correct (standard JSON).</p>
-
-<p>4、The <code>Content-Type</code> in POST header should be <code>application/json</code> .</p>
+<p>3、It may be due to network issue, please try again later.</p>
 <h3 id='q7-why-the-api-return-39-login-required-39'>Q7：Why the API return &#39;login-required&#39;?</h3>
 <p>A：Please check below possible reasons:</p>
 
 <p>1、The parameter should include <code>AccessKeyId</code>.</p>
 
 <p>2、The parameter should include <code>Signature</code>.</p>
-
-<p>3、Check the <code>account-id</code> it could be returned from <code>GET /v1/account/accounts</code>.</p>
-
-<p>4、It may happen if previous request reach the rate limitation.</p>
 <h3 id='q8-why-the-api-return-http-405-39-method-not-allowed-39'>Q8: Why the API return HTTP 405 &#39;method-not-allowed&#39;?</h3>
 <p>A: It indicates the request path doesn&#39;t exist, please check the path spelling carefully. Due to the Nginx setting, the request path is case sensitive, please follow the path definition in document.</p>
-<h2 id='margin-and-loan'>Margin and Loan</h2><h3 id='q1-i-can-see-i-have-loanable-amount-in-my-margin-account-why-the-api-returns-no-sufficient-amount-error-when-i-apply-margin-loan'>Q1: I can see I have loanable amount in my margin account, why the API returns no sufficient amount error when I apply margin loan?</h3>
-<p>A: The available amount depends on not only account available amount, but also the system available amount. Due to risk control, the system has a max available amount everyday. If the total loan amount reaches the max value, user will fail to apply loan, unless someone repays the loan in the same day. Right now we are implementing a more friendly solution that tries to provide more accurate information to API users.</p>
 <h1 id='reference-data'>Reference Data</h1><h2 id='introduction-2'>Introduction</h2>
 <p>Reference data APIs provide public reference information such as system status, market status, symbol info, currency info, chain info and server timestamp.</p>
 <h2 id='get-system-status'>Get system status</h2>
@@ -11785,250 +11794,6 @@ The conditional order before triggering, as well as the conditional order failed
 <aside class="notice">Currently loan only supports base currency of USDT, HUSD, and BTC</aside>
 
 <aside class="notice">Once completed a margin loan or transfer, please wait for 10 seconds before requesting for next margin loan or transfer.</aside>
-
-<p>Below is the error code and description for Isolated margin loan APIs</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>account-transfer-balance-insufficient-error</td>
-<td>Account balance is insufficient</td>
-</tr>
-<tr>
-<td>account-transfer-balance-overflow-error</td>
-<td>To account balance is overflow</td>
-</tr>
-<tr>
-<td>base-msg</td>
-<td>Customized error, check error message</td>
-</tr>
-<tr>
-<td>base-system-error</td>
-<td>Server internal error</td>
-</tr>
-<tr>
-<td>base-currency-error</td>
-<td>currency is invalid</td>
-</tr>
-<tr>
-<td>base-symbol-error</td>
-<td>symbol is invalid</td>
-</tr>
-<tr>
-<td>base-margin-symbol-invalid</td>
-<td>symbol is invalid for margin</td>
-</tr>
-<tr>
-<td>base-record-invalid</td>
-<td>The data is not found</td>
-</tr>
-<tr>
-<td>base-request-timeout</td>
-<td>Request timeout, try again later</td>
-</tr>
-<tr>
-<td>base_request_exceed_number_limit</td>
-<td>Request exceed number limit, try again later</td>
-</tr>
-<tr>
-<td>base-date-limit-error</td>
-<td>Date is invalid</td>
-</tr>
-<tr>
-<td>base-update-error</td>
-<td>Update operation error</td>
-</tr>
-<tr>
-<td>base-operation-forbidden</td>
-<td>Operation is forbidden</td>
-</tr>
-<tr>
-<td>dw-insufficient-balance</td>
-<td>Account balance is insufficient</td>
-</tr>
-<tr>
-<td>dw-account-transfer-error</td>
-<td>Transfer error</td>
-</tr>
-<tr>
-<td>frequent-invoke</td>
-<td>Operates too frequently, try again later</td>
-</tr>
-<tr>
-<td>loan-order-not-found</td>
-<td>Loan order is not found</td>
-</tr>
-<tr>
-<td>loan-amount-scale-limit</td>
-<td>Loan order amount precision error</td>
-</tr>
-<tr>
-<td>loan-repay-max-limit</td>
-<td>Repay amount is greater than requested</td>
-</tr>
-<tr>
-<td>loan-insufficient-balance</td>
-<td>Loan account balance is insufficient</td>
-</tr>
-<tr>
-<td>login-required</td>
-<td>Signature is missing</td>
-</tr>
-<tr>
-<td>margin-country-not-allow</td>
-<td>Your country is not allowed</td>
-</tr>
-<tr>
-<td>margin-country-auth-required</td>
-<td>Your IP is not allowed, require ID verification</td>
-</tr>
-<tr>
-<td>margin-trading-is-not-available</td>
-<td>Isolated margin trading is not available</td>
-</tr>
-<tr>
-<td>margin-account-state-error</td>
-<td>Margin account state is abnormal (liquidation)</td>
-</tr>
-<tr>
-<td>risk-verification-failed</td>
-<td>Risk verification failed</td>
-</tr>
-<tr>
-<td>sub-user-auth-required</td>
-<td>Sub user is not authorized</td>
-</tr>
-</tbody></table>
-
-<p>Below is the error code and description for Cross margin loan APIs (including general margin)</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>abnormal-users-cannot-transfer</td>
-<td>Abnormal user cannot transfer</td>
-</tr>
-<tr>
-<td>account-explosion-in-prohibited-transfer</td>
-<td>Account is explosion and transfer is prohibited</td>
-</tr>
-<tr>
-<td>account-is-abnormal-retry-after-refresh</td>
-<td>Account is abnormal, try again later</td>
-</tr>
-<tr>
-<td>account-balance-insufficient-error</td>
-<td>Account balance is insufficient</td>
-</tr>
-<tr>
-<td>account-cannot-be-inquired</td>
-<td>Account is not found</td>
-</tr>
-<tr>
-<td>base-not-in-white-list</td>
-<td>Operation is not allowed for current user</td>
-</tr>
-<tr>
-<td>base-currency-error</td>
-<td>Currency is not found</td>
-</tr>
-<tr>
-<td>base-operation-forbidden</td>
-<td>Operation is forbidden</td>
-</tr>
-<tr>
-<td>base-user-request-exceed-limit</td>
-<td>Operates too frequently, try again later</td>
-</tr>
-<tr>
-<td>base-currency-not-open</td>
-<td>The currency is not enabled</td>
-</tr>
-<tr>
-<td>beyond-maximum-number-of-rollover</td>
-<td>Transfer amount exceed the limit</td>
-</tr>
-<tr>
-<td>exceed-maximum-amount</td>
-<td>Exceed the limit</td>
-</tr>
-<tr>
-<td>start-date-cannot-greater-than-end-date</td>
-<td>Start date cannot be greater than end date</td>
-</tr>
-<tr>
-<td>frequent-invoke</td>
-<td>Operates too frequently</td>
-</tr>
-<tr>
-<td>loan-order-not-found</td>
-<td>Loan order is not found</td>
-</tr>
-<tr>
-<td>loan-amount-scale-limit</td>
-<td>Loan order amount precision error</td>
-</tr>
-<tr>
-<td>loan-repay-max-limit</td>
-<td>Repay amount is greater than requested</td>
-</tr>
-<tr>
-<td>loan-insufficient-balance</td>
-<td>Loan account balance is insufficient</td>
-</tr>
-<tr>
-<td>loan-fee-rate-compute-fail</td>
-<td>Loan fee is abnormal</td>
-</tr>
-<tr>
-<td>login-required</td>
-<td>Signature is missing</td>
-</tr>
-<tr>
-<td>margin-subuser-no-permission</td>
-<td>Sub user has no permission</td>
-</tr>
-<tr>
-<td>normal-and-warehouse-can-transfer</td>
-<td>Normal and warehouse user can transfer</td>
-</tr>
-<tr>
-<td>order-orderamount-precision-error</td>
-<td>Order amount precision error</td>
-</tr>
-<tr>
-<td>require-exchange-id</td>
-<td>Exchange id is required</td>
-</tr>
-<tr>
-<td>subacount-currency-not-exit</td>
-<td>Sub account for this currency does not exist</td>
-</tr>
-<tr>
-<td>system-busy</td>
-<td>System is busy</td>
-</tr>
-<tr>
-<td>unsupport-kyc-info</td>
-<td>KYC info is unsupported</td>
-</tr>
-<tr>
-<td>uc-network-error</td>
-<td>Network error for User Center, try again later</td>
-</tr>
-<tr>
-<td>uncreated-currency-cannot-be-drawn</td>
-<td>Uncreated sub account cannot be drawn</td>
-</tr>
-</tbody></table>
 <h2 id='transfer-asset-from-spot-trading-account-to-isolated-margin-account-isolated'>Transfer Asset from Spot Trading Account to Isolated Margin Account（Isolated）</h2>
 <p>API Key Permission：Trade<br>
 Rate Limit (NEW): 2times/2s</p>
@@ -13717,6 +13482,252 @@ Rate Limit (NEW): 100times/2s</p>
 <td>search the start ID in the next page  (return only when there is data in the  next page)</td>
 </tr>
 </tbody></table>
+<h2 id='error-code-6'>Error Code</h2>
+<p><strong>Below is the error code and description for Isolated margin loan APIs</strong></p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account-transfer-balance-insufficient-error</td>
+<td>Account balance is insufficient</td>
+</tr>
+<tr>
+<td>account-transfer-balance-overflow-error</td>
+<td>To account balance is overflow</td>
+</tr>
+<tr>
+<td>base-msg</td>
+<td>Customized error, check error message</td>
+</tr>
+<tr>
+<td>base-system-error</td>
+<td>Server internal error</td>
+</tr>
+<tr>
+<td>base-currency-error</td>
+<td>currency is invalid</td>
+</tr>
+<tr>
+<td>base-symbol-error</td>
+<td>symbol is invalid</td>
+</tr>
+<tr>
+<td>base-margin-symbol-invalid</td>
+<td>symbol is invalid for margin</td>
+</tr>
+<tr>
+<td>base-record-invalid</td>
+<td>The data is not found</td>
+</tr>
+<tr>
+<td>base-request-timeout</td>
+<td>Request timeout, try again later</td>
+</tr>
+<tr>
+<td>base_request_exceed_number_limit</td>
+<td>Request exceed number limit, try again later</td>
+</tr>
+<tr>
+<td>base-date-limit-error</td>
+<td>Date is invalid</td>
+</tr>
+<tr>
+<td>base-update-error</td>
+<td>Update operation error</td>
+</tr>
+<tr>
+<td>base-operation-forbidden</td>
+<td>Operation is forbidden</td>
+</tr>
+<tr>
+<td>dw-insufficient-balance</td>
+<td>Account balance is insufficient</td>
+</tr>
+<tr>
+<td>dw-account-transfer-error</td>
+<td>Transfer error</td>
+</tr>
+<tr>
+<td>frequent-invoke</td>
+<td>Operates too frequently, try again later</td>
+</tr>
+<tr>
+<td>loan-order-not-found</td>
+<td>Loan order is not found</td>
+</tr>
+<tr>
+<td>loan-amount-scale-limit</td>
+<td>Loan order amount precision error</td>
+</tr>
+<tr>
+<td>loan-repay-max-limit</td>
+<td>Repay amount is greater than requested</td>
+</tr>
+<tr>
+<td>loan-insufficient-balance</td>
+<td>Loan account balance is insufficient</td>
+</tr>
+<tr>
+<td>login-required</td>
+<td>Signature is missing</td>
+</tr>
+<tr>
+<td>margin-country-not-allow</td>
+<td>Your country is not allowed</td>
+</tr>
+<tr>
+<td>margin-country-auth-required</td>
+<td>Your IP is not allowed, require ID verification</td>
+</tr>
+<tr>
+<td>margin-trading-is-not-available</td>
+<td>Isolated margin trading is not available</td>
+</tr>
+<tr>
+<td>margin-account-state-error</td>
+<td>Margin account state is abnormal (liquidation)</td>
+</tr>
+<tr>
+<td>risk-verification-failed</td>
+<td>Risk verification failed</td>
+</tr>
+<tr>
+<td>sub-user-auth-required</td>
+<td>Sub user is not authorized</td>
+</tr>
+</tbody></table>
+
+<p><strong>Below is the error code and description for Cross margin loan APIs (including general margin)</strong></p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>abnormal-users-cannot-transfer</td>
+<td>Abnormal user cannot transfer</td>
+</tr>
+<tr>
+<td>account-explosion-in-prohibited-transfer</td>
+<td>Account is explosion and transfer is prohibited</td>
+</tr>
+<tr>
+<td>account-is-abnormal-retry-after-refresh</td>
+<td>Account is abnormal, try again later</td>
+</tr>
+<tr>
+<td>account-balance-insufficient-error</td>
+<td>Account balance is insufficient</td>
+</tr>
+<tr>
+<td>account-cannot-be-inquired</td>
+<td>Account is not found</td>
+</tr>
+<tr>
+<td>base-not-in-white-list</td>
+<td>Operation is not allowed for current user</td>
+</tr>
+<tr>
+<td>base-currency-error</td>
+<td>Currency is not found</td>
+</tr>
+<tr>
+<td>base-operation-forbidden</td>
+<td>Operation is forbidden</td>
+</tr>
+<tr>
+<td>base-user-request-exceed-limit</td>
+<td>Operates too frequently, try again later</td>
+</tr>
+<tr>
+<td>base-currency-not-open</td>
+<td>The currency is not enabled</td>
+</tr>
+<tr>
+<td>beyond-maximum-number-of-rollover</td>
+<td>Transfer amount exceed the limit</td>
+</tr>
+<tr>
+<td>exceed-maximum-amount</td>
+<td>Exceed the limit</td>
+</tr>
+<tr>
+<td>start-date-cannot-greater-than-end-date</td>
+<td>Start date cannot be greater than end date</td>
+</tr>
+<tr>
+<td>frequent-invoke</td>
+<td>Operates too frequently</td>
+</tr>
+<tr>
+<td>loan-order-not-found</td>
+<td>Loan order is not found</td>
+</tr>
+<tr>
+<td>loan-amount-scale-limit</td>
+<td>Loan order amount precision error</td>
+</tr>
+<tr>
+<td>loan-repay-max-limit</td>
+<td>Repay amount is greater than requested</td>
+</tr>
+<tr>
+<td>loan-insufficient-balance</td>
+<td>Loan account balance is insufficient</td>
+</tr>
+<tr>
+<td>loan-fee-rate-compute-fail</td>
+<td>Loan fee is abnormal</td>
+</tr>
+<tr>
+<td>login-required</td>
+<td>Signature is missing</td>
+</tr>
+<tr>
+<td>margin-subuser-no-permission</td>
+<td>Sub user has no permission</td>
+</tr>
+<tr>
+<td>normal-and-warehouse-can-transfer</td>
+<td>Normal and warehouse user can transfer</td>
+</tr>
+<tr>
+<td>order-orderamount-precision-error</td>
+<td>Order amount precision error</td>
+</tr>
+<tr>
+<td>require-exchange-id</td>
+<td>Exchange id is required</td>
+</tr>
+<tr>
+<td>subacount-currency-not-exit</td>
+<td>Sub account for this currency does not exist</td>
+</tr>
+<tr>
+<td>system-busy</td>
+<td>System is busy</td>
+</tr>
+<tr>
+<td>unsupport-kyc-info</td>
+<td>KYC info is unsupported</td>
+</tr>
+<tr>
+<td>uc-network-error</td>
+<td>Network error for User Center, try again later</td>
+</tr>
+<tr>
+<td>uncreated-currency-cannot-be-drawn</td>
+<td>Uncreated sub account cannot be drawn</td>
+</tr>
+</tbody></table>
+<h2 id='faq-3'>FAQ</h2><h3 id='q1-i-can-see-i-have-loanable-amount-in-my-margin-account-why-the-api-returns-no-sufficient-amount-error-when-i-apply-margin-loan'>Q1: I can see I have loanable amount in my margin account, why the API returns no sufficient amount error when I apply margin loan?</h3>
+<p>A: The available amount depends on not only account available amount, but also the system available amount. Due to risk control, the system has a max available amount everyday. If the total loan amount reaches the max value, user will fail to apply loan, unless someone repays the loan in the same day. Right now we are implementing a more friendly solution that tries to provide more accurate information to API users.</p>
 <h1 id='margin-loan-c2c'>Margin Loan (C2C)</h1><h2 id='introduction-10'>Introduction</h2>
 <p>C2C margin loan APIs provide the customer-to-customer loan functionality such as lend, borrow, repay, query and transfer.</p>
 
@@ -15423,7 +15434,7 @@ or
 <p><strong>Rate limt of pull style query (req)</strong></p>
 
 <p>The limitation of single connection is 100 ms.</p>
-<h3 id='error-code-6'>Error Code</h3>
+<h3 id='error-code-7'>Error Code</h3>
 <p>Below is the error code, error message and description</p>
 
 <table><thead>
@@ -17819,7 +17830,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Upon success, Websocket client should receive a response below:</p>
-<h3 id='error-code-7'>Error Code</h3>
+<h3 id='error-code-8'>Error Code</h3>
 <p>Below is the return code, return message and the description returend from Asset and Order WebSocket</p>
 
 <table><thead>
