@@ -1284,6 +1284,8 @@ Error Code | Error Details Description|
 
 ### 4. Query contract order detail interface: /swap-api/v1/swap_order_detail
 
+- When querying orders without parameter(such as the parameter: created_at), the query result data may be delayed. It is recommended to pass the two parameters of the interface: created_at (order timestamp) and order_type (order type, default 1), the database will be directly queried, and the query results data will be more timely.
+
 - Querying condition “created_at” uses 13-bit long type time stamp (including milliseconds). Querying performance will be improved when accurate time stamps are entered.
 
 - For example: the converted time stamp of "2019/10/18 10:26:22" is 1571365582123. The returned ts from interface “contract_order” can be used as time stamp to query corresponding order. 0 is not allowed in parameter “created_at”.
@@ -1579,9 +1581,13 @@ Most of the network connectivity problems ,(such as Connection reset or network 
 
 Query the order status by swap-api/v1/swap_order_info.If the status is 10,the order is failed。
 
-### Q12. How long does it generally take for an API from withdrawing to cancelling successfully ?
+### Q12: How long does it generally take for an API from withdrawing to cancelling successfully ?
 
 The order cancellation command generally takes several tens of ms. The actual status of order cancellation can be obtained by invoking an interface: swap-api/v1/swap_order_info
+
+### Q13: How to get historical liquidation orders?
+
+To obtain historical liquidation orders, you can access the one of four api interfaces: Get History Orders (/swap-api/v1/swap_hisorders), Get History Match Results (/swap-api/v1/swap_matchresults), Query history orders via multiple fields (/swap-api/v1/swap_hisorders_exact), Query history transactions via multiple fields (/swap-api/v1/swap_matchresults_exact), with the return field order_source (order source) to judge. When order_source returns "risk", it means that this order is a liquidated order.
 
 
 ## Error Codes
