@@ -2023,6 +2023,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </ul>
 <h3 id='4-query-contract-order-detail-interface-option-api-v1-option_order_detail'>4. Query contract order detail interface: /option-api/v1/option_order_detail</h3>
 <ul>
+<li><p>When querying orders without parameter(such as the parameter: created_at), the query result data may be delayed. It is recommended to pass the two parameters of the interface: created_at (order timestamp) and order_type (order type, default 1), the database will be directly queried, and the query results data will be more timely.</p></li>
 <li><p>Querying condition “created_at” uses 13-bit long type time stamp (including milliseconds). Querying performance will be improved when accurate time stamps are entered.</p></li>
 <li><p>For example: the converted time stamp of &quot;2019/10/18 10:26:22&quot; is 1571365582123. The returned ts from interface “contract_order” can be used as time stamp to query corresponding order. 0 is not allowed in parameter “created_at”.</p></li>
 </ul>
