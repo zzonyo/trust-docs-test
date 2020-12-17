@@ -1396,6 +1396,8 @@ Error Code | Error Details Description|
 
 ### 4. Query contract order detail interface: /linear-swap-api/v1/swap_order_detail
 
+- When querying orders without parameter(such as the parameter: created_at), the query result data may be delayed. It is recommended to pass the two parameters of the interface: created_at (order timestamp) and order_type (order type, default 1), the database will be directly queried, and the query results data will be more timely.
+
 - Querying condition “created_at” uses 13-bit long type time stamp (including milliseconds). Querying performance will be improved when accurate time stamps are entered.
 
 - For example: the converted time stamp of "2019/10/18 10:26:22" is 1571365582123. The returned ts from interface “contract_order” can be used as time stamp to query corresponding order. 0 is not allowed in parameter “created_at”.
@@ -1676,15 +1678,15 @@ Most of the network connectivity problems ,(such as Connection reset or network 
   
  When subscribing private accounts, orders and positions, the heartbeat should also be maintained regularly ,which is different from the market heartbeat format . Please refer to the "websocket Heartbeat and Authentication Interface" . if it is disconnected ,please try to reconnect.
 
-### Q8. What is the difference between order status 1 and 2 ? what is the status 3 ?
+### Q8: What is the difference between order status 1 and 2 ? what is the status 3 ?
  
  Status 1 is the preparation for submission. status 2 is the sequential submission  of internal process, which can be considered that it has been accepted by the system.  Status 3 indicated that the order has been  already submitted to market.
 
-### Q9. Is there an interface to get the total assets in BTC of my account ? 
+### Q9: Is there an interface to get the total assets in BTC of my account ? 
   
  No.
 
-### Q10.  Why is the order filled after the order is withdrawed successfully by placing API cancellation ?
+### Q10: Why is the order filled after the order is withdrawed successfully by placing API cancellation ?
   
  The success return of order cancellation or placement  only represents that the command is excuted successfully and doesn't mean that the order has been cancelled . You can check the order status through the interface linear-swap-api/v1/swap_order_info.
 
@@ -1692,9 +1694,13 @@ Most of the network connectivity problems ,(such as Connection reset or network 
 
 Query the order status by linear-swap-api/v1/swap_order_info.If the status is 10,the order is failed。
 
-### Q12. How long does it generally take for an API from withdrawing to cancelling successfully ?
+### Q12: How long does it generally take for an API from withdrawing to cancelling successfully ?
 
 The order cancellation command generally takes several tens of ms. The actual status of order cancellation can be obtained by invoking an interface: linear-swap-api/v1/swap_order_info
+
+### Q13: How to get historical liquidation orders?
+
+To obtain historical liquidation orders, you can access the one of two api interfaces: Get History Orders (/linear-swap-api/v1/swap_hisorders【Isolated】or /linear-swap-api/v1/swap_cross_hisorders【Cross】), Get History Match Results (/linear-swap-api/v1/swap_matchresults【Isolated】or /linear-swap-api/v1/swap_cross_matchresults【Cross】) with the return field order_source (order source) to judge. When order_source returns "risk", it means that this order is a liquidated order.
 
 
 ## Error Codes
