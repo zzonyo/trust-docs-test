@@ -1789,7 +1789,7 @@ support_margin_mode | string   | false      | support margin mode cross："cross
 Parameter Name               |   Mandatory   |   Type   |   Description                                |   Value Range                                                |
 ------------------------------ | ------------- | -------- | --------------------------------------------- | ------------------------------------------------------------ |
 status                         | true          | string   | Request Processing Result                     | "ok" , "error"                                               |
-data \<list\>|               |          |   
+\<data\>|               |          |   
 symbol                     |  true           |  string     |  symbol                          |  "BTC","ETH"...  |
 contract_code                  | true          | string   | Contract Code                                 | "BTC-USDT" ...                                              |
 contract_size                  | true          | decimal  | Contract Value (USDT of one contract)          | 10, 100...                                                   |
@@ -1798,7 +1798,7 @@ settlement_date                  | true          | string   | Settlement  Date  
 create_date                    | true          | string   | Listing Date                         | eg "20190808"                                                |
 contract_status                | true          | int      | Contract Status                               | 0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered |
 support_margin_mode             | false        | string      | support margin mode              |   cross："cross"；isolated："isolated"；all："all"|
-\</list\>                      |               |          |                                               |                                                              |
+\</data\>                      |               |          |                                               |                                                              |
 ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                                                              |
 
 
@@ -1949,7 +1949,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_open_interest?contract_code=B
 |   Parameter Name               |   Mandatory   |   Type   |   Desc                                        |   Value Range                     |
 | ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------------------------- |
 | status                         | true          | string   | Request Processing Result                     | "ok" , "error"                    |
-|  \<data\> |               |          |                                               |                                   |
+| \<data\> |               |          |                                               |                                   |
 | symbol                         | true          | string   | Variety code                                  | "BTC", "ETH" ...                  |
 | volume                         | true          | decimal  | Position quantity(volume)                     |                                   |
 | amount                         | true          | decimal  | Position quantity(Currency)                   |                                   |
