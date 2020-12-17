@@ -448,6 +448,9 @@
                   <li>
                     <a href="#point-transfer" class="toc-h2 toc-link" data-title="Point Transfer">Point Transfer</a>
                   </li>
+                  <li>
+                    <a href="#error-code-3" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -475,7 +478,7 @@
                     <a href="#search-for-existed-withdraws-and-deposits" class="toc-h2 toc-link" data-title="Search for Existed Withdraws and Deposits">Search for Existed Withdraws and Deposits</a>
                   </li>
                   <li>
-                    <a href="#error-code-3" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
+                    <a href="#error-code-4" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
                   </li>
                   <li>
                     <a href="#faq" class="toc-h2 toc-link" data-title="FAQ">FAQ</a>
@@ -590,7 +593,7 @@
                     <a href="#get-current-fee-rate-applied-to-the-user" class="toc-h2 toc-link" data-title="Get Current Fee Rate Applied to The User">Get Current Fee Rate Applied to The User</a>
                   </li>
                   <li>
-                    <a href="#error-code-5" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
+                    <a href="#error-code-6" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
                   </li>
                   <li>
                     <a href="#faq-2" class="toc-h2 toc-link" data-title="FAQ">FAQ</a>
@@ -675,7 +678,7 @@
                     <a href="#repayment-record-reference-cross" class="toc-h2 toc-link" data-title="Repayment Record Reference（Cross）">Repayment Record Reference（Cross）</a>
                   </li>
                   <li>
-                    <a href="#error-code-6" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
+                    <a href="#error-code-7" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
                   </li>
                   <li>
                     <a href="#faq-3" class="toc-h2 toc-link" data-title="FAQ">FAQ</a>
@@ -4270,62 +4273,6 @@ Halt reason includes: 2 - emergency maintenance，3 - schedule maintenance.<br><
 <p>Account APIs provide account related (such as basic info, balance, history, point) query and transfer functionality.</p>
 
 <aside class="notice">All endpoints in this section require authentication</aside>
-
-<p>Below is the error code, error message and description returned by Account APIs.</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Error Message</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>500</td>
-<td>system error</td>
-<td>Server internal error</td>
-</tr>
-<tr>
-<td>1002</td>
-<td>forbidden</td>
-<td>Operation is forbidden, such as the account Id and UID doesn&#39;t match</td>
-</tr>
-<tr>
-<td>2002</td>
-<td>&quot;invalid field value in <code>currency</code>&quot;</td>
-<td>Parameter currency is invalid</td>
-</tr>
-<tr>
-<td>2002</td>
-<td>&quot;invalid field value in <code>transactTypes</code>&quot;</td>
-<td>Parameter transactTypes is invalid (should be transfer)</td>
-</tr>
-<tr>
-<td>2002</td>
-<td>&quot;invalid field value in <code>sort</code>&quot;</td>
-<td>Parameter sort is invalid (should be &#39;asc&#39; or &#39;desc&#39;)</td>
-</tr>
-<tr>
-<td>2002</td>
-<td>&quot;value in <code>fromId</code> is not found in record”</td>
-<td>Value fromId doesn&#39;t exist</td>
-</tr>
-<tr>
-<td>2002</td>
-<td>&quot;invalid field value in <code>accountId</code>&quot;</td>
-<td>Parameter accountId is invalid (should not be empty)</td>
-</tr>
-<tr>
-<td>2002</td>
-<td>&quot;value in <code>startTime</code> exceeded valid range&quot;</td>
-<td>Value startTime is later than current time or earlier than 180 days ago</td>
-</tr>
-<tr>
-<td>2002</td>
-<td>&quot;value in <code>endTime</code> exceeded valid range&quot;)</td>
-<td>Value endTime is earlier than startTime, or 10 days later than startTime</td>
-</tr>
-</tbody></table>
 <h2 id='get-all-accounts-of-the-current-user'>Get all Accounts of the Current User</h2>
 <p>API Key Permission：Read<br>
 Rate Limit (NEW): 100times/2s</p>
@@ -5607,6 +5554,62 @@ Callable by sub user<br></p>
 <td>Transaction time (unix time in millisecond)</td>
 </tr>
 </tbody></table>
+<h2 id='error-code-3'>Error Code</h2>
+<p>Below is the error code, error message and description returned by Account APIs.</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Error Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>500</td>
+<td>system error</td>
+<td>Server internal error</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>forbidden</td>
+<td>Operation is forbidden, such as the account Id and UID doesn&#39;t match</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;invalid field value in <code>currency</code>&quot;</td>
+<td>Parameter currency is invalid</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;invalid field value in <code>transactTypes</code>&quot;</td>
+<td>Parameter transactTypes is invalid (should be transfer)</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;invalid field value in <code>sort</code>&quot;</td>
+<td>Parameter sort is invalid (should be &#39;asc&#39; or &#39;desc&#39;)</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;value in <code>fromId</code> is not found in record”</td>
+<td>Value fromId doesn&#39;t exist</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;invalid field value in <code>accountId</code>&quot;</td>
+<td>Parameter accountId is invalid (should not be empty)</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;value in <code>startTime</code> exceeded valid range&quot;</td>
+<td>Value startTime is later than current time or earlier than 180 days ago</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;value in <code>endTime</code> exceeded valid range&quot;)</td>
+<td>Value endTime is earlier than startTime, or 10 days later than startTime</td>
+</tr>
+</tbody></table>
 <h1 id='wallet-deposit-and-withdraw'>Wallet (Deposit and Withdraw)</h1><h2 id='introduction-5'>Introduction</h2>
 <p>Wallet APIs provide query functionality for deposit address, withdraw address, withdraw quota, deposit and withdraw history, and also provide withdraw and cancel-withdraw functionality.</p>
 
@@ -6437,7 +6440,7 @@ Rate Limit (NEW): 20times/2s</p>
 <td>Confirmed but currently in an orphan branch</td>
 </tr>
 </tbody></table>
-<h2 id='error-code-3'>Error Code</h2>
+<h2 id='error-code-4'>Error Code</h2>
 <p>Below is the response code, message and description returned by Wallet APIs.</p>
 
 <table><thead>
@@ -8745,7 +8748,7 @@ Rate Limit (NEW): 100times/2s</p>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59378"</span><span class="w">
 </span></code></pre><h3 id='response-content-45'>Response Content</h3>
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
-<h3 id='error-code-4'>Error Code</h3>
+<h3 id='error-code-5'>Error Code</h3>
 <blockquote>
 <p>Response:</p>
 </blockquote>
@@ -10490,7 +10493,7 @@ Rate Limit (NEW): 20times/2s</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='error-code-5'>Error Code</h2>
+<h2 id='error-code-6'>Error Code</h2>
 <p>Below is the error code and description returned by Trading APIs</p>
 
 <table><thead>
@@ -13486,7 +13489,7 @@ Rate Limit (NEW): 100times/2s</p>
 <td>search the start ID in the next page  (return only when there is data in the  next page)</td>
 </tr>
 </tbody></table>
-<h2 id='error-code-6'>Error Code</h2>
+<h2 id='error-code-7'>Error Code</h2>
 <p><strong>Below is the error code and description for Isolated margin loan APIs</strong></p>
 
 <table><thead>
@@ -15438,7 +15441,7 @@ or
 <p><strong>Rate limt of pull style query (req)</strong></p>
 
 <p>The limitation of single connection is 100 ms.</p>
-<h3 id='error-code-7'>Error Code</h3>
+<h3 id='error-code-8'>Error Code</h3>
 <p>Below is the error code, error message and description</p>
 
 <table><thead>
@@ -17834,7 +17837,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Upon success, Websocket client should receive a response below:</p>
-<h3 id='error-code-8'>Error Code</h3>
+<h3 id='error-code-9'>Error Code</h3>
 <p>Below is the return code, return message and the description returend from Asset and Order WebSocket</p>
 
 <table><thead>
