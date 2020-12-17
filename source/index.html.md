@@ -722,6 +722,10 @@ The JSON data type described in this document is defined as below:
 
 # Frequently Asked Questions
 
+This section lists the  frequently asked questions regardless the specific API, such as network, signature or common errors.
+
+For specific API question, please check the Error Code and FAQ in each API category.
+
 ### Q1：How many API Keys one user can apply?
 A:  Every user can create 5 API Keys, and each API Key can be granted with 3 permissions: **read**, **trade** and **withdraw**.
 Each user could create up to 200 sub users, and each sub user could create 5 API Keys, each API key can be granted with 2 permissions: **read** and **trade**.
