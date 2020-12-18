@@ -265,6 +265,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-0-5-2020-12-18-newly-added-added-ws-interface-for-subscribing-system-status-updates-push" class="toc-h2 toc-link" data-title="1.0.5 2020-12-18 【Newly added：Added WS interface for subscribing system status updates push】">1.0.5 2020-12-18 【Newly added：Added WS interface for subscribing system status updates push】</a>
+                  </li>
+                  <li>
                     <a href="#1-0-4-2020-12-11-1-33-added-interfaces-for-cross-margin-mode-34-60-added-fields-to-modify-interface" class="toc-h2 toc-link" data-title="1.0.4 2020-12-11 【1-33 Added interfaces for cross margin mode. 34-60 Added fields to modify interface】">1.0.4 2020-12-11 【1-33 Added interfaces for cross margin mode. 34-60 Added fields to modify interface】</a>
                   </li>
                   <li>
@@ -799,6 +802,14 @@
               </ul>
           </li>
           <li>
+            <a href="#websocket-interface-for-system-status-updates" class="toc-h1 toc-link" data-title="WebSocket interface for system status updates">WebSocket interface for system status updates</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#general-subscribe-system-status-updates" class="toc-h2 toc-link" data-title="[General]Subscribe system status updates">[General]Subscribe system status updates</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#appendix" class="toc-h1 toc-link" data-title="Appendix">Appendix</a>
               <ul class="toc-list-h2">
                   <li>
@@ -838,7 +849,13 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-0-4-2020-12-11-1-33-added-interfaces-for-cross-margin-mode-34-60-added-fields-to-modify-interface'>1.0.4 2020-12-11 【1-33 Added interfaces for cross margin mode. 34-60 Added fields to modify interface】</h2><h3 id='1-added-cross-margin-mode-query-information-on-tiered-adjustment-factor'>1、Added Cross Margin Mode Query Information On Tiered Adjustment Factor</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-0-5-2020-12-18-newly-added-added-ws-interface-for-subscribing-system-status-updates-push'>1.0.5 2020-12-18 【Newly added：Added WS interface for subscribing system status updates push】</h2><h3 id='1-added-ws-interface-for-subscribing-system-status-updates-push'>1.Added WS interface for subscribing system status updates push</h3>
+<ul>
+<li>Interface name: [General]subscribe system status updates</li>
+<li>Interface type: public</li>
+<li>Subscription topic：public.$service.heartbeat</li>
+</ul>
+<h2 id='1-0-4-2020-12-11-1-33-added-interfaces-for-cross-margin-mode-34-60-added-fields-to-modify-interface'>1.0.4 2020-12-11 【1-33 Added interfaces for cross margin mode. 34-60 Added fields to modify interface】</h2><h3 id='1-added-cross-margin-mode-query-information-on-tiered-adjustment-factor'>1、Added Cross Margin Mode Query Information On Tiered Adjustment Factor</h3>
 <ul>
 <li><p>Interface Name：[Cross]Query Information On Tiered Adjustment Factor</p></li>
 <li><p>Interface Type：public</p></li>
@@ -2212,7 +2229,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </ul></li>
 </ul>
 <h2 id='maintenance-with-service-suspended'>Maintenance with service suspended</h2>
-<p>During the maintenance of the business system, in addition to the below two interfaces(<a href='https://docs.huobigroup.com/docs/usdt_swap/v1/en/#get-system-status'>Get system status</a >, <a href='https://docs.huobigroup.com/docs/usdt_swap/v1/en/#query-whether-the-system-is-available'>Query whether the system is available</a >) for users to query the system status, all “rest” interfaces of the API business will return this in a fixed manner:<code>{&quot;status&quot;: &quot;maintain&quot;}</code></p>
+<p>During the maintenance of the business system, in addition to the below two interfaces(<a href='https://docs.huobigroup.com/docs/usdt_swap/v1/en/#get-system-status'>Get system status</a >, <a href='https://docs.huobigroup.com/docs/usdt_swap/v1/en/#query-whether-the-system-is-available'>Query whether the system is available</a >) for users to query the system status, all “rest” interfaces of the API business will return this in a fixed manner:<code>{&quot;status&quot;: &quot;maintain&quot;}</code>. During maintenance with service suspended，all websocket notify interfaces except subscribing system status updates（<a href='https://docs.huobigroup.com/docs/usdt_swap/v1/en/#query-whether-the-system-is-available'>Subscribe system status updates</a>）can&#39;t work，and will push 1006 error code to clients.</p>
 
 <blockquote>
 <p>Response</p>
@@ -2225,6 +2242,8 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <li>Get system status: https://status-linear-swap.huobigroup.com/api/v2/summary.json</li>
 <li>Query whether the system is available: https://api.hbdm.com/heartbeat/</li>
 </ul>
+
+<p>Besides the above two rest interfaces, for getting the infomation that system maintenance with service suspended, could by subscrib system status updates websocket interface.</p>
 <h2 id='get-system-status'>Get system status</h2>
 <p>This endpoint allows users to get system status, Incidents and planned maintenance.</p>
 
@@ -21391,6 +21410,15 @@ You are recommended to read the status code from the returned message. If the ab
 <td>Subscribe trigger orders updates(sub)</td>
 <td>Yes</td>
 </tr>
+<tr>
+<td>Read</td>
+<td>System Status Interface</td>
+<td>cross margin</td>
+<td>public.$service.heartbeat</td>
+<td>sub</td>
+<td>Subscription system status updates</td>
+<td>No</td>
+</tr>
 </tbody></table>
 <h2 id='websocket-subscription-address'>WebSocket Subscription Address</h2>
 <p>Market Data Request and Subscription: wss://api.hbdm.com/linear-swap-ws </p>
@@ -21399,6 +21427,8 @@ You are recommended to read the status code from the returned message. If the ab
 
 <p>Index Kline Data and Basis Data Subscription: wss://api.hbdm.com/ws_index</p>
 
+<p>System status updates subscription ：wss://api.hbdm.com/center-notification</p>
+
 <p>If the url: api.hbdm.com can&#39;t be accessed, please use the url below:</p>
 
 <p>Market Data Request and Subscription Address: wss://api.btcgateway.pro/linear-swap-ws;</p>
@@ -21406,6 +21436,8 @@ You are recommended to read the status code from the returned message. If the ab
 <p>Order Push Subscription：wss://api.btcgateway.pro/linear-swap-notification</p>
 
 <p>Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index</p>
+
+<p>System status updates subscription ：wss://api.btcgateway.pro/center-notification</p>
 
 <p>If you have further queries about Huobi USDT Margined Swap order push subscription, please refer to <a href="https://docs.huobigroup.com/docs/usdt_swap/v1/en/#code-demo">Demo</a></p>
 <h3 id='note-30'>Note:</h3>
@@ -29767,6 +29799,167 @@ Details are below:</p></li>
 <td>Not Allowed</td>
 </tr>
 </tbody></table>
+<h1 id='websocket-interface-for-system-status-updates'>WebSocket interface for system status updates</h1>
+<ul>
+<li>The websocket url of system status updates is : wss://api.hbdm.com/center-notification</li>
+</ul>
+<h2 id='general-subscribe-system-status-updates'>[General]Subscribe system status updates</h2><h3 id='after-successfully-establishing-a-connection-with-the-websocket-api-users-could-send-data-in-the-following-format-to-the-server-to-request-data'>After successfully establishing a connection with the WebSocket API, users could send data in the following format to the server to request data:</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
+
+<p><code>&quot;cid&quot;: &quot;id generated by client&quot;,</code></p>
+
+<p><code>&quot;topic &quot;: &quot;public.$service.heartbeat&quot;</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>Example on using parameters to request data: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sub"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"topic "</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.linear-swap.heartbeat"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-parameter-88'><strong>Request Parameter</strong>:</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>true</td>
+<td>string</td>
+<td>The fixed value of subscription is sub</td>
+<td></td>
+</tr>
+<tr>
+<td>cid</td>
+<td>false</td>
+<td>string</td>
+<td>Client requests a unique ID</td>
+<td></td>
+</tr>
+<tr>
+<td>topic</td>
+<td>true</td>
+<td>string</td>
+<td>Subscription topic name is required (public.$service.heartbeat), Subscribe system status information of a certain business</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='subscription-parameter-description'><strong>subscription parameter description</strong>:</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>service</td>
+<td>true</td>
+<td>string</td>
+<td>Business Code</td>
+<td>linear-swap : USDT Margined Swap</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p><strong>Return Parameter Example</strong>:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"op"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notify"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.linear-swap.heartbeat"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"init"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1580815422403</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"heartbeat"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"estimated_recovery_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1408076414000</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='return-parameter-rules'><strong>Return Parameter Rules</strong>：</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>op</td>
+<td>true</td>
+<td>string</td>
+<td>Operation name, the fixed value of push is notify;</td>
+<td></td>
+</tr>
+<tr>
+<td>topic</td>
+<td>true</td>
+<td>string</td>
+<td>Push topic</td>
+<td></td>
+</tr>
+<tr>
+<td>event</td>
+<td>true</td>
+<td>string</td>
+<td>Description on notification related event</td>
+<td>The initial system status information returned by a successful subscription (init), triggered by system status change (update)</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Server response timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>heartbeat</td>
+<td>true</td>
+<td>int</td>
+<td>System Status</td>
+<td>1 is available, 0 is not available(maintenance with service suspended)</td>
+</tr>
+<tr>
+<td>estimated_recovery_time</td>
+<td>true</td>
+<td>long</td>
+<td>Estimated system recovery time, unit: millisecond</td>
+<td>When the system status is available, return NULL</td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='note-51'>Note</h3>
+<ul>
+<li>Since this push is a poll query status, there may be a delay of 1-2 seconds.</li>
+</ul>
 <h1 id='appendix'>Appendix</h1><h2 id='operator-type-op'>Operator Type(OP)</h2>
 <table><thead>
 <tr>
