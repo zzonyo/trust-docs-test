@@ -1087,177 +1087,190 @@ No parameter is available for this endpoint.
 Error Code | Error Details Description|
 ----- | ---------------------- |
 403	|	invalid ID                |
-1000  |  System error.  | 
-1001  |  System is unprepared.  | 
-1002  |  Query error.  | 
-1003  |  Abnormal redis operation.  | 
-1004  |  System busy. Please try again later.  | 
-1010  |  Account doesn't exist.  | 
-1011  |  The user's session doesn't exist.  | 
-1012  |  The user's account doesn't exist.  | 
-1013  |  This contract type doesn't exist.  | 
-1014  |  This contract doesn't exist.  | 
-1015  |  The index price does not exist.  | 
-1016  |  The bid offer does not exist. Please input the price.  | 
-1017  |   Order doesn't exist.  | 
-1018  |  Main account doesn't exist.  | 
-1019  |  Main account doesn't exist in the sub-account white list.  | 
-1020  |  The number of your sub-account exceeds the maximum. Please contact customer service.  | 
-1021  |  Account open failed. Main account hasn’t opened contract trading account yet.   | 
-1030  |  Input error.  | 
-1031  |  Incorrect form source.  | 
-1032  |  The number of access exceeded the limit.  | 
-1033  |  Incorrect field of contract period.  | 
-1034  |  Incorrect field of contract period.  | 
-1035  |  Incorrect field of form direction.  | 
-1036  |  Incorrect field of open long form.  | 
-1037  |  The leverage is invalid. Please contact the customer service.  | 
-1038  |  The order price exceeds the precision limit, please modify and order again.  | 
-1039  |  Buy price must be lower than {0} USD. Sell price must exceed {1} USD.  | 
-1040  |  Invalid amount, please modify and order again.  | 
-1041  |  The order amount exceeds the limit ({0}Cont), please modify and order again.  | 
-1042  |  Current positions have triggered position limits ({0}Cont). Please order after changing the amount.  | 
-1043  |  Current positions have triggered position limits ({0}Cont). Please order after changing the amount.  | 
-1044  |  Current positions have triggered position limits of our platform. Please order after changing the amount.  | 
-1045  |  Unable to switch leverage  due to current holdings or open orders.  | 
-1046  |  Abnormal service. Please try again later.  | 
-1047  |  Insufficient margin available.   | 
-1048  |  Insufficient close amount available.   | 
-1049  |  Open a position with market price is not available.contracts.  | 
-1050  |  Customer's order number is repeated. Please try again later.  | 
-1051  |  No orders to cancel.  | 
-1052  |  The number exceeds the batch limit.  | 
-1053  |  Unable to get the latest price range.  | 
-1054  |  Unable to get the latest price.  | 
-1055  |  The price is not reasonable, and the account equity will be less than 0 after placing this order. Please modify the price and place the order.   | 
-1056  |  In settlement. Your order can’t be placed/withdrew currently.  | 
-1057  |  Your order can’t be placed due to trading halt.  | 
-1058  |  Your order can’t be placed due to trade suspension.  | 
-1059  |  In delivery. Your order can’t be placed/withdrew currently.  | 
-1060  |  Your order can’t be placed currently due to abnormal contracts status.  | 
-1061  |  This order doesn't exist.  | 
-1062  |  Cancelling. Please be patient.  | 
-1063  |  The order has been executed.  | 
-1064  |  The main key of order conflicts.  | 
-1065  |  The form number of client isn't an integer.  | 
-1066  |  {0} cannot be empty.  | 
-1067  |  Illegal parameter {0}.  | 
-1068  |  Export error.  | 
-1069  |  The price is not reasonable.  | 
-1070  |  Empty data, cannot be exported.  | 
-1071  |  Repeated cancellation. Your order has been canceled.  | 
-1072  |   Sell price must be lower than {0} USD.  | 
-1073  |  Position abnormal. Please contact the customer service.  | 
-1074  |  Unable to order currently. Please contact the customer service.  | 
-1075  |  The price is not reasonable, and the margin rate will be less than 0 after placing this order. Please modify the price and place the order.   | 
-1076  |  No orders, please try again later.  | 
-1077  |  In settlement or delivery. Unable to get assets.  | 
-1078  |  In settlement or delivery. Unable to get assets.  | 
-1079  |  In settlement or delivery. Unable to get positions.  | 
-1080  |  In settlement or delivery. Unable to get positions of some contracts.   | 
-1081  |  The number of unfilled trigger order exceeds the limit.  | 
-1082  |  Trigger type parameter error.  | 
-1083  |  Your position is in the process of forced liquidation. Unable to place order temporarily.  | 
-1084  |  Your contract API is disabled, please try again after {0} (GMT+8).  | 
-1085  |  Trigger order failed, please modify the price and place the order again or contact the customer service.  | 
-1086  |  {0} contract is restricted of opening positions on {1}.  Please contact customer service.  | 
-1087  |  {0} contract is restricted of closing positions on {1}.  Please contact customer service.  | 
-1088  |  {0} contract is restricted of withdraw order on {1}.  Please contact customer service.  | 
-1089  |  {0} contract is restricted of transfer.  Please contact customer service.  | 
-1090  |  Margin rate is lower than 0. Order can’t be placed.  | 
-1091  |  Equity is less than 0. Order can’t be placed.  | 
-1092  |  The Flash Closing Order takes the {0}th price at the order book. After placing an order, the account equity will be less than 0. Please manually enter the price or place an order with the counterparty price.  | 
-1093  |  The Flash Closing Order takes the {0}th price at the order book. The margin rate will be less than 0 after placing an order. Please manually enter the price or place an order with the counterparty price.  | 
-1094  |  The leverage cannot be empty, please switch the leverage or contact customer service.  | 
-1095  |  Non-trading state, unable to switch the leverage temporarily.  | 
-1100  |  Unable to open a position currently. Please contact the customer service.  | 
-1101  |  Unable to close a position currently. Please contact the customer service.  | 
-1102  |  Unable to transfer in currently. Please contact customer service.  | 
-1103  |  Unable to transfer out currently. Please contact customer service.  | 
-1104  |  Trading is prohibited due to contracts trading constraints.  | 
-1105  |  Only Close is available due to contracts trading constraints.  | 
-1106  |  Abnormal contracts status. Can’t transfer.  | 
-1108  |  Abnormal service. Please try again later.  | 
-1109  |  Sub-account doesn't own the permissions to open positions. Please contact customer service.  | 
-1110  |  Sub-account  doesn't own the permissions to close positions. Please contact customer service.  | 
-1111  |  Sub-account doesn't own the permissions to transfer in. Please contact customer service.  | 
-1112  |  Sub-account doesn't own the permissions to transfer out. Please contact customer service.  | 
-1113  |  The sub-account does not have transaction permissions. Please login main account to authorize.  | 
-1114  |  The sub-account does not have transfer permissions. Please login main account to authorize.  | 
-1115  |  You have no access permissions of this sub-account.  | 
-1200  |  Login error. Please try again.  | 
-1220  |  You don’t have access permission as you have not opened contracts trading.  | 
-1221  |  The total balances of Exchange Account can't meet the requirements for opening contracts.  | 
-1222  |  The days of opening account can't meet the requirements for opening contracts.  | 
-1223  |  The VIP level can't meet the requirements for opening contracts.  | 
-1224  |  Your country/region can't meet the requirements for opening contracts.  | 
-1225  |  Failed to open contracts.  | 
-1226  |  Repeated account.  | 
-1227  |  Huobi Contract does not support sub-accounts. Please log out sub-account and log in again with primary account.  | 
-1228  |  Account has not opened, cannot agree to agreement.  | 
-1229  |  Cannot agree twice.  | 
-1230  |  You haven't finished the risk verification.  | 
-1231  |  You haven't finished the ID Verification.  | 
-1232  |  The format/size of the image you uploaded does not meet the requirements. Please re-upload.  | 
-1233  |  High leverage is not enabled (Please sign in the APP or web with your main account to agree to the High-Leverage Agreement).  | 
-1234  |  {0} contract opening orders cannot exceed {1} .  | 
-1235  |  {0} contract closing orders cannot exceed {1}.  | 
-1250  |  Unable to get the HT_token.  | 
-1251  |  Unable to get BTC assets. Please try again later.  | 
-1252  |  Unable to get currency account assets. Please try again later.  | 
-1253  |  Error in signature verification.  | 
-1254  |  The sub-account has no permission to open futures, please go to the web side to log in the main account and open.   | 
-1300  |  Transfer failed.  | 
-1301  |  Insufficient amount available.  | 
-1302  |  Transfer failed.  | 
-1303  |  The single transfer-out amount must be no less than {0}{1}.  | 
-1304  |  The single transfer-out amount must be no more than {0}{1}.  | 
-1305  |  The single transfer-in amount must be no less than {0}{1}.  | 
-1306  |  The single transfer-in amount must be no more than {0}{1}.  | 
-1307  |  Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.  | 
-1308  |  Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.  | 
-1309  |  Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.  | 
-1310  |  Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.  | 
-1311  |  The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being.  | 
-1312  |  The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being.  | 
-1313  |  The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being.  | 
-1314  |  The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being.  | 
-1315  |  Wrong transfer type.  | 
-1316  |  Failed to freeze the transfer.  | 
-1317  |  Failed to unfreeze the transfer.  | 
-1318  |  Failed to confirm the transfer.  | 
-1319  |  Failed to acquire the available transfer amount.  | 
-1320  |  The contract status is abnormal. Transfer is unavailable temporarily.  | 
-1321  |  Transfer failed. Please try again later or contact customer service.  | 
-1322  |  Invalid amount. Must be more than 0.  | 
-1323  |  Abnormal service, transfer failed. Please try again later.  | 
-1325  |  Failed to set trading unit.  | 
-1326  |  Failed to obtain trading units.  | 
-1327  |  No transfer permission, transfer failed, please contact customer service.  | 
-1328  |  No transfer permission, transfer failed, please contact customer service.  | 
-1329  |  No transfer permission, transfer failed, please contact customer service.  | 
-1330  |  No transfer permission, transfer failed, please contact customer service.  | 
-1331  |  Exceeds limit of transfer accuracy (8 digits). Please modify it.  | 
-1332  |  The contract doesn't exist.  | 
-1333  |  Failed to open the Maker&Taker agreement.  | 
-1334  |  Failed to check the Maker&Taker agreement.  | 
-1335  |  Failed to check the second confirmation setting of Maker&Taker.  | 
-1336  |  Failed to update the second confirmation setting of Maker&Taker.  | 
-1337  |  Failed to check the settings of Maker&Taker.  | 
-1338  |  Failed to update the settings of Maker&Taker.  | 
-1339  |  Nickname contains illegal words, please modify it.  | 
-1340  |  Nickname has been used, please modify it.  | 
-1341  |  The enrollment has ended.  | 
-1342  |  You cannot set nickname for sub-account.  | 
-12001  |  Invalid submission time.  | 
-12002  |  Incorrect signature version.  | 
-12003  |  Incorrect signature method.  | 
-12004  |  Private key is expired.  | 
-12005  |  Incorrect IP address.  |   
-12006  |  The submission time can't be empty.  | 
-12007  |  Incorrect public key.  | 
-12008  |  Verification failed.  | 
-12009  |  The user is locked or doesn't exist.  | 
+1000 | System error.
+1001 | System is unprepared.
+1002 | Query error.
+1003 | Abnormal redis operation.
+1004 | System busy. Please try again later.
+1010 | Account doesn't exist.
+1011 | The user's session doesn't exist.
+1012 | The user's account doesn't exist.
+1013 | This contract symbol doesn't exist.
+1014 | This contract doesn't exist.
+1015 | The index price does not exist.
+1016 | The bid offer does not exist. Please input the price.
+1017 |  Order doesn't exist.
+1018 | Main account doesn't exist.
+1019 | Main account doesn't exist in the sub-account white list.
+1020 | The number of your sub-account exceeds the maximum. Please contact customer service.
+1021 | Account open failed. Main account hasn’t opened contract trading account yet.
+1030 | Input error.
+1031 | Incorrect form source.
+1032 | The number of access exceeded the limit.
+1033 | Incorrect field of contract period.
+1034 | Incorrect field of order price type.
+1035 | Incorrect field of form direction.
+1036 | Incorrect field of open long form.
+1037 | The leverage is invalid. Please contact the customer service.
+1038 | The order price exceeds the precision limit, please modify and order again.
+1039 | Buy price must be lower than {0}{1}. Sell price must exceed {2}{3}.
+1040 | Invalid amount, please modify and order again.
+1041 | The order amount exceeds the limit ({0}Cont), please modify and order again.
+1042 | Current positions have triggered position limits ({0}Cont). Please order after changing the amount.
+1043 | Current positions have triggered position limits ({0}Cont). Please order after changing the amount.
+1044 | Current positions have triggered position limits of our platform. Please order after changing the amount.
+1045 | Unable to switch leverage due to open orders.
+1046 | Abnormal service. Please try again later.
+1047 | Insufficient margin available.
+1048 | Insufficient close amount available.
+1049 | Open a position with market price is not available.contracts
+1050 | Customer's order number is repeated. Please try again later.
+1051 | No orders to cancel.
+1052 | The number exceeds the batch limit.
+1053 | Unable to get the latest price range.
+1054 | Unable to get the latest price.
+1055 | The price is not reasonable, and the account equity will be less than 0 after placing this order. Please modify the price and place the order.
+1056 | In settlement. Your order can’t be placed/withdrew currently.
+1057 | Your order can’t be placed due to trading halt.
+1058 | Your order can’t be placed due to trade suspension.
+1059 | In delivery. Your order can’t be placed/withdrew currently.
+1060 | Your order can’t be placed currently due to abnormal contracts status.
+1061 | This order doesn't exist.
+1062 | Cancelling. Please be patient.
+1063 | The order has been executed.
+1064 | The main key of order conflicts.
+1065 | The form number of client isn't an integer.
+1066 | {0} cannot be empty.
+1067 | Illegal parameter {0}.
+1068 | Export error.
+1069 | The price is not reasonable.
+1070 | Empty data, cannot be exported.
+1071 | Repeated withdraw.
+1072 |  Sell price must be lower than {0}{1}.
+1073 | Position abnormal. Please contact the customer service.
+1074 | Unable to order currently. Please contact the customer service.
+1075 | The price is not reasonable, and the margin rate will be less than 0 after placing this order. Please modify the price and place the order.
+1076 | No orders, please try again later.
+1077 | In settlement or delivery. Unable to get assets of current contract.
+1078 | In settlement or delivery. Unable to get assets of some contracts.
+1079 | In settlement or delivery. Unable to get positions of current contract.
+1080 | In settlement or delivery. Unable to get positions of some contracts.
+1081 | The number of your {0} contract trigger orders exceeds the limit {1}.
+1082 | Trigger type parameter error.
+1083 | Your position is in the process of forced liquidation. Unable to place order temporarily.
+1084 | Your contract API is disabled, please try again after {0} (GMT+8).
+1085 | Trigger order failed, please modify the price and place the order again or contact the customer service.
+1086 | {0} contract is restricted of opening positions on {1}.  Please contact customer service.
+1087 | {0} contract is restricted of closing positions on {1}.  Please contact customer service.
+1088 | {0} contract is restricted of withdraw order on {1}.  Please contact customer service.
+1089 | Transfer is temporarily restricted for {0} account, please contact customer service support.
+1090 | Margin rate is lower than 0. Order can’t be placed.
+1091 | Equity is less than 0. Order can’t be placed.
+1092 | The Flash Closing Order takes the {0}th price at the order book. After placing an order, the account equity will be less than 0. Please manually enter the price or place an order with the counterparty price.
+1093 | The Flash Closing Order takes the {0}th price at the order book. The margin rate will be less than 0 after placing an order. Please manually enter the price or place an order with the counterparty price.
+1094 | The leverage cannot be empty, please switch the leverage or contact customer service
+1095 | Non-trading state, unable to switch the leverage temporarily
+1100 | Unable to open a position currently. Please contact the customer service.
+1101 | Unable to close a position currently. Please contact the customer service.
+1102 | Unable to transfer in currently. Please contact customer service.
+1103 | Unable to transfer out currently. Please contact customer service.
+1104 | Trading is prohibited due to contracts trading constraints.
+1105 | Only Close is available due to contracts trading constraints.
+1106 | Delivery or settlement in progress, unable to transfer.
+1108 | Abnormal service. Please try again later.
+1109 | Sub-account doesn't own the permissions to open positions. Please contact customer service.
+1110 | Sub-account  doesn't own the permissions to close positions. Please contact customer service.
+1111 | Sub-account doesn't own the permissions to transfer in. Please contact customer service.
+1112 | Sub-account doesn't own the permissions to transfer out. Please contact customer service.
+1113 | The sub-account does not have transaction permissions. Please login main account to authorize.
+1114 | The sub-account does not have transfer permissions. Please login main account to authorize.
+1115 | You have no access permissions of this sub-account.
+1200 | Login error. Please try again.
+1220 | You don’t have access permission as you have not opened contracts trading.
+1221 | The total balances of Exchange Account can't meet the requirements for opening contracts.
+1222 | The days of opening account can't meet the requirements for opening contracts.
+1223 | The VIP level can't meet the requirements for opening contracts.
+1224 | Your country/region can't meet the requirements for opening contracts.
+1225 | Failed to open contracts.
+1226 | Repeated account.
+1227 | Huobi Contract does not support sub-accounts. Please log out sub-account and log in again with primary account.
+1228 | You have not activated contract trading currently, please activate first. 
+1229 | Cannot agree twice.
+1230 | You haven't finished the risk verification.
+1231 | You haven't finished the ID Verification.
+1232 | The format/size of the image you uploaded does not meet the requirements. Please re-upload.
+1233 | High leverage is not enabled (Please sign in the APP or web with your main account to agree to the High-Leverage Agreement)
+1234 | {0} contract opening orders cannot exceed {1}
+1235 | {0} contract closing orders cannot exceed {1}
+1250 | Unable to get the HT_token.
+1251 | Unable to get BTC assets. Please try again later.
+1252 | Unable to get currency account assets. Please try again later.
+1253 | Error in signature verification.
+1254 | The sub-account has no permission to open futures, please go to the web side to log in the main account and open.
+1300 | Transfer failed.
+1301 | Insufficient amount available.
+1302 | Transfer failed.
+1303 | The single transfer-out amount must be no less than {0}{1}.
+1304 | The single transfer-out amount must be no more than {0}{1}.
+1305 | The single transfer-in amount must be no less than {0}{1}.
+1306 | The single transfer-in amount must be no more than {0}{1}.
+1307 | Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.
+1308 | Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.
+1309 | Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being.
+1310 | Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being.
+1311 | The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being.
+1312 | The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being.
+1313 | The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being.
+1314 | The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being.
+1315 | Wrong transfer type.
+1316 | Failed to freeze the transfer.
+1317 | Failed to unfreeze the transfer.
+1318 | Failed to confirm the transfer.
+1319 | Failed to acquire the available transfer amount.
+1320 | The contract status is abnormal. Transfer is unavailable temporarily.
+1321 | Transfer failed. Please try again later or contact customer service.
+1322 | Invalid amount. Must be more than 0.
+1323 | Abnormal service, transfer failed. Please try again later.
+1325 | Failed to set trading unit
+1326 | Failed to obtain trading units
+1327 | No transfer permission, transfer failed, please contact customer service
+1328 | No transfer permission, transfer failed, please contact customer service
+1329 | No transfer permission, transfer failed, please contact customer service
+1330 | No transfer permission, transfer failed, please contact customer service
+1331 | Exceeds limit of transfer accuracy (8 digits). Please modify it
+1332 | The contract doesn't exist.
+1333 | Failed to open the Maker&Taker agreement
+1334 | Failed to check the Maker&Taker agreement
+1335 | Failed to check the second confirmation setting of Maker&Taker
+1336 | Failed to update the second confirmation setting of Maker&Taker
+1337 | Failed to check the settings of Maker&Taker
+1338 | Failed to update the settings of Maker&Taker
+1339 | Nickname contains illegal words, please modify it
+1340 | Nickname has been used, please modify it
+1341 | The enrollment has ended
+1342 | You cannot set nickname for sub-account
+1343 | Invalid indicator, please reset
+1344 | Sorry, {0} contracts can add market reminders currently at most
+1345 | Sorry, currently {0} can set up to {1} reminders
+1346 | The indicator already exists, please do not set it repeatedly
+1347 | {0} parameter is incorrect, please modify.
+1348 | This contract does not support cross margin mode.
+1349 | The leverage of the order does not match the leverage of the current position, please switch the leverage first. 
+1401 | order price shall be lower than the strike price.
+1403 | The number of take-profit and stop-loss orders for {0} contract shall not exceed {1}  
+1404 | Take-profit and stop-loss orders can only be bound with orders for opening a position
+1405 | The take-profit price shall not be {0}{1}{2} 
+1406 | Your chances of lucky draw have been used up 
+1407 | The stop-loss price shall not be {0}{1}{2}
+12001 | Invalid submission time.
+12002 | Incorrect signature version.
+12003 | Incorrect signature method.
+12004 | Private key is expired.
+12005 | Incorrect IP address.
+12006 | The submission time can't be empty.
+12007 | Incorrect public key.
+12008 | Verification failed.
+12009 | The user is locked or doesn't exist.
 
 
 ## API Best Practice
