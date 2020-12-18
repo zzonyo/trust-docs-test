@@ -38,6 +38,13 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.0.5 2020-12-18 【Newly added：Added WS interface for subscribing system status updates push】
+
+### 1.Added WS interface for subscribing system status updates push
+  - Interface name: [General]subscribe system status updates
+  - Interface type: public
+  - Subscription topic：public.$service.heartbeat
+
 ## 1.0.4 2020-12-11 【1-33 Added interfaces for cross margin mode. 34-60 Added fields to modify interface】
 
 ### 1、Added Cross Margin Mode Query Information On Tiered Adjustment Factor
@@ -910,7 +917,7 @@ Please note that, for both public interface and private interface, there are rat
   - 5. Please try to extend your request polling cycle when implementing your strategy.
  
 ## Maintenance with service suspended
-During the maintenance of the business system, in addition to the below two interfaces(<a href='https://docs.huobigroup.com/docs/usdt_swap/v1/en/#get-system-status'>Get system status</a >, <a href='https://docs.huobigroup.com/docs/usdt_swap/v1/en/#query-whether-the-system-is-available'>Query whether the system is available</a >) for users to query the system status, all “rest” interfaces of the API business will return this in a fixed manner:`{"status": "maintain"}`
+During the maintenance of the business system, in addition to the below two interfaces(<a href='https://docs.huobigroup.com/docs/usdt_swap/v1/en/#get-system-status'>Get system status</a >, <a href='https://docs.huobigroup.com/docs/usdt_swap/v1/en/#query-whether-the-system-is-available'>Query whether the system is available</a >) for users to query the system status, all “rest” interfaces of the API business will return this in a fixed manner:`{"status": "maintain"}`. During maintenance with service suspended，all websocket notify interfaces except subscribing system status updates（<a href='https://docs.huobigroup.com/docs/usdt_swap/v1/en/#query-whether-the-system-is-available'>Subscribe system status updates</a>）can't work，and will push 1006 error code to clients.
 
 >Response
 
@@ -923,6 +930,8 @@ During the maintenance of the business system, in addition to the below two inte
 ### The two interfaces are:
 - Get system status: https://status-linear-swap.huobigroup.com/api/v2/summary.json
 - Query whether the system is available: https://api.hbdm.com/heartbeat/
+
+Besides the above two rest interfaces, for getting the infomation that system maintenance with service suspended, could by subscrib system status updates websocket interface.
 
 ## Get system status
 
@@ -1125,7 +1134,6 @@ No parameter is available for this endpoint.
 
 
 ## Query whether the system is available  
-
 
 - Interface `https://api.hbdm.com/heartbeat/`
 
@@ -8184,6 +8192,7 @@ Response Code | Desc in Chinese |  Desc in English  |
 | Read  | Trade Interface | cross margin | positions_cross.$contract_code                            | sub    |   Subscribe Position Updates     |       Yes          |
 | Read  | Trade Interface | cross margin | matchOrders_cross.$contract_code                          | sub    |   Subscribe Match Order Data     |       Yes          |
 | Read  | Trade Interface | cross margin | trigger_order_cross.$contract_code                        | sub    |   Subscribe trigger orders updates(sub)     |       Yes          |                                                                                                                                    
+| Read   |  System Status Interface | cross margin  |  public.$service.heartbeat                    |    sub  | Subscription system status updates   | No  | 
 
 ## WebSocket Subscription Address
 
@@ -8193,6 +8202,8 @@ Order Push Subscription: wss://api.hbdm.com/linear-swap-notification
 
 Index Kline Data and Basis Data Subscription: wss://api.hbdm.com/ws_index
 
+System status updates subscription ：wss://api.hbdm.com/center-notification
+
 If the url: api.hbdm.com can't be accessed, please use the url below:
 
 Market Data Request and Subscription Address: wss://api.btcgateway.pro/linear-swap-ws;
@@ -8200,6 +8211,8 @@ Market Data Request and Subscription Address: wss://api.btcgateway.pro/linear-sw
 Order Push Subscription：wss://api.btcgateway.pro/linear-swap-notification
 
 Index Kline Data and Basis Data Subscription: wss://api.btcgateway.pro/ws_index
+
+System status updates subscription ：wss://api.btcgateway.pro/center-notification
 
 If you have further queries about Huobi USDT Margined Swap order push subscription, please refer to [Demo](https://docs.huobigroup.com/docs/usdt_swap/v1/en/#code-demo)
 
@@ -12221,6 +12234,81 @@ To subscribe basis data, the Client has to make connection to the Server and sen
 | trigger_order_cross.contract_code1 | trigger_order_cross.contract_code2  |  Not Allowed |
 | trigger_order_cross.*       | trigger_order_cross.contract_code1  |  Not Allowed |
 
+
+
+# WebSocket interface for system status updates 
+
+ - The websocket url of system status updates is : wss://api.hbdm.com/center-notification
+
+##  [General]Subscribe system status updates 
+
+### After successfully establishing a connection with the WebSocket API, users could send data in the following format to the server to request data:
+
+  `{`
+  
+      `"op": "sub",`
+  
+      `"cid": "id generated by client",`
+  
+      `"topic ": "public.$service.heartbeat"`
+  
+  `} `
+
+> Example on using parameters to request data: 
+
+```json
+
+{
+	"op": "sub",
+	"cid": "id generated by client",
+	"topic ": "public.linear-swap.heartbeat"
+}
+```
+
+### **Request Parameter**:
+| Name   |Mandatory | Type     | Desc   | Value Range           |
+| ------ | ---- | ------ | -------- | -------------- |
+| op | true | string | The fixed value of subscription is sub	 |  |
+| cid | false| string | Client requests a unique ID	 | |
+| topic | true| string | Subscription topic name is required (public.$service.heartbeat), Subscribe system status information of a certain business | |
+
+### **subscription parameter description**:
+| Name   |Mandatory | Type     | Desc   | Value Range           |
+| ------ | ---- | ------ | -------- | -------------- |
+| service | true | string |Business Code	 | linear-swap : USDT Margined Swap |
+
+
+> **Return Parameter Example**:
+
+```json
+
+{
+    "op": "notify",
+    "topic": "public.linear-swap.heartbeat",
+    "event": "init",
+    "ts":1580815422403,
+    "data":{
+        "heartbeat": 0,
+        "estimated_recovery_time": 1408076414000
+    }
+}
+
+```
+
+### **Return Parameter Rules**：
+| Name   |Mandatory | Type     | Desc   | Value Range           |
+| -------- | -------- | -------- |  --------------------------------------- | -------------- | 
+| op   | true | string  | Operation name, the fixed value of push is notify;  |   |
+| topic   | true | string  | Push topic   |   |
+| event   | true | string  | Description on notification related event | The initial system status information returned by a successful subscription (init), triggered by system status change (update) |
+| ts   | true | long  | Server response timestamp   |   |
+| \<data\> |  |  |  | |
+| heartbeat | true | int | System Status	 |  1 is available, 0 is not available(maintenance with service suspended) |
+| estimated_recovery_time | true | long |  Estimated system recovery time, unit: millisecond	 |  When the system status is available, return NULL |
+| \</data\> | | |  | |
+
+### Note
+- Since this push is a poll query status, there may be a delay of 1-2 seconds.
 
 # Appendix
 
