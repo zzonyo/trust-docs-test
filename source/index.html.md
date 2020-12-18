@@ -934,13 +934,6 @@ A: 当前火币有基于最新成交价上下一定幅度的限价保护，对�
 ### Q9: 如何获取杠杆类交易的币种对？
 A: 您可以根据` GET /v1/common/symbols`接口返回数据中的字段区分。leverage-ratio代表逐仓杠杆倍数。super-magin-leverage-ratio代表支持全仓杠杆倍数。如果值为0，表明不支持杠杆交易。
 
-## 杠杆借贷相关
-### Q1: 逐仓和全仓借币时我查询到可借余额有值，而且我申请借币的额度小于可借余额，为什么借币时却提示可借币不足错误，无法借币成功？
-
-A: 用户可借额度不仅取决于用户账户的可借额度，也取决于系统可借总额度。按照风险控制要求系统每天有一个借币的总额度，为所有用户共享。如果超过了这个额度，即使账户自己的额度够也无法借币。系统当天总额度用尽时，只有当天有用户还币之后，才可以继续借币。我们目前正在实现对用户更友好的解决方案，尝试将更准确的信息通过API提供给用户。
-
-
-
 # 基础信息
 
 ## 简介
@@ -5286,73 +5279,6 @@ API Key 权限：读取<br>
 <aside class="notice">访问借币相关的接口需要进行签名认证。</aside>
 <aside class="notice">目前逐仓杠杆交易仅支持部分以 USDT，HSUD， 和 BTC 为报价币种的交易对。</aside>
 
-以下是逐仓杠杆接口的返回码和说明。
-
-| 返回码                                      | 说明                                                         |
-| ------------------------------------------- | ------------------------------------------------------------ |
-| account-transfer-balance-insufficient-error | 账户余额不足                                                 |
-| account-transfer-balance-overflow-error     | 负账户余额溢出                                               |
-| account-transfer-balance-insufficient_error | 账户余额不足（不区分动作类型）                               |
-| base-msg                                    | 自定义错误消息                                               |
-| base-system-error                           | 系统异常                                                     |
-| base-currency-error                         | currency不存在                                               |
-| base-symbol-error                           | symbol不存在                                                 |
-| base-margin-symbol-invalid                  | 非法借贷交易对(非法交易对或者被禁止借贷的交易对)             |
-| base-record-invalid                         | 记录无效                                                     |
-| base-request-timeout                        | 请求超时，请稍后再试                                         |
-| base_request_exceed_number_limit            | 请求人数过多，请稍后再试                                     |
-| base-date-limit-error                       | 日期错误                                                     |
-| base-update-error                           | 更新数据错误                                                 |
-| base-operation-forbidden 禁止操作           | 非计息状态 禁止还款                                          |
-| dw-insufficient-balance                     | 余额不足                                                     |
-| dw-account-transfer-error                   | 转账错误                                                     |
-| frequent-invoke                             | 操作过于频繁，请稍后重试                                     |
-| loan-order-not-found                        | 订单未找到                                                   |
-| loan-amount-scale-limit                     | 借贷&还款 金额精度限制                                       |
-| loan-repay-max-limit                        | 偿还大于借贷                                                 |
-| loan-insufficient-balance                   | 余额不足                                                     |
-| login-required                              | 需要登录                                                     |
-| margin-country-not-allow                    | 国家未开放借贷                                               |
-| margin-country-auth-required                | 国家未开放借贷，需要认证                                     |
-| margin-trading-is-not-available             | 暂不支持逐仓杠杆交易--禁止土耳其籍或通过土耳其KYC的用户进行逐仓杠杆借币 |
-| margin-account-state-error                  | 账户状态异常(爆仓中)                                         |
-| risk-verification-failed                    | 风控拦截通用错误码                                           |
-| sub-user-auth-required                      | 需要母用户授权子用户                                         |
-
-以下是全仓杆接口的返回码和说明。
-
-| 返回码                                   | 说明                                  |
-| ---------------------------------------- | ------------------------------------- |
-| abnormal-users-cannot-transfer           | 非正常用户不能转出                    |
-| account-explosion-in-prohibited-transfer | 账户爆仓中禁止划转操作                |
-| account-is-abnormal-retry-after-refresh  | 账户异常请刷新重试                    |
-| account-balance-insufficient-error       | 账户余额不足，不区分动作类型          |
-| account-cannot-be-inquired               | 无法查询到全仓杠杆账户                |
-| base-not-in-white-list                   | 不是白名单用户                        |
-| base-currency-error                      | currency不存在                        |
-| base-operation-forbidden                 | 禁止操作                              |
-| base-user-request-exceed-limit           | 操作太频繁，请稍后再试                |
-| base-currency-not-open                   | currency还没有开放 该保证金币种未开启 |
-| beyond-maximum-number-of-rollover        | 超出最大转出数量                      |
-| exceed-maximum-amount                    | 超出最大数量                          |
-| start-date-cannot-greater-than-end-date  | 开始时间不能大于结束时间              |
-| frequent-invoke                          | 操作过于频繁，请稍后重试              |
-| loan-order-not-found                     | 订单未找到                            |
-| loan-amount-scale-limit                  | 借贷&还款 金额精度限制                |
-| loan-repay-max-limit                     | 偿还大于借贷                          |
-| loan-insufficient-balance                | 余额不足                              |
-| loan-fee-rate-compute-fail               | 系统借款利率计算异常                  |
-| login-required                           | 需要登录                              |
-| margin-subuser-no-permission             | 全仓杠杆子账号未开通权限              |
-| normal-and-warehouse-can-transfer        | 正常用户与穿仓用户可以转入            |
-| order-orderamount-precision-error        | 交易数额精度错误                      |
-| require-exchange-id                      | 需要交易所id                          |
-| subacount-currency-not-exit              | 该币种的子账户不存在                  |
-| system-busy                              | 系统繁忙                              |
-| unsupport-kyc-info                       | 不支持的kyc认证信息                   |
-| uc-network-error                         | 网络错误                              |
-| uncreated-currency-cannot-be-drawn       | 未创建币种子账户无法划出              |
-
 ## 资产划转（逐仓）
 
 API Key 权限：交易<br>
@@ -6218,6 +6144,81 @@ API Key 权限：读取
 | paidHt          | string   | TRUE         | 该笔还币交易已支付HT金额                                 |
 | paidPoint }}]   | string   | TRUE         | 该笔还币交易已支付点卡金额                               |
 | nextId          | long     | FALSE        | 下页查询起始编号（仅在存在下页数据时返回）               |
+
+## 常见错误码
+
+**以下是逐仓杠杆接口的返回码和说明。**
+
+| 返回码                                      | 说明                                                         |
+| ------------------------------------------- | ------------------------------------------------------------ |
+| account-transfer-balance-insufficient-error | 账户余额不足                                                 |
+| account-transfer-balance-overflow-error     | 负账户余额溢出                                               |
+| account-transfer-balance-insufficient_error | 账户余额不足（不区分动作类型）                               |
+| base-msg                                    | 自定义错误消息                                               |
+| base-system-error                           | 系统异常                                                     |
+| base-currency-error                         | currency不存在                                               |
+| base-symbol-error                           | symbol不存在                                                 |
+| base-margin-symbol-invalid                  | 非法借贷交易对(非法交易对或者被禁止借贷的交易对)             |
+| base-record-invalid                         | 记录无效                                                     |
+| base-request-timeout                        | 请求超时，请稍后再试                                         |
+| base_request_exceed_number_limit            | 请求人数过多，请稍后再试                                     |
+| base-date-limit-error                       | 日期错误                                                     |
+| base-update-error                           | 更新数据错误                                                 |
+| base-operation-forbidden 禁止操作           | 非计息状态 禁止还款                                          |
+| dw-insufficient-balance                     | 余额不足                                                     |
+| dw-account-transfer-error                   | 转账错误                                                     |
+| frequent-invoke                             | 操作过于频繁，请稍后重试                                     |
+| loan-order-not-found                        | 订单未找到                                                   |
+| loan-amount-scale-limit                     | 借贷&还款 金额精度限制                                       |
+| loan-repay-max-limit                        | 偿还大于借贷                                                 |
+| loan-insufficient-balance                   | 余额不足                                                     |
+| login-required                              | 需要登录                                                     |
+| margin-country-not-allow                    | 国家未开放借贷                                               |
+| margin-country-auth-required                | 国家未开放借贷，需要认证                                     |
+| margin-trading-is-not-available             | 暂不支持逐仓杠杆交易--禁止土耳其籍或通过土耳其KYC的用户进行逐仓杠杆借币 |
+| margin-account-state-error                  | 账户状态异常(爆仓中)                                         |
+| risk-verification-failed                    | 风控拦截通用错误码                                           |
+| sub-user-auth-required                      | 需要母用户授权子用户                                         |
+
+**以下是全仓杆接口的返回码和说明。**
+
+| 返回码                                   | 说明                                  |
+| ---------------------------------------- | ------------------------------------- |
+| abnormal-users-cannot-transfer           | 非正常用户不能转出                    |
+| account-explosion-in-prohibited-transfer | 账户爆仓中禁止划转操作                |
+| account-is-abnormal-retry-after-refresh  | 账户异常请刷新重试                    |
+| account-balance-insufficient-error       | 账户余额不足，不区分动作类型          |
+| account-cannot-be-inquired               | 无法查询到全仓杠杆账户                |
+| base-not-in-white-list                   | 不是白名单用户                        |
+| base-currency-error                      | currency不存在                        |
+| base-operation-forbidden                 | 禁止操作                              |
+| base-user-request-exceed-limit           | 操作太频繁，请稍后再试                |
+| base-currency-not-open                   | currency还没有开放 该保证金币种未开启 |
+| beyond-maximum-number-of-rollover        | 超出最大转出数量                      |
+| exceed-maximum-amount                    | 超出最大数量                          |
+| start-date-cannot-greater-than-end-date  | 开始时间不能大于结束时间              |
+| frequent-invoke                          | 操作过于频繁，请稍后重试              |
+| loan-order-not-found                     | 订单未找到                            |
+| loan-amount-scale-limit                  | 借贷&还款 金额精度限制                |
+| loan-repay-max-limit                     | 偿还大于借贷                          |
+| loan-insufficient-balance                | 余额不足                              |
+| loan-fee-rate-compute-fail               | 系统借款利率计算异常                  |
+| login-required                           | 需要登录                              |
+| margin-subuser-no-permission             | 全仓杠杆子账号未开通权限              |
+| normal-and-warehouse-can-transfer        | 正常用户与穿仓用户可以转入            |
+| order-orderamount-precision-error        | 交易数额精度错误                      |
+| require-exchange-id                      | 需要交易所id                          |
+| subacount-currency-not-exit              | 该币种的子账户不存在                  |
+| system-busy                              | 系统繁忙                              |
+| unsupport-kyc-info                       | 不支持的kyc认证信息                   |
+| uc-network-error                         | 网络错误                              |
+| uncreated-currency-cannot-be-drawn       | 未创建币种子账户无法划出              |
+
+## 常见问题
+
+### Q1: 逐仓和全仓借币时我查询到可借余额有值，而且我申请借币的额度小于可借余额，为什么借币时却提示可借币不足错误，无法借币成功？
+
+A: 用户可借额度不仅取决于用户账户的可借额度，也取决于系统可借总额度。按照风险控制要求系统每天有一个借币的总额度，为所有用户共享。如果超过了这个额度，即使账户自己的额度够也无法借币。系统当天总额度用尽时，只有当天有用户还币之后，才可以继续借币。我们目前正在实现对用户更友好的解决方案，尝试将更准确的信息通过API提供给用户。
 
 # 借币（C2C）
 
