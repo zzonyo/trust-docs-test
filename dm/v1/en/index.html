@@ -2561,7 +2561,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1013</td>
-<td>This contract type doesn&#39;t exist.</td>
+<td>This contract symbol doesn&#39;t exist.</td>
 </tr>
 <tr>
 <td>1014</td>
@@ -2613,7 +2613,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1034</td>
-<td>Incorrect field of contract period.</td>
+<td>Incorrect field of order price type.</td>
 </tr>
 <tr>
 <td>1035</td>
@@ -2633,7 +2633,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1039</td>
-<td>Buy price must be lower than {0} USD. Sell price must exceed {1} USD.</td>
+<td>Buy price must be lower than {0}{1}. Sell price must exceed {2}{3}.</td>
 </tr>
 <tr>
 <td>1040</td>
@@ -2657,7 +2657,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1045</td>
-<td>Unable to switch leverage  due to current holdings or open orders.</td>
+<td>Unable to switch leverage due to open orders.</td>
 </tr>
 <tr>
 <td>1046</td>
@@ -2673,7 +2673,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1049</td>
-<td>Open a position with market price is not available.contracts.</td>
+<td>Open a position with market price is not available.contracts</td>
 </tr>
 <tr>
 <td>1050</td>
@@ -2761,11 +2761,11 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1071</td>
-<td>Repeated cancellation. Your order has been canceled.</td>
+<td>Repeated withdraw.</td>
 </tr>
 <tr>
 <td>1072</td>
-<td>Sell price must be lower than {0} USD.</td>
+<td>Sell price must be lower than {0}{1}.</td>
 </tr>
 <tr>
 <td>1073</td>
@@ -2785,15 +2785,15 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1077</td>
-<td>In settlement or delivery. Unable to get assets.</td>
+<td>In settlement or delivery. Unable to get assets of current contract.</td>
 </tr>
 <tr>
 <td>1078</td>
-<td>In settlement or delivery. Unable to get assets.</td>
+<td>In settlement or delivery. Unable to get assets of some contracts.</td>
 </tr>
 <tr>
 <td>1079</td>
-<td>In settlement or delivery. Unable to get positions.</td>
+<td>In settlement or delivery. Unable to get positions of current contract.</td>
 </tr>
 <tr>
 <td>1080</td>
@@ -2801,7 +2801,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1081</td>
-<td>The number of unfilled trigger order exceeds the limit.</td>
+<td>The number of your {0} contract trigger orders exceeds the limit {1}.</td>
 </tr>
 <tr>
 <td>1082</td>
@@ -2833,7 +2833,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1089</td>
-<td>{0} contract is restricted of transfer.  Please contact customer service.</td>
+<td>Transfer is temporarily restricted for {0} account, please contact customer service support.</td>
 </tr>
 <tr>
 <td>1090</td>
@@ -2853,11 +2853,11 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1094</td>
-<td>The leverage cannot be empty, please switch the leverage or contact customer service.</td>
+<td>The leverage cannot be empty, please switch the leverage or contact customer service</td>
 </tr>
 <tr>
 <td>1095</td>
-<td>Non-trading state, unable to switch the leverage temporarily.</td>
+<td>Non-trading state, unable to switch the leverage temporarily</td>
 </tr>
 <tr>
 <td>1100</td>
@@ -2885,7 +2885,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1106</td>
-<td>Abnormal contracts status. Can’t transfer.</td>
+<td>Delivery or settlement in progress, unable to transfer.</td>
 </tr>
 <tr>
 <td>1108</td>
@@ -2957,7 +2957,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1228</td>
-<td>Account has not opened, cannot agree to agreement.</td>
+<td>You have not activated contract trading currently, please activate first.</td>
 </tr>
 <tr>
 <td>1229</td>
@@ -2977,15 +2977,15 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1233</td>
-<td>High leverage is not enabled (Please sign in the APP or web with your main account to agree to the High-Leverage Agreement).</td>
+<td>High leverage is not enabled (Please sign in the APP or web with your main account to agree to the High-Leverage Agreement)</td>
 </tr>
 <tr>
 <td>1234</td>
-<td>{0} contract opening orders cannot exceed {1} .</td>
+<td>{0} contract opening orders cannot exceed {1}</td>
 </tr>
 <tr>
 <td>1235</td>
-<td>{0} contract closing orders cannot exceed {1}.</td>
+<td>{0} contract closing orders cannot exceed {1}</td>
 </tr>
 <tr>
 <td>1250</td>
@@ -3105,31 +3105,31 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1325</td>
-<td>Failed to set trading unit.</td>
+<td>Failed to set trading unit</td>
 </tr>
 <tr>
 <td>1326</td>
-<td>Failed to obtain trading units.</td>
+<td>Failed to obtain trading units</td>
 </tr>
 <tr>
 <td>1327</td>
-<td>No transfer permission, transfer failed, please contact customer service.</td>
+<td>No transfer permission, transfer failed, please contact customer service</td>
 </tr>
 <tr>
 <td>1328</td>
-<td>No transfer permission, transfer failed, please contact customer service.</td>
+<td>No transfer permission, transfer failed, please contact customer service</td>
 </tr>
 <tr>
 <td>1329</td>
-<td>No transfer permission, transfer failed, please contact customer service.</td>
+<td>No transfer permission, transfer failed, please contact customer service</td>
 </tr>
 <tr>
 <td>1330</td>
-<td>No transfer permission, transfer failed, please contact customer service.</td>
+<td>No transfer permission, transfer failed, please contact customer service</td>
 </tr>
 <tr>
 <td>1331</td>
-<td>Exceeds limit of transfer accuracy (8 digits). Please modify it.</td>
+<td>Exceeds limit of transfer accuracy (8 digits). Please modify it</td>
 </tr>
 <tr>
 <td>1332</td>
@@ -3137,43 +3137,95 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1333</td>
-<td>Failed to open the Maker&amp;Taker agreement.</td>
+<td>Failed to open the Maker&amp;Taker agreement</td>
 </tr>
 <tr>
 <td>1334</td>
-<td>Failed to check the Maker&amp;Taker agreement.</td>
+<td>Failed to check the Maker&amp;Taker agreement</td>
 </tr>
 <tr>
 <td>1335</td>
-<td>Failed to check the second confirmation setting of Maker&amp;Taker.</td>
+<td>Failed to check the second confirmation setting of Maker&amp;Taker</td>
 </tr>
 <tr>
 <td>1336</td>
-<td>Failed to update the second confirmation setting of Maker&amp;Taker.</td>
+<td>Failed to update the second confirmation setting of Maker&amp;Taker</td>
 </tr>
 <tr>
 <td>1337</td>
-<td>Failed to check the settings of Maker&amp;Taker.</td>
+<td>Failed to check the settings of Maker&amp;Taker</td>
 </tr>
 <tr>
 <td>1338</td>
-<td>Failed to update the settings of Maker&amp;Taker.</td>
+<td>Failed to update the settings of Maker&amp;Taker</td>
 </tr>
 <tr>
 <td>1339</td>
-<td>Nickname contains illegal words, please modify it.</td>
+<td>Nickname contains illegal words, please modify it</td>
 </tr>
 <tr>
 <td>1340</td>
-<td>Nickname has been used, please modify it.</td>
+<td>Nickname has been used, please modify it</td>
 </tr>
 <tr>
 <td>1341</td>
-<td>The enrollment has ended.</td>
+<td>The enrollment has ended</td>
 </tr>
 <tr>
 <td>1342</td>
-<td>You cannot set nickname for sub-account.</td>
+<td>You cannot set nickname for sub-account</td>
+</tr>
+<tr>
+<td>1343</td>
+<td>Invalid indicator, please reset</td>
+</tr>
+<tr>
+<td>1344</td>
+<td>Sorry, {0} contracts can add market reminders currently at most</td>
+</tr>
+<tr>
+<td>1345</td>
+<td>Sorry, currently {0} can set up to {1} reminders</td>
+</tr>
+<tr>
+<td>1346</td>
+<td>The indicator already exists, please do not set it repeatedly</td>
+</tr>
+<tr>
+<td>1347</td>
+<td>{0} parameter is incorrect, please modify.</td>
+</tr>
+<tr>
+<td>1348</td>
+<td>This contract does not support cross margin mode.</td>
+</tr>
+<tr>
+<td>1349</td>
+<td>The leverage of the order does not match the leverage of the current position, please switch the leverage first.</td>
+</tr>
+<tr>
+<td>1401</td>
+<td>order price shall be lower than the strike price.</td>
+</tr>
+<tr>
+<td>1403</td>
+<td>The number of take-profit and stop-loss orders for {0} contract shall not exceed {1}</td>
+</tr>
+<tr>
+<td>1404</td>
+<td>Take-profit and stop-loss orders can only be bound with orders for opening a position</td>
+</tr>
+<tr>
+<td>1405</td>
+<td>The take-profit price shall not be {0}{1}{2}</td>
+</tr>
+<tr>
+<td>1406</td>
+<td>Your chances of lucky draw have been used up</td>
+</tr>
+<tr>
+<td>1407</td>
+<td>The stop-loss price shall not be {0}{1}{2}</td>
 </tr>
 <tr>
 <td>12001</td>
