@@ -7851,6 +7851,8 @@ direction  |  true  |  string  |  买卖方向  |   |
 | cid      | string | 选填;Client 请求唯一 ID                     |
 | topic    | string | 必填；订阅主题名称:orders.$contract_code，详细主题列表请参考附录; contrac_code支持大小写，比如:BTC-USD|
 
+ - 备注：postOnly的报单收到的WS推送要么是报单成功，状态为3，要么是7，已撤单。
+
 > 成交详情通知数据格式说明
 
 ```json
