@@ -334,9 +334,6 @@
                   <li>
                     <a href="#cb2d08126e" class="toc-h2 toc-link" data-title="接入、验签相关">接入、验签相关</a>
                   </li>
-                  <li>
-                    <a href="#d9c242c3fe" class="toc-h2 toc-link" data-title="交易相关">交易相关</a>
-                  </li>
               </ul>
           </li>
           <li>
@@ -574,6 +571,12 @@
                   <li>
                     <a href="#2fbe58805a" class="toc-h2 toc-link" data-title="获取用户当前手续费率">获取用户当前手续费率</a>
                   </li>
+                  <li>
+                    <a href="#555911a809-3" class="toc-h2 toc-link" data-title="常见错误码">常见错误码</a>
+                  </li>
+                  <li>
+                    <a href="#0adb1147b3-3" class="toc-h2 toc-link" data-title="常见问题">常见问题</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -648,10 +651,10 @@
                     <a href="#0437640667" class="toc-h2 toc-link" data-title="还币交易记录查询（全仓）">还币交易记录查询（全仓）</a>
                   </li>
                   <li>
-                    <a href="#555911a809-3" class="toc-h2 toc-link" data-title="常见错误码">常见错误码</a>
+                    <a href="#555911a809-4" class="toc-h2 toc-link" data-title="常见错误码">常见错误码</a>
                   </li>
                   <li>
-                    <a href="#0adb1147b3-3" class="toc-h2 toc-link" data-title="常见问题">常见问题</a>
+                    <a href="#0adb1147b3-4" class="toc-h2 toc-link" data-title="常见问题">常见问题</a>
                   </li>
               </ul>
           </li>
@@ -2456,69 +2459,6 @@ api.huobi.pro\n
 </ol>
 <h3 id='q8-rest-http-405-method-not-allowed'>Q8: 调用Rest接口返回HTTP 405错误 method-not-allowed是什么原因？</h3>
 <p>A：该错误表明调用了不存在的Rest接口，请检查Rest接口路径是否准确。由于Nginx的设置，请求路径(Path)是大小写敏感的，请严格按照文档声明的大小写。</p>
-<h2 id='d9c242c3fe'>交易相关</h2><h3 id='q1-account-id'>Q1：account-id是什么？</h3>
-<p>A： account-id对应用户不同业务账户的ID，可通过/v1/account/accounts接口获取，并根据account-type区分具体账户。</p>
-
-<p>账户类型包括：</p>
-
-<ul>
-<li>spot 现货账户<br></li>
-<li>otc OTC账户<br></li>
-<li>margin 逐仓杠杆账户，该账户类型以subType区分具体币种对账户<br></li>
-<li>super-margin（或cross-margin） 全仓杠杆账户 </li>
-<li>investment C2C杠杆借出账户</li>
-<li>borrow C2C杠杆借入账户</li>
-<li>point 点卡账户<br></li>
-<li>minepool 矿池账户 </li>
-<li>etf ETF账户<br></li>
-</ul>
-<h3 id='q2-client-order-id'>Q2：client-order-id是什么？</h3>
-<p>A： client-order-id作为下单请求标识的一个参数，类型为字符串，长度为64。 此id为用户自己生成，24小时内有效。</p>
-<h3 id='q3'>Q3：如何获取下单数量、金额、小数限制、精度的信息？</h3>
-<p>A： 可使用 Rest API <code>GET /v1/common/symbols</code> 获取相关币对信息， 下单时注意最小下单数量和最小下单金额的区别。 </p>
-
-<p>常见返回错误如下：  </p>
-
-<ul>
-<li>order-value-min-error: 下单金额小于最小交易额<br></li>
-<li>order-orderprice-precision-error : 限价单价格精度错误<br></li>
-<li>order-orderamount-precision-error : 下单数量精度错误<br></li>
-<li>order-limitorder-price-max-error : 限价单价格高于限价阈值<br></li>
-<li>order-limitorder-price-min-error : 限价单价格低于限价阈值<br></li>
-<li>order-limitorder-amount-max-error : 限价单数量高于限价阈值<br></li>
-<li>order-limitorder-amount-min-error : 限价单数量低于限价阈值<br></li>
-</ul>
-<h3 id='q4-websocket-orders-symbol-orders-symbol-update'>Q4：WebSocket 订单更新推送主题orders.\$symbol 和 orders.$symbol.update的区别？</h3>
-<p>A： 区别如下：</p>
-
-<ol>
-<li><p>order.\$symbol 主题作为老的推送主题，会在一段时间后停止主题的维护和使用， 推荐使用order.$symbol.update主题。</p></li>
-<li><p>新主题orders.$symbol.update具有严格的时序性，保证数据严格按照撮合成交顺序进行推送，且具有更快的时效性以及更低的时延。</p></li>
-<li><p>为减少重复数据推送量以及更快的速度，在orders.$symbol.update推送中并未携带原始订单数量，价格信息，若需要此信息，建议可在下单时在本地维护订单信息，或在接收到推送消息后，使用Rest接口进行查询。</p></li>
-</ol>
-<h3 id='q5-2'>Q5： 为什么收到订单成功成交的消息后再次进行下单，返回余额不足？</h3>
-<p>A：为保证订单的及时送达以及低延时， 订单推送的结果是在撮合后直接推送，此时订单可能并未完成资产的清算。  </p>
-
-<p>建议使用以下方式保证资金可以正确下单：</p>
-
-<ol>
-<li><p>结合资产推送主题<code>accounts</code>同步接收资产变更的消息，确保资金已经完成清算。</p></li>
-<li><p>收到订单推送消息时，使用Rest接口调用账户余额，验证账户资金是否足够。</p></li>
-<li><p>账户中保留相对充足的资金余额。</p></li>
-</ol>
-<h3 id='q6-filled-fees-filled-points'>Q6: 撮合结果里的filled-fees和filled-points有什么区别？</h3>
-<p>A: 撮合成交中的成交手续费分为普通手续费以及抵扣手续费两种类型，两种类型不会同时存在。</p>
-
-<ol>
-<li><p>普通手续费表示，在成交时，未开启HT抵扣、点卡抵扣，使用原币进行手续费扣除。例如：在BTCUSDT币种对下购买BTC，filled-fees字段不为空，表示扣除了普通手续费，单位是BTC。</p></li>
-<li><p>抵扣手续费表示，在成交时，开启了HT抵扣或点卡抵扣，使用HT或点卡进行手续费的抵扣。例如BTCUSDT币种对下购买BTC，HT\点卡充足时，filled-fees为空，filled-points不为空，表示扣除了HT或点卡作为手续费，扣除单位需参考fee-deduct-currency字段</p></li>
-</ol>
-<h3 id='q7-match-id-trade-id'>Q7: 撮合结果中match-id和trade-id有什么区别？</h3>
-<p>A: match-id表示订单在撮合中的顺序号，trade-id表示成交时的序号， 一个match-id可能有多个trade-id（成交时），也可能没有trade-id(创建订单、撤销订单)</p>
-<h3 id='q8'>Q8: 为什么基于当前盘口买一或者卖一价格进行下单触发了下单限价错误？</h3>
-<p>A: 当前火币有基于最新成交价上下一定幅度的限价保护，对流动性不好的币，基于盘口数据下单可能会触发限价保护。建议基于ws推送的成交价+盘口数据信息进行下单</p>
-<h3 id='q9'>Q9: 如何获取杠杆类交易的币种对？</h3>
-<p>A: 您可以根据<code>GET /v1/common/symbols</code>接口返回数据中的字段区分。leverage-ratio代表逐仓杠杆倍数。super-magin-leverage-ratio代表支持全仓杠杆倍数。如果值为0，表明不支持杠杆交易。</p>
 <h1 id='41654e0268'>基础信息</h1><h2 id='5ea2e0cde2-2'>简介</h2>
 <p>基础信息Rest接口提供了系统状态、市场状态、交易对信息、币种信息、币链信息、服务器时间戳等公共参考信息。</p>
 <h2 id='cd63bde415'>获取当前系统状态</h2>
@@ -8923,236 +8863,6 @@ endTime缺省值：当前时间<br></p>
 <p>现货/杠杆交易接口提供了下单、撤单、订单查询、成交查询、手续费率查询等功能。</p>
 
 <aside class="notice">访问交易相关的接口需要进行签名认证。</aside>
-
-<p>以下是交易相关接口返回的返回码以及说明。</p>
-
-<table><thead>
-<tr>
-<th>返回码</th>
-<th>说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>base-argument-unsupported</td>
-<td>某参数不支持，请检查参数</td>
-</tr>
-<tr>
-<td>base-system-error</td>
-<td>系统错误，如果是撤单：缓存中查不到订单状态，该订单无法撤单；如果是下单：订单入缓存失败，请再次尝试</td>
-</tr>
-<tr>
-<td>login-required</td>
-<td>url中没有Signature参数或找不到此用户（key与账户id不对应等情况）</td>
-</tr>
-<tr>
-<td>parameter-required</td>
-<td>止盈止损订单缺少参数 stop-price或operator</td>
-</tr>
-<tr>
-<td>base-record-invalid</td>
-<td>暂时未找到数据，请稍后重试</td>
-</tr>
-<tr>
-<td>order-amount-over-limit</td>
-<td>订单数量超出限额</td>
-</tr>
-<tr>
-<td>base-symbol-trade-disabled</td>
-<td>该交易对被禁止交易</td>
-</tr>
-<tr>
-<td>base-operation-forbidden</td>
-<td>用户不在白名单内或该币种不允许OTC交易等禁止行为</td>
-</tr>
-<tr>
-<td>account-get-accounts-inexistent-error</td>
-<td>该账户在该用户下不存在</td>
-</tr>
-<tr>
-<td>account-account-id-inexistent</td>
-<td>该账户不存在</td>
-</tr>
-<tr>
-<td>operation-forbidden-for-fl-account-state</td>
-<td>账户爆仓状态下禁止订单操作</td>
-</tr>
-<tr>
-<td>sub-user-auth-required</td>
-<td>子用户未开通逐仓杠杆权限</td>
-</tr>
-<tr>
-<td>order-disabled</td>
-<td>交易对暂停，无法下单</td>
-</tr>
-<tr>
-<td>cancel-disabled</td>
-<td>交易对暂停，无法撤单</td>
-</tr>
-<tr>
-<td>order-invalid-price</td>
-<td>下单价格非法（如市价单不能有价格，或限价单价格超过市场价10%）</td>
-</tr>
-<tr>
-<td>order-accountbalance-error</td>
-<td>账户余额不足</td>
-</tr>
-<tr>
-<td>order-limitorder-price-min-error</td>
-<td>卖出价格不能低于指定价格</td>
-</tr>
-<tr>
-<td>order-limitorder-price-max-error</td>
-<td>买入价格不能高于指定价格</td>
-</tr>
-<tr>
-<td>order-limitorder-amount-min-error</td>
-<td>下单数量不能低于指定数量</td>
-</tr>
-<tr>
-<td>order-limitorder-amount-max-error</td>
-<td>下单数量不能高于指定数量</td>
-</tr>
-<tr>
-<td>order-etp-nav-price-min-error</td>
-<td>下单价格不能低于净值的指定比率</td>
-</tr>
-<tr>
-<td>order-etp-nav-price-max-error</td>
-<td>下单价格不能高于净值等指定比率</td>
-</tr>
-<tr>
-<td>order-orderprice-precision-error</td>
-<td>交易价格精度错误</td>
-</tr>
-<tr>
-<td>order-orderamount-precision-error</td>
-<td>交易数额精度错误</td>
-</tr>
-<tr>
-<td>order-value-min-error</td>
-<td>订单交易额不能低于指定额度</td>
-</tr>
-<tr>
-<td>order-marketorder-amount-min-error</td>
-<td>卖出数量不能低于指定数量</td>
-</tr>
-<tr>
-<td>order-marketorder-amount-buy-max-error</td>
-<td>市价单买入额度不能高于指定额度</td>
-</tr>
-<tr>
-<td>order-marketorder-amount-sell-max-error</td>
-<td>市价单卖出数量不能高于指定数量</td>
-</tr>
-<tr>
-<td>order-holding-limit-failed</td>
-<td>下单超出该币种的持仓限额</td>
-</tr>
-<tr>
-<td>order-type-invalid</td>
-<td>订单类型非法</td>
-</tr>
-<tr>
-<td>order-orderstate-error</td>
-<td>订单状态错误</td>
-</tr>
-<tr>
-<td>order-date-limit-error</td>
-<td>查询时间不能超过系统限制</td>
-</tr>
-<tr>
-<td>order-source-invalid</td>
-<td>订单来源非法</td>
-</tr>
-<tr>
-<td>order-update-error</td>
-<td>更新数据错误</td>
-</tr>
-<tr>
-<td>order-fl-cancellation-is-disallowed</td>
-<td>禁止撤销爆仓单</td>
-</tr>
-<tr>
-<td>operation-forbidden-for-fl-account-state</td>
-<td>账户爆仓状态下禁止订单操作</td>
-</tr>
-<tr>
-<td>operation-forbidden-for-lock-account-state</td>
-<td>账户lock状态下禁止订单操作或c2c借款账户被禁止下撤单</td>
-</tr>
-<tr>
-<td>fl-order-already-existed</td>
-<td>爆仓单已经存在 而且未成交</td>
-</tr>
-<tr>
-<td>order-user-cancel-forbidden</td>
-<td>订单类型为IOC或FOK 不允许撤单</td>
-</tr>
-<tr>
-<td>account-state-invalid</td>
-<td>不支持的爆仓账户状态</td>
-</tr>
-<tr>
-<td>order-price-greater-than-limit</td>
-<td>下单价格高于开盘前下单限制价格，请重新下单</td>
-</tr>
-<tr>
-<td>order-price-less-than-limit</td>
-<td>下单价格低于开盘前下单限制价格，请重新下单</td>
-</tr>
-<tr>
-<td>order-stop-order-hit-trigger</td>
-<td>止盈止损单下单被当前价触发</td>
-</tr>
-<tr>
-<td>market-orders-not-support-during-limit-price-trading</td>
-<td>限时下单不支持市价单</td>
-</tr>
-<tr>
-<td>price-exceeds-the-protective-price-during-limit-price-trading</td>
-<td>限价时间内价格超出保护价</td>
-</tr>
-<tr>
-<td>invalid-client-order-id</td>
-<td>client order id 在最近的下单或撤单参数中已被使用</td>
-</tr>
-<tr>
-<td>invalid-interval</td>
-<td>查询起止窗口设置错误</td>
-</tr>
-<tr>
-<td>invalid-start-date</td>
-<td>查询起始日期含非法取值</td>
-</tr>
-<tr>
-<td>invalid-end-date</td>
-<td>查询起始日期含非法取值</td>
-</tr>
-<tr>
-<td>invalid-start-time</td>
-<td>查询起始时间含非法取值</td>
-</tr>
-<tr>
-<td>invalid-end-time</td>
-<td>查询起始时间含非法取值</td>
-</tr>
-<tr>
-<td>validation-constraints-required</td>
-<td>指定的必填参数缺失</td>
-</tr>
-<tr>
-<td>symbol-not-support</td>
-<td>交易对不支持，全仓杠杆或c2c</td>
-</tr>
-<tr>
-<td>not-found</td>
-<td>撤单时订单不存在</td>
-</tr>
-<tr>
-<td>base-not-found</td>
-<td>撤单时无效clientorderid撤单过多，一个小时后再重试</td>
-</tr>
-</tbody></table>
 <h2 id='fd6ce2a756'>下单</h2>
 <p>API Key 权限：交易
 限频值；100次/2s</p>
@@ -11510,6 +11220,299 @@ endTime缺省值：当前时间<br></p>
 <p>注：<br>
 - 如makerFeeRate/actualMakerRate为正值，该字段意为交易手续费率；<br>
 - 如makerFeeRate/actualMakerRate为负值，该字段意为交易返佣费率。<br></p>
+<h2 id='555911a809-3'>常见错误码</h2>
+<p>以下是交易相关接口返回的返回码以及说明。</p>
+
+<table><thead>
+<tr>
+<th>返回码</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base-argument-unsupported</td>
+<td>某参数不支持，请检查参数</td>
+</tr>
+<tr>
+<td>base-system-error</td>
+<td>系统错误，如果是撤单：缓存中查不到订单状态，该订单无法撤单；如果是下单：订单入缓存失败，请再次尝试</td>
+</tr>
+<tr>
+<td>login-required</td>
+<td>url中没有Signature参数或找不到此用户（key与账户id不对应等情况）</td>
+</tr>
+<tr>
+<td>parameter-required</td>
+<td>止盈止损订单缺少参数 stop-price或operator</td>
+</tr>
+<tr>
+<td>base-record-invalid</td>
+<td>暂时未找到数据，请稍后重试</td>
+</tr>
+<tr>
+<td>order-amount-over-limit</td>
+<td>订单数量超出限额</td>
+</tr>
+<tr>
+<td>base-symbol-trade-disabled</td>
+<td>该交易对被禁止交易</td>
+</tr>
+<tr>
+<td>base-operation-forbidden</td>
+<td>用户不在白名单内或该币种不允许OTC交易等禁止行为</td>
+</tr>
+<tr>
+<td>account-get-accounts-inexistent-error</td>
+<td>该账户在该用户下不存在</td>
+</tr>
+<tr>
+<td>account-account-id-inexistent</td>
+<td>该账户不存在</td>
+</tr>
+<tr>
+<td>operation-forbidden-for-fl-account-state</td>
+<td>账户爆仓状态下禁止订单操作</td>
+</tr>
+<tr>
+<td>sub-user-auth-required</td>
+<td>子用户未开通逐仓杠杆权限</td>
+</tr>
+<tr>
+<td>order-disabled</td>
+<td>交易对暂停，无法下单</td>
+</tr>
+<tr>
+<td>cancel-disabled</td>
+<td>交易对暂停，无法撤单</td>
+</tr>
+<tr>
+<td>order-invalid-price</td>
+<td>下单价格非法（如市价单不能有价格，或限价单价格超过市场价10%）</td>
+</tr>
+<tr>
+<td>order-accountbalance-error</td>
+<td>账户余额不足</td>
+</tr>
+<tr>
+<td>order-limitorder-price-min-error</td>
+<td>卖出价格不能低于指定价格</td>
+</tr>
+<tr>
+<td>order-limitorder-price-max-error</td>
+<td>买入价格不能高于指定价格</td>
+</tr>
+<tr>
+<td>order-limitorder-amount-min-error</td>
+<td>下单数量不能低于指定数量</td>
+</tr>
+<tr>
+<td>order-limitorder-amount-max-error</td>
+<td>下单数量不能高于指定数量</td>
+</tr>
+<tr>
+<td>order-etp-nav-price-min-error</td>
+<td>下单价格不能低于净值的指定比率</td>
+</tr>
+<tr>
+<td>order-etp-nav-price-max-error</td>
+<td>下单价格不能高于净值等指定比率</td>
+</tr>
+<tr>
+<td>order-orderprice-precision-error</td>
+<td>交易价格精度错误</td>
+</tr>
+<tr>
+<td>order-orderamount-precision-error</td>
+<td>交易数额精度错误</td>
+</tr>
+<tr>
+<td>order-value-min-error</td>
+<td>订单交易额不能低于指定额度</td>
+</tr>
+<tr>
+<td>order-marketorder-amount-min-error</td>
+<td>卖出数量不能低于指定数量</td>
+</tr>
+<tr>
+<td>order-marketorder-amount-buy-max-error</td>
+<td>市价单买入额度不能高于指定额度</td>
+</tr>
+<tr>
+<td>order-marketorder-amount-sell-max-error</td>
+<td>市价单卖出数量不能高于指定数量</td>
+</tr>
+<tr>
+<td>order-holding-limit-failed</td>
+<td>下单超出该币种的持仓限额</td>
+</tr>
+<tr>
+<td>order-type-invalid</td>
+<td>订单类型非法</td>
+</tr>
+<tr>
+<td>order-orderstate-error</td>
+<td>订单状态错误</td>
+</tr>
+<tr>
+<td>order-date-limit-error</td>
+<td>查询时间不能超过系统限制</td>
+</tr>
+<tr>
+<td>order-source-invalid</td>
+<td>订单来源非法</td>
+</tr>
+<tr>
+<td>order-update-error</td>
+<td>更新数据错误</td>
+</tr>
+<tr>
+<td>order-fl-cancellation-is-disallowed</td>
+<td>禁止撤销爆仓单</td>
+</tr>
+<tr>
+<td>operation-forbidden-for-fl-account-state</td>
+<td>账户爆仓状态下禁止订单操作</td>
+</tr>
+<tr>
+<td>operation-forbidden-for-lock-account-state</td>
+<td>账户lock状态下禁止订单操作或c2c借款账户被禁止下撤单</td>
+</tr>
+<tr>
+<td>fl-order-already-existed</td>
+<td>爆仓单已经存在 而且未成交</td>
+</tr>
+<tr>
+<td>order-user-cancel-forbidden</td>
+<td>订单类型为IOC或FOK 不允许撤单</td>
+</tr>
+<tr>
+<td>account-state-invalid</td>
+<td>不支持的爆仓账户状态</td>
+</tr>
+<tr>
+<td>order-price-greater-than-limit</td>
+<td>下单价格高于开盘前下单限制价格，请重新下单</td>
+</tr>
+<tr>
+<td>order-price-less-than-limit</td>
+<td>下单价格低于开盘前下单限制价格，请重新下单</td>
+</tr>
+<tr>
+<td>order-stop-order-hit-trigger</td>
+<td>止盈止损单下单被当前价触发</td>
+</tr>
+<tr>
+<td>market-orders-not-support-during-limit-price-trading</td>
+<td>限时下单不支持市价单</td>
+</tr>
+<tr>
+<td>price-exceeds-the-protective-price-during-limit-price-trading</td>
+<td>限价时间内价格超出保护价</td>
+</tr>
+<tr>
+<td>invalid-client-order-id</td>
+<td>client order id 在最近的下单或撤单参数中已被使用</td>
+</tr>
+<tr>
+<td>invalid-interval</td>
+<td>查询起止窗口设置错误</td>
+</tr>
+<tr>
+<td>invalid-start-date</td>
+<td>查询起始日期含非法取值</td>
+</tr>
+<tr>
+<td>invalid-end-date</td>
+<td>查询起始日期含非法取值</td>
+</tr>
+<tr>
+<td>invalid-start-time</td>
+<td>查询起始时间含非法取值</td>
+</tr>
+<tr>
+<td>invalid-end-time</td>
+<td>查询起始时间含非法取值</td>
+</tr>
+<tr>
+<td>validation-constraints-required</td>
+<td>指定的必填参数缺失</td>
+</tr>
+<tr>
+<td>symbol-not-support</td>
+<td>交易对不支持，全仓杠杆或c2c</td>
+</tr>
+<tr>
+<td>not-found</td>
+<td>撤单时订单不存在</td>
+</tr>
+<tr>
+<td>base-not-found</td>
+<td>撤单时无效clientorderid撤单过多，一个小时后再重试</td>
+</tr>
+</tbody></table>
+<h2 id='0adb1147b3-3'>常见问题</h2><h3 id='q1-account-id'>Q1：account-id是什么？</h3>
+<p>A： account-id对应用户不同业务账户的ID，可通过/v1/account/accounts接口获取，并根据account-type区分具体账户。</p>
+
+<p>账户类型包括：</p>
+
+<ul>
+<li>spot 现货账户<br></li>
+<li>otc OTC账户<br></li>
+<li>margin 逐仓杠杆账户，该账户类型以subType区分具体币种对账户<br></li>
+<li>super-margin（或cross-margin） 全仓杠杆账户 </li>
+<li>investment C2C杠杆借出账户</li>
+<li>borrow C2C杠杆借入账户</li>
+<li>point 点卡账户<br></li>
+<li>minepool 矿池账户 </li>
+<li>etf ETF账户<br></li>
+</ul>
+<h3 id='q2-client-order-id'>Q2：client-order-id是什么？</h3>
+<p>A： client-order-id作为下单请求标识的一个参数，类型为字符串，长度为64。 此id为用户自己生成，24小时内有效。</p>
+<h3 id='q3'>Q3：如何获取下单数量、金额、小数限制、精度的信息？</h3>
+<p>A： 可使用 Rest API <code>GET /v1/common/symbols</code> 获取相关币对信息， 下单时注意最小下单数量和最小下单金额的区别。 </p>
+
+<p>常见返回错误如下：  </p>
+
+<ul>
+<li>order-value-min-error: 下单金额小于最小交易额<br></li>
+<li>order-orderprice-precision-error : 限价单价格精度错误<br></li>
+<li>order-orderamount-precision-error : 下单数量精度错误<br></li>
+<li>order-limitorder-price-max-error : 限价单价格高于限价阈值<br></li>
+<li>order-limitorder-price-min-error : 限价单价格低于限价阈值<br></li>
+<li>order-limitorder-amount-max-error : 限价单数量高于限价阈值<br></li>
+<li>order-limitorder-amount-min-error : 限价单数量低于限价阈值<br></li>
+</ul>
+<h3 id='q4-websocket-orders-symbol-orders-symbol-update'>Q4：WebSocket 订单更新推送主题orders.\$symbol 和 orders.$symbol.update的区别？</h3>
+<p>A： 区别如下：</p>
+
+<ol>
+<li><p>order.\$symbol 主题作为老的推送主题，会在一段时间后停止主题的维护和使用， 推荐使用order.$symbol.update主题。</p></li>
+<li><p>新主题orders.$symbol.update具有严格的时序性，保证数据严格按照撮合成交顺序进行推送，且具有更快的时效性以及更低的时延。</p></li>
+<li><p>为减少重复数据推送量以及更快的速度，在orders.$symbol.update推送中并未携带原始订单数量，价格信息，若需要此信息，建议可在下单时在本地维护订单信息，或在接收到推送消息后，使用Rest接口进行查询。</p></li>
+</ol>
+<h3 id='q5-2'>Q5： 为什么收到订单成功成交的消息后再次进行下单，返回余额不足？</h3>
+<p>A：为保证订单的及时送达以及低延时， 订单推送的结果是在撮合后直接推送，此时订单可能并未完成资产的清算。  </p>
+
+<p>建议使用以下方式保证资金可以正确下单：</p>
+
+<ol>
+<li><p>结合资产推送主题<code>accounts</code>同步接收资产变更的消息，确保资金已经完成清算。</p></li>
+<li><p>收到订单推送消息时，使用Rest接口调用账户余额，验证账户资金是否足够。</p></li>
+<li><p>账户中保留相对充足的资金余额。</p></li>
+</ol>
+<h3 id='q6-filled-fees-filled-points'>Q6: 撮合结果里的filled-fees和filled-points有什么区别？</h3>
+<p>A: 撮合成交中的成交手续费分为普通手续费以及抵扣手续费两种类型，两种类型不会同时存在。</p>
+
+<ol>
+<li><p>普通手续费表示，在成交时，未开启HT抵扣、点卡抵扣，使用原币进行手续费扣除。例如：在BTCUSDT币种对下购买BTC，filled-fees字段不为空，表示扣除了普通手续费，单位是BTC。</p></li>
+<li><p>抵扣手续费表示，在成交时，开启了HT抵扣或点卡抵扣，使用HT或点卡进行手续费的抵扣。例如BTCUSDT币种对下购买BTC，HT\点卡充足时，filled-fees为空，filled-points不为空，表示扣除了HT或点卡作为手续费，扣除单位需参考fee-deduct-currency字段</p></li>
+</ol>
+<h3 id='q7-match-id-trade-id'>Q7: 撮合结果中match-id和trade-id有什么区别？</h3>
+<p>A: match-id表示订单在撮合中的顺序号，trade-id表示成交时的序号， 一个match-id可能有多个trade-id（成交时），也可能没有trade-id(创建订单、撤销订单)</p>
+<h3 id='q8'>Q8: 为什么基于当前盘口买一或者卖一价格进行下单触发了下单限价错误？</h3>
+<p>A: 当前火币有基于最新成交价上下一定幅度的限价保护，对流动性不好的币，基于盘口数据下单可能会触发限价保护。建议基于ws推送的成交价+盘口数据信息进行下单</p>
+<h3 id='q9'>Q9: 如何获取杠杆类交易的币种对？</h3>
+<p>A: 您可以根据<code>GET /v1/common/symbols</code>接口返回数据中的字段区分。leverage-ratio代表逐仓杠杆倍数。super-magin-leverage-ratio代表支持全仓杠杆倍数。如果值为0，表明不支持杠杆交易。</p>
 <h1 id='60bd10ac69'>策略委托</h1><h2 id='5ea2e0cde2-8'>简介</h2>
 <p>策略委托，目前仅包括计划委托及追踪委托。与现有止盈止损订单相比，计划委托/追踪委托有以下显著不同 –<br></p>
 
@@ -14250,7 +14253,7 @@ API Key 权限：读取<br>
 <td>下页查询起始编号（仅在存在下页数据时返回）</td>
 </tr>
 </tbody></table>
-<h2 id='555911a809-3'>常见错误码</h2>
+<h2 id='555911a809-4'>常见错误码</h2>
 <p><strong>以下是逐仓杠杆接口的返回码和说明。</strong></p>
 
 <table><thead>
@@ -14498,7 +14501,7 @@ API Key 权限：读取<br>
 <td>未创建币种子账户无法划出</td>
 </tr>
 </tbody></table>
-<h2 id='0adb1147b3-3'>常见问题</h2><h3 id='q1'>Q1: 逐仓和全仓借币时我查询到可借余额有值，而且我申请借币的额度小于可借余额，为什么借币时却提示可借币不足错误，无法借币成功？</h3>
+<h2 id='0adb1147b3-4'>常见问题</h2><h3 id='q1'>Q1: 逐仓和全仓借币时我查询到可借余额有值，而且我申请借币的额度小于可借余额，为什么借币时却提示可借币不足错误，无法借币成功？</h3>
 <p>A: 用户可借额度不仅取决于用户账户的可借额度，也取决于系统可借总额度。按照风险控制要求系统每天有一个借币的总额度，为所有用户共享。如果超过了这个额度，即使账户自己的额度够也无法借币。系统当天总额度用尽时，只有当天有用户还币之后，才可以继续借币。我们目前正在实现对用户更友好的解决方案，尝试将更准确的信息通过API提供给用户。</p>
 <h1 id='c2c'>借币（C2C）</h1><h2 id='5ea2e0cde2-10'>简介</h2>
 <p>C2C借币相关接口提供了用户对用户之间的借入、借出、还币、查询、划转等功能。</p>
