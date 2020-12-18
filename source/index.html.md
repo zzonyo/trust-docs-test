@@ -866,74 +866,6 @@ A：请检查是否属于以下情况：
 
 A：该错误表明调用了不存在的Rest接口，请检查Rest接口路径是否准确。由于Nginx的设置，请求路径(Path)是大小写敏感的，请严格按照文档声明的大小写。
 
-## 交易相关
-### Q1：account-id是什么？
-A： account-id对应用户不同业务账户的ID，可通过/v1/account/accounts接口获取，并根据account-type区分具体账户。
-
-账户类型包括：
-
-- spot 现货账户  
-- otc OTC账户  
-- margin 逐仓杠杆账户，该账户类型以subType区分具体币种对账户  
-- super-margin（或cross-margin） 全仓杠杆账户 
-- investment C2C杠杆借出账户
-- borrow C2C杠杆借入账户
-- point 点卡账户  
-- minepool 矿池账户 
-- etf ETF账户  
-
-### Q2：client-order-id是什么？
-A： client-order-id作为下单请求标识的一个参数，类型为字符串，长度为64。 此id为用户自己生成，24小时内有效。
-
-### Q3：如何获取下单数量、金额、小数限制、精度的信息？
-A： 可使用 Rest API `GET /v1/common/symbols` 获取相关币对信息， 下单时注意最小下单数量和最小下单金额的区别。 
-
-常见返回错误如下：  
-
-- order-value-min-error: 下单金额小于最小交易额  
-- order-orderprice-precision-error : 限价单价格精度错误  
-- order-orderamount-precision-error : 下单数量精度错误  
-- order-limitorder-price-max-error : 限价单价格高于限价阈值  
-- order-limitorder-price-min-error : 限价单价格低于限价阈值  
-- order-limitorder-amount-max-error : 限价单数量高于限价阈值  
-- order-limitorder-amount-min-error : 限价单数量低于限价阈值  
-
-### Q4：WebSocket 订单更新推送主题orders.\$symbol 和 orders.$symbol.update的区别？
-A： 区别如下：
-
-1. order.\$symbol 主题作为老的推送主题，会在一段时间后停止主题的维护和使用， 推荐使用order.$symbol.update主题。
-
-2. 新主题orders.$symbol.update具有严格的时序性，保证数据严格按照撮合成交顺序进行推送，且具有更快的时效性以及更低的时延。
-
-3. 为减少重复数据推送量以及更快的速度，在orders.$symbol.update推送中并未携带原始订单数量，价格信息，若需要此信息，建议可在下单时在本地维护订单信息，或在接收到推送消息后，使用Rest接口进行查询。
-
-### Q5： 为什么收到订单成功成交的消息后再次进行下单，返回余额不足？
-A：为保证订单的及时送达以及低延时， 订单推送的结果是在撮合后直接推送，此时订单可能并未完成资产的清算。  
-
-建议使用以下方式保证资金可以正确下单：
-
-1. 结合资产推送主题`accounts`同步接收资产变更的消息，确保资金已经完成清算。
-
-2. 收到订单推送消息时，使用Rest接口调用账户余额，验证账户资金是否足够。
-
-3. 账户中保留相对充足的资金余额。
-
-### Q6: 撮合结果里的filled-fees和filled-points有什么区别？
-A: 撮合成交中的成交手续费分为普通手续费以及抵扣手续费两种类型，两种类型不会同时存在。
-
-1. 普通手续费表示，在成交时，未开启HT抵扣、点卡抵扣，使用原币进行手续费扣除。例如：在BTCUSDT币种对下购买BTC，filled-fees字段不为空，表示扣除了普通手续费，单位是BTC。
-
-2. 抵扣手续费表示，在成交时，开启了HT抵扣或点卡抵扣，使用HT或点卡进行手续费的抵扣。例如BTCUSDT币种对下购买BTC，HT\点卡充足时，filled-fees为空，filled-points不为空，表示扣除了HT或点卡作为手续费，扣除单位需参考fee-deduct-currency字段
-
-### Q7: 撮合结果中match-id和trade-id有什么区别？
-A: match-id表示订单在撮合中的顺序号，trade-id表示成交时的序号， 一个match-id可能有多个trade-id（成交时），也可能没有trade-id(创建订单、撤销订单)
-
-### Q8: 为什么基于当前盘口买一或者卖一价格进行下单触发了下单限价错误？
-A: 当前火币有基于最新成交价上下一定幅度的限价保护，对流动性不好的币，基于盘口数据下单可能会触发限价保护。建议基于ws推送的成交价+盘口数据信息进行下单
-
-### Q9: 如何获取杠杆类交易的币种对？
-A: 您可以根据` GET /v1/common/symbols`接口返回数据中的字段区分。leverage-ratio代表逐仓杠杆倍数。super-magin-leverage-ratio代表支持全仓杠杆倍数。如果值为0，表明不支持杠杆交易。
-
 # 基础信息
 
 ## 简介
@@ -3861,66 +3793,6 @@ API Key 权限：读取<br>
 
 <aside class="notice">访问交易相关的接口需要进行签名认证。</aside>
 
-以下是交易相关接口返回的返回码以及说明。
-
-| 返回码                                                       | 说明                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| base-argument-unsupported                                    | 某参数不支持，请检查参数                                     |
-| base-system-error                                            | 系统错误，如果是撤单：缓存中查不到订单状态，该订单无法撤单；如果是下单：订单入缓存失败，请再次尝试 |
-| login-required                                               | url中没有Signature参数或找不到此用户（key与账户id不对应等情况） |
-| parameter-required                                           | 止盈止损订单缺少参数 stop-price或operator                    |
-| base-record-invalid                                          | 暂时未找到数据，请稍后重试                                   |
-| order-amount-over-limit                                      | 订单数量超出限额                                             |
-| base-symbol-trade-disabled                                   | 该交易对被禁止交易                                           |
-| base-operation-forbidden                                     | 用户不在白名单内或该币种不允许OTC交易等禁止行为              |
-| account-get-accounts-inexistent-error                        | 该账户在该用户下不存在                                       |
-| account-account-id-inexistent                                | 该账户不存在                                                 |
-| operation-forbidden-for-fl-account-state                     | 账户爆仓状态下禁止订单操作                                   |
-| sub-user-auth-required                                       | 子用户未开通逐仓杠杆权限                                     |
-| order-disabled                                               | 交易对暂停，无法下单                                         |
-| cancel-disabled                                              | 交易对暂停，无法撤单                                         |
-| order-invalid-price                                          | 下单价格非法（如市价单不能有价格，或限价单价格超过市场价10%） |
-| order-accountbalance-error                                   | 账户余额不足                                                 |
-| order-limitorder-price-min-error                             | 卖出价格不能低于指定价格                                     |
-| order-limitorder-price-max-error                             | 买入价格不能高于指定价格                                     |
-| order-limitorder-amount-min-error                            | 下单数量不能低于指定数量                                     |
-| order-limitorder-amount-max-error                            | 下单数量不能高于指定数量                                     |
-| order-etp-nav-price-min-error                                | 下单价格不能低于净值的指定比率                               |
-| order-etp-nav-price-max-error                                | 下单价格不能高于净值等指定比率                               |
-| order-orderprice-precision-error                             | 交易价格精度错误                                             |
-| order-orderamount-precision-error                            | 交易数额精度错误                                             |
-| order-value-min-error                                        | 订单交易额不能低于指定额度                                   |
-| order-marketorder-amount-min-error                           | 卖出数量不能低于指定数量                                     |
-| order-marketorder-amount-buy-max-error                       | 市价单买入额度不能高于指定额度                               |
-| order-marketorder-amount-sell-max-error                      | 市价单卖出数量不能高于指定数量                               |
-| order-holding-limit-failed                                   | 下单超出该币种的持仓限额                                     |
-| order-type-invalid                                           | 订单类型非法                                                 |
-| order-orderstate-error                                       | 订单状态错误                                                 |
-| order-date-limit-error                                       | 查询时间不能超过系统限制                                     |
-| order-source-invalid                                         | 订单来源非法                                                 |
-| order-update-error                                           | 更新数据错误                                                 |
-| order-fl-cancellation-is-disallowed                          | 禁止撤销爆仓单                                               |
-| operation-forbidden-for-fl-account-state                     | 账户爆仓状态下禁止订单操作                                   |
-| operation-forbidden-for-lock-account-state                   | 账户lock状态下禁止订单操作或c2c借款账户被禁止下撤单          |
-| fl-order-already-existed                                     | 爆仓单已经存在 而且未成交                                    |
-| order-user-cancel-forbidden                                  | 订单类型为IOC或FOK 不允许撤单                                |
-| account-state-invalid                                        | 不支持的爆仓账户状态                                         |
-| order-price-greater-than-limit                               | 下单价格高于开盘前下单限制价格，请重新下单                   |
-| order-price-less-than-limit                                  | 下单价格低于开盘前下单限制价格，请重新下单                   |
-| order-stop-order-hit-trigger                                 | 止盈止损单下单被当前价触发                                   |
-| market-orders-not-support-during-limit-price-trading         | 限时下单不支持市价单                                         |
-| price-exceeds-the-protective-price-during-limit-price-trading | 限价时间内价格超出保护价                                     |
-| invalid-client-order-id                                      | client order id 在最近的下单或撤单参数中已被使用             |
-| invalid-interval                                             | 查询起止窗口设置错误                                         |
-| invalid-start-date                                           | 查询起始日期含非法取值                                       |
-| invalid-end-date                                             | 查询起始日期含非法取值                                       |
-| invalid-start-time                                           | 查询起始时间含非法取值                                       |
-| invalid-end-time                                             | 查询起始时间含非法取值                                       |
-| validation-constraints-required                              | 指定的必填参数缺失                                           |
-| symbol-not-support                                           | 交易对不支持，全仓杠杆或c2c                                  |
-| not-found                                                    | 撤单时订单不存在                                             |
-| base-not-found                                               | 撤单时无效clientorderid撤单过多，一个小时后再重试            |
-
 ## 下单
 
 API Key 权限：交易
@@ -4942,6 +4814,137 @@ curl "https://api.huobi.pro/v2/reference/transact-fee-rate?symbols=btcusdt,ethus
 注：<br>
 - 如makerFeeRate/actualMakerRate为正值，该字段意为交易手续费率；<br>
 - 如makerFeeRate/actualMakerRate为负值，该字段意为交易返佣费率。<br>
+
+## 常见错误码
+
+以下是交易相关接口返回的返回码以及说明。
+
+| 返回码                                                       | 说明                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| base-argument-unsupported                                    | 某参数不支持，请检查参数                                     |
+| base-system-error                                            | 系统错误，如果是撤单：缓存中查不到订单状态，该订单无法撤单；如果是下单：订单入缓存失败，请再次尝试 |
+| login-required                                               | url中没有Signature参数或找不到此用户（key与账户id不对应等情况） |
+| parameter-required                                           | 止盈止损订单缺少参数 stop-price或operator                    |
+| base-record-invalid                                          | 暂时未找到数据，请稍后重试                                   |
+| order-amount-over-limit                                      | 订单数量超出限额                                             |
+| base-symbol-trade-disabled                                   | 该交易对被禁止交易                                           |
+| base-operation-forbidden                                     | 用户不在白名单内或该币种不允许OTC交易等禁止行为              |
+| account-get-accounts-inexistent-error                        | 该账户在该用户下不存在                                       |
+| account-account-id-inexistent                                | 该账户不存在                                                 |
+| operation-forbidden-for-fl-account-state                     | 账户爆仓状态下禁止订单操作                                   |
+| sub-user-auth-required                                       | 子用户未开通逐仓杠杆权限                                     |
+| order-disabled                                               | 交易对暂停，无法下单                                         |
+| cancel-disabled                                              | 交易对暂停，无法撤单                                         |
+| order-invalid-price                                          | 下单价格非法（如市价单不能有价格，或限价单价格超过市场价10%） |
+| order-accountbalance-error                                   | 账户余额不足                                                 |
+| order-limitorder-price-min-error                             | 卖出价格不能低于指定价格                                     |
+| order-limitorder-price-max-error                             | 买入价格不能高于指定价格                                     |
+| order-limitorder-amount-min-error                            | 下单数量不能低于指定数量                                     |
+| order-limitorder-amount-max-error                            | 下单数量不能高于指定数量                                     |
+| order-etp-nav-price-min-error                                | 下单价格不能低于净值的指定比率                               |
+| order-etp-nav-price-max-error                                | 下单价格不能高于净值等指定比率                               |
+| order-orderprice-precision-error                             | 交易价格精度错误                                             |
+| order-orderamount-precision-error                            | 交易数额精度错误                                             |
+| order-value-min-error                                        | 订单交易额不能低于指定额度                                   |
+| order-marketorder-amount-min-error                           | 卖出数量不能低于指定数量                                     |
+| order-marketorder-amount-buy-max-error                       | 市价单买入额度不能高于指定额度                               |
+| order-marketorder-amount-sell-max-error                      | 市价单卖出数量不能高于指定数量                               |
+| order-holding-limit-failed                                   | 下单超出该币种的持仓限额                                     |
+| order-type-invalid                                           | 订单类型非法                                                 |
+| order-orderstate-error                                       | 订单状态错误                                                 |
+| order-date-limit-error                                       | 查询时间不能超过系统限制                                     |
+| order-source-invalid                                         | 订单来源非法                                                 |
+| order-update-error                                           | 更新数据错误                                                 |
+| order-fl-cancellation-is-disallowed                          | 禁止撤销爆仓单                                               |
+| operation-forbidden-for-fl-account-state                     | 账户爆仓状态下禁止订单操作                                   |
+| operation-forbidden-for-lock-account-state                   | 账户lock状态下禁止订单操作或c2c借款账户被禁止下撤单          |
+| fl-order-already-existed                                     | 爆仓单已经存在 而且未成交                                    |
+| order-user-cancel-forbidden                                  | 订单类型为IOC或FOK 不允许撤单                                |
+| account-state-invalid                                        | 不支持的爆仓账户状态                                         |
+| order-price-greater-than-limit                               | 下单价格高于开盘前下单限制价格，请重新下单                   |
+| order-price-less-than-limit                                  | 下单价格低于开盘前下单限制价格，请重新下单                   |
+| order-stop-order-hit-trigger                                 | 止盈止损单下单被当前价触发                                   |
+| market-orders-not-support-during-limit-price-trading         | 限时下单不支持市价单                                         |
+| price-exceeds-the-protective-price-during-limit-price-trading | 限价时间内价格超出保护价                                     |
+| invalid-client-order-id                                      | client order id 在最近的下单或撤单参数中已被使用             |
+| invalid-interval                                             | 查询起止窗口设置错误                                         |
+| invalid-start-date                                           | 查询起始日期含非法取值                                       |
+| invalid-end-date                                             | 查询起始日期含非法取值                                       |
+| invalid-start-time                                           | 查询起始时间含非法取值                                       |
+| invalid-end-time                                             | 查询起始时间含非法取值                                       |
+| validation-constraints-required                              | 指定的必填参数缺失                                           |
+| symbol-not-support                                           | 交易对不支持，全仓杠杆或c2c                                  |
+| not-found                                                    | 撤单时订单不存在                                             |
+| base-not-found                                               | 撤单时无效clientorderid撤单过多，一个小时后再重试            |
+
+## 常见问题
+
+### Q1：account-id是什么？
+A： account-id对应用户不同业务账户的ID，可通过/v1/account/accounts接口获取，并根据account-type区分具体账户。
+
+账户类型包括：
+
+- spot 现货账户  
+- otc OTC账户  
+- margin 逐仓杠杆账户，该账户类型以subType区分具体币种对账户  
+- super-margin（或cross-margin） 全仓杠杆账户 
+- investment C2C杠杆借出账户
+- borrow C2C杠杆借入账户
+- point 点卡账户  
+- minepool 矿池账户 
+- etf ETF账户  
+
+### Q2：client-order-id是什么？
+A： client-order-id作为下单请求标识的一个参数，类型为字符串，长度为64。 此id为用户自己生成，24小时内有效。
+
+### Q3：如何获取下单数量、金额、小数限制、精度的信息？
+A： 可使用 Rest API `GET /v1/common/symbols` 获取相关币对信息， 下单时注意最小下单数量和最小下单金额的区别。 
+
+常见返回错误如下：  
+
+- order-value-min-error: 下单金额小于最小交易额  
+- order-orderprice-precision-error : 限价单价格精度错误  
+- order-orderamount-precision-error : 下单数量精度错误  
+- order-limitorder-price-max-error : 限价单价格高于限价阈值  
+- order-limitorder-price-min-error : 限价单价格低于限价阈值  
+- order-limitorder-amount-max-error : 限价单数量高于限价阈值  
+- order-limitorder-amount-min-error : 限价单数量低于限价阈值  
+
+### Q4：WebSocket 订单更新推送主题orders.\$symbol 和 orders.$symbol.update的区别？
+A： 区别如下：
+
+1. order.\$symbol 主题作为老的推送主题，会在一段时间后停止主题的维护和使用， 推荐使用order.$symbol.update主题。
+
+2. 新主题orders.$symbol.update具有严格的时序性，保证数据严格按照撮合成交顺序进行推送，且具有更快的时效性以及更低的时延。
+
+3. 为减少重复数据推送量以及更快的速度，在orders.$symbol.update推送中并未携带原始订单数量，价格信息，若需要此信息，建议可在下单时在本地维护订单信息，或在接收到推送消息后，使用Rest接口进行查询。
+
+### Q5： 为什么收到订单成功成交的消息后再次进行下单，返回余额不足？
+A：为保证订单的及时送达以及低延时， 订单推送的结果是在撮合后直接推送，此时订单可能并未完成资产的清算。  
+
+建议使用以下方式保证资金可以正确下单：
+
+1. 结合资产推送主题`accounts`同步接收资产变更的消息，确保资金已经完成清算。
+
+2. 收到订单推送消息时，使用Rest接口调用账户余额，验证账户资金是否足够。
+
+3. 账户中保留相对充足的资金余额。
+
+### Q6: 撮合结果里的filled-fees和filled-points有什么区别？
+A: 撮合成交中的成交手续费分为普通手续费以及抵扣手续费两种类型，两种类型不会同时存在。
+
+1. 普通手续费表示，在成交时，未开启HT抵扣、点卡抵扣，使用原币进行手续费扣除。例如：在BTCUSDT币种对下购买BTC，filled-fees字段不为空，表示扣除了普通手续费，单位是BTC。
+
+2. 抵扣手续费表示，在成交时，开启了HT抵扣或点卡抵扣，使用HT或点卡进行手续费的抵扣。例如BTCUSDT币种对下购买BTC，HT\点卡充足时，filled-fees为空，filled-points不为空，表示扣除了HT或点卡作为手续费，扣除单位需参考fee-deduct-currency字段
+
+### Q7: 撮合结果中match-id和trade-id有什么区别？
+A: match-id表示订单在撮合中的顺序号，trade-id表示成交时的序号， 一个match-id可能有多个trade-id（成交时），也可能没有trade-id(创建订单、撤销订单)
+
+### Q8: 为什么基于当前盘口买一或者卖一价格进行下单触发了下单限价错误？
+A: 当前火币有基于最新成交价上下一定幅度的限价保护，对流动性不好的币，基于盘口数据下单可能会触发限价保护。建议基于ws推送的成交价+盘口数据信息进行下单
+
+### Q9: 如何获取杠杆类交易的币种对？
+A: 您可以根据` GET /v1/common/symbols`接口返回数据中的字段区分。leverage-ratio代表逐仓杠杆倍数。super-magin-leverage-ratio代表支持全仓杠杆倍数。如果值为0，表明不支持杠杆交易。
 
 # 策略委托
 
