@@ -430,6 +430,9 @@
                   <li>
                     <a href="#c71521e5d9" class="toc-h2 toc-link" data-title="点卡划转">点卡划转</a>
                   </li>
+                  <li>
+                    <a href="#555911a809-2" class="toc-h2 toc-link" data-title="常见错误码">常见错误码</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -457,7 +460,7 @@
                     <a href="#d3612d98d4" class="toc-h2 toc-link" data-title="充提记录">充提记录</a>
                   </li>
                   <li>
-                    <a href="#555911a809-2" class="toc-h2 toc-link" data-title="常见错误码">常见错误码</a>
+                    <a href="#555911a809-3" class="toc-h2 toc-link" data-title="常见错误码">常见错误码</a>
                   </li>
                   <li>
                     <a href="#0adb1147b3-2" class="toc-h2 toc-link" data-title="常见问题">常见问题</a>
@@ -572,7 +575,7 @@
                     <a href="#2fbe58805a" class="toc-h2 toc-link" data-title="获取用户当前手续费率">获取用户当前手续费率</a>
                   </li>
                   <li>
-                    <a href="#555911a809-3" class="toc-h2 toc-link" data-title="常见错误码">常见错误码</a>
+                    <a href="#555911a809-4" class="toc-h2 toc-link" data-title="常见错误码">常见错误码</a>
                   </li>
                   <li>
                     <a href="#0adb1147b3-3" class="toc-h2 toc-link" data-title="常见问题">常见问题</a>
@@ -651,7 +654,7 @@
                     <a href="#0437640667" class="toc-h2 toc-link" data-title="还币交易记录查询（全仓）">还币交易记录查询（全仓）</a>
                   </li>
                   <li>
-                    <a href="#555911a809-4" class="toc-h2 toc-link" data-title="常见错误码">常见错误码</a>
+                    <a href="#555911a809-5" class="toc-h2 toc-link" data-title="常见错误码">常见错误码</a>
                   </li>
                   <li>
                     <a href="#0adb1147b3-4" class="toc-h2 toc-link" data-title="常见问题">常见问题</a>
@@ -4353,62 +4356,6 @@ curl &quot;https://api.huobi.pro/market/tickers&quot;
 <p>账户相关接口提供了账户、余额、历史、点卡等查询以及资产划转等功能。</p>
 
 <aside class="notice">访问账户相关的接口需要进行签名认证。</aside>
-
-<p>以下是账户相关接口返回的错误码、错误消息以及说明。</p>
-
-<table><thead>
-<tr>
-<th>错误码</th>
-<th>错误消息</th>
-<th>说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>500</td>
-<td>system error</td>
-<td>调用内部服务异常</td>
-</tr>
-<tr>
-<td>1002</td>
-<td>forbidden</td>
-<td>禁止操作，如用户入参中accountId与UID不一致</td>
-</tr>
-<tr>
-<td>2002</td>
-<td>&quot;invalid field value in <code>currency</code>&quot;</td>
-<td>currency不符合正则规则^[a-z0-9]{2,10}$</td>
-</tr>
-<tr>
-<td>2002</td>
-<td>&quot;invalid field value in <code>transactTypes</code>&quot;</td>
-<td>变动类型transactTypes不是“transfer”</td>
-</tr>
-<tr>
-<td>2002</td>
-<td>&quot;invalid field value in <code>sort</code>&quot;</td>
-<td>分页请求参数不是合法的&quot;asc或desc&quot;</td>
-</tr>
-<tr>
-<td>2002</td>
-<td>&quot;value in <code>fromId</code> is not found in record”</td>
-<td>未找到fromId</td>
-</tr>
-<tr>
-<td>2002</td>
-<td>&quot;invalid field value in <code>accountId</code>&quot;</td>
-<td>查询参数中accountId为空</td>
-</tr>
-<tr>
-<td>2002</td>
-<td>&quot;value in <code>startTime</code> exceeded valid range&quot;</td>
-<td>入参查询时间大于当前时间，或者距离当前时间超过180天</td>
-</tr>
-<tr>
-<td>2002</td>
-<td>&quot;value in <code>endTime</code> exceeded valid range&quot;)</td>
-<td>查询结束时间小于开始时间，或者查询时间跨度大于10天</td>
-</tr>
-</tbody></table>
 <h2 id='bd9157656f'>账户信息</h2>
 <p>API Key 权限：读取<br>
 限频值（NEW）：100次/2s</p>
@@ -5748,6 +5695,62 @@ endTime缺省值：当前时间</p>
 <td>划转交易时间（unix time in millisecond）</td>
 </tr>
 </tbody></table>
+<h2 id='555911a809-2'>常见错误码</h2>
+<p>以下是账户相关接口返回的错误码、错误消息以及说明。</p>
+
+<table><thead>
+<tr>
+<th>错误码</th>
+<th>错误消息</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>500</td>
+<td>system error</td>
+<td>调用内部服务异常</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>forbidden</td>
+<td>禁止操作，如用户入参中accountId与UID不一致</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;invalid field value in <code>currency</code>&quot;</td>
+<td>currency不符合正则规则^[a-z0-9]{2,10}$</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;invalid field value in <code>transactTypes</code>&quot;</td>
+<td>变动类型transactTypes不是“transfer”</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;invalid field value in <code>sort</code>&quot;</td>
+<td>分页请求参数不是合法的&quot;asc或desc&quot;</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;value in <code>fromId</code> is not found in record”</td>
+<td>未找到fromId</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;invalid field value in <code>accountId</code>&quot;</td>
+<td>查询参数中accountId为空</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;value in <code>startTime</code> exceeded valid range&quot;</td>
+<td>入参查询时间大于当前时间，或者距离当前时间超过180天</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>&quot;value in <code>endTime</code> exceeded valid range&quot;)</td>
+<td>查询结束时间小于开始时间，或者查询时间跨度大于10天</td>
+</tr>
+</tbody></table>
 <h1 id='3a8e02ba8f'>钱包（充提相关）</h1><h2 id='5ea2e0cde2-5'>简介</h2>
 <p>充提相关接口提供了充币地址、提币地址、提币额度、充提记录等查询，以及提币、取消提币等功能。</p>
 
@@ -6651,7 +6654,7 @@ endTime缺省值：当前时间</p>
 <td>已撤销</td>
 </tr>
 </tbody></table>
-<h2 id='555911a809-2'>常见错误码</h2>
+<h2 id='555911a809-3'>常见错误码</h2>
 <p>以下是充提相关接口返回的返回码、返回消息以及说明。</p>
 
 <table><thead>
@@ -11220,7 +11223,7 @@ endTime缺省值：当前时间<br></p>
 <p>注：<br>
 - 如makerFeeRate/actualMakerRate为正值，该字段意为交易手续费率；<br>
 - 如makerFeeRate/actualMakerRate为负值，该字段意为交易返佣费率。<br></p>
-<h2 id='555911a809-3'>常见错误码</h2>
+<h2 id='555911a809-4'>常见错误码</h2>
 <p>以下是交易相关接口返回的返回码以及说明。</p>
 
 <table><thead>
@@ -14253,7 +14256,7 @@ API Key 权限：读取<br>
 <td>下页查询起始编号（仅在存在下页数据时返回）</td>
 </tr>
 </tbody></table>
-<h2 id='555911a809-4'>常见错误码</h2>
+<h2 id='555911a809-5'>常见错误码</h2>
 <p><strong>以下是逐仓杠杆接口的返回码和说明。</strong></p>
 
 <table><thead>
