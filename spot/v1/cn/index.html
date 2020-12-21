@@ -329,10 +329,28 @@
             <a href="#0adb1147b3" class="toc-h1 toc-link" data-title="常见问题">常见问题</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#api-2" class="toc-h2 toc-link" data-title="API信息通知">API信息通知</a>
+                    <a href="#q1-api-key" class="toc-h2 toc-link" data-title="Q1：一个用户可以申请多少个Api Key？">Q1：一个用户可以申请多少个Api Key？</a>
                   </li>
                   <li>
-                    <a href="#cb2d08126e" class="toc-h2 toc-link" data-title="接入、验签相关">接入、验签相关</a>
+                    <a href="#q2" class="toc-h2 toc-link" data-title="Q2：为什么经常出现断线、超时的情况？">Q2：为什么经常出现断线、超时的情况？</a>
+                  </li>
+                  <li>
+                    <a href="#q3-websocket" class="toc-h2 toc-link" data-title="Q3：为什么WebSocket总是断开连接？">Q3：为什么WebSocket总是断开连接？</a>
+                  </li>
+                  <li>
+                    <a href="#q4-api-huobi-pro-api-aws-huobi-pro" class="toc-h2 toc-link" data-title="Q4：api.huobi.pro 与 api-aws.huobi.pro有什么区别？">Q4：api.huobi.pro 与 api-aws.huobi.pro有什么区别？</a>
+                  </li>
+                  <li>
+                    <a href="#q5" class="toc-h2 toc-link" data-title="Q5：为什么签名认证总返回失败？">Q5：为什么签名认证总返回失败？</a>
+                  </li>
+                  <li>
+                    <a href="#q6-gateway-internal-error" class="toc-h2 toc-link" data-title="Q6：调用接口返回gateway-internal-error错误是什么原因？">Q6：调用接口返回gateway-internal-error错误是什么原因？</a>
+                  </li>
+                  <li>
+                    <a href="#q7-login-required" class="toc-h2 toc-link" data-title="Q7：调用接口返回 login-required错误是什么原因？">Q7：调用接口返回 login-required错误是什么原因？</a>
+                  </li>
+                  <li>
+                    <a href="#q8-rest-http-405-method-not-allowed" class="toc-h2 toc-link" data-title="Q8: 调用Rest接口返回HTTP 405错误 method-not-allowed是什么原因？">Q8: 调用Rest接口返回HTTP 405错误 method-not-allowed是什么原因？</a>
                   </li>
               </ul>
           </li>
@@ -2344,11 +2362,11 @@ api.huobi.pro\n
 <li>使用WebSocket的方式，同时订阅<code>orders.$symbol.update</code>、<code>accounts.update#${mode}</code>主题，<code>orders.$symbol.update</code>用于接收订单的状态变化（创建、成交、撤销以及相关成交价格、数量信息），由于该主题在推送数据时，未经过清算，所以时效性更快，可根据<code>accounts.update#${mode}</code>主题接收相关资产的变更信息，以此来维护账户内的资金情况。</li>
 <li>不建议WebSocket订阅<code>accounts</code>主题，该主题已由<code>accounts.update#${mode}</code>取代，会在后续停止服务，请尽早更换使用。</li>
 </ul>
-<h1 id='0adb1147b3'>常见问题</h1><h2 id='api-2'>API信息通知</h2>
-<p>关于API新增、更新、下线等信息火币会提前发布公告进行通知，建议您关注和订阅我们的公告，及时获取相关信息。  </p>
+<h1 id='0adb1147b3'>常见问题</h1>
+<p>本章列举了和具体API无关的通用常见问题，如网络、签名或通用错误等。</p>
 
-<p>公告订阅流程：点击“<a href="https://huobiglobal.zendesk.com/hc/zh-cn/sections/360000070201-API-%E5%85%AC%E5%91%8A">API公告</a>”右上角“关注”按钮，用账号登录成功后，再次点击“关注”按钮，并选择需要关注的内容类型，按钮变为“正在关注”，即表示订阅成功。若无账号，点击弹窗左下角“注册”按钮，进行注册。 </p>
-<h2 id='cb2d08126e'>接入、验签相关</h2><h3 id='q1-api-key'>Q1：一个用户可以申请多少个Api Key？</h3>
+<p>针对某类或某个API的问题，请查看每章API的错误码和常见问题。</p>
+<h3 id='q1-api-key'>Q1：一个用户可以申请多少个Api Key？</h3>
 <p>A:  每个母用户可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。 
 每个母用户还可创建200个子用户，每个子用户可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。   </p>
 
