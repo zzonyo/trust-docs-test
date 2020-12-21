@@ -1890,20 +1890,6 @@ curl "https://api.huobi.pro/market/etp?symbol=btc3lusdt"
 
 <aside class="notice">访问账户相关的接口需要进行签名认证。</aside>
 
-以下是账户相关接口返回的错误码、错误消息以及说明。
-
-| 错误码 | 错误消息  | 说明  |
-| ------ | ------ | ------ |
-| 500    | system error  | 调用内部服务异常 |
-| 1002   | forbidden   | 禁止操作，如用户入参中accountId与UID不一致 |
-| 2002   | "invalid field value in `currency`"  | currency不符合正则规则^[a-z0-9]{2,10}$  |
-| 2002   | "invalid field value in `transactTypes`"    | 变动类型transactTypes不是“transfer”   |
-| 2002   | "invalid field value in `sort`"    | 分页请求参数不是合法的"asc或desc"    |
-| 2002   | "value in `fromId` is not found in record” | 未找到fromId  |
-| 2002  | "invalid field value in `accountId`"  | 查询参数中accountId为空 |
-| 2002   | "value in `startTime` exceeded valid range" | 入参查询时间大于当前时间，或者距离当前时间超过180天 |
-| 2002   | "value in `endTime` exceeded valid range")  | 查询结束时间小于开始时间，或者查询时间跨度大于10天  |
-
 ## 账户信息 
 
 API Key 权限：读取<br>
@@ -2493,6 +2479,22 @@ API Key 权限：交易<br>
 | data           | object  | TRUE     |                                          |
 | { transactId   | string  | TRUE     | 划转交易ID                               |
 | transactTime } | long    | TRUE     | 划转交易时间（unix time in millisecond） |
+
+## 常见错误码
+
+以下是账户相关接口返回的错误码、错误消息以及说明。
+
+| 错误码 | 错误消息  | 说明  |
+| ------ | ------ | ------ |
+| 500    | system error  | 调用内部服务异常 |
+| 1002   | forbidden   | 禁止操作，如用户入参中accountId与UID不一致 |
+| 2002   | "invalid field value in `currency`"  | currency不符合正则规则^[a-z0-9]{2,10}$  |
+| 2002   | "invalid field value in `transactTypes`"    | 变动类型transactTypes不是“transfer”   |
+| 2002   | "invalid field value in `sort`"    | 分页请求参数不是合法的"asc或desc"    |
+| 2002   | "value in `fromId` is not found in record” | 未找到fromId  |
+| 2002  | "invalid field value in `accountId`"  | 查询参数中accountId为空 |
+| 2002   | "value in `startTime` exceeded valid range" | 入参查询时间大于当前时间，或者距离当前时间超过180天 |
+| 2002   | "value in `endTime` exceeded valid range")  | 查询结束时间小于开始时间，或者查询时间跨度大于10天  |
 
 # 钱包（充提相关）
 
