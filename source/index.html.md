@@ -1728,6 +1728,9 @@ The signature process of future is similar to huobi Spot . In addition to the fo
 8. Any method with parameters for POST requests don't need to be signed.
 9. Check if whether the signature is URI encoded and Hexadecimal characters must be capitalized, such as ":" should be encoded as "%3A", and the space should be encoded as "%20"
 10. The authorization of websocket is similar to  the authorization of restful interface.Pls note that the json body of the websocket authorization shouldn't be URL encoded.
+11. The host in signature text should be the same as the host in your API request.The proxy may change the request host, you can try without proxy;Some http/websocket library may include port in the host, you can try to append port in signature host, like "api.hbdm.com:443"
+12. The hidden text in API Key and Secret Key may have impact on the signature.
+
 
 ### Q7: Is the ratelimit of public market based on IP ? Is the ratelimit of interface with  private key based on UID?
 
