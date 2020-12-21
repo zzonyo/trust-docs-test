@@ -24,9 +24,9 @@ table th {
 
 | 生效时间<BR>(UTC +8) | 接口                                                         | 变化      | 摘要                                                         |
 | -------------------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| 2020.12.16 19:00     | `GET /v1/order/matchresults`,<BR>`GET /v1/order/orders/{order-id}/matchresults`                                    | 优化      | 新增参数抵扣状态：fee-deduct-state（ 抵扣中：ongoing/ 抵扣完成：done），来代表手续费抵扣中和抵扣完成的状态                                   |
-| 2020.12.14 19:00     | `POST /v2/etp/{transactId}/cancel`                                           | 新增      | 新增杠杆ETP单个撤单接口                                          |
-| 2020.12.14 19:00     | `POST /v2/etp/batch-cancel`                                           | 新增      | 新增杠杆ETP批量撤单接口                                          |
+| 2020.12.16 19:00     | `GET /v1/order/matchresults`,<BR>`GET /v1/order/orders/{order-id}/matchresults` | 优化      | 新增参数抵扣状态：fee-deduct-state（ 抵扣中：ongoing/ 抵扣完成：done），来代表手续费抵扣中和抵扣完成的状态 |
+| 2020.12.14 19:00     | `POST /v2/etp/{transactId}/cancel`                           | 新增      | 新增杠杆ETP单个撤单接口                                      |
+| 2020.12.14 19:00     | `POST /v2/etp/batch-cancel`                                  | 新增      | 新增杠杆ETP批量撤单接口                                      |
 | 2020.11.26 19:00     | `GET /v2/user/uid`                                           | 新增      | 新增获取用户UID接口                                          |
 | 2020.10.16 19:00     | `orders#${symbol}`                                           | 优化      | 订单创建事件新增accountId                                    |
 | 2020.10.10 19:00     | `POST /v2/account/repayment`,<BR>`GET /v2/account/repayment` | 新增      | 新增通用还币接口及还币交易记录查询接口                       |
@@ -1855,15 +1855,15 @@ curl "https://api.huobi.pro/market/etp?symbol=btc3lusdt"
 <aside class="notice">返回的JSON顶级数据对象名为'tick'而不是通常的'data'。</aside>
 
 | 字段名称       | 数据类型 | 描述                                        |
-| -------------- | -------- | -----------------------------------------|
+| -------------- | -------- | ------------------------------------------- |
 | symbol         | string   | 杠杆ETP交易代码                             |
-| nav            | float    | 最新净值                                  |
+| nav            | float    | 最新净值                                    |
 | navTime        | long     | 最新净值更新时间 (unix time in millisecond) |
-| outstanding    | float    | ETP总份额                                  |
-| basket         | object   | 篮子                                     |
-| { currency     | float    | 币种                                      |
-| amount }       | float    | 金额                                      |
-| actualLeverage | float    | 实际杠杆率                                |
+| outstanding    | float    | ETP总份额                                   |
+| basket         | object   | 篮子                                        |
+| { currency     | float    | 币种                                        |
+| amount }       | float    | 金额                                        |
+| actualLeverage | float    | 实际杠杆率                                  |
 
 ## 常见错误码
 
@@ -2324,44 +2324,44 @@ API Key 权限：交易<br>
 
 ### 错误码
 
-| 错误码 | 错误消息(中文）   | 错误消息(英文） |
-| -------- | ------- | ------- |
-| base-msg    | （具体内容参见之后的列表说明） |         |
-| base-currency-error    | 币种无效   | The currency is invalid   |
-| frequent-invoke   | 操作过于频繁，请稍后重试。（如果超过1分钟10次，系统返回该error-code） | the operation is too frequent. Please try again later |
-| banned-by-blacklist   | 黑名单限制 | Blacklist restriction  |
-| dw-insufficient-balance   | 可划转余额不足，最大可划转 {0}。（币币账户的余额不足。）     | Insufficient balance. You can only transfer {0} at most. |
-| dw-account-transfer-unavailable   | 转账暂时不可用  | account transfer unavailable   |
-| dw-account-transfer-error     | 由于其他服务不可用导致的划转失败  | account transfer error  |
-| dw-account-transfer-failed   | 划转失败。请稍后重试或联系客服  | Failed to transfer. Please try again later.  |
+| 错误码                                         | 错误消息(中文）                                              | 错误消息(英文）                                              |
+| ---------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| base-msg                                       | （具体内容参见之后的列表说明）                               |                                                              |
+| base-currency-error                            | 币种无效                                                     | The currency is invalid                                      |
+| frequent-invoke                                | 操作过于频繁，请稍后重试。（如果超过1分钟10次，系统返回该error-code） | the operation is too frequent. Please try again later        |
+| banned-by-blacklist                            | 黑名单限制                                                   | Blacklist restriction                                        |
+| dw-insufficient-balance                        | 可划转余额不足，最大可划转 {0}。（币币账户的余额不足。）     | Insufficient balance. You can only transfer {0} at most.     |
+| dw-account-transfer-unavailable                | 转账暂时不可用                                               | account transfer unavailable                                 |
+| dw-account-transfer-error                      | 由于其他服务不可用导致的划转失败                             | account transfer error                                       |
+| dw-account-transfer-failed                     | 划转失败。请稍后重试或联系客服                               | Failed to transfer. Please try again later.                  |
 | dw-account-transfer-failed-account-abnormality | 账户异常，划转失败。请稍后重试或联系客服                     | Account abnormality, failed to transfer。Please try again later. |
 
 ### base-msg对应的err-msg列表
-| 错误码 | 错误消息(中文） | 错误消息(英文） |
-| ---------- | --------------- | --------------- |
-| base-msg   | 用户没有入金权限  | Unable to transfer in currently. Please contact customer service. |
-| base-msg   | 用户没有出金权限   | Unable to transfer out currently. Please contact customer service. |
-| base-msg   | 合约状态异常，无法出入金   | Abnormal contracts status. Can’t transfer.   |
-| base-msg  | 子账号没有入金权限，请联系客服    | Sub-account doesn't own the permissions to transfer in. Please contact customer service. |
-| base-msg  | 子账号没有出金权限，请联系客服   | Sub-account doesn't own the permissions to transfer out. Please contact customer service. |
-| base-msg  | 子账号没有划转权限，请登录主账号授权   | The sub-account does not have transfer permissions. Please login main account to authorize. |
-| base-msg  | 可划转余额不足     | Insufficient amount available. |
-| base-msg  | 单笔转出的数量不能低于{0}{1}  | The single transfer-out amount must be no less than {0}{1}.  |
-| base-msg  | 单笔转出的数量不能高于{0}{1}   | The single transfer-out amount must be no more than {0}{1}.  |
-| base-msg  | 单笔转入的数量不能低于{0}{1} | The single transfer-in amount must be no less than {0}{1}.   |
-| base-msg  | 单笔转入的数量不能高于{0}{1}  | The single transfer-in amount must be no more than {0}{1}.   |
-| base-msg  | 您当日累计转出量超过{0}{1}，暂无法转出  | Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being. |
-| base-msg       | 您当日累计转入量超过{0}{1}，暂无法转入       | Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being. |
-| base-msg       | 您当日累计净转出量超过{0}{1}，暂无法转出     | Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being. |
-| base-msg       | 您当日累计净转入量超过{0}{1}，暂无法转入     | Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being. |
-| base-msg       | 超过平台当日累计最大转出量限制，暂无法转出   | The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being. |
-| base-msg       | 超过平台当日累计最大转入量限制，暂无法转入   | The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being. |
-| base-msg       | 超过平台当日累计最大净转出量限制，暂无法转出 | The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being. |
-| base-msg       | 超过平台当日累计最大净转入量限制，暂无法转入 | The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being. |
-| base-msg       | 划转失败，请稍后重试或联系客服   | Transfer failed. Please try again later or contact customer service. |
-| base-msg       | 服务异常，划转失败，请稍后再试  | Abnormal service, transfer failed. Please try again later.   |
-| base-msg       | 您尚未开通合约交易，无访问权限   | You don’t have access permission as you have not opened contracts trading. |
-| base-msg       | 合约品种不存在  | This contract type doesn't exist. |
+| 错误码   | 错误消息(中文）                              | 错误消息(英文）                                              |
+| -------- | -------------------------------------------- | ------------------------------------------------------------ |
+| base-msg | 用户没有入金权限                             | Unable to transfer in currently. Please contact customer service. |
+| base-msg | 用户没有出金权限                             | Unable to transfer out currently. Please contact customer service. |
+| base-msg | 合约状态异常，无法出入金                     | Abnormal contracts status. Can’t transfer.                   |
+| base-msg | 子账号没有入金权限，请联系客服               | Sub-account doesn't own the permissions to transfer in. Please contact customer service. |
+| base-msg | 子账号没有出金权限，请联系客服               | Sub-account doesn't own the permissions to transfer out. Please contact customer service. |
+| base-msg | 子账号没有划转权限，请登录主账号授权         | The sub-account does not have transfer permissions. Please login main account to authorize. |
+| base-msg | 可划转余额不足                               | Insufficient amount available.                               |
+| base-msg | 单笔转出的数量不能低于{0}{1}                 | The single transfer-out amount must be no less than {0}{1}.  |
+| base-msg | 单笔转出的数量不能高于{0}{1}                 | The single transfer-out amount must be no more than {0}{1}.  |
+| base-msg | 单笔转入的数量不能低于{0}{1}                 | The single transfer-in amount must be no less than {0}{1}.   |
+| base-msg | 单笔转入的数量不能高于{0}{1}                 | The single transfer-in amount must be no more than {0}{1}.   |
+| base-msg | 您当日累计转出量超过{0}{1}，暂无法转出       | Your accumulative transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being. |
+| base-msg | 您当日累计转入量超过{0}{1}，暂无法转入       | Your accumulative transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being. |
+| base-msg | 您当日累计净转出量超过{0}{1}，暂无法转出     | Your accumulative net transfer-out amount is over the daily maximum, {0}{1}. You can't transfer out for the time being. |
+| base-msg | 您当日累计净转入量超过{0}{1}，暂无法转入     | Your accumulative net transfer-in amount is over the daily maximum, {0}{1}. You can't transfer in for the time being. |
+| base-msg | 超过平台当日累计最大转出量限制，暂无法转出   | The platform's accumulative transfer-out amount is over the daily maximum. You can't transfer out for the time being. |
+| base-msg | 超过平台当日累计最大转入量限制，暂无法转入   | The platform's accumulative transfer-in amount is over the daily maximum. You can't transfer in for the time being. |
+| base-msg | 超过平台当日累计最大净转出量限制，暂无法转出 | The platform's accumulative net transfer-out amount is over the daily maximum. You can't transfer out for the time being. |
+| base-msg | 超过平台当日累计最大净转入量限制，暂无法转入 | The platform's accumulative net transfer-in amount is over the daily maximum. You can't transfer in for the time being. |
+| base-msg | 划转失败，请稍后重试或联系客服               | Transfer failed. Please try again later or contact customer service. |
+| base-msg | 服务异常，划转失败，请稍后再试               | Abnormal service, transfer failed. Please try again later.   |
+| base-msg | 您尚未开通合约交易，无访问权限               | You don’t have access permission as you have not opened contracts trading. |
+| base-msg | 合约品种不存在                               | This contract type doesn't exist.                            |
 
 ## 点卡余额查询
 
@@ -2481,15 +2481,15 @@ API Key 权限：交易<br>
 
 以下是账户相关接口返回的错误码、错误消息以及说明。
 
-| 错误码 | 错误消息  | 说明  |
-| ------ | ------ | ------ |
-| 500    | system error  | 调用内部服务异常 |
-| 1002   | forbidden   | 禁止操作，如用户入参中accountId与UID不一致 |
-| 2002   | "invalid field value in `currency`"  | currency不符合正则规则^[a-z0-9]{2,10}$  |
-| 2002   | "invalid field value in `transactTypes`"    | 变动类型transactTypes不是“transfer”   |
-| 2002   | "invalid field value in `sort`"    | 分页请求参数不是合法的"asc或desc"    |
-| 2002   | "value in `fromId` is not found in record” | 未找到fromId  |
-| 2002  | "invalid field value in `accountId`"  | 查询参数中accountId为空 |
+| 错误码 | 错误消息                                    | 说明                                                |
+| ------ | ------------------------------------------- | --------------------------------------------------- |
+| 500    | system error                                | 调用内部服务异常                                    |
+| 1002   | forbidden                                   | 禁止操作，如用户入参中accountId与UID不一致          |
+| 2002   | "invalid field value in `currency`"         | currency不符合正则规则^[a-z0-9]{2,10}$              |
+| 2002   | "invalid field value in `transactTypes`"    | 变动类型transactTypes不是“transfer”                 |
+| 2002   | "invalid field value in `sort`"             | 分页请求参数不是合法的"asc或desc"                   |
+| 2002   | "value in `fromId` is not found in record”  | 未找到fromId                                        |
+| 2002   | "invalid field value in `accountId`"        | 查询参数中accountId为空                             |
 | 2002   | "value in `startTime` exceeded valid range" | 入参查询时间大于当前时间，或者距离当前时间超过180天 |
 | 2002   | "value in `endTime` exceeded valid range")  | 查询结束时间小于开始时间，或者查询时间跨度大于10天  |
 
@@ -2607,17 +2607,17 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
 
 ### 响应数据
 
-| 字段名称                   | 是否必需 | 数据类型 | 字段描述         | 取值范围 |
-| -------------------------- | -------- | -------- | ---------------- | -------- |
-| code                       | true     | int      | 状态码           |          |
-| message                    | false    | string   | 错误描述（如有） |          |
-| data                       | true     | object   |                  |          |
-| currency                   | true     | string   | 币种             |          |
-| chains                     | true     | object   |                  |          |
-| { chain                    | true     | string   | 链名称           |          |
-| maxWithdrawAmt             | true     | string   | 单次最大提币金额 |          |
-| withdrawQuotaPerDay        | true     | string   | 当日提币额度     |          |
-| remainWithdrawQuotaPerDay  | true     | string   | 当日提币剩余额度 |          |
+| 字段名称                  | 是否必需 | 数据类型 | 字段描述         | 取值范围 |
+| ------------------------- | -------- | -------- | ---------------- | -------- |
+| code                      | true     | int      | 状态码           |          |
+| message                   | false    | string   | 错误描述（如有） |          |
+| data                      | true     | object   |                  |          |
+| currency                  | true     | string   | 币种             |          |
+| chains                    | true     | object   |                  |          |
+| { chain                   | true     | string   | 链名称           |          |
+| maxWithdrawAmt            | true     | string   | 单次最大提币金额 |          |
+| withdrawQuotaPerDay       | true     | string   | 当日提币额度     |          |
+| remainWithdrawQuotaPerDay | true     | string   | 当日提币剩余额度 |          |
 
 ### 状态码
 
@@ -3004,11 +3004,11 @@ API Key 权限：读取
 ```
 
 ### 响应数据
-| 参数名称      | 是否必须 | 数据类型 | 描述   | 取值范围          |
-| ------------- | -------- | -------- | ------------ | ------------- |
-| code          | true     | int      | 状态码                  |        |
-| message       | false    | string   | 错误描述（如有）        |         |
-| data          | true     | long    |        用户UID       |     |
+| 参数名称 | 是否必须 | 数据类型 | 描述             | 取值范围 |
+| -------- | -------- | -------- | ---------------- | -------- |
+| code     | true     | int      | 状态码           |          |
+| message  | false    | string   | 错误描述（如有） |          |
+| data     | true     | long     | 用户UID          |          |
 
 
 
@@ -4466,7 +4466,7 @@ API Key 权限：读取<br>
 | role                | true     | string   | 成交角色                                                     | maker,taker                                                  |
 | filled-points       | true     | string   | 抵扣数量（可为ht或hbpoint）                                  |                                                              |
 | fee-deduct-currency | true     | string   | 抵扣类型                                                     | 如果为空，代表扣除的手续费是原币；如果为"ht"，代表抵扣手续费的是HT；如果为"hbpoint"，代表抵扣手续费的是点卡 |
-| fee-deduct-state | true     | string   | 抵扣状态 | 抵扣中：ongoing，抵扣完成：done  |
+| fee-deduct-state    | true     | string   | 抵扣状态                                                     | 抵扣中：ongoing，抵扣完成：done                              |
 
 注：<br>
 - filled-fees中的交易返佣金额可能不会实时到账。<br>
@@ -4733,7 +4733,7 @@ API Key 权限：读取<br>
 | role                | true     | string   | 成交角色                                                     | maker,taker                                                  |
 | filled-points       | true     | string   | 抵扣数量（可为ht或hbpoint）                                  |                                                              |
 | fee-deduct-currency | true     | string   | 抵扣类型                                                     | ht,hbpoint                                                   |
-| fee-deduct-state | true     | string   | 抵扣状态 | 抵扣中：ongoing，抵扣完成：done  |
+| fee-deduct-state    | true     | string   | 抵扣状态                                                     | 抵扣中：ongoing，抵扣完成：done                              |
 
 注：<br>
 - filled-fees中的交易返佣金额可能不会实时到账；<br>
@@ -7636,15 +7636,15 @@ REQ频道支持5档/20档/150档全量数据的获取。<br>
 ### 数据更新字段列表
 
 | 字段名称       | 数据类型 | 描述                                        |
-| -------------- | -------- | -----------------------------------------|
+| -------------- | -------- | ------------------------------------------- |
 | symbol         | string   | 杠杆ETP交易代码                             |
-| nav            | float    | 最新净值                                  |
+| nav            | float    | 最新净值                                    |
 | navTime        | long     | 最新净值更新时间 (unix time in millisecond) |
-| outstanding    | float    | ETP总份额                                  |
-| basket         | object   | 篮子                                     |
-| { currency     | float    | 币种                                      |
-| amount }       | float    | 金额                                      |
-| actualLeverage | float    | 实际杠杆率                                |
+| outstanding    | float    | ETP总份额                                   |
+| basket         | object   | 篮子                                        |
+| { currency     | float    | 币种                                        |
+| amount }       | float    | 金额                                        |
+| actualLeverage | float    | 实际杠杆率                                  |
 
 # Websocket资产及订单（即将废弃）
 
@@ -9382,9 +9382,13 @@ Currency
 | 80022  | 赎回失败，订单已取消           | 用户赎回金额过小，不足合约1张                          |
 | 80023  | 申购失败，订单已取消           | 行情波动较大，合约下单后计算用户需扣款金额大于下单金额 |
 | 80024  | 赎回失败，订单已取消           | 行情波动较大，合约下单后计算用户需扣款金额大于下单金额 |
-| 80026  | 系统繁忙，请稍后再试。         | 超出订单排队队列                                       |
+| 80026  | 系统繁忙，请稍后再试      | 超出订单排队队列                                       |
 | 80027  | 赎回失败，订单已取消           | 没有份额可供用户赎回                                   |
 | 80028  | 下单失败，超出该币种的持仓限额 | 下单失败，超出该币种的持仓限额                         |
+|80041|	撤单失败，该订单已取消|撤单失败，该订单已取消|
+|80042	|撤单失败，该订单已执行|撤单失败，该订单已执行	|
+|80043	|撤单失败，订单不存在	|撤单失败，订单不存在|
+|80045	|撤单失败，系统繁忙，请稍后重试	|调用broker等失败|
 
 ## 基础参考信息
 
@@ -9765,6 +9769,3 @@ API Key 权限：交易<br>限频值：1次/5秒<br>
 |	errMsg	|	long	|	TRUE	|撤单失败错误信息	|
 |	errCode 	|	string	|	TRUE	|撤单失败错误码	|
 |	transactId}	|	long	|	FALSE	| 交易ID	|
-
-
-
