@@ -616,19 +616,16 @@ api.hbdm.com\n
 - 如果用户一定要使用option-api/v1/option_hisorders 历史委托查询接口，请尽量输入更多的查询条件，trade_type（推荐传0查询全部）、type、status、create_date尽量都输入，并且查询日期create_date参数输入尽量小的整数，最好只查询一天的数据；
 
  
-
 ### 2、option-api/v1/option_matchresults 获取历史成交记录接口：
 
 - 为了提升查询的性能和响应速度，查询条件 trade_type（推荐传0查询全部） 、contract_code 、create_date 尽量都输入，并且create_date输入尽量小的整数，最好只查询一天的数据；
 
  
-
 ### 3、option-api/v1/option_financial_record 查询用户财务记录接口：
 
 - 为了提升查询的性能和响应速度，查询条件type（推荐不填查询全部）、create_date，尽量都输入，并且查询日期create_date参数输入尽量小的整数，最好只查询一天的数据；
 
  
-
 ### 4、option-api/v1/option_order_detail 获取订单明细接口：
 
 - 请求参数没有带上created_at等参数查询订单时，可能会发生查询结果延迟。建议您在使用此接口时请求字段带上：created_at（下单时间戳）和 order_type(订单类型，默认填1)，会直接查询数据库，查询结果会更及时。
@@ -638,7 +635,6 @@ api.hbdm.com\n
 - 例如:"2019/10/18 10:26:22"转换为时间戳为：1571365582123。也可以直接从option_order下单接口返回报文中的ts中获取时间戳作为参数查询接口option-api/v1/option_order_detail获取订单明细，同时created_at禁止传0；；
 
  
-
 ### 5、订阅Market Depth 数据的WebSocket：
 
 - 获得150档深度数据，使用step0, step1, step2, step3, step4, step5, step14, step15；
@@ -731,9 +727,13 @@ api.hbdm.vn域名使用的是AWS的CDN服务，理论上AWS服务器用户使用
 
 8. 对于 POST 请求，每个方法自带的参数不进行签名认证
 
-9. 检查签名结果是否有进行 URI 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A”  ，空 格被编码为 “%20”
+9. 检查签名结果是否有进行 URI 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A”  ，空 格被编码为 “%20”。
 
 10. websocket构建签名与restful类似，websocket构建json请求的数据不需要URL编码。
+
+11、签名时所带Host应与请求接口时Host相同。如果您使用了代理，代理可能会改变请求Host，可以尝试去掉代理；您使用的网络连接库可能会把端口包含在Host内，可以尝试在签名用到的Host中包含端口，如“api.hbdm.com:443"。
+
+12、Api Key 与 Secret Key中是否存在隐藏特殊字符，影响签名。
 
 ### Q6: 公开行情根据ip限速，需要私钥的根据uid限速是吗？
 
