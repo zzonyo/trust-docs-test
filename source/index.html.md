@@ -1464,7 +1464,7 @@ colo相当于是 创建一个VPC节点，直接连了火币合约的内网，会
 
 9. 检查签名结果是否有进行 URI 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A”  ，空 格被编码为 “%20”
 
-10. websocket构建签名与restful类似，websocket构建json请求的数据不需要URL编码。
+10. websocket构建签名与restful类似，websocket构建json请求的数据不需要URL编码
 
 11、签名时所带Host应与请求接口时Host相同。如果您使用了代理，代理可能会改变请求Host，可以尝试去掉代理；您使用的网络连接库可能会把端口包含在Host内，可以尝试在签名用到的Host中包含端口，如“api.hbdm.com:443"。
 
