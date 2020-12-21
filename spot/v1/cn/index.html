@@ -889,15 +889,9 @@ table th {
 </tr>
 <tr>
 <td>2020.12.14 19:00</td>
-<td><code>POST /v2/etp/{transactId}/cancel</code></td>
+<td><code>POST /v2/etp/{transactId}/cancel</code> 和 <code>POST /v2/etp/batch-cancel</code></td>
 <td>新增</td>
-<td>新增杠杆ETP单个撤单接口</td>
-</tr>
-<tr>
-<td>2020.12.14 19:00</td>
-<td><code>POST /v2/etp/batch-cancel</code></td>
-<td>新增</td>
-<td>新增杠杆ETP批量撤单接口</td>
+<td>新增杠杆ETP单个撤单接口和杠杆ETP批量撤单接口</td>
 </tr>
 <tr>
 <td>2020.11.26 19:00</td>
@@ -10195,6 +10189,7 @@ endTime缺省值：当前时间<br></p>
       </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494901400435</span><span class="p">,</span><span class="w">
       </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maker"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"filled-points"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+      </span><span class="err">“fee-deduct-state”</span><span class="p">:</span><span class="s2">"done"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"fee-deduct-currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
     </span><span class="p">}</span><span class="w">
     </span><span class="err">...</span><span class="w">
@@ -10958,6 +10953,7 @@ endTime缺省值：当前时间<br></p>
       </span><span class="s2">"trade-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100282808529</span><span class="p">,</span><span class="w">
       </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="err">taker</span><span class="p">,</span><span class="w">
       </span><span class="s2">"filled-points"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
+      </span><span class="err">“fee-deduct-state”</span><span class="p">:</span><span class="s2">"done"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"fee-deduct-currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
     </span><span class="p">}</span><span class="w">
     </span><span class="err">...</span><span class="w">
