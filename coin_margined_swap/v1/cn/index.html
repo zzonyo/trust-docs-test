@@ -10708,9 +10708,11 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tr>
 </tbody></table>
 <h3 id='9852b06629-6'>备注：</h3>
-<p>order_id和client_order_id都可以用来撤单，同时只可以设置其中一种，如果设置了两种，默认以order_id来撤单。</p>
-
-<p>撤单接口返回结果只代表撤单命令发送成功，建议根据订单查询接口查询订单的状态来确定订单是否已真正撤销。</p>
+<ul>
+<li><p>order_id和client_order_id都可以用来撤单，同时只可以设置其中一种，如果设置了两种，默认以order_id来撤单。</p></li>
+<li><p>撤单接口返回结果只代表撤单命令发送成功，建议根据订单查询接口查询订单的状态来确定订单是否已真正撤销。</p></li>
+<li><p>client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。</p></li>
+</ul>
 
 <blockquote>
 <p>Response:</p>
@@ -13633,6 +13635,11 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>不填，默认为“闪电平仓”，&quot;lightning&quot;：闪电平仓，&quot;lightning_fok&quot;：闪电平仓-FOK,&quot;lightning_ioc&quot;：闪电平仓-IOC</td>
 </tr>
 </tbody></table>
+<h4 id='9852b06629-13'>备注：</h4>
+<ul>
+<li><p>闪电平仓，是指在对手价平仓的基础上，实行&#39;最优30档&#39;成交，即用户发出的平仓订单能够迅速以30档范围内对手方价格进行成交，未成交部分自动转为限价委托单。</p></li>
+<li><p>client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。</p></li>
+</ul>
 
 <blockquote>
 <p>Response:</p>
@@ -13798,7 +13805,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-13'>备注：</h4>
+<h4 id='9852b06629-14'>备注：</h4>
 <ul>
 <li><p>optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单order_price价格参数不用传，&quot;limit&quot;:限价需要传价格。</p></li>
 <li><p>若存在持仓，那么下单时杠杆倍数必须与持仓杠杆相同，否则下单失败。若需使用新杠杆下单，则必须先使用切换杠杆接口将持仓杠杆切换成功后再下单。</p></li>
@@ -14462,7 +14469,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>不填默认20，不得多于50</td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-14'>备注：</h4>
+<h4 id='9852b06629-15'>备注：</h4>
 <ul>
 <li>默认查询 已完成订单（status对应状态范围 4、5、6）；</li>
 </ul>
@@ -15460,7 +15467,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <p><code>&quot;ts&quot;: &quot;1492420473058&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='9852b06629-15'>备注：</h3>
+<h3 id='9852b06629-16'>备注：</h3>
 <ul>
 <li><p>&quot;pong&quot;操作返回数据里面的&quot;ts&quot;的值为&quot;ping&quot;推送收到的&quot;ts&quot;值</p></li>
 <li><p>WebSocket Client 和 WebSocket Server 建⽴立连接之后，WebSocket Server 每隔 5s(这个频率可能会变化) 会向 WebSocket Client 发起⼀一次⼼心跳，WebSocket Client 忽略心跳 5 次后，WebSocket Server 将会主动断开连接。</p></li>
@@ -18128,7 +18135,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-16'>备注：</h4>
+<h4 id='9852b06629-17'>备注：</h4>
 <ul>
 <li><p>一次返回最多2000条数据；</p></li>
 <li><p>from和to都为必填。</p></li>
@@ -18589,7 +18596,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-17'>备注：</h4>
+<h4 id='9852b06629-18'>备注：</h4>
 <ul>
 <li><p>一次返回最多2000条数据；</p></li>
 <li><p>from和to都为必填。</p></li>
@@ -19583,7 +19590,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td style="text-align: left">必填；订阅主题名称，必填 (accounts.$contract_code)  订阅、取消订阅某个合约代码下的资产变更信息，当 $contract_code值为 * 时代表订阅所有合约代码; contract_code支持大小写，比如BTC-USD</td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-18'>备注：</h4>
+<h4 id='9852b06629-19'>备注：</h4>
 <ul>
 <li>推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果5秒内某合约资产已触发过推送，则该合约资产跳过此次推送。</li>
 </ul>
@@ -20005,7 +20012,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-19'>备注：</h4>
+<h4 id='9852b06629-20'>备注：</h4>
 <ul>
 <li><p>推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果5秒内某仓位已触发过推送，则该仓位跳过此次推送。</p></li>
 <li><p>当用户持仓量为0时使用切换杠杆的接口，持仓推送接口不会推送&quot;switch_lever_rate&quot;。</p></li>
@@ -20144,7 +20151,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-20'>备注：</h4>
+<h4 id='9852b06629-21'>备注：</h4>
 <ul>
 <li>postOnly的报单收到的WS推送要么是报单成功，状态为3，要么是7，已撤单;</li>
 <li>撮合完成后就将订单的更新信息推送给客户端;</li>
