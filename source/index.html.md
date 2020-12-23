@@ -4534,9 +4534,11 @@ contract_code  |  true   |  string   |  合约代码,支持大小写,"BTC-USD"  
 
 ###备注：
 
-order_id和client_order_id都可以用来撤单，同时只可以设置其中一种，如果设置了两种，默认以order_id来撤单。
+ - order_id和client_order_id都可以用来撤单，同时只可以设置其中一种，如果设置了两种，默认以order_id来撤单。
 
-撤单接口返回结果只代表撤单命令发送成功，建议根据订单查询接口查询订单的状态来确定订单是否已真正撤销。
+ - 撤单接口返回结果只代表撤单命令发送成功，建议根据订单查询接口查询订单的状态来确定订单是否已真正撤销。
+
+ - client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。
 
 > Response:
 
@@ -5440,6 +5442,12 @@ ts  |  true  |  long  |  时间戳  |    |
  direction | true | string | “buy”:买，“sell”:卖 |  |
  client_order_id | false | long | （API）客户自己填写和维护，必须保持唯一 |  |
  order_price_type | false | string | 订单报价类型 |不填，默认为“闪电平仓”，"lightning"：闪电平仓，"lightning_fok"：闪电平仓-FOK,"lightning_ioc"：闪电平仓-IOC |
+
+#### 备注：
+
+ - 闪电平仓，是指在对手价平仓的基础上，实行'最优30档'成交，即用户发出的平仓订单能够迅速以30档范围内对手方价格进行成交，未成交部分自动转为限价委托单。
+ 
+ - client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。
 
 > Response:
 
