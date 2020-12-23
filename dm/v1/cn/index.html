@@ -10606,9 +10606,11 @@ step6是不合并小数；
 </tr>
 </tbody></table>
 <h3 id='9852b06629-8'>备注：</h3>
-<p>order_id和client_order_id都可以用来撤单，同时只可以设置其中一种，如果设置了两种，默认以order_id来撤单。</p>
-
-<p>撤单接口返回结果只代表撤单命令发送成功，建议根据订单查询接口查询订单的状态来确定订单是否已真正撤销。</p>
+<ul>
+<li><p>order_id和client_order_id都可以用来撤单，同时只可以设置其中一种，如果设置了两种，默认以order_id来撤单。</p></li>
+<li><p>撤单接口返回结果只代表撤单命令发送成功，建议根据订单查询接口查询订单的状态来确定订单是否已真正撤销。</p></li>
+<li><p>client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。</p></li>
+</ul>
 
 <blockquote>
 <p>Response:</p>
@@ -13644,10 +13646,6 @@ step6是不合并小数；
 <ul>
 <li>POST <code>/api/v1/lightning_close_position</code></li>
 </ul>
-<h3 id='e0361480e3-18'>备注</h3>
-<p>闪电平仓，是指在对手价平仓的基础上，实行&#39;最优30档&#39;成交，即用户发出的平仓订单能够迅速以30档范围内对手方价格进行成交，未成交部分自动转为限价委托单。</p>
-
-<p>闪电平仓的平仓价格具备可预期的效果，避免在行情急涨急跌时订单无法成交时造成用户损失。</p>
 <h3 id='1f9ac54b15-51'>请求参数</h3>
 <table><thead>
 <tr>
@@ -13709,7 +13707,11 @@ step6是不合并小数；
 </tr>
 </tbody></table>
 <h3 id='26670dda42'>说明</h3>
-<p>如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单。</p>
+<ul>
+<li><p>如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单。</p></li>
+<li><p>闪电平仓，是指在对手价平仓的基础上，实行&#39;最优30档&#39;成交，即用户发出的平仓订单能够迅速以30档范围内对手方价格进行成交，未成交部分自动转为限价委托单。</p></li>
+<li><p>client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。</p></li>
+</ul>
 
 <blockquote>
 <p>Response:</p>
@@ -13799,7 +13801,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>/api/v1/contract_trigger_order</code></li>
 </ul>
-<h3 id='e0361480e3-19'>备注</h3>
+<h3 id='e0361480e3-18'>备注</h3>
 <ul>
 <li><p>如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单；</p></li>
 <li><p>optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档下单order_price价格参数不用传，&quot;limit&quot;:限价需要传价格。</p></li>
@@ -14159,7 +14161,7 @@ step6是不合并小数；
 <td>合约类型  当周:&quot;this_week&quot;, 次周:&quot;next_week&quot;, 当季:&quot;quarter&quot;, 次季:&quot;next_quarter&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-20'>备注</h3>
+<h3 id='e0361480e3-19'>备注</h3>
 <ul>
 <li><p>只传symbol，撤该该品种下所有周期的合约</p></li>
 <li><p>只要有contract_code，则撤销该code的合约</p></li>
@@ -14606,7 +14608,7 @@ step6是不合并小数；
 <td>[1-50]</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-21'>备注</h3>
+<h3 id='e0361480e3-20'>备注</h3>
 <ul>
 <li>默认查询 已完成订单（type对应状态范围 4、5、6）；</li>
 </ul>
@@ -14906,7 +14908,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>https://api.huobi.pro/v1/futures/transfer</code></li>
 </ul>
-<h3 id='e0361480e3-22'>备注</h3>
+<h3 id='e0361480e3-21'>备注</h3>
 <p>此接口用户币币现货账户与交割合约账户之间的资金划转。</p>
 
 <p>从现货现货账户转至交割合约账户，类型为<code>pro-to-futures</code>; 从交割合约账户转至现货账户，类型为<code>futures-to-pro</code></p>
@@ -15385,7 +15387,7 @@ step6是不合并小数；
 <p>合约站系统状态更新订阅地址：wss://api.btcgateway.pro/center-notification</p>
 
 <p>如果对合约订单推送订阅有疑问，可以参考<a href="https://github.com/huobiapi/Futures-Java-demo">Demo</a></p>
-<h3 id='e0361480e3-23'>备注</h3>
+<h3 id='e0361480e3-22'>备注</h3>
 <p>如果api.hbdm.com无法访问，可以使用api.btcgateway.pro来做调试，AWS服务器用户推荐使用api.hbdm.vn； </p>
 <h2 id='4977e9e52a-2'>访问次数限制</h2>
 <p>公开行情接口和用户私有接口都有访问次数限制</p>
@@ -15476,7 +15478,7 @@ step6是不合并小数；
 </ul>
 
 <p><code>wss://api.hbdm.com/notification</code></p>
-<h3 id='e0361480e3-24'>备注</h3>
+<h3 id='e0361480e3-23'>备注</h3>
 <p>如果api.hbdm.com无法访问，可以使用api.btcgateway.pro来做调试，AWS服务器用户推荐使用api.hbdm.vn；  </p>
 
 <p>正常ws请求连接不能同时超过30个</p>
@@ -16015,7 +16017,7 @@ step6是不合并小数；
 <td>仅支持小写，1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='e0361480e3-25'>备注</h4>
+<h4 id='e0361480e3-24'>备注</h4>
 <p>[t1, t5] 假设有 t1  ~ t5 的K线：</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -16234,7 +16236,7 @@ step6是不合并小数；
 <td>获得150档深度数据，使用step0, step1, step2, step3, step4, step5, step14, step15 （step1至step15是进行了深度合并后的深度），使用step0时，不合并深度获取150档数据;获得20档深度数据，使用 step6, step7, step8, step9, step10, step11, step12, step13（step7至step13是进行了深度合并后的深度），使用step6时，不合并深度获取20档数据</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-26'>备注</h3>
+<h3 id='e0361480e3-25'>备注</h3>
 <ul>
 <li><p>合并深度时，一定报价精度内的市场挂单将予以合并显示。合并深度仅改变显示方式，不改变实际成交价格。</p></li>
 <li><p>step1至step5,step14,step15是进行了深度合并后的150档深度数据，step7至step13是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
@@ -17486,7 +17488,7 @@ step6是不合并小数；
 <td>仅支持小写,1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-27'>备注</h3>
+<h3 id='e0361480e3-26'>备注</h3>
 <ul>
 <li><p>当指数有变化时会推送;</p></li>
 <li><p>指数无变化时会根据订阅的周期推送；</p></li>
@@ -19426,7 +19428,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-28'>备注</h3>
+<h3 id='e0361480e3-27'>备注</h3>
 <ul>
 <li><p>每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。如果 5 秒内已经触发过推送，则该品种跳过该次定期推送。</p></li>
 <li><p>当用户持仓量为0时使用切换杠杆的接口，持仓推送接口不会推送&quot;switch_lever_rate&quot;。</p></li>
@@ -20635,7 +20637,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-29'>备注</h3>
+<h3 id='e0361480e3-28'>备注</h3>
 <ul>
 <li>这个推送由于是轮询判断状态的，所以推送可能存在1—2秒的延迟。</li>
 </ul>
