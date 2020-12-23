@@ -5769,6 +5769,8 @@ Both order_id and client_order_id can be used for order withdrawl，one of them 
 
 The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.
 
+client_order_id, order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.
+
 > Response: result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
 
 ```json
@@ -5826,6 +5828,8 @@ The return data from Cancel An Order Interface only means that order cancelation
  - Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。
 
  - The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.
+
+ - client_order_id, order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.
 
 > Response
 
@@ -6081,6 +6085,9 @@ No：
 | client_order_id | false | long | Client needs to provide unique API and have to maintain the API themselves afterwards.must be Less or Equal than 9223372036854775807 |  |
 | order_price_type | false  | string | "lightning" by default. "lightning_fok": lightning FOK type,"lightning_ioc": lightning IOC type|  |
 
+###  Note:
+client_order_id, order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.
+
 > Response:
 
 ```json
@@ -6144,6 +6151,8 @@ No：
  - Lightning Close Position，is order with rival price and optimal 30 grades. And the unsettled part will be automatically converted into a limited price order.
 
  - The closing price of lightning closing position has a predictable effect, which can avoid the loss of users when the order cannot be completed when the market price rises sharply and falls sharply.
+
+ - client_order_id, order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.
 
 > Response
 
