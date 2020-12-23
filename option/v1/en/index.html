@@ -8218,6 +8218,7 @@ It will be pushed only when position event is updated.</p>
 <ul>
 <li><p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p></li>
 <li><p>The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.</p></li>
+<li><p>client_order_id, order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.</p></li>
 </ul>
 
 <blockquote>
@@ -8531,6 +8532,7 @@ It will be pushed only when position event is updated.</p>
 <ul>
 <li><p>Lightning close means that the order can be filled instantly at the price within BBO-Optimal30, and the unfilled part will be converted to a limit order automatically. </p></li>
 <li><p>The closing price of flash close orders has a predictable effect, which can avoid users&#39; loss due to the orders cannot be filled when the market fluctuates violently. </p></li>
+<li><p>client_order_id, order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.</p></li>
 </ul>
 
 <blockquote>
