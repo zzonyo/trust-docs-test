@@ -3303,6 +3303,8 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
  - The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.
 
+ - client_order_id, order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.
+
 > Response: result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
 
 ```json
@@ -3426,6 +3428,8 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
  - Lightning close means that the order can be filled instantly at the price within BBO-Optimal30, and the unfilled part will be converted to a limit order automatically. 
 
  - The closing price of flash close orders has a predictable effect, which can avoid users' loss due to the orders cannot be filled when the market fluctuates violently. 
+
+ - client_order_id, order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.
 
 > Response:
 
