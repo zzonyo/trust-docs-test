@@ -6547,6 +6547,17 @@ Please note that created_at can't send "0"
 | page_index | false | int    | page number, default 1st page                    |      |
 | page_size  | false | int    | default 20，no more than 50                |      |
 
+### Note
+
+When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 24-hour data, while users who don’t type in parameters “created_at” and “order_type” can only query last 2-hour data.
+
+The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.
+
+created_at should use timestamp of long type as 13 bits (include Millisecond), if send the accurate timestamp for "created_at", query performance will be improved.
+
+eg. the timestamp "2019/10/18 10:26:22" can be changed：1571365582123.It can also directly obtain the timestamp（ts) from the returned ordering interface(swap_order) to query the corresponding orders.
+
+Please note that created_at can't send "0"
 
 > Response
 
