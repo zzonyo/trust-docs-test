@@ -4814,9 +4814,11 @@ symbol  |   true  |  string  |  支持大小写,"BTC","ETH"...  |
 
 ###备注：
 
-order_id和client_order_id都可以用来撤单，同时只可以设置其中一种，如果设置了两种，默认以order_id来撤单。
+ - order_id和client_order_id都可以用来撤单，同时只可以设置其中一种，如果设置了两种，默认以order_id来撤单。
 
-撤单接口返回结果只代表撤单命令发送成功，建议根据订单查询接口查询订单的状态来确定订单是否已真正撤销。
+ - 撤单接口返回结果只代表撤单命令发送成功，建议根据订单查询接口查询订单的状态来确定订单是否已真正撤销。
+
+ - client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。
 
 > Response:
 
@@ -5792,12 +5794,6 @@ ts  |  true  |  long  |  时间戳  |    |
 
 - POST `/api/v1/lightning_close_position`
 
-### 备注
-
-  闪电平仓，是指在对手价平仓的基础上，实行'最优30档'成交，即用户发出的平仓订单能够迅速以30档范围内对手方价格进行成交，未成交部分自动转为限价委托单。
-  
-  闪电平仓的平仓价格具备可预期的效果，避免在行情急涨急跌时订单无法成交时造成用户损失。
- 
 ### 请求参数
 
    参数名称                |   是否必须  |   类型  |    描述            |   取值范围       |
@@ -5812,7 +5808,11 @@ ts  |  true  |  long  |  时间戳  |    |
 
 ### 说明
 
-如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单。
+ - 如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单。
+
+ - 闪电平仓，是指在对手价平仓的基础上，实行'最优30档'成交，即用户发出的平仓订单能够迅速以30档范围内对手方价格进行成交，未成交部分自动转为限价委托单。
+  
+ - client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。
 
 > Response:
 
