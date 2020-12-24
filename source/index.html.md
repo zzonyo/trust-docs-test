@@ -9112,21 +9112,6 @@ API Key 权限：交易
 
 ETF接口提供了ETF基本信息、换入、换出、查询等功能。
 
-以下是ETF接口的错误码、错误消息和说明。
-
-| 错误码 | 错误消息                                                     | 说明                               |
-| ------ | ------------------------------------------------------------ | ---------------------------------- |
-| 504    | Missing Parameter: [name]                                    | 缺失参数[参数名]                   |
-| 10404  | The fund does not exist                                      | 基金名称不存在（当前只支持hb10）   |
-| 13404  | Exchange ratio of the coin and etf is missing                | 基金调整中，不能换入换出           |
-| 13406  | Non-API calls. The request is rejected                       | 非API调用，请求被拒绝              |
-| 13410  | API signature error                                          | API签名错误                        |
-| 13601  | Position adjustment phase: swap-in and swap-out are suspended | 调仓期：暂停换入换出               |
-| 13603  | Swap-in and swap-out have been suspended                     | 换入换出已暂停                     |
-| 13604  | Swap-in has been suspended                                   | 换入已暂停                         |
-| 13605  | Swap-out has been suspended                                  | 换出已暂停                         |
-| 13606  | Incorrect transaction share                                  | 申购或赎回份额超出上限或者低于下限 |
-
 ## 基本信息
 
 用户可以通过该接口取得关于 ETF 换入换出的 基本信息，包括一次换入最小量，一次换入最大量，一 次换出最小量，一次换出最大量，换入费率，换出费率，最新 ETF 换入换出状态，以及 ETF 的成分结构。
@@ -9359,6 +9344,23 @@ Currency
 | -------- | -------- | -------- | ---- | -------------------- | ---- |
 | currency | true     | string   | -    | 成分币名称或基金名称 |      |
 | amount   | true     | double   | -    | 数量                 |      |
+
+## 常见错误码
+
+以下是ETF接口的错误码、错误消息和说明。
+
+| 错误码 | 错误消息                                                     | 说明                               |
+| ------ | ------------------------------------------------------------ | ---------------------------------- |
+| 504    | Missing Parameter: [name]                                    | 缺失参数[参数名]                   |
+| 10404  | The fund does not exist                                      | 基金名称不存在（当前只支持hb10）   |
+| 13404  | Exchange ratio of the coin and etf is missing                | 基金调整中，不能换入换出           |
+| 13406  | Non-API calls. The request is rejected                       | 非API调用，请求被拒绝              |
+| 13410  | API signature error                                          | API签名错误                        |
+| 13601  | Position adjustment phase: swap-in and swap-out are suspended | 调仓期：暂停换入换出               |
+| 13603  | Swap-in and swap-out have been suspended                     | 换入换出已暂停                     |
+| 13604  | Swap-in has been suspended                                   | 换入已暂停                         |
+| 13605  | Swap-out has been suspended                                  | 换出已暂停                         |
+| 13606  | Incorrect transaction share                                  | 申购或赎回份额超出上限或者低于下限 |
 
 # 杠杆ETP
 
