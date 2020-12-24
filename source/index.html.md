@@ -8511,32 +8511,6 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatur
 }
 ```
 
-### 错误码
-
-以下是WebSocket资产和订单接口的错误码、错误消息和说明。
-
-| 错误码 | 错误消息                 | 说明                                                         |
-| ------ | ------------------------ | ------------------------------------------------------------ |
-| 200    | 正确                     | 正确返回                                                     |
-| 100    | 超时关闭                 | 超时关闭                                                     |
-| 400    | Bad Request              | 请求错误                                                     |
-| 404    | Not Found                | 找不到服务                                                   |
-| 429    | Too Many Requests        | 超过单机服务最大连接数或者超过单IP最大连接数                 |
-| 500    | 系统异常                 | 系统错误                                                     |
-| 2000   | invalid.ip               | 无效的ip                                                     |
-| 2001   | nvalid.json              | 无效的请求json                                               |
-| 2001   | invalid.authType         | 验签方式错误                                                 |
-| 2001   | invalid.action           | 无效的订阅事件                                               |
-| 2001   | invalid.symbol           | 无效的交易对                                                 |
-| 2001   | invalid.ch               | 无效的订阅                                                   |
-| 2001   | invalid.exchange         | 无效的交易所code                                             |
-| 2001   | missing.param.auth       | 缺少验签参数                                                 |
-| 2002   | invalid.auth.state       | 认证未通过                                                   |
-| 2002   | auth.fail                | 验签失败，包括API Key绑定的IP错误                            |
-| 2003   | query.account.list.error | 查询账户列表失败                                             |
-| 4000   | too.many.request         | 客户端上行请求限频（单个实例50次/秒）                        |
-| 4000   | too.many.connection      | 同一个API Key的建联数量超过服务器单个实例限制（单个实例最多连接10个） |
-
 ## 订阅订单更新
 
 API Key 权限：读取
@@ -9034,6 +9008,31 @@ accounts.update#1：
 注：<br>
 账户更新推送的是到账金额，多笔成交产生的多笔交易返佣可能会合并到帐。<br>
 
+## 常见错误码
+
+以下是WebSocket资产和订单接口的错误码、错误消息和说明。
+
+| 错误码 | 错误消息                 | 说明                                                         |
+| ------ | ------------------------ | ------------------------------------------------------------ |
+| 200    | 正确                     | 正确返回                                                     |
+| 100    | 超时关闭                 | 超时关闭                                                     |
+| 400    | Bad Request              | 请求错误                                                     |
+| 404    | Not Found                | 找不到服务                                                   |
+| 429    | Too Many Requests        | 超过单机服务最大连接数或者超过单IP最大连接数                 |
+| 500    | 系统异常                 | 系统错误                                                     |
+| 2000   | invalid.ip               | 无效的ip                                                     |
+| 2001   | nvalid.json              | 无效的请求json                                               |
+| 2001   | invalid.authType         | 验签方式错误                                                 |
+| 2001   | invalid.action           | 无效的订阅事件                                               |
+| 2001   | invalid.symbol           | 无效的交易对                                                 |
+| 2001   | invalid.ch               | 无效的订阅                                                   |
+| 2001   | invalid.exchange         | 无效的交易所code                                             |
+| 2001   | missing.param.auth       | 缺少验签参数                                                 |
+| 2002   | invalid.auth.state       | 认证未通过                                                   |
+| 2002   | auth.fail                | 验签失败，包括API Key绑定的IP错误                            |
+| 2003   | query.account.list.error | 查询账户列表失败                                             |
+| 4000   | too.many.request         | 客户端上行请求限频（单个实例50次/秒）                        |
+| 4000   | too.many.connection      | 同一个API Key的建联数量超过服务器单个实例限制（单个实例最多连接10个） |
 
 # 稳定币
 
