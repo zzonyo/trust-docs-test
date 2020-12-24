@@ -6237,39 +6237,6 @@ C2C借币相关接口提供了用户对用户之间的借入、借出、还币�
 子用户不可调用以下C2C借币相关接口。<br>
 借入账户ID（accountId）须在web页面完成第一次划转后方可生成。<br>
 
-以下是C2C借币相关接口的错误码、错误消息和说明。
-
-| 错误码 | 错误消息                                                     | 说明                                               |
-| ------ | ------------------------------------------------------------ | -------------------------------------------------- |
-| 40301  | Insufficient available balance                               | 可用余额不足                                       |
-| 40302  | Failed to get the account                                    | 获取账户信息失败                                   |
-| 40307  | Existence of an ongoing loan order                           | 存在正在进行中的借贷单                             |
-| 40309  | Wrong order status                                           | 订单状态错误                                       |
-| 40310  | Order does not exist                                         | 借贷单不存在                                       |
-| 40311  | User has OTC loans                                           | 用户存在场外借贷                                   |
-| 40312  | Only normal and bankrupt users can be included               | 爆仓中账户不能转入资产                             |
-| 40315  | There is no liquidation or forced liquidation setting        | 缺少强平或爆仓设置                                 |
-| 40317  | Failed to get sub-loan order                                 | 获取子借贷单失败                                   |
-| 40319  | No less than the minimum borrowing amount                    | 不能低于最小借出量                                 |
-| 40320  | borrowing configuration does not exist                       | 借贷配置不存在                                     |
-| 40322  | The user has not passed advanced verification                | 用户未通过高级认证                                 |
-| 40324  | The amount of repayment exceeds the amount borrowed          | 还款数量超过借贷量                                 |
-| 40326  | White list users only                                        | 非白名单用户                                       |
-| 40327  | Exceeding the maximum accuracy                               | 超过最大精度                                       |
-| 40328  | Cannot exceed the maximum amount of borrowing                | 不能超过最大借贷量                                 |
-| 40329  | Interest rate out of the set range                           | 利率超出设定范围                                   |
-| 40330  | Cannot be less than the minimum loan amount                  | 不能低于最小借入量                                 |
-| 40331  | cannot exceed the maximum loan amount                        | 不能超过最大借入量                                 |
-| 40332  | Cannot be less than the minimum repayment amount             | 不能低于最小还款量                                 |
-| 40333  | the ending time must be greater than the starting time       | 结束时间必须大于开始时间                           |
-| 40335  | in repayment                                                 | 还款中                                             |
-| 40336  | This feature is not open to users in China, the United States, Turkey, Japan, Singapore | 该功能不对中国、美国、土耳其、日本、新加坡用户开放 |
-| 40337  | C2C lending transaction is not currently available           | 暂不支持C2C借贷交易                                |
-| 40339  | Debit and credit function is closed                          | 借贷功能已关闭                                     |
-| 40340  | The current account ID does not belong to the current user   | 当前账户ID不属于当前用户所持有                     |
-| 40345  | This account is not a C2C account                            | 该账户非C2C账户                                    |
-| 40346  | This order is not allowed to change renew state              | 当前订单不能修改续借状态                           |
-
 ## 借入借出下单
 
 POST /v2/c2c/offer<br>
@@ -6842,6 +6809,40 @@ API Key 权限：读取<br>
 •	账户子类型trade, loan, interest, advance仅对借入账户有效；<br>
 •	账户子类型trade, lending, earnings仅对借出账户有效。<br>
 
+## 常见错误码
+
+以下是C2C借币相关接口的错误码、错误消息和说明。
+
+| 错误码 | 错误消息                                                     | 说明                                               |
+| ------ | ------------------------------------------------------------ | -------------------------------------------------- |
+| 40301  | Insufficient available balance                               | 可用余额不足                                       |
+| 40302  | Failed to get the account                                    | 获取账户信息失败                                   |
+| 40307  | Existence of an ongoing loan order                           | 存在正在进行中的借贷单                             |
+| 40309  | Wrong order status                                           | 订单状态错误                                       |
+| 40310  | Order does not exist                                         | 借贷单不存在                                       |
+| 40311  | User has OTC loans                                           | 用户存在场外借贷                                   |
+| 40312  | Only normal and bankrupt users can be included               | 爆仓中账户不能转入资产                             |
+| 40315  | There is no liquidation or forced liquidation setting        | 缺少强平或爆仓设置                                 |
+| 40317  | Failed to get sub-loan order                                 | 获取子借贷单失败                                   |
+| 40319  | No less than the minimum borrowing amount                    | 不能低于最小借出量                                 |
+| 40320  | borrowing configuration does not exist                       | 借贷配置不存在                                     |
+| 40322  | The user has not passed advanced verification                | 用户未通过高级认证                                 |
+| 40324  | The amount of repayment exceeds the amount borrowed          | 还款数量超过借贷量                                 |
+| 40326  | White list users only                                        | 非白名单用户                                       |
+| 40327  | Exceeding the maximum accuracy                               | 超过最大精度                                       |
+| 40328  | Cannot exceed the maximum amount of borrowing                | 不能超过最大借贷量                                 |
+| 40329  | Interest rate out of the set range                           | 利率超出设定范围                                   |
+| 40330  | Cannot be less than the minimum loan amount                  | 不能低于最小借入量                                 |
+| 40331  | cannot exceed the maximum loan amount                        | 不能超过最大借入量                                 |
+| 40332  | Cannot be less than the minimum repayment amount             | 不能低于最小还款量                                 |
+| 40333  | the ending time must be greater than the starting time       | 结束时间必须大于开始时间                           |
+| 40335  | in repayment                                                 | 还款中                                             |
+| 40336  | This feature is not open to users in China, the United States, Turkey, Japan, Singapore | 该功能不对中国、美国、土耳其、日本、新加坡用户开放 |
+| 40337  | C2C lending transaction is not currently available           | 暂不支持C2C借贷交易                                |
+| 40339  | Debit and credit function is closed                          | 借贷功能已关闭                                     |
+| 40340  | The current account ID does not belong to the current user   | 当前账户ID不属于当前用户所持有                     |
+| 40345  | This account is not a C2C account                            | 该账户非C2C账户                                    |
+| 40346  | This order is not allowed to change renew state              | 当前订单不能修改续借状态                           |
 
 # Websocket行情数据
 
