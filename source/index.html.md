@@ -9675,7 +9675,7 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
 |	rebalType }	|	string	|	TRUE	|调仓类型（daily, adhoc）	|
 |	nextId	|	long	|	FALSE	| 下页查询起始编号（仅在存在下页数据时返回）	|
 
-##### <br>
+
 
 ## 杠杆ETP单个撤单
 
@@ -9715,7 +9715,7 @@ API Key 权限：交易<br>限频值：1次/秒<br>
 
 
 
-##### <br>
+
 
 ## 杠杆ETP批量撤单
 
