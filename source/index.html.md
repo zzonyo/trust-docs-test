@@ -9040,22 +9040,6 @@ accounts.update#1：
 
 稳定币接口提供了价格查询和兑换功能。
 
-以下是是稳定币接口的错误码和说明。
-
-| 响应码                         | 说明                                             |
-| ------------------------------ | ------------------------------------------------ |
-| invalid-currency               | 币种无效                                         |
-| invalid-amount                 | 币种数量小于最低值（1000）或大于当前可兑换额度   |
-| invalid-type                   | type不为sell或buy                                |
-| quote-exceed-price-limit       | 报价超过合理范围（小于0.9或者大于1.1）           |
-| quote-exceed-time-limit        | 报价时间已经过期                                 |
-| quote-failure                  | 后端其他错误引起的后端其他错误引起的价格查询失败 |
-| invalid-quote-id               | 无效的quote-id                                   |
-| insufficient-balance           | 可用余额不足                                     |
-| insufficient-quota             | 稳定币限额不足/超出稳定币限额                    |
-| exchange-failure               | 后端其他错误引起的兑换失败                       |
-| Base-user-request-exceed-limit | 您的操作太频繁，请稍后再试                       |
-
 ## 稳定币兑换价格查询
 
 GET v1/stable-coin/quote
@@ -9103,6 +9087,24 @@ API Key 权限：交易
 | exchange-amount | true     | string   | 匹配的HUSD数量             | type=buy时，exchange-amount为用户所需支付的husd数量；type=sell时，exchange-amount为用户可获得的husd数量 |
 | exchange-fee    | true     | string   | 手续费金额 （单位：HUSD）  |                                                              |
 | time            | true     | long     | 时间戳                     |                                                              |
+
+## 常见错误码
+
+以下是是稳定币接口的错误码和说明。
+
+| 响应码                         | 说明                                             |
+| ------------------------------ | ------------------------------------------------ |
+| invalid-currency               | 币种无效                                         |
+| invalid-amount                 | 币种数量小于最低值（1000）或大于当前可兑换额度   |
+| invalid-type                   | type不为sell或buy                                |
+| quote-exceed-price-limit       | 报价超过合理范围（小于0.9或者大于1.1）           |
+| quote-exceed-time-limit        | 报价时间已经过期                                 |
+| quote-failure                  | 后端其他错误引起的后端其他错误引起的价格查询失败 |
+| invalid-quote-id               | 无效的quote-id                                   |
+| insufficient-balance           | 可用余额不足                                     |
+| insufficient-quota             | 稳定币限额不足/超出稳定币限额                    |
+| exchange-failure               | 后端其他错误引起的兑换失败                       |
+| Base-user-request-exceed-limit | 您的操作太频繁，请稍后再试                       |
 
 # ETF（HB10）
 
