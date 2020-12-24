@@ -6965,21 +6965,6 @@ Websocket服务器同时支持一次性请求数据（pull）。
 
 单个连接每两次请求不能小于100ms。
 
-### 错误码
-
-以下是WebSocket行情接口的错误码、错误消息和说明。
-
-| 错误码      | 错误消息                               | 说明                     |
-| ----------- | -------------------------------------- | ------------------------ |
-| bad-request | invalid topic                          | topic错误                |
-| bad-request | invalid symbol                         | symbol错误               |
-| bad-request | symbol trade not open now              | 该交易对未到开始交易时间 |
-| bad-request | 429 too many request                   | req 请求太频繁           |
-| bad-request | unsub with not subbed topic            | 未订阅该主题             |
-| bad-request | not json string                        | 发送的请求不是JSON格式   |
-| 1008        | header required correct cloud-exchange | exchangeCode 参数错误    |
-| bad-request | request timeout                        | 请求超时                 |
-
 ## K线数据
 
 ### 主题订阅
@@ -7649,6 +7634,21 @@ REQ频道支持5档/20档/150档全量数据的获取。<br>
 | { currency     | float    | 币种                                        |
 | amount }       | float    | 金额                                        |
 | actualLeverage | float    | 实际杠杆率                                  |
+
+## 常见错误码
+
+以下是WebSocket行情接口的错误码、错误消息和说明。
+
+| 错误码      | 错误消息                               | 说明                     |
+| ----------- | -------------------------------------- | ------------------------ |
+| bad-request | invalid topic                          | topic错误                |
+| bad-request | invalid symbol                         | symbol错误               |
+| bad-request | symbol trade not open now              | 该交易对未到开始交易时间 |
+| bad-request | 429 too many request                   | req 请求太频繁           |
+| bad-request | unsub with not subbed topic            | 未订阅该主题             |
+| bad-request | not json string                        | 发送的请求不是JSON格式   |
+| 1008        | header required correct cloud-exchange | exchangeCode 参数错误    |
+| bad-request | request timeout                        | 请求超时                 |
 
 # Websocket资产及订单（即将废弃）
 
