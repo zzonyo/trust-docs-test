@@ -6018,13 +6018,13 @@ ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   |
 | 参数名称                   | 是否必须 | 类型     | 描述            | 取值范围           |
 | ---------------------- | ---- | ------ | ------------- | -------------- |
 | status                 | true | string  | 响应状态: ok,error            |                                          |
-| <data> | false     |  object      |                    |                                          |
+| \<data\> | false     |  object      |                    |                                          |
 | contract_code               | false | string    |  合约代码      |                                          |
 | margin_mode | false | string | 保证金模式  | cross：全仓模式； |
 | lever_rate               | false | int    | 切换成功后的杠杆倍数      |                                          |
-| </data>            |      |         |                    |                                          |
-| err-code | false | int | 错误码| |
-|err-msg| false| string | 错误信息| |
+| \</data\>            |      |         |                    |                                          |
+| err_code | false | int | 错误码| |
+| err_msg| false| string | 错误信息| |
 | ts                     | true | long    | 时间戳                |                                          |
 
 ## 【逐仓】获取合约订单信息
