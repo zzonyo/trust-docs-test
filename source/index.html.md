@@ -14485,8 +14485,8 @@ curl "https://api.huobi.pro/v1/order/matchresults?symbol=ethusdt"
       "trade-id": 100282808529,
       "role": "taker",
       "filled-points": "0.0",
-      "fee-deduct-currency": "",
-      "fee-deduct-state": "done"
+      "fee-deduct-currency": ""
+      "fee-deduct-currency": ""
     }
   ]
 ```
@@ -14511,7 +14511,7 @@ curl "https://api.huobi.pro/v1/order/matchresults?symbol=ethusdt"
 | role                | string    | The role in the transaction: taker or maker.                 |
 | filled-points       | string    | deduction amount (unit: in ht or hbpoint)                    |
 | fee-deduct-currency | string    | deduction type: ht or hbpoint.                               |
-| fee-deduct-state | string    | Fee deduction status，In deduction：ongoing，Deduction completed：done |
+| fee-deduct-currency | string    | Fee deduction status，In deduction：ongoing，Deduction completed：done |
 
 Notes:<br>
 
@@ -19381,6 +19381,5 @@ Rate Limit (NEW): 1 time /5s<br>
 |	errMsg	|	long	|	TRUE	|Position rebalance time (unix time in millisecond)|
 |	errCode 	|	string	|	TRUE	|Error code of order cancellation failure	|
 |	transactId}	|	long	|	FALSE	| Transaction ID	|
-
 
 
