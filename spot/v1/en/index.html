@@ -9613,7 +9613,8 @@ Rate Limit (NEW): 50times/2s</p>
       </span><span class="s2">"created-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494901400435</span><span class="p">,</span><span class="w">
       </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="err">maker</span><span class="p">,</span><span class="w">
       </span><span class="s2">"filled-points"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"fee-deduct-currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="s2">"fee-deduct-currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fee-deduct-state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"done"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='response-content-52'>Response Content</h3>
@@ -9700,6 +9701,11 @@ Rate Limit (NEW): 50times/2s</p>
 <td>fee-deduct-currency</td>
 <td>string</td>
 <td>deduction type. if blank, the transaction fee is based on original currency; if showing value as &quot;ht&quot;, the transaction fee is deducted by HT; if showing value as &quot;hbpoint&quot;, the transaction fee is deducted by HB point.</td>
+</tr>
+<tr>
+<td>fee-deduct-state</td>
+<td>string</td>
+<td>Fee deduction status，In deduction：ongoing，Deduction completed：done</td>
 </tr>
 </tbody></table>
 
@@ -10254,7 +10260,8 @@ Rate Limit (NEW): 20times/2s</p>
       </span><span class="s2">"trade-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100282808529</span><span class="p">,</span><span class="w">
       </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"taker"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"filled-points"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"fee-deduct-currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="s2">"fee-deduct-currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fee-deduct-state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"done"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='response-content-55'>Response Content</h3>
@@ -10341,6 +10348,11 @@ Rate Limit (NEW): 20times/2s</p>
 <td>fee-deduct-currency</td>
 <td>string</td>
 <td>deduction type: ht or hbpoint.</td>
+</tr>
+<tr>
+<td>fee-deduct-state</td>
+<td>string</td>
+<td>Fee deduction status，In deduction：ongoing，Deduction completed：done</td>
 </tr>
 </tbody></table>
 
