@@ -17,6 +17,8 @@ code_clipboard: true
 
 # Change Log
 
+
+
 <style>
 table {
     max-width:100%
@@ -25,6 +27,7 @@ table th {
     white-space: nowrap; /*表头内容强制在一行显示*/
 }
 </style>
+
 
 | Release Time<BR>(UTC +8) | API  | New / Update    | Description     |
 | ------------------------ | ---------------------- | --------------- | ------------------------------------- |
@@ -4424,7 +4427,8 @@ No parameter is needed for this endpoint.
       "created-at": 1494901400435,
       "role": maker,
       "filled-points": "0.0",
-      "fee-deduct-currency": ""
+      "fee-deduct-currency": "",
+      "fee-deduct-state": "done"
     }
   ]
 ```
@@ -4449,6 +4453,7 @@ No parameter is needed for this endpoint.
 | role                | string    | the role in the transaction: taker or maker                  |
 | filled-points       | string    | deduction amount (unit: in ht or hbpoint)                    |
 | fee-deduct-currency | string    | deduction type. if blank, the transaction fee is based on original currency; if showing value as "ht", the transaction fee is deducted by HT; if showing value as "hbpoint", the transaction fee is deducted by HB point. |
+| fee-deduct-state | string    | Fee deduction status，In deduction：ongoing，Deduction completed：done |
 
 Notes:<br>
 
@@ -4682,7 +4687,8 @@ curl "https://api.huobi.pro/v1/order/matchresults?symbol=ethusdt"
       "trade-id": 100282808529,
       "role": "taker",
       "filled-points": "0.0",
-      "fee-deduct-currency": ""
+      "fee-deduct-currency": "",
+      "fee-deduct-state": "done"
     }
   ]
 ```
@@ -4707,6 +4713,7 @@ curl "https://api.huobi.pro/v1/order/matchresults?symbol=ethusdt"
 | role                | string    | The role in the transaction: taker or maker.                 |
 | filled-points       | string    | deduction amount (unit: in ht or hbpoint)                    |
 | fee-deduct-currency | string    | deduction type: ht or hbpoint.                               |
+| fee-deduct-state | string    | Fee deduction status，In deduction：ongoing，Deduction completed：done |
 
 Notes:<br>
 
