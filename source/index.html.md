@@ -31,6 +31,8 @@ table th {
 
 | Release Time<BR>(UTC +8) | API  | New / Update    | Description     |
 | ------------------------ | ---------------------- | --------------- | ------------------------------------- |
+| 2020.12.16 19:00         | `GET /v1/order/matchresults ` and `GET /v1/order/orders/{order-id}/matchresults` | Update          | Add "fee-deduct-state" parameter to indicate the status of “In deduction” and “deduction completed” |
+| 2020.12.14 19:00         | `POST /v2/etp/{transactId}/cancel ` and`POST /v2/etp/batch-cancel` | Add             | Add "Submit Cancel for ETP Multiple Orders" and"Submit Cancel for an ETP Order" endpoints |
 | 2020.11.26 19:00        | `GET /v2/user/uid `      | Add             | Add Get UID  endpoints      |
 | 2020.10.16 19:00         | `orders#${symbol} `                                          | Add             | Add accountId for order creation event                       |
 | 2020.10.10 19:00         | `POST /v2/account/repayment`,<BR>`GET /v2/account/repayment` | Add             | Added general repayment and query                            |
@@ -9664,3 +9666,88 @@ The query window is circled by startTime and endTime. The maximum window size is
 |	rebalTime	|	long	|	TRUE	|Position rebalance time (unix time in millisecond)|
 |	rebalType }	|	string	|	TRUE	|Position rebalance type (valid values: daily, adhoc)	|
 |	nextId	|	long	|	FALSE	| First record ID in next page (only valid if exceeded page size)	|
+
+## Submit Cancel for an ETP Order
+
+### HTTP Request
+
+- POST /v2/etp/{transactId}/cancel
+
+API Key Permission：Trade<br>
+Rate Limit (NEW): 1 time /s<br>
+
+### Request Parameter
+
+|	Field Name	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	----	|	------	|	-----	|
+|	transactId|	long	|	TRUE	| Transaction ID |
+
+
+
+> Response
+
+```json
+{
+"code": 80042,
+"message": "Cancellation of order failed, order does not exist"
+}
+```
+
+### Response
+
+|	Field Name	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	----	|	--------	|	-----	|
+|	code	|	integer	|	TRUE	|Status Code	|
+|	message	|	string	|	FALSE	|Error message (if any)	|
+
+
+
+## Submit Cancel for ETP Multiple Orders
+
+### HTTP Request
+
+- POST /v2/etp/batch-cancel
+
+API Key Permission：Trade<br>
+Rate Limit (NEW): 1 time /5s<br>
+
+### Request Parameter
+
+|	Field Name	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	----	|	------	|	-----	|
+|	transactId|	long	|	TRUE	| Transaction ID |
+
+> Response
+
+```json
+{
+    "code":200,
+    "data":{
+        "success":[
+            "5983466"
+        ],
+        "failed":[
+            {
+                "errMsg":"Cancellation of order failed, order does not exist",
+                "transactId":"65445",
+                "errCode":80043
+            }
+        ]
+    },
+    "message":null
+}
+
+```
+
+### Response
+
+|	Field Name	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	----	|	--------	|	-----	|
+|	code	|	integer	|	TRUE	|Status Code	|
+|	message	|	string	|	FALSE	|Error message (if any)	|
+|	data	|	object	|	TRUE	| 	|
+|	{ success	|	string	|	TRUE	|List of successful ETP cancellation transactions	|
+|	errMsg	|	long	|	TRUE	|Position rebalance time (unix time in millisecond)|
+|	errCode 	|	string	|	TRUE	|Error code of order cancellation failure	|
+|	transactId}	|	long	|	FALSE	| Transaction ID	|
+
