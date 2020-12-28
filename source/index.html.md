@@ -9060,22 +9060,6 @@ Stable coin APIs provide stable coin quote query and exchange.
 
 <aside class="notice">All endpoints in this section require authentication</aside>
 
-Below is the error code and the description from stable coin APIs
-
-| Error Code                     | Description                                                 |
-| ------------------------------ | ----------------------------------------------------------- |
-| invalid-currency               | invalid currency                                            |
-| invalid-amount                 | amount < 1,000 or amount > quota limit                      |
-| invalid-type                   | type not 'buy' or 'sell'                                    |
-| quote-exceed-price-limit       | offered price exceed limit (less than 0.9 or more than 1.1) |
-| quote-exceed-time-limit        | offered price is out of time                                |
-| quote-failure                  | other errors                                                |
-| invalid-quote-id               | Paramemter ‘quote-id’ is invalid                            |
-| insufficient-balance           | insufficient balance to buy or sell stable coins            |
-| insufficient-quota             | the quota is exceeded                                       |
-| exchange-failure               | other errors                                                |
-| Base-user-request-exceed-limit | Operation is too frequent                                   |
-
 ## Get Exchange Rate
 
 API Key Permission：Read
@@ -9129,6 +9113,24 @@ API Key Permission：Trade
 | exchange-amount | string    | Amount of HUSD to exchange in or out |
 | exchange-fee    | string    | Exchange fee (in HUSD)               |
 | time            | long      | Timestampe                           |
+
+## Error Code
+
+Below is the error code and the description from stable coin APIs
+
+| Error Code                     | Description                                                 |
+| ------------------------------ | ----------------------------------------------------------- |
+| invalid-currency               | invalid currency                                            |
+| invalid-amount                 | amount < 1,000 or amount > quota limit                      |
+| invalid-type                   | type not 'buy' or 'sell'                                    |
+| quote-exceed-price-limit       | offered price exceed limit (less than 0.9 or more than 1.1) |
+| quote-exceed-time-limit        | offered price is out of time                                |
+| quote-failure                  | other errors                                                |
+| invalid-quote-id               | Paramemter ‘quote-id’ is invalid                            |
+| insufficient-balance           | insufficient balance to buy or sell stable coins            |
+| insufficient-quota             | the quota is exceeded                                       |
+| exchange-failure               | other errors                                                |
+| Base-user-request-exceed-limit | Operation is too frequent                                   |
 
 # ETF (HB10)
 
