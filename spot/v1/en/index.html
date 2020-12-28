@@ -762,6 +762,9 @@
                   <li>
                     <a href="#subscribe-etp-real-time-nav" class="toc-h2 toc-link" data-title="Subscribe ETP Real Time NAV">Subscribe ETP Real Time NAV</a>
                   </li>
+                  <li>
+                    <a href="#error-code-11" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -805,6 +808,9 @@
                   <li>
                     <a href="#subscribe-account-change" class="toc-h2 toc-link" data-title="Subscribe Account Change">Subscribe Account Change</a>
                   </li>
+                  <li>
+                    <a href="#error-code-12" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -818,6 +824,9 @@
                   </li>
                   <li>
                     <a href="#exchange-stable-coin" class="toc-h2 toc-link" data-title="Exchange Stable Coin">Exchange Stable Coin</a>
+                  </li>
+                  <li>
+                    <a href="#error-code-13" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
                   </li>
               </ul>
           </li>
@@ -835,6 +844,9 @@
                   </li>
                   <li>
                     <a href="#show-past-creation-redemption" class="toc-h2 toc-link" data-title="Show Past Creation/Redemption">Show Past Creation/Redemption</a>
+                  </li>
+                  <li>
+                    <a href="#error-code-14" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
                   </li>
               </ul>
           </li>
@@ -867,6 +879,9 @@
                   </li>
                   <li>
                     <a href="#submit-cancel-for-etp-multiple-orders" class="toc-h2 toc-link" data-title="Submit Cancel for ETP Multiple Orders">Submit Cancel for ETP Multiple Orders</a>
+                  </li>
+                  <li>
+                    <a href="#error-code-15" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
                   </li>
               </ul>
           </li>
@@ -15480,52 +15495,6 @@ or
 <p><strong>Rate limt of pull style query (req)</strong></p>
 
 <p>The limitation of single connection is 100 ms.</p>
-<h3 id='error-code-11'>Error Code</h3>
-<p>Below is the error code, error message and description</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Error Message</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>bad-request</td>
-<td>invalid topic</td>
-<td>Parameter topic is invalid</td>
-</tr>
-<tr>
-<td>bad-request</td>
-<td>invalid symbol</td>
-<td>Parammeter symbol is invalid</td>
-</tr>
-<tr>
-<td>bad-request</td>
-<td>symbol trade not open now</td>
-<td>The market is not open for this symbol</td>
-</tr>
-<tr>
-<td>bad-request</td>
-<td>429 too many request</td>
-<td>Request exceed limit</td>
-</tr>
-<tr>
-<td>bad-request</td>
-<td>unsub with not subbed topic</td>
-<td>The topic is not subscribed</td>
-</tr>
-<tr>
-<td>bad-request</td>
-<td>not json string</td>
-<td>The request is not JSON format</td>
-</tr>
-<tr>
-<td>bad-request</td>
-<td>request timeout</td>
-<td>The request is time out</td>
-</tr>
-</tbody></table>
 <h2 id='market-candlestick'>Market Candlestick</h2>
 <p>This topic sends a new candlestick whenever it is available.</p>
 <h3 id='topic'>Topic</h3>
@@ -16513,6 +16482,52 @@ In the near future, Huobi Global will align the update behavior of 150-level inc
 <td></td>
 <td>actualLeverage</td>
 <td>float</td>
+</tr>
+</tbody></table>
+<h2 id='error-code-11'>Error Code</h2>
+<p>Below is the error code, error message and description returned by Market WebSocket</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Error Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bad-request</td>
+<td>invalid topic</td>
+<td>Parameter topic is invalid</td>
+</tr>
+<tr>
+<td>bad-request</td>
+<td>invalid symbol</td>
+<td>Parammeter symbol is invalid</td>
+</tr>
+<tr>
+<td>bad-request</td>
+<td>symbol trade not open now</td>
+<td>The market is not open for this symbol</td>
+</tr>
+<tr>
+<td>bad-request</td>
+<td>429 too many request</td>
+<td>Request exceed limit</td>
+</tr>
+<tr>
+<td>bad-request</td>
+<td>unsub with not subbed topic</td>
+<td>The topic is not subscribed</td>
+</tr>
+<tr>
+<td>bad-request</td>
+<td>not json string</td>
+<td>The request is not JSON format</td>
+</tr>
+<tr>
+<td>bad-request</td>
+<td>request timeout</td>
+<td>The request is time out</td>
 </tr>
 </tbody></table>
 <h1 id='websocket-asset-and-order-to-be-obsolete'>Websocket Asset and Order (to be obsolete)</h1><h2 id='introduction-to-be-obsolete'>Introduction (to be obsolete)</h2><h3 id='websocket-url-2'>Websocket URL</h3>
@@ -17876,102 +17891,6 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Upon success, Websocket client should receive a response below:</p>
-<h3 id='error-code-12'>Error Code</h3>
-<p>Below is the return code, return message and the description returend from Asset and Order WebSocket</p>
-
-<table><thead>
-<tr>
-<th>Return Code</th>
-<th>Return Message</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td>Success</td>
-<td>Successful</td>
-</tr>
-<tr>
-<td>100</td>
-<td>time out close</td>
-<td>The connection is timeout and closed</td>
-</tr>
-<tr>
-<td>400</td>
-<td>Bad Request</td>
-<td>The request is invalid</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found</td>
-<td>The service is not found</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests</td>
-<td>Connection number exceed limit</td>
-</tr>
-<tr>
-<td>500</td>
-<td>system error</td>
-<td>System internal error</td>
-</tr>
-<tr>
-<td>2000</td>
-<td>invalid.ip</td>
-<td>The IP is invalid</td>
-</tr>
-<tr>
-<td>2001</td>
-<td>nvalid.json</td>
-<td>The JSON request is invalid</td>
-</tr>
-<tr>
-<td>2001</td>
-<td>invalid.action</td>
-<td>Parameter action is invalid</td>
-</tr>
-<tr>
-<td>2001</td>
-<td>invalid.symbol</td>
-<td>Parameter symbol is invalid</td>
-</tr>
-<tr>
-<td>2001</td>
-<td>invalid.ch</td>
-<td>Parameter channel is invalid</td>
-</tr>
-<tr>
-<td>2001</td>
-<td>missing.param.auth</td>
-<td>Parameter auth is missing</td>
-</tr>
-<tr>
-<td>2002</td>
-<td>invalid.auth.state</td>
-<td>Authentication state is invalid</td>
-</tr>
-<tr>
-<td>2002</td>
-<td>auth.fail</td>
-<td>Authentication failed, including wrong IP address binding in API Key</td>
-</tr>
-<tr>
-<td>2003</td>
-<td>query.account.list.error</td>
-<td>Account query error</td>
-</tr>
-<tr>
-<td>4000</td>
-<td>too.many.request</td>
-<td>Request exceed limit (a single instance limit to 50 per second)</td>
-</tr>
-<tr>
-<td>4000</td>
-<td>too.many.connection</td>
-<td>Connection number exceed limit for single API Key (a single instance limit to 10 connections)</td>
-</tr>
-</tbody></table>
 <h2 id='subscribe-order-updates'>Subscribe Order Updates</h2>
 <p>API Key Permission: Read</p>
 
@@ -18908,64 +18827,106 @@ The topic disseminates the current static value of individual accounts first, at
 <ul>
 <li>A maker rebate would be paid in batch mode for multiple trades.<br></li>
 </ul>
-<h1 id='stable-coin-exchange'>Stable Coin Exchange</h1><h2 id='introduction-13'>Introduction</h2>
-<p>Stable coin APIs provide stable coin quote query and exchange.</p>
-
-<aside class="notice">All endpoints in this section require authentication</aside>
-
-<p>Below is the error code and the description from stable coin APIs</p>
+<h2 id='error-code-12'>Error Code</h2>
+<p>Below is the return code, return message and the description returend from Asset and Order WebSocket</p>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
+<th>Return Code</th>
+<th>Return Message</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>invalid-currency</td>
-<td>invalid currency</td>
+<td>200</td>
+<td>Success</td>
+<td>Successful</td>
 </tr>
 <tr>
-<td>invalid-amount</td>
-<td>amount &lt; 1,000 or amount &gt; quota limit</td>
+<td>100</td>
+<td>time out close</td>
+<td>The connection is timeout and closed</td>
 </tr>
 <tr>
-<td>invalid-type</td>
-<td>type not &#39;buy&#39; or &#39;sell&#39;</td>
+<td>400</td>
+<td>Bad Request</td>
+<td>The request is invalid</td>
 </tr>
 <tr>
-<td>quote-exceed-price-limit</td>
-<td>offered price exceed limit (less than 0.9 or more than 1.1)</td>
+<td>404</td>
+<td>Not Found</td>
+<td>The service is not found</td>
 </tr>
 <tr>
-<td>quote-exceed-time-limit</td>
-<td>offered price is out of time</td>
+<td>429</td>
+<td>Too Many Requests</td>
+<td>Connection number exceed limit</td>
 </tr>
 <tr>
-<td>quote-failure</td>
-<td>other errors</td>
+<td>500</td>
+<td>system error</td>
+<td>System internal error</td>
 </tr>
 <tr>
-<td>invalid-quote-id</td>
-<td>Paramemter ‘quote-id’ is invalid</td>
+<td>2000</td>
+<td>invalid.ip</td>
+<td>The IP is invalid</td>
 </tr>
 <tr>
-<td>insufficient-balance</td>
-<td>insufficient balance to buy or sell stable coins</td>
+<td>2001</td>
+<td>nvalid.json</td>
+<td>The JSON request is invalid</td>
 </tr>
 <tr>
-<td>insufficient-quota</td>
-<td>the quota is exceeded</td>
+<td>2001</td>
+<td>invalid.action</td>
+<td>Parameter action is invalid</td>
 </tr>
 <tr>
-<td>exchange-failure</td>
-<td>other errors</td>
+<td>2001</td>
+<td>invalid.symbol</td>
+<td>Parameter symbol is invalid</td>
 </tr>
 <tr>
-<td>Base-user-request-exceed-limit</td>
-<td>Operation is too frequent</td>
+<td>2001</td>
+<td>invalid.ch</td>
+<td>Parameter channel is invalid</td>
+</tr>
+<tr>
+<td>2001</td>
+<td>missing.param.auth</td>
+<td>Parameter auth is missing</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid.auth.state</td>
+<td>Authentication state is invalid</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>auth.fail</td>
+<td>Authentication failed, including wrong IP address binding in API Key</td>
+</tr>
+<tr>
+<td>2003</td>
+<td>query.account.list.error</td>
+<td>Account query error</td>
+</tr>
+<tr>
+<td>4000</td>
+<td>too.many.request</td>
+<td>Request exceed limit (a single instance limit to 50 per second)</td>
+</tr>
+<tr>
+<td>4000</td>
+<td>too.many.connection</td>
+<td>Connection number exceed limit for single API Key (a single instance limit to 10 connections)</td>
 </tr>
 </tbody></table>
+<h1 id='stable-coin-exchange'>Stable Coin Exchange</h1><h2 id='introduction-13'>Introduction</h2>
+<p>Stable coin APIs provide stable coin quote query and exchange.</p>
+
+<aside class="notice">All endpoints in this section require authentication</aside>
 <h2 id='get-exchange-rate'>Get Exchange Rate</h2>
 <p>API Key Permission：Read</p>
 <h3 id='http-request-77'>HTTP Request</h3>
@@ -19112,10 +19073,8 @@ The topic disseminates the current static value of individual accounts first, at
 <td>Timestampe</td>
 </tr>
 </tbody></table>
-<h1 id='etf-hb10'>ETF (HB10)</h1><h2 id='introduction-14'>Introduction</h2>
-<p>Huobi&#39;s platform allows clients to create ETF holdings with their matching assets, and also allows clients to redempt ETF to comprised assets.</p>
-
-<p>Below is the error code and the description returned by ETF APIs</p>
+<h2 id='error-code-13'>Error Code</h2>
+<p>Below is the error code and the description from stable coin APIs</p>
 
 <table><thead>
 <tr>
@@ -19124,46 +19083,52 @@ The topic disseminates the current static value of individual accounts first, at
 </tr>
 </thead><tbody>
 <tr>
-<td>504</td>
-<td>Missing Parameter: [name]</td>
+<td>invalid-currency</td>
+<td>invalid currency</td>
 </tr>
 <tr>
-<td>10404</td>
-<td>The fund does not exist (right now only support hb10)</td>
+<td>invalid-amount</td>
+<td>amount &lt; 1,000 or amount &gt; quota limit</td>
 </tr>
 <tr>
-<td>13404</td>
-<td>Exchange ratio of the coin and ETF is missing</td>
+<td>invalid-type</td>
+<td>type not &#39;buy&#39; or &#39;sell&#39;</td>
 </tr>
 <tr>
-<td>13406</td>
-<td>Non-API calls. The request is rejected</td>
+<td>quote-exceed-price-limit</td>
+<td>offered price exceed limit (less than 0.9 or more than 1.1)</td>
 </tr>
 <tr>
-<td>13410</td>
-<td>API signature error</td>
+<td>quote-exceed-time-limit</td>
+<td>offered price is out of time</td>
 </tr>
 <tr>
-<td>13601</td>
-<td>Position adjustment phase: swap-in and swap-out are suspended</td>
+<td>quote-failure</td>
+<td>other errors</td>
 </tr>
 <tr>
-<td>13603</td>
-<td>Swap-in and swap-out have been suspended</td>
+<td>invalid-quote-id</td>
+<td>Paramemter ‘quote-id’ is invalid</td>
 </tr>
 <tr>
-<td>13604</td>
-<td>Swap-in has been suspended</td>
+<td>insufficient-balance</td>
+<td>insufficient balance to buy or sell stable coins</td>
 </tr>
 <tr>
-<td>13605</td>
-<td>Swap-out has been suspended</td>
+<td>insufficient-quota</td>
+<td>the quota is exceeded</td>
 </tr>
 <tr>
-<td>13606</td>
-<td>Incorrect transaction share, exceed the limit</td>
+<td>exchange-failure</td>
+<td>other errors</td>
+</tr>
+<tr>
+<td>Base-user-request-exceed-limit</td>
+<td>Operation is too frequent</td>
 </tr>
 </tbody></table>
+<h1 id='etf-hb10'>ETF (HB10)</h1><h2 id='introduction-14'>Introduction</h2>
+<p>Huobi&#39;s platform allows clients to create ETF holdings with their matching assets, and also allows clients to redempt ETF to comprised assets.</p>
 <h2 id='creation-and-redemption-configuration'>Creation and Redemption Configuration</h2>
 <p>This endpoint will return the basic information of ETF creation and redemption, as well as ETF constituents, including max amount of creation, min amount of creation, max amount of redemption, min amount of redemption, creation fee rate, redemption fee rate, eft create/redeem status.</p>
 <h3 id='http-request-79'>HTTP Request</h3>
@@ -19581,10 +19546,8 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='etp'>ETP</h1><h2 id='introduction-15'>Introduction</h2>
-<p>ETP (Exchange Tradable Products) APIs provide ETP related functionality, such as swap in, swap out, query.</p>
-
-<p>Below is the error code and the description returend by ETP APIs</p>
+<h2 id='error-code-14'>Error Code</h2>
+<p>Below is the error code and the description returned by ETF APIs</p>
 
 <table><thead>
 <tr>
@@ -19593,86 +19556,48 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 </tr>
 </thead><tbody>
 <tr>
-<td>1002</td>
-<td>This feature is not open to users in your country.</td>
+<td>504</td>
+<td>Missing Parameter: [name]</td>
 </tr>
 <tr>
-<td>80007</td>
-<td>Subscription closed. Order cancelled</td>
+<td>10404</td>
+<td>The fund does not exist (right now only support hb10)</td>
 </tr>
 <tr>
-<td>80008</td>
-<td>Redemption closed. Order cancelled.</td>
+<td>13404</td>
+<td>Exchange ratio of the coin and ETF is missing</td>
 </tr>
 <tr>
-<td>80009</td>
-<td>The subscription amount shall not be less than specified amount</td>
+<td>13406</td>
+<td>Non-API calls. The request is rejected</td>
 </tr>
 <tr>
-<td>80010</td>
-<td>The subscription amount shall not be more than specified amount</td>
+<td>13410</td>
+<td>API signature error</td>
 </tr>
 <tr>
-<td>80011</td>
-<td>The subscription exceeds the daily limit for each user</td>
+<td>13601</td>
+<td>Position adjustment phase: swap-in and swap-out are suspended</td>
 </tr>
 <tr>
-<td>80012</td>
-<td>The subscription exceeds the daily limit of the platform</td>
+<td>13603</td>
+<td>Swap-in and swap-out have been suspended</td>
 </tr>
 <tr>
-<td>80013</td>
-<td>Redemption quantity shall not be less than specified quantity</td>
+<td>13604</td>
+<td>Swap-in has been suspended</td>
 </tr>
 <tr>
-<td>80014</td>
-<td>Redemption quantity shall not be more than specified quantity</td>
+<td>13605</td>
+<td>Swap-out has been suspended</td>
 </tr>
 <tr>
-<td>80015</td>
-<td>The redemption exceeds the daily limit for each user</td>
-</tr>
-<tr>
-<td>80016</td>
-<td>The redemption exceeds the daily limit of the platform</td>
-</tr>
-<tr>
-<td>80018</td>
-<td>Insufficient balances</td>
-</tr>
-<tr>
-<td>80019</td>
-<td>Order submission failed, please try again</td>
-</tr>
-<tr>
-<td>80021</td>
-<td>Subscription failed due to less than 1 count, Order cancelled</td>
-</tr>
-<tr>
-<td>80022</td>
-<td>Redemption failed due to less than 1 count, Order cancelled</td>
-</tr>
-<tr>
-<td>80023</td>
-<td>Subscription failed due to price changed, Order cancelled</td>
-</tr>
-<tr>
-<td>80024</td>
-<td>Redemption failed due to price changed, Order cancelled</td>
-</tr>
-<tr>
-<td>80026</td>
-<td>The system is busy, try again later</td>
-</tr>
-<tr>
-<td>80027</td>
-<td>Redemption failed due to no availablity, Order cancelled.</td>
-</tr>
-<tr>
-<td>80028</td>
-<td>Order failed, exceeded the holding limit of this currency</td>
+<td>13606</td>
+<td>Incorrect transaction share, exceed the limit</td>
 </tr>
 </tbody></table>
+<h1 id='etp'>ETP</h1><h2 id='introduction-15'>Introduction</h2>
+<p>ETP (Exchange Tradable Products) APIs provide ETP related functionality, such as swap in, swap out, query.</p>
 <h2 id='get-reference-data-of-etp'>Get reference data of ETP</h2><h3 id='http-request-82'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v2/etp/reference</code></li>
@@ -20611,6 +20536,96 @@ Rate Limit (NEW): 1 time /5s<br></p>
 <td>long</td>
 <td>FALSE</td>
 <td>Transaction ID</td>
+</tr>
+</tbody></table>
+<h2 id='error-code-15'>Error Code</h2>
+<p>Below is the error code and the description returend by ETP APIs</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1002</td>
+<td>This feature is not open to users in your country.</td>
+</tr>
+<tr>
+<td>80007</td>
+<td>Subscription closed. Order cancelled</td>
+</tr>
+<tr>
+<td>80008</td>
+<td>Redemption closed. Order cancelled.</td>
+</tr>
+<tr>
+<td>80009</td>
+<td>The subscription amount shall not be less than specified amount</td>
+</tr>
+<tr>
+<td>80010</td>
+<td>The subscription amount shall not be more than specified amount</td>
+</tr>
+<tr>
+<td>80011</td>
+<td>The subscription exceeds the daily limit for each user</td>
+</tr>
+<tr>
+<td>80012</td>
+<td>The subscription exceeds the daily limit of the platform</td>
+</tr>
+<tr>
+<td>80013</td>
+<td>Redemption quantity shall not be less than specified quantity</td>
+</tr>
+<tr>
+<td>80014</td>
+<td>Redemption quantity shall not be more than specified quantity</td>
+</tr>
+<tr>
+<td>80015</td>
+<td>The redemption exceeds the daily limit for each user</td>
+</tr>
+<tr>
+<td>80016</td>
+<td>The redemption exceeds the daily limit of the platform</td>
+</tr>
+<tr>
+<td>80018</td>
+<td>Insufficient balances</td>
+</tr>
+<tr>
+<td>80019</td>
+<td>Order submission failed, please try again</td>
+</tr>
+<tr>
+<td>80021</td>
+<td>Subscription failed due to less than 1 count, Order cancelled</td>
+</tr>
+<tr>
+<td>80022</td>
+<td>Redemption failed due to less than 1 count, Order cancelled</td>
+</tr>
+<tr>
+<td>80023</td>
+<td>Subscription failed due to price changed, Order cancelled</td>
+</tr>
+<tr>
+<td>80024</td>
+<td>Redemption failed due to price changed, Order cancelled</td>
+</tr>
+<tr>
+<td>80026</td>
+<td>The system is busy, try again later</td>
+</tr>
+<tr>
+<td>80027</td>
+<td>Redemption failed due to no availablity, Order cancelled.</td>
+</tr>
+<tr>
+<td>80028</td>
+<td>Order failed, exceeded the holding limit of this currency</td>
 </tr>
 </tbody></table>
 
