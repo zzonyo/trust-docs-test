@@ -6295,39 +6295,6 @@ The rate limit for all the endpoints of c2c margin is set as 2 times/sec.<br>
 All the c2c margin endpoints below are not available by sub user.<br>
 The account ID of borrowing account will be generated once the first time asset transfer (from spot account to the borrowing account) is accomplished on the web.<br>
 
-Below is the error code and description for C2C margin loan APIs
-
-| Error Code | Description                                                  |
-| ---------- | ------------------------------------------------------------ |
-| 40301      | Insufficient available balance                               |
-| 40302      | Failed to get the account                                    |
-| 40307      | Existence of an ongoing loan order                           |
-| 40309      | Wrong order status                                           |
-| 40310      | Order does not exist                                         |
-| 40311      | User has OTC loans                                           |
-| 40312      | Only normal and bankrupt users can be included               |
-| 40315      | There is no liquidation or forced liquidation setting        |
-| 40317      | Failed to get sub-loan order                                 |
-| 40319      | No less than the minimum borrowing amount                    |
-| 40320      | borrowing configuration does not exist                       |
-| 40322      | The user has not passed advanced verification                |
-| 40324      | The amount of repayment exceeds the amount borrowed          |
-| 40326      | White list users only                                        |
-| 40327      | Exceeding the maximum accuracy                               |
-| 40328      | Cannot exceed the maximum amount of borrowing                |
-| 40329      | Interest rate out of the set range                           |
-| 40330      | Cannot be less than the minimum loan amount                  |
-| 40331      | cannot exceed the maximum loan amount                        |
-| 40332      | Cannot be less than the minimum repayment amount             |
-| 40333      | the ending time must be greater than the starting time       |
-| 40335      | in repayment                                                 |
-| 40336      | This feature is not open to users in China, the United States, Turkey, Japan, Singapore |
-| 40337      | C2C lending transaction is not currently available           |
-| 40339      | Debit and credit function is closed                          |
-| 40340      | The current account ID does not belong to the current user   |
-| 40345      | This account is not a C2C account                            |
-| 40346      | This order is not allowed to change renew state              |
-
 ## Place a lending/borrowing offer
 
 POST /v2/c2c/offer<br>
@@ -6905,6 +6872,41 @@ API Key Permission: Read<br>
 Note:<br>
 •	Sub account trade, loan, interest, advance are only valid for borrowing account；<br>
 •	Sub account trade, lending, earnings are only valid for lending account. <br>
+
+## Error Code
+
+Below is the error code and description for C2C margin loan APIs
+
+| Error Code | Description                                                  |
+| ---------- | ------------------------------------------------------------ |
+| 40301      | Insufficient available balance                               |
+| 40302      | Failed to get the account                                    |
+| 40307      | Existence of an ongoing loan order                           |
+| 40309      | Wrong order status                                           |
+| 40310      | Order does not exist                                         |
+| 40311      | User has OTC loans                                           |
+| 40312      | Only normal and bankrupt users can be included               |
+| 40315      | There is no liquidation or forced liquidation setting        |
+| 40317      | Failed to get sub-loan order                                 |
+| 40319      | No less than the minimum borrowing amount                    |
+| 40320      | borrowing configuration does not exist                       |
+| 40322      | The user has not passed advanced verification                |
+| 40324      | The amount of repayment exceeds the amount borrowed          |
+| 40326      | White list users only                                        |
+| 40327      | Exceeding the maximum accuracy                               |
+| 40328      | Cannot exceed the maximum amount of borrowing                |
+| 40329      | Interest rate out of the set range                           |
+| 40330      | Cannot be less than the minimum loan amount                  |
+| 40331      | cannot exceed the maximum loan amount                        |
+| 40332      | Cannot be less than the minimum repayment amount             |
+| 40333      | the ending time must be greater than the starting time       |
+| 40335      | in repayment                                                 |
+| 40336      | This feature is not open to users in China, the United States, Turkey, Japan, Singapore |
+| 40337      | C2C lending transaction is not currently available           |
+| 40339      | Debit and credit function is closed                          |
+| 40340      | The current account ID does not belong to the current user   |
+| 40345      | This account is not a C2C account                            |
+| 40346      | This order is not allowed to change renew state              |
 
 # Websocket Market Data
 
