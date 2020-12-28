@@ -7027,20 +7027,6 @@ You will receive a response accordingly and immediately
 
 The limitation of single connection is 100 ms.
 
-### Error Code
-
-Below is the error code, error message and description
-
-| Error Code  | Error Message               | Description                            |
-| ----------- | --------------------------- | -------------------------------------- |
-| bad-request | invalid topic               | Parameter topic is invalid             |
-| bad-request | invalid symbol              | Parammeter symbol is invalid           |
-| bad-request | symbol trade not open now   | The market is not open for this symbol |
-| bad-request | 429 too many request        | Request exceed limit                   |
-| bad-request | unsub with not subbed topic | The topic is not subscribed            |
-| bad-request | not json string             | The request is not JSON format         |
-| bad-request | request timeout             | The request is time out                |
-
 ## Market Candlestick
 
 This topic sends a new candlestick whenever it is available.
@@ -7705,6 +7691,20 @@ Pull request is supported.
 |      | { currency     | float  |
 |      | amount }       | float  |
 |      | actualLeverage | float  |
+
+## Error Code
+
+Below is the error code, error message and description returned by Market WebSocket
+
+| Error Code  | Error Message               | Description                            |
+| ----------- | --------------------------- | -------------------------------------- |
+| bad-request | invalid topic               | Parameter topic is invalid             |
+| bad-request | invalid symbol              | Parammeter symbol is invalid           |
+| bad-request | symbol trade not open now   | The market is not open for this symbol |
+| bad-request | 429 too many request        | Request exceed limit                   |
+| bad-request | unsub with not subbed topic | The topic is not subscribed            |
+| bad-request | not json string             | The request is not JSON format         |
+| bad-request | request timeout             | The request is time out                |
 
 # Websocket Asset and Order (to be obsolete)
 
