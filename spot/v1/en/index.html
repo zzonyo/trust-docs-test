@@ -542,6 +542,9 @@
                   <li>
                     <a href="#get-account-balance-of-a-sub-user" class="toc-h2 toc-link" data-title="Get Account Balance of a Sub-User">Get Account Balance of a Sub-User</a>
                   </li>
+                  <li>
+                    <a href="#error-code-5" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -593,7 +596,7 @@
                     <a href="#get-current-fee-rate-applied-to-the-user" class="toc-h2 toc-link" data-title="Get Current Fee Rate Applied to The User">Get Current Fee Rate Applied to The User</a>
                   </li>
                   <li>
-                    <a href="#error-code-6" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
+                    <a href="#error-code-7" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
                   </li>
                   <li>
                     <a href="#faq-2" class="toc-h2 toc-link" data-title="FAQ">FAQ</a>
@@ -620,6 +623,9 @@
                   </li>
                   <li>
                     <a href="#query-a-specific-conditional-order" class="toc-h2 toc-link" data-title="Query a specific conditional order">Query a specific conditional order</a>
+                  </li>
+                  <li>
+                    <a href="#error-code-8" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
                   </li>
               </ul>
           </li>
@@ -678,7 +684,7 @@
                     <a href="#repayment-record-reference-cross" class="toc-h2 toc-link" data-title="Repayment Record Reference（Cross）">Repayment Record Reference（Cross）</a>
                   </li>
                   <li>
-                    <a href="#error-code-7" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
+                    <a href="#error-code-9" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
                   </li>
                   <li>
                     <a href="#faq-3" class="toc-h2 toc-link" data-title="FAQ">FAQ</a>
@@ -6528,47 +6534,6 @@ Rate Limit (NEW): 20times/2s</p>
 <p>Sub user management APIs provide sub user account management (creation, query, permission, transfer), sub user API key management (creation, update, query, deletion), sub user address (deposit, withdraw) query and balance query.</p>
 
 <aside class="notice">All endpoints in this section require authentication</aside>
-
-<p>Below is the error code, error message and description returned by Sub user management APIs</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Error Message</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>1002</td>
-<td>forbidden</td>
-<td>Operation is forbidden, such as sub user creation is not allowed for current user</td>
-</tr>
-<tr>
-<td>1003</td>
-<td>unauthorized</td>
-<td>Signature is wrong</td>
-</tr>
-<tr>
-<td>2002</td>
-<td>invalid field value</td>
-<td>Parameter is invalid</td>
-</tr>
-<tr>
-<td>2014</td>
-<td>number of sub account in the request exceeded valid range</td>
-<td>number of sub account exceeded</td>
-</tr>
-<tr>
-<td>2014</td>
-<td>number of api key in the request exceeded valid range</td>
-<td>number of API Key exceeded</td>
-</tr>
-<tr>
-<td>2016</td>
-<td>invalid request while value specified in sub user states</td>
-<td>lock or unlock failure</td>
-</tr>
-</tbody></table>
 <h2 id='api-key-query'>API key query</h2>
 <p>This  endpoint is used by the parent user to query their own API key information, and the parent user to query their sub user&#39;s API key information.</p>
 
@@ -8450,6 +8415,47 @@ Rate Limit (NEW): 20times/2s</p>
 <td>NA</td>
 </tr>
 </tbody></table>
+<h2 id='error-code-5'>Error Code</h2>
+<p>Below is the error code, error message and description returned by Sub user management APIs</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Error Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1002</td>
+<td>forbidden</td>
+<td>Operation is forbidden, such as sub user creation is not allowed for current user</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>unauthorized</td>
+<td>Signature is wrong</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>invalid field value</td>
+<td>Parameter is invalid</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>number of sub account in the request exceeded valid range</td>
+<td>number of sub account exceeded</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>number of api key in the request exceeded valid range</td>
+<td>number of API Key exceeded</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>invalid request while value specified in sub user states</td>
+<td>lock or unlock failure</td>
+</tr>
+</tbody></table>
 <h1 id='trading'>Trading</h1><h2 id='introduction-7'>Introduction</h2>
 <p>Trading APIs provide trading related functionality, including placing order, canceling order, order history query, trading history query, transaction fee query.</p>
 
@@ -8748,7 +8754,7 @@ Rate Limit (NEW): 100times/2s</p>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59378"</span><span class="w">
 </span></code></pre><h3 id='response-content-45'>Response Content</h3>
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
-<h3 id='error-code-5'>Error Code</h3>
+<h3 id='error-code-6'>Error Code</h3>
 <blockquote>
 <p>Response:</p>
 </blockquote>
@@ -10505,7 +10511,7 @@ Rate Limit (NEW): 20times/2s</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='error-code-6'>Error Code</h2>
+<h2 id='error-code-7'>Error Code</h2>
 <p>Below is the error code and description returned by Trading APIs</p>
 
 <table><thead>
@@ -10803,88 +10809,6 @@ Rate Limit (NEW): 20times/2s</p>
 <aside class="notice">All endpoints in this section require authentication</aside>
 
 <aside class="notice">After the official launch of conditional order, Huobi Global might decommission the existing stop order later. This will be notified through another circular.</aside>
-
-<p>Below is the error code and the description returned by Conditional Order APIs</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>1001</td>
-<td>Request URL is invalid</td>
-</tr>
-<tr>
-<td>1002</td>
-<td>Signature is missing or account id doesn&#39;t exist</td>
-</tr>
-<tr>
-<td>1003</td>
-<td>Signature is wrong</td>
-</tr>
-<tr>
-<td>1005</td>
-<td>Insufficient weight for rate limit</td>
-</tr>
-<tr>
-<td>1006</td>
-<td>Exceed rate limit</td>
-</tr>
-<tr>
-<td>1007</td>
-<td>Currency is not found</td>
-</tr>
-<tr>
-<td>2002</td>
-<td>Specified parameter is missing or invalid</td>
-</tr>
-<tr>
-<td>2003</td>
-<td>Trading is disabled</td>
-</tr>
-<tr>
-<td>3002</td>
-<td>Order amount precision error</td>
-</tr>
-<tr>
-<td>3003</td>
-<td>Trigger price precision error</td>
-</tr>
-<tr>
-<td>3004</td>
-<td>Limit order amount is less than specific amount</td>
-</tr>
-<tr>
-<td>3005</td>
-<td>Limit order amount is greater than specific amount</td>
-</tr>
-<tr>
-<td>3006</td>
-<td>Limit order price is higher than specific price</td>
-</tr>
-<tr>
-<td>3007</td>
-<td>Limit order price is lower than specific price</td>
-</tr>
-<tr>
-<td>3008</td>
-<td>Order value is less than specific value</td>
-</tr>
-<tr>
-<td>3009</td>
-<td>Market order amount is less than specific amount</td>
-</tr>
-<tr>
-<td>3010</td>
-<td>Market order amount is greater than specific amount</td>
-</tr>
-<tr>
-<td>3100</td>
-<td>Market orders not support during limit price trading</td>
-</tr>
-</tbody></table>
 <h2 id='place-a-conditional-order'>Place a conditional order</h2>
 <p>POST /v2/algo-orders<br>
 API Key Permission: Trade<br>
@@ -11803,6 +11727,88 @@ The conditional order before triggering, as well as the conditional order failed
 <td>string</td>
 <td>FALSE</td>
 <td>Error message in case of order triggering failure (only valid for orderStatus=rejected)</td>
+</tr>
+</tbody></table>
+<h2 id='error-code-8'>Error Code</h2>
+<p>Below is the error code and the description returned by Conditional Order APIs</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1001</td>
+<td>Request URL is invalid</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>Signature is missing or account id doesn&#39;t exist</td>
+</tr>
+<tr>
+<td>1003</td>
+<td>Signature is wrong</td>
+</tr>
+<tr>
+<td>1005</td>
+<td>Insufficient weight for rate limit</td>
+</tr>
+<tr>
+<td>1006</td>
+<td>Exceed rate limit</td>
+</tr>
+<tr>
+<td>1007</td>
+<td>Currency is not found</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>Specified parameter is missing or invalid</td>
+</tr>
+<tr>
+<td>2003</td>
+<td>Trading is disabled</td>
+</tr>
+<tr>
+<td>3002</td>
+<td>Order amount precision error</td>
+</tr>
+<tr>
+<td>3003</td>
+<td>Trigger price precision error</td>
+</tr>
+<tr>
+<td>3004</td>
+<td>Limit order amount is less than specific amount</td>
+</tr>
+<tr>
+<td>3005</td>
+<td>Limit order amount is greater than specific amount</td>
+</tr>
+<tr>
+<td>3006</td>
+<td>Limit order price is higher than specific price</td>
+</tr>
+<tr>
+<td>3007</td>
+<td>Limit order price is lower than specific price</td>
+</tr>
+<tr>
+<td>3008</td>
+<td>Order value is less than specific value</td>
+</tr>
+<tr>
+<td>3009</td>
+<td>Market order amount is less than specific amount</td>
+</tr>
+<tr>
+<td>3010</td>
+<td>Market order amount is greater than specific amount</td>
+</tr>
+<tr>
+<td>3100</td>
+<td>Market orders not support during limit price trading</td>
 </tr>
 </tbody></table>
 <h1 id='margin-loan-isolated-cross'>Margin Loan (isolated/cross)</h1><h2 id='introduction-9'>Introduction</h2>
@@ -13501,7 +13507,7 @@ Rate Limit (NEW): 100times/2s</p>
 <td>search the start ID in the next page  (return only when there is data in the  next page)</td>
 </tr>
 </tbody></table>
-<h2 id='error-code-7'>Error Code</h2>
+<h2 id='error-code-9'>Error Code</h2>
 <p><strong>Below is the error code and description for Isolated margin loan APIs</strong></p>
 
 <table><thead>
@@ -15453,7 +15459,7 @@ or
 <p><strong>Rate limt of pull style query (req)</strong></p>
 
 <p>The limitation of single connection is 100 ms.</p>
-<h3 id='error-code-8'>Error Code</h3>
+<h3 id='error-code-10'>Error Code</h3>
 <p>Below is the error code, error message and description</p>
 
 <table><thead>
@@ -17849,7 +17855,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Upon success, Websocket client should receive a response below:</p>
-<h3 id='error-code-9'>Error Code</h3>
+<h3 id='error-code-11'>Error Code</h3>
 <p>Below is the return code, return message and the description returend from Asset and Order WebSocket</p>
 
 <table><thead>
