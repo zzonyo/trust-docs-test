@@ -9138,22 +9138,6 @@ Below is the error code and the description from stable coin APIs
 
 Huobi's platform allows clients to create ETF holdings with their matching assets, and also allows clients to redempt ETF to comprised assets.
 
-Below is the error code and the description returned by ETF APIs
-
-
-| Error Code | Description                                                  |
-| ---------- | ------------------------------------------------------------ |
-| 504        | Missing Parameter: [name]                                    |
-| 10404      | The fund does not exist (right now only support hb10)        |
-| 13404      | Exchange ratio of the coin and ETF is missing                |
-| 13406      | Non-API calls. The request is rejected                       |
-| 13410      | API signature error                                          |
-| 13601      | Position adjustment phase: swap-in and swap-out are suspended |
-| 13603      | Swap-in and swap-out have been suspended                     |
-| 13604      | Swap-in has been suspended                                   |
-| 13605      | Swap-out has been suspended                                  |
-| 13606      | Incorrect transaction share, exceed the limit                |
-
 ## Creation and Redemption Configuration
 
 This endpoint will return the basic information of ETF creation and redemption, as well as ETF constituents, including max amount of creation, min amount of creation, max amount of redemption, min amount of redemption, creation fee rate, redemption fee rate, eft create/redeem status.
@@ -9367,6 +9351,23 @@ curl "https://api.huobi.pro/etf/swap/list"
 | fee                  | decimal   | The actual fee amount                                        |      |
 | point_card_amount    | decimal   | Discount from point card                                     |      |
 | obtain_currency_list | array     | For creation this is the amount for ETF created. For redemption this is the list and amount of underlying assets obtained. |      |
+
+## Error Code
+
+Below is the error code and the description returned by ETF APIs
+
+| Error Code | Description                                                  |
+| ---------- | ------------------------------------------------------------ |
+| 504        | Missing Parameter: [name]                                    |
+| 10404      | The fund does not exist (right now only support hb10)        |
+| 13404      | Exchange ratio of the coin and ETF is missing                |
+| 13406      | Non-API calls. The request is rejected                       |
+| 13410      | API signature error                                          |
+| 13601      | Position adjustment phase: swap-in and swap-out are suspended |
+| 13603      | Swap-in and swap-out have been suspended                     |
+| 13604      | Swap-in has been suspended                                   |
+| 13605      | Swap-out has been suspended                                  |
+| 13606      | Incorrect transaction share, exceed the limit                |
 
 # ETP
 
