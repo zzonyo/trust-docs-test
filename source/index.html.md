@@ -4938,29 +4938,6 @@ By comparing with the existing stop limit order, the newly introduced conditiona
 <aside class="notice">All endpoints in this section require authentication</aside>
 <aside class="notice">After the official launch of conditional order, Huobi Global might decommission the existing stop order later. This will be notified through another circular.</aside>
 
-Below is the error code and the description returned by Conditional Order APIs
-
-| Error Code | Description                                          |
-| ---------- | ---------------------------------------------------- |
-| 1001       | Request URL is invalid                               |
-| 1002       | Signature is missing or account id doesn't exist     |
-| 1003       | Signature is wrong                                   |
-| 1005       | Insufficient weight for rate limit                   |
-| 1006       | Exceed rate limit                                    |
-| 1007       | Currency is not found                                |
-| 2002       | Specified parameter is missing or invalid            |
-| 2003       | Trading is disabled                                  |
-| 3002       | Order amount precision error                         |
-| 3003       | Trigger price precision error                        |
-| 3004       | Limit order amount is less than specific amount      |
-| 3005       | Limit order amount is greater than specific amount   |
-| 3006       | Limit order price is higher than specific price      |
-| 3007       | Limit order price is lower than specific price       |
-| 3008       | Order value is less than specific value              |
-| 3009       | Market order amount is less than specific amount     |
-| 3010       | Market order amount is greater than specific amount  |
-| 3100       | Market orders not support during limit price trading |
-
 ## Place a conditional order
 
 POST /v2/algo-orders<br>
@@ -5250,6 +5227,31 @@ The conditional order before triggering, as well as the conditional order failed
 |	orderStatus	|	string	|	TRUE	|Order status (created,triggered,canceled,rejected) 	|
 |	errCode	|	integer	|	FALSE	|Status code in case of order triggering failure (only valid for orderStatus=rejected) 	|
 |	errMessage }	|	string	|	FALSE	|Error message in case of order triggering failure (only valid for orderStatus=rejected) 	|
+
+## Error Code
+
+Below is the error code and the description returned by Conditional Order APIs
+
+| Error Code | Description                                          |
+| ---------- | ---------------------------------------------------- |
+| 1001       | Request URL is invalid                               |
+| 1002       | Signature is missing or account id doesn't exist     |
+| 1003       | Signature is wrong                                   |
+| 1005       | Insufficient weight for rate limit                   |
+| 1006       | Exceed rate limit                                    |
+| 1007       | Currency is not found                                |
+| 2002       | Specified parameter is missing or invalid            |
+| 2003       | Trading is disabled                                  |
+| 3002       | Order amount precision error                         |
+| 3003       | Trigger price precision error                        |
+| 3004       | Limit order amount is less than specific amount      |
+| 3005       | Limit order amount is greater than specific amount   |
+| 3006       | Limit order price is higher than specific price      |
+| 3007       | Limit order price is lower than specific price       |
+| 3008       | Order value is less than specific value              |
+| 3009       | Market order amount is less than specific amount     |
+| 3010       | Market order amount is greater than specific amount  |
+| 3100       | Market orders not support during limit price trading |
 
 # Margin Loan (isolated/cross)
 
