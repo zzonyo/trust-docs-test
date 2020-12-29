@@ -1713,7 +1713,7 @@ curl "https://status-dm.huobigroup.com/api/v2/summary.json"
 
 **合约sdk**
 
-- <a href='https://github.com/huobiapi/Futures-Java-demo/tree/master/hbdm-java-sdk'>Java sdk</a>
+- <a href='https://github.com/hbdmapi/huobi_future_Java'>Java sdk</a>
 
 **异步库**
 
