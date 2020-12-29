@@ -1487,11 +1487,8 @@ curl "https://status-linear-swap.huobigroup.com/api/v2/summary.json"
 
 - <a href='https://github.com/hbdmapi/huobi_futures_Golang'>Golang</a>
 
-<!--
+- <a href='https://github.com/hbdmapi/huobi_futures_Cpp'>C++</a>
 
-- <a href='https://github.com/hbdmapi/huobi_swap_Cpp'>C++</a>
-
--->
 
 ### 备注：USDT本位永续代码使用方式与币本位永续和交割合约类似，可以参考币本位永续和交割合约。
 
