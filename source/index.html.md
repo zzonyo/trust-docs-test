@@ -1471,14 +1471,10 @@ Error Code | Error Details Description|
 
 - <a href='https://github.com/hbdmapi/huobi_futures_Golang'>Golang</a>
 
+- <a href='https://github.com/hbdmapi/huobi_futures_Cpp'>C++</a>
+
 PS: USDT Margined swap api is similar to Coin margined swap api and future api.
 
-<!--
-- <a href='https://github.com/hbdmapi/hbdm_swap_Rust'>Rust</a>
-
-- <a href='https://github.com/hbdmapi/huobi_swap_Cpp'>C++</a>
-
--->
 
 # Swap API FAQ
 
