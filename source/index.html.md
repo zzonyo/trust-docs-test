@@ -1676,7 +1676,7 @@ Error Code | Error Details Description|
 
 **Contract sdk**
 
-- <a href='https://github.com/huobiapi/Futures-Java-demo/tree/master/hbdm-java-sdk'>Java</a>
+- <a href='https://github.com/hbdmapi/huobi_future_Java'>Java</a>
 
 **Asynchronous Library**
 
