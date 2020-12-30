@@ -2388,7 +2388,7 @@ api.huobi.pro\n
 
 <p>针对某类或某个API的问题，请查看每章API的错误码和常见问题。</p>
 <h3 id='q1-api-key'>Q1：一个用户可以申请多少个Api Key？</h3>
-<p>A:  每个母用户可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。 
+<p>每个母用户可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。 
 每个母用户还可创建200个子用户，每个子用户可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。   </p>
 
 <p>以下是三种权限的说明：  </p>
@@ -2399,22 +2399,25 @@ api.huobi.pro\n
 <li>提币权限：提币权限用于创建提币订单、取消提币订单操作。<br></li>
 </ul>
 <h3 id='q2'>Q2：为什么经常出现断线、超时的情况？</h3>
-<p>A：请检查是否属于以下情况：</p>
+<p>请检查是否属于以下情况：</p>
 
 <ol>
 <li>客户端服务器如在中国大陆境内，连接的稳定性很难保证，建议使用日本AWS云服务器进行访问。 </li>
 <li>域名建议使用api.huobi.pro或api-aws.huobi.pro，其他不建议使用。</li>
 </ol>
 <h3 id='q3-websocket'>Q3：为什么WebSocket总是断开连接？</h3>
-<p>A：常见原因有：
-1. 未回复Pong，WebSocket连接需在接收到服务端发送的Ping信息后回复Pong，保证连接的稳定。
-2. 网络原因造成客户端发送了Pong消息，但服务端并未接收到。
-3. 网络原因造成连接断开。
-4. 建议用户做好WebSocket连接断连重连机制，在确保心跳（Ping/Pong）消息正确回复后若连接意外断开，程序能够自动进行重新连接。</p>
+<p>常见原因有：</p>
+
+<ol>
+<li>未回复Pong，WebSocket连接需在接收到服务端发送的Ping信息后回复Pong，保证连接的稳定。</li>
+<li>网络原因造成客户端发送了Pong消息，但服务端并未接收到。</li>
+<li>网络原因造成连接断开。</li>
+<li>建议用户做好WebSocket连接断连重连机制，在确保心跳（Ping/Pong）消息正确回复后若连接意外断开，程序能够自动进行重新连接。</li>
+</ol>
 <h3 id='q4-api-huobi-pro-api-aws-huobi-pro'>Q4：api.huobi.pro 与 api-aws.huobi.pro有什么区别？</h3>
-<p>A：api-aws.huobi.pro域名对使用aws云服务的用户做了链路延迟优化，请求时延更低。</p>
+<p>api-aws.huobi.pro域名对使用aws云服务的用户做了链路延迟优化，请求时延更低。</p>
 <h3 id='q5'>Q5：为什么签名认证总返回失败？</h3>
-<p>A：请对比使用Secret Key签名前的字符串与以下字符串的区别</p>
+<p>请对比使用Secret Key签名前的字符串与以下字符串的区别</p>
 <pre class="highlight plaintext"><code>GET\n
 api.huobi.pro\n
 /v1/account/accounts\n
@@ -2475,22 +2478,31 @@ AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp
 
 <p><a href='https://github.com/HuobiRDCenter/huobi_Java/blob/master/java_signature_demo.md'>JAVA签名样例代码</a> | <a href='https://github.com/HuobiRDCenter/huobi_Python/blob/master/example/python_signature_demo.md'>Python签名样例代码</a>   | <a href='https://github.com/HuobiRDCenter/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++签名样例代码 </a>  </p>
 <h3 id='q6-incorrect-access-key'>Q6：调用接口返回Incorrect Access Key 错误是什么原因？</h3>
-<p>A: 请检查URL请求中Access Key是否传递准确，例如：
-1. Access Key没有传递
-2. Access Key位数不准确
-3. Access Key已经被删除
-4. URL请求中参数拼接错误或者特殊字符没有进行编码导致服务端对AccessKey解析不正确</p>
+<p>请检查URL请求中Access Key是否传递准确，例如：</p>
+
+<ol>
+<li>Access Key没有传递</li>
+<li>Access Key位数不准确</li>
+<li>Access Key已经被删除</li>
+<li>URL请求中参数拼接错误或者特殊字符没有进行编码导致服务端对AccessKey解析不正确</li>
+</ol>
 <h3 id='q7-gateway-internal-error'>Q7：调用接口返回 gateway-internal-error 错误是什么原因？</h3>
-<p>A：请检查是否属于以下情况：
-1. 可能为网络原因或服务内部错误，请稍后进行重试。
-2. 发送数据格式是否正确（需要标准JSON格式）。
-3. POST请求头header需要声明为<code>Content-Type:application/json</code> 。</p>
+<p>请检查是否属于以下情况：</p>
+
+<ol>
+<li>可能为网络原因或服务内部错误，请稍后进行重试。</li>
+<li>发送数据格式是否正确（需要标准JSON格式）。</li>
+<li>POST请求头header需要声明为<code>Content-Type:application/json</code> 。</li>
+</ol>
 <h3 id='q8-login-required'>Q8：调用接口返回 login-required 错误是什么原因？</h3>
-<p>A：请检查是否属于以下情况：
-1. 未将AccessKey参数带入URL中。
-2. 未将Signature参数带入URL中。</p>
+<p>请检查是否属于以下情况：</p>
+
+<ol>
+<li>未将AccessKey参数带入URL中。</li>
+<li>未将Signature参数带入URL中。</li>
+</ol>
 <h3 id='q9-rest-http-405-method-not-allowed'>Q9: 调用Rest接口返回HTTP 405错误 method-not-allowed 是什么原因？</h3>
-<p>A：该错误表明调用了不存在的Rest接口，请检查Rest接口路径是否准确。由于Nginx的设置，请求路径(Path)是大小写敏感的，请严格按照文档声明的大小写。</p>
+<p>该错误表明调用了不存在的Rest接口，请检查Rest接口路径是否准确。由于Nginx的设置，请求路径(Path)是大小写敏感的，请严格按照文档声明的大小写。</p>
 <h1 id='41654e0268'>基础信息</h1><h2 id='5ea2e0cde2-2'>简介</h2>
 <p>基础信息Rest接口提供了系统状态、市场状态、交易对信息、币种信息、币链信息、服务器时间戳等公共参考信息。</p>
 <h2 id='cd63bde415'>获取当前系统状态</h2>
