@@ -765,15 +765,6 @@ The host <u>api-aws.huobi.pro</u> is optimized for AWS client, the latency is lo
 
 ### Q5：Why the signature authentication always fail?
 
-Please compare  your signature text with below example: 
-
-```
-GET\n
-api.huobi.pro\n
-/v1/account/accounts\n
-AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-10-28T07%3A28%3A38
-```
-
 Please check whether you follow below rules:
 
 1. The parameter in signature text should be ordered by ASCII, for example below is the original parameters:
