@@ -2630,6 +2630,8 @@ API Key Permission: Read<br>
 
 This endpoint allows parent user to query withdraw address available for API key.<br>
 
+<aside class="notice">To get the withdraw address from API , user need to add the withdraw address from the Web first</aside>
+
 ### HTTP Request
 
 - GET `/v2/account/withdraw/address`
