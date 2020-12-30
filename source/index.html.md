@@ -2614,6 +2614,8 @@ API Key 权限：读取<br>
 
 该节点用于查询API key可用的提币地址，限母用户可用。<br>
 
+<aside class="notice">用户需要先通过Web端添加提币地址，才可以通过接口查询到</aside>
+
 ### HTTP 请求
 
 - GET `/v2/account/withdraw/address`
