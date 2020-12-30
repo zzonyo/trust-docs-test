@@ -2337,9 +2337,7 @@ The types include:</p>
 <h3 id='q5-why-the-signature-authentication-always-fail'>Q5：Why the signature authentication always fail?</h3>
 <p>Please check whether you follow below rules:</p>
 
-<ol>
-<li>The parameter in signature text should be ordered by ASCII, for example below is the original parameters:</li>
-</ol>
+<p>1.The parameter in signature text should be ordered by ASCII, for example below is the original parameters:</p>
 
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
 
@@ -2363,31 +2361,30 @@ The types include:</p>
 
 <p><code>order-id=1234567890</code></p>
 
-<ol>
-<li>The signature text should be URL encoded, for example</li>
-</ol>
+<p>2.The signature text should be URL encoded, for example</p>
 
 <ul>
 <li>The semicolon <code>:</code>should be encoded as <code>%3A</code>, The space should be encoded as <code>%20</code>.</li>
 <li>The timestamp should be formatted as <code>YYYY-MM-DDThh:mm:ss</code> and after encoded it should be like <code>2017-05-11T15%3A19%3A30</code><br></li>
 </ul>
 
-<ol>
-<li><p>The signature should be base64 encoded.</p></li>
-<li><p>The parameter for Get request should be included in signature request.</p></li>
-<li><p>The Timestamp should be UTC time and the format should be YYYY-MM-DDTHH:mm:ss.</p></li>
-<li><p>The time difference between your timestamp and standard should be less than 1 minute.</p></li>
-<li><p>The message body doesn&#39;t need URL encoded if you are using WebSocket for authentication.</p></li>
-<li><p>The host in signature text should be the same as the host in your API request.</p></li>
-</ol>
+<p>3.The signature should be base64 encoded.</p>
+
+<p>4.The parameter for Get request should be included in signature request.</p>
+
+<p>5.The Timestamp should be UTC time and the format should be YYYY-MM-DDTHH:mm:ss.</p>
+
+<p>6.The time difference between your timestamp and standard should be less than 1 minute.</p>
+
+<p>7.The message body doesn&#39;t need URL encoded if you are using WebSocket for authentication.</p>
+
+<p>8.The host in signature text should be the same as the host in your API request.</p>
 
 <p>The proxy may change the request host, you can try without proxy;</p>
 
 <p>Some http/websocket library may include port in the host, you can try to append port in signature host, like &quot;api.huobi.pro:443&quot;</p>
 
-<ol>
-<li>The hidden text in API Key and Secret Key may have impact on the signature.</li>
-</ol>
+<p>9.The hidden text in API Key and Secret Key may have impact on the signature.</p>
 
 <p>Right now the official <a href="https://github.com/HuobiRDCenter">SDK</a> supports multiple languages, you can refer to the signature implementation, or below three signature examples.</p>
 
