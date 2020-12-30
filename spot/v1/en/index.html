@@ -2305,28 +2305,37 @@ The types include:</p>
 
 <p>For specific API question, please check the Error Code and FAQ in each API category.</p>
 <h3 id='q1-how-many-api-keys-one-user-can-apply'>Q1：How many API Keys one user can apply?</h3>
-<p>A:  Every user can create 5 API Keys, and each API Key can be granted with 3 permissions: <strong>read</strong>, <strong>trade</strong> and <strong>withdraw</strong>.
-Each user could create up to 200 sub users, and each sub user could create 5 API Keys, each API key can be granted with 2 permissions: <strong>read</strong> and <strong>trade</strong>.</p>
+<p>Every user can create 5 API Keys, and each API Key can be granted with 3 permissions: <strong>read</strong>, <strong>trade</strong> and <strong>withdraw</strong>.</p>
+
+<p>Each user could create up to 200 sub users, and each sub user could create 5 API Keys, each API key can be granted with 2 permissions: <strong>read</strong> and <strong>trade</strong>.</p>
 
 <p>Below are the explanation for permissions:</p>
 
-<p>1、Read permission: It is used to query data, for example, <strong>query orders</strong>, <strong>query trades</strong>. 
-2、Trade permission: it is used to <strong>place order</strong>, <strong>cancel order</strong> and <strong>transfer</strong>.
-3、Withdraw permission: it is used to <strong>withdraw</strong>, <strong>cancel withdraw</strong>.</p>
+<ol>
+<li>Read permission: It is used to query data, for example, <strong>query orders</strong>, <strong>query trades</strong>.</li>
+<li>Trade permission: it is used to <strong>place order</strong>, <strong>cancel order</strong> and <strong>transfer</strong>.</li>
+<li>Withdraw permission: it is used to <strong>withdraw</strong>, <strong>cancel withdraw</strong>.</li>
+</ol>
 <h3 id='q2-why-apis-are-always-disconnected-or-timeout'>Q2：Why APIs are always disconnected or timeout?</h3>
-<p>A：Please follow below suggestions:
-1、It is unstable if the client&#39;s server locates in China mainland, it is suggested to invoke API from a server at AWS Japan.
-2、It is suggested to invoke API only to host <u>api.huobi.pro</u> or <u>api-was.huobi.pro</u>.</p>
+<p>Please follow below suggestions:</p>
+
+<ol>
+<li>It is unstable if the client&#39;s server locates in China mainland, it is suggested to invoke API from a server at AWS Japan.</li>
+<li>It is suggested to invoke API only to host <u>api.huobi.pro</u> or <u>api-was.huobi.pro</u>.</li>
+</ol>
 <h3 id='q3-why-the-websocket-is-often-disconnected'>Q3：Why the WebSocket is often disconnected?</h3>
-<p>A：Please check below possible reasons:
-1、The client didn&#39;t respond &#39;Pong&#39;. It is requird to respond &#39;Pong&#39; after receive &#39;Ping&#39; from server.
-2、The server didn&#39;t receive &#39;Pong&#39; successfully due to network issue.
-3、The connection is broken due to network issue.
-4、It is suggested to implement WebSocket re-connect mechanism. If Ping/Pong works well but the connection is broken, the application should be able to re-connect automatically.</p>
+<p>Please check below possible reasons:</p>
+
+<ol>
+<li>The client didn&#39;t respond &#39;Pong&#39;. It is requird to respond &#39;Pong&#39; after receive &#39;Ping&#39; from server.</li>
+<li>The server didn&#39;t receive &#39;Pong&#39; successfully due to network issue.</li>
+<li>The connection is broken due to network issue.</li>
+<li>It is suggested to implement WebSocket re-connect mechanism. If Ping/Pong works well but the connection is broken, the application should be able to re-connect automatically.</li>
+</ol>
 <h3 id='q4-what-is-the-difference-between-api-huobi-pro-and-api-aws-huobi-pro'>Q4：What is the difference between <u>api.huobi.pro</u> and <u>api-aws.huobi.pro</u>?</h3>
-<p>A：The host <u>api-aws.huobi.pro</u> is optimized for AWS client, the latency is lower.</p>
+<p>The host <u>api-aws.huobi.pro</u> is optimized for AWS client, the latency is lower.</p>
 <h3 id='q5-why-the-signature-authentication-always-fail'>Q5：Why the signature authentication always fail?</h3>
-<p>A：Please compare  your signature text with below example: </p>
+<p>Please compare  your signature text with below example: </p>
 <pre class="highlight plaintext"><code>GET\n
 api.huobi.pro\n
 /v1/account/accounts\n
@@ -2334,7 +2343,9 @@ AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp
 </code></pre>
 <p>Please check whether you follow below rules:</p>
 
-<p>1、The parameter in signature text should be ordered by ASCII, for example below is the original parameters:</p>
+<ol>
+<li>The parameter in signature text should be ordered by ASCII, for example below is the original parameters:</li>
+</ol>
 
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
 
@@ -2358,51 +2369,61 @@ AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp
 
 <p><code>order-id=1234567890</code></p>
 
-<p>2、The signature text should be URL encoded, for example</p>
+<ol>
+<li>The signature text should be URL encoded, for example</li>
+</ol>
 
 <ul>
 <li>The semicolon <code>:</code>should be encoded as <code>%3A</code>, The space should be encoded as <code>%20</code>.</li>
 <li>The timestamp should be formatted as <code>YYYY-MM-DDThh:mm:ss</code> and after encoded it should be like <code>2017-05-11T15%3A19%3A30</code><br></li>
 </ul>
 
-<p>3、The signature should be base64 encoded.</p>
-
-<p>4、The parameter for Get request should be included in signature request.</p>
-
-<p>5、The Timestamp should be UTC time and the format should be YYYY-MM-DDTHH:mm:ss.</p>
-
-<p>6、The time difference between your timestamp and standard should be less than 1 minute.</p>
-
-<p>7、The message body doesn&#39;t need URL encoded if you are using WebSocket for authentication.</p>
-
-<p>8、The host in signature text should be the same as the host in your API request.</p>
+<ol>
+<li><p>The signature should be base64 encoded.</p></li>
+<li><p>The parameter for Get request should be included in signature request.</p></li>
+<li><p>The Timestamp should be UTC time and the format should be YYYY-MM-DDTHH:mm:ss.</p></li>
+<li><p>The time difference between your timestamp and standard should be less than 1 minute.</p></li>
+<li><p>The message body doesn&#39;t need URL encoded if you are using WebSocket for authentication.</p></li>
+<li><p>The host in signature text should be the same as the host in your API request.</p></li>
+</ol>
 
 <p>The proxy may change the request host, you can try without proxy;</p>
 
 <p>Some http/websocket library may include port in the host, you can try to append port in signature host, like &quot;api.huobi.pro:443&quot;</p>
 
-<p>9、The hidden text in API Key and Secret Key may have impact on the signature.</p>
+<ol>
+<li>The hidden text in API Key and Secret Key may have impact on the signature.</li>
+</ol>
 
 <p>Right now the official <a href="https://github.com/HuobiRDCenter">SDK</a> supports multiple languages, you can refer to the signature implementation, or below three signature examples.</p>
 
 <p><a href='https://github.com/HuobiRDCenter/huobi_Java/blob/master/java_signature_demo.md'>JAVA signature example</a> | <a href='https://github.com/HuobiRDCenter/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++ signature example</a>  | <a href='https://github.com/HuobiRDCenter/huobi_Python/blob/master/example/python_signature_demo.md'>Python signature example</a>   </p>
 <h3 id='q6-why-the-api-return-39-incorrect-access-key-39'>Q6：Why the API return &#39;Incorrect Access Key&#39;?</h3>
-<p>A：Please check whether Access Key is wrong in URL request, such as:
-1、The <code>AccessKeyId</code> is not included in URL parameter
-2、The length of AccessKey is wrong
-3、The AccessKey is already deleted
-4、The URL request is not assembled correctly which cause AccessKey is parsed unexpected in server side.</p>
+<p>Please check whether Access Key is wrong in URL request, such as:</p>
+
+<ol>
+<li>The <code>AccessKeyId</code> is not included in URL parameter</li>
+<li>The length of AccessKey is wrong</li>
+<li>The AccessKey is already deleted</li>
+<li>The URL request is not assembled correctly which cause AccessKey is parsed unexpected in server side.</li>
+</ol>
 <h3 id='q7-why-the-api-return-39-gateway-internal-error-39'>Q7：Why the API return &#39;gateway-internal-error&#39;?</h3>
-<p>A：Please check below possible reasons:
-1、It may be due to network issue or server internal error, please try again later.
-1、The data format should be correct (standard JSON).
-2、The <code>Content-Type</code> in POST header should be <code>application/json</code> .</p>
+<p>Please check below possible reasons:</p>
+
+<ol>
+<li>It may be due to network issue or server internal error, please try again later.</li>
+<li>The data format should be correct (standard JSON).</li>
+<li>The <code>Content-Type</code> in POST header should be <code>application/json</code> .</li>
+</ol>
 <h3 id='q8-why-the-api-return-39-login-required-39'>Q8：Why the API return &#39;login-required&#39;?</h3>
-<p>A：Please check below possible reasons:
-1、The URL request parameter should include <code>AccessKeyId</code>.
-2、The URL request parameter should include <code>Signature</code>.</p>
+<p>Please check below possible reasons:</p>
+
+<ol>
+<li>The URL request parameter should include <code>AccessKeyId</code>.</li>
+<li>The URL request parameter should include <code>Signature</code>.</li>
+</ol>
 <h3 id='q9-why-the-api-return-http-405-39-method-not-allowed-39'>Q9: Why the API return HTTP 405 &#39;method-not-allowed&#39;?</h3>
-<p>A: It indicates the request path doesn&#39;t exist, please check the path spelling carefully. Due to the Nginx setting, the request path is case sensitive, please follow the path definition in document.</p>
+<p>It indicates the request path doesn&#39;t exist, please check the path spelling carefully. Due to the Nginx setting, the request path is case sensitive, please follow the path definition in document.</p>
 <h1 id='reference-data'>Reference Data</h1><h2 id='introduction-2'>Introduction</h2>
 <p>Reference data APIs provide public reference information such as system status, market status, symbol info, currency info, chain info and server timestamp.</p>
 <h2 id='get-system-status'>Get system status</h2>
