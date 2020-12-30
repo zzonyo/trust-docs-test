@@ -344,13 +344,16 @@
                     <a href="#q5-why-the-signature-authentication-always-fail" class="toc-h2 toc-link" data-title="Q5：Why the signature authentication always fail?">Q5：Why the signature authentication always fail?</a>
                   </li>
                   <li>
-                    <a href="#q6-why-the-api-return-39-gateway-internal-error-39" class="toc-h2 toc-link" data-title="Q6：Why the API return 'gateway-internal-error'?">Q6：Why the API return 'gateway-internal-error'?</a>
+                    <a href="#q6-why-the-api-return-39-incorrect-access-key-39" class="toc-h2 toc-link" data-title="Q6：Why the API return 'Incorrect Access Key'?">Q6：Why the API return 'Incorrect Access Key'?</a>
                   </li>
                   <li>
-                    <a href="#q7-why-the-api-return-39-login-required-39" class="toc-h2 toc-link" data-title="Q7：Why the API return 'login-required'?">Q7：Why the API return 'login-required'?</a>
+                    <a href="#q7-why-the-api-return-39-gateway-internal-error-39" class="toc-h2 toc-link" data-title="Q7：Why the API return 'gateway-internal-error'?">Q7：Why the API return 'gateway-internal-error'?</a>
                   </li>
                   <li>
-                    <a href="#q8-why-the-api-return-http-405-39-method-not-allowed-39" class="toc-h2 toc-link" data-title="Q8: Why the API return HTTP 405 'method-not-allowed'?">Q8: Why the API return HTTP 405 'method-not-allowed'?</a>
+                    <a href="#q8-why-the-api-return-39-login-required-39" class="toc-h2 toc-link" data-title="Q8：Why the API return 'login-required'?">Q8：Why the API return 'login-required'?</a>
+                  </li>
+                  <li>
+                    <a href="#q9-why-the-api-return-http-405-39-method-not-allowed-39" class="toc-h2 toc-link" data-title="Q9: Why the API return HTTP 405 'method-not-allowed'?">Q9: Why the API return HTTP 405 'method-not-allowed'?</a>
                   </li>
               </ul>
           </li>
@@ -2307,40 +2310,28 @@ Each user could create up to 200 sub users, and each sub user could create 5 API
 
 <p>Below are the explanation for permissions:</p>
 
-<p>1、Read permission: It is used to query data, for example, <strong>query orders</strong>, <strong>query trades</strong>. </p>
-
-<p>2、Trade permission: it is used to <strong>place order</strong>, <strong>cancel order</strong> and <strong>transfer</strong>.</p>
-
-<p>3、Withdraw permission: it is used to <strong>withdraw</strong>, <strong>cancel withdraw</strong>.</p>
+<p>1、Read permission: It is used to query data, for example, <strong>query orders</strong>, <strong>query trades</strong>. 
+2、Trade permission: it is used to <strong>place order</strong>, <strong>cancel order</strong> and <strong>transfer</strong>.
+3、Withdraw permission: it is used to <strong>withdraw</strong>, <strong>cancel withdraw</strong>.</p>
 <h3 id='q2-why-apis-are-always-disconnected-or-timeout'>Q2：Why APIs are always disconnected or timeout?</h3>
-<p>A：Please follow below suggestions:</p>
-
-<p>1、It is unstable if the client&#39;s server locates in China mainland, it is suggested to invoke API from a server at AWS Japan.</p>
-
-<p>2、It is suggested to invoke API only to host <u>api.huobi.pro</u> or <u>api-was.huobi.pro</u>.</p>
+<p>A：Please follow below suggestions:
+1、It is unstable if the client&#39;s server locates in China mainland, it is suggested to invoke API from a server at AWS Japan.
+2、It is suggested to invoke API only to host <u>api.huobi.pro</u> or <u>api-was.huobi.pro</u>.</p>
 <h3 id='q3-why-the-websocket-is-often-disconnected'>Q3：Why the WebSocket is often disconnected?</h3>
-<p>A：Please check below possible reasons:</p>
-
-<p>1、The client didn&#39;t respond &#39;Pong&#39;. It is requird to respond &#39;Pong&#39; after receive &#39;Ping&#39; from server.</p>
-
-<p>2、The server didn&#39;t receive &#39;Pong&#39; successfully due to network issue.</p>
-
-<p>3、The connection is broken due to network issue.</p>
-
-<p>4、It is suggested to implement WebSocket re-connect mechanism. If Ping/Pong works well but the connection is broken, the application should be able to re-connect automatically.</p>
+<p>A：Please check below possible reasons:
+1、The client didn&#39;t respond &#39;Pong&#39;. It is requird to respond &#39;Pong&#39; after receive &#39;Ping&#39; from server.
+2、The server didn&#39;t receive &#39;Pong&#39; successfully due to network issue.
+3、The connection is broken due to network issue.
+4、It is suggested to implement WebSocket re-connect mechanism. If Ping/Pong works well but the connection is broken, the application should be able to re-connect automatically.</p>
 <h3 id='q4-what-is-the-difference-between-api-huobi-pro-and-api-aws-huobi-pro'>Q4：What is the difference between <u>api.huobi.pro</u> and <u>api-aws.huobi.pro</u>?</h3>
 <p>A：The host <u>api-aws.huobi.pro</u> is optimized for AWS client, the latency is lower.</p>
 <h3 id='q5-why-the-signature-authentication-always-fail'>Q5：Why the signature authentication always fail?</h3>
 <p>A：Please compare  your signature text with below example: </p>
-
-<p><code>GET\n</code></p>
-
-<p><code>api.huobi.pro\n</code></p>
-
-<p><code>/v1/account/accounts\n</code></p>
-
-<p><code>AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2019-10-28T07%3A28%3A38</code></p>
-
+<pre class="highlight plaintext"><code>GET\n
+api.huobi.pro\n
+/v1/account/accounts\n
+AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2019-10-28T07%3A28%3A38
+</code></pre>
 <p>Please check whether you follow below rules:</p>
 
 <p>1、The parameter in signature text should be ordered by ASCII, for example below is the original parameters:</p>
@@ -2395,21 +2386,22 @@ Each user could create up to 200 sub users, and each sub user could create 5 API
 <p>Right now the official <a href="https://github.com/HuobiRDCenter">SDK</a> supports multiple languages, you can refer to the signature implementation, or below three signature examples.</p>
 
 <p><a href='https://github.com/HuobiRDCenter/huobi_Java/blob/master/java_signature_demo.md'>JAVA signature example</a> | <a href='https://github.com/HuobiRDCenter/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++ signature example</a>  | <a href='https://github.com/HuobiRDCenter/huobi_Python/blob/master/example/python_signature_demo.md'>Python signature example</a>   </p>
-<h3 id='q6-why-the-api-return-39-gateway-internal-error-39'>Q6：Why the API return &#39;gateway-internal-error&#39;?</h3>
-<p>A：Please check below possible reasons:</p>
-
-<p>1、The data format should be correct (standard JSON).</p>
-
-<p>2、The <code>Content-Type</code> in POST header should be <code>application/json</code> .</p>
-
-<p>3、It may be due to network issue, please try again later.</p>
-<h3 id='q7-why-the-api-return-39-login-required-39'>Q7：Why the API return &#39;login-required&#39;?</h3>
-<p>A：Please check below possible reasons:</p>
-
-<p>1、The parameter should include <code>AccessKeyId</code>.</p>
-
-<p>2、The parameter should include <code>Signature</code>.</p>
-<h3 id='q8-why-the-api-return-http-405-39-method-not-allowed-39'>Q8: Why the API return HTTP 405 &#39;method-not-allowed&#39;?</h3>
+<h3 id='q6-why-the-api-return-39-incorrect-access-key-39'>Q6：Why the API return &#39;Incorrect Access Key&#39;?</h3>
+<p>A：Please check whether Access Key is wrong in URL request, such as:
+1、The <code>AccessKeyId</code> is not included in URL parameter
+2、The length of AccessKey is wrong
+3、The AccessKey is already deleted
+4、The URL request is not assembled correctly which cause AccessKey is parsed unexpected in server side.</p>
+<h3 id='q7-why-the-api-return-39-gateway-internal-error-39'>Q7：Why the API return &#39;gateway-internal-error&#39;?</h3>
+<p>A：Please check below possible reasons:
+1、It may be due to network issue or server internal error, please try again later.
+1、The data format should be correct (standard JSON).
+2、The <code>Content-Type</code> in POST header should be <code>application/json</code> .</p>
+<h3 id='q8-why-the-api-return-39-login-required-39'>Q8：Why the API return &#39;login-required&#39;?</h3>
+<p>A：Please check below possible reasons:
+1、The URL request parameter should include <code>AccessKeyId</code>.
+2、The URL request parameter should include <code>Signature</code>.</p>
+<h3 id='q9-why-the-api-return-http-405-39-method-not-allowed-39'>Q9: Why the API return HTTP 405 &#39;method-not-allowed&#39;?</h3>
 <p>A: It indicates the request path doesn&#39;t exist, please check the path spelling carefully. Due to the Nginx setting, the request path is case sensitive, please follow the path definition in document.</p>
 <h1 id='reference-data'>Reference Data</h1><h2 id='introduction-2'>Introduction</h2>
 <p>Reference data APIs provide public reference information such as system status, market status, symbol info, currency info, chain info and server timestamp.</p>
@@ -5743,45 +5735,6 @@ Rate Limit (NEW): 20times/2s</p>
 <td>Block chain name</td>
 </tr>
 </tbody></table>
-<h3 id='status-code-2'>Status Code</h3>
-<table><thead>
-<tr>
-<th>Status Code</th>
-<th>Error Message</th>
-<th>Scenario</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td>success</td>
-<td>Request successful</td>
-</tr>
-<tr>
-<td>500</td>
-<td>error</td>
-<td>System error</td>
-</tr>
-<tr>
-<td>1002</td>
-<td>unauthorized</td>
-<td>Unauthorized</td>
-</tr>
-<tr>
-<td>1003</td>
-<td>invalid signature</td>
-<td>Signature failure</td>
-</tr>
-<tr>
-<td>2002</td>
-<td>invalid field value in &quot;field name&quot;</td>
-<td>Invalid field value</td>
-</tr>
-<tr>
-<td>2003</td>
-<td>missing mandatory field &quot;field name&quot;</td>
-<td>Mandatory field missing</td>
-</tr>
-</tbody></table>
 <h2 id='query-withdraw-quota'>Query Withdraw Quota</h2>
 <p>Parent user could query withdraw quota for currencies</p>
 
@@ -5905,44 +5858,12 @@ Rate Limit (NEW): 20times/2s</p>
 <td>Remaining withdraw quota in total</td>
 </tr>
 </tbody></table>
-<h3 id='status-code-3'>Status Code</h3>
-<table><thead>
-<tr>
-<th>Status Code</th>
-<th>Error Message</th>
-<th>Scenario</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td>success</td>
-<td>Request successful</td>
-</tr>
-<tr>
-<td>500</td>
-<td>error</td>
-<td>System error</td>
-</tr>
-<tr>
-<td>1002</td>
-<td>unauthorized</td>
-<td>Unauthorized</td>
-</tr>
-<tr>
-<td>1003</td>
-<td>invalid signature</td>
-<td>Signature failure</td>
-</tr>
-<tr>
-<td>2002</td>
-<td>invalid field value in &quot;field name&quot;</td>
-<td>Invalid field value</td>
-</tr>
-</tbody></table>
 <h2 id='query-withdraw-address'>Query withdraw address</h2>
 <p>API Key Permission: Read<br></p>
 
 <p>This endpoint allows parent user to query withdraw address available for API key.<br></p>
+
+<aside class="notice">To get the withdraw address from API , user need to add the withdraw address from the Web first</aside>
 <h3 id='http-request-26'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v2/account/withdraw/address</code></li>
@@ -9053,7 +8974,7 @@ Rate Limit (NEW): 50times/2s</p>
 <tr>
 <td>filled-fees</td>
 <td>string</td>
-<td>Transaction fee paid so far</td>
+<td>Transaction fee (Accurate fees refer to matchresults endpoint)</td>
 </tr>
 <tr>
 <td>source</td>
@@ -9430,7 +9351,7 @@ Rate Limit (NEW): 50times/2s</p>
 <tr>
 <td>filled-fees</td>
 <td>string</td>
-<td>Transaction fee paid so far</td>
+<td>Transaction fee (Accurate fees refer to matchresults endpoint)</td>
 </tr>
 <tr>
 <td>source</td>
@@ -9583,7 +9504,7 @@ Rate Limit (NEW):50times/2s</p>
 <tr>
 <td>filled-fees</td>
 <td>string</td>
-<td>Transaction fee paid so far</td>
+<td>Transaction fee (Accurate fees refer to matchresults endpoint)</td>
 </tr>
 <tr>
 <td>source</td>
@@ -9963,7 +9884,7 @@ Rate Limit (NEW): 50times/2s</p>
 <tr>
 <td>filled-fees</td>
 <td>string</td>
-<td>Transaction fee paid so far</td>
+<td>Transaction fee (Accurate fees refer to matchresults endpoint)</td>
 </tr>
 <tr>
 <td>source</td>
@@ -10149,7 +10070,7 @@ The API created order will not exist after cancelling 2 hours. </p>
 <tr>
 <td>field-fees</td>
 <td>string</td>
-<td>Transaction fee</td>
+<td>Transaction fee (Accurate fees refer to matchresults endpoint)</td>
 </tr>
 <tr>
 <td>finished-at</td>
