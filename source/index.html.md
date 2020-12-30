@@ -777,16 +777,7 @@ api-aws.huobi.pro域名对使用aws云服务的用户做了链路延迟优化，
 
 ### Q5：为什么签名认证总返回失败？
 
-请对比使用Secret Key签名前的字符串与以下字符串的区别
-
-```
-GET\n
-api.huobi.pro\n
-/v1/account/accounts\n
-AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-10-28T07%3A28%3A38
-```
-
-对比时请注意一下几点：
+请检查如下可能的原因：
 
 1、签名参数应该按照ASCII码排序。比如下面是原始的参数：
 
