@@ -733,36 +733,39 @@ For specific API question, please check the Error Code and FAQ in each API categ
 
 ### Q1：How many API Keys one user can apply?
 
-A:  Every user can create 5 API Keys, and each API Key can be granted with 3 permissions: **read**, **trade** and **withdraw**.
+Every user can create 5 API Keys, and each API Key can be granted with 3 permissions: **read**, **trade** and **withdraw**.
+
 Each user could create up to 200 sub users, and each sub user could create 5 API Keys, each API key can be granted with 2 permissions: **read** and **trade**.
 
 Below are the explanation for permissions:
 
-1、Read permission: It is used to query data, for example, **query orders**, **query trades**. 
-2、Trade permission: it is used to **place order**, **cancel order** and **transfer**.
-3、Withdraw permission: it is used to **withdraw**, **cancel withdraw**.
+1. Read permission: It is used to query data, for example, **query orders**, **query trades**.
+2. Trade permission: it is used to **place order**, **cancel order** and **transfer**.
+3. Withdraw permission: it is used to **withdraw**, **cancel withdraw**.
 
 ### Q2：Why APIs are always disconnected or timeout?
 
-A：Please follow below suggestions:
-1、It is unstable if the client's server locates in China mainland, it is suggested to invoke API from a server at AWS Japan.
-2、It is suggested to invoke API only to host <u>api.huobi.pro</u> or <u>api-was.huobi.pro</u>.
+Please follow below suggestions:
+
+1. It is unstable if the client's server locates in China mainland, it is suggested to invoke API from a server at AWS Japan.
+2. It is suggested to invoke API only to host <u>api.huobi.pro</u> or <u>api-was.huobi.pro</u>.
 
 ### Q3：Why the WebSocket is often disconnected?
 
-A：Please check below possible reasons:
-1、The client didn't respond 'Pong'. It is requird to respond 'Pong' after receive 'Ping' from server.
-2、The server didn't receive 'Pong' successfully due to network issue.
-3、The connection is broken due to network issue.
-4、It is suggested to implement WebSocket re-connect mechanism. If Ping/Pong works well but the connection is broken, the application should be able to re-connect automatically.
+Please check below possible reasons:
+
+1. The client didn't respond 'Pong'. It is requird to respond 'Pong' after receive 'Ping' from server.
+2. The server didn't receive 'Pong' successfully due to network issue.
+3. The connection is broken due to network issue.
+4. It is suggested to implement WebSocket re-connect mechanism. If Ping/Pong works well but the connection is broken, the application should be able to re-connect automatically.
 
 ### Q4：What is the difference between <u>api.huobi.pro</u> and <u>api-aws.huobi.pro</u>?
 
-A：The host <u>api-aws.huobi.pro</u> is optimized for AWS client, the latency is lower.
+The host <u>api-aws.huobi.pro</u> is optimized for AWS client, the latency is lower.
 
 ### Q5：Why the signature authentication always fail?
 
-A：Please compare  your signature text with below example: 
+Please compare  your signature text with below example: 
 
 ```
 GET\n
@@ -773,7 +776,7 @@ AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&Signatu
 
 Please check whether you follow below rules:
 
-1、The parameter in signature text should be ordered by ASCII, for example below is the original parameters:
+1. The parameter in signature text should be ordered by ASCII, for example below is the original parameters:
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
 
@@ -797,28 +800,28 @@ They should be ordered like below:
 
 `order-id=1234567890`
 
-2、The signature text should be URL encoded, for example
+2. The signature text should be URL encoded, for example
 
 - The semicolon `:`should be encoded as `%3A`, The space should be encoded as `%20`.
 - The timestamp should be formatted as `YYYY-MM-DDThh:mm:ss` and after encoded it should be like `2017-05-11T15%3A19%3A30`  
 
-3、The signature should be base64 encoded.
+3. The signature should be base64 encoded.
 
-4、The parameter for Get request should be included in signature request.
+4. The parameter for Get request should be included in signature request.
 
-5、The Timestamp should be UTC time and the format should be YYYY-MM-DDTHH:mm:ss.
+5. The Timestamp should be UTC time and the format should be YYYY-MM-DDTHH:mm:ss.
 
-6、The time difference between your timestamp and standard should be less than 1 minute.
+6. The time difference between your timestamp and standard should be less than 1 minute.
 
-7、The message body doesn't need URL encoded if you are using WebSocket for authentication.
+7. The message body doesn't need URL encoded if you are using WebSocket for authentication.
 
-8、The host in signature text should be the same as the host in your API request.
+8. The host in signature text should be the same as the host in your API request.
 
 The proxy may change the request host, you can try without proxy;
 
 Some http/websocket library may include port in the host, you can try to append port in signature host, like "api.huobi.pro:443"
 
-9、The hidden text in API Key and Secret Key may have impact on the signature.
+9. The hidden text in API Key and Secret Key may have impact on the signature.
 
 Right now the official [SDK](https://github.com/HuobiRDCenter) supports multiple languages, you can refer to the signature implementation, or below three signature examples.
 
@@ -826,28 +829,31 @@ Right now the official [SDK](https://github.com/HuobiRDCenter) supports multiple
 
 ### Q6：Why the API return 'Incorrect Access Key'?
 
-A：Please check whether Access Key is wrong in URL request, such as:
-1、The `AccessKeyId` is not included in URL parameter
-2、The length of AccessKey is wrong
-3、The AccessKey is already deleted
-4、The URL request is not assembled correctly which cause AccessKey is parsed unexpected in server side.
+Please check whether Access Key is wrong in URL request, such as:
+
+1. The `AccessKeyId` is not included in URL parameter
+2. The length of AccessKey is wrong
+3. The AccessKey is already deleted
+4. The URL request is not assembled correctly which cause AccessKey is parsed unexpected in server side.
 
 ### Q7：Why the API return 'gateway-internal-error'?
 
-A：Please check below possible reasons:
-1、It may be due to network issue or server internal error, please try again later.
-1、The data format should be correct (standard JSON).
-2、The `Content-Type` in POST header should be `application/json` .
+Please check below possible reasons:
+
+1. It may be due to network issue or server internal error, please try again later.
+2. The data format should be correct (standard JSON).
+3. The `Content-Type` in POST header should be `application/json` .
 
 ### Q8：Why the API return 'login-required'?
 
-A：Please check below possible reasons:
-1、The URL request parameter should include `AccessKeyId`.
-2、The URL request parameter should include `Signature`.
+Please check below possible reasons:
+
+1. The URL request parameter should include `AccessKeyId`.
+2. The URL request parameter should include `Signature`.
 
 ### Q9: Why the API return HTTP 405 'method-not-allowed'?
 
-A: It indicates the request path doesn't exist, please check the path spelling carefully. Due to the Nginx setting, the request path is case sensitive, please follow the path definition in document.
+It indicates the request path doesn't exist, please check the path spelling carefully. Due to the Nginx setting, the request path is case sensitive, please follow the path definition in document.
 
 # Reference Data
 
