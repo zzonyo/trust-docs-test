@@ -4101,7 +4101,7 @@ curl "https://api.huobi.pro/v1/order/openOrders?account-id=100009&symbol=btcusdt
 | type               | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
 | filled-amount      | string    | The amount which has been filled                             |
 | filled-cash-amount | string    | The filled total in quote currency                           |
-| filled-fees        | string    | Transaction fee paid so far                                  |
+| filled-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint) |
 | source             | string    | The source where the order was triggered, possible values: sys, web, api, app |
 | state              | string    | Order status, valid values: submitted, partial-filled, cancelling |
 | stop-price         | string    | false                                                        |
@@ -4304,7 +4304,7 @@ No parameter is needed for this endpoint.
 | type               | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
 | filled-amount      | string    | The amount which has been filled                             |
 | filled-cash-amount | string    | The filled total in quote currency                           |
-| filled-fees        | string    | Transaction fee paid so far                                  |
+| filled-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint) |
 | source             | string    | The source where the order was triggered, possible values: sys, web, api, app |
 | state              | string    | Order state: submitted, partial-filled, filled, canceled     |
 | exchange           | string    | Internal data                                                |
@@ -4374,7 +4374,7 @@ curl "https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"
 | type               | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
 | filled-amount      | string    | The amount which has been filled                             |
 | filled-cash-amount | string    | The filled total in quote currency                           |
-| filled-fees        | string    | Transaction fee paid so far                                  |
+| filled-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint) |
 | source             | string    | The source where the order was triggered, possible values: sys, web, api, app |
 | state              | string    | Order state: submitted, partial-filled, filled, canceled     |
 | exchange           | string    | Internal data                                                |
@@ -4544,7 +4544,7 @@ curl "https://api.huobi.pro/v1/order/orders?symbol=ethusdt&type=buy-limit&staet=
 | type               | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
 | filled-amount      | string    | The amount which has been filled                             |
 | filled-cash-amount | string    | The filled total in quote currency                           |
-| filled-fees        | string    | Transaction fee paid so far                                  |
+| filled-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint) |
 | source             | string    | The source where the order was triggered, possible values: sys, web, api, app |
 | state              | string    | submitted, partial-filled, filled, canceled, partial-canceled |
 | exchange           | string    | Internal data                                                |
@@ -4632,7 +4632,7 @@ The API created order will not exist after cancelling 2 hours.
 | created-at        | long      | Order creation time                                          |
 | field-amount      | string    | Executed order amount                                        |
 | field-cash-amount | string    | Executed cash amount                                         |
-| field-fees        | string    | Transaction fee                                              |
+| field-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint) |
 | finished-at       | long      | Last trade time                                              |
 | id                | long      | Order ID                                                     |
 | client-order-id   | string    | Client order id ("client-order-id" (if specified) can be returned only from closed orders (state <> canceled) created within 48 hours, upon order creation time.	only those closed orders (state = canceled) created within 24 hours can be returned.) |
