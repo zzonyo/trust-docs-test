@@ -767,7 +767,7 @@ The host <u>api-aws.huobi.pro</u> is optimized for AWS client, the latency is lo
 
 Please check whether you follow below rules:
 
-1. The parameter in signature text should be ordered by ASCII, for example below is the original parameters:
+1.The parameter in signature text should be ordered by ASCII, for example below is the original parameters:
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
 
@@ -791,28 +791,28 @@ They should be ordered like below:
 
 `order-id=1234567890`
 
-2. The signature text should be URL encoded, for example
+2.The signature text should be URL encoded, for example
 
 - The semicolon `:`should be encoded as `%3A`, The space should be encoded as `%20`.
 - The timestamp should be formatted as `YYYY-MM-DDThh:mm:ss` and after encoded it should be like `2017-05-11T15%3A19%3A30`  
 
-3. The signature should be base64 encoded.
+3.The signature should be base64 encoded.
 
-4. The parameter for Get request should be included in signature request.
+4.The parameter for Get request should be included in signature request.
 
-5. The Timestamp should be UTC time and the format should be YYYY-MM-DDTHH:mm:ss.
+5.The Timestamp should be UTC time and the format should be YYYY-MM-DDTHH:mm:ss.
 
-6. The time difference between your timestamp and standard should be less than 1 minute.
+6.The time difference between your timestamp and standard should be less than 1 minute.
 
-7. The message body doesn't need URL encoded if you are using WebSocket for authentication.
+7.The message body doesn't need URL encoded if you are using WebSocket for authentication.
 
-8. The host in signature text should be the same as the host in your API request.
+8.The host in signature text should be the same as the host in your API request.
 
 The proxy may change the request host, you can try without proxy;
 
 Some http/websocket library may include port in the host, you can try to append port in signature host, like "api.huobi.pro:443"
 
-9. The hidden text in API Key and Secret Key may have impact on the signature.
+9.The hidden text in API Key and Secret Key may have impact on the signature.
 
 Right now the official [SDK](https://github.com/HuobiRDCenter) supports multiple languages, you can refer to the signature implementation, or below three signature examples.
 
