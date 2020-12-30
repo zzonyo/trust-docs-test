@@ -745,6 +745,7 @@ account-id可通过/v1/account/accounts接口获取，并根据account-type区�
 针对某类或某个API的问题，请查看每章API的错误码和常见问题。
 
 ### Q1：一个用户可以申请多少个Api Key？
+
 A:  每个母用户可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。 
 每个母用户还可创建200个子用户，每个子用户可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。   
 
@@ -755,36 +756,34 @@ A:  每个母用户可创建5组Api Key，每个Api Key可对应设置读取、�
 - 提币权限：提币权限用于创建提币订单、取消提币订单操作。  
 
 ### Q2：为什么经常出现断线、超时的情况？
+
 A：请检查是否属于以下情况：
 
-1. 客户端服务器如在中国大陆境内，连接的稳定性很难保证，建议使用日本AWS云服务器进行访问。  
-
+1. 客户端服务器如在中国大陆境内，连接的稳定性很难保证，建议使用日本AWS云服务器进行访问。 
 2. 域名建议使用api.huobi.pro或api-aws.huobi.pro，其他不建议使用。
 
 ### Q3：为什么WebSocket总是断开连接？
+
 A：常见原因有：
-
 1. 未回复Pong，WebSocket连接需在接收到服务端发送的Ping信息后回复Pong，保证连接的稳定。
-
 2. 网络原因造成客户端发送了Pong消息，但服务端并未接收到。
-
 3. 网络原因造成连接断开。
-
 4. 建议用户做好WebSocket连接断连重连机制，在确保心跳（Ping/Pong）消息正确回复后若连接意外断开，程序能够自动进行重新连接。
 
 ### Q4：api.huobi.pro 与 api-aws.huobi.pro有什么区别？
+
 A：api-aws.huobi.pro域名对使用aws云服务的用户做了链路延迟优化，请求时延更低。
 
 ### Q5：为什么签名认证总返回失败？
+
 A：请对比使用Secret Key签名前的字符串与以下字符串的区别
 
-`GET\n`
-
-`api.huobi.pro\n` 
-
-`/v1/account/accounts\n`
-
-`AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-10-28T07%3A28%3A38`
+```
+GET\n
+api.huobi.pro\n
+/v1/account/accounts\n
+AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-10-28T07%3A28%3A38
+```
 
 对比时请注意一下几点：
 
@@ -839,26 +838,28 @@ A：请对比使用Secret Key签名前的字符串与以下字符串的区别
 
 <a href='https://github.com/HuobiRDCenter/huobi_Java/blob/master/java_signature_demo.md'>JAVA签名样例代码</a> | <a href='https://github.com/HuobiRDCenter/huobi_Python/blob/master/example/python_signature_demo.md'>Python签名样例代码</a>   | <a href='https://github.com/HuobiRDCenter/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++签名样例代码 </a>  
 
-### Q6：调用接口返回gateway-internal-error错误是什么原因？
+### Q6：调用接口返回Incorrect Access Key 错误是什么原因？
+
+A: 请检查URL请求中Access Key是否传递准确，例如：
+1. Access Key没有传递
+2. Access Key位数不准确
+3. Access Key已经被删除
+4. URL请求中参数拼接错误或者特殊字符没有进行编码导致服务端对AccessKey解析不正确
+
+### Q7：调用接口返回 gateway-internal-error 错误是什么原因？
+
 A：请检查是否属于以下情况：
+1. 可能为网络原因或服务内部错误，请稍后进行重试。
+2. 发送数据格式是否正确（需要标准JSON格式）。
+3. POST请求头header需要声明为`Content-Type:application/json` 。
 
-1. account-id 是否正确，需要由 GET /v1/account/accounts 接口返回的数据。
+### Q8：调用接口返回 login-required 错误是什么原因？
 
-2. 可能为网络原因，请稍后进行重试。
-
-3. 发送数据格式是否正确(需要标准JSON格式)。
-
-4. POST请求头header需要声明为`Content-Type:application/json` 。
-
-### Q7：调用接口返回 login-required错误是什么原因？
 A：请检查是否属于以下情况：
+1. 未将AccessKey参数带入URL中。
+2. 未将Signature参数带入URL中。
 
-1. 应该将AccessKey参数带入URL中。
-2. 应该将Signature参数带入URL中。
-3. account-id 是否正确，是由 `GET /v1/account/accounts` 接口返回的数据。
-4. 限频发生后再次请求时可能引发该错误。
-
-### Q8: 调用Rest接口返回HTTP 405错误 method-not-allowed是什么原因？
+### Q9: 调用Rest接口返回HTTP 405错误 method-not-allowed 是什么原因？
 
 A：该错误表明调用了不存在的Rest接口，请检查Rest接口路径是否准确。由于Nginx的设置，请求路径(Path)是大小写敏感的，请严格按照文档声明的大小写。
 
@@ -2552,17 +2553,6 @@ curl "https://api.huobi.pro/v2/account/deposit/address?currency=btc"
 | addressTag | true     | string   | 充币地址标签     |          |
 | chain }    | true     | string   | 链名称           |          |
 
-### 状态码
-
-| 状态码 | 错误信息                             | 错误场景描述 |
-| ------ | ------------------------------------ | ------------ |
-| 200    | success                              | 请求成功     |
-| 500    | error                                | 系统错误     |
-| 1002   | unauthorized                         | 未授权       |
-| 1003   | invalid signature                    | 验签失败     |
-| 2002   | invalid field value in "field name"  | 非法字段取值 |
-| 2003   | missing mandatory field "field name" | 强制字段缺失 |
-
 ## 提币额度查询
 
 此节点用于查询各币种提币额度，限母用户可用
@@ -2617,16 +2607,6 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
 | maxWithdrawAmt            | true     | string   | 单次最大提币金额 |          |
 | withdrawQuotaPerDay       | true     | string   | 当日提币额度     |          |
 | remainWithdrawQuotaPerDay | true     | string   | 当日提币剩余额度 |          |
-
-### 状态码
-
-| 状态码 | 错误信息                            | 错误场景描述 |
-| ------ | ----------------------------------- | ------------ |
-| 200    | success                             | 请求成功     |
-| 500    | error                               | 系统错误     |
-| 1002   | unauthorized                        | 未授权       |
-| 1003   | invalid signature                   | 验签失败     |
-| 2002   | invalid field value in "field name" | 非法字段取值 |
 
 ## 提币地址查询
 
