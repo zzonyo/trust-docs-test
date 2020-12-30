@@ -746,7 +746,7 @@ account-id可通过/v1/account/accounts接口获取，并根据account-type区�
 
 ### Q1：一个用户可以申请多少个Api Key？
 
-A:  每个母用户可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。 
+每个母用户可创建5组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。 
 每个母用户还可创建200个子用户，每个子用户可创建5组Api Key，每个Api Key可对应设置读取、交易两种权限。   
 
 以下是三种权限的说明：  
@@ -757,14 +757,15 @@ A:  每个母用户可创建5组Api Key，每个Api Key可对应设置读取、�
 
 ### Q2：为什么经常出现断线、超时的情况？
 
-A：请检查是否属于以下情况：
+请检查是否属于以下情况：
 
 1. 客户端服务器如在中国大陆境内，连接的稳定性很难保证，建议使用日本AWS云服务器进行访问。 
 2. 域名建议使用api.huobi.pro或api-aws.huobi.pro，其他不建议使用。
 
 ### Q3：为什么WebSocket总是断开连接？
 
-A：常见原因有：
+常见原因有：
+
 1. 未回复Pong，WebSocket连接需在接收到服务端发送的Ping信息后回复Pong，保证连接的稳定。
 2. 网络原因造成客户端发送了Pong消息，但服务端并未接收到。
 3. 网络原因造成连接断开。
@@ -772,11 +773,11 @@ A：常见原因有：
 
 ### Q4：api.huobi.pro 与 api-aws.huobi.pro有什么区别？
 
-A：api-aws.huobi.pro域名对使用aws云服务的用户做了链路延迟优化，请求时延更低。
+api-aws.huobi.pro域名对使用aws云服务的用户做了链路延迟优化，请求时延更低。
 
 ### Q5：为什么签名认证总返回失败？
 
-A：请对比使用Secret Key签名前的字符串与以下字符串的区别
+请对比使用Secret Key签名前的字符串与以下字符串的区别
 
 ```
 GET\n
@@ -840,7 +841,8 @@ AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&Signatu
 
 ### Q6：调用接口返回Incorrect Access Key 错误是什么原因？
 
-A: 请检查URL请求中Access Key是否传递准确，例如：
+请检查URL请求中Access Key是否传递准确，例如：
+
 1. Access Key没有传递
 2. Access Key位数不准确
 3. Access Key已经被删除
@@ -848,20 +850,22 @@ A: 请检查URL请求中Access Key是否传递准确，例如：
 
 ### Q7：调用接口返回 gateway-internal-error 错误是什么原因？
 
-A：请检查是否属于以下情况：
+请检查是否属于以下情况：
+
 1. 可能为网络原因或服务内部错误，请稍后进行重试。
 2. 发送数据格式是否正确（需要标准JSON格式）。
 3. POST请求头header需要声明为`Content-Type:application/json` 。
 
 ### Q8：调用接口返回 login-required 错误是什么原因？
 
-A：请检查是否属于以下情况：
+请检查是否属于以下情况：
+
 1. 未将AccessKey参数带入URL中。
 2. 未将Signature参数带入URL中。
 
 ### Q9: 调用Rest接口返回HTTP 405错误 method-not-allowed 是什么原因？
 
-A：该错误表明调用了不存在的Rest接口，请检查Rest接口路径是否准确。由于Nginx的设置，请求路径(Path)是大小写敏感的，请严格按照文档声明的大小写。
+该错误表明调用了不存在的Rest接口，请检查Rest接口路径是否准确。由于Nginx的设置，请求路径(Path)是大小写敏感的，请严格按照文档声明的大小写。
 
 # 基础信息
 
