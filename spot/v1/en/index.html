@@ -20393,9 +20393,9 @@ Rate Limit (NEW): 1 time /5s<br></p>
 </thead><tbody>
 <tr>
 <td>transactId</td>
-<td>long</td>
+<td>long[]</td>
 <td>TRUE</td>
-<td>Transaction ID</td>
+<td>Transaction ID,eg:&quot;transactId&quot;:[65445,65446]</td>
 </tr>
 </tbody></table>
 
@@ -20413,7 +20413,12 @@ Rate Limit (NEW): 1 time /5s<br></p>
                 </span><span class="s2">"errMsg"</span><span class="p">:</span><span class="s2">"Cancellation of order failed, order does not exist"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"transactId"</span><span class="p">:</span><span class="s2">"65445"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"errCode"</span><span class="p">:</span><span class="mi">80043</span><span class="w">
-            </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"errMsg"</span><span class="p">:</span><span class="s2">"Cancellation of order failed, order does not exist"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"transactId"</span><span class="p">:</span><span class="s2">"65446"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"errCode"</span><span class="p">:</span><span class="mi">80043</span><span class="w">
+             </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"message"</span><span class="p">:</span><span class="kc">null</span><span class="w">
