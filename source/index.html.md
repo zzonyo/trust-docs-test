@@ -9697,7 +9697,7 @@ API Key 权限：交易<br>限频值：1次/5秒<br>
 
 |	名称	|	类型	|	是否必需	|	描述	|
 |	-----	|	----	|	------	|	-----	|
-|	transactId	|	long	|	TRUE	| ETP交易ID|
+|	transactId	|	long	|	TRUE	| ETP交易ID，例如："transactId":[65445,65446]|
 
 
 
@@ -9714,15 +9714,19 @@ API Key 权限：交易<br>限频值：1次/5秒<br>
         ],
         "failed":[
             {
-                "errMsg":"撤单失败，订单不存在",
+                "errMsg":"Cancellation of order failed, order does not exist",
                 "transactId":"65445",
                 "errCode":80043
-            }
+            },
+            {
+                "errMsg":"Cancellation of order failed, order does not exist",
+                "transactId":"65446",
+                "errCode":80043
+             }
         ]
     },
     "message":null
 }
-
 ```
 
 ### 响应数据
