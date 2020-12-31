@@ -9673,7 +9673,7 @@ Rate Limit (NEW): 1 time /5s<br>
 
 |	Field Name	|	Data Type	|	Mandatory	|	Description	|
 |	-----	|	----	|	------	|	-----	|
-|	transactId|	long	|	TRUE	| Transaction ID |
+|	transactId|	long[]	|	TRUE	| Transaction ID,eg:"transactId":[65445,65446]|
 
 > Response
 
@@ -9689,7 +9689,12 @@ Rate Limit (NEW): 1 time /5s<br>
                 "errMsg":"Cancellation of order failed, order does not exist",
                 "transactId":"65445",
                 "errCode":80043
-            }
+            },
+            {
+                "errMsg":"Cancellation of order failed, order does not exist",
+                "transactId":"65446",
+                "errCode":80043
+             }
         ]
     },
     "message":null
