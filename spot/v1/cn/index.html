@@ -21430,7 +21430,7 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
 <td>transactId</td>
 <td>long</td>
 <td>TRUE</td>
-<td>ETP交易ID</td>
+<td>ETP交易ID，例如：&quot;transactId&quot;:[65445,65446]</td>
 </tr>
 </tbody></table>
 
@@ -21445,15 +21445,19 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
         </span><span class="p">],</span><span class="w">
         </span><span class="s2">"failed"</span><span class="p">:[</span><span class="w">
             </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"errMsg"</span><span class="p">:</span><span class="s2">"撤单失败，订单不存在"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"errMsg"</span><span class="p">:</span><span class="s2">"Cancellation of order failed, order does not exist"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"transactId"</span><span class="p">:</span><span class="s2">"65445"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"errCode"</span><span class="p">:</span><span class="mi">80043</span><span class="w">
-            </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"errMsg"</span><span class="p">:</span><span class="s2">"Cancellation of order failed, order does not exist"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"transactId"</span><span class="p">:</span><span class="s2">"65446"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"errCode"</span><span class="p">:</span><span class="mi">80043</span><span class="w">
+             </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"message"</span><span class="p">:</span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre><h3 id='2213f4c32f-96'>响应数据</h3>
 <table><thead>
 <tr>
