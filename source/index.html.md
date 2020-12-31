@@ -157,62 +157,12 @@ table th {
 - **常见问题**：该章节列举了使用火币API时常见的、和具体API无关的通用问题。
 - **联系我们**：该章节介绍了针对不同问题，如何联系我们。
 
-第二部分是每个接口类的详细介绍，每个接口类一个章节，每个分为如下内容：
+第二部分是每个接口类的详细介绍，每个接口类一个章节，每个章节分为如下内容：
 
 - **简介**：对该接口类进行简单介绍，包括一些注意事项和说明。
 - ***具体接口***：介绍每个接口的用途、限频、请求、参数、返回等详细信息。
 - **常见错误码**：介绍该接口类下常见的错误码及其说明。
 - **常见问题**：介绍该接口类下常见问题和解答。
-
-# 联系我们
-
-## 做市商项目
-
-欢迎有优秀 maker 策略且交易量大的用户参与长期做市商项目。如果您的火币现货账户或者合约账户中有折合大于10BTC资产（币币和合约账户分开统计），请提供以下信息发送邮件至：
-
-- [MM_service@huobi.com](mailto:MM_service@huobi.com) Huobi Global（现货 / 杠杆）做市商申请；
-- [dm_mm@huobi.com](mailto:dm_mm@huobi.com) HBDM（合约）做市商申请。
-
-1. 提供 UID （需不存在返佣关系的 UID）；
-2. 提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；
-3. 请简要阐述做市方法，不需要细节。 
-
-<aside class="notice">
-做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动。
-</aside>
-
-## 技术支持
-
-使用过程中如有问题或者建议，您可选择以下任一方式联系我们：
-
-- 加入官方QQ群（Huobi Global Spot API交流群 1160839820），入群申请请注明UID和编程语言。
-- 通过官网的“帮助中心”或者发送邮件至support@huobigroup.com联系客服。
-
-如您遇到API错误，请按照如下模板向我们反馈问题。
-
-`1. 问题描述`  
-`2. 问题发生的用户Id(UID)，账户Id和订单Id(如果和账户、订单有关系)`  
-`3. 完整的URL请求`  
-`4. 完整的JSON格式的请求参数（如果有）`  
-`5. 完整的JSON格式的返回结果`  
-`6. 问题出现时间和频率（如何时开始出现，是否可以重现）`  
-`7. 签名前字符串（如果是签名认证错误）`  
-
-下方是一个应用了模版的例子：
-
-`1. 问题简要说明：签名错误`   
-`2. UID：123456`  
-`3. 完整的URL请求：GET https://api.huobi.pro/v1/account/accounts?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D`  
-`4. 完整的JSON格式的参数：无`     
-`5. 完整的JSON格式的返回：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key错误]","data":null}`  
-`6. 问题出现频率：每次都会出现`  
-`7. 签名前字符串`    
-`GET\n`  
-`api.huobi.pro\n`  
-`/v1/account/accounts\n`   
-`AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-06T03%3A26%3A13`   
-
-注意：Access Key仅能证明您的身份，不会影响您账户的安全。切记**不**要将Secret Key信息分享给任何人，若您不小心将Secret Key暴露，请尽快[删除](https://www.hbg.com/zh-cn/apikey/)其对应的API Key，以免造成您的账户损失。
 
 # 快速入门
 
@@ -749,6 +699,13 @@ account-id可通过/v1/account/accounts接口获取，并根据account-type区�
 - 使用WebSocket的方式，同时订阅`orders.$symbol.update`、`accounts.update#${mode}`主题，`orders.$symbol.update`用于接收订单的状态变化（创建、成交、撤销以及相关成交价格、数量信息），由于该主题在推送数据时，未经过清算，所以时效性更快，可根据`accounts.update#${mode}`主题接收相关资产的变更信息，以此来维护账户内的资金情况。
 - 不建议WebSocket订阅`accounts`主题，该主题已由`accounts.update#${mode}`取代，会在后续停止服务，请尽早更换使用。
 
+# 在线调试
+
+API[在线调试工具](https://open.huobigroup.com/)可以让用户不需要写任何一行代码，只要鼠标点击就可以直接调用线上每个API，并可以观察到调用API的请求和返回结果。该调试工具界面和API文档类似，提供了参数输入框和返回字段的说明，用户可以快速上手，几乎不需要额外的使用手册。
+
+该工具封装了共享的API Key，并且在调用私有接口后会将详细的签名过程和参数展示出来。如果您的程序遇到签名问题无法解决，可以将在其用到的API Key和时间戳复制到您的程序中
+，将两者进行对比，发现签名失败的原因。
+
 # 常见问题
 
 本章列举了和具体API无关的通用常见问题，如网络、签名或通用错误等。
@@ -868,6 +825,56 @@ api-aws.huobi.pro域名对使用aws云服务的用户做了链路延迟优化，
 ### Q9: 调用Rest接口返回HTTP 405错误 method-not-allowed 是什么原因？
 
 该错误表明调用了不存在的Rest接口，请检查Rest接口路径是否准确。由于Nginx的设置，请求路径(Path)是大小写敏感的，请严格按照文档声明的大小写。
+
+# 联系我们
+
+## 做市商项目
+
+欢迎有优秀 maker 策略且交易量大的用户参与长期做市商项目。如果您的火币现货账户或者合约账户中有折合大于10BTC资产（币币和合约账户分开统计），请提供以下信息发送邮件至：
+
+- [MM_service@huobi.com](mailto:MM_service@huobi.com) Huobi Global（现货 / 杠杆）做市商申请；
+- [dm_mm@huobi.com](mailto:dm_mm@huobi.com) HBDM（合约）做市商申请。
+
+1. 提供 UID （需不存在返佣关系的 UID）；
+2. 提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；
+3. 请简要阐述做市方法，不需要细节。 
+
+<aside class="notice">
+做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动。
+</aside>
+
+## 技术支持
+
+使用过程中如有问题或者建议，您可选择以下任一方式联系我们：
+
+- 加入官方QQ群（Huobi Global Spot API交流群 1160839820），入群申请请注明UID和编程语言。
+- 通过官网的“帮助中心”或者发送邮件至support@huobigroup.com联系客服。
+
+如您遇到API错误，请按照如下模板向我们反馈问题。
+
+`1. 问题描述`  
+`2. 问题发生的用户Id(UID)，账户Id和订单Id(如果和账户、订单有关系)`  
+`3. 完整的URL请求`  
+`4. 完整的JSON格式的请求参数（如果有）`  
+`5. 完整的JSON格式的返回结果`  
+`6. 问题出现时间和频率（如何时开始出现，是否可以重现）`  
+`7. 签名前字符串（如果是签名认证错误）`  
+
+下方是一个应用了模版的例子：
+
+`1. 问题简要说明：签名错误`   
+`2. UID：123456`  
+`3. 完整的URL请求：GET https://api.huobi.pro/v1/account/accounts?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D`  
+`4. 完整的JSON格式的参数：无`     
+`5. 完整的JSON格式的返回：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key错误]","data":null}`  
+`6. 问题出现频率：每次都会出现`  
+`7. 签名前字符串`    
+`GET\n`  
+`api.huobi.pro\n`  
+`/v1/account/accounts\n`   
+`AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-06T03%3A26%3A13`   
+
+注意：Access Key仅能证明您的身份，不会影响您账户的安全。切记**不**要将Secret Key信息分享给任何人，若您不小心将Secret Key暴露，请尽快[删除](https://www.hbg.com/zh-cn/apikey/)其对应的API Key，以免造成您的账户损失。
 
 # 基础信息
 
