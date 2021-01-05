@@ -8916,18 +8916,27 @@ API Key 权限：读取
 | mode | integer  | 推送方式，有效值：0，1，2  默认值：0 |
 
 订阅示例  
+
 1、不填mode：  
+
 accounts.update  
+
 仅当账户余额变动时推送；  
+
 2、填写mode=0：  
+
 accounts.update#0  
+
 仅当账户余额变动时推送；  
-3、填写mode=1：  
+
+3、填写mode=1： 
+
 accounts.update#1  
 
 在账户余额发生变动或可用余额发生变动时均推送且分别推送。
 
 4、填写mode=2：  
+
 accounts.update#2
 
  在账户余额发生变动或可用余额发生变动时均推送且一起推送。
