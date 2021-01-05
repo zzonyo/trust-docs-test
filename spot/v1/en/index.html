@@ -916,6 +916,12 @@ table th {
 </tr>
 </thead><tbody>
 <tr>
+<td>2021.1.5</td>
+<td>accounts.update#${mode}</td>
+<td>Update</td>
+<td>added Specify &quot;mode&quot; as 2:  <br/>accounts.update#2  <br/>Whenever  account balance or available balance changed, it will be updated together.</td>
+</tr>
+<tr>
 <td>2020.12.16 19:00</td>
 <td><code>GET /v1/order/matchresults</code> and <code>GET /v1/order/orders/{order-id}/matchresults</code></td>
 <td>Update</td>
@@ -18641,6 +18647,8 @@ About optional field ‘mode’: If not filled, or filled with 0, it implicates 
 
 <p>2、Whenever account balance or available balance is changed. (Update separately.)</p>
 
+<p>3、Whenever  account balance or available balance changed, it will be updated together.</p>
+
 <p>Note that right now there is no account update when transferring between spot account and other accounts.</p>
 <h3 id='subscription-field-3'>Subscription Field</h3>
 <table><thead>
@@ -18657,16 +18665,23 @@ About optional field ‘mode’: If not filled, or filled with 0, it implicates 
 </tr>
 </tbody></table>
 
-<p>Samples<br>
-1、Not specifying &quot;mode&quot;:<br>
+<p>Samples </p>
+
+<p>1、Not specifying &quot;mode&quot;:<br>
 accounts.update<br>
-Only update when account balance changed;<br>
-2、Specify &quot;mode&quot; as 0:<br>
+Only update when account balance changed;  </p>
+
+<p>2、Specify &quot;mode&quot; as 0:<br>
 accounts.update#0<br>
-Only update when account balance changed;<br>
-3、Specify &quot;mode&quot; as 1:<br>
+Only update when account balance changed;  </p>
+
+<p>3、Specify &quot;mode&quot; as 1:<br>
 accounts.update#1<br>
 Update when either account balance changed or available balance changed.  </p>
+
+<p>4、Specify &quot;mode&quot; as 2:<br>
+accounts.update#2<br>
+Whenever  account balance or available balance changed, it will be updated together.</p>
 
 <p>Note:
 The topic disseminates the current static value of individual accounts first, at the beginning of subscription, followed by account change updates. While disseminating the current static value of individual accounts, inside the message, field value of &quot;changeType&quot; and &quot;changeTime&quot; is null.</p>
