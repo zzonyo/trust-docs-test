@@ -683,6 +683,12 @@ The JSON data type described in this document is defined as below:
 - It is suggested to subscribe both WebSocket topic `orders.$symbol.update` and `account.update#${mode}`. The former one tells the order status update and arrives earlier than the latter one, and the latter one confirms the final asset balance.
 - It is suggested not to subscribe WebSocket topic `accounts`, which is replaced by `accounts.update#${mode}`, and will be retired later.
 
+# API Explorer
+
+[API Explorer](https://open.huobigroup.com) allows user to invoke and observe each API request and response without writing any program. The UI is designed as the same as document, which has input parameters and response description, user can use it easily without any additional user guide.
+
+This Explorer encapsulates a shared API Key, and will show the signature calcuation steps and request parameters when it invokes API. If you encounter signature problem, you can copy the API Key and timestamp to your program and compare with the result in Explorer.
+
 # Frequently Asked Questions
 
 This section lists the  frequently asked questions regardless the specific API, such as network, signature or common errors.
@@ -827,8 +833,8 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 
 If you have any other questions on API, you can contact us by below ways:
 
-- Join official QQ group (Huobi Global Spot API, 1160839820). Please tell your UID and programming language in your join request, and you can join the group after the group administrator has approved it.
-- Contact customer support from Help Center or send email to support@huobigroup.com.
+- Join official **QQ** group (Huobi Global Spot API, **1160839820**). Please tell your UID and programming language in your join request, and you can join the group after the group administrator has approved it.
+- Contact customer support from Help Center or send email to [support@huobigroup.com](mailto:support@huobigroup.com).
 
 If you encounter API errors, please use below template in your feedback:
 
