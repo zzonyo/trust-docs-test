@@ -312,6 +312,9 @@
               </ul>
           </li>
           <li>
+            <a href="#api-explorer" class="toc-h1 toc-link" data-title="API Explorer">API Explorer</a>
+          </li>
+          <li>
             <a href="#frequently-asked-questions" class="toc-h1 toc-link" data-title="Frequently Asked Questions">Frequently Asked Questions</a>
               <ul class="toc-list-h2">
                   <li>
@@ -2262,6 +2265,10 @@ The types include:</p>
 <li>It is suggested to subscribe both WebSocket topic <code>orders.$symbol.update</code> and <code>account.update#${mode}</code>. The former one tells the order status update and arrives earlier than the latter one, and the latter one confirms the final asset balance.</li>
 <li>It is suggested not to subscribe WebSocket topic <code>accounts</code>, which is replaced by <code>accounts.update#${mode}</code>, and will be retired later.</li>
 </ul>
+<h1 id='api-explorer'>API Explorer</h1>
+<p><a href="https://open.huobigroup.com">API Explorer</a> allows user to invoke and observe each API request and response without writing any program. The UI is designed as the same as document, which has input parameters and response description, user can use it easily without any additional user guide.</p>
+
+<p>This Explorer encapsulates a shared API Key, and will show the signature calcuation steps and request parameters when it invokes API. If you encounter signature problem, you can copy the API Key and timestamp to your program and compare with the result in Explorer.</p>
 <h1 id='frequently-asked-questions'>Frequently Asked Questions</h1>
 <p>This section lists the  frequently asked questions regardless the specific API, such as network, signature or common errors.</p>
 
@@ -2400,8 +2407,8 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <p>If you have any other questions on API, you can contact us by below ways:</p>
 
 <ul>
-<li>Join official QQ group (Huobi Global Spot API, 1160839820). Please tell your UID and programming language in your join request, and you can join the group after the group administrator has approved it.</li>
-<li>Contact customer support from Help Center or send email to support@huobigroup.com.</li>
+<li>Join official <strong>QQ</strong> group (Huobi Global Spot API, <strong>1160839820</strong>). Please tell your UID and programming language in your join request, and you can join the group after the group administrator has approved it.</li>
+<li>Contact customer support from Help Center or send email to <a href="mailto:support@huobigroup.com">support@huobigroup.com</a>.</li>
 </ul>
 
 <p>If you encounter API errors, please use below template in your feedback:</p>
