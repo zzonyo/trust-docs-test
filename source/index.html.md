@@ -142,73 +142,32 @@ table th {
 
 # Introduction
 
-## API Introduction
-
 Welcome to Huobi API！  
 
-This is the official Huobi API document, and will be continue updating, please follow us to get latest news.
+This is the official Huobi API document, and will be continue updating. Huobi will also publish API announcement in advance for any API change, please subscribe our announcements so that you can get latest update.
 
-You can switch to different API business in the top menu, and switch to different language by clicking the button in the top right.
+You can click <a href='https://huobiglobal.zendesk.com/hc/en-us/sections/360000070201-API-Announcements'>Here</a> to view the announcements. If you want to subscribe, please click "Follow" button in the top right of the page. After login and click "Follow" again, then choose the type you want to follow. After you subscribe, the button will changed to "Following". If you don't have any account, you need to register first in the login dialog.
 
-The example of request and response is showing in the right hand side.
+**How to read this document**
 
-## Market Maker Program
+The top of the document is the navigation menu for different API business; The language button in the top right is for different language, it supports Chinese and English right now.
+The main content of each API document has three parts, the left hand side is the contents, the middle part is the document body, and the right hand side is the request and response sameple.
 
-It is very welcome for market maker who has good market making strategy and large trading volume. If your Huobi Spot account or Contract account has at least 10 BTC, you can send your email to:
+Below is the content for Spot API document
 
-- [MM_service@huobi.com](mailto:MM_service@huobi.com) for Huobi Global (spot / leverage) market maker
-- [dm_mm@huobi.com](mailto:dm_mm@huobi.com) for Huobi Contract market maker
+The first part is the overview:
 
-And provide below details:
+- **Quick Start**: It introduces the overall knowledge of Huobi API, and suitable for new Huobi API user
+- **API Explorer**: It introduces the API Explorer online tool, which is convenient for user invoke and observe the API
+- **FAQ**: It lists the frequently asked questions regardless the specific API
+- **Contact Us**: It introduces how to contact us according to different subjects
 
-1. UID (not linked to any rebate program in any accounts)
-2. Screenshot of trading volume in other transaction platform (such as trading volume within 30 days, or VIP status)
-3. A brief description of your market-making strategy 
+The second part is detail for each API. Each API category is listed in one section, and each each section has below contents:
 
-<aside class="notice">
-Market makers will not be able to use point cards, VIP rate, rebate or any other fee promotion.
-</aside>
-
-## Subscription
-
-Huobi will publish API announcement in advance for any API change, please subscribe our announcements so that you can get latest update. 
-
-You can click <a href='https://huobiglobal.zendesk.com/hc/en-us/sections/360000070201-API-Announcements'>Here</a> to subscribe the announcements. 
-
-How to subscribe: Login to [API Announcements page](https://huobiglobal.zendesk.com/hc/en-us/sections/360000070201-API-Announcements), click "Follow" button in the top right of the page, then choose the type you want to follow. After you subscribe, the button will changed to "Following". If you don't have any account, you need to register first. 
-
-## Contact Us
-
-If you have any other questions on API, you can contact us by below ways:
-
-- Join official QQ group (Huobi Global Spot API, 1160839820). Please tell your UID and programming language in your join request, and you can join the group after the group administrator has approved it.
-- Contact customer support from Help Center or send email to support@huobigroup.com.
-
-If you encounter API errors, please use below template in your feedback:
-
-`1. Problem description`  
-`2. UID, Account Id and Order Id (if related with account and order)`  
-`3. Raw URL request`  
-`4. Raw JSON request (if any)`  
-`5. Raw JSON response`  
-`6. Problem time and frequency (such as, when this problem occurs, whether it is reproducible)`  
-`7. Pre-signed text (mandatory for authentication issue)`  
-
-Below is an example：
-
-`1. Problem description: API authentication error`  
-`2. UID：123456`  
-`3. Raw URL request: https://api.huobi.pro/v1/account/accounts?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D`  
-`4. Raw JSON request: N/A`  
-`5. Raw JSON response：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key错误]","data":null}`  
-`6. Problem time and frequency: It occurs every time`  
-`7. Pre-signed text:`  
-`GET\n`  
-`api.huobi.pro\n`  
-`/v1/account/accounts\n`    
-`AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-06T03%3A26%3A13`
-
-Note：It is safe to share your Access Key, which is to prove your identity, and it will not affect your account safety. Remember do **not** share your `Secret Key` to any one. If you expose your `Secret Key` by accident, please [remove](https://www.hbg.com/en-us/apikey/) the related API Key immediately.
+- **Introduction**: It introdces notes and description for this API category
+- ***Specific API***: It introduces the usage, rate limit, request, parameters and response for each API
+- **Error Code**: It lists the common error code and the description for this API categor
+- **FAQ**: It lists the frequently asked questions for this API category
 
 # Quick Start
 
@@ -844,6 +803,58 @@ Please check below possible reasons:
 ### Q9: Why the API return HTTP 405 'method-not-allowed'?
 
 It indicates the request path doesn't exist, please check the path spelling carefully. Due to the Nginx setting, the request path is case sensitive, please follow the path definition in document.
+
+# Contact Us
+
+## Market Maker Program
+
+It is very welcome for market maker who has good market making strategy and large trading volume. If your Huobi Spot account or Contract account has at least 10 BTC, you can send your email to:
+
+- [MM_service@huobi.com](mailto:MM_service@huobi.com) for Huobi Global (spot / leverage) market maker
+- [dm_mm@huobi.com](mailto:dm_mm@huobi.com) for Huobi Contract market maker
+
+And provide below details:
+
+1. UID (not linked to any rebate program in any accounts)
+2. Screenshot of trading volume in other transaction platform (such as trading volume within 30 days, or VIP status)
+3. A brief description of your market-making strategy 
+
+<aside class="notice">
+Market makers will not be able to use point cards, VIP rate, rebate or any other fee promotion.
+</aside>
+
+## Technical Support
+
+If you have any other questions on API, you can contact us by below ways:
+
+- Join official QQ group (Huobi Global Spot API, 1160839820). Please tell your UID and programming language in your join request, and you can join the group after the group administrator has approved it.
+- Contact customer support from Help Center or send email to support@huobigroup.com.
+
+If you encounter API errors, please use below template in your feedback:
+
+`1. Problem description`  
+`2. UID, Account Id and Order Id (if related with account and order)`  
+`3. Raw URL request`  
+`4. Raw JSON request (if any)`  
+`5. Raw JSON response`  
+`6. Problem time and frequency (such as, when this problem occurs, whether it is reproducible)`  
+`7. Pre-signed text (mandatory for authentication issue)`  
+
+Below is an example：
+
+`1. Problem description: API authentication error`  
+`2. UID：123456`  
+`3. Raw URL request: https://api.huobi.pro/v1/account/accounts?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D`  
+`4. Raw JSON request: N/A`  
+`5. Raw JSON response：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key错误]","data":null}`  
+`6. Problem time and frequency: It occurs every time`  
+`7. Pre-signed text:`  
+`GET\n`  
+`api.huobi.pro\n`  
+`/v1/account/accounts\n`    
+`AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-06T03%3A26%3A13`
+
+Note：It is safe to share your Access Key, which is to prove your identity, and it will not affect your account safety. Remember do **not** share your `Secret Key` to any one. If you expose your `Secret Key` by accident, please [remove](https://www.hbg.com/en-us/apikey/) the related API Key immediately.
 
 # Reference Data
 
