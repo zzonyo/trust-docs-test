@@ -255,20 +255,6 @@
           </li>
           <li>
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#api-introduction" class="toc-h2 toc-link" data-title="API Introduction">API Introduction</a>
-                  </li>
-                  <li>
-                    <a href="#market-maker-program" class="toc-h2 toc-link" data-title="Market Maker Program">Market Maker Program</a>
-                  </li>
-                  <li>
-                    <a href="#subscription" class="toc-h2 toc-link" data-title="Subscription">Subscription</a>
-                  </li>
-                  <li>
-                    <a href="#contact-us" class="toc-h2 toc-link" data-title="Contact Us">Contact Us</a>
-                  </li>
-              </ul>
           </li>
           <li>
             <a href="#quick-start" class="toc-h1 toc-link" data-title="Quick Start">Quick Start</a>
@@ -354,6 +340,17 @@
                   </li>
                   <li>
                     <a href="#q9-why-the-api-return-http-405-39-method-not-allowed-39" class="toc-h2 toc-link" data-title="Q9: Why the API return HTTP 405 'method-not-allowed'?">Q9: Why the API return HTTP 405 'method-not-allowed'?</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#contact-us" class="toc-h1 toc-link" data-title="Contact Us">Contact Us</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#market-maker-program" class="toc-h2 toc-link" data-title="Market Maker Program">Market Maker Program</a>
+                  </li>
+                  <li>
+                    <a href="#technical-support" class="toc-h2 toc-link" data-title="Technical Support">Technical Support</a>
                   </li>
               </ul>
           </li>
@@ -1570,72 +1567,37 @@ table th {
 <td>Added tickers query</td>
 </tr>
 </tbody></table>
-<h1 id='introduction'>Introduction</h1><h2 id='api-introduction'>API Introduction</h2>
+<h1 id='introduction'>Introduction</h1>
 <p>Welcome to Huobi API！  </p>
 
-<p>This is the official Huobi API document, and will be continue updating, please follow us to get latest news.</p>
+<p>This is the official Huobi API document, and will be continue updating. Huobi will also publish API announcement in advance for any API change, please subscribe our announcements so that you can get latest update.</p>
 
-<p>You can switch to different API business in the top menu, and switch to different language by clicking the button in the top right.</p>
+<p>You can click <a href='https://huobiglobal.zendesk.com/hc/en-us/sections/360000070201-API-Announcements'>Here</a> to view the announcements. If you want to subscribe, please click &quot;Follow&quot; button in the top right of the page. After login and click &quot;Follow&quot; again, then choose the type you want to follow. After you subscribe, the button will changed to &quot;Following&quot;. If you don&#39;t have any account, you need to register first in the login dialog.</p>
 
-<p>The example of request and response is showing in the right hand side.</p>
-<h2 id='market-maker-program'>Market Maker Program</h2>
-<p>It is very welcome for market maker who has good market making strategy and large trading volume. If your Huobi Spot account or Contract account has at least 10 BTC, you can send your email to:</p>
+<p><strong>How to read this document</strong></p>
 
-<ul>
-<li><a href="mailto:MM_service@huobi.com">MM_service@huobi.com</a> for Huobi Global (spot / leverage) market maker</li>
-<li><a href="mailto:dm_mm@huobi.com">dm_mm@huobi.com</a> for Huobi Contract market maker</li>
-</ul>
+<p>The top of the document is the navigation menu for different API business; The language button in the top right is for different language, it supports Chinese and English right now.
+The main content of each API document has three parts, the left hand side is the contents, the middle part is the document body, and the right hand side is the request and response sameple.</p>
 
-<p>And provide below details:</p>
+<p>Below is the content for Spot API document</p>
 
-<ol>
-<li>UID (not linked to any rebate program in any accounts)</li>
-<li>Screenshot of trading volume in other transaction platform (such as trading volume within 30 days, or VIP status)</li>
-<li>A brief description of your market-making strategy </li>
-</ol>
-
-<aside class="notice">
-Market makers will not be able to use point cards, VIP rate, rebate or any other fee promotion.
-</aside>
-<h2 id='subscription'>Subscription</h2>
-<p>Huobi will publish API announcement in advance for any API change, please subscribe our announcements so that you can get latest update. </p>
-
-<p>You can click <a href='https://huobiglobal.zendesk.com/hc/en-us/sections/360000070201-API-Announcements'>Here</a> to subscribe the announcements. </p>
-
-<p>How to subscribe: Login to <a href="https://huobiglobal.zendesk.com/hc/en-us/sections/360000070201-API-Announcements">API Announcements page</a>, click &quot;Follow&quot; button in the top right of the page, then choose the type you want to follow. After you subscribe, the button will changed to &quot;Following&quot;. If you don&#39;t have any account, you need to register first. </p>
-<h2 id='contact-us'>Contact Us</h2>
-<p>If you have any other questions on API, you can contact us by below ways:</p>
+<p>The first part is the overview:</p>
 
 <ul>
-<li>Join official QQ group (Huobi Global Spot API, 1160839820). Please tell your UID and programming language in your join request, and you can join the group after the group administrator has approved it.</li>
-<li>Contact customer support from Help Center or send email to support@huobigroup.com.</li>
+<li><strong>Quick Start</strong>: It introduces the overall knowledge of Huobi API, and suitable for new Huobi API user</li>
+<li><strong>API Explorer</strong>: It introduces the API Explorer online tool, which is convenient for user invoke and observe the API</li>
+<li><strong>FAQ</strong>: It lists the frequently asked questions regardless the specific API</li>
+<li><strong>Contact Us</strong>: It introduces how to contact us according to different subjects</li>
 </ul>
 
-<p>If you encounter API errors, please use below template in your feedback:</p>
+<p>The second part is detail for each API. Each API category is listed in one section, and each each section has below contents:</p>
 
-<p><code>1. Problem description</code><br>
-<code>2. UID, Account Id and Order Id (if related with account and order)</code><br>
-<code>3. Raw URL request</code><br>
-<code>4. Raw JSON request (if any)</code><br>
-<code>5. Raw JSON response</code><br>
-<code>6. Problem time and frequency (such as, when this problem occurs, whether it is reproducible)</code><br>
-<code>7. Pre-signed text (mandatory for authentication issue)</code>  </p>
-
-<p>Below is an example：</p>
-
-<p><code>1. Problem description: API authentication error</code><br>
-<code>2. UID：123456</code><br>
-<code>3. Raw URL request: https://api.huobi.pro/v1/account/accounts?&amp;SignatureVersion=2&amp;SignatureMethod=HmacSHA256&amp;Timestamp=2019-11-06T03%3A25%3A39&amp;AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D</code><br>
-<code>4. Raw JSON request: N/A</code><br>
-<code>5. Raw JSON response：{&quot;status&quot;:&quot;error&quot;,&quot;err-code&quot;:&quot;api-signature-not-valid&quot;,&quot;err-msg&quot;:&quot;Signature not valid: Incorrect Access key [Access key错误]&quot;,&quot;data&quot;:null}</code><br>
-<code>6. Problem time and frequency: It occurs every time</code><br>
-<code>7. Pre-signed text:</code><br>
-<code>GET\n</code><br>
-<code>api.huobi.pro\n</code><br>
-<code>/v1/account/accounts\n</code><br>
-<code>AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2019-11-06T03%3A26%3A13</code></p>
-
-<p>Note：It is safe to share your Access Key, which is to prove your identity, and it will not affect your account safety. Remember do <strong>not</strong> share your <code>Secret Key</code> to any one. If you expose your <code>Secret Key</code> by accident, please <a href="https://www.hbg.com/en-us/apikey/">remove</a> the related API Key immediately.</p>
+<ul>
+<li><strong>Introduction</strong>: It introdces notes and description for this API category</li>
+<li><strong><em>Specific API</em></strong>: It introduces the usage, rate limit, request, parameters and response for each API</li>
+<li><strong>Error Code</strong>: It lists the common error code and the description for this API categor</li>
+<li><strong>FAQ</strong>: It lists the frequently asked questions for this API category</li>
+</ul>
 <h1 id='quick-start'>Quick Start</h1><h2 id='preparation'>Preparation</h2>
 <p>Before you use API, you need to login the website to create API Key with proper permissions. The API key is shared for all business in Huobi including spot, futures, swap, options.</p>
 
@@ -2415,6 +2377,58 @@ The types include:</p>
 </ol>
 <h3 id='q9-why-the-api-return-http-405-39-method-not-allowed-39'>Q9: Why the API return HTTP 405 &#39;method-not-allowed&#39;?</h3>
 <p>It indicates the request path doesn&#39;t exist, please check the path spelling carefully. Due to the Nginx setting, the request path is case sensitive, please follow the path definition in document.</p>
+<h1 id='contact-us'>Contact Us</h1><h2 id='market-maker-program'>Market Maker Program</h2>
+<p>It is very welcome for market maker who has good market making strategy and large trading volume. If your Huobi Spot account or Contract account has at least 10 BTC, you can send your email to:</p>
+
+<ul>
+<li><a href="mailto:MM_service@huobi.com">MM_service@huobi.com</a> for Huobi Global (spot / leverage) market maker</li>
+<li><a href="mailto:dm_mm@huobi.com">dm_mm@huobi.com</a> for Huobi Contract market maker</li>
+</ul>
+
+<p>And provide below details:</p>
+
+<ol>
+<li>UID (not linked to any rebate program in any accounts)</li>
+<li>Screenshot of trading volume in other transaction platform (such as trading volume within 30 days, or VIP status)</li>
+<li>A brief description of your market-making strategy </li>
+</ol>
+
+<aside class="notice">
+Market makers will not be able to use point cards, VIP rate, rebate or any other fee promotion.
+</aside>
+<h2 id='technical-support'>Technical Support</h2>
+<p>If you have any other questions on API, you can contact us by below ways:</p>
+
+<ul>
+<li>Join official QQ group (Huobi Global Spot API, 1160839820). Please tell your UID and programming language in your join request, and you can join the group after the group administrator has approved it.</li>
+<li>Contact customer support from Help Center or send email to support@huobigroup.com.</li>
+</ul>
+
+<p>If you encounter API errors, please use below template in your feedback:</p>
+
+<p><code>1. Problem description</code><br>
+<code>2. UID, Account Id and Order Id (if related with account and order)</code><br>
+<code>3. Raw URL request</code><br>
+<code>4. Raw JSON request (if any)</code><br>
+<code>5. Raw JSON response</code><br>
+<code>6. Problem time and frequency (such as, when this problem occurs, whether it is reproducible)</code><br>
+<code>7. Pre-signed text (mandatory for authentication issue)</code>  </p>
+
+<p>Below is an example：</p>
+
+<p><code>1. Problem description: API authentication error</code><br>
+<code>2. UID：123456</code><br>
+<code>3. Raw URL request: https://api.huobi.pro/v1/account/accounts?&amp;SignatureVersion=2&amp;SignatureMethod=HmacSHA256&amp;Timestamp=2019-11-06T03%3A25%3A39&amp;AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D</code><br>
+<code>4. Raw JSON request: N/A</code><br>
+<code>5. Raw JSON response：{&quot;status&quot;:&quot;error&quot;,&quot;err-code&quot;:&quot;api-signature-not-valid&quot;,&quot;err-msg&quot;:&quot;Signature not valid: Incorrect Access key [Access key错误]&quot;,&quot;data&quot;:null}</code><br>
+<code>6. Problem time and frequency: It occurs every time</code><br>
+<code>7. Pre-signed text:</code><br>
+<code>GET\n</code><br>
+<code>api.huobi.pro\n</code><br>
+<code>/v1/account/accounts\n</code><br>
+<code>AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2019-11-06T03%3A26%3A13</code></p>
+
+<p>Note：It is safe to share your Access Key, which is to prove your identity, and it will not affect your account safety. Remember do <strong>not</strong> share your <code>Secret Key</code> to any one. If you expose your <code>Secret Key</code> by accident, please <a href="https://www.hbg.com/en-us/apikey/">remove</a> the related API Key immediately.</p>
 <h1 id='reference-data'>Reference Data</h1><h2 id='introduction-2'>Introduction</h2>
 <p>Reference data APIs provide public reference information such as system status, market status, symbol info, currency info, chain info and server timestamp.</p>
 <h2 id='get-system-status'>Get system status</h2>
@@ -15923,7 +15937,7 @@ In the near future, Huobi Global will align the update behavior of 150-level inc
 </tbody></table>
 <h2 id='market-by-price-refresh-update'>Market By Price (refresh update)</h2>
 <p>User could subscribe to this channel to receive refresh update of Market By Price order book. The update interval is around 100ms.</p>
-<h3 id='subscription-2'>Subscription</h3>
+<h3 id='subscription'>Subscription</h3>
 <p><code>market.$symbol.mbp.refresh.$levels</code></p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.mbp.refresh.20"</span><span class="p">,</span><span class="w">
@@ -16346,7 +16360,7 @@ In the near future, Huobi Global will align the update behavior of 150-level inc
   </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.detail"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id11"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='subscribe-etp-real-time-nav'>Subscribe ETP Real Time NAV</h2><h3 id='subscription-3'>Subscription</h3>
+</span></code></pre><h2 id='subscribe-etp-real-time-nav'>Subscribe ETP Real Time NAV</h2><h3 id='subscription-2'>Subscription</h3>
 <p><code>market.$symbol.etp</code></p>
 <h3 id='request-parameter-21'>Request Parameter</h3>
 <table><thead>
