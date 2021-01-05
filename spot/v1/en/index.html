@@ -909,7 +909,7 @@ table th {
 
 <table><thead>
 <tr>
-<th>Release Time<BR>(UTC +8)</th>
+<th>Release Time <br>(UTC +8)</th>
 <th>API</th>
 <th>New / Update</th>
 <th>Description</th>
@@ -941,7 +941,7 @@ table th {
 </tr>
 <tr>
 <td>2020.10.10 19:00</td>
-<td><code>POST /v2/account/repayment</code>,<BR><code>GET /v2/account/repayment</code></td>
+<td><code>POST /v2/account/repayment</code>,<br><code>GET /v2/account/repayment</code></td>
 <td>Add</td>
 <td>Added general repayment and query</td>
 </tr>
@@ -959,7 +959,7 @@ table th {
 </tr>
 <tr>
 <td>2020.8.11 19:00</td>
-<td><code>GET /v1/common/symbols</code>, <BR><code>GET /market/etp</code>, <code>market.$symbol.etp</code>, <BR><code>GET /market/history/kline</code>, <BR><code>market.$symbol$.kline.$period$</code>, <BR><code>GET /v2/etp/reference</code>, <BR><code>POST /v2/etp/creation</code>, <BR><code>POST /v2/etp/redemption</code>, <BR><code>GET /v2/etp/transactions</code>, <BR><code>GET /v2/etp/transaction</code>, <BR><code>GET /v2/etp/rebalance</code></td>
+<td><code>GET /v1/common/symbols</code>, <br><code>GET /market/etp</code>, <code>market.$symbol.etp</code>, <br><code>GET /market/history/kline</code>, <br><code>market.$symbol$.kline.$period$</code>, <br><code>GET /v2/etp/reference</code>, <br><code>POST /v2/etp/creation</code>, <br><code>POST /v2/etp/redemption</code>, <br><code>GET /v2/etp/transactions</code>, <br><code>GET /v2/etp/transaction</code>, <br><code>GET /v2/etp/rebalance</code></td>
 <td>Add &amp; Update</td>
 <td>Added/updated relevant channels/endpoints to support ETP</td>
 </tr>
@@ -1055,13 +1055,13 @@ table th {
 </tr>
 <tr>
 <td>2020.6.16 10:00</td>
-<td><code>GET /v2/sub-user/user-list</code>,<BR> <code>GET /v2/sub-user/user-state</code>,<BR> <code>GET /v2/sub-user/account-list</code></td>
+<td><code>GET /v2/sub-user/user-list</code>,<br> <code>GET /v2/sub-user/user-state</code>,<br> <code>GET /v2/sub-user/account-list</code></td>
 <td>Add</td>
 <td>Added new endpoints for querying sub user&#39;s list, sub user&#39;s status, sub user&#39;s accounts</td>
 </tr>
 <tr>
 <td>2020.6.15 19:00</td>
-<td><code>POST /v2/sub-user/api-key-generation</code>,<BR><code>POST /v2/sub-user/api-key-modification</code></td>
+<td><code>POST /v2/sub-user/api-key-generation</code>,<br><code>POST /v2/sub-user/api-key-modification</code></td>
 <td>Update</td>
 <td>Expand the limit of API key creation per user; Expand the limit of IP binding to each API key.</td>
 </tr>
@@ -1079,7 +1079,7 @@ table th {
 </tr>
 <tr>
 <td>2020.6.5 19:00</td>
-<td><code>POST /v2/sub-user/api-key-generation</code>,<BR> <code>GET /v2/user/api-key</code>,<BR> <code>POST /v2/sub-user/api-key-modification</code>, <BR><code>POST /v2/sub-user/api-key-deletion</code></td>
+<td><code>POST /v2/sub-user/api-key-generation</code>,<br> <code>GET /v2/user/api-key</code>,<br> <code>POST /v2/sub-user/api-key-modification</code>, <br><code>POST /v2/sub-user/api-key-deletion</code></td>
 <td>Add</td>
 <td>API Key management of parent user and sub users</td>
 </tr>
@@ -1097,7 +1097,7 @@ table th {
 </tr>
 <tr>
 <td>2020.6.1 19:00</td>
-<td><code>GET /v2/reference/transact-fee-rate</code>,<BR> <code>GET /v1/order/orders/{order-id}/matchresults</code>, <BR><code>GET /v1/order/matchresults</code>, <BR><code>trade.clearing#${symbol}</code>, <BR><code>GET /v1/account/history</code>, <code>accounts</code>, <BR><code>accounts.update#${mode}</code></td>
+<td><code>GET /v2/reference/transact-fee-rate</code>,<br> <code>GET /v1/order/orders/{order-id}/matchresults</code>, <br><code>GET /v1/order/matchresults</code>, <br><code>trade.clearing#${symbol}</code>, <br><code>GET /v1/account/history</code>, <code>accounts</code>, <br><code>accounts.update#${mode}</code></td>
 <td>Update</td>
 <td>Support transaction rebate</td>
 </tr>
@@ -1169,13 +1169,13 @@ table th {
 </tr>
 <tr>
 <td>2020.3.30 19:00</td>
-<td><code>POST /v1/order/orders/place</code>,<BR><code>POST /v1/order/batch-orders</code>,<BR><code>GET /v1/order/openOrders</code>,<BR><code>GET /v1/order/orders/{order-id}</code>,<BR><code>GET /v1/order/orders/getClientOrder</code>,<BR><code>GET /v1/order/orders/{order-id}/matchresults</code>,<BR><code>GET /v1/order/orders</code>,<BR><code>GET /v1/order/history</code>,<BR><code>GET /v1/order/matchresults</code>,<BR><code>orders.$symbol</code>,<BR><code>trade.clearing#${symbol}</code>,<BR><code>orders.$symbol.update</code>,<BR><code>orders.list</code></td>
+<td><code>POST /v1/order/orders/place</code>,<br><code>POST /v1/order/batch-orders</code>,<br><code>GET /v1/order/openOrders</code>,<br><code>GET /v1/order/orders/{order-id}</code>,<br><code>GET /v1/order/orders/getClientOrder</code>,<br><code>GET /v1/order/orders/{order-id}/matchresults</code>,<br><code>GET /v1/order/orders</code>,<br><code>GET /v1/order/history</code>,<br><code>GET /v1/order/matchresults</code>,<br><code>orders.$symbol</code>,<br><code>trade.clearing#${symbol}</code>,<br><code>orders.$symbol.update</code>,<br><code>orders.list</code></td>
 <td>Update</td>
 <td>Added FOK order type</td>
 </tr>
 <tr>
 <td>2020.3.27 19:00</td>
-<td><code>GET /v1/order/orders</code><BR><code>GET /v1/order/orders</code></td>
+<td><code>GET /v1/order/orders</code><br><code>GET /v1/order/orders</code></td>
 <td>Update</td>
 <td>Shorten the queriable period of &quot;canceled&quot; orders from 1 day to 2 hours.</td>
 </tr>
@@ -1205,7 +1205,7 @@ table th {
 </tr>
 <tr>
 <td>2020.3.2 11:00</td>
-<td><code>GET https://status.huobigroup.com</code><BR><code>/api/v2/summary.json</code></td>
+<td><code>GET https://status.huobigroup.com</code><br><code>/api/v2/summary.json</code></td>
 <td>New</td>
 <td>Added &quot;Get system status&quot; endpoint</td>
 </tr>
