@@ -28,17 +28,16 @@ table th {
 }
 </style>
 
-
-| Release Time<BR>(UTC +8) | API  | New / Update    | Description     |
+| Release Time <br>(UTC +8) | API  | New / Update    | Description     |
 | ------------------------ | ---------------------- | --------------- | ------------------------------------- |
 | 2020.12.16 19:00         | `GET /v1/order/matchresults ` and `GET /v1/order/orders/{order-id}/matchresults` | Update          | Add "fee-deduct-state" parameter to indicate the status of “In deduction” and “deduction completed” |
 | 2020.12.14 19:00         | `POST /v2/etp/{transactId}/cancel ` and`POST /v2/etp/batch-cancel` | Add             | Add "Submit Cancel for ETP Multiple Orders" and"Submit Cancel for an ETP Order" endpoints |
 | 2020.11.26 19:00        | `GET /v2/user/uid `      | Add             | Add Get UID  endpoints      |
 | 2020.10.16 19:00         | `orders#${symbol} `                                          | Add             | Add accountId for order creation event                       |
-| 2020.10.10 19:00         | `POST /v2/account/repayment`,<BR>`GET /v2/account/repayment` | Add             | Added general repayment and query                            |
+| 2020.10.10 19:00         | `POST /v2/account/repayment`,<br>`GET /v2/account/repayment` | Add             | Added general repayment and query                            |
 | 2020.8.28 19:00          | `GET /v1/common/symbols`                                     | Update          | Added API trading eligibility flag                           |
 | 2020.8.4 19:00           | `accounts.update#${mode}`, `accounts`                        | Update          | Added new event type deposit and withdraw                    |
-| 2020.8.11 19:00          | `GET /v1/common/symbols`, <BR>`GET /market/etp`, `market.$symbol.etp`, <BR>`GET /market/history/kline`, <BR>`market.$symbol$.kline.$period$`, <BR>`GET /v2/etp/reference`, <BR>`POST /v2/etp/creation`, <BR>`POST /v2/etp/redemption`, <BR>`GET /v2/etp/transactions`, <BR>`GET /v2/etp/transaction`, <BR>`GET /v2/etp/rebalance` | Add & Update    | Added/updated relevant channels/endpoints to support ETP     |
+| 2020.8.11 19:00          | `GET /v1/common/symbols`, <br>`GET /market/etp`, `market.$symbol.etp`, <br>`GET /market/history/kline`, <br>`market.$symbol$.kline.$period$`, <br>`GET /v2/etp/reference`, <br>`POST /v2/etp/creation`, <br>`POST /v2/etp/redemption`, <br>`GET /v2/etp/transactions`, <br>`GET /v2/etp/transaction`, <br>`GET /v2/etp/rebalance` | Add & Update    | Added/updated relevant channels/endpoints to support ETP     |
 | 2020.8.10 19:00          | `GET v1/stable-coin/quote`, `POST v1/stable-coin/exchange`   | Update          | Added new response field for exchange fee                    |
 | 2020.8.4 19:00           | `GET /v1/account/history`                                    | Update          | Added new response field "next-id"                           |
 | 2020.8.3 19:00           | `POST /v2/algo-orders`, `GET /v2/algo-orders/opening`, `GET /v2/algo-orders/history`, `GET /v2/algo-orders/specific` | Update          | Added trailing stop order                                    |
@@ -54,14 +53,14 @@ table th {
 | 2020.6.24 19:00          | `GET /v1/order/orders/{order-id}/matchresults` & `GET /v1/order/matchresults` | Update          | Added response field 'fee-currency'                          |
 | 2020.6.24 19:00          | `GET /v2/account/withdraw/address`                           | Add             | Query withdraw address                                       |
 | 2020.6.23 19:00          | Added some new endpoints                                     | Add             | Added new endpoint for C2C lending and borrowing             |
-| 2020.6.16 10:00          | `GET /v2/sub-user/user-list`,<BR> `GET /v2/sub-user/user-state`,<BR> `GET /v2/sub-user/account-list` | Add             | Added new endpoints for querying sub user's list, sub user's status, sub user's accounts |
-| 2020.6.15 19:00          | `POST /v2/sub-user/api-key-generation`,<BR>`POST /v2/sub-user/api-key-modification` | Update          | Expand the limit of API key creation per user; Expand the limit of IP binding to each API key. |
+| 2020.6.16 10:00          | `GET /v2/sub-user/user-list`,<br> `GET /v2/sub-user/user-state`,<br> `GET /v2/sub-user/account-list` | Add             | Added new endpoints for querying sub user's list, sub user's status, sub user's accounts |
+| 2020.6.15 19:00          | `POST /v2/sub-user/api-key-generation`,<br>`POST /v2/sub-user/api-key-modification` | Update          | Expand the limit of API key creation per user; Expand the limit of IP binding to each API key. |
 | 2020.6.11 19:00          | `POST /v1/account/transfer`                                  | Update          | Add transfer asset between spot account and individual isolated-margin account; Add transfer asset between individual isolated-margin accounts. |
 | 2020.6.11 19:00          | `GET /v1/query/deposit-withdraw`                             | Update          | Return the reasons of the withdrawal failure                 |
-| 2020.6.5 19:00           | `POST /v2/sub-user/api-key-generation`,<BR> `GET /v2/user/api-key`,<BR> `POST /v2/sub-user/api-key-modification`, <BR>`POST /v2/sub-user/api-key-deletion` | Add             | API Key management of parent user and sub users              |
+| 2020.6.5 19:00           | `POST /v2/sub-user/api-key-generation`,<br> `GET /v2/user/api-key`,<br> `POST /v2/sub-user/api-key-modification`, <br>`POST /v2/sub-user/api-key-deletion` | Add             | API Key management of parent user and sub users              |
 | 2020.6.4 19:00           | Some of private REST endpoints                               | Update          | Adjusted rate limit value                                    |
 | 2020.6.1 19:00           | `orders#${symbol}`                                           | Update          | support creation event for taker's order                     |
-| 2020.6.1 19:00           | `GET /v2/reference/transact-fee-rate`,<BR> `GET /v1/order/orders/{order-id}/matchresults`, <BR>`GET /v1/order/matchresults`, <BR>`trade.clearing#${symbol}`, <BR>`GET /v1/account/history`, `accounts`, <BR>`accounts.update#${mode}` | Update          | Support transaction rebate                                   |
+| 2020.6.1 19:00           | `GET /v2/reference/transact-fee-rate`,<br> `GET /v1/order/orders/{order-id}/matchresults`, <br>`GET /v1/order/matchresults`, <br>`trade.clearing#${symbol}`, <br>`GET /v1/account/history`, `accounts`, <br>`accounts.update#${mode}` | Update          | Support transaction rebate                                   |
 | 2020.5.29 19:00          | `POST /v2/sub-user/tradable-market`                          | Add             | Parent user to set sub user's trading permission             |
 | 2020.5.29 19:00          | `POST /v2/sub-user/transferability`                          | Add             | Parent user to set sub user's asset transfer permission      |
 | 2020.5.29 19:00          | `POST /v2/sub-user/creation`                                 | Add             | Added sub user creation                                      |
@@ -73,13 +72,13 @@ table th {
 | 2020.3.31 21:00          | `accounts.update#${mode}`                                    | Update          | Disseminate current static values of individual accounts first just after subscription |
 | 2020.3.31 11:00          | `GET /v2/account/ledger`                                     | Add             | Added account ledger query endpoint                          |
 | 2020.3.30 19:00          | `market.$symbol.mbp.refresh.$levels`                         | Add             | Added MBP refresh update topic                               |
-| 2020.3.30 19:00          | `POST /v1/order/orders/place`,<BR>`POST /v1/order/batch-orders`,<BR>`GET /v1/order/openOrders`,<BR>`GET /v1/order/orders/{order-id}`,<BR>`GET /v1/order/orders/getClientOrder`,<BR>`GET /v1/order/orders/{order-id}/matchresults`,<BR>`GET /v1/order/orders`,<BR>`GET /v1/order/history`,<BR>`GET /v1/order/matchresults`,<BR>`orders.$symbol`,<BR>`trade.clearing#${symbol}`,<BR>`orders.$symbol.update`,<BR>`orders.list` | Update          | Added FOK order type                                         |
-| 2020.3.27 19:00          | `GET /v1/order/orders`<BR>`GET /v1/order/orders`             | Update          | Shorten the queriable period of "canceled" orders from 1 day to 2 hours. |
+| 2020.3.30 19:00          | `POST /v1/order/orders/place`,<br>`POST /v1/order/batch-orders`,<br>`GET /v1/order/openOrders`,<br>`GET /v1/order/orders/{order-id}`,<br>`GET /v1/order/orders/getClientOrder`,<br>`GET /v1/order/orders/{order-id}/matchresults`,<br>`GET /v1/order/orders`,<br>`GET /v1/order/history`,<br>`GET /v1/order/matchresults`,<br>`orders.$symbol`,<br>`trade.clearing#${symbol}`,<br>`orders.$symbol.update`,<br>`orders.list` | Update          | Added FOK order type                                         |
+| 2020.3.27 19:00          | `GET /v1/order/orders`<br>`GET /v1/order/orders`             | Update          | Shorten the queriable period of "canceled" orders from 1 day to 2 hours. |
 | 2020.3.24 19:00          | `market.$symbol.mbp.$levels`                                 | Update          | Added retrievable symbols                                    |
 | 2020.3.17 19:00          | `GET /v1/order/matchresults`                                 | Update          | The maximum value of the size field is increased from 100 to 500 |
 | 2020.3.12 19:00          | `GET /market/tickers`                                        | Update          | Added best bid/offer fields                                  |
 | 2020.3.5 19:00           | `GET /v1/fee/fee-rate/get`                                   | Delete          | Removed the endpoint                                         |
-| 2020.3.2 11:00           | `GET https://status.huobigroup.com`<BR>`/api/v2/summary.json` | New             | Added "Get system status" endpoint                           |
+| 2020.3.2 11:00           | `GET https://status.huobigroup.com`<br>`/api/v2/summary.json` | New             | Added "Get system status" endpoint                           |
 | 2020.2.28 11:00          | `GET /v1/cross-margin/loan-orders`,<br>`GET /v1/cross-margin/accounts/balance` | Update          | Added new optional request parameter                         |
 | 2020.2.28 11:00          | `GET /v1/subuser/aggregate-balance`,<br>`GET /v1/account/accounts/{sub-uid}` | Update          | Added new enum value to account type                         |
 | 2020.2.28 11:00          | `POST /v1/cross-margin/transfer-in`,<br>`POST /v1/cross-margin/transfer-out`,<br>`GET /v1/cross-margin/loan-info`,<br>`POST /v1/cross-margin/orders`,<br>`POST /v1/cross-margin/orders/{order-id}/repay`,<br>`GET /v1/cross-margin/loan-orders`,<br>`GET /v1/cross-margin/accounts/balance` | Update          | Authorised sub user's access is allowed                      |
