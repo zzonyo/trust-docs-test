@@ -30,6 +30,7 @@ table th {
 
 | Release Time <br>(UTC +8) | API  | New / Update    | Description     |
 | ------------------------ | ---------------------- | --------------- | ------------------------------------- |
+| 2021.1.5 | accounts.update#${mode} | Update | added Specify "mode" as 2:  <br/>accounts.update#2  <br/>Whenever  account balance or available balance changed, it will be updated together. |
 | 2020.12.16 19:00         | `GET /v1/order/matchresults ` and `GET /v1/order/orders/{order-id}/matchresults` | Update          | Add "fee-deduct-state" parameter to indicate the status of “In deduction” and “deduction completed” |
 | 2020.12.14 19:00         | `POST /v2/etp/{transactId}/cancel ` and`POST /v2/etp/batch-cancel` | Add             | Add "Submit Cancel for ETP Multiple Orders" and"Submit Cancel for an ETP Order" endpoints |
 | 2020.11.26 19:00        | `GET /v2/user/uid `      | Add             | Add Get UID  endpoints      |
@@ -8918,6 +8919,8 @@ Upon subscription field value specified, the update can be triggered by either o
 
 2、Whenever account balance or available balance is changed. (Update separately.)
 
+3、Whenever  account balance or available balance changed, it will be updated together.
+
 Note that right now there is no account update when transferring between spot account and other accounts.
 
 ### Subscription Field
@@ -8926,16 +8929,23 @@ Note that right now there is no account update when transferring between spot ac
 | ----- | --------- | ------------------------------------------------- |
 | mode  | integer   | Trigger mode, valid value: 0, 1, default value: 0 |
 
-Samples  
+Samples 
+
 1、Not specifying "mode":  
 accounts.update  
 Only update when account balance changed;  
+
 2、Specify "mode" as 0:  
 accounts.update#0  
 Only update when account balance changed;  
+
 3、Specify "mode" as 1:  
 accounts.update#1  
 Update when either account balance changed or available balance changed.  
+
+4、Specify "mode" as 2:  
+accounts.update#2  
+Whenever  account balance or available balance changed, it will be updated together.
 
 Note:
 The topic disseminates the current static value of individual accounts first, at the beginning of subscription, followed by account change updates. While disseminating the current static value of individual accounts, inside the message, field value of "changeType" and "changeTime" is null.
