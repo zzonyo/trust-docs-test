@@ -2387,8 +2387,8 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
 > data说明：
 
 ```
-    "data": {
-         "id": 订单唯一id（品种唯一）,
+    "tick": {
+      "id": 订单唯一id（品种唯一）,
       "ts": 最新成交时间,
       "data": [
         {
@@ -2409,8 +2409,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
 
 {
     "ch": "market.BTC-USDT.trade.detail",
-    "data": [
-        {
+    "tick": {
             "data": [
                 {
                     "amount": 2,
@@ -2422,8 +2421,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
             ],
             "id": 131476787,
             "ts": 1603695383124
-        }
-    ],
+        },
     "status": "ok",
     "ts": 1603695388965
 }
