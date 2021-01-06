@@ -2030,7 +2030,7 @@ contract_size             |  true           |  decimal    |  合约面值，即1
 price_tick                |  true           |  decimal    |  合约价格最小变动精度             |  0.001, 0.01...  |
 delivery_date             |  true           |  string     |  合约交割日期                     |  如"20180720"  |
 create_date               |  true           |  string     |  合约上市日期                      |  如"20180706"  |
-contract_status           |  true           |  int        |  合约状态                          |  合约状态: 0:已下市、1:上市、2:待上市、3:停牌，4:暂停上市中、5:结算中、6:交割中、7:结算完成、8:交割完成、9:暂停上市  |
+contract_status           |  true           |  int        |  合约状态                          |  合约状态: 0:已下市、1:上市、2:待上市、3:停牌，4:暂停上市中、5:结算中、6:交割中、7:结算完成、8:交割完成、9:暂停交易中  |
 \</data\>    |             |               |                     |        |                 
 ts                         |  true           |  long       |  响应生成时间点，单位：毫秒  |      
 
