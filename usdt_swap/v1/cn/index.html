@@ -5044,8 +5044,8 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-ex/market/history/trade?
 <blockquote>
 <p>data说明：</p>
 </blockquote>
-<pre class="highlight plaintext"><code>    "data": {
-         "id": 订单唯一id（品种唯一）,
+<pre class="highlight plaintext"><code>    "tick": {
+      "id": 订单唯一id（品种唯一）,
       "ts": 最新成交时间,
       "data": [
         {
@@ -5065,8 +5065,7 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-ex/market/history/trade?
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC-USDT.trade.detail"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
@@ -5078,8 +5077,7 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-ex/market/history/trade?
             </span><span class="p">],</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">131476787</span><span class="p">,</span><span class="w">
             </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603695383124</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
+        </span><span class="p">},</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603695388965</span><span class="w">
 </span><span class="p">}</span><span class="w">
