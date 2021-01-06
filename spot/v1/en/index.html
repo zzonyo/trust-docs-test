@@ -2045,44 +2045,6 @@ The types include:</p>
 <li>minepool: Minepool account</li>
 <li>etf: ETF account</li>
 </ul>
-<h3 id='identity'>Identity</h3>
-<p>The frequently used Identities are listed below:</p>
-
-<ul>
-<li>order-id: The unique identity for order.</li>
-<li>client-order-id: The identity that defined by client. This id is included in order creation request, and will be returned as order-id. This id is valid within 24 hours. The allowed characters are letters (case sensitive), digit, underscore (_) and hyphen (-), no more than 64 chars.</li>
-<li>match-id : The identity for order matching.</li>
-<li>trade-id : The unique identity for the trade.</li>
-</ul>
-<h3 id='order-type'>Order Type</h3>
-<p>The order type is consist of trade direction and order classification. Take <code>buy-market</code> as an example, the trade direction is <code>buy</code>, the operation type is <code>market</code>.  </p>
-
-<p>Trade direction includes:</p>
-
-<ul>
-<li>buy</li>
-<li>sell<br></li>
-</ul>
-
-<p>Order classification includes:</p>
-
-<ul>
-<li>limit: Both of the price and amount should be specified in order creation request.</li>
-<li>market : The price is not required in order creation request, you only need to specify either money or amount. The matching and trade will happen automatically according to the request.</li>
-<li>limit-maker: The price is specified in order creation request as market maker. It will not be matched in the matching queue.</li>
-<li>ioc: ioc stands for &quot;immediately or cancel&quot;, it means the order will be canceled if it couldn&#39;t be matched. If the order is partially traded, the remaining part will be canceled.</li>
-<li>stop-limit: The price in order creation request is the trigger price. The order will be put into matching queue only when the market price reaches the trigger price.</li>
-<li>fok: fok stands for &quot;fill or kill&quot;, it means the order will be canceled if it couldn&#39;t be fully matched. If the order can be only partially traded, the entire order will be canceled.</li>
-</ul>
-<h3 id='order-status'>Order Status</h3>
-<ul>
-<li>submitted: The order is submitted, and already in the matching queue, waiting for deal.</li>
-<li>partial-filled: The order is already in the matching queue and partially traded, and is waiting for further matching and trade.</li>
-<li>filled: The order is already traded and not in the matching queue any more.</li>
-<li>partial-canceled: The order is not in the matching queue any more. The status is transferred from &#39;partial-filled&#39;, the order is partially trade, but remaining is canceled.</li>
-<li>canceled: The order is not in the matching queue any more, and completely canceled. There is no trade associated with this order.</li>
-<li>canceling: The order is under canceling, but haven&#39;t been removed from matching queue yet.</li>
-</ul>
 
 <p>You can refer to <a href='https://www.huobi.com/en-us/guide/'>Huobi Course</a> to get detailed information</p>
 <h1 id='api-access'>API Access</h1><h2 id='overview-2'>Overview</h2>
@@ -8458,6 +8420,60 @@ Rate Limit (NEW): 20times/2s</p>
 <aside class="notice">All endpoints in this section require authentication</aside>
 
 <aside class="warning">The parameter "account-id" and "source" should be set properly, refer to details in Request Parameters description below.</aside>
+
+<p>Below is the glossary of trading related field:</p>
+
+<p><strong>order type</strong>: The order type is consist of trade direction and behavior type: [direction]-[behavior]</p>
+
+<p>direction:</p>
+
+<ul>
+<li>buy</li>
+<li>sell</li>
+</ul>
+
+<p>behavior type:</p>
+
+<ul>
+<li>market : The price is not required in order creation request, you only need to specify either volume or amount. The matching and trade will happen automatically according to the request.</li>
+<li>limit: Both of the price and amount should be specified in order creation request.</li>
+<li>limit-maker: The price is specified in order creation request as market maker. It will not be matched in the matching queue.</li>
+<li>ioc: ioc stands for &quot;immediately or cancel&quot;, it means the order will be canceled if it couldn&#39;t be matched. If the order is partially traded, the remaining part will be canceled.</li>
+<li>limit-fok: fok stands for &quot;fill or kill&quot;, it means the order will be canceled if it couldn&#39;t be <strong>fully</strong> matched. Even if the order can be partially traded, the entire order will be canceled.</li>
+<li>market-grid: Grid trading market order (not supported by API)</li>
+<li>limit-grid: Grid trading limit order (not supported by API)</li>
+<li>stop-limit: The price in order creation request is the trigger price. The order will be put into matching queue only when the market price reaches the trigger price. This type is replaced by conditional order, please use conditional order APIs</li>
+</ul>
+
+<p><strong>order source</strong>: define where is the order from</p>
+
+<ul>
+<li>spot-api: API order from spot account</li>
+<li>margin-api：API order from margin account</li>
+<li>super-margin-api：API order from cross-margin account</li>
+<li>c2c-margin-api：API order from c2c account</li>
+<li>grid-trading-sys：grid order (not supported by API)</li>
+</ul>
+
+<p><strong>order state</strong>:</p>
+
+<ul>
+<li>submitted: The order is submitted, and already in the matching queue, waiting for deal.</li>
+<li>partial-filled: The order is already in the matching queue and partially traded, and is waiting for further matching and trade.</li>
+<li>filled: The order is already traded and not in the matching queue any more.</li>
+<li>partial-canceled: The order is not in the matching queue any more. The status is transferred from &#39;partial-filled&#39;, the order is partially trade, but remaining is canceled.</li>
+<li>canceling: The order is under canceling, but haven&#39;t been removed from matching queue yet.</li>
+<li>canceled: The order is not in the matching queue any more, and completely canceled. There is no trade associated with this order.</li>
+</ul>
+
+<p><strong>related Ientity</strong>: The frequently used Identities are listed below:</p>
+
+<ul>
+<li>order-id: The unique identity for order.</li>
+<li>client-order-id: The identity that defined by client. This id is included in order creation request, and will be returned as order-id. This id is valid within 24 hours. The allowed characters are letters (case sensitive), digit, underscore (_) and hyphen (-), no more than 64 chars.</li>
+<li>match-id : The identity for order matching.</li>
+<li>trade-id : The unique identity for the trade.</li>
+</ul>
 <h2 id='place-a-new-order'>Place a New Order</h2>
 <p>API Key Permission：Trade<br>
 Rate Limit (NEW): 100times/2s</p>
@@ -8998,7 +9014,7 @@ Rate Limit (NEW): 50times/2s</p>
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
+<td>All possible order type (refer to introduction in this section)</td>
 </tr>
 <tr>
 <td>filled-amount</td>
@@ -9375,7 +9391,7 @@ Rate Limit (NEW): 50times/2s</p>
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
+<td>All possible order type (refer to introduction in this section)</td>
 </tr>
 <tr>
 <td>filled-amount</td>
@@ -9395,12 +9411,12 @@ Rate Limit (NEW): 50times/2s</p>
 <tr>
 <td>source</td>
 <td>string</td>
-<td>The source where the order was triggered, possible values: sys, web, api, app</td>
+<td>All possible order source (refer to introduction in this section)</td>
 </tr>
 <tr>
 <td>state</td>
 <td>string</td>
-<td>Order state: submitted, partial-filled, filled, canceled</td>
+<td>All possible order state (refer to introduction in this section)</td>
 </tr>
 <tr>
 <td>exchange</td>
@@ -9420,7 +9436,7 @@ Rate Limit (NEW): 50times/2s</p>
 <tr>
 <td>operator</td>
 <td>string</td>
-<td>operation character of stop price</td>
+<td>operation character of stop price: gte, lte</td>
 </tr>
 </tbody></table>
 <h2 id='get-the-order-detail-of-an-order-based-on-client-order-id'>Get the Order Detail of an Order (based on client order ID)</h2>
@@ -9528,7 +9544,7 @@ Rate Limit (NEW):50times/2s</p>
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
+<td>All possible order type (refer to introduction in this section)</td>
 </tr>
 <tr>
 <td>filled-amount</td>
@@ -9548,12 +9564,12 @@ Rate Limit (NEW):50times/2s</p>
 <tr>
 <td>source</td>
 <td>string</td>
-<td>The source where the order was triggered, possible values: sys, web, api, app</td>
+<td>All possible order source (refer to introduction in this section)</td>
 </tr>
 <tr>
 <td>state</td>
 <td>string</td>
-<td>Order state: submitted, partial-filled, filled, canceled</td>
+<td>All possible order state (refer to introduction in this section)</td>
 </tr>
 <tr>
 <td>exchange</td>
@@ -9667,7 +9683,7 @@ Rate Limit (NEW): 50times/2s</p>
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
+<td>All possible order type (refer to introduction in this section)</td>
 </tr>
 <tr>
 <td>filled-amount</td>
@@ -9687,7 +9703,7 @@ Rate Limit (NEW): 50times/2s</p>
 <tr>
 <td>source</td>
 <td>string</td>
-<td>The source where the order was triggered, possible values: sys, web, api, app</td>
+<td>All possible order source (refer to introduction in this section)</td>
 </tr>
 <tr>
 <td>role</td>
@@ -9908,7 +9924,7 @@ Rate Limit (NEW): 50times/2s</p>
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
+<td>All possible order type (refer to introduction in this section)</td>
 </tr>
 <tr>
 <td>filled-amount</td>
@@ -9928,12 +9944,12 @@ Rate Limit (NEW): 50times/2s</p>
 <tr>
 <td>source</td>
 <td>string</td>
-<td>The source where the order was triggered, possible values: sys, web, api, app</td>
+<td>All possible order source (refer to introduction in this section)</td>
 </tr>
 <tr>
 <td>state</td>
 <td>string</td>
-<td>submitted, partial-filled, filled, canceled, partial-canceled</td>
+<td>All possible order state (refer to introduction in this section)</td>
 </tr>
 <tr>
 <td>exchange</td>
@@ -10134,7 +10150,7 @@ The API created order will not exist after cancelling 2 hours. </p>
 <tr>
 <td>source</td>
 <td>string</td>
-<td>Order source</td>
+<td>All possible order source (refer to introduction in this section)</td>
 </tr>
 <tr>
 <td>state</td>
@@ -10159,7 +10175,7 @@ The API created order will not exist after cancelling 2 hours. </p>
 <tr>
 <td>type}</td>
 <td>string</td>
-<td>Order type (buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok)</td>
+<td>All possible order type (refer to introduction in this section)</td>
 </tr>
 <tr>
 <td>next-time</td>
@@ -10314,7 +10330,7 @@ Rate Limit (NEW): 20times/2s</p>
 <tr>
 <td>type</td>
 <td>string</td>
-<td>The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok</td>
+<td>All possible order type (refer to introduction in this section)</td>
 </tr>
 <tr>
 <td>filled-amount</td>
@@ -10334,7 +10350,7 @@ Rate Limit (NEW): 20times/2s</p>
 <tr>
 <td>source</td>
 <td>string</td>
-<td>The source where the order was triggered, possible values: sys, web, api, app</td>
+<td>All possible order source (refer to introduction in this section)</td>
 </tr>
 <tr>
 <td>role</td>
