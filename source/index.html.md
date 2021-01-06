@@ -509,41 +509,6 @@ The types include:
 * minepool: Minepool account
 * etf: ETF account
 
-### Identity
-
-The frequently used Identities are listed below:
-
-* order-id: The unique identity for order.
-* client-order-id: The identity that defined by client. This id is included in order creation request, and will be returned as order-id. This id is valid within 24 hours. The allowed characters are letters (case sensitive), digit, underscore (_) and hyphen (-), no more than 64 chars.
-* match-id : The identity for order matching.
-* trade-id : The unique identity for the trade.
-
-### Order Type
-The order type is consist of trade direction and order classification. Take `buy-market` as an example, the trade direction is `buy`, the operation type is `market`.  
-
-Trade direction includes:
-
-* buy
-* sell  
-
-Order classification includes:
-
-* limit: Both of the price and amount should be specified in order creation request.
-* market : The price is not required in order creation request, you only need to specify either money or amount. The matching and trade will happen automatically according to the request.
-* limit-maker: The price is specified in order creation request as market maker. It will not be matched in the matching queue.
-* ioc: ioc stands for "immediately or cancel", it means the order will be canceled if it couldn't be matched. If the order is partially traded, the remaining part will be canceled.
-* stop-limit: The price in order creation request is the trigger price. The order will be put into matching queue only when the market price reaches the trigger price.
-* fok: fok stands for "fill or kill", it means the order will be canceled if it couldn't be fully matched. If the order can be only partially traded, the entire order will be canceled.
-
-### Order Status
-
-* submitted: The order is submitted, and already in the matching queue, waiting for deal.
-* partial-filled: The order is already in the matching queue and partially traded, and is waiting for further matching and trade.
-* filled: The order is already traded and not in the matching queue any more.
-* partial-canceled: The order is not in the matching queue any more. The status is transferred from 'partial-filled', the order is partially trade, but remaining is canceled.
-* canceled: The order is not in the matching queue any more, and completely canceled. There is no trade associated with this order.
-* canceling: The order is under canceling, but haven't been removed from matching queue yet.
-
 You can refer to <a href='https://www.huobi.com/en-us/guide/'>Huobi Course</a> to get detailed information
 
 # API Access
@@ -3797,6 +3762,50 @@ Trading APIs provide trading related functionality, including placing order, can
 <aside class="notice">All endpoints in this section require authentication</aside>
 <aside class="warning">The parameter "account-id" and "source" should be set properly, refer to details in Request Parameters description below.</aside>
 
+Below is the glossary of trading related field:
+
+**order type**: The order type is consist of trade direction and behavior type: [direction]-[behavior]
+
+direction:
+
+- buy
+- sell
+
+behavior type:
+
+- market : The price is not required in order creation request, you only need to specify either volume or amount. The matching and trade will happen automatically according to the request.
+- limit: Both of the price and amount should be specified in order creation request.
+- limit-maker: The price is specified in order creation request as market maker. It will not be matched in the matching queue.
+- ioc: ioc stands for "immediately or cancel", it means the order will be canceled if it couldn't be matched. If the order is partially traded, the remaining part will be canceled.
+- limit-fok: fok stands for "fill or kill", it means the order will be canceled if it couldn't be **fully** matched. Even if the order can be partially traded, the entire order will be canceled.
+- market-grid: Grid trading market order (not supported by API)
+- limit-grid: Grid trading limit order (not supported by API)
+- stop-limit: The price in order creation request is the trigger price. The order will be put into matching queue only when the market price reaches the trigger price. This type is replaced by conditional order, please use conditional order APIs
+
+**order source**: define where is the order from
+
+- spot-api: API order from spot account
+- margin-api：API order from margin account
+- super-margin-api：API order from cross-margin account
+- c2c-margin-api：API order from c2c account
+- grid-trading-sys：grid order (not supported by API)
+
+**order state**:
+
+- submitted: The order is submitted, and already in the matching queue, waiting for deal.
+- partial-filled: The order is already in the matching queue and partially traded, and is waiting for further matching and trade.
+- filled: The order is already traded and not in the matching queue any more.
+- partial-canceled: The order is not in the matching queue any more. The status is transferred from 'partial-filled', the order is partially trade, but remaining is canceled.
+- canceling: The order is under canceling, but haven't been removed from matching queue yet.
+- canceled: The order is not in the matching queue any more, and completely canceled. There is no trade associated with this order.
+
+**related Ientity**: The frequently used Identities are listed below:
+
+- order-id: The unique identity for order.
+- client-order-id: The identity that defined by client. This id is included in order creation request, and will be returned as order-id. This id is valid within 24 hours. The allowed characters are letters (case sensitive), digit, underscore (_) and hyphen (-), no more than 64 chars.
+- match-id : The identity for order matching.
+- trade-id : The unique identity for the trade.
+
 ## Place a New Order
 
 API Key Permission：Trade<br>
@@ -4092,7 +4101,7 @@ curl "https://api.huobi.pro/v1/order/openOrders?account-id=100009&symbol=btcusdt
 | symbol             | string    | The trading symbol to trade, e.g. btcusdt, bccbtc            |
 | price              | string    | The limit price of limit order                               |
 | created-at         | int       | The timestamp in milliseconds when the order was created     |
-| type               | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
+| type               | string    | All possible order type (refer to introduction in this section) |
 | filled-amount      | string    | The amount which has been filled                             |
 | filled-cash-amount | string    | The filled total in quote currency                           |
 | filled-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint) |
@@ -4295,16 +4304,16 @@ No parameter is needed for this endpoint.
 | created-at         | int       | The timestamp in milliseconds when the order was created     |
 | finished-at        | int       | The timestamp in milliseconds when the order was changed to a final state. This is not the time the order is matched. |
 | canceled-at        | int       | The timestamp in milliseconds when the order was canceled, if not canceled then has value of 0 |
-| type               | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
+| type               | string    | All possible order type (refer to introduction in this section) |
 | filled-amount      | string    | The amount which has been filled                             |
 | filled-cash-amount | string    | The filled total in quote currency                           |
 | filled-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint) |
-| source             | string    | The source where the order was triggered, possible values: sys, web, api, app |
-| state              | string    | Order state: submitted, partial-filled, filled, canceled     |
+| source             | string    | All possible order source (refer to introduction in this section) |
+| state              | string    | All possible order state (refer to introduction in this section)     |
 | exchange           | string    | Internal data                                                |
 | batch              | string    | Internal data                                                |
 | stop-price         | string    | trigger price of stop limit order                            |
-| operator           | string    | operation character of stop price                            |
+| operator           | string    | operation character of stop price: gte, lte                            |
 
 
 
@@ -4365,12 +4374,12 @@ curl "https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"
 | created-at         | int       | The timestamp in milliseconds when the order was created     |
 | finished-at        | int       | The timestamp in milliseconds when the order was changed to a final state. This is not the time the order is matched. |
 | canceled-at        | int       | The timestamp in milliseconds when the order was canceled, if not canceled then has value of 0 |
-| type               | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
+| type               | string    | All possible order type (refer to introduction in this section) |
 | filled-amount      | string    | The amount which has been filled                             |
 | filled-cash-amount | string    | The filled total in quote currency                           |
 | filled-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint) |
-| source             | string    | The source where the order was triggered, possible values: sys, web, api, app |
-| state              | string    | Order state: submitted, partial-filled, filled, canceled     |
+| source             | string    | All possible order source (refer to introduction in this section) |
+| state              | string    | All possible order state (refer to introduction in this section)     |
 | exchange           | string    | Internal data                                                |
 | batch              | string    | Internal data                                                |
 | stop-price         | string    | trigger price of stop limit order                            |
@@ -4443,11 +4452,11 @@ No parameter is needed for this endpoint.
 | trade-id            | int       | Unique trade ID (NEW)                                        |
 | price               | string    | The limit price of limit order                               |
 | created-at          | int       | The timestamp in milliseconds when this record is created    |
-| type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
+| type                | string    | All possible order type (refer to introduction in this section) |
 | filled-amount       | string    | The amount which has been filled                             |
 | filled-fees         | string    | Transaction fee (positive value). If maker rebate applicable, revert maker rebate value per trade (negative value). |
 | fee-currency        | string    | Currency of transaction fee or transaction fee rebate (transaction fee of buy order is based on base currency, transaction fee of sell order is based on quote currency; transaction fee rebate of buy order is based on quote currency, transaction fee rebate of sell order is based on base currency) |
-| source              | string    | The source where the order was triggered, possible values: sys, web, api, app |
+| source              | string    | All possible order source (refer to introduction in this section) |
 | role                | string    | the role in the transaction: taker or maker                  |
 | filled-points       | string    | deduction amount (unit: in ht or hbpoint)                    |
 | fee-deduct-currency | string    | deduction type. if blank, the transaction fee is based on original currency; if showing value as "ht", the transaction fee is deducted by HT; if showing value as "hbpoint", the transaction fee is deducted by HB point. |
@@ -4535,12 +4544,12 @@ curl "https://api.huobi.pro/v1/order/orders?symbol=ethusdt&type=buy-limit&staet=
 | created-at         | int       | The timestamp in milliseconds when the order was created     |
 | canceled-at        | int       | The timestamp in milliseconds when the order was canceled, or 0 if not canceled |
 | finished-at        | int       | The timestamp in milliseconds when the order was finished, or 0 if not finished |
-| type               | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
+| type               | string    | All possible order type (refer to introduction in this section) |
 | filled-amount      | string    | The amount which has been filled                             |
 | filled-cash-amount | string    | The filled total in quote currency                           |
 | filled-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint) |
-| source             | string    | The source where the order was triggered, possible values: sys, web, api, app |
-| state              | string    | submitted, partial-filled, filled, canceled, partial-canceled |
+| source             | string    | All possible order source (refer to introduction in this section) |
+| state              | string    | All possible order state (refer to introduction in this section) |
 | exchange           | string    | Internal data                                                |
 | batch              | string    | Internal data                                                |
 | stop-price         | string    | trigger price of stop limit order                            |
@@ -4631,12 +4640,12 @@ The API created order will not exist after cancelling 2 hours.
 | id                | long      | Order ID                                                     |
 | client-order-id   | string    | Client order id ("client-order-id" (if specified) can be returned only from closed orders (state <> canceled) created within 48 hours, upon order creation time.	only those closed orders (state = canceled) created within 24 hours can be returned.) |
 | price             | string    | Order price                                                  |
-| source            | string    | Order source                                                 |
+| source            | string    | All possible order source (refer to introduction in this section)  |
 | state             | string    | Order status ( filled, partial-canceled, canceled )          |
 | symbol            | string    | Trading symbol                                               |
 | stop-price        | string    | trigger price of stop limit order                            |
 | operator          | string    | operation character of stop price                            |
-| type}             | string    | Order type (buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok) |
+| type}             | string    | All possible order type (refer to introduction in this section) |
 | next-time         | long      | Next query “start-time” (in response of “direct” = prev), Next query “end-time” (in response of “direct” = next). Note: Only when the total number of items in the search result exceeded the limitation defined in “size”, this field exists. UTC time in millisecond. |
 
 
@@ -4703,11 +4712,11 @@ curl "https://api.huobi.pro/v1/order/matchresults?symbol=ethusdt"
 | trade-id            | long      | Unique trade ID                                              |
 | price               | string    | The limit price of limit order                               |
 | created-at          | int       | The timestamp in milliseconds when this record is created    |
-| type                | string    | The order type, possible values are: buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
+| type                | string    | All possible order type (refer to introduction in this section) |
 | filled-amount       | string    | The amount which has been filled                             |
 | filled-fees         | string    | Transaction fee (positive value). If maker rebate applicable, revert maker rebate value per trade (negative value). |
 | fee-currency        | string    | Currency of transaction fee or transaction fee rebate (transaction fee of buy order is based on base currency, transaction fee of sell order is based on quote currency; transaction fee rebate of buy order is based on quote currency, transaction fee rebate of sell order is based on base currency) |
-| source              | string    | The source where the order was triggered, possible values: sys, web, api, app |
+| source              | string    | All possible order source (refer to introduction in this section) |
 | role                | string    | The role in the transaction: taker or maker.                 |
 | filled-points       | string    | deduction amount (unit: in ht or hbpoint)                    |
 | fee-deduct-currency | string    | deduction type: ht or hbpoint.                               |
