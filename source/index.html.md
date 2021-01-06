@@ -2006,7 +2006,7 @@ contract_size                  | true          | decimal  | Contract Value (USD 
 price_tick                     | true          | decimal  | Minimum Variation of Contract Price           | 0.001, 0.01...                                               |
 delivery_date                  | true          | string   | Contract Delivery Date                        | eg "20180720"                                                |
 create_date                    | true          | string   | Contract Listing Date                         | eg "20180706"                                                |
-contract_status                | true          | int      | Contract Status                               | 0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered,9: Suspended Listing |
+contract_status                | true          | int      | Contract Status                               | 0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered,9: Suspending of Trade |
 \</list\>                      |               |          |                                               |                                                              |
 ts                             | true          | long     | Time of Respond Generation，Unit：Millisecond |                                                              |
 
@@ -8579,7 +8579,7 @@ To subscribe contract info, the client has to make connection to the server and 
 | price_tick  | decimal | Minimum Variation of Contract Price | 0.001, 0.01... |
 | delivery_date  |  string  | delivery  date    | such as "20200327"  |
 | create_date   |  string  | Contract Listing Date    | such as "20180706" |
-| contract_status      |  int     | contract status  | 0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered, 9 Suspending of Trade |
+| contract_status      |  int     | contract status  | 0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered, 9: Suspending of Trade |
 | \</data\>   |  |     |    |
 
 
