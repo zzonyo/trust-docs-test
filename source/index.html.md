@@ -2435,7 +2435,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
 | 参数名称   | 是否必须 | 数据类型   | 描述  | 取值范围         |
 | ------ | ---- | ------ | ---------------------------------------- | ------------ |
 | ch     | true | string | 数据所属的 channel，格式： market.$contract_code.trade.detail |              |
-| \<data\> | true | object array |           |      |       |
+| \<tick\> | true | object |           |      |       |
 | \<data\>  | true | object array |           |      |       |
 | amount     | true | decimal | 成交量(张)，买卖双边成交量之和       |      |            |
 | direction     | true | string | 主动成交方向       |      |            |
@@ -2445,7 +2445,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
 | \</data\>    |  |  |              |      |            |
 | id     | true | long | 订单唯一id（品种唯一）    |      |            |
 | ts     | true | long | 最新成交时间       |      |            |
-| \</data\>    |  |  |              |      |            |
+| \</tick\>    |  |  |              |      |            |
 | status | true | string |                                          | "ok"，"error" |
 | ts     | true | long | 响应生成时间点，单位：毫秒                            |              |
 
