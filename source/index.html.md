@@ -668,7 +668,7 @@ search: True
 读取     |  市场行情接口           |   /swap-api/v1/swap_api_state  |                  GET        |  查询系统状态   |  否  |
 读取     |  市场行情接口           |   /swap-api/v1/swap_funding_rate  |                  GET        |  获取合约的资金费率   |  否  |
 读取     |  市场行情接口           |   /swap-api/v1/swap_historical_funding_rate  |                  GET        |  获取合约的历史资金费率   |  否  |
-读取     |  市场行情接口           |  /swap-api/v1/swap_liquidation_orders |    GET       |       获取强平订单       |  是  |
+读取     |  市场行情接口           |  /swap-api/v1/swap_liquidation_orders |    GET       |       获取强平订单       |  否  |
 读取     |  市场行情接口           |   /swap-api/v1/swap_settlement_records  |     GET       |  查询平台历史结算记录            |  否  |
 读取     |  市场行情接口           |   /index/market/history/swap_premium_index_kline  |                  GET        |  获取溢价指数K线   |  否  |
 读取     |  市场行情接口           |   /index/market/history/swap_estimated_rate_kline  |                  GET        |  获取实时预测资金费率的K线数据   |  否  |
@@ -870,7 +870,7 @@ api.hbdm.com\n
 
 * 公开行情接口和用户私有接口都有访问次数限制
 
-* 普通用户，需要密钥的私有接口，每个UID 3秒最多 72 次请求(交易接口3秒最多 36 次请求，查询接口3秒最多 36 次请求) (该UID的所有币种和不同到期日的合约的所有私有接口共享该限制) 
+* 普通用户，需要密钥的私有接口，每个UID 3秒最多 72 次请求(交易接口3秒最多 36 次请求，查询接口3秒最多 36 次请求) (该UID的所有币种和不同到期日的合约的所有私有接口共享该限制)。 <a href=https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#ab0b26742c>查看API接口类型列表(其中读取即查询,交易即交易)</a>
 
 * 其他非行情类的公开接口，比如获取指数信息，限价信息，交割结算、平台持仓信息等，所有用户都是每个IP3秒最多120次请求（所有该IP的非行情类的公开接口请求共享3秒120次的额度）
 
