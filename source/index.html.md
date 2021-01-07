@@ -4008,7 +4008,7 @@ status <img width=250/> | true <img width=250/> | string | 请求处理结果 <i
 ts | true  | long | 响应生成时间点，单位：毫秒 |  |
 \<data\> |  |  | 字典类型 |  |
 \<financial_record\> |  |  |  |  |
-id | true  | long | 财务记录ID（唯一） |  |
+id | true  | long | 财务记录ID（品种唯一） |  |
 ts | true  | long | 创建时间 |  |
 symbol | true  | string | 品种代码 | 支持大小写,"BTC","ETH"... |
 type | true  | int | 交易类型 | 3:平多; 4:平空; 5:开仓手续费-吃单; 6:开仓手续费-挂单; 7:平仓手续费-吃单; 8:平仓手续费-挂单; 9:交割平多; 10:交割平空; 11:交割手续费; 12:强制平多; 13:强制平空; 14:从币币转入; 15:转出至币币; 16:结算未实现盈亏-多仓; 17:结算未实现盈亏-空仓; 19:穿仓分摊; 26:系统; 28:活动奖励; 29:返利; 30:资金费-收入; 31:资金费-支出; 34:转出到子账号合约账户; 35:从子账号合约账户转入; 36:转出到母账号合约账户; 37:从母账号合约账户转入; |
@@ -4098,7 +4098,7 @@ total_size | true  | int | 总条数 |  |
 | ts                    | true | long    | 响应生成时间点，单位：毫秒 |                                          |
 | \<data\>              | true    |  object       | 字典类型          |                                          |
 | \<financial_record\>  | true     |  object array       |               |                                          |
-| id                    | true | long    |    流水id           |                                          |
+| id                    | true | long    |    流水id（品种唯一）           |                                          |
 | ts                    | true | long    | 创建时间          |                                          |
 | symbol                | true | string  | 品种代码          | "BTC","ETH"...                           |
 | contract_code                | true | string  | 合约代码          | "BTC200919"...                           |
