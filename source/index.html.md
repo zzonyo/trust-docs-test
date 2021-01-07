@@ -273,7 +273,7 @@ Future, Coin Margined Swap,Option Swap and USDT Margined Swap are using separate
 
 Please note that, for both public interface and private interface, there are rate limits, more details are as below:
 
-* Generally, the private interface rate limit of API key is at most 48 times every 3 seconds for each UID (Trade Interface: at most 24 times every 3 seconds. Read Interface: at most 24 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date).
+* Generally, the private interface rate limit of API key is at most 48 times every 3 seconds for each UID (Trade Interface: at most 24 times every 3 seconds. Read Interface: at most 24 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date).<a href= https://docs.huobigroup.com/docs/option/v1/en/#api-list > API Interface List </a> 
 
 * For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 60 times every 3 second at most for each IP (this 60 times every 3 second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).
 
@@ -289,6 +289,8 @@ Please note that, for both public interface and private interface, there are rat
     contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS 
     order push connection for BTC Contract which will automatically push orders of BTC-USDT
     contracts. Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.
+
+* Both read and trade interfaces will return the ratelimit info.You can refer to the following fields of "header" from api response. E.g.,you will get the total Read ratelimit("ratelimit-limit") and the remaining Read ratelimit("ratelimit-remaining") when you query the order info(/option-api/v1/option_account_info) , and you will get the total Trade ratelimit("ratelimit-limit") and the remaining Trade ratelimit("ratelimit-remaining") when you place an order(/option-api/v1/option_order)). <a href= https://docs.huobigroup.com/docs/option/v1/en/#api-list > API Interface List </a> 
 
 * Will response following string for "header" via api 
 
@@ -2398,7 +2400,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | ts                  | true     | long         | Time of Response Generation, unit: millisecond |                                                              |
 | \<data\>              | true     | object       | Dictionary Type                   |                                                              |
 | \<financial_record\>  | true     | object array |                            |                                                              |
-| id                  | true     | long         |                            |                                                              |
+| id                  | true     | long         | Financial record ID (contract code unqiue)         |                                                              |
 | ts                  | true     | long         | Create Time                   |                                                              |
 | symbol              | true     | string       | Coin Code                   | "BTC","ETH"...                                               |
 | trade_partition     | true     | string       | Trade Partition                   | "USDT"                                                       |
