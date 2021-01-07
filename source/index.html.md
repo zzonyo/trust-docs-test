@@ -885,7 +885,8 @@ api.hbdm.com\n
      一个UID最多同时建立30个私有订单成交推送WS链接。该用户在一个品种(包含该品种的所有周期的合约)上，仅需要维持一个订单推送WS链接即可。
    
      注意: 订单推送WS的限频，跟用户RESTFUL私有接口的限频是分开的，相互不影响。
-     
+
+- 查询与交易API接口返回的header中会有限频信息。比如：查询订单信息接口(/swap-api/v1/swap_account_info)，返回的header中的ratelimit-limit即查询接口的总限制频率次数，ratelimit-remaining即查询接口的剩余总限制频率次数。下单接口(/swap-api/v1/swap_order)，返回的header中的ratelimit-limit即交易接口的总限制频率次数，ratelimit-remaining即交易接口的剩余总限制频率次数。<a href=https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#ab0b26742c>查看API接口类型列表(其中读取即查询,交易即交易)</a>     
 
 - 所有API接口返回数据中增加限频信息
 
