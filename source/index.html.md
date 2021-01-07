@@ -3903,7 +3903,7 @@ status <img width=250/> | true <img width=250/> | string | 请求处理结果 <i
 ts | true  | long | 响应生成时间点，单位：毫秒 |  |
 \<data\>  |  |  | 字典类型 |  |
 \<financial_record\>  |  |  |  |  |
-id | true  | long |  |  |
+id | true  | long | 财务记录ID（品种唯一）  |  |
 ts | true  | long | 创建时间 |  |
 symbol | true  | string | 品种代码 | "BTC","ETH"... |
 contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
@@ -3996,7 +3996,7 @@ total_size | true  | int | 总条数 |  |
 | ts                    | true | long    | 响应生成时间点，单位：毫秒 |                                          |
 | \<data\>              | true    |  object       | 字典类型          |                                          |
 | \<financial_record\>  | true     |  object array       |               |                                          |
-| id                    | true | long    |  流水id             |                                          |
+| id                    | true | long    |  流水id(品种唯一)             |                                          |
 | ts                    | true | long    | 创建时间          |                                          |
 | symbol                | true | string  | 品种代码          | "BTC","ETH"...                           |
 | contract_code                | true | string  | 合约代码          | "BTC-USD"...                           |
