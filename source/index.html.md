@@ -2100,7 +2100,7 @@ contract_code | string   | false      | BTC180914|
 
  - If there is a number in the Contract Code row，inquiry with Contract_Code. If there is no number，inquiry by Symbol + Contract Type. One of the query conditions must be chosen.
 
- - Support to query the K-line data of the delisting contract in one month(that is, the contract's expirated date is not before one month ago), and you can enter the contract code to get the K-line data.
+ - Support to query the K-line data of the delisting contract in one month(that is, the contract's expired date is not before one month ago), and you can enter the contract code to get the K-line data.
 
 > Response
 
@@ -9388,7 +9388,7 @@ To subscribe contract info, the client has to make connection to the server and 
 - The websocket subscription of contract info event is pushed every 60 seconds, and the event is "snapshot". 
 - When the subscription is successful, the latest contract information will be pushed immediately, and the event is "init".
 - Only when the status is 1(Listing),  can it be traded normally, other statuses are not tradable;
-- Support to query the K-line data of the delisting contract in one month(that is, the contract's expirated date is not before one month ago), and you can enter the contract code to get the K-line data.
+- Support to query the K-line data of the delisting contract in one month(that is, the contract's expired date is not before one month ago), and you can enter the contract code to get the K-line data.
 
 
 ## Unsubscribe Contract Info Data(no authentication)(unsub)
