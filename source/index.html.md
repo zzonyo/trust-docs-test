@@ -949,7 +949,7 @@ Read     |   Market Data           |  api/v1/contract_liquidation_orders |   GET
 Read     |  Market Data            |  api/v1/contract_settlement_records |     GET       |  Query historical settlement records of the platform interface          |  No  |
 Read     |  Market Data           |  /index/market/history/index |   GET       |  Query Index Kline Data            |  No  |
 Read     |  Market Data           |  /index/market/history/basis |   GET       |  Query Basis Data            |  No  |
-Read    | Market Data  |  /api/v1/contract_estimated_settlement_price     | GET    |     Get the estimated settlement price      |      no          |
+Read    | Market Data  |  /api/v1/contract_estimated_settlement_price     | GET    |     Get the estimated settlement price      |      No          |
 Read  | Account          | api/v1/contract_account_info   |  POST             | Query User’s Account Information                     | Yes                    |
 Read  | Account          | api/v1/contract_position_info  |  POST             | Query User’s Position Information                    | Yes                    |
 Read   | Account | api/v1/contract_sub_account_list    | POST             |     Query assets information of all sub-accounts under the master account (Query by coins)     | Yes   |
@@ -3934,7 +3934,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 | ts | true  | long | response create time point，unit：ms |  |
 | \<data\> |  |  | dicitionary type |  |
 | \<financial_record\> |  |  |  |  |
-| id | true  | long |  |  |
+| id | true  | long | Financial record ID (contract code unqiue)  |  |
 | ts | true  | long | create time |  |
 | symbol | true  | string | contract type code | "BTC","ETH"... |
 | type | true  | int | transaction type | 3:close long; 4:close short; 5:fees for open positions-taker; 6:fees for open positions-maker; 7:fees for close positions-taker; 8:fees for close positions-maker; 9:close long for delivery; 10:close short for delivery; 11:delivery fee; 12:close long for liquidation; 13:lose short for liquidation; 14:transfer from spot exchange to contract exchange; 15:tranfer from contract exchange to spot exchange; 16:settle unrealized PnL-long positions; 17:settle unrealized PnL-short positions; 19:clawback; 26:system; 28:activity prize rewards; 29:rebate; 34:transfer to sub; 35:transfer from sub; 36:transfer to master; 37:transfer from master; |
@@ -4027,7 +4027,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 | ts                    | true | long    | Time of Respond Generation, Unit: Millisecond |                                          |
 | \<data\>              | true    |  object       | dicitionary type          |                                          |
 | \<financial_record\>  | true     |  object array       |               |                                          |
-| id                    | true | long    |              |                                          |
+| id                    | true | long    |  Financial record ID (contract code unqiue)    |                                          |
 | ts                    | true | long    | create time          |                                          |
 | symbol                | true | string  | Type Code         | "BTC","ETH"...                           |
 | contract_code                | true | string  | Contract Code         | "BTC200919"...                           |
