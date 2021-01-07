@@ -38,6 +38,28 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.0.2 2021-01-07 【Modified "Get Option Open Interest Information" Interface、Modified "Subscribe Market Detail Data" Interface、Modified "Query History Orders" Interface、Modified "Query Trigger Order History" Interface】
+
+### 1. Modified "Get Option Open Interest Information" Interface(Added "trade_volume" in return parameter "data" to indicate trading volume within the last 24 hours (cont),  and "trade_amount" to indicate trading volume within the last 24 hours (coin), and "trade_turnover" to represent trading amount within the last 24 hours.)
+ - Interface Name: Get Option Open Interest Information
+ - Interface Type: public
+ - Interface URL: /option-api/v1/option_open_interest
+
+### 2. Modified "Subscribe Market Detail Data" Interface(Added "ask" in return parameter “tick” to represent “sell one” and “bid” to represent "buy one".)
+ - Interface Name: Subscribe Market Detail Data
+ - Interface Type: public
+ - Subscription Topic: market.$contract_code.detail
+
+### 3. Modified "Query History Orders" Interface（Added paprameter "sort_by" to represent "sort fields" with optional values “create_date” and “update_time”). added "update_time" to indicate order's update time））
+ - Interface Name: Query History Orders	
+ - Interface Type: private
+ - Interface URL: /option-api/v1/option_hisorders
+
+### 4. Modified "Query Trigger Order History" Interface（Added paprameter "sort_by" to represent "sort fields" with optional values “created_at” and “update_time”). added "update_time" to indicate order's update time））
+ - Interface Name: Query Trigger Order History	
+ - Interface Type: private
+ - Interface URL: /option-api/v1/option_trigger_hisorders
+
 ## 1.0.1 2020-10-10 【Newly added：Added WS interface for subscribing system status updates push】
 
 ### 1. Added WS interface for subscribing system status updates push
@@ -251,7 +273,7 @@ Future, Coin Margined Swap,Option Swap and USDT Margined Swap are using separate
 
 Please note that, for both public interface and private interface, there are rate limits, more details are as below:
 
-* Generally, the private interface rate limit of API key is at most 30 times every 3 second for each UID (this 30 times every 3 second rate limit is shared by all the altcoins contracts).
+* Generally, the private interface rate limit of API key is at most 48 times every 3 seconds for each UID (Trade Interface: at most 24 times every 3 seconds. Read Interface: at most 24 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date).
 
 * For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 60 times every 3 second at most for each IP (this 60 times every 3 second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).
 
@@ -1194,7 +1216,10 @@ curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-
             "symbol": "BTC",
             "contract_type": "quarter",
             "contract_code": "BTC-USDT-201225-C-13000",
-            "trade_partition": "USDT"
+            "trade_partition": "USDT",
+            "trade_amount": 1.42,
+            "trade_volume": 142,
+            "trade_turnover": 7.847622
         }
     ],
     "ts": 1604641943451
@@ -1213,9 +1238,11 @@ curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-
 | contract_type   | true     | string       | Contract Type                   | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter" |
 | amount          | true     | decimal      | Position Amount (coin)                 |                                                    |
 | volume          | true     | decimal      | volume (volume)                 |                                                    |
+| trade_amount    | true | decimal  | trading volume within the last 24 hours (coin)     |  |
+| trade_volume    | true | decimal    | trading volume within the last 24 hours (cont)  |                |
+| trade_turnover  | true | decimal    | trading amount within the last 24 hours  |                |
 | \</data\>         |          |              |                            |                                                    |
 | ts              | true     | long         | Time of Response Generation, unit: millisecond |                                                    |
-
 
 
 ## Get Option Estimated Delivery Price
@@ -3895,6 +3922,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | page_index      | false    | int    | Page number, default page 1 if not filled |                                                              |
 | page_size       | false    | int    | page size, default 20 | no more than 50                                                |
 | contract_code   | false    | string | Contract Code             | BTC-USDT-201225-C-13000                                      |
+| sort_by         | false  | string | sort fields(descending) |  "create_date"：descending order by order create date , "update_time": descending order by order update time |
 
 ### Note: 
 
@@ -3918,6 +3946,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
                 "volume": 1,
                 "price": 1204.79,
                 "create_date": 1604891074887,
+                "update_time": 1604891074887,
                 "order_source": "api",
                 "order_price_type": "post_only",
                 "order_type": 1,
@@ -3965,6 +3994,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | volume            | true     | decimal      | Order Quantity           |                                                    |
 | price             | true     | decimal      | Order Price           |                                                    |
 | create_date       | true     | long         | Creation Time           |                                                    |
+| update_time       |  true         |  long    |  order update time，millesecond timestamp	  |    | 
 | order_source      | true     | string       | Order Source           |                                                    |
 | order_price_type  | true     | string       | Order Type       | "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order, "opponent_ioc"：IOC order using the BBO price，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK |
 | margin_frozen     | true     | decimal      | Frozen Margin      |                                                    |
@@ -4429,6 +4459,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | create_date     | true     | long   | Date                   | Enter a positive integer; if the parameter exceeds 90, a default 90 days' data will be queried.         |
 | page_index      | false    | int    | Page number. Default page 1 if not filled |                                                              |
 | page_size       | false    | int    | Default 20 if not filled; no more than 50 |                                                              |
+| sort_by | false  | string | sort fields(descending) | "created_at"：descending order by order creation time, "update_time": descending order by order update time |
 
 ### NOTE
 
@@ -4461,6 +4492,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
                 "order_price": 100,
                 "order_price_type": "limit",
                 "created_at": 1604891533629,
+                "update_time": 1604891533629,
                 "triggered_at": null,
                 "order_insert_at": 0,
                 "canceled_at": 1604891551047,
@@ -4506,6 +4538,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | triggered_price   | true     | decimal      | Price at the triggering                                               |                                                              |
 | order_price       | true     | decimal      | Order Price                                                       |                                                              |
 | created_at        | true     | long         | Order Creation Time                                                 |                                                              |
+| update_time       |true      | long         | order update time，millesecond timestamp	| |
 | triggered_at      | true     | long         | Trigger Time                                                     |                                                              |
 | order_insert_at   | true     | long         | Order Placing Time                                              |                                                              |
 | canceled_at       | true     | long         | Cancel Time                                                     |                                                              |
@@ -4514,7 +4547,6 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | \</orders\>         |          |              |                                                              |                                                              |
 | \</data\>           |          |              |                                                              |                                                              |
 | ts                | true     | long         | Time of Response Generation, unit: millisecond                                   |                                                              |
-
 
 
 # Option Transferring Interface
@@ -4690,7 +4722,8 @@ System status updates subscription ：wss://api.btcgateway.pro/center-notificati
 ## API Rate Limit Illustration
 
 There is rate limit for both public and private interfaces. More details are laid out as below:
-- Generally, for the private interfaces, users need to user API keys. The rate limit for each UID is 30 times at most every 3 seconds. (Please note that the 30 times/3s of rate limit mentioned above are shared by all contracts (all coins and contracts types expiring at different date).
+
+- * Generally, the private interface rate limit of API key is at most 48 times every 3 seconds for each UID (Trade Interface: at most 24 times every 3 seconds. Read Interface: at most 24 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date).
 
 - For public interfaces used to get information of non-market data (such as request information of index, price limit, delivery and settlement, positions, etc.), the rate limit for each IP is 60 times every 3 seconds. (Please note that the 60 times/3s rate limit is shared by all the requests for non-market data under this UID)
 
@@ -5502,7 +5535,15 @@ When users select "Merge Depth", open orders of a certain precision will be merg
         "amount":0.176,
         "vol":176,
         "trade_turnover":439.20704,
-        "count":3
+        "count":3,
+        "bid":[
+            13684.5,
+            10615
+        ],
+        "ask":[
+            13684.6,
+            3440
+        ]
     }
 }
 ```
@@ -5524,7 +5565,13 @@ When users select "Merge Depth", open orders of a certain precision will be merg
 | vol            | true     | decimal | Trading Volume (conts)，the sum of bilateral trading volume.                      |                      |
 | trade_turnover | true     | decimal | Trading amount, that is the sum（Filled conts of a single order*Contract face value*Transaction Price） |                      |
 | count          | true     | decimal |  Filled orders quantity                                               |                      |
+| ask  | true | array |Sell,[price(Ask price), vol(Ask orders (cont.) )] | | 
+| bid  | true| array | Buy,[price(Bid price), vol(Bid orders(Cont.))] | |   
 | \</tick>        |          |         |                                                       |                      |
+
+#### Note:
+ - Bid price(p1) and ask price(p1) are not updated in real time, there will be some delay (about 500ms).
+
 
 ## Request Trade Detail Data
 
@@ -6430,11 +6477,14 @@ Return to the current trade detail data only
 | 2003   | Authentication failed.                   |
 | 2004   | Number of visits exceeds limit.          |
 | 2005   | Connection has been authenticated.       |
+| 2007 | You don’t have access permission as you have not opened contracts trading.| 
 | 2010   | Topic error.                             |
 | 2011   | Contract doesn't exist.                  |
 | 2012   | Topic not subscribed.                    |
 | 2013   | Authentication type doesn't exist.       |
 | 2014   | Repeated subscription.                   |
+| 2020 | This contract does not support cross margin mode.| 
+| 2021 | Illegal parameter margin_account.| 
 | 2030   | Exceeds connection limit of single user. |
 | 2040   | Missing required parameter.              |
 
