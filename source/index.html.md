@@ -632,7 +632,7 @@ Read     | Market Data          |  swap-api/v1/swap_settlement_records  |     GE
 Read     |   Market Data           |  /index/market/history/swap_premium_index_kline |   GET       |  Query Premium Index Kline Data            |  No  |
 Read     |   Market Data           |  /index/market/history/swap_basis |   GET       |  Query Basis Data            |  No  |
 Read     |   Market Data           |  /swap-api/v1/swap_historical_funding_rate |   GET       |  Query historical funding rate         |  No  |
-Read  | Market Data |  /swap-api/v1/swap_estimated_settlement_price | POST | Get the estimated settlement price |      No          |
+Read  | Market Data |  /swap-api/v1/swap_estimated_settlement_price | GET | Get the estimated settlement price |      No          |
 Read  | Account          | /swap-api/v1/swap_account_info   |  POST             | Query User’s Account Information                     | Yes                    |
 Read  | Account          | /swap-api/v1/swap_position_info  |  POST             | Query User’s position Information                    | Yes                    |
 Read   | Account | /swap-api/v1/swap_sub_account_list    | POST             |     Query assets information of all sub-accounts under the master account (Query by coins)     | Yes   |
@@ -830,7 +830,7 @@ Future, Coin Margined Swap,Option Swap and USDT Margined Swap are using separate
 
 Please note that, for both public interface and private interface, there are rate limits, more details are as below:
 
-* Generally, the private interface rate limit of API key is at most 72 times every 3 seconds for each UID (Trade Interface: at most 36 times every 3 seconds. Read Interface: at most 36 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date).
+* Generally, the private interface rate limit of API key is at most 72 times every 3 seconds for each UID (Trade Interface: at most 36 times every 3 seconds. Read Interface: at most 36 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date).<a href= https://docs.huobigroup.com/docs/coin_margined_swap/v1/en/#api-list > API Interface List </a> 
 
 * For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 120 times every 3 second at most for each IP (this 120 times every 3 second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).
 
@@ -846,6 +846,8 @@ Please note that, for both public interface and private interface, there are rat
     contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS 
     order push connection for BTC Contract which will automatically push orders of BTC-USD
     contracts. Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.
+
+* Both read and trade interfaces will return the ratelimit info.You can refer to the following fields of "header" from api response. E.g.,you will get the total Read ratelimit("ratelimit-limit") and the remaining Read ratelimit("ratelimit-remaining") when you query the order info(/swap-api/v1/swap_account_info) , and you will get the total Trade ratelimit("ratelimit-limit") and the remaining Trade ratelimit("ratelimit-remaining") when you place an order(/swap-api/v1/swap_order)). <a href= https://docs.huobigroup.com/docs/coin_margined_swap/v1/en/#api-list > API Interface List </a> 
 
 * Will response following string for "header" via api 
 
@@ -3790,7 +3792,7 @@ last_price | decimal  | true  | Last Price                                      
 | ts | true  | long | response create time point，unit：ms |  |
 | \<data\> |  |  | dicitionary type |  |
 | \<financial_record\> |  |  |  |  |
-| id | true  | long |  |  |
+| id | true  | long | Financial record ID (contract code unqiue)  |  |
 | ts | true  | long | create time |  |
 | symbol | true  | string | contract type code | "BTC","ETH"... |
 | contract_code | true | string | contract type code   | "BTC-USD",... |
@@ -3884,7 +3886,7 @@ last_price | decimal  | true  | Last Price                                      
 | ts                    | true | long    | Time of Respond Generation, Unit: Millisecond |                                          |
 | \<data\>              | true    |  object       | dicitionary type     |                                          |
 | \<financial_record\>  | true     |  object array       |               |                                          |
-| id                    | true | long    |         |                                          |
+| id                    | true | long    |  Financial record ID (contract code unqiue)  |                                          |
 | ts                    | true | long    | create time    |                                          |
 | symbol                | true | string  |  Variety code          | "BTC","ETH"...                           |
 | contract_code                | true | string  | contract code          | "BTC-USD"...                           |
