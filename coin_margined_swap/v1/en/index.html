@@ -1486,7 +1486,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Read</td>
 <td>Market Data</td>
 <td>/swap-api/v1/swap_estimated_settlement_price</td>
-<td>POST</td>
+<td>GET</td>
 <td>Get the estimated settlement price</td>
 <td>No</td>
 </tr>
@@ -1936,7 +1936,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <p>Please note that, for both public interface and private interface, there are rate limits, more details are as below:</p>
 
 <ul>
-<li><p>Generally, the private interface rate limit of API key is at most 72 times every 3 seconds for each UID (Trade Interface: at most 36 times every 3 seconds. Read Interface: at most 36 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date).</p></li>
+<li><p>Generally, the private interface rate limit of API key is at most 72 times every 3 seconds for each UID (Trade Interface: at most 36 times every 3 seconds. Read Interface: at most 36 times every 3 seconds) (this rate limit is shared by all the altcoins contracts delivered by different date).<a href= https://docs.huobigroup.com/docs/coin_margined_swap/v1/en/#api-list > API Interface List </a> </p></li>
 <li><p>For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 120 times every 3 second at most for each IP (this 120 times every 3 second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).</p></li>
 <li><p>For public interface to get market data such as  Get Kline data, Get Market Data Overview, Get Contract Information,Get market in-depth data, Get premium index Kline, Get real-time forecast capital rate kline, Get basis data, Get the last Trade of a Contract and so on：</p>
 
@@ -1949,6 +1949,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 contracts of the same underlying coin only need to subscribe one WS order push, e.g. users only need to create one WS 
 order push connection for BTC Contract which will automatically push orders of BTC-USD
 contracts. Please note that the rate limit of WS order push and RESTFUL private interface are separated from each other, with no relations.</p></li>
+<li><p>Both read and trade interfaces will return the ratelimit info.You can refer to the following fields of &quot;header&quot; from api response. E.g.,you will get the total Read ratelimit(&quot;ratelimit-limit&quot;) and the remaining Read ratelimit(&quot;ratelimit-remaining&quot;) when you query the order info(/swap-api/v1/swap_account_info) , and you will get the total Trade ratelimit(&quot;ratelimit-limit&quot;) and the remaining Trade ratelimit(&quot;ratelimit-remaining&quot;) when you place an order(/swap-api/v1/swap_order)). <a href= https://docs.huobigroup.com/docs/coin_margined_swap/v1/en/#api-list > API Interface List </a> </p></li>
 <li><p>Will response following string for &quot;header&quot; via api </p>
 
 <p>ratelimit-limit: the upper limit of requests per time, unit: times</p>
@@ -8598,7 +8599,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td></td>
+<td>Financial record ID (contract code unqiue)</td>
 <td></td>
 </tr>
 <tr>
@@ -8914,7 +8915,7 @@ You are recommended to read the status code from the returned message. If the ab
 <td>id</td>
 <td>true</td>
 <td>long</td>
-<td></td>
+<td>Financial record ID (contract code unqiue)</td>
 <td></td>
 </tr>
 <tr>
