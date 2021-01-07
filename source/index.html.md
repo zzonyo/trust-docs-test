@@ -6488,7 +6488,7 @@ Return to the current trade detail data only
 | 2030   | Exceeds connection limit of single user. |
 | 2040   | Missing required parameter.              |
 
-  
+
 </br>
 </br>
 </br>
