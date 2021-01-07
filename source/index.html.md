@@ -5672,7 +5672,7 @@ ts                     | true     | long    | timestamp                |        
 - if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id  presents the last data on the next page.)
 
 
-# Swap strategy order interface
+# Swap Strategy Order Interface
 
 ## Place Trigger Order
 
