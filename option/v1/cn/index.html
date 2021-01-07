@@ -265,6 +265,9 @@
             <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-0-2-2021-01-07-market-detail" class="toc-h2 toc-link" data-title="1.0.2 2021年01月07号 【修改获取当前可用合约总持仓量、修改获取合约历史委托接口、修改获取计划委托历史委托接口、修改订阅Market Detail数据】">1.0.2 2021年01月07号 【修改获取当前可用合约总持仓量、修改获取合约历史委托接口、修改获取计划委托历史委托接口、修改订阅Market Detail数据】</a>
+                  </li>
+                  <li>
                     <a href="#1-0-1-2020-10-10-websocket" class="toc-h2 toc-link" data-title="1.0.1 2020年10月10日 【新增：订阅系统状态更新推送的 WebSocket 接口】">1.0.1 2020年10月10日 【新增：订阅系统状态更新推送的 WebSocket 接口】</a>
                   </li>
                   <li>
@@ -624,7 +627,31 @@
 <li>提供火币 UID （需不存在返佣关系的 UID）；</li>
 <li>提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；</li>
 </ol>
-<h1 id='185368440e'>更新日志</h1><h2 id='1-0-1-2020-10-10-websocket'>1.0.1 2020年10月10日 【新增：订阅系统状态更新推送的 WebSocket 接口】</h2><h3 id='1-websocket'>1、新增订阅系统状态更新推送的 WebSocket 接口</h3>
+<h1 id='185368440e'>更新日志</h1><h2 id='1-0-2-2021-01-07-market-detail'>1.0.2 2021年01月07号 【修改获取当前可用合约总持仓量、修改获取合约历史委托接口、修改获取计划委托历史委托接口、修改订阅Market Detail数据】</h2><h3 id='1-data-trade_volume-24-trade_amount-24-trade_turnover-24'>1、修改获取当前可用合约总持仓量（在返回参数data中新增trade_volume：最近24小时成交量（张），trade_amount：最近24小时成交量（币）trade_turnover：最近24小时成交额、这三个字段 ）</h3>
+<ul>
+<li>接口名称: 获取当前可用合约总持仓量</li>
+<li>接口类型: 公共接口</li>
+<li>接口URL: /option-api/v1/option_open_interest</li>
+</ul>
+<h3 id='2-market-detail-tick-ask-bid'>2、修改订阅Market Detail数据（在返参tick中新增ask表示卖一，bid表示买一。）</h3>
+<ul>
+<li>接口名称: 订阅Market Detail数据</li>
+<li>接口类型: 公共接口</li>
+<li>订阅主题: market.$contract_code.detail</li>
+</ul>
+<h3 id='3-sort_by-create_date-update_time-update_time'>3、修改获取合约历史委托接口（新增入参：sort_by(表示：排序字段，可选值为“create_date”，“update_time”)。新增返回参数：update_time（表示：订单的更新时间））</h3>
+<ul>
+<li>接口名称: 获取合约历史委托接口 </li>
+<li>接口类型: 私有接口</li>
+<li>接口URL: /option-api/v1/option_hisorders</li>
+</ul>
+<h3 id='4-sort_by-created_at-update_time-update_time'>4、修改获取计划委托历史委托接口（新增入参：sort_by(表示：排序字段，可选值为“created_at”，“update_time”)。新增返回参数：update_time（表示：订单的更新时间））</h3>
+<ul>
+<li>接口名称: 获取计划委托历史委托 </li>
+<li>接口类型: 私有接口</li>
+<li>接口URL: /option-api/v1/option_trigger_hisorders</li>
+</ul>
+<h2 id='1-0-1-2020-10-10-websocket'>1.0.1 2020年10月10日 【新增：订阅系统状态更新推送的 WebSocket 接口】</h2><h3 id='1-websocket'>1、新增订阅系统状态更新推送的 WebSocket 接口</h3>
 <ul>
 <li>接口名称：订阅系统状态更新</li>
 <li>接口类型: 公共接口</li>
@@ -1117,7 +1144,7 @@ api.hbdm.com\n
 <ul>
 <li><p>交割合约、币本位永续合约、期权合约和USDT本位永续合约都分开限频</p></li>
 <li><p>公开行情接口和用户私有接口都有访问次数限制</p></li>
-<li><p>普通用户，需要密钥的私有接口，每个UID 3秒最多30次请求(该UID的所有币种的合约的所有私有接口共享3秒30次的额度)</p></li>
+<li><p>普通用户，需要密钥的私有接口，每个UID 3秒最多 48 次请求(交易接口3秒最多 24 次请求，查询接口3秒最多 24 次请求) (该UID的所有币种和不同到期日的合约的所有私有接口共享该限制) </p></li>
 <li><p>其他非行情类的公开接口，比如获取指数信息，限价信息，交割结算、平台持仓信息等，所有用户都是每个IP3秒最多60次请求（所有该IP的非行情类的公开接口请求共享3秒60次的额度）</p></li>
 <li><p>行情类的公开接口，比如：获取K线数据、获取聚合行情、市场行情、获取市场最近成交记录：</p>
 
@@ -2986,7 +3013,11 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_open_interest?c
             </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT-201225-C-13000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="w">
+            </span><span class="s2">"trade_partition"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"trade_amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.42</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">142</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.847622</span><span class="w">
+
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604641943451</span><span class="w">
@@ -3055,6 +3086,27 @@ curl <span class="s2">"https://api.hbdm.com/option-api/v1/option_open_interest?c
 <td>true</td>
 <td>decimal</td>
 <td>持仓量(张)</td>
+<td></td>
+</tr>
+<tr>
+<td>trade_amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>最近24小时成交量（币）（当前时间-24小时）</td>
+<td></td>
+</tr>
+<tr>
+<td>trade_volume</td>
+<td>true</td>
+<td>decimal</td>
+<td>最近24小时成交量（张）（当前时间-24小时）</td>
+<td></td>
+</tr>
+<tr>
+<td>trade_turnover</td>
+<td>true</td>
+<td>decimal</td>
+<td>最近24小时成交额（当前时间-24小时）</td>
 <td></td>
 </tr>
 <tr>
@@ -9760,6 +9812,13 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>合约代码</td>
 <td>BTC-USDT-201225-C-13000</td>
 </tr>
+<tr>
+<td>sort_by</td>
+<td>false</td>
+<td>string</td>
+<td>排序字段（降序），不填默认按照create_date降序</td>
+<td>&quot;create_date&quot;：按订单创建时间进行降序，&quot;update_time&quot;：按订单更新时间进行降序</td>
+</tr>
 </tbody></table>
 <h3 id='9852b06629-12'>备注：</h3>
 <ul>
@@ -9784,6 +9843,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
                 </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">1204.79</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604891074887</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"update_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604891074887</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"post_only"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -9916,6 +9976,13 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>long</td>
 <td>创建时间</td>
+<td></td>
+</tr>
+<tr>
+<td>update_time</td>
+<td>true</td>
+<td>long</td>
+<td>订单更新时间，单位：毫秒</td>
 <td></td>
 </tr>
 <tr>
@@ -11412,6 +11479,13 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>不填默认20，不得多于50</td>
 <td></td>
 </tr>
+<tr>
+<td>sort_by</td>
+<td>false</td>
+<td>string</td>
+<td>排序字段（降序），不填默认按照created_at降序</td>
+<td>&quot;created_at&quot;：按订单创建时间进行降序，&quot;update_time&quot;：按订单更新时间进行降序</td>
+</tr>
 </tbody></table>
 <h4 id='9852b06629-14'>备注：</h4>
 <ul>
@@ -11445,6 +11519,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
                 </span><span class="s2">"order_price"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604891533629</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"update_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604891533629</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"triggered_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"order_insert_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604891551047</span><span class="p">,</span><span class="w">
@@ -11642,6 +11717,13 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>true</td>
 <td>long</td>
 <td>订单创建时间</td>
+<td></td>
+</tr>
+<tr>
+<td>update_time</td>
+<td>true</td>
+<td>long</td>
+<td>订单更新时间，单位：毫秒</td>
 <td></td>
 </tr>
 <tr>
@@ -12284,7 +12366,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <p>公开行情接口和用户私有接口都有访问次数限制</p>
 
 <ul>
-<li><p>普通用户，需要密钥的私有接口，每个UID 3秒最多30次请求(该UID的所有币种的合约的所有私有接口共享3秒30次的额度)</p></li>
+<li><p>普通用户，需要密钥的私有接口，每个UID 3秒最多 48 次请求(交易接口3秒最多 24 次请求，查询接口3秒最多 24 次请求) (该UID的所有币种和不同到期日的合约的所有私有接口共享该限制) </p></li>
 <li><p>其他非行情类的公开接口，比如获取指数信息，限价信息，交割结算、平台持仓信息等，所有用户都是每个IP3秒最多60次请求（所有该IP的非行情类的公开接口请求共享3秒60次的额度）</p></li>
 <li><p>行情类的公开接口，比如：获取K线数据、获取聚合行情、市场行情、获取市场最近成交记录：</p>
 
@@ -13716,7 +13798,15 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
         </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">0.176</span><span class="p">,</span><span class="w">
         </span><span class="s2">"vol"</span><span class="p">:</span><span class="mi">176</span><span class="p">,</span><span class="w">
         </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="mf">439.20704</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">3</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bid"</span><span class="p">:[</span><span class="w">
+            </span><span class="mf">13684.5</span><span class="p">,</span><span class="w">
+            </span><span class="mi">10615</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"ask"</span><span class="p">:[</span><span class="w">
+            </span><span class="mf">13684.6</span><span class="p">,</span><span class="w">
+            </span><span class="mi">3440</span><span class="w">
+        </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='70bdef7e25-46'>返回参数</h3>
@@ -13821,6 +13911,20 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 <tr>
+<td>ask</td>
+<td>true</td>
+<td>array</td>
+<td>[卖1价,卖1量(张)]</td>
+<td></td>
+</tr>
+<tr>
+<td>bid</td>
+<td>true</td>
+<td>array</td>
+<td>[买1价,买1量(张)]</td>
+<td></td>
+</tr>
+<tr>
 <td>&lt;/tick&gt;</td>
 <td></td>
 <td></td>
@@ -13828,6 +13932,10 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
+<h4 id='9852b06629-17'>备注：</h4>
+<ul>
+<li>买一卖一并非实时更新，会存在部分延迟（500ms左右）。</li>
+</ul>
 <h2 id='trade-detail'>请求 Trade Detail 数据</h2>
 <ul>
 <li>market.$contract_code.trade.detail</li>
@@ -14798,7 +14906,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-17'>备注：</h4>
+<h4 id='9852b06629-18'>备注：</h4>
 <ul>
 <li>推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果5秒内某合约资产已触发过推送，则该合约资产跳过此次推送。</li>
 </ul>
@@ -15046,7 +15154,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-18'>备注：</h3>
+<h3 id='9852b06629-19'>备注：</h3>
 <ul>
 <li><p>USDT资产为该交易区下所有品种期权共用的；</p></li>
 <li><p>USDT资产下的期权市值为USDT区下所有品种期权持仓的价值；BTC资产下的期权市值为BTC期权持仓的价值；ETH资产下的期权市值为ETH期权持仓的价值；</p></li>
@@ -15195,7 +15303,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-19'>备注：</h4>
+<h4 id='9852b06629-20'>备注：</h4>
 <ul>
 <li>推送接口新增定期推送逻辑：每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。 如果5秒内某仓位已触发过推送，则该仓位跳过此次推送。</li>
 </ul>
@@ -16121,6 +16229,10 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>Connection has been authenticated.</td>
 </tr>
 <tr>
+<td>2007</td>
+<td>You don’t have access permission as you have not opened contracts trading.</td>
+</tr>
+<tr>
 <td>2010</td>
 <td>Topic error.</td>
 </tr>
@@ -16139,6 +16251,14 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <tr>
 <td>2014</td>
 <td>Repeated subscription.</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>This contract does not support cross margin mode.</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>Illegal parameter margin_account.</td>
 </tr>
 <tr>
 <td>2030</td>
