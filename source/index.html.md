@@ -24,6 +24,7 @@ table th {
 
 | 生效时间<br>(UTC +8) | 接口                                                         | 变化      | 摘要                                                         |
 | -------------------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
+| 2021.1.5 19:00       | `POST/v2/algo-orders/cancel-all-after`                       | 新增      | 新增自动撤单接口                                             |
 | 2021.1.5 19:00       | accounts.update#${mode}                                      | 优化      | 增加mode=2：  <br/>accounts.update#2<br/>在账户余额发生变动或可用余额发生变动时均推送且一起推送。 |
 | 2020.12.16 19:00     | `GET /v1/order/matchresults`,<br>`GET /v1/order/orders/{order-id}/matchresults` | 优化      | 新增参数抵扣状态：fee-deduct-state（ 抵扣中：ongoing/ 抵扣完成：done），来代表手续费抵扣中和抵扣完成的状态 |
 | 2020.12.14 19:00     | `POST /v2/etp/{transactId}/cancel` 和 `POST /v2/etp/batch-cancel` | 新增      | 新增杠杆ETP单个撤单接口和杠杆ETP批量撤单接口                 |
@@ -4088,8 +4089,9 @@ API Key 权限：交易<br>
 | --------------- | -------- | ------ | ----------- | ------ | -------- |
 | timeout | true  | int | 超时时间（单位：秒），设置建议见附注 |  NA   |  0或者大于等于5秒  |
 
-响应示例-开启成功
-> Response:
+
+> 响应示例-开启成功 
+Response:
 
 ```json
 {
@@ -4103,8 +4105,9 @@ API Key 权限：交易<br>
 }
 ```
 
-响应示例-关闭成功
-> Response:
+
+> 响应示例-关闭成功 
+Response:
 
 ```json
 {
@@ -4118,8 +4121,9 @@ API Key 权限：交易<br>
 }
 ```
 
-响应示例-开启/关闭失败
-> Response:
+
+> 响应示例-开启/关闭失败
+Response:
 
 ```json
 {
