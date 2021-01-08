@@ -913,6 +913,12 @@ table th {
 </thead><tbody>
 <tr>
 <td>2021.1.5 19:00</td>
+<td><code>POST/v2/algo-orders/cancel-all-after</code></td>
+<td>新增</td>
+<td>新增自动撤单接口</td>
+</tr>
+<tr>
+<td>2021.1.5 19:00</td>
 <td>accounts.update#${mode}</td>
 <td>优化</td>
 <td>增加mode=2：  <br/>accounts.update#2<br/>在账户余额发生变动或可用余额发生变动时均推送且一起推送。</td>
@@ -9372,10 +9378,9 @@ endTime缺省值：当前时间<br></p>
 </tr>
 </tbody></table>
 
-<p>响应示例-开启成功</p>
-
 <blockquote>
-<p>Response:</p>
+<p>响应示例-开启成功 
+Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
@@ -9387,10 +9392,9 @@ endTime缺省值：当前时间<br></p>
 </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>响应示例-关闭成功</p>
-
 <blockquote>
-<p>Response:</p>
+<p>响应示例-关闭成功 
+Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
@@ -9402,10 +9406,9 @@ endTime缺省值：当前时间<br></p>
 </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>响应示例-开启/关闭失败</p>
-
 <blockquote>
-<p>Response:</p>
+<p>响应示例-开启/关闭失败
+Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
 </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">2003</span><span class="p">,</span><span class="w">
