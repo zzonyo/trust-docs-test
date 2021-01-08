@@ -30,7 +30,8 @@ table th {
 
 | Release Time <br>(UTC +8) | API  | New / Update    | Description     |
 | ------------------------ | ---------------------- | --------------- | ------------------------------------- |
-| 2021.1.5 | accounts.update#${mode} | Update | added Specify "mode" as 2:  <br/>accounts.update#2  <br/>Whenever  account balance or available balance changed, it will be updated together. |
+| 2020.1.8 19:00 | `POST/v2/algo-orders/cancel-all-after` | Add | Add Dead man’s switch endpoints |
+| 2020.1.5 19:00 | accounts.update#${mode} | Update | added Specify "mode" as 2:  <br/>accounts.update#2  <br/>Whenever  account balance or available balance changed, it will be updated together. |
 | 2020.12.16 19:00         | `GET /v1/order/matchresults ` and `GET /v1/order/orders/{order-id}/matchresults` | Update          | Add "fee-deduct-state" parameter to indicate the status of “In deduction” and “deduction completed” |
 | 2020.12.14 19:00         | `POST /v2/etp/{transactId}/cancel ` and`POST /v2/etp/batch-cancel` | Add             | Add "Submit Cancel for ETP Multiple Orders" and"Submit Cancel for an ETP Order" endpoints |
 | 2020.11.26 19:00        | `GET /v2/user/uid `      | Add             | Add Get UID  endpoints      |
@@ -4245,6 +4246,88 @@ The possible values of "order-state" includes -
 | 7           | canceled                                                     |
 | 10          | cancelling                                                   |
 
+
+
+##  Dead man’s switch
+
+API Key Permission：Trade<br>
+
+The Dead man’s switch  protects the user’s assets when the connection to the exchange is lost due to network or system errors. <br>
+Turn on/off the Dead man’s switch. If the Dead man’s switch is turned on and the API call isn’t sent twice within the set time, the platform will cancel all of your orders on the spot market（a maximum cancellation of 500 orders）.
+
+### HTTP Request
+
+- POST `/v2/algo-orders/cancel-all-after`
+
+> Request:
+
+```json
+{
+  "timeout": "10"
+}
+```
+
+### Request Parameters
+
+| Parameter  | Data Type | Required | Default | Description                                                  | Value Range                                                  |
+| -------- | -------- | ---- | ------------------------------------ | ------ | ---------------- |
+| timeout  | true     | int  | time out duration (unit：second); see notes for details | NA     | 0 or >=5 seconds |
+
+
+> Turn On Successful 
+Response:
+
+```json
+{
+"code": 200,
+"data": [
+    {
+       "currentTime":"1587971400",
+       "triggerTime":"1587971460"
+  }
+]
+}
+```
+
+
+> Turn Off Successful 
+Response:
+
+```json
+{
+"code": 200,
+"data": [
+    {
+       "currentTime":"1587971400",
+       "triggerTime":"0"
+  }
+]
+}
+```
+
+
+> Turn On/Off Failed
+> Response:
+
+```json
+{
+"code": 2003,
+"message": "missing mandatory field"
+}
+```
+
+### Response Content
+
+| **Name**      | **Mandatory** | **Type** | **Description**            |
+| ------------- | ------------- | -------- | -------------------------- |
+| code          | true          | int      | status code                |
+| message       | false         | string   | error description (if any) |
+| data          | true          | object   |                            |
+| { currentTime | true          | long     | current time               |
+| triggerTime } | true          | long     | trigger time               |
+
+
+## 
 
 ## Get the Order Detail of an Order
 
