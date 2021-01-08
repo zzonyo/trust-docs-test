@@ -4063,6 +4063,81 @@ API Key 权限：交易<br>
 | 10          | cancelling                                                   |
 
 
+
+## 自动撤销订单
+
+API Key 权限：交易<br>
+
+为了防止API用户在发生网络故障或用户端系统故障与火币系统失去联系时，给用户造成意外损失，火币新增自动撤单接口，当用户与火币发生意外断连时，能自动帮用户取消全部委托单，以避免损失，即提供Dead man's switch功能。若开启，在设定的时间数完前，接口没有被再次调用，则用户所有现货委托单将被取消（最大支持撤500单）。
+
+### HTTP 请求
+
+- POST `/v2/algo-orders/cancel-all-after`
+
+> Request:
+
+```json
+{
+  "timeout": "10"
+}
+```
+
+### 请求参数
+
+| 参数名称        | 是否必须 | 类型   | 描述     | 默认值 | 取值范围 |
+| --------------- | -------- | ------ | ----------- | ------ | -------- |
+| timeout | true  | int | 超时时间（单位：秒），设置建议见附注 |  NA   |  0或者大于等于5秒  |
+
+响应示例-开启成功
+> Response:
+
+```json
+{
+"code": 200,
+"data": [
+    {
+       "currentTime":"1587971400",
+       "triggerTime":"1587971460"
+  }
+]
+}
+```
+
+响应示例-关闭成功
+> Response:
+
+```json
+{
+"code": 200,
+"data": [
+    {
+       "currentTime":"1587971400",
+       "triggerTime":"0"
+  }
+]
+}
+```
+
+响应示例-开启/关闭失败
+> Response:
+
+```json
+{
+"code": 2003,
+"message": "missing mandatory field"
+}
+```
+### 响应数据
+
+| **参数名称**  | **是否必须** | **数据类型** | **描述**         |
+| ------------- | ------------ | ------------ | ---------------- |
+| code          | true         | int          | 状态码           |
+| message       | false        | string       | 错误描述（如有） |
+| data          | true         | object       |                  |
+| { currentTime | true         | long         | 当前时间         |
+| triggerTime } | true         | long         | 触发时间         |
+
+
 ## 查询当前未成交订单
 
 API Key 权限：读取<br>
