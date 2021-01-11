@@ -38,7 +38,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
-## 1.0.2 2021-01-07 【Modified "Get Option Open Interest Information" Interface、Modified "Subscribe Market Detail Data" Interface、Modified "Query History Orders" Interface、Modified "Query Trigger Order History" Interface】
+## 1.0.2 2021-01-11 【Modified "Get Option Open Interest Information" Interface、Modified "Subscribe Market Detail Data" Interface、Modified "Query History Orders" Interface、Modified "Query Trigger Order History" Interface】
 
 ### 1. Modified "Get Option Open Interest Information" Interface(Added "trade_volume" in return parameter "data" to indicate trading volume within the last 24 hours (cont),  and "trade_amount" to indicate trading volume within the last 24 hours (coin), and "trade_turnover" to represent trading amount within the last 24 hours.)
  - Interface Name: Get Option Open Interest Information
