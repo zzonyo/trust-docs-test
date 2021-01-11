@@ -70,8 +70,8 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
  - Interface Type: private
  - Interface URL: /swap-api/v1/swap_tpsl_hisorders
 
-### 7. Added Query info of take-profit and stop-loss order that related to position opening order 
- - Interface Name: Query info of take-profit and stop-loss order that related to position opening order 
+### 7. Added Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order
+ - Interface Name:  Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order
  - Interface Type: private
  - Interface URL: /swap-api/v1/swap_relation_tpsl_order
 
@@ -671,7 +671,7 @@ Trade | Strategy   |  /swap-api/v1/swap_tpsl_cancel         | POST | Cancel a Ta
 Trade | Strategy   |  /swap-api/v1/swap_tpsl_cancelall      | POST | Cancel all Take-profit and Stop-loss Orders |      Yes         |
 Read  | Strategy   |  /swap-api/v1/swap_tpsl_openorders      | POST | Open take-profit and stop-loss orders       |      Yes         |
 Read  | Strategy   |  /swap-api/v1/swap_tpsl_hisorders       | POST | Take-profit and stop-loss histoty orders    |      Yes         |
-Read  | Strategy   |  /swap-api/v1/swap_relation_tpsl_order  | POST | Query take-profit and stop-loss order related to position opening order | Yes |
+Read  | Strategy   |  /swap-api/v1/swap_relation_tpsl_order  | POST | Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order | Yes |
 
 ##  Address
 
@@ -6438,7 +6438,7 @@ ts                     | true     | long    | timestamp                |        
 | ts              | true  | long   | Time of Respond Generation，Unit: Millisecond                 |     |
 
 
-## Query Info of take-profit and stop-loss Order That Related To Position Opening Order 
+## Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order 
 
  - POST `/swap-api/v1/swap_relation_tpsl_order`
 
