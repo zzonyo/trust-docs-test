@@ -38,7 +38,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
-## 1.0.6 2021-01-11 【1 Added Get the estimated settlement price. 2-13 Added ”Set a Take-profit and Stop-loss Order“ interfaces. 14-35 Added fields to modify interface. Added the first-level menu of [Contract Trigger Order], and add take-profit and stop-loss related interfaces and move the original contract trigger order related interfaces to this menu 】
+## 1.0.6 2021-01-12 【1 Added Get the estimated settlement price. 2-13 Added ”Set a Take-profit and Stop-loss Order“ interfaces. 14-35 Added fields to modify interface. Added the first-level menu of [Contract Trigger Order], and add take-profit and stop-loss related interfaces and move the original contract trigger order related interfaces to this menu 】
 
 ### 1. Added Get the estimated settlement price
  - Interface Name: [General]Get the estimated settlement price
@@ -95,13 +95,13 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
  - Interface Type: private
  - Interface URL: /linear-swap-api/v1/swap_cross_tpsl_hisorders
 
-### 12. Added Query info of take-profit and stop-loss order that related to position opening order(Isolated)
- - Interface Name: [Isolated]Query info of take-profit and stop-loss order that related to position opening order 
+### 12. Added Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order(Isolated)
+ - Interface Name: [Isolated]Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order 
  - Interface Type: private
  - Interface URL: /linear-swap-api/v1/swap_relation_tpsl_order
 
-### 13. Added Query info of take-profit and stop-loss order that related to position opening order(Cross)
- - Interface Name: [Cross]Query info of take-profit and stop-loss order that related to position opening order 
+### 13. Added Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order(Cross)
+ - Interface Name: [Cross]Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order 
  - Interface Type: private
  - Interface URL: /linear-swap-api/v1/swap_cross_relation_tpsl_order
 
@@ -865,13 +865,13 @@ Trade  | Strategy   | isolated margin |  /linear-swap-api/v1/swap_tpsl_cancel   
 Trade  | Strategy   | isolated margin |  /linear-swap-api/v1/swap_tpsl_cancelall                       | POST    |     [Isolated]Cancel all Take-profit and Stop-loss Orders       |      Yes         |
 Read  | Strategy   | isolated margin |  /linear-swap-api/v1/swap_tpsl_openorders                      | POST    |     [Isolated]Open take-profit and stop-loss orders        |      Yes         |
 Read  | Strategy   | isolated margin |  /linear-swap-api/v1/swap_tpsl_hisorders                       | POST    |     [Isolated]Take-profit and stop-loss histoty orders       |      yes         |
-Read  | Strategy   | isolated margin |  /linear-swap-api/v1/swap_relation_tpsl_order                  | POST    |     [Isolated]Query take-profit and stop-loss order related to position opening order       |      Yes         |
+Read  | Strategy   | isolated margin |  /linear-swap-api/v1/swap_relation_tpsl_order                  | POST    |     [Isolated]Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order       |      Yes         |
 Trade  | Strategy   | cross margin |  /linear-swap-api/v1/swap_cross_tpsl_order                           | POST    |     [Cross]Set a Take-profit and Stop-loss Order for an Existing Position       |      Yes         |
 Trade  | Strategy   | cross margin |  /linear-swap-api/v1/swap_cross_tpsl_cancel                           | POST    |    [Cross]Cancel a Take-profit and Stop-loss Order       |      Yes         |
 Trade  | Strategy   | cross margin |  /linear-swap-api/v1/swap_cross_tpsl_cancelall                       | POST    |     [Cross]Cancel all Take-profit and Stop-loss Orders       |      Yes         |
 Read  | Strategy   | cross margin |  /linear-swap-api/v1/swap_cross_tpsl_openorders                      | POST    |     [Cross]Open take-profit and stop-loss orders        |      Yes         |
 Read  | Strategy   | cross margin |  /linear-swap-api/v1/swap_cross_tpsl_hisorders                       | POST    |     [Cross]Take-profit and stop-loss histoty orders       |      Yes         |
-Read  | Strategy   | cross margin |  /linear-swap-api/v1/swap_cross_relation_tpsl_order                  | POST    |     [Cross]Query take-profit and stop-loss order related to position opening order       |      Yes         |
+Read  | Strategy   | cross margin |  /linear-swap-api/v1/swap_cross_relation_tpsl_order                  | POST    |     [Cross]Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order       |      Yes         |
 Trade  | Account  | general |https://api.huobi.pro/v2/account/transfer                         | POST   |      Transfer margin between Spot account and USDT Margined Swap account     |     Yes       |
 
 
@@ -9243,7 +9243,7 @@ Error：
 | ts              | true  | long   | Time of Respond Generation，Unit: Millisecond                 |     |
 
 
-## [Isolated]Query Info Of take-profit and stop-loss Order That Related To Position Opening Order 
+## [Isolated]Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order 
 
  - POST `/linear-swap-api/v1/swap_relation_tpsl_order`
 
@@ -9387,7 +9387,7 @@ Error：
 | ts              | true  | long   | Time of Respond Generation，Unit: Millisecond                 |     |
 
 
-## [Cross]Query Info of take-profit and stop-loss Order That Related To Position Opening Order 
+## [Cross]Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order 
 
  - POST `/linear-swap-api/v1/swap_cross_relation_tpsl_order`
 
