@@ -37,6 +37,29 @@ search: True
 
 # 更新日志
 
+## 1.0.2 2021年01月11号 【修改获取当前可用合约总持仓量、修改获取合约历史委托接口、修改获取计划委托历史委托接口、修改订阅Market Detail数据】
+
+### 1、修改获取当前可用合约总持仓量（在返回参数data中新增trade_volume：最近24小时成交量（张），trade_amount：最近24小时成交量（币）trade_turnover：最近24小时成交额、这三个字段 ）
+ - 接口名称: 获取当前可用合约总持仓量
+ - 接口类型: 公共接口
+ - 接口URL: /option-api/v1/option_open_interest
+
+### 2、修改订阅Market Detail数据（在返参tick中新增ask表示卖一，bid表示买一。）
+ - 接口名称: 订阅Market Detail数据
+ - 接口类型: 公共接口
+ - 订阅主题: market.$contract_code.detail
+
+### 3、修改获取合约历史委托接口（新增入参：sort_by(表示：排序字段，可选值为“create_date”，“update_time”)。新增返回参数：update_time（表示：订单的更新时间））
+ - 接口名称: 获取合约历史委托接口	
+ - 接口类型: 私有接口
+ - 接口URL: /option-api/v1/option_hisorders
+
+### 4、修改获取计划委托历史委托接口（新增入参：sort_by(表示：排序字段，可选值为“created_at”，“update_time”)。新增返回参数：update_time（表示：订单的更新时间））
+ - 接口名称: 获取计划委托历史委托	
+ - 接口类型: 私有接口
+ - 接口URL: /option-api/v1/option_trigger_hisorders
+
+
 ## 1.0.1 2020年10月10日 【新增：订阅系统状态更新推送的 WebSocket 接口】
 
 ### 1、新增订阅系统状态更新推送的 WebSocket 接口
@@ -255,7 +278,7 @@ api.hbdm.com\n
 
 * 公开行情接口和用户私有接口都有访问次数限制
 
-* 普通用户，需要密钥的私有接口，每个UID 3秒最多30次请求(该UID的所有币种的合约的所有私有接口共享3秒30次的额度)
+* 普通用户，需要密钥的私有接口，每个UID 3秒最多 48 次请求(交易接口3秒最多 24 次请求，查询接口3秒最多 24 次请求) (该UID的所有币种和不同到期日的合约的所有私有接口共享该限制) 。<a href=https://docs.huobigroup.com/docs/option/v1/cn/#ab0b26742c>查看API接口类型列表(其中读取即查询,交易即交易)</a>
 
 * 其他非行情类的公开接口，比如获取指数信息，限价信息，交割结算、平台持仓信息等，所有用户都是每个IP3秒最多60次请求（所有该IP的非行情类的公开接口请求共享3秒60次的额度）
 
@@ -270,7 +293,8 @@ api.hbdm.com\n
      一个UID最多同时建立30个私有订单成交推送WS链接。该用户在一个品种(包含该品种的所有周期的合约)上，仅需要维持一个订单推送WS链接即可。
    
      注意: 订单推送WS的限频，跟用户RESTFUL私有接口的限频是分开的，相互不影响。
-     
+
+- 查询与交易API接口返回的header中会有限频信息。比如：查询订单信息接口(/option-api/v1/option_account_info)，返回的header中的ratelimit-limit即查询接口的总限制频率次数，ratelimit-remaining即查询接口的剩余总限制频率次数。下单接口(/option-api/v1/option_order)，返回的header中的ratelimit-limit即交易接口的总限制频率次数，ratelimit-remaining即交易接口的剩余总限制频率次数。 <a href=https://docs.huobigroup.com/docs/option/v1/cn/#ab0b26742c>查看API接口类型列表(其中读取即查询,交易即交易)</a> 
 
 - 所有API接口返回数据中增加限频信息
 
@@ -1203,7 +1227,11 @@ curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-
             "symbol": "BTC",
             "contract_type": "quarter",
             "contract_code": "BTC-USDT-201225-C-13000",
-            "trade_partition": "USDT"
+            "trade_partition": "USDT",
+            "trade_amount": 1.42,
+            "trade_volume": 142,
+            "trade_turnover": 7.847622
+            
         }
     ],
     "ts": 1604641943451
@@ -1222,6 +1250,9 @@ curl "https://api.hbdm.com/option-api/v1/option_open_interest?contract_code=BTC-
 | contract_type | true     | string       | 合约类型                   | 当周:"this_week", 次周:"next_week", 季度:"quarter"            |
 | amount        | true     | decimal      | 持仓量(币)                 |                                                              |
 | volume        | true     | decimal      | 持仓量(张)                 |                                                              |
+| trade_amount  | true | decimal  | 最近24小时成交量（币）（当前时间-24小时）	     |  |
+| trade_volume  | true | decimal    | 最近24小时成交量（张）（当前时间-24小时）	 |                |
+| trade_turnover  | true | decimal    | 最近24小时成交额（当前时间-24小时） |                |
 | \</data\>         |          |              |                            |                                                              |
 | ts            | true     | long         | 响应生成时间点，单位：毫秒 |                                                              |
 
@@ -2320,7 +2351,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | ts                      | true     | long         |  响应生成时间点，单位：毫秒   |                                                           |
 | \<data\>                | true     | object       | 字典类型                   |                                                              |
 | \<financial_record\>    | true     | object array |                            |                                                              |
-| id                      | true     | long         |                            |                                                              |
+| id                      | true     | long         | 财务记录ID（品种唯一）                          |                                                              |
 | ts                      | true     | long         | 创建时间                    |                                                               |
 | symbol                  | true     | string       | 品种代码                    |  "BTC","ETH","USDT"...                                              |
 | trade_partition         | true     | string       | 交易分区                    |  "USDT"                                                      |
@@ -3771,6 +3802,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 | page_index    | false    | int    | 页码，不填默认第1页  |                                                              |
 | page_size     | false    | int    | 每页条数，不填默认20 | 不得多于50                                                   |
 | contract_code | false    | string | 合约代码             | BTC-USDT-201225-C-13000                                     |
+| sort_by       | false    | string | 排序字段（降序），不填默认按照create_date降序 | "create_date"：按订单创建时间进行降序，"update_time"：按订单更新时间进行降序|
 
 ### 备注：
 
@@ -3794,6 +3826,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
                 "volume": 1,
                 "price": 1204.79,
                 "create_date": 1604891074887,
+                "update_time": 1604891074887,
                 "order_source": "api",
                 "order_price_type": "post_only",
                 "order_type": 1,
@@ -3840,6 +3873,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 | volume           | true     | decimal      | 委托数量(张)           |                                                              |
 | price            | true     | decimal      | 委托价格           |                                                              |
 | create_date      | true     | long         | 创建时间           |                                                              |
+| update_time      |  true    |  long        | 订单更新时间，单位：毫秒	  |    | 
 | order_source     | true     | string       | 订单来源           |                                                              |
 | order_price_type | true     | string       | 订单报价类型       | "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单, "opponent_ioc": 对手价-IOC下单，"optimal_5_ioc": 最优5档-IOC下单，"optimal_10_ioc": 最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单，"opponent_fok"： 对手价-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单      |
 | margin_frozen    | true     | decimal      | 冻结保证金         |                                                              |
@@ -4372,6 +4406,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 | create_date   | true     | long   | 日期                   | 可随意输入正整数，如果参数超过90则默认查询90天的数据         |
 | page_index    | false    | int    | 第几页，不填默认第一页 |                                                              |
 | page_size     | false    | int    | 不填默认20，不得多于50 |                                                              |
+| sort_by       | false    | string | 排序字段（降序），不填默认按照created_at降序 |  "created_at"：按订单创建时间进行降序，"update_time"：按订单更新时间进行降序|
 
 #### 备注：
 
@@ -4404,6 +4439,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
                 "order_price": 100,
                 "order_price_type": "limit",
                 "created_at": 1604891533629,
+                "update_time": 1604891533629,
                 "triggered_at": null,
                 "order_insert_at": 0,
                 "canceled_at": 1604891551047,
@@ -4450,6 +4486,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 | triggered_price   | true     | decimal      | 被触发时的价格                                               |                                                              |
 | order_price       | true     | decimal      | 委托价                                                       |                                                              |
 | created_at        | true     | long         | 订单创建时间                                                 |                                                              |
+| update_time       | true     |long          | 订单更新时间，单位：毫秒	| |
 | triggered_at      | true     | long         | 触发时间                                                     |                                                              |
 | order_insert_at   | true     | long         | 下order单时间                                                |                                                              |
 | canceled_at       | true     | long         | 撤单时间                                                     |                                                              |
@@ -4619,7 +4656,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 | 读取   | 市场行情接口  | market.$contract_code.detail                         | sub      | 订阅 Market detail 数据            | 否    |
 | 读取   | 市场行情接口  | market.$contract_code.trade.detail                    | req      | 请求 Trade detail 数据            | 否    |
 | 读取   | 市场行情接口  | market.$contract_code.trade.detail                    | sub      | 订阅 Trade Detail 数据            | 否    |
-| 读取   |  系统状态接口          |  public.$service.heartbeat  |        sub  | 订阅系统状态更新  | 否  | 
+| 读取   |  系统状态接口  |  public.$service.heartbeat  |        sub  | 订阅系统状态更新  | 否  | 
 | 读取   | 交易接口   | orders.$symbol-$partition                             | sub      | 订阅订单成交数据                    | 是     |
 | 读取   | 资产接口   | accounts.$symbol-$partition                            | sub      | 订阅资产变动数据                   | 是     |
 | 读取   | 资产接口   | positions.$symbol-$partition                           | sub      | 订阅持仓变动更新数据                | 是    |
@@ -4653,7 +4690,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 
 公开行情接口和用户私有接口都有访问次数限制
 
-- 普通用户，需要密钥的私有接口，每个UID 3秒最多30次请求(该UID的所有币种的合约的所有私有接口共享3秒30次的额度)
+- 普通用户，需要密钥的私有接口，每个UID 3秒最多 48 次请求(交易接口3秒最多 24 次请求，查询接口3秒最多 24 次请求) (该UID的所有币种和不同到期日的合约的所有私有接口共享该限制) 
 
 - 其他非行情类的公开接口，比如获取指数信息，限价信息，交割结算、平台持仓信息等，所有用户都是每个IP3秒最多60次请求（所有该IP的非行情类的公开接口请求共享3秒60次的额度）
 
@@ -5474,7 +5511,15 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
         "amount":0.176,
         "vol":176,
         "trade_turnover":439.20704,
-        "count":3
+        "count":3,
+        "bid":[
+            13684.5,
+            10615
+        ],
+        "ask":[
+            13684.6,
+            3440
+        ]
     }
 }
 ```
@@ -5496,8 +5541,12 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | vol   | true | decimal  | 成交量（张），买卖双边成交量之和  |  |
 | trade_turnover   | true | decimal  | 成交额（即成交的权利金总额），即sum（每一笔成交张数 * 合约面值 * 成交价格） |  |
 | count   | true | decimal  | 成交笔数  |  |
+| ask  |  true  |  array  |   [卖1价,卖1量(张)]  |   
+| bid  |  true  |  array  |   [买1价,买1量(张)]  |   
 | \</tick\>     |  |   |     |  |
- 
+
+#### 备注：
+ - 买一卖一并非实时更新，会存在部分延迟（500ms左右）。
  
 ## 请求 Trade Detail 数据
 
@@ -6428,11 +6477,14 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | 2003   | Authentication failed.                   |
 | 2004   | Number of visits exceeds limit.          |
 | 2005   | Connection has been authenticated.       |
+| 2007 | You don’t have access permission as you have not opened contracts trading.| 
 | 2010   | Topic error.                             |
 | 2011   | Contract doesn't exist.                  |
 | 2012   | Topic not subscribed.                    |
 | 2013   | Authentication type doesn't exist.       |
 | 2014   | Repeated subscription.                   |
+| 2020 | This contract does not support cross margin mode.| 
+| 2021 | Illegal parameter margin_account.| 
 | 2030   | Exceeds connection limit of single user. |
 | 2040   | Missing required parameter.              |
 
