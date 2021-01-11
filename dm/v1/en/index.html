@@ -908,13 +908,13 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Interface Type: private</li>
 <li>Interface URL: /api/v1/contract_trigger_hisorders</li>
 </ul>
-<h3 id='18-modified-quot-get-kline-data-quot-interface-support-to-query-k-line-data-of-contracts-that-have-been-delisted-in-the-last-month-users-can-enter-the-contract-code-to-query-data-of-contracts-delisted-in-the-last-month'>18. Modified &quot;Get Kline Data&quot; Interface(Support to query K-line data of contracts that have been delisted in the last month; Users can enter the contract code to query data of contracts delisted in the last month.)</h3>
+<h3 id='18-modified-quot-get-kline-data-quot-interface-support-to-query-k-line-data-of-contracts-that-have-been-delisted-in-the-last-four-weeks-users-can-enter-the-contract-code-to-query-data-of-contracts-delisted-in-the-last-four-weeks'>18. Modified &quot;Get Kline Data&quot; Interface(Support to query K-line data of contracts that have been delisted in the last four weeks; Users can enter the contract code to query data of contracts delisted in the last four weeks.)</h3>
 <ul>
 <li>Interface Name: Get Kline Data</li>
 <li>Interface Type: public</li>
 <li>Interface URL: market/history/kline</li>
 </ul>
-<h3 id='19-modified-quot-subscribe-kline-data-quot-interface-support-to-query-k-line-data-of-contracts-which-have-been-delisted-in-the-last-month-user-can-enter-contract-code-to-query-data-of-contracts-delisted-in-the-last-month'>19. Modified &quot;Subscribe Kline data&quot; Interface(Support to query K-line data of contracts which have been delisted in the last month; User can enter contract code to query data of contracts delisted in the last month.)</h3>
+<h3 id='19-modified-quot-subscribe-kline-data-quot-interface-support-to-query-k-line-data-of-contracts-which-have-been-delisted-in-the-last-four-weeks-user-can-enter-contract-code-to-query-data-of-contracts-delisted-in-the-last-four-weeks'>19. Modified &quot;Subscribe Kline data&quot; Interface(Support to query K-line data of contracts which have been delisted in the last four weeks; User can enter contract code to query data of contracts delisted in the last four weeks.)</h3>
 <ul>
 <li>Interface Name: Subscribe Kline data</li>
 <li>Interface Type: public</li>
@@ -4618,8 +4618,9 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>Either <code>size</code> field or <code>from</code>/<code>to</code> fields need to be filled.</li>
 <li>If <code>size</code> field and <code>from</code>/<code>to</code> fields are not filled, It will return error messages.</li>
-<li>If <code>from</code> field is filled, <code>to</code> field need to filled too.</li>
-<li>The api can mostly return the klines of last two years.</li>
+<li>If <code>from</code> field is filled, <code>to</code> field need to filled too. The api can mostly return the klines of last two years.</li>
+<li>If <code>size</code>, <code>from</code> and <code>to</code>are all filled in, the <code>from</code> and <code>to</code> parameters will be ignored.</li>
+<li>Support to query K-line data of contracts which have been delisted in the last four weeks; User can enter contract code to query data of contracts delisted in the last four weeks.</li>
 </ul>
 
 <blockquote>
@@ -17919,7 +17920,11 @@ the rate limit between the master account and each subaccount is 10 times/ minut
         </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">0</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='return-parameter-2'>Return Parameter</h3>
+</span></code></pre><h3 id='note-36'>Note</h3>
+<ul>
+<li>Support to query K-line data of contracts which have been delisted in the last four weeks; User can enter contract code to query data of contracts delisted in the last four weeks.</li>
+</ul>
+<h3 id='return-parameter-2'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18092,7 +18097,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Case-Senstive.Only lowercase is supported.1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-36'>Note</h4>
+<h4 id='note-37'>Note</h4>
 <p>If between time range [t1, t5], there are t1-t5 Klines in quantity.</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -18307,7 +18312,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5, 14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
-<h3 id='note-37'>Note:</h3>
+<h3 id='note-38'>Note:</h3>
 <ul>
 <li><p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p></li>
 <li><p>steps between step1 and step5, step14, step15 are merged orderbook data of step 150. 
@@ -18645,7 +18650,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-38'>Note:</h3>
+<h3 id='note-39'>Note:</h3>
 <ul>
 <li>when <code>data_type</code> is <code>incremental</code>,<code>snapshot</code> data wil be pushed for the first time. When re-connection occurs, <code>snapshort</code> data will be pushed for the first time. </li>
 <li><code>version</code>: auto increment in single websocket connection. <code>version</code> may be different among several websocket subscription connections.</li>
@@ -18862,7 +18867,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-39'>Note:</h3>
+<h3 id='note-40'>Note:</h3>
 <ul>
 <li><p>Once Best Bid/Ask Quotations (price,volume) change, it will be pushed.</p></li>
 <li><p>When the price and volume of Best Bid/Ask Quotations both change, only the latest BBO will be pushed.  </p></li>
@@ -19029,7 +19034,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-40'>Note:</h4>
+<h4 id='note-41'>Note:</h4>
 <ul>
 <li>Bid price(p1) and ask price(p1) are not updated in real time, there will be some delay (about 500ms).</li>
 </ul>
@@ -19509,7 +19514,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-41'>Note</h3>
+<h3 id='note-42'>Note</h3>
 <ul>
 <li><p>Pushed once the index data is changed.</p></li>
 <li><p>Periodical Push when the index data hasn&#39;t changed according to the kline period.</p></li>
@@ -19708,7 +19713,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-42'>Note：</h3>
+<h3 id='note-43'>Note：</h3>
 <ul>
 <li>Pushed once the index data is changed.</li>
 </ul>
@@ -19932,7 +19937,7 @@ Details are below:</p></li>
 <td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-43'>Note:</h4>
+<h4 id='note-44'>Note:</h4>
 <ul>
 <li>The basis data of Next Quarterly Contract is available after 2020/6/15 14:00:00.</li>
 </ul>
@@ -20123,7 +20128,7 @@ Details are below:</p></li>
 <td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-44'>Note：</h3>
+<h3 id='note-45'>Note：</h3>
 <ul>
 <li>2000 data at most per request.</li>
 </ul>
@@ -20301,7 +20306,7 @@ Details are below:</p></li>
 <td>Required；Topic name format: orders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported. e.g.:&quot;BTC,ETH&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-45'>Note:</h4>
+<h4 id='note-46'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 </ul>
@@ -20702,7 +20707,7 @@ Details are below:</p></li>
 <blockquote>
 <p>Illustration on detailed data format of orders Notification</p>
 </blockquote>
-<h4 id='note-46'>Note:</h4>
+<h4 id='note-47'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 <li>The orders will be pushed when matched by matching engine.</li>
@@ -21183,7 +21188,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-47'>Note</h3>
+<h3 id='note-48'>Note</h3>
 <ul>
 <li>A regular push of account is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</li>
 </ul>
@@ -21465,7 +21470,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-48'>Note</h3>
+<h3 id='note-49'>Note</h3>
 <ul>
 <li><p>A regular push of position is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</p></li>
 <li><p>When switching leverage with no positions, the event &quot;switch_lever_rate&quot; will not be pushed by the position topic.</p></li>
@@ -21985,7 +21990,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-49'>Note：</h3>
+<h3 id='note-50'>Note：</h3>
 <ul>
 <li>The websocket subscription of contract info event is pushed every 60 seconds, and the event is &quot;snapshot&quot;. </li>
 <li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is &quot;init&quot;.</li>
@@ -22641,7 +22646,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-50'>Note</h3>
+<h3 id='note-51'>Note</h3>
 <ul>
 <li>Since this push is a poll query status, there may be a delay of 1-2 seconds.</li>
 </ul>
