@@ -129,12 +129,12 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
  - Interface Type: private
  - Interface URL: /api/v1/contract_trigger_hisorders
 
-### 18. Modified "Get Kline Data" Interface(Support to query K-line data of contracts that have been delisted in the last month; Users can enter the contract code to query data of contracts delisted in the last month.) 
+### 18. Modified "Get Kline Data" Interface(Support to query K-line data of contracts that have been delisted in the last four weeks; Users can enter the contract code to query data of contracts delisted in the last four weeks.) 
 - Interface Name: Get Kline Data
 - Interface Type: public
 - Interface URL: market/history/kline
 
-### 19. Modified "Subscribe Kline data" Interface(Support to query K-line data of contracts which have been delisted in the last month; User can enter contract code to query data of contracts delisted in the last month.) 
+### 19. Modified "Subscribe Kline data" Interface(Support to query K-line data of contracts which have been delisted in the last four weeks; User can enter contract code to query data of contracts delisted in the last four weeks.) 
  - Interface Name: Subscribe Kline data
  - Interface Type: public
  - Subscription Topic: market.$symbol.kline.$period
@@ -2460,8 +2460,9 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 
 - Either `size` field or `from`/`to` fields need to be filled.
 - If `size` field and `from`/`to` fields are not filled, It will return error messages.
-- If `from` field is filled, `to` field need to filled too.
-- The api can mostly return the klines of last two years.
+- If `from` field is filled, `to` field need to filled too. The api can mostly return the klines of last two years.
+- If `size`, `from` and `to `are all filled in, the `from` and `to` parameters will be ignored.
+- Support to query K-line data of contracts which have been delisted in the last four weeks; User can enter contract code to query data of contracts delisted in the last four weeks.
 
 > Data Illustration：
 
@@ -7419,6 +7420,9 @@ Add computed value into the Signature parameter in API request. Please note  the
     }
 }
 ```
+
+### Note
+- Support to query K-line data of contracts which have been delisted in the last four weeks; User can enter contract code to query data of contracts delisted in the last four weeks.
 
 ### Return Parameter 
 
