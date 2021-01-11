@@ -72,8 +72,8 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
  - Interface Type: private
  - Interface URL: /api/v1/contract_tpsl_hisorders
 
-### 7. Added Query info of take-profit and stop-loss order that related to position opening order 
- - Interface Name: Query info of take-profit and stop-loss order that related to position opening order 
+### 7. Added Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order
+ - Interface Name:  Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order
  - Interface Type: private
  - Interface URL: /api/v1/contract_relation_tpsl_order
 
@@ -989,7 +989,7 @@ Trade | Strategy  |  /api/v1/contract_tpsl_cancel                           | PO
 Trade | Strategy  |  /api/v1/contract_tpsl_cancelall                        | POST    |     Cancel all Take-profit and Stop-loss Orders       |      Yes         |
 Read  | Strategy  |  /api/v1/contract_tpsl_openorders                       | POST    |     Open take-profit and stop-loss orders        |      Yes         |
 Read  | Strategy  |  /api/v1/contract_tpsl_hisorders                        | POST    |     Take-profit and stop-loss histoty orders       |      Yes         |
-Read  | Strategy  |  /api/v1/contract_relation_tpsl_order                   | POST    |     Query take-profit and stop-loss order related to position opening order       |      Yes         |
+Read  | Strategy  |  /api/v1/contract_relation_tpsl_order                   | POST    |     Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order       |      Yes         |
 
 
 ##  Address
@@ -6752,7 +6752,7 @@ ts                     | true     | long    | timestamp                |        
 | \</data\>       |       |        |     |  |
 | ts              | true  | long   | Time of Respond Generation，Unit: Millisecond |     |
 
-## Query Info Of take-profit and stop-loss Order That Related To Position Opening Order 
+## Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order 
 
  - POST `/api/v1/contract_relation_tpsl_order`
 
