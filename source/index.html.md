@@ -2814,6 +2814,16 @@ curl "https://api.huobi.pro/v1/query/deposit-withdraw?currency=xrp&type=deposit&
 | created-at  | integer   | The timestamp in milliseconds for the transfer creation      |
 | updated-at  | integer   | The timestamp in milliseconds for the transfer's latest update |
 
+**List of possible deposit state**
+
+| State      | Description                                        |
+| ---------- | -------------------------------------------------- |
+| unknown    | On-chain transfer has not been received            |
+| confirming | On-chain transfer waits for first confirmation     |
+| confirmed  | On-chain transfer confirmed for at least one block, user is able to transfer and trade |
+| safe | Multiple on-chain confirmed, user is able to withdraw |
+| orphan |On-chain transfer confirmed but currently in an orphan branch |
+
 **List of possible withdraw state**
 
 | State           | Description                                       |
@@ -2831,16 +2841,6 @@ curl "https://api.huobi.pro/v1/query/deposit-withdraw?currency=xrp&type=deposit&
 | confirmed       | On-chain transfer completed with one confirmation |
 | confirm-error   | On-chain transfer faied to get confirmation       |
 | repealed        | Withdraw terminated by system                     |
-
-**List of possible deposit state**
-
-| State      | Description                                        |
-| ---------- | -------------------------------------------------- |
-| unknown    | On-chain transfer has not been received            |
-| confirming | On-chain transfer waits for first confirmation     |
-| confirmed  | On-chain transfer confirmed for at least one block |
-| safe       | Multiple on-chain confirmation happened            |
-| orphan     | Confirmed but currently in an orphan branch        |
 
 ## Error Code
 
