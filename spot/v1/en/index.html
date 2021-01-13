@@ -6322,6 +6322,36 @@ Rate Limit (NEW): 20times/2s</p>
 </tr>
 </tbody></table>
 
+<p><strong>List of possible deposit state</strong></p>
+
+<table><thead>
+<tr>
+<th>State</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>unknown</td>
+<td>On-chain transfer has not been received</td>
+</tr>
+<tr>
+<td>confirming</td>
+<td>On-chain transfer waits for first confirmation</td>
+</tr>
+<tr>
+<td>confirmed</td>
+<td>On-chain transfer confirmed for at least one block, user is able to transfer and trade</td>
+</tr>
+<tr>
+<td>safe</td>
+<td>Multiple on-chain confirmed, user is able to withdraw</td>
+</tr>
+<tr>
+<td>orphan</td>
+<td>On-chain transfer confirmed but currently in an orphan branch</td>
+</tr>
+</tbody></table>
+
 <p><strong>List of possible withdraw state</strong></p>
 
 <table><thead>
@@ -6381,36 +6411,6 @@ Rate Limit (NEW): 20times/2s</p>
 <tr>
 <td>repealed</td>
 <td>Withdraw terminated by system</td>
-</tr>
-</tbody></table>
-
-<p><strong>List of possible deposit state</strong></p>
-
-<table><thead>
-<tr>
-<th>State</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>unknown</td>
-<td>On-chain transfer has not been received</td>
-</tr>
-<tr>
-<td>confirming</td>
-<td>On-chain transfer waits for first confirmation</td>
-</tr>
-<tr>
-<td>confirmed</td>
-<td>On-chain transfer confirmed for at least one block</td>
-</tr>
-<tr>
-<td>safe</td>
-<td>Multiple on-chain confirmation happened</td>
-</tr>
-<tr>
-<td>orphan</td>
-<td>Confirmed but currently in an orphan branch</td>
 </tr>
 </tbody></table>
 <h2 id='error-code-4'>Error Code</h2>
@@ -8467,6 +8467,7 @@ Rate Limit (NEW): 20times/2s</p>
 <p><strong>order state</strong>:</p>
 
 <ul>
+<li>created: The order is created, and not in the matching queue yet.</li>
 <li>submitted: The order is submitted, and already in the matching queue, waiting for deal.</li>
 <li>partial-filled: The order is already in the matching queue and partially traded, and is waiting for further matching and trade.</li>
 <li>filled: The order is already traded and not in the matching queue any more.</li>
@@ -9048,7 +9049,7 @@ Rate Limit (NEW): 50times/2s</p>
 <tr>
 <td>state</td>
 <td>string</td>
-<td>Order status, valid values: submitted, partial-filled, cancelling</td>
+<td>Order status, valid values: created, submitted, partial-filled</td>
 </tr>
 <tr>
 <td>stop-price</td>
@@ -9935,7 +9936,7 @@ Rate Limit (NEW): 50times/2s</p>
 <td>true</td>
 <td>NA</td>
 <td>One or more  states of order to include in the search, use comma to separate.</td>
-<td>submitted, partial-filled, partial-canceled, filled, canceled</td>
+<td>All possible order state (refer to introduction in this section)</td>
 </tr>
 <tr>
 <td>from</td>
