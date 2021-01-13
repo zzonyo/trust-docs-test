@@ -3793,6 +3793,7 @@ behavior type:
 
 **order state**:
 
+- created: The order is created, and not in the matching queue yet.
 - submitted: The order is submitted, and already in the matching queue, waiting for deal.
 - partial-filled: The order is already in the matching queue and partially traded, and is waiting for further matching and trade.
 - filled: The order is already traded and not in the matching queue any more.
@@ -4107,7 +4108,7 @@ curl "https://api.huobi.pro/v1/order/openOrders?account-id=100009&symbol=btcusdt
 | filled-cash-amount | string    | The filled total in quote currency                           |
 | filled-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint) |
 | source             | string    | The source where the order was triggered, possible values: sys, web, api, app |
-| state              | string    | Order status, valid values: submitted, partial-filled, cancelling |
+| state              | string    | Order status, valid values: created, submitted, partial-filled |
 | stop-price         | string    | false                                                        |
 | operator           | string    | false                                                        |
 
@@ -4584,7 +4585,7 @@ curl "https://api.huobi.pro/v1/order/orders?symbol=ethusdt&type=buy-limit&staet=
 | end-time   | long      | false    | present | Search ends time, UTC time in millisecond                    | Value range [(present-179d), present], maximum query window size is 48 hours, query window shift should be within past 180 days, queriable range should be within past 2 hours for cancelled order (state = "canceled") |
 | start-date | string    | false    | -1d     | Search starts date, in format yyyy-mm-dd                     | Value range [((end-date) – 1), (end-date)], maximum query window size is 2 days, query window shift should be within past 180 days, query window shift should be within past 2 hours for cancelled order (state = "canceled") |
 | end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd                       | Value range [(today-179), today], maximum query window size is 2 days, query window shift should be within past 180 days, queriable range should be within past 2 hours for cancelled order (state = "canceled") |
-| states     | string    | true     | NA      | One or more  states of order to include in the search, use comma to separate. | submitted, partial-filled, partial-canceled, filled, canceled |
+| states     | string    | true     | NA      | One or more  states of order to include in the search, use comma to separate. | All possible order state (refer to introduction in this section) |
 | from       | string    | false    | NA      | Search order id to begin with                                | NA                                                           |
 | direct     | string    | false    | both    | Search direction when 'from' is used                         | next, prev                                                   |
 | size       | int       | false    | 100     | The number of orders to return                               | [1, 100]                                                     |
