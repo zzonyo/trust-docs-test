@@ -3788,7 +3788,8 @@ API Key 权限：读取<br>
 
 **订单状态 (state)**:
 
-- submitted : 等待成交，该状态订单已进入撮合队列当中。
+- created：已创建，该状态订单尚未进入撮合队列。
+- submitted : 已挂单等待成交，该状态订单已进入撮合队列当中。
 - partial-filled : 部分成交，该状态订单在撮合队列当中，订单的部分数量已经被市场成交，等待剩余部分成交。
 - filled : 已成交。该状态订单不在撮合队列中，订单的全部数量已经被市场成交。
 - partial-canceled : 部分成交撤销。该状态订单不在撮合队列中，此状态由partial-filled转化而来，订单数量有部分被成交，但是被撤销。
@@ -4211,7 +4212,7 @@ API Key 权限：读取<br>
 | filled-cash-amount | string   | 订单中已成交部分的总价格                               |
 | filled-fees        | string   | 已交交易手续费总额（准确数值请参考matchresults接口）   |
 | source             | string   | 订单来源                                               |
-| state              | string   | 订单状态，包括submitted, partial-filled, cancelling    |
+| state              | string   | 订单状态，包括created, submitted, partial-filled       |
 | stop-price         | string   | 止盈止损订单触发价格                                   |
 | operator           | string   | 止盈止损订单触发价运算符                               |
 
@@ -4601,12 +4602,12 @@ API Key 权限：读取<br>
 | 参数名称   | 是否必须 | 类型   | 描述                                                         | 默认值                      | 取值范围                                                     |
 | ---------- | -------- | ------ | ------------------------------------------------------------ | --------------------------- | ------------------------------------------------------------ |
 | symbol     | true     | string | 交易对                                                       |                             | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）       |
-| types      | false    | string | 查询的订单类型组合，使用逗号分割                             |                             | 所有可能的订单类型（见本章节简介） |
+| types      | false    | string | 查询的订单类型组合，使用逗号分割                             |                             | 所有可能的订单类型（见本章节简介）                           |
 | start-time | false    | long   | 查询开始时间, 时间格式UTC time in millisecond。 以订单生成时间进行查询 | -48h 查询结束时间的前48小时 | 取值范围 [((end-time) – 48h), (end-time)] ，查询窗口最大为48小时，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state="canceled") |
 | end-time   | false    | long   | 查询结束时间, 时间格式UTC time in millisecond。 以订单生成时间进行查询 | present                     | 取值范围 [(present-179d), present] ，查询窗口最大为48小时，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state="canceled") |
 | start-date | false    | string | 查询开始日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询    | -1d 查询结束日期的前1天     | 取值范围 [((end-date) – 1), (end-date)] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state="canceled") |
 | end-date   | false    | string | 查询结束日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询    | today                       | 取值范围 [(today-179), today] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state="canceled") |
-| states     | true     | string | 查询的订单状态组合，使用','分割                              |                             | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销 |
+| states     | true     | string | 查询的订单状态组合，使用','分割                              |                             | 所有可能的订单状态（见本章节简介）                           |
 | from       | false    | string | 查询起始 ID                                                  |                             | 如果是向后查询，则赋值为上一次查询结果中得到的最后一条id ；如果是向前查询，则赋值为上一次查询结果中得到的第一条id |
 | direct     | false    | string | 查询方向                                                     |                             | prev 向前；next 向后                                         |
 | size       | false    | string | 查询记录大小                                                 | 100                         | [1, 100]                                                     |
