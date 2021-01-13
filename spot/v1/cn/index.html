@@ -8869,7 +8869,8 @@ endTime缺省值：当前时间<br></p>
 <p><strong>订单状态 (state)</strong>:</p>
 
 <ul>
-<li>submitted : 等待成交，该状态订单已进入撮合队列当中。</li>
+<li>created：已创建，该状态订单尚未进入撮合队列。</li>
+<li>submitted : 已挂单等待成交，该状态订单已进入撮合队列当中。</li>
 <li>partial-filled : 部分成交，该状态订单在撮合队列当中，订单的部分数量已经被市场成交，等待剩余部分成交。</li>
 <li>filled : 已成交。该状态订单不在撮合队列中，订单的全部数量已经被市场成交。</li>
 <li>partial-canceled : 部分成交撤销。该状态订单不在撮合队列中，此状态由partial-filled转化而来，订单数量有部分被成交，但是被撤销。</li>
@@ -9608,7 +9609,7 @@ Response:</p>
 <tr>
 <td>state</td>
 <td>string</td>
-<td>订单状态，包括submitted, partial-filled, cancelling</td>
+<td>订单状态，包括created, submitted, partial-filled</td>
 </tr>
 <tr>
 <td>stop-price</td>
@@ -10538,7 +10539,7 @@ Response:</p>
 <td>string</td>
 <td>查询的订单状态组合，使用&#39;,&#39;分割</td>
 <td></td>
-<td>submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销</td>
+<td>所有可能的订单状态（见本章节简介）</td>
 </tr>
 <tr>
 <td>from</td>
