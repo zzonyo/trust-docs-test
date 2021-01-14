@@ -7793,9 +7793,11 @@ Below is the error code, error message and description returned by Market WebSoc
 | bad-request | not json string             | The request is not JSON format         |
 | bad-request | request timeout             | The request is time out                |
 
-# Websocket Asset and Order (to be obsolete)
+# Websocket Asset and Order (to be obsolete on Feb 28)
 
-## Introduction (to be obsolete)
+<aisde class="warning">Asset and Order Websocket v1 will be obsolete on Feb 28, 2021, please migrate to v2 if you are still using v1.</aside>
+
+## Introduction (to be obsolete on Feb 28)
 
 ### Websocket URL
 
@@ -7967,7 +7969,7 @@ Asset and Order topics require authentication. To authenticate yourself, send be
 - The request method in signature's method is `GET`, WebSocket v1 path is `/ws/v1`
 - The data in JSON request doesn't require URL encode
 
-## Subscribe to Account Updates (to be obsoleted)
+## Subscribe to Account Updates (to be obsoleted on Feb 28)
 
 API Key Permission：Read
 
@@ -8043,7 +8045,7 @@ Note:<br>
 
 - A maker rebate would be paid in batch mode for multiple trades.<br>
 
-## Subscribe to Order Updates (to be obsoleted)
+## Subscribe to Order Updates (to be obsoleted on Feb 28)
 
 API Key Permission：Read
 
@@ -8130,7 +8132,7 @@ This topic publishes all order updates of the current account.
 | filled-fees        | string    | Transaction fee paid so far                                  |
 | unfilled-amount    | string    | Remaining order quantity                                     |
 
-## Subscribe to Order Updates (to be obsoleted)
+## Subscribe to Order Updates (to be obsoleted on Feb 28)
 
 API Key Permission：Read
 
@@ -8210,7 +8212,7 @@ This topic publishes all order updates of the current account. By comparing with
 | order-type         | string    | order type, including buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit => buy-limit,sell-stop-limit => sell-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok => buy-limit-fok, sell-stop-limit-fok => sell-limit-fok |
 
 
-## Request Account Details (to be obsoleted)
+## Request Account Details (to be obsoleted on Feb 28)
 
 API Key Permission：Read
 
@@ -8309,7 +8311,7 @@ Query all account data of the current user.
 | type       | string    | account type    |      |
 | balance }} | string    | account balance |      |
 
-## Search Past Orders (to be obsoleted)
+## Search Past Orders (to be obsoleted on Feb 28)
 
 API Key Permission：Read
 
@@ -8396,7 +8398,7 @@ Search past and open orders based on searching criteria.
 | operator           | string    | opration character of stop price                             |      |
 
 
-## Query Order by Order ID (to be obsoleted)
+## Query Order by Order ID (to be obsoleted on Feb 28)
 
 API Key Permission：Read
 
