@@ -7740,9 +7740,11 @@ REQ频道支持5档/20档/150档全量数据的获取。<br>
 | 1008        | header required correct cloud-exchange | exchangeCode 参数错误    |
 | bad-request | request timeout                        | 请求超时                 |
 
-# Websocket资产及订单（即将废弃）
+# Websocket资产及订单 v1（将于2月28日废弃）
 
-## 简介（即将废弃）
+<aside class="warning">Websocket资产及订单 v1接口将于2021年2月28日下线，您如果仍然使用该接口，请尽快迁移到v2接口。</aside>
+
+## 简介（将于2月28日废弃）
 
 ### 接入URL
 
@@ -7918,7 +7920,7 @@ Websocket服务器同时支持一次性请求数据（pull）。
 - 签名计算中请求方法固定值为`GET`，WebSocket v1路径固定为`/ws/v1`
 - JSON请求中的数据不需要URL编码
 
-## 订阅账户更新（即将废弃）
+## 订阅账户更新（将于2月28日废弃）
 
 API Key 权限：读取
 
@@ -7994,7 +7996,7 @@ API Key 权限：读取
 账户更新推送的是到账金额，多笔成交产生的多笔交易返佣可能会合并到帐。<br>
 
 
-## 订阅订单更新（即将废弃）
+## 订阅订单更新（将于2月28日废弃）
 
 API Key 权限：读取
 
@@ -8081,7 +8083,7 @@ API Key 权限：读取
 | filled-cash-amount | string   | 单次成交金额                                                 |
 | filled-fees        | string   | 单次成交手续费（买入为币，卖出为钱）                         |
 
-## 订阅订单更新 (即将废弃)
+## 订阅订单更新 (将于2月28日废弃)
 
 API Key 权限：读取
 
@@ -8161,7 +8163,7 @@ API Key 权限：读取
 | order-type         | string    | 订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit => buy-limit,sell-stop-limit => sell-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok => buy-limit-fok, sell-stop-limit-fok => sell-limit-fok |
 
 
-## 请求用户资产数据（即将废弃）
+## 请求用户资产数据（将于2月28日废弃）
 
 API Key 权限：读取
 
@@ -8261,7 +8263,7 @@ API Key 权限：读取
 | type       | string   | 子账户类型 |      |
 | balance }} | string   | 子账户余额 |      |
 
-## 请求当前及历史订单（即将废弃）
+## 请求当前及历史订单（将于2月28日废弃）
 
 API Key 权限：读取
 
@@ -8349,7 +8351,7 @@ API Key 权限：读取
 | operator           | string   | 止盈止损订单触发价运算符     |      |
 
 
-## 以订单编号请求订单（即将废弃）
+## 以订单编号请求订单（将于2月28日废弃）
 
 API Key 权限：读取
 
