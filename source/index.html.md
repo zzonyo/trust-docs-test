@@ -4003,7 +4003,7 @@ The possible values of "order-state" includes -
 API Key Permission：Trade<br>
 Rate Limit (NEW): 100times/2s
 
-This endpoint submit a request to cancel an order.
+This endpoint submit a request to cancel an order based on client-order-id (within 24 hours).
 
 <aside class="notice">It is suggested to use /v1/order/orders/{order-id}/submitcancel to cancel single order, which is faster and more stable</aside>
 <aside class="warning">This only submit the cancel request, the actual result of the canel request needs to be checked by order status or match result endpoints</aside>
@@ -4023,7 +4023,7 @@ curl -X POST -H "Content-Type: application/json" "https://api.huobi.pro/v1/order
 
 | Parameter       | Data Type | Required | Default | Description                                                  |
 | --------------- | --------- | -------- | ------- | ------------------------------------------------------------ |
-| client-order-id | string    | true     | NA      | Client order ID, it must exist already, otherwise it is not allowed to use when placing a new order |
+| client-order-id | string    | true     | NA      | Client order ID, it must exist within 24 hours, otherwise it is not allowed to use when placing a new order |
 
 > The above command returns JSON structured like this:
 
