@@ -8820,7 +8820,7 @@ Rate Limit (NEW): 100times/2s</p>
 <p>API Key Permission：Trade<br>
 Rate Limit (NEW): 100times/2s</p>
 
-<p>This endpoint submit a request to cancel an order.</p>
+<p>This endpoint submit a request to cancel an order based on client-order-id (within 24 hours).</p>
 
 <aside class="notice">It is suggested to use /v1/order/orders/{order-id}/submitcancel to cancel single order, which is faster and more stable</aside>
 
@@ -8846,7 +8846,7 @@ Rate Limit (NEW): 100times/2s</p>
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>Client order ID, it must exist already, otherwise it is not allowed to use when placing a new order</td>
+<td>Client order ID, it must exist within 24 hours, otherwise it is not allowed to use when placing a new order</td>
 </tr>
 </tbody></table>
 
