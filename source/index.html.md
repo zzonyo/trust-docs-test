@@ -1946,12 +1946,12 @@ curl "https://api.hbdm.com/swap-api/v1/swap_open_interest?contract_code=BTC-USD"
 | status                         | true          | string   | Request Processing Result                     | "ok" , "error"                    |
 | data \<list\> |               |          |                                               |                                   |
 | symbol                         | true          | string   | Variety code                                  | "BTC", "ETH" ...                  |
-| volume                         | true          | decimal  | Position quantity(volume)                     |                                   |
-| amount                         | true          | decimal  | Position quantity(Currency)                   |                                   |
+| volume                         | true          | decimal  | Position quantity(volume). Sum of both buy and sell sides |                                   |
+| amount                         | true          | decimal  | Position quantity(Currency). Sum of both buy and sell sides |                                   |
 | contract_code                  | true          | string   | Contract Code                                 | eg "BTC-USD"   ...              |
-| trade_amount                    | true | decimal  | trading volume within the last 24 hours (coin)     |  |
-| trade_volume                    | true | decimal    | trading volume within the last 24 hours (cont)  |                |
-| trade_turnover                  | true | decimal    | trading amount within the last 24 hours  |                |
+| trade_amount                    | true | decimal  | trading volume within the last 24 hours (coin). Sum of both buy and sell sides |  |
+| trade_volume                    | true | decimal    | trading volume within the last 24 hours (cont). Sum of both buy and sell sides |                |
+| trade_turnover                  | true | decimal    | trading amount within the last 24 hours. Sum of both buy and sell sides |                |
 | \</list\>                      |               |          |                                               |                                   |
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
 
@@ -2116,13 +2116,13 @@ curl "https://api.hbdm.com/swap-ex/market/history/kline?period=1min&size=200&con
 | ts                 | true          | long        | Time of Respond Generation, Unit: Millisecond |                 |
 |  \<list\>(attr name: data)    |               |kline data    |      |            | 
 |  id    |     true          | long   |  kline id,the same as kline timestamp, kline start timestamp     |            
-|  vol    |     true          | decimal   |  Trade Volume(Cont.)    |            
-|  count    |     true          | decimal   |   Order Quantity  |            
+|  vol    |     true          | decimal   |  Trade Volume(Cont.). Sum of both buy and sell sides |            
+|  count    |     true          | decimal   |   Order Quantity. Sum of both buy and sell sides |            
 |  open    |     true          | decimal   |   Opening Price  |            
 |  close    |     true          | decimal   |  Closing Price,  the price in the last kline is the latest order price   |            
 |  low    |     true          | decimal   |  Low    |            
 |  high    |     true          | decimal   |  High   |            
-|  amount    |     true          | decimal   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
+|  amount    |     true          | decimal   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price). Sum of both buy and sell sides |            
 |  \</list\>    |               |     |      |      
 
 
@@ -2201,13 +2201,13 @@ curl "https://api.hbdm.com/swap-ex/market/detail/merged?contract_code=BTC-USD"
 | ts                 | true          | long        | Time of Respond Generation, Unit: Millisecond                |                 |
 |  \<tick\>    |               |     | kline data (Start at 00:00(UTC+8) of the day)      |            | 
 |  id    |     true          | long   |  kline id,the same as kline timestamp   |            
-|  vol    |     true          | string   |  Trade Volume(Cont.)    |            
-| count    |     true          | decimal   |   Order Quantity  |            
+|  vol    |     true          | string   |  Trade Volume(Cont.). Sum of both buy and sell sides |            
+| count    |     true          | decimal   |   Order Quantity. Sum of both buy and sell sides |            
 |  open    |     true          | string   |   Opening Price  |            
 |  close    |     true          | string   |  Closing Price,  the price in the last kline is the latest order price   |            
 |  low    |     true          | string   |  Low    |            
 |  high    |     true          | string   |  High   |            
-|  amount    |     true          | string   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
+|  amount    |     true          | string   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price). Sum of both buy and sell sides |            
 | ask | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 | bid | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
 | ts  | true          | long        | Timestamp               |                 |
@@ -2286,7 +2286,7 @@ curl "https://api.hbdm.com/swap-ex/market/trade?contract_code=BTC-USD"
 |  \<list\>  (attrs: data)  |               |    |      | 
 | id  |  true  |  long  | Unique Transaction Id(symbol level)  |   |    
 | price  |  true  |  decimal  |  Price |   |    
-| amount  |  true  |  decimal  |  Quantity(Cont.)  |   |    
+| amount  |  true  |  decimal  |  Quantity(Cont.). Sum of both buy and sell sides  |   |    
 | direction  |  true  |  string  |  Order Direction  |   |    
 | ts  |  true  |  long  |  Order Creation Time |   |    
 |  \</list\>    |               |    |      | 
@@ -2380,7 +2380,7 @@ curl "https://api.hbdm.com/swap-ex/market/history/trade?contract_code=BTC-USD&si
 |  \<list\>  (attrs: data)  |               |    |      | 
 | id  |  true  |  long  | Unique Transaction Id(symbol level) |   |    
 | price  |  true  |  decimal  |  Price |   |    
-| amount  |  true  |  decimal  |  Quantity(Cont.)  |   |    
+| amount  |  true  |  decimal  |  Quantity(Cont.). Sum of both buy and sell sides |   |    
 | direction  |  true  |  string  |  Order Direction  |   |    
 | ts  |  true  |  long  |  Order Creation Time |   |    
 |  \</list\>    |               |    |      | 
@@ -2614,7 +2614,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_his_open_interest?contract_code=BTC-
 | symbol | true | string | symbol   | "BTC","ETH"... |
 | contract_code     |  true    | string | Contract Code  | e.g. "BTC-USD" |
 | \<tick\> |  |  |  |  |   
-| volume | true | decimal | Open Interest |  |
+| volume | true | decimal | Open Interest. Sum of both buy and sell sides |  |
 | amount_type | true | int | Open Interest Unit | 1:-cont，2:- cryptocurrency  |
 | ts | true | long | Recording Time |  |
 | \</tick\> |  |  |  |  |
@@ -7153,13 +7153,13 @@ Add computed value into the Signature parameter in API request. Please note  the
   \<tick\>    |               |    |      |            | 
   id    |     true          | long   | kline id,the same as kline timestamp, kline start timestamp    |            
   mrid    |     true          | long   | ID Order ID    |            
-  vol    |     true          | decimal   |  Trade Volume(Cont.)    |            
-  count    |     true          | decimal   |   Order Quantity  |            
+  vol    |     true          | decimal   |  Trade Volume(Cont.). Sum of both buy and sell sides |            
+  count    |     true          | decimal   |   Order Quantity. Sum of both buy and sell sides |            
   open    |     true          | decimal   |   Open Price  |            
   close    |     true          | decimal   |  Clos Price,  the price in the last kline is the latest order price   |            
   low    |     true          | decimal   |  Low  Price  |            
   high    |     true          | decimal   |  High Price  |            
-  amount    |     true          | decimal   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)   |            
+  amount    |     true          | decimal   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price). Sum of both buy and sell sides |            
   \</tick\>    |               |     |      |          
 
 
@@ -7278,13 +7278,13 @@ Clients can request 2000 Klines at most in one request
   wsid    |     true          | long   |    wsid |           
   \<data\>    |               |    |      |            | 
   id    |     true          | long   | kline id,the same as kline timestamp, kline start timestamp |            
-  vol    |     true          | decimal   |    Trade Volume(Cont.)   |            
-  count    |     true          | decimal   |  Order quantity   |            
+  vol    |     true          | decimal   |    Trade Volume(Cont.). Sum of both buy and sell sides |            
+  count    |     true          | decimal   |  Order quantity. Sum of both buy and sell sides |            
   open    |     true          | decimal   |      Open Price  |            
   close    |     true          | decimal   |    Clos Price, the price in the latest Kline is the last order price   |            
   low    |     true          | decimal   |  Low Price  |            
   high    |     true          | decimal   |  High Price  |            
-  amount    |     true          | decimal   |  Trade Amount(Coin), trade Amount(coins)=sum(order quantity of a single order * face value of the coin/order price)   |            
+  amount    |     true          | decimal   |  Trade Amount(Coin), trade Amount(coins)=sum(order quantity of a single order * face value of the coin/order price). Sum of both buy and sell sides |            
   \</data\>    |               |     |      |          
 
 
@@ -7582,9 +7582,9 @@ open  |  true  |  decimal  |    Open Price |
 close  |  true  |  decimal  |    Clos Price, the price from the latest kline is the last order price |    
 high  |  true  |  decimal  |   High Price |     
 low  |  true  |  decimal  |    Low Price |     
-amount  |  true  |  decimal  |   Trade Amount(Coins), Trade amount(Coin)=SUM(quantity(cont.)*face value/ order price  |   
+amount  |  true  |  decimal  |   Trade Amount(Coins), Trade amount(Coin)=SUM(quantity(cont.)*face value/ order price. Sum of both buy and sell sides |   
 vol  |  true  |  decimal  |   Trade volume(Cont.)， the sum volume of both buy and sell sides  |     
-count  |  true  |  decimal  |   fulfilled order quantity  |  
+count  |  true  |  decimal  |   fulfilled order quantity. Sum of both buy and sell sides |  
 ask  | true | array |Sell,[price(Ask price), vol(Ask orders (cont.) )] | | 
 bid  | true| array | Buy,[price(Bid price), vol(Bid orders(Cont.))] | |     
  \</tick\>    |               |    |      |           
@@ -7754,7 +7754,7 @@ id  |  true  |  long  | Request ID  |   |
  \<data\>    |               |    |      | 
 id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
 price  |  true  |  string  |  Price |   |    
-amount  |  true  |  string  |  Quantity(Cont.)  |   |    
+amount  |  true  |  string  |  Quantity(Cont.). Sum of both buy and sell sides |   |    
 direction  |  true  |  string  |  Order Direction  |   |    
 ts  |  true  |  long  |  Order Creation Time |   |    
  \</data\>    |               |    |      | 
@@ -7832,7 +7832,7 @@ ts  |  true  |  long  |  Request time  |   |
 id  |  true  |  long  | Unique Order Id(symbol level)  |   |    
 ts  |  true  |  long  |  tick time  |   |    
  \<data\>    |               |    |      | 
-amount  |  true  |  decimal  |  quantity(Cont.) |   |    
+amount  |  true  |  decimal  |  quantity(Cont.). Sum of both buy and sell sides |   |    
 ts  |  true  |  long  |  trade timestamp  |   |    
 id  |  true  |  long  | Unique Transaction Id(symbol level)  |   |    
 price  |  true  |  decimal  |  Price  |   |    
