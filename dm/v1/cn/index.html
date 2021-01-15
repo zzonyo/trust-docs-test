@@ -4229,14 +4229,14 @@ step6是不合并小数；
 <td>volume</td>
 <td>true</td>
 <td>decimal</td>
-<td>持仓量(张)</td>
+<td>持仓量(张)。 值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>持仓量(币)</td>
+<td>持仓量(币)。 值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
@@ -4250,21 +4250,21 @@ step6是不合并小数；
 <td>trade_amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>最近24小时成交量（币）（当前时间-24小时）</td>
+<td>最近24小时成交量（币）（当前时间-24小时）。 值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
 <td>trade_volume</td>
 <td>true</td>
 <td>decimal</td>
-<td>最近24小时成交量（张）（当前时间-24小时）</td>
+<td>最近24小时成交量（张）（当前时间-24小时）。 值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
 <td>trade_turnover</td>
 <td>true</td>
 <td>decimal</td>
-<td>最近24小时成交额（当前时间-24小时）</td>
+<td>最近24小时成交额（当前时间-24小时）。 值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
@@ -5047,13 +5047,13 @@ step6是不合并小数；
 <tr>
 <td>vol</td>
 <td>decimal</td>
-<td>成交量张数</td>
+<td>成交量张数。 值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
 <td>count</td>
 <td>decimal</td>
-<td>成交笔数</td>
+<td>成交笔数。 值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
@@ -5083,7 +5083,7 @@ step6是不合并小数；
 <tr>
 <td>amount</td>
 <td>decimal</td>
-<td>成交量(币)</td>
+<td>成交量(币)。 值是买卖双边之和</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -5214,13 +5214,13 @@ step6是不合并小数；
 <tr>
 <td>vol</td>
 <td>string</td>
-<td>成交量张数（最近24（当前时间-24小时）小时成交量张）</td>
+<td>成交量张数（最近24（当前时间-24小时）小时成交量张）。 值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
 <td>count</td>
 <td>decimal</td>
-<td>成交笔数（最近24（当前时间-24小时）小时成交笔数）</td>
+<td>成交笔数（最近24（当前时间-24小时）小时成交笔数）。 值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
@@ -5250,7 +5250,7 @@ step6是不合并小数；
 <tr>
 <td>amount</td>
 <td>string</td>
-<td>成交量(币) （最近24（当前时间-24小时）小时成交量币）</td>
+<td>成交量(币) （最近24（当前时间-24小时）小时成交量币）。 值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
@@ -5393,7 +5393,7 @@ step6是不合并小数；
 <td>amount</td>
 <td>true</td>
 <td>string</td>
-<td>成交量(张)，买卖双边成交量之和</td>
+<td>成交量(张)。 值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
@@ -5569,7 +5569,7 @@ step6是不合并小数；
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交量(张)，买卖双边成交量之和</td>
+<td>成交量(张)。 值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
@@ -6165,7 +6165,7 @@ step6是不合并小数；
 <td>volume</td>
 <td>true</td>
 <td>string</td>
-<td>持仓量</td>
+<td>持仓量。 值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
@@ -18066,13 +18066,13 @@ step6是不合并小数；
 <td>vol</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交量张数</td>
+<td>成交量张数。 值是买卖双边之和</td>
 </tr>
 <tr>
 <td>count</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交笔数</td>
+<td>成交笔数。 值是买卖双边之和</td>
 </tr>
 <tr>
 <td>open</td>
@@ -18102,7 +18102,7 @@ step6是不合并小数；
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)</td>
+<td>成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)。 值是买卖双边之和</td>
 </tr>
 <tr>
 <td>&lt;/tick&gt;</td>
@@ -18271,13 +18271,13 @@ step6是不合并小数；
 <td>vol</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交量张数</td>
+<td>成交量张数。 值是买卖双边之和</td>
 </tr>
 <tr>
 <td>count</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交笔数</td>
+<td>成交笔数。 值是买卖双边之和</td>
 </tr>
 <tr>
 <td>open</td>
@@ -18307,7 +18307,7 @@ step6是不合并小数；
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)</td>
+<td>成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)。 值是买卖双边之和</td>
 </tr>
 <tr>
 <td>&lt;/data&gt;</td>
@@ -19202,19 +19202,19 @@ step6是不合并小数；
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)</td>
+<td>成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)。 值是买卖双边之和</td>
 </tr>
 <tr>
 <td>vol</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交量（张），买卖双边成交量之和</td>
+<td>成交量（张）。 值是买卖双边之和</td>
 </tr>
 <tr>
 <td>count</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交笔数</td>
+<td>成交笔数。 值是买卖双边之和</td>
 </tr>
 <tr>
 <td>ask</td>
@@ -19398,7 +19398,7 @@ step6是不合并小数；
 <td>amount</td>
 <td>true</td>
 <td>string</td>
-<td>成交量(张)，买卖双边成交量之和</td>
+<td>成交量(张)。 值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
@@ -19578,7 +19578,7 @@ step6是不合并小数；
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>数量（张）</td>
+<td>数量（张）。 值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
