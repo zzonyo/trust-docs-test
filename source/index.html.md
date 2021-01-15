@@ -2171,14 +2171,14 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/kline?contract_code=BTC
 | ch     | true | string | 数据所属的 channel，格式： market.period |                |
 | \<data\> |   true   |    object array    |               |                |
 | id     | true | long | K线ID,也就是K线时间戳，K线起始时间    |                |
-| vol     | true | decimal | 成交量(张)，买卖双边成交量之和        |                |
-| count     | true | decimal | 成交笔数        |                |
+| vol     | true | decimal | 成交量(张)。 值是买卖双边之和 |                |
+| count     | true | decimal | 成交笔数。 值是买卖双边之和 |                |
 | open     | true | decimal | 开盘价        |                |
 | close     | true | decimal | 收盘价,当K线为最晚的一根时，是最新成交价        |                |
 | low     | true | decimal | 最低价        |                |
 | high     | true | decimal | 最高价        |                |
-| amount     | true | decimal | 成交量(币), 即 (成交量(张)*单张合约面值)        |                |
-| trade_turnover     | true | decimal | 成交额，即 sum（每一笔成交张数\*合约面值\*成交价格）       |                |
+| amount     | true | decimal | 成交量(币), 即 (成交量(张)*单张合约面值)。 值是买卖双边之和 |                |
+| trade_turnover     | true | decimal | 成交额，即 sum（每一笔成交张数\*合约面值\*成交价格）。 值是买卖双边之和  |                |
 | \</data\>            |      |        |               |                |
 | status | true | string | 请求处理结果                          | "ok" , "error" |
 | ts     | true | long | 响应生成时间点，单位：毫秒                   |                |
@@ -2264,16 +2264,16 @@ curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC
 | status | true | string | 请求处理结果     | "ok" , "error" |
 | \<tick\> |true  | object |  开盘价和收盘价（从当天零点(UTC+8)开始）         |                |
 | id   | true | long | K线ID,也就是K线时间戳     |
-| amount   | true | string | 成交量(币), 即 (成交量(张)*单张合约面值)（最近24（当前时间-24小时）小时成交量币）    |                |
+| amount   | true | string | 成交量(币), 即 (成交量(张)*单张合约面值)（最近24（当前时间-24小时）小时成交量币）。 值是买卖双边之和 |                |
 | ask   | true | array | [卖1价,卖1量(张)] |                |
 | bid   | true | array | [买1价,买1量(张)] |                |
 | open     | true | string | 开盘价     |                |
 | close     | true | string | 收盘价,当K线为最晚的一根时，是最新成交价       |                |
-| count     | true | decimal | 成交笔数（当前时间-24小时）小时成交笔数）       |                |
+| count     | true | decimal | 成交笔数（当前时间-24小时）小时成交笔数）。 值是买卖双边之和  |                |
 | high   | true | string | 最高价                                    |                |
 | low   | true | string | 最低价  |                |
-| vol   | true | string | 成交量（张），买卖双边成交量之和 （最近24（当前时间-24小时）小时成交量张）      |                |
-| trade_turnover     | true | string | 成交额，即 sum（每一笔成交张数 \* 合约面值 \* 成交价格）（当前时间-24小时）小时成交额）       |                |
+| vol   | true | string | 成交量（张），买卖双边成交量之和 （最近24（当前时间-24小时）小时成交量张）。 值是买卖双边之和  |                |
+| trade_turnover     | true | string | 成交额，即 sum（每一笔成交张数 \* 合约面值 \* 成交价格）（当前时间-24小时）小时成交额）。 值是买卖双边之和 |                |
 | ts   | true | long | 时间戳   |                |
 | \</tick\>            |      |        |               |                |
 | ts     | true | long | 响应生成时间点，单位：毫秒                            |                |
@@ -2353,7 +2353,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
 | id     | true | long | 订单唯一id（品种唯一）       |      |
 | ts     | true | long | 最新成交时间       |      |
 | \<data\>    | true | object array |        |      |
-| amount     | true | string | 成交量(张)，买卖双边成交量之和       |      |
+| amount     | true | string | 成交量(张)。 值是买卖双边之和 |      |
 | direction     | true | string | 主动成交方向       |      |
 | id     | true | long | 成交唯一id（品种唯一）      |      |
 | price     | true | string | 成交价       |      |
@@ -2435,7 +2435,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
 | ch     | true | string | 数据所属的 channel，格式： market.$contract_code.trade.detail |              |
 | \<tick\> | true | object |           |      |       |
 | \<data\>  | true | object array |           |      |       |
-| amount     | true | decimal | 成交量(张)，买卖双边成交量之和       |      |            |
+| amount     | true | decimal | 成交量(张)。 值是买卖双边之和 |      |            |
 | direction     | true | string | 主动成交方向       |      |            |
 | id     | true | long | 成交唯一id（品种唯一）     |      |            |
 | price     | true | decimal | 成交价格       |      |            |
@@ -2787,8 +2787,8 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_his_open_interest?contract_co
 | symbol        | true | string  | 品种代码          | "BTC","ETH"...                           |
 | contract_code | true | string  | 合约代码          |  "BTC-USDT" ... |
 | \<tick\>      |  true    |  object array       |               |                                          |
-| volume        | true | decimal | 持仓量           |                                          |
-| amount_type   | true | int     | 计价单位（表示持仓量的计价单位）          | 1:张，2:币                                  |
+| volume        | true | decimal | 持仓量。 值是买卖双边之和 |                                          |
+| amount_type   | true | int     | 计价单位（表示持仓量的计价单位） | 1:张，2:币                                  |
 | value               | true | decimal | 总持仓额（单位为合约的计价币种，如USDT）     | |
 | ts            | true | long    | 统计时间          |                                          |
 | \</tick\>     |      |         |               |  |
@@ -8497,14 +8497,14 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
  \<tick\>   |               |    |      |            | 
   id    |     true          | long   |  K线ID,也就是K线时间戳，K线起始时间    |            
   mrid    |     true          | long   |  订单ID     |            
-  vol    |     true          | decimal   |  成交量张数     |            
-  count    |     true          | decimal   |   成交笔数     |            
+  vol    |     true          | decimal   |  成交量张数。 值是买卖双边之和 |            
+  count    |     true          | decimal   |   成交笔数。 值是买卖双边之和 |            
   open    |     true          | decimal   |  开盘价    |            
   close    |     true          | decimal   |  收盘价,当K线为最晚的一根时，是最新成交价     |            
   low    |     true          | decimal   |  最低价    |            
   high    |     true          | decimal   |  最高价    |            
-  amount    |     true          | decimal   |  成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)    |  
-  trade_turnover   | true | decimal  | 成交额, 即sum（每一笔成交张数 * 合约面值 * 成交价格）   |    |          
+  amount    |     true          | decimal   |  成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)。 值是买卖双边之和 |  
+  trade_turnover   | true | decimal  | 成交额, 即sum（每一笔成交张数 * 合约面值 * 成交价格）。 值是买卖双边之和 |    |          
   \</tick\>    |               |     |      |          
 
 > 之后每当 KLine 有更新时，client 会收到数据:
@@ -8647,14 +8647,14 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
   wsid    |     true          | long   |  wsid     |           
  \<data\>    |               |    |      |            | 
   id    |     true          | long   | K线ID,也就是K线时间戳，K线起始时间 |            
-  vol    |     true          | decimal   |  成交量张数     |            
-  count    |     true          | decimal   |  成交笔数     |            
+  vol    |     true          | decimal   |  成交量张数。 值是买卖双边之和 |            
+  count    |     true          | decimal   |  成交笔数。 值是买卖双边之和 |            
   open    |     true          | decimal   |    开盘价   |            
   close    |     true          | decimal   |  收盘价,当K线为最晚的一根时，是最新成交价     |            
   low    |     true          | decimal   |  最低价    |            
   high    |     true          | decimal   |  最高价    |            
-  amount    |     true          | decimal   |  成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)    |   
-  trade_turnover   | true | decimal  | 成交额, 即sum（每一笔成交张数 * 合约面值 * 成交价格）   |    |         
+  amount    |     true          | decimal   |  成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)。 值是买卖双边之和 |   
+  trade_turnover   | true | decimal  | 成交额, 即sum（每一笔成交张数 * 合约面值 * 成交价格）。 值是买卖双边之和 |    |         
   \</data\>    |               |     |      |          
 
 ## 【通用】订阅 Market Depth 数据 
@@ -8957,9 +8957,9 @@ open  |  true  |  decimal  |    开盘价  |
 close  |  true  |  decimal  |    收盘价,当K线为最晚的一根时，是最新成交价  |    
 high  |  true  |  decimal  |    最高价  |     
 low  |  true  |  decimal  |    最低价  |     
-amount  |  true  |  decimal  |    成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)  |   
-vol  |  true  |  decimal  |   成交量（张），买卖双边成交量之和  |     
-trade_turnover   | true | decimal  | 成交额，即sum（每一笔成交张数 * 合约面值 * 成交价格） |  |
+amount  |  true  |  decimal  |    成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)。 值是买卖双边之和 |   
+vol  |  true  |  decimal  |   成交量（张）。 值是买卖双边之和  |     
+trade_turnover   | true | decimal  | 成交额，即sum（每一笔成交张数 * 合约面值 * 成交价格）。 值是买卖双边之和 |  |
 count  |  true  |  decimal  |   成交笔数  |     
  \</tick\>    |               |    |      |  
  
@@ -9132,7 +9132,7 @@ id  |  true  |  long  |  请求唯一 ID  |   |
 \<data\>    |               |    |      | 
 id  |  true  |  long  |  成交唯一id（品种唯一）  |   |    
 price  |  true  |  string  |  价格  |   |    
-amount  |  true  |  string  |  数量（张）  |   |    
+amount  |  true  |  string  |  数量（张）。 值是买卖双边之和 |   |    
 direction  |  true  |  string  |  买卖方向  |   |    
 ts  |  true  |  long  |  订单成交时间  |   |    
 \</data\>    |               |    |      | 
@@ -9213,7 +9213,7 @@ ts  |  true  |  long  |  发送时间  |   |
 id  |  true  |  long  |  订单唯一id（品种唯一）  |   |    
 ts  |  true  |  long  |  tick数据戳  |   |    
 \<data\>    |               |    |      | 
-amount  |  true  |  decimal  |  数量（张）  |   |    
+amount  |  true  |  decimal  |  数量（张）。 值是买卖双边之和 |   |    
 ts  |  true  |  long  |  订单时间戳  |   |    
 id  |  true  |  long  |   成交唯一id（品种唯一）  |   |    
 price  |  true  |  decimal  |  价格  |   |    
