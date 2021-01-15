@@ -7795,7 +7795,7 @@ Below is the error code, error message and description returned by Market WebSoc
 
 # Websocket Asset and Order (to be obsolete on Feb 28)
 
-<aisde class="warning">Asset and Order Websocket v1 will be obsolete on Feb 28, 2021, please migrate to v2 if you are still using v1.</aside>
+<aside class="warning">Asset and Order Websocket v1 will be obsolete on Feb 28, 2021, please migrate to v2 if you are still using v1.</aside>
 
 ## Introduction (to be obsolete on Feb 28)
 
