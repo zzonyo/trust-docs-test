@@ -4251,14 +4251,14 @@ One of the query conditions must be chosen.</p>
 <td>volume</td>
 <td>true</td>
 <td>decimal</td>
-<td>Position quantity(volume)</td>
+<td>Position quantity(volume). Sum of both buy and sell sides</td>
 <td></td>
 </tr>
 <tr>
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>Position quantity(Currency)</td>
+<td>Position quantity(Currency). Sum of both buy and sell sides</td>
 <td></td>
 </tr>
 <tr>
@@ -4272,21 +4272,21 @@ One of the query conditions must be chosen.</p>
 <td>trade_amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>trading volume within the last 24 hours (coin)</td>
+<td>trading volume within the last 24 hours (coin). Sum of both buy and sell sides</td>
 <td></td>
 </tr>
 <tr>
 <td>trade_volume</td>
 <td>true</td>
 <td>decimal</td>
-<td>trading volume within the last 24 hours (cont)</td>
+<td>trading volume within the last 24 hours (cont). Sum of both buy and sell sides</td>
 <td></td>
 </tr>
 <tr>
 <td>trade_turnover</td>
 <td>true</td>
 <td>decimal</td>
-<td>trading amount within the last 24 hours</td>
+<td>trading amount within the last 24 hours. Sum of both buy and sell sides</td>
 <td></td>
 </tr>
 <tr>
@@ -4727,13 +4727,13 @@ One of the query conditions must be chosen.</p>
 <tr>
 <td>vol</td>
 <td>decimal</td>
-<td>volume.</td>
+<td>volume. Sum of both buy and sell sides</td>
 <td></td>
 </tr>
 <tr>
 <td>count</td>
 <td>decimal</td>
-<td>count.</td>
+<td>count. Sum of both buy and sell sides</td>
 <td></td>
 </tr>
 <tr>
@@ -4763,7 +4763,7 @@ One of the query conditions must be chosen.</p>
 <tr>
 <td>amount</td>
 <td>decimal</td>
-<td>amount based on coins.</td>
+<td>amount based on coins. Sum of both buy and sell sides</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -4894,14 +4894,14 @@ One of the query conditions must be chosen.</p>
 <td>vol</td>
 <td>true</td>
 <td>string</td>
-<td>Trade Volume(Cont.)</td>
+<td>Trade Volume(Cont.). Sum of both buy and sell sides</td>
 <td></td>
 </tr>
 <tr>
 <td>count</td>
 <td>true</td>
 <td>int</td>
-<td>Order Quantity</td>
+<td>Order Quantity. Sum of both buy and sell sides</td>
 <td></td>
 </tr>
 <tr>
@@ -4936,7 +4936,7 @@ One of the query conditions must be chosen.</p>
 <td>amount</td>
 <td>true</td>
 <td>string</td>
-<td>Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)</td>
+<td>Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price). Sum of both buy and sell sides</td>
 <td></td>
 </tr>
 <tr>
@@ -5114,7 +5114,7 @@ One of the query conditions must be chosen.</p>
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>Quantity(Cont.)</td>
+<td>Quantity(Cont.). Sum of both buy and sell sides</td>
 <td></td>
 <td></td>
 </tr>
@@ -5325,7 +5325,7 @@ One of the query conditions must be chosen.</p>
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>Quantity(Cont.)</td>
+<td>Quantity(Cont.). Sum of both buy and sell sides</td>
 <td></td>
 <td></td>
 </tr>
@@ -5883,7 +5883,7 @@ One of the query conditions must be chosen.</p>
 <td>volume</td>
 <td>true</td>
 <td>string</td>
-<td>Open Interest</td>
+<td>Open Interest. Sum of both buy and sell sides</td>
 <td></td>
 </tr>
 <tr>
@@ -17967,13 +17967,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>vol</td>
 <td>true</td>
 <td>decimal</td>
-<td>Trade Volume(Cont.)</td>
+<td>Trade Volume(Cont.). Sum of both buy and sell sides</td>
 </tr>
 <tr>
 <td>count</td>
 <td>true</td>
 <td>decimal</td>
-<td>Order Quantity</td>
+<td>Order Quantity. Sum of both buy and sell sides</td>
 </tr>
 <tr>
 <td>open</td>
@@ -18003,7 +18003,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)</td>
+<td>Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price). Sum of both buy and sell sides</td>
 </tr>
 <tr>
 <td>&lt;/tick&gt;</td>
@@ -18199,13 +18199,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>vol</td>
 <td>true</td>
 <td>decimal</td>
-<td>Trade Volume(Cont.)</td>
+<td>Trade Volume(Cont.). Sum of both buy and sell sides</td>
 </tr>
 <tr>
 <td>count</td>
 <td>true</td>
 <td>decimal</td>
-<td>Order quantity</td>
+<td>Order quantity. Sum of both buy and sell sides</td>
 </tr>
 <tr>
 <td>open</td>
@@ -18235,7 +18235,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>Trade Amount(Coin), trade amount(coins)=sum(order quantity of a single order * face value of the coin/order price)</td>
+<td>Trade Amount(Coin), trade amount(coins)=sum(order quantity of a single order * face value of the coin/order price). Sum of both buy and sell sides</td>
 </tr>
 <tr>
 <td>&lt;/data&gt;</td>
@@ -19001,19 +19001,19 @@ Details are below:</p></li>
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>Trade amount(Coins), Trade amount(Coin)=SUM(quantity(cont.)*face value/ order price</td>
+<td>Trade amount(Coins), Trade amount(Coin)=SUM(quantity(cont.)*face value/ order price. Sum of both buy and sell sides</td>
 </tr>
 <tr>
 <td>vol</td>
 <td>true</td>
 <td>decimal</td>
-<td>Trade amount(Cont.)， the sum volume of both buy and sell sides</td>
+<td>Trade amount(Cont.). Sum of both buy and sell sides</td>
 </tr>
 <tr>
 <td>count</td>
 <td>true</td>
 <td>decimal</td>
-<td>fulfilled order quantity</td>
+<td>fulfilled order quantity. Sum of both buy and sell sides</td>
 </tr>
 <tr>
 <td>ask true</td>
@@ -19223,7 +19223,7 @@ Details are below:</p></li>
 <td>amount</td>
 <td>true</td>
 <td>string</td>
-<td>Trade amount(Coin), trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price)</td>
+<td>Trade amount(Coin), trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price). Sum of both buy and sell sides</td>
 <td></td>
 </tr>
 <tr>
@@ -19371,7 +19371,7 @@ Details are below:</p></li>
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>quantity(Cont.)</td>
+<td>quantity(Cont.). Sum of both buy and sell sides</td>
 <td></td>
 </tr>
 <tr>
