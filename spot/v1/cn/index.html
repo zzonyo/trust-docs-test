@@ -9254,7 +9254,7 @@ endTime缺省值：当前时间<br></p>
 <p>API Key 权限：交易<br>
 限频值（NEW）：100次/2s</p>
 
-<p>此接口发送一个撤销订单的请求。</p>
+<p>此接口基于client-order-id（24小时内有效）发送一个撤销订单的请求。</p>
 
 <aside class="notice">撤单个订单建议通过接口/v1/order/orders/{order-id}/submitcancel，会更快更稳定</aside>
 
@@ -9285,7 +9285,7 @@ endTime缺省值：当前时间<br></p>
 <td>client-order-id</td>
 <td>true</td>
 <td>string</td>
-<td>用户自编订单号，必须已有该订单存在，否则下次下单时不允许用此值</td>
+<td>用户自编订单号，必须24小时内已有该订单存在，否则下次下单时不允许用此值</td>
 <td></td>
 <td></td>
 </tr>
