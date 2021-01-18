@@ -4152,11 +4152,11 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 
 ### Response Content
 
-| Field         | Data Type | Description                                    |
-| ------------- | --------- | ---------------------------------------------- |
-| success-count | integer   | The number of cancel request sent successfully |
-| failed-count  | integer   | The number of cancel request failed            |
-| next-id       | integer   | the next order id that can be cancelled        |
+| Field         | Data Type | Description                                                  |
+| ------------- | --------- | ------------------------------------------------------------ |
+| success-count | integer   | The number of cancel request sent successfully               |
+| failed-count  | integer   | The number of cancel request failed                          |
+| next-id       | integer   | the next order id that can be cancelled, -1 indicates no open orders |
 
 ## Submit Cancel for Multiple Orders by IDs
 
