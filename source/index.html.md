@@ -4216,12 +4216,12 @@ API Key 权限：读取<br>
 | stop-price         | string   | 止盈止损订单触发价格                                   |
 | operator           | string   | 止盈止损订单触发价运算符                               |
 
-## 批量撤销订单（open orders）
+## 批量撤销所有订单
 
 API Key 权限：交易<br>
 限频值（NEW）：50次/2s
 
-此接口发送批量撤销订单的请求。
+此接口发送批量撤销所有（单次最大100个）订单的请求。
 
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
 ### HTTP 请求
@@ -4236,7 +4236,7 @@ API Key 权限：交易<br>
 | account-id | false    | string | 账户ID，取值参考 `GET /v1/account/accounts`                  |        |                                                   |
 | symbol     | false    | string | 交易代码列表（最多10 个symbols，多个交易代码间以逗号分隔），btcusdt, ethbtc...（取值参考`/v1/common/symbols`） | all    |                                                   |
 | side       | false    | string | 主动交易方向                                                 |        | “buy”或“sell”，缺省将返回所有符合条件尚未成交订单 |
-| size       | false    | int    | 所需返回记录数                                               | 100    | [0,100]                                           |
+| size       | false    | int    | 撤销订单的数量                                               | 100    | [0,100]                                           |
 
 
 > Response:
@@ -4256,13 +4256,13 @@ API Key 权限：交易<br>
 ### 响应数据
 
 
-| 参数名称      | 是否必须 | 数据类型 | 描述                       | 取值范围 |
-| ------------- | -------- | -------- | -------------------------- | -------- |
-| success-count | true     | int      | 成功取消的订单数           |          |
-| failed-count  | true     | int      | 取消失败的订单数           |          |
-| next-id       | true     | long     | 下一个符合取消条件的订单号 |          |
+| 参数名称      | 是否必须 | 数据类型 | 描述                   |
+| ------------- | -------- | -------- | ---------------------- |
+| success-count | true     | int      | 成功取消的订单数       |
+| failed-count  | true     | int      | 取消失败的订单数       |
+| next-id       | true     | long     | 下一个可以撤销的订单号，返回-1表示没有可以撤销的订单 |
 
-## 批量撤销订单
+## 批量撤销指定订单
 
 API Key 权限：交易<br>
 限频值（NEW）：50次/2s
