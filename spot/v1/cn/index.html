@@ -575,10 +575,10 @@
                     <a href="#95f2078356" class="toc-h2 toc-link" data-title="查询当前未成交订单">查询当前未成交订单</a>
                   </li>
                   <li>
-                    <a href="#open-orders" class="toc-h2 toc-link" data-title="批量撤销订单（open orders）">批量撤销订单（open orders）</a>
+                    <a href="#b9af010185" class="toc-h2 toc-link" data-title="批量撤销所有订单">批量撤销所有订单</a>
                   </li>
                   <li>
-                    <a href="#ad00632ed5" class="toc-h2 toc-link" data-title="批量撤销订单">批量撤销订单</a>
+                    <a href="#5f8b337a4c" class="toc-h2 toc-link" data-title="批量撤销指定订单">批量撤销指定订单</a>
                   </li>
                   <li>
                     <a href="#92d59b6aad" class="toc-h2 toc-link" data-title="查询订单详情">查询订单详情</a>
@@ -9622,11 +9622,11 @@ Response:</p>
 <td>止盈止损订单触发价运算符</td>
 </tr>
 </tbody></table>
-<h2 id='open-orders'>批量撤销订单（open orders）</h2>
+<h2 id='b9af010185'>批量撤销所有订单</h2>
 <p>API Key 权限：交易<br>
 限频值（NEW）：50次/2s</p>
 
-<p>此接口发送批量撤销订单的请求。</p>
+<p>此接口发送批量撤销所有（单次最大100个）订单的请求。</p>
 
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
 <h3 id='http-51'>HTTP 请求</h3>
@@ -9672,7 +9672,7 @@ Response:</p>
 <td>size</td>
 <td>false</td>
 <td>int</td>
-<td>所需返回记录数</td>
+<td>撤销订单的数量</td>
 <td>100</td>
 <td>[0,100]</td>
 </tr>
@@ -9696,7 +9696,6 @@ Response:</p>
 <th>是否必须</th>
 <th>数据类型</th>
 <th>描述</th>
-<th>取值范围</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -9704,24 +9703,21 @@ Response:</p>
 <td>true</td>
 <td>int</td>
 <td>成功取消的订单数</td>
-<td></td>
 </tr>
 <tr>
 <td>failed-count</td>
 <td>true</td>
 <td>int</td>
 <td>取消失败的订单数</td>
-<td></td>
 </tr>
 <tr>
 <td>next-id</td>
 <td>true</td>
 <td>long</td>
-<td>下一个符合取消条件的订单号</td>
-<td></td>
+<td>下一个可以撤销的订单号，返回-1表示没有可以撤销的订单</td>
 </tr>
 </tbody></table>
-<h2 id='ad00632ed5'>批量撤销订单</h2>
+<h2 id='5f8b337a4c'>批量撤销指定订单</h2>
 <p>API Key 权限：交易<br>
 限频值（NEW）：50次/2s</p>
 
