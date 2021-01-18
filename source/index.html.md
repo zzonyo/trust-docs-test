@@ -6213,7 +6213,7 @@ ts                     | true     | long    | timestamp                |        
 | --------------- | ----- | ------ | ----------------------------- | -------------------- |
 | status          | true  | string | status                        | "ok", "error" |
 | \<data\>        |   true    |   object     |                               | dictionary                   |
-| \<errors\>        |   true    |   object     |                               | dictionary                   |
+| \<errors\>        |   true    |   array     |                               |                    |
 | order_id        | true  | string | order id[unique for one user, but maybe as same as other users] |                      |
 | err_code              | false  | long   | error code                |                      |
 | err_msg              | false  | string   | error message               |                      |
@@ -6255,7 +6255,7 @@ ts                     | true     | long    | timestamp                |        
 | ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
 | status          | true  | string | status                        | "ok", "error" |
 | \<data\>        |   true    |   object     |                               | dictionary                   |
-| \<errors\>        |   true    |   object     |                               | dictionary                   |
+| \<errors\>        |   true    |   array     |                               |                    |
 | order_id        | true  | string | order id[unique for one user, but maybe as same as other users] |                      |
 | err_code              | false  | long   | error code                |                      |
 | err_msg              | false  | string   | error message               |                      |
