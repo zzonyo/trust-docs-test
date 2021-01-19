@@ -881,6 +881,9 @@
                     <a href="#etp-10" class="toc-h2 toc-link" data-title="杠杆ETP批量撤单">杠杆ETP批量撤单</a>
                   </li>
                   <li>
+                    <a href="#etp-11" class="toc-h2 toc-link" data-title="获取ETP持仓限额">获取ETP持仓限额</a>
+                  </li>
+                  <li>
                     <a href="#555911a809-13" class="toc-h2 toc-link" data-title="常见错误码">常见错误码</a>
                   </li>
               </ul>
@@ -912,6 +915,18 @@ table th {
 </tr>
 </thead><tbody>
 <tr>
+<td>2021.1.19 19:00</td>
+<td><code>GET /v1/order/matchresults</code></td>
+<td>优化</td>
+<td>增加start-time/end-time参数，支持用户指定“时间范围“查询订单</td>
+</tr>
+<tr>
+<td>2021.1.19 19:00</td>
+<td><code>GET /v2/etp/limit</code></td>
+<td>新增</td>
+<td>新增ETP持仓限额接口</td>
+</tr>
+<tr>
 <td>2021.1.5 19:00</td>
 <td><code>POST/v2/algo-orders/cancel-all-after</code></td>
 <td>新增</td>
@@ -931,7 +946,7 @@ table th {
 </tr>
 <tr>
 <td>2020.12.14 19:00</td>
-<td><code>POST /v2/etp/{transactId}/cancel</code> 和 <code>POST /v2/etp/batch-cancel</code></td>
+<td><code>POST /v2/etp/{transactId}/cancel</code> <br/> <code>POST /v2/etp/batch-cancel</code></td>
 <td>新增</td>
 <td>新增杠杆ETP单个撤单接口和杠杆ETP批量撤单接口</td>
 </tr>
@@ -9721,7 +9736,7 @@ Response:</p>
 <p>API Key 权限：交易<br>
 限频值（NEW）：50次/2s</p>
 
-<p>此接口同时为多个订单（基于id）发送取消请求。</p>
+<p>此接口同时为多个订单（基于id）发送取消请求，建议通过order-ids来撤单，比client-order-ids更快更稳定。</p>
 <h3 id='http-52'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/order/orders/batchcancel</code></li>
@@ -10069,7 +10084,7 @@ Response:</p>
 <p>API Key 权限：读取<br>
 限频值（NEW）：50次/2s</p>
 
-<p>此接口返回指定用户自编订单号（24小时内）的订单最新状态和详情。通过API创建的订单，撤销超过2小时后无法查询。</p>
+<p>此接口返回指定用户自编订单号（24小时内）的订单最新状态和详情。通过API创建的订单，撤销超过2小时后无法查询。建议通过GET <code>/v1/order/orders/{order-id}</code>来撤单，比使用clientOrderId更快更稳定</p>
 <h3 id='http-54'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/orders/getClientOrder</code></li>
@@ -11007,6 +11022,22 @@ Response:</p>
 <td>查询的订单类型组合，使用&#39;,&#39;分割</td>
 <td>all</td>
 <td>所有可能的订单类型（见本章节简介）</td>
+</tr>
+<tr>
+<td>start-time</td>
+<td>false</td>
+<td>long</td>
+<td>查询开始时间, 时间格式UTC time in millisecond。 以订单生成时间进行查询</td>
+<td>-48h 查询结束时间的前48小时</td>
+<td>取值范围 [((end-time) – 48h), (end-time)] ，查询窗口最大为48小时，窗口平移范围为最近180天。</td>
+</tr>
+<tr>
+<td>end-time</td>
+<td>false</td>
+<td>long</td>
+<td>查询结束时间, 时间格式UTC time in millisecond。 以订单生成时间进行查询</td>
+<td>present</td>
+<td>取值范围 [(present-179d), present] ，查询窗口最大为48小时，窗口平移范围为最近180天。</td>
 </tr>
 <tr>
 <td>start-date</td>
@@ -21683,6 +21714,95 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
 <td>交易ID</td>
 </tr>
 </tbody></table>
+<h2 id='etp-11'>获取ETP持仓限额</h2>
+<p>用户可以通过该接口查询ETP的持仓限额。</p>
+<h3 id='http-85'>HTTP 请求</h3>
+<ul>
+<li>GET /v2/etp/limit</li>
+</ul>
+
+<p>API Key 权限：交易<br></p>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/v</span><span class="mi">2</span><span class="err">/etp/limit?currency=btc</span><span class="mi">3</span><span class="err">l</span><span class="p">,</span><span class="err">btc</span><span class="mi">3</span><span class="err">s</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-104'>请求参数</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>币种,支持批量查询(币种之间用英文逗号分隔)，单次最多可查10个币种</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+
+</span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"remainingAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc3l"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"maxHoldings"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"remainingAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc3s"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"maxHoldings"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12000"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+</span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+</span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-98'>响应数据</h3>
+<table><thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>是否必需</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>{ currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>ETP交易代码</td>
+</tr>
+<tr>
+<td>maxHoldings</td>
+<td>string</td>
+<td>TRUE</td>
+<td>持仓限额</td>
+</tr>
+<tr>
+<td>remainingAmount}</td>
+<td>string</td>
+<td>TRUE</td>
+<td>剩余额度</td>
+</tr>
+</tbody></table>
 <h2 id='555911a809-13'>常见错误码</h2>
 <p>以下是杠杆ETP接口的错误码、错误消息和说明。</p>
 
@@ -21697,6 +21817,11 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
 <td>1002</td>
 <td>您所在的国家禁止申购赎回</td>
 <td>用户注册或认证国籍不允许申赎</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>参数错误</td>
+<td>错误的币种传入</td>
 </tr>
 <tr>
 <td>80007</td>
@@ -21812,6 +21937,11 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
 <td>80045</td>
 <td>撤单失败，系统繁忙，请稍后重试</td>
 <td>调用broker等失败</td>
+</tr>
+<tr>
+<td>80052</td>
+<td>超出最大查询限制10</td>
+<td>超出最大查询限制</td>
 </tr>
 </tbody></table>
 
