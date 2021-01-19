@@ -22,12 +22,16 @@ table th {
 }
 </style>
 
+
+
 | 生效时间<br>(UTC +8) | 接口                                                         | 变化      | 摘要                                                         |
 | -------------------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
+| 2021.1.19 19:00      | `GET /v1/order/matchresults`                                 | 优化      | 增加start-time/end-time参数，支持用户指定“时间范围“查询订单  |
+| 2021.1.19 19:00      | `GET /v2/etp/limit`                                          | 新增      | 新增ETP持仓限额接口                                          |
 | 2021.1.5 19:00       | `POST/v2/algo-orders/cancel-all-after`                       | 新增      | 新增自动撤单接口                                             |
 | 2021.1.5 19:00       | accounts.update#${mode}                                      | 优化      | 增加mode=2：  <br/>accounts.update#2<br/>在账户余额发生变动或可用余额发生变动时均推送且一起推送。 |
 | 2020.12.16 19:00     | `GET /v1/order/matchresults`,<br>`GET /v1/order/orders/{order-id}/matchresults` | 优化      | 新增参数抵扣状态：fee-deduct-state（ 抵扣中：ongoing/ 抵扣完成：done），来代表手续费抵扣中和抵扣完成的状态 |
-| 2020.12.14 19:00     | `POST /v2/etp/{transactId}/cancel` 和 `POST /v2/etp/batch-cancel` | 新增      | 新增杠杆ETP单个撤单接口和杠杆ETP批量撤单接口                 |
+| 2020.12.14 19:00     | `POST /v2/etp/{transactId}/cancel` <br/> `POST /v2/etp/batch-cancel` | 新增      | 新增杠杆ETP单个撤单接口和杠杆ETP批量撤单接口                 |
 | 2020.11.26 19:00     | `GET /v2/user/uid`                                           | 新增      | 新增获取用户UID接口                                          |
 | 2020.10.16 19:00     | `orders#${symbol}`                                           | 优化      | 订单创建事件新增accountId                                    |
 | 2020.10.10 19:00     | `POST /v2/account/repayment`,<br>`GET /v2/account/repayment` | 新增      | 新增通用还币接口及还币交易记录查询接口                       |
@@ -4022,6 +4026,8 @@ API Key 权限：交易<br>
 <aside class="notice">撤单个订单建议通过接口/v1/order/orders/{order-id}/submitcancel，会更快更稳定</aside>
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
 
+
+
 ### HTTP 请求
 
 - POST ` /v1/order/orders/submitCancelClientOrder`
@@ -4266,7 +4272,7 @@ API Key 权限：交易<br>
 API Key 权限：交易<br>
 限频值（NEW）：50次/2s
 
-此接口同时为多个订单（基于id）发送取消请求。
+此接口同时为多个订单（基于id）发送取消请求，建议通过order-ids来撤单，比client-order-ids更快更稳定。
 
 ### HTTP 请求
 
@@ -4423,7 +4429,7 @@ API Key 权限：读取<br>
 API Key 权限：读取<br>
 限频值（NEW）：50次/2s
 
-此接口返回指定用户自编订单号（24小时内）的订单最新状态和详情。通过API创建的订单，撤销超过2小时后无法查询。
+此接口返回指定用户自编订单号（24小时内）的订单最新状态和详情。通过API创建的订单，撤销超过2小时后无法查询。建议通过GET `/v1/order/orders/{order-id}`来撤单，比使用clientOrderId更快更稳定
 
 ### HTTP 请求
 
@@ -4766,15 +4772,17 @@ API Key 权限：读取<br>
 
 ### 请求参数
 
-| 参数名称   | 是否必须 | 类型   | 描述                                           | 默认值                  | 取值范围                                                     |
-| ---------- | -------- | ------ | ---------------------------------------------- | ----------------------- | ------------------------------------------------------------ |
-| symbol     | true     | string | 交易对                                         | N/A                     | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）       |
-| types      | false    | string | 查询的订单类型组合，使用','分割                | all                     | 所有可能的订单类型（见本章节简介） |
-| start-date | false    | string | 查询开始日期（新加坡时区）日期格式yyyy-mm-dd   | -1d 查询结束日期的前1天 | 取值范围 [((end-date) – 1), (end-date)] ，查询窗口最大为2天，窗口平移范围为最近61天。 |
-| end-date   | false    | string | 查询结束日期（新加坡时区）, 日期格式yyyy-mm-dd | today                   | 取值范围 [(today-60), today] ，查询窗口最大为2天，窗口平移范围为最近61天 |
-| from       | false    | string | 查询起始 ID                                    | N/A                     | 如果是向后查询，则赋值为上一次查询结果中得到的最后一条id（不是trade-id） ；如果是向前查询，则赋值为上一次查询结果中得到的第一条id（不是trade-id） |
-| direct     | false    | string | 查询方向                                       | next                    | prev 向前；next 向后                                         |
-| size       | false    | string | 查询记录大小                                   | 100                     | [1，500]                                                     |
+| 参数名称   | 是否必须 | 类型   | 描述                                                         | 默认值                      | 取值范围                                                     |
+| ---------- | -------- | ------ | ------------------------------------------------------------ | --------------------------- | ------------------------------------------------------------ |
+| symbol     | true     | string | 交易对                                                       | N/A                         | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）       |
+| types      | false    | string | 查询的订单类型组合，使用','分割                              | all                         | 所有可能的订单类型（见本章节简介）                           |
+| start-time | false    | long   | 查询开始时间, 时间格式UTC time in millisecond。 以订单生成时间进行查询 | -48h 查询结束时间的前48小时 | 取值范围 [((end-time) – 48h), (end-time)] ，查询窗口最大为48小时，窗口平移范围为最近180天。 |
+| end-time   | false    | long   | 查询结束时间, 时间格式UTC time in millisecond。 以订单生成时间进行查询 | present                     | 取值范围 [(present-179d), present] ，查询窗口最大为48小时，窗口平移范围为最近180天。 |
+| start-date | false    | string | 查询开始日期（新加坡时区）日期格式yyyy-mm-dd                 | -1d 查询结束日期的前1天     | 取值范围 [((end-date) – 1), (end-date)] ，查询窗口最大为2天，窗口平移范围为最近61天。 |
+| end-date   | false    | string | 查询结束日期（新加坡时区）, 日期格式yyyy-mm-dd               | today                       | 取值范围 [(today-60), today] ，查询窗口最大为2天，窗口平移范围为最近61天 |
+| from       | false    | string | 查询起始 ID                                                  | N/A                         | 如果是向后查询，则赋值为上一次查询结果中得到的最后一条id（不是trade-id） ；如果是向前查询，则赋值为上一次查询结果中得到的第一条id（不是trade-id） |
+| direct     | false    | string | 查询方向                                                     | next                        | prev 向前；next 向后                                         |
+| size       | false    | string | 查询记录大小                                                 | 100                         | [1，500]                                                     |
 
 > Response:
 
@@ -5218,7 +5226,7 @@ API Key 权限：读取<br>
 |	orderSide	|	string	|	FALSE	|	all	|	订单方向	|	buy,sell	|
 |	orderType	|	string	|	FALSE	|	all	|	订单类型	|	limit,market	|
 |	orderStatus	|	string	|	TRUE	|		|	订单状态	|	canceled,rejected,triggered	|
-|	startTime	|	long	|	FALSE	|		|	远点时间	|
+|	startTime	|	long	|	FALSE	|		|	远点时间	||
 |	endTime	|	long	|	FALSE	|当前时间		|	近点时间 | |
 |	sort	|	string	|	FALSE	|	desc	|	检索方向	|asc - 由远及近, desc - 由近及远		|
 |	limit	|	integer	|	FALSE	|	100	|	单页最大返回条目数量	|[1,500]		|
@@ -9858,6 +9866,67 @@ API Key 权限：交易<br>限频值：1次/5秒<br>
 |	errCode 	|	string	|	TRUE	|撤单失败错误码	|
 |	transactId}	|	long	|	FALSE	| 交易ID	|
 
+
+
+## 获取ETP持仓限额
+
+用户可以通过该接口查询ETP的持仓限额。
+
+### HTTP 请求
+
+- GET /v2/etp/limit
+
+API Key 权限：交易<br>
+
+
+
+> Request:
+
+```json
+GET /v2/etp/limit?currency=btc3l,btc3s
+```
+
+### 请求参数
+
+|	名称	|	类型	|	是否必需	|	描述	|
+|	-----	|	----	|	------	|	-----	|
+|	currency	|	string	|	TRUE	| 币种,支持批量查询(币种之间用英文逗号分隔)，单次最多可查10个币种|
+
+
+
+> Response
+
+```json
+{
+
+"data": [
+    {
+        "remainingAmount": "2",
+        "currency": "btc3l",
+        "maxHoldings": "2"
+    },
+    {
+        "remainingAmount": "12000",
+        "currency": "btc3s",
+        "maxHoldings": "12000"
+    },
+"code": 200,
+"success": true
+}
+```
+
+### 响应数据
+
+| 名称             | 类型    | 是否必需 | 描述             |
+| ---------------- | ------- | -------- | ---------------- |
+| code             | integer | TRUE     | 状态码           |
+| message          | string  | FALSE    | 错误描述（如有） |
+| { currency       | string  | TRUE     | ETP交易代码      |
+| maxHoldings      | string  | TRUE     | 持仓限额         |
+| remainingAmount} | string  | TRUE     | 剩余额度         |
+
+
+
 ## 常见错误码
 
 以下是杠杆ETP接口的错误码、错误消息和说明。
@@ -9865,6 +9934,7 @@ API Key 权限：交易<br>限频值：1次/5秒<br>
 | 错误码 | 错误消息                       | 说明                                                   |
 | ------ | ------------------------------ | ------------------------------------------------------ |
 | 1002   | 您所在的国家禁止申购赎回       | 用户注册或认证国籍不允许申赎                           |
+| 2002   | 参数错误                       | 错误的币种传入                                         |
 | 80007  | 申购关闭，订单已取消           | 申购关闭                                               |
 | 80008  | 赎回关闭，订单已取消           | 赎回关闭                                               |
 | 80009  | 申购金额不得低于{0}            | 小于最小下单量                                         |
@@ -9888,3 +9958,4 @@ API Key 权限：交易<br>限频值：1次/5秒<br>
 | 80042  | 撤单失败，该订单已执行         | 撤单失败，该订单已执行                                 |
 | 80043  | 撤单失败，订单不存在           | 撤单失败，订单不存在                                   |
 | 80045  | 撤单失败，系统繁忙，请稍后重试 | 调用broker等失败                                       |
+| 80052  | 超出最大查询限制10             | 超出最大查询限制                                       |
