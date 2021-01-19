@@ -159,7 +159,7 @@ table th {
 第一部分是概要介绍：
 
 - **快速入门**：该章节对火币API做了简单且全方位的介绍，适合第一次使用火币API的用户。
-- **在线调试**：该章节介绍了现货API在线调试工具，方便用户直接调用和观察线上API环境。
+- **在线演示**：该章节介绍了现货API在线演示工具，方便用户直接调用和观察线上API环境。
 - **常见问题**：该章节列举了使用火币API时常见的、和具体API无关的通用问题。
 - **联系我们**：该章节介绍了针对不同问题，如何联系我们。
 
@@ -674,9 +674,9 @@ account-id可通过/v1/account/accounts接口获取，并根据account-type区�
 - 使用WebSocket的方式，同时订阅`orders.$symbol.update`、`accounts.update#${mode}`主题，`orders.$symbol.update`用于接收订单的状态变化（创建、成交、撤销以及相关成交价格、数量信息），由于该主题在推送数据时，未经过清算，所以时效性更快，可根据`accounts.update#${mode}`主题接收相关资产的变更信息，以此来维护账户内的资金情况。
 - 不建议WebSocket订阅`accounts`主题，该主题已由`accounts.update#${mode}`取代，会在后续停止服务，请尽早更换使用。
 
-# 在线调试
+# 在线演示
 
-API[在线调试工具](https://open.huobigroup.com/)可以让用户不需要写任何一行代码，只要鼠标点击就可以直接调用线上每个API，并可以观察到调用API的请求和返回结果。该调试工具界面和API文档类似，提供了参数输入框和返回字段的说明，用户可以快速上手，几乎不需要额外的使用手册。
+API[在线演示](https://open.huobigroup.com/)可以让用户不需要写任何一行代码，只要鼠标点击就可以直接调用线上每个API，并可以观察到调用API的请求和返回结果。该调试工具界面和API文档类似，提供了参数输入框和返回字段的说明，用户可以快速上手，几乎不需要额外的使用手册。
 
 该工具封装了共享的API Key，并且在调用私有接口后会将详细的签名过程和参数展示出来。如果您的程序遇到签名问题无法解决，可以将在其用到的API Key和时间戳复制到您的程序中
 ，将两者进行对比，发现签名失败的原因。
@@ -2806,13 +2806,13 @@ API Key 权限：读取<br>
 
 - 虚拟币充值状态定义：
 
-| 状态       | 描述     |
-| ---------- | -------- |
-| unknown    | 状态未知 |
-| confirming | 确认中   |
-| confirmed  | 已确认   |
-| safe       | 已完成   |
-| orphan     | 待确认   |
+| 状态       | 描述                                 |
+| ---------- | ------------------------------------ |
+| unknown    | 状态未知                             |
+| confirming | 区块确认中                           |
+| confirmed  | 区块已完成，已经上账，可以划转和交易 |
+| safe       | 区块已确认，可以提币                 |
+| orphan     | 区块已被孤立                         |
 
 - 虚拟币提币状态定义：
 
@@ -3792,7 +3792,8 @@ API Key 权限：读取<br>
 
 **订单状态 (state)**:
 
-- submitted : 等待成交，该状态订单已进入撮合队列当中。
+- created：已创建，该状态订单尚未进入撮合队列。
+- submitted : 已挂单等待成交，该状态订单已进入撮合队列当中。
 - partial-filled : 部分成交，该状态订单在撮合队列当中，订单的部分数量已经被市场成交，等待剩余部分成交。
 - filled : 已成交。该状态订单不在撮合队列中，订单的全部数量已经被市场成交。
 - partial-canceled : 部分成交撤销。该状态订单不在撮合队列中，此状态由partial-filled转化而来，订单数量有部分被成交，但是被撤销。
@@ -4021,7 +4022,7 @@ API Key 权限：交易<br>
 API Key 权限：交易<br>
 限频值（NEW）：100次/2s
 
-此接口发送一个撤销订单的请求。
+此接口基于client-order-id（24小时内有效）发送一个撤销订单的请求。
 
 <aside class="notice">撤单个订单建议通过接口/v1/order/orders/{order-id}/submitcancel，会更快更稳定</aside>
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
@@ -4044,7 +4045,7 @@ API Key 权限：交易<br>
 
 | 参数名称        | 是否必须 | 类型   | 描述                                                         | 默认值 | 取值范围 |
 | --------------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
-| client-order-id | true     | string | 用户自编订单号，必须已有该订单存在，否则下次下单时不允许用此值 |        |          |
+| client-order-id | true     | string | 用户自编订单号，必须24小时内已有该订单存在，否则下次下单时不允许用此值 |        |          |
 
 
 > Response:
@@ -4217,16 +4218,16 @@ API Key 权限：读取<br>
 | filled-cash-amount | string   | 订单中已成交部分的总价格                               |
 | filled-fees        | string   | 已交交易手续费总额（准确数值请参考matchresults接口）   |
 | source             | string   | 订单来源                                               |
-| state              | string   | 订单状态，包括submitted, partial-filled, cancelling    |
+| state              | string   | 订单状态，包括created, submitted, partial-filled       |
 | stop-price         | string   | 止盈止损订单触发价格                                   |
 | operator           | string   | 止盈止损订单触发价运算符                               |
 
-## 批量撤销订单（open orders）
+## 批量撤销所有订单
 
 API Key 权限：交易<br>
 限频值（NEW）：50次/2s
 
-此接口发送批量撤销订单的请求。
+此接口发送批量撤销所有（单次最大100个）订单的请求。
 
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
 ### HTTP 请求
@@ -4241,7 +4242,7 @@ API Key 权限：交易<br>
 | account-id | false    | string | 账户ID，取值参考 `GET /v1/account/accounts`                  |        |                                                   |
 | symbol     | false    | string | 交易代码列表（最多10 个symbols，多个交易代码间以逗号分隔），btcusdt, ethbtc...（取值参考`/v1/common/symbols`） | all    |                                                   |
 | side       | false    | string | 主动交易方向                                                 |        | “buy”或“sell”，缺省将返回所有符合条件尚未成交订单 |
-| size       | false    | int    | 所需返回记录数                                               | 100    | [0,100]                                           |
+| size       | false    | int    | 撤销订单的数量                                               | 100    | [0,100]                                           |
 
 
 > Response:
@@ -4261,13 +4262,13 @@ API Key 权限：交易<br>
 ### 响应数据
 
 
-| 参数名称      | 是否必须 | 数据类型 | 描述                       | 取值范围 |
-| ------------- | -------- | -------- | -------------------------- | -------- |
-| success-count | true     | int      | 成功取消的订单数           |          |
-| failed-count  | true     | int      | 取消失败的订单数           |          |
-| next-id       | true     | long     | 下一个符合取消条件的订单号 |          |
+| 参数名称      | 是否必须 | 数据类型 | 描述                   |
+| ------------- | -------- | -------- | ---------------------- |
+| success-count | true     | int      | 成功取消的订单数       |
+| failed-count  | true     | int      | 取消失败的订单数       |
+| next-id       | true     | long     | 下一个可以撤销的订单号，返回-1表示没有可以撤销的订单 |
 
-## 批量撤销订单
+## 批量撤销指定订单
 
 API Key 权限：交易<br>
 限频值（NEW）：50次/2s
@@ -4607,12 +4608,12 @@ API Key 权限：读取<br>
 | 参数名称   | 是否必须 | 类型   | 描述                                                         | 默认值                      | 取值范围                                                     |
 | ---------- | -------- | ------ | ------------------------------------------------------------ | --------------------------- | ------------------------------------------------------------ |
 | symbol     | true     | string | 交易对                                                       |                             | btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`）       |
-| types      | false    | string | 查询的订单类型组合，使用逗号分割                             |                             | 所有可能的订单类型（见本章节简介） |
+| types      | false    | string | 查询的订单类型组合，使用逗号分割                             |                             | 所有可能的订单类型（见本章节简介）                           |
 | start-time | false    | long   | 查询开始时间, 时间格式UTC time in millisecond。 以订单生成时间进行查询 | -48h 查询结束时间的前48小时 | 取值范围 [((end-time) – 48h), (end-time)] ，查询窗口最大为48小时，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state="canceled") |
 | end-time   | false    | long   | 查询结束时间, 时间格式UTC time in millisecond。 以订单生成时间进行查询 | present                     | 取值范围 [(present-179d), present] ，查询窗口最大为48小时，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state="canceled") |
 | start-date | false    | string | 查询开始日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询    | -1d 查询结束日期的前1天     | 取值范围 [((end-date) – 1), (end-date)] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state="canceled") |
 | end-date   | false    | string | 查询结束日期, 日期格式yyyy-mm-dd。 以订单生成时间进行查询    | today                       | 取值范围 [(today-179), today] ，查询窗口最大为2天，窗口平移范围为最近180天，已完全撤销的历史订单的查询窗口平移范围只有最近2小时(state="canceled") |
-| states     | true     | string | 查询的订单状态组合，使用','分割                              |                             | submitted 已提交, partial-filled 部分成交, partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销 |
+| states     | true     | string | 查询的订单状态组合，使用','分割                              |                             | 所有可能的订单状态（见本章节简介）                           |
 | from       | false    | string | 查询起始 ID                                                  |                             | 如果是向后查询，则赋值为上一次查询结果中得到的最后一条id ；如果是向前查询，则赋值为上一次查询结果中得到的第一条id |
 | direct     | false    | string | 查询方向                                                     |                             | prev 向前；next 向后                                         |
 | size       | false    | string | 查询记录大小                                                 | 100                         | [1, 100]                                                     |
@@ -7747,9 +7748,11 @@ REQ频道支持5档/20档/150档全量数据的获取。<br>
 | 1008        | header required correct cloud-exchange | exchangeCode 参数错误    |
 | bad-request | request timeout                        | 请求超时                 |
 
-# Websocket资产及订单（即将废弃）
+# Websocket资产及订单 v1（将于2月28日废弃）
 
-## 简介（即将废弃）
+<aside class="warning">Websocket资产及订单 v1接口将于2021年2月28日下线，您如果仍然使用该接口，请尽快迁移到v2接口。</aside>
+
+## 简介（将于2月28日废弃）
 
 ### 接入URL
 
@@ -7925,7 +7928,7 @@ Websocket服务器同时支持一次性请求数据（pull）。
 - 签名计算中请求方法固定值为`GET`，WebSocket v1路径固定为`/ws/v1`
 - JSON请求中的数据不需要URL编码
 
-## 订阅账户更新（即将废弃）
+## 订阅账户更新（将于2月28日废弃）
 
 API Key 权限：读取
 
@@ -8001,7 +8004,7 @@ API Key 权限：读取
 账户更新推送的是到账金额，多笔成交产生的多笔交易返佣可能会合并到帐。<br>
 
 
-## 订阅订单更新（即将废弃）
+## 订阅订单更新（将于2月28日废弃）
 
 API Key 权限：读取
 
@@ -8088,7 +8091,7 @@ API Key 权限：读取
 | filled-cash-amount | string   | 单次成交金额                                                 |
 | filled-fees        | string   | 单次成交手续费（买入为币，卖出为钱）                         |
 
-## 订阅订单更新 (即将废弃)
+## 订阅订单更新 (将于2月28日废弃)
 
 API Key 权限：读取
 
@@ -8168,7 +8171,7 @@ API Key 权限：读取
 | order-type         | string    | 订单类型，包括buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker,buy-stop-limit => buy-limit,sell-stop-limit => sell-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok => buy-limit-fok, sell-stop-limit-fok => sell-limit-fok |
 
 
-## 请求用户资产数据（即将废弃）
+## 请求用户资产数据（将于2月28日废弃）
 
 API Key 权限：读取
 
@@ -8268,7 +8271,7 @@ API Key 权限：读取
 | type       | string   | 子账户类型 |      |
 | balance }} | string   | 子账户余额 |      |
 
-## 请求当前及历史订单（即将废弃）
+## 请求当前及历史订单（将于2月28日废弃）
 
 API Key 权限：读取
 
@@ -8356,7 +8359,7 @@ API Key 权限：读取
 | operator           | string   | 止盈止损订单触发价运算符     |      |
 
 
-## 以订单编号请求订单（即将废弃）
+## 以订单编号请求订单（将于2月28日废弃）
 
 API Key 权限：读取
 
