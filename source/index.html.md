@@ -2298,8 +2298,8 @@ curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_typ
 | \<list\>(Attribute Name: data) |               |          |                                               |                                   |
 | symbol                         | true          | string   | Variety code                                  | "BTC", "ETH" ...                  |
 | contract_type                  | true          | string   | Contract Type                                 | "this_week","next_week","quarter", "next_quarter" |
-| volume                         | true          | decimal  | Position quantity(volume). Sum of both buy and sell sides  |                                   |
-| amount                         | true          | decimal  | Position quantity(Currency). Sum of both buy and sell sides |                                   |
+| volume                         | true          | decimal  | Position quantity(volume). Single side  |                                   |
+| amount                         | true          | decimal  | Position quantity(Currency). Single side |                                   |
 | contract_code                  | true          | string   | Contract Code                                 | eg "BTC180914"   ...              |
 | trade_amount	                | true	| decimal	| trading volume within the last 24 hours (coin). Sum of both buy and sell sides	| 
 | trade_volume	                | true	| decimal	| trading volume within the last 24 hours (cont). Sum of both buy and sell sides	| 
