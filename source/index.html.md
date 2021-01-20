@@ -11889,7 +11889,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | offset   | true | string  | offset  | "open"/"close" |
 | status   | true | int  | order status  | 1. Placing orders to order book; 2 Placing orders to order book; 3. Placed to order book 4. Partially filled; 5 partially filled but cancelled by client; 6. Fully filled; 7. Cancelled; 11Cancelling |
 | lever_rate   | true | int  | leverage   |     |
-| order_id   | true | bingint  | order ID   |    |
+| order_id   | true | long  | order ID   |    |
 | order_id_str   | true | string  | order ID   |    |
 | client_order_id   | true | long  | client order ID   |    |
 | order_source   | true | string  | order source   | system、web、api、m、risk、settlement、ios、android、windows、mac、trigger、tpsl |
