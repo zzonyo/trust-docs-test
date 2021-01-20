@@ -2316,8 +2316,8 @@ status  |  true  |  string  |  请求处理结果| "ok" , "error"  |
 \<data\>  |    |    |   |    |
 symbol  |  true  |  string  |  品种代码  |  "BTC", "ETH" ...  |
 contract_type  |  true  |  string  |  合约类型|  当周:"this_week", 次周:"next_week", 当季:"quarter",次季:"next_quarter" |
-volume  |  true  |  decimal  |  持仓量(张)。 值是买卖双边之和 |    |   
-amount  |  true  |  decimal  |  持仓量(币)。 值是买卖双边之和 |    |   
+volume  |  true  |  decimal  |  持仓量(张)。 单边数量 |    |   
+amount  |  true  |  decimal  |  持仓量(币)。 单边数量 |    |   
 contract_code  |  true  |  string  |  合约代码  |  如"BTC180914" ...  |
 trade_amount            | true | decimal  | 最近24小时成交量（币）（当前时间-24小时）。 值是买卖双边之和 |  |
 trade_volume                | true | decimal    | 最近24小时成交量（张）（当前时间-24小时）。 值是买卖双边之和 |                |
@@ -3195,7 +3195,7 @@ curl "https://api.hbdm.com/api/v1/contract_his_open_interest?symbol=BTC&contract
 | symbol | true | string | 品种代码   | "BTC","ETH"... |
 | contract_type| true | string | 合约类型 | 当周:"this_week", 次周:"next_week", 当季:"quarter",次季:"next_quarter"|
 | \<tick\> |  |  |  |  |   
-| volume | true | string | 持仓量。 值是买卖双边之和 |  |
+| volume | true | string | 持仓量。 |  |
 | amount_type | true | int | 计价单位 | 1:张，2:币  |
 | ts | true | long | 统计时间 |  |
 | \</tick\> |  |  |  |  |
