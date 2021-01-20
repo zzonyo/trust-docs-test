@@ -4535,14 +4535,14 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-api/v1/swap_open_interes
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>持仓量(币)</td>
+<td>持仓量(币)，单边数量</td>
 <td></td>
 </tr>
 <tr>
 <td>volume</td>
 <td>true</td>
 <td>decimal</td>
-<td>持仓量(张)</td>
+<td>持仓量(张) ，单边数量</td>
 <td></td>
 </tr>
 <tr>
@@ -4556,21 +4556,21 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-api/v1/swap_open_interes
 <td>trade_amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>最近24小时成交量（币）（当前时间-24小时）</td>
+<td>最近24小时成交量（币）（当前时间-24小时），值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
 <td>trade_volume</td>
 <td>true</td>
 <td>decimal</td>
-<td>最近24小时成交量（张）（当前时间-24小时）</td>
+<td>最近24小时成交量（张）（当前时间-24小时），值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
 <td>trade_turnover</td>
 <td>true</td>
 <td>decimal</td>
-<td>最近24小时成交额   （当前时间-24小时）</td>
+<td>最近24小时成交额   （当前时间-24小时），值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
@@ -6513,7 +6513,7 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-api/v1/swap_his_open_int
 <td>volume</td>
 <td>true</td>
 <td>decimal</td>
-<td>持仓量。 值是买卖双边之和</td>
+<td>持仓量。</td>
 <td></td>
 </tr>
 <tr>
