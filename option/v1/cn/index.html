@@ -265,7 +265,7 @@
             <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#1-0-2-2021-01-11-market-detail" class="toc-h2 toc-link" data-title="1.0.2 2021年01月11号 【修改获取当前可用合约总持仓量、修改获取合约历史委托接口、修改获取计划委托历史委托接口、修改订阅Market Detail数据】">1.0.2 2021年01月11号 【修改获取当前可用合约总持仓量、修改获取合约历史委托接口、修改获取计划委托历史委托接口、修改订阅Market Detail数据】</a>
+                    <a href="#1-0-2-2021-01-12-market-detail" class="toc-h2 toc-link" data-title="1.0.2 2021年01月12号 【修改获取当前可用合约总持仓量、修改获取合约历史委托接口、修改获取计划委托历史委托接口、修改订阅Market Detail数据】">1.0.2 2021年01月12号 【修改获取当前可用合约总持仓量、修改获取合约历史委托接口、修改获取计划委托历史委托接口、修改订阅Market Detail数据】</a>
                   </li>
                   <li>
                     <a href="#1-0-1-2020-10-10-websocket" class="toc-h2 toc-link" data-title="1.0.1 2020年10月10日 【新增：订阅系统状态更新推送的 WebSocket 接口】">1.0.1 2020年10月10日 【新增：订阅系统状态更新推送的 WebSocket 接口】</a>
@@ -627,7 +627,7 @@
 <li>提供火币 UID （需不存在返佣关系的 UID）；</li>
 <li>提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；</li>
 </ol>
-<h1 id='185368440e'>更新日志</h1><h2 id='1-0-2-2021-01-11-market-detail'>1.0.2 2021年01月11号 【修改获取当前可用合约总持仓量、修改获取合约历史委托接口、修改获取计划委托历史委托接口、修改订阅Market Detail数据】</h2><h3 id='1-data-trade_volume-24-trade_amount-24-trade_turnover-24'>1、修改获取当前可用合约总持仓量（在返回参数data中新增trade_volume：最近24小时成交量（张），trade_amount：最近24小时成交量（币）trade_turnover：最近24小时成交额、这三个字段 ）</h3>
+<h1 id='185368440e'>更新日志</h1><h2 id='1-0-2-2021-01-12-market-detail'>1.0.2 2021年01月12号 【修改获取当前可用合约总持仓量、修改获取合约历史委托接口、修改获取计划委托历史委托接口、修改订阅Market Detail数据】</h2><h3 id='1-data-trade_volume-24-trade_amount-24-trade_turnover-24'>1、修改获取当前可用合约总持仓量（在返回参数data中新增trade_volume：最近24小时成交量（张），trade_amount：最近24小时成交量（币）trade_turnover：最近24小时成交额、这三个字段 ）</h3>
 <ul>
 <li>接口名称: 获取当前可用合约总持仓量</li>
 <li>接口类型: 公共接口</li>
@@ -2229,7 +2229,7 @@ step6是不合并小数；
 <h3 id='q12-ws-market-depth-market-depth-market-depth'>Q12: 通过ws订阅market depth数据和market depth增量数据的区别是什么？订阅market depth增量数据多久推送一次？</h3>
 <p>market.$contract_code.depth.$type是全量数据，market.$contract_code.depth.size_${size}.high_freq是增量数据，全量数据是100ms检查一次，至少1秒推送1次；增量30MS检查1次，无更新不推送。</p>
 
-<p>目前market depth增量数据market.$contract_code.depth.size_${size}.high_freq是30MS检测一次，不是随机检测，30m检查一次更新，但是有三台机同时进行，每两次的时间间隔最小可能是0，但30ms内最多推送6次，最大时间间隔无上限，30ms内最少推送次数为0。</p>
+<p>目前market depth增量数据market.$contract_code.depth.size_${size}.high_freq是30MS检测一次，不是随机检测，30m检查一次更新，但是有二台机同时进行，每两次的时间间隔最小可能是0，但30ms内最多推送6次，最大时间间隔无上限，30ms内最少推送次数为0。</p>
 <h3 id='q13-market-contract_code-depth-size_-size-high_freq'>Q13: 增量数据market.$contract_code.depth.size_${size}.high_freq推送如何维护本地数据？</h3>
 <p>增量数据首次会推送全量数据，之后推送的为增量数据。</p>
 
