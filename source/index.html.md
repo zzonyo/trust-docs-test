@@ -2951,7 +2951,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_his_open_interest?contract_co
 | symbol | true | string | symbol   | "BTC","ETH"... |
 | contract_code    |   true   | string  | contract code | e.g. "BTC-USDT" |
 | \<tick\> |  |  |  |  |   
-| volume | true | decimal | Open Interest. Sum of both buy and sell sides |  |
+| volume | true | decimal | Open Interest. |  |
 | amount_type | true | int | Open Interest Unit | 1:-cont，2:- cryptocurrency  |
 | value      | true | decimal | Total position volume (the unit shall be the denominated currency of the contract, eg, USDT)     | |
 | ts | true | long | Recording Time |  |
