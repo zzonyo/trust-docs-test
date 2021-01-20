@@ -3017,7 +3017,7 @@ curl "https://api.hbdm.com/api/v1/contract_his_open_interest?symbol=BTC&contract
 | symbol | true | string | Contract Code   | "BTC","ETH"... |
 | contract_type| true | string | Contract Type  | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter"  Next Quarterly Contract: "next_quarter" |
 | \<tick\> |  |  |  |  |   
-| volume | true | string | Open Interest. Sum of both buy and sell sides |  |
+| volume | true | string | Open Interest. |  |
 | amount_type | true | int | Open Interest Unit | 1:-cont，2:- cryptocurrency  |
 | ts | true | long | Recording Time |  |
 | \</tick\> |  |  |  |  |
