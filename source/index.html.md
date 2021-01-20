@@ -1946,8 +1946,8 @@ curl "https://api.hbdm.com/swap-api/v1/swap_open_interest?contract_code=BTC-USD"
 | status                         | true          | string   | Request Processing Result                     | "ok" , "error"                    |
 | data \<list\> |               |          |                                               |                                   |
 | symbol                         | true          | string   | Variety code                                  | "BTC", "ETH" ...                  |
-| volume                         | true          | decimal  | Position quantity(volume). Sum of both buy and sell sides |                                   |
-| amount                         | true          | decimal  | Position quantity(Currency). Sum of both buy and sell sides |                                   |
+| volume                         | true          | decimal  | Position quantity(volume). Single side |                                   |
+| amount                         | true          | decimal  | Position quantity(Currency). Single side |                                   |
 | contract_code                  | true          | string   | Contract Code                                 | eg "BTC-USD"   ...              |
 | trade_amount                    | true | decimal  | trading volume within the last 24 hours (coin). Sum of both buy and sell sides |  |
 | trade_volume                    | true | decimal    | trading volume within the last 24 hours (cont). Sum of both buy and sell sides |                |
