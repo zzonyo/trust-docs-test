@@ -30,6 +30,7 @@ table th {
 
 | Release Time <br>(UTC +8) | API  | New / Update    | Description     |
 | ------------------------ | ---------------------- | --------------- | ------------------------------------- |
+| 2021.1.19 19:00 | `GET /v2/etp/limit` | Add | Add “Get Holding Limit of Leveraged ETP” endpoints |
 | 2020.1.8 19:00 | `POST/v2/algo-orders/cancel-all-after` | Add | Add Dead man’s switch endpoints |
 | 2020.1.5 19:00 | accounts.update#${mode} | Update | added Specify "mode" as 2:  <br/>accounts.update#2  <br/>Whenever  account balance or available balance changed, it will be updated together. |
 | 2020.12.16 19:00         | `GET /v1/order/matchresults ` and `GET /v1/order/orders/{order-id}/matchresults` | Update          | Add "fee-deduct-state" parameter to indicate the status of “In deduction” and “deduction completed” |
@@ -9834,6 +9835,58 @@ Rate Limit (NEW): 1 time /5s<br>
 |	errMsg	|	long	|	TRUE	|Position rebalance time (unix time in millisecond)|
 |	errCode 	|	string	|	TRUE	|Error code of order cancellation failure	|
 |	transactId}	|	long	|	FALSE	| Transaction ID	|
+
+
+
+##  Get Holding Limit of Leveraged ETP 
+
+### HTTP Request
+
+- GET /v2/etp/limit
+
+API Key Permission：Trade<br>
+
+> Request:
+
+```json
+GET /v2/etp/limit?currency=btc3l,btc3s
+```
+
+### Request Parameter
+
+|	Field Name	|	Data Type	|	Mandatory	|	Description	|
+|	-----	|	----	|	------	|	-----	|
+|	currency | string		|	TRUE	| Currency, support batch query (currency is separated by comma), 10 currencies can be quoted at a time|
+
+> Response
+
+```json
+{
+"data": [
+    {
+        "remainingAmount": "2",
+        "currency": "btc3l",
+        "maxHoldings": "2"
+    },
+    {
+        "remainingAmount": "12000",
+        "currency": "btc3s",
+        "maxHoldings": "12000"
+    },
+"code": 200,
+"success": true
+}
+```
+
+### Response
+
+| Field            | Data  Type | Required | Description             |
+| ---------------- | ---------- | -------- | ----------------------- |
+| code             | integer    | TRUE     | Status  Code            |
+| message          | string     | FALSE    | Error  message (if any) |
+| {  currency      | string     | TRUE     | Quote  currency         |
+| maxHoldings      | string     | TRUE     | Holding limit           |
+| remainingAmount} | string     | TRUE     | Remaining amount        |
 
 ## Error Code
 
