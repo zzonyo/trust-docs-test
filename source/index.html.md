@@ -6453,13 +6453,15 @@ ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   |
 
 | 参数名称            | 是否必须  | 类型     | 描述                                   | 取值范围     |
 | --------------- | ----- | ------ | ------------------------------------ | ---- |
-| order_id        | false | string | 订单ID(多个订单ID中间以","分隔,一次最多允许查询50个订单)   |      |
-| client_order_id | false | string | 客户订单ID(多个订单ID中间以","分隔,一次最多允许查询50个订单) |      |
+| order_id        | false(请看备注) | string | 订单ID(多个订单ID中间以","分隔,一次最多允许查询50个订单)   |      |
+| client_order_id | false（请看备注） | string | 客户订单ID(多个订单ID中间以","分隔,一次最多允许查询50个订单) |      |
 | contract_code          | true  | string | 合约代码 |"BTC-USDT"...                       |
 
 ###  备注：
 
 - 最多只能查询4小时内的撤单信息。
+
+- order_id和client_order_id至少要填写一个。
 
 - order_id和client_order_id都可以用来查询，同时只可以设置其中一种，如果设置了两种，默认以order_id来查询。结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。
 
@@ -11545,7 +11547,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | offset   | true | string  |  开平方向  |    "open":开 "close":平 |
 | status   | true | int  | 订单状态   |  1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单  |
 | lever_rate   | true | int  | 杠杆倍数   |     |
-| order_id   | true | bingint  | 订单ID   |    |
+| order_id   | true | long  | 订单ID   |    |
 | order_id_str   | true | string  | string格式的订单ID   |    |
 | client_order_id   | true | long  | 客户订单ID   |    |
 | order_source   | true | string  | 订单来源   |  system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发、tpsl:止盈止损触发  |
@@ -11737,7 +11739,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | offset   | true | string  |  开平方向  |    "open":开 "close":平 |
 | status   | true | int  | 订单状态   |  1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单  |
 | lever_rate   | true | int  | 杠杆倍数   |     |
-| order_id   | true | bingint  | 订单ID   |    |
+| order_id   | true | long  | 订单ID   |    |
 | order_id_str   | true | string  | string格式的订单ID   |    |
 | client_order_id   | true | long  | 客户订单ID   |    |
 | order_source   | true | string  | 订单来源   |  system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发、tpsl:止盈止损触发 |
