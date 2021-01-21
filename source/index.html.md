@@ -3394,12 +3394,13 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 
 | 参数名称        | 是否必须 | 类型   | 描述                                                         | 取值范围       |
 | --------------- | -------- | ------ | ------------------------------------------------------------ | -------------- |
-| order_id        | false    | string | 订单ID(多个订单ID中间以","分隔,一次最多允许查询50个订单)     |                |
-| client_order_id | false    | string | 客户订单ID(多个订单ID中间以","分隔,一次最多允许查询50个订单) |                |
+| order_id        | false（请看备注）    | string | 订单ID(多个订单ID中间以","分隔,一次最多允许查询50个订单)     |                |
+| client_order_id | false（请看备注）    | string | 客户订单ID(多个订单ID中间以","分隔,一次最多允许查询50个订单) |                |
 | symbol          | true     | string | 品种代码                                                   | "BTC","ETH"... |
 | trade_partition | false    | string | 交易分区,不填默认”USDT“                                     | "USDT"         |
 
 ### 备注：
+ - order_id和client_order_id至少要填写一个。
 
  - order_id和client_order_id都可以用来查询，同时只可以设置其中一种，至少要填写一个，如果设置了两种，默认以order_id来查询。周五行权结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。
 
