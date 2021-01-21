@@ -3520,12 +3520,13 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 | Parameter Name        | Mandatory | Type   | Desc                                                         | Value Range       |
 | --------------- | -------- | ------ | ------------------------------------------------------------ | -------------- |
-| order_id        | false    | string | Order ID (Seperate multiple Order IDs with commas; allow to query at most 50 orders at a time.)     |                |
-| client_order_id | false    | string | Client Order ID (Seperate multiple IDs with commas; allow to query at most 50 orders at a time.) |                |
+| order_id        | false(Please see the notes)    | string | Order ID (Seperate multiple Order IDs with commas; allow to query at most 50 orders at a time.)     |                |
+| client_order_id | false(Please see the notes)    | string | Client Order ID (Seperate multiple IDs with commas; allow to query at most 50 orders at a time.) |                |
 | symbol          | true     | string | Coin Code                                                     | "BTC","ETH"... |
 | trade_partition | false    | string | Trade Partition                                                     | "USDT"         |
 
 ###  Note：
+ - At least one of order_id and client_order_id must be filled in
 
  - Either order_id or client_order_id can be used for querying. Only one of them and at least one of them is required at a time. If both of them are set, the order_id is used for querying by default. After the delivery on Friday, orders with status ended will be deleted. (5: partial filled orders have been deleted 6: all filled 7: deleted)
 
