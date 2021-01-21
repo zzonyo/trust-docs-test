@@ -8901,7 +8901,7 @@ direction  |  true  |  string  |  买卖方向  |   |
 | contract_type           | string  | 合约类型                                                     |
 | contract_code           | string  | 合约代码                                                     |
 | status                  | int     | 订单状态(1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单) |
-| order_id                | bigint    | 订单ID                                                       |
+| order_id                | long    | 订单ID                                                       |
 | order_id_str            | string   | 订单ID                                                       |
 | client_order_id   |  long |  客户端订单ID  | 
 | order_type              | int     | 订单类型  1:报单 、 2:撤单 、 3:强平、4:交割                 |
