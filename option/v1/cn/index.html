@@ -8510,14 +8510,14 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </thead><tbody>
 <tr>
 <td>order_id</td>
-<td>false</td>
+<td>false（请看备注）</td>
 <td>string</td>
 <td>订单ID(多个订单ID中间以&quot;,&quot;分隔,一次最多允许查询50个订单)</td>
 <td></td>
 </tr>
 <tr>
 <td>client_order_id</td>
-<td>false</td>
+<td>false（请看备注）</td>
 <td>string</td>
 <td>客户订单ID(多个订单ID中间以&quot;,&quot;分隔,一次最多允许查询50个订单)</td>
 <td></td>
@@ -8539,6 +8539,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </tbody></table>
 <h3 id='9852b06629-11'>备注：</h3>
 <ul>
+<li><p>order_id和client_order_id至少要填写一个。</p></li>
 <li><p>order_id和client_order_id都可以用来查询，同时只可以设置其中一种，至少要填写一个，如果设置了两种，默认以order_id来查询。周五行权结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。</p></li>
 <li><p>client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。</p></li>
 </ul>
