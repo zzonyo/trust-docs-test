@@ -6612,13 +6612,15 @@ client_order_id, order status query is available for orders placed within 24 hou
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                                                       |
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ |
-| order_id           | false         | string   | Order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time） |
-| client_order_id    | false         | string   | Client order ID Order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time) |
+| order_id           | false(Please see the notes)         | string   | Order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time） |
+| client_order_id    | false(Please see the notes)         | string   | Client order ID Order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time) |
 | contract_code      | true             | string      | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT"     |
 
 ###  Note  ：
 
 When getting information on order cancellation via get order Information interface, users can only query last 4-hour data
+
+At least one of order_id and client_order_id must be filled in
 
 Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id. The order completed( 5.partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled; ) will be deleted after the settlement of funding rate on 04:00(GMT+8), 12:00(GMT+8) and 20:00(GMT+8).
 
