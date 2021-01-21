@@ -5215,13 +5215,15 @@ client_order_id, order status query is available for orders placed within 24 hou
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                                                       |
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ |
-| order_id           | false         | string   | Order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time） |
-| client_order_id    | false         | string   | Client order ID Order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time) |
+| order_id           | false(Please see the notes)         | string   | Order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time） |
+| client_order_id    | false(Please see the notes)         | string   | Client order ID Order ID（different IDs are separated by ",", maximum 50 orders can be withdrew at one time) |
 | symbol             | true          | string   | Case-Insenstive.Both uppercase and lowercase are supported.."BTC","ETH"...                                               |
 
 ###  Note  ：
 
 When getting information on order cancellation via get order information interface, users can only query last 4-hour data
+
+At least one of order_id and client_order_id must be filled in
 
 Both order_id and client_order_id can be used to query, and only one of them can be filled in at the same time. If two are filled in, only order_id is effect to query. After daily settlement or delivery on Friday, the orders in the end state (5:partially filled orders have been cancelled, 6:all filled orders, 7:have been cancelled) will be deleted.
 
@@ -8778,7 +8780,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | contract_type           | string  | contract type             |
 | contract_code           | string  | contract code      |
 | status                  | int     | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled; |
-| order_id                | bigint    | order id              |
+| order_id                | long    | order id              |
 | order_id_str            | string   | order id           |
 | client_order_id   |  long |  the client ID that is filled in when the order is placed | 
 | order_type              | int     | Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order         |
