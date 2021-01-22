@@ -30,6 +30,7 @@ table th {
 
 | Release Time <br>(UTC +8) | API  | New / Update    | Description     |
 | ------------------------ | ---------------------- | --------------- | ------------------------------------- |
+| 2021.1.22 19:00 | `GET /v1/order/matchresults` | Add | Add timestamp parameters |
 | 2021.1.19 19:00 | `GET /v2/etp/limit` | Add | Add “Get Holding Limit of Leveraged ETP” endpoints |
 | 2020.1.8 19:00 | `POST/v2/algo-orders/cancel-all-after` | Add | Add Dead man’s switch endpoints |
 | 2020.1.5 19:00 | accounts.update#${mode} | Update | added Specify "mode" as 2:  <br/>accounts.update#2  <br/>Whenever  account balance or available balance changed, it will be updated together. |
@@ -4751,15 +4752,17 @@ curl "https://api.huobi.pro/v1/order/matchresults?symbol=ethusdt"
 
 ### Request Parameters
 
-| Parameter  | Data Type | Required | Default | Description                                                  | Value Range                                                  |
-| ---------- | --------- | -------- | ------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| symbol     | string    | true     | N/A     | The trading symbol to trade                                  | All supported trading symbol, e.g. btcusdt, bccbtc.Refer to `GET /v1/common/symbols` |
-| types      | string    | false    | all     | The types of order to include in the search                  | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit |
-| start-date | string    | false    | -1d     | Search starts date (Singapore timezone), in format yyyy-mm-dd | Value range [((end-date) – 1), (end-date)], maximum query window size is 2 days, query window shift should be within past 61 days |
-| end-date   | string    | false    | today   | Search ends date (Singapore timezone), in format yyyy-mm-dd  | Value range [(today-60), today], maximum query window size is 2 days, query window shift should be within past 61 days |
-| from       | string    | false    | N/A     | Search internal id to begin with                             | if search next page, then this should be the last id (not trade-id) of last page; if search previous page, then this should be the first id (not trade-id) of last page |
-| direct     | string    | false    | next    | Search direction when 'from' is used                         | next, prev                                                   |
-| size       | int       | false    | 100     | The number of orders to return                               | [1, 500]                                                     |
+| Parameter  | Data Type | Required | Default                                                      | Description                                                  | Value Range                                                  |
+| ---------- | --------- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| symbol     | string    | true     | N/A                                                          | The trading symbol to trade                                  | All supported trading symbol, e.g. btcusdt, bccbtc.Refer to `GET /v1/common/symbols` |
+| types      | string    | false    | all                                                          | The types of order to include in the search                  | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit |
+| start-time | false     | long     | Far point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days. | ((end-time) – 1hour)                                         | [((end-time) – 1hour), (end-time)]                           |
+| end-time   | false     | long     | Near point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days. | current-time                                                 | [(current-time) – 29days,(current-time)]                     |
+| start-date | string    | false    | -1d                                                          | Search starts date (Singapore timezone), in format yyyy-mm-dd | Value range [((end-date) – 1), (end-date)], maximum query window size is 2 days, query window shift should be within past 61 days |
+| end-date   | string    | false    | today                                                        | Search ends date (Singapore timezone), in format yyyy-mm-dd  | Value range [(today-60), today], maximum query window size is 2 days, query window shift should be within past 61 days |
+| from       | string    | false    | N/A                                                          | Search internal id to begin with                             | if search next page, then this should be the last id (not trade-id) of last page; if search previous page, then this should be the first id (not trade-id) of last page |
+| direct     | string    | false    | next                                                         | Search direction when 'from' is used                         | next, prev                                                   |
+| size       | int       | false    | 100                                                          | The number of orders to return                               | [1, 500]                                                     |
 
 > The above command returns JSON structured like this:
 
