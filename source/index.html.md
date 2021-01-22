@@ -4139,6 +4139,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 | ---------- | --------- | -------- | ------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | account-id | string    | false    | NA      | The account id used for this cancel                          | Refer to `GET /v1/account/accounts`                          |
 | symbol     | string    | false    | NA      | The trading symbol list (maximum 10 symbols, separated by comma, default value all symbols) | All supported trading symbol, e.g. btcusdt, bccbtc.Refer to `GET /v1/common/symbols` |
+| types      | string    | false    | NA      | One or more types of order to include in the search, use comma to separate. | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
 | side       | string    | false    | NA      | Filter on the direction of the trade                         | buy, sell                                                    |
 | size       | int       | false    | 100     | The number of orders to cancel                               | [1, 100]                                                     |
 
