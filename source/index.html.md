@@ -2054,6 +2054,14 @@ The order cancellation command generally takes several tens of ms. The actual st
 
 To obtain historical liquidation orders, you can access the one of four api interfaces: Get History Orders (/api/v1/contract_hisorders), Get History Match Results (/api/v1/contract_matchresults), Query history orders via multiple fields (/api/v1/contract_hisorders_exact), Query history transactions via multiple fields (/api/v1/contract_matchresults_exact), with the return field order_source (order source) to judge. When order_source returns "risk", it means that this order is a liquidated order.
 
+### Q13: Why can't open positions?
+1. Available margin is not enough to open positions, cause we have the minimum amount requirements when open positions.
+2. The order price is out of the range of price limits.
+3. The amount exceeds the upper limit of single orders.
+4. The number of positions exceed the upper limit for an individual investor.
+5. Positions may only be closed within 10 min before settlement.(error code 1105)
+6. The positions are taken over by system.
+
 
 ## Error Codes
 
