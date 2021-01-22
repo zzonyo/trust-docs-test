@@ -3749,6 +3749,15 @@ You are recommended to read the status code from the returned message. If the ab
 <p>The order cancellation command generally takes several tens of ms. The actual status of order cancellation can be obtained by invoking the interface: api/v1/contract_order_info.</p>
 <h3 id='q12-how-to-get-historical-liquidation-orders'>Q12: How to get historical liquidation orders?</h3>
 <p>To obtain historical liquidation orders, you can access the one of four api interfaces: Get History Orders (/api/v1/contract_hisorders), Get History Match Results (/api/v1/contract_matchresults), Query history orders via multiple fields (/api/v1/contract_hisorders_exact), Query history transactions via multiple fields (/api/v1/contract_matchresults_exact), with the return field order_source (order source) to judge. When order_source returns &quot;risk&quot;, it means that this order is a liquidated order.</p>
+<h3 id='q13-why-can-39-t-open-positions'>Q13: Why can&#39;t open positions?</h3>
+<ol>
+<li>Available margin is not enough to open positions, cause we have the minimum amount requirements when open positions.</li>
+<li>The order price is out of the range of price limits.</li>
+<li>The amount exceeds the upper limit of single orders.</li>
+<li>The number of positions exceed the upper limit for an individual investor.</li>
+<li>Positions may only be closed within 10 min before settlement.(error code 1105)</li>
+<li>The positions are taken over by system.</li>
+</ol>
 <h2 id='error-codes'>Error Codes</h2><h3 id='q1-what-is-the-reason-for-1030-error-code'>Q1: What is the reason for 1030 error code?</h3>
 <p>If you encounter errors such as {&quot;status&quot;:&quot;error&quot;,&quot;err_code&quot;:1030,&quot;err_msg&quot;:&quot;Abnormal service. Please try again later.&quot;,&quot;ts&quot;:1588093883199},indicating that your input request parameter is not correct, please print your request body and complete URL parameters, and please check the corresponding API document interface one by one.The common example is that the volume must be an integer, and the client_order_id must be of type uint32 rather than type uint64. </p>
 <h3 id='q2-what-is-the-reason-for-1048-error-code'>Q2: What is the reason for 1048 error code?</h3>
