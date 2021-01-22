@@ -922,6 +922,12 @@ table th {
 </tr>
 </thead><tbody>
 <tr>
+<td>2021.1.22 19:00</td>
+<td><code>GET /v1/order/matchresults</code></td>
+<td>Add</td>
+<td>Add timestamp parameters</td>
+</tr>
+<tr>
 <td>2021.1.19 19:00</td>
 <td><code>GET /v2/etp/limit</code></td>
 <td>Add</td>
@@ -10349,6 +10355,22 @@ Rate Limit (NEW): 20times/2s</p>
 <td>all</td>
 <td>The types of order to include in the search</td>
 <td>buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit</td>
+</tr>
+<tr>
+<td>start-time</td>
+<td>false</td>
+<td>long</td>
+<td>Far point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days.</td>
+<td>((end-time) – 1hour)</td>
+<td>[((end-time) – 1hour), (end-time)]</td>
+</tr>
+<tr>
+<td>end-time</td>
+<td>false</td>
+<td>long</td>
+<td>Near point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days.</td>
+<td>current-time</td>
+<td>[(current-time) – 29days,(current-time)]</td>
 </tr>
 <tr>
 <td>start-date</td>
