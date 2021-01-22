@@ -3729,6 +3729,13 @@ step6是不合并小数；
 <p>撤单命令执行成功一般几十ms，实际撤单状态要查询订单状态/api/v1/contract_order_info获取。</p>
 <h3 id='q12'>Q12: 获取历史强平订单的方法？</h3>
 <p>需要获取历史强平订单，可以通过：获取合约历史委托（/api/v1/contract_hisorders）、获取历史成交记录（/api/v1/contract_matchresults）、组合查询合约历史委托（/api/v1/contract_hisorders_exact）、组合查询历史成交记录接口（/api/v1/contract_matchresults_exact）这四个接口中的返回字段order_source(订单来源)来判断，当order_source返回的为“risk”说明这个订单就是被强平的订单。</p>
+<h3 id='q13'>Q13: 用户开不了仓?</h3>
+<p>1、不满足可开最低张数的担保资产需求；
+2、超出限价机制下单开仓；
+3、超出单笔下单数量上限；
+4、超出单个用户持仓数量上限；
+5、交割前10分钟内只能平仓，不能开仓；(错误代码 1105)
+6、强平系统接管处理中</p>
 <h2 id='a231eed8c5'>错误码相关</h2><h3 id='q1-1030'>Q1: 1030错误是什么原因？</h3>
 <p>如果您出现比如查询订单或者下单时遇到：{&quot;status&quot;:&quot;error&quot;,&quot;err_code&quot;:1030,&quot;err_msg&quot;:&quot;Abnormal service. Please try again later.&quot;,&quot;ts&quot;:1588093883199}类似错误，说明您的输入的请求参数值或者类型不对，请打印出您的request请求body及完整URL参数，并请一一核对对应API文档接口参数。常见的比如volume张数必须是整数。</p>
 <h3 id='q2-1048'>Q2: 1048错误是什么原因？</h3>
