@@ -2671,7 +2671,7 @@ Rate Limit (NEW): 20times/2s
 
 Parent user creates a withdraw request from spot account to an external address (exists in your withdraw address list), which doesn't require two-factor-authentication.
 
-<aside class="notice">If user has chosen fast withdraw preferred in  <a href='https://www.hbg.com/en-us/user_center/uc_setting/'>settings </a>, the withdraw requests submitted via this endpoint would choose 'fast withdraw' as preferred channel. </aside>
+<aside class="notice">If user has chosen fast withdraw preferred in  <a href='https://www.hbg.com/en-us/user_center/uc_setting/'>settings </a>, the withdraw requests submitted via this endpoint would choose 'fast withdraw' as preferred channel. It means if the withdraw address is managed by Huobi, the withdraw transfer is not on-chain, and then the transaction hash (tx-hash) field will be empty in withdraw record.</aside>
 <aside class="notice">Only support the existed addresses in your  <a href='https://www.hbg.com/en-us/withdraw_address/'>withdraw address list</a>. The once-off withdraw address of IOTA couldn't be set in the list, thus IOTA withdrawal is not supported through API. </aside>
 
 ### HTTP Request
@@ -2804,7 +2804,7 @@ curl "https://api.huobi.pro/v1/query/deposit-withdraw?currency=xrp&type=deposit&
 | id          | integer   | Transfer id                                                  |
 | type        | string    | Define transfer type to search, possible values: [deposit, withdraw] |
 | currency    | string    | The crypto currency to withdraw                              |
-| tx-hash     | string    | The on-chain transaction hash                                |
+| tx-hash     | string    | The on-chain transaction hash. If this is a "fast withdraw", then it is not on-chain transfer, and this value is empty. |
 | chain       | string    | Block chain name                                             |
 | amount      | float     | The number of crypto asset transfered in its minimum unit    |
 | address     | string    | The deposit or withdraw target address                       |
