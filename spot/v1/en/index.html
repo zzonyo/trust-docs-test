@@ -6047,7 +6047,7 @@ Rate Limit (NEW): 20times/2s</p>
 
 <p>Parent user creates a withdraw request from spot account to an external address (exists in your withdraw address list), which doesn&#39;t require two-factor-authentication.</p>
 
-<aside class="notice">If user has chosen fast withdraw preferred in  <a href='https://www.hbg.com/en-us/user_center/uc_setting/'>settings </a>, the withdraw requests submitted via this endpoint would choose 'fast withdraw' as preferred channel. </aside>
+<aside class="notice">If user has chosen fast withdraw preferred in  <a href='https://www.hbg.com/en-us/user_center/uc_setting/'>settings </a>, the withdraw requests submitted via this endpoint would choose 'fast withdraw' as preferred channel. It means if the withdraw address is managed by Huobi, the withdraw transfer is not on-chain, and then the transaction hash (tx-hash) field will be empty in withdraw record.</aside>
 
 <aside class="notice">Only support the existed addresses in your  <a href='https://www.hbg.com/en-us/withdraw_address/'>withdraw address list</a>. The once-off withdraw address of IOTA couldn't be set in the list, thus IOTA withdrawal is not supported through API. </aside>
 <h3 id='http-request-27'>HTTP Request</h3>
@@ -6283,7 +6283,7 @@ Rate Limit (NEW): 20times/2s</p>
 <tr>
 <td>tx-hash</td>
 <td>string</td>
-<td>The on-chain transaction hash</td>
+<td>The on-chain transaction hash. If this is a &quot;fast withdraw&quot;, then it is not on-chain transfer, and this value is empty.</td>
 </tr>
 <tr>
 <td>chain</td>
