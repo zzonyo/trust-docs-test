@@ -2661,7 +2661,7 @@ API Key 权限：读取<br>
 API Key 权限：提币<br>
 限频值（NEW）：20次/2s
 
-<aside class="notice">如果用户在 <a href='https://www.hbg.com/zh-cn/user_center/uc_setting/'>个人设置 </a> 里设置了优先使用快速提币，通过API发起的提币也会优先选择快速提币通道。快速提币是指当提币目标地址是火币用户地址时，提币将通过火币平台内部快速通道，不通过区块链。</aside>
+<aside class="notice">如果用户在 <a href='https://www.hbg.com/zh-cn/user_center/uc_setting/'>个人设置 </a> 里设置了优先使用快速提币，通过API发起的提币也会优先选择快速提币通道。快速提币是指当提币目标地址是火币用户地址时，提币将通过火币平台内部快速通道，不通过区块链，而由此产生的提币记录将会没有交易哈希。</aside>
 <aside class="notice">API提币仅支持用户 <a href='https://www.hbg.com/zh-cn/withdraw_address/'>提币地址列表</a> 中的地址。IOTA一次性提币地址无法被设置为常用地址，因此不支持通过API方式提币IOTA。 </aside>
 
 ### HTTP 请求
@@ -2791,7 +2791,7 @@ API Key 权限：读取<br>
 | id          | true     | long     | 充币或者提币订单id，翻页查询时from参数取自此值               |                                          |
 | type        | true     | string   | 类型                                                         | 'deposit', 'withdraw', 子用户仅有deposit |
 | currency    | true     | string   | 币种                                                         |                                          |
-| tx-hash     | true     | string   | 交易哈希                                                     |                                          |
+| tx-hash     | true     | string   | 交易哈希。如果是“快速提币”，则提币不通过区块链，该值为空。   |                                          |
 | chain       | true     | string   | 链名称                                                       |                                          |
 | amount      | true     | float    | 个数                                                         |                                          |
 | address     | true     | string   | 目的地址                                                     |                                          |
