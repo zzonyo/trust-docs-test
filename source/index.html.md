@@ -1011,13 +1011,13 @@ No parameter is available for this endpoint.
 |[{id        |  string                    | component id
 |name        |    string                  | component name, including Order submission, Order cancellation, Deposit etc.
 |status        |    string                  | component status, value range: operational, degraded_performance, partial_outage, major_outage, under maintenance
-|created_at        |    string                  | component create time
-|updated_at        |    string                  | component update time
+|created_at        |    string                  | component created time
+|updated_at        |    string                  | component updated time
 |.......}]        |                     | for details of other fields, please refer to the return example
 |incidents  |           | System fault incident and their status. If there is no fault at present, it will return to null
 |[{id        |       string               | incident id
 |name        |      string                | incident name
-|status        |     string                 | incident staus, value range: investigating, identified, monitoring, resolved
+|status        |     string                 | incident status, value range: investigating, identified, monitoring, resolved
 |created_at        |       string               | incident creat time
 |updated_at        |      string                | incident update time
 |.......}]        |                     | for details of other fields, please refer to the return example
@@ -1150,7 +1150,7 @@ No parameter is needed for this endpoint.
 | max-order-value            | false    | float     | Max order value of limit order and buy-market order in usdt (NEW) |
 | leverage-ratio             | true     | float     | The applicable leverage ratio (only valid for symbols eligible for isolated margin trading, cross-margin trading, or ETP trading.) |
 | underlying                 | false    | string    | Underlying ETP code (only valid for ETP symbols)             |
-| mgmt-fee-rate              | false    | float     | Position charge rate (only valid for ETP symbols)            |
+| mgmt-fee-rate              | false    | float     | Position charging rate (only valid for ETP symbols)            |
 | charge-time                | false    | string    | Position charging time (in GMT+8, in format HH:MM:SS, only valid for ETP symbols) |
 | rebal-time                 | false    | string    | Regular position rebalance time (in GMT+8, in format HH:MM:SS, only valid for ETP symbols) |
 | rebal-threshold            | false    | float     | The threshold which triggers adhoc position rebalance (evaluated by actual leverage ratio, only valid for ETP symbols) |
@@ -1160,7 +1160,7 @@ No parameter is needed for this endpoint.
 
 ## Get all Supported Currencies
 
-This endpoint returns all Huobi's supported trading currencies.
+This endpoint returns all Huobi's supported tradable currencies.
 
 ```shell
 curl "https://api.huobi.pro/v1/common/currencys"
@@ -1349,7 +1349,7 @@ No parameter is needed for this endpoint.
 
 ### Response Content
 
-The returned "Data" field contains an integer represents the timestamp in milliseconds adjusted to Singapore time.
+The returned "Data" field contains an integer representing the timestamp in milliseconds adjusted to Singapore time.
 
 # Market Data
 
@@ -1457,8 +1457,8 @@ curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
 | count  | integer   | The number of completed trades (rotating 24h)                |
 | open   | float     | The opening price of last 24 hours (rotating 24h)            |
 | close  | float     | The last price of last 24 hours (rotating 24h)               |
-| low    | float     | The low price of last 24 hours (rotating 24h)                |
-| high   | float     | The high price of last 24 hours (rotating 24h)               |
+| low    | float     | The lowest price of last 24 hours (rotating 24h)             |
+| high   | float     | The highest price of last 24 hours (rotating 24h)            |
 | vol    | float     | Accumulated trading value of last 24 hours (rotating 24h), in quote currency |
 | bid    | object    | The current best bid in format [price, size]                 |
 | ask    | object    | The current best ask in format [price, size]                 |
@@ -1624,7 +1624,7 @@ curl "https://api.huobi.pro/market/depth?symbol=btcusdt&type=step1"
 <aside class="notice">The returned data object is under 'tick' object instead of 'data' object in the top level JSON</aside>
 | Field   | Data Type | Description                                                  |
 | ------- | --------- | ------------------------------------------------------------ |
-| ts      | integer   | The UNIX timestamp in milliseconds adjusted to Singapore time |
+| ts      | integer   | The UNIX timestamp in milliseconds is adjusted to Singapore time |
 | version | integer   | Internal data                                                |
 | bids    | object    | The current all bids in format [price, size]                 |
 | asks    | object    | The current all asks in format [price, size]                 |
@@ -1743,7 +1743,7 @@ curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
 
 ### Response Content
 
-<aside class="notice">The returned data object is an array represents one recent timestamp; each timestamp object again is an array represents all trades occurred at this timestamp.</aside>
+<aside class="notice">The returned data object is an array which represents one recent timestamp; each timestamp object again is an array which represents all trades occurred at this timestamp.</aside>
 | Field     | Data Type | Description                                                  |
 | --------- | --------- | ------------------------------------------------------------ |
 | id        | integer   | The unique trade id of this trade (to be obsoleted)          |
@@ -1757,7 +1757,7 @@ curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
 
 This endpoint retrieves the summary of trading in the market for the last 24 hours.
 
-<aside class="notice">It is possible that the accumulated volume and the accumulated value counted for current 24h window is smaller than previous.</aside>
+<aside class="notice">It is possible that the accumulated volume and the accumulated value counted for current 24h window is smaller than the previous ones.</aside>
 
 ### HTTP Request
 
@@ -1799,8 +1799,8 @@ curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
 | count   | integer   | The number of completed trades of last 24 hours (rotating 24h) |
 | open    | float     | The opening price of last 24 hours (rotating 24h)            |
 | close   | float     | The last price of last 24 hours (rotating 24h)               |
-| low     | float     | The low price of last 24 hours (rotating 24h)                |
-| high    | float     | The high price of last 24 hours (rotating 24h)               |
+| low     | float     | The lowest price of last 24 hours (rotating 24h)                |
+| high    | float     | The highest price of last 24 hours (rotating 24h)               |
 | vol     | float     | The trading volume in base currency of last 24 hours (rotating 24h) |
 | version | integer   | Internal data                                                |
 
@@ -1873,7 +1873,7 @@ Below is the error code, error message and description returned by Market data A
 | invalid-parameter | invalid depth                       | Parameter depth is invalid for depth data        |
 | invalid-parameter | invalid type                        | Parameter type is invalid                        |
 | invalid-parameter | invalid size                        | Parameter size is invalid                        |
-| invalid-parameter | invalid size,valid range: [1, 2000] | Parameter size range is invalide                 |
+| invalid-parameter | invalid size,valid range: [1, 2000] | Parameter size range is invalid                  |
 | invalid-parameter | request timeout                     | Request timeout please try again                 |
 
 # Account
@@ -1924,7 +1924,7 @@ curl "https://api.huobi.pro/v1/account/accounts"
 | type    | string    | The type of this account                                     | spot, margin, otc, point, super-margin, investment, borrow   |
 | subtype | string    | The type of sub account (applicable only for isolated margin accout) | The corresponding trading symbol (currency pair) the isolated margin is based on, e.g. btcusdt |
 
-<aside class="notice">Margin/super-margin/borrow account will only be created after the first time asset transfer-in.</aside>
+<aside class="notice">Margin/super-margin/borrow account will only be created after the initial incoming asset transfer-in.</aside>
 
 ## Get Account Balance of a Specific Account
 
