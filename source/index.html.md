@@ -38,6 +38,28 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.0.3 2020-1-27 【Modified Cancel All Orders, Modified Cancel All Trigger Orders, Modified Query Open Orders,Modified Query Trigger Order.  The order_id of submitted trigger order response has been changed from the original natural number self-incrementing ID to a unique identification ID with a length of 18 digits. It is recommended to use the order_id_str (order_id in string type) of submitted order response  to avoid the occurrence of truncation by the system because excessive length.】
+
+### 1. Modified Cancel All Orders(Added two optional parameters in request: direction, indicates order direction, if not filled in means both with available values: “buy”, “sell”. offset, order offset, if not filled in means both with available values: “open”, “close”.)
+ - Interface Name: Cancel All Orders
+ - Interface Type: private
+ - Interface URL: /option-api/v1/option_cancelall
+
+### 2. Modified Cancel All Trigger Orders(Added two optional parameters in request: direction, indicates order direction, if not filled in means both with available values: “buy”, “sell”. offset, order offset, if not filled in means both with available values: “open”, “close”.)
+ - Interface Name: Cancel All Trigger Orders
+ - Interface Type: private
+ - Interface URL: /option-api/v1/option_trigger_cancelall
+
+### 3、Modified Query Open Orders(Added two parameters in request: is sort field, if not filled in means order by create_at descending, with available values “created_at”(descending order).order trade type, if not filled in means all with available values 0:all, 1:open long, 2:open short, 3:close short, 4:close long. Added one field in return parameter "orders": update_time(order updated time, in milliseconds))
+ - Interface Name: Query Open Orders
+ - Interface Type: private
+ - Interface URL: /option-api/v1/option_openorders 
+
+### 4、Modified Query Trigger Order Open Orders(Added one optional parameter in request: trade_type, order trade type, if not filled in means all with available values 0:all, 1:open long, 2:open short, 3:close short, 4:close long.)
+ - Interface Name: Query Trigger Order Open Orders
+ - Interface Type: private
+ - Interface URL: /option-api/v1/option_trigger_openorders
+
 ## 1.0.2 2021-01-12 【Modified "Get Option Open Interest Information" Interface、Modified "Subscribe Market Detail Data" Interface、Modified "Query History Orders" Interface、Modified "Query Trigger Order History" Interface】
 
 ### 1. Modified "Get Option Open Interest Information" Interface(Added "trade_volume" in return parameter "data" to indicate trading volume within the last 24 hours (cont),  and "trade_amount" to indicate trading volume within the last 24 hours (coin), and "trade_turnover" to represent trading amount within the last 24 hours.)
@@ -3393,10 +3415,14 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | trade_partition | false    | string | Trade Partition | "USDT"                                     |
 | contract_type   | false    | string | Contract Type | this_week: Weekly next_week: Bi-weekly quarter: Quarterly |
 | contract_code   | false    | string | Contract Code | BTC-USDT-201225-C-13000                    |
+| direction | false  | string | Transaction direction(if not filled in means all)  |  ["buy" , "sell"] |
+| offset | false  | string | offset direction（if not filled in means all）|  ["open" , "close"] |
 
 #### Note 
 
 - If there is "contract_code" parameter, canceling all contracts under this code.
+- You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including "open" and "close" offset)
+
 
 > Response:result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
 
@@ -3799,6 +3825,8 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | contract_code   | false    | string | Contract Code                     | "BTC-USDT-201225-C-13000" ...            |
 | page_index      | false    | int    | Page number, default page1 if not filled      |                                         |
 | page_size       | false    | int    | Page size, default 20 if not filled; no more than 50|                                         |
+| sort_by         | false | string    |  sort fields(descending)    |   “created_at”descending order by order created at, "update_time": descending order by order update time   |
+| trade_type      | false | int    |  trade type(Default:all)    |  0:all,1: buy long,2: sell short,3: buy short,4: sell  long   |
 
 > Response:
 
@@ -3822,6 +3850,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
                 "order_id_str": "775314891945996288",
                 "client_order_id": 563829342342349,
                 "created_at": 1604891074887,
+                "update_time": 1604891074887,
                 "trade_volume": 0,
                 "trade_turnover": 0,
                 "fee": 0,
@@ -3886,6 +3915,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | premium_frozen    | true     | decimal | Frozen Premium                         |                                                              |
 | fee_frozen        | true     | decimal | Frozen Transaction Fee                          |                                                              |
 | fee_asset         | true     | string  | Transaction Fee coin                          |                                                              |
+| update_time       | true     | Long    | order update time ，millesecond timestamp | |
 | \</orders\>       |          |         |                                     |                                                              |
 | total_page        | true     | int     | Total Pages                             |                                                              |
 | current_page      | true     | int     | Current Page                              |                                                              |
@@ -4304,10 +4334,12 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | trade_partition | false    | string | Trade Partition | "USDT"                                             |
 | contract_code   | false    | string | Contract Code | "BTC-USDT-201225-C-13000"                           |
 | contract_type   | false    | string | Contract Type | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter" |
+| direction | false  | string | Transaction direction(if not filled in means all)  |  ["buy" , "sell"] |
+| offset | false  | string | offset direction（if not filled in means all）|  ["open" , "close"] |
 
 #### Note
 
-
+- You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including "open" and "close" offset)
 - If there is "contract_code" parameter, canceling all contracts under this code.
 
 > Response:
@@ -4364,6 +4396,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | contract_code   | false    | string | Contract Code               | "BTC-USDT-201225-C-13000" |
 | page_index      | false    | int    | Page number. Default page1 if not filled |                          |
 | page_size       | false    | int    | Default 20 if not filled; no more than 50 |                          |
+| trade_type  | false | int    |  trade type(Default:all)    |   0:all,1: buy long,2: sell short,3: buy short,4: sell  long   |
 
 > Response:
 
