@@ -1525,8 +1525,8 @@ Response content is an array of object, each object has below fields.
 | count   | integer   | The number of completed trades of last 24 hours (rotating 24h) |
 | open    | float     | The opening price of a nature day (Singapore time)           |
 | close   | float     | The last price of a nature day (Singapore time)              |
-| low     | float     | The low price of a nature day (Singapore time)               |
-| high    | float     | The high price of a nature day (Singapore time)              |
+| low     | float     | The lowest price of a nature day (Singapore time)               |
+| high    | float     | The highest price of a nature day (Singapore time)              |
 | vol     | float     | The aggregated trading value in last 24 hours (rotating 24h) |
 | symbol  | string    | The trading symbol of this object, e.g. btcusdt, bccbtc      |
 | bid     | float     | Best bid price                                               |
