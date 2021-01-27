@@ -37,6 +37,28 @@ search: True
 
 # 更新日志
 
+## 1.0.3 2020年01月27日 【修改：全部撤单接口、计划委托全部撤单接口、合约当前未成交委托接口、计划委托当前委托接口】
+
+### 1、修改全部撤单接口（请求参数新增 2 个选填字段:direction，表示买卖方向，不填默认撤销全部。参数可选值为“buy”:买，“sell”:卖。offset，表示开平方向，不填默认撤销全部。参数可 选值为“open”:开仓，“close”:平仓。）
+ - 接口名称：全部撤单
+ - 接口类型：私有接口
+ - 接口URL：/option-api/v1/option_cancelall
+
+### 2、修改计划委托全部撤单接口（请求参数新增 2 个选填字段:direction，表示买卖方向，不填默认撤销全部。参数可选值为“buy”:买，“sell”:卖。offset，表示开平方向，不填默认撤销全部。参数可 选值为“open”:开仓，“close”:平仓。）
+ - 接口名称：计划委托全部撤单
+ - 接口类型：私有接口
+ - 接口URL：/option-api/v1/option_trigger_cancelall
+
+### 3、获取合约当前未成交委托接口（请求参数新增 2 个选填字段:sort_by，表示排序字段，不填默认按创建时间倒序。参数可选值为“created_at”(按照创建时间倒序)，“update_time”(按照更新时间倒 序)。trade_type，表示交易类型，不填默认查询全部。参数可选值为 0:全部,1:买入 开多,2: 卖出开空,3: 买入平空,4: 卖出平多。返回参数中的 orders 下新增以下字段:update_time(订单更新时间，单位毫秒)。）
+ - 接口名称：获取合约当前未成交委托
+ - 接口类型：私有接口
+ - 接口URL：/option-api/v1/option_openorders 
+
+### 4、查询计划委托当前委托接口（请求参数新增选填字段:trade_type，表示交易类型，不填默认查询全部。参数可选值为 0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多。）
+ - 接口名称：查询计划委托当前委托
+ - 接口类型：私有接口
+ - 接口URL：/option-api/v1/option_trigger_openorders
+
 ## 1.0.2 2021年01月12号 【修改获取当前可用合约总持仓量、修改获取合约历史委托接口、修改获取计划委托历史委托接口、修改订阅Market Detail数据】
 
 ### 1、修改获取当前可用合约总持仓量（在返回参数data中新增trade_volume：最近24小时成交量（张），trade_amount：最近24小时成交量（币）trade_turnover：最近24小时成交额、这三个字段 ）
@@ -3337,11 +3359,13 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 | trade_partition | false  | string | 交易分区 | "USDT"，不填默认”USDT“                                          |
 | contract_type | false    | string | 合约类型 | this_week:当周 next_week:次周 quarter:季度                    |
 | contract_code | false    | string | 合约代码 | BTC-USDT-201225-C-13000                                      |
+| direction | false  | string | 买卖方向（不填默认全部）  |  "buy":买 "sell":卖 |
+| offset | false  | string | 开平方向（不填默认全部）  | "open":开 "close":平  |
 
 ### 备注:
 
 - 只要有contract_code，则撤销该code的合约
-
+- direction与offset可只填其一，只填其一则按对应的条件去撤单。（如用户只传了direction=buy，则撤销所有买单，包括开仓和平仓）
 
 >  Response:
 
@@ -3674,6 +3698,8 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 | contract_code | false | string | 合约代码                     | "BTC-USDT-201225-C-13000" ...            |
 | page_index | false    | int    | 页码，不填默认第1页           |                                         |
 | page_size  | false    | int    | 页长，不填默认20，不得多于50  |                                         |
+| sort_by  | false | string    |  排序字段，不填默认按创建时间倒序         | “created_at”(按照创建时间倒序)，“update_time”(按照更新时间倒序)   |
+| trade_type  | false | int    |  交易类型，不填默认查询全部         | 0:全部,1:买入 开多,2: 卖出开空,3: 买入平空,4: 卖出平多。   |
 
 >  Response:
 
@@ -3697,6 +3723,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
                 "order_id_str": "775314891945996288",
                 "client_order_id": 563829342342349,
                 "created_at": 1604891074887,
+                "update_time": 1604891074887,
                 "trade_volume": 0,
                 "trade_turnover": 0,
                 "fee": 0,
@@ -3760,7 +3787,8 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 | quote_asset      | true     | string  | 报价币种                                                     | 如"USDT"                                                     |
 | premium_frozen   | true     | decimal | 冻结权利金（买方）                                                   |                                                             |
 | fee_frozen       | true     | decimal | 冻结手续费                                                   |                                                             |
-| fee_asset         | true     | string      | 手续费币种                               |                |
+| fee_asset         | true    | string      | 手续费币种                               |                |
+| update_time       | true    | Long | 订单更新时间，单位：毫秒  | |
 | \</orders\>            |          |         |                                                              |                                                              |
 | total_page       | true     | int     | 总页数                                                       |                                                              |
 | current_page     | true     | int     | 当前页                                                       |                                                              |
@@ -4244,10 +4272,13 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 | trade_partition | false  | string | 交易分区 | "USDT"，不填默认”USDT“                                          |
 | contract_code | false    | string | 合约代码 | "BTC-USDT-201225-C-13000"                                      |
 | contract_type | false    | string | 合约类型 | 当周:"this_week", 次周:"next_week", 季度:"quarter"            |
+| direction | false  | string | 买卖方向（不填默认全部）  |  "buy":买 "sell":卖 |
+| offset | false  | string | 开平方向（不填默认全部）  | "open":开 "close":平  |
 
 ### 备注
 
 - 只要有contract_code，则撤销该code的合约
+- direction与offset可只填其一，只填其一则按对应的条件去撤单。（如用户只传了direction=buy，则撤销所有买单，包括开仓和平仓）
 
 >  Response:
 
@@ -4306,6 +4337,7 @@ order_id返回是18位，nodejs和javascript默认解析18有问题，nodejs和j
 | contract_code | false    | string | 合约代码                 | "BTC-USDT-201225-C-13000" |
 | page_index    | false    | int    | 第几页，不填默认第一页   |                     |
 | page_size     | false    | int    | 不填默认20，不得多于50   |                    |
+| trade_type  | false | int    |  交易类型，不填默认查询全部         | 0:全部,1:买入 开多,2: 卖出开空,3: 买入平空,4: 卖出平多。   |
 
 >  Response:
 
