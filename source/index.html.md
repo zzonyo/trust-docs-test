@@ -1067,7 +1067,7 @@ Please note that, for both public interface and private interface, there are rat
 
     if you are not in the prohibition period, the field is not included in returned header;
 
-## API Limitation on Order Cancellation Ratio(unavailable now)
+## API Limitation on Order Cancellation Ratio
 
 * The system will calculate the order cancellation ratio automatically when the total number of orders placed via certain order price types by the API user goes equal to or larger than 3,000 within 10 minutes. If the order cancellation ratio is greater than 99%, the user will be prohibited for 5 minutes from placing orders via certain API order price types which will be listed below (The response of placing orders will return: 1084  Your contract API is disabled, please try again after {0} (GMT+8).).
 * A 30-minute API order placement prohibition will be triggered if the user was prohibited for 3 times within an hour (The response of placing orders will return: 1084  Your contract API is disabled, please try again after {0} (GMT+8).). After resuming access, the total number of prohibited times will be cleared during the previous period and will not be counted into the total prohibited times in the new period.
