@@ -3825,7 +3825,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | contract_code   | false    | string | Contract Code                     | "BTC-USDT-201225-C-13000" ...            |
 | page_index      | false    | int    | Page number, default page1 if not filled      |                                         |
 | page_size       | false    | int    | Page size, default 20 if not filled; no more than 50|                                         |
-| sort_by         | false | string    |  sort fields(descending)    |   “created_at”descending order by order created at, "update_time": descending order by order update time   |
+| sort_by         | false | string    |  sort fields(Default: “created_at” descending order)    |   “created_at”: descending order by order created at, "update_time": descending order by order update time   |
 | trade_type      | false | int    |  trade type(Default:all)    |  0:all,1: buy long,2: sell short,3: buy short,4: sell  long   |
 
 > Response:
@@ -3955,7 +3955,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | page_index      | false    | int    | Page number, default page 1 if not filled |                                                              |
 | page_size       | false    | int    | page size, default 20 | no more than 50                                                |
 | contract_code   | false    | string | Contract Code             | BTC-USDT-201225-C-13000                                      |
-| sort_by         | false  | string | sort fields(descending) |  "create_date"：descending order by order create date , "update_time": descending order by order update time |
+| sort_by         | false  | string | sort fields(Default: “create_date” descending order) |  "create_date"：descending order by order create date , "update_time": descending order by order update time |
 
 ### Note: 
 
@@ -4495,7 +4495,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | create_date     | true     | long   | Date                   | Enter a positive integer; if the parameter exceeds 90, a default 90 days' data will be queried.         |
 | page_index      | false    | int    | Page number. Default page 1 if not filled |                                                              |
 | page_size       | false    | int    | Default 20 if not filled; no more than 50 |                                                              |
-| sort_by | false  | string | sort fields(descending) | "created_at"：descending order by order creation time, "update_time": descending order by order update time |
+| sort_by | false  | string | sort fields(Default: “created_at” descending order) | "created_at"：descending order by order creation time, "update_time": descending order by order update time |
 
 ### NOTE
 
