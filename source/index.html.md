@@ -148,38 +148,38 @@ table th {
 
 Welcome to Huobi API！  
 
-This is the official Huobi API document, and will be continue updating. Huobi will also publish API announcement in advance for any API change, please subscribe our announcements so that you can get latest update.
+This is the official Huobi API document, and will be continue updating. Huobi will also publish API announcement in advance for any API change. Please subscribe to our announcements so that you can get the latest updates.
 
-You can click <a href='https://huobiglobal.zendesk.com/hc/en-us/sections/360000070201-API-Announcements'>Here</a> to view the announcements. If you want to subscribe, please click "Follow" button in the top right of the page. After login and click "Follow" again, then choose the type you want to follow. After you subscribe, the button will changed to "Following". If you don't have any account, you need to register first in the login dialog.
+You can click <a href='https://huobiglobal.zendesk.com/hc/en-us/sections/360000070201-API-Announcements'>Here</a> to view the announcements. If you want to subscribe, please click "Follow" button in the top right of the page. After login and click "Follow" again, then choose the type you want to follow. After you subscribe, the button will be changed to "Following". If you don't have any account, you need to register first in the login dialog.
 
 **How to read this document**
 
-The top of the document is the navigation menu for different API business; The language button in the top right is for different language, it supports Chinese and English right now.
+The top of the document is the navigation menu for different API business; The language button in the top right is for different languages, it supports Chinese and English right now.
 The main content of each API document has three parts, the left hand side is the contents, the middle part is the document body, and the right hand side is the request and response sameple.
 
 Below is the content for Spot API document
 
 The first part is the overview:
 
-- **Quick Start**: It introduces the overall knowledge of Huobi API, and suitable for new Huobi API user
-- **API Explorer**: It introduces the API Explorer online tool, which is convenient for user invoke and observe the API
+- **Quick Start**: It introduces the overall knowledge of Huobi API, and suitability for new Huobi API user
+- **API Explorer**: It introduces the API Explorer online tool, which is convenient for user to invoke and observe the API
 - **FAQ**: It lists the frequently asked questions regardless the specific API
 - **Contact Us**: It introduces how to contact us according to different subjects
 
 The second part is detail for each API. Each API category is listed in one section, and each each section has below contents:
 
-- **Introduction**: It introdces notes and description for this API category
+- **Introduction**: It introduces notes and description for this API category
 - ***Specific API***: It introduces the usage, rate limit, request, parameters and response for each API
-- **Error Code**: It lists the common error code and the description for this API categor
+- **Error Code**: It lists the common error code and the description for this API category
 - **FAQ**: It lists the frequently asked questions for this API category
 
 # Quick Start
 
 ## Preparation
 
-Before you use API, you need to login the website to create API Key with proper permissions. The API key is shared for all business in Huobi including spot, futures, swap, options.
+Before you use API, you need to login the website to create API Key with proper permissions. The API key is shared for all instruments in Huobi including spot, futures, swap, options.
 
-You can manage your API Key <a href='https://www.hbg.com/zh-cn/apikey/'>here</a>.
+You can manage your API Keys <a href='https://www.hbg.com/zh-cn/apikey/'>here</a>.
 
 Every user can create at most 20 API Keys, each can be applied with either permission below:
 
@@ -886,9 +886,9 @@ No parameter is available for this endpoint.
         {
             "id": "rclfxz2g21ly",  // incident id
             "name": "Market data is delayed",  // incident name
-            "status": "investigating",  // incident stutus
-            "created_at": "2020-02-11T03:15:01.913Z",  // incident create time
-            "updated_at": "2020-02-11T03:15:02.003Z",   // incident update time
+            "status": "investigating",  // incident status
+            "created_at": "2020-02-11T03:15:01.913Z",  // incident created time
+            "updated_at": "2020-02-11T03:15:02.003Z",   // incident updated time
             "monitoring_at": null,
             "resolved_at": null,
             "impact": "minor",  // incident impact
@@ -1025,8 +1025,8 @@ No parameter is available for this endpoint.
 |[{id        |     string                 |  incident id
 |name        |      string                | incident name
 |status        |       string               | incident staus, value range: scheduled, in progress, verifying, completed
-|created_at        |     string                 | incident creat time
-|updated_at        |     string                 | incident update time
+|created_at        |     string                 | incident created time
+|updated_at        |     string                 | incident updated time
 |scheduled_for       |      string                | scheduled maintenance start time
 |scheduled_until       |     string                 | scheduled maintenance end time
 |.......}]        |                     | for details of other fields, please refer to the return example
@@ -1080,7 +1080,7 @@ None.
 
 ## Get all Supported Trading Symbol
 
-This endpoint returns all Huobi's supported trading symbol.
+This endpoint returns all Huobi's supported tradable symbols.
 
 ```shell
 curl "https://api.huobi.pro/v1/common/symbols"
