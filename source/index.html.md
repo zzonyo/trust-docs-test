@@ -40,6 +40,78 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.2.3 2021-1-29 【Added:Get a Batch of Market Data Overview. 2-14 Added fields to modify interface. The order_id of submitted trigger order response has been changed from the original natural number self-incrementing ID to a unique identification ID with a length of 18 digits. It is recommended to use the order_id_str (order_id in string type) of submitted order response  to avoid the occurrence of truncation by the system because excessive length.】
+
+### 1. Added Get a Batch of Market Data Overview
+ - Interface Name: Get a Batch of Market Data Overview
+ - Interface Type: public
+ - Interface URL: /market/detail/batch_merged
+
+### 2. Modified Cancel All Orders(Added two optional parameters in request: direction, “buy”/“sell”, if not filled in means all; offset, “open”/“close”, if not filled in means all.)
+ - Interface Name: Cancel All Orders
+ - Interface Type: private
+ - Interface URL: /api/v1/contract_cancelall
+
+### 3. Modified Get Information of an Order(Added "real_profit" in return parameter "data" to represent real profit)
+ - Interface Name: Get Information of an Order
+ - Interface Type: private
+ - Interface URL: /api/v1/contract_order_info
+
+### 4. Modified Order details acquisition(Added one field in return parameters both "data" and "trades": real_profit(real profit). And added one filed in "trades" to indicates each trade profit：profit (profit when close position))
+ - Interface Name: Order details acquisition
+ - Interface Type: private
+ - Interface URL: /api/v1/contract_order_detail	
+
+### 5. Modified Query Open Orders(Added two optional parameters in request: sort_by, is sort field, if not filled in means order by create_at descending, with available values: “created_at”(descending order), “update_time”(descending order); trade_type, indicates trade type, if not filled in means all, with available values: 0:all, 1:open long, 2:open short, 3:close sell, 4:close buy. Added two fields in return parameter "orders": update_time(order updated time, in milliseconds), real_profit(real profit when close position).)
+ - Interface Name: Query Open Orders
+ - Interface Type: private
+ - Interface URL: /api/v1/contract_openorders
+
+### 6. Modified Get History Orders(Added one field in return parameter "orders": real_profit(real profit when close position).)
+ - Interface Name: Get History Orders
+ - Interface Type: private
+ - Interface URL: /api/v1/contract_hisorders
+
+### 7. Modified Query history orders via multiple fields(Added one field in return parameter "orders": real_profit(real profit when close position).)
+ - Interface Name: Query history orders via multiple fields
+ - Interface Type: private
+ - Interface URL: /api/v1/contract_hisorders_exact
+
+### 8. Modified Get History Match Results(Added one field in return parameter "trades": real_profit(real profit when close position).)
+ - Interface Name: Get History Match Results
+ - Interface Type: private
+ - Interface URL: /api/v1/contract_matchresults
+
+### 9. Modified Query history transactions via multiple fields(Added one field in return parameter "trades": real_profit(real profit when close position).)
+ - Interface Name: Query history transactions via multiple fields
+ - Interface Type: private
+ - Interface URL: /api/v1/contract_matchresults_exact
+
+### 10. Modified Subscribe Order Data(sub)(Added one field in return: real_profit(real profit when close position).added field in return parameter "trade": profit(profit when close position),  real_profit(real profit when close position))
+ - Interface Name: Subscribe Order Data(sub)
+ - Interface Type: private
+ - Subscription topic: orders.$symbol
+
+### 11. Modified Cancel All Trigger Orders(Added two parameters in request: direction, indicates order direction, if not filled in means both, with available values: “buy”, “sell”; offset, indicates order offset, if not filled in means both, with available values: "open”, “close”.)
+ - Interface Name: Cancel All Trigger Orders
+ - Interface Type: private
+ - Interface URL: /api/v1/contract_trigger_cancelall
+
+### 12. Modified Cancel all Take-profit and Stop-loss Orders(Added one parameter in request: direction, indicates order direction, if not filled in means both, with available values: "buy", "sell".)
+ - Interface Name: Cancel all Take-profit and Stop-loss Orders
+ - Interface Type: private
+ - Interface URL: /api/v1/contract_tpsl_cancelall
+
+### 13. Modified Query Trigger Order Open Orders(Added one parameter in request: trade_type, indicates order trade type, if not filled in means all, with available values: 0:all,1:open long, 2:open short, 3:close short, 4:close long.)
+ - Interface Name: Query Trigger Order Open Orders
+ - Interface Type: private
+ - Interface URL: /api/v1/contract_trigger_openorders
+
+### 14. Modified Query Open Take-profit and Stop-loss Orders(Added one parameter in request: trade_type, indicates order trade type, if not filled in means all, with available values: 0:all, 3:close short, 4:close long.)
+ - Interface Name: Query Open Take-profit and Stop-loss Orders
+ - Interface Type: private
+ - Interface URL: /api/v1/contract_tpsl_openorders
+
 ## 1.2.2 2021-01-12 【1 Added Get the estimated settlement price. 2-7 Added ”Set a Take-profit and Stop-loss Order“ interfaces. 8-23 Added fields to modify interface. Added the first-level menu of [Contract Trigger Order], and add take-profit and stop-loss related interfaces and move the original contract trigger order related interfaces to this menu】
 
 ### 1. Added Get The Estimated Settlement Price
@@ -626,13 +698,11 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 #### 2.10、Added API interface of getting user's API indicator disable information
 Interface name: Query user's API indicator disable information
 
-
   - Interface type: User private interface
   - Interface type: public
   - URL: api/v1/contract_api_trading_status
 
-
-## 1.0.11 2020-02-21 API Uprade
+## 1.0.11 2020-02-21 API Upgrade
 ### 1、 Interface URL: api/v1/contract_batchorder
 the maximum number of batch order cancellation each time in request parameter “orders_data” will be changed from 20 to 10.
 ### 2、Interface URL: api/v1/contract_cancel 
@@ -928,62 +998,63 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
 
 permission type  |  Content Type  |   Context                                      |   Request Type   |   Desc                                        | Signature Required   |
 --------- | ---------------- | ------------------------------------------------ | ---------------- | ---------------------------------------------- | ---------------------- |
-Read  | Market Data      | api/v1/contract_contract_info      |  GET              | Get Contracts Information                      | No                     |
-Read  | Market Data      | api/v1/contract_index             |  GET              | Get contract Index Price Information           | No                     |
-Read  | Market Data      |  api/v1/contract_price_limit       |  GET              | Get Contract Price Limitation                     | No                     |
-Read  | Market Data      |  api/v1/contract_open_interest     |  GET              | Get Contract Open Interest Information         | No                     |
-Read  | Market Data      |  api/v1/contract_delivery_price     |  GET              |  Get the estimated delivery price         | No                     |          
-Read     |  Market Data           |   api/v1/contract_api_state   |                  GET        |  Query information on system status    |  No  |
+Read  | Market Data      | /api/v1/contract_contract_info      |  GET              | Get Contracts Information                      | No                     |
+Read  | Market Data      | /api/v1/contract_index             |  GET              | Get contract Index Price Information           | No                     |
+Read  | Market Data      |  /api/v1/contract_price_limit       |  GET              | Get Contract Price Limitation                     | No                     |
+Read  | Market Data      |  /api/v1/contract_open_interest     |  GET              | Get Contract Open Interest Information         | No                     |
+Read  | Market Data      |  /api/v1/contract_delivery_price     |  GET              |  Get the estimated delivery price         | No                     |          
+Read     |  Market Data           |   /api/v1/contract_api_state   |                  GET        |  Query information on system status    |  No  |
 Read  | Market Data      |  /market/depth                  |  GET              | Get Market Depth                               | No                     |
 Read  | Market Data      | /market/history/kline          |  GET              | Get Kline Data                                | No                     |
 Read  | Market Data      |  /market/detail/merged         |  GET              | Get Market Data Overview                       | No                     |
+Read  |  Market Data     |  /market/detail/batch_merged  |                 GET        |  Get a Batch of Market Data Overview                 |  No  |
 Read  | Market Data      |  /market/trade                  |  GET              | Query The Last Trade of a Contract                   | No                     |
 Read  | Market Data      | /market/history/trade           |  GET              | Query a Batch of Trade Records of a Contract | No                     |
-Read    |  Market Data           |  api/v1/contract_risk_info |     GET       |  Query information on contract insurance fund balance and estimated clawback rate |  No  |
-Read    |  Market Data           |  api/v1/contract_insurance_fund |   GET       |  Query history records of insurance fund balance            |  No  |
-Read    |  Market Data           |  api/v1/contract_adjustfactor |    GET       |  Query information on Tiered Adjustment Factor            |  No  |
-Read    |  Market Data           |  api/v1/contract_his_open_interest |    GET       |  Query information on open interest            |  No  |
-Read     |   Market Data           |  api/v1/contract_elite_account_ratio |   GET       | Query Top Trader Sentiment Index Function-Account            |  No  |
-Read     |   Market Data           |  api/v1/contract_elite_position_ratio |   GET       | Query Top Trader Sentiment Index Function-Position            |  No  |
-Read     |   Market Data           |  api/v1/contract_liquidation_orders |   GET       |  Query Liquidation Order Information            |  No  |
-Read     |  Market Data            |  api/v1/contract_settlement_records |     GET       |  Query historical settlement records of the platform interface          |  No  |
+Read    |  Market Data           |  /api/v1/contract_risk_info |     GET       |  Query information on contract insurance fund balance and estimated clawback rate |  No  |
+Read    |  Market Data           |  /api/v1/contract_insurance_fund |   GET       |  Query history records of insurance fund balance            |  No  |
+Read    |  Market Data           |  /api/v1/contract_adjustfactor |    GET       |  Query information on Tiered Adjustment Factor            |  No  |
+Read    |  Market Data           |  /api/v1/contract_his_open_interest |    GET       |  Query information on open interest            |  No  |
+Read     |   Market Data           |  /api/v1/contract_elite_account_ratio |   GET       | Query Top Trader Sentiment Index Function-Account            |  No  |
+Read     |   Market Data           |  /api/v1/contract_elite_position_ratio |   GET       | Query Top Trader Sentiment Index Function-Position            |  No  |
+Read     |   Market Data           |  /api/v1/contract_liquidation_orders |   GET       |  Query Liquidation Order Information            |  No  |
+Read     |  Market Data            |  /api/v1/contract_settlement_records |     GET       |  Query historical settlement records of the platform interface          |  No  |
 Read     |  Market Data           |  /index/market/history/index |   GET       |  Query Index Kline Data            |  No  |
 Read     |  Market Data           |  /index/market/history/basis |   GET       |  Query Basis Data            |  No  |
 Read    | Market Data  |  /api/v1/contract_estimated_settlement_price     | GET    |     Get the estimated settlement price      |      No          |
-Read  | Account          | api/v1/contract_account_info   |  POST             | Query User’s Account Information                     | Yes                    |
-Read  | Account          | api/v1/contract_position_info  |  POST             | Query User’s Position Information                    | Yes                    |
-Read   | Account | api/v1/contract_sub_account_list    | POST             |     Query assets information of all sub-accounts under the master account (Query by coins)     | Yes   |
-Read   | Account | api/v1/contract_sub_account_info     | POST             |  Query a single sub-account's assets information   | Yes   |
-Read   |  Account  | api/v1/contract_sub_position_info    | POST             | Query a single sub-account's position information    | Yes   |
-Read   | Account  | api/v1/contract_financial_record    | POST             | Query account financial records  | Yes   |
-Read   | Account  | api/v1/contract_financial_record_exact    | POST             | Query financial records via multiple fields  | Yes   |
-Read   | Account  | api/v1/contract_user_settlement_records    | POST             | Query user’s settlement records  | Yes   |
-Read     |  User Account           |  api/v1/contract_order_limit |  POST       |  Query contract information on order limit            |  Yes  |
-Read     |  User Account           |  api/v1/contract_available_level_rate |  POST       |  Query contract available level rate            |  Yes  |
-Read     |  User Account           |  api/v1/contract_fee |       POST       | Query information on contract trading fee            |  Yes  |       
-Read     |  User Account           |  api/v1/contract_transfer_limit |     POST       |  Query information on Transfer Limit            |  Yes  |
-Read     |  User Account           |  api/v1/contract_position_limit |     POST       |  Query information on position limit            |  Yes  |
-Trade     |  User Account           |  api/v1/contract_master_sub_transfer |     POST       |  Transfer between master and sub account            |  Yes  |
-Read     |  User Account           |  api/v1/contract_account_position_info |     POST       | User’s position Information And User’s position Information            |  Yes  |
-Read | Trade  |  api/v1/contract_trigger_openorders       | POST             |   Query Trigger Order Open Orders                              | Yes  |
-Read | Trade  |  api/v1/contract_trigger_hisorders       | POST             |  Query Trigger Order History                          | Yes  |
-Trade  | Trade            |  api/v1/contract_order          |  POST             | Place an Order                                 | Yes                    |
-Trade | Trade            | api/v1/contract_batchorder       |  POST             | Place a Batch of Orders                        | Yes                    |
-Trade | Trade            | api/v1/contract_cancel           |  POST             | Cancel an Order                                | Yes                    |
-Trade | Trade            | api/v1/contract_cancelall        |  POST             | Cancel All Orders                              | Yes                    |
-Trade  |  Trade           |  api/v1/contract_switch_lever_rate |             POST       |  Switch Leverage                  |  Yes  |
-Trade  |  Trade           |  api/v1/lightning_close_position |   POST       |  Place Flash Close Order            |  Yes  |
-Read  | Trade  | api/v1/contract_order_info       |  POST             | Get Information of an Order                    | Yes                    |
-Read  | Trade  |  api/v1/contract_order_detail   |  POST             | Get Trade Details of an Order                  | Yes                    |
-Read  | Trade  |  api/v1/contract_openorders     |  POST             | Get Current Orders                             | Yes                    |
-Read  | Trade  |  api/v1/contract_hisorders      |  POST             | Get History Orders                             | Yes                    |
-Read  | Trade  |  api/v1/contract_hisorders_exact     |  POST             | Query history orders via multiple fields                 | Yes                    |
-Read  | Trade  |  api/v1/contract_matchresults       |  POST             | Get History Match Results                             | Yes   |
-Read  | Trade  |  api/v1/contract_matchresults_exact       |  POST             | Query history transactions via multiple fields              | Yes   |
+Read  | Account          | /api/v1/contract_account_info   |  POST             | Query User’s Account Information                     | Yes                    |
+Read  | Account          | /api/v1/contract_position_info  |  POST             | Query User’s Position Information                    | Yes                    |
+Read   | Account | /api/v1/contract_sub_account_list    | POST             |     Query assets information of all sub-accounts under the master account (Query by coins)     | Yes   |
+Read   | Account | /api/v1/contract_sub_account_info     | POST             |  Query a single sub-account's assets information   | Yes   |
+Read   |  Account  | /api/v1/contract_sub_position_info    | POST             | Query a single sub-account's position information    | Yes   |
+Read   | Account  | /api/v1/contract_financial_record    | POST             | Query account financial records  | Yes   |
+Read   | Account  | /api/v1/contract_financial_record_exact    | POST             | Query financial records via multiple fields  | Yes   |
+Read   | Account  | /api/v1/contract_user_settlement_records    | POST             | Query user’s settlement records  | Yes   |
+Read     |  User Account           |  /api/v1/contract_order_limit |  POST       |  Query contract information on order limit            |  Yes  |
+Read     |  User Account           |  /api/v1/contract_available_level_rate |  POST       |  Query contract available level rate            |  Yes  |
+Read     |  User Account           |  /api/v1/contract_fee |       POST       | Query information on contract trading fee            |  Yes  |       
+Read     |  User Account           |  /api/v1/contract_transfer_limit |     POST       |  Query information on Transfer Limit            |  Yes  |
+Read     |  User Account           |  /api/v1/contract_position_limit |     POST       |  Query information on position limit            |  Yes  |
+Trade     |  User Account           |  /api/v1/contract_master_sub_transfer |     POST       |  Transfer between master and sub account            |  Yes  |
+Read     |  User Account           |  /api/v1/contract_account_position_info |     POST       | User’s position Information And User’s position Information            |  Yes  |
+Read | Trade  |  /api/v1/contract_trigger_openorders       | POST             |   Query Trigger Order Open Orders                              | Yes  |
+Read | Trade  |  /api/v1/contract_trigger_hisorders       | POST             |  Query Trigger Order History                          | Yes  |
+Trade  | Trade            |  /api/v1/contract_order          |  POST             | Place an Order                                 | Yes                    |
+Trade | Trade            | /api/v1/contract_batchorder       |  POST             | Place a Batch of Orders                        | Yes                    |
+Trade | Trade            | /api/v1/contract_cancel           |  POST             | Cancel an Order                                | Yes                    |
+Trade | Trade            | /api/v1/contract_cancelall        |  POST             | Cancel All Orders                              | Yes                    |
+Trade  |  Trade           |  /api/v1/contract_switch_lever_rate |             POST       |  Switch Leverage                  |  Yes  |
+Trade  |  Trade           |  /api/v1/lightning_close_position |   POST       |  Place Flash Close Order            |  Yes  |
+Read  | Trade  | /api/v1/contract_order_info       |  POST             | Get Information of an Order                    | Yes                    |
+Read  | Trade  |  /api/v1/contract_order_detail   |  POST             | Get Trade Details of an Order                  | Yes                    |
+Read  | Trade  |  /api/v1/contract_openorders     |  POST             | Get Current Orders                             | Yes                    |
+Read  | Trade  |  /api/v1/contract_hisorders      |  POST             | Get History Orders                             | Yes                    |
+Read  | Trade  |  /api/v1/contract_hisorders_exact     |  POST             | Query history orders via multiple fields                 | Yes                    |
+Read  | Trade  |  /api/v1/contract_matchresults       |  POST             | Get History Match Results                             | Yes   |
+Read  | Trade  |  /api/v1/contract_matchresults_exact       |  POST             | Query history transactions via multiple fields              | Yes   |
 Trade | Trade  |  v1/futures/transfer       | POST             |  Transfer margin between Spot account and Future account                          | Yes  |
-Trade | Strategy  |  api/v1/contract_trigger_order       | POST             |  Place Trigger Order                          | Yes  |
-Trade | Strategy  |  api/v1/contract_trigger_cancel       | POST             |  Cancel Trigger Order                          | Yes  |
-Trade | Strategy  |  api/v1/contract_trigger_cancelall       | POST             |    Cancel All Trigger Orders                   | Yes  |
+Trade | Strategy  |  /api/v1/contract_trigger_order       | POST             |  Place Trigger Order                          | Yes  |
+Trade | Strategy  |  /api/v1/contract_trigger_cancel       | POST             |  Cancel Trigger Order                          | Yes  |
+Trade | Strategy  |  /api/v1/contract_trigger_cancelall       | POST             |    Cancel All Trigger Orders                   | Yes  |
 Trade | Strategy  |  /api/v1/contract_tpsl_order                            | POST    |     Set a Take-profit and Stop-loss Order for an Existing Position       |      Yes         |
 Trade | Strategy  |  /api/v1/contract_tpsl_cancel                           | POST    |     Cancel a Take-profit and Stop-loss Order       |      Yes         |
 Trade | Strategy  |  /api/v1/contract_tpsl_cancelall                        | POST    |     Cancel all Take-profit and Stop-loss Orders       |      Yes         |
@@ -1727,7 +1798,7 @@ Error Code | Error Details Description|
 - To improve query performance and response speed, please enter as many querying conditions as possible (including symbol, type(recommended to leave it blank to query all), create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
 
 
-### 4. Query contract order detail interface: api/v1/contract_order_detail
+### 4. Query contract order detail interface: /api/v1/contract_order_detail
 
 - When querying orders without parameter(such as the parameter: created_at), the query result data may be delayed. It is recommended to pass the two parameters of the interface: created_at (order timestamp) and order_type (order type, default 1), the database will be directly queried, and the query results data will be more timely.
 
@@ -1738,7 +1809,7 @@ Error Code | Error Details Description|
 
 ### 5. Query contract trigger order history orders interface:
 
-- api/v1/contract_trigger_hisorders
+- /api/v1/contract_trigger_hisorders
 
 - To improve query performance and response speed, please enter as many parameters as possible (including symbol, contract_code, trade_type, status, create_date). Besides, try not to enter a big integer in parameter “create_date”. You are kindly suggested to query one-day data at a time.
 
@@ -1771,11 +1842,11 @@ Error Code | Error Details Description|
 
 `}`
 
-### 7. Place order interface (URL: api/v1/contract_order) and place a batch of orders interface (URL:api/v1/contract_batchorder):
+### 7. Place order interface (URL: /api/v1/contract_order) and place a batch of orders interface (URL:/api/v1/contract_batchorder):
 
 - We recommend to fill in the parameter “client_order_id”(should be unique from user-side),which can help users to acquire order status and other order information according to the parameter “client_order_id" from
 
-- query order information interface (URL: api/v1/contract_order_info ) when there is no returned information due to network or other problems.
+- query order information interface (URL: /api/v1/contract_order_info ) when there is no returned information due to network or other problems.
 
 ## Code Demo
 
@@ -1994,7 +2065,7 @@ If a quarterly contract such as BTC_CQ is converted to the next week contract BT
 
 ### Q1: What is the future settlement cycle? Which interface can be used to check the status when the future is settled? 
 
-一、Orders can't be placed or cancelled during settlement period, error code "1056" will be returned if users place or cancel orders. You are recommended to request contract information every few seconds during settlement period: api/v1/contract_contract_info. It's in settlement time if there is any number of 5, 6, 7, 8 included in the returned status code of contract_status, while it indicates that settlement completed and users could place and cancel orders as usual if the returned status code is 1.
+一、Orders can't be placed or cancelled during settlement period, error code "1056" will be returned if users place or cancel orders. You are recommended to request contract information every few seconds during settlement period: /api/v1/contract_contract_info. It's in settlement time if there is any number of 5, 6, 7, 8 included in the returned status code of contract_status, while it indicates that settlement completed and users could place and cancel orders as usual if the returned status code is 1.
 
 二、Kindly remind you that the delivery contract will be settled every day at 16:00 Singapore time or be deliveried at 16:00 on Friday. Inquiry about funds and positions during settlement or delivery will return an error code.
 
@@ -2016,7 +2087,7 @@ please be patient, and do not place or cancel order repeatedly during the proces
 
 ### Q3: The same order ID and match ID can have multiple trades. for example: if a user take a large amount of maker orders, there will be multiple corresponding trades . How to identify these different trades ?
 
-The field ID returned by the information interface api/v1/contract_order_detail is a globally unique transaction identifier. if a maker order is matched multiple times, a trade will be pushed once there is a transaction matched.
+The field ID returned by the information interface /api/v1/contract_order_detail is a globally unique transaction identifier. if a maker order is matched multiple times, a trade will be pushed once there is a transaction matched.
 
 ### Q4: What is the delay for the round trip of huobi future?
 
@@ -2044,11 +2115,11 @@ Most of the network connectivity problems ,(such as Connection reset or network 
 
 ### Q10: Why is the order filled after the order is withdrawed successfully by placing API cancellation ?
   
- The success return of order cancellation or placement  only represents that the command is excuted successfully and doesn't mean that the order has been cancelled . You can check the order status through the interface api/v1/contract_order_info.
+ The success return of order cancellation or placement  only represents that the command is excuted successfully and doesn't mean that the order has been cancelled . You can check the order status through the interface /api/v1/contract_order_info.
 
 ### Q11: How long does it generally take for an API from withdrawing to cancelling successfully ?
 
-The order cancellation command generally takes several tens of ms. The actual status of order cancellation can be obtained by invoking the interface: api/v1/contract_order_info.
+The order cancellation command generally takes several tens of ms. The actual status of order cancellation can be obtained by invoking the interface: /api/v1/contract_order_info.
 
 ### Q12: How to get historical liquidation orders?
 
@@ -2061,7 +2132,6 @@ To obtain historical liquidation orders, you can access the one of four api inte
 4. The number of positions exceed the upper limit for an individual investor.
 5. Positions may only be closed within 10 min before settlement.(error code 1105)
 6. The positions are taken over by system.
-
 
 ## Error Codes
 
@@ -2081,7 +2151,7 @@ If you encounter errors such as {'index': 1, 'err_code': 1048, 'err_msg': 'Insuf
 
 When you report an API error, you need to attach your request URL, the original complete body of the request and the complete request URL parameters, and the original complete log of the server's response. If it is a websocket subscription, you need to provide the address of the subscription, the topic of the subscription, and the original complete log pushed by the server.
 
-If it is an order-related issue, use the API order query interface api/v1/contract_order_info to keep the complete log returned and provide your UID and order number.
+If it is an order-related issue, use the API order query interface /api/v1/contract_order_info to keep the complete log returned and provide your UID and order number.
 
 
 # Future Market Data interface
@@ -2090,7 +2160,7 @@ If it is an order-related issue, use the API order query interface api/v1/contra
 
 ### Example              
                                    
-- GET  `api/v1/contract_contract_info`
+- GET  `/api/v1/contract_contract_info`
 
 ```shell
 curl "https://api.hbdm.com/api/v1/contract_contract_info"      
@@ -2158,7 +2228,7 @@ ts                             | true          | long     | Time of Respond Gene
 
 ### Example                                                
                                                             
-- GET `api/v1/contract_index` 
+- GET `/api/v1/contract_index` 
 
 ```shell
 curl "https://api.hbdm.com/api/v1/contract_index?symbol=BTC" 
@@ -2204,7 +2274,7 @@ curl "https://api.hbdm.com/api/v1/contract_index?symbol=BTC"
 
 ###  Example      
                                                                           
-- GET `api/v1/contract_price_limit` 
+- GET `/api/v1/contract_price_limit` 
  
 ```shell
 curl "https://api.hbdm.com/api/v1/contract_price_limit?symbol=BTC&contract_type=this_week"
@@ -2262,7 +2332,7 @@ One of the query conditions must be chosen.
 
 ###  Example   
 
-- GET `api/v1/contract_open_interest` 
+- GET `/api/v1/contract_open_interest` 
 
 ```shell
 curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_type=this_week"
@@ -2306,8 +2376,8 @@ curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_typ
 | \<list\>(Attribute Name: data) |               |          |                                               |                                   |
 | symbol                         | true          | string   | Variety code                                  | "BTC", "ETH" ...                  |
 | contract_type                  | true          | string   | Contract Type                                 | "this_week","next_week","quarter", "next_quarter" |
-| volume                         | true          | decimal  | Position quantity(volume). Single side  |                                   |
-| amount                         | true          | decimal  | Position quantity(Currency). Single side |                                   |
+| volume                         | true          | decimal  | Position quantity(volume). Sum of both buy and sell sides  |                                   |
+| amount                         | true          | decimal  | Position quantity(Currency). Sum of both buy and sell sides |                                   |
 | contract_code                  | true          | string   | Contract Code                                 | eg "BTC180914"   ...              |
 | trade_amount	                | true	| decimal	| trading volume within the last 24 hours (coin). Sum of both buy and sell sides	| 
 | trade_volume	                | true	| decimal	| trading volume within the last 24 hours (cont). Sum of both buy and sell sides	| 
@@ -2320,7 +2390,7 @@ curl "https://api.hbdm.com/api/v1/contract_open_interest?symbol=BTC&contract_typ
 
 ###  Example   
                                                                                  
-- GET `api/v1/contract_delivery_price` 
+- GET `/api/v1/contract_delivery_price` 
 
 ```shell
 curl "https://api.hbdm.com/api/v1/contract_delivery_price?symbol=BTC"
@@ -2554,7 +2624,6 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
 ```
 
-
 ###  Request Parameter  
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
@@ -2617,18 +2686,104 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
 | status             | true          | string        | Request Processing Result                                    | "ok" , "error"  |
 | tick               | true          | object        | Kline Data                                                  |                 |
 | ts                 | true          | long        | Time of Respond Generation, Unit: Millisecond                |                 |
-  \<tick\>     |               |    |  kline data (Start at 00:00(UTC+8) of the day)    |            | 
-  id    |     true          | long   |  kline id,the same as kline timestamp    |            
-  vol    |     true          | string   |  Trade Volume(Cont.). Sum of both buy and sell sides |            
-  count    |     true          | int   |   Order Quantity. Sum of both buy and sell sides |            
-  open    |     true          | string   |   Open Price  |            
-  close    |     true          | string   |  Clos Price,  the price in the last kline is the latest order price   |            
-  low    |     true          | string   |  Low Price   |            
-  high    |     true          | string   |  High Price  |            
-  amount    |     true          | string   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price). Sum of both buy and sell sides |            
-ask | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
-bid | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
+| \<tick\>     |               |    |  kline data (Start at 00:00(UTC+8) of the day)    |            | 
+| id    |     true          | long   |  kline id,the same as kline timestamp    |            
+| vol    |     true          | string   |  Trade Volume(Cont.). Sum of both buy and sell sides |            
+| count    |     true          | int   |   Order Quantity. Sum of both buy and sell sides |            
+| open    |     true          | string   |   Open Price  |            
+| close    |     true          | string   |  Clos Price,  the price in the last kline is the latest order price   |            
+| low    |     true          | string   |  Low Price   |            
+| high    |     true          | string   |  High Price  |            
+| amount    |     true          | string   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price). Sum of both buy and sell sides |            
+| ask | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
+| bid | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
   \</tick\>    |               |     |      |  
+
+
+## Get a Batch of Market Data Overview
+
+ - GET `/market/detail/batch_merged`
+
+### Request Parameter
+|   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
+| ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
+| symbol             | false          | string   | Contract Name |             | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”. Contract code is supported to query data. e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
+
+#### Note
+
+ - The interface data updated frequency is 50ms
+
+> Response:
+
+```json
+{
+    "status":"ok",
+    "ticks":[
+        {
+            "id":1610959373,
+            "ts":1610959373238,
+            "ask":[
+                10000,
+                85
+            ],
+            "bid":[
+                9949.748,
+                667
+            ],
+            "symbol":"BTC_CQ",
+            "open":"9949.748",
+            "close":"9949.748",
+            "low":"9949.748",
+            "high":"9949.748",
+            "amount":"0",
+            "count":0,
+            "vol":"0"
+        },
+        {
+            "id":1610959373,
+            "ts":1610959373238,
+            "ask":[
+                14100,
+                2
+            ],
+            "bid":[
+                13200,
+                3
+            ],
+            "symbol":"BTC_NW",
+            "open":"13150",
+            "close":"13200",
+            "low":"13100",
+            "high":"13200",
+            "amount":"0.790832380747489890410694159864633903",
+            "count":12,
+            "vol":"104"
+        }
+    ],
+    "ts":1585818739007
+}
+```
+
+###  Returning Parameter
+
+| Parameter Name   | Mandatory | Type   | Desc  | Value Range           |
+| ------ | ---- | ------ | ---------------------------------------- | -------------- |
+| status | true | string | status     | "ok" , "error" |
+| \<ticks\> |true  |  object array |           |                |
+| symbol  | true | string  | symbol  | "BTC_CW","BTC_NW","BTC_CQ","BTC_NQ"   |
+| id   | true | long | the id of kline |                |
+| amount   | true | string | amount(coin)  |                |
+| ask   | true | array | [ask one price, ask one vol(cont)] |                |
+| bid   | true | array | [bid one price], bid one vol(cont)] |                |
+| open     | true | string | open price     |                |
+| close     | true | string | close price       |                |
+| count     | true | decimal | trade count       |                |
+| high   | true | string | high price                                    |                |
+| low   | true | string | low price  |                |
+| vol   | true | string | trade vol, sum of both buy and sell side |                |
+| ts   | true | long | timestamp   |                |
+| \</ticks\>            |      |        |               |                |
+| ts     | true | long | Time of Respond Generation, Unit：Millisecond |                |
 
 
 ## Query The Last Trade of a Contract
@@ -2804,7 +2959,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 ## Query information on contract insurance fund balance and estimated clawback rate
 
-- GET `api/v1/contract_risk_info`
+- GET `/api/v1/contract_risk_info`
 
 ```shell
 curl "https://api.hbdm.com/api/v1/contract_risk_info"
@@ -2848,7 +3003,7 @@ curl "https://api.hbdm.com/api/v1/contract_risk_info"
 
 ## Query history records of insurance fund balance
 
-- GET `api/v1/contract_insurance_fund`
+- GET `/api/v1/contract_insurance_fund`
 
 ```shell
 curl "https://api.hbdm.com/api/v1/contract_insurance_fund?symbol=BTC"
@@ -2899,7 +3054,7 @@ curl "https://api.hbdm.com/api/v1/contract_insurance_fund?symbol=BTC"
 
 ## Query information on Tiered Adjustment Factor
 
-- GET `api/v1/contract_adjustfactor`
+- GET `/api/v1/contract_adjustfactor`
 
 ```shell
 curl "https://api.hbdm.com/api/v1/contract_adjustfactor"
@@ -2973,7 +3128,7 @@ curl "https://api.hbdm.com/api/v1/contract_adjustfactor"
 
 ## Query information on open interest
 
-- GET `api/v1/contract_his_open_interest`
+- GET `/api/v1/contract_his_open_interest`
 
 ```shell
 curl "https://api.hbdm.com/api/v1/contract_his_open_interest?symbol=BTC&contract_type=this_week&period=60min&amount_type=1"
@@ -3025,7 +3180,7 @@ curl "https://api.hbdm.com/api/v1/contract_his_open_interest?symbol=BTC&contract
 | symbol | true | string | Contract Code   | "BTC","ETH"... |
 | contract_type| true | string | Contract Type  | Weekly:"this_week", Bi-weekly:"next_week", Quarterly:"quarter"  Next Quarterly Contract: "next_quarter" |
 | \<tick\> |  |  |  |  |   
-| volume | true | string | Open Interest. |  |
+| volume | true | string | Open Interest. Sum of both buy and sell sides |  |
 | amount_type | true | int | Open Interest Unit | 1:-cont，2:- cryptocurrency  |
 | ts | true | long | Recording Time |  |
 | \</tick\> |  |  |  |  |
@@ -3039,7 +3194,7 @@ curl "https://api.hbdm.com/api/v1/contract_his_open_interest?symbol=BTC&contract
 
 ##  Query information on system status
 
-- GET `api/v1/contract_api_state`
+- GET `/api/v1/contract_api_state`
 
 ```shell
 curl "https://api.hbdm.com/api/v1/contract_api_state"
@@ -3104,7 +3259,7 @@ curl "https://api.hbdm.com/api/v1/contract_api_state"
 
 ## Query Top Trader Sentiment Index Function-Account
 
-- GET `api/v1/contract_elite_account_ratio`
+- GET `/api/v1/contract_elite_account_ratio`
 
 ```shell
 curl "https://api.hbdm.com/api/v1/contract_elite_account_ratio?symbol=BTC&period=60min"
@@ -3156,7 +3311,7 @@ curl "https://api.hbdm.com/api/v1/contract_elite_account_ratio?symbol=BTC&period
 
 ## Query Top Trader Sentiment Index Function-Position
 
-- GET `api/v1/contract_elite_position_ratio`
+- GET `/api/v1/contract_elite_position_ratio`
 
 
 ```shell
@@ -3212,7 +3367,7 @@ curl "https://api.hbdm.com/api/v1/contract_elite_position_ratio?symbol=BTC&perio
 
 ##  Query Liquidation Order Information
 
-- GET `api/v1/contract_liquidation_orders`
+- GET `/api/v1/contract_liquidation_orders`
 
 ```shell
 curl "https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&trade_type=0&create_date=7"
@@ -3578,7 +3733,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 ###  Example          
                                       
-- POST `api/v1/contract_account_info`  
+- POST `/api/v1/contract_account_info`  
 
 ###  Request Parameter  
 
@@ -3641,7 +3796,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 ###  Example                           
                      
-- POST  `api/v1/contract_position_info` 
+- POST  `/api/v1/contract_position_info` 
 
 ### Request Parameter  
 
@@ -3708,7 +3863,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 ## Query assets information of all sub-accounts under the master account
 
-- POST `api/v1/contract_sub_account_list`
+- POST `/api/v1/contract_sub_account_list`
 
 ### Request Parameters
 
@@ -3763,7 +3918,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 ## Query a single sub-account's assets information
 
-- POST `api/v1/contract_sub_account_info`
+- POST `/api/v1/contract_sub_account_info`
 
 ### Request Parameters
 
@@ -3832,7 +3987,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 ## Query a single sub-account's position information
 
-- POST `api/v1/contract_sub_position_info`
+- POST `/api/v1/contract_sub_position_info`
 
 ### Request Parameters
 
@@ -3897,7 +4052,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 ## Query account financial records
 
-- POST `api/v1/contract_financial_record`
+- POST `/api/v1/contract_financial_record`
 
 ### Request Parameters
 
@@ -3958,7 +4113,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 ## Query financial records via multiple fields
 
- - POST `api/v1/contract_financial_record_exact`
+ - POST `/api/v1/contract_financial_record_exact`
 
 ### Request Parameter
 | Parameter name        | Mandatory  | Type     | Description    | Value range  |
@@ -4055,7 +4210,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 ## Query user’s settlement records
 
- - POST `api/v1/contract_user_settlement_records`
+ - POST `/api/v1/contract_user_settlement_records`
 
 ### Request Parameter
 
@@ -4161,7 +4316,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 ## Query contract information on order limit
 
-- POST `api/v1/contract_order_limit`
+- POST `/api/v1/contract_order_limit`
  
 ### Request Parameter
 
@@ -4231,7 +4386,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 ## Query information on contract trading fee
 
-- POST `api/v1/contract_fee`
+- POST `/api/v1/contract_fee`
 
 ### Request Parameter 
 
@@ -4278,7 +4433,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 ## Query information on Transfer Limit
 
-- POST `api/v1/contract_transfer_limit`
+- POST `/api/v1/contract_transfer_limit`
 
 ### Request Parameter 
 
@@ -4329,7 +4484,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 ##  Query information on position limit
 
-- POST `api/v1/contract_position_limit`
+- POST `/api/v1/contract_position_limit`
 
 ### Request Parameter 
 
@@ -4396,7 +4551,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 ## Query Assets And Positions
 
-- post `api/v1/contract_account_position_info`
+- post `/api/v1/contract_account_position_info`
 
 ### params
 
@@ -4491,7 +4646,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ## Transfer between master and sub account
 
-- post `api/v1/contract_master_sub_transfer`
+- post `/api/v1/contract_master_sub_transfer`
 
 > Request:
 
@@ -4543,7 +4698,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ## Get transfer records between master and sub account
 
-- post `api/v1/contract_master_sub_transfer_record`
+- post `/api/v1/contract_master_sub_transfer_record`
 
 ### request
 
@@ -4614,7 +4769,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ## Query user's API indicator disable information
 
-- get `api/v1/contract_api_trading_status`
+- get `/api/v1/contract_api_trading_status`
 
 ### request body
 
@@ -4688,7 +4843,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ## Query Available Leverage Rate
 
-- POST `api/v1/contract_available_level_rate`
+- POST `/api/v1/contract_available_level_rate`
 
 
 ### request body
@@ -4732,7 +4887,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ###  Example  
 
-- POST `api/v1/contract_order`
+- POST `/api/v1/contract_order`
 
 >  Request:
 
@@ -4979,7 +5134,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 ###  Example   
 
-- POST  `api/v1/contract_cancel`
+- POST  `/api/v1/contract_cancel`
 
 ###  Request Parameter  
 
@@ -5037,7 +5192,7 @@ client_order_id, order status query is available for orders placed within 24 hou
 
 ###  Example  
 
-- POST `api/v1/contract_cancelall`
+- POST `/api/v1/contract_cancelall`
 
 > Request:
 
@@ -5057,6 +5212,8 @@ client_order_id, order status query is available for orders placed within 24 hou
 | symbol             | true          | string   | Case-Insenstive.Both uppercase and lowercase are supported..Variety code，eg "BTC","ETH"... |
 | contract_code             | false         | string   | contract_code            |
 | contract_type             | false         | string   | contract_type           |
+| direction | false  | string | Transaction direction(if not filled in means all)    ["buy" , "sell"] |
+| offset | false  | string | offset direction（if not filled in means all）  ["open" , "close"] |
 
 ### Note
 
@@ -5065,6 +5222,8 @@ client_order_id, order status query is available for orders placed within 24 hou
 2.  Send contract_code to cancel the contracts of that code.
 
 3.  Send symbol+contract_type to cancel the certain contracts under the symbol of that contract_type, e.g. send “BTC” and “this week”, then the BTC weekly contracts will be cancelled.
+
+4. You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including "open" and "close" offset)
 
 > Response:result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
 
@@ -5099,7 +5258,7 @@ client_order_id, order status query is available for orders placed within 24 hou
 
 ## Switch Leverage
 
-- POST `api/v1/contract_switch_lever_rate`
+- POST `/api/v1/contract_switch_lever_rate`
 
 #### Note
 
@@ -5149,13 +5308,13 @@ No：
 | lever_rate               | false | int    | Switched leverage      |                                          |
 | \</data\>            |      |         |                    |                                          |
 | err_code | false | int | error code| |
-|err_msg| false| string | error msg| |
+| err_msg| false| string | error msg| |
 | ts                     | true | long    | Timestamp      |   
 
 
 ## Place Flash Close Order
 
-- POST ` api/v1/lightning_close_position`
+- POST `/api/v1/lightning_close_position`
 
 ### Request Parameter 
 
@@ -5167,7 +5326,7 @@ No：
 | volume | true | long | Order Quantity(volume) |  |
 | direction | true | string | “buy”:Open，“sell”:Close |  |
 | client_order_id | false | long | Client order ID.must be Less or Equal than 9223372036854775807 |  |
-| order_price_type | false  | string | "lightning" by default. "lightning_fok": lightning FOK type,"lightning_ioc": lightning IOC type|  |
+| order_price_type | false  | string | order price type  | "lightning" by default. "lightning_fok": lightning FOK type,"lightning_ioc": lightning IOC type| 
 
 ###  Note:
 client_order_id, order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.
@@ -5195,7 +5354,7 @@ client_order_id, order status query is available for orders placed within 24 hou
 | status | true | string | Request Processing Result	 | "ok" :Order placed successfully, "error"：Order failed |
 | ts | true  | long | Time of Respond Generation, Unit: Milesecond |  |
 | \<data\> |  |  |  | Dictionary |
-| order_id | true  | long | Order ID [Different users may share the same order ID] |  |
+| order_id | true  | long | Order ID  |  |
 | order_id_str | true  | string | Order ID |  |
 | client_order_id | false | long | user’s own order ID |  |
 | \</data\> |  |  |  |  |
@@ -5217,7 +5376,7 @@ client_order_id, order status query is available for orders placed within 24 hou
 
 ###  Example   
 
-- POST `api/v1/contract_order_info`
+- POST `/api/v1/contract_order_info`
 
 ###  Request Parameter  
 
@@ -5270,7 +5429,8 @@ client_order_id，order status query is available for orders placed within 24 ho
             "fee_asset": "ADA",
             "liquidation_type": "0",
             "canceled_at": 0,
-            "is_tpsl": 0
+            "is_tpsl": 0,
+            "real_profit": 0
         }
     ],
     "ts": 1604370179844
@@ -5302,22 +5462,27 @@ client_order_id，order status query is available for orders placed within 24 ho
 | fee                            | true          | decimal  | Service fee                                                   |                                     |
 | trade_avg_price                | true          | decimal  | Transaction average price                                    |                                     |
 | margin_frozen                  | true          | decimal  | Frozen margin                                                |                                     |
-| profit                         | true          | decimal  | profit                                                       |                                     |
+| profit                         | true          | decimal  | profit when close position (calculated with the average price of position, exclude profit in history settlement.)   |                                     |
 | status                         | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling. |                                     |
 | order_source                   | true          | string   | Order source（system、web、api、m、risk、settlement、ios、android、windows、mac、trigger、tpsl） |                                     |
 | fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
 |  canceled_at                       | true         | long      |  Cancellation time   |      |
 | liquidation_type              | true | string     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
 | is_tpsl	| true	| int	| whether to set take-profit and stop-loss order | 	1：yes；0：no | 
+| real_profit | true | decimal | real profit (calculated with the opening average price, include profit in history settlement.) | |
 | \</list\>                      |               |          |                                                              |                                     |
 | ts                             | true          | long     | Timestamp                                                    |                                     |
 
+#### Note:
+ - The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).
+ - Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value. And in the other orders created before that times, it is 0.
 
-## Order details acquisition
+
+## Order Details Acquisition
 
 ###  Example   
 
-- POST `api/v1/contract_order_detail`
+- POST `/api/v1/contract_order_detail`
 
 ###  Request Parameter  
 
@@ -5374,6 +5539,8 @@ Please note that created_at can't be "0"
                 "trade_fee": -0.021436227224008574,
                 "created_at": 1604368087894,
                 "role": "maker",
+                "profit": 0,
+                "real_profit": 0,
                 "id": "113887800667-773119326353580033-1"
             }
         ],
@@ -5391,7 +5558,8 @@ Please note that created_at can't be "0"
         "trade_turnover": 10,
         "trade_volume": 1,
         "fee": -0.021436227224008574,
-        "is_tpsl": 0
+        "is_tpsl": 0,
+        "real_profit": 0
     },
     "ts": 1604370259827
 }
@@ -5415,18 +5583,18 @@ Please note that created_at can't be "0"
 | created_at                        | true          | long     | Creation time                                             |                                   |
 |  canceled_at                       | true         | long      |  Cancellation time   |      |
 | order_source                      | true          | string   | Order Source                                                 |   system. web. api. m. risk. settlement. ios. android. windows. mac. trigger. tpsl     |
-| order_price_type                  | true          | string   | "limit", "opponent","post_only" Position limit will be applied to post_only while order limit will not. |                                   |
+| order_price_type                  | true          | string   | order price type   | "limit", "opponent","post_only" Position limit will be applied to post_only while order limit will not. |                                   |
 | margin_frozen                     | true          | decimal  | Frozen margin                                                |                                   |
-| profit                            | true          | decimal  | profit                                                       |                                   |
+| profit                            | true          | decimal  | total profit or loss of order when close position (calculated with the average price of position, exclude profit in history settlement.)   |                                   |
 | order_id                       | true          | long     | Order ID                                                     |                                     |
 | order_id_str                       | true          | string     | Order ID                                                     |                                     |
-| order_type         |	true         |	int     |  Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
+| order_type         |	true         |	int     |  Order type | 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
 | client_order_id                | true          | long     | Client order ID                                              |                                     |
 | trade_volume                   | true          | decimal  | Transaction quantity                                         |                                     |
 | trade_turnover                 | true          | decimal  | Transaction aggregate amount                                 |                                     |
 | fee                            | true          | decimal  | Service fee                                                   |                                     |
 | trade_avg_price                | true          | decimal  | Transaction average price                                    |                                     |
-| status                         | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling. |                                     |
+| status                         | true          | int      | status | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling. |                                     |
 | total_page                        | true          | int      | Page in total                                                |                                   |
 | current_page                      | true          | int      | Current Page                                                 |                                   |
 | total_size                        | true          | int      | Total Size                                                   |                                   |
@@ -5434,27 +5602,34 @@ Please note that created_at can't be "0"
 | final_interest                        | true          | decimal      | Account Balance After Liquidation                                                   |                                   |
 | adjust_value                        | true          | decimal      | Adjustment Factor of Liquidating Order                                                 |                                   |
 | fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
-| liquidation_type              | true | string     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
+| liquidation_type              | true | string  |  liquidation type   | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
 | is_tpsl	| true	| int	| whether to set take-profit and stop-loss order | 	1：yes；0：no | 
+| real_profit                       | true          | decimal | total real profit of order (calculated with the opening average price, include profit in history settlement.) | |
 | \<list\> (Attribute Name: trades) |               |          |                                                              |                                   |
 | id                          | true          | string     |  the global unique id of the trade.                                         |                                   |
-| trade_id                          | true          | long     | In this interface, trade_id is the same with match_id of api/v1/contract_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.                                               |                                   |
+| trade_id                          | true          | long     | In this interface, trade_id is the same with match_id of /api/v1/contract_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.                                               |                                   |
 | trade_price                       | true          | decimal  | Match Price                                                  |                                   |
 | trade_volume                      | true          | decimal  | Transaction quantity                                         |                                   |
 | trade_turnover                    | true          | decimal  | Transaction price                                            |                                   |
 | trade_fee                         | true          | decimal  | Transaction Service fee                                      |                                   |
 | role                        | true          | string  |   taker or maker                              |                                                         |
 | created_at                        | true          | long     | Creation time                                                |                                   |
+| profit                            | true          | decimal  |  profit or loss  of the transaction (calculated with the average price of position, exclude profit in history settlement.)   |                                   |
+| real_profit                       | true          | decimal | real profit of the transaction (calculated with the opening average price, include profit in history settlement.) | |
 | \</list\>                         |               |          |                                                              |                                   |
 | \</object \>                      |               |          |                                                              |                                   |
 | ts                                | true          | long     | Timestamp                                                    |                                   |
+
+#### Note:
+ - The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).
+ - Only the real profit parameter (real_profit) of the transaction information that orders created after 0:00 on January 30, 2021 has a value . And of the other order transaction information that orders created  before that times, the real profit parameter is 0.
 
 
 ## Query Open Orders
 
 ###  Example  
 
-- POST  `api/v1/contract_openorders`
+- POST  `/api/v1/contract_openorders`
 
 ###  Request Parameter  
 
@@ -5463,6 +5638,8 @@ Please note that created_at can't be "0"
 | symbol             | true         | string   | Variety code                |             | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"...  |
 | page_index         | false         | int      | Page, default 1st page      | 1           |                 |
 | page_size          | false         | int      | Default 20，no more than 50 | 20          |                 |
+| sort_by  | false | string    |  sort fields(descending)    |   created_at   | “created_at”descending order by order created at, "update_time": descending order by order update time   |
+| trade_type  | false | int    |  trade type(Default:all)    |  0   | 0:all,1: buy long,2: sell short,3: buy short,4: sell  long   |
 
 > Response:
 
@@ -5498,7 +5675,9 @@ Please note that created_at can't be "0"
                 "fee_asset": "ADA",
                 "liquidation_type": null,
                 "canceled_at": null,
-                "is_tpsl": 0
+                "is_tpsl": 0,
+                "update_time": 1606975980467,
+                "real_profit": 0
             }
         ],
         "total_page": 1,
@@ -5522,8 +5701,8 @@ Please note that created_at can't be "0"
 | contract_code                  | true          | string   | Contract Code                                                | "BTC180914" ...                   |
 | volume                         | true          | decimal  | Number of Order                                              |                                   |
 | price                          | true          | decimal  | Price committed                                              |                                   |
-| order_price_type               | true          | string   | "limit", "opponent","post_only" Position limit will be applied to post_only while order limit will not. |                                   |
-| order_type         |	true         |	int     |  Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
+| order_price_type               | true          | string   | order price type | "limit", "opponent","post_only" Position limit will be applied to post_only while order limit will not. |                                   |
+| order_type         |	true         |	int     |  Order type | 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
 | direction                      | true          | string   | Transaction direction                                        |                                   |
 | offset                         | true          | string   | "open": "close"                                              |                                   |
 | lever_rate                     | true          | int      | Leverage Rate                                                | 1\\5\\10\\20                      |
@@ -5536,11 +5715,13 @@ Please note that created_at can't be "0"
 | fee                            | true          | decimal  | Service fee                                                   |                                   |
 | trade_avg_price                | true          | decimal  | Transaction average price                                    |                                   |
 | margin_frozen                  | true          | decimal  | Frozen margin                                                |                                   |
-| profit                         | true          | decimal  | profit                                                       |                                   |
-| status                         | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling. |                                   |
-| order_source                   | true          | string   | Order Source ( system. web. api. m. risk. settlement. ios. android. windows. mac. trigger. tpsl)                                                |                                   |
+| profit                         | true          | decimal  | profit when close position (calculated with the average price of position, exclude profit in history settlement.)    |                                   |
+| status                         | true          | int      | status | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling. |                                   |
+| order_source                   | true          | string   | Order Source | ( system. web. api. m. risk. settlement. ios. android. windows. mac. trigger. tpsl)                                                |                                   |
 | fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
 | is_tpsl	| true	| int	| whether to set take-profit and stop-loss order | 	1：yes；0：no | 
+| update_time | true | Long | order update time ，millesecond timestamp  | |
+| real_profit | true | decimal | real profit (calculated with the opening average price, include profit in history settlement.) | |
 | \</orders\>                      |               |          |                                                              |                                   |
 | total_page                     | true          | int      | Total Pages                                                  |                                   |
 | current_page                   | true          | int      | Current Page                                                 |                                   |
@@ -5548,11 +5729,15 @@ Please note that created_at can't be "0"
 | \</list\>                      |               |          |                                                              |                                   |
 | ts                             | true          | long     | Timestamp                                                    |                                   |
 
+#### Note:
+ - The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).
+ - Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value. And in the other orders created before that times, it is 0.
+
 ## Get History Orders
 
 ###  Example  
 
-- POST `api/v1/contract_hisorders`
+- POST `/api/v1/contract_hisorders`
 
 > Request:
 
@@ -5623,7 +5808,8 @@ All via API interface submited price limit orders that had been cancelled will o
                 "order_id_str": "773131315209248768",
                 "fee_asset": "ADA",
                 "liquidation_type": "0",
-                "is_tpsl": 0
+                "is_tpsl": 0,
+                "real_profit": 0
             }
         ],
         "total_page": 19,
@@ -5655,18 +5841,19 @@ All via API interface submited price limit orders that had been cancelled will o
 | create_date                      | true          | long     | Creation time                                                |                                   |
 | update_time	                   | true	       | long	  | order update time，millesecond timestamp                     | 
 | order_source                     | true          | string   | Order Source                                                 |  system. web. api. m. risk. settlement. ios. android. windows. mac. trigger. tpsl   |
-| order_price_type                 | true          | int   | 1：limit，2：market，3：opponent，4：lightning，5：trigger，6：post_only ，7：optimal_5 ，8：optimal_10 ，9：optimal_20，10：FOK ，11：IOC ，12：opponent_ioc，13：lightning_ioc，14：optimal_5_ioc，15：optimal_10_ioc，16：optimal_20_ioc，17：opponent_fok，18：lightning_fok，19：optimal_5_fok，40：optimal_10_fok，41：optimal_20_fok . |                                   |
+| order_price_type                 | true          | int   | order price type  | 1：limit，2：market，3：opponent，4：lightning，5：trigger，6：post_only ，7：optimal_5 ，8：optimal_10 ，9：optimal_20，10：FOK ，11：IOC ，12：opponent_ioc，13：lightning_ioc，14：optimal_5_ioc，15：optimal_10_ioc，16：optimal_20_ioc，17：opponent_fok，18：lightning_fok，19：optimal_5_fok，40：optimal_10_fok，41：optimal_20_fok . |                                   |
 | margin_frozen                    | true          | decimal  | Frozen margin                                                |                                   |
-| profit                           | true          | decimal  | profit                                                       |                                   |
+| profit                           | true          | decimal  | profit when close position (calculated with the average price of position, exclude profit in history settlement.)    |                                   |
 | trade_volume                     | true          | decimal  | Transaction quantity                                         |                                   |
 | trade_turnover                   | true          | decimal  | Transaction aggregate amount                                 |                                   |
 | fee                              | true          | decimal  | Service fee                                                   |                                   |
 | trade_avg_price                  | true          | decimal  | Transaction average price                                    |                                   |
-| status                           | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling.  |                                   |
+| status                           | true          | int      | status  |  1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling.  |                                   |
 | order_type | true  | string | Order type | 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order |
 | fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
-| liquidation_type              | true | string     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
+| liquidation_type              | true | string | liquidation_type     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
 | is_tpsl	| true	| int	| whether to set take-profit and stop-loss order	| 1：yes；0：no | 
+| real_profit | true | decimal | real profit (calculated with the opening average price, include profit in history settlement.) | |
 | \</list\>                        |               |          |                                                              |                                   |
 | total_page                       | true          | int      | Total Pages                                                  |                                   |
 | current_page                     | true          | int      | Current Page                                                 |                                   |
@@ -5675,13 +5862,13 @@ All via API interface submited price limit orders that had been cancelled will o
 | ts                               | true          | long     | Timestamp                                                    |                                   |
 
 ### Note
+ - The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.
+ - The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).
+ - Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value. And in the other orders created before that times, it is 0.
 
-The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.
+## Query History Orders via Multiple ields
 
-
-## Query history orders via multiple fields
-
- - POST `api/v1/contract_hisorders_exact`
+ - POST `/api/v1/contract_hisorders_exact`
 
 ###  Request Parameter
 
@@ -5759,7 +5946,8 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
                 "order_id_str": "773135295142658048",
                 "fee_asset": "ADA",
                 "liquidation_type": "0",
-                "is_tpsl": 0
+                "is_tpsl": 0,
+                "real_profit": 0
             }
         ],
         "remain_size": 19,
@@ -5791,7 +5979,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | order_source           | true | string  | Order Source   |   system. web. api. m. risk. settlement. ios. android. windows. mac. trigger. tpsl   |
 | order_price_type      | true  | string    |   order price types        | "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,，fok：FOK Order. "opponent_ioc"：IOC order using the BBO price，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK |
 | margin_frozen          | true | decimal | Frozen margin   |                                          |
-| profit                 | true | decimal | profit     |                                          |
+| profit                 | true | decimal | profit when close position (calculated with the average price of position, exclude profit in history settlement.)   |                                          |
 | trade_volume           | true | decimal | Transaction quantity   |                                          |
 | trade_turnover         | true | decimal | Transaction aggregate amount  |                                          |
 | fee                    | true | decimal | Service fee    |                                          |
@@ -5801,6 +5989,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | order_type             | true | int     |  Order type   | 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order     |
 | fee_asset         | true | string  | the corresponding cryptocurrency to the given fee      |  （"BTC","ETH"...）      |
 | liquidation_type              | true | string     | liquidation type  | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover   |
+| real_profit | true | decimal | real profit (calculated with the opening average price, include profit in history settlement.) | |
 | \</orders\>     |      |         |        |                          |
 | remain_size           | true | int  | Remaining data number（the number of data that has not been queried due to the limitation of data number in the time range）  |                                          |
 | next_id           | true | long     | query_id for next data (only has value when query result exceeds data number limits）          |                                          |
@@ -5808,16 +5997,16 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | ts                     | true | long    | Timestamp    |                                          |
 
 #### Note:
-
-- if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id  presents the last data on the next page.)
-
+ - if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id  presents the last data on the next page.)
+ - The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).
+ - Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value. And in the other orders created before that times, it is 0.
 
 
 ## Get History Match Results
 
 ###  Example 
 
-- POST `api/v1/contract_matchresults`
+- POST `/api/v1/contract_matchresults`
 
 ### Request Parameter
 
@@ -5856,6 +6045,7 @@ page_size   | false    | int    | if not enter, it will be the default value of 
                 "order_source": "web",
                 "order_id_str": "773135295142658048",
                 "fee_asset": "ADA",
+                "real_profit": 0,
                 "id": "113891764710-773135295142658048-1"
             }
         ],
@@ -5888,10 +6078,11 @@ trade_volume           | true     | decimal | the number of traded contract with
 trade_price                  | true     | decimal | the price at which orders get filled               |              |
 trade_turnover                  | true     | decimal | the number of total traded amout with number of USD               |              |
 create_date            | true     | long    | the time when orders get filled               |              |
-offset_profitloss                 | true     | decimal | profits and losses generated from closing positions                 |              |
+offset_profitloss                 | true     | decimal | profits and losses generated from closing positions(calculated with the average price of position, exclude profit in history settlement.)                 |              |
 trade_fee                    | true     | decimal | fees charged by platform                |              |
 role                        | true          | string |   taker or maker     |                  |
 fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
+real_profit | true | decimal | real profit (calculated with the opening average price, include profit in history settlement.) | |
 \</list\>              |          |         |                    |              |
 total_page             | true     | int     | total pages                |              |
 current_page           | true     | int     | current page                |              |
@@ -5900,15 +6091,14 @@ total_size             | true     | int     | total size of the list            
 ts                     | true     | long    | timestamp                |              |
 
 ### Notice
-
-- If users don’t upload/fill the page_index or page_size, it will automatically be set as the default value of the top 20 data on the first page, for more details, please follow the parameters illustration.
-
-- The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.
-
+ - If users don’t upload/fill the page_index or page_size, it will automatically be set as the default value of the top 20 data on the first page, for more details, please follow the parameters illustration.
+ - The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.
+ - The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).
+ - Only the real profit parameter (real_profit) of the transaction information that orders created after 0:00 on January 30, 2021 has a value . And of the other order transaction information that orders created  before that times, the real profit parameter is 0.
 
 ## Query history transactions via multiple fields
 
- - POST `api/v1/contract_matchresults_exact`
+ - POST `/api/v1/contract_matchresults_exact`
 
 ### Request Parameter
 
@@ -5976,6 +6166,7 @@ ts                     | true     | long    | timestamp                |        
                 "order_source": "web",
                 "order_id_str": "773135295142658048",
                 "fee_asset": "ADA",
+                "real_profit": 0,
                 "id": "113891764710-773135295142658048-1"
             }
         ],
@@ -6007,11 +6198,12 @@ ts                     | true     | long    | timestamp                |        
 | trade_price            | true | decimal | the price at which orders get filled        |                                          |
 | trade_turnover         | true | decimal |  Transaction aggregate amount|                                          |
 | create_date            | true | long    | Creation time     |                                          |
-| offset_profitloss      | true | decimal |  profits and losses generated from closing positions   |                                          |
+| offset_profitloss      | true | decimal |  profits and losses generated from closing positions(calculated with the average price of position, exclude profit in history settlement.)   |                                          |
 | traded_fee             | true | decimal | fees charged by platform       |                                          |
 | role                   | true | string  | taker or maker        |                                          |
 | fee_asset         | true | string  | the corresponding cryptocurrency to the given fee      |  （"BTC","ETH"...）      |
 | order_source           | true | string  | Order Source   |   system. web. api. m. risk. settlement. ios. android. windows. mac. trigger     |
+| real_profit | true | decimal | real profit (calculated with the opening average price, include profit in history settlement.) | |
 | \</trades\>            |      |         |                    |                                          |
 | remain_size           | true | int  | Remaining data number（the number of data that has not been queried due to the limitation of data number in the time range）  |                                          |
 | next_id           | true | long     | query_id for next data (only has value when query result exceeds data number limits）            |                                          |
@@ -6020,14 +6212,15 @@ ts                     | true     | long    | timestamp                |        
 
 #### Note
 
-- if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id  presents the last data on the next page.)
-
+ - if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id  presents the last data on the next page.)
+ - The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).
+ - Only the real profit parameter (real_profit) of the transaction information that orders created after 0:00 on January 30, 2021 has a value . And of the other order transaction information that orders created  before that times, the real profit parameter is 0.
 
 # Contract Strategy Order Interface
 
 ## Place Trigger Order
 
-- POST `api/v1/contract_trigger_order`
+- POST `/api/v1/contract_trigger_order`
 
 >  Request:
 
@@ -6101,14 +6294,14 @@ ts                     | true     | long    | timestamp                |        
 
 | field | type | Mandatory | Desc
 | -----  | -----  | -----  | -----
-| order_id | long | true | order id. order id may be same among different users
+| order_id | long | true | order id. 
 | order_id_str | string | true | order id str 
 
 
 
 ## Cancel Trigger Order
 
-- POST `api/v1/contract_trigger_cancel`
+- POST `/api/v1/contract_trigger_cancel`
 
 ### request params
 
@@ -6155,7 +6348,7 @@ ts                     | true     | long    | timestamp                |        
 
 ## Cancel All Trigger Orders
 
-- POST `api/v1/contract_trigger_cancelall`
+- POST `/api/v1/contract_trigger_cancelall`
 
 ### Params
 
@@ -6164,6 +6357,8 @@ ts                     | true     | long    | timestamp                |        
 |  symbol  |  string  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported.BTC、LTC...  |
 |  contract_code  |  string  |  false  |  contract code,"BTC180914" ...  |
 |  contract_type  |  string  |  false  |  contract type	"this_week" "next_week" "quarter" "next_quarter" |
+| direction | string  | false | Transaction direction(if not filled in means all)    ["buy" , "sell"] |
+| offset | string  | false | offset direction（if not filled in means all）  ["open" , "close"] |
 
 ### Note
 
@@ -6172,6 +6367,8 @@ ts                     | true     | long    | timestamp                |        
 - If contract_code is filled, cancel trigger orders of this contract code.
 
 - If symbol and contract_type are filled, cancel trigger orders of this symbol and contract code.
+
+- You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including "open" and "close" offset)
 
 > Response:
 
@@ -6205,7 +6402,7 @@ ts                     | true     | long    | timestamp                |        
 
 ## Query Trigger Order Open Orders
 
-- POST `api/v1/contract_trigger_openorders`
+- POST `/api/v1/contract_trigger_openorders`
 
 ### Request Parameter
  
@@ -6214,7 +6411,8 @@ ts                     | true     | long    | timestamp                |        
 |  symbol  |  string  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported.BTC,LTC... |
 |  contract_code|  string  |  false  |  Case-Insenstive.Both uppercase and lowercase are supported..contract code  |
 |  page_index  |  int   |  false  |  page number，default page 1 if no given instruction| 
-|  page_size   |  int   |  false  |  default 20 if no given instruction|，no more than 50 |
+|  page_size   |  int   |  false  |  default 20 if no given instruction，no more than 50 |
+| trade_type  | int |  false   |  trade type(Default:all)  0:all,1: buy long,2: sell short,3: buy short,4: sell  long   |
 
 > Response:
 
@@ -6290,7 +6488,7 @@ ts                     | true     | long    | timestamp                |        
 
 ## Query Trigger Order History
 
-- POST `api/v1/contract_trigger_hisorders`
+- POST `/api/v1/contract_trigger_hisorders`
 
 ### Request Parameter
 
@@ -6529,7 +6727,7 @@ ts                     | true     | long    | timestamp                |        
 | status          | true  | string | status                        | "ok", "error" |
 | \<data\>        | true  | object |                   | dictionary                   |
 | \<errors\>      | true  | object |                   | dictionary                   |
-| order_id        | true  | string | order id[unique for one user, but maybe as same as other users] |                      |
+| order_id        | true  | string | order id  |                      |
 | err_code        | false | long   | error code                |                      |
 | err_msg         | false | string   | error message               |                      |
 | \</errors\>     |       |        |     |  |
@@ -6546,9 +6744,10 @@ ts                     | true     | long    | timestamp                |        
 
 | Parameter Name          | Mandatory  | Type    | Description   | Value Range              |
 | ------------- | ----- | ------ | ------------- | ---------------------------------------- |
-| symbol        | true  | String | symbol        | "BTC","ETH"...                           |
+| symbol        | false  | String | symbol        | "BTC","ETH"...                           |
 | contract_code | false | string | contract code |  "BTC180914" ...                         |
 | contract_type | false | string | contract type |  "this_week", "next_week", "quarter"，“next_quarter”  |
+| direction | false  | string | Transaction direction(if not filled in means all)  |   ["buy" , "sell"] |
 
 #### Note: 
  - If only "symbol" is set,  cancel all the take-profit and stop-loss orders of all expirations under this order type.
@@ -6576,7 +6775,7 @@ ts                     | true     | long    | timestamp                |        
 | status          | true  | string | status                        | "ok", "error" |
 | \<data\>        | true  | object |                               | dictionary                   |
 | \<errors\>      | true  | object |                               | dictionary                   |
-| order_id        | true  | string | order id[unique for one user, but maybe as same as other users] |                      |
+| order_id        | true  | string | order id  |                      |
 | err_code        | false | long   | error code                |                      |
 | err_msg         | false | string | error message               |                      |
 | \</errors\>     |       |        |     |  |
@@ -6597,6 +6796,7 @@ ts                     | true     | long    | timestamp                |        
 | contract_code  | false | string | contract code,"BTC180914" ...|    |
 | page_index     | false | int | page index. 1 by default |    |
 | page_size      | false | int | page size.20 by default. 50 at most |    |
+| trade_type  | false | int    |  trade type(Default:all)    | 0:all,3: buy short,4: sell  long   |
 
 > Response
 
@@ -6873,7 +7073,7 @@ ts                     | true     | long    | timestamp                |        
 | fee                  | true | decimal | fee    |                                          |
 | trade_avg_price      | true | decimal | trade avg price   |                                          |
 | margin_frozen        | true | decimal | margin frozen  |                                          |
-| profit               | true | decimal | profit     |                                          |
+| profit               | true | decimal | profit when close position (calculated with the average price of position, exclude profit in history settlement.)    |                                          |
 | status               | true | int     | status   | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling |
 | order_type           | true | int  | order type   | 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order                  |
 | order_source         | true | string  | order source   | system. web. api. m. risk. settlement. ios. android. windows. mac. trigger  |
@@ -8578,6 +8778,8 @@ To subscribe order data, Clients have to make connection to the Server and send 
             "trade_price":0.0905,
             "trade_turnover":10,
             "created_at":1604388667194,
+            "profit":0,
+            "real_profit": 0,
             "role":"maker"
         }
     ],
@@ -8586,7 +8788,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
     "uid":"123456789",
     "liquidation_type":"0",
     "is_tpsl": 0,
-
+    "real_profit": 0
 }
 ```
 
@@ -8620,21 +8822,27 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | fee                     | decimal | Fees                                                       |
 | trade_avg_price         | decimal | Average order price                                                     |
 | margin_frozen           | decimal | Frozen Margin                                                   |
-| profit                  | decimal | Profits&Losses                                                       |
+| profit                  | decimal | total profit or loss of order when close position (calculated with the average price of position, exclude profit in history settlement.)       |
 | fee_asset   | string | the corresponding cryptocurrency to the given fee |
 | liquidation_type              | string     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
 | is_tpsl	| int	| whether to set take-profit and stop-loss order  1：yes；0：no
+| real_profit  | decimal | total real profit of order (calculated with the opening average price, include profit in history settlement.) | |
 | \<trade\>  |         |                                                              |
 | id            | string| 	the global unique id of the trade.。                                                       |
-| trade_id                | long    | In this interface, trade_id is the same with match_id of api/v1/contract_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.      |
+| trade_id                | long    | In this interface, trade_id is the same with match_id of /api/v1/contract_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.      |
 | trade_volume            | decimal | trade volume                                                      |
 | trade_price             | decimal | trade price                                                    |
 | trade_fee               | decimal | trading fees                                                   |
 | trade_turnover          | decimal | turnover                                                    |
 | created_at              | long    | trade creation time                                                 |
-| role             | string  | taker or maker                                                |
+| role                   | string  | taker or maker                                                |
+| profit                  | decimal |   profit or loss  of the transaction (calculated with the average price of position, exclude profit in history settlement.)       |
+| real_profit           | decimal | real profit of the transaction (calculated with the opening average price, include profit in history settlement.) | |
 | fee_asset             | string  | fee asset                                                |
 | \</trade\>                  |         |                                                             |
+
+ - The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).
+ - Only the real profit parameter (real_profit) of the transaction information that orders created after 0:00 on January 30, 2021 has a value . And of the other order transaction information that orders created  before that times, the real profit parameter is 0.
 
 
 ## Unsubscribe Order Data（unsub）
@@ -8788,7 +8996,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | contract_type           | string  | contract type             |
 | contract_code           | string  | contract code      |
 | status                  | int     | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled; |
-| order_id                | long    | order id              |
+| order_id                | bigint    | order id              |
 | order_id_str            | string   | order id           |
 | client_order_id   |  long |  the client ID that is filled in when the order is placed | 
 | order_type              | int     | Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order         |
@@ -8797,7 +9005,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | is_tpsl	 | int	| whether to set take-profit and stop-loss order  1：yes；0：no
 | \<trade\>  |         |                                                              |
 | id            | string| the global unique id of the trade.     |
-| trade_id                | long    | In this interface, trade_id is the same with match_id of api/v1/contract_matchresults. trade_id is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.             |
+| trade_id                | long    | In this interface, trade_id is the same with match_id of /api/v1/contract_matchresults. trade_id is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.             |
 | trade_volume            | decimal | trade volume        |
 | trade_price             | decimal | trade price      |
 | trade_turnover          | decimal | trade turnover   |
