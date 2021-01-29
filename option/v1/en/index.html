@@ -265,6 +265,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-0-3-2020-1-27-modified-cancel-all-orders-modified-cancel-all-trigger-orders-modified-query-open-orders-modified-query-trigger-order-the-order_id-of-submitted-trigger-order-response-has-been-changed-from-the-original-natural-number-self-incrementing-id-to-a-unique-identification-id-with-a-length-of-18-digits-it-is-recommended-to-use-the-order_id_str-order_id-in-string-type-of-submitted-order-response-to-avoid-the-occurrence-of-truncation-by-the-system-because-excessive-length" class="toc-h2 toc-link" data-title="1.0.3 2020-1-27 【Modified Cancel All Orders, Modified Cancel All Trigger Orders, Modified Query Open Orders,Modified Query Trigger Order.  The order_id of submitted trigger order response has been changed from the original natural number self-incrementing ID to a unique identification ID with a length of 18 digits. It is recommended to use the order_id_str (order_id in string type) of submitted order response  to avoid the occurrence of truncation by the system because excessive length.】">1.0.3 2020-1-27 【Modified Cancel All Orders, Modified Cancel All Trigger Orders, Modified Query Open Orders,Modified Query Trigger Order.  The order_id of submitted trigger order response has been changed from the original natural number self-incrementing ID to a unique identification ID with a length of 18 digits. It is recommended to use the order_id_str (order_id in string type) of submitted order response  to avoid the occurrence of truncation by the system because excessive length.】</a>
+                  </li>
+                  <li>
                     <a href="#1-0-2-2021-01-12-modified-quot-get-option-open-interest-information-quot-interface-modified-quot-subscribe-market-detail-data-quot-interface-modified-quot-query-history-orders-quot-interface-modified-quot-query-trigger-order-history-quot-interface" class="toc-h2 toc-link" data-title="1.0.2 2021-01-12 【Modified "Get Option Open Interest Information" Interface、Modified "Subscribe Market Detail Data" Interface、Modified "Query History Orders" Interface、Modified "Query Trigger Order History" Interface】">1.0.2 2021-01-12 【Modified "Get Option Open Interest Information" Interface、Modified "Subscribe Market Detail Data" Interface、Modified "Query History Orders" Interface、Modified "Query Trigger Order History" Interface】</a>
                   </li>
                   <li>
@@ -628,7 +631,31 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-0-2-2021-01-12-modified-quot-get-option-open-interest-information-quot-interface-modified-quot-subscribe-market-detail-data-quot-interface-modified-quot-query-history-orders-quot-interface-modified-quot-query-trigger-order-history-quot-interface'>1.0.2 2021-01-12 【Modified &quot;Get Option Open Interest Information&quot; Interface、Modified &quot;Subscribe Market Detail Data&quot; Interface、Modified &quot;Query History Orders&quot; Interface、Modified &quot;Query Trigger Order History&quot; Interface】</h2><h3 id='1-modified-quot-get-option-open-interest-information-quot-interface-added-quot-trade_volume-quot-in-return-parameter-quot-data-quot-to-indicate-trading-volume-within-the-last-24-hours-cont-and-quot-trade_amount-quot-to-indicate-trading-volume-within-the-last-24-hours-coin-and-quot-trade_turnover-quot-to-represent-trading-amount-within-the-last-24-hours'>1. Modified &quot;Get Option Open Interest Information&quot; Interface(Added &quot;trade_volume&quot; in return parameter &quot;data&quot; to indicate trading volume within the last 24 hours (cont),  and &quot;trade_amount&quot; to indicate trading volume within the last 24 hours (coin), and &quot;trade_turnover&quot; to represent trading amount within the last 24 hours.)</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-0-3-2020-1-27-modified-cancel-all-orders-modified-cancel-all-trigger-orders-modified-query-open-orders-modified-query-trigger-order-the-order_id-of-submitted-trigger-order-response-has-been-changed-from-the-original-natural-number-self-incrementing-id-to-a-unique-identification-id-with-a-length-of-18-digits-it-is-recommended-to-use-the-order_id_str-order_id-in-string-type-of-submitted-order-response-to-avoid-the-occurrence-of-truncation-by-the-system-because-excessive-length'>1.0.3 2020-1-27 【Modified Cancel All Orders, Modified Cancel All Trigger Orders, Modified Query Open Orders,Modified Query Trigger Order.  The order_id of submitted trigger order response has been changed from the original natural number self-incrementing ID to a unique identification ID with a length of 18 digits. It is recommended to use the order_id_str (order_id in string type) of submitted order response  to avoid the occurrence of truncation by the system because excessive length.】</h2><h3 id='1-modified-cancel-all-orders-added-two-optional-parameters-in-request-direction-indicates-order-direction-if-not-filled-in-means-both-with-available-values-buy-sell-offset-order-offset-if-not-filled-in-means-both-with-available-values-open-close'>1. Modified Cancel All Orders(Added two optional parameters in request: direction, indicates order direction, if not filled in means both with available values: “buy”, “sell”. offset, order offset, if not filled in means both with available values: “open”, “close”.)</h3>
+<ul>
+<li>Interface Name: Cancel All Orders</li>
+<li>Interface Type: private</li>
+<li>Interface URL: /option-api/v1/option_cancelall</li>
+</ul>
+<h3 id='2-modified-cancel-all-trigger-orders-added-two-optional-parameters-in-request-direction-indicates-order-direction-if-not-filled-in-means-both-with-available-values-buy-sell-offset-order-offset-if-not-filled-in-means-both-with-available-values-open-close'>2. Modified Cancel All Trigger Orders(Added two optional parameters in request: direction, indicates order direction, if not filled in means both with available values: “buy”, “sell”. offset, order offset, if not filled in means both with available values: “open”, “close”.)</h3>
+<ul>
+<li>Interface Name: Cancel All Trigger Orders</li>
+<li>Interface Type: private</li>
+<li>Interface URL: /option-api/v1/option_trigger_cancelall</li>
+</ul>
+<h3 id='3-modified-query-open-orders-added-two-parameters-in-request-is-sort-field-if-not-filled-in-means-order-by-create_at-descending-with-available-values-created_at-descending-order-order-trade-type-if-not-filled-in-means-all-with-available-values-0-all-1-open-long-2-open-short-3-close-short-4-close-long-added-one-field-in-return-parameter-quot-orders-quot-update_time-order-updated-time-in-milliseconds'>3、Modified Query Open Orders(Added two parameters in request: is sort field, if not filled in means order by create_at descending, with available values “created_at”(descending order).order trade type, if not filled in means all with available values 0:all, 1:open long, 2:open short, 3:close short, 4:close long. Added one field in return parameter &quot;orders&quot;: update_time(order updated time, in milliseconds))</h3>
+<ul>
+<li>Interface Name: Query Open Orders</li>
+<li>Interface Type: private</li>
+<li>Interface URL: /option-api/v1/option_openorders </li>
+</ul>
+<h3 id='4-modified-query-trigger-order-open-orders-added-one-optional-parameter-in-request-trade_type-order-trade-type-if-not-filled-in-means-all-with-available-values-0-all-1-open-long-2-open-short-3-close-short-4-close-long'>4、Modified Query Trigger Order Open Orders(Added one optional parameter in request: trade_type, order trade type, if not filled in means all with available values 0:all, 1:open long, 2:open short, 3:close short, 4:close long.)</h3>
+<ul>
+<li>Interface Name: Query Trigger Order Open Orders</li>
+<li>Interface Type: private</li>
+<li>Interface URL: /option-api/v1/option_trigger_openorders</li>
+</ul>
+<h2 id='1-0-2-2021-01-12-modified-quot-get-option-open-interest-information-quot-interface-modified-quot-subscribe-market-detail-data-quot-interface-modified-quot-query-history-orders-quot-interface-modified-quot-query-trigger-order-history-quot-interface'>1.0.2 2021-01-12 【Modified &quot;Get Option Open Interest Information&quot; Interface、Modified &quot;Subscribe Market Detail Data&quot; Interface、Modified &quot;Query History Orders&quot; Interface、Modified &quot;Query Trigger Order History&quot; Interface】</h2><h3 id='1-modified-quot-get-option-open-interest-information-quot-interface-added-quot-trade_volume-quot-in-return-parameter-quot-data-quot-to-indicate-trading-volume-within-the-last-24-hours-cont-and-quot-trade_amount-quot-to-indicate-trading-volume-within-the-last-24-hours-coin-and-quot-trade_turnover-quot-to-represent-trading-amount-within-the-last-24-hours'>1. Modified &quot;Get Option Open Interest Information&quot; Interface(Added &quot;trade_volume&quot; in return parameter &quot;data&quot; to indicate trading volume within the last 24 hours (cont),  and &quot;trade_amount&quot; to indicate trading volume within the last 24 hours (coin), and &quot;trade_turnover&quot; to represent trading amount within the last 24 hours.)</h3>
 <ul>
 <li>Interface Name: Get Option Open Interest Information</li>
 <li>Interface Type: public</li>
@@ -8422,10 +8449,25 @@ It will be pushed only when position event is updated.</p>
 <td>Contract Code</td>
 <td>BTC-USDT-201225-C-13000</td>
 </tr>
+<tr>
+<td>direction</td>
+<td>false</td>
+<td>string</td>
+<td>Transaction direction(if not filled in means all)</td>
+<td>[&quot;buy&quot; , &quot;sell&quot;]</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>false</td>
+<td>string</td>
+<td>offset direction（if not filled in means all）</td>
+<td>[&quot;open&quot; , &quot;close&quot;]</td>
+</tr>
 </tbody></table>
 <h4 id='note-16'>Note</h4>
 <ul>
 <li>If there is &quot;contract_code&quot; parameter, canceling all contracts under this code.</li>
+<li>You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including &quot;open&quot; and &quot;close&quot; offset)</li>
 </ul>
 
 <blockquote>
@@ -9574,6 +9616,20 @@ It will be pushed only when position event is updated.</p>
 <td>Page size, default 20 if not filled; no more than 50</td>
 <td></td>
 </tr>
+<tr>
+<td>sort_by</td>
+<td>false</td>
+<td>string</td>
+<td>sort fields(Default: “created_at” descending order)</td>
+<td>“created_at”: descending order by order created at, &quot;update_time&quot;: descending order by order update time</td>
+</tr>
+<tr>
+<td>trade_type</td>
+<td>false</td>
+<td>int</td>
+<td>trade type(Default:all)</td>
+<td>0:all,1: buy long,2: sell short,3: buy short,4: sell  long</td>
+</tr>
 </tbody></table>
 
 <blockquote>
@@ -9598,6 +9654,7 @@ It will be pushed only when position event is updated.</p>
                 </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"775314891945996288"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"client_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">563829342342349</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604891074887</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"update_time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604891074887</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"trade_volume"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -9865,6 +9922,13 @@ It will be pushed only when position event is updated.</p>
 <td></td>
 </tr>
 <tr>
+<td>update_time</td>
+<td>true</td>
+<td>Long</td>
+<td>order update time ，millesecond timestamp</td>
+<td></td>
+</tr>
+<tr>
 <td>&lt;/orders&gt;</td>
 <td></td>
 <td></td>
@@ -10000,7 +10064,7 @@ It will be pushed only when position event is updated.</p>
 <td>sort_by</td>
 <td>false</td>
 <td>string</td>
-<td>sort fields(descending)</td>
+<td>sort fields(Default: “create_date” descending order)</td>
 <td>&quot;create_date&quot;：descending order by order create date , &quot;update_time&quot;: descending order by order update time</td>
 </tr>
 </tbody></table>
@@ -11071,9 +11135,24 @@ It will be pushed only when position event is updated.</p>
 <td>Contract Type</td>
 <td>Weekly:&quot;this_week&quot;, Bi-weekly:&quot;next_week&quot;, Quarterly:&quot;quarter&quot;</td>
 </tr>
+<tr>
+<td>direction</td>
+<td>false</td>
+<td>string</td>
+<td>Transaction direction(if not filled in means all)</td>
+<td>[&quot;buy&quot; , &quot;sell&quot;]</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>false</td>
+<td>string</td>
+<td>offset direction（if not filled in means all）</td>
+<td>[&quot;open&quot; , &quot;close&quot;]</td>
+</tr>
 </tbody></table>
 <h4 id='note-24'>Note</h4>
 <ul>
+<li>You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including &quot;open&quot; and &quot;close&quot; offset)</li>
 <li>If there is &quot;contract_code&quot; parameter, canceling all contracts under this code.</li>
 </ul>
 
@@ -11228,6 +11307,13 @@ It will be pushed only when position event is updated.</p>
 <td>int</td>
 <td>Default 20 if not filled; no more than 50</td>
 <td></td>
+</tr>
+<tr>
+<td>trade_type</td>
+<td>false</td>
+<td>int</td>
+<td>trade type(Default:all)</td>
+<td>0:all,1: buy long,2: sell short,3: buy short,4: sell  long</td>
 </tr>
 </tbody></table>
 
@@ -11543,7 +11629,7 @@ It will be pushed only when position event is updated.</p>
 <td>sort_by</td>
 <td>false</td>
 <td>string</td>
-<td>sort fields(descending)</td>
+<td>sort fields(Default: “created_at” descending order)</td>
 <td>&quot;created_at&quot;：descending order by order creation time, &quot;update_time&quot;: descending order by order update time</td>
 </tr>
 </tbody></table>
