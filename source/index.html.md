@@ -38,6 +38,149 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.0.7 2020-1-29 【Added:Get a Batch of Market Data Overview、Get Kline Data of Mark Price、Subscribe Kline Data of Mark Price、Request Kline Data of Mark Price、Query Settlement Records of Users(Isolated and Cross). 7-28 Added fields to modify interface. The order_id of submitted trigger order response has been changed from the original natural number self-incrementing ID to a unique identification ID with a length of 18 digits. It is recommended to use the order_id_str (order_id in string type) of submitted order response  to avoid the occurrence of truncation by the system because excessive length.】
+
+### 1. Added Get a Batch of Market Data Overview
+ - Interface Name: [General]Get a Batch of Market Data Overview
+ - Interface Type: public
+ - Interface URL: /linear-swap-ex/market/detail/batch_merged
+
+### 2. Added Get Kline Data of Mark Price
+ - Interface Name: [General]Get Kline Data of Mark Price
+ - Interface Type: public
+ - Interface URL: /index/market/history/linear_swap_mark_price_kline
+
+### 3. Added Subscribe Kline Data of Mark Price
+ - Interface Name: [General]Subscribe Kline Data of Mark Price
+ - Interface Type: public
+ - Subscription topic: market.$contract_code.mark_price.$period
+
+### 4. Added Request Kline Data of Mark Price
+ - Interface Name: [General]Request Kline Data of Mark Price
+ - Interface Type: public
+ - Subscription topic: market.$contract_code.mark_price.$period
+
+### 5. Added [Isolated]Query Settlement Records of Users
+ - Interface Name: [Isolated]Query Settlement Records of Users
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_user_settlement_records
+
+### 6. Added [Cross]Query Settlement Records of Users
+ - Interface Name: [Cross]Query Settlement Records of Users
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_cross_user_settlement_records
+
+### 7. Modified [Isolated]Cancel All Orders(Added two optional parameters in request: direction, indicates order direction, if not filled in means both with available values: “buy”, “sell”; offset, order offset, if not filled in means both with available values: “open”, “close”.)
+ - Interface Name: [Isolated]Cancel All Orders
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_cancelall
+
+### 8. Modified [Cross]Cancel All Orders(Added two optional parameters in request: direction, indicates order direction, if not filled in means both with available values: “buy”, “sell”. offset, order offset, if not filled in means both with available values: “open”, “close”.)
+ - Interface Name: [Cross]Cancel All Orders
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_cross_cancelall
+
+### 9. Modified [Isolated]Get Information of an Order(Added one field in return "data": real_profit(real profit when close position).)
+ - Interface Name: [Isolated]Get Information of an Order
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_order_info
+
+### 10. Modified [Cross]Get Information of an Order(Added one field in return "data": real_profit(real profit when close position).)
+ - Interface Name: [Cross]Get Information of an Order
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_cross_order_info
+
+### 11. Modified [Isolated]Order details acquisition(Added field in return parameters both "data" and "trades": real_profit(real profit when close position). And added one filed in "trades" to indicates each trade profit：profit(profit when close position))
+ - Interface Name: [Isolated]Order details acquisition
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_order_detail
+
+### 12. Modified [Cross]Order details acquisition(Added field in return parameters both "data" and "trades": real_profit(real profit when close position). And added one filed in "trades" to indicates each trade profit：profit(profit when close position))
+ - Interface Name: [Cross]Order details acquisition
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_cross_order_detail
+
+### 13. Modified [Isolated]Current unfilled order acquisition(Added two optional parameters in request: sort_by, is sort field, if not filled in means order by create_at descending, with available values “created_at”(descending order), “update_time”(descending order); trade_type, indicates trade type, if not filled in means all, with available values: 0:all, 1:open long, 2:open short, 3:close short, 4:close long. Added two fields in return parameter "orders": update_time(order updated time, in milliseconds), real_profit(real profit when close position).)
+ - Interface Name: [Isolated]Current unfilled order acquisition
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_openorders
+
+### 14. Modified [Cross]Current unfilled order acquisition(Added two optional parameters in request: sort_by, is sort field, if not filled in means order by create_at descending, with available values “created_at”(descending order), “update_time”(descending order); trade_type, indicates trade type, if not filled in means all, with available values: 0:all, 1:open long, 2:open short, 3:close short, 4:close long. Added two fields in return parameter "orders": update_time(order updated time, in milliseconds); real_profit(real profit when close position).)
+ - Interface Name: [Cross]Current unfilled order acquisition
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_cross_openorders
+
+### 15. Modified [Isolated]Get History Orders(Added one field in return parameter "orders": real_profit(real profit when close position).)
+ - Interface Name: [Isolated]Get History Orders
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_hisorders
+
+### 16. Modified [Cross]Get History Orders(Added one field in return parameter "orders": real_profit(real profit when close position).)
+ - Interface Name: [Cross]Get History Orders
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_cross_hisorders
+
+### 17. Modified [Isolated]Acquire History Match Results(Added one field in return parameter "trades": real_profit(real profit when close position).)
+ - Interface Name: [Isolated]Acquire History Match Results
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_matchresults
+
+### 18. Modified [Cross]Acquire History Match Results(Added one field in return parameter "trades": real_profit(real profit when close position).)
+ - Interface Name: [Cross]Acquire History Match Results
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_cross_matchresults
+
+### 19. Modified [Isolated]Subscribe Order Data(sub)(Added one field in return data: real_profit(real profit when close position). added field in return parameter "trade": profit(profit when close position),  real_profit(real profit when close position))
+ - Interface Name: [Isolated]Subscribe Order Data(sub)
+ - Interface Type: private
+ - Subscription topic: orders.$contract_code
+
+### 20. Modified [Cross]Subscribe Order Data(sub)(Added one field in return data: real_profit(real profit when close position). added field in return parameter "trade": profit(profit when close position),  real_profit(real profit when close position))
+ - Interface Name: [Cross]Subscribe Order Data(sub)
+ - Interface Type: private
+ - Subscription topic: orders_cross.$contract_code
+
+### 21. Modified [Isolated]Cancel All Trigger Orders(Added two optional parameters in request: direction, indicates order direction, if not filled in means both with available values: “buy”, “sell”; offset, order offset, if not filled in means both with available values: “open”, “close”.)
+ - Interface Name: [Isolated]Cancel All Trigger Orders
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_trigger_cancelall
+
+### 22. Modified [Cross]Cancel All Trigger Orders(Added two optional parameters in request: direction, indicates order direction, if not filled in means both with available values: “buy”, “sell”; offset, order offset, if not filled in means both with available values: “open”, “close”.)
+ - Interface Name: [Cross]Cancel All Trigger Orders
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_cross_trigger_cancelall
+
+### 23. Modified [Isolated]Cancel all Take-profit and Stop-loss Orders(Added one option parameter in request: direction, indicates order direction, if not filled in means cancel all)
+ - Interface Name: [Isolated]Cancel all Take-profit and Stop-loss Orders
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_tpsl_cancelall
+
+### 24. Modified [Cross]Cancel all Take-profit and Stop-loss Orders(Added one option parameter in request: direction, indicates order direction, if not filled in means cancle all)
+ - Interface Name: [Cross]Cancel all Take-profit and Stop-loss Orders
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_cross_tpsl_cancelall
+
+### 25. Modified [Isolated]Query Trigger Order Open Orders(Added one optional parameter in request: trade_type, order trade type, if not filled in means all with available values 0:all, 1:open long, 2:open short, 3:close short, 4:close long.)
+ - Interface Name: [Isolated]Query Trigger Order Open Orders
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_trigger_openorders
+
+### 26. Modified [Cross]Query Trigger Order Open Orders(Added one optional parameter in request: trade_type, order trade type, if not filled in means all with available values 0:all, 1:open long, 2:open short, 3:close short, 4:close long.)
+ - Interface Name: [Cross]Query Trigger Order Open Orders
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_cross_trigger_openorders
+
+### 27. Modified [Isolated]Query Open Take-profit and Stop-loss Orders(Added one optional parameter in request: trade_type, order trade type, if not filled in means all with available values 0:all, 3:close short, 4:close long.)
+ - Interface Name: [Isolated]Query Open Take-profit and Stop-loss Orders
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_tpsl_openorders
+
+### 28. Modified [Cross]Query Open Take-profit and Stop-loss Orders(Added one optional parameter in request: trade_type, order trade type, if not filled in means all with available values 0:all, 3:close short, 4:close long.)
+ - Interface Name: [Cross]Query Open Take-profit and Stop-loss Orders
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_cross_tpsl_openorders
+
+
 ## 1.0.6 2021-01-12 【1 Added Get the estimated settlement price. 2-13 Added ”Set a Take-profit and Stop-loss Order“ interfaces. 14-35 Added fields to modify interface. Added the first-level menu of [Contract Trigger Order], and add take-profit and stop-loss related interfaces and move the original contract trigger order related interfaces to this menu 】
 
 ### 1. Added Get the estimated settlement price
@@ -782,7 +925,7 @@ permission type  |  Content Type  | Interface Mode |  Context           |   Requ
  Read  | Market Data | general | /linear-swap-api/v1/swap_open_interest                             | GET    |      Get Contract Open Interest Information             |       No          |            
  Read  | Market Data | general | /linear-swap-api/v1/swap_risk_info                                 | GET    |      Query information on contract insurance fund balance and estimated clawback rate     |       No          |
  Read  | Market Data | general | /inear-swap-api/v1/swap_insurance_fund                            | GET    |      Query history records of insurance fund balance               |       No          |
- Read  | Market Data | isolated margin | /linear-swap-api/v1/swap_adjustfactor                              | GET    |      Query information on Tiered Adjustment Factor                |       No          |
+ Read  | Market Data | isolated margin | /linear-swap-api/v1/swap_adjustfactor                      | GET    |      Query information on Tiered Adjustment Factor                |       No          |
  Read  | Market Data | general | /linear-swap-api/v1/swap_his_open_interest                         | GET    |      Query information on open interest                      |       No          |
  Read  | Market Data | general | /linear-swap-api/v1/swap_elite_account_ratio                       | GET    |      Query Top Trader Sentiment Index Function-Account          |       No          |
  Read  | Market Data | general | /linear-swap-api/v1/swap_elite_position_ratio                      | GET    |      Query Top Trader Sentiment Index Function-Position        |       No          |
@@ -793,7 +936,9 @@ permission type  |  Content Type  | Interface Mode |  Context           |   Requ
  Read  | Market Data | general | /linear-swap-api/v1/swap_historical_funding_rate                   | GET    |      Query Historical Funding Rate             |       No          |
  Read  | Market Data | general | /linear-swap-ex/market/depth                                       | GET    |      Get Market Depth                     |       No          |
  Read  | Market Data | general | /linear-swap-ex/market/history/kline                               | GET    |      Get KLine Data                          |       No          |
+ Read  | Market Data | general | /index/market/history/linear_swap_mark_price_kline                | GET    |      Get Kline Data of Mark Price                 |  No  |
  Read  | Market Data | general | /linear-swap-ex/market/detail/merged                               | GET    |      Get Market Data Overview                        |       No          |
+ Read  | Market Data | general | /linear-swap-ex/market/detail/batch_merged                         | GET    |      Get a Batch of Market Data Overview                |  No  |
  Read  | Market Data | general | /index/market/history/linear_swap_basis                            | GET    |      Query Basis Data                        |       No          |
  Read  | Market Data | general | /index/market/history/linear_swap_premium_index_kline              | GET    |      Query Liquidation Order Information                 |       No          |
  Read  | Market Data | general | /index/market/history/linear_swap_estimated_rate_kline             | GET    |      Query Swap Market Data interface           |       No          |
@@ -810,6 +955,8 @@ permission type  |  Content Type  | Interface Mode |  Context           |   Requ
  Read  | Account    | isolated margin | /linear-swap-api/v1/swap_sub_account_info                          | POST   |      Query a single sub-account's assets information     |     Yes        |
  Read  | Account    | isolated margin | /linear-swap-api/v1/swap_sub_position_info                         | POST   |      Query a single sub-account's position information      |     Yes        |
  Read  | Account    | general | /linear-swap-api/v1/swap_financial_record                          | POST   |      Query account financial records                     |     Yes        |
+ Read  | Account    | isolated margin    |  /linear-swap-api/v1/swap_user_settlement_records  |                 POST        |  Query Settlement Records of Users                |  Yes  |
+ Read  | Account    | cross margin    |  /linear-swap-api/v1/swap_cross_user_settlement_records  |                 POST        |  Query Settlement Records of Users               | Yes  |
  Read  | Account    | general | /linear-swap-api/v1/swap_order_limit                               | POST   |      Query contract information on order limit              |     Yes        |
  Read  | Account    | general | /linear-swap-api/v1/swap_fee                                       | POST   |      Query information on contract trading fee             |     Yes        |
  Read  | Account    | isolated margin | /linear-swap-api/v1/swap_transfer_limit                            | POST   |      Query information on Transfer Limit               |     Yes        |
@@ -1068,6 +1215,7 @@ Please note that, for both public interface and private interface, there are rat
     if you are not in the prohibition period, the field is not included in returned header;
 
 ## API Limitation on Order Cancellation Ratio
+
 * The system will calculate the order cancellation ratio automatically when the total number of orders placed via certain order price types by the API user goes equal to or larger than 3,000 within 10 minutes. If the order cancellation ratio is greater than 99%, the user will be prohibited for 5 minutes from placing orders via certain API order price types which will be listed below (The response of placing orders will return: 1084  Your contract API is disabled, please try again after {0} (GMT+8).).
 * A 30-minute API order placement prohibition will be triggered if the user was prohibited for 3 times within an hour (The response of placing orders will return: 1084  Your contract API is disabled, please try again after {0} (GMT+8).). After resuming access, the total number of prohibited times will be cleared during the previous period and will not be counted into the total prohibited times in the new period.
 * Please note that the prohibition from placing orders will cause no effect on order cancellation via API as well as order placement and cancellation via other terminals. We’ll keep you notified on each prohibition via SMS and email.
@@ -1726,8 +1874,8 @@ Yes. The ratelimit of interface with private key is based on the UID, not the AP
 
 There is an open source asynchronous quantization framework which integrates Huobi future and Huobi swap: <a href=https://github.com/hbdmapi/hbdm_Python>here</a>. If you have any quetsions, please open a ticket in github issues.
 
-## Market and Websocket
 
+## Market and Websocket
 
 ### Q1: How often are the snapshot orderbook subscription and incremental orderbook subscription pushed?
 
@@ -2282,6 +2430,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/kline?period=1min&size=
 | size               | false         | int  | Acquisition Quantity | 150     | [1,2000]         |
 | from              | false         | long  | start timestamp seconds. |         |                                                    |
 | to               | false         | long  | end timestamp seconds |          |                                                      |
+
 ### Note
 
 - Either `size` field or `from` and `to` fields need to be filled.
@@ -2350,6 +2499,75 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/kline?period=1min&size=
 |  amount    |     true          | decimal   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of  the coin/order price). Sum of both buy and sell sides  |    
 | trade_turnover     | true | decimal | Transaction amount, that is, sum (transaction quantity * contract face value * transaction price). Sum of both buy and sell sides  |                |        
 |  \</data\>    |               |     |      |      
+
+## [General]Get Kline Data of Mark Price
+
+ - GET `/index/market/history/linear_swap_mark_price_kline`
+
+#### Note：
+ - The interface supports cross margin mode and isolated margin mode.
+
+### Request Parameter：
+| Parameter Name    | Mandatory | Type | Description        | Default Value | Value Range                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| contract_code      | true     | string | contract code         |         | "BTC-USDT","ETH-USDT"...                           |
+| period          | true     | string  | period               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week,1mon     |
+| size  | true     | int    | size     |  | [1,2000] |
+
+#### Note：
+
+ - At one time 2000 at most
+ - The input parameters are not case sensitive and all support
+
+> Response：
+
+```json
+{
+    "ch": "market.BTC-USDT.mark_price.5min",
+    "data": [
+        {
+            "amount": "0",
+            "close": "31078.68",
+            "count": "0",
+            "high": "31078.68",
+            "id": 1611105300,
+            "low": "31078.68",
+            "open": "31078.68",
+            "trade_turnover": "0",
+            "vol": "0"
+        },
+        {
+            "amount": "0",
+            "close": "31078.68",
+            "count": "0",
+            "high": "31078.68",
+            "id": 1611105600,
+            "low": "31078.68",
+            "open": "31078.68",
+            "trade_turnover": "0",
+            "vol": "0"
+        }
+    ],
+    "ts": 1611106791703
+}
+```
+
+### Returning Parameter：
+| Parameter Name    | Mandatory | Type | Description        | Default Value | Value Range                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| ch     | true | string | channel, format: market.period |                | |
+| \<data\> |   true   |    object array    |               |                | |
+| id     | true | long | id        |                | |
+| vol     | true | string | trade vol(cont), value is 0        |                | |
+| count     | true | string | trade count, value is 0        |                | |
+| open     | true | string | open price        |                | |
+| close     | true | string | close price        |                | |
+| low     | true | string | low price        |                | |
+| high     | true | string | high price        |                | |
+| amount     | true | string | trade amount, value is 0        |                | |
+| trade_turnover     | true | string | trade turnover, value is 0        |                | |
+| \</data\>            |      |        |               |                | |
+| ts     | true | long | Time of Respond Generation, Unit: Millisecond	                   |                | |
 
 
 ##  [General] Get Market Data Overview
@@ -2442,6 +2660,76 @@ curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC
 | trade_turnover     | true | string | Transaction amount, that is, sum (transaction quantity * contract face value * transaction price),from nowtime - 24 hours. Sum of both buy and sell sides |  
 | ts                 | true          | long        |    Timestamp             |                 ||
 |  \</tick\>    |               |     |      |  
+
+
+## [General]Get a Batch of Market Data Overview
+
+ - GET `/linear-swap-ex/market/detail/batch_merged`
+
+### Request Parameter
+
+|   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
+| ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
+| contract_code      |  false        | string  | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USDT" | if not filled in means all  |
+
+#### Note
+
+ - The interface supports cross margin mode and isolated margin mode.
+ - The interface data updated frequency is 50ms
+
+> Response:
+
+```json
+{
+    "status":"ok",
+    "ticks":[
+        {
+            "id":1611109206,
+            "ts":1611109206797,
+            "ask":[
+                3,
+                15
+            ],
+            "bid":[
+                2.5,
+                1
+            ],
+            "contract_code":"EOS-USDT",
+            "open":"2.5",
+            "close":"2.5",
+            "low":"2.5",
+            "high":"2.5",
+            "amount":"0.4",
+            "count":2,
+            "vol":"4",
+            "trade_turnover":"1.1"
+        }
+    ],
+    "ts":1611109206830
+}
+```
+
+###  Returning Parameter
+
+| Parameter Name  | Mandatory | Type   | Description  | Value Range           |
+| ------ | ---- | ------ | ---------------------------------------- | -------------- |
+| status | true | string | status     | "ok" , "error" |
+| \<ticks\> |true  |  object array |           |                |
+| contract_code   | true | string  | contract code | "BTC-USDT" ...  |
+| id   | true | long | id |                |
+| amount   | true | string | trade amount(coin)    |                |
+| ask   | true | array | [ask one price, ask one vol(cont)] |                |
+| bid   | true | array | [bid one price, bid one vol(cont)] |                |
+| open     | true | string | open price     |                |
+| close     | true | string | close price       |                |
+| count     | true | decimal | trade count       |                |
+| high   | true | string | high price                                    |                |
+| low   | true | string | low price  |                |
+| vol   | true | string | trade vol, sum of both buy and sell side  |                |
+| trade_turnover     | true | string | trade turnover       |                |
+| ts   | true | long | timestamp   |                |
+| \</ticks\>            |      |        |               |                |
+| ts     | true | long | Time of Respond Generation, Unit: Millisecond	                            |                |
 
 
 ## [General] Query The Last Trade of a Contract
@@ -3459,7 +3747,7 @@ contract_code  |  string   |  contract code,eg:"BTC-USDT"  |
 fee_asset | string | fee asset | eg:"BTC","ETH"... |
 funding_time | string | current funding time |  |
 funding_rate | string |  current funding rate |  |
-estimated_rate | string | estimated funding rate of current period |  |
+estimated_rate | string | estimated funding rate of current period（Updated once a minute） |  |
 next_funding_time  | string |  estimated funding rate of next period     |   |
 \</data\> |  |  |  |  |
 
@@ -4891,123 +5179,266 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | total_size | true  | int | total size |  |
 | \</data\> |  |  |  |  |
 
-<!--
-## Query user’s settlement records
 
- - POST `swap-api/v1/swap_user_settlement_records`
+## [Isolated]Query Settlement Records of Users
+
+ - POST `linear-swap-api/v1/swap_user_settlement_records`
+
+#### Note：
+ - This interface only supports isolated margin mode.
 
 ### Request Parameter
 
-| Parameter Name        | Mandatory  | Type     | Description   | Value Range       |
+| Parameter Name         | Mandatory  | Type     | Description   | Value Range                                     |
 | ------------- | ----- | ------ | ------------- | ---------------------------------------- |
 | contract_code | true  | string | contract_code     |                                          |
-| start_time   | false  | long    | start time（Timestamp，Unit: Millisecond）        |  Value Range: [(current time - 90 days), current time] ，default current day - 90 days   |
-| end_time   | false  | long    | end time（Timestamp，Unit: Millisecond）        |  Value Range: (start_time, current time]，default current time   |
-|page_index	|false |	int	| Page | 1st page by default without given instruction		|
-|page_size	|false |	int	| page size | Page 20 by default without given instruction,  ，no more than 50 |
+| start_time   | false  | long    | start time(timestamp, Unit: Millisecond)        |  Value Range：[(now - 90 days), now] , now - 90 days   |
+| end_time   | false  | long    | end time(timestamp, Unit: Millisecond)        | Value Range：(start_time, now], now  |
+| page_index	|false |	int	| page index | if not filled in is 1st	|
+| page_size	|false |	int	| page size | if not filled in is 20, and 50 at most(if more than 50, treated as 50 |
 
-#### Note
-
-- The data is queried in reverse order by default; the newer the data, the closer to the front.
-- If the start time or the end time is not within the value range, the system will report an error 1067 to indicate the parameter is invalid.  
-- Query users' settlement records with settlement start time behind the start_time but before the end_time. 
+#### Note:
+ - The data of response is descending sorted, the latest the first.
+ - The settlement records is between "from" and "to" 
+ - This interface only supports users to query data for the last 90 days.
 
 > Response: 
 
 ```json
-
 {
-    "status": "ok",
-    "data": {
+    "status":"ok",
+    "data":{
+        "total_page":1,
+        "current_page":1,
+        "total_size":13,
         "settlement_records":[
             {
-                "symbol": "BTC",
-                "contract_code": "BTC-USDT",
-                "margin_balance_init": 10,
-                "margin_balance": 2,
-                "settlement_profit_real": 1.199,
-                "settlement_time": 1590825600,
-                "clawback": -0.001,
-                "funding_fee": -0.001,
-                "offset_profitloss": 0,
-                "fee": 0,
-                "fee_asset": "BTC",
+                "symbol":"BTC",
+                "contract_code":"BTC-USDT",
+                "margin_mode":"isolated",
+                "margin_account":"BTC-USDT",
+                "margin_balance_init":5000,
+                "margin_balance":4891.74704672,
+                "settlement_profit_real":-108.25295328,
+                "settlement_time":1611040802012,
+                "clawback":0,
+                "funding_fee":0,
+                "offset_profitloss":0,
+                "fee":-2.63615328,
+                "fee_asset":"USDT",
                 "positions":[
                     {
-                        "symbol": "BTC",
-                        "contract_code": "BTC-USDT",
-                        "direction": "buy",
-                        "volume": 2,
-                        "cost_open": 6500,
-                        "cost_hold_pre": 6500,
-                        "cost_hold": 7000,
-                        "settlement_profit_unreal": 2.4,
-                        "settlement_price": 7000,
-                        "settlement_type": "settlement"
+                        "symbol":"BTC",
+                        "contract_code":"BTC-USDT",
+                        "direction":"buy",
+                        "volume":12,
+                        "cost_open":27900,
+                        "cost_hold_pre":27900,
+                        "cost_hold":27459.93,
+                        "settlement_profit_unreal":-52.8084,
+                        "settlement_price":27459.93,
+                        "settlement_type":"settlement"
                     },
                     {
-                        "symbol": "BTC",
-                        "contract_code": "BTC-USDT",
-                        "direction": "sell",
-                        "volume": 1,
-                        "cost_open": 6500,
-                        "cost_hold_pre": 6500,
-                        "cost_hold": 7000,
-                        "settlement_profit_unreal": -1.2,
-                        "settlement_price": 7000,
-                        "settlement_type": "settlement"
-                    }]
-            }],
-        "current_page": 1,
-        "total_page": 1,
-        "total_size": 5
+                        "symbol":"BTC",
+                        "contract_code":"BTC-USDT",
+                        "direction":"sell",
+                        "volume":12,
+                        "cost_open":27019.86,
+                        "cost_hold_pre":27019.86,
+                        "cost_hold":27459.93,
+                        "settlement_profit_unreal":-52.8084,
+                        "settlement_price":27459.93,
+                        "settlement_type":"settlement"
+                    }
+                ]
+            }
+        ]
     },
-    "ts": 1578124684692
+    "ts":1611052289681
 }
-
 ```
+
 ### Returning Parameter
 
-| Parameter Name                   | Mandatory | Type      | Description       | Value Range                                     |
+| Parameter Name                  | Mandatory | Type      | Description                 | Value Range                                     |
 | ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
-| status                 | true | string  | Request Processing Result             |                                          |
+| status                 | true | string  | status             |                                          |
 | \<data\> | true     |  object      |                    |                                          |
 | \<settlement_records\> | true     |  object   array    |                    |                                          |
-| symbol     | true   | string  | Coin Code                  | "BTC","ETH"... |
-| contract_code     | true   | string  | | contract code                  |  "BTC-USDT" ... |
-| margin_balance_init        | true | decimal | Initial account equity for this term          |             |
-| margin_balance   | true | decimal | Account equity after settlement for this term  |          |
-| settlement_profit_real    | true | decimal | Realized PnL for this term      |                      |
-| settlement_time     | true   | long  | Settlement time for this term; delivery time if at the delivery.           |   |
-| clawback        | true | decimal |  Clawback for this term        |         |
-| funding_fee        | true | decimal |  Funding for this term          |                       |
-| offset_profitloss        | true | decimal |  Current term PnL of positions closed        |         |
-| fee        | true | decimal | Transaction fee for this term       |                                          |
-| fee_asset        | true | string | Transaction Fee Coin   |                                          |
+| symbol     | true   | string  | symbol                 | "BTC","ETH"... |
+| contract_code     | true   | string  | contract code                 |  "BTC-USDT" ... |
+| margin_mode | true | string | margin mode  | cross/isolated |
+| margin_account | true | string | margin account  | such as: “BTC-USDT” |
+| margin_balance_init        | true | decimal | margin balance init         |                                          |
+| margin_balance        | true | decimal | margin balance         |                                          |
+| settlement_profit_real        | true | decimal | settlement profit real            |                                          |
+| settlement_time     | true   | long  | settlement time/delivery time  |   |
+| clawback        | true | decimal |   clawback         |         |
+| funding_fee        | true | decimal | current funding fee(or current delivery fee)       |                       |
+| offset_profitloss        | true | decimal | offset profit or loss           |                                          |
+| fee        | true | decimal | fee           |                                          |
+| fee_asset        | true | string | fee asset      |                                          |
 | \<positions\> | true     |  object   array    |                    |                                          |
-| symbol     | true   | string  | Coin Code                 | "BTC","ETH"... |
-| contract_code     | true   | string  | contract code              |  "BTC-USDT" ... |
-| direction            | true | string  | Position Direction |    [buy : sell]                                     |
-| volume         | true | decimal | Position volume before the settlement of this term（cont）             |          |
-| cost_open            | true | decimal | Open price              |                                          |
-| cost_hold_pre        | true | decimal |  Average position price before the settlement of this term        |          |
-| cost_hold            | true | decimal |  Average position price after the settlement of this term        |            |
-| settlement_profit_unreal        | true | decimal |  Unrealized PnL for this term     |                  |
-| settlement_price        | true | decimal | Settlement price for this term; delivery price if at the delivery.  |        |
-| settlement_type        | true | string |   Settlement Type      |     settlement: settlement；delivery: delivery；    |
+| symbol     | true   | string  | symbol                 | "BTC","ETH"... |
+| contract_code     | true   | string  | contract code                 |  "BTC-USDT" ... |
+| direction            | true | string  | direction  |     "buy"/"sell"                                     |
+| volume               | true | decimal | volume before settlement(cont)              |                                          |
+| cost_open            | true | decimal | cost open             |                                          |
+| cost_hold_pre            | true | decimal | cost hold before settlement   |                                          |
+| cost_hold            | true | decimal | cost hold after settlement |                                          |
+| settlement_profit_unreal        | true | decimal | settlement profit unreal            |                                          |
+| settlement_price        | true | decimal | settlement price/delivery time           |                                          |
+| settlement_type        | true | string |   settlement type          |     settlement/delivery      |
 | \</positions\>            |      |         |                    |                                          |
 | \</settlement_records\>            |      |         |                    |                                          |
-| total_page        | true | int | Total Pages    |                |
-| current_page        | true | int | Current Page   |                |
-| total_size        | true | int | otal Size    |                |
+| total_page        | true | int | total page   |                |
+| current_page        | true | int | current page   |                |
+| total_size        | true | int | total size   |                |
 | \</data\>            |      |         |                    |                                          |
-| ts                     | true | long    | Timestamp                |                                          |
+| ts                     | true | long    | timestamp                |                                          |
 
-#### Rule
 
- - settlement_time for this term is the start time of the settlement.
- - As long as the user has had funds, there will be settlement records. If the user queried has no settlement record, no data will be returned. (data will be an empty array)
--->
+## [Cross]Query Settlement Records of Users
+
+ - POST `linear-swap-api/v1/swap_cross_user_settlement_records`
+
+#### Note：
+ - The interface only supports cross margin mode.
+
+### Request Parameter
+
+| Parameter Name         | Mandatory  | Type     | Description   | Value Range                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| margin_account | true | string | margin account |  "USDT", now only support USDT |
+| start_time   | false  | long    | start time(timestamp, Unit: Millisecond)        |  Value Range：[(now - 90 days), now] , now - 90 days   |
+| end_time   | false  | long    | end time(timestamp, Unit: Millisecond)        | Value Range：(start_time, now], now  |
+| page_index	|false |	int	| page index | if not filled in is 1st	|
+| page_size	|false |	int	| page size | if not filled is 10, 25 at most(if more than 25, treated as 50) |
+
+> Response: 
+
+```json
+{
+    "status":"ok",
+    "data":{
+        "total_page":2,
+        "current_page":1,
+        "total_size":13,
+        "settlement_records":[
+            {
+                "margin_mode":"cross",
+                "margin_account":"USDT",
+                "margin_balance_init":5000,
+                "margin_balance":5007.6708,
+                "settlement_profit_real":7.6708,
+                "settlement_time":1611051602040,
+                "clawback":0,
+                "funding_fee":0,
+                "offset_profitloss":0,
+                "fee":0.6708,
+                "fee_asset":"USDT",
+                "contract_detail":[
+                    {
+                        "symbol":"BTC",
+                        "contract_code":"BTC-USDT",
+                        "offset_profitloss":0,
+                        "fee":0.6708,
+                        "fee_asset":"USDT",
+                        "positions":[
+                            {
+                                "symbol":"BTC-USDT",
+                                "contract_code":"BTC-USDT",
+                                "direction":"buy",
+                                "volume":9,
+                                "cost_open":27911.111111111111111111,
+                                "cost_hold_pre":27911.111111111111111111,
+                                "cost_hold":34361.25,
+                                "settlement_profit_unreal":580.5125,
+                                "settlement_price":34361.25,
+                                "settlement_type":"settlement"
+                            },
+                            {
+                                "symbol":"BTC-USDT",
+                                "contract_code":"BTC-USDT",
+                                "direction":"sell",
+                                "volume":9,
+                                "cost_open":27988.888888888888888888,
+                                "cost_hold_pre":27988.888888888888888888,
+                                "cost_hold":34361.25,
+                                "settlement_profit_unreal":-573.5125,
+                                "settlement_price":34361.25,
+                                "settlement_type":"settlement"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "margin_mode":"cross",
+                "margin_account":"USDT",
+                "margin_balance_init":5000,
+                "margin_balance":5000,
+                "settlement_profit_real":0,
+                "settlement_time":1611047654316,
+                "clawback":0,
+                "funding_fee":0,
+                "offset_profitloss":0,
+                "fee":0,
+                "fee_asset":"USDT",
+                "contract_detail":[
+
+                ]
+            }
+        ]
+    },
+    "ts":1611051729365
+}
+```
+
+### Returning Parameter
+
+| Parameter Name                  | Mandatory | Type      | Description                 | Value Range                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | status             |                                          |
+| \<data\> | true     |  object      |                    |                                          |
+| \<settlement_records\> | true     |  object   array    |                    |                                          |
+| margin_mode | true | string | margin mode  | cross/isolated |
+| margin_account | true | string | margin account  | such as “USDT” |
+| margin_balance_init        | true | decimal | margin balance init         |                                          |
+| margin_balance        | true | decimal | margin balance after current settlement        |                                          |
+| settlement_profit_real        | true | decimal | settlement profit real            |                                          |
+| settlement_time     | true   | long  | settlement time/delivery time |   |
+| clawback        | true | decimal |   clawback         |         |
+| funding_fee        | true | decimal |  total funding fee(delivery fee included)          |                       |
+| offset_profitloss        | true | decimal | offset profit or loss           |                                          |
+| fee        | true | decimal | fee  |                                          |
+| fee_asset        | true | string | fee asset      |                                          |
+| \<contract_detail\> | true     |  object   array    |                 |                                          |
+| symbol     | true   | string  | symbol                 | "BTC","ETH"... |
+| contract_code     | true   | string  | contract code                 |  "BTC-USDT" ... |
+| offset_profitloss        | true | decimal | offset profit or loss current settlement |                                          |
+| fee        | true | decimal | fee current settlement  |                                          |
+| fee_asset        | true | string | fee asset      |                                          |
+| \<positions\> | true     |  object   array    |   positions(just place when has positions)  |                                          |
+| symbol     | true   | string  | symbol                 | "BTC","ETH"... |
+| contract_code     | true   | string  | contract code                 |  "BTC-USDT" ... |
+| direction            | true | string  | direction  |     "buy"/"sell"  |
+| volume               | true | decimal | volume before settlement(cont)  |                                          |
+| cost_open            | true | decimal | cost open             |                                          |
+| cost_hold_pre            | true | decimal | cost hold before settlement    |                                          |
+| cost_hold            | true | decimal | cost hold after current settlement |                                          |
+| settlement_profit_unreal        | true | decimal | settlement profit unreal            |                                          |
+| settlement_price        | true | decimal | settlement price/delivery price  |                                          |
+| settlement_type        | true | string |   settlement type          |     settlement/delivery |
+| \</positions\>            |      |         |                    |                                          |
+| \</contract_detail\> | true     |    |                |                                          |
+| \</settlement_records\>            |      |         |                    |                                          |
+| total_page        | true | int | total page   |                |
+| current_page        | true | int | current page   |                |
+| total_size        | true | int | total size   |                |
+| </data>            |      |         |                    |                                          |
+| ts                     | true | long    | timestamp |                                          |
 
 
 ## [Isolated] Query user’s available leverage
@@ -6300,9 +6731,14 @@ client_order_id, order status query is available for orders placed within 24 hou
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                          |
 | ------------------ | ------------- | -------- | ------------------------------- |
 | contract_code      | true             | string       | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USDT"   |
+| direction | false  | string | Transaction direction(if not filled in means all)    ["buy" , "sell"] |
+| offset | false  | string | offset direction（if not filled in means all）  ["open" , "close"] |
+
+#### Note:
+ - You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including "open" and "close" offset)
 
 > Response:result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)
- 
+
 ```json
 
 {
@@ -6346,6 +6782,11 @@ client_order_id, order status query is available for orders placed within 24 hou
 | Parameter Name  | Mandatory | Type | Desc  | Data Value |
 | ------------- | ------ | ----- | ---------------------------------------- | ---- |
 | contract_code | true |  string | contract code |   "BTC-USDT"    |
+| direction | false  | string | Transaction direction(if not filled in means all)    ["buy" , "sell"] |
+| offset | false  | string | offset direction（if not filled in means all）  ["open" , "close"] |
+
+#### Note:
+ - You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including "open" and "close" offset)
 
 > Response
 
@@ -6529,7 +6970,7 @@ client_order_id, order status query is available for orders placed within 24 hou
 | status | true | string | Request Processing Result	 | "ok" :Order placed successfully, "error"：Order failed |
 | ts | true  | long | Time of Respond Generation, Unit: Millisecond |  |
 | \<data\> |  |  |  | Dictionary |
-| order_id | true  | long | Order ID [Different users may share the same order ID] |  |
+| order_id | true  | long | Order ID   |  |
 | order_id_str | true  | string | Order ID |  |
 | client_order_id | false | long | user’s own order ID |  |
 | \</data\> |  |  |  |  |
@@ -6593,7 +7034,7 @@ client_order_id, order status query is available for orders placed within 24 hou
 | status          | true  | string | Request Processing Result                        | "ok"/"error" |
 | ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |                      |
 | \<data\>        |   true    |   object     |                               | |
-| order_id        | true  | long | order ID[Different users may share the same order ID] |                      |
+| order_id        | true  | long | order ID  |                      |
 | order_id_str        | true  | string | order ID |                      |
 | client_order_id | false | int | client order ID                     |                      |
 | \</data\>       |       |        |     |  |
@@ -6660,7 +7101,8 @@ client_order_id，order status query is available for orders placed within 24 ho
             "margin_asset": "USDT",
             "margin_mode": "isolated",
             "margin_account": "BTC-USDT",
-            "is_tpsl": 0
+            "is_tpsl": 0,
+            "real_profit": 0
         }
     ],
     "ts": 1603703631815
@@ -6678,9 +7120,9 @@ client_order_id，order status query is available for orders placed within 24 ho
 | contract_code                  | true          | string   | Contract Code                                                | "BTC-USDT" ...                     |
 | volume                         | true          | decimal  | Numbers of order                                             |                                     |
 | price                          | true          | decimal  | Price committed                                              |                                     |
-| order_price_type               | true          | string   | "limit":Limit,"opponent":opponent,"post_only":Post-Only Order, No order limit but position limit for post-only orders.，"lightning":lightning, "optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20，"fok":FOK Order，"ioc":IOC Order, "opponent_ioc": opponent ioc，"lightning_ioc": lightning ioc，"optimal_5_ioc": optimal_5 ioc，"optimal_10_ioc": optimal_10 ioc，"optimal_20_ioc"：optimal_20 ioc，"opponent_fok"： opponent fok，"lightning_fok"：lightning fok，"optimal_5_fok"：optimal_5 fok，"optimal_10_fok"：optimal_10 fok，"optimal_20_fok"：optimal_20 fok |                                     |
-| order_type         |	true         |	int     |  Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
-| direction                      | true          | string   | Transaction direction    "buy":"sell"                        |                                     |
+| order_price_type               | true          | string   | order price type   |  "limit":Limit,"opponent":opponent,"post_only":Post-Only Order, No order limit but position limit for post-only orders.，"lightning":lightning, "optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20，"fok":FOK Order，"ioc":IOC Order, "opponent_ioc": opponent ioc，"lightning_ioc": lightning ioc，"optimal_5_ioc": optimal_5 ioc，"optimal_10_ioc": optimal_10 ioc，"optimal_20_ioc"：optimal_20 ioc，"opponent_fok"： opponent fok，"lightning_fok"：lightning fok，"optimal_5_fok"：optimal_5 fok，"optimal_10_fok"：optimal_10 fok，"optimal_20_fok"：optimal_20 fok |                                     |
+| order_type         |	true         |	int     |  Order type | 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
+| direction                      | true          | string   | Transaction direction                         |     "buy":"sell"                   |
 | offset                         | true          | string   | "open": "close"                                              |                                     |
 | lever_rate                     | true          | int      | Leverage rate                                                | 1\\5\\10\\20                        |
 | order_id                       | true          | long     | Order ID                                                     |                                     |
@@ -6694,16 +7136,21 @@ client_order_id，order status query is available for orders placed within 24 ho
 | trade_avg_price                | true          | decimal  | Transaction average price                                    |                                     |
 | margin_frozen                  | true          | decimal  | Frozen margin                                                |                                     |
 | margin_asset       | true   | string | margin asset                 |                |
-| profit                         | true          | decimal  | profit                                                       |                                     |
-| status                         | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled;  11. Orders cancelling. |                                     |
-| order_source                   | true          | string   | Order source（system、web、api、m、risk、settlement、ios、android、windows、mac、trigger、tpsl） |                                     |
+| profit                         | true          | decimal  | profit when close position (calculated with the average price of position, exclude profit in history settlement.)   |                                     |
+| status                         | true          | int      | status | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled;  11. Orders cancelling. |                                     |
+| order_source                   | true          | string   | Order source |（system、web、api、m、risk、settlement、ios、android、windows、mac、trigger、tpsl） |                                     |
 | fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "USDT"... |
 | liquidation_type | true  | string | Liquidation type | 0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated |
 | margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
 | margin_account    |   true   | string | margin account  | "BTC-USDT"... |
 | is_tpsl                  | true     | int  |     whether to set take-profit and stop-loss order       |   1：yes；0：no   |
+| real_profit | true | decimal | real profit (calculated with the opening average price, include profit in history settlement.) | |
 | \</data\>                      |               |          |                                                              |                                     |
 | ts                             | true          | long     | Timestamp                                                    |                                     |
+
+#### Note:
+ - The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).
+ - Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value. And in the other orders created before that times, it is 0.
 
 
 ## [Cross] Get Information of order
@@ -6764,7 +7211,8 @@ client_order_id，order status query is available for orders placed within 24 ho
             "margin_asset": "USDT",
             "margin_account": "USDT",
             "margin_mode": "cross",
-            "is_tpsl": 0
+            "is_tpsl": 0,
+            "real_profit": 0
         }
     ],
     "ts": 1606975356655
@@ -6797,7 +7245,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 | trade_avg_price      | true | decimal | trade average price   |   |
 | margin_asset       | true   | string | margin asset                 |                |
 | margin_frozen        | true | decimal | frozen margin  |     |
-| profit               | true | decimal | profit     |        |
+| profit               | true | decimal | profit when close position (calculated with the average price of position, exclude profit in history settlement.)   |        |
 | status               | true | int     | status  |  1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling. |
 | order_type           | true | int  | order type  | 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order|
 | order_source         | true | string  | order source   | system、web、api、m、risk、settlement、ios、android、windows、mac、trigger、tpsl |
@@ -6805,8 +7253,13 @@ client_order_id，order status query is available for orders placed within 24 ho
 | liquidation_type               | true     | string    | 0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated |  |
 | canceled_at               | true     | long    | canceled time           |  |
 | is_tpsl                  | true     | int  |     whether to set take-profit and stop-loss order       |   1：yes；0：no   |
+| real_profit | true | decimal | real profit (calculated with the opening average price, include profit in history settlement.) | |
 | \</data\>        |      |         |        |         |
 | ts                   | true | long    | timestamp    |      |
+
+#### Note:
+ - The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).
+ - Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value. And in the other orders created before that times, it is 0.
 
 
 ## [Isolated] Order details acquisition
@@ -6873,6 +7326,8 @@ Please note that created_at can't be "0"
                 "created_at": 1603703614715,
                 "role": "taker",
                 "fee_asset": "USDT",
+                "profit": 0,
+                "real_profit": 0,
                 "id": "131560927-770334322963152896-1"
             }
         ],
@@ -6893,6 +7348,7 @@ Please note that created_at can't be "0"
         "margin_asset": "USDT",
         "margin_mode": "isolated",
         "margin_account": "BTC-USDT",
+        "real_profit": 0,
         "is_tpsl": 0
     },
     "ts": 1603703678477
@@ -6916,15 +7372,15 @@ Please note that created_at can't be "0"
 | created_at                        | true          | long     | Creation time                                             |                                   |
 | canceled_at                        | true          | long     | Canceled time                                             |                                   |
 | order_source                      | true          | string   | Order Source                                                 |   system、web、api、m、risk、settlement、ios、android、windows、mac、trigger、tpsl    |
-| order_price_type                  | true          | string   | "limit":Limit,"opponent":opponent,"post_only":Post-Only Order, No order limit but position limit for post-only orders.，"lightning":lightning, "optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20，"fok":FOK Order，"ioc":IOC Order, "opponent_ioc": opponent ioc，"lightning_ioc": lightning ioc，"optimal_5_ioc": optimal_5 ioc，"optimal_10_ioc": optimal_10 ioc，"optimal_20_ioc"：optimal_20 ioc，"opponent_fok"： opponent fok，"lightning_fok"：lightning fok，"optimal_5_fok"：optimal_5 fok，"optimal_10_fok"：optimal_10 fok，"optimal_20_fok"：optimal_20 fok |                                   |
+| order_price_type                  | true          | string   | order price type  | "limit":Limit,"opponent":opponent,"post_only":Post-Only Order, No order limit but position limit for post-only orders.，"lightning":lightning, "optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20，"fok":FOK Order，"ioc":IOC Order, "opponent_ioc": opponent ioc，"lightning_ioc": lightning ioc，"optimal_5_ioc": optimal_5 ioc，"optimal_10_ioc": optimal_10 ioc，"optimal_20_ioc"：optimal_20 ioc，"opponent_fok"： opponent fok，"lightning_fok"：lightning fok，"optimal_5_fok"：optimal_5 fok，"optimal_10_fok"：optimal_10 fok，"optimal_20_fok"：optimal_20 fok |                                   |
 | margin_frozen                     | true          | decimal  | Frozen margin            |             |
 | margin_asset                      | true   | string | margin asset                 |                |
-| profit                            | true          | decimal  | profit                                                       |                                   |
+| profit                            | true          | decimal  | total profit or loss of order when close position (calculated with the average price of position, exclude profit in history settlement.)   |                                   |
 | order_id                       | true          | long     | Order ID                                                     |                                     |
 | order_id_str                       | true          | string     | Order ID                                                     |                                     |
 | client_order_id                | true          | long     | Client order ID                                              |                                     |
 | order_type                | true          | string     | order type                                            |    1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order    |
-| status                         | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling. |                                     |
+| status                         | true          | int      | status  | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling. |                                     |
 | trade_volume                   | true          | decimal  | Transaction quantity                                         |                                     |
 | trade_turnover                 | true          | decimal  | Transaction aggregate amount                                 |                                     |
 | trade_avg_price                | true          | decimal  | Transaction average price                                    |                                     |
@@ -6940,6 +7396,7 @@ Please note that created_at can't be "0"
 | margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
 | margin_account    |   true   | string | margin account  | "BTC-USDT"... |
 | is_tpsl                  | true     | int  |     whether to set take-profit and stop-loss order       |   1：yes；0：no   |
+| real_profit              | true | decimal | total real profit of order (calculated with the opening average price, include profit in history settlement.) | |
 | \<trades\>  |               |          |                                                              |                                   |
 | id                          | true          | string     |  the global unique ID of the trade.                                         |                                   |
 | trade_id                          | true          | long     | In this interface, trade_id is the same with match_id of linear-swap-api/v1/swap_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.                                              |                                   |
@@ -6949,9 +7406,15 @@ Please note that created_at can't be "0"
 | trade_fee                         | true          | decimal  | Transaction Service fee                                      |                                   |
 | role                        | true          | string  |   taker or maker                              |                                                         |
 | created_at                        | true          | long     | Creation time                                                |                                   |
+| profit                            | true          | decimal  |  profit or loss  of the transaction (calculated with the average price of position, exclude profit in history settlement.)   |                                   |
+| real_profit                       | true | decimal | real profit of the transaction (calculated with the opening average price, include profit in history settlement.) | |
 | \</trades\>                         |               |          |                                                              |                                   |
 | \</data \>                      |               |          |                                                              |                                   |
 | ts                                | true          | long     | Timestamp                                                    |                                   |
+
+#### Note:
+ - The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).
+ - Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value.  And the real profit (real_profit) of the transaction information that orders traded after December 10, 2020 has a value.
 
 
 ## [Cross] Get Detail Information of order
@@ -7017,6 +7480,8 @@ Please note that created_at can't be "0"
                 "created_at": 1606975346393,
                 "role": "taker",
                 "fee_asset": "USDT",
+                "profit": 0,
+                "real_profit": 0,
                 "id": "33142-784056956650258432-1"
             }
         ],
@@ -7037,6 +7502,7 @@ Please note that created_at can't be "0"
         "margin_asset": "USDT",
         "margin_account": "USDT",
         "margin_mode": "cross",
+        "real_profit": 0,
         "is_tpsl": 0
     },
     "ts": 1606975532569
@@ -7063,7 +7529,7 @@ Please note that created_at can't be "0"
 | order_price_type        | true | string  | type of order price      | "limit":Limit,"opponent":opponent,"post_only":Post-Only Order, No order limit but position limit for post-only orders.，"lightning":lightning, "optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20，"fok":FOK Order，"ioc":IOC Order, "opponent_ioc": opponent ioc，"lightning_ioc": lightning ioc，"optimal_5_ioc": optimal_5 ioc，"optimal_10_ioc": optimal_10 ioc，"optimal_20_ioc"：optimal_20 ioc，"opponent_fok"： opponent fok，"lightning_fok"：lightning fok，"optimal_5_fok"：optimal_5 fok，"optimal_10_fok"：optimal_10 fok，"optimal_20_fok"：optimal_20 fok |
 | margin_asset       | true   | string | margin asset                 |                |
 | margin_frozen           | true | decimal | frozen margin       |    |
-| profit                  | true | decimal | profit          |     |
+| profit                  | true | decimal | total profit or loss of order when close position (calculated with the average price of position, exclude profit in history settlement.)  |     |
 | instrument_price        | true | decimal | liquidation price	     |     |
 | final_interest          | true | decimal | account balance after liquidation     |     |
 | adjust_value            | true | decimal | adjustment factor of liquidating order     |      |
@@ -7083,6 +7549,7 @@ Please note that created_at can't be "0"
 | current_page            | true | int     | current page        |    |
 | total_size              | true | int     | total size         |      |
 | is_tpsl                  | true     | int  |     whether to set take-profit and stop-loss order       |   1：yes；0：no   |
+| real_profit              | true | decimal | total real profit of order (calculated with the opening average price, include profit in history settlement.) | |
 | \<trades\>  |  true    |   object array      |        |   |      |
 | id                | true | string    | the global unique ID of the trade      |   |
 | trade_id                | true | long    | In this interface, trade_id is the same with match_id of linear-swap-api/v1/swap_cross_matchresults. trade_id is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.  |  |
@@ -7092,9 +7559,15 @@ Please note that created_at can't be "0"
 | trade_fee               | true | decimal | trade fee       |      |
 | role                    | true | string  | taker/maker |   |
 | created_at              | true | long    | created time        |      |
+| profit                  | true | decimal |  profit or loss  of the transaction (calculated with the average price of position, exclude profit in history settlement.)  |     |
+| real_profit             | true | decimal | real profit of the transaction (calculated with the opening average price, include profit in history settlement.) | |
 | \</trades\>               |      |         |             |     |
 | \</data\>            |      |         |             |         |
 | ts                      | true | long    | timestamp         |      |
+
+#### Note:
+ - The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).
+ - Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value.  And the real profit (real_profit) of the transaction information that orders traded after December 10, 2020 has a value.
 
 
 ## [Isolated] Current unfilled order acquisition
@@ -7112,6 +7585,8 @@ Please note that created_at can't be "0"
 | contract_code       | true          | string   | Contract Code              |             | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT"                 |
 | page_index         | false         | int      | Page, default 1st page      | 1           |                 |
 | page_size          | false         | int      | Default 20，no more than 50 | 20          |                 |
+| sort_by  | false | string    |  sort fields(descending)    |   created_at   | “created_at”descending order by order created at, "update_time": descending order by order update time   |
+| trade_type  | false | int    |  trade type(Default:all)    |  0   | 0:all,1: buy long,2: sell short,3: buy short,4: sell  long   |
 
 > Response:
 
@@ -7150,7 +7625,9 @@ Please note that created_at can't be "0"
                 "margin_asset": "USDT",
                 "margin_mode": "isolated",
                 "margin_account": "BTC-USDT",
-                "is_tpsl": 0
+                "is_tpsl": 0,
+                "update_time": 1606975980467,
+                "real_profit": 0
             }
         ],
         "total_page": 2,
@@ -7174,8 +7651,8 @@ Please note that created_at can't be "0"
 | volume                         | true          | decimal  | Number of Order                                              |                                   |
 | price                          | true          | decimal  | Price committed                                              |                                   |
 | order_price_type               | true          | string  | type of order price  | "limit":Limit,"opponent":opponent,"post_only":Post-Only Order, No order limit but position limit for post-only orders.，"lightning":lightning, "optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20，"fok":FOK Order，"ioc":IOC Order, "opponent_ioc": opponent ioc，"lightning_ioc": lightning ioc，"optimal_5_ioc": optimal_5 ioc，"optimal_10_ioc": optimal_10 ioc，"optimal_20_ioc"：optimal_20 ioc，"opponent_fok"： opponent fok，"lightning_fok"：lightning fok，"optimal_5_fok"：optimal_5 fok，"optimal_10_fok"：optimal_10 fok，"optimal_20_fok"：optimal_20 fok |                                   |
-| order_type         |	true         |	int     |  Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
-| direction                      | true          | string   | Transaction direction                                        |                                   |
+| order_type         |	true         |	int     |  Order type |  1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
+| direction                      | true          | string   | Transaction direction                                        |   "buy","sell"                                |
 | offset                         | true          | string   | "open": "close"                                              |                                   |
 | lever_rate                     | true          | int      | Leverage Rate                                                | 1\\5\\10\\20                      |
 | order_id                       | true          | long     | Order ID                                                     |                                   |
@@ -7188,8 +7665,8 @@ Please note that created_at can't be "0"
 | trade_avg_price                | true          | decimal  | Transaction average price                                    |                                   |
 | margin_frozen                  | true          | decimal  | Frozen margin                                                |                                   |
 | margin_asset                      | true   | string | margin asset                 |                |
-| profit                         | true          | decimal  | profit                                                       |                                   |
-| status                         | true          | int      | status: 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; |                                   |
+| profit                         | true          | decimal  | profit when close position (calculated with the average price of position, exclude profit in history settlement.)         |                                   |
+| status                         | true          | int      | status | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled; |                                   |
 | order_source                   | true          | string   | Order Source                                                 |   system、web、api、m、risk、settlement、ios、android、windows、mac、trigger、tpsl   |
 | fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "USDT"... |
 | liquidation_type                      | true   | string | liquidation type                 |                |
@@ -7197,12 +7674,18 @@ Please note that created_at can't be "0"
 | margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
 | margin_account    |   true   | string | margin account  | "BTC-USDT"... |
 | is_tpsl           | true     | int  |     whether to set take-profit and stop-loss order       |   1：yes；0：no   |
+| real_profit | true | decimal | real profit (calculated with the opening average price, include profit in history settlement.) | |
+| update_time | true | Long | order update time ，millesecond timestamp | |
 | \</orders\>                      |               |          |                                                              |                                   |
 | total_page                     | true          | int      | Total Pages                                                  |                                   |
 | current_page                   | true          | int      | Current Page                                                 |                                   |
 | total_size                     | true          | int      | Total Size                                                   |                                   |
 | \</data\>                      |               |          |                                                              |                                   |
 | ts                             | true          | long     | Timestamp                                                    |                                   |
+
+#### Note:
+ - The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).
+ - Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value. And in the other orders created before that times, it is 0.
 
 
 ## [Cross] Current unfilled order acquisition
@@ -7220,6 +7703,8 @@ Please note that created_at can't be "0"
 | contract_code     | true  | string | contract code       |   "BTC-USDT" ...  |
 | page_index | false | int    | page index, default 1st page |               |
 | page_size  | false | int    | page size, default 20，no more than 50          |    |
+| sort_by  | false | string    |  sort fields(Default: “created_at” descending order)     | “created_at”: descending order by order created at, "update_time": descending order by order update time   |
+| trade_type  | false | int    |  trade type(Default:all)   | 0:all,1: buy long,2: sell short,3: buy short,4: sell  long   |
 
 > Response
 
@@ -7256,7 +7741,9 @@ Please note that created_at can't be "0"
                 "margin_asset": "USDT",
                 "margin_account": "USDT",
                 "margin_mode": "cross",
-                "is_tpsl": 0
+                "is_tpsl": 0,
+                "update_time": 1606975980467,
+                "real_profit": 0
             }
         ],
         "total_page": 1,
@@ -7296,16 +7783,22 @@ Please note that created_at can't be "0"
 | trade_avg_price      | true | decimal | trade average price                                     |                                          |
 | margin_asset       | true   | string | margin asset                 |                |
 | margin_frozen        | true | decimal | frozen margin                                    |                                          |
-| profit               | true | decimal | profit                                       |                                          |
+| profit               | true | decimal | profit when close position (calculated with the average price of position, exclude profit in history settlement.)   |                                          |
 | status               | true | int     | order status                                    | 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled         |
 | liquidation_type              | true | string     | liquidation type    |      |
 | canceled_at              | true | long     | canceled time        |        |
 | is_tpsl                  | true     | int  |     whether to set take-profit and stop-loss order       |   1：yes；0：no   |
+| real_profit | true | decimal | real profit (calculated with the opening average price, include profit in history settlement.) | |
+| update_time | true | Long | order update time ，millesecond timestamp | |
 | \</data\>            |      |         |                     |      |
 | total_page           | true | int     | total page                                     |                                          |
 | current_page         | true | int     | current page                                      |                                          |
 | total_size           | true | int     | total size                                      |                                          |
 | ts                   | true | long    | timestamp                                      |                                          |
+
+#### Note:
+ - The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).
+ - Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value. And in the other orders created before that times, it is 0.
 
 
 ## [Isolated] Get History Orders
@@ -7368,7 +7861,8 @@ Please note that created_at can't be "0"
                 "margin_asset": "USDT",
                 "margin_mode": "isolated",
                 "margin_account": "BTC-USDT",
-                "is_tpsl": 0
+                "is_tpsl": 0,
+                "real_profit": 0
             }
         ],
         "total_page": 10,
@@ -7402,7 +7896,7 @@ Please note that created_at can't be "0"
 | order_price_type                 | true          | int   | 	1：limit，2：market，3：opponent，4：lightning，5：trigger，6：post_only ，7：optimal_5 ，8：optimal_10 ，9：optimal_20，10：FOK ，11：IOC ，12：opponent_ioc，13：lightning_ioc，14：optimal_5_ioc，15：optimal_10_ioc，16：optimal_20_ioc，17：opponent_fok，18：lightning_fok，19：optimal_5_fok，40：optimal_10_fok，41：optimal_20_fok . |                                   |
 | margin_frozen                    | true          | decimal  | Frozen margin                                                |                                   |
 | margin_asset                      | true         | string | margin asset                 |                |
-| profit                           | true          | decimal  | profit                                                       |                                   |
+| profit                           | true          | decimal  | profit when close position (calculated with the average price of position, exclude profit in history settlement.)   |                                   |
 | trade_volume                     | true          | decimal  | Transaction quantity                                         |                                   |
 | trade_turnover                   | true          | int  | Transaction aggregate amount                                 |                                   |
 | fee                              | true          | decimal  | Service fee                                                   |                                   |
@@ -7414,6 +7908,7 @@ Please note that created_at can't be "0"
 | margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
 | margin_account    |   true   | string | margin account  | "BTC-USDT"... |
 | is_tpsl           | true     | int  |     whether to set take-profit and stop-loss order       |   1：yes；0：no   |
+| real_profit | true | decimal | real profit (calculated with the opening average price, include profit in history settlement.) | |
 | \</orders\>                        |               |          |                                                              |                                   |
 | total_page                       | true          | int      | Total Pages                                                  |                                   |
 | current_page                     | true          | int      | Current Page                                                 |                                   |
@@ -7422,9 +7917,9 @@ Please note that created_at can't be "0"
 | ts                               | true          | long     | Timestamp                                                    |                                   |
 
 ### Note
-
-The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
-
+ - The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
+ - The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).
+ - Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value. And in the other orders created before that times, it is 0.
 
 ## [Cross] Get History Orders
 
@@ -7445,7 +7940,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | create_date | true  | int    | date          | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default. |
 | page_index  | false | int    | page index, default 1st page           |                               |
 | page_size   | false | int    | page size, default 20 no more than 50      |  |
-| sort_by | 	false | 	string | 	sort fields(descending) | 	"create_date"：descending order by order create date , "update_time": descending order by order update time | 
+| sort_by | 	false | 	string | 	sort fields(Default: “create_date” descending order) | 	"create_date"：descending order by order create date , "update_time": descending order by order update time | 
 
 ### Note:
  - All via API interface submited price limit orders that had been cancelled will only be kept for 2 hours.
@@ -7484,7 +7979,8 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
                 "margin_asset": "USDT",
                 "margin_mode": "cross",
                 "margin_account": "USDT",
-                "is_tpsl": 0
+                "is_tpsl": 0,
+                "real_profit": 0
             }
         ],
         "total_page": 6,
@@ -7519,7 +8015,7 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | order_price_type       | true | int  | type of order price | 1：limit，2：market，3：opponent，4：lightning，5：trigger，6：post_only ，7：optimal_5 ，8：optimal_10 ，9：optimal_20，10：FOK ，11：IOC ，12：opponent_ioc，13：lightning_ioc，14：optimal_5_ioc，15：optimal_10_ioc，16：optimal_20_ioc，17：opponent_fok，18：lightning_fok，19：optimal_5_fok，40：optimal_10_fok，41：optimal_20_fok  |
 | margin_asset       | true   | string | margin asset                 |                |
 | margin_frozen          | true | decimal | frozen margin  |   |
-| profit                 | true | decimal | profit     |    |
+| profit                 | true | decimal | profit when close position (calculated with the average price of position, exclude profit in history settlement.)      |    |
 | trade_volume           | true | decimal | trade quantity   |     |
 | trade_turnover         | true | decimal | trade amount  |         |
 | fee                    | true | decimal | service fee   |      |
@@ -7529,12 +8025,17 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 | fee_asset         | true | string  | fee asset       |  （"USDT"...）      |
 | liquidation_type              | true | string     | liquidation type        |  0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated |
 | is_tpsl                  | true     | int  |     whether to set take-profit and stop-loss order       |   1：yes；0：no   |
+| real_profit | true | decimal | real profit (calculated with the opening average price, include profit in history settlement.) | |
 | \</orders\>     |      |         |        |                          |
 | current_page           | true | int     | current page    |      |
 | total_page             | true | int     | total page   |    |
 | total_size             | true | int     | total size    |     |
 | \</data\>            |      |         |        |      |
 | ts                     | true | long    | timestamp    |      |
+
+#### Note:
+ - The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).
+ - Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value. And in the other orders created before that times, it is 0.
 
 
 ## [Isolated] Acquire History Match Results
@@ -7582,7 +8083,8 @@ Parameter Name |  Mandatory  |  Type  |  Desc                    |  Default  |  
                 "id": "131560927-770334322963152896-1",
                 "fee_asset": "USDT",
                 "margin_mode": "isolated",
-                "margin_account": "BTC-USDT"
+                "margin_account": "BTC-USDT",
+                "real_profit": 0
             }
         ],
         "total_page": 2,
@@ -7613,12 +8115,13 @@ trade_volume           | true     | int | the number of traded contract with uni
 trade_price                  | true     | decimal | the price at which orders get filled               |              |
 trade_turnover                  | true     | int | the number of total traded amout with number of USDT               |              |
 create_date            | true     | long    | the time when orders get filled               |              |
-offset_profitloss                 | true     | decimal | profits and losses generated from closing positions                 |              |
+offset_profitloss                 | true     | decimal | profits and losses generated from closing positions(calculated with the average price of position, exclude profit in history settlement.)                 |              |
 trade_fee                    | true     | decimal | fees charged by platform                |              |
 role                        | true          | string |   taker or maker     |                  |
 fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "USDT"... |
 margin_mode    |   true   | string | margin mode  | isolated : "isolated" |
 margin_account    |   true   | string | margin account  | "BTC-USDT"... |
+real_profit | true | decimal | real profit (calculated with the opening average price, include profit in history settlement.) | |
 \</trades\>              |          |         |                    |              |
 total_page             | true     | int     | total pages                |              |
 current_page           | true     | int     | current page                |              |
@@ -7627,10 +8130,10 @@ total_size             | true     | int     | total size of the list            
 ts                     | true     | long    | timestamp                |              |
 
 ### Notice
-
-- If users don’t upload/fill the page_index or page_size, it will automatically be set as the default value of the top 20 data on the first page, for more details, please follow the parameters illustration.
-
-- The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
+ - If users don’t upload/fill the page_index or page_size, it will automatically be set as the default value of the top 20 data on the first page, for more details, please follow the parameters illustration.
+ - The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.
+ - The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).
+ - The real profit (real_profit) parameter that orders created after December 10, 2020 has a value. And before that time it is 0.
 
 
 ## [Cross] Get History Match Results
@@ -7678,7 +8181,8 @@ ts                     | true     | long    | timestamp                |        
                 "id": "33161-784059498905993216-1",
                 "fee_asset": "USDT",
                 "margin_mode": "cross",
-                "margin_account": "USDT"
+                "margin_account": "USDT",
+                "real_profit": 0
             }
         ],
         "total_page": 6,
@@ -7711,10 +8215,11 @@ ts                     | true     | long    | timestamp                |        
 | trade_price            | true | decimal | trade price               |  |
 | trade_turnover         | true | decimal | trade amount       |       |
 | create_date            | true | long    | trade time               |  |
-| offset_profitloss      | true | decimal | profits and losses generated from closing positions	               |    |
+| offset_profitloss      | true | decimal | profits and losses generated from closing positions(calculated with the average price of position, exclude profit in history settlement.)  |    |
 | trade_fee             | true | decimal | trade fee              |    |
 | role                   | true | string  | taker/maker        |    |
 | fee_asset         | true | string  | fee asset   | （"USDT"...）  |
+| real_profit | true | decimal | real profit (calculated with the opening average price, include profit in history settlement.) | |
 | \</trades\>              |      |         |                    |   |
 | current_page           | true | int     | current page                |  |
 | total_page             | true | int     | total page               |    |
@@ -7722,6 +8227,9 @@ ts                     | true     | long    | timestamp                |        
 | \</data\>            |      |         |                    |     |
 | ts                     | true | long    | timestamp                |    |
 
+#### Note:
+ - The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).
+ - The real profit (real_profit) parameter that orders created after December 10, 2020 has a value. And before that time it is 0.
 
 # Swap Strategy Order Interface
 
@@ -7799,7 +8307,7 @@ ts                     | true     | long    | timestamp                |        
 
 | field | type | Mandatory | Desc
 | -----  | -----  | -----  | -----
-| order_id | int | true | order id. order id may be same among different users
+| order_id | int | true | order id. 
 | order_id_str | string | true | order id str 
 
 
@@ -7868,7 +8376,7 @@ Error：
 | status                     | true         | string   | Request Processing Result               | "ok" , "error" |
 | ts |  true  | long | timestamp | |
 | \<data\> |  true  | object |   | |
-| order_id  |  true  | int | order ID order id may be same among different users  | |
+| order_id  |  true  | int | order ID  | |
 | order_id_str |  true  | string | order id   | |
 | \</data\> |   | |  | |
 
@@ -7987,9 +8495,12 @@ Error：
 
 | field | type | Mandatory |desc
 | -----  | -----  |  -----  | ----- |
-|  contract_code  |  string  |  true  |  contract code,"BTC-USDT" ...  |
+| contract_code  |  string  |  true  |  contract code,"BTC-USDT" ...  |
+| direction | string  | false | Transaction direction(if not filled in means all)    ["buy" , "sell"] |
+| offset | string  | false | offset direction（if not filled in means all）  ["open" , "close"] |
 
 ### Note
+ - You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including "open" and "close" offset)
 
 > Response:
 
@@ -8048,6 +8559,11 @@ Error：
 | Parameter Name            | Mandatory  | Type     | Desc                    | Data Value                                     |
 | --------------- | ----- | ------ | --------------------- | ---------------------------------------- |
 | contract_code | true | String | contract code | BTC-USDT |
+| direction | false  | string | Transaction direction(if not filled in means all)  |  ["buy" , "sell"] |
+| offset | false  | string | offset direction（if not filled in means all）|  ["open" , "close"] |
+
+### Note
+ - You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including "open" and "close" offset)
 
 > Response
 
@@ -8093,6 +8609,7 @@ Error：
 |  contract_code|  string  |  true  |  contract code  "BTC-USDT"... |
 |  page_index  |  int   |  false  |  page number，default page 1 if no given instruction| 
 |  page_size   |  int   |  false  |  default 20 if no given instruction ，no more than 50 |
+|  trade_type  | int | false    |  trade type(Default:all)  0:all,1: buy long,2: sell short,3: buy short,4: sell  long   |
 
 > Response:
 
@@ -8184,6 +8701,7 @@ Error：
 | contract_code | true | String | contract code |BTC-USDT |
 | page_index | false | int | page index, default 1st | |
 | page_size | false | int | page size default 20，no more than 50 | |
+| trade_type  | false | int    |  trade type(Default:all)      | 0:all,1: buy long,2: sell short,3: buy short,4: sell  long   |
 
 > Response
 
@@ -8404,7 +8922,7 @@ Error：
 | create_date   | true         | int      | date           | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.      |
 | page_index    | false        | int      | page index, default 1st page         | page index, default 1st |
 | page_size     | false        | int      | default 20，no more than 50    | default 20，no more than 50 |
-| sort_by | 	false | 	string | 	sort fields(descending) |  	"created_at"：descending order by order creation time, "update_time": descending order by order update time | 
+| sort_by | 	false | 	string | 	sort fields(Default: “created_at” descending order) |  	"created_at"：descending order by order creation time, "update_time": descending order by order update time | 
 
 #### Notice：
   - Default to query completed orders (order status is one of 4, 5, 6);
@@ -8726,7 +9244,7 @@ Error：
 | status          | true  | string | status                        | "ok", "error" |
 | \<data\>        |   true    |   object     |                               | dictionary                   |
 | \<errors\>        |   true    |   object     |                               | dictionary                   |
-| order_id        | true  | string | order id[unique for one user, but maybe as same as other users] |                      |
+| order_id        | true  | string | order id  |                      |
 | err_code              | false  | long   | error code                |                      |
 | err_msg              | false  | string   | error message               |                      |
 | \</errors\>       |       |        |     |  |
@@ -8776,7 +9294,7 @@ Error：
 | status          | true  | string | status                        | "ok", "error" |
 | \<data\>        |   true    |   object     |                               | dictionary                   |
 | \<errors\>        |   true    |   object     |                               | dictionary                   |
-| order_id        | true  | string | order id[unique for one user, but maybe as same as other users] |                      |
+| order_id        | true  | string | order id  |                      |
 | err_code              | false  | long   | error code                |                      |
 | err_msg              | false  | string   | error message               |                      |
 | \</errors\>       |       |        |     |  |
@@ -8798,6 +9316,7 @@ Error：
 | Parameter Name          | Mandatory  | Type    | Description   | Value Range                                    |
 | ------------- | ----- | ------ | ------------- | ---------------------------------------- |
 | contract_code | true | string | contract code|  "BTC-USDT" ...  |
+| direction  | false  | string | direction false string direction（if not filled in means all） | ["buy", "sell"]
 
 > Response
 
@@ -8819,7 +9338,7 @@ Error：
 | status          | true  | string | status                        | "ok", "error" |
 | \<data\>        |   true    |   object     |                               | dictionary                   |
 | \<errors\>        |   true    |   object     |                               | dictionary                   |
-| order_id        | true  | string | order id[unique for one user, but maybe as same as other users] |                      |
+| order_id        | true  | string | order id |                      |
 | err_code              | false  | long   | error code                |                      |
 | err_msg              | false  | string   | error message               |                      |
 | \</errors\>       |       |        |     |  |
@@ -8841,6 +9360,7 @@ Error：
 | Parameter Name          | Mandatory  | Type    | Description   | Value Range                                    |
 | ------------- | ----- | ------ | ------------- | ---------------------------------------- |
 | contract_code | true | string | contract code|  "BTC-USDT" ...  |
+| direction  | false  | string | direction false string direction（if not filled in means all） | ["buy", "sell"] |
 
 > Response
 
@@ -8862,7 +9382,7 @@ Error：
 | status          | true  | string | status                        | "ok", "error" |
 | \<data\>        |   true    |   object     |                               | dictionary                   |
 | \<errors\>        |   true    |   object     |                               | dictionary                   |
-| order_id        | true  | string | order id[unique for one user, but maybe as same as other users] |                      |
+| order_id        | true  | string | order id  |                      |
 | err_code              | false  | long   | error code                |                      |
 | err_msg              | false  | string   | error message               |                      |
 | \</errors\>       |       |        |     |  |
@@ -8885,6 +9405,7 @@ Error：
 | contract_code | true | string | contract code|  "BTC-USDT" ...  |
 | page_index | false | int | page index. 1 by default |    |
 | page_size | false | int | page size.20 by default. 50 at most |    |
+| trade_type  | false | int    |  trade type(Default:all)     | 0:all,3: buy short,4: sell  long   |
 
 > Response
 
@@ -8971,6 +9492,7 @@ Error：
 | contract_code | true | string | contract code|  "BTC-USDT" ...  |
 | page_index | false | int | page index. 1 by default |    |
 | page_size | false | int | page size.20 by default. 50 at most |    |
+| trade_type  | false | int    |  trade type(Default:all)     | 0:all,3: buy short,4: sell  long   |
 
 > Response
 
@@ -9359,7 +9881,7 @@ Error：
 | fee                  | true | decimal | fee    |                                          |
 | trade_avg_price      | true | decimal | trade avg price   |                                          |
 | margin_frozen        | true | decimal | margin frozen  |                                          |
-| profit               | true | decimal | profit     |                                          |
+| profit               | true | decimal | profit when close position (calculated with the average price of position, exclude profit in history settlement.)    |                                          |
 | status               | true | int     | status   | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling |
 | order_type           | true | int  | order type   | 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order                  |
 | order_source         | true | string  | order source   | system. web. api. m. risk. settlement. ios. android. windows. mac. trigger |
@@ -9503,7 +10025,7 @@ Error：
 | fee                  | true | decimal | fee    |                                          |
 | trade_avg_price      | true | decimal | trade avg price   |                                          |
 | margin_frozen        | true | decimal | margin frozen  |                                          |
-| profit               | true | decimal | profit     |                                          |
+| profit               | true | decimal | profit when close position (calculated with the average price of position, exclude profit in history settlement.)    |                                          |
 | status               | true | int     | status   | 1. Ready to submit the orders; 2. Ready to submit the orders; 3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with partially matched; 6. Orders fully matched; 7. Orders cancelled; 11. Orders cancelling |
 | order_type           | true | int  | order type   | 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order                  |
 | order_source         | true | string  | order source   | system. web. api. m. risk. settlement. ios. android. windows. mac. trigger |
@@ -9685,6 +10207,8 @@ Response Code | Desc in Chinese |  Desc in English  |
 | Read    |  Index and Basis Interface | general | market.$contract_code.premium_index.$period            | req  | Request Premium Index Kline Data       |       No      |
 | Read    |  Index and Basis Interface| general | market.$contract_code.estimated_rate.$period           | sub  | Subscribe Estimated Funding Rate Kline Data     |       No      |
 | Read    |  Index and Basis Interface | general | market.$contract_code.estimated_rate.$period           | req  | Request Estimated Funding Rate Kline Data     |       No      |
+| Read    |  Index and Basis Interface | general |  market.$contract_code.mark_price.$period              | sub  | Subscribe Kline Data of Mark Price             |       No      |
+| Read    |  Index and Basis Interface | general |  market.$contract_code.mark_price.$period              | req  | Request Kline Data of Mark Price              |       No      |
 | Read    |  Trade Interface | general | public.$contract_code.liquidation_orders               | sub  | Subscribe Liquidation Orders (no authentication) (sub)    |       No      |
 | Read    |  Trade Interface | general | public.$contract_code.funding_rate                     | sub  | Subscribe funding rate (no authentication)（sub）|       No      |
 | Read    |  Trade Interface | general | public.$contract_code.contract_info                    | sub  | Subscribe Contract Info (no authentication)（sub） |       No      |
@@ -11584,6 +12108,183 @@ direction  |  true  |  string  |  Order direction  |   |
 | \</data\>            |      |        |               |                | |
 
 
+## [General]Subscribe Kline Data of Mark Price
+
+#### Note：
+ - The interface supports cross margin mode and isolated margin mode.
+
+### After connected WebSocket API server, send data as follow:
+
+  `{`
+  
+  `"sub": "market.$contract_code.mark_price.$period",`
+  
+  `"id": "id generate by client"`
+  
+  `}`
+  
+> Example：
+
+```json
+
+ {
+    "sub": "market.$contract_code.mark_price.$period",
+    "id": "id1"
+ }
+```
+
+### Request Parameter
+| Parameter Name| Mandatory   | Type | Description  | Default Value
+| ------ | ------ | ------ | ------ | ------ |
+| sub | true | string | topic, format as: market.$contract_code.mark_price.$period, too more detail to see sub Subscribe Parameter Rules	 |  |
+| id | false | string | optional; unique ID in client side  |  |
+
+### sub Subscribe Parameter Rules
+| Parameter Name    | Mandatory | Type | Description        | Default Value | Value Range                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| contract_code      | true     | string | contract code         |         | "BTC-USDT","ETH-USDT"...                          |
+| period          | true     | string  | period               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon     |
+
+> When the marked price is updated, the client will receive the data, for example:
+
+```json
+
+{
+ "ch": "market.BTC-USDT.mark_price.1min",
+ "ts": 1489474082831,
+ "tick": 
+    {
+      "vol": "0",
+      "close": "9800.12",
+      "count": "0",
+      "high": "9800.12",
+      "id": 1529898780,
+      "low": "9800.12",
+      "open": "9800.12",
+      "trade_turnover": "0",
+      "amount": "0"
+    }
+}
+
+```
+
+### Returning Parameter
+| Parameter Name    | Mandatory | Type | Description        | Default Value | Value Range                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| ch     | true | string | channel, format: market.period |                | |
+| \<tick\> |   true   |    object array    |               |                | |
+| id     | true | long | id        |                | |
+| vol     | true | string | trade vol(cont), value is 0        |                | |
+| count     | true | string | trade count, value is 0        |                | |
+| open     | true | string | open price        |                | |
+| close     | true | string | close price       |                | |
+| low     | true | string | low price        |                | |
+| high     | true | string | high price       |                | |
+| amount     | true | string | trade amount, value is 0        |                | |
+| trade_turnover     | true | string | trade turnover, value is 0        |                | |
+| \</tick\>            |      |        |               |                | |
+| ts     | true | number | Time of Respond Generation, Unit: Millisecond	                   |                | |
+
+
+## [General]Request Kline Data of Mark Price
+
+#### Note：
+ - The interface supports cross margin mode and isolated margin mode.
+
+### After connected WebSocket API server, send data as follow:
+
+  `{`
+  
+  `"req": "market.$contract_code.mark_price.$period",`
+  
+  `"id": "id generated by client",`
+  
+  `"from": " type: long,  unit: second "`
+  
+  `"to": "type: long,  unit: second, must greater than from "`
+  
+  `}`
+
+> Example：
+
+```json
+
+    {
+    "req": "market.BTC-USDT.mark_price.5min",
+    "id": "id4",
+    "from": 1579247342,
+    "to": 1579247342
+    }
+
+```
+### Request Parameter
+
+| Parameter Name| Mandatory   | Type | Description  | Default Value
+| ------ | ------ | ------ | ------ | ------ |
+| req | true | string | topic, format as: market.$contract_code.mark_price.$period, too more detail to see req Request Parameter Rules	 |  |
+| id | false | string | optional; unique ID in client side |  |
+| from   | true | long  |  start time | | 
+| to     | true | long | end time | | 
+
+### req Request Parameter Rules
+
+| Parameter Name    | Mandatory | Type | Description        | Default Value | Value Range                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| contract_code      | true     | string | contract code         |         | "BTC-USDT","ETH-USDT"...                          |
+| period          | true     | string  | period               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon     |
+
+#### Note
+
+- At one time 2000 at most
+- from and to both are mandatory
+
+> Example of successful response:
+
+```json
+{
+ "rep": "market.BTC-USDT.mark_price.1min",
+ "status": "ok",
+ "id": "id4",
+ "wsid": 1231323423,
+ "ts": 1579489028884,
+ "data": [
+   {
+      "vol": "0",
+      "close": "9800.12",
+      "count": "0",
+      "high": "9800.12",
+      "id": 1529898780,
+      "low": "9800.12",
+      "open": "9800.12",
+      "trade_turnover": "0",
+      "amount": "0"
+   }
+ ]
+}
+```
+
+### Returning Parameter  
+| Parameter Name    | Mandatory | Type | Description        | Default Value | Value Range                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| req     | true | string | channel, format: market.period |                | |
+| status | true | string | status                          | "ok" , "error" | |
+| id     | true | string | id       |                | |
+| wsid     | true | long | wsid           |                | |
+| ts     | true | number | Time of Respond Generation, Unit: Millisecond	                   |                | |
+| \<data\> |   true   |    object array    |               |                | |
+| id     | true | long | kline id        |                | |
+| vol     | true | string | trade vol(cont), value is 0        |                | |
+| count     | true | string | trade count, value is 0        |                | |
+| open     | true | string | open price        |                | |
+| close     | true | string | close price      |                | |
+| low     | true | string | low price        |                | |
+| high     | true | string | high price      |                | |
+| amount     | true | string | trade amount, value is 0        |                | |
+| trade_turnover     | true | string | trade turnover, value is 0        |                | |
+| \</data\>            |      |        |               |                | |
+
+
+
 # Orders and Accounts WebSocket Interfaces
 
 ## [Isolated] Subscribe Order Data(sub)
@@ -11664,6 +12365,7 @@ To subscribe order data, Clients have to make connection to the Server and send 
     "margin_mode": "isolated",
     "margin_account": "BTC-USDT",
     "is_tpsl": 0,
+    "real_profit": 0,
     "trade": [{
         "trade_id":14469,
         "id":"14469-758684042347171840-1",
@@ -11673,6 +12375,8 @@ To subscribe order data, Clients have to make connection to the Server and send 
         "fee_asset": "USDT", 
         "trade_turnover": 34.123, 
         "created_at": 1490759594752, 
+        "real_profit": 0,
+        "profit": 2,
         "role": "maker"
   }]
 }
@@ -11707,13 +12411,14 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | trade_avg_price         | decimal | Average order price                                                     |
 | margin_frozen           | decimal | Frozen Margin                                                   |
 | margin_asset           | string | margin_asset                                              |
-| profit                  | decimal | Profits&Losses                                                       |
+| profit                  | decimal | total profit or loss of order when close position (calculated with the average price of position, exclude profit in history settlement.)         |
 | liquidation_type  | string | Liquidation type, 0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated |
 | canceled_at  | long   |  Canceled time  |
 | fee_asset  | string   |  the corresponding cryptocurrency to the given fee  |
 | margin_mode     | string | margin mode   isolated : "isolated" |
 | margin_account    | string | margin account  "BTC-USDT"... |
 | is_tpsl         | int  |     whether to set take-profit and stop-loss order  1：yes；0：no   |
+| real_profit  | decimal | total real profit of order (calculated with the opening average price, include profit in history settlement.) | |
 | \<trade\>  |         |                                                              |
 | id            | string| 	the global unique ID of the trade.                                                       |
 | trade_id                | long    | In this interface, trade_id is the same with match_id of linear-swap-api/v1/swap_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.                                                  |
@@ -11723,9 +12428,14 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | trade_turnover          | decimal | turnover                                                    |
 | created_at              | long    | trade creation time                                                 |
 | role             | string  | taker or maker                                                |
+| real_profit  | decimal | real profit of the transaction (calculated with the opening average price, include profit in history settlement.) | |
+| profit                  | decimal |  profit or loss  of the transaction (calculated with the average price of position, exclude profit in history settlement.)        |
 | fee_asset  | string   |  the corresponding cryptocurrency to the given fee  |
 | \</trade\>                  |         |                                                             |
 
+#### Note:
+ - The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).
+ - Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value.  And the real profit (real_profit) of the transaction information that orders traded after December 10, 2020 has a value.
 
 ## [Isolated] Unsubscribe Order Data（unsub）
 
@@ -11857,6 +12567,8 @@ To subscribe order data, Clients have to make connection to the Server and send 
             "trade_price":50000,
             "trade_turnover":4000,
             "created_at":1606878438320,
+            "profit":-1866.704,
+            "real_profit":0,
             "role":"taker"
         }
     ],
@@ -11867,7 +12579,8 @@ To subscribe order data, Clients have to make connection to the Server and send 
     "liquidation_type":"1",
     "margin_mode":"cross",
     "margin_account":"USDT",
-    "is_tpsl": 0
+    "is_tpsl": 0,
+    "real_profit":0
 }
 ```
 
@@ -11902,11 +12615,12 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | trade_avg_price   | true | decimal  | trade average price   |    |
 | margin_asset       | true   | string | margin asset                 |                |
 | margin_frozen   | true | decimal  | frozen margin   |    |
-| profit   | true | decimal  | profit   |    |
+| profit   | true | decimal  | total profit or loss of order when close position (calculated with the average price of position, exclude profit in history settlement.)    |    |
 | liquidation_type   | true | decimal  | liquidation type 0: Non-liquidated,1: Long and short netting,2: Partial liquidated,3: Full liquidated   |    |
 | canceled_at               | true     | long    | canceled time   |  |
 | fee_asset               | true     | string    | fee asset          | “USDT” |
 | is_tpsl                  | true     | int  |     whether to set take-profit and stop-loss order       |   1：yes；0：no   |
+| real_profit | true | decimal | total real profit of order (calculated with the opening average price, include profit in history settlement.) | |
 | \<trade\>   | true | object array |     |    |
 | id   | true | string  | the global unique ID of the trade.    |    |
 | trade_id | true | long  | In this interface, trade_id is the same with match_id of linear-swap-api/v1/swap_cross_matchresults. trade_id is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.    |    |
@@ -11916,9 +12630,14 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | trade_turnover   | true | decimal  | trade amount    |    |
 | created_at   | true | long  | trade time   |    |
 | role   | true | string  | taker/maker    |    |
+| real_profit  | decimal | real profit of the transaction (calculated with the opening average price, include profit in history settlement.) | |
+| profit                  | decimal |  profit or loss  of the transaction (calculated with the average price of position, exclude profit in history settlement.)       |
 | fee_asset   | true | string  | fee asset   |  “USDT”  |
 | \</trade\>   |  |   |     |
 
+#### Note:
+ - The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).
+ - Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value.  And the real profit (real_profit) of the transaction information that orders traded after December 10, 2020 has a value.
 
 ## [Cross] Unsubscribe Order Data（unsub）
 
