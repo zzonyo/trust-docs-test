@@ -4152,7 +4152,7 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 | trade_turnover    | true     | decimal      | Transaction Amount                                                     |                                                    |
 | create_date       | true     | long         | Transaction Time                                                   |                                                    |
 | offset_profitloss | true     | decimal      | PnL after closing positions                                                     |                                                    |
-| traded_fee        | true     | decimal      | Transaction Fee                                                   |                                                    |
+| trade_fee        | true     | decimal      | Transaction Fee                                                   |                                                    |
 | fee_asset         | true     | string       | Transaction Fee Coin                                                   |                                                    |
 | role              | true     | string       | Transaction type                                                |   taker、maker、Otm delivery records、Itm delivery records           |
 | order_source      | true     | string       | Order Source                                                     |                                                    |
