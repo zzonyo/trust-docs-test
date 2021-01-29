@@ -5934,7 +5934,7 @@ ts                     | true     | long    | timestamp                |        
 | trade_turnover         | true | decimal | Transaction aggregate amount              |                                          |
 | create_date            | true | long    | Creation time         |                                          |
 | offset_profitloss      | true | decimal | profits and losses generated from closing positions(calculated with the average price of position, exclude profit in history settlement.)  |                                          |
-| traded_fee             | true | decimal | fees charged by platform              |                                          |
+| trade_fee             | true | decimal | fees charged by platform              |                                          |
 | role                   | true | string  | taker or maker        |                                          |
 | fee_asset              | true | string  | the corresponding cryptocurrency to the given fee     |  （"BTC","ETH"...）      |
 | order_source           | true | string  |  Order Source    |  （system、web、api、m、risk、settlement、ios、android、windows、mac、trigger、tpsl）    |
