@@ -5979,7 +5979,7 @@ ts  |  true  |  long  |  时间戳  |    |
 | trade_turnover         | true | decimal | 成交总金额              |                                          |
 | create_date            | true | long    | 成交时间               |                                          |
 | offset_profitloss      | true | decimal | 平仓盈亏（使用持仓均价计算，不包含仓位跨结算的已实现盈亏。）     |                                          |
-| traded_fee             | true | decimal | 成交手续费              |                                          |
+| trade_fee             | true | decimal | 成交手续费              |                                          |
 | role                   | true | string  | taker或maker        |                                          |
 | real_profit | true | decimal | 真实收益（使用开仓均价计算，包含仓位跨结算的已实现盈亏。）  |  |
 | fee_asset         | true | string  | 手续费币种       |  （"BTC","ETH"...）      |
