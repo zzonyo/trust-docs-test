@@ -1524,7 +1524,7 @@ Response content is an array of object, each object has below fields.
 | amount  | float     | The aggregated trading volume in last 24 hours (rotating 24h) |
 | count   | integer   | The number of completed trades of last 24 hours (rotating 24h) |
 | open    | float     | The opening price of a nature day (Singapore time)           |
-| close   | float     | The last price of a nature day (Singapore time)              |
+| close   | float     | The closing price of a nature day (Singapore time)              |
 | low     | float     | The lowest price of a nature day (Singapore time)               |
 | high    | float     | The highest price of a nature day (Singapore time)              |
 | vol     | float     | The aggregated trading value in last 24 hours (rotating 24h) |
@@ -1798,7 +1798,7 @@ curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
 | amount  | float     | The aggregated trading volume in USDT of last 24 hours (rotating 24h) |
 | count   | integer   | The number of completed trades of last 24 hours (rotating 24h) |
 | open    | float     | The opening price of last 24 hours (rotating 24h)            |
-| close   | float     | The last price of last 24 hours (rotating 24h)               |
+| close   | float     | The closing price of last 24 hours (rotating 24h)               |
 | low     | float     | The lowest price of last 24 hours (rotating 24h)                |
 | high    | float     | The highest price of last 24 hours (rotating 24h)               |
 | vol     | float     | The trading volume in base currency of last 24 hours (rotating 24h) |
@@ -1924,7 +1924,7 @@ curl "https://api.huobi.pro/v1/account/accounts"
 | type    | string    | The type of this account                                     | spot, margin, otc, point, super-margin, investment, borrow   |
 | subtype | string    | The type of sub account (applicable only for isolated margin accout) | The corresponding trading symbol (currency pair) the isolated margin is based on, e.g. btcusdt |
 
-<aside class="notice">Margin/super-margin/borrow account will only be created after the initial incoming asset transfer-in.</aside>
+<aside class="notice">Margin/super-margin/borrow account will only be created after the initial incoming asset transfer.</aside>
 
 ## Get Account Balance of a Specific Account
 
