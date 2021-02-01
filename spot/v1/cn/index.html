@@ -642,6 +642,9 @@
                     <a href="#5ea2e0cde2-9" class="toc-h2 toc-link" data-title="简介">简介</a>
                   </li>
                   <li>
+                    <a href="#03b85eee9a" class="toc-h2 toc-link" data-title="归还借币（全仓逐仓通用）">归还借币（全仓逐仓通用）</a>
+                  </li>
+                  <li>
                     <a href="#9d6ea9e91a" class="toc-h2 toc-link" data-title="资产划转（逐仓）">资产划转（逐仓）</a>
                   </li>
                   <li>
@@ -676,9 +679,6 @@
                   </li>
                   <li>
                     <a href="#0545827a0a" class="toc-h2 toc-link" data-title="借币账户详情（全仓）">借币账户详情（全仓）</a>
-                  </li>
-                  <li>
-                    <a href="#92b0676e98-2" class="toc-h2 toc-link" data-title="归还借币（全仓）">归还借币（全仓）</a>
                   </li>
                   <li>
                     <a href="#0437640667" class="toc-h2 toc-link" data-title="还币交易记录查询（全仓）">还币交易记录查询（全仓）</a>
@@ -914,6 +914,12 @@ table th {
 <th>摘要</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2021.2.1</td>
+<td><code>POST /v2/account/repayment</code></td>
+<td>优化</td>
+<td>通用还币接口支持逐仓杠杆还币</td>
+</tr>
 <tr>
 <td>2021.1.19 19:00</td>
 <td><code>GET /v1/order/matchresults</code></td>
@@ -12704,6 +12710,118 @@ API Key 权限：读取<br>
 <aside class="notice">访问借币相关的接口需要进行签名认证。</aside>
 
 <aside class="notice">目前逐仓杠杆交易仅支持部分以 USDT，HSUD， 和 BTC 为报价币种的交易对。</aside>
+<h2 id='03b85eee9a'>归还借币（全仓逐仓通用）</h2>
+<p>API Key 权限：交易</p>
+
+<p>限频值：2次/秒</p>
+
+<p>子用户可以调用</p>
+
+<p>还币顺序为，（如不指定transactId）先借先还，利息先还；如指定transactId时，currency参数不做校验。</p>
+<h3 id='http-60'>HTTP 请求</h3>
+<ul>
+<li>POST /v2/account/repayment</li>
+</ul>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"accountid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1266826"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00800334"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transactId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"437"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-67'>请求参数</h3>
+<table><thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>是否必需</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>还币账户ID</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>TRUE</td>
+<td>还币币种</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>TRUE</td>
+<td>还币金额</td>
+</tr>
+<tr>
+<td>transactId</td>
+<td>string</td>
+<td>FALSE</td>
+<td>原始借币交易ID</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"Data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"repayId"</span><span class="p">:</span><span class="mi">1174424</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"repayTime"</span><span class="p">:</span><span class="mi">1600747722018</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-61'>响应数据</h3>
+<table><thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>是否必需</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>TRUE</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>FALSE</td>
+<td>错误描述（如有）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>array</td>
+<td>TRUE</td>
+<td></td>
+</tr>
+<tr>
+<td>[{ repayId</td>
+<td>string</td>
+<td>TRUE</td>
+<td>还币交易ID</td>
+</tr>
+<tr>
+<td>repayTime }]</td>
+<td>long</td>
+<td>TRUE</td>
+<td>还币交易时间（unix time in millisecond）</td>
+</tr>
+</tbody></table>
+
+<p>注：
+返回relayId不意味着该还币100%成功，用户须在还币后通过查询还币交易记录确认该还币状态。</p>
 <h2 id='9d6ea9e91a'>资产划转（逐仓）</h2>
 <p>API Key 权限：交易<br>
 限频值（NEW）：2次/2s</p>
@@ -12711,7 +12829,7 @@ API Key 权限：读取<br>
 <p>此接口用于现货账户与逐仓杠杆账户的资产互转。</p>
 
 <p>从现货账户划转至逐仓杠杆账户 <code>transfer-in</code>，从逐仓杠杆账户划转至现货账户 <code>transfer-out</code></p>
-<h3 id='http-60'>HTTP 请求</h3>
+<h3 id='http-61'>HTTP 请求</h3>
 <ul>
 <li><p>POST <code>/v1/dw/transfer-in/margin</code></p></li>
 <li><p>POST <code>/v1/dw/transfer-out/margin</code></p></li>
@@ -12725,7 +12843,7 @@ API Key 权限：读取<br>
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-67'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-68'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12764,7 +12882,7 @@ API Key 权限：读取<br>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-61'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-62'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12784,11 +12902,11 @@ API Key 权限：读取<br>
 
 <p>此接口返回用户级别的借币币息率及借币额度。</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/loan-info?symbols=btcusdt"</span>
-</code></pre><h3 id='http-61'>HTTP 请求</h3>
+</code></pre><h3 id='http-62'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/margin/loan-info</code></li>
 </ul>
-<h3 id='1f9ac54b15-68'>请求参数</h3>
+<h3 id='1f9ac54b15-69'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12836,7 +12954,7 @@ API Key 权限：读取<br>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-62'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-63'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12890,7 +13008,7 @@ API Key 权限：读取<br>
 限频值（NEW）：2次/2s</p>
 
 <p>此接口用于申请借币.</p>
-<h3 id='http-62'>HTTP 请求</h3>
+<h3 id='http-63'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/margin/orders</code></li>
 </ul>
@@ -12903,7 +13021,7 @@ API Key 权限：读取<br>
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-69'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-70'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12943,7 +13061,7 @@ API Key 权限：读取<br>
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-63'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-64'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -12967,7 +13085,7 @@ API Key 权限：读取<br>
 限频值（NEW）：2次/2s</p>
 
 <p>此接口用于归还借币.</p>
-<h3 id='http-63'>HTTP 请求</h3>
+<h3 id='http-64'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/margin/orders/{order-id}/repay</code></li>
 </ul>
@@ -12978,7 +13096,7 @@ API Key 权限：读取<br>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-70'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-71'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13007,7 +13125,7 @@ API Key 权限：读取<br>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-64'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-65'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13026,11 +13144,11 @@ API Key 权限：读取<br>
 限频值（NEW）：100次/2s</p>
 
 <p>此接口基于指定搜索条件返回借币订单。</p>
-<h3 id='http-64'>HTTP 请求</h3>
+<h3 id='http-65'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/margin/loan-orders</code></li>
 </ul>
-<h3 id='1f9ac54b15-71'>请求参数</h3>
+<h3 id='1f9ac54b15-72'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13138,7 +13256,7 @@ API Key 权限：读取<br>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-65'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-66'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -13302,11 +13420,11 @@ API Key 权限：读取<br>
 
 <p>此接口返回借币账户详情。</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"</span>
-</code></pre><h3 id='http-65'>HTTP 请求</h3>
+</code></pre><h3 id='http-66'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/margin/accounts/balance</code></li>
 </ul>
-<h3 id='1f9ac54b15-72'>请求参数</h3>
+<h3 id='1f9ac54b15-73'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13383,7 +13501,7 @@ API Key 权限：读取<br>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-66'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-67'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -13456,7 +13574,7 @@ API Key 权限：读取<br>
 <p>此接口用于现货账户与全仓杠杆账户的资产互转。</p>
 
 <p>从现货账户划转至全仓杠杆账户 <code>transfer-in</code>，从全仓杠杆账户划转至现货账户 <code>transfer-out</code></p>
-<h3 id='http-66'>HTTP 请求</h3>
+<h3 id='http-67'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/cross-margin/transfer-in</code></li>
 <li>POST <code>/v1/cross-margin/transfer-out</code></li>
@@ -13469,7 +13587,7 @@ API Key 权限：读取<br>
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-73'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-74'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13502,7 +13620,7 @@ API Key 权限：读取<br>
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-67'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-68'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13520,11 +13638,11 @@ API Key 权限：读取<br>
 <p>API Key 权限：读取</p>
 
 <p>此接口返回用户级别的借币币息率及借币额度。</p>
-<h3 id='http-67'>HTTP 请求</h3>
+<h3 id='http-68'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/cross-margin/loan-info</code></li>
 </ul>
-<h3 id='1f9ac54b15-74'>请求参数</h3>
+<h3 id='1f9ac54b15-75'>请求参数</h3>
 <p>无</p>
 
 <blockquote>
@@ -13591,7 +13709,7 @@ API Key 权限：读取<br>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-68'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-69'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13634,7 +13752,7 @@ API Key 权限：读取<br>
 <p>API Key 权限：交易</p>
 
 <p>此接口用于申请借币.</p>
-<h3 id='http-68'>HTTP 请求</h3>
+<h3 id='http-69'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/cross-margin/orders</code></li>
 </ul>
@@ -13646,7 +13764,7 @@ API Key 权限：读取<br>
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-75'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-76'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13679,7 +13797,7 @@ API Key 权限：读取<br>
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-69'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-70'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -13697,7 +13815,7 @@ API Key 权限：读取<br>
 <p>API Key 权限：交易</p>
 
 <p>此接口用于归还借币.</p>
-<h3 id='http-69'>HTTP 请求</h3>
+<h3 id='http-70'>HTTP 请求</h3>
 <ul>
 <li>POST <code>/v1/cross-margin/orders/{order-id}/repay</code></li>
 </ul>
@@ -13708,7 +13826,7 @@ API Key 权限：读取<br>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-76'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-77'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13738,7 +13856,7 @@ API Key 权限：读取<br>
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-70'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-71'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13756,11 +13874,11 @@ API Key 权限：读取<br>
 <p>API Key 权限：读取</p>
 
 <p>此接口基于指定搜索条件返回借币订单。</p>
-<h3 id='http-70'>HTTP 请求</h3>
+<h3 id='http-71'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/cross-margin/loan-orders</code></li>
 </ul>
-<h3 id='1f9ac54b15-77'>请求参数</h3>
+<h3 id='1f9ac54b15-78'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13860,7 +13978,7 @@ API Key 权限：读取<br>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-71'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-72'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -13966,11 +14084,11 @@ API Key 权限：读取<br>
 <p>API Key 权限：读取</p>
 
 <p>此接口返回借币账户详情。</p>
-<h3 id='http-71'>HTTP 请求</h3>
+<h3 id='http-72'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/cross-margin/accounts/balance</code></li>
 </ul>
-<h3 id='1f9ac54b15-78'>请求参数</h3>
+<h3 id='1f9ac54b15-79'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14038,7 +14156,7 @@ API Key 权限：读取<br>
       </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-72'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-73'>响应数据</h3>
 <table><thead>
 <tr>
 <th>字段名称</th>
@@ -14119,118 +14237,6 @@ API Key 权限：读取<br>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='92b0676e98-2'>归还借币（全仓）</h2>
-<p>API Key 权限：交易</p>
-
-<p>限频值：2次/秒</p>
-
-<p>子用户可以调用</p>
-
-<p>还币顺序为，（如不指定transactId）先借先还，利息先还。</p>
-<h3 id='http-72'>HTTP 请求</h3>
-<ul>
-<li>POST /v2/account/repayment</li>
-</ul>
-
-<blockquote>
-<p>Request:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"accountid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1266826"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00800334"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"transactId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"437"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-79'>请求参数</h3>
-<table><thead>
-<tr>
-<th><strong>名称</strong></th>
-<th><strong>类型</strong></th>
-<th><strong>是否必需</strong></th>
-<th><strong>描述</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>accountId</td>
-<td>string</td>
-<td>TRUE</td>
-<td>还币账户ID</td>
-</tr>
-<tr>
-<td>currency</td>
-<td>string</td>
-<td>TRUE</td>
-<td>还币币种</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>string</td>
-<td>TRUE</td>
-<td>还币金额</td>
-</tr>
-<tr>
-<td>transactId</td>
-<td>string</td>
-<td>FALSE</td>
-<td>原始借币交易ID</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"code"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"Data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"repayId"</span><span class="p">:</span><span class="mi">1174424</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"repayTime"</span><span class="p">:</span><span class="mi">1600747722018</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-   </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-73'>响应数据</h3>
-<table><thead>
-<tr>
-<th><strong>名称</strong></th>
-<th><strong>类型</strong></th>
-<th><strong>是否必需</strong></th>
-<th><strong>描述</strong></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>code</td>
-<td>integer</td>
-<td>TRUE</td>
-<td>状态码</td>
-</tr>
-<tr>
-<td>message</td>
-<td>string</td>
-<td>FALSE</td>
-<td>错误描述（如有）</td>
-</tr>
-<tr>
-<td>data</td>
-<td>array</td>
-<td>TRUE</td>
-<td></td>
-</tr>
-<tr>
-<td>[{ repayId</td>
-<td>string</td>
-<td>TRUE</td>
-<td>还币交易ID</td>
-</tr>
-<tr>
-<td>repayTime }]</td>
-<td>long</td>
-<td>TRUE</td>
-<td>还币交易时间（unix time in millisecond）</td>
-</tr>
-</tbody></table>
-
-<p>注：
-返回relayId不意味着该还币100%成功，用户须在还币后通过查询还币交易记录确认该还币状态。</p>
 <h2 id='0437640667'>还币交易记录查询（全仓）</h2>
 <p>API Key 权限：读取</p>
 
