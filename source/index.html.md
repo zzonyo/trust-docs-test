@@ -26,6 +26,7 @@ table th {
 
 | 生效时间<br>(UTC +8) | 接口                                                         | 变化      | 摘要                                                         |
 | -------------------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
+| 2021.2.1             | `POST /v2/account/repayment`                                 | 优化      | 通用还币接口支持逐仓杠杆还币                                 |
 | 2021.1.19 19:00      | `GET /v1/order/matchresults`                                 | 优化      | 增加start-time/end-time参数，支持用户指定“时间范围“查询订单  |
 | 2021.1.19 19:00      | `GET /v2/etp/limit`                                          | 新增      | 新增ETP持仓限额接口                                          |
 | 2021.1.5 19:00       | `POST/v2/algo-orders/cancel-all-after`                       | 新增      | 新增自动撤单接口                                             |
@@ -5383,6 +5384,69 @@ API Key 权限：读取<br>
 <aside class="notice">访问借币相关的接口需要进行签名认证。</aside>
 <aside class="notice">目前逐仓杠杆交易仅支持部分以 USDT，HSUD， 和 BTC 为报价币种的交易对。</aside>
 
+## 归还借币（全仓逐仓通用）
+
+API Key 权限：交易
+
+限频值：2次/秒
+
+子用户可以调用
+
+还币顺序为，（如不指定transactId）先借先还，利息先还；如指定transactId时，currency参数不做校验。
+
+### HTTP 请求
+
+- POST /v2/account/repayment
+
+> Request:
+
+```json
+{
+    "accountid": "1266826",
+    "currency": "btc",
+    "amount": "0.00800334",
+    "transactId": "437"
+}
+```
+
+### 请求参数
+
+| **名称**   | **类型** | **是否必需** | **描述**       |
+| ---------- | -------- | ------------ | -------------- |
+| accountId  | string   | TRUE         | 还币账户ID     |
+| currency   | string   | TRUE         | 还币币种       |
+| amount     | string   | TRUE         | 还币金额       |
+| transactId | string   | FALSE        | 原始借币交易ID |
+
+> Response:
+
+```json
+{
+  "code":200,
+  "Data": [
+      {
+          "repayId":1174424,
+          "repayTime":1600747722018
+      }
+   ]
+}
+```
+
+### 响应数据
+
+| **名称**     | **类型** | **是否必需** | **描述**                                 |
+| ------------ | -------- | ------------ | ---------------------------------------- |
+| code         | integer  | TRUE         | 状态码                                   |
+| message      | string   | FALSE        | 错误描述（如有）                         |
+| data         | array    | TRUE         |                                          |
+| [{ repayId   | string   | TRUE         | 还币交易ID                               |
+| repayTime }] | long     | TRUE         | 还币交易时间（unix time in millisecond） |
+
+注：
+返回relayId不意味着该还币100%成功，用户须在还币后通过查询还币交易记录确认该还币状态。
+
+## 
+
 ## 资产划转（逐仓）
 
 API Key 权限：交易<br>
@@ -6117,67 +6181,6 @@ API Key 权限：读取
 | { currency       | true     | string   | 币种                                                         |                                                              |
 | type             | true     | string   | 账户类型                                                     | trade,frozen,loan,interest,transfer-out-available,loan-available |
 | balance }        | true     | string   | 余额（注：当type= transfer-out-available时，如果balance=-1，意味着该币种余额可全部转出） |                                                              |
-
-## 归还借币（全仓）
-
-API Key 权限：交易
-
-限频值：2次/秒
-
-子用户可以调用
-
-还币顺序为，（如不指定transactId）先借先还，利息先还。
-
-### HTTP 请求
-
-- POST /v2/account/repayment
-
-> Request:
-
-```json
-{
-    "accountid": "1266826",
-    "currency": "btc",
-    "amount": "0.00800334",
-    "transactId": "437"
-}
-```
-
-### 请求参数
-
-| **名称**   | **类型** | **是否必需** | **描述**       |
-| ---------- | -------- | ------------ | -------------- |
-| accountId  | string   | TRUE         | 还币账户ID     |
-| currency   | string   | TRUE         | 还币币种       |
-| amount     | string   | TRUE         | 还币金额       |
-| transactId | string   | FALSE        | 原始借币交易ID |
-
-> Response:
-
-```json
-{
-  "code":200,
-  "Data": [
-      {
-          "repayId":1174424,
-          "repayTime":1600747722018
-      }
-   ]
-}
-```
-
-### 响应数据
-
-| **名称**     | **类型** | **是否必需** | **描述**                                 |
-| ------------ | -------- | ------------ | ---------------------------------------- |
-| code         | integer  | TRUE         | 状态码                                   |
-| message      | string   | FALSE        | 错误描述（如有）                         |
-| data         | array    | TRUE         |                                          |
-| [{ repayId   | string   | TRUE         | 还币交易ID                               |
-| repayTime }] | long     | TRUE         | 还币交易时间（unix time in millisecond） |
-
-注：
-返回relayId不意味着该还币100%成功，用户须在还币后通过查询还币交易记录确认该还币状态。
 
 ## 还币交易记录查询（全仓）
 
