@@ -30,6 +30,7 @@ table th {
 
 | Release Time <br>(UTC +8) | API  | New / Update    | Description     |
 | ------------------------ | ---------------------- | --------------- | ------------------------------------- |
+| 2021.2.1 | `POST /v2/account/repayment` | Update | Support isolated repayment                                   |
 | 2021.1.22 19:00 | `GET /v1/order/matchresults` | Add | Add timestamp parameters |
 | 2021.1.19 19:00 | `GET /v2/etp/limit` | Add | Add “Get Holding Limit of Leveraged ETP” endpoints |
 | 2020.1.8 19:00 | `POST/v2/algo-orders/cancel-all-after` | Add | Add Dead man’s switch endpoints |
@@ -5347,7 +5348,7 @@ Below is the error code and the description returned by Conditional Order APIs
 | 3010       | Market order amount is greater than specific amount  |
 | 3100       | Market orders not support during limit price trading |
 
-# Margin Loan (isolated/cross)
+# Margin Loan (Cross/Isolated)
 
 ## Introduction
 
@@ -5356,6 +5357,66 @@ Isolated/cross margin loan APIs provide loan related functionality such as reque
 <aside class="notice">All endpoints in this section require authentication</aside>
 <aside class="notice">Currently loan only supports base currency of USDT, HUSD, and BTC</aside>
 <aside class="notice">Once completed a margin loan or transfer, please wait for 10 seconds before requesting for next margin loan or transfer.</aside>
+
+## Repay Margin Loan（Cross/Isolated ）
+
+API Key Permission: Transaction
+
+Frequency Limit: 2/s
+
+Available Accounts: Main and Sub-Accounts
+
+You should make a loan first before making a repayment. While repaying the loan, you should repay the loan interest first if there is no appointed transactId. 
+
+### HTTP Request
+
+`POST /v2/account/repayment`
+
+> Request:
+
+```json
+{
+    "accountid": "1266826",
+    "currency": "btc",
+    "amount": "0.00800334",
+    "transactId": "437"
+}
+```
+
+### Request Parameters
+
+| **Field**  | **Data Type** | **Mandotory** | **Description**      |
+| ---------- | ------------- | ------------- | -------------------- |
+| accountId  | string        | TRUE          | repayment account ID |
+| currency   | string        | TRUE          | repayment currency   |
+| amount     | string        | TRUE          | repayment amount     |
+| transactId | string        | FALSE         | loan transaction ID  |
+
+> Response:
+
+```json
+{
+  "code":200,
+  "Data": [
+      {
+          "repayId":1174424,
+          "repayTime":1600747722018
+      }
+   ]
+}
+```
+
+### Response Content
+
+| **Field**   | **Data Type** | **Mandotory** | **Description**                            |
+| ----------- | ------------- | ------------- | ------------------------------------------ |
+| code        | integer       | TRUE          | status code                                |
+| message     | string        | FALSE         | error description (if any)                 |
+| data        | object        | TRUE          |                                            |
+| { repayId   | string        | TRUE          | repayment ID                               |
+| repayTime } | long          | TRUE          | repayment time (unix  time in millisecond) |
+
+Note: Back to “repayId” doesn’t mean the repayment is 100% successful. Please check the transaction record to confirm the repayment status. 
 
 ## Transfer Asset from Spot Trading Account to Isolated Margin Account（Isolated）
 
@@ -6170,64 +6231,7 @@ curl "https://api.huobi.pro/v1/cross-margin/accounts/balance?symbol=btcusdt"
 | type             | true      | string      |
 | balance }        | true      | string      |
 
-## Repay Margin Loan（Cross）
 
-API Key Permission: Transaction
-
-Frequency Limit: 2/s
-
-Available Accounts: Main and Sub-Accounts
-
-You should make a loan first before making a repayment. While repaying the loan, you should repay the loan interest first if there is no appointed transactId. 
-
-### HTTP Request
-
-`POST /v2/account/repayment`
-
-> Request:
-
-```json
-{
-    "accountid": "1266826",
-    "currency": "btc",
-    "amount": "0.00800334",
-    "transactId": "437"
-}
-```
-
-### Request Parameters
-
-| **Field**  | **Data Type** | **Mandotory** | **Description**      |
-| ---------- | ------------- | ------------- | -------------------- |
-| accountId  | string        | TRUE          | repayment account ID |
-| currency   | string        | TRUE          | repayment currency   |
-| amount     | string        | TRUE          | repayment amount     |
-| transactId | string        | FALSE         | loan transaction ID  |
-
-> Response:
-
-```json
-{
-  "code":200,
-  "Data": [
-      {
-          "repayId":1174424,
-          "repayTime":1600747722018
-      }
-   ]
-}
-```
-
-### Response Content
-
-| **Field**   | **Data Type** | **Mandotory** | **Description**                            |
-| ----------- | ------------- | ------------- | ------------------------------------------ |
-| code        | integer       | TRUE          | status code                                |
-| message     | string        | FALSE         | error description (if any)                 |
-| data        | object        | TRUE          |                                            |
-| { repayId   | string        | TRUE          | repayment ID                               |
-| repayTime } | long          | TRUE          | repayment time (unix  time in millisecond) |
-Note: Back to “repayId” doesn’t mean the repayment is 100% successful. Please check the transaction record to confirm the repayment status. 
 
 ## Repayment Record Reference（Cross）
 
