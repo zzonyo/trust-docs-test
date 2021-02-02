@@ -667,7 +667,7 @@ For specific API question, please check the Error Code and FAQ in each API categ
 
 ### Q1：How many API Keys one user can apply?
 
-Every user can create 5 API Keys, and each API Key can be granted with 3 permissions: **read**, **trade** and **withdraw**.
+Every user can create 20 API Keys, and each API Key can be granted with 3 permissions: **read**, **trade** and **withdraw**.
 
 Each user could create up to 200 sub users, and each sub user could create 5 API Keys, each API key can be granted with 2 permissions: **read** and **trade**.
 
