@@ -1997,7 +1997,7 @@ API Key Permission：Read
 
 Rate Limit (NEW): 100times/2s
 
-This endpoint the valuation of the total assets of the account in btc or fiat currency.
+This endpoint returns the valuation of the total assets of the account in btc or fiat currency.
 
 ### HTTP Request
 
@@ -2044,10 +2044,10 @@ Features now supported for both parent user and sub user include: <br>
 
 Features now supported for parent user include: <br>
 1.Transfer asset between parent user's spot account and sub user's spot account; <br>
-2.Transfer asset from sub user’s spot account to another sub user’s spot account who under the same parent user;<br>
+2.Transfer asset from sub user’s spot account to another sub user’s spot account that is under the same parent user;<br>
 
 Features now supported for sub user include: <br>
-1.Transfer asset from  authorized sub user’s spot account to another sub user’s spot account who under the same parent user.The authorization endpoint is `POST /v2/sub-user/transferability`. <br>
+1.Transfer asset from  authorized sub user’s spot account to another sub user’s spot account that is under the same parent user.The authorization endpoint is `POST /v2/sub-user/transferability`. <br>
 2.Transfer asset from sub user’s spot account to parent user’s spot account;<br>
 
 Other transfer functions will be gradually launched later, please take note on API announcement in near future. <br>
@@ -2096,7 +2096,7 @@ Other transfer functions will be gradually launched later, please take note on A
 API Key Permission：Read<br>
 Rate Limit (NEW): 5times/2s
 
-This endpoint returns the amount changes of specified user's account.
+This endpoint returns the amount changes of a specified user's account.
 
 ### HTTP Request
 
@@ -2113,8 +2113,8 @@ curl "https://api.huobi.pro/v1/account/history?account-id=5260185"
 | account-id     | true     | string    | Account Id, refer to `GET /v1/account/accounts`              |                      |                                                              |
 | currency       | false    | string    | Currency name                                                |                      | Refer to /v1/common/currencys                                |
 | transact-types | false    | string    | Amount change types (multiple selection allowed, separated by comma) | all                  | trade,etf, transact-fee, fee-deduction, transfer, credit, liquidation, interest, deposit, withdraw, withdraw-fee, exchange, other-types, rebate |
-| start-time     | false    | long      | Far point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days. | ((end-time) – 1hour) | [((end-time) – 1hour), (end-time)]                           |
-| end-time       | false    | long      | Near point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days. | current-time         | [(current-time) – 29days,(current-time)]                     |
+| start-time     | false    | long      | The start time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days. | ((end-time) – 1hour) | [((end-time) – 1hour), (end-time)]                           | 
+| end-time       | false    | long      | The end time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days. | current-time         | [(current-time) – 29days,(current-time)]                     |
 | sort           | false    | string    | Sorting order                                                | asc                  | asc or desc                                                  |
 | size           | false    | int       | Maximum number of items in each response                     | 100                  | [1,500]                                                      |
 | from-id        | false    | long      | First record ID in this query (only valid for next page querying, see Note 2) |                      |                                                              |
@@ -2167,7 +2167,7 @@ curl "https://api.huobi.pro/v1/account/history?account-id=5260185"
 
 Note 1:<br>
 
-- If received ‘transaction-amt’ with ‘transact-type’ as ‘rebate’, it implicates a paid maker rebate.<br>
+- If ‘transact-type’ is shown as ‘rebate’, it implicates a paid maker rebate.<br>
 - A paid maker rebate could possibly include rebate from multiple trades.<br>
 
 Note 2:<br>
@@ -2184,8 +2184,8 @@ This endpoint returns the amount changes of specified user's account.<br>
 
 Phase 1 release only supports historical assets transfer querying (“transactType” = “transfer”).<br>
 
-The maximum query window size set by “startTime” & “endTime” is 10-day, which means, maximum 10-day records are queriable per request.
-The query window can be sliding within the latest 180 days, which means, by adjusting “startTime” & “endTime” to slide the query window in multiple requests, the records in latest 180 days are queriable.<br>
+The maximum query window size set by “startTime” & “endTime” is 10-day, which mean a maximum of 10-day records are queriable per request.
+The query window can be within the last 180 days, which means, by adjusting “startTime” & “endTime” accordingly, the records in last 180 days are queriable.<br>
 
 ### HTTP Request
 
@@ -2278,7 +2278,9 @@ Only when the number of items within the query window (between “startTime” a
 
 API Key Permission：Trade<br>
 
-This endpoint allows a user to transfer fund between spot account and futrue contract account. 
+This endpoint allows a user to transfer fund between spot accounts and futrue contract accounts.
+
+Transferring from a spot account to a contract account, the type is pro-to-futures; transferring from a contract account to a spot account, the type is futures-to-pro
 
 
 ### HTTP Request
@@ -2545,7 +2547,7 @@ curl "https://api.huobi.pro/v2/account/deposit/address?currency=btc"
 
 ## Query Withdraw Quota
 
-Parent user could query withdraw quota for currencies
+Parent user could query withdrawing quota for currencies
 
 API Key Permission：Read<br>
 Rate Limit (NEW): 20times/2s
@@ -2612,7 +2614,7 @@ API Key Permission: Read<br>
 
 This endpoint allows parent user to query withdraw address available for API key.<br>
 
-<aside class="notice">To get the withdraw address from API , user need to add the withdraw address from the Web first</aside>
+<aside class="notice">To get the withdraw address from API , user needs to add the withdrawal address from the Web UI first</aside>
 
 ### HTTP Request
 
