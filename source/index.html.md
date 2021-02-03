@@ -4992,7 +4992,7 @@ curl "https://api.huobi.pro/v2/reference/transact-fee-rate?symbols=btcusdt,ethus
 | validation-constraints-required                              | 指定的必填参数缺失                                           |
 | symbol-not-support                                           | 交易对不支持，全仓杠杆或c2c                                  |
 | not-found                                                    | 撤单时订单不存在                                             |
-| base-not-found                                               | 撤单时无效clientorderid撤单过多，一个小时后再重试            |
+| base-not-found                                               | 未找到记录            |
 
 ## 常见问题
 
