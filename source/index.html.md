@@ -665,7 +665,24 @@ This section lists the  frequently asked questions regardless the specific API, 
 
 For specific API question, please check the Error Code and FAQ in each API category.
 
-### Q1：How many API Keys one user can apply?
+### Q1：What is UID and account-id?
+UID is the unique ID for a user (including master user and sub user), it can be found in Web or App personal information part, or retrieved from API `GET /v2/user/uid`.
+
+The `account-id` defines the identity for different account type under one user, it can be retrieved from API `/v1/account/accounts` , where the `account-type` is the account types.
+
+The types include but not limited to below types, contract account types (futures/swap/option) are not included:
+
+- spot: Spot account
+- otc: OTC account
+- margin: Isolated margin account, the detailed currency type is defined in `subType`
+- super-margin / cross-margin:  Cross-margin account
+- investment: c2c margin lending account
+- borrow: c2c margin borrowing account
+- point: Point card account
+- minepool: Minepool account
+- etf: ETF account
+
+### Q2：How many API Keys one user can apply?
 
 Every user can create 20 API Keys, and each API Key can be granted with 3 permissions: **read**, **trade** and **withdraw**.
 
@@ -677,14 +694,14 @@ Below are the explanation for permissions:
 2. Trade permission: it is used to **place order**, **cancel order** and **transfer**.
 3. Withdraw permission: it is used to **withdraw**, **cancel withdraw**.
 
-### Q2：Why APIs are always disconnected or timeout?
+### Q3：Why APIs are always disconnected or timeout?
 
 Please follow below suggestions:
 
 1. It is unstable if the client's server locates in China mainland, it is suggested to invoke API from a server at AWS Japan.
 2. It is suggested to invoke API only to host <u>api.huobi.pro</u> or <u>api-was.huobi.pro</u>.
 
-### Q3：Why the WebSocket is often disconnected?
+### Q4：Why the WebSocket is often disconnected?
 
 Please check below possible reasons:
 
@@ -693,11 +710,11 @@ Please check below possible reasons:
 3. The connection is broken due to network issue.
 4. It is suggested to implement WebSocket re-connect mechanism. If Ping/Pong works well but the connection is broken, the application should be able to re-connect automatically.
 
-### Q4：What is the difference between <u>api.huobi.pro</u> and <u>api-aws.huobi.pro</u>?
+### Q5：What is the difference between <u>api.huobi.pro</u> and <u>api-aws.huobi.pro</u>?
 
 The host <u>api-aws.huobi.pro</u> is optimized for AWS client, the latency is lower.
 
-### Q5：Why the signature authentication always fail?
+### Q6：Why the signature authentication always fail?
 
 Please check whether you follow below rules:
 
@@ -752,7 +769,7 @@ Right now the official [SDK](https://github.com/HuobiRDCenter) supports multiple
 
 <a href='https://github.com/HuobiRDCenter/huobi_Java/blob/master/java_signature_demo.md'>JAVA signature example</a> | <a href='https://github.com/HuobiRDCenter/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++ signature example</a>  | <a href='https://github.com/HuobiRDCenter/huobi_Python/blob/master/example/python_signature_demo.md'>Python signature example</a>   
 
-### Q6：Why the API return 'Incorrect Access Key'?
+### Q7：Why the API return 'Incorrect Access Key'?
 
 Please check whether Access Key is wrong in URL request, such as:
 
@@ -761,7 +778,7 @@ Please check whether Access Key is wrong in URL request, such as:
 3. The AccessKey is already deleted
 4. The URL request is not assembled correctly which cause AccessKey is parsed unexpected in server side.
 
-### Q7：Why the API return 'gateway-internal-error'?
+### Q8：Why the API return 'gateway-internal-error'?
 
 Please check below possible reasons:
 
@@ -769,14 +786,14 @@ Please check below possible reasons:
 2. The data format should be correct (standard JSON).
 3. The `Content-Type` in POST header should be `application/json` .
 
-### Q8：Why the API return 'login-required'?
+### Q9：Why the API return 'login-required'?
 
 Please check below possible reasons:
 
 1. The URL request parameter should include `AccessKeyId`.
 2. The URL request parameter should include `Signature`.
 
-### Q9: Why the API return HTTP 405 'method-not-allowed'?
+### Q10: Why the API return HTTP 405 'method-not-allowed'?
 
 It indicates the request path doesn't exist, please check the path spelling carefully. Due to the Nginx setting, the request path is case sensitive, please follow the path definition in document.
 
@@ -4948,29 +4965,14 @@ Below is the error code and description returned by Trading APIs
 | validation-constraints-required                              | The specified parameters is missing                          |
 | symbol-not-support                                           | The symbol is not support for cross margin or C2C            |
 | not-found                                                    | The order id is not found                                    |
-| base-not-found                                               | Too much invalid client order id in the past, try again after 1 hour |
+| base-not-found                                               | The record is not found |
 
 ## FAQ
 
-### Q1：What is account-id?
-A： The `account-id` defines the Identity for different business type, it can be retrieved from API `/v1/account/accounts` , where the `account-type` is the business types.
-
-The types include:
-
-- spot: Spot account
-- otc: OTC account
-- margin: Isolated margin account, the detailed currency type is defined in `subType`
-- super-margin / cross-margin:  Cross-margin account
-- investment: c2c margin lending account
-- borrow: c2c margin borrowing account
-- point: Point card account
-- minepool: Minepool account
-- etf: ETF account
-
-### Q2：What is client-order-id?
+### Q1：What is client-order-id?
 A： The `client-order-id` is an optional request parameter while placing order. It's string type which maximum length is 64. The client order id is generated by client, and is only valid within 24 hours.
 
-### Q3：How to get the order size, price and decimal precision?
+### Q2：How to get the order size, price and decimal precision?
 A： You can call API `GET /v1/common/symbols` to get the currency pair information, pay attention to the difference between the minimum amount and the minimum price.   
 
 Below are common errors:
@@ -4983,16 +4985,7 @@ Below are common errors:
 - order-limitorder-amount-max-error : The limited order amount is larger than the threshold
 - order-limitorder-amount-min-error : The limited order amount is smaller than the threshold  
 
-### Q4：What is the difference between two WebSocket topic 'orders.\$symbol' and 'orders.\$symbol.update'?
-A： Below are the difference:
-
-1、The topic `order.$symbol` is the legacy version, which will be no longer supported in the near future. It is strongly recommended to subscribe topic `orders.$symbol.update` instead for getting order updates.
-
-2、The update message sequence of `orders.$symbol.update` strictly follows transaction time, with lower latency.
-
-3、In order to reduce latency, the topic `orders.$symbol.update` doesn't include original order details and transaction fee etc. If you require the original order information or transaction fee details, you may query to corresponding REST API endpoint.
-
-### Q5：Why I got insufficient balance error while placing an order just after a successful order matching?
+### Q3：Why I got insufficient balance error while placing an order just after a successful order matching?
 A：The time order matching update being sent down, the clearing service of that order may be still in progress at backend. Suggest to follow either of below to ensure a successful order submission:
 
 1、Subscribe to WebSocket topic `accounts` for getting account balance moves to ensure the completion of asset clearing.
@@ -5001,20 +4994,20 @@ A：The time order matching update being sent down, the clearing service of that
 
 3、Leave sufficient balance in your account.
 
-### Q6: What is the difference between 'filled-fees' and 'filled-points' in match result?
+### Q4: What is the difference between 'filled-fees' and 'filled-points' in match result?
 A: Transaction fee can be paid from either of below.
 
 1、filled-fees: Filled-fee is also called transaction fee. It's charged from your income currency from the transaction. For example, if your purchase order of BTC/USDT got matched，the transaction fee will be based on BTC.
 
 2、filled-points: If user enabled transaction fee deduction, the fee should be charged from either HT or Point. User could refer to field `fee-deduct-currency` to get the exact deduction type of the transaction.
 
-### Q7: What is the difference between 'match-id' and 'trade-id' in matching result?
+### Q5: What is the difference between 'match-id' and 'trade-id' in matching result?
 A: The `match-id` is the identity for order matching, while the `trade-id` is the unique identifier for each trade. One `match-id` may be correlated with multiple `trade-id`, or no `trade-id`(if the order is cancelled). For example, if a taker's order got matched with 3 maker's orders at the same time, it generates 3 trade IDs but only one match ID.
 
-### Q8: Why the order submission could be rejected even though the order price is set as same as current best bid (or best ask)?
+### Q7: Why the order submission could be rejected even though the order price is set as same as current best bid (or best ask)?
 A: For some extreme illiquid trading symbols, the best quote price at particular time might be far away from last trade price. But the price limit is actually based on last trade price which could possibly exclude best quote price from valid range for any new order.
 
-### Q9: How to retrieve the trading symbols for margin trade
+### Q8: How to retrieve the trading symbols for margin trade
 
 A: You can get details from Rest API ` GET /v1/common/symbols`. The `leverage-ratio` represents the isolated-margin ratio. The `super-margin-leverage-ratio` represents the cross-margin.
 
