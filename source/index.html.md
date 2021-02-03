@@ -2723,7 +2723,7 @@ curl -X POST -H "Content-Type: application/json" "https://api.huobi.pro/v1/dw/wi
 API Key Permission：Withdraw<br>
 Rate Limit (NEW): 20times/2s
 
-Parent user cancels a previously created withdraw request by its transfer id.
+Parent user cancels a previously created withdrawal request by its transfer id.
 
 ### HTTP Request
 
@@ -2757,7 +2757,7 @@ curl -X POST "https://api.huobi.pro/v1/dw/withdraw-virtual/1000/cancel"
 API Key Permission：Read<br>
 Rate Limit (NEW): 20times/2s
 
-Parent user and sub user searche for all existed withdraws and deposits and return their latest status.
+Parent user and sub user search for all existed withdraws and deposits and return their latest status.
 
 ### HTTP Request
 
@@ -2771,8 +2771,8 @@ curl "https://api.huobi.pro/v1/query/deposit-withdraw?currency=xrp&type=deposit&
 
 | Parameter | Data Type | Required | Description                     | Value Range                                      | Default Value                                                |      |
 | --------- | --------- | -------- | ------------------------------- | ------------------------------------------------ | ------------------------------------------------------------ | ---- |
-| currency  | string    | false    | The crypto currency to withdraw | NA                                               | When currency is not specified, the reponse would include the records of ALL currencies. |      |
-| type      | string    | true     | Define transfer type to search  | deposit, withdraw, sub user can only use deposit |                                                              |      |
+| currency  | string    | false    | The crypto currency to withdraw | NA                                               | When currency is not specified, the response would include the records of ALL currencies. |      |
+| type      | string    | true     | Define transfer type to search  |       | deposit, withdraw, sub user can only use deposit                                                             |      |
 | from      | string    | false    | The transfer id to begin search | 1 ~ latest record ID                             | When 'from' is not specified, the default value would be 1 if 'direct' is 'prev' with the response in ascending order, the default value would be the ID of latest record if 'direct' is 'next' with the response in descending order. |      |
 | size      | string    | false    | The number of items to return   | 1-500                                            | 100                                                          |      |
 | direct    | string    | false    | the order of response           | 'prev' (ascending), 'next' (descending)          | 'prev'                                                       |      |
@@ -2804,14 +2804,14 @@ curl "https://api.huobi.pro/v1/query/deposit-withdraw?currency=xrp&type=deposit&
 | Field       | Data Type | Description                                                  |
 | ----------- | --------- | ------------------------------------------------------------ |
 | id          | integer   | Transfer id                                                  |
-| type        | string    | Define transfer type to search, possible values: [deposit, withdraw] |
+| type        | string    | Define transfer type to search, possible values: [deposit, withdraw] Sub-user can only put "deposit"|
 | currency    | string    | The crypto currency to withdraw                              |
 | tx-hash     | string    | The on-chain transaction hash. If this is a "fast withdraw", then it is not on-chain transfer, and this value is empty. |
 | chain       | string    | Block chain name                                             |
 | amount      | float     | The number of crypto asset transfered in its minimum unit    |
 | address     | string    | The deposit or withdraw target address                       |
 | address-tag | string    | The user defined address tag                                 |
-| fee         | float     | Withdraw fee                                                 |
+| fee         | float     | Withdrawal fee                                                 |
 | state       | string    | The state of this transfer (see below for details)           |
 | error-code  | string    | Error code for withdrawal failure, only returned when the type is "withdraw" and the state is "reject", "wallet-reject" and "failed". |
 | error-msg   | string    | Error description of withdrawal failure, only returned when the type is "withdraw" and the state is "reject", "wallet-reject" and "failed". |
