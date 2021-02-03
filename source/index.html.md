@@ -688,10 +688,27 @@ API[在线演示](https://open.huobigroup.com/)可以让用户不需要写任何
 
 针对某类或某个API的问题，请查看每章API的错误码和常见问题。
 
-### Q1：一个用户可以申请多少个Api Key？
+### Q1：什么是UID和account-id？
+A：UID是用户ID，是标示每个用户的唯一ID（包括母用户和子用户），UID可以在Web或App界面的个人信息里查看到，也可以通过接口 `GET /v2/user/uid`获得。
 
-每个母用户可创建20组Api Key，每个Api Key可对应设置读取、交易、提币三种权限。 
-每个母用户还可创建200个子用户，每个子用户可创建20组Api Key，每个Api Key可对应设置读取、交易两种权限。   
+account-id则是该用户下不同业务账户的ID，需要通过`GET /v1/account/accounts`接口获取，并根据account-type区分具体账户。如果需要开通某个账户，需要首先通过Web或App开通并向该账户进行转账。
+
+账户类型包括但不限于如下账户（合约账户不包括在内）：
+
+- spot 现货账户  
+- otc OTC账户  
+- margin 逐仓杠杆账户，该账户类型以subType区分具体币种对账户  
+- super-margin（或cross-margin） 全仓杠杆账户 
+- investment C2C杠杆借出账户
+- borrow C2C杠杆借入账户
+- point 点卡账户  
+- minepool 矿池账户 
+- etf ETF账户  
+
+### Q2：一个用户可以申请多少个API Key？
+
+每个母用户可创建20组API Key，每个API Key可对应设置读取、交易、提币三种权限。 
+每个母用户还可创建200个子用户，每个子用户可创建20组API Key，每个API Key可对应设置读取、交易两种权限。   
 
 以下是三种权限的说明：  
 
@@ -699,14 +716,14 @@ API[在线演示](https://open.huobigroup.com/)可以让用户不需要写任何
 - 交易权限：交易权限用于下单、撤单、划转类接口。  
 - 提币权限：提币权限用于创建提币订单、取消提币订单操作。  
 
-### Q2：为什么经常出现断线、超时的情况？
+### Q3：为什么经常出现断线、超时的情况？
 
 请检查是否属于以下情况：
 
 1. 客户端服务器如在中国大陆境内，连接的稳定性很难保证，建议使用日本AWS云服务器进行访问。 
 2. 域名建议使用api.huobi.pro或api-aws.huobi.pro，其他不建议使用。
 
-### Q3：为什么WebSocket总是断开连接？
+### Q4：为什么WebSocket总是断开连接？
 
 常见原因有：
 
@@ -715,11 +732,11 @@ API[在线演示](https://open.huobigroup.com/)可以让用户不需要写任何
 3. 网络原因造成连接断开。
 4. 建议用户做好WebSocket连接断连重连机制，在确保心跳（Ping/Pong）消息正确回复后若连接意外断开，程序能够自动进行重新连接。
 
-### Q4：api.huobi.pro 与 api-aws.huobi.pro有什么区别？
+### Q5：api.huobi.pro 与 api-aws.huobi.pro有什么区别？
 
 api-aws.huobi.pro域名对使用aws云服务的用户做了链路延迟优化，请求时延更低。
 
-### Q5：为什么签名认证总返回失败？
+### Q6：为什么签名认证总返回失败？
 
 请检查如下可能的原因：
 
@@ -766,15 +783,15 @@ api-aws.huobi.pro域名对使用aws云服务的用户做了链路延迟优化，
 
 如果您使用了代理，代理可能会改变请求Host，可以尝试去掉代理；
 
-您使用的网络连接库可能会把端口包含在Host内，可以尝试在签名用到的Host中包含端口，如“api.huobi.pro:443"
+或者，您使用的网络连接库可能会把端口包含在Host内，可以尝试在签名用到的Host中包含端口，如“api.huobi.pro:443"
 
-9、Api Key 与 Secret Key中是否存在隐藏特殊字符，影响签名
+9、Access Key 与 Secret Key中是否存在隐藏特殊字符，影响签名
 
 当前官方已支持多种语言的[SDK](https://github.com/HuobiRDCenter)，可以参考SDK的签名实现，或者以下三种语言的签名样例代码
 
 <a href='https://github.com/HuobiRDCenter/huobi_Java/blob/master/java_signature_demo.md'>JAVA签名样例代码</a> | <a href='https://github.com/HuobiRDCenter/huobi_Python/blob/master/example/python_signature_demo.md'>Python签名样例代码</a>   | <a href='https://github.com/HuobiRDCenter/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++签名样例代码 </a>  
 
-### Q6：调用接口返回Incorrect Access Key 错误是什么原因？
+### Q7：调用接口返回Incorrect Access Key 错误是什么原因？
 
 请检查URL请求中Access Key是否传递准确，例如：
 
@@ -783,7 +800,7 @@ api-aws.huobi.pro域名对使用aws云服务的用户做了链路延迟优化，
 3. Access Key已经被删除
 4. URL请求中参数拼接错误或者特殊字符没有进行编码导致服务端对AccessKey解析不正确
 
-### Q7：调用接口返回 gateway-internal-error 错误是什么原因？
+### Q8：调用接口返回 gateway-internal-error 错误是什么原因？
 
 请检查是否属于以下情况：
 
@@ -791,14 +808,14 @@ api-aws.huobi.pro域名对使用aws云服务的用户做了链路延迟优化，
 2. 发送数据格式是否正确（需要标准JSON格式）。
 3. POST请求头header需要声明为`Content-Type:application/json` 。
 
-### Q8：调用接口返回 login-required 错误是什么原因？
+### Q9：调用接口返回 login-required 错误是什么原因？
 
 请检查是否属于以下情况：
 
 1. 未将AccessKey参数带入URL中。
 2. 未将Signature参数带入URL中。
 
-### Q9: 调用Rest接口返回HTTP 405错误 method-not-allowed 是什么原因？
+### Q10: 调用Rest接口返回HTTP 405错误 method-not-allowed 是什么原因？
 
 该错误表明调用了不存在的Rest接口，请检查Rest接口路径是否准确。由于Nginx的设置，请求路径(Path)是大小写敏感的，请严格按照文档声明的大小写。
 
@@ -4979,25 +4996,10 @@ curl "https://api.huobi.pro/v2/reference/transact-fee-rate?symbols=btcusdt,ethus
 
 ## 常见问题
 
-### Q1：account-id是什么？
-A： account-id对应用户不同业务账户的ID，可通过/v1/account/accounts接口获取，并根据account-type区分具体账户。
-
-账户类型包括：
-
-- spot 现货账户  
-- otc OTC账户  
-- margin 逐仓杠杆账户，该账户类型以subType区分具体币种对账户  
-- super-margin（或cross-margin） 全仓杠杆账户 
-- investment C2C杠杆借出账户
-- borrow C2C杠杆借入账户
-- point 点卡账户  
-- minepool 矿池账户 
-- etf ETF账户  
-
-### Q2：client-order-id是什么？
+### Q1：client-order-id是什么？
 A： client-order-id作为下单请求标识的一个参数，类型为字符串，长度为64。 此id为用户自己生成，24小时内有效。
 
-### Q3：如何获取下单数量、金额、小数限制、精度的信息？
+### Q2：如何获取下单数量、金额、小数限制、精度的信息？
 A： 可使用 Rest API `GET /v1/common/symbols` 获取相关币对信息， 下单时注意最小下单数量和最小下单金额的区别。 
 
 常见返回错误如下：  
@@ -5010,16 +5012,7 @@ A： 可使用 Rest API `GET /v1/common/symbols` 获取相关币对信息， 下
 - order-limitorder-amount-max-error : 限价单数量高于限价阈值  
 - order-limitorder-amount-min-error : 限价单数量低于限价阈值  
 
-### Q4：WebSocket 订单更新推送主题orders.\$symbol 和 orders.$symbol.update的区别？
-A： 区别如下：
-
-1. order.\$symbol 主题作为老的推送主题，会在一段时间后停止主题的维护和使用， 推荐使用order.$symbol.update主题。
-
-2. 新主题orders.$symbol.update具有严格的时序性，保证数据严格按照撮合成交顺序进行推送，且具有更快的时效性以及更低的时延。
-
-3. 为减少重复数据推送量以及更快的速度，在orders.$symbol.update推送中并未携带原始订单数量，价格信息，若需要此信息，建议可在下单时在本地维护订单信息，或在接收到推送消息后，使用Rest接口进行查询。
-
-### Q5： 为什么收到订单成功成交的消息后再次进行下单，返回余额不足？
+### Q3： 为什么收到订单成功成交的消息后再次进行下单，返回余额不足？
 A：为保证订单的及时送达以及低延时， 订单推送的结果是在撮合后直接推送，此时订单可能并未完成资产的清算。  
 
 建议使用以下方式保证资金可以正确下单：
@@ -5030,20 +5023,20 @@ A：为保证订单的及时送达以及低延时， 订单推送的结果是在
 
 3. 账户中保留相对充足的资金余额。
 
-### Q6: 撮合结果里的filled-fees和filled-points有什么区别？
-A: 撮合成交中的成交手续费分为普通手续费以及抵扣手续费两种类型，两种类型不会同时存在。
+### Q4: 成交明细里的filled-fees和filled-points有什么区别？
+A: 成交中的成交手续费分为普通手续费以及抵扣手续费两种类型，两种类型不会同时存在。
 
 1. 普通手续费表示，在成交时，未开启HT抵扣、点卡抵扣，使用原币进行手续费扣除。例如：在BTCUSDT币种对下购买BTC，filled-fees字段不为空，表示扣除了普通手续费，单位是BTC。
 
 2. 抵扣手续费表示，在成交时，开启了HT抵扣或点卡抵扣，使用HT或点卡进行手续费的抵扣。例如BTCUSDT币种对下购买BTC，HT\点卡充足时，filled-fees为空，filled-points不为空，表示扣除了HT或点卡作为手续费，扣除单位需参考fee-deduct-currency字段
 
-### Q7: 撮合结果中match-id和trade-id有什么区别？
+### Q5: 成交明细中match-id和trade-id有什么区别？
 A: match-id表示订单在撮合中的顺序号，trade-id表示成交时的序号， 一个match-id可能有多个trade-id（成交时），也可能没有trade-id(创建订单、撤销订单)
 
-### Q8: 为什么基于当前盘口买一或者卖一价格进行下单触发了下单限价错误？
+### Q6: 为什么基于当前盘口买一或者卖一价格进行下单触发了下单限价错误？
 A: 当前火币有基于最新成交价上下一定幅度的限价保护，对流动性不好的币，基于盘口数据下单可能会触发限价保护。建议基于ws推送的成交价+盘口数据信息进行下单
 
-### Q9: 如何获取杠杆类交易的币种对？
+### Q7: 如何获取杠杆类交易的币种对？
 A: 您可以根据` GET /v1/common/symbols`接口返回数据中的字段区分。leverage-ratio代表逐仓杠杆倍数。super-magin-leverage-ratio代表支持全仓杠杆倍数。如果值为0，表明不支持杠杆交易。
 
 # 策略委托
