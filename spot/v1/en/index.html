@@ -318,31 +318,34 @@
             <a href="#frequently-asked-questions" class="toc-h1 toc-link" data-title="Frequently Asked Questions">Frequently Asked Questions</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#q1-how-many-api-keys-one-user-can-apply" class="toc-h2 toc-link" data-title="Q1：How many API Keys one user can apply?">Q1：How many API Keys one user can apply?</a>
+                    <a href="#q1-what-is-uid-and-account-id" class="toc-h2 toc-link" data-title="Q1：What is UID and account-id?">Q1：What is UID and account-id?</a>
                   </li>
                   <li>
-                    <a href="#q2-why-apis-are-always-disconnected-or-timeout" class="toc-h2 toc-link" data-title="Q2：Why APIs are always disconnected or timeout?">Q2：Why APIs are always disconnected or timeout?</a>
+                    <a href="#q2-how-many-api-keys-one-user-can-apply" class="toc-h2 toc-link" data-title="Q2：How many API Keys one user can apply?">Q2：How many API Keys one user can apply?</a>
                   </li>
                   <li>
-                    <a href="#q3-why-the-websocket-is-often-disconnected" class="toc-h2 toc-link" data-title="Q3：Why the WebSocket is often disconnected?">Q3：Why the WebSocket is often disconnected?</a>
+                    <a href="#q3-why-apis-are-always-disconnected-or-timeout" class="toc-h2 toc-link" data-title="Q3：Why APIs are always disconnected or timeout?">Q3：Why APIs are always disconnected or timeout?</a>
                   </li>
                   <li>
-                    <a href="#q4-what-is-the-difference-between-api-huobi-pro-and-api-aws-huobi-pro" class="toc-h2 toc-link" data-title="Q4：What is the difference between api.huobi.pro and api-aws.huobi.pro?">Q4：What is the difference between <u>api.huobi.pro</u> and <u>api-aws.huobi.pro</u>?</a>
+                    <a href="#q4-why-the-websocket-is-often-disconnected" class="toc-h2 toc-link" data-title="Q4：Why the WebSocket is often disconnected?">Q4：Why the WebSocket is often disconnected?</a>
                   </li>
                   <li>
-                    <a href="#q5-why-the-signature-authentication-always-fail" class="toc-h2 toc-link" data-title="Q5：Why the signature authentication always fail?">Q5：Why the signature authentication always fail?</a>
+                    <a href="#q5-what-is-the-difference-between-api-huobi-pro-and-api-aws-huobi-pro" class="toc-h2 toc-link" data-title="Q5：What is the difference between api.huobi.pro and api-aws.huobi.pro?">Q5：What is the difference between <u>api.huobi.pro</u> and <u>api-aws.huobi.pro</u>?</a>
                   </li>
                   <li>
-                    <a href="#q6-why-the-api-return-39-incorrect-access-key-39" class="toc-h2 toc-link" data-title="Q6：Why the API return 'Incorrect Access Key'?">Q6：Why the API return 'Incorrect Access Key'?</a>
+                    <a href="#q6-why-the-signature-authentication-always-fail" class="toc-h2 toc-link" data-title="Q6：Why the signature authentication always fail?">Q6：Why the signature authentication always fail?</a>
                   </li>
                   <li>
-                    <a href="#q7-why-the-api-return-39-gateway-internal-error-39" class="toc-h2 toc-link" data-title="Q7：Why the API return 'gateway-internal-error'?">Q7：Why the API return 'gateway-internal-error'?</a>
+                    <a href="#q7-why-the-api-return-39-incorrect-access-key-39" class="toc-h2 toc-link" data-title="Q7：Why the API return 'Incorrect Access Key'?">Q7：Why the API return 'Incorrect Access Key'?</a>
                   </li>
                   <li>
-                    <a href="#q8-why-the-api-return-39-login-required-39" class="toc-h2 toc-link" data-title="Q8：Why the API return 'login-required'?">Q8：Why the API return 'login-required'?</a>
+                    <a href="#q8-why-the-api-return-39-gateway-internal-error-39" class="toc-h2 toc-link" data-title="Q8：Why the API return 'gateway-internal-error'?">Q8：Why the API return 'gateway-internal-error'?</a>
                   </li>
                   <li>
-                    <a href="#q9-why-the-api-return-http-405-39-method-not-allowed-39" class="toc-h2 toc-link" data-title="Q9: Why the API return HTTP 405 'method-not-allowed'?">Q9: Why the API return HTTP 405 'method-not-allowed'?</a>
+                    <a href="#q9-why-the-api-return-39-login-required-39" class="toc-h2 toc-link" data-title="Q9：Why the API return 'login-required'?">Q9：Why the API return 'login-required'?</a>
+                  </li>
+                  <li>
+                    <a href="#q10-why-the-api-return-http-405-39-method-not-allowed-39" class="toc-h2 toc-link" data-title="Q10: Why the API return HTTP 405 'method-not-allowed'?">Q10: Why the API return HTTP 405 'method-not-allowed'?</a>
                   </li>
               </ul>
           </li>
@@ -2271,7 +2274,25 @@ The types include:</p>
 <p>This section lists the  frequently asked questions regardless the specific API, such as network, signature or common errors.</p>
 
 <p>For specific API question, please check the Error Code and FAQ in each API category.</p>
-<h3 id='q1-how-many-api-keys-one-user-can-apply'>Q1：How many API Keys one user can apply?</h3>
+<h3 id='q1-what-is-uid-and-account-id'>Q1：What is UID and account-id?</h3>
+<p>UID is the unique ID for a user (including master user and sub user), it can be found in Web or App personal information part, or retrieved from API <code>GET /v2/user/uid</code>.</p>
+
+<p>The <code>account-id</code> defines the identity for different account type under one user, it can be retrieved from API <code>/v1/account/accounts</code> , where the <code>account-type</code> is the account types.</p>
+
+<p>The types include but not limited to below types, contract account types (futures/swap/option) are not included:</p>
+
+<ul>
+<li>spot: Spot account</li>
+<li>otc: OTC account</li>
+<li>margin: Isolated margin account, the detailed currency type is defined in <code>subType</code></li>
+<li>super-margin / cross-margin:  Cross-margin account</li>
+<li>investment: c2c margin lending account</li>
+<li>borrow: c2c margin borrowing account</li>
+<li>point: Point card account</li>
+<li>minepool: Minepool account</li>
+<li>etf: ETF account</li>
+</ul>
+<h3 id='q2-how-many-api-keys-one-user-can-apply'>Q2：How many API Keys one user can apply?</h3>
 <p>Every user can create 20 API Keys, and each API Key can be granted with 3 permissions: <strong>read</strong>, <strong>trade</strong> and <strong>withdraw</strong>.</p>
 
 <p>Each user could create up to 200 sub users, and each sub user could create 20 API Keys, each API key can be granted with 2 permissions: <strong>read</strong> and <strong>trade</strong>.</p>
@@ -2283,14 +2304,14 @@ The types include:</p>
 <li>Trade permission: it is used to <strong>place order</strong>, <strong>cancel order</strong> and <strong>transfer</strong>.</li>
 <li>Withdraw permission: it is used to <strong>withdraw</strong>, <strong>cancel withdraw</strong>.</li>
 </ol>
-<h3 id='q2-why-apis-are-always-disconnected-or-timeout'>Q2：Why APIs are always disconnected or timeout?</h3>
+<h3 id='q3-why-apis-are-always-disconnected-or-timeout'>Q3：Why APIs are always disconnected or timeout?</h3>
 <p>Please follow below suggestions:</p>
 
 <ol>
 <li>It is unstable if the client&#39;s server locates in China mainland, it is suggested to invoke API from a server at AWS Japan.</li>
 <li>It is suggested to invoke API only to host <u>api.huobi.pro</u> or <u>api-was.huobi.pro</u>.</li>
 </ol>
-<h3 id='q3-why-the-websocket-is-often-disconnected'>Q3：Why the WebSocket is often disconnected?</h3>
+<h3 id='q4-why-the-websocket-is-often-disconnected'>Q4：Why the WebSocket is often disconnected?</h3>
 <p>Please check below possible reasons:</p>
 
 <ol>
@@ -2299,9 +2320,9 @@ The types include:</p>
 <li>The connection is broken due to network issue.</li>
 <li>It is suggested to implement WebSocket re-connect mechanism. If Ping/Pong works well but the connection is broken, the application should be able to re-connect automatically.</li>
 </ol>
-<h3 id='q4-what-is-the-difference-between-api-huobi-pro-and-api-aws-huobi-pro'>Q4：What is the difference between <u>api.huobi.pro</u> and <u>api-aws.huobi.pro</u>?</h3>
+<h3 id='q5-what-is-the-difference-between-api-huobi-pro-and-api-aws-huobi-pro'>Q5：What is the difference between <u>api.huobi.pro</u> and <u>api-aws.huobi.pro</u>?</h3>
 <p>The host <u>api-aws.huobi.pro</u> is optimized for AWS client, the latency is lower.</p>
-<h3 id='q5-why-the-signature-authentication-always-fail'>Q5：Why the signature authentication always fail?</h3>
+<h3 id='q6-why-the-signature-authentication-always-fail'>Q6：Why the signature authentication always fail?</h3>
 <p>Please check whether you follow below rules:</p>
 
 <p>1.The parameter in signature text should be ordered by ASCII, for example below is the original parameters:</p>
@@ -2356,7 +2377,7 @@ The types include:</p>
 <p>Right now the official <a href="https://github.com/HuobiRDCenter">SDK</a> supports multiple languages, you can refer to the signature implementation, or below three signature examples.</p>
 
 <p><a href='https://github.com/HuobiRDCenter/huobi_Java/blob/master/java_signature_demo.md'>JAVA signature example</a> | <a href='https://github.com/HuobiRDCenter/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++ signature example</a>  | <a href='https://github.com/HuobiRDCenter/huobi_Python/blob/master/example/python_signature_demo.md'>Python signature example</a>   </p>
-<h3 id='q6-why-the-api-return-39-incorrect-access-key-39'>Q6：Why the API return &#39;Incorrect Access Key&#39;?</h3>
+<h3 id='q7-why-the-api-return-39-incorrect-access-key-39'>Q7：Why the API return &#39;Incorrect Access Key&#39;?</h3>
 <p>Please check whether Access Key is wrong in URL request, such as:</p>
 
 <ol>
@@ -2365,7 +2386,7 @@ The types include:</p>
 <li>The AccessKey is already deleted</li>
 <li>The URL request is not assembled correctly which cause AccessKey is parsed unexpected in server side.</li>
 </ol>
-<h3 id='q7-why-the-api-return-39-gateway-internal-error-39'>Q7：Why the API return &#39;gateway-internal-error&#39;?</h3>
+<h3 id='q8-why-the-api-return-39-gateway-internal-error-39'>Q8：Why the API return &#39;gateway-internal-error&#39;?</h3>
 <p>Please check below possible reasons:</p>
 
 <ol>
@@ -2373,14 +2394,14 @@ The types include:</p>
 <li>The data format should be correct (standard JSON).</li>
 <li>The <code>Content-Type</code> in POST header should be <code>application/json</code> .</li>
 </ol>
-<h3 id='q8-why-the-api-return-39-login-required-39'>Q8：Why the API return &#39;login-required&#39;?</h3>
+<h3 id='q9-why-the-api-return-39-login-required-39'>Q9：Why the API return &#39;login-required&#39;?</h3>
 <p>Please check below possible reasons:</p>
 
 <ol>
 <li>The URL request parameter should include <code>AccessKeyId</code>.</li>
 <li>The URL request parameter should include <code>Signature</code>.</li>
 </ol>
-<h3 id='q9-why-the-api-return-http-405-39-method-not-allowed-39'>Q9: Why the API return HTTP 405 &#39;method-not-allowed&#39;?</h3>
+<h3 id='q10-why-the-api-return-http-405-39-method-not-allowed-39'>Q10: Why the API return HTTP 405 &#39;method-not-allowed&#39;?</h3>
 <p>It indicates the request path doesn&#39;t exist, please check the path spelling carefully. Due to the Nginx setting, the request path is case sensitive, please follow the path definition in document.</p>
 <h1 id='contact-us'>Contact Us</h1><h2 id='market-maker-program'>Market Maker Program</h2>
 <p>It is very welcome for market maker who has good market making strategy and large trading volume. If your Huobi Spot account or Contract account has at least 10 BTC, you can send your email to:</p>
@@ -10914,28 +10935,12 @@ Rate Limit (NEW): 20times/2s</p>
 </tr>
 <tr>
 <td>base-not-found</td>
-<td>Too much invalid client order id in the past, try again after 1 hour</td>
+<td>The record is not found</td>
 </tr>
 </tbody></table>
-<h2 id='faq-2'>FAQ</h2><h3 id='q1-what-is-account-id'>Q1：What is account-id?</h3>
-<p>A： The <code>account-id</code> defines the Identity for different business type, it can be retrieved from API <code>/v1/account/accounts</code> , where the <code>account-type</code> is the business types.</p>
-
-<p>The types include:</p>
-
-<ul>
-<li>spot: Spot account</li>
-<li>otc: OTC account</li>
-<li>margin: Isolated margin account, the detailed currency type is defined in <code>subType</code></li>
-<li>super-margin / cross-margin:  Cross-margin account</li>
-<li>investment: c2c margin lending account</li>
-<li>borrow: c2c margin borrowing account</li>
-<li>point: Point card account</li>
-<li>minepool: Minepool account</li>
-<li>etf: ETF account</li>
-</ul>
-<h3 id='q2-what-is-client-order-id'>Q2：What is client-order-id?</h3>
+<h2 id='faq-2'>FAQ</h2><h3 id='q1-what-is-client-order-id'>Q1：What is client-order-id?</h3>
 <p>A： The <code>client-order-id</code> is an optional request parameter while placing order. It&#39;s string type which maximum length is 64. The client order id is generated by client, and is only valid within 24 hours.</p>
-<h3 id='q3-how-to-get-the-order-size-price-and-decimal-precision'>Q3：How to get the order size, price and decimal precision?</h3>
+<h3 id='q2-how-to-get-the-order-size-price-and-decimal-precision'>Q2：How to get the order size, price and decimal precision?</h3>
 <p>A： You can call API <code>GET /v1/common/symbols</code> to get the currency pair information, pay attention to the difference between the minimum amount and the minimum price.   </p>
 
 <p>Below are common errors:</p>
@@ -10949,15 +10954,7 @@ Rate Limit (NEW): 20times/2s</p>
 <li>order-limitorder-amount-max-error : The limited order amount is larger than the threshold</li>
 <li>order-limitorder-amount-min-error : The limited order amount is smaller than the threshold<br></li>
 </ul>
-<h3 id='q4-what-is-the-difference-between-two-websocket-topic-39-orders-symbol-39-and-39-orders-symbol-update-39'>Q4：What is the difference between two WebSocket topic &#39;orders.\$symbol&#39; and &#39;orders.\$symbol.update&#39;?</h3>
-<p>A： Below are the difference:</p>
-
-<p>1、The topic <code>order.$symbol</code> is the legacy version, which will be no longer supported in the near future. It is strongly recommended to subscribe topic <code>orders.$symbol.update</code> instead for getting order updates.</p>
-
-<p>2、The update message sequence of <code>orders.$symbol.update</code> strictly follows transaction time, with lower latency.</p>
-
-<p>3、In order to reduce latency, the topic <code>orders.$symbol.update</code> doesn&#39;t include original order details and transaction fee etc. If you require the original order information or transaction fee details, you may query to corresponding REST API endpoint.</p>
-<h3 id='q5-why-i-got-insufficient-balance-error-while-placing-an-order-just-after-a-successful-order-matching'>Q5：Why I got insufficient balance error while placing an order just after a successful order matching?</h3>
+<h3 id='q3-why-i-got-insufficient-balance-error-while-placing-an-order-just-after-a-successful-order-matching'>Q3：Why I got insufficient balance error while placing an order just after a successful order matching?</h3>
 <p>A：The time order matching update being sent down, the clearing service of that order may be still in progress at backend. Suggest to follow either of below to ensure a successful order submission:</p>
 
 <p>1、Subscribe to WebSocket topic <code>accounts</code> for getting account balance moves to ensure the completion of asset clearing.</p>
@@ -10965,17 +10962,17 @@ Rate Limit (NEW): 20times/2s</p>
 <p>2、Check account balance from REST endpoint to ensure sufficient available balance for the next order submission.</p>
 
 <p>3、Leave sufficient balance in your account.</p>
-<h3 id='q6-what-is-the-difference-between-39-filled-fees-39-and-39-filled-points-39-in-match-result'>Q6: What is the difference between &#39;filled-fees&#39; and &#39;filled-points&#39; in match result?</h3>
+<h3 id='q4-what-is-the-difference-between-39-filled-fees-39-and-39-filled-points-39-in-match-result'>Q4: What is the difference between &#39;filled-fees&#39; and &#39;filled-points&#39; in match result?</h3>
 <p>A: Transaction fee can be paid from either of below.</p>
 
 <p>1、filled-fees: Filled-fee is also called transaction fee. It&#39;s charged from your income currency from the transaction. For example, if your purchase order of BTC/USDT got matched，the transaction fee will be based on BTC.</p>
 
 <p>2、filled-points: If user enabled transaction fee deduction, the fee should be charged from either HT or Point. User could refer to field <code>fee-deduct-currency</code> to get the exact deduction type of the transaction.</p>
-<h3 id='q7-what-is-the-difference-between-39-match-id-39-and-39-trade-id-39-in-matching-result'>Q7: What is the difference between &#39;match-id&#39; and &#39;trade-id&#39; in matching result?</h3>
+<h3 id='q5-what-is-the-difference-between-39-match-id-39-and-39-trade-id-39-in-matching-result'>Q5: What is the difference between &#39;match-id&#39; and &#39;trade-id&#39; in matching result?</h3>
 <p>A: The <code>match-id</code> is the identity for order matching, while the <code>trade-id</code> is the unique identifier for each trade. One <code>match-id</code> may be correlated with multiple <code>trade-id</code>, or no <code>trade-id</code>(if the order is cancelled). For example, if a taker&#39;s order got matched with 3 maker&#39;s orders at the same time, it generates 3 trade IDs but only one match ID.</p>
-<h3 id='q8-why-the-order-submission-could-be-rejected-even-though-the-order-price-is-set-as-same-as-current-best-bid-or-best-ask'>Q8: Why the order submission could be rejected even though the order price is set as same as current best bid (or best ask)?</h3>
+<h3 id='q7-why-the-order-submission-could-be-rejected-even-though-the-order-price-is-set-as-same-as-current-best-bid-or-best-ask'>Q7: Why the order submission could be rejected even though the order price is set as same as current best bid (or best ask)?</h3>
 <p>A: For some extreme illiquid trading symbols, the best quote price at particular time might be far away from last trade price. But the price limit is actually based on last trade price which could possibly exclude best quote price from valid range for any new order.</p>
-<h3 id='q9-how-to-retrieve-the-trading-symbols-for-margin-trade'>Q9: How to retrieve the trading symbols for margin trade</h3>
+<h3 id='q8-how-to-retrieve-the-trading-symbols-for-margin-trade'>Q8: How to retrieve the trading symbols for margin trade</h3>
 <p>A: You can get details from Rest API <code>GET /v1/common/symbols</code>. The <code>leverage-ratio</code> represents the isolated-margin ratio. The <code>super-margin-leverage-ratio</code> represents the cross-margin.</p>
 
 <p>The value <code>0</code> indicates that the trading symbols doesn&#39;t support margin trading.</p>
