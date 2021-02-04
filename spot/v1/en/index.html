@@ -3708,7 +3708,7 @@ Halt reason includes: 2 - emergency maintenance，3 - schedule maintenance.<br><
 <tr>
 <td>close</td>
 <td>float</td>
-<td>The last price of a nature day (Singapore time)</td>
+<td>The closing price of a nature day (Singapore time)</td>
 </tr>
 <tr>
 <td>low</td>
@@ -4186,7 +4186,7 @@ Halt reason includes: 2 - emergency maintenance，3 - schedule maintenance.<br><
 <tr>
 <td>close</td>
 <td>float</td>
-<td>The last price of last 24 hours (rotating 24h)</td>
+<td>The closing price of last 24 hours (rotating 24h)</td>
 </tr>
 <tr>
 <td>low</td>
@@ -4416,7 +4416,7 @@ Rate Limit (NEW): 100times/2s</p>
 </tr>
 </tbody></table>
 
-<aside class="notice">Margin/super-margin/borrow account will only be created after the initial incoming asset transfer-in.</aside>
+<aside class="notice">Margin/super-margin/borrow account will only be created after the initial incoming asset transfer.</aside>
 <h2 id='get-account-balance-of-a-specific-account'>Get Account Balance of a Specific Account</h2>
 <p>API Key Permission：Read<br>
 Rate Limit (NEW): 100times/2s</p>
@@ -4525,7 +4525,7 @@ Rate Limit (NEW): 100times/2s</p>
 
 <p>Rate Limit (NEW): 100times/2s</p>
 
-<p>This endpoint the valuation of the total assets of the account in btc or fiat currency.</p>
+<p>This endpoint returns the valuation of the total assets of the account in btc or fiat currency.</p>
 <h3 id='http-request-17'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v2/account/asset-valuation</code></li>
@@ -4611,10 +4611,10 @@ Rate Limit (NEW): 100times/2s</p>
 
 <p>Features now supported for parent user include: <br>
 1.Transfer asset between parent user&#39;s spot account and sub user&#39;s spot account; <br>
-2.Transfer asset from sub user’s spot account to another sub user’s spot account who under the same parent user;<br></p>
+2.Transfer asset from sub user’s spot account to another sub user’s spot account that is under the same parent user;<br></p>
 
 <p>Features now supported for sub user include: <br>
-1.Transfer asset from  authorized sub user’s spot account to another sub user’s spot account who under the same parent user.The authorization endpoint is <code>POST /v2/sub-user/transferability</code>. <br>
+1.Transfer asset from  authorized sub user’s spot account to another sub user’s spot account that is under the same parent user.The authorization endpoint is <code>POST /v2/sub-user/transferability</code>. <br>
 2.Transfer asset from sub user’s spot account to parent user’s spot account;<br></p>
 
 <p>Other transfer functions will be gradually launched later, please take note on API announcement in near future. <br></p>
@@ -4743,7 +4743,7 @@ Rate Limit (NEW): 100times/2s</p>
 <p>API Key Permission：Read<br>
 Rate Limit (NEW): 5times/2s</p>
 
-<p>This endpoint returns the amount changes of specified user&#39;s account.</p>
+<p>This endpoint returns the amount changes of a specified user&#39;s account.</p>
 <h3 id='http-request-19'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/account/history</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/account/history?account-id=5260185"</span>
@@ -4786,7 +4786,7 @@ Rate Limit (NEW): 5times/2s</p>
 <td>start-time</td>
 <td>false</td>
 <td>long</td>
-<td>Far point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days.</td>
+<td>The start time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days.</td>
 <td>((end-time) – 1hour)</td>
 <td>[((end-time) – 1hour), (end-time)]</td>
 </tr>
@@ -4794,7 +4794,7 @@ Rate Limit (NEW): 5times/2s</p>
 <td>end-time</td>
 <td>false</td>
 <td>long</td>
-<td>Near point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days.</td>
+<td>The end time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days.</td>
 <td>current-time</td>
 <td>[(current-time) – 29days,(current-time)]</td>
 </tr>
@@ -4932,7 +4932,7 @@ Rate Limit (NEW): 5times/2s</p>
 <p>Note 1:<br></p>
 
 <ul>
-<li>If received ‘transaction-amt’ with ‘transact-type’ as ‘rebate’, it implicates a paid maker rebate.<br></li>
+<li>If ‘transact-type’ is shown as ‘rebate’, it implicates a paid maker rebate.<br></li>
 <li>A paid maker rebate could possibly include rebate from multiple trades.<br></li>
 </ul>
 
@@ -4948,8 +4948,8 @@ Only when the number of items within the query window (between “start-time” 
 
 <p>Phase 1 release only supports historical assets transfer querying (“transactType” = “transfer”).<br></p>
 
-<p>The maximum query window size set by “startTime” &amp; “endTime” is 10-day, which means, maximum 10-day records are queriable per request.
-The query window can be sliding within the latest 180 days, which means, by adjusting “startTime” &amp; “endTime” to slide the query window in multiple requests, the records in latest 180 days are queriable.<br></p>
+<p>The maximum query window size set by “startTime” &amp; “endTime” is 10-day, which mean a maximum of 10-day records are queriable per request.
+The query window can be within the last 180 days, which means, by adjusting “startTime” &amp; “endTime” accordingly, the records in last 180 days are queriable.<br></p>
 <h3 id='http-request-20'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v2/account/ledger</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v2/account/ledger?account-id=5260185"</span>
@@ -5162,7 +5162,9 @@ Only when the number of items within the query window (between “startTime” a
 <h2 id='transfer-fund-between-spot-account-and-future-contract-account'>Transfer Fund Between Spot Account and Future Contract Account</h2>
 <p>API Key Permission：Trade<br></p>
 
-<p>This endpoint allows a user to transfer fund between spot account and futrue contract account. </p>
+<p>This endpoint allows a user to transfer fund between spot accounts and futrue contract accounts.</p>
+
+<p>Transferring from a spot account to a contract account, the type is pro-to-futures; transferring from a contract account to a spot account, the type is futures-to-pro</p>
 <h3 id='http-request-21'>HTTP Request</h3>
 <p><code>POST /v1/futures/transfer</code></p>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="s2">"currency"</span><span class="p">:</span><span class="w">  </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
@@ -5788,7 +5790,7 @@ Rate Limit (NEW): 20times/2s</p>
 </tr>
 </tbody></table>
 <h2 id='query-withdraw-quota'>Query Withdraw Quota</h2>
-<p>Parent user could query withdraw quota for currencies</p>
+<p>Parent user could query withdrawing quota for currencies</p>
 
 <p>API Key Permission：Read<br>
 Rate Limit (NEW): 20times/2s</p>
@@ -5915,7 +5917,7 @@ Rate Limit (NEW): 20times/2s</p>
 
 <p>This endpoint allows parent user to query withdraw address available for API key.<br></p>
 
-<aside class="notice">To get the withdraw address from API , user need to add the withdraw address from the Web first</aside>
+<aside class="notice">To get the withdraw address from API , user needs to add the withdrawal address from the Web UI first</aside>
 <h3 id='http-request-26'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v2/account/withdraw/address</code></li>
@@ -6168,7 +6170,7 @@ Rate Limit (NEW): 20times/2s</p>
 <p>API Key Permission：Withdraw<br>
 Rate Limit (NEW): 20times/2s</p>
 
-<p>Parent user cancels a previously created withdraw request by its transfer id.</p>
+<p>Parent user cancels a previously created withdrawal request by its transfer id.</p>
 <h3 id='http-request-28'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/withdraw-virtual/{withdraw-id}/cancel</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"https://api.huobi.pro/v1/dw/withdraw-virtual/1000/cancel"</span>
@@ -6201,7 +6203,7 @@ Rate Limit (NEW): 20times/2s</p>
 <p>API Key Permission：Read<br>
 Rate Limit (NEW): 20times/2s</p>
 
-<p>Parent user and sub user searche for all existed withdraws and deposits and return their latest status.</p>
+<p>Parent user and sub user search for all existed withdraws and deposits and return their latest status.</p>
 <h3 id='http-request-29'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/query/deposit-withdraw</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/query/deposit-withdraw?currency=xrp&amp;type=deposit&amp;from=5&amp;size=12"</span>
@@ -6223,7 +6225,7 @@ Rate Limit (NEW): 20times/2s</p>
 <td>false</td>
 <td>The crypto currency to withdraw</td>
 <td>NA</td>
-<td>When currency is not specified, the reponse would include the records of ALL currencies.</td>
+<td>When currency is not specified, the response would include the records of ALL currencies.</td>
 <td></td>
 </tr>
 <tr>
@@ -6231,8 +6233,8 @@ Rate Limit (NEW): 20times/2s</p>
 <td>string</td>
 <td>true</td>
 <td>Define transfer type to search</td>
-<td>deposit, withdraw, sub user can only use deposit</td>
 <td></td>
+<td>deposit, withdraw, sub user can only use deposit</td>
 <td></td>
 </tr>
 <tr>
@@ -6300,7 +6302,7 @@ Rate Limit (NEW): 20times/2s</p>
 <tr>
 <td>type</td>
 <td>string</td>
-<td>Define transfer type to search, possible values: [deposit, withdraw]</td>
+<td>Define transfer type to search, possible values: [deposit, withdraw] Sub-user can only put &quot;deposit&quot;</td>
 </tr>
 <tr>
 <td>currency</td>
@@ -6335,7 +6337,7 @@ Rate Limit (NEW): 20times/2s</p>
 <tr>
 <td>fee</td>
 <td>float</td>
-<td>Withdraw fee</td>
+<td>Withdrawal fee</td>
 </tr>
 <tr>
 <td>state</td>
