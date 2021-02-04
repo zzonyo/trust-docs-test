@@ -3076,7 +3076,7 @@ API Key Permission：Trade
 
 ## Get Sub User's List
 
-Via this endpoint parent user is able to query a full list of sub user's UID as well as individual's status.
+Via this endpoint parent user is able to query a full list of sub user's UID as well as their status.
 
 API Key Permission: Read
 
@@ -3135,7 +3135,7 @@ This endpoint allows parent user to lock or unlock a specific sub user.
 | Parameter  | Data Type | Required | Description                                       | Value Range
 | ---------  | --------- | -------- | -----------                                       | -----------
 | subUid    | long  | true     | Sub user UID | NA
-| action   | string    | true     | Action                   | lock,unlock 
+| action   | string    | true     | Action type                   | lock,unlock 
 
 > The above command returns JSON structured like this:
 
