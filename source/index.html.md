@@ -2131,7 +2131,7 @@ curl "https://api.huobi.pro/v1/account/history?account-id=5260185"
 | account-id     | true     | string    | Account Id, refer to `GET /v1/account/accounts`              |                      |                                                              |
 | currency       | false    | string    | Currency name                                                |                      | Refer to /v1/common/currencys                                |
 | transact-types | false    | string    | Amount change types (multiple selection allowed, separated by comma) | all                  | trade,etf, transact-fee, fee-deduction, transfer, credit, liquidation, interest, deposit, withdraw, withdraw-fee, exchange, other-types, rebate |
-| start-time     | false    | long      | The start time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days. | ((end-time) – 1hour) | [((end-time) – 1hour), (end-time)]                           | 
+| start-time     | false    | long      | The start time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days. | ((end-time) – 1hour) | [((end-time) – 1hour), (end-time)]                           |
 | end-time       | false    | long      | The end time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days. | current-time         | [(current-time) – 29days,(current-time)]                     |
 | sort           | false    | string    | Sorting order                                                | asc                  | asc or desc                                                  |
 | size           | false    | int       | Maximum number of items in each response                     | 100                  | [1,500]                                                      |
@@ -5810,7 +5810,7 @@ curl "https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"
 | fl-price   | string    | The price which triggers closeout                            |
 | list       | array     | The list of margin accounts and their details                |
 | { currency | string    | The currency name                                            |
-| type       | string    | The sub account type, possible values: trade, frozen, loan, interest |
+| type       | string    | The sub account type, possible values: trade, frozen, loan, interest ,transfer-out-available, loan-available |
 | balance }  | string    | The balance. The negative balance means the loan or interest that need to  repay |
 
 ## Transfer Asset from Spot Trading Account to Cross Margin Account（Cross）
@@ -6213,18 +6213,18 @@ curl "https://api.huobi.pro/v1/cross-margin/accounts/balance?symbol=btcusdt"
 
 ### Response Content
 
-| Field            | Data Type | Description |
-| ---------------- | --------- | ----------- |
-| id               | true      | integer     |
-| type             | true      | integer     |
-| state            | true      | string      |
-| risk-rate        | true      | string      |
-| acct-balance-sum | true      | string      |
-| debt-balance-sum | true      | string      |
-| list             | true      | array       |
-| { currency       | true      | string      |
-| type             | true      | string      |
-| balance }        | true      | string      |
+| Field            | Data Type | Description                                                  |
+| ---------------- | --------- | ------------------------------------------------------------ |
+| id               | integer   |                                                              |
+| type             | integer   |                                                              |
+| state            | string    | account state: working, fl-sys, fl-end, fl-negative          |
+| risk-rate        | string    |                                                              |
+| acct-balance-sum | string    |                                                              |
+| debt-balance-sum | string    |                                                              |
+| list             | array     |                                                              |
+| { currency       | string    |                                                              |
+| type             | string    | account type: trade, frozen, loan, interest, transfer-out-available, loan-available |
+| balance }        | string    | Note: It means all can be transferred out if balance of transfer-out-available account is  -1 |
 
 
 
