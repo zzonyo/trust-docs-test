@@ -5808,7 +5808,7 @@ curl "https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"
 | fl-price   | true     | string   | 爆仓价                 |                                                              |
 | list       | true     | array    | 借币账户详情列表       |                                                              |
 | { currency | true     | string   | 币种                   |                                                              |
-| type       | true     | string   | 类型                   | type: 交易余额, frozen: 冻结余额, loan: 待还借贷本金, interest: 待还借贷利息 |
+| type       | true     | string   | 类型                   | type: 交易余额, frozen: 冻结余额, loan: 待还借贷本金, interest: 待还借贷利息, ,transfer-out-available 可划转额, loan-available 可借额 |
 | balance }  | true     | string   | 余额，负数表示应还金额 |                                                              |
 
 ## 资产划转（全仓）
@@ -6172,7 +6172,7 @@ API Key 权限：读取
 | debt-balance-sum | true     | string   | 总负债usdt折合                                               |                                                              |
 | list             | true     | array    | 借币账户详情列表                                             |                                                              |
 | { currency       | true     | string   | 币种                                                         |                                                              |
-| type             | true     | string   | 账户类型                                                     | trade,frozen,loan,interest,transfer-out-available,loan-available |
+| type             | true     | string   | 账户类型                                                     | type: 交易余额, frozen: 冻结余额, loan: 待还借贷本金, interest: 待还借贷利息, ,transfer-out-available 可划转额, loan-available 可借额 |
 | balance }        | true     | string   | 余额（注：当type= transfer-out-available时，如果balance=-1，意味着该币种余额可全部转出） |                                                              |
 
 ## 还币交易记录查询（全仓）
