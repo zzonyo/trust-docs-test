@@ -5800,16 +5800,16 @@ curl "https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"
 
 ### 响应数据
 
-| 字段名称   | 是否必须 | 数据类型 | 描述                   | 取值范围                                                     |
-| ---------- | -------- | -------- | ---------------------- | ------------------------------------------------------------ |
-| symbol     | true     | string   | 交易对                 |                                                              |
-| state      | true     | string   | 账户状态               | working 正常,fl-sys 系统自动爆仓,fl-mgt 手动爆仓,fl-end 爆仓结束 |
-| risk-rate  | true     | string   | 风险率                 |                                                              |
-| fl-price   | true     | string   | 爆仓价                 |                                                              |
-| list       | true     | array    | 借币账户详情列表       |                                                              |
-| { currency | true     | string   | 币种                   |                                                              |
-| type       | true     | string   | 类型                   | type: 交易余额, frozen: 冻结余额, loan: 待还借贷本金, interest: 待还借贷利息, ,transfer-out-available 可划转额, loan-available 可借额 |
-| balance }  | true     | string   | 余额，负数表示应还金额 |                                                              |
+| 字段名称   | 是否必须 | 数据类型 | 描述                                                         | 取值范围 |
+| ---------- | -------- | -------- | ------------------------------------------------------------ | -------- |
+| symbol     | true     | string   | 交易对                                                       |          |
+| state      | true     | string   | 账户状态，working 正常,fl-sys 系统自动爆仓,fl-mgt 手动爆仓,fl-end 爆仓结束 |          |
+| risk-rate  | true     | string   | 风险率                                                       |          |
+| fl-price   | true     | string   | 爆仓价                                                       |          |
+| list       | true     | array    | 借币账户详情列表                                             |          |
+| { currency | true     | string   | 币种                                                         |          |
+| type       | true     | string   | 类型，trade: 交易余额, frozen: 冻结余额, loan: 待还借贷本金, interest: 待还借贷利息, ,transfer-out-available 可划转额, loan-available 可借额 |          |
+| balance }  | true     | string   | 余额，负数表示应还金额。transfer-out-available的余额如果为-1，代表该币种可全部转出。 |          |
 
 ## 资产划转（全仓）
 
@@ -6162,18 +6162,18 @@ API Key 权限：读取
 
 ### 响应数据
 
-| 字段名称         | 是否必须 | 数据类型 | 描述                                                         | 取值范围                                                     |
-| ---------------- | -------- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| id               | true     | integer  | Account ID 账户编号                                          |                                                              |
-| type             | true     | integer  | 账户类型 (margin or cross-margin)                            | cross-margin                                                 |
-| state            | true     | string   | 账户状态                                                     | working 正常,fl-sys 系统自动爆仓,fl-end 爆仓结束,fl-negative 穿仓 |
-| risk-rate        | true     | string   | 风险率                                                       |                                                              |
-| acct-balance-sum | true     | string   | 总持有usdt折合                                               |                                                              |
-| debt-balance-sum | true     | string   | 总负债usdt折合                                               |                                                              |
-| list             | true     | array    | 借币账户详情列表                                             |                                                              |
-| { currency       | true     | string   | 币种                                                         |                                                              |
-| type             | true     | string   | 账户类型                                                     | type: 交易余额, frozen: 冻结余额, loan: 待还借贷本金, interest: 待还借贷利息, ,transfer-out-available 可划转额, loan-available 可借额 |
-| balance }        | true     | string   | 余额（注：当type= transfer-out-available时，如果balance=-1，意味着该币种余额可全部转出） |                                                              |
+| 字段名称         | 是否必须 | 数据类型 | 描述                                                         |
+| ---------------- | -------- | -------- | ------------------------------------------------------------ |
+| id               | true     | integer  | Account ID 账户编号                                          |
+| type             | true     | integer  | 账户类型：cross-margin                                       |
+| state            | true     | string   | 账户状态：working 正常,fl-sys 系统自动爆仓,fl-end 爆仓结束,fl-negative 穿仓 |
+| risk-rate        | true     | string   | 风险率                                                       |
+| acct-balance-sum | true     | string   | 总持有usdt折合                                               |
+| debt-balance-sum | true     | string   | 总负债usdt折合                                               |
+| list             | true     | array    | 借币账户详情列表                                             |
+| { currency       | true     | string   | 币种                                                         |
+| type             | true     | string   | 账户类型，trade: 交易余额, frozen: 冻结余额, loan: 待还借贷本金, interest: 待还借贷利息, ,transfer-out-available 可划转额, loan-available 可借额 |
+| balance }        | true     | string   | 余额，负数表示应还金额。transfer-out-available的账户余额如果为-1，代表该币种可全部转出。 |
 
 ## 还币交易记录查询（全仓）
 
