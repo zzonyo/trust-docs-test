@@ -38,6 +38,48 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.1.5 2021-2-5 [Added: Query information on Tiered Margin. Set a Batch of Sub-Account Trading Permissions. Query a Batch of Sub-Account's Assets Information. 4-7 Modified the existing interfaces and added new parameters. 8 Query user’s settlement records interface(To avoid affecting system performance, the interface only supports querying user settlement records in the last 90 days)]
+
+### 1. Added Query information on Tiered Margin interface
+ - Interface Name: Query information on Tiered Margin
+ - Interface Type: public
+ - Interface URL: /swap-api/v1/swap_ladder_margin
+
+### 2. Added Set a Batch of Sub-Account Trading Permissions interface
+ - Interface Name: Set a Batch of Sub-Account Trading Permissions
+ - Interface Type: private
+ - Interface URL: /swap-api/v1/swap_sub_auth
+
+### 3. Added Query a Batch of Sub-Account's Assets Information interface
+ - Interface Name: Query a Batch of Sub-Account's Assets Information
+ - Interface Type: private
+ - Interface URL: /swap-api/v1/swap_sub_account_info_list
+
+### 4. Modified Query The Last Trade of a Contract interface(Added "quantity" in return parameter "data", which means the trading quantity(coin), Calculation formula: quantity(coin) = trading quantity(cont) * contract size/ trade price)
+ - Interface Name: Query The Last Trade of a Contract
+ - Interface Type: public
+ - Interface URL: /swap-ex/market/trade
+
+### 5. Modified Query a Batch of Trade Records of a Contract interface（(Added "quantity" in return parameter "data", which means the trading quantity(coin), Calculation formula: quantity(coin) = trading quantity(cont) * contract size/ trade price)
+ - Interface Name: Query a Batch of Trade Records of a Contract
+ - Interface Type: public
+ - Interface URL: /swap-ex/market/history/trade
+
+### 6. Modified Subscribe Trade Detail Data interface（(Added "quantity" in return parameter "data", which means the trading quantity(coin), Calculation formula: quantity(coin) = trading quantity(cont) * contract size/ trade price)
+ - Interface Name: Subscribe Trade Detail Data
+ - Interface Type: public
+ - Subscription Topic: market.$contract_code.trade.detail
+
+### 7. Modified Request Trade Detail Data interface(Added "quantity" in return parameter "data", which means the trading quantity(coin), Calculation formula: quantity(coin) = trading quantity(cont) * contract size/ trade price)
+ - Interface Name: Request Trade Detail Data
+ - Interface Type: public
+ - Subscription Topic: market.$contract_code.trade.detail
+
+### 8. Modified Query user’s settlement records interface(To avoid affecting system performance, the interface only supports querying user settlement records in the last 90 days)
+ - Interface Name: Query user’s settlement records
+ - Interface Type: private
+ - Interface URL: /swap-api/v1/swap_user_settlement_records
+
 ## 1.1.4 2020-1-29 【Added:Get a Batch of Market Data Overview、Get Kline Data of Mark Price、Subscribe Kline Data of Mark Price、Request Kline Data of Mark Price. 5-17 Added fields to modify interface. The order_id of submitted trigger order response has been changed from the original natural number self-incrementing ID to a unique identification ID with a length of 18 digits. It is recommended to use the order_id_str (order_id in string type) of submitted order response  to avoid the occurrence of truncation by the system because excessive length.】
 
 ### 1. Added Get a Batch of Market Data Overview
@@ -723,9 +765,12 @@ Read     |   Market Data           |  /index/market/history/swap_premium_index_k
 Read     |   Market Data           |  /index/market/history/swap_basis |   GET       |  Query Basis Data            |  No  |
 Read     |   Market Data           |  /swap-api/v1/swap_historical_funding_rate |   GET       |  Query historical funding rate         |  No  |
 Read  | Market Data |  /swap-api/v1/swap_estimated_settlement_price | GET | Get the estimated settlement price |      No          |
+Read     |  Market Data        |  /swap-api/v1/swap_ladder_margin           |    GET       |       Query information on Tiered Margin interface       |  No  |
 Read  | Account          | /swap-api/v1/swap_account_info   |  POST             | Query User’s Account Information                     | Yes                    |
 Read  | Account          | /swap-api/v1/swap_position_info  |  POST             | Query User’s position Information                    | Yes                    |
+Trade     |  Account           |  /swap-api/v1/swap_sub_auth                |    POST       |       Set a Batch of Sub-Account Trading Permissions       |  Yes  |
 Read   | Account | /swap-api/v1/swap_sub_account_list    | POST             |     Query assets information of all sub-accounts under the master account (Query by coins)     | Yes   |
+Read     |  Account           |  /swap-api/v1/swap_sub_account_info_list   |    POST       |       Query a Batch of Sub-Account's Assets Information      |  Yes  |
 Read   | Account | /swap-api/v1/swap_sub_account_info     | POST             |  Query a single sub-account's assets information   | Yes   |
 Read   |  Account  | /swap-api/v1/swap_sub_position_info    | POST             | Query a single sub-account's position information    | Yes   |
 Read   | Account  | /swap-api/v1/swap_financial_record    | POST             | Query account financial records  | Yes   |
@@ -2503,7 +2548,8 @@ curl "https://api.hbdm.com/swap-ex/market/trade?contract_code=BTC-USD"
                 "direction": "sell",
                 "id": 509516201220000,
                 "price": "13789.5",
-                "ts": 1603852755227
+                "ts": 1603852755227,
+                "quantity": "0.344"
             }
         ],
         "id": 1603852755779,
@@ -2526,10 +2572,11 @@ curl "https://api.hbdm.com/swap-ex/market/trade?contract_code=BTC-USD"
 | ts  |  true  |  long  |  Latest Creation Time |   |    
 |  \<list\>  (attrs: data)  |               |    |      | 
 | id  |  true  |  long  | Unique Transaction Id(symbol level)  |   |    
-| price  |  true  |  decimal  |  Price |   |    
-| amount  |  true  |  decimal  |  Quantity(Cont.). Sum of both buy and sell sides  |   |    
+| price  |  true  |  string  |  Price |   |    
+| amount  |  true  |  string  |  Quantity(Cont.). Sum of both buy and sell sides  |   |    
 | direction  |  true  |  string  |  Order Direction  |   |    
-| ts  |  true  |  long  |  Order Creation Time |   |    
+| ts  |  true  |  long  |  Order Creation Time |   |  
+| quantity  |  true  |  string  |  trading quantity(coin)  |   |    
 |  \</list\>    |               |    |      | 
 |  \</tick\>    |               |    |      | 
 
@@ -2582,21 +2629,24 @@ curl "https://api.hbdm.com/swap-ex/market/history/trade?contract_code=BTC-USD&si
                     "direction": "sell",
                     "id": 509517815610000,
                     "price": 13804,
-                    "ts": 1603852832106
+                    "ts": 1603852832106,
+                    "quantity": 0.044
                 },
                 {
                     "amount": 4,
                     "direction": "sell",
                     "id": 509517815610001,
                     "price": 13804,
-                    "ts": 1603852832106
+                    "ts": 1603852832106,
+                    "quantity": 0.034
                 },
                 {
                     "amount": 2,
                     "direction": "sell",
                     "id": 509517815610002,
                     "price": 13804,
-                    "ts": 1603852832106
+                    "ts": 1603852832106,
+                    "quantity": 0.0144
                 }
             ],
             "id": 50951781561,
@@ -2624,8 +2674,13 @@ curl "https://api.hbdm.com/swap-ex/market/history/trade?contract_code=BTC-USD&si
 | amount  |  true  |  decimal  |  Quantity(Cont.). Sum of both buy and sell sides |   |    
 | direction  |  true  |  string  |  Order Direction  |   |    
 | ts  |  true  |  long  |  Order Creation Time |   |    
+| quantity  |  true  |  decimal  |  trading quantity(coin)  |   | 
 |  \</list\>    |               |    |      | 
 |  \</data\> (attrs: data)   |               |    |      | 
+
+#### Notice
+- There are "quantity" parameter in return data only after 21:00:00 on February 3, 2021
+
 
 ## Query information on contract insurance fund balance and estimated clawback rate
 
@@ -2866,6 +2921,89 @@ curl "https://api.hbdm.com/swap-api/v1/swap_his_open_interest?contract_code=BTC-
 - tick field：Tick data is arranged in reverse chronological order；
 
 - data field：Dictionary database.
+
+
+## Query information on Tiered Margin interface
+ 
+ - GET `/swap-api/v1/swap_ladder_margin`
+
+
+### Request Parameter
+| Parameter Name               | Mandatory | Type  | Description             | Value range      |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |	
+| contract_code | false | string | contract code, if not filled in return all	 | such as: “BTC-USD”, “ETH-USD”。。。 |
+
+> Response
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "BTC",
+            "contract_code": "BTC-USD",
+            "list": [
+                {
+                    "lever_rate": 20,
+                    "ladders": [
+                        {
+                            "min_margin_balance": 0,
+                            "max_margin_balance": 10,
+                            "min_margin_available": 0,
+                            "max_margin_available": 10
+                        },
+                        {
+                            "min_margin_balance": 10,
+                            "max_margin_balance": 50,
+                            "min_margin_available": 10,
+                            "max_margin_available": 30
+                        },
+                        {
+                            "min_margin_balance": 50,
+                            "max_margin_balance": 250,
+                            "min_margin_available": 30,
+                            "max_margin_available": 70
+                        },
+                        {
+                            "min_margin_balance": 250,
+                            "max_margin_balance": 950,
+                            "min_margin_available": 70,
+                            "max_margin_available": 140
+                        },
+                        {
+                            "min_margin_balance": 950,
+                            "max_margin_balance": null,
+                            "min_margin_available": 140,
+                            "max_margin_available": null
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "ts": 1612494867085
+}
+```
+
+### Returning Parameter
+| Parameter Name               | Mandatory | Type  | Description             | Value range      |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| status | true | string | the result of server handling to request	 | "ok" , "error" |
+| \<data\> | true  | object array |  |  |
+| symbol | true  | string |  symbol |  such as: "BTC"|
+| contract_code | true  | string |  contract code |  such as: "BTC-USD"|
+| \<list\> | true  | object array |  |  |
+| lever_rate | true  | int |  lever rate|   |
+| \<ladders\> | true  | object array | ladders for margin |  |
+| min_margin_balance | true  | decimal |  min margin balance(the starting point in this ladder, included in this ladder)  |   |
+| max_margin_balance | true  | decimal |  max margin balance(the end point in this ladder, excluded in this ladder, is next ladder's min_margin_balance)  |  |
+| min_margin_available | true  | decimal |  min margin available(in the range of this ladder margin balance) |  |
+| max_margin_available | true  | decimal |  max margin available（not in the range of this ladder margin balance, is next ladder's min_margin_available) |  |
+| \</ladders\> |  |  |  |  |
+| \</list\> |  |  |  |  |
+| \</data\> |  |  |  |  |
+| ts | true  | long | Time of Respond Generation，Unit：Millisecond |  |
+
 
 
 ##  Query information on system status
@@ -3783,6 +3921,59 @@ last_price | decimal  | true  | Last Price                                      
 \</data\>            |        |         |                      |  
 
 
+
+## Set a Batch of Sub-Account Trading Permissions
+
+ - POST `/swap-api/v1/swap_sub_auth`
+
+### Request Parameter
+
+| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| sub_uid | true  | string | sub-account uid (multiple uids are separated by ",", and one time 10 sub uid at most)	    |                                          |
+| sub_auth | true  | int |  sub auth, 1:enable, 0:disable	    |                                          |
+
+#### Note:
+- When enable the transaction authority on the sub-account for the first time, deemed to agree to access the contract market.
+- If the sub-account trading permission has been enable, the interface will directly return success when request to enable again; if the sub-account trading permission has been disable, the interface will directly return success when request to disable again;
+
+> Response:
+
+```json
+
+{
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "sub_uid": "1234567",
+                "err_code": 1010,
+                "err_msg": "Account doesnt exist."
+            }
+        ],
+        "successes": "146190163"
+    },
+    "ts": 1612495818455
+}  
+```
+
+### Returning Parameter
+
+| Parameter Name                   | Mandatory | Type     | Description                                 | Value Range           |
+| ---------------------- | ---- | ------ | ---------------------------------- | -------------- |
+| status                 | true | string | the result of server handling to request                             | "ok" , "error" |
+| \<data\>|  true    |        |                                    |                |
+| \<errors\>|  true    | object array       |                                    |                |
+| sub_uid               | true | string | the list of sub uid which failed                            |                |
+| err_code               | true | int    | error code                                |                |
+| err_msg                | true | string | error msg                               |                |
+| \</errors\>              |      |        |                                    |                |
+| successes              | true | string | he list of sub uid which successes |                |
+| \</data\>              |      |        |                                    |                |
+| ts                     | true | long   | Time of Respond Generation，Unit：Millisecond                      |                |
+
+
+
 ## Query assets information of all sub-accounts under the master account
 
 - POST `/swap-api/v1/swap_sub_account_list`
@@ -3835,10 +4026,77 @@ last_price | decimal  | true  | Last Price                                      
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
-
 - Notice
 
  Only return data for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission). 
+
+
+
+## Query a Batch of Sub-Account's Assets Information
+
+ - POST `/swap-api/v1/swap_sub_account_info_list`
+
+### Request Parameter
+| Parameter Name   | Mandatory  | Type     | Description   |  Value Range       |
+| ------ | ----- | ------ |  ---- | ------------------------------ |
+| contract_code | false | string | contract code |  "BTC-USD"... ,if not filled in return all  |
+| page_index  | false | int    | page index, if not filled in as 1st            |                                          |
+| page_size   | false | int    | if not filled in as 20，50 at most          |                                          |
+
+#### Note:
+- Only return data of sub-accounts that have agreed to access the contract market.
+- By default, the list of sub-accounts is in ascending order according to the time when agree to access the contract market, and the earlier the agreed time, the first the position
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 1,
+        "sub_list": [
+            {
+                "sub_uid": 123456789,
+                "account_info_list": [
+                    {
+                        "symbol": "TRX",
+                        "margin_balance": 50,
+                        "liquidation_price": null,
+                        "risk_rate": null,
+                        "contract_code": "TRX-USD"
+                    }
+                ]
+            }
+        ]
+    },
+    "ts": 1612496369035
+}
+```
+
+### Returning Parameter
+
+| Parameter Name  | Mandatory | Type      | Description     | Value Range           |
+| ----------------- | ---- | ------- | ------------- | -------------- |
+| status                | true | string  | the result of server handling to request        | "ok" , "error"                           |
+| ts                    | true | long    | Time of Respond Generation，Unit：Millisecond |                                          |
+| \<data\>              | true    |  object       |           |                                          |
+| \<sub_list\>  | true     |  object array       |               |                                          |
+| sub_uid           | true | long    | sub uid        |                |
+| \<account_info_list\>          |   true   |  object array       |               |                |
+| symbol            | true | string  | symbol          | "BTC","ETH"... |
+| contract_code            | true | string  | contract code          |  "BTC-USD" ... |
+| margin_balance    | true | decimal | margin balance          |                |
+| liquidation_price | true | decimal | liquidation price         |                |
+| risk_rate         | true | decimal | risk rate          |                |
+| \</account_info_list\>         |      |         |               |                |
+| \</sub_list\> |     |         |               |                                          |
+| current_page          | true | int     | current page           |                                          |
+| total_page            | true | int     | total page           |                                          |
+| total_size            | true | int     | total size           |                                          |
+| \</data\>             |      |         |      |     |
+
 
 
 ## Query a single sub-account's assets information
@@ -4163,6 +4421,7 @@ last_price | decimal  | true  | Last Price                                      
 - The data is queried in reverse order by default; the newer the data, the closer to the front.
 - If the start time or the end time is not within the value range, the system will report an error 1067 to indicate the parameter is invalid.  
 - Query users' settlement records with settlement start time behind the start_time but before the end_time. 
+- This interface only supports users to query data for the last 90 days.
 
 > Response: 
 
@@ -8018,7 +8277,8 @@ Parameter Name  |  Mandatory  |    Type  |     Description   |  Default   |  Val
             "ts":1603876250774,
             "id":509977028010022,
             "price":"13689.8",
-            "direction":"sell"
+            "direction":"sell",
+            "quantity": "0.0031"
         }
     ],
     "id":"id8",
@@ -8042,8 +8302,12 @@ price  |  true  |  string  |  Price |   |
 amount  |  true  |  string  |  Quantity(Cont.). Sum of both buy and sell sides |   |    
 direction  |  true  |  string  |  Order Direction  |   |    
 ts  |  true  |  long  |  Order Creation Time |   |    
+quantity  |  true  |  string  |  trading quantity(coin)  |   | 
  \</data\>    |               |    |      | 
 ts  |  true  |  long  |  server response time |   | 
+
+#### Notice
+- There are "quantity" parameter in return data only after 21:00:00 on February 3, 2021
 
 
 ## Subscribe Trade Detail Data 
@@ -8099,7 +8363,8 @@ ts  |  true  |  long  |  server response time |   |
                 "ts":1603876416513,
                 "id":509980358530000,
                 "price":13686,
-                "direction":"sell"
+                "direction":"sell",
+                "quantity": 0.0031
             }
         ]
     }
@@ -8121,7 +8386,8 @@ amount  |  true  |  decimal  |  quantity(Cont.). Sum of both buy and sell sides 
 ts  |  true  |  long  |  trade timestamp  |   |    
 id  |  true  |  long  | Unique Transaction Id(symbol level)  |   |    
 price  |  true  |  decimal  |  Price  |   |    
-direction  |  true  |  string  |  Order direction  |   |    
+direction  |  true  |  string  |  Order direction  |   | 
+quantity  |  true  |  decimal  |  trading quantity(coin)  |   |    
  \</data\>    |               |    |      | 
  \</tick\>    |               |    |      | 
 
