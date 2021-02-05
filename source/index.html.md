@@ -37,6 +37,39 @@ search: True
 
 # 更新日志
 
+
+## 1.0.4 2021年2月5日【新增：批量设置子账户交易权限接口、批量获取子账户资产信息接口。修改：获取市场最近成交记录接口、批量获取最近的交易记录接口、订阅 Trade Detail 数据接口、请求 Trade Detail 数据接口】
+
+### 1、新增批量设置子账户交易权限接口
+ - 接口名称：批量设置子账户交易权限
+ - 接口类型：私有接口
+ - 接口URL：/option-api/v1/option_sub_auth
+
+### 2、新增批量获取子账户资产信息接口
+ - 接口名称：批量获取子账户资产信息
+ - 接口类型：私有接口
+ - 接口URL：/option-api/v1/option_sub_account_info_list
+
+### 3、修改获取市场最近成交记录接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）*合约面值*成交价格。）
+ - 接口名称：获取市场最近成交记录
+ - 接口类型：公共接口
+ - 接口URL：/option-ex/market/trade
+
+### 4、修改批量获取最近的交易记录接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）*合约面值*成交价格。）
+ - 接口名称：批量获取最近的交易记录
+ - 接口类型：公共接口
+ - 接口URL：/option-ex/market/history/trade
+
+### 5、修改订阅 Trade Detail 数据接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）*合约面值*成交价格。）
+ - 接口名称：订阅 Trade Detail 数据
+ - 接口类型：公共接口
+ - 订阅地址：market.$contract_code.trade.detail
+
+### 6、修改请求 Trade Detail 数据接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）*合约面值*成交价格。）
+ - 接口名称：请求 Trade Detail 数据
+ - 接口类型：公共接口
+ - 订阅地址：market.$contract_code.trade.detail
+
 ## 1.0.3 2020年01月29日 【修改：全部撤单接口、计划委托全部撤单接口、合约当前未成交委托接口、计划委托当前委托接口，修改：计划委托订单的订单ID由原本的自然数自增ID 改为长度为 18 位的唯一标识ID。推荐使用下单后返回的 order_id_str（字符串类型的订单 ID），避免发生长度过大而被系统截断的情况。】
 
 ### 1、修改全部撤单接口（请求参数新增 2 个选填字段:direction，表示买卖方向，不填默认撤销全部。参数可选值为“buy”:买，“sell”:卖。offset，表示开平方向，不填默认撤销全部。参数可 选值为“open”:开仓，“close”:平仓。）
@@ -113,8 +146,10 @@ search: True
 | 读取   | 市场行情接口 | /option-ex/market/trade                                 | GET      | 获取市场最近成交记录                |  否     
 | 读取   | 市场行情接口 | /option-ex/market/history/trade                         | GET      | 批量获取最近的交易记录              |  否    
 | 读取   | 资产接口     | /option-api/v1/option_account_info                     | POST     | 获取用户账户信息                    | 是       
-| 读取   | 资产接口     | /option-api/v1/option_position_info                    | POST     | 获取用户持仓信息                    | 是       
-| 读取   | 账户接口     | /option-api/v1/option_sub_account_list                 | POST     | 查询母账户下所有子账户资产信息         | 是    
+| 读取   | 资产接口     | /option-api/v1/option_position_info                    | POST     | 获取用户持仓信息                    | 是   
+| 交易   |  账户接口    |  /option-api/v1/option_sub_auth                |    POST       |       批量设置子账户交易权限       |  是  |    
+| 读取   | 账户接口     | /option-api/v1/option_sub_account_list                 | POST     | 查询母账户下所有子账户资产信息         | 是  
+| 读取   |  账户接口    |  /option-api/v1/option_sub_account_info_list   |    POST       |       批量获取子账户资产信息      |  是  |
 | 读取   | 账户接口     | /option-api/v1/option_sub_account_info                 | POST     | 查询母账户下的单个子账户资产信息       | 是    
 | 读取   | 账户接口     | /option-api/v1/option_sub_position_info                | POST     | 查询母账户下的单个子账户持仓信息       | 是    
 | 读取   | 账户接口     | /option-api/v1/option_financial_record                 | POST     | 查询用户财务记录                     | 是      
@@ -877,6 +912,65 @@ market.$contract_code.depth.$type是全量数据，market.$contract_code.depth.s
 
 (4) 同一个websocket连接，增量数据version是递增的；如果 version不递增，您需要重新订阅并重新维护本地全量数据；
 
+### Q14: 订阅多个合约代码同一主题时, 需要多个 ws 连接吗?
+
+对于交割合约、币永续、u永续、期权之间, 由于是不同的接口地址, 需要不同的 ws 连接
+
+对于交割合约、币永续、u永续、期权各自里面, 只要接口地址是一样的, 一个 ws 连接即可. 
+
+### Q15: 是否可以通过 ws 下单和撤单?
+
+目前不支持 ws 下单和撤单
+
+### Q16: 如何订阅订单状态?
+
+a. 订单交易成功: ”订阅合约订单撮合数据（matchOrders.$symbol-$partition）"或"订阅订单成交数据（orders.$symbol-$partition）"
+
+b. 订单撤单成功: 订阅"资产变动数据（accounts.$symbol）”
+
+### Q17: ”订阅合约订单撮合数据（matchOrders.$symbol-$partition）"和"订阅订单成交数据（orders.$symbol-$partition）"的区别
+
+两者推送的数据不一样, 订单成交数据（orders.$symbol-$partition）会比订单撮合数据（matchOrders.$symbol-$partition）字段多一些
+
+通常情况下, 撮合完成后的推送(订单撮合数据“matchOrders.$symbol-$partition”)要比清算完成后的(订单成交数据“orders.$symbol-$partition”)推送快, 但不能保证撮合完成后的推送一定比清算完成后的推送更快;
+
+强平以及轧差订单不会推送"订单撮合数据（matchOrders.$symbol-$partition）”
+
+### Q18: "订阅 KLine 数据（market.$contract_code.kline.$period）”多久推送一次
+
+有成交时, 500ms推送一次
+
+无成交时, 根据订阅的周期推送
+
+### Q19: 如何判断推送是否延迟
+
+判断是否延迟, 请先同步服务器时间, 同步服务器时间接口为: https://api.hbdm.com/api/v1/timestamp, 返回数据中的 ts 是时间戳（毫秒）, 对应的时区是 UTC+8.
+
+每个推送数据的外层都会有一个推送数据 ts, 这个 ts 是服务器推送数据给客户端那一刻的间戳（毫秒）, 对应的时区是 UTC+8.
+
+当有推送数据到达时, 程序记录此时本地时间 ts. 当发现本地时间 ts 远远大于推送数据 ts 时（本地时间远远晚于推送数据时间）, 可以通过一下方式定位延迟和解决延迟: 
+
+a. 减少订阅时推送的数据. 
+
+b. 查看本地网络和服务器间的稳定性和速度（请把 api.btcgateway.pro 替换为程序使用的域名）
+
+curl -o /dev/null -s -w time_namelookup"(s)":%{time_namelookup}"\n"time_connect"(s)":%{time_connect}"\n"time_starttransfer"(s)":%{time_starttransfer}"\n"time_total"(s)":%{time_total}"\n"speed_download"(B/s)":%{speed_download}"\n" api.btcgateway.pro
+
+收到类似以下数据: 
+
+time_namelookup(s):0.001378
+
+time_connect(s):0.128641
+
+time_starttransfer(s):0.276588
+
+time_total(s):0.276804
+
+speed_download(B/s):2010.000
+
+若连续多次运行以上命令, 每次得到的结果差异很大, 可以: a.选择合适的火币域名, b.优化或者重新选择程序所在网络. 
+
+
 ## 交易相关
 
 ### Q1: API返回1004错误码是什么原因？
@@ -923,6 +1017,108 @@ WS订阅私有账户，订单，仓位时，请注意也要定时维护好心跳
 
 撤单命令执行成功一般几十ms，实际撤单状态要查询订单状态option-api/v1/option_order_info获取。
 
+### Q11: 如何查询交易所系统状态
+
+交易所系统常见的两种状态: 系统处于结算/交割；停机维护. 当系统处于这两种状态时, 调用 api 接口会返回响应的错误代码和错误信息
+
+a.如何判断是否是结算/交割完成
+
+通过"获取合约信息”接口: /option-api/v1/option_contract_info
+
+在返回值中的 contract_status 来判断, 如果值为 1 表示已经结算/交割完成, 可以正常交易了
+
+b.如何判断是否是停机维护
+
+通过"查询系统是否可用”接口: https://api.hbdm.com/heartbeat/
+
+或者"订阅系统状态更新”接口: "topic ": "public.$service.heartbeat"
+
+在推送值中的 heartbeat 来判断, 如果值为 1 表示系统为可用, 可以正常连接了
+
+### Q12: 是否支持双向持仓
+
+支持的. 火币目前是支持同时持有空单和多单的
+
+### Q13: 如何保证快速成交
+
+火币合约目前是没有市价的. 为提高成交概率, 可以使用对手价: opponent, 最优5档: optimal_5, 最优10档: optimal_10, 最优20档: optimal_20. 其中最优20档的成交概率最大, 但是滑点也最大. 
+
+需要注意的是, 以上下单价格方式, 不保证 100% 成交的. 系统执行下单时, 是获取当时时刻的对方 N 档价格, 进行下单的. 
+
+### Q14: api 程序如何更快连接到交易所
+
+推荐使用 AWS 东京 c 区服务器, 同时使用 api.hbdm.vn 域名连接
+
+### Q15: 现货与合约之间, 划转报 Abnormal service 错误
+
+a.检查请求地址是否为火币 Global 地址: api.huobi.pro
+
+b.检查币的精度是否不超过 8 位小数
+
+### Q16: 如何确认是否开仓/平仓成功
+
+"合约下单（option-api/v1/option_order）”接口或者"合约批量下单（option-api/v1/option_batchorder）”接口下单成功后, 不代表已经开仓/平仓成功. 只是意味着服务器已经成功收到你的下单指令
+
+查询是否开仓/平仓成功，可以使用返回的“order_id” 通过“获取合约订单信息（option-api/v1/option_order_info）” 或 “获取订单明细信息（option-api/v1/option_order_detail）”这两个接口来查询订单状态。当订单已经成交后，接口返回参数中的status 值为 6 （全部成交）。
+
+但同时需要注意：
+
+a.获取合约订单信息（option-api/v1/option_order_info）接口在系统结算或交割后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。
+
+b.获取订单明细信息（option-api/v1/option_order_detail）接口存在延迟情况，所以查询时最好带上：created_at（下单时间戳）和 order_type(订单类型，默认填1)，会直接查询数据库，查询结果会更及时。
+
+
+### Q17: 为什么系统自动撤单了?
+
+下单时 order_price_type 为: IOC, FOK, Maker（post_only） 当盘口不满足条件时, 会自动撤单
+
+post_only, 只做Maker（Post only）订单, 不会立刻在市场上成交, 如果委托会立即与已有委托成交, 那么该委托会被取消, 保证用户始终为Maker. 
+
+IOC 订单, 若不能在市场上立即成交, 则未成交的部分立即取消. 
+
+FOK 订单, 若不能全部成交则立即全部取消. 
+
+### Q18: 如何获取用户当前资产最大可开张数
+
+目前没有直接获取当前资产最大可开张数的接口. 
+
+### Q19: order_id 和 order_id_str 是一样的吗?
+
+order_id_str 是 order_id 的字符串格式, 两者的值是一样的
+
+对于 18 位的 order_id, 在 nodejs 和 javascript 的 JSON.parse 默认是 int, 解析会有问题, 因此推荐使用 order_id_str
+
+### Q20: 如何获取成交数据中的主买/主卖数量
+
+"获取市场最近成交记录（/option-ex/market/trade）”接口或"sub": "market.$contract_code.trade.detail"订阅, 可以获取此数据, 其中: 
+
+amount: 成交量(张), 买卖双边成交量之和
+
+direction: 主动成交方向
+
+### Q21: 获取K线数据时, from 和 to 的时间间隔是 2000*period, 为什么获取的 data 为[]?
+
+获取 K 线时, from 和 to 两个时间点是全都包含在内的, 因此是 2001 条数据. 此时数量超出了最大条数 2000. 所以返回 []
+
+另外，当 from 和 to 的时间超过 2 年，返回的数据也会是 []
+
+### Q22: 如何获取合约最新价格
+
+a.调用"获取K线数据（/option-ex/market/history/kline）”接口, 任意 period, 返回数据的最后一条数据的 close 就是最新价. 
+
+b.调用"获取市场最近成交记录（/option-ex/market/trade）”接口, 返回数据的 price 就是最新价
+
+### Q23: API 升级会影响程序的运行吗?
+
+一般情况, API 升级会部分影响 ws 断连, 请做好 ws 重连逻辑. 升级内容可以订阅升级公告: 
+
+交割: https://status-dm.huobigroup.com/
+
+币本位永续: https://status-swap.huobigroup.com/
+
+USDT本位永续: https://status-linear-swap.huobigroup.com/
+
+
 ## 错误码相关
 
 ### Q1: 1030错误是什么原因？
@@ -932,6 +1128,12 @@ WS订阅私有账户，订单，仓位时，请注意也要定时维护好心跳
 ### Q2: 1048错误是什么原因？
 
 如果您出现{'index': 1, 'err_code': 1048, 'err_msg': 'Insufficient close amount available. '}类似错误，说明此时可平仓量不足，您平仓时需查询目前已有的仓位张数再去平仓。
+
+1、检查平仓的张数是否过大（当有平仓的限价挂单时, 会占用可平仓位的张数, 建议您撤销这些挂单后再去重试）. 
+
+2、检查仓位方向和开平方向（平多: 卖出平多(direction用sell、offset用close)、平空: 买入平空(direction用buy、offset用close)、闪电平仓只需传: direction（平多:sell、平空: buy））. 
+
+3、止盈止损的挂单和计划委托的挂单, 不会占仓位数. 
 
 ### Q3: API返回1032错误码是什么原因？
 
@@ -1735,7 +1937,9 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-201225-
                 "direction": "buy",
                 "id": 1182841000001,
                 "price": "2855.11",
-                "ts": 1604615035549
+                "ts": 1604615035549,
+                "quantity": "0.97",
+                "trade_turnover":"216.0683"
             }
         ],
         "id": 1604642413998,
@@ -1760,9 +1964,13 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-201225-
 | id     | true | long | 成交唯一id（品种唯一）      |      |
 | price     | true | string | 成交价       |      |
 | ts     | true | long | 成交时间       |      |
+| quantity     | true | string | 成交量（币）。       |      |
+| trade_turnover     | true | string | 成交额（计价币种）。     |      |
 |\</data\>      |  |  |              |      |
 |\</tick\>      |  |  |              |      |
 | ts     | true | long | 发送时间       |      |
+
+
 
 ## 批量获取最近的交易记录
 
@@ -1797,7 +2005,9 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
                     "direction": "sell",
                     "id": 1174421220000,
                     "price": 2406.83,
-                    "ts": 1604581920670
+                    "ts": 1604581920670,
+                    "quantity": 0.01,
+                    "trade_turnover":24.0683
                 }
             ],
             "id": 117442122,
@@ -1810,14 +2020,18 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
                     "direction": "buy",
                     "id": 1182841000000,
                     "price": 2821.97,
-                    "ts": 1604615035549
+                    "ts": 1604615035549,
+                    "quantity": 0.97,
+                    "trade_turnover":216.0683
                 },
                 {
                     "amount": 98,
                     "direction": "buy",
                     "id": 1182841000001,
                     "price": 2855.11,
-                    "ts": 1604615035549
+                    "ts": 1604615035549,
+                    "quantity": 0.098,
+                    "trade_turnover":19.0683
                 }
             ],
             "id": 118284100,
@@ -1841,6 +2055,8 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | id     | true | long | 成交唯一id（品种唯一）    |      |            |
 | price     | true | decimal | 成交价格       |      |            |
 | ts     | true | long | 成交时间       |      |            |
+| quantity     | true | decimal | 成交量（币）。      |      |
+| trade_turnover     | true | decimal | 成交额（计价币种）。    |      |
 |\</data\>      |  |  |              |      |            |
 | id     | true | long | 订单唯一id（品种唯一）   |      |            |
 | ts     | true | long | 最新成交时间       |      |            |
@@ -1848,6 +2064,8 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | status | true | string |                                          | "ok"，"error" |
 | ts     | true | long | 响应生成时间点，单位：毫秒                            |              |
 
+#### 备注
+- 2021年2月3日 21:00:00 后返回参数才会有quantity、trade_turnover字段。
 
 
 # 合约资产接口
@@ -2038,6 +2256,59 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | margin_asset    | true     | string       | 保证金币种                 | "BTC"，”ETH“，”USDT“                                         |
 | \</data\>           |          |              |                            |                                                              |
 
+
+
+## 批量设置子账户交易权限
+
+ - POST `/option-api/v1/option_sub_auth`
+
+### 请求参数
+
+| 参数名称          | 是否必须  | 类型     | 描述   | 取值范围                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| sub_uid | true  | string | 子账户uid (多个uid中间以","分隔,一次最多允许开通10个子账户)	    |                                          |
+| sub_auth | true  | int |  子账户交易权限，1 开启，0关闭	    |                                          |
+
+#### 备注：
+- 首次帮子账户开启交易权限时，系统会自动帮子账户先开通合约。
+- 若子账户交易权益已开启，此时请求开启权限，则接口会直接返回成功；若子账户交易权益已关闭，此时用户请求关闭权限，则接口会直接返回成功；
+
+> Response:
+
+```json
+
+{
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "sub_uid": "122343",
+                "err_code": 1010,
+                "err_msg": "Account doesn't exist."
+            }
+        ],
+        "successes": "123456789"
+    },
+    "ts": 1612509171791
+}  
+```
+
+###  返回参数
+
+| 参数名称                   | 是否必须 | 类型     | 描述                                 | 取值范围           |
+| ---------------------- | ---- | ------ | ---------------------------------- | -------------- |
+| status                 | true | string | 请求处理结果                             | "ok" , "error" |
+| \<data\>            |  true    |       |                                    |                |
+| \<errors\>            |  true    | object array       |                                    |                |
+| sub_uid               | true | string | 开通失败的子账户uid                            |                |
+| err_code               | true | int    | 错误码                                |                |
+| err_msg                | true | string | 错误信息                               |                |
+| \</errors\>              |      |        |                                    |                |
+| successes              | true | string | 开通合约成功的子账户uid列表 |                |
+| \</data\>              |      |        |                                    |                |
+| ts                     | true | long   | 响应生成时间点，单位：毫秒                      |                |
+
+
 ## 查询母账户下所有子账户资产信息
 
 - post `option-api/v1/option_sub_account_list`
@@ -2111,6 +2382,72 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 ### 备注
 
   - 只返回已经开通合约交易的子账户数据.
+
+
+
+## 批量获取子账户资产信息
+
+ - POST `/option-api/v1/option_sub_account_info_list`
+
+### 请求参数
+| 参数名称   | 是否必须  | 类型     | 描述   |  取值范围       |
+| ------ | ----- | ------ |  ---- | ------------------------------ |
+| symbol   | false    | string | 资产品种 | "BTC"，"ETH"，“USDT”，如果缺省，默认返回所有品种       |
+| trade_partition | false  | string | 交易分区，不填默认”USDT“ | "USDT"                                 |
+| page_index  | false | int    | 第几页,不填默认第一页            |                                          |
+| page_size   | false | int    | 不填默认20，不得多于50          |                                          |
+
+#### 备注：
+- 只返回已经开通合约交易的子账户数据.
+- 子账户列表默认按照开通合约时间升序，先开通合约排在前面
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 1,
+        "sub_list": [
+            {
+                "sub_uid": 123456789,
+                "account_info_list": [
+                    {
+                        "symbol": "BTC",
+                        "margin_balance": 0,
+                        "trade_partition": "USDT"
+                    }
+                ]
+            }
+        ]
+    },
+    "ts": 1612509268854
+}
+  
+```
+
+### 返回参数
+
+| 参数名称  | 是否必须 | 类型      | 描述     | 取值范围           |
+| ----------------- | ---- | ------- | ------------- | -------------- |
+| status                | true | string  | 请求处理结果        | "ok" , "error"                           |
+| ts                    | true | long    | 响应生成时间点，单位：毫秒 |                                          |
+| \<data\>              | true    |  object       | 字典类型          |                                          |
+| \<sub_list\>  | true     |  object array       |               |                                          |
+| sub_uid           | true | long    | 子账户UID        |                |
+| \<account_info_list\>          |   true   |  object array       |               |                |
+| symbol            | true     | string       | 资产品种                   | "BTC","ETH","USDT"... |
+| trade_partition   | true     | string       | 交易分区                   | "USDT"         |
+| margin_balance    | true     | decimal      | 账户权益                   |                |
+| \</account_info_list\>         |      |         |               |                |
+| \</sub_list\> |     |         |               |                                          |
+| current_page          | true | int     | 当前页           |                                          |
+| total_page            | true | int     | 总页数           |                                          |
+| total_size            | true | int     | 总条数           |                                          |
+| \</data\>             |      |         |      |     |
+
 
 
 ## 查询母账户下的单个子账户资产信息
@@ -5636,14 +5973,18 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
             "ts":1603869385244,
             "id":991487430000,
             "price":"1542.78",
-            "direction":"sell"
+            "direction":"sell",
+            "quantity":"0.006",
+            "trade_turnover": "9.032"
         },
         {
             "amount":"40",
             "ts":1603889690205,
             "id":996663430000,
             "price":"1300",
-            "direction":"sell"
+            "direction":"sell",
+            "quantity":"0.04",
+            "trade_turnover": "52.32"
         }
     ],
     "id":"160943040012341",
@@ -5666,8 +6007,13 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | amount   | true | string  | 数量（张）    | |
 | direction   | true | string  | 买卖方向    | |
 | ts   | true | long  | 订单成交时间    | |
+| quantity |   | true | string  |成交量（币）    | |
+| trade_turnover   | true | string  | 成交额（计价币种）    | |
 | \</data\>     |  |   |     | |
 | ts   | true | long  | 发送时间    | |
+
+#### 备注
+- 2021年2月3日 21:00:00 后返回参数才会有quantity、trade_turnover字段。
 
 
 ## 订阅 Trade Detail 数据
@@ -5725,7 +6071,9 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
                 "ts":1604888281258,
                 "id":1253440320000,
                 "price":2897.25,
-                "direction":"buy"
+                "direction":"buy",
+                "quantity":0.002,
+                "trade_turnover": 5.632
             }
         ]
     }
@@ -5747,6 +6095,8 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | id   | true | long  | 成交唯一id（品种唯一）  |   |
 | price   | true | decimal  |价格  |   |
 | direction   | true | string  | 买卖方向 |   |
+| quantity |   | true | decimal  |成交量（币）    | |
+| trade_turnover   | true | decimal  | 成交额（计价币种）    | |
 | \</data\>     |  |   |     |   |
 | \</tick\>     |  |   |     |   |
 
