@@ -38,7 +38,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
-## 1.0.8 2021-2-3 [Added: Get History Orders via Multiple Fields(cross margin and isolated margin), Get History Match Results via Multiple Fields(cross margin and isolated margin), Query account financial records via Multiple Fields, Query information on Tiered Margin(cross margin and isolated margin), Set a Batch of Sub-Account Trading Permissions, Query a Batch of Sub-Account's Assets Information(cross margin and isolated margin)。11-14 Modified the existing interfaces and added new parameters]
+## 1.0.8 2021-2-5 [Added: Get History Orders via Multiple Fields(cross margin and isolated margin), Get History Match Results via Multiple Fields(cross margin and isolated margin), Query account financial records via Multiple Fields, Query information on Tiered Margin(cross margin and isolated margin), Set a Batch of Sub-Account Trading Permissions, Query a Batch of Sub-Account's Assets Information(cross margin and isolated margin)。11-14 Modified the existing interfaces and added new parameters]
 
 ### 1. Added Get History Orders via Multiple Fields interface[Isolated]
  -  Interface Name: [Isolated]Get History Orders via Multiple Fields
