@@ -651,25 +651,25 @@
 <li>接口类型：私有接口</li>
 <li>接口URL：/option-api/v1/option_sub_account_info_list</li>
 </ul>
-<h3 id='3-data-quantity-data-trade_turnover'>3、修改获取市场最近成交记录接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）<em>合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）</em>合约面值*成交价格。）</h3>
+<h3 id='3-data-quantity-data-trade_turnover'>3、修改获取市场最近成交记录接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）* 合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）* 合约面值 * 成交价格。）</h3>
 <ul>
 <li>接口名称：获取市场最近成交记录</li>
 <li>接口类型：公共接口</li>
 <li>接口URL：/option-ex/market/trade</li>
 </ul>
-<h3 id='4-data-quantity-data-trade_turnover'>4、修改批量获取最近的交易记录接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）<em>合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）</em>合约面值*成交价格。）</h3>
+<h3 id='4-data-quantity-data-trade_turnover'>4、修改批量获取最近的交易记录接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）* 合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）* 合约面值 * 成交价格。）</h3>
 <ul>
 <li>接口名称：批量获取最近的交易记录</li>
 <li>接口类型：公共接口</li>
 <li>接口URL：/option-ex/market/history/trade</li>
 </ul>
-<h3 id='5-trade-detail-data-quantity-data-trade_turnover'>5、修改订阅 Trade Detail 数据接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）<em>合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）</em>合约面值*成交价格。）</h3>
+<h3 id='5-trade-detail-data-quantity-data-trade_turnover'>5、修改订阅 Trade Detail 数据接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）* 合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）* 合约面值 * 成交价格。）</h3>
 <ul>
 <li>接口名称：订阅 Trade Detail 数据</li>
 <li>接口类型：公共接口</li>
 <li>订阅地址：market.$contract_code.trade.detail</li>
 </ul>
-<h3 id='6-trade-detail-data-quantity-data-trade_turnover'>6、修改请求 Trade Detail 数据接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）<em>合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）</em>合约面值*成交价格。）</h3>
+<h3 id='6-trade-detail-data-quantity-data-trade_turnover'>6、修改请求 Trade Detail 数据接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）* 合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）* 合约面值 * 成交价格。）</h3>
 <ul>
 <li>接口名称：请求 Trade Detail 数据</li>
 <li>接口类型：公共接口</li>
@@ -14758,10 +14758,10 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </tr>
 <tr>
 <td>quantity</td>
-<td></td>
 <td>true</td>
 <td>string</td>
 <td>成交量（币）</td>
+<td></td>
 </tr>
 <tr>
 <td>trade_turnover</td>
@@ -14967,10 +14967,10 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 </tr>
 <tr>
 <td>quantity</td>
-<td></td>
 <td>true</td>
 <td>decimal</td>
 <td>成交量（币）</td>
+<td></td>
 </tr>
 <tr>
 <td>trade_turnover</td>
