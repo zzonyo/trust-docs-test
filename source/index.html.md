@@ -36,6 +36,79 @@ search: true
 
 # 更新日志
 
+## 1.0.8 2021年2月3日【新增：组合查询合约历史委托（全仓和逐仓）、组合查询用户历史成交记录（全仓和逐仓）、组合查询用户财务记录、获取平台阶梯保证金（全仓和逐仓）、批量设置子账户交易权限、批量获取子账户资产信息（全仓和逐仓）。11-14 修改接口，新增字段。】
+
+### 1、新增组合查询合约历史委托接口（逐仓）
+ - 接口名称：【逐仓】组合查询合约历史委托
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_hisorders_exact
+
+### 2、新增组合查询合约历史委托接口（全仓）
+ - 接口名称：【全仓】组合查询合约历史委托
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_cross_hisorders_exact
+
+### 3、新增组合查询用户历史成交记录接口（逐仓）
+ - 接口名称：【逐仓】组合查询用户历史成交记录
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_matchresults_exact
+
+### 4、新增组合查询用户历史成交记录接口（全仓）
+ - 接口名称：【全仓】组合查询用户历史成交记录
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_cross_matchresults_exact
+
+### 5、新增组合查询用户财务记录接口
+ - 接口名称：【通用】组合查询用户财务记录
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_financial_record_exact
+
+### 6、新增获取平台阶梯保证金（逐仓）
+ - 接口名称：【逐仓】获取平台阶梯保证金
+ - 接口类型：公共接口
+ - 接口URL：/linear-swap-api/v1/swap_ladder_margin
+
+### 7、新增获取平台阶梯保证金（全仓）
+ - 接口名称：【全仓】获取平台阶梯保证金
+ - 接口类型：公共接口
+ - 接口URL：/linear-swap-api/v1/swap_cross_ladder_margin
+
+### 8、新增批量设置子账户交易权限接口
+ - 接口名称：【通用】批量设置子账户交易权限
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_sub_auth
+
+### 9、新增批量获取子账户资产信息接口（逐仓）
+ - 接口名称：【逐仓】批量获取子账户资产信息
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_sub_account_info_list
+
+### 10、新增批量获取子账户资产信息接口（全仓）
+ - 接口名称：【全仓】批量获取子账户资产信息
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_cross_sub_account_info_list
+
+### 11、修改获取市场最近成交记录接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）*合约面值*成交价格。）
+ - 接口名称：【通用】获取市场最近成交记录
+ - 接口类型：公共接口
+ - 接口URL：/linear-swap-ex/market/trade
+
+### 12、修改批量获取最近的交易记录接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）*合约面值*成交价格。）
+ - 接口名称：【通用】批量获取最近的交易记录
+ - 接口类型：公共接口
+ - 接口URL：/linear-swap-ex/market/history/trade
+
+### 13、修改订阅 Trade Detail 数据接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）*合约面值*成交价格。）
+ - 接口名称：【通用】订阅 Trade Detail 数据
+ - 接口类型：公共接口
+ - 订阅地址：market.$contract_code.trade.detail
+
+### 14、修改请求 Trade Detail 数据接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）*合约面值*成交价格。）
+ - 接口名称：【通用】请求 Trade Detail 数据
+ - 接口类型：公共接口
+ - 订阅地址：market.$contract_code.trade.detail
+
+
 ## 1.0.7 2021年1月29日 【新增：批量获取聚合行情接口、获取标记价格的 K 线数据、查询用户结算记录（全仓和逐仓）、订阅标记价格 K 线数据（sub）、请求标记价格 K 线数据（req）。7-28 修改接口，新增字段。修改：计划委托订单的订单ID由原本的自然数自增ID 改为长度为 18 位的唯一标识ID。推荐使用下单后返回的 order_id_str（字符串类型的订单 ID），避免发生长度过大而被系统截断的情况。】
 
 ### 1、新增批量获取聚合行情接口
@@ -944,16 +1017,22 @@ search: true
 读取  | 市场行情接口 |  通用   | /linear-swap-ex/market/trade                                       | GET    |      【通用】获取市场最近成交记录                |       否          |
 读取  | 市场行情接口 |  通用   | /linear-swap-ex/market/history/trade                               | GET    |      【通用】批量获取最近的交易记录               |     否         |
 读取  | 市场行情接口  | 通用  | /linear-swap-api/v1/swap_estimated_settlement_price                 | GET    |     【通用】获取预估结算价      |      否          |
+读取  | 市场行情接口 |  通用   | /linear-swap-api/v1/swap_ladder_margin                            | GET     |      【逐仓】获取平台阶梯保证金                      |       否          |
+读取  | 市场行情接口 |  通用   | /linear-swap-api/v1/swap_cross_ladder_margin                      | GET     |      【全仓】获取平台阶梯保证金                      |       否          |
 读取  | 基础信息接口 |  全仓    | /linear-swap-api/v1/swap_cross_adjustfactor                          | GET    |     【全仓】查询平台阶梯调整系数                                                |       否          |
 读取  | 基础信息接口 |  全仓    | /linear-swap-api/v1/swap_cross_transfer_state                        | GET    |     【全仓】查询系统划转权限                        |       否          |
 读取  | 基础信息接口 |  全仓    | /linear-swap-api/v1/swap_cross_trade_state                           | GET    |     【全仓】查询系统交易权限                        |       否          |
 读取  | 账户接口    |  逐仓  |  /linear-swap-api/v1/swap_account_info                              | POST   |      【逐仓】获取用户的合约账户信息               |     是         |
 读取  | 账户接口    |  逐仓  |  /linear-swap-api/v1/swap_position_info                             | POST   |      【逐仓】获取用户的合约持仓信息               |     是         |
 读取  | 账户接口    |  逐仓  |  /linear-swap-api/v1/swap_available_level_rate                      | POST   |      【逐仓】查询用户可用杠杆倍数          |     是         |
+交易  | 账户接口 |  通用   | /linear-swap-api/v1/swap_sub_auth                                    | POST    |      【通用】批量设置子账户交易权限                      |       是          |
 读取  | 账户接口    |  逐仓  |  /linear-swap-api/v1/swap_sub_account_list                          | POST   |      【逐仓】查询母账户下所有子账户资产信息       |     是         |
+读取  | 账户接口 |  逐仓   | /linear-swap-api/v1/swap_sub_account_info_list                       | POST    |      【逐仓】批量获取子账户资产信息                      |       是          |
+读取  | 账户接口 |  全仓   | /linear-swap-api/v1/swap_cross_sub_account_info_list                 | POST    |      【全仓】批量获取子账户资产信息                     |       是          |
 读取  | 账户接口    |  逐仓  |  /linear-swap-api/v1/swap_sub_account_info                          | POST   |      【逐仓】查询母账户下的单个子账户资产信息     |     是         |
 读取  | 账户接口    |  逐仓  |  /linear-swap-api/v1/swap_sub_position_info                         | POST   |      【逐仓】查询母账户下的单个子账户持仓信息     |     是         |
 读取  | 账户接口    |  通用  |  /linear-swap-api/v1/swap_financial_record                          | POST   |      【通用】查询用户财务记录                     |     是         |
+读取  | 账户接口 |  通用   | /linear-swap-api/v1/swap_financial_record_exact                      | POST    |      【通用】组合查询用户财务记录                       |       是          |
 读取  |  账户接口   |   逐仓    |  /linear-swap-api/v1/swap_user_settlement_records  |                 POST        |  【逐仓】查询用户结算记录                |  是  |
 读取  |  账户接口   |   全仓    |  /linear-swap-api/v1/swap_cross_user_settlement_records  |                 POST        |  【全仓】查询用户结算记录                |  是  |
 读取  | 账户接口    |  通用  |  /linear-swap-api/v1/swap_order_limit                               | POST   |      【通用】获取用户的合约下单量限制             |     是         |
@@ -983,7 +1062,9 @@ search: true
 读取  | 交易接口    |  逐仓  |  /linear-swap-api/v1/swap_order_detail                              | POST   |      【逐仓】获取用户的合约订单明细信息           |     是         |
 读取  | 交易接口    |  逐仓  |  /linear-swap-api/v1/swap_openorders                                | POST   |      【逐仓】获取用户的合约当前未成交委托         |     是         |
 读取  | 交易接口    |  逐仓  |  /linear-swap-api/v1/swap_hisorders                                 | POST   |      【逐仓】获取用户的合约历史委托               |     是         |
+读取  | 交易接口 |  逐仓   | /linear-swap-api/v1/swap_hisorders_exact                             | POST    |      【逐仓】组合查询合约历史委托                        |       是          |
 读取  | 交易接口    |  逐仓  |  /linear-swap-api/v1/swap_matchresults                              | POST   |      【逐仓】获取用户的合约历史成交记录           |     是         |
+读取  | 交易接口 |  逐仓   | /linear-swap-api/v1/swap_matchresults_exact                          | POST    |      【逐仓】组合查询用户历史成交记录                     |       是          |
 交易  | 交易接口    |  逐仓  |  /linear-swap-api/v1/swap_lightning_close_position                  | POST   |      【逐仓】合约闪电平仓下单                     |     是         |
 交易  | 策略接口    |  逐仓  |  /linear-swap-api/v1/swap_trigger_order                             | POST   |      【逐仓】合约计划委托下单                     |     是          |
 交易  | 策略接口    |  逐仓  |  /linear-swap-api/v1/swap_trigger_cancel                            | POST   |      【逐仓】合约计划委托撤单                     |     是         |
@@ -999,7 +1080,9 @@ search: true
 读取  | 交易接口    |  全仓  |  /linear-swap-api/v1/swap_cross_order_detail                          | POST    |     【全仓】获取用户的合约订单明细信息         |       是          |
 读取  | 交易接口    |  全仓  |  /linear-swap-api/v1/swap_cross_openorders                            | POST    |     【全仓】获取用户的合约当前未成交委托       |       是          |
 读取  | 交易接口    |  全仓  |  /linear-swap-api/v1/swap_cross_hisorders                             | POST    |     【全仓】获取用户的合约历史委托             |       是          |
+读取  | 交易接口 |  全仓   | /linear-swap-api/v1/swap_cross_hisorders_exact                       | POST    |      【全仓】组合查询合约历史委托                        |       是          |
 读取  | 交易接口    |  全仓  |  /linear-swap-api/v1/swap_cross_matchresults                          | POST    |     【全仓】获取用户的合约历史成交记录         |       是          |
+读取  | 交易接口 |  全仓   | /linear-swap-api/v1/swap_cross_matchresults_exact                    | POST    |      【全仓】组合查询用户历史成交记录                     |       是          |
 交易  | 交易接口    |  全仓  |  /linear-swap-api/v1/swap_cross_lightning_close_position              | POST    |     【全仓】合约闪电平仓下单           |       是          |
 交易  | 策略接口    |  全仓  |  /linear-swap-api/v1/swap_cross_trigger_order                         | POST    |     【全仓】合约计划委托下单           |       是          |
 交易  | 策略接口    |  全仓  |  /linear-swap-api/v1/swap_cross_trigger_cancel                        | POST    |     【全仓】合约计划委托撤单           |       是          |
@@ -1227,7 +1310,7 @@ api.hbdm.com\n
 
 - HTTP返回的header信息：
 
-  - 禁用期间下单类型为被禁用的四种类型时，接口返回信息header中会包括字段："recovery-time：禁用的恢复时间戳"，单位为毫秒，表示禁用结束时间，可恢复访问的时间戳；如果不在禁用期间，header中不返回该字段；
+- 禁用期间下单类型为被禁用的四种类型时，接口返回信息header中会包括字段："recovery-time：禁用的恢复时间戳"，单位为毫秒，表示禁用结束时间，可恢复访问的时间戳；如果不在禁用期间，header中不返回该字段；
 
 - 委托单总笔数与撤单率的计算是基于UID，母子UID是分开单独计算的。计算撤单率的时间周期为10分钟/次（开始时间从00:00开始,结束时间00:10。每10分钟一个周期。）；
 
@@ -1994,6 +2077,64 @@ market.$contract_code.depth.$type是全量数据，market.$contract_code.depth.s
 
 在正常情况下当期资金费率和实际资金费率是相等的。只有在支付资金费率会导致用户爆仓时，会少收或不收资金费率（少收或不收的资金费率值就是实际资金费率）。当期资金费率不变。
 
+### Q15: 订阅多个合约代码同一主题时, 需要多个 ws 连接吗?
+
+对于交割合约、币永续、u永续、期权之间, 由于是不同的接口地址, 需要不同的 ws 连接
+
+对于交割合约、币永续、u永续、期权各自里面, 只要接口地址是一样的, 一个 ws 连接即可. 
+
+### Q16: 是否可以通过 ws 下单和撤单?
+
+目前不支持 ws 下单和撤单
+
+### Q17: 如何订阅订单状态?
+
+a. 订单交易成功: ”订阅合约订单撮合数据（matchOrders.$contract_code）"或"订阅订单成交数据（orders.$contract_code）"
+
+b. 订单撤单成功: 订阅"资产变动数据（accounts.$contract_code）”
+
+### Q18: ”订阅合约订单撮合数据（matchOrders.$contract_code）"和"订阅订单成交数据（orders.$contract_code）"的区别？
+
+两者推送的数据不一样, 订单成交数据（orders.$contract_code）会比订单撮合数据（matchOrders.$contract_code）字段多一些
+
+通常情况下, 撮合完成后的推送(订单撮合数据“matchOrders.$contract_code”)要比清算完成后的(订单成交数据“orders.$contract_code”)推送快, 但不能保证撮合完成后的推送一定比清算完成后的推送更快;
+
+强平以及轧差订单不会推送"订单撮合数据（matchOrders.$contract_code）”
+
+### Q19: "订阅 KLine 数据（market.$contract_code.kline.$period）”多久推送一次？
+
+有成交时, 500ms推送一次
+
+无成交时, 根据订阅的周期推送
+
+### Q20: 如何判断推送是否延迟
+判断是否延迟, 请先同步服务器时间, 同步服务器时间接口为: https://api.hbdm.com/api/v1/timestamp, 返回数据中的 ts 是时间戳（毫秒）, 对应的时区是 UTC+8.
+
+每个推送数据的外层都会有一个推送数据 ts, 这个 ts 是服务器推送数据给客户端那一刻的间戳（毫秒）, 对应的时区是 UTC+8.
+
+当有推送数据到达时, 程序记录此时本地时间 ts. 当发现本地时间 ts 远远大于推送数据 ts 时（本地时间远远晚于推送数据时间）, 可以通过一下方式定位延迟和解决延迟: 
+
+a. 减少订阅时推送的数据. 
+
+b. 查看本地网络和服务器间的稳定性和速度（请把 api.btcgateway.pro 替换为程序使用的域名）
+
+curl -o /dev/null -s -w time_namelookup"(s)":%{time_namelookup}"\n"time_connect"(s)":%{time_connect}"\n"time_starttransfer"(s)":%{time_starttransfer}"\n"time_total"(s)":%{time_total}"\n"speed_download"(B/s)":%{speed_download}"\n" api.btcgateway.pro
+
+收到类似以下数据: 
+
+time_namelookup(s):0.001378
+
+time_connect(s):0.128641
+
+time_starttransfer(s):0.276588
+
+time_total(s):0.276804
+
+speed_download(B/s):2010.000
+
+若连续多次运行以上命令, 每次得到的结果差异很大, 可以: a.选择合适的火币域名, b.优化或者重新选择程序所在网络. 
+
+
 ## 交易相关
 
 ### Q1: USDT本位永续的资金费率结算周期是什么？资金费率结算时通过哪些接口可以查询状态？
@@ -2065,6 +2206,125 @@ WS订阅私有账户，订单，仓位时，请注意也要定时维护好心跳
 
 需要获取历史强平订单，可以通过：获取合约历史委托（/linear-swap-api/v1/swap_hisorders【逐仓】或/linear-swap-api/v1/swap_cross_hisorders【全仓】）、获取历史成交记录（/linear-swap-api/v1/swap_matchresults【逐仓】或/linear-swap-api/v1/swap_cross_matchresults【全仓】）这两个接口中的返回字段order_source(订单来源)来判断，当order_source返回的为“risk”说明这个订单就是被强平的订单。
 
+### Q14: 如何查询交易所系统状态
+
+交易所系统常见的两种状态: 系统处于结算/交割；停机维护. 当系统处于这两种状态时, 调用 api 接口会返回响应的错误代码和错误信息
+
+a.如何判断是否是结算/交割完成
+
+通过"获取合约信息”接口: /linear-swap-api/v1/swap_contract_info
+
+在返回值中的 contract_status 来判断, 如果值为 1 表示已经结算/交割完成, 可以正常交易了
+
+b.如何判断是否是停机维护
+
+通过"查询系统是否可用”接口: https://api.hbdm.com/heartbeat/
+
+或者"订阅系统状态更新”接口: "topic ": "public.$service.heartbeat"
+
+在推送值中的 heartbeat 来判断, 如果值为 1 表示系统为可用, 可以正常连接了
+
+### Q15: 是否支持双向持仓
+
+支持的. 火币目前是支持同时持有空单和多单的
+
+### Q16: 如何保证快速成交
+
+火币合约目前是没有市价的. 为提高成交概率, 可以使用对手价: opponent, 最优5档: optimal_5, 最优10档: optimal_10, 最优20档: optimal_20. 其中最优20档的成交概率最大, 但是滑点也最大. 
+
+需要注意的是, 以上下单价格方式, 不保证 100% 成交的. 系统执行下单时, 是获取当时时刻的对方 N 档价格, 进行下单的. 
+
+### Q17: api 程序如何更快连接到交易所
+
+推荐使用 AWS 东京 c 区服务器, 同时使用 api.hbdm.vn 域名连接
+
+### Q18: 现货与合约之间, 划转报 Abnormal service 错误
+
+a.检查请求地址是否为火币 Global 地址: api.huobi.pro
+
+b.检查币的精度是否不超过 8 位小数
+
+### Q19: 如何确认是否开仓/平仓成功
+
+"合约下单（/linear-swap-api/v1/swap_order）”接口或者"合约批量下单（/linear-swap-api/v1/swap_batchorder）”接口下单成功后, 不代表已经开仓/平仓成功. 只是意味着服务器已经成功收到你的下单指令
+
+查询是否开仓/平仓成功，可以使用返回的“order_id” 通过“获取合约订单信息（/linear-swap-api/v1/swap_order_info）” 或 “获取订单明细信息（/linear-swap-api/v1/swap_order_detail）”这两个接口来查询订单状态。当订单已经成交后，接口返回参数中的status 值为 6 （全部成交）。
+
+但同时需要注意：
+
+a.获取合约订单信息（/linear-swap-api/v1/swap_order_info）接口在系统结算或交割后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。
+
+b.获取订单明细信息（/linear-swap-api/v1/swap_order_detail）接口存在延迟情况，所以查询时最好带上：created_at（下单时间戳）和 order_type(订单类型，默认填1)，会直接查询数据库，查询结果会更及时。
+
+### Q20: 为什么系统自动撤单了?
+
+下单时 order_price_type 为: IOC, FOK, Maker（post_only） 当盘口不满足条件时, 会自动撤单
+
+post_only, 只做Maker（Post only）订单, 不会立刻在市场上成交, 如果委托会立即与已有委托成交, 那么该委托会被取消, 保证用户始终为Maker. 
+
+IOC 订单, 若不能在市场上立即成交, 则未成交的部分立即取消. 
+
+FOK 订单, 若不能全部成交则立即全部取消. 
+
+### Q21: 如何获取用户当前资产最大可开张数？
+
+目前没有直接获取当前资产最大可开张数的接口. 
+
+### Q22: order_id 和 order_id_str 是一样的吗?
+
+order_id_str 是 order_id 的字符串格式, 两者的值是一样的
+
+对于 18 位的 order_id, 在 nodejs 和 javascript 的 JSON.parse 默认是 int, 解析会有问题, 因此推荐使用 order_id_str
+
+### Q23: 如何获取成交数据中的主买/主卖数量
+
+"获取市场最近成交记录（/linear-swap-ex/market/trade）”接口或"sub": "market.$contract_code.trade.detail"订阅, 可以获取此数据, 其中: 
+
+amount: 成交量(张), 买卖双边成交量之和
+
+direction: 主动成交方向
+
+### Q24: 获取K线数据(/linear-swap-ex/market/history/kline)时, from 和 to 的时间间隔是 2000*period, 为什么获取的 data 为[]?
+
+获取 K 线时, from 和 to 两个时间点是全都包含在内的, 因此是 2001 条数据. 此时数量超出了最大条数 2000. 所以返回 []
+
+另外，当 from 和 to 的时间超过 2 年，返回的数据也会是 []
+
+### Q25: 如何获取合约最新价格
+
+a.调用"获取K线数据(/linear-swap-ex/market/history/kline)”接口, 任意 period, 返回数据的最后一条数据的 close 就是最新价. 
+
+b.调用"获取市场最近成交记录(/linear-swap-ex/market/trade)”接口, 返回数据的 price 就是最新价
+
+### Q26: 如何获取最新指数价?
+
+有两种方式获取最新指数价: 
+
+a.通过调用"获取合约指数信息（/linear-swap-api/v1/swap_index）”接口, 返回数据中的 index_price 就是最新指数价
+
+b.通过订阅"指数K线数据（market.$contract_code.index.$period）”websocket, 返回数据的最后一条k线的 close 就是最新指数价
+
+### Q27: API 升级会影响程序的运行吗?
+
+一般情况, API 升级会部分影响 ws 断连, 请做好 ws 重连逻辑. 升级内容可以订阅升级公告: 
+
+交割: https://status-dm.huobigroup.com/
+
+币本位永续: https://status-swap.huobigroup.com/
+
+USDT本位永续: https://status-linear-swap.huobigroup.com/
+
+### Q28: "获取用户账户信息（/linear-swap-api/v1/swap_account_info）"中 margin_balance 是指什么?
+
+margin_balance 是指账户权益
+
+margin_balance(账户权益) = margin_position(持仓保证金) + margin_frozen(冻结保证金) + margin_available(可用保证金)
+
+### Q29: 获取用户账户信息（/linear-swap-api/v1/swap_account_info）中的risk_rate "保证金率”和WEB端的"担保资产率”是一样的吗?
+
+是一样的.
+当 risk_rate <= 0 时, 用户的仓位将会被系统强平.
+
 
 ## 错误码相关
 
@@ -2075,6 +2335,12 @@ WS订阅私有账户，订单，仓位时，请注意也要定时维护好心跳
 ### Q2: 1048错误是什么原因？
 
 如果您出现{'index': 1, 'err_code': 1048, 'err_msg': 'Insufficient close amount available. '}类似错误，说明此时可平仓量不足，您平仓时需查询目前已有的仓位张数再去平仓。
+
+1、检查平仓的张数是否过大（当有平仓的限价挂单时, 会占用可平仓位的张数, 建议您撤销这些挂单后再去重试）. 
+
+2、检查仓位方向和开平方向（平多: 卖出平多(direction用sell、offset用close)、平空: 买入平空(direction用buy、offset用close)、闪电平仓只需传: direction（平多:sell、平空: buy））. 
+
+3、止盈止损的挂单和计划委托的挂单, 不会占仓位数. 
 
 ### Q3: API返回1032错误码是什么原因？
 
@@ -2792,7 +3058,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
 | ------ | ---- | ------ | ---- |---------------------------------------- |
 | contract_code | true | string | 合约代码 |  "BTC-USDT" ...  |
 
->Tick说明：
+> Tick说明：
 
 ```
     "tick": {
@@ -2825,7 +3091,9 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
                 "ts": 1603695230083,
                 "id": 1314755250000,
                 "price": "13083",
-                "direction": "buy"
+                "direction": "buy",
+                "quantity": 0.006,
+                "trade_turnover": 78.498
             }
         ],
         "id": 1603695235127,
@@ -2851,9 +3119,12 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
 | id     | true | long | 成交唯一id（品种唯一）      |      |
 | price     | true | string | 成交价       |      |
 | ts     | true | long | 成交时间       |      |
+| quantity   | true | string |  成交量（币）  |                |
+| trade_turnover   | true | string |  成交额（计价币种）  |                |
 | \</data\>    |  |  |              |      |
 | \</tick\>    |  |  |              |      |
 | ts     | true | long | 发送时间       |      |
+
 
 ## 【通用】批量获取最近的交易记录
 
@@ -2881,7 +3152,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
 
 ```
     "data": {
-         "id": 订单唯一id（品种唯一）,
+      "id": 订单唯一id（品种唯一）,
       "ts": 最新成交时间,
       "data": [
         {
@@ -2910,7 +3181,9 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
                     "direction": "buy",
                     "id": 1314767870000,
                     "price": 13081.3,
-                    "ts": 1603695383124
+                    "ts": 1603695383124,
+                    "quantity": 0.002,
+                    "trade_turnover": 26.1626
                 }
             ],
             "id": 131476787,
@@ -2935,12 +3208,18 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
 | id     | true | long | 成交唯一id（品种唯一）     |      |            |
 | price     | true | decimal | 成交价格       |      |            |
 | ts     | true | long | 成交时间       |      |            |
+| quantity   | true | decimal |  成交量（币）  |                |
+| trade_turnover   | true | decimal |  成交额（计价币种）  |                |
 | \</data\>    |  |  |              |      |            |
 | id     | true | long | 订单唯一id（品种唯一）    |      |            |
 | ts     | true | long | 最新成交时间       |      |            |
 | \</data\>    |  |  |              |      |            |
 | status | true | string |                                          | "ok"，"error" |
 | ts     | true | long | 响应生成时间点，单位：毫秒                            |              |
+
+#### 备注
+- 2021年2月3日 21:00:00 后返回参数才会有quantity、trade_turnover字段。
+
 
 ## 【通用】查询合约风险准备金余额和预估分摊比例
 
@@ -3341,6 +3620,185 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_his_open_interest?contract_co
   
 - 总持仓额 = 持仓量（张）* 合约面值 * 最新价 
 - tick字段：数组内的数据按照时间倒序排列；
+
+
+## 【逐仓】获取平台阶梯保证金
+
+ - GET `/linear-swap-api/v1/swap_ladder_margin`
+
+#### 备注
+ - 该接口仅支持逐仓模式。
+
+
+### 请求参数：
+| **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |	
+| contract_code | false | string | 合约代码，不填默认返回所有支持逐仓的合约的阶梯保证金	 | 比如： “BTC-USDT”、“ETH-USDT”。。。 |
+
+> Response
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "margin_account": "BTC-USDT",
+            "symbol": "BTC",
+            "contract_code": "BTC-USDT",
+            "margin_mode": "isolated",
+            "list": [
+                {
+                    "lever_rate": 20,
+                    "ladders": [
+                        {
+                            "min_margin_balance": 0,
+                            "max_margin_balance": 250000,
+                            "min_margin_available": 0,
+                            "max_margin_available": 250000
+                        },
+                        {
+                            "min_margin_balance": 250000,
+                            "max_margin_balance": 2500000,
+                            "min_margin_available": 250000,
+                            "max_margin_available": 1000000
+                        },
+                        {
+                            "min_margin_balance": 2500000,
+                            "max_margin_balance": 10000000,
+                            "min_margin_available": 1000000,
+                            "max_margin_available": 2500000
+                        },
+                        {
+                            "min_margin_balance": 10000000,
+                            "max_margin_balance": 85000000,
+                            "min_margin_available": 2500000,
+                            "max_margin_available": 10000000
+                        },
+                        {
+                            "min_margin_balance": 85000000,
+                            "max_margin_balance": null,
+                            "min_margin_available": 10000000,
+                            "max_margin_available": null
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "ts": 1612504906880
+}
+```
+
+### 返回参数：
+| **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| status | true | string | 请求处理结果	 | "ok" , "error" |
+| \<data\> | true  | object array |  |  |
+| symbol | true  | string |  品种代码 |  比如："BTC"|
+| contract_code | true  | string |  合约代码 |  比如："BTC-USDT"|
+| margin_mode | true | string | 保证金模式  | isolated：逐仓模式 |
+| margin_account | true | string | 保证金账户  | 比如“BTC-USDT” |
+| \<list\> | true  | object array |  |  |
+| lever_rate | true  | int |  杠杆倍数|   |
+| \<ladders\> | true  | object array | 该合约对应杠杆倍数下的阶梯保证金数据 |  |
+| min_margin_balance | true  | decimal |  最小账户权益（该阶梯权益范围起点，包含该值）  |   |
+| max_margin_balance | true  | decimal |  最大账户权益（该阶梯权益范围终点，不包含该值，该值属于下一阶梯的权益范围起点）  |  |
+| min_margin_available | true  | decimal |  最小可用保证金（范围内包含该值） |  |
+| max_margin_available | true  | decimal |  最大可用保证金（范围内不包含该值，该值属于下一阶梯的最小可用保证金） |  |
+| \</ladders\> |  |  |  |  |
+| \</list\> |  |  |  |  |
+| \</data\> |  |  |  |  |
+| ts | true  | long | 响应生成时间点，单位：毫秒 |  |
+
+
+## 【全仓】获取平台阶梯保证金
+
+ - GET `/linear-swap-api/v1/swap_cross_ladder_margin`
+
+#### 备注
+ - 该接口仅支持全仓模式。
+
+### 请求参数：
+| **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |	
+| contract_code | false | string | 合约代码，不填默认返回所有支持全仓的合约的阶梯保证金	 | 比如： “BTC-USDT”、“ETH-USDT”。。。 |
+
+> Response
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "margin_account": "USDT",
+            "symbol": "BTC",
+            "contract_code": "BTC-USDT",
+            "margin_mode": "cross",
+            "list": [
+                {
+                    "lever_rate": 20,
+                    "ladders": [
+                        {
+                            "min_margin_balance": 0,
+                            "max_margin_balance": 250000,
+                            "min_margin_available": 0,
+                            "max_margin_available": 250000
+                        },
+                        {
+                            "min_margin_balance": 250000,
+                            "max_margin_balance": 2500000,
+                            "min_margin_available": 250000,
+                            "max_margin_available": 1000000
+                        },
+                        {
+                            "min_margin_balance": 2500000,
+                            "max_margin_balance": 10000000,
+                            "min_margin_available": 1000000,
+                            "max_margin_available": 2500000
+                        },
+                        {
+                            "min_margin_balance": 10000000,
+                            "max_margin_balance": 85000000,
+                            "min_margin_available": 2500000,
+                            "max_margin_available": 10000000
+                        },
+                        {
+                            "min_margin_balance": 85000000,
+                            "max_margin_balance": null,
+                            "min_margin_available": 10000000,
+                            "max_margin_available": null
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "ts": 1612505049991
+}
+```
+
+### 返回参数：
+| **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| status | true | string | 请求处理结果	 | "ok" , "error" |
+| \<data\> | true  | object array |  |  |
+| symbol | true  | string |  品种代码 |  比如："BTC"|
+| contract_code | true  | string |  合约代码 |  比如："BTC-USDT"|
+| margin_mode | true | string | 保证金模式  | cross：全仓模式 |
+| margin_account | true | string | 保证金账户  | 比如“USDT” |
+| \<list\> | true  | object array |  |  |
+| lever_rate | true  | int |  杠杆倍数|   |
+| \<ladders\> | true  | object array | 该合约对应杠杆倍数下的阶梯保证金数据 |  |
+| min_margin_balance | true  | decimal |  最小账户权益（该阶梯权益范围起点，包含该值）  |   |
+| max_margin_balance | true  | decimal |  最大账户权益（该阶梯权益范围终点，不包含该值，该值属于下一阶梯的权益范围起点）  |  |
+| min_margin_available | true  | decimal |  最小可用保证金（范围内包含该值） |  |
+| max_margin_available | true  | decimal |  最大可用保证金（范围内不包含该值，该值属于下一阶梯的最小可用保证金） |  |
+| \</ladders\> |  |  |  |  |
+| \</list\> |  |  |  |  |
+| \</data\> |  |  |  |  |
+| ts | true  | long | 响应生成时间点，单位：毫秒 |  |
+
+
 
 ## 【通用】精英账户多空持仓对比-账户数
 
@@ -4678,6 +5136,64 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | \</positions\>            |        |         |                      |                |
 | \</data\>            |        |         |                      |                |
 
+
+
+## 【通用】批量设置子账户交易权限
+ 
+ - POST `/linear-swap-api/v1/swap_sub_auth`
+
+#### 备注：
+
+ - 该接口支持全仓模式和逐仓模式
+
+### 请求参数
+
+| 参数名称          | 是否必须  | 类型     | 描述   | 取值范围                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| sub_uid | true  | string | 子账户uid (多个uid中间以","分隔,一次最多允许开通10个子账户)	    |                                          |
+| sub_auth | true  | int |  子账户交易权限，1 开启，0关闭	    |                                          |
+
+#### 备注：
+- 首次帮子账户开启交易权限时，系统会自动帮子账户先开通合约。
+- 若子账户交易权益已开启，此时请求开启权限，则接口会直接返回成功；若子账户交易权益已关闭，此时用户请求关闭权限，则接口会直接返回成功；
+
+> Response:
+
+```json
+
+{
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "sub_uid": "1234567",
+                "err_code": 1010,
+                "err_msg": "Account doesnt exist."
+            }
+        ],
+        "successes": "123456789"
+    },
+    "ts": 1612504316476
+} 
+```
+
+###  返回参数
+
+| 参数名称                   | 是否必须 | 类型     | 描述                                 | 取值范围           |
+| ---------------------- | ---- | ------ | ---------------------------------- | -------------- |
+| status                 | true | string | 请求处理结果                             | "ok" , "error" |
+| \<data\>|  true    |       |                                    |                |
+| \<errors\>|  true    | object array       |                                    |                |
+| sub_uid               | true | string | 开通失败的子账户uid                            |                |
+| err_code               | true | int    | 错误码                                |                |
+| err_msg                | true | string | 错误信息                               |                |
+| \</errors\>              |      |        |                                    |                |
+| successes              | true | string | 开通合约成功的子账户uid列表 |                |
+| \</data\>              |      |        |                                    |                |
+| ts                     | true | long   | 响应生成时间点，单位：毫秒                      |                |
+
+
+
 ## 【逐仓】查询母账户下所有子账户资产信息
 
 - POST `/linear-swap-api/v1/swap_sub_account_list`
@@ -4742,6 +5258,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
   - 只返回已经开通合约交易的子账户数据.
 
+
 ## 【全仓】查询母账户下所有子账户资产信息   
 
  - POST `/linear-swap-api/v1/swap_cross_sub_account_list`
@@ -4799,6 +5316,154 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 #### 备注
 
  - 只返回已经开通合约交易的子账户数据.   
+
+
+## 【逐仓】批量获取子账户资产信息
+
+ - POST `/linear-swap-api/v1/swap_sub_account_info_list`
+
+#### 备注
+ - 该接口仅支持逐仓模式。
+
+### 请求参数
+| 参数名称   | 是否必须  | 类型     | 描述   |  取值范围       |
+| ------ | ----- | ------ |  ---- | ------------------------------ |
+| contract_code | false | string | 合约代码 |  "BTC-USDT"... ,如果缺省，默认返回所有合约  |
+| page_index  | false | int    | 第几页,不填默认第一页            |                                          |
+| page_size   | false | int    | 不填默认20，不得多于50          |                                          |
+
+#### 备注：
+- 只返回已经开通合约交易的子账户数据.
+- 子账户列表默认按照开通合约时间升序，先开通合约排在前面
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 1,
+        "sub_list": [
+            {
+                "sub_uid": 123456789,
+                "account_info_list": [
+                    {
+                        "symbol": "BTC",
+                        "margin_balance": 0,
+                        "liquidation_price": null,
+                        "risk_rate": null,
+                        "contract_code": "BTC-USDT",
+                        "margin_asset": "USDT",
+                        "margin_mode": "isolated",
+                        "margin_account": "BTC-USDT"
+                    }
+                ]
+            }
+        ]
+    },
+    "ts": 1612504756853
+}
+  
+```
+
+### 返回参数
+
+| 参数名称  | 是否必须 | 类型      | 描述     | 取值范围           |
+| ----------------- | ---- | ------- | ------------- | -------------- |
+| status                | true | string  | 请求处理结果        | "ok" , "error"                           |
+| ts                    | true | long    | 响应生成时间点，单位：毫秒 |                                          |
+| \<data\>              | true    |  object       | 字典类型          |                                          |
+| \<sub_list\>  | true     |  object array       |               |                                          |
+| sub_uid           | true | long    | 子账户UID        |                |
+| \<account_info_list\>          |   true   |  object array       |               |                |
+| symbol            | true | string  | 品种代码          | "BTC","ETH"...|
+| contract_code            | true | string  | 合约代码          |  "BTC-USDT" ... |
+| margin_account | true | string | 保证金账户  | 比如“BTC-USDT” |
+| margin_mode | true | string | 保证金模式  |isolated：逐仓模式 |
+| margin_asset       | true   | string | 保证金币种（计价币种）                 |                |
+| margin_balance    | true | decimal | 账户权益          |                |
+| liquidation_price | true | decimal | 预估强平价         |                |
+| risk_rate         | true | decimal | 保证金率          |                |
+| \</account_info_list\>         |      |         |               |                |
+| \</sub_list\> |     |         |               |                                          |
+| current_page          | true | int     | 当前页           |                                          |
+| total_page            | true | int     | 总页数           |                                          |
+| total_size            | true | int     | 总条数           |                                          |
+| \</data\>             |      |         |      |     |
+
+
+## 【全仓】批量获取子账户资产信息
+
+ - POST `/linear-swap-api/v1/swap_cross_sub_account_info_list`
+
+#### 备注
+ - 该接口仅支持全仓模式。
+
+### 请求参数
+| 参数名称   | 是否必须  | 类型     | 描述   |  取值范围       |
+| ------ | ----- | ------ |  ---- | ------------------------------ |
+| margin_account | false | string | 保证金账户，不填则返回所有全仓保证金账户 |  "USDT"，目前只有一个全仓账户（USDT）  |
+| page_index  | false | int    | 第几页,不填默认第一页            |                                          |
+| page_size   | false | int    | 不填默认20，不得多于50          |                                          |
+
+#### 备注：
+- 只返回已经开通合约交易的子账户数据.
+- 子账户列表默认按照开通合约时间升序，先开通合约排在前面
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 1,
+        "sub_list": [
+            {
+                "sub_uid": 146190163,
+                "account_info_list": [
+                    {
+                        "margin_balance": 2,
+                        "risk_rate": null,
+                        "margin_asset": "USDT",
+                        "margin_mode": "cross",
+                        "margin_account": "USDT"
+                    }
+                ]
+            }
+        ]
+    },
+    "ts": 1612504845679
+}
+  
+```
+
+### 返回参数
+
+| 参数名称  | 是否必须 | 类型      | 描述     | 取值范围           |
+| ----------------- | ---- | ------- | ------------- | -------------- |
+| status                | true | string  | 请求处理结果        | "ok" , "error"                           |
+| ts                    | true | long    | 响应生成时间点，单位：毫秒 |                                          |
+| \<data\>              | true    |  object       | 字典类型          |                                          |
+| \<sub_list\>  | true     |  object array       |               |                                          |
+| sub_uid           | true | long    | 子账户UID        |                |
+| \<account_info_list\>          |   true   |  object array       |               |                |
+| margin_mode | true | string | 保证金模式  | cross：全仓模式； |
+| margin_account | true | string | 保证金账户  | 比如“USDT” |
+| margin_asset       | true   | string | 保证金币种（计价币种）                 |                |
+| margin_balance    | true | decimal | 账户权益          |                |
+| risk_rate         | true | decimal | 保证金率          |                |
+| \</account_info_list\>         |      |         |               |                |
+| \</sub_list\> |     |         |               |                                          |
+| current_page          | true | int     | 当前页           |                                          |
+| total_page            | true | int     | 总页数           |                                          |
+| total_size            | true | int     | 总条数           |                                          |
+| \</data\>             |      |         |      |     |
+
+
 
 ## 【逐仓】查询单个子账户资产信息
 
@@ -5193,6 +5858,105 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | total_size            | true | int     | 总条数           |                                          |
 | \</data\>             |      |         |      |     |
 
+
+
+## 【通用】组合查询用户财务记录
+
+ - POST `/linear-swap-api/v1/swap_financial_record_exact`
+
+#### 备注：
+
+ - 该接口支持全仓模式和逐仓模式
+
+### 请求参数
+| 参数名称        | 是否必须  | 类型     | 描述    | 取值范围  |
+| ----------- | ----- | ------ | ---------------------- | ---------------------------------------- |
+| margin_account      | true  | string | 保证金账户                 | "BTC-USDT"...                         |
+| contract_code      | false  | string | 合约代码                   | "BTC-USDT"...                         |
+| type        | false | string | 不填查询全部类型,【查询多类型中间用，隔开】 | 	3:平多; 4:平空; 5:开仓手续费-吃单; 6:开仓手续费-挂单; 7:平仓手续费-吃单; 8:平仓手续费-挂单; 9:交割平多; 10:交割平空; 11:交割手续费; 12:强制平多; 13:强制平空; 14:从币币转入; 15:转出至币币; 16:结算未实现盈亏-多仓; 17:结算未实现盈亏-空仓; 19:穿仓分摊; 26:系统; 28:活动奖励; 29:返利; 30:资金费-收入; 31:资金费-支出; 34:转出到子账号合约账户; 35:从子账号合约账户转入; 36:转出到母账号合约账户; 37:从母账号合约账户转入;38:从其他保证金账户转入 ;39:转出到其他保证金账户 ;
+| start_time   | false  | long    | 起始时间（时间戳，单位毫秒）        | 详见备注    |
+| end_time   | false  | long    | 结束时间（时间戳，单位毫秒）        |  详见备注   |
+| from_id    | false | long    | 查询起始id（取返回数据的id ）    |                     |
+| size     | false | int    | 数据条数    |   默认取20，最大50                  |
+| direct     | false | string    |  查询方向   |   prev 向前；next 向后；默认值取prev                          |
+
+#### 备注：
+- 起始与结束时间取值说明：
+   - start_time：取值范围为[(当前时间 - 90天)，当前时间] ；默认值取clamp（end_time - 10天，当前时间-90天，当前时间-10天），即时间最远取当前时间-90天，最近取当前时间-10天。
+   - end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。
+- 当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询创建时间大于等于起始时间，且小于等于结束时间的财务记录数据。
+- 无论查询方向是向前还是向后，返回的数据都是按创建时间倒序。
+- 当start_time或end_time填写值不符合取值范围，则报错参数不合法。
+- 仅支持查询90天内数据
+
+### 查询案例如下（特殊错误情况未罗列）：
+| start_time | end_time | from_id  | size | direct | 查询结果 |
+|-----|------|-----|-----|-----|-----|
+| 缺省，取10天前 | 缺省，取当前时间 | 缺省 | 20条 | prev | 查询最近10天的数据，从当前时间开始往前查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 缺省，取60天前 | 50天前 | 缺省 | 20条 | prev | 查询60天前到50天前之间的数据，从50天前开始往前查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 5天前 | 缺省，取当前时间 | 缺省 | 20条 | prev | 查询最近5天的数据，从当前时间开始往前查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 20天前 | 10天前 | 缺省 | 20条 | prev | 查询20天前到10天前之间的数据，从10天前开始往前查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 缺省，取10天前 | 缺省，取当前时间 | 缺省 | 20条 | next | 查询最近10天的数据，从10天前开始往后查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 缺省，取60天前 | 50天前 | 缺省 | 20条 | next | 查询60天前到50天前之间的数据，从60天前开始往后查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 5天前 | 缺省，取当前时间 | 缺省 | 20条 | next | 查询最近5天的数据，从5天前开始往后查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 20天前 | 10天前 | 缺省 | 20条 | next | 查询20天前到10天前之间的数据，从20天前开始往后查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 缺省，取10天前 | 缺省，取当前时间 |  1000  | 20条 | prev | 查询最近10天的数据，从id为1000的数据开始往前查20条更旧的数据，id为1000的数据排在第一条，越新的数据排在越前    |
+| 20天前 | 10天前 | 1000 | 20条 | next | 查询20天前到10天前之间的数据，从id为1000的数据开始往后查20条更新的数据，id为1000的数据排在最后一条，越新的数据排在越前       |
+
+
+> Response:
+
+```json
+                              
+{
+    "status":"ok",
+    "data":{
+        "financial_record":[
+            {
+                "id":217225404,
+                "type":31,
+                "amount":-0.208837685633149542,
+                "ts":1612483227623,
+                "contract_code":"BTC-USDT",
+                "asset":"USDT",
+                "margin_account":"BTC-USDT",
+                "face_margin_account":""
+            }
+        ],
+        "remain_size":54,
+        "next_id":212065277
+    },
+    "ts":1612504058482
+}                              
+```
+
+
+### 返回参数
+
+| 参数名称    | 是否必须 | 类型      | 描述            | 取值范围  |
+| --------------------- | ---- | ------- | ------------- | ---------------------------------------- |
+| status                | true | string  | 请求处理结果        | "ok" , "error"                           |
+| ts                    | true | long    | 响应生成时间点，单位：毫秒 |                                          |
+| \<data\>              | true    |  object       | 字典类型          |                                          |
+| \<financial_record\>  | true     |  object array       |               |                                          |
+| id                    | true | long    |               |                                          |
+| ts                    | true | long    | 创建时间          |                                          |
+| asset                | true | string  | 币种          | "USDT"...                           |
+| contract_code                | true | string  | 合约代码         | "BTC-USDT"...                           |
+| margin_account                | true | string  | 保证金账户          | "BTC-USDT"...                           |
+| face_margin_account           | true | string  | 对手方保证金账户，仅在type交易类型为34、35、36、37、38、39时有值，其他类型为空字符串          | "BTC-USDT"...                           |
+| type                  | true | int     | 交易类型          |  3:平多; 4:平空; 5:开仓手续费-吃单; 6:开仓手续费-挂单; 7:平仓手续费-吃单; 8:平仓手续费-挂单; 9:交割平多; 10:交割平空; 11:交割手续费; 12:强制平多; 13:强制平空; 14:从币币转入; 15:转出至币币; 16:结算未实现盈亏-多仓; 17:结算未实现盈亏-空仓; 19:穿仓分摊; 26:系统; 28:活动奖励; 29:返利; 30:资金费-收入; 31:资金费-支出; 34:转出到子账号合约账户; 35:从子账号合约账户转入; 36:转出到母账号合约账户; 37:从母账号合约账户转入;38:从其他保证金账户转入 ;39:转出到其他保证金账户 ;
+| amount                | true | decimal | 金额（计价货币）            |                                          |
+| \</financial_record\> |     |         |               |                                          |
+| remain_size           | true | int  | 剩余数据条数（在时间范围内，因受到数据条数限制而未查询到的数据条数）   |                                          |
+| next_id           | true | long     | 下一条数据的id（仅在查询结果超过数据条数限制时才有值）            |                                          |
+| \</data\>             |      |         |      |     |
+
+### 备注：
+- 查询全仓账户的划转类流水时（type交易类型为34、35、36、37、38、39），contract_code返参为空字符串。
+- 当查询结果超过数据条数限制时，next_id为下一条数据的流水id（查询方向为prev时，next_id为下一页查询的第一条数据；查询方向为next时，next_id为下一页查询的最后一条数据。
+
+
 ## 【逐仓】查询用户结算记录
 
  - POST `linear-swap-api/v1/swap_user_settlement_records`
@@ -5328,6 +6092,11 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | end_time   | false  | long    | 结束时间（时间戳，单位毫秒）        | 取值范围：(start_time, 当前时间]，默认取当前时间  |
 | page_index	|false |	int	|页码 |不填默认第1页	|
 | page_size	|false |	int	|页大小|不填默认10，不得多于25（超过则按照25进行查询）|
+
+#### 备注:
+ - 默认按照时间倒序查询，新数据排在前
+ - 查询结算开始时间在起始时间之后，结束时间之前的用户结算记录数据。
+ - 该接口仅支持用户查询最近90天的数据。
 
 > Response: 
 
@@ -7754,6 +8523,7 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
  - 真实收益为开仓均价和成交价计算得出（订单的真实收益为订单下每笔成交的真实收益之和）。
  - 只有在2021年1月30日0点后创建的订单，真实收益（real_profit）字段才会有值。存量数据均为0。
 
+
 ## 【全仓】获取合约历史委托
 
  - POST `/linear-swap-api/v1/swap_cross_hisorders`
@@ -7868,6 +8638,278 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 #### 备注：
  - 真实收益为开仓均价和成交价计算得出（订单的真实收益为订单下每笔成交的真实收益之和）。
  - 只有在2021年1月30日0点后创建的订单，真实收益（real_profit）字段才会有值。存量数据均为0。
+
+
+## 【逐仓】组合查询合约历史委托
+
+ - POST `/linear-swap-api/v1/swap_hisorders_exact`
+
+#### 备注
+ - 该接口仅支持逐仓模式。
+
+###  请求参数
+
+| 参数名称        | 是否必须  | 类型     | 描述              | 取值范围   |
+| ----------- | ----- | ----------- | ---------------------------------------- | ------ |
+| contract_code      | true  | string | 合约代码        |  "BTC-USDT" ...                          |
+| trade_type  | true  | int    | 交易类型        | 0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多,5: 卖出强平,6: 买入强平,7:交割平多,8: 交割平空, 11:减仓平多，12:减仓平空 |
+| type        | true  | int    | 类型          | 1:所有订单,2:结束状态的订单                         |
+| status      | true  | string    | 订单状态        | 可查询多个状态，"3,4,5" , 0:全部,3:未成交, 4: 部分成交,5: 部分成交已撤单,6: 全部成交,7:已撤单 |
+| order_price_type      | false  | string    |   订单报价类型        | 订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单, "opponent_ioc"： 对手价-IOC下单，"optimal_5_ioc"：最优5档-IOC下单，"optimal_10_ioc"：最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单,"opponent_fok"： 对手价-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 |
+| start_time   | false  | long    | 起始时间（时间戳，单位毫秒）        | 详见备注    |
+| end_time   | false  | long    | 结束时间（时间戳，单位毫秒）        |  详见备注   |
+| from_id    | false | long    | 查询起始id（取返回数据的query_id字段）    |                     |
+| size     | false | int    | 数据条数    |   默认取20，最大50                  |
+| direct     | false | string    |  查询方向   |   prev 向前；next 向后；默认值取prev                          |
+
+#### 备注：
+- 所有已撤销且无成交的API限价订单记录只保留最近2小时。
+- 起始与结束时间取值说明：
+   - start_time：取值范围为[(当前时间 - 90天)，当前时间] ；默认值取clamp（end_time - 10天，当前时间-90天，当前时间-10天），即时间最远取当前时间-90天，最近取当前时间-10天。
+   - end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。
+- 当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询创建时间大于等于起始时间，且小于等于结束时间的历史委托数据。
+- 无论查询方向是向前还是向后，返回的数据都是按创建时间倒序。
+- 当start_time或end_time填写值不符合取值范围，则报错参数不合法。
+- 仅支持查询90天内数据。
+
+### 查询案例如下（特殊错误情况未罗列）：
+| start_time | end_time | from_id  | size | direct | 查询结果 |
+|-----|------|-----|-----|-----|-----|
+| 缺省，取10天前 | 缺省，取当前时间 | 缺省 | 20条 | prev | 查询最近10天的数据，从当前时间开始往前查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 缺省，取60天前 | 50天前 | 缺省 | 20条 | prev | 查询60天前到50天前之间的数据，从50天前开始往前查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 5天前 | 缺省，取当前时间 | 缺省 | 20条 | prev | 查询最近5天的数据，从当前时间开始往前查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 20天前 | 10天前 | 缺省 | 20条 | prev | 查询20天前到10天前之间的数据，从10天前开始往前查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 缺省，取10天前 | 缺省，取当前时间 | 缺省 | 20条 | next | 查询最近10天的数据，从10天前开始往后查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 缺省，取60天前 | 50天前 | 缺省 | 20条 | next | 查询60天前到50天前之间的数据，从60天前开始往后查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 5天前 | 缺省，取当前时间 | 缺省 | 20条 | next | 查询最近5天的数据，从5天前开始往后查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 20天前 | 10天前 | 缺省 | 20条 | next | 查询20天前到10天前之间的数据，从20天前开始往后查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 缺省，取10天前 | 缺省，取当前时间 |  1000  | 20条 | prev | 查询最近10天的数据，从query_id为1000的数据开始往前查20条更旧的数据，id为1000的数据排在第一条，越新的数据排在越前    |
+| 20天前 | 10天前 | 1000 | 20条 | next | 查询20天前到10天前之间的数据，从query_id为1000的数据开始往后查20条更新的数据，id为1000的数据排在最后一条，越新的数据排在越前       |
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "query_id": 13580806498,
+                "order_id": 807038270541733888,
+                "contract_code": "BTC-USDT",
+                "symbol": "BTC",
+                "lever_rate": 10,
+                "direction": "buy",
+                "offset": "close",
+                "volume": 9,
+                "price": 36580,
+                "create_date": 1612454517740,
+                "order_source": "android",
+                "order_price_type": "opponent",
+                "order_type": 1,
+                "margin_frozen": 0,
+                "profit": 0.3636,
+                "trade_volume": 9,
+                "trade_turnover": 329.22,
+                "fee": -0.131688,
+                "trade_avg_price": 36580,
+                "status": 6,
+                "order_id_str": "807038270541733888",
+                "fee_asset": "BTC-USDT",
+                "liquidation_type": "0",
+                "is_tpsl": 0,
+                "real_profit": 0.2394,
+                "margin_mode": "isolated",
+                "margin_account": "BTC-USDT"
+            }
+        ],
+        "remain_size": 0,
+        "next_id": null
+    },
+    "ts": 1612503332073
+}
+```
+
+
+###  返回参数
+
+| 参数名称                   | 是否必须 | 类型      | 描述     | 取值范围                                     |
+| ---------------------- | ---- | ------- | ------ | ---------------------------------------- |
+| status                 | true | string  | 请求处理结果 |   |
+| \<data\>| true     |   object      |        |     |
+| \<orders\> |  true    |  object array       |        |     |
+| query_id               | true | long    | 查询id，可作为下一次查询请求的from_id字段  |       |
+| order_id               | true | long    | 订单ID   |       |
+| order_id_str   | true | string    | string格式的订单ID    |      |
+| symbol                 | true | string  | 品种代码   |   |
+| contract_code          | true | string  | 合约代码   | "BTC-USDT" ... |
+| margin_mode | true | string | 保证金模式  | isolated：逐仓模式 |
+| margin_account | true | string | 保证金账户  | 比如“BTC-USDT” |
+| lever_rate             | true | int     | 杠杆倍数   |   |
+| direction              | true | string  | 买卖方 | "buy":买 "sell":卖  |
+| offset                 | true | string  | 开平方向   | "open":开 "close":平   |
+| volume                 | true | decimal | 委托数量   |   |
+| price                  | true | decimal | 委托价格   |    |
+| create_date            | true | long    | 创建时间   |     |
+| order_source           | true | string  | 订单来源   |    |
+| order_price_type      | true  | string    |   订单报价类型        | 订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单, "opponent_ioc"： 对手价-IOC下单，"optimal_5_ioc"：最优5档-IOC下单，"optimal_10_ioc"：最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单,"opponent_fok"： 对手价-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 |
+| margin_frozen          | true | decimal | 冻结保证金  |   |
+| profit                 | true | decimal | 平仓盈亏     |    |
+| real_profit                 | true | decimal | 真实收益     |    |
+| trade_volume           | true | decimal | 成交数量   |     |
+| trade_turnover         | true | decimal | 成交总金额  |         |
+| fee                    | true | decimal | 手续费    |      |
+| trade_avg_price        | true | decimal | 成交均价   |    |
+| status                 | true | int     | 订单状态   |  1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单 11撤单中   |
+| order_type             | true | int     | 订单类型   | 1:报单 、 2:撤单 、 3:强平、4:交割                  |
+| fee_asset         | true | string  | 手续费币种       |  （"USDT"...）      |
+| liquidation_type              | true | string     | 强平类型        |  0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管 |
+| is_tpsl              | true | int     | 是否设置止盈止损        |  1：是；0：否 |
+| \</orders\>     |      |         |        |                          |
+| remain_size           | true | int  | 剩余数据条数（在时间范围内，因受到数据条数限制而未查询到的数据条数）   |                                          |
+| next_id           | true | long     | 下一条数据的query_id（仅在查询结果超过数据条数限制时才有值）            |                                          |
+| \</data\>            |      |         |        |      |
+| ts                     | true | long    | 时间戳    |      |
+
+#### 备注：
+- 当查询结果超过数据条数限制时，next_id为下一条数据的query_id（查询方向为prev时，next_id为下一页查询的第一条数据；查询方向为next时，next_id为下一页查询的最后一条数据。
+
+
+## 【全仓】组合查询合约历史委托
+
+ - POST `/linear-swap-api/v1/swap_cross_hisorders_exact`
+
+#### 备注
+ - 该接口仅支持全仓模式。
+
+###  请求参数
+
+| 参数名称        | 是否必须  | 类型     | 描述              | 取值范围   |
+| ----------- | ----- | ----------- | ---------------------------------------- | ------ |
+| contract_code      | true  | string | 合约代码        |  "BTC-USDT" ...                          |
+| trade_type  | true  | int    | 交易类型        | 0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多,5: 卖出强平,6: 买入强平,7:交割平多,8: 交割平空, 11:减仓平多，12:减仓平空 |
+| type        | true  | int    | 类型          | 1:所有订单,2:结束状态的订单                         |
+| status      | true  | string    | 订单状态        | 可查询多个状态，"3,4,5" , 0:全部,3:未成交, 4: 部分成交,5: 部分成交已撤单,6: 全部成交,7:已撤单 |
+| order_price_type      | false  | string    |   订单报价类型        | 订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单, "opponent_ioc"： 对手价-IOC下单，"optimal_5_ioc"：最优5档-IOC下单，"optimal_10_ioc"：最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单,"opponent_fok"： 对手价-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 |
+| start_time   | false  | long    | 起始时间（时间戳，单位毫秒）        | 详见备注    |
+| end_time   | false  | long    | 结束时间（时间戳，单位毫秒）        |  详见备注   |
+| from_id    | false | long    | 查询起始id（取返回数据的query_id字段）    |                     |
+| size     | false | int    | 数据条数    |   默认取20，最大50                  |
+| direct     | false | string    |  查询方向   |   prev 向前；next 向后；默认值取prev                          |
+
+#### 备注：
+- 所有已撤销且无成交的API限价订单记录只保留最近2小时。
+- 起始与结束时间取值说明：
+   - start_time：取值范围为[(当前时间 - 90天)，当前时间] ；默认值取clamp（end_time - 10天，当前时间-90天，当前时间-10天），即时间最远取当前时间-90天，最近取当前时间-10天。
+   - end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。
+- 当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询创建时间大于等于起始时间，且小于等于结束时间的历史委托数据。
+- 无论查询方向是向前还是向后，返回的数据都是按创建时间倒序。
+- 当start_time或end_time填写值不符合取值范围，则报错参数不合法。
+- 仅支持查询90天内数据。
+
+### 查询案例如下（特殊错误情况未罗列）：
+| start_time | end_time | from_id  | size | direct | 查询结果 |
+|-----|------|-----|-----|-----|-----|
+| 缺省，取10天前 | 缺省，取当前时间 | 缺省 | 20条 | prev | 查询最近10天的数据，从当前时间开始往前查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 缺省，取60天前 | 50天前 | 缺省 | 20条 | prev | 查询60天前到50天前之间的数据，从50天前开始往前查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 5天前 | 缺省，取当前时间 | 缺省 | 20条 | prev | 查询最近5天的数据，从当前时间开始往前查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 20天前 | 10天前 | 缺省 | 20条 | prev | 查询20天前到10天前之间的数据，从10天前开始往前查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 缺省，取10天前 | 缺省，取当前时间 | 缺省 | 20条 | next | 查询最近10天的数据，从10天前开始往后查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 缺省，取60天前 | 50天前 | 缺省 | 20条 | next | 查询60天前到50天前之间的数据，从60天前开始往后查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 5天前 | 缺省，取当前时间 | 缺省 | 20条 | next | 查询最近5天的数据，从5天前开始往后查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 20天前 | 10天前 | 缺省 | 20条 | next | 查询20天前到10天前之间的数据，从20天前开始往后查20条数据，返回数据按创建时间倒序，越新的数据排在越前    |
+| 缺省，取10天前 | 缺省，取当前时间 |  1000  | 20条 | prev | 查询最近10天的数据，从query_id为1000的数据开始往前查20条更旧的数据，id为1000的数据排在第一条，越新的数据排在越前    |
+| 20天前 | 10天前 | 1000 | 20条 | next | 查询20天前到10天前之间的数据，从query_id为1000的数据开始往后查20条更新的数据，id为1000的数据排在最后一条，越新的数据排在越前       |
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "query_id": 1823363794,
+                "order_id": 806934837301751808,
+                "contract_code": "BTC-USDT",
+                "symbol": "BTC",
+                "lever_rate": 10,
+                "direction": "buy",
+                "offset": "open",
+                "volume": 1,
+                "price": 37077.4,
+                "create_date": 1612429857332,
+                "order_source": "web",
+                "order_price_type": "opponent",
+                "order_type": 1,
+                "margin_frozen": 0,
+                "profit": 0,
+                "trade_volume": 1,
+                "trade_turnover": 37.0774,
+                "fee": -0.01483096,
+                "trade_avg_price": 37.0774,
+                "status": 6,
+                "order_id_str": "806934837301751808",
+                "fee_asset": "USDT",
+                "liquidation_type": "0",
+                "is_tpsl": 0,
+                "real_profit": 0,
+                "margin_mode": "cross",
+                "margin_account": "USDT"
+            }
+        ],
+        "remain_size": 0,
+        "next_id": null
+    },
+    "ts": 1612503459830
+}
+```
+
+
+###  返回参数
+
+| 参数名称                   | 是否必须 | 类型      | 描述     | 取值范围                                     |
+| ---------------------- | ---- | ------- | ------ | ---------------------------------------- |
+| status                 | true | string  | 请求处理结果 |   |
+| \<data\>| true     |   object      |        |     |
+| \<orders\> |  true    |  object array       |        |     |
+| query_id               | true | long    | 查询id，可作为下一次查询请求的from_id字段  |       |
+| order_id               | true | long    | 订单ID   |       |
+| order_id_str   | true | string    | string格式的订单ID    |      |
+| symbol                 | true | string  | 品种代码   |   |
+| contract_code          | true | string  | 合约代码   | "BTC-USDT" ... |
+| margin_mode | true | string | 保证金模式  | cross：全仓模式； |
+| margin_account | true | string | 保证金账户  | 比如“USDT”  |
+| lever_rate             | true | int     | 杠杆倍数   |   |
+| direction              | true | string  | 买卖方 | "buy":买 "sell":卖  |
+| offset                 | true | string  | 开平方向   | "open":开 "close":平   |
+| volume                 | true | decimal | 委托数量   |   |
+| price                  | true | decimal | 委托价格   |    |
+| create_date            | true | long    | 创建时间   |     |
+| order_source           | true | string  | 订单来源   |    |
+| order_price_type      | true  | string    |   订单报价类型        | 订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单, "opponent_ioc"： 对手价-IOC下单，"optimal_5_ioc"：最优5档-IOC下单，"optimal_10_ioc"：最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单,"opponent_fok"： 对手价-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 |
+| margin_frozen          | true | decimal | 冻结保证金  |   |
+| profit                 | true | decimal | 平仓盈亏    |    |
+| real_profit                 | true | decimal | 真实收益     |    |
+| trade_volume           | true | decimal | 成交数量   |     |
+| trade_turnover         | true | decimal | 成交总金额  |         |
+| fee                    | true | decimal | 手续费    |      |
+| trade_avg_price        | true | decimal | 成交均价   |    |
+| status                 | true | int     | 订单状态   |  1准备提交 2准备提交 3已提交 4部分成交 5部分成交已撤单 6全部成交 7已撤单 11撤单中   |
+| order_type             | true | int     | 订单类型   | 1:报单 、 2:撤单 、 3:强平、4:交割                  |
+| fee_asset         | true | string  | 手续费币种       |  （"USDT"...）      |
+| liquidation_type              | true | string     | 强平类型        |  0:非强平类型，1：多空轧差， 2:部分接管，3：全部接管 |
+| is_tpsl              | true | int     | 是否设置止盈止损        |  1：是；0：否 |
+| \</orders\>     |      |         |        |                          |
+| remain_size           | true | int  | 剩余数据条数（在时间范围内，因受到数据条数限制而未查询到的数据条数）   |                                          |
+| next_id           | true | long     | 下一条数据的query_id（仅在查询结果超过数据条数限制时才有值）            |                                          |
+| \</data\>            |      |         |        |      |
+| ts                     | true | long    | 时间戳    |      |
+
+#### 备注：
+- 当查询结果超过数据条数限制时，next_id为下一条数据的query_id（查询方向为prev时，next_id为下一页查询的第一条数据；查询方向为next时，next_id为下一页查询的最后一条数据。
+
+
 
 ## 【逐仓】获取历史成交记录
 
@@ -8057,6 +9099,248 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 #### 备注：
  - 真实收益为开仓均价和成交价计算得出（订单的真实收益为订单下每笔成交的真实收益之和）。
  - 真实收益（real_profit）字段在2020年12月10日后才有值。该时间点之前的存量数据均为0。
+
+
+
+## 【逐仓】组合查询用户历史成交记录
+
+ - POST `/linear-swap-api/v1/swap_matchresults_exact`
+
+#### 备注
+ - 该接口仅支持逐仓模式。
+
+### 请求参数
+
+| 参数名称          | 是否必须  | 类型     | 描述   | 取值范围                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| contract_code | true  | string | 合约代码     |                                          |
+| trade_type    | true  | int    | 交易类型        | 0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多,5: 卖出强平,6: 买入强平 |
+| start_time   | false  | long    | 起始时间（时间戳，单位毫秒）        | 详见备注    |
+| end_time   | false  | long    | 结束时间（时间戳，单位毫秒）        |  详见备注   |
+| from_id    | false | long    | 查询起始id（取返回数据的query_id字段）    |                     |
+| size     | false | int    | 数据条数    |   默认取20，最大50                  |
+| direct     | false | string    |  查询方向   |   prev 向前；next 向后；默认值取prev                          |
+
+#### 备注：
+- 起始与结束时间取值说明：
+   - start_time：取值范围为[(当前时间 - 90天)，当前时间] ；默认值取clamp（end_time - 10天，当前时间-90天，当前时间-10天），即时间最远取当前时间-90天，最近取当前时间-10天。
+   - end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。
+- 当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询成交时间大于等于起始时间，且小于等于结束时间的成交数据。
+- 无论查询方向是向前还是向后，返回的数据都是按成交时间倒序。
+- 当start_time或end_time填写值不符合取值范围，则报错参数不合法。
+- 仅支持查询90天内数据。
+
+### 查询案例如下（特殊错误情况未罗列）：
+| start_time | end_time | from_id  | size | direct | 查询结果 |
+|-----|------|-----|-----|-----|-----|
+| 缺省，取10天前 | 缺省，取当前时间 | 缺省 | 20条 | prev | 查询最近10天的数据，从当前时间开始往前查20条数据，返回数据按成交时间倒序，越新的数据排在越前    |
+| 缺省，取60天前 | 50天前 | 缺省 | 20条 | prev | 查询60天前到50天前之间的数据，从50天前开始往前查20条数据，返回数据按成交时间倒序，越新的数据排在越前    |
+| 5天前 | 缺省，取当前时间 | 缺省 | 20条 | prev | 查询最近5天的数据，从当前时间开始往前查20条数据，返回数据按成交时间倒序，越新的数据排在越前    |
+| 20天前 | 10天前 | 缺省 | 20条 | prev | 查询20天前到10天前之间的数据，从10天前开始往前查20条数据，返回数据按成交时间倒序，越新的数据排在越前    |
+| 缺省，取10天前 | 缺省，取当前时间 | 缺省 | 20条 | next | 查询最近10天的数据，从10天前开始往后查20条数据，返回数据按成交时间倒序，越新的数据排在越前    |
+| 缺省，取60天前 | 50天前 | 缺省 | 20条 | next | 查询60天前到50天前之间的数据，从60天前开始往后查20条数据，返回数据按成交时间倒序，越新的数据排在越前    |
+| 5天前 | 缺省，取当前时间 | 缺省 | 20条 | next | 查询最近5天的数据，从5天前开始往后查20条数据，返回数据按成交时间倒序，越新的数据排在越前    |
+| 20天前 | 10天前 | 缺省 | 20条 | next | 查询20天前到10天前之间的数据，从20天前开始往后查20条数据，返回数据按成交时间倒序，越新的数据排在越前    |
+| 缺省，取10天前 | 缺省，取当前时间 |  1000  | 20条 | prev | 查询最近10天的数据，从query_id为1000的数据开始往前查20条更旧的数据，成交id为1000的数据排在第一条，越新的数据排在越前    |
+| 20天前 | 10天前 | 1000 | 20条 | next | 查询20天前到10天前之间的数据，从query_id为1000的数据开始往后查20条更新的数据，成交id为1000的数据排在最后一条，越新的数据排在越前       |
+
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "trades": [
+            {
+                "query_id": 138798248,
+                "match_id": 13752484857,
+                "order_id": 807038270541733888,
+                "symbol": "BTC",
+                "contract_code": "BTC-USDT",
+                "direction": "buy",
+                "offset": "close",
+                "trade_volume": 9,
+                "trade_price": 36580,
+                "trade_turnover": 329.22,
+                "trade_fee": -0.131688,
+                "offset_profitloss": 0.3636,
+                "create_date": 1612454517757,
+                "role": "Taker",
+                "order_source": "android",
+                "order_id_str": "807038270541733888",
+                "id": "13752484857-807038270541733888-1",
+                "fee_asset": "USDT",
+                "margin_mode": "isolated",
+                "margin_account": "BTC-USDT",
+                "real_profit": 0.2394
+            }
+        ],
+        "remain_size": 0,
+        "next_id": null
+    },
+    "ts": 1612503560490
+}
+                                       
+```
+
+### 返回参数
+
+| 参数名称                   | 是否必须 | 类型      | 描述                 | 取值范围                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | 请求处理结果             |                                          |
+| \<data\> | true     |  object      |                    |                                          |
+| \<trades\> | true     |  object  array     |                    |                                          |
+| id               | true | string    | 唯一成交id,由于match_id并不是unique的，具体使用方式是用match_id和id作为联合主键，拼接成unique的成交ID。      |   |
+| query_id               | true | long    | 查询id，可作为下一次查询请求的from_id字段      |                                          |
+| match_id               | true | long    | 撮合结果id，不唯一，可能重复      |                                          |
+| order_id               | true | long    | 订单ID               |                                          |
+| order_id_str               | true | string    | string格式的订单ID               |       |
+| symbol                 | true | string  | 品种代码               |                                          |
+| contract_code          | true | string  | 合约代码               | "BTC-USDT" ...                          |
+| margin_mode | true | string | 保证金模式  | isolated：逐仓模式 |
+| margin_account | true | string | 保证金账户  | 比如“BTC-USDT” |
+| direction              | true | string  |  买卖方向  |       "buy":买 "sell":卖                                   |
+| offset                 | true | string  | 开平方向 |    "open":开 "close":平          |
+| trade_volume           | true | decimal | 成交数量               |                                          |
+| trade_price            | true | decimal | 成交价格               |                                          |
+| trade_turnover         | true | decimal | 成交总金额              |                                          |
+| create_date            | true | long    | 成交时间               |                                          |
+| offset_profitloss      | true | decimal | 平仓盈亏               |                                          |
+| real_profit            | true | decimal | 真实收益               |                                          |
+| trade_fee             | true | decimal | 成交手续费              |                                          |
+| role                   | true | string  | taker或maker        |                                          |
+| fee_asset         | true | string  | 手续费币种       |  （"USDT"...）      |
+| order_source           | true | string  | 订单来源   |                                          |
+| \</trades\>            |      |         |                    |                                          |
+| remain_size           | true | int  | 剩余数据条数（在时间范围内，因受到数据条数限制而未查询到的数据条数）   |                                          |
+| next_id           | true | long     | 下一条数据的query_id（仅在查询结果超过数据条数限制时才有值）            |                                          |
+| \</data\>            |      |         |                    |                                          |
+| ts                     | true | long    | 时间戳                |                                          |
+
+#### 备注：
+- 当查询结果超过数据条数限制时，next_id为下一条数据的query_id（查询方向为prev时，next_id为下一页查询的第一条数据；查询方向为next时，next_id为下一页查询的最后一条数据。
+
+
+## 【全仓】组合查询用户历史成交记录
+
+ - POST `linear-swap-api/v1/swap_cross_matchresults_exact`
+
+#### 备注
+ - 该接口仅支持全仓模式。
+
+### 请求参数
+
+| 参数名称          | 是否必须  | 类型     | 描述   | 取值范围                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| contract_code | true  | string | 合约code     |                                          |
+| trade_type    | true  | int    | 交易类型        | 0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多,5: 卖出强平,6: 买入强平 |
+| start_time   | false  | long    | 起始时间（时间戳，单位毫秒）        | 详见备注    |
+| end_time   | false  | long    | 结束时间（时间戳，单位毫秒）        |  详见备注   |
+| from_id    | false | long    | 查询起始id（取返回数据的query_id字段）    |                     |
+| size     | false | int    | 数据条数    |   默认取20，最大50                  |
+| direct     | false | string    |  查询方向   |   prev 向前；next 向后；默认值取prev                          |
+
+#### 备注：
+- 起始与结束时间取值说明：
+   - start_time：取值范围为[(当前时间 - 90天)，当前时间] ；默认值取clamp（end_time - 10天，当前时间-90天，当前时间-10天），即时间最远取当前时间-90天，最近取当前时间-10天。
+   - end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。
+- 当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询成交时间大于等于起始时间，且小于等于结束时间的成交数据。
+- 无论查询方向是向前还是向后，返回的数据都是按成交时间倒序。
+- 当start_time或end_time填写值不符合取值范围，则报错参数不合法。
+- 仅支持查询90天内数据。
+
+### 查询案例如下（特殊错误情况未罗列）：
+| start_time | end_time | from_id  | size | direct | 查询结果 |
+|-----|------|-----|-----|-----|-----|
+| 缺省，取10天前 | 缺省，取当前时间 | 缺省 | 20条 | prev | 查询最近10天的数据，从当前时间开始往前查20条数据，返回数据按成交时间倒序，越新的数据排在越前    |
+| 缺省，取60天前 | 50天前 | 缺省 | 20条 | prev | 查询60天前到50天前之间的数据，从50天前开始往前查20条数据，返回数据按成交时间倒序，越新的数据排在越前    |
+| 5天前 | 缺省，取当前时间 | 缺省 | 20条 | prev | 查询最近5天的数据，从当前时间开始往前查20条数据，返回数据按成交时间倒序，越新的数据排在越前    |
+| 20天前 | 10天前 | 缺省 | 20条 | prev | 查询20天前到10天前之间的数据，从10天前开始往前查20条数据，返回数据按成交时间倒序，越新的数据排在越前    |
+| 缺省，取10天前 | 缺省，取当前时间 | 缺省 | 20条 | next | 查询最近10天的数据，从10天前开始往后查20条数据，返回数据按成交时间倒序，越新的数据排在越前    |
+| 缺省，取60天前 | 50天前 | 缺省 | 20条 | next | 查询60天前到50天前之间的数据，从60天前开始往后查20条数据，返回数据按成交时间倒序，越新的数据排在越前    |
+| 5天前 | 缺省，取当前时间 | 缺省 | 20条 | next | 查询最近5天的数据，从5天前开始往后查20条数据，返回数据按成交时间倒序，越新的数据排在越前    |
+| 20天前 | 10天前 | 缺省 | 20条 | next | 查询20天前到10天前之间的数据，从20天前开始往后查20条数据，返回数据按成交时间倒序，越新的数据排在越前    |
+| 缺省，取10天前 | 缺省，取当前时间 |  1000  | 20条 | prev | 查询最近10天的数据，从query_id为1000的数据开始往前查20条更旧的数据，成交id为1000的数据排在第一条，越新的数据排在越前    |
+| 20天前 | 10天前 | 1000 | 20条 | next | 查询20天前到10天前之间的数据，从query_id为1000的数据开始往后查20条更新的数据，成交id为1000的数据排在最后一条，越新的数据排在越前       |
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "trades": [
+            {
+                "query_id": 23245917,
+                "match_id": 13683466461,
+                "order_id": 806934837301751808,
+                "symbol": "BTC",
+                "contract_code": "BTC-USDT",
+                "direction": "buy",
+                "offset": "open",
+                "trade_volume": 1,
+                "trade_price": 37077.4,
+                "trade_turnover": 37.0774,
+                "trade_fee": -0.01483096,
+                "offset_profitloss": 0,
+                "create_date": 1612429857392,
+                "role": "Taker",
+                "order_source": "web",
+                "order_id_str": "806934837301751808",
+                "id": "13683466461-806934837301751808-1",
+                "fee_asset": "USDT",
+                "margin_mode": "cross",
+                "margin_account": "USDT",
+                "real_profit": 0
+            }
+        ],
+        "remain_size": 0,
+        "next_id": null
+    },
+    "ts": 1612503739717
+}
+                                       
+```
+
+### 返回参数
+
+| 参数名称                   | 是否必须 | 类型      | 描述                 | 取值范围                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | 请求处理结果             |                                          |
+| \<data\> | true     |  object      |                    |                                          |
+| \<trades\> | true     |  object  array     |                    |                                          |
+| id               | true | string    | 唯一成交id,由于match_id并不是unique的，具体使用方式是用match_id和id作为联合主键，拼接成unique的成交ID。      |   |
+| query_id               | true | long    | 查询id，可作为下一次查询请求的from_id字段      |                                          |
+| match_id               | true | long    | 撮合结果id，不唯一，可能重复      |                                          |
+| order_id               | true | long    | 订单ID               |                                          |
+| order_id_str               | true | string    | string格式的订单ID               |       |
+| symbol                 | true | string  | 品种代码               |                                          |
+| contract_code          | true | string  | 合约代码               | "BTC-USDT" ...                          |
+| margin_mode | true | string | 保证金模式  | cross：全仓模式； |
+| margin_account | true | string | 保证金账户  | 比如“USDT” |
+| direction              | true | string  |  买卖方向  |       "buy":买 "sell":卖                                   |
+| offset                 | true | string  | 开平方向 |    "open":开 "close":平          |
+| trade_volume           | true | decimal | 成交数量               |                                          |
+| trade_price            | true | decimal | 成交价格               |                                          |
+| trade_turnover         | true | decimal | 成交总金额              |                                          |
+| create_date            | true | long    | 成交时间               |                                          |
+| offset_profitloss      | true | decimal | 平仓盈亏               |                                          |
+| real_profit      | true | decimal | 真实收益               |                                          |
+| trade_fee             | true | decimal | 成交手续费              |                                          |
+| role                   | true | string  | taker或maker        |                                          |
+| fee_asset         | true | string  | 手续费币种       |  （"USDT"...）      |
+| order_source           | true | string  | 订单来源   |                                          |
+| \</trades\>            |      |         |                    |                                          |
+| remain_size           | true | int  | 剩余数据条数（在时间范围内，因受到数据条数限制而未查询到的数据条数）   |                                          |
+| next_id           | true | long     | 下一条数据的query_id（仅在查询结果超过数据条数限制时才有值）            |                                          |
+| \</data\>            |      |         |                    |                                          |
+| ts                     | true | long    | 时间戳                |                                          |
+
+#### 备注：
+- 当查询结果超过数据条数限制时，next_id为下一条数据的query_id（查询方向为prev时，next_id为下一页查询的第一条数据；查询方向为next时，next_id为下一页查询的最后一条数据）
+
+
 
 ## 【逐仓】闪电平仓下单
 
@@ -11142,14 +12426,18 @@ bid  |  true  |  array  |   [买1价,买1量(张)]	  |
             "ts":1603706942240,
             "id":1315909380000,
             "price":"13068.4",
-            "direction":"sell"
+            "direction":"sell",
+            "quantity": "0.022",
+            "trade_turnover": "288.334"
         },
         {
             "amount":"2",
             "ts":1603706947767,
             "id":1315909430000,
             "price":"13068.5",
-            "direction":"buy"
+            "direction":"buy",
+            "quantity": "0.002",
+            "trade_turnover": "26.334"
         }
     ],
     "id":"id8",
@@ -11171,9 +12459,15 @@ id  |  true  |  long  |  成交唯一id（品种唯一）  |   |
 price  |  true  |  string  |  价格  |   |    
 amount  |  true  |  string  |  数量（张）。 值是买卖双边之和 |   |    
 direction  |  true  |  string  |  买卖方向  |   |    
-ts  |  true  |  long  |  订单成交时间  |   |    
+ts  |  true  |  long  |  订单成交时间  |   | 
+quantity   | true | string |  成交量（币） |                |
+trade_turnover   | true | string |  成交额（计价币种） |                |   
 \</data\>    |               |    |      | 
 ts  |  true  |  long  |  发送时间  |   |  
+
+#### 备注
+- 2021年2月3日 21:00:00 后返回参数才会有quantity、trade_turnover字段。
+
 
 ## 【通用】订阅 Trade Detail 数据
 
@@ -11232,7 +12526,9 @@ ts  |  true  |  long  |  发送时间  |   |
                 "ts":1603708208335,
                 "id":1316022650000,
                 "price":13073.3,
-                "direction":"buy"
+                "direction":"buy",
+                "quantity": 0.002,
+                "trade_turnover": 26.334
             }
         ]
     }
@@ -11254,7 +12550,9 @@ amount  |  true  |  decimal  |  数量（张）。 值是买卖双边之和 |   
 ts  |  true  |  long  |  订单时间戳  |   |    
 id  |  true  |  long  |   成交唯一id（品种唯一）  |   |    
 price  |  true  |  decimal  |  价格  |   |    
-direction  |  true  |  string  |  买卖方向  |   |    
+direction  |  true  |  string  |  买卖方向  |   |   
+quantity   | true | decimal |  成交量（币） |                |
+trade_turnover   | true | decimal |  成交额（计价币种） |                |  
  \</data\>    |               |    |      | 
  \</tick\>    |               |    |      | 
 
@@ -14409,16 +15707,6 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 <br>
 <br>
 <br>
-
-
-
-
-
-
-
-
-
-
 
 
 
