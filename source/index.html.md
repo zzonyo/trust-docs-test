@@ -50,22 +50,22 @@ search: True
  - 接口类型：私有接口
  - 接口URL：/option-api/v1/option_sub_account_info_list
 
-### 3、修改获取市场最近成交记录接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）*合约面值*成交价格。）
+### 3、修改获取市场最近成交记录接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）* 合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）* 合约面值 * 成交价格。）
  - 接口名称：获取市场最近成交记录
  - 接口类型：公共接口
  - 接口URL：/option-ex/market/trade
 
-### 4、修改批量获取最近的交易记录接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）*合约面值*成交价格。）
+### 4、修改批量获取最近的交易记录接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）* 合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）* 合约面值 * 成交价格。）
  - 接口名称：批量获取最近的交易记录
  - 接口类型：公共接口
  - 接口URL：/option-ex/market/history/trade
 
-### 5、修改订阅 Trade Detail 数据接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）*合约面值*成交价格。）
+### 5、修改订阅 Trade Detail 数据接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）* 合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）* 合约面值 * 成交价格。）
  - 接口名称：订阅 Trade Detail 数据
  - 接口类型：公共接口
  - 订阅地址：market.$contract_code.trade.detail
 
-### 6、修改请求 Trade Detail 数据接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）*合约面值*成交价格。）
+### 6、修改请求 Trade Detail 数据接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）* 合约面值。返参data参数下新增trade_turnover，表示成交额（计价币种）。计算公式：成交额（计价币种） = 成交量（张）* 合约面值 * 成交价格。）
  - 接口名称：请求 Trade Detail 数据
  - 接口类型：公共接口
  - 订阅地址：market.$contract_code.trade.detail
@@ -6007,7 +6007,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | amount   | true | string  | 数量（张）    | |
 | direction   | true | string  | 买卖方向    | |
 | ts   | true | long  | 订单成交时间    | |
-| quantity |   | true | string  |成交量（币）    | |
+| quantity   | true | string  |成交量（币）    | |
 | trade_turnover   | true | string  | 成交额（计价币种）    | |
 | \</data\>     |  |   |     | |
 | ts   | true | long  | 发送时间    | |
@@ -6095,7 +6095,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | id   | true | long  | 成交唯一id（品种唯一）  |   |
 | price   | true | decimal  |价格  |   |
 | direction   | true | string  | 买卖方向 |   |
-| quantity |   | true | decimal  |成交量（币）    | |
+| quantity   | true | decimal  |成交量（币）    | |
 | trade_turnover   | true | decimal  | 成交额（计价币种）    | |
 | \</data\>     |  |   |     |   |
 | \</tick\>     |  |   |     |   |
