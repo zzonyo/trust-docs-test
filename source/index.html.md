@@ -40,6 +40,50 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+
+## 1.2.4 2021-2-5 [Added: Query information on Tiered Margin. Set a Batch of Sub-Account Trading Permissions. Query a Batch of Sub-Account's Assets Information. 4-7 Modified the existing interfaces and added new parameters. 8 Query user’s settlement records interface(To avoid affecting system performance, the interface only supports querying user settlement records in the last 90 days)]
+
+### 1. Added Query information on Tiered Margin interface
+ - Interface Name: Query information on Tiered Margin
+ - Interface Type: public
+ - Interface URL: /api/v1/contract_ladder_margin
+
+### 2. Added Set a Batch of Sub-Account Trading Permissions interface
+ - Interface Name: Set a Batch of Sub-Account Trading Permissions
+ - Interface Type: private
+ - Interface URL: /api/v1/contract_sub_auth
+
+### 3. Added Query a Batch of Sub-Account's Assets Information interface
+ - Interface Name: Query a Batch of Sub-Account's Assets Information
+ - Interface Type: private
+ - Interface URL: /api/v1/contract_sub_account_info_list
+
+### 4. Modified Query The Last Trade of a Contract interface(Added "quantity" in return parameter "data", which means the trading quantity(coin), Calculation formula: quantity(coin) = trading quantity(cont) * contract size/ trade price)
+ - Interface Name: Query The Last Trade of a Contract
+ - Interface Type: public
+ - Interface URL: /market/trade
+
+### 5. Modified Query a Batch of Trade Records of a Contract interface(Added "quantity" in return parameter "data", which means the trading quantity(coin), Calculation formula: quantity(coin) = trading quantity(cont) * contract size/ trade price)
+ - Interface Name: Query a Batch of Trade Records of a Contract
+ - Interface Type: public
+ - Interface URL: /market/history/trade
+
+### 6. Modified Subscribe Trade Detail Data interface(Added "quantity" in return parameter "data", which means the trading quantity(coin), Calculation formula: quantity(coin) = trading quantity(cont) * contract size/ trade price)
+ - Interface Name: Subscribe Trade Detail Data
+ - Interface Type: public
+ - Subscription topic: market.$symbol.trade.detail
+
+### 7. Modified Request Trade Detail Data interface(Added "quantity" in return parameter "data", which means the trading quantity(coin), Calculation formula: quantity(coin) = trading quantity(cont) * contract size/ trade price)
+ - Interface Name: Request Trade Detail Data
+ - Interface Type: public
+ - Subscription topic: market.$symbol.trade.detail
+
+### 8. Modified Query user’s settlement records interface(To avoid affecting system performance, the interface only supports querying user settlement records in the last 90 days)
+ - Interface Name: Query user’s settlement records
+ - Interface Type: private
+ - Interface URL: /api/v1/contract_user_settlement_records
+
+
 ## 1.2.3 2021-1-29 【Added:Get a Batch of Market Data Overview. 2-14 Added fields to modify interface. The order_id of submitted trigger order response has been changed from the original natural number self-incrementing ID to a unique identification ID with a length of 18 digits. It is recommended to use the order_id_str (order_id in string type) of submitted order response  to avoid the occurrence of truncation by the system because excessive length.】
 
 ### 1. Added Get a Batch of Market Data Overview
@@ -1021,9 +1065,12 @@ Read     |  Market Data            |  /api/v1/contract_settlement_records |     
 Read     |  Market Data           |  /index/market/history/index |   GET       |  Query Index Kline Data            |  No  |
 Read     |  Market Data           |  /index/market/history/basis |   GET       |  Query Basis Data            |  No  |
 Read    | Market Data  |  /api/v1/contract_estimated_settlement_price     | GET    |     Get the estimated settlement price      |      No          |
+Read     |  Market Data       |  /api/v1/contract_ladder_margin           |    GET       |       Query information on Tiered Margin       |  No  |
 Read  | Account          | /api/v1/contract_account_info   |  POST             | Query User’s Account Information                     | Yes                    |
 Read  | Account          | /api/v1/contract_position_info  |  POST             | Query User’s Position Information                    | Yes                    |
+Trade    |  Account           |  /api/v1/contract_sub_auth                |    POST      |       Set a Batch of Sub-Account Trading Permissions       |  Yes  |
 Read   | Account | /api/v1/contract_sub_account_list    | POST             |     Query assets information of all sub-accounts under the master account (Query by coins)     | Yes   |
+Read     |  Account           |  /api/v1/contract_sub_account_info_list   |    POST      |       Query a Batch of Sub-Account's Assets Information      |  Yes  |
 Read   | Account | /api/v1/contract_sub_account_info     | POST             |  Query a single sub-account's assets information   | Yes   |
 Read   |  Account  | /api/v1/contract_sub_position_info    | POST             | Query a single sub-account's position information    | Yes   |
 Read   | Account  | /api/v1/contract_financial_record    | POST             | Query account financial records  | Yes   |
@@ -2835,7 +2882,8 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
                 "ts": 1604298443540,
                 "id": 1137660004780000,
                 "price": "14117.98",
-                "direction": "sell"
+                "direction": "sell",
+                "quantity": "0.00134"
             }
         ],
         "id": 1604298454352,
@@ -2849,7 +2897,7 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                                                      |   Default   |   Value Range   |
 | ------------------ | ------------- | -------- | ----------------------------------------------------------- | ----------- | --------------- |
-| ch                 | true          | string   | Data belonged channel，Format： market.$contract_code.trade.detail |             |                 |
+| ch                 | true          | string   | Data belonged channel，Format： market.$symbol.trade.detail |             |                 |
 | status             | true          | string   |                                                             |             | "ok","error"    |
 | ts                 | true          | long   | Sending time                                                |             |                 |
 |  \<dict\> (attrs: tick)   |               |    |      | 
@@ -2857,10 +2905,11 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 | ts  |  true  |  long  |  Latest Creation Time |   |    
 |  \<list\>  (attrs: data)  |               |    |      | 
 | id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
-| price  |  true  |  decimal  |  Price |   |    
-| amount  |  true  |  decimal  |  Quantity(Cont.). Sum of both buy and sell sides |   |    
+| price  |  true  |  string  |  Price |   |    
+| amount  |  true  |  string  |  Quantity(Cont.). Sum of both buy and sell sides |   |    
 | direction  |  true  |  string  |  Order Direction  |   |    
 | ts  |  true  |  long  |  Order Creation Time |   |    
+| quantity  | true | string | trading quantity(coin)    |      |
 |  \</list\>    |               |    |      | 
 |  \</dict\>    |               |    |      | 
 
@@ -2913,7 +2962,8 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
                     "direction": "buy",
                     "id": 1137660361550000,
                     "price": 14119.84,
-                    "ts": 1604298530920
+                    "ts": 1604298530920,
+                    "quantity": 0.0154
                 }
             ],
             "id": 113766036155,
@@ -2926,7 +2976,8 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
                     "direction": "sell",
                     "id": 1137660376740000,
                     "price": 14123.14,
-                    "ts": 1604298531331
+                    "ts": 1604298531331,
+                    "quantity": 0.00134
                 }
             ],
             "id": 113766037674,
@@ -2942,7 +2993,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                                                      |   Default   |   Value Range   |
 | ------------------ | ------------- | -------- | ----------------------------------------------------------- | ----------- | --------------- |
-| ch                 | true          | string   | Data belonged channel，Format： market.$contract_code.trade.detail |             |                 |
+| ch                 | true          | string   | Data belonged channel，Format： market.$symbol.trade.detail |             |                 |
 | status             | true          | string   |                                                             |             | "ok","error"    |
 | ts                 | true          | long   | Sending time                                                |             |                 |
 |  \<dict\> (attrs: tick)   |               |    |      | 
@@ -2954,8 +3005,12 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | amount  |  true  |  decimal  |  Quantity(Cont.). Sum of both buy and sell sides |   |    
 | direction  |  true  |  string  |  Order Direction  |   |    
 | ts  |  true  |  long  |  Order Creation Time |   |    
+| quantity  | true | decimal | trading quantity(coin)    |      |
 |  \</list\>    |               |    |      | 
 |  \</dict\>    |               |    |      | 
+
+#### Notice
+- There are "quantity" parameter in return data only after 21:00:00 on February 3, 2021
 
 ## Query information on contract insurance fund balance and estimated clawback rate
 
@@ -3191,6 +3246,88 @@ curl "https://api.hbdm.com/api/v1/contract_his_open_interest?symbol=BTC&contract
 - tick field：Tick data is arranged in reverse chronological order；
 
 - data field：Dictionary database.
+
+
+
+## Query information on Tiered Margin
+
+ - GET `api/v1/contract_ladder_margin`
+
+### Request Parameter
+| Parameter Name               | Mandatory | Type  | Description             | Value range       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |	
+| symbol | false | string | symbol, if not filled in, return all symbol	 | such as: “BTC”. “ETH”... |
+
+> Response
+
+```json
+{
+    "status":"ok",
+    "data":[
+        {
+            "symbol":"BTC",
+            "list":[
+                {
+                    "lever_rate":20,
+                    "ladders":[
+                        {
+                            "min_margin_balance":0,
+                            "max_margin_balance":20,
+                            "min_margin_available":0,
+                            "max_margin_available":20
+                        },
+                        {
+                            "min_margin_balance":20,
+                            "max_margin_balance":80,
+                            "min_margin_available":20,
+                            "max_margin_available":50
+                        },
+                        {
+                            "min_margin_balance":80,
+                            "max_margin_balance":380,
+                            "min_margin_available":50,
+                            "max_margin_available":110
+                        },
+                        {
+                            "min_margin_balance":380,
+                            "max_margin_balance":980,
+                            "min_margin_available":110,
+                            "max_margin_available":170
+                        },
+                        {
+                            "min_margin_balance":980,
+                            "max_margin_balance":null,
+                            "min_margin_available":170,
+                            "max_margin_available":null
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "ts":1612489488052
+}
+```
+
+### Returning Parameter
+| Parameter Name               | Mandatory| Type  | Description             | Value range       |
+| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| status | true | string | the result of server handling to request	 | "ok" . "error" |
+| \<data\> | true  | object array |  |  |
+| symbol | true  | string |  symbol |  such as: "BTC"|
+| \<list\> | true  | object array |  |  |
+| lever_rate | true  | int |  lever rate|   |
+| \<ladders\> | true  | object array | ladders for margin |  |
+| min_margin_balance | true  | decimal |  min margin balance(the starting point in this ladder, included in this ladder)  |   |
+| max_margin_balance | true  | decimal |  max margin balance(the end point in this ladder, excluded in this ladder, is next ladder's min_margin_balance)  |  |
+| min_margin_available | true  | decimal |  min margin available(in the range of this ladder margin balance) |  |
+| max_margin_available | true  | decimal |  max margin available（not in the range of this ladder margin balance, is next ladder's min_margin_available) |  |
+| \</ladders\> |  |  |  |  |
+| \</list\> |  |  |  |  |
+| \</data\> |  |  |  |  |
+| ts | true  | long | Time of Respond Generation，Unit：Millisecond |  |
+
+
 
 ##  Query information on system status
 
@@ -3861,6 +3998,60 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 - If there are symbols in the settlement or delivery period,error code 1080(1080  In settlement or delivery. Unable to get positions of some contracts.  ) will return without request parameters. It's suggested to query the position info with request parameters to avoid raising the error code and not being able to query the position.
 
+
+
+## Set a Batch of Sub-Account Trading Permissions
+
+ - POST `/api/v1/contract_sub_auth`
+
+### Request Parameter
+
+| Parameter Name         | Mandatory  | Type     | Description   | Value Range                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| sub_uid | true  | string | sub-account uid (multiple uids are separated by ",", and one time 10 sub uid at most)	    |                                          |
+| sub_auth | true  | int |  sub auth, 1:enable, 0:disable	    |                                          |
+
+#### Note:
+- When enable the transaction authority on the sub-account for the first time, deemed to agree to access the contract market.
+- If the sub-account trading permission has been enable, the interface will directly return success when request to enable again; if the sub-account trading permission has been disable, the interface will directly return success when request to disable again;
+
+> Response:
+
+```json
+
+{
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "sub_uid": "1234567",
+                "err_code": 1010,
+                "err_msg": "Account doesnt exist."
+            }
+        ],
+        "successes": "123456789"
+    },
+    "ts": 1612490081318
+}   
+```
+
+### Returning Parameter
+
+| Parameter Name                  | Mandatory | Type     | Description                                 | Value Range           |
+| ---------------------- | ---- | ------ | ---------------------------------- | -------------- |
+| status                 | true | string | the result of server handling to request                             | "ok" . "error" |
+| \<data\>|  true    |       |                                    |                |
+| \<errors\>|  true    | object array       |                                    |                |
+| sub_uid               | true | string | the list of sub uid which failed                           |                |
+| err_code               | true | int    | error code                                |                |
+| err_msg                | true | string | error msg                               |                |
+| \</errors\>              |      |        |                                    |                |
+| successes              | true | string | the list of sub uid which successes |                |
+| \</data\>              |      |        |                                    |                |
+| ts                     | true | long   | Time of Respond Generation，Unit：Millisecond                      |                |
+
+
+
 ## Query assets information of all sub-accounts under the master account
 
 - POST `/api/v1/contract_sub_account_list`
@@ -3910,18 +4101,92 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
-
-- Notice
+#### Notice
 
  Only return data for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission). 
 
 
+
+## Query a Batch of Sub-Account's Assets Information
+
+ - POST `/api/v1/contract_sub_account_info_list`
+
+### Request Parameter
+| Parameter Name  | Mandatory  | Type     | Description   |  Value Range       |
+| ------ | ----- | ------ |  ---- | ------------------------------ |
+| symbol | false | string | symbol |  "BTC","ETH"...  ,if not filled, return all |
+| page_index  | false | int    | page index, if not filled in as 1st            |                                          |
+| page_size   | false | int    | if not filled in as 20，50 at most          |                                          |
+
+#### Note:
+- Only return data of sub-accounts that have agreed to access the contract market.
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 2,
+        "sub_list": [
+            {
+                "sub_uid": 123456789,
+                "account_info_list": [
+                    {
+                        "symbol": "BCH",
+                        "margin_balance": 0,
+                        "liquidation_price": null,
+                        "risk_rate": null
+                    }
+                ]
+            },
+            {
+                "sub_uid": 12345678,
+                "account_info_list": [
+                    {
+                        "symbol": "BCH",
+                        "margin_balance": 0,
+                        "liquidation_price": null,
+                        "risk_rate": null
+                    }
+                ]
+            }
+        ]
+    },
+    "ts": 1612490180078
+}
+```
+
+### Returning Parameter
+
+| Parameter Name | Mandatory | Type      | Description     | Value Range           |
+| ----------------- | ---- | ------- | ------------- | -------------- |
+| status                | true | string  | the result of server handling to request        | "ok" . "error"                           |
+| ts                    | true | long    | Time of Respond Generation，Unit：Millisecond |                                          |
+| \<data\>              | true    |  object       |           |                                          |
+| \<sub_list\>  | true     |  object array       |               |                                          |
+| sub_uid           | true | long    | sub uid       |                |
+| \<account_info_list\>          |   true   |  object array       |               |                |
+| symbol            | true | string  | symbol          | "BTC","ETH"... |
+| margin_balance    | true | decimal | margin balance          |                |
+| liquidation_price | true | decimal | liquidation price         |                |
+| risk_rate         | true | decimal | risk rate          |                |
+| \</account_info_list\>         |      |         |               |                |
+| \</sub_list\> |     |         |               |                                          |
+| current_page          | true | int     | current page           |                                          |
+| total_page            | true | int     | total page           |                                          |
+| total_size            | true | int     | total size           |                                          |
+| \</data\>             |      |         |      |     |
+
+
+
 ## Query a single sub-account's assets information
 
-- POST `/api/v1/contract_sub_account_info`
+ - POST `/api/v1/contract_sub_account_info`
 
 ### Request Parameters
-
 
 | **Parameter name**    | **Must fill or not** | **Type** | **Description**        | **Default value** | **Value range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
@@ -3978,12 +4243,13 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 | margin_static                | true     | decimal  | Static Margin                |                |
 | \</data\> |  |  |  |  |
 
-
 - Notice
 
    Only query account information for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission);
   
    No data return for sub-accounts which has logged in hbdm but have not gained trading permission/activated.
+
+
 
 ## Query a single sub-account's position information
 
@@ -4227,7 +4493,8 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 - The data is queried in reverse order by default; the newer the data, the closer to the front.
 - If the start time or the end time is not within the value range, the system will report an error 1067 to indicate the parameter is invalid.  
 - Query users' settlement records with settlement start time behind the start_time but before the end_time. 
- 
+- This interface only supports users to query data for the last 90 days.
+
 > Response: 
 
 ```json
@@ -8217,14 +8484,16 @@ size         |  false           |  int     |  number of data; no more than 50; d
             "ts":1604386167285,
             "id":1138433247400000,
             "price":"13586.25",
-            "direction":"buy"
+            "direction":"buy",
+            "quantity": "0.0013"
         },
         {
             "amount":"20",
             "ts":1604386167469,
             "id":1138433248730000,
             "price":"13586.25",
-            "direction":"buy"
+            "direction":"buy",
+            "quantity": "0.0157"
         }
     ],
     "id":"id8",
@@ -8246,10 +8515,13 @@ id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |
 price  |  true  |  string  |  Price |   |    
 amount  |  true  |  string  | Trade amount(Coin), trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price). Sum of both buy and sell sides  |   |    
 direction  |  true  |  string  |  Active transaction direction   |   |    
-ts  |  true  |  long  |  Order Creation Time |   |    
+ts  |  true  |  long  |  Order Creation Time |   |   
+quantity  |  true  |  string  |  trading quantity(coin)  |   |   
  \</data\>    |               |    |      | 
 ts  |  true  |  long  |  server response time |   |    
 
+#### Notice
+- There are "quantity" parameter in return data only after 21:00:00 on February 3, 2021
 
 
 ## Subscribe Trade Detail Data 
@@ -8305,6 +8577,7 @@ ts  |  true  |  long  |  trade timestamp  |   |
 id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
 price  |  true  |  decimal  |  Price  |   |    
 direction  |  true  |  string  |  Order direction  |   |    
+quantity  |  true  |  decimal  |  trading quantity(coin)  |   |  
  \</data\>    |               |    |      | 
  \</tick\>    |               |    |      | 
 
@@ -8324,14 +8597,16 @@ direction  |  true  |  string  |  Order direction  |   |
                 "ts":1604386599123,
                 "id":1138436723890000,
                 "price":13562.5,
-                "direction":"sell"
+                "direction":"sell",
+                "quantity": 0.157
             },
             {
                 "amount":2,
                 "ts":1604386599123,
                 "id":1138436723890001,
                 "price":13562.5,
-                "direction":"sell"
+                "direction":"sell",
+                "quantity": 0.00152
             }
         ]
     }
