@@ -5811,7 +5811,7 @@ curl "https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"
 | list       | array     | The list of margin accounts and their details                |
 | { currency | string    | The currency name                                            |
 | type       | string    | The sub account type, possible values: trade, frozen, loan, interest ,transfer-out-available, loan-available |
-| balance }  | string    | The balance. The negative balance means the loan or interest that need to  repay |
+| balance }  | string    | The negative balance means the loan or interest that need to  repay. All trade balance  can be transferred out if transfer-out-available balance is  -1 |
 
 ## Transfer Asset from Spot Trading Account to Cross Margin Account（Cross）
 
@@ -6224,7 +6224,7 @@ curl "https://api.huobi.pro/v1/cross-margin/accounts/balance?symbol=btcusdt"
 | list             | array     |                                                              |
 | { currency       | string    |                                                              |
 | type             | string    | account type: trade, frozen, loan, interest, transfer-out-available, loan-available |
-| balance }        | string    | Note: It means all can be transferred out if balance of transfer-out-available account is  -1 |
+| balance }        | string    | The negative balance means the loan or interest that need to  repay. All trade balance  can be transferred out if transfer-out-available balance is  -1 |
 
 
 
