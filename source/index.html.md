@@ -3271,7 +3271,7 @@ symbol  |    true  |  string  |  合约名称  |  |  支持大小写，如"BTC_C
 | id     | true | long | 成交唯一id（品种唯一）     |      |
 | price     | true | string | 成交价       |      |
 | ts     | true | long | 成交时间       |      |
-| quantity  | true | string | 成交量（币）。     |      |
+| quantity  | true | string | 成交量（币）     |      |
 | \</data\>      |  |  |              |      |
 | \</tick\>      |  |  |              |      |
 | ts     | true | long | 发送时间       |      |
@@ -3365,7 +3365,7 @@ size  |  true  |  int  |    获取交易记录的数量  |   |  [1, 2000]  |
 | id     | true | long | 成交唯一id（品种唯一）    |      |            |
 | price     | true | decimal | 成交价格       |      |            |
 | ts     | true | long | 成交时间       |      |            |
-| quantity  | true | decimal | 成交量（币）。     |      |
+| quantity  | true | decimal | 成交量（币）     |      |
 |\</data\>      |  |  |              |      |            |
 | id     | true | long | 订单唯一id（品种唯一）     |      |            |
 | ts     | true | long | 最新成交时间       |      |            |
