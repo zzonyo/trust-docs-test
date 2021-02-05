@@ -38,6 +38,38 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.0.4 2021-2-5 [Added: Set a Batch of Sub-Account Trading Permissions interface, Query a Batch of Sub-Account's Assets Information Modified: Query The Last Trade of a Contract interface, Query a Batch of Trade Records of a Contract interface, Subscribe Trade Detail Data interface, Request Trade Detail Data interface]
+
+### 1. Added Set a Batch of Sub-Account Trading Permissions interface
+ - Interface Name: Set a Batch of Sub-Account Trading Permissions
+ - Interface Type: private
+ - Interface URL: /option-api/v1/option_sub_auth
+
+### 2. Added Query a Batch of Sub-Account's Assets Information interface
+ - Interface Name: Query a Batch of Sub-Account's Assets Information
+ - Interface Type: private
+ - Interface URL: /option-api/v1/option_sub_account_info_list
+
+### 3. Modified Query The Last Trade of a Contract interface(Added "quantity" in return parameter "data", which means the trading quantity(coin), Calculation formula: quantity(coin) = trading quantity(cont) * contract size. Added "trade_turnover" in return parameter "data", which represents the trading amount(quoted currency). Calculation formula: trade_turnover(quoted currency) = trading quantity(cont) * contract size * trading price.)
+ - Interface Name: Query The Last Trade of a Contract
+ - Interface Type: public
+ - Interface URL: /option-ex/market/trade
+
+### 4. Modified Query a Batch of Trade Records of a Contract interface(Added "quantity" in return parameter "data", which means the trading quantity(coin), Calculation formula: quantity(coin) = trading quantity(cont) * contract size. Added "trade_turnover" in return parameter "data", which represents the trading amount(quoted currency). Calculation formula: trade_turnover(quoted currency) = trading quantity(cont) * contract size * trading price.)
+ - Interface Name: Query a Batch of Trade Records of a Contract
+ - Interface Type: public
+ - Interface URL: /option-ex/market/history/trade
+
+### 5. Subscribe Trade Detail Data interface(Added "quantity" in return parameter "data", which means the trading quantity(coin), Calculation formula: quantity(coin) = trading quantity(cont) * contract size. Added "trade_turnover" in return parameter "data", which represents the trading amount(quoted currency). Calculation formula: trade_turnover(quoted currency) = trading quantity(cont) * contract size * trading price.)
+ - Interface Name: Subscribe Trade Detail Data
+ - Interface Type: public
+ - Subscription Topic: market.$contract_code.trade.detail
+
+### 6. Modified Request Trade Detail Data interface(Added "quantity" in return parameter "data", which means the trading quantity(coin), Calculation formula: quantity(coin) = trading quantity(cont) * contract size. Added "trade_turnover" in return parameter "data", which represents the trading amount(quoted currency). Calculation formula: trade_turnover(quoted currency) = trading quantity(cont) * contract size * trading price.)
+ - Interface Name: Request Trade Detail Data
+ - Interface Type: public
+ - Subscription Topic: market.$contract_code.trade.detail
+
 ## 1.0.3 2020-1-29 【Modified Cancel All Orders, Modified Cancel All Trigger Orders, Modified Query Open Orders,Modified Query Trigger Order.  The order_id of submitted trigger order response has been changed from the original natural number self-incrementing ID to a unique identification ID with a length of 18 digits. It is recommended to use the order_id_str (order_id in string type) of submitted order response  to avoid the occurrence of truncation by the system because excessive length.】
 
 ### 1. Modified Cancel All Orders(Added two optional parameters in request: direction, indicates order direction, if not filled in means both with available values: “buy”, “sell”. offset, order offset, if not filled in means both with available values: “open”, “close”.)
@@ -112,7 +144,9 @@ Read  | Market Data      |  /option-ex/market/trade                  |  GET     
 Read  | Market Data      | /option-ex/market/history/trade           |  GET              | Query a Batch of Trade Records of a Contract | No                     |
 Read  | Account          | /option-api/v1/option_account_info   |  POST             | Query User’s Account Information                     | Yes                    |
 Read  | Account          | /option-api/v1/option_position_info  |  POST             | Query User’s position Information                    | Yes                    |
+Trade    |  Account           |  /option-api/v1/option_sub_auth                |    POST       |       Set a Batch of Sub-Account Trading Permissions       |  Yes  |
 Read   | Account | /option-api/v1/option_sub_account_list    | POST             |     Query assets information of all sub-accounts under the master account (Query by coins)     | Yes   |
+Read     |  Account           |  /option-api/v1/option_sub_account_info_list   |    POST       |       Query a Batch of Sub-Account's Assets Information      |  Yes  |
 Read   | Account | /option-api/v1/option_sub_account_info     | POST             |  Query a single sub-account's assets information   | Yes   |
 Read   |  Account  | /option-api/v1/option_sub_position_info    | POST             | Query a single sub-account's position information    | Yes   |
 Read   | Account  | /option-api/v1/option_financial_record    | POST             | Query account financial records  | Yes   |
@@ -1786,7 +1820,9 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-201225-
                 "direction": "buy",
                 "id": 1182841000001,
                 "price": "2855.11",
-                "ts": 1604615035549
+                "ts": 1604615035549,
+                "quantity": "0.97",
+                "trade_turnover":"216.0683"
             }
         ],
         "id": 1604642413998,
@@ -1811,6 +1847,8 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-201225-
 | id        | true     | long         | Unique Transaction Id(symbol level)                                        |              |
 | price     | true     | string       | Transaction Price                                                       |              |
 | ts        | true     | long         | Transaction Time                                                   |              |
+| quantity     | true | string | trading quantity(coin)       |      |
+| trade_turnover     | true | string | trading amount(quoted currency)    |      |
 | \</data\>   |          |              |                                                              |              |
 | \</tick\>   |          |              |                                                              |              |
 | ts        | true     | long         | Time of Response Generation                                                    |              |
@@ -1864,7 +1902,9 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
                     "direction": "sell",
                     "id": 1174421220000,
                     "price": 2406.83,
-                    "ts": 1604581920670
+                    "ts": 1604581920670,
+                    "quantity": 0.01,
+                    "trade_turnover":24.0683
                 }
             ],
             "id": 117442122,
@@ -1877,14 +1917,18 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
                     "direction": "buy",
                     "id": 1182841000000,
                     "price": 2821.97,
-                    "ts": 1604615035549
+                    "ts": 1604615035549,
+                    "quantity": 0.97,
+                    "trade_turnover":216.0683
                 },
                 {
                     "amount": 98,
                     "direction": "buy",
                     "id": 1182841000001,
                     "price": 2855.11,
-                    "ts": 1604615035549
+                    "ts": 1604615035549,
+                    "quantity": 0.098,
+                    "trade_turnover":19.0683
                 }
             ],
             "id": 118284100,
@@ -1908,12 +1952,17 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | id        | true     | long         | Unique Transaction Id(symbol level)                                           |               |
 | price     | true     | decimal      | Transaction Price                                                    |               |
 | ts        | true     | long         | Transaction Time                                                   |               |
+| quantity     | true | decimal | trading quantity(coin)       |      |
+| trade_turnover     | true | decimal | trading amount(quoted currency)    |      |
 | \</data\>   |          |              |                                                              |               |
 | id        | true     | long         | Unique Order Id(symbol level)                                          |               |
 | ts        | true     | long         | Latest Transaction Time                                               |               |
 | \</data\>   |          |              |                                                              |               |
 | status    | true     | string       |                                                              | "ok"，"error" |
 | ts        | true     | long         | Time of Response Generation, unit: millisecond                                   |               |
+
+#### Notice
+- There are "quantity" parameter in return data only after 21:00:00 on February 3, 2021
 
 
 # Option Account Interface
@@ -2097,6 +2146,58 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | \</data\>           |          |              |                            |                                                    |
 
 
+
+## Set a Batch of Sub-Account Trading Permissions
+
+ - POST `/option-api/v1/option_sub_auth`
+
+### Request Parameter
+
+| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| sub_uid | true  | string | sub-account uid (multiple uids are separated by ",", and one time 10 sub uid at most)	    |                                          |
+| sub_auth | true  | int |  sub auth, 1:enable, 0:disable	    |                                          |
+
+#### Note:
+- When enable the transaction authority on the sub-account for the first time, deemed to agree to access the contract market.
+- If the sub-account trading permission has been enable, the interface will directly return success when request to enable again; if the sub-account trading permission has been disable, the interface will directly return success when request to disable again;
+
+> Response:
+
+```json
+
+{
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "sub_uid": "122343",
+                "err_code": 1010,
+                "err_msg": "Account doesn't exist."
+            }
+        ],
+        "successes": "123456789"
+    },
+    "ts": 1612509171791
+}    
+```
+
+### Returning Parameter
+
+| Parameter Name                   | Mandatory | Type     | Description                                 | Value Range           |
+| ---------------------- | ---- | ------ | ---------------------------------- | -------------- |
+| status                 | true | string | the result of server handling to request                             | "ok" , "error" |
+| \<data\>            |  true    |        |                                    |                |
+| \<errors\>            |  true    | object array       |                                    |                |
+| sub_uid               | true | string | the list of sub uid which failed                            |                |
+| err_code               | true | int    | error code                                |                |
+| err_msg                | true | string | error msg                               |                |
+| \</errors\>              |      |        |                                    |                |
+| successes              | true | string | he list of sub uid which successes |                |
+| \</data\>              |      |        |                                    |                |
+| ts                     | true | long   | Time of Respond Generation，Unit：Millisecond                      |                |
+
+
 ## Query assets information of all sub-accounts under the master account
 
 - POST `/option-api/v1/option_sub_account_list`
@@ -2168,6 +2269,71 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 ### Note
 
  - Only data of sub-accounts with contract trading opened will be returned.
+
+
+
+## Query a Batch of Sub-Account's Assets Information
+
+ - POST `/option-api/v1/option_sub_account_info_list`
+
+### Request Parameter
+| Parameter Name   | Mandatory  | Type     | Description   |  Value Range       |
+| ------ | ----- | ------ |  ---- | ------------------------------ |
+| symbol   | false    | string | symbol | "BTC"，"ETH"，“USDT”，if not filled in return all       |
+| trade_partition | false  | string | trade partition, if not filled in as ”USDT“ | "USDT"                                 |
+| page_index  | false | int    | page index, if not filled in as 1st            |                                          |
+| page_size   | false | int    | if not filled in as 20，50 at most          |                                          |
+
+#### Note:
+- Only return data of sub-accounts that have agreed to access the contract market.
+- By default, the list of sub-accounts is in ascending order according to the time when agree to access the contract market, and the earlier the agreed time, the first the position
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 1,
+        "sub_list": [
+            {
+                "sub_uid": 123456789,
+                "account_info_list": [
+                    {
+                        "symbol": "BTC",
+                        "margin_balance": 0,
+                        "trade_partition": "USDT"
+                    }
+                ]
+            }
+        ]
+    },
+    "ts": 1612509268854
+}
+  
+```
+
+### Returning Parameter
+
+| Parameter Name  | Mandatory | Type      | Description     | Value Range           |
+| ----------------- | ---- | ------- | ------------- | -------------- |
+| status                | true | string  | the result of server handling to request        | "ok" , "error"                           |
+| ts                    | true | long    | Time of Respond Generation，Unit：Millisecond |                                          |
+| \<data\>              | true    |  object       |           |                                          |
+| \<sub_list\>  | true     |  object array       |               |                                          |
+| sub_uid           | true | long    | sub uid        |                |
+| \<account_info_list\>          |   true   |  object array       |               |                |
+| symbol            | true     | string       | symbol                   | "BTC","ETH","USDT"... |
+| trade_partition   | true     | string       | trade partition                   | "USDT"         |
+| margin_balance    | true     | decimal      | margin balance                   |                |
+| \</account_info_list\>         |      |         |               |                |
+| \</sub_list\> |     |         |               |                                          |
+| current_page          | true | int     | current page           |                                          |
+| total_page            | true | int     | total page           |                                          |
+| total_size            | true | int     | total size           |                                          |
+| \</data\>             |      |         |      |     |
 
 
 ## Query a single sub-account's assets information
@@ -5659,14 +5825,18 @@ Return to the current trade detail data only
             "ts":1603869385244,
             "id":991487430000,
             "price":"1542.78",
-            "direction":"sell"
+            "direction":"sell",
+            "quantity":"0.006",
+            "trade_turnover": "9.032"
         },
         {
             "amount":"40",
             "ts":1603889690205,
             "id":996663430000,
             "price":"1300",
-            "direction":"sell"
+            "direction":"sell",
+            "quantity":"0.04",
+            "trade_turnover": "52.32"
         }
     ],
     "id":"160943040012341",
@@ -5689,8 +5859,13 @@ Return to the current trade detail data only
 | amount    | true     | string       | Quantity (cont)         |                                           |
 | direction | true     | string       | Buy/Sell Direction           |                                           |
 | ts        | true     | long         | OrderTransaction Time     |                                           |
+| quantity     | true | string | trading quantity(coin)       |      |
+| trade_turnover     | true | string | trading amount(quoted currency)    |      |
 | \</data>   |          |              |                    |                                           |
 | ts        | true     | long         | server response time     |                                           |
+
+#### Notice
+- There are "quantity" parameter in return data only after 21:00:00 on February 3, 2021
 
 
 ## Subscribe Trade Detail Data 
@@ -5741,7 +5916,9 @@ Return to the current trade detail data only
                 "ts":1604888281258,
                 "id":1253440320000,
                 "price":2897.25,
-                "direction":"buy"
+                "direction":"buy",
+                "quantity":0.002,
+                "trade_turnover": 5.632
             }
         ]
     }
@@ -5763,6 +5940,8 @@ Return to the current trade detail data only
 | id        | true     | long         | Unique Transaction Id(symbol level)                 |                      |
 | price     | true     | decimal      | Price                      |                      |
 | direction | true     | string       | Buy/Sell Direction                   |                      |
+| quantity     | true | decimal | trading quantity(coin)       |      |
+| trade_turnover     | true | decimal | trading amount(quoted currency)    |      |
 | \</data>   |          |              |                            |                      |
 | \</tick>   |          |              |                            |                      |
 
