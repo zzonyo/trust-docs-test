@@ -1964,8 +1964,8 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-201225-
 | id     | true | long | 成交唯一id（品种唯一）      |      |
 | price     | true | string | 成交价       |      |
 | ts     | true | long | 成交时间       |      |
-| quantity     | true | string | 成交量（币）。       |      |
-| trade_turnover     | true | string | 成交额（计价币种）。     |      |
+| quantity  | true | string | 成交量（币）       |     
+| trade_turnover     | true | string | 成交额（计价币种）     |      |
 |\</data\>      |  |  |              |      |
 |\</tick\>      |  |  |              |      |
 | ts     | true | long | 发送时间       |      |
@@ -2055,8 +2055,8 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | id     | true | long | 成交唯一id（品种唯一）    |      |            |
 | price     | true | decimal | 成交价格       |      |            |
 | ts     | true | long | 成交时间       |      |            |
-| quantity     | true | decimal | 成交量（币）。      |      |
-| trade_turnover     | true | decimal | 成交额（计价币种）。    |      |
+| quantity  | true | decimal | 成交量（币）      |      |
+| trade_turnover     | true | decimal | 成交额（计价币种）    |      |
 |\</data\>      |  |  |              |      |            |
 | id     | true | long | 订单唯一id（品种唯一）   |      |            |
 | ts     | true | long | 最新成交时间       |      |            |
