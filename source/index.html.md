@@ -8746,7 +8746,7 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 | margin_mode | true | string | 保证金模式  | isolated：逐仓模式 |
 | margin_account | true | string | 保证金账户  | 比如“BTC-USDT” |
 | lever_rate             | true | int     | 杠杆倍数   |   |
-| direction              | true | string  | 买卖方 | "buy":买 "sell":卖  |
+| direction              | true | string  | 买卖方向 | "buy":买 "sell":卖  |
 | offset                 | true | string  | 开平方向   | "open":开 "close":平   |
 | volume                 | true | decimal | 委托数量   |   |
 | price                  | true | decimal | 委托价格   |    |
@@ -8881,7 +8881,7 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 | margin_mode | true | string | 保证金模式  | cross：全仓模式； |
 | margin_account | true | string | 保证金账户  | 比如“USDT”  |
 | lever_rate             | true | int     | 杠杆倍数   |   |
-| direction              | true | string  | 买卖方 | "buy":买 "sell":卖  |
+| direction              | true | string  | 买卖方向 | "buy":买 "sell":卖  |
 | offset                 | true | string  | 开平方向   | "open":开 "close":平   |
 | volume                 | true | decimal | 委托数量   |   |
 | price                  | true | decimal | 委托价格   |    |
