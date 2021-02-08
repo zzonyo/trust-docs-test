@@ -3366,11 +3366,11 @@ API Key Permission：Trade
 ### Request Parameters
 | Parameter   | Required | Data Type | Description                                                  | Default | Value Range                                                  |
 | ----------- | -------- | --------- | ------------------------------------------------------------ | ------- | ------------------------------------------------------------ |
-| otpToken    | true     | string    | Google verification code of the parent user, the parent user must be bound to Google for verification on the web | NA      | 6 characters, pure numbers                                   |
+| otpToken    | true     | string    | Google verification code of the parent user, the parent user must be bound to GA for verification on the web | NA      | 6 characters, pure numbers                                   |
 | subUid      | true     | long      | Sub user UID                                                 | NA      |                                                              |
-| note        | true     | string    | API key note                                                 | NA      | Up to 20 characters, free text                               |
+| note        | true     | string    | API key note                                                 | NA      | Up to 255 characters with any font                             |
 | permission  | true     | string    | API key permissions                                          | NA      | Valid value: readOnly, trade; multiple inputs are allowed, separated by comma, i.e. readOnly, trade; readOnly is required permission for any API key, while trade permission is optional. |
-| ipAddresses | false    | string    | IP address bind to the API key                               | NA      | At most 20 IPv4/IPv6 host address(es) and/or IPv4 network address(es) can bind with one API key, separated by comma. For example: 202.106.196.115, 202.106.96.0/24. Without any IP address binding, the API key will expire in 90 days. |
+| ipAddresses | false    | string    | The IPv4/IPv6 host address or IPv4 network address bound to the API key                             | NA      | At most 20 IPv4/IPv6 host address(es) and/or IPv4 network address(es) can bind with one API key, separated by comma. For example: 202.106.196.115, 202.106.96.0/24. Without any IP address binding, the API key will expire in 90 days. |
 
 > Response:
 
