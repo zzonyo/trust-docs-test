@@ -3510,8 +3510,8 @@ No need to transfer BBO order price(ask 1and bid 1) parameter, optimal_5: top 5 
 
 | Parameter Name        | Mandatory | Type   | Desc                                                         | Value Range       |
 | --------------- | -------- | ------ | ------------------------------------------------------------ | -------------- |
-| order_id        | false    | string | Order ID (Seperate multiple Order IDs with commas; allow to cancel at most 10 orders at a time)     |                |
-| client_order_id | false    | string | Client Order ID (Seperate multiple IDs with commas; allow to cancel at most 10 orders at a time) |                |
+| order_id        | false(more detail see note) | string | Order ID (Seperate multiple Order IDs with commas; allow to cancel at most 10 orders at a time)     |                |
+| client_order_id | false(more detail see note) | string | Client Order ID (Seperate multiple IDs with commas; allow to cancel at most 10 orders at a time) |                |
 | trade_partition | false    | string | Trade Partition                                                     | "USDT"         |
 
 ###  Note：
