@@ -7189,8 +7189,8 @@ No need to transfer BBO order price(ask 1 and bid 1) parameter, optimal_5: top 5
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                                                       |
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ |
-| order_id           | false         | string   | Order ID（different IDs are separated by ",", maximum 10 orders can be withdrew at one time） |
-| client_order_id    | false         | string   | Client order ID (different IDs are separated by ",", maximum 10 orders can be withdrew at one time) |
+| order_id           | false(more detail see the note) | string   | Order ID（different IDs are separated by ",", maximum 10 orders can be withdrew at one time） |
+| client_order_id    | false(more detail see the note) | string   | Client order ID (different IDs are separated by ",", maximum 10 orders can be withdrew at one time) |
 | contract_code      | true          | string    | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USDT"    |
 
 ###  Note  ：
@@ -7249,8 +7249,8 @@ client_order_id, order status query is available for orders placed within 24 hou
 
 | Parameter Name            | Mandatory | Type     | Desc                     | Data Value           |
 | --------------- | ---- | ------ | ---------------------- | -------------- |
-| order_id        | false | string | order ID（different IDs are separated by ",", maximum 10 orders can be withdrew at one time） |      |
-| client_order_id | false | string | Client order ID (different IDs are separated by ",", maximum 10 orders can be withdrew at one time) |      |
+| order_id        | false(more detail see the note) | string | order ID（different IDs are separated by ",", maximum 10 orders can be withdrew at one time） |      |
+| client_order_id | false(more detail see the note) | string | Client order ID (different IDs are separated by ",", maximum 10 orders can be withdrew at one time) |      |
 | contract_code          | true  | string | contract code                       |    "BTC-USDT" ...  |
 
 ### Note:
