@@ -5194,8 +5194,8 @@ The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc                                                       |
 | ------------------ | ------------- | -------- | ------------------------------------------------------------ |
-| order_id           | false         | string   | Order ID（different IDs are separated by ",", maximum 10 orders can be withdrew at one time） |
-| client_order_id    | false         | string   | Client order ID (different IDs are separated by ",", maximum 10 orders can be withdrew at one time) |
+| order_id           | false(more detail see the note) | string   | Order ID（different IDs are separated by ",", maximum 10 orders can be withdrew at one time） |
+| client_order_id    | false(more detail see the note) | string   | Client order ID (different IDs are separated by ",", maximum 10 orders can be withdrew at one time) |
 | contract_code      |  true      |   string     | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD"    |
 
 ###  Note  ：
