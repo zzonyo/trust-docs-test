@@ -3494,8 +3494,8 @@ curl -X POST "https://api.huobi.pro/v1/subuser/transfer" -H "Content-Type: appli
 
 | Parameter | Data Type | Required | Description                                       | Value Range                                                  |
 | --------- | --------- | -------- | ------------------------------------------------- | ------------------------------------------------------------ |
-| sub-uid   | integer   | true     | The target sub account uid to transfer to or from | NA                                                           |
-| currency  | string    | true     | The crypto currency to transfer                   | NA                                                           |
+| sub-uid   | integer   | true     | The sub account's uid to transfer to or from | NA                                                           |
+| currency  | string    | true     | The type of currency to transfer                   | NA                                                           |
 | amount    | decimal   | true     | The amount of asset to transfer                   | NA                                                           |
 | type      | string    | true     | The type of transfer                              | master-transfer-in, master-transfer-out, master-point-transfer-in, master-point-transfer-out |
 
@@ -3528,7 +3528,7 @@ API Key Permission：Read
 
 | Field Name | Data Type | Mandatory | Default Value | Description                                         |
 | ---------- | --------- | --------- | ------------- | --------------------------------------------------- |
-| subUid     | long      | true      | N/A           | Sub user UID                                        |
+| subUid     | long      | true      | N/A           | Sub user UID (limited to 1 per request)                                       |
 | currency   | string    | true      | N/A           | Crypto currency,refer to `GET /v1/common/currencys` |
 
 
@@ -3717,7 +3717,10 @@ curl "https://api.huobi.pro/v1/account/accounts/10758899"
 
 ### Request Parameters
 
-<aside class="notice">No parameter is needed for this endpoint</aside>
+|Field Name	|Data Type	|Mandatory	|Description												|
+|-------		|-------		|-------		|-------													|
+| subUid	| long		| ture		| Sub user UID												|
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -3751,7 +3754,7 @@ curl "https://api.huobi.pro/v1/account/accounts/10758899"
 <aside class="notice">The returned "data" object is a list of accounts under this sub-user</aside>
 | Field | Data Type | Description                          | Value Range                           |
 | ----- | --------- | ------------------------------------ | ------------------------------------- |
-| id    | integer   | Unique account id                    | NA                                    |
+| id    | integer   | Sub account's UID                 | NA                                    |
 | type  | string    | The type of this account             | spot, margin, otc, point,super-margin |
 | list  | object    | The balance details of each currency | NA                                    |
 
