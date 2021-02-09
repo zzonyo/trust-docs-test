@@ -3366,7 +3366,7 @@ API Key Permission：Trade
 ### Request Parameters
 | Parameter   | Required | Data Type | Description                                                  | Default | Value Range                                                  |
 | ----------- | -------- | --------- | ------------------------------------------------------------ | ------- | ------------------------------------------------------------ |
-| otpToken    | true     | string    | Google verification code of the parent user, the parent user must be bound to GA for verification on the web | NA      | 6 characters, pure numbers                                   |
+| otpToken    | true     | string    | Google verification code of the parent user, the parent user must be bound to Google Authenticator for verification on the web | NA      | 6 characters, pure numbers                                   |
 | subUid      | true     | long      | Sub user UID                                                 | NA      |                                                              |
 | note        | true     | string    | API key note                                                 | NA      | Up to 255 characters with any font                             |
 | permission  | true     | string    | API key permissions                                          | NA      | Valid value: readOnly, trade; multiple inputs are allowed, separated by comma, i.e. readOnly, trade; readOnly is required permission for any API key, while trade permission is optional. |
