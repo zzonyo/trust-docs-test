@@ -3647,6 +3647,50 @@ It will be pushed only when position event is updated.</p>
 <p>(4) For the same websocket connection, the incremental data version is incremented; if the version is not incremented, you need to re-subscribe and re-maintain the local full MBP data;</p>
 <h3 id='q14-what-39-s-the-difference-between-quot-funding_rate-quot-and-quot-realized_rate-quot-in-the-response-of-swap-api-v1-swap_historical_funding_rate-interface'>Q14: What&#39;s the difference between &quot;funding_rate&quot; and &quot;realized_rate&quot; in the response of swap-api/v1/swap_historical_funding_rate interface?</h3>
 <p>Generally, &quot;funding_rate&quot; is equal to &quot;realized_rate&quot;.Only when the payment of funding fee will cause the liquidation of the user&#39;s position, the funding fee is under or not charged(And the fee is the actual funding fee:&quot;realized_rate&quot;).The current funding rate:&quot;funding_rate&quot; remains unchanged.</p>
+<h3 id='q15-when-subscribing-the-same-topic-of-several-contract-codes-will-several-ws-be-needed'>Q15: When subscribing the same topic of several contract codes, will several ws be needed?</h3>
+<p>Since Futures, Coin Margined swaps, USDT Margined swaps and Options are different contracts with different interface addresses, different ws will be needed.</p>
+
+<p>In Futures, Coin Margined swaps, USDT Margined swaps and Options thereof, as long as the interface address is the same, one ws is enough.</p>
+<h3 id='q16-is-it-available-to-place-cancel-an-order-via-ws'>Q16: Is it available to place/cancel an order via WS??</h3>
+<p>Currently, it is not supported.</p>
+<h3 id='q17-how-to-subscribe-order-status'>Q17: How to subscribe order status?</h3>
+<p>a.  Successfully trade: “Subscribe Match Order Data (matchOrders.$contract_code)” or “Subscribe Order Data (orders.$contract_code)”</p>
+
+<p>b.  Successfully cancel: Subscribe Account Equity Updates Data (accounts.$contract_code)</p>
+<h3 id='q18-what-is-the-difference-between-the-subscribe-match-order-data-matchorders-contract_code-and-subscribe-order-data-orders-contract_code'>Q18: What is the difference between the “Subscribe Match Order Data (matchOrders.$contract_code)” and “Subscribe Order Data (orders.$contract_code)”?</h3>
+<p>The pushed data of these two interfaces are different. Compared to “Subscribe Match Order Data (matchOrders.$contract_code)”, there are more fields for “Subscribe Order Data (orders.$contract_code)”</p>
+
+<p>In general, the match order data (Subscribe Match Order Data “matchOrders.$contract_code”) may be pushed faster than the settled order data (Subscribe Order Data “orders.$contract_code”). </p>
+
+<p>The orders of forced liquidation and netting will not be pushed in “Subscribe Match Order Data (matchOrders.$contract_code)”</p>
+<h3 id='q19-how-often-is-the-subscribe-kline-data-market-contract_code-kline-period-pushed'>Q19: How often is the “Subscribe Kline Data (market.$contract_code.kline.$period)” pushed?</h3>
+<p>If any transaction is completed, it will push every 500ms. If not, it will push according to the subscribe period</p>
+<h3 id='q20-how-to-judge-whether-the-push-is-delayed'>Q20: How to judge whether the push is delayed?</h3>
+<p>Please first synchronize the time of the server through https://api.hbdm.com/api/v1/timestamp), and the “ts” in the returned data is timestamp (ms) and the corresponding time zone is UTC+8.</p>
+
+<p>The outer layer of each pushed data has a “ts”, which represents the time stamp (ms) when the server pushes the data to the client and the corresponding time zone is UTC+8.</p>
+
+<p>When the data pushed arrive, the procedure will record the local time “ts”. When the local time “ts” is much later than the pushing data “ts”, you can use the following methods to improve the delay:</p>
+
+<p>a. Reduce the data pushed by reducing the number of WS subscriptions.</p>
+
+<p>b. Check the stability and speed of the network between procedure and the servers (please replace api.btcgateway.pro with the domain name used by the program)</p>
+
+<p>curl -o /dev/null -s -w time_namelookup&quot;(s)&quot;:%{time_namelookup}&quot;\n&quot;time_connect&quot;(s)&quot;:%{time_connect}&quot;\n&quot;time_starttransfer&quot;(s)&quot;:%{time_starttransfer}&quot;\n&quot;time_total&quot;(s)&quot;:%{time_total}&quot;\n&quot;speed_download&quot;(B/s)&quot;:%{speed_download}&quot;\n&quot; api.btcgateway.pro</p>
+
+<p>and you will receive data as below:</p>
+
+<p>time_namelookup(s):0.001378</p>
+
+<p>time_connect(s):0.128641</p>
+
+<p>time_starttransfer(s):0.276588</p>
+
+<p>time_total(s):0.276804</p>
+
+<p>speed_download(B/s):2010.000</p>
+
+<p>If you run the above command multiple times in a row, and the results obtained each time are very different, you can: a. Select an appropriate Huobi domain name, b. Optimize or reselect the network where the program is located.</p>
 <h2 id='order-and-trade'>Order and Trade</h2><h3 id='q1-what-is-the-perpetual-funding-rate-settlement-cycle-which-interface-can-be-used-to-check-the-status-when-the-fund-rate-is-settled'>Q1: What is the perpetual funding rate settlement cycle? Which interface can be used to check the status when the fund rate is settled?</h3>
 <p>We warmly remind you that Huobi Perpetual Swaps is settled every 8 hours, and the settlement will be at the end of each period. For example, 00:00 - 08:00 is a period, and its settlement time would be at 08:00; 08:00 - 16:00 is a period, and its settlement time would be at 16:00; 16:00 - 00:00 (+1 day) is a period, and its settlement time would be at 00:00. All times mentioned above are Singapore Standard time (GMT+8).</p>
 
@@ -3687,10 +3731,107 @@ You are recommended to read the status code from the returned message. If the ab
 <p>The order cancellation command generally takes several tens of ms. The actual status of order cancellation can be obtained by invoking an interface: swap-api/v1/swap_order_info</p>
 <h3 id='q13-how-to-get-historical-liquidation-orders'>Q13: How to get historical liquidation orders?</h3>
 <p>To obtain historical liquidation orders, you can access the one of four api interfaces: Get History Orders (/swap-api/v1/swap_hisorders), Get History Match Results (/swap-api/v1/swap_matchresults), Query history orders via multiple fields (/swap-api/v1/swap_hisorders_exact), Query history transactions via multiple fields (/swap-api/v1/swap_matchresults_exact), with the return field order_source (order source) to judge. When order_source returns &quot;risk&quot;, it means that this order is a liquidated order.</p>
+<h3 id='q14-how-to-query-the-system-status-of-the-exchange'>Q14: How to query the system status of the exchange?</h3>
+<p>There are two common statuses of the exchange systems: settlement/delivery in progress; suspended for maintenance; when the system is in these two kinds of statuses, the system will return the response error code and error information when calling the related API interfaces.</p>
+
+<p>a.  How to judge whether the settlement/delivery has been done?
+Users can judge from the value “contract_status” returned by the “Get Information of an Order” interface ( /swap-api/v1/swap_contract_info); If the value turns out 1, it means that the settlement/delivery has been done and the trading has been resumed now.</p>
+
+<p>b. How to judge whether the system is suspended for maintenance or not?
+Users can judge from the value “heartbeat” pushed by the “Queried if system interface is available” interface (https://api.hbdm.com/heartbeat/) or the “Subscribe system status updates” interface (&quot;topic: public.$service.heartbeat&quot;); If the value turns out 1, it means that the system is available now and can be connected normally.</p>
+<h3 id='q15-does-huob-futures-support-holding-bi-directional-position'>Q15: Does Huob Futures support holding bi-directional position?</h3>
+<p>Yes, Huobi Futures supports long and short positions being held at the same time.</p>
+<h3 id='q16-how-to-ensure-the-order-to-be-rapidly-filled'>Q16: How to ensure the order to be rapidly filled?</h3>
+<p>At present, Huobi Futures does not support market price when placing an order. To increase the probability of a transaction, users can choose to place an order based on BBO price (opponent), optimal 5 (optimal_5), optimal 10 (optimal_10), optimal 20 (optimal_20), among which the success probability of optimal 20 is the largest, while the slippage always is the largest as well.</p>
+
+<p>It is important to note that the above methods will not guarantee the order to be filled in 100%. The system will obtain the optimal N price at that moment and place the order.</p>
+<h3 id='q17-how-can-api-procedure-be-connected-to-the-exchange-more-rapidly'>Q17: How can API procedure be connected to the exchange more rapidly?</h3>
+<p>It’s recommended to use a AWS Tokyo c-zone server and the domain name “api.hbdm.vn” to connect to the system.</p>
+<h3 id='q18-it-occurs-an-abnormal-service-error-when-transferring-assets-between-spots-and-derivatives'>Q18: It occurs an “abnormal service” error when transferring assets between spots and derivatives.</h3>
+<p>a. Check whether the request address is the address of Huobi Global : api.huobi.pro?</p>
+
+<p>b. Check whether the precision of the coin does not exceed 8 decimal places? </p>
+<h3 id='q19-how-to-confirm-whether-the-position-is-opened-or-closed-successfully'>Q19: How to confirm whether the position is opened or closed successfully?</h3>
+<p>Placing an order successfully through “Place an Order” interface (/swap-api/v1/swap_order) or “Place a batch of orders” interface (/swap-api/v1/swap_batchorder) just means the server has received your order placing instructions rather than you have opened/closed a position successfully.</p>
+
+<p>You can check the order status by filling the returned “order_id” in the “Get Information of an Order” interface (/swap-api/v1/swap_order_info) or the “Order Details Acquisition” interface (/swap-api/v1/swap_order_detail); If the order has been filled, the “status” value in the return parameter will turn out 6 (wholly filled)</p>
+
+<p>It is important to note:</p>
+
+<p>a.  For “Get Information of an order” interface (/swap-api/v1/swap_order_info), after the settlement or delivery, the system will delete all the orders in ended status (5: partially filled orders have been cancelled; 6: wholly filled; 7: cancelled);</p>
+
+<p>b.  b. There is a delay in “Order Details Acquisition” interface (/swap-api/v1/swap_order_detail), so it is better to fill in “created_at” (order timestamp) and “order_type” (order type, fill in 1 by default). In this way, it will directly query the database, so the query results will be more timely.</p>
+<h3 id='q20-why-are-orders-canceled-by-the-system-automatically'>Q20: Why are orders canceled by the system automatically?</h3>
+<p>The order_price_type which can be chosen are IOC, FOK and Maker (Post Only). When the order book cannot meet with the corresponding conditions, the system will cancel the orders automatically:</p>
+
+<p>Post_only: If the order placed is filled with an existing order on the order book immediately, the order will be cancelled to ensure the user is always a maker.</p>
+
+<p>IOC order: If the order cannot be filled immediately, the unfilled part will be cancelled at once;</p>
+
+<p>FOK order: If the order cannot be filled in its entirety, it will be wholly cancelled. No partial fulfillments are allowed.</p>
+<h3 id='q21-how-to-query-the-maximum-amount-cont-available-to-open-by-using-users-current-assets'>Q21: How to query the maximum amount (cont) available to open by using users’ current assets?</h3>
+<p>At present, we do not have an interface by which users can directly query the maximum amount (cont) available to open by using users’ the current asset.</p>
+<h3 id='q22-are-the-order_id-and-order_id_str-the-same'>Q22: Are the “order_id” and “order_id_str” the same?</h3>
+<p>The “order_id_str” is the string format of “order_id”, whose values are the same.</p>
+
+<p>For the “order_id” with 18 bits, the “JSON.parse” in “nodejs” and “javascript” will be “int” by default, and mistakes will occur when analyzing. Thus, we advise using “order_id_str”.</p>
+<h3 id='q23-how-to-get-the-active-buying-selling-quantity-in-transaction-data'>Q23: How to get the active buying/selling quantity in transaction data?</h3>
+<p>Users can get the data via “Query The Last Trade of a Contract” (/swap-ex/market/trade) interface or by subscribing &quot;sub&quot;: &quot;market.$contract_code.trade.detail&quot;, thereinto</p>
+
+<p>Amount refers to the trading volume (cont), which is the sum of the buying/selling volume; </p>
+
+<p>Direction refers to the active trading direction.</p>
+<h3 id='q24-the-interval-between-from-and-to-is-2000-period-when-acquiring-kline-data-then-why-the-data-obtained-is'>Q24: The interval between “from” and “to” is “2000*period” when acquiring KLine data, then why the data obtained is []?</h3>
+<p>When acquiring the Kline data, the two time points “from” and “to” are contained, therefore it includes 2001 pieces of data. However, this exceeds the maximum limit 2000. Therefore, the system will return [].</p>
+
+<p>Besides, the returned data will be [] as well if the interval between “from” and “to” exceeds 2 years.</p>
+<h3 id='q25-how-to-get-the-latest-price'>Q25: How to get the latest price?</h3>
+<p>There are two methods to get the latest price:</p>
+
+<p>a. Invoking the “Get KLine Data(swap-ex/market/history/kline)” interface and filling in any “period”, the “close” of the last data in return data will be the latest price;</p>
+
+<p>b. Invoking the “Query The Last Trade of a Contract(swap-ex/market/trade)” interface, the returned “price” will be the latest price.</p>
+<h3 id='q26-how-to-get-the-latest-index-price'>Q26: How to get the latest index price?</h3>
+<p>There are two methods to get the latest index price:</p>
+
+<p>a.  Calling the “Get Contract Index Price Information” interface (/swap-api/v1/swap_index), the returned “index_price” will be the latest index price.</p>
+
+<p>b.  Calling the “Subscribe Index Kline Data” websocket (market.$contract_code.index.$period), the “close” of the last Kline data in returned data will be the latest index price.</p>
+<h3 id='q27-will-api-upgrade-affect-the-operation-of-the-program'>Q27: Will API upgrade affect the operation of the program?</h3>
+<p>In general, API upgrade will partly influence the ws disconnection. To avoid this, you can set up a ws-reconnect mechanism in advance; Please subscribe to the upgrade announcements for more details:</p>
+
+<p>Coin-margined futures: https://status-dm.huobigroup.com/</p>
+
+<p>Coin-margined swaps: https://status-swap.huobigroup.com/</p>
+
+<p>USDT-margined swaps: https://status-linear-swap.huobigroup.com/</p>
+<h3 id='q28-what-does-the-margin_balance-refer-to-in-query-user-s-account-information-interface-swap-api-v1-swap_account_info'>Q28: What does the “margin_balance” refer to in “Query User’s Account Information” interface (swap-api/v1/swap_account_info)?</h3>
+<p>”margin_balance” refers to the account equity;</p>
+
+<p>margin_balance (Account Equity) = margin_position (Position Margin) + margin_frozen (Frozen Margin) + margin_available (Avail. Margin)</p>
+<h3 id='q29-is-the-risk_rate-margin-rate-in-query-user-s-account-information-interface-swap-api-v1-swap_account_info-the-same-as-the-margin-rate-on-web'>Q29: Is the “risk_rate” (margin rate) in “Query User’s Account Information” interface (/swap-api/v1/swap_account_info) the same as the margin rate on WEB?</h3>
+<p>Yes, it is</p>
+
+<p>When the “risk_rate” is less than or equal to 0, the position will be liquidated.</p>
 <h2 id='error-codes'>Error Codes</h2><h3 id='q1-what-is-the-reason-for-1030-error-code'>Q1: What is the reason for 1030 error code?</h3>
 <p>If you encounter errors such as {&quot;status&quot;:&quot;error&quot;,&quot;err_code&quot;:1030,&quot;err_msg&quot;:&quot;Abnormal service. Please try again later.&quot;,&quot;ts&quot;:1588093883199},indicating that your input request parameter is not correct, please print your request body and complete URL parameters, and please check the corresponding API document interface one by one.The common example is that the volume must be an integer. </p>
 <h3 id='q2-what-is-the-reason-for-1048-error-code'>Q2: What is the reason for 1048 error code?</h3>
 <p>If you encounter errors such as {&#39;index&#39;: 1, &#39;err_code&#39;: 1048, &#39;err_msg&#39;: &#39;Insufficient close amount available.&#39;}, indicating that your available position is not enough.You need to query the api swap-api/v1/swap_position_info to get your available position.</p>
+
+<ol>
+<li><p>Check whether the amount (cont) of position-closing order exceeds the limit? (When there is limit order for closing a position, the quantity that available to be closed will be occupied; hence we kindly remind you to cancel these orders and try again.)</p></li>
+<li><p>Check whether direction and offset are wrong as follows:</p></li>
+</ol>
+
+<p>close long: sell to close a long position (direction: sell; offset: close);</p>
+
+<p>close short: buy to close a short position (direction: buy; offset: close);</p>
+
+<p>Only “direction” need to be uploaded when placing a flash close order (close long: sell; close short: buy). </p>
+
+<ol>
+<li>The pending take-profit and stop-loss (tp/sl) orders and trigger orders will not occupy the quantity of the position.</li>
+</ol>
 <h3 id='q3-what-is-the-reason-for-1032-error-code'>Q3: What is the reason for 1032 error code?</h3>
 <p>1032 means that your request exceeds the ratelimit. The coin margined swap, future, option swap and USDT margined swap limit the rate separately. Please check the ratelimit in the api ratelimit instructions, and you can print the current ratelimit in the header of the API response to check whether the ratelimit is exceeded. It is recommended to increase the request interval delay to avoid exceeding the ratelimit.</p>
 <h2 id='how-to-solve-problems-more-effectively'>How to solve problems more effectively?</h2>
