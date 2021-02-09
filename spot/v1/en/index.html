@@ -7581,7 +7581,7 @@ By default, the asset transfer from sub user’s spot account to parent user’s
 <td>otpToken</td>
 <td>true</td>
 <td>string</td>
-<td>Google verification code of the parent user, the parent user must be bound to Google for verification on the web</td>
+<td>Google verification code of the parent user, the parent user must be bound to GA for verification on the web</td>
 <td>NA</td>
 <td>6 characters, pure numbers</td>
 </tr>
@@ -7599,7 +7599,7 @@ By default, the asset transfer from sub user’s spot account to parent user’s
 <td>string</td>
 <td>API key note</td>
 <td>NA</td>
-<td>Up to 20 characters, free text</td>
+<td>Up to 255 characters with any font</td>
 </tr>
 <tr>
 <td>permission</td>
@@ -7613,7 +7613,7 @@ By default, the asset transfer from sub user’s spot account to parent user’s
 <td>ipAddresses</td>
 <td>false</td>
 <td>string</td>
-<td>IP address bind to the API key</td>
+<td>The IPv4/IPv6 host address or IPv4 network address bound to the API key</td>
 <td>NA</td>
 <td>At most 20 IPv4/IPv6 host address(es) and/or IPv4 network address(es) can bind with one API key, separated by comma. For example: 202.106.196.115, 202.106.96.0/24. Without any IP address binding, the API key will expire in 90 days.</td>
 </tr>
