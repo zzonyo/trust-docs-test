@@ -1987,8 +1987,8 @@ Yes. The ratelimit of interface with private key is based on the UID, not the AP
 
 There is an open source asynchronous quantization framework which integrates Huobi future and Huobi swap: <a href=https://github.com/hbdmapi/hbdm_Python>here</a>. If you have any quetsions, please open a ticket in github issues.
 
-## Market and Websocket
 
+## Market and Websocket
 
 ### Q1: How often are the snapshot orderbook subscription and incremental orderbook subscription pushed?
 
@@ -2108,6 +2108,63 @@ Snapshot MBP data will be pushed for the first time, and the incremental MBP dat
 
 If a quarterly contract such as BTC_CQ is converted to the next week contract BTC_NW, WS will not automatically notify you, you need to change the subscription to BTC_NW.
 
+### Q15: When subscribing the same topic of several contract codes, will several ws be needed?
+
+Since Futures, Coin Margined swaps, USDT Margined swaps and Options are different contracts with different interface addresses, different ws will be needed.
+
+In Futures, Coin Margined swaps, USDT Margined swaps and Options thereof, as long as the interface address is the same, one ws is enough.
+
+### Q16: Is it available to place/cancel an order via WS??
+
+Currently, it is not supported.
+
+### Q17: How to subscribe order status?
+
+a.	Successfully trade: “Subscribe Match Order Data (matchOrders.$symbol)” or “Subscribe Order Data (orders.$symbol)”
+
+b.	Successfully cancel: Subscribe Account Equity Updates Data (accounts.$symbol)
+
+### Q18: What is the difference between the “Subscribe Match Order Data (matchOrders.$symbol)” and “Subscribe Order Data (orders.$symbol)”?
+
+The pushed data of these two interfaces are different. Compared to “Subscribe Match Order Data (matchOrders.$symbol)”, there are more fields for “Subscribe Order Data (orders.$symbol)”
+
+In general, the match order data (Subscribe Match Order Data “matchOrders.$symbol”) may be pushed faster than the settled order data (Subscribe Order Data “orders.$symbol”). 
+
+The orders of forced liquidation and netting will not be pushed in “Subscribe Match Order Data (matchOrders.$symbol)”
+
+### Q19: How often is the “Subscribe Kline Data (market.$symbol.kline.$period)” pushed?
+
+If any transaction is completed, it will push every 500ms. If not, it will push according to the subscribe period
+
+### Q20: How to judge whether the push is delayed?
+
+Please first synchronize the time of the server through https://api.hbdm.com/api/v1/timestamp), and the “ts” in the returned data is timestamp (ms) and the corresponding time zone is UTC+8.
+
+The outer layer of each pushed data has a “ts”, which represents the time stamp (ms) when the server pushes the data to the client and the corresponding time zone is UTC+8.
+
+When the data pushed arrive, the procedure will record the local time “ts”. When the local time “ts” is much later than the pushing data “ts”, you can use the following methods to improve the delay:
+
+a. Reduce the data pushed by reducing the number of WS subscriptions.
+
+b. Check the stability and speed of the network between procedure and the servers (please replace api.btcgateway.pro with the domain name used by the program)
+
+curl -o /dev/null -s -w time_namelookup"(s)":%{time_namelookup}"\n"time_connect"(s)":%{time_connect}"\n"time_starttransfer"(s)":%{time_starttransfer}"\n"time_total"(s)":%{time_total}"\n"speed_download"(B/s)":%{speed_download}"\n" api.btcgateway.pro
+
+and you will receive data as below:
+
+time_namelookup(s):0.001378
+
+time_connect(s):0.128641
+
+time_starttransfer(s):0.276588
+
+time_total(s):0.276804
+
+speed_download(B/s):2010.000
+
+If you run the above command multiple times in a row, and the results obtained each time are very different, you can: a. Select an appropriate Huobi domain name, b. Optimize or reselect the network where the program is located.
+
+
 ## Order and Trade
 
 ### Q1: What is the future settlement cycle? Which interface can be used to check the status when the future is settled? 
@@ -2180,6 +2237,117 @@ To obtain historical liquidation orders, you can access the one of four api inte
 5. Positions may only be closed within 10 min before settlement.(error code 1105)
 6. The positions are taken over by system.
 
+### Q14: How to query the system status of the exchange?
+
+There are two common statuses of the exchange systems: settlement/delivery in progress; suspended for maintenance; when the system is in these two kinds of statuses, the system will return the response error code and error information when calling the related API interfaces.
+
+a.	How to judge whether the settlement/delivery has been done?
+Users can judge from the value “contract_status” returned by the “Get Information of an Order” interface ( /api/v1/contract_contract_info); If the value turns out 1, it means that the settlement/delivery has been done and the trading has been resumed now.
+
+b. How to judge whether the system is suspended for maintenance or not?
+Users can judge from the value “heartbeat” pushed by the “Queried if system interface is available” interface (https://api.hbdm.com/heartbeat/) or the “Subscribe system status updates” interface ("topic: public.$service.heartbeat"); If the value turns out 1, it means that the system is available now and can be connected normally.
+
+### Q15: Does Huob Futures support holding bi-directional position?
+
+Yes, Huobi Futures supports long and short positions being held at the same time.
+
+### Q16: How to ensure the order to be rapidly filled?
+
+At present, Huobi Futures does not support market price when placing an order. To increase the probability of a transaction, users can choose to place an order based on BBO price (opponent), optimal 5 (optimal_5), optimal 10 (optimal_10), optimal 20 (optimal_20), among which the success probability of optimal 20 is the largest, while the slippage always is the largest as well.
+
+It is important to note that the above methods will not guarantee the order to be filled in 100%. The system will obtain the optimal N price at that moment and place the order.
+
+### Q17: How can API procedure be connected to the exchange more rapidly?
+
+It’s recommended to use a AWS Tokyo c-zone server and the domain name “api.hbdm.vn” to connect to the system.
+
+### Q18: It occurs an “abnormal service” error when transferring assets between spots and derivatives.
+
+a. Check whether the request address is the address of Huobi Global : api.huobi.pro?
+
+b. Check whether the precision of the coin does not exceed 8 decimal places? 
+
+### Q19: How to confirm whether the position is opened or closed successfully?
+
+Placing an order successfully through “Place an Order” interface (/api/v1/contract_order) or “Place a batch of orders” interface (/api/v1/contract_batchorder) just means the server has received your order placing instructions rather than you have opened/closed a position successfully.
+You can check the order status by filling the returned “order_id” in the “Get Information of an Order” interface (/api/v1/contract_order_info) or the “Order Details Acquisition” interface (/api/v1/contract_order_detail); If the order has been filled, the “status” value in the return parameter will turn out 6 (wholly filled)
+It is important to note:
+a.	For “Get Information of an order” interface (/api/v1/contract_order_info), after the settlement or delivery, the system will delete all the orders in ended status (5: partially filled orders have been cancelled; 6: wholly filled; 7: cancelled);
+b.	b. There is a delay in “Order Details Acquisition” interface (/api/v1/contract_order_detail), so it is better to fill in “created_at” (order timestamp) and “order_type” (order type, fill in 1 by default). In this way, it will directly query the database, so the query results will be more timely.
+
+### Q20: Why are orders canceled by the system automatically?
+
+The order_price_type which can be chosen are IOC, FOK and Maker (Post Only). When the order book cannot meet with the corresponding conditions, the system will cancel the orders automatically:
+
+Post_only: If the order placed is filled with an existing order on the order book immediately, the order will be cancelled to ensure the user is always a maker.
+
+IOC order: If the order cannot be filled immediately, the unfilled part will be cancelled at once;
+
+FOK order: If the order cannot be filled in its entirety, it will be wholly cancelled. No partial fulfillments are allowed.
+
+### Q21: How to query the maximum amount (cont) available to open by using users’ current assets?
+
+At present, we do not have an interface by which users can directly query the maximum amount (cont) available to open by using users’ the current asset.
+
+### Q22: Are the “order_id” and “order_id_str” the same? 
+
+The “order_id_str” is the string format of “order_id”, whose values are the same.
+
+For the “order_id” with 18 bits, the “JSON.parse” in “nodejs” and “javascript” will be “int” by default, and mistakes will occur when analyzing. Thus, we advise using “order_id_str”.
+
+### Q23: How to get the active buying/selling quantity in transaction data?
+
+Users can get the data via “Query The Last Trade of a Contract” (/market/trade) interface or by subscribing "sub": "market.$contract_code.trade.detail", thereinto
+
+Amount refers to the trading volume (cont), which is the sum of the buying/selling volume; 
+
+Direction refers to the active trading direction.
+
+### Q24: The interval between “from” and “to” is “2000*period” when acquiring KLine data, then why the data obtained is []?
+
+When acquiring the Kline data, the two time points “from” and “to” are contained, therefore it includes 2001 pieces of data. However, this exceeds the maximum limit 2000. Therefore, the system will return [].
+
+Besides, the returned data will be [] as well if the interval between “from” and “to” exceeds 2 years.
+
+### Q25: How to get the latest price?
+
+There are two methods to get the latest price:
+
+a. Invoking the “Get KLine Data” interface and filling in any “period”, the “close” of the last data in return data will be the latest price;
+
+b. Invoking the “Query The Last Trade of a Contract” interface, the returned “price” will be the latest price.
+
+### Q26: How to get the latest index price?
+
+There are two methods to get the latest index price:
+
+a.	Calling the “Get Contract Index Price Information” interface (/api/v1/contract_index), the returned “index_price” will be the latest index price.
+
+b.	Calling the “Subscribe Index Kline Data” websocket (market.$symbol.index.$period), the “close” of the last Kline data in returned data will be the latest index price.
+
+### Q27: Will API upgrade affect the operation of the program?
+
+In general, API upgrade will partly influence the ws disconnection. To avoid this, you can set up a ws-reconnect mechanism in advance; Please subscribe to the upgrade announcements for more details:
+
+Coin-margined futures: https://status-dm.huobigroup.com/
+
+Coin-margined swaps: https://status-swap.huobigroup.com/
+
+USDT-margined swaps: https://status-linear-swap.huobigroup.com/
+
+### Q28: What does the “margin_balance” refer to in “Query User’s Account Information” interface (api/v1/contract_account_info)?
+
+”margin_balance” refers to the account equity;
+
+margin_balance (Account Equity) = margin_position (Position Margin) + margin_frozen (Frozen Margin) + margin_available (Avail. Margin)
+
+### Q29: Is the “risk_rate” (margin rate) in “Query User’s Account Information” interface (/api/v1/contract_account_info) the same as the margin rate on WEB?
+
+Yes, it is
+
+When the “risk_rate” is less than or equal to 0, the position will be liquidated.
+
+
 ## Error Codes
 
 ### Q1: What is the reason for 1030 error code?
@@ -2189,6 +2357,18 @@ If you encounter errors such as {"status":"error","err_code":1030,"err_msg":"Abn
 ### Q2: What is the reason for 1048 error code?
 
 If you encounter errors such as {'index': 1, 'err_code': 1048, 'err_msg': 'Insufficient close amount available.'}, indicating that your available position is not enough.You need to query the api api/v1/contract_position_info to get your available position.
+
+1. Check whether the amount (cont) of position-closing order exceeds the limit? (When there is limit order for closing a position, the quantity that available to be closed will be occupied; hence we kindly remind you to cancel these orders and try again.)
+
+2. Check whether direction and offset are wrong as follows: 
+
+close long: sell to close a long position (direction: sell; offset: close);
+
+close short: buy to close a short position (direction: buy; offset: close);
+
+Only “direction” need to be uploaded when placing a flash close order (close long: sell; close short: buy). 
+
+3. The pending take-profit and stop-loss (tp/sl) orders and trigger orders will not occupy the quantity of the position.
 
 ### Q3: What is the reason for 1032 error code? 
 
