@@ -8467,7 +8467,7 @@ Rate Limit (NEW): 20times/2s</p>
 
 <p>Below is the glossary of trading related field:</p>
 
-<p><strong>order type</strong>: The order type is consist of trade direction and behavior type: [direction]-[behavior]</p>
+<p><strong>order type</strong>: The order type is consist of trade direction and behavior type: [direction]-[type]</p>
 
 <p>direction:</p>
 
@@ -8476,20 +8476,20 @@ Rate Limit (NEW): 20times/2s</p>
 <li>sell</li>
 </ul>
 
-<p>behavior type:</p>
+<p>type:</p>
 
 <ul>
 <li>market : The price is not required in order creation request, you only need to specify either volume or amount. The matching and trade will happen automatically according to the request.</li>
 <li>limit: Both of the price and amount should be specified in order creation request.</li>
 <li>limit-maker: The price is specified in order creation request as market maker. It will not be matched in the matching queue.</li>
 <li>ioc: ioc stands for &quot;immediately or cancel&quot;, it means the order will be canceled if it couldn&#39;t be matched. If the order is partially traded, the remaining part will be canceled.</li>
-<li>limit-fok: fok stands for &quot;fill or kill&quot;, it means the order will be canceled if it couldn&#39;t be <strong>fully</strong> matched. Even if the order can be partially traded, the entire order will be canceled.</li>
+<li>limit-fok: fok stands for &quot;fill or kill&quot;, it means the order will be cancelled if it couldn&#39;t be <strong>fully</strong> matched. Even if the order can be partially filled, the entire order will be cancelled.</li>
 <li>market-grid: Grid trading market order (not supported by API)</li>
 <li>limit-grid: Grid trading limit order (not supported by API)</li>
 <li>stop-limit: The price in order creation request is the trigger price. The order will be put into matching queue only when the market price reaches the trigger price. This type is replaced by conditional order, please use conditional order APIs</li>
 </ul>
 
-<p><strong>order source</strong>: define where is the order from</p>
+<p><strong>order source</strong>: the origin of the order</p>
 
 <ul>
 <li>spot-api: API order from spot account</li>
@@ -8511,11 +8511,11 @@ Rate Limit (NEW): 20times/2s</p>
 <li>canceled: The order is not in the matching queue any more, and completely canceled. There is no trade associated with this order.</li>
 </ul>
 
-<p><strong>related Ientity</strong>: The frequently used Identities are listed below:</p>
+<p><strong>IDs</strong>: The frequently used identities are listed below:</p>
 
 <ul>
 <li>order-id: The unique identity for order.</li>
-<li>client-order-id: The identity that defined by client. This id is included in order creation request, and will be returned as order-id. This id is valid within 24 hours. The allowed characters are letters (case sensitive), digit, underscore (_) and hyphen (-), no more than 64 chars.</li>
+<li>client-order-id: The identity defined by the client. This id is included in order creation request, and will be returned as order-id. This id is valid within 24 hours. The allowed characters are letters (case sensitive), digit, underscore (_) and hyphen (-), no more than 64 chars.</li>
 <li>match-id : The identity for order matching.</li>
 <li>trade-id : The unique identity for the trade.</li>
 </ul>
@@ -8523,7 +8523,7 @@ Rate Limit (NEW): 20times/2s</p>
 <p>API Key Permission：Trade<br>
 Rate Limit (NEW): 100times/2s</p>
 
-<p>This endpoint place a new order and send to the exchange to be matched.</p>
+<p>This endpoint places a new order and sends to the exchange to be matched.</p>
 <h3 id='http-request-47'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/order/orders/place</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s2">"Content-Type: application/json"</span> <span class="s2">"https://api.huobi.pro/v1/order/orders/place"</span> -d
@@ -8629,11 +8629,23 @@ Rate Limit (NEW): 100times/2s</p>
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
 
 <p>If client order ID duplicates with a previous order (within 24 hours), the endpoint reverts error message <code>invalid.client.order.id</code>.</p>
+
+<p><strong>buy-limit-maker</strong></p>
+
+<p>If the order price is greater than or equal to the lowest selling price in the market, the order will be rejected.</p>
+
+<p>If the order price is less than the lowest selling price in the market, the order will be accepted.</p>
+
+<p><strong>sell-limit-maker</strong></p>
+
+<p>If the order price is less than or equal to the highest buy price in the market, the order will be rejected.</p>
+
+<p>If the order price is greater than the highest buy price in the market, the order will be accepted.</p>
 <h2 id='place-a-batch-of-orders'>Place a Batch of Orders</h2>
 <p>API Key Permission：Trade<br>
 Rate Limit (NEW): 50times/2s</p>
 
-<p>A batch contains at most 10 orders</p>
+<p>A batch contains at most 10 orders.</p>
 <h3 id='http-request-48'>HTTP Request</h3>
 <ul>
 <li>POST <code>/v1/order/batch-orders</code></li>
@@ -8794,16 +8806,32 @@ Rate Limit (NEW): 50times/2s</p>
 <p>API Key Permission：Trade<br>
 Rate Limit (NEW): 100times/2s</p>
 
-<p>This endpoint submit a request to cancel an order.</p>
+<p>This endpoint submits a request to cancel an order.</p>
 
-<aside class="warning">This only submit the cancel request, the actual result of the canel request needs to be checked by order status or match result endpoints</aside>
+<aside class="warning">The actual result of the cancellation request needs to be checked by order status or match result endpoints after submitting the request.</aside>
 <h3 id='http-request-49'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/order/orders/{order-id}/submitcancel</code></p>
 
 <p>&#39;order-id&#39;: the previously returned order id when order was created</p>
 <pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"https://api.huobi.pro/v1/order/orders/59378/submitcancel"</span>
 </code></pre><h3 id='request-parameters-43'>Request Parameters</h3>
-<p>No parameter is needed for this endpoint.</p>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order-id</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>order id which needs to be filled in the path</td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -8832,11 +8860,11 @@ Rate Limit (NEW): 100times/2s</p>
 </thead><tbody>
 <tr>
 <td>-1</td>
-<td>order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)</td>
+<td>order was already closed in the long past (order state = cancelled, partially-cancelled, filled, partially-filled)</td>
 </tr>
 <tr>
 <td>5</td>
-<td>partial-canceled</td>
+<td>partially-cancelled</td>
 </tr>
 <tr>
 <td>6</td>
@@ -8844,7 +8872,7 @@ Rate Limit (NEW): 100times/2s</p>
 </tr>
 <tr>
 <td>7</td>
-<td>canceled</td>
+<td>cancelled</td>
 </tr>
 <tr>
 <td>10</td>
@@ -8857,9 +8885,9 @@ Rate Limit (NEW): 100times/2s</p>
 
 <p>This endpoint submit a request to cancel an order based on client-order-id (within 24 hours).</p>
 
-<aside class="notice">It is suggested to use /v1/order/orders/{order-id}/submitcancel to cancel single order, which is faster and more stable</aside>
+<aside class="notice">It is suggested to use /v1/order/orders/{order-id}/submitcancel to cancel a single order, which is faster and more stable</aside>
 
-<aside class="warning">This only submit the cancel request, the actual result of the canel request needs to be checked by order status or match result endpoints</aside>
+<aside class="warning">This only submits the cancel request, the actual result of the canel request needs to be checked by order status or match result endpoints</aside>
 <h3 id='http-request-50'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/order/orders/submitCancelClientOrder</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s2">"Content-Type: application/json"</span> <span class="s2">"https://api.huobi.pro/v1/order/orders/submitCancelClientOrder"</span> -d
@@ -8912,7 +8940,7 @@ Rate Limit (NEW): 100times/2s</p>
 </thead><tbody>
 <tr>
 <td>-1</td>
-<td>order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled)</td>
+<td>order was already closed in the long past (order state = cancelled, partially-cancelled, filled, partially-filled)</td>
 </tr>
 <tr>
 <td>0</td>
@@ -8920,7 +8948,7 @@ Rate Limit (NEW): 100times/2s</p>
 </tr>
 <tr>
 <td>5</td>
-<td>partial-canceled</td>
+<td>partially-cancelled</td>
 </tr>
 <tr>
 <td>6</td>
@@ -8928,7 +8956,7 @@ Rate Limit (NEW): 100times/2s</p>
 </tr>
 <tr>
 <td>7</td>
-<td>canceled</td>
+<td>cancelled</td>
 </tr>
 <tr>
 <td>10</td>
