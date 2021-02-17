@@ -3790,25 +3790,25 @@ Trading APIs provide trading related functionality, including placing order, can
 
 Below is the glossary of trading related field:
 
-**order type**: The order type is consist of trade direction and behavior type: [direction]-[behavior]
+**order type**: The order type is consist of trade direction and behavior type: [direction]-[type]
 
 direction:
 
 - buy
 - sell
 
-behavior type:
+type:
 
 - market : The price is not required in order creation request, you only need to specify either volume or amount. The matching and trade will happen automatically according to the request.
 - limit: Both of the price and amount should be specified in order creation request.
 - limit-maker: The price is specified in order creation request as market maker. It will not be matched in the matching queue.
 - ioc: ioc stands for "immediately or cancel", it means the order will be canceled if it couldn't be matched. If the order is partially traded, the remaining part will be canceled.
-- limit-fok: fok stands for "fill or kill", it means the order will be canceled if it couldn't be **fully** matched. Even if the order can be partially traded, the entire order will be canceled.
+- limit-fok: fok stands for "fill or kill", it means the order will be cancelled if it couldn't be **fully** matched. Even if the order can be partially filled, the entire order will be cancelled.
 - market-grid: Grid trading market order (not supported by API)
 - limit-grid: Grid trading limit order (not supported by API)
 - stop-limit: The price in order creation request is the trigger price. The order will be put into matching queue only when the market price reaches the trigger price. This type is replaced by conditional order, please use conditional order APIs
 
-**order source**: define where is the order from
+**order source**: the origin of the order
 
 - spot-api: API order from spot account
 - margin-api：API order from margin account
@@ -3826,10 +3826,10 @@ behavior type:
 - canceling: The order is under canceling, but haven't been removed from matching queue yet.
 - canceled: The order is not in the matching queue any more, and completely canceled. There is no trade associated with this order.
 
-**related Ientity**: The frequently used Identities are listed below:
+**IDs**: The frequently used identities are listed below:
 
 - order-id: The unique identity for order.
-- client-order-id: The identity that defined by client. This id is included in order creation request, and will be returned as order-id. This id is valid within 24 hours. The allowed characters are letters (case sensitive), digit, underscore (_) and hyphen (-), no more than 64 chars.
+- client-order-id: The identity defined by the client. This id is included in order creation request, and will be returned as order-id. This id is valid within 24 hours. The allowed characters are letters (case sensitive), digit, underscore (_) and hyphen (-), no more than 64 chars.
 - match-id : The identity for order matching.
 - trade-id : The unique identity for the trade.
 
@@ -3838,7 +3838,7 @@ behavior type:
 API Key Permission：Trade<br>
 Rate Limit (NEW): 100times/2s
 
-This endpoint place a new order and send to the exchange to be matched.
+This endpoint places a new order and sends to the exchange to be matched.
 
 ### HTTP Request
 
@@ -3882,12 +3882,25 @@ curl -X POST -H "Content-Type: application/json" "https://api.huobi.pro/v1/order
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
 If client order ID duplicates with a previous order (within 24 hours), the endpoint reverts error message `invalid.client.order.id`.
 
+**buy-limit-maker**
+
+If the order price is greater than or equal to the lowest selling price in the market, the order will be rejected.
+
+If the order price is less than the lowest selling price in the market, the order will be accepted.
+
+**sell-limit-maker**
+
+If the order price is less than or equal to the highest buy price in the market, the order will be rejected.
+
+If the order price is greater than the highest buy price in the market, the order will be accepted.
+
+
 ## Place a Batch of Orders
 
 API Key Permission：Trade<br>
 Rate Limit (NEW): 50times/2s
 
-A batch contains at most 10 orders
+A batch contains at most 10 orders.
 
 ### HTTP Request
 
@@ -3974,9 +3987,9 @@ If client order ID duplicates with a previous order (within 24 hours), the endpo
 API Key Permission：Trade<br>
 Rate Limit (NEW): 100times/2s
 
-This endpoint submit a request to cancel an order.
+This endpoint submits a request to cancel an order.
 
-<aside class="warning">This only submit the cancel request, the actual result of the canel request needs to be checked by order status or match result endpoints</aside>
+<aside class="warning">The actual result of the cancellation request needs to be checked by order status or match result endpoints after submitting the request.</aside>
 ### HTTP Request
 
 `POST https://api.huobi.pro/v1/order/orders/{order-id}/submitcancel`
@@ -3989,7 +4002,9 @@ curl -X POST "https://api.huobi.pro/v1/order/orders/59378/submitcancel"
 
 ### Request Parameters
 
-No parameter is needed for this endpoint.
+| Parameter       | Data Type | Required | Default | Description                                                  |
+| --------------- | --------- | -------- | ------- | ------------------------------------------------------------ |
+| order-id | string    | true     | NA      | order id which needs to be filled in the path |
 
 > The above command returns JSON structured like this:
 
@@ -4017,10 +4032,10 @@ The possible values of "order-state" includes -
 
 | order-state | Description                                                  |
 | ----------- | ------------------------------------------------------------ |
-| -1          | order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled) |
-| 5           | partial-canceled                                             |
+| -1          | order was already closed in the long past (order state = cancelled, partially-cancelled, filled, partially-filled) |
+| 5           | partially-cancelled                                             |
 | 6           | filled                                                       |
-| 7           | canceled                                                     |
+| 7           | cancelled                                                     |
 | 10          | cancelling                                                   |
 
 ## Submit Cancel for an Order (based on client order ID)
@@ -4030,8 +4045,8 @@ Rate Limit (NEW): 100times/2s
 
 This endpoint submit a request to cancel an order based on client-order-id (within 24 hours).
 
-<aside class="notice">It is suggested to use /v1/order/orders/{order-id}/submitcancel to cancel single order, which is faster and more stable</aside>
-<aside class="warning">This only submit the cancel request, the actual result of the canel request needs to be checked by order status or match result endpoints</aside>
+<aside class="notice">It is suggested to use /v1/order/orders/{order-id}/submitcancel to cancel a single order, which is faster and more stable</aside>
+<aside class="warning">This only submits the cancel request, the actual result of the canel request needs to be checked by order status or match result endpoints</aside>
 
 ### HTTP Request
 
@@ -4064,11 +4079,11 @@ curl -X POST -H "Content-Type: application/json" "https://api.huobi.pro/v1/order
 
 | Status Code | Description                                                  |
 | ----------- | ------------------------------------------------------------ |
-| -1          | order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled) |
+| -1          | order was already closed in the long past (order state = cancelled, partially-cancelled, filled, partially-filled) |
 | 0           | client-order-id not found                                    |
-| 5           | partial-canceled                                             |
+| 5           | partially-cancelled                                             |
 | 6           | filled                                                       |
-| 7           | canceled                                                     |
+| 7           | cancelled                                                     |
 | 10          | cancelling                                                   |
 
 
