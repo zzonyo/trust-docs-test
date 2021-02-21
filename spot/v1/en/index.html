@@ -10201,9 +10201,9 @@ Rate Limit (NEW): 50times/2s</p>
 Rate Limit (NEW): 20times/2s</p>
 
 <p>This endpoint returns orders based on a specific searching criteria.
-The API created order will not exist after cancelling 2 hours. </p>
+The orders created via API will no longer be queryable after being cancelled for more than 2 hours. </p>
 <h3 id='http-request-59'>HTTP Request</h3>
-<p><code>GET https://api.huobi.pro/v1/order/history</code></p>
+<p><code>GET /v1/order/history</code></p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btcusdt"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"start-time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1556417645419"</span><span class="p">,</span><span class="w">
