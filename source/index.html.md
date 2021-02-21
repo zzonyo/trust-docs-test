@@ -4700,11 +4700,11 @@ API Key Permission：Read<br>
 Rate Limit (NEW): 20times/2s
 
 This endpoint returns orders based on a specific searching criteria.
-The API created order will not exist after cancelling 2 hours. 
+The orders created via API will no longer be queryable after being cancelled for more than 2 hours. 
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/history`
+`GET /v1/order/history`
 
 ```json
 {
