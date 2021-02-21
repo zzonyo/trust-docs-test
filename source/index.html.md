@@ -4157,7 +4157,10 @@ curl "https://api.huobi.pro/v1/order/openOrders?account-id=100009&symbol=btcusdt
 API Key Permission：Trade<br>
 Rate Limit (NEW): 50times/2s
 
-This endpoint submit cancellation for multiple orders at once with given criteria.
+This endpoint submit cancellation for multiple orders (not exceeding 100 orders per request) at once with given criteria.
+
+This endpoint only submit the cancellation request, the actual cancellation result will need to be confirmed by other endpoints 
+like order status, matchresult, etc.
 
 ### HTTP Request
 
@@ -4176,7 +4179,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 | Parameter  | Data Type | Required | Default | Description                                                  | Value Range                                                  |
 | ---------- | --------- | -------- | ------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | account-id | string    | false    | NA      | The account id used for this cancel                          | Refer to `GET /v1/account/accounts`                          |
-| symbol     | string    | false    | NA      | The trading symbol list (maximum 10 symbols, separated by comma, default value all symbols) | All supported trading symbol, e.g. btcusdt, bccbtc.Refer to `GET /v1/common/symbols` |
+| symbol     | string    | false    | all     | The trading symbol list (maximum 10 symbols, separated by comma, default value all symbols) | All supported trading symbol, e.g. btcusdt, bccbtc.Refer to `GET /v1/common/symbols` |
 | types      | string    | false    | NA      | One or more types of order to include in the search, use comma to separate. | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
 | side       | string    | false    | NA      | Filter on the direction of the trade                         | buy, sell                                                    |
 | size       | int       | false    | 100     | The number of orders to cancel                               | [1, 100]                                                     |
@@ -4204,7 +4207,8 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 API Key Permission：Trade<br>
 Rate Limit (NEW): 50times/2s
 
-This endpoint submit cancellation for multiple orders at once with given ids.
+This endpoint submit cancellation for multiple orders at once with given ids. It is suggested to use order-ids instead of 
+client-order-ids, so that the cancellation is faster, more accurate and more stable. 
 
 ### HTTP Request
 
@@ -4223,8 +4227,8 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 
 | Parameter        | Data Type | Required | Description                                                  | Value Range         |
 | ---------------- | --------- | -------- | ------------------------------------------------------------ | ------------------- |
-| order-ids        | string[]  | false    | The order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request). It is suggest to use order-ids rather than client-order-ids, the former is faster and more stable | No more than 50 ids |
-| client-order-ids | string[]  | false    | The client order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request), it must exist already, otherwise it is not allowed to use when placing a new order | No more than 50 ids |
+| order-ids        | string[]  | false    | The order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request). It is suggest to use order-ids rather than client-order-ids, the former is faster and more stable | No more than 50 orders per request|
+| client-order-ids | string[]  | false    | The client order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request), it must exist already, otherwise it is not allowed to use when placing a new order | No more than 50 orders per request|
 
 > The above command returns JSON structured like this:
 
@@ -4265,8 +4269,8 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 
 | Field    | Data Type | Description                                                  |
 | -------- | --------- | ------------------------------------------------------------ |
-| {success | string[]  | Cancelled order list (Can be order ID list or client order list, upon the request) |
-| failed}  | string[]  | Failed order list (Can be order ID list or client order list, upon the request) |
+| {success | string[]  | Cancelled order list (Can be order ID list or client order list, based on the request) |
+| failed}  | string[]  | Failed order list (Can be order ID list or client order list, based on the request) |
 
 The failed id list has below fields
 
@@ -4376,21 +4380,21 @@ Response:
 API Key Permission：Read<br>
 Rate Limit (NEW): 50times/2s
 
-This endpoint returns the detail of one order. The API created order will not exist after cancelling 2 hours.
+This endpoint returns the detail of a specific order. If an order is created via API, then it's no longer queryable after being cancelled for 2 hours.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/orders/{order-id}`
+`GET /v1/order/orders/{order-id}`
 
-'order-id': the previously returned order id when order was created
+### Request Parameters
+| **Name**      | **Mandatory** | **Type** | **Description**            |
+| ------------- | ------------- | -------- | -------------------------- |
+| order-id      | true          | string   | order id when order was created. Place it within path|
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/59378"
 ```
 
-### Request Parameters
-
-No parameter is needed for this endpoint.
 
 > The above command returns JSON structured like this:
 
@@ -4435,8 +4439,6 @@ No parameter is needed for this endpoint.
 | filled-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint) |
 | source             | string    | All possible order source (refer to introduction in this section) |
 | state              | string    | All possible order state (refer to introduction in this section)     |
-| exchange           | string    | Internal data                                                |
-| batch              | string    | Internal data                                                |
 | stop-price         | string    | trigger price of stop limit order                            |
 | operator           | string    | operation character of stop price: gte, lte                            |
 
@@ -4447,10 +4449,11 @@ No parameter is needed for this endpoint.
 API Key Permission：Read<br>
 Rate Limit (NEW):50times/2s
 
-This endpoint returns the detail of one order by specified client order id (within 24 hours). The API created order will not exist after cancelling 2 hours.
+This endpoint returns the detail of one order by specified client order id (within 24 hours). The order created via API will no longer be queryable after being cancelled for more than 2 hours. It is suggested to cancel orders via `GET /v1/order/orders/{order-id}`, which is faster and more stable.
+
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/orders/getClientOrder`
+`GET /v1/order/orders/getClientOrder`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"
@@ -4460,7 +4463,7 @@ curl "https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"
 
 | Parameter     | Data Type | Required | Default | Description     |
 | ------------- | --------- | -------- | ------- | --------------- |
-| clientOrderId | string    | true     | NA      | Client order ID |
+| order-id      | string    | true     | NA      | Client order ID |
 
 > The above command returns JSON structured like this:
 
@@ -4505,8 +4508,6 @@ curl "https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"
 | filled-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint) |
 | source             | string    | All possible order source (refer to introduction in this section) |
 | state              | string    | All possible order state (refer to introduction in this section)     |
-| exchange           | string    | Internal data                                                |
-| batch              | string    | Internal data                                                |
 | stop-price         | string    | trigger price of stop limit order                            |
 | operator           | string    | operation character of stop price                            |
 
@@ -4529,9 +4530,9 @@ This endpoint returns the match result of an order.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/orders/{order-id}/matchresults`
+`GET /v1/order/orders/{order-id}/matchresults`
 
-'order-id': the previously returned order id when order was created
+
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/59378/matchresults"
@@ -4539,7 +4540,10 @@ curl "https://api.huobi.pro/v1/order/orders/59378/matchresults"
 
 ### Request Parameters
 
-No parameter is needed for this endpoint.
+| Parameter     | Data Type | Required | Default | Description     |
+| ------------- | --------- | -------- | ------- | --------------- |
+| order-id      | string    | true     | NA      | Order ID, place it into path |
+
 
 > The above command returns JSON structured like this:
 
