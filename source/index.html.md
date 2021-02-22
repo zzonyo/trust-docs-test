@@ -4533,7 +4533,6 @@ This endpoint returns the match result of an order.
 `GET /v1/order/orders/{order-id}/matchresults`
 
 
-
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/59378/matchresults"
 ```
@@ -4574,13 +4573,13 @@ curl "https://api.huobi.pro/v1/order/orders/59378/matchresults"
 <aside class="notice">The return data contains a list and each item in the list represents a match result</aside>
 | Parameter           | Data Type | Description                                                  |
 | ------------------- | --------- | ------------------------------------------------------------ |
-| id                  | integer   | Internal id                                                  |
+| id                  | long      | Internal id                                                  |
 | symbol              | string    | The trading symbol to trade, e.g. btcusdt, bccbtc            |
-| order-id            | string    | The order id of this order                                   |
-| match-id            | string    | The match id of this match                                   |
-| trade-id            | int       | Unique trade ID (NEW)                                        |
+| order-id            | long      | The order id of this order                                   |
+| match-id            | long      | The match id of this match                                   |
+| trade-id            | integer   | Unique trade ID (NEW)                                        |
 | price               | string    | The limit price of limit order                               |
-| created-at          | int       | The timestamp in milliseconds when this record is created    |
+| created-at          | int       | The timestamp in milliseconds when this record is created (slightly later than trade time) |
 | type                | string    | All possible order type (refer to introduction in this section) |
 | filled-amount       | string    | The amount which has been filled                             |
 | filled-fees         | string    | Transaction fee (positive value). If maker rebate applicable, revert maker rebate value per trade (negative value). |
@@ -4601,24 +4600,38 @@ Notes:<br>
 API Key Permission：Read<br>
 Rate Limit (NEW): 50times/2s
 
-This endpoint returns orders based on a specific searching criteria. The API created order will not exist after cancelling 2 hours.
+This endpoint returns orders based on a specific searching criteria. The order created via API will no longer be queryable after being cancelled for more than 2 hours.
 
-- Upon user defined “start-time” AND/OR “end-time”, Huobi server will revert back historical orders whose order creation time falling into the period. The maximum time span between “start-time” and “end-time” is 48-hour. Farthest order searchable should be within recent 180 days. In case either “start-time” or “end-time” is defined, Huobi server will ignore “start-date” and “end-date” regardless they were filled or not.
 
-- If user does neither define “start-time” nor “end-time”, but “start-date”/”end-date”, the order searching will be based on defined “date range”, as usual.
+- Upon user defined “start-time” AND/OR “end-time”, Huobi server will return historical orders whose order creation time falling into the period. The maximum query window between “start-time” and “end-time” is 48-hour. Oldest order searchable should be within recent 180 days. If either “start-time” or “end-time” is defined, Huobi server will ignore “start-date” and “end-date” regardless they were filled or not.
 
-- If user does not define any of “start-time”/”end-time”/”start-date”/”end-date”, by default Huobi server will treat current time as “end-time”, and then revert back historical orders within recent 48 hours.
+- If user does neither define “start-time” nor “end-time”, but “start-date”/”end-date”, the order searching will be based on defined “date range”, as usual. The maximum query window is 2 days, and oldest order searchable should be within recent 180 days.
+
+- If user does not define any of “start-time”/”end-time”/”start-date”/”end-date”, by default Huobi server will treat current time as “end-time”, and then return historical orders within recent 48 hours.
 
 Huobi Global suggests API users to search historical orders based on “time” filter instead of “date”. In the near future, Huobi Global would remove “start-date”/”end-date” fields from the endpoint, through another notification.
 
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/orders`
+`GET /v1/order/orders`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders?symbol=ethusdt&type=buy-limit&staet=filled"
 ```
+> Request
+```json
+  
+    {
+   "account-id": "100009",
+   "amount": "10.1",
+   "price": "100.1",
+   "source": "api",
+   "symbol": "ethusdt",
+   "type": "buy-limit"
+    }
+```
+
 
 ### Request Parameters
 
@@ -4633,7 +4646,7 @@ curl "https://api.huobi.pro/v1/order/orders?symbol=ethusdt&type=buy-limit&staet=
 | states     | string    | true     | NA      | One or more  states of order to include in the search, use comma to separate. | All possible order state (refer to introduction in this section) |
 | from       | string    | false    | NA      | Search order id to begin with                                | NA                                                           |
 | direct     | string    | false    | both    | Search direction when 'from' is used                         | next, prev                                                   |
-| size       | int       | false    | 100     | The number of orders to return                               | [1, 100]                                                     |
+| size       | integer   | false    | 100     | The number of orders to return                               | [1, 100]                                                     |
 
 > The above command returns JSON structured like this:
 
@@ -4663,26 +4676,26 @@ curl "https://api.huobi.pro/v1/order/orders?symbol=ethusdt&type=buy-limit&staet=
 
 | Field              | Data Type | Description                                                  |
 | ------------------ | --------- | ------------------------------------------------------------ |
-| id                 | integer   | Order id                                                     |
+| id                 | long      | Order id                                                     |
 | client-order-id    | string    | Client order id ("client-order-id" (if specified) can be returned from all open orders.	"client-order-id" (if specified) can be returned only from closed orders (state <> canceled) created within 7 days.	only those closed orders (state = canceled) created within 24 hours can be returned.) |
-| account-id         | integer   | Account id                                                   |
+| account-id         | long      | Account id                                                   |
 | user-id            | integer   | User id                                                      |
 | amount             | string    | The amount of base currency in this order                    |
 | symbol             | string    | The trading symbol to trade, e.g. btcusdt, bccbtc            |
 | price              | string    | The limit price of limit order                               |
-| created-at         | int       | The timestamp in milliseconds when the order was created     |
-| canceled-at        | int       | The timestamp in milliseconds when the order was canceled, or 0 if not canceled |
-| finished-at        | int       | The timestamp in milliseconds when the order was finished, or 0 if not finished |
-| type               | string    | All possible order type (refer to introduction in this section) |
-| filled-amount      | string    | The amount which has been filled                             |
-| filled-cash-amount | string    | The filled total in quote currency                           |
-| filled-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint) |
+| created-at         | long      | The timestamp in milliseconds when the order was created     |
+| canceled-at        | long      | The timestamp in milliseconds when the order was canceled, or 0 if not canceled |
+| finished-at        | long      | The timestamp in milliseconds when the order was finished, or 0 if not finished |
+| type               | string    | All possible order type (refer to introduction in this section)   |
+| filled-amount      | string    | The amount which has been filled                                  |
+| filled-cash-amount | string    | The filled total in quote currency                                |
+| filled-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint)    |
 | source             | string    | All possible order source (refer to introduction in this section) |
-| state              | string    | All possible order state (refer to introduction in this section) |
-| exchange           | string    | Internal data                                                |
-| batch              | string    | Internal data                                                |
-| stop-price         | string    | trigger price of stop limit order                            |
-| operator           | string    | operation character of stop price                            |
+| state              | string    | All possible order state (refer to introduction in this section)  |
+| exchange           | string    | Internal data                                                     |
+| batch              | string    | Internal data                                                     |
+| stop-price         | string    | trigger price of stop limit order                                 |
+| operator           | string    | operation character of stop price                                 |
 
 ### Error code for invalid start-date/end-date
 
@@ -4706,6 +4719,7 @@ The orders created via API will no longer be queryable after being cancelled for
 
 `GET /v1/order/history`
 
+>Request
 ```json
 {
    "symbol": "btcusdt",
@@ -4773,7 +4787,7 @@ The orders created via API will no longer be queryable after being cancelled for
 | state             | string    | Order status ( filled, partial-canceled, canceled )          |
 | symbol            | string    | Trading symbol                                               |
 | stop-price        | string    | trigger price of stop limit order                            |
-| operator          | string    | operation character of stop price                            |
+| operator          | string    | operation character of stop price. e.g. get, lte             |
 | type}             | string    | All possible order type (refer to introduction in this section) |
 | next-time         | long      | Next query “start-time” (in response of “direct” = prev), Next query “end-time” (in response of “direct” = next). Note: Only when the total number of items in the search result exceeded the limitation defined in “size”, this field exists. UTC time in millisecond. |
 
@@ -4783,7 +4797,7 @@ The orders created via API will no longer be queryable after being cancelled for
 API Key Permission：Read<br>
 Rate Limit (NEW): 20times/2s
 
-This endpoint returns the match results of past and open orders based on specific search criteria.
+This endpoint returns the match results of past and current filled, or partially filled orders based on specific search criteria.
 
 ### HTTP Request
 
@@ -4842,7 +4856,7 @@ curl "https://api.huobi.pro/v1/order/matchresults?symbol=ethusdt"
 | match-id            | long      | The match id of this match                                   |
 | trade-id            | long      | Unique trade ID                                              |
 | price               | string    | The limit price of limit order                               |
-| created-at          | int       | The timestamp in milliseconds when this record is created    |
+| created-at          | long      | The timestamp in milliseconds when this record is created    |
 | type                | string    | All possible order type (refer to introduction in this section) |
 | filled-amount       | string    | The amount which has been filled                             |
 | filled-fees         | string    | Transaction fee (positive value). If maker rebate applicable, revert maker rebate value per trade (negative value). |
@@ -4929,6 +4943,10 @@ curl "https://api.huobi.pro/v2/reference/transact-fee-rate?symbols=btcusdt,ethus
 |      | takerFeeRate      | string    | Basic fee rate – aggressive side                             |      |
 |      | actualMakerRate   | string    | Deducted fee rate – passive side (positive value). If deduction is inapplicable or disabled, return basic fee rate.If maker rebate applicable, revert maker rebate rate (negative value). |      |
 |      | actualTakerRate } | string    | Deducted fee rate – aggressive side. If deduction is inapplicable or disabled, return basic fee rate. |      |
+
+Note：
+- If makerFeeRate/actualMakerRate is positive，this field means the transaction fee rate.
+- If makerFeeRate/actualMakerRate is negative, this field means the rebate fee rate.
 
 ## Error Code
 
