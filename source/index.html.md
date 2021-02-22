@@ -15041,7 +15041,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | symbol   | true | string  | 品种代码  |  "BTC","ETH"...  |
 | contract_code   | true | string  | 合约代码  |   |
 | fee_asset   | true | string  | 资金费币种 | "USDT"...    |
-| funding_time   | true | string  | 当期资金费率时间 | "open":开 "close":平    |
+| funding_time   | true | string  | 当期资金费率时间 |    |
 | funding_rate   | true | string  | 当期资金费率  |   |
 | estimated_rate   | true | string  | 下一期预测资金费率  |   |
 | settlement_time   | true | string  | 结算时间  |如"1490759594752"   |
