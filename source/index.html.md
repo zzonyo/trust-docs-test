@@ -5091,7 +5091,7 @@ Conditional order can be only placed via this endpoint instead of any endpoint i
 |	trailingRate	|	string	|	FALSE	|		|	Trailing rate (only valid for trailing stop order)	|	[0.001,0.050]	|
 
 Note:<br>
-•	The gap between orderPrice and stopPrice shouldn't exceed the price limit ratio. For example, if a limit buy order's price couldn't be higher than 110% of market price, this limitation should be also applicable to orderPrice/stopPrice ratio.<br>
+•	The gap between orderPrice and stopPrice shouldn't exceed the price limit ratio. For example, a limit buy order's price couldn't be higher than 110% of market price, this limitation should be also applicable to orderPrice/stopPrice ratio.<br>
 •	User has to make sure the clientOrderId's uniqueness. While the conditional order being triggered, if the clientOrderId is duplicated with another order (within 24hour) coming from same user, the conditional order will fail triggering.<br>
 •	User has to make sure the corresponding account has sufficient fund for triggering this conditional order, otherwise it would cause conditional order triggering failure.<br>
 •	timeInForce enum values: gtc - good till cancel，boc - book or cancel (also called as post only, or book only), ioc - immediate or cancel, fok - fill or kill<br>
@@ -5374,14 +5374,14 @@ Below is the error code and the description returned by Conditional Order APIs
 | 2003       | Trading is disabled                                  |
 | 3002       | Order amount precision error                         |
 | 3003       | Trigger price precision error                        |
-| 3004       | Limit order amount is less than specific amount      |
-| 3005       | Limit order amount is greater than specific amount   |
-| 3006       | Limit order price is higher than specific price      |
-| 3007       | Limit order price is lower than specific price       |
-| 3008       | Order value is less than specific value              |
-| 3009       | Market order amount is less than specific amount     |
-| 3010       | Market order amount is greater than specific amount  |
-| 3100       | Market orders not support during limit price trading |
+| 3004       | Limit order amount is less than minimum amount       |
+| 3005       | Limit order amount is greater than maximum amount    |
+| 3006       | Limit order price is higher than maximum price       |
+| 3007       | Limit order price is lower than minimum price        |
+| 3008       | Order value is less than minimum value               |
+| 3009       | Market order amount is less than minimum amount      |
+| 3010       | Market order amount is greater than maximum amount   |
+| 3100       | Market orders can be accepted during limit price trading |
 
 # Margin Loan (Cross/Isolated)
 
