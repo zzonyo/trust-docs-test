@@ -11149,7 +11149,7 @@ Conditional order can be only placed via this endpoint instead of any endpoint i
 </tbody></table>
 
 <p>Note:<br>
-• The gap between orderPrice and stopPrice shouldn&#39;t exceed the price limit ratio. For example, if a limit buy order&#39;s price couldn&#39;t be higher than 110% of market price, this limitation should be also applicable to orderPrice/stopPrice ratio.<br>
+• The gap between orderPrice and stopPrice shouldn&#39;t exceed the price limit ratio. For example, a limit buy order&#39;s price couldn&#39;t be higher than 110% of market price, this limitation should be also applicable to orderPrice/stopPrice ratio.<br>
 • User has to make sure the clientOrderId&#39;s uniqueness. While the conditional order being triggered, if the clientOrderId is duplicated with another order (within 24hour) coming from same user, the conditional order will fail triggering.<br>
 • User has to make sure the corresponding account has sufficient fund for triggering this conditional order, otherwise it would cause conditional order triggering failure.<br>
 • timeInForce enum values: gtc - good till cancel，boc - book or cancel (also called as post only, or book only), ioc - immediate or cancel, fok - fill or kill<br></p>
@@ -12013,35 +12013,35 @@ The conditional order before triggering, as well as the conditional order failed
 </tr>
 <tr>
 <td>3004</td>
-<td>Limit order amount is less than specific amount</td>
+<td>Limit order amount is less than minimum amount</td>
 </tr>
 <tr>
 <td>3005</td>
-<td>Limit order amount is greater than specific amount</td>
+<td>Limit order amount is greater than maximum amount</td>
 </tr>
 <tr>
 <td>3006</td>
-<td>Limit order price is higher than specific price</td>
+<td>Limit order price is higher than maximum price</td>
 </tr>
 <tr>
 <td>3007</td>
-<td>Limit order price is lower than specific price</td>
+<td>Limit order price is lower than minimum price</td>
 </tr>
 <tr>
 <td>3008</td>
-<td>Order value is less than specific value</td>
+<td>Order value is less than minimum value</td>
 </tr>
 <tr>
 <td>3009</td>
-<td>Market order amount is less than specific amount</td>
+<td>Market order amount is less than minimum amount</td>
 </tr>
 <tr>
 <td>3010</td>
-<td>Market order amount is greater than specific amount</td>
+<td>Market order amount is greater than maximum amount</td>
 </tr>
 <tr>
 <td>3100</td>
-<td>Market orders not support during limit price trading</td>
+<td>Market orders can be accepted during limit price trading</td>
 </tr>
 </tbody></table>
 <h1 id='margin-loan-cross-isolated'>Margin Loan (Cross/Isolated)</h1><h2 id='introduction-9'>Introduction</h2>
