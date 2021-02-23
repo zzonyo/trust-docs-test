@@ -4955,9 +4955,9 @@ Below is the error code and description returned by Trading APIs
 | Error Code                                                   | Description                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | base-argument-unsupported                                    | The specified parameter is not supported                     |
-| base-system-error                                            | Server internel error. For placing or canceling order, it is most related to cache issue, please try again later. |
-| login-required                                               | Signature is missing                                         |
-| parameter-required                                           | Parameter stop-price or operator is missing for stop-order type |
+| base-system-error                                            | System internel error. For placing or canceling order, it is mostly due to cache issue, please try again later. |
+| login-required                                               | Signature is missing, or user not find (key and uid not match).                                        |
+| parameter-required                                           | Stop-price or operator parameter is missing for stop-order type |
 | base-record-invalid                                          | Failed to get data, please try again later                   |
 | order-amount-over-limit                                      | The amount of order exceeds the limitation                   |
 | base-symbol-trade-disabled                                   | The symbol is disabled for trading                           |
@@ -5028,28 +5028,28 @@ Below are common errors:
 - order-limitorder-amount-min-error : The limited order amount is smaller than the threshold  
 
 ### Q3：Why I got insufficient balance error while placing an order just after a successful order matching?
-A：The time order matching update being sent down, the clearing service of that order may be still in progress at backend. Suggest to follow either of below to ensure a successful order submission:
+A：To ensure the low latency of order update, Order update push is made directly after order matching. Meanwhile, the clearing service of that order may be still in progress at backend. It is suggested to follow either of below to ensure a successful order submission:
 
 1、Subscribe to WebSocket topic `accounts` for getting account balance moves to ensure the completion of asset clearing.
 
-2、Check account balance from REST endpoint to ensure sufficient available balance for the next order submission.
+2、After receiving WebSocket push message, check account balance from REST endpoint to ensure sufficient available balance for the next order submission.
 
 3、Leave sufficient balance in your account.
 
 ### Q4: What is the difference between 'filled-fees' and 'filled-points' in match result?
-A: Transaction fee can be paid from either of below.
+A: Transaction fee can be paid from either of below. They won't exist at the same time.
 
 1、filled-fees: Filled-fee is also called transaction fee. It's charged from your income currency from the transaction. For example, if your purchase order of BTC/USDT got matched，the transaction fee will be based on BTC.
 
-2、filled-points: If user enabled transaction fee deduction, the fee should be charged from either HT or Point. User could refer to field `fee-deduct-currency` to get the exact deduction type of the transaction.
+2、filled-points: If user enabled transaction fee deduction, the fee should be charged from either HT or Point. When there's sufficient fund in HT/Point, filled-fees is empty while filled-points has value. That means the deduction is made via HT/Point. User could refer to field `fee-deduct-currency` to get the exact deduction type of the transaction. 
 
 ### Q5: What is the difference between 'match-id' and 'trade-id' in matching result?
 A: The `match-id` is the identity for order matching, while the `trade-id` is the unique identifier for each trade. One `match-id` may be correlated with multiple `trade-id`, or no `trade-id`(if the order is cancelled). For example, if a taker's order got matched with 3 maker's orders at the same time, it generates 3 trade IDs but only one match ID.
 
-### Q7: Why the order submission could be rejected even though the order price is set as same as current best bid (or best ask)?
-A: For some extreme illiquid trading symbols, the best quote price at particular time might be far away from last trade price. But the price limit is actually based on last trade price which could possibly exclude best quote price from valid range for any new order.
+### Q6: Why the order submission could be rejected even though the order price is set as same as current best bid (or best ask)?
+A: For some extreme illiquid trading symbols, the best quote price at particular time might be far away from last trade price. But the price limit is actually based on last trade price which could possibly exclude best quote price from valid range for any new order. It is suggested to place orders based on the WebSocket pushed Bid and market data.
 
-### Q8: How to retrieve the trading symbols for margin trade
+### Q7: How to retrieve the trading symbols for margin trade
 
 A: You can get details from Rest API ` GET /v1/common/symbols`. The `leverage-ratio` represents the isolated-margin ratio. The `super-margin-leverage-ratio` represents the cross-margin.
 
