@@ -10783,15 +10783,15 @@ Rate Limit (NEW): 20times/2s</p>
 </tr>
 <tr>
 <td>base-system-error</td>
-<td>Server internel error. For placing or canceling order, it is most related to cache issue, please try again later.</td>
+<td>System internel error. For placing or canceling order, it is mostly due to cache issue, please try again later.</td>
 </tr>
 <tr>
 <td>login-required</td>
-<td>Signature is missing</td>
+<td>Signature is missing, or user not find (key and uid not match).</td>
 </tr>
 <tr>
 <td>parameter-required</td>
-<td>Parameter stop-price or operator is missing for stop-order type</td>
+<td>Stop-price or operator parameter is missing for stop-order type</td>
 </tr>
 <tr>
 <td>base-record-invalid</td>
@@ -11011,24 +11011,24 @@ Rate Limit (NEW): 20times/2s</p>
 <li>order-limitorder-amount-min-error : The limited order amount is smaller than the threshold<br></li>
 </ul>
 <h3 id='q3-why-i-got-insufficient-balance-error-while-placing-an-order-just-after-a-successful-order-matching'>Q3：Why I got insufficient balance error while placing an order just after a successful order matching?</h3>
-<p>A：The time order matching update being sent down, the clearing service of that order may be still in progress at backend. Suggest to follow either of below to ensure a successful order submission:</p>
+<p>A：To ensure the low latency of order update, Order update push is made directly after order matching. Meanwhile, the clearing service of that order may be still in progress at backend. It is suggested to follow either of below to ensure a successful order submission:</p>
 
 <p>1、Subscribe to WebSocket topic <code>accounts</code> for getting account balance moves to ensure the completion of asset clearing.</p>
 
-<p>2、Check account balance from REST endpoint to ensure sufficient available balance for the next order submission.</p>
+<p>2、After receiving WebSocket push message, check account balance from REST endpoint to ensure sufficient available balance for the next order submission.</p>
 
 <p>3、Leave sufficient balance in your account.</p>
 <h3 id='q4-what-is-the-difference-between-39-filled-fees-39-and-39-filled-points-39-in-match-result'>Q4: What is the difference between &#39;filled-fees&#39; and &#39;filled-points&#39; in match result?</h3>
-<p>A: Transaction fee can be paid from either of below.</p>
+<p>A: Transaction fee can be paid from either of below. They won&#39;t exist at the same time.</p>
 
 <p>1、filled-fees: Filled-fee is also called transaction fee. It&#39;s charged from your income currency from the transaction. For example, if your purchase order of BTC/USDT got matched，the transaction fee will be based on BTC.</p>
 
-<p>2、filled-points: If user enabled transaction fee deduction, the fee should be charged from either HT or Point. User could refer to field <code>fee-deduct-currency</code> to get the exact deduction type of the transaction.</p>
+<p>2、filled-points: If user enabled transaction fee deduction, the fee should be charged from either HT or Point. When there&#39;s sufficient fund in HT/Point, filled-fees is empty while filled-points has value. That means the deduction is made via HT/Point. User could refer to field <code>fee-deduct-currency</code> to get the exact deduction type of the transaction. </p>
 <h3 id='q5-what-is-the-difference-between-39-match-id-39-and-39-trade-id-39-in-matching-result'>Q5: What is the difference between &#39;match-id&#39; and &#39;trade-id&#39; in matching result?</h3>
 <p>A: The <code>match-id</code> is the identity for order matching, while the <code>trade-id</code> is the unique identifier for each trade. One <code>match-id</code> may be correlated with multiple <code>trade-id</code>, or no <code>trade-id</code>(if the order is cancelled). For example, if a taker&#39;s order got matched with 3 maker&#39;s orders at the same time, it generates 3 trade IDs but only one match ID.</p>
-<h3 id='q7-why-the-order-submission-could-be-rejected-even-though-the-order-price-is-set-as-same-as-current-best-bid-or-best-ask'>Q7: Why the order submission could be rejected even though the order price is set as same as current best bid (or best ask)?</h3>
-<p>A: For some extreme illiquid trading symbols, the best quote price at particular time might be far away from last trade price. But the price limit is actually based on last trade price which could possibly exclude best quote price from valid range for any new order.</p>
-<h3 id='q8-how-to-retrieve-the-trading-symbols-for-margin-trade'>Q8: How to retrieve the trading symbols for margin trade</h3>
+<h3 id='q6-why-the-order-submission-could-be-rejected-even-though-the-order-price-is-set-as-same-as-current-best-bid-or-best-ask'>Q6: Why the order submission could be rejected even though the order price is set as same as current best bid (or best ask)?</h3>
+<p>A: For some extreme illiquid trading symbols, the best quote price at particular time might be far away from last trade price. But the price limit is actually based on last trade price which could possibly exclude best quote price from valid range for any new order. It is suggested to place orders based on the WebSocket pushed Bid and market data.</p>
+<h3 id='q7-how-to-retrieve-the-trading-symbols-for-margin-trade'>Q7: How to retrieve the trading symbols for margin trade</h3>
 <p>A: You can get details from Rest API <code>GET /v1/common/symbols</code>. The <code>leverage-ratio</code> represents the isolated-margin ratio. The <code>super-margin-leverage-ratio</code> represents the cross-margin.</p>
 
 <p>The value <code>0</code> indicates that the trading symbols doesn&#39;t support margin trading.</p>
