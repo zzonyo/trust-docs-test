@@ -5367,9 +5367,8 @@ Below is the error code and the description returned by Conditional Order APIs
 | 1001       | Request URL is invalid                               |
 | 1002       | Signature is missing or account id doesn't exist     |
 | 1003       | Signature is wrong                                   |
-| 1005       | Insufficient weight for rate limit                   |
 | 1006       | Exceed rate limit                                    |
-| 1007       | Currency is not found                                |
+| 1007       | Record is not found                                  |
 | 2002       | Specified parameter is missing or invalid            |
 | 2003       | Trading is disabled                                  |
 | 3002       | Order amount precision error                         |
