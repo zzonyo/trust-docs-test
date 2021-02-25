@@ -5365,11 +5365,11 @@ Below is the error code and the description returned by Conditional Order APIs
 
 ## Introduction
 
-Isolated/cross margin loan APIs provide loan related functionality such as request loan, repay loan, loan query and transfer.
+Isolated/cross margin loan APIs provide loan related functionality such as requesting and repaying loan, loan querying and transfer.
 
 <aside class="notice">All endpoints in this section require authentication</aside>
-<aside class="notice">Currently loan only supports base currency of USDT, HUSD, and BTC</aside>
-<aside class="notice">Once completed a margin loan or transfer, please wait for 10 seconds before requesting for next margin loan or transfer.</aside>
+<aside class="notice">Currently loan only supports pairs, in which base currency is USDT, HUSD or BTC</aside>
+<aside class="notice">Once completed a margin loan or transfer, please wait for 10 seconds before requesting for the next margin loan or transfer.</aside>
 
 ## Repay Margin Loan（Cross/Isolated ）
 
@@ -5379,7 +5379,7 @@ Frequency Limit: 2/s
 
 Available Accounts: Main and Sub-Accounts
 
-You should make a loan first before making a repayment. While repaying the loan, you should repay the loan interest first if there is no appointed transactId. 
+While repaying the loan, loan interest will be paid first if there is no appointed transactId. Otherwise, currency will not be authenticated.
 
 ### HTTP Request
 
@@ -5429,14 +5429,14 @@ You should make a loan first before making a repayment. While repaying the loan,
 | { repayId   | string        | TRUE          | repayment ID                               |
 | repayTime } | long          | TRUE          | repayment time (unix  time in millisecond) |
 
-Note: Back to “repayId” doesn’t mean the repayment is 100% successful. Please check the transaction record to confirm the repayment status. 
+Note: Returning “repayId” doesn’t mean the repayment is 100% successful. Please check the transaction record to confirm the repayment status. 
 
 ## Transfer Asset from Spot Trading Account to Isolated Margin Account（Isolated）
 
 API Key Permission：Trade<br>
 Rate Limit (NEW): 2times/2s
 
-This endpoint transfer specific asset from spot trading account to isolated margin account.
+This endpoint transfers specific asset from spot trading account to isolated margin account.
 
 ### HTTP Request
 
@@ -5477,7 +5477,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/dw/tr
 API Key Permission：Trade<br>
 Rate Limit (NEW): 2times/2s
 
-This endpoint transfer specific asset from isolated margin account to spot trading account.
+This endpoint transfers specific asset from isolated margin account to spot trading account.
 
 ### HTTP Request
 
@@ -5532,7 +5532,7 @@ curl "https://api.huobi.pro/v1/margin/loan-info?symbols=btcusdt"
 
 | Parameter | Data Type | Required | Default | Description                                                  |
 | --------- | --------- | -------- | ------- | ------------------------------------------------------------ |
-| symbols   | string    | false    | all     | Trading symbol (multiple selections acceptable, separated by comma) |
+| symbols   | string    | false    | all     | Trading symbol (multiple pairs available, separated by comma) |
 
 > Response:
 
@@ -5582,7 +5582,7 @@ curl "https://api.huobi.pro/v1/margin/loan-info?symbols=btcusdt"
 API Key Permission：Trade<br>
 Rate Limit (NEW): 2times/2s
 
-This endpoint place an order to apply a margin loan.
+This endpoint places an order to apply a margin loan.
 
 ### HTTP Request
 
@@ -5616,7 +5616,6 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/margi
 
 ### Response Content
 
-<aside class="notice">The return data contains a single value instead of an object</aside>
 | Field  | Data Type | Description     |
 | ------ | --------- | --------------- |
 | status | string    | Status          |
