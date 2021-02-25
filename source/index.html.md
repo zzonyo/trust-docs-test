@@ -80,7 +80,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
  - Interface Type: private
  - Interface URL: /swap-api/v1/swap_user_settlement_records
 
-## 1.1.4 2020-1-29 【Added:Get a Batch of Market Data Overview、Get Kline Data of Mark Price、Subscribe Kline Data of Mark Price、Request Kline Data of Mark Price. 5-17 Added fields to modify interface. The order_id of submitted trigger order response has been changed from the original natural number self-incrementing ID to a unique identification ID with a length of 18 digits. It is recommended to use the order_id_str (order_id in string type) of submitted order response  to avoid the occurrence of truncation by the system because excessive length.】
+## 1.1.4 2021-1-29 【Added:Get a Batch of Market Data Overview、Get Kline Data of Mark Price、Subscribe Kline Data of Mark Price、Request Kline Data of Mark Price. 5-17 Added fields to modify interface. The order_id of submitted trigger order response has been changed from the original natural number self-incrementing ID to a unique identification ID with a length of 18 digits. It is recommended to use the order_id_str (order_id in string type) of submitted order response  to avoid the occurrence of truncation by the system because excessive length.】
 
 ### 1. Added Get a Batch of Market Data Overview
  - Interface Name: Get a Batch of Market Data Overview
