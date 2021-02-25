@@ -70,7 +70,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
  - Interface Type: public
  - Subscription Topic: market.$contract_code.trade.detail
 
-## 1.0.3 2020-1-29 【Modified Cancel All Orders, Modified Cancel All Trigger Orders, Modified Query Open Orders,Modified Query Trigger Order.  The order_id of submitted trigger order response has been changed from the original natural number self-incrementing ID to a unique identification ID with a length of 18 digits. It is recommended to use the order_id_str (order_id in string type) of submitted order response  to avoid the occurrence of truncation by the system because excessive length.】
+## 1.0.3 2021-1-29 【Modified Cancel All Orders, Modified Cancel All Trigger Orders, Modified Query Open Orders,Modified Query Trigger Order.  The order_id of submitted trigger order response has been changed from the original natural number self-incrementing ID to a unique identification ID with a length of 18 digits. It is recommended to use the order_id_str (order_id in string type) of submitted order response  to avoid the occurrence of truncation by the system because excessive length.】
 
 ### 1. Modified Cancel All Orders(Added two optional parameters in request: direction, indicates order direction, if not filled in means both with available values: “buy”, “sell”. offset, order offset, if not filled in means both with available values: “open”, “close”.)
  - Interface Name: Cancel All Orders
