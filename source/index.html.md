@@ -5647,7 +5647,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/margi
 API Key Permission：Trade<br>
 Rate Limit (NEW): 2times/2s
 
-This endpoint repays margin loan with you asset in your margin account.
+This endpoint repays margin loan with your asset in your margin account.
 
 ### HTTP Request
 
@@ -5667,6 +5667,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/margi
 | Parameter | Data Type | Required | Default | Description                     |
 | --------- | --------- | -------- | ------- | ------------------------------- |
 | amount    | string    | true     | NA      | The amount of currency to repay |
+| order-id  | string    | true     | NA      | Loan order ID (written in url path) |
 
 > The above command returns JSON structured like this:
 
@@ -5845,7 +5846,7 @@ curl "https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"
 | symbol     | string    | The margin loan pair, e.g. btcusdt, bccbtc                   |
 | state      | string    | Loan state, possible values: created, accrual (loaned), cleared (paid), invalid |
 | risk-rate  | string    | The risk rate                                                |
-| fl-price   | string    | The price which triggers closeout                            |
+| fl-price   | string    | The price which margin closeout was triggered                |
 | list       | array     | The list of margin accounts and their details                |
 | { currency | string    | The currency name                                            |
 | type       | string    | The sub account type, possible values: trade, frozen, loan, interest ,transfer-out-available, loan-available |
@@ -5855,7 +5856,7 @@ curl "https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"
 
 API Key Permission：Trade
 
-This endpoint transfer specific asset from spot trading account to cross margin account.
+This endpoint transfers specific asset from spot trading account to cross margin account.
 
 ### HTTP Request
 
@@ -5896,7 +5897,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/cross
 
 API Key Permission：Trade
 
-This endpoint transfer specific asset from cross margin account to spot trading account.
+This endpoint transfers specific asset from cross margin account to spot trading account.
 
 ### HTTP Request
 
