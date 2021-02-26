@@ -4066,7 +4066,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 ## Query Asset Valuation
 
- - POST ‘/api/v1/contract_balance_valuation’
+ - POST /api/v1/contract_balance_valuation
 
 ### Request Parameter
 
