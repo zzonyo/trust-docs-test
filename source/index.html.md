@@ -1045,7 +1045,7 @@ search: true
 读取  | 基础信息接口 |  全仓    | /linear-swap-api/v1/swap_cross_adjustfactor                          | GET    |     【全仓】查询平台阶梯调整系数                                                |       否          |
 读取  | 基础信息接口 |  全仓    | /linear-swap-api/v1/swap_cross_transfer_state                        | GET    |     【全仓】查询系统划转权限                        |       否          |
 读取  | 基础信息接口 |  全仓    | /linear-swap-api/v1/swap_cross_trade_state                           | GET    |     【全仓】查询系统交易权限                        |       否          |
-读取  | 账户接口    |  通用  |  /linear-swap-api/v1/swap_batch_funding_rate                        | POST   |      【通用】获取账户总资产估值              |     是         |
+读取  | 账户接口    |  通用  |  /linear-swap-api/v1/swap_balance_valuation                        | POST   |      【通用】获取账户总资产估值              |     是         |
 读取  | 账户接口    |  逐仓  |  /linear-swap-api/v1/swap_account_info                              | POST   |      【逐仓】获取用户的合约账户信息               |     是         |
 读取  | 账户接口    |  逐仓  |  /linear-swap-api/v1/swap_position_info                             | POST   |      【逐仓】获取用户的合约持仓信息               |     是         |
 读取  | 账户接口    |  逐仓  |  /linear-swap-api/v1/swap_available_level_rate                      | POST   |      【逐仓】查询用户可用杠杆倍数          |     是         |
