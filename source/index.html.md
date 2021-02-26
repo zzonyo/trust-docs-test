@@ -3117,7 +3117,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
                 "price": "13083",
                 "direction": "buy",
                 "quantity": 0.006,
-                 
+                "contract_code": "BTC-USDT",
                 "trade_turnover": 78.498
             }
         ],
