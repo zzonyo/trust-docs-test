@@ -38,7 +38,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
-## 1.0.9 2021-2-26 【Added: Query Asset Valuation interface, Query a Batch of Funding Rate interface. Modified Get Contract Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter "ch" value is "market.*trade.detail". Added one field in return "tick" parameter: "contract_code")】
+## 1.0.9 2021-2-26 【Added: Query Asset Valuation interface, Query a Batch of Funding Rate interface. Modified Query Swap Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter "ch" value is "market.*trade.detail". Added one field in return "tick" parameter: "contract_code")】
 
 ### 1. Added Query Asset Valuation interface
  - Interface Name: [General]Query Asset Valuation
@@ -50,8 +50,8 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
  - Interface Type: public
  - interface URL: /linear-swap-api/v1/swap_batch_funding_rate
 
-### 3. Modified Get Contract Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts)
- - Interface Name: [General]Get Contract Price Limitation
+### 3. Modified Query Swap Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts)
+ - Interface Name: [General]Query Swap Price Limitation
  - Interface Type: public
  - interface URL: /linear-swap-api/v1/swap_price_limit
 
@@ -1016,7 +1016,7 @@ permission type  |  Content Type  | Interface Mode |  Context           |   Requ
 ---------------- |  ------------- | ---------------|------------------- |  --------------- |---------------- |  ------------------  |
  Read  | Market Data | general | /linear-swap-api/v1/swap_contract_info                             | GET    |      Get Contracts Information                          |       No          |
  Read  | Market Data | general | /linear-swap-api/v1/swap_index                                     | GET    |      Get contract Index Price Information                    |       No          |                     
- Read  | Market Data | general | /linear-swap-api/v1/swap_price_limit                               | GET    |      Get Contract Price Limits           |       No          |           
+ Read  | Market Data | general | /linear-swap-api/v1/swap_price_limit                               | GET    |      Query Swap Price Limitation           |       No          |           
  Read  | Market Data | general | /linear-swap-api/v1/swap_open_interest                             | GET    |      Get Contract Open Interest Information             |       No          |            
  Read  | Market Data | general | /linear-swap-api/v1/swap_risk_info                                 | GET    |      Query information on contract insurance fund balance and estimated clawback rate     |       No          |
  Read  | Market Data | general | /inear-swap-api/v1/swap_insurance_fund                            | GET    |      Query history records of insurance fund balance               |       No          |
