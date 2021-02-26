@@ -38,6 +38,28 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.0.9 2021-2-26 【Added: Query Asset Valuation interface, Query a Batch of Funding Rate interface. Modified Get Contract Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter "ch" value is "market.*trade.detail". Added one field in return "tick" parameter: "contract_code")】
+
+### 1. Added Query Asset Valuation interface
+ - Interface Name: [General]Query Asset Valuation
+ - Interface Type: private
+ - interface URL: /linear-swap-api/v1/swap_balance_valuation
+
+### 2. Added Query a Batch of Funding Rate interface
+ - Interface Name: [General]Query a Batch of Funding Rate
+ - Interface Type: public
+ - interface URL: /linear-swap-api/v1/swap_batch_funding_rate
+
+### 3. Modified Get Contract Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts)
+ - Interface Name: [General]Get Contract Price Limitation
+ - Interface Type: public
+ - interface URL: /linear-swap-api/v1/swap_price_limit
+
+### 4. Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter "ch" value is "market.*trade.detail". Added one field in return "data" parameter: "contract_code")
+ - Interface Name: [General]Query The Last Trade of a Contract
+ - Interface Type: public
+ - interface URL: /linear-swap-ex/market/trade
+
 ## 1.0.8 2021-2-5 【Added: Get History Orders via Multiple Fields(cross margin and isolated margin), Get History Match Results via Multiple Fields(cross margin and isolated margin), Query account financial records via Multiple Fields, Query information on Tiered Margin(cross margin and isolated margin), Set a Batch of Sub-Account Trading Permissions, Query a Batch of Sub-Account's Assets Information(cross margin and isolated margin)。11-14 Modified the existing interfaces and added new parameters】
 
 ### 1. Added Get History Orders via Multiple Fields interface[Isolated]
@@ -1006,6 +1028,7 @@ permission type  |  Content Type  | Interface Mode |  Context           |   Requ
  Read  | Market Data | general | /linear-swap-api/v1/swap_settlement_records                       | GET    |      Query historical settlement records of the platform interface       |       No          |
  Read  | Market Data | isolated margin | /linear-swap-api/v1/swap_api_state                                 | GET    |      Query information on system status                      |       No          |
  Read  | Market Data | general | /linear-swap-api/v1/swap_funding_rate                              | GET    |      Query funding rate                 |       No          |
+ Read  | Market Data | general | /linear-swap-api/v1/swap_batch_funding_rate                        | GET    |     [General]Query a Batch of Funding Rate         |       No          |
  Read  | Market Data | general | /linear-swap-api/v1/swap_historical_funding_rate                   | GET    |      Query Historical Funding Rate             |       No          |
  Read  | Market Data | general | /linear-swap-ex/market/depth                                       | GET    |      Get Market Depth                     |       No          |
  Read  | Market Data | general | /linear-swap-ex/market/history/kline                               | GET    |      Get KLine Data                          |       No          |
@@ -1023,6 +1046,7 @@ permission type  |  Content Type  | Interface Mode |  Context           |   Requ
  Read  | Market Data  | general  | /linear-swap-api/v1/swap_estimated_settlement_price                  | GET    |      Get the estimated settlement price      |      No          |
  Read  | Market Data  |  general   | /linear-swap-api/v1/swap_ladder_margin                           | GET     |      [Isolated]Query information on Tiered Margin                            |       No          |
  Read  | Market Data  |  general   | /linear-swap-api/v1/swap_cross_ladder_margin                     | GET     |      [Cross]Query information on Tiered Margin                               |       No          |
+ Read  | Account    | isolated margin | /linear-swap-api/v1/swap_balance_valuation                             | POST   |      [General]Query Asset Valuation               |     Yes        |
  Read  | Account    | isolated margin | /linear-swap-api/v1/swap_account_info                              | POST   |      Query User’s Account Information                |     Yes        |
  Read  | Account    | isolated margin | /linear-swap-api/v1/swap_position_info                             | POST   |      Query User’s position Information               |     Yes        |
  Read  | Account    | isolated margin | /linear-swap-api/v1/swap_available_level_rate                      | POST   |      Query user’s available leverage              |     Yes        |
@@ -2497,7 +2521,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_price_limit?contract_code=BTC
 
 |   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                            |
 | ------------------ | ------------------ | ------------- | ------------------------------------------------- |
-| contract_code      | string             | true         | Case-insenstive.such as:BTC-USDT  ...                                    |
+| contract_code      | string             | false         | Contract Code, Case-insenstive.such as:BTC-USDT ,All swaps default                                 |
 
 > Response
 
@@ -3016,7 +3040,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        |  
 | ------------------ | ------------- | -------- | ------------- | 
-| contract_code      | true            | string  | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USDT" | 
+| contract_code      | false      | string  | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USDT" ,All swaps default | 
 
 > Tick Illustration：
 
@@ -3053,6 +3077,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
                 "price": "13083",
                 "direction": "buy",
                 "quantity": 0.006,
+                "contract_code": "BTC-USDT",
                 "trade_turnover": 78.498
             }
         ],
@@ -3080,6 +3105,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
 | direction  |  true  |  string  |  Order Direction  |   |    
 | ts  |  true  |  long  |  Order Creation Time |   |    
 | quantity   | true | string |  trading quantity(coin)   |                |
+| contract_code   | true | string |  Contract Code   |                |
 | trade_turnover   | true | string |  trade turnover(quoted currency)  |                |
 | \</data\>    |               |    |      | 
 | \</tick\>    |               |    |      | 
@@ -4207,6 +4233,66 @@ next_funding_time  | string |  estimated funding rate of next period     |   |
 \</data\> |  |  |  |  |
 
 
+## [General]Query a Batch of Funding Rate
+
+ - GET `/linear-swap-api/v1/swap_batch_funding_rate`
+
+#### Note
+ - The interface supports cross margin mode and isolated margin mode
+
+### Request Parameter
+
+| Parameter Name   | Mandatory  | Parameter Type     | Description   | Value Range         |
+| ------ | ----- | ------ | ---- | ---------------------------- |
+| contract_code | false | string | contract code，if not filled in, default as all |"BTC-USDT" ...  |
+
+> Response
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "estimated_rate": "-0.007500000000000000",
+            "funding_rate": "-0.007500000000000000",
+            "contract_code": "ETC-USDT",
+            "symbol": "ETC",
+            "fee_asset": "USDT",
+            "funding_time": "1613976000000",
+            "next_funding_time": "1614004800000"
+        },
+        {
+            "estimated_rate": "-0.007500000000000000",
+            "funding_rate": "-0.007500000000000000",
+            "contract_code": "ADA-USDT",
+            "symbol": "ADA",
+            "fee_asset": "USDT",
+            "funding_time": "1613976000000",
+            "next_funding_time": "1614004800000"
+        }
+    ],
+    "ts": 1614045373795
+}
+```
+
+### Returning Parameter
+
+| Parameter Name    | Mandatory | Parameter Type      | Description            | Value Range           |
+| ----------------- | ---- | ------- | ------------- | -------------- |
+| status            | true | string  | the result of server handles for the request        | "ok" , "error" |
+| ts                | true | long    | Time of Respond Generation, Unit: Millisecond |                |
+| \<data\>          |  true    |   object array      |               |          |
+| symbol        | true | string | symbol          |             |
+| contract_code        | true | string | contract code          |   "BTC-USDT" ...             |
+| fee_asset        | true | string | fee asset   |  "USDT...              |
+| funding_time        | true | string |current funding time(Millisecond)        |                |
+| funding_rate        | true | string | current funding rate          |                |
+| estimated_rate        | true | string | estimated funding rate of current period   |                |
+| next_funding_time        | true | string | estimated funding rate of next period(Millisecond)         |                |
+| \</data\>         |      |         |        |                |
+
+
+
 ## [General] Query historical funding rate
 
 - GET `/linear-swap-api/v1/swap_historical_funding_rate`
@@ -4515,6 +4601,47 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 
 # Swap Account Interface
+
+## [General]Query Asset Valuation
+
+ - POST `/linear-swap-api/v1/swap_balance_valuation`
+
+#### Note
+ - The interface supports cross margin mode and isolated margin mode
+
+### Request Parameter
+
+| Parameter Name          | Mandatory  | Parameter Type     | Description   | Value Range                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| valuation_asset   | false  | string    |    The valuation according to the certain fiat currency. If not fill in, default as BTC    |   "BTC","USD","USDT","CNY","EUR","GBP","VND","HKD","TWD","MYR","SGD","KRW","RUB","TRY"    |
+
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "valuation_asset": "BTC",
+            "balance": "0.378256726579799383"
+        }
+    ],
+    "ts": 1614045417046
+}
+```
+
+### Returning Parameter
+
+| Parameter Name                   | Mandatory | Parameter Type      | Description                 | Value Range                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | the result of server handles for the request             |                                          |
+| \<data\> | true     |  object array      |                    |                                          |
+| valuation_asset   | true  | string    |    The valuation according to the certain fiat currency   |  "BTC","USD","USDT","CNY","EUR","GBP","VND","HKD","TWD","MYR","SGD","KRW","RUB","TRY"   |
+| balance        | true | string |    Asset Valuation       |         |
+| \</data\>            |      |         |                    |                                          |
+| ts                     | true | long    | timestamp                |                                          |
+
 
 ## [Isolated] Query User’s Account Information
 
