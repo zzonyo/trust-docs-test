@@ -38,6 +38,28 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.1.6 2021-2-26 【Added: Query Asset Valuation interface, Query a Batch of Funding Rate interface. Modified Query Swap Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter "ch" value is "market.*trade.detail". Added one field in return "tick" parameter: "contract_code")】
+
+### 1. Added Query Asset Valuation interface
+ - Interface Name: Query Asset Valuation
+ - Interface Type: private
+ - interface URL: /swap-api/v1/swap_balance_valuation
+
+### 2. Added Query a Batch of Funding Rate interface
+ - Interface Name: Query a Batch of Funding Rate
+ - Interface Type: public
+ - interface URL: /swap-api/v1/swap_batch_funding_rate
+
+### 3. Modified Query Swap Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts)
+ - Interface Name: Query Swap Price Limitation
+ - Interface Type: public
+ - interface URL: /swap-api/v1/swap_price_limit
+
+### 4. Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter "ch" value is "market.*trade.detail". Added one field in return "data" parameter: "contract_code")
+ - Interface Name: Query The Last Trade of a Contract
+ - Interface Type: public
+ - interface URL: /swap-ex/market/trade
+
 ## 1.1.5 2021-2-5 【Added: Query information on Tiered Margin. Set a Batch of Sub-Account Trading Permissions. Query a Batch of Sub-Account's Assets Information. 4-7 Modified the existing interfaces and added new parameters. 8 Query user’s settlement records interface(To avoid affecting system performance, the interface only supports querying user settlement records in the last 90 days)】
 
 ### 1. Added Query information on Tiered Margin interface
@@ -302,7 +324,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
   - Interface URL：swap-api/v1/swap_hisorders_exact
 
-## 1.1.1 2020-11-24 【 Added: Query historical settlement records of the platform interface. Modified:  Added fields of return parameter for "Query Liquidation Orders" interface and "Subscribe Liquidation Order Data" interface】
+## 1.1.1 2020-11-24 【Added: Query historical settlement records of the platform interface. Modified:  Added fields of return parameter for "Query Liquidation Orders" interface and "Subscribe Liquidation Order Data" interface】
 
 ### 1、Added “Query historical settlement records of the platform” interface 
  
@@ -763,9 +785,11 @@ Read     |   Market Data           |  /swap-api/v1/swap_liquidation_orders |   G
 Read     | Market Data          |  swap-api/v1/swap_settlement_records  |     GET       |  Query historical settlement records of the platform interface            |  No  |
 Read     |   Market Data           |  /index/market/history/swap_premium_index_kline |   GET       |  Query Premium Index Kline Data            |  No  |
 Read     |   Market Data           |  /index/market/history/swap_basis |   GET       |  Query Basis Data            |  No  |
+Read     |   Market Data           |  /swap-api/v1/swap_batch_funding_rate |   GET       | Query a Batch of Funding Rate       |  No  |
 Read     |   Market Data           |  /swap-api/v1/swap_historical_funding_rate |   GET       |  Query historical funding rate         |  No  |
 Read  | Market Data |  /swap-api/v1/swap_estimated_settlement_price | GET | Get the estimated settlement price |      No          |
 Read     |  Market Data        |  /swap-api/v1/swap_ladder_margin           |    GET       |       Query information on Tiered Margin interface       |  No  |
+Read  | Account          | /swap-api/v1/swap_balance_valuation   |  POST             | Query Asset Valuation                    | Yes                    |
 Read  | Account          | /swap-api/v1/swap_account_info   |  POST             | Query User’s Account Information                     | Yes                    |
 Read  | Account          | /swap-api/v1/swap_position_info  |  POST             | Query User’s position Information                    | Yes                    |
 Trade     |  Account           |  /swap-api/v1/swap_sub_auth                |    POST       |       Set a Batch of Sub-Account Trading Permissions       |  Yes  |
@@ -2184,7 +2208,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_price_limit?contract_code=BTC-USD
 
 |   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                            |
 | ------------------ | ------------------ | ------------- | ------------------------------------------------- |
-| contract_code      | string             | true         | Case-insenstive.such as:BTC-USD  ...                                    |
+| contract_code      | string             | false         | Case-insenstive.such as:BTC-USD, All swaps default                             |
 
 > Response
 
@@ -2210,12 +2234,12 @@ curl "https://api.hbdm.com/swap-api/v1/swap_price_limit?contract_code=BTC-USD
 |   Parameter Name               |   Mandatory   |   Type   |   Desc                                        |   Value Range                     |
 | ------------------------------ | ------------- | -------- | --------------------------------------------- | --------------------------------- |
 | status                         | true          | string   | Request Processing Result                     | "ok" ,"error"                     |
-| data \<list\> |               |          |                                               |                                   |
+| \<data\> |               |          |                                               |                                   |
 | symbol  |  true  |  string  |  Variety code  |  "BTC","ETH" ...                                    
 | high_limit                     | true          | decimal  | Highest Buying Price                          |                                   |
 | low_limit                      | true          | decimal  | Lowest Selling Price                          |                                   |
 | contract_code                  | true          | string   | Contract Code                                 | eg "BTC-USD"  ...               |
-| \<list\>                       |               |          |                                               |                                   |
+| \<data\>                       |               |          |                                               |                                   |
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                   |
 
 
@@ -2698,7 +2722,7 @@ curl "https://api.hbdm.com/swap-ex/market/trade?contract_code=BTC-USD"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        | 
 | ------------------ | ------------- | -------- | ------------- | 
-| contract_code             | true            | string          | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
+| contract_code             | false            | string          | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD", All swaps default |
 
 > Tick Illustration：
 
@@ -2733,6 +2757,7 @@ curl "https://api.hbdm.com/swap-ex/market/trade?contract_code=BTC-USD"
                 "id": 509516201220000,
                 "price": "13789.5",
                 "ts": 1603852755227,
+                "contract_code": "BTC-USD",
                 "quantity": "0.344"
             }
         ],
@@ -2760,7 +2785,8 @@ curl "https://api.hbdm.com/swap-ex/market/trade?contract_code=BTC-USD"
 | amount  |  true  |  string  |  Quantity(Cont.). Sum of both buy and sell sides  |   |    
 | direction  |  true  |  string  |  Order Direction  |   |    
 | ts  |  true  |  long  |  Order Creation Time |   |  
-| quantity  |  true  |  string  |  trading quantity(coin)  |   |    
+| quantity  |  true  |  string  |  trading quantity(coin)  |   |  
+| contrct_code  |  true  |  string  | Contract Code  |   |    
 |  \</list\>    |               |    |      | 
 |  \</tick\>    |               |    |      | 
 
@@ -3566,7 +3592,6 @@ curl "https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC
 | \</data\>         |      |         |        |                |
 
 
-
 ## Query funding rate
 
 - GET `swap-api/v1/swap_funding_rate`
@@ -3615,6 +3640,64 @@ funding_rate | string |  current funding rate |  |
 estimated_rate | string | estimated funding rate of current period（Updated once a minute） |  |
 next_funding_time  | string |  estimated funding rate of next period     |   |
 \</dict\> |  |  |  |  |
+
+
+## Query a Batch of Funding Rate
+
+ - GET `/swap-api/v1/swap_batch_funding_rate`
+
+### Request Parameter
+
+| Parameter Name   | Mandatory  | Parameter Type     | Description   | Value Range         |
+| ------ | ----- | ------ | ---- | ---------------------------- |
+| contract_code | false | string | contract code, if not filled in, default as all |"BTC-USD" ...  |
+
+
+> Response
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "estimated_rate": "0.000300000000000000",
+            "funding_rate": "0.00011111100000000000000",
+            "contract_code": "BSV-USD",
+            "symbol": "BSV",
+            "fee_asset": "BSV",
+            "funding_time": "1608721200000",
+            "next_funding_time": "1608721200000"
+        },
+        {
+            "estimated_rate": "0.000100000000000000",
+            "funding_rate": "0.0001555555555500",
+            "contract_code": "BTC-USD",
+            "symbol": "BTC",
+            "fee_asset": "BTC",
+            "funding_time": "1613778600000",
+            "next_funding_time": "1613807400000"
+        }
+    ],
+    "ts": 1614044281587
+}
+```
+
+### Returning Parameter
+
+| Parameter Name    | Mandatory | Parameter Type      | Description            | Value Range           |
+| ----------------- | ---- | ------- | ------------- | -------------- |
+| status            | true | string  | the result of server handles for the request        | "ok" , "error" |
+| ts                | true | long    | Time of Respond Generation, Unit: Millisecond |                |
+| \<data\>          |  true    |   object array      |               |          |
+| symbol        | true | string | symbol          |             |
+| contract_code        | true | string | contract code          |   "BTC-USD" ...             |
+| fee_asset        | true | string | fee asset   |  "BTC","ETH"...              |
+| funding_time        | true | string |current funding time(Millisecond)        |                |
+| funding_rate        | true | string | current funding rate          |                |
+| estimated_rate        | true | string | estimated funding rate of current period   |                |
+| next_funding_time        | true | string | estimated funding rate of next period(Millisecond)         |                |
+| \</data\>         |      |         |        |                |
+
 
 ## Query historical funding rate
 
@@ -3876,6 +3959,45 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 
 
 # Swap Account Interface
+
+
+## Query Asset Valuation
+
+ - POST `/swap-api/v1/swap_balance_valuation`
+
+### Request Parameter
+
+| Parameter Name          | Mandatory  | Parameter Type     | Description   | Value Range                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| valuation_asset   | false  | string    |    The valuation according to the certain fiat currency. If not fill in, default as BTC    |   "BTC","USD","USDT","CNY","EUR","GBP","VND","HKD","TWD","MYR","SGD","KRW","RUB","TRY"    |
+
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "valuation_asset": "CNY",
+            "balance": "167724.592639011521722342"
+        }
+    ],
+    "ts": 1614045313200
+}
+```
+
+### Returning Parameter
+
+| Parameter Name                   | Mandatory | Parameter Type      | Description                 | Value Range                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | the result of server handles for the request             |                                          |
+| \<data\> | true     |  object array      |                    |                                          |
+| valuation_asset   | true  | string    |    The valuation according to the certain fiat currency   |  "BTC","USD","USDT","CNY","EUR","GBP","VND","HKD","TWD","MYR","SGD","KRW","RUB","TRY"   |
+| balance        | true | string |    Asset Valuation       |         |
+| \</data\>            |      |         |                    |                                          |
+| ts                     | true | long    | timestamp                |                                          |
+
 
 ## Query User’s Account Information
 
