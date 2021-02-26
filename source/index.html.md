@@ -40,6 +40,22 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.2.5 2021-2-26 【Added: Query Asset Valuation interface. Modified Get Contract Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter "ch" value is "market.*trade.detail". Added one field in return "tick" parameter: "symbol")】
+
+### 1. Added Query Asset Valuation interface
+ - Interface Name: Query Asset Valuation
+ - Interface Type: private
+ - interface URL: /api/v1/contract_balance_valuation
+
+### 2. Modified Get Contract Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts)
+ - Interface Name: Get Contract Price Limitation
+ - Interface Type: public
+ - interface URL: /api/v1/contract_price_limit
+
+### 3. Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter "ch" value is "market.*trade.detail". Added one field in return "data" parameter: "symbol")
+ - Interface Name: Query The Last Trade of a Contract
+ - Interface Type: public
+ - interface URL: /market/trade
 
 ## 1.2.4 2021-2-5 【Added: Query information on Tiered Margin. Set a Batch of Sub-Account Trading Permissions. Query a Batch of Sub-Account's Assets Information. 4-7 Modified the existing interfaces and added new parameters. 8 Query user’s settlement records interface(To avoid affecting system performance, the interface only supports querying user settlement records in the last 90 days)】
 
@@ -82,7 +98,6 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
  - Interface Name: Query user’s settlement records
  - Interface Type: private
  - Interface URL: /api/v1/contract_user_settlement_records
-
 
 ## 1.2.3 2021-1-29 【Added:Get a Batch of Market Data Overview. 2-14 Added fields to modify interface. The order_id of submitted trigger order response has been changed from the original natural number self-incrementing ID to a unique identification ID with a length of 18 digits. It is recommended to use the order_id_str (order_id in string type) of submitted order response  to avoid the occurrence of truncation by the system because excessive length.】
 
@@ -1066,6 +1081,7 @@ Read     |  Market Data           |  /index/market/history/index |   GET       |
 Read     |  Market Data           |  /index/market/history/basis |   GET       |  Query Basis Data            |  No  |
 Read    | Market Data  |  /api/v1/contract_estimated_settlement_price     | GET    |     Get the estimated settlement price      |      No          |
 Read     |  Market Data       |  /api/v1/contract_ladder_margin           |    GET       |       Query information on Tiered Margin       |  No  |
+Read  | Account          | /api/v1/contract_balance_valuation   |  POST             | Query Asset Valuation                    | Yes                    |
 Read  | Account          | /api/v1/contract_account_info   |  POST             | Query User’s Account Information                     | Yes                    |
 Read  | Account          | /api/v1/contract_position_info  |  POST             | Query User’s Position Information                    | Yes                    |
 Trade    |  Account           |  /api/v1/contract_sub_auth                |    POST      |       Set a Batch of Sub-Account Trading Permissions       |  Yes  |
@@ -2517,9 +2533,9 @@ curl "https://api.hbdm.com/api/v1/contract_price_limit?symbol=BTC&contract_type=
 
 ###  Note  ：
 
-If there is a number in the Contract Code row，inquiry with Contract_Code. 
-If there is no number，inquiry by Symbol + Contract Type. 
-One of the query conditions must be chosen.
+If not any parameter is filled, the interface returns the price limitation data of all currently available contracts.
+If the contract_code is filled in, query by the contract_code;
+The contract_type parameter needs to together with symbol, and can't get contract data only by contract_type
 
 > Response
 
@@ -3027,7 +3043,7 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        |   Default   |   Value Range                                                |
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
-| symbol             | true          | string   | Contract Name |             | Case-Insenstive.Both uppercase and lowercase are supported.. e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”. Contract code is supported to query data. e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
+| symbol             | false          | string   | Contract Name |             | Case-Insenstive.Both uppercase and lowercase are supported.. e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”. Contract code is supported to query data. e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 
 > Tick Illustration：
 
@@ -3051,25 +3067,25 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 > Response:
 
 ```json
-
 {
-    "ch": "market.BTC_NQ.trade.detail",
+    "ch": "market.*.trade.detail",
     "status": "ok",
     "tick": {
         "data": [
             {
                 "amount": "4",
-                "ts": 1604298443540,
-                "id": 1137660004780000,
-                "price": "14117.98",
-                "direction": "sell",
-                "quantity": "0.00134"
+                "quantity": "0.0129032258064516129032258064516129032",
+                "ts": 1613998847438,
+                "id": 50710000,
+                "price": "31000",
+                "direction": "buy",
+                "symbol": "BTC_NQ"
             }
         ],
-        "id": 1604298454352,
-        "ts": 1604298454352
+        "id": 1614068483482,
+        "ts": 1614068483482
     },
-    "ts": 1604298454352
+    "ts": 1614068483482
 }
 ```
 
@@ -3090,6 +3106,7 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 | direction  |  true  |  string  |  Order Direction  |   |    
 | ts  |  true  |  long  |  Order Creation Time |   |    
 | quantity  | true | string | trading quantity(coin)    |      |
+| symbol  | true | string | symbol     |      |
 |  \</list\>    |               |    |      | 
 |  \</dict\>    |               |    |      | 
 
@@ -4045,6 +4062,46 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 
 # Future Account Interface
+
+
+## Query Asset Valuation
+
+ - POST ‘/api/v1/contract_balance_valuation’
+
+### Request Parameter
+
+| Parameter Name          | Mandatory  | Parameter Type     | Description   | Value Range                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| valuation_asset   | false  | string    |    The valuation according to the certain fiat currency. If not fill in, default as BTC    |   "BTC","USD","USDT","CNY","EUR","GBP","VND","HKD","TWD","MYR","SGD","KRW","RUB","TRY"    |
+
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "valuation_asset": "CNY",
+            "balance": "295098.370590947021036643"
+        }
+    ],
+    "ts": 1614044220841
+}
+
+```
+
+### Returning Parameter
+
+| Parameter Name                   | Mandatory | Parameter Type      | Description                 | Value Range                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | the result of server handles for the request             |                                          |
+| \<data\> | true     |  object array      |                    |                                          |
+| valuation_asset   | true  | string    |    The valuation according to the certain fiat currency   |  "BTC","USD","USDT","CNY","EUR","GBP","VND","HKD","TWD","MYR","SGD","KRW","RUB","TRY"   |
+| balance        | true | string |    Asset Valuation       |         |
+| \</data\>            |      |         |                    |                                          |
+| ts                     | true | long    | timestamp                |                                          |
+
 
 ## Query User’s Account Information
 
