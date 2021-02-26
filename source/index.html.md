@@ -4157,7 +4157,10 @@ curl "https://api.huobi.pro/v1/order/openOrders?account-id=100009&symbol=btcusdt
 API Key Permission：Trade<br>
 Rate Limit (NEW): 50times/2s
 
-This endpoint submit cancellation for multiple orders at once with given criteria.
+This endpoint submit cancellation for multiple orders (not exceeding 100 orders per request) at once with given criteria.
+
+This endpoint only submit the cancellation request, the actual cancellation result will need to be confirmed by other endpoints 
+like order status, matchresult, etc.
 
 ### HTTP Request
 
@@ -4176,7 +4179,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 | Parameter  | Data Type | Required | Default | Description                                                  | Value Range                                                  |
 | ---------- | --------- | -------- | ------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | account-id | string    | false    | NA      | The account id used for this cancel                          | Refer to `GET /v1/account/accounts`                          |
-| symbol     | string    | false    | NA      | The trading symbol list (maximum 10 symbols, separated by comma, default value all symbols) | All supported trading symbol, e.g. btcusdt, bccbtc.Refer to `GET /v1/common/symbols` |
+| symbol     | string    | false    | all     | The trading symbol list (maximum 10 symbols, separated by comma, default value all symbols) | All supported trading symbol, e.g. btcusdt, bccbtc.Refer to `GET /v1/common/symbols` |
 | types      | string    | false    | NA      | One or more types of order to include in the search, use comma to separate. | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
 | side       | string    | false    | NA      | Filter on the direction of the trade                         | buy, sell                                                    |
 | size       | int       | false    | 100     | The number of orders to cancel                               | [1, 100]                                                     |
@@ -4204,7 +4207,8 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 API Key Permission：Trade<br>
 Rate Limit (NEW): 50times/2s
 
-This endpoint submit cancellation for multiple orders at once with given ids.
+This endpoint submit cancellation for multiple orders at once with given ids. It is suggested to use order-ids instead of 
+client-order-ids, so that the cancellation is faster, more accurate and more stable. 
 
 ### HTTP Request
 
@@ -4223,8 +4227,8 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 
 | Parameter        | Data Type | Required | Description                                                  | Value Range         |
 | ---------------- | --------- | -------- | ------------------------------------------------------------ | ------------------- |
-| order-ids        | string[]  | false    | The order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request). It is suggest to use order-ids rather than client-order-ids, the former is faster and more stable | No more than 50 ids |
-| client-order-ids | string[]  | false    | The client order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request), it must exist already, otherwise it is not allowed to use when placing a new order | No more than 50 ids |
+| order-ids        | string[]  | false    | The order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request). It is suggest to use order-ids rather than client-order-ids, the former is faster and more stable | No more than 50 orders per request|
+| client-order-ids | string[]  | false    | The client order ids to cancel (Either order-ids or client-order-ids can be filled in one batch request), it must exist already, otherwise it is not allowed to use when placing a new order | No more than 50 orders per request|
 
 > The above command returns JSON structured like this:
 
@@ -4265,8 +4269,8 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 
 | Field    | Data Type | Description                                                  |
 | -------- | --------- | ------------------------------------------------------------ |
-| {success | string[]  | Cancelled order list (Can be order ID list or client order list, upon the request) |
-| failed}  | string[]  | Failed order list (Can be order ID list or client order list, upon the request) |
+| {success | string[]  | Cancelled order list (Can be order ID list or client order list, based on the request) |
+| failed}  | string[]  | Failed order list (Can be order ID list or client order list, based on the request) |
 
 The failed id list has below fields
 
@@ -4376,21 +4380,21 @@ Response:
 API Key Permission：Read<br>
 Rate Limit (NEW): 50times/2s
 
-This endpoint returns the detail of one order. The API created order will not exist after cancelling 2 hours.
+This endpoint returns the detail of a specific order. If an order is created via API, then it's no longer queryable after being cancelled for 2 hours.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/orders/{order-id}`
+`GET /v1/order/orders/{order-id}`
 
-'order-id': the previously returned order id when order was created
+### Request Parameters
+| **Name**      | **Mandatory** | **Type** | **Description**            |
+| ------------- | ------------- | -------- | -------------------------- |
+| order-id      | true          | string   | order id when order was created. Place it within path|
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/59378"
 ```
 
-### Request Parameters
-
-No parameter is needed for this endpoint.
 
 > The above command returns JSON structured like this:
 
@@ -4435,8 +4439,6 @@ No parameter is needed for this endpoint.
 | filled-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint) |
 | source             | string    | All possible order source (refer to introduction in this section) |
 | state              | string    | All possible order state (refer to introduction in this section)     |
-| exchange           | string    | Internal data                                                |
-| batch              | string    | Internal data                                                |
 | stop-price         | string    | trigger price of stop limit order                            |
 | operator           | string    | operation character of stop price: gte, lte                            |
 
@@ -4447,10 +4449,11 @@ No parameter is needed for this endpoint.
 API Key Permission：Read<br>
 Rate Limit (NEW):50times/2s
 
-This endpoint returns the detail of one order by specified client order id (within 24 hours). The API created order will not exist after cancelling 2 hours.
+This endpoint returns the detail of one order by specified client order id (within 24 hours). The order created via API will no longer be queryable after being cancelled for more than 2 hours. It is suggested to cancel orders via `GET /v1/order/orders/{order-id}`, which is faster and more stable.
+
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/orders/getClientOrder`
+`GET /v1/order/orders/getClientOrder`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"
@@ -4460,7 +4463,7 @@ curl "https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"
 
 | Parameter     | Data Type | Required | Default | Description     |
 | ------------- | --------- | -------- | ------- | --------------- |
-| clientOrderId | string    | true     | NA      | Client order ID |
+| order-id      | string    | true     | NA      | Client order ID |
 
 > The above command returns JSON structured like this:
 
@@ -4505,8 +4508,6 @@ curl "https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"
 | filled-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint) |
 | source             | string    | All possible order source (refer to introduction in this section) |
 | state              | string    | All possible order state (refer to introduction in this section)     |
-| exchange           | string    | Internal data                                                |
-| batch              | string    | Internal data                                                |
 | stop-price         | string    | trigger price of stop limit order                            |
 | operator           | string    | operation character of stop price                            |
 
@@ -4529,9 +4530,8 @@ This endpoint returns the match result of an order.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/orders/{order-id}/matchresults`
+`GET /v1/order/orders/{order-id}/matchresults`
 
-'order-id': the previously returned order id when order was created
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders/59378/matchresults"
@@ -4539,7 +4539,10 @@ curl "https://api.huobi.pro/v1/order/orders/59378/matchresults"
 
 ### Request Parameters
 
-No parameter is needed for this endpoint.
+| Parameter     | Data Type | Required | Default | Description     |
+| ------------- | --------- | -------- | ------- | --------------- |
+| order-id      | string    | true     | NA      | Order ID, place it into path |
+
 
 > The above command returns JSON structured like this:
 
@@ -4570,13 +4573,13 @@ No parameter is needed for this endpoint.
 <aside class="notice">The return data contains a list and each item in the list represents a match result</aside>
 | Parameter           | Data Type | Description                                                  |
 | ------------------- | --------- | ------------------------------------------------------------ |
-| id                  | integer   | Internal id                                                  |
+| id                  | long      | Internal id                                                  |
 | symbol              | string    | The trading symbol to trade, e.g. btcusdt, bccbtc            |
-| order-id            | string    | The order id of this order                                   |
-| match-id            | string    | The match id of this match                                   |
-| trade-id            | int       | Unique trade ID (NEW)                                        |
+| order-id            | long      | The order id of this order                                   |
+| match-id            | long      | The match id of this match                                   |
+| trade-id            | integer   | Unique trade ID (NEW)                                        |
 | price               | string    | The limit price of limit order                               |
-| created-at          | int       | The timestamp in milliseconds when this record is created    |
+| created-at          | int       | The timestamp in milliseconds when this record is created (slightly later than trade time) |
 | type                | string    | All possible order type (refer to introduction in this section) |
 | filled-amount       | string    | The amount which has been filled                             |
 | filled-fees         | string    | Transaction fee (positive value). If maker rebate applicable, revert maker rebate value per trade (negative value). |
@@ -4597,24 +4600,38 @@ Notes:<br>
 API Key Permission：Read<br>
 Rate Limit (NEW): 50times/2s
 
-This endpoint returns orders based on a specific searching criteria. The API created order will not exist after cancelling 2 hours.
+This endpoint returns orders based on a specific searching criteria. The order created via API will no longer be queryable after being cancelled for more than 2 hours.
 
-- Upon user defined “start-time” AND/OR “end-time”, Huobi server will revert back historical orders whose order creation time falling into the period. The maximum time span between “start-time” and “end-time” is 48-hour. Farthest order searchable should be within recent 180 days. In case either “start-time” or “end-time” is defined, Huobi server will ignore “start-date” and “end-date” regardless they were filled or not.
 
-- If user does neither define “start-time” nor “end-time”, but “start-date”/”end-date”, the order searching will be based on defined “date range”, as usual.
+- Upon user defined “start-time” AND/OR “end-time”, Huobi server will return historical orders whose order creation time falling into the period. The maximum query window between “start-time” and “end-time” is 48-hour. Oldest order searchable should be within recent 180 days. If either “start-time” or “end-time” is defined, Huobi server will ignore “start-date” and “end-date” regardless they were filled or not.
 
-- If user does not define any of “start-time”/”end-time”/”start-date”/”end-date”, by default Huobi server will treat current time as “end-time”, and then revert back historical orders within recent 48 hours.
+- If user does neither define “start-time” nor “end-time”, but “start-date”/”end-date”, the order searching will be based on defined “date range”, as usual. The maximum query window is 2 days, and oldest order searchable should be within recent 180 days.
+
+- If user does not define any of “start-time”/”end-time”/”start-date”/”end-date”, by default Huobi server will treat current time as “end-time”, and then return historical orders within recent 48 hours.
 
 Huobi Global suggests API users to search historical orders based on “time” filter instead of “date”. In the near future, Huobi Global would remove “start-date”/”end-date” fields from the endpoint, through another notification.
 
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/orders`
+`GET /v1/order/orders`
 
 ```shell
 curl "https://api.huobi.pro/v1/order/orders?symbol=ethusdt&type=buy-limit&staet=filled"
 ```
+> Request
+```json
+  
+    {
+   "account-id": "100009",
+   "amount": "10.1",
+   "price": "100.1",
+   "source": "api",
+   "symbol": "ethusdt",
+   "type": "buy-limit"
+    }
+```
+
 
 ### Request Parameters
 
@@ -4629,7 +4646,7 @@ curl "https://api.huobi.pro/v1/order/orders?symbol=ethusdt&type=buy-limit&staet=
 | states     | string    | true     | NA      | One or more  states of order to include in the search, use comma to separate. | All possible order state (refer to introduction in this section) |
 | from       | string    | false    | NA      | Search order id to begin with                                | NA                                                           |
 | direct     | string    | false    | both    | Search direction when 'from' is used                         | next, prev                                                   |
-| size       | int       | false    | 100     | The number of orders to return                               | [1, 100]                                                     |
+| size       | integer   | false    | 100     | The number of orders to return                               | [1, 100]                                                     |
 
 > The above command returns JSON structured like this:
 
@@ -4659,26 +4676,26 @@ curl "https://api.huobi.pro/v1/order/orders?symbol=ethusdt&type=buy-limit&staet=
 
 | Field              | Data Type | Description                                                  |
 | ------------------ | --------- | ------------------------------------------------------------ |
-| id                 | integer   | Order id                                                     |
+| id                 | long      | Order id                                                     |
 | client-order-id    | string    | Client order id ("client-order-id" (if specified) can be returned from all open orders.	"client-order-id" (if specified) can be returned only from closed orders (state <> canceled) created within 7 days.	only those closed orders (state = canceled) created within 24 hours can be returned.) |
-| account-id         | integer   | Account id                                                   |
+| account-id         | long      | Account id                                                   |
 | user-id            | integer   | User id                                                      |
 | amount             | string    | The amount of base currency in this order                    |
 | symbol             | string    | The trading symbol to trade, e.g. btcusdt, bccbtc            |
 | price              | string    | The limit price of limit order                               |
-| created-at         | int       | The timestamp in milliseconds when the order was created     |
-| canceled-at        | int       | The timestamp in milliseconds when the order was canceled, or 0 if not canceled |
-| finished-at        | int       | The timestamp in milliseconds when the order was finished, or 0 if not finished |
-| type               | string    | All possible order type (refer to introduction in this section) |
-| filled-amount      | string    | The amount which has been filled                             |
-| filled-cash-amount | string    | The filled total in quote currency                           |
-| filled-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint) |
+| created-at         | long      | The timestamp in milliseconds when the order was created     |
+| canceled-at        | long      | The timestamp in milliseconds when the order was canceled, or 0 if not canceled |
+| finished-at        | long      | The timestamp in milliseconds when the order was finished, or 0 if not finished |
+| type               | string    | All possible order type (refer to introduction in this section)   |
+| filled-amount      | string    | The amount which has been filled                                  |
+| filled-cash-amount | string    | The filled total in quote currency                                |
+| filled-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint)    |
 | source             | string    | All possible order source (refer to introduction in this section) |
-| state              | string    | All possible order state (refer to introduction in this section) |
-| exchange           | string    | Internal data                                                |
-| batch              | string    | Internal data                                                |
-| stop-price         | string    | trigger price of stop limit order                            |
-| operator           | string    | operation character of stop price                            |
+| state              | string    | All possible order state (refer to introduction in this section)  |
+| exchange           | string    | Internal data                                                     |
+| batch              | string    | Internal data                                                     |
+| stop-price         | string    | trigger price of stop limit order                                 |
+| operator           | string    | operation character of stop price                                 |
 
 ### Error code for invalid start-date/end-date
 
@@ -4696,12 +4713,13 @@ API Key Permission：Read<br>
 Rate Limit (NEW): 20times/2s
 
 This endpoint returns orders based on a specific searching criteria.
-The API created order will not exist after cancelling 2 hours. 
+The orders created via API will no longer be queryable after being cancelled for more than 2 hours. 
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/history`
+`GET /v1/order/history`
 
+>Request
 ```json
 {
    "symbol": "btcusdt",
@@ -4769,7 +4787,7 @@ The API created order will not exist after cancelling 2 hours.
 | state             | string    | Order status ( filled, partial-canceled, canceled )          |
 | symbol            | string    | Trading symbol                                               |
 | stop-price        | string    | trigger price of stop limit order                            |
-| operator          | string    | operation character of stop price                            |
+| operator          | string    | operation character of stop price. e.g. get, lte             |
 | type}             | string    | All possible order type (refer to introduction in this section) |
 | next-time         | long      | Next query “start-time” (in response of “direct” = prev), Next query “end-time” (in response of “direct” = next). Note: Only when the total number of items in the search result exceeded the limitation defined in “size”, this field exists. UTC time in millisecond. |
 
@@ -4779,7 +4797,7 @@ The API created order will not exist after cancelling 2 hours.
 API Key Permission：Read<br>
 Rate Limit (NEW): 20times/2s
 
-This endpoint returns the match results of past and open orders based on specific search criteria.
+This endpoint returns the match results of past and current filled, or partially filled orders based on specific search criteria.
 
 ### HTTP Request
 
@@ -4838,7 +4856,7 @@ curl "https://api.huobi.pro/v1/order/matchresults?symbol=ethusdt"
 | match-id            | long      | The match id of this match                                   |
 | trade-id            | long      | Unique trade ID                                              |
 | price               | string    | The limit price of limit order                               |
-| created-at          | int       | The timestamp in milliseconds when this record is created    |
+| created-at          | long      | The timestamp in milliseconds when this record is created    |
 | type                | string    | All possible order type (refer to introduction in this section) |
 | filled-amount       | string    | The amount which has been filled                             |
 | filled-fees         | string    | Transaction fee (positive value). If maker rebate applicable, revert maker rebate value per trade (negative value). |
@@ -4926,6 +4944,10 @@ curl "https://api.huobi.pro/v2/reference/transact-fee-rate?symbols=btcusdt,ethus
 |      | actualMakerRate   | string    | Deducted fee rate – passive side (positive value). If deduction is inapplicable or disabled, return basic fee rate.If maker rebate applicable, revert maker rebate rate (negative value). |      |
 |      | actualTakerRate } | string    | Deducted fee rate – aggressive side. If deduction is inapplicable or disabled, return basic fee rate. |      |
 
+Note：
+- If makerFeeRate/actualMakerRate is positive，this field means the transaction fee rate.
+- If makerFeeRate/actualMakerRate is negative, this field means the rebate fee rate.
+
 ## Error Code
 
 Below is the error code and description returned by Trading APIs
@@ -4933,9 +4955,9 @@ Below is the error code and description returned by Trading APIs
 | Error Code                                                   | Description                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | base-argument-unsupported                                    | The specified parameter is not supported                     |
-| base-system-error                                            | Server internel error. For placing or canceling order, it is most related to cache issue, please try again later. |
-| login-required                                               | Signature is missing                                         |
-| parameter-required                                           | Parameter stop-price or operator is missing for stop-order type |
+| base-system-error                                            | System internel error. For placing or canceling order, it is mostly due to cache issue, please try again later. |
+| login-required                                               | Signature is missing, or user not find (key and uid not match).                                        |
+| parameter-required                                           | Stop-price or operator parameter is missing for stop-order type |
 | base-record-invalid                                          | Failed to get data, please try again later                   |
 | order-amount-over-limit                                      | The amount of order exceeds the limitation                   |
 | base-symbol-trade-disabled                                   | The symbol is disabled for trading                           |
@@ -5006,28 +5028,28 @@ Below are common errors:
 - order-limitorder-amount-min-error : The limited order amount is smaller than the threshold  
 
 ### Q3：Why I got insufficient balance error while placing an order just after a successful order matching?
-A：The time order matching update being sent down, the clearing service of that order may be still in progress at backend. Suggest to follow either of below to ensure a successful order submission:
+A：To ensure the low latency of order update, Order update push is made directly after order matching. Meanwhile, the clearing service of that order may be still in progress at backend. It is suggested to follow either of below to ensure a successful order submission:
 
 1、Subscribe to WebSocket topic `accounts` for getting account balance moves to ensure the completion of asset clearing.
 
-2、Check account balance from REST endpoint to ensure sufficient available balance for the next order submission.
+2、After receiving WebSocket push message, check account balance from REST endpoint to ensure sufficient available balance for the next order submission.
 
 3、Leave sufficient balance in your account.
 
 ### Q4: What is the difference between 'filled-fees' and 'filled-points' in match result?
-A: Transaction fee can be paid from either of below.
+A: Transaction fee can be paid from either of below. They won't exist at the same time.
 
 1、filled-fees: Filled-fee is also called transaction fee. It's charged from your income currency from the transaction. For example, if your purchase order of BTC/USDT got matched，the transaction fee will be based on BTC.
 
-2、filled-points: If user enabled transaction fee deduction, the fee should be charged from either HT or Point. User could refer to field `fee-deduct-currency` to get the exact deduction type of the transaction.
+2、filled-points: If user enabled transaction fee deduction, the fee should be charged from either HT or Point. When there's sufficient fund in HT/Point, filled-fees is empty while filled-points has value. That means the deduction is made via HT/Point. User could refer to field `fee-deduct-currency` to get the exact deduction type of the transaction. 
 
 ### Q5: What is the difference between 'match-id' and 'trade-id' in matching result?
 A: The `match-id` is the identity for order matching, while the `trade-id` is the unique identifier for each trade. One `match-id` may be correlated with multiple `trade-id`, or no `trade-id`(if the order is cancelled). For example, if a taker's order got matched with 3 maker's orders at the same time, it generates 3 trade IDs but only one match ID.
 
-### Q7: Why the order submission could be rejected even though the order price is set as same as current best bid (or best ask)?
-A: For some extreme illiquid trading symbols, the best quote price at particular time might be far away from last trade price. But the price limit is actually based on last trade price which could possibly exclude best quote price from valid range for any new order.
+### Q6: Why the order submission could be rejected even though the order price is set as same as current best bid (or best ask)?
+A: For some extreme illiquid trading symbols, the best quote price at particular time might be far away from last trade price. But the price limit is actually based on last trade price which could possibly exclude best quote price from valid range for any new order. It is suggested to place orders based on the WebSocket pushed Bid and market data.
 
-### Q8: How to retrieve the trading symbols for margin trade
+### Q7: How to retrieve the trading symbols for margin trade
 
 A: You can get details from Rest API ` GET /v1/common/symbols`. The `leverage-ratio` represents the isolated-margin ratio. The `super-margin-leverage-ratio` represents the cross-margin.
 
@@ -5069,7 +5091,7 @@ Conditional order can be only placed via this endpoint instead of any endpoint i
 |	trailingRate	|	string	|	FALSE	|		|	Trailing rate (only valid for trailing stop order)	|	[0.001,0.050]	|
 
 Note:<br>
-•	The gap between orderPrice and stopPrice shouldn't exceed the price limit ratio. For example, if a limit buy order's price couldn't be higher than 110% of market price, this limitation should be also applicable to orderPrice/stopPrice ratio.<br>
+•	The gap between orderPrice and stopPrice shouldn't exceed the price limit ratio. For example, a limit buy order's price couldn't be higher than 110% of market price, this limitation should be also applicable to orderPrice/stopPrice ratio.<br>
 •	User has to make sure the clientOrderId's uniqueness. While the conditional order being triggered, if the clientOrderId is duplicated with another order (within 24hour) coming from same user, the conditional order will fail triggering.<br>
 •	User has to make sure the corresponding account has sufficient fund for triggering this conditional order, otherwise it would cause conditional order triggering failure.<br>
 •	timeInForce enum values: gtc - good till cancel，boc - book or cancel (also called as post only, or book only), ioc - immediate or cancel, fok - fill or kill<br>
@@ -5345,21 +5367,20 @@ Below is the error code and the description returned by Conditional Order APIs
 | 1001       | Request URL is invalid                               |
 | 1002       | Signature is missing or account id doesn't exist     |
 | 1003       | Signature is wrong                                   |
-| 1005       | Insufficient weight for rate limit                   |
 | 1006       | Exceed rate limit                                    |
-| 1007       | Currency is not found                                |
+| 1007       | Record is not found                                  |
 | 2002       | Specified parameter is missing or invalid            |
 | 2003       | Trading is disabled                                  |
 | 3002       | Order amount precision error                         |
 | 3003       | Trigger price precision error                        |
-| 3004       | Limit order amount is less than specific amount      |
-| 3005       | Limit order amount is greater than specific amount   |
-| 3006       | Limit order price is higher than specific price      |
-| 3007       | Limit order price is lower than specific price       |
-| 3008       | Order value is less than specific value              |
-| 3009       | Market order amount is less than specific amount     |
-| 3010       | Market order amount is greater than specific amount  |
-| 3100       | Market orders not support during limit price trading |
+| 3004       | Limit order amount is less than minimum amount       |
+| 3005       | Limit order amount is greater than maximum amount    |
+| 3006       | Limit order price is higher than maximum price       |
+| 3007       | Limit order price is lower than minimum price        |
+| 3008       | Order value is less than minimum value               |
+| 3009       | Market order amount is less than minimum amount      |
+| 3010       | Market order amount is greater than maximum amount   |
+| 3100       | Market orders can be accepted during limit price trading |
 
 # Margin Loan (Cross/Isolated)
 
