@@ -265,6 +265,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-2-5-2021-2-26-added-query-asset-valuation-interface-modified-get-contract-price-limitation-interface-support-users-not-to-fill-in-all-input-parameters-and-the-interface-returns-the-price-limit-data-of-all-available-contracts-modified-query-the-last-trade-of-a-contract-interface-support-users-not-to-fill-in-all-input-parameters-the-interface-returns-the-latest-transaction-data-of-all-available-contracts-and-in-that-case-the-return-parameter-quot-ch-quot-value-is-quot-market-trade-detail-quot-added-one-field-in-return-quot-tick-quot-parameter-quot-symbol-quot" class="toc-h2 toc-link" data-title="1.2.5 2021-2-26 【Added: Query Asset Valuation interface. Modified Get Contract Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter "ch" value is "market.*trade.detail". Added one field in return "tick" parameter: "symbol")】">1.2.5 2021-2-26 【Added: Query Asset Valuation interface. Modified Get Contract Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter "ch" value is "market.*trade.detail". Added one field in return "tick" parameter: "symbol")】</a>
+                  </li>
+                  <li>
                     <a href="#1-2-4-2021-2-5-added-query-information-on-tiered-margin-set-a-batch-of-sub-account-trading-permissions-query-a-batch-of-sub-account-39-s-assets-information-4-7-modified-the-existing-interfaces-and-added-new-parameters-8-query-user-s-settlement-records-interface-to-avoid-affecting-system-performance-the-interface-only-supports-querying-user-settlement-records-in-the-last-90-days" class="toc-h2 toc-link" data-title="1.2.4 2021-2-5 【Added: Query information on Tiered Margin. Set a Batch of Sub-Account Trading Permissions. Query a Batch of Sub-Account's Assets Information. 4-7 Modified the existing interfaces and added new parameters. 8 Query user’s settlement records interface(To avoid affecting system performance, the interface only supports querying user settlement records in the last 90 days)】">1.2.4 2021-2-5 【Added: Query information on Tiered Margin. Set a Batch of Sub-Account Trading Permissions. Query a Batch of Sub-Account's Assets Information. 4-7 Modified the existing interfaces and added new parameters. 8 Query user’s settlement records interface(To avoid affecting system performance, the interface only supports querying user settlement records in the last 90 days)】</a>
                   </li>
                   <li>
@@ -488,6 +491,9 @@
           <li>
             <a href="#future-account-interface" class="toc-h1 toc-link" data-title="Future Account Interface">Future Account Interface</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#query-asset-valuation" class="toc-h2 toc-link" data-title="Query Asset Valuation">Query Asset Valuation</a>
+                  </li>
                   <li>
                     <a href="#query-user-s-account-information" class="toc-h2 toc-link" data-title="Query User’s Account Information">Query User’s Account Information</a>
                   </li>
@@ -826,7 +832,25 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-2-4-2021-2-5-added-query-information-on-tiered-margin-set-a-batch-of-sub-account-trading-permissions-query-a-batch-of-sub-account-39-s-assets-information-4-7-modified-the-existing-interfaces-and-added-new-parameters-8-query-user-s-settlement-records-interface-to-avoid-affecting-system-performance-the-interface-only-supports-querying-user-settlement-records-in-the-last-90-days'>1.2.4 2021-2-5 【Added: Query information on Tiered Margin. Set a Batch of Sub-Account Trading Permissions. Query a Batch of Sub-Account&#39;s Assets Information. 4-7 Modified the existing interfaces and added new parameters. 8 Query user’s settlement records interface(To avoid affecting system performance, the interface only supports querying user settlement records in the last 90 days)】</h2><h3 id='1-added-query-information-on-tiered-margin-interface'>1. Added Query information on Tiered Margin interface</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-2-5-2021-2-26-added-query-asset-valuation-interface-modified-get-contract-price-limitation-interface-support-users-not-to-fill-in-all-input-parameters-and-the-interface-returns-the-price-limit-data-of-all-available-contracts-modified-query-the-last-trade-of-a-contract-interface-support-users-not-to-fill-in-all-input-parameters-the-interface-returns-the-latest-transaction-data-of-all-available-contracts-and-in-that-case-the-return-parameter-quot-ch-quot-value-is-quot-market-trade-detail-quot-added-one-field-in-return-quot-tick-quot-parameter-quot-symbol-quot'>1.2.5 2021-2-26 【Added: Query Asset Valuation interface. Modified Get Contract Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter &quot;ch&quot; value is &quot;market.*trade.detail&quot;. Added one field in return &quot;tick&quot; parameter: &quot;symbol&quot;)】</h2><h3 id='1-added-query-asset-valuation-interface'>1. Added Query Asset Valuation interface</h3>
+<ul>
+<li>Interface Name: Query Asset Valuation</li>
+<li>Interface Type: private</li>
+<li>interface URL: /api/v1/contract_balance_valuation</li>
+</ul>
+<h3 id='2-modified-get-contract-price-limitation-interface-support-users-not-to-fill-in-all-input-parameters-and-the-interface-returns-the-price-limit-data-of-all-available-contracts'>2. Modified Get Contract Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts)</h3>
+<ul>
+<li>Interface Name: Get Contract Price Limitation</li>
+<li>Interface Type: public</li>
+<li>interface URL: /api/v1/contract_price_limit</li>
+</ul>
+<h3 id='3-modified-query-the-last-trade-of-a-contract-interface-support-users-not-to-fill-in-all-input-parameters-the-interface-returns-the-latest-transaction-data-of-all-available-contracts-and-in-that-case-the-return-parameter-quot-ch-quot-value-is-quot-market-trade-detail-quot-added-one-field-in-return-quot-data-quot-parameter-quot-symbol-quot'>3. Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter &quot;ch&quot; value is &quot;market.*trade.detail&quot;. Added one field in return &quot;data&quot; parameter: &quot;symbol&quot;)</h3>
+<ul>
+<li>Interface Name: Query The Last Trade of a Contract</li>
+<li>Interface Type: public</li>
+<li>interface URL: /market/trade</li>
+</ul>
+<h2 id='1-2-4-2021-2-5-added-query-information-on-tiered-margin-set-a-batch-of-sub-account-trading-permissions-query-a-batch-of-sub-account-39-s-assets-information-4-7-modified-the-existing-interfaces-and-added-new-parameters-8-query-user-s-settlement-records-interface-to-avoid-affecting-system-performance-the-interface-only-supports-querying-user-settlement-records-in-the-last-90-days'>1.2.4 2021-2-5 【Added: Query information on Tiered Margin. Set a Batch of Sub-Account Trading Permissions. Query a Batch of Sub-Account&#39;s Assets Information. 4-7 Modified the existing interfaces and added new parameters. 8 Query user’s settlement records interface(To avoid affecting system performance, the interface only supports querying user settlement records in the last 90 days)】</h2><h3 id='1-added-query-information-on-tiered-margin-interface'>1. Added Query information on Tiered Margin interface</h3>
 <ul>
 <li>Interface Name: Query information on Tiered Margin</li>
 <li>Interface Type: public</li>
@@ -1905,6 +1929,14 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
 <td>GET</td>
 <td>Query information on Tiered Margin</td>
 <td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Account</td>
+<td>/api/v1/contract_balance_valuation</td>
+<td>POST</td>
+<td>Query Asset Valuation</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>Read</td>
@@ -4388,9 +4420,9 @@ b.  b. There is a delay in “Order Details Acquisition” interface (/api/v1/co
 </tr>
 </tbody></table>
 <h3 id='note-3'>Note  ：</h3>
-<p>If there is a number in the Contract Code row，inquiry with Contract_Code. 
-If there is no number，inquiry by Symbol + Contract Type. 
-One of the query conditions must be chosen.</p>
+<p>If not any parameter is filled, the interface returns the price limitation data of all currently available contracts.
+If the contract_code is filled in, query by the contract_code;
+The contract_type parameter needs to together with symbol, and can&#39;t get contract data only by contract_type</p>
 
 <blockquote>
 <p>Response</p>
@@ -5508,7 +5540,7 @@ One of the query conditions must be chosen.</p>
 </thead><tbody>
 <tr>
 <td>symbol</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
 <td>Contract Name</td>
 <td></td>
@@ -5537,25 +5569,25 @@ One of the query conditions must be chosen.</p>
 <blockquote>
 <p>Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_NQ.trade.detail"</span><span class="p">,</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.*.trade.detail"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"tick"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604298443540</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1137660004780000</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14117.98"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00134"</span><span class="w">
+                </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0129032258064516129032258064516129032"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1613998847438</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50710000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"31000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_NQ"</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604298454352</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604298454352</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1614068483482</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1614068483482</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604298454352</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1614068483482</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='returning-parameter-12'>Returning Parameter</h3>
 <table><thead>
@@ -5669,6 +5701,14 @@ One of the query conditions must be chosen.</p>
 <td>true</td>
 <td>string</td>
 <td>trading quantity(coin)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
 <td></td>
 <td></td>
 </tr>
@@ -8018,11 +8058,101 @@ One of the query conditions must be chosen.</p>
 <li>If the settement type is &quot;delivery&quot;, the field &quot;estimated_settlement_price&quot; will not be caluculated and shown updatedly until an hour before delivery. At other points (including the point of delivery), the field value will be empty; and other fields will be showned normally.</li>
 <li>Estimated settlement price will be calculated and updated every 6 seconds.</li>
 </ul>
-<h1 id='future-account-interface'>Future Account Interface</h1><h2 id='query-user-s-account-information'>Query User’s Account Information</h2><h3 id='example-13'>Example</h3>
+<h1 id='future-account-interface'>Future Account Interface</h1><h2 id='query-asset-valuation'>Query Asset Valuation</h2>
+<ul>
+<li>POST ‘/api/v1/contract_balance_valuation’</li>
+</ul>
+<h3 id='request-parameter-23'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Parameter Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>valuation_asset</td>
+<td>false</td>
+<td>string</td>
+<td>The valuation according to the certain fiat currency. If not fill in, default as BTC</td>
+<td>&quot;BTC&quot;,&quot;USD&quot;,&quot;USDT&quot;,&quot;CNY&quot;,&quot;EUR&quot;,&quot;GBP&quot;,&quot;VND&quot;,&quot;HKD&quot;,&quot;TWD&quot;,&quot;MYR&quot;,&quot;SGD&quot;,&quot;KRW&quot;,&quot;RUB&quot;,&quot;TRY&quot;</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"valuation_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CNY"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"295098.370590947021036643"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1614044220841</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='returning-parameter-24'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Parameter Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>the result of server handles for the request</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>valuation_asset</td>
+<td>true</td>
+<td>string</td>
+<td>The valuation according to the certain fiat currency</td>
+<td>&quot;BTC&quot;,&quot;USD&quot;,&quot;USDT&quot;,&quot;CNY&quot;,&quot;EUR&quot;,&quot;GBP&quot;,&quot;VND&quot;,&quot;HKD&quot;,&quot;TWD&quot;,&quot;MYR&quot;,&quot;SGD&quot;,&quot;KRW&quot;,&quot;RUB&quot;,&quot;TRY&quot;</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>true</td>
+<td>string</td>
+<td>Asset Valuation</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>timestamp</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='query-user-s-account-information'>Query User’s Account Information</h2><h3 id='example-13'>Example</h3>
 <ul>
 <li>POST <code>/api/v1/contract_account_info</code><br></li>
 </ul>
-<h3 id='request-parameter-23'>Request Parameter</h3>
+<h3 id='request-parameter-24'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8069,7 +8199,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604300060777</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-24'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-25'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8203,7 +8333,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST  <code>/api/v1/contract_position_info</code> </li>
 </ul>
-<h3 id='request-parameter-24'>Request Parameter</h3>
+<h3 id='request-parameter-25'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8251,7 +8381,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604301441639</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-25'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-26'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8403,7 +8533,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>/api/v1/contract_sub_auth</code></li>
 </ul>
-<h3 id='request-parameter-25'>Request Parameter</h3>
+<h3 id='request-parameter-26'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8452,7 +8582,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1612490081318</span><span class="w">
 </span><span class="p">}</span><span class="w">   
-</span></code></pre><h3 id='returning-parameter-26'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-27'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8673,7 +8803,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>/api/v1/contract_sub_account_info_list</code></li>
 </ul>
-<h3 id='request-parameter-26'>Request Parameter</h3>
+<h3 id='request-parameter-27'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8746,7 +8876,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1612490180078</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-27'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-28'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9464,7 +9594,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>/api/v1/contract_financial_record_exact</code></li>
 </ul>
-<h3 id='request-parameter-27'>Request Parameter</h3>
+<h3 id='request-parameter-28'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter name</th>
@@ -9660,7 +9790,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604305081144</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-28'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-29'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9777,7 +9907,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>/api/v1/contract_user_settlement_records</code></li>
 </ul>
-<h3 id='request-parameter-28'>Request Parameter</h3>
+<h3 id='request-parameter-29'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9872,7 +10002,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604305358564</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-29'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-30'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10109,7 +10239,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>/api/v1/contract_order_limit</code></li>
 </ul>
-<h3 id='request-parameter-29'>Request Parameter</h3>
+<h3 id='request-parameter-30'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10173,7 +10303,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604306946036</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-30'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-31'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10279,7 +10409,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>/api/v1/contract_fee</code></li>
 </ul>
-<h3 id='request-parameter-30'>Request Parameter</h3>
+<h3 id='request-parameter-31'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10317,7 +10447,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604307012954</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-31'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-32'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10409,7 +10539,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>/api/v1/contract_transfer_limit</code></li>
 </ul>
-<h3 id='request-parameter-31'>Request Parameter</h3>
+<h3 id='request-parameter-32'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10449,7 +10579,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604307084954</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-32'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-33'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10555,7 +10685,7 @@ One of the query conditions must be chosen.</p>
 <ul>
 <li>POST <code>/api/v1/contract_position_limit</code></li>
 </ul>
-<h3 id='request-parameter-32'>Request Parameter</h3>
+<h3 id='request-parameter-33'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10614,7 +10744,7 @@ One of the query conditions must be chosen.</p>
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604307195501</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-33'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-34'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11631,7 +11761,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"sl_order_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"330"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sl_order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"optimal_5"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-33'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-34'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11776,7 +11906,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604367611267</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-34'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-35'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11882,7 +12012,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-34'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-35'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12048,7 +12178,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604367844388</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-35'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-36'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12170,7 +12300,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST  <code>/api/v1/contract_cancel</code></li>
 </ul>
-<h3 id='request-parameter-35'>Request Parameter</h3>
+<h3 id='request-parameter-36'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12223,7 +12353,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604367997451</span><span class="w">
 </span><span class="p">}</span><span class="w"> 
-</span></code></pre><h3 id='returning-parameter-36'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-37'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12318,7 +12448,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"btc200925"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="s2">"quarter"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-36'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-37'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12378,7 +12508,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604369127577</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-37'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-38'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12468,7 +12598,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <li><p>Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.</p></li>
 <li><p>The interface limits the number of requests to 1 time per 3 seconds.</p></li>
 </ul>
-<h3 id='request-parameter-37'>Request Parameter</h3>
+<h3 id='request-parameter-38'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -12517,7 +12647,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604369954194</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-38'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-39'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12588,7 +12718,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/lightning_close_position</code></li>
 </ul>
-<h3 id='request-parameter-38'>Request Parameter</h3>
+<h3 id='request-parameter-39'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12665,7 +12795,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-39'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-40'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12740,7 +12870,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_order_info</code></li>
 </ul>
-<h3 id='request-parameter-39'>Request Parameter</h3>
+<h3 id='request-parameter-40'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12816,7 +12946,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604370179844</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-40'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-41'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13053,7 +13183,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_order_detail</code></li>
 </ul>
-<h3 id='request-parameter-40'>Request Parameter</h3>
+<h3 id='request-parameter-41'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13167,7 +13297,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604370259827</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-41'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-42'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13530,7 +13660,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST  <code>/api/v1/contract_openorders</code></li>
 </ul>
-<h3 id='request-parameter-41'>Request Parameter</h3>
+<h3 id='request-parameter-42'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13629,7 +13759,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604370488518</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-42'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-43'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13910,7 +14040,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-42'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-43'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14048,7 +14178,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604370617322</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-43'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-44'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14314,7 +14444,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_hisorders_exact</code></li>
 </ul>
-<h3 id='request-parameter-43'>Request Parameter</h3>
+<h3 id='request-parameter-44'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14551,7 +14681,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604371805794</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-44'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-45'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14810,7 +14940,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_matchresults</code></li>
 </ul>
-<h3 id='request-parameter-44'>Request Parameter</h3>
+<h3 id='request-parameter-45'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14907,7 +15037,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604371918571</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-45'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-46'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15125,7 +15255,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_matchresults_exact</code></li>
 </ul>
-<h3 id='request-parameter-45'>Request Parameter</h3>
+<h3 id='request-parameter-46'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15334,7 +15464,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604372202243</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-46'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-47'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16017,7 +16147,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_trigger_openorders</code></li>
 </ul>
-<h3 id='request-parameter-46'>Request Parameter</h3>
+<h3 id='request-parameter-47'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16092,7 +16222,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604374215911</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-47'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-48'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16297,7 +16427,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_trigger_hisorders</code></li>
 </ul>
-<h3 id='request-parameter-47'>Request Parameter</h3>
+<h3 id='request-parameter-48'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16420,7 +16550,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604374349086</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-48'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-49'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16689,7 +16819,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"sl_order_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29000"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sl_order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"optimal_5"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-48'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-49'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16811,7 +16941,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contract_code cannot be empty."</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604369954194</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-49'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-50'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16928,7 +17058,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_tpsl_cancel</code></li>
 </ul>
-<h3 id='request-parameter-49'>Request Parameter</h3>
+<h3 id='request-parameter-50'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16975,7 +17105,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609843174529</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-50'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-51'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17060,7 +17190,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_tpsl_cancelall</code></li>
 </ul>
-<h3 id='request-parameter-50'>Request Parameter</h3>
+<h3 id='request-parameter-51'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17118,7 +17248,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609843284024</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-51'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-52'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17203,7 +17333,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_tpsl_openorders</code></li>
 </ul>
-<h3 id='request-parameter-51'>Request Parameter</h3>
+<h3 id='request-parameter-52'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17284,7 +17414,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609846316344</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-52'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-53'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17488,7 +17618,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_tpsl_hisorders</code></li>
 </ul>
-<h3 id='request-parameter-52'>Request Parameter</h3>
+<h3 id='request-parameter-53'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17590,7 +17720,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609846686146</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-53'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-54'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17836,7 +17966,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_relation_tpsl_order</code></li>
 </ul>
-<h3 id='request-parameter-53'>Request Parameter</h3>
+<h3 id='request-parameter-54'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17935,7 +18065,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609847008041</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-54'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-55'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18287,7 +18417,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p>API rate limit for this interface is 1 times/second.</p>
 
 <p>Transferring margin between Spot account and Future account Interface, sets 8 decimal places for transferring amount of all coins.</p>
-<h3 id='request-parameter-54'>Request Parameter</h3>
+<h3 id='request-parameter-55'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18341,7 +18471,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"base-currency-error"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The current coin does not exist."</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-55'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-56'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -19083,7 +19213,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-55'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-56'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -19268,7 +19398,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573106298</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-56'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-57'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -19495,7 +19625,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-57'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-58'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -19732,7 +19862,7 @@ Details are below:</p></li>
   </span><span class="s2">"data_type"</span><span class="p">:</span><span class="s2">"incremental"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-58'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-59'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -19946,7 +20076,7 @@ Details are below:</p></li>
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-59'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-60'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -19968,7 +20098,7 @@ Details are below:</p></li>
 <td>id automatically generated by the business party</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameter-60'>Request Parameter</h3>
+<h3 id='request-parameter-61'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20125,7 +20255,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-61'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-62'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20519,7 +20649,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-62'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-63'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20719,7 +20849,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-63'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-64'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20793,7 +20923,7 @@ Details are below:</p></li>
         </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">0</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-56'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-57'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -20906,7 +21036,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-64'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-65'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -21005,7 +21135,7 @@ Details are below:</p></li>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-57'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-58'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -21134,7 +21264,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-65'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-66'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -21212,7 +21342,7 @@ Details are below:</p></li>
         </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="s2">"0.0014516721212147151654052074480586653"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-58'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-59'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -21313,7 +21443,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-66'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-67'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -21415,7 +21545,7 @@ Details are below:</p></li>
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1604387965575</span><span class="p">,</span><span class="w">
     </span><span class="s2">"wsid"</span><span class="p">:</span><span class="mi">3823737955</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-59'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-60'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -23374,7 +23504,7 @@ Details are below:</p></li>
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trigger_order.BTC"</span><span class="p">,</span><span class="w">   
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">          
 </span><span class="p">}</span><span class="w">                                    
-</span></code></pre><h3 id='request-parameter-67'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-68'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -23790,7 +23920,7 @@ Details are below:</p></li>
     </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"topic "</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.futures.heartbeat"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-68'><strong>Request Parameter</strong>:</h3>
+</span></code></pre><h3 id='request-parameter-69'><strong>Request Parameter</strong>:</h3>
 <table><thead>
 <tr>
 <th>Name</th>
