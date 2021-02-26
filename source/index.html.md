@@ -38,6 +38,23 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.0.5 2021-2-26 【Added: Query Asset Valuation interface. Modified Query Option Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter "ch" value is "market.*trade.detail". Added one field in return "tick" parameter: "contract_code")】
+
+### 1. Added Query Asset Valuation interface
+ - Interface Name: Query Asset Valuation
+ - Interface Type: private
+ - interface URL: /option-api/v1/option_balance_valuation
+
+### 2. Modified Query Option Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts)
+ - Interface Name: Query Option Price Limitation
+ - Interface Type: public
+ - interface URL: /option-api/v1/option_price_limit
+
+### 3. Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter "ch" value is "market.*trade.detail". Added one field in return "data" parameter: "contract_code")
+ - Interface Name: Query The Last Trade of a Contract
+ - Interface Type: public
+ - interface URL: /option-ex/market/trade
+
 ## 1.0.4 2021-2-5 【Added: Set a Batch of Sub-Account Trading Permissions interface, Query a Batch of Sub-Account's Assets Information Modified: Query The Last Trade of a Contract interface, Query a Batch of Trade Records of a Contract interface, Subscribe Trade Detail Data interface, Request Trade Detail Data interface】
 
 ### 1. Added Set a Batch of Sub-Account Trading Permissions interface
@@ -142,6 +159,7 @@ Read  | Market Data      | /option-ex/market/history/kline          |  GET      
 Read  | Market Data      |  /option-ex/market/detail/merged         |  GET              | Query Market Data Overview                       | No                     |
 Read  | Market Data      |  /option-ex/market/trade                  |  GET              | Query The Last Trade of a Contract                   | No                     |
 Read  | Market Data      | /option-ex/market/history/trade           |  GET              | Query a Batch of Trade Records of a Contract | No                     |
+Read  | Account          | /option-api/v1/option_balance_valuation   |  POST             | Query Asset Valuation                    | Yes                    |
 Read  | Account          | /option-api/v1/option_account_info   |  POST             | Query User’s Account Information                     | Yes                    |
 Read  | Account          | /option-api/v1/option_position_info  |  POST             | Query User’s position Information                    | Yes                    |
 Trade    |  Account           |  /option-api/v1/option_sub_auth                |    POST       |       Set a Batch of Sub-Account Trading Permissions       |  Yes  |
@@ -1114,7 +1132,7 @@ curl "https://api.hbdm.com/option-api/v1/option_price_limit?contract_code=BTC-US
 
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | ------------- | -------- | ------ | -------- | ---------------------- |
-| contract_code | true     | string | Contract Code | BTC-USDT-201225-C-13000 |
+| contract_code | false     | string | Contract Code, All swaps default | BTC-USDT-201225-C-13000 |
 
 
 > Response
@@ -1786,7 +1804,7 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-201225-
 
 | Parameter Name        | Mandatory | Type         | Desc                       | Value Range       |
 | ------------- | -------- | ------ | -------- | ---------------------------- |
-| contract_code | true     | string | Contract Code | "BTC-USDT-201225-C-13000" ... |
+| contract_code | false     | string | Contract Code, All swaps default | "BTC-USDT-201225-C-13000" ... |
 
 > Tick Illustration：
 
@@ -1810,25 +1828,37 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-201225-
 
 ```json
 
+
 {
-    "ch": "market.BTC-USDT-201225-C-13000.trade.detail",
+    "ch": "market.*.trade.detail",
     "status": "ok",
     "tick": {
         "data": [
             {
-                "amount": "98",
+                "amount": "2",
+                "contract_code": "BTC-USDT-210326-C-20000",
+                "direction": "sell",
+                "id": 348060000,
+                "price": "27000.2",
+                "quantity": "0.002",
+                "trade_turnover": "54.0004",
+                "ts": 1614065387681
+            },
+            {
+                "amount": "2",
+                "contract_code": "BTC-USDT-210326-P-20000",
                 "direction": "buy",
-                "id": 1182841000001,
-                "price": "2855.11",
-                "ts": 1604615035549,
-                "quantity": "0.97",
-                "trade_turnover":"216.0683"
+                "id": 347030000,
+                "price": "88",
+                "quantity": "0.002",
+                "trade_turnover": "0.176",
+                "ts": 1613990541997
             }
         ],
-        "id": 1604642413998,
-        "ts": 1604642413998
+        "id": 1614074418045,
+        "ts": 1614074418045
     },
-    "ts": 1604642413998
+    "ts": 1614074418045
 }
 ```
 
@@ -1848,6 +1878,7 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-201225-
 | price     | true     | string       | Transaction Price                                                       |              |
 | ts        | true     | long         | Transaction Time                                                   |              |
 | quantity     | true | string | trading quantity(coin)       |      |
+| contract_code     | true | string | Contract code       |      |
 | trade_turnover     | true | string | trading amount(quoted currency)    |      |
 | \</data\>   |          |              |                                                              |              |
 | \</tick\>   |          |              |                                                              |              |
@@ -1966,6 +1997,44 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 
 
 # Option Account Interface
+
+## Query Asset Valuation
+
+ - POST `/option-api/v1/option_balance_valuation`
+
+### Request Parameter
+
+| Parameter Name          | Mandatory  | Parameter Type     | Description   | Value Range                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| valuation_asset   | false  | string    |    The valuation according to the certain fiat currency. If not fill in, default as BTC    |   "BTC","USD","USDT","CNY","EUR","GBP","VND","HKD","TWD","MYR","SGD","KRW","RUB","TRY"    |
+
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "valuation_asset": "BTC",
+            "balance": "0.05402000000000000"
+        }
+    ],
+    "ts": 1614047794160
+}
+```
+
+### Returning Parameter
+
+| Parameter Name                   | Mandatory | Parameter Type      | Description                 | Value Range                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | the result of server handles for the request             |                                          |
+| \<data\> | true     |  object array      |                    |                                          |
+| valuation_asset   | true  | string    |    The valuation according to the certain fiat currency   |  "BTC","USD","USDT","CNY","EUR","GBP","VND","HKD","TWD","MYR","SGD","KRW","RUB","TRY"   |
+| balance        | true | string |    Asset Valuation       |         |
+| \</data\>            |      |         |                    |                                          |
+| ts                     | true | long    | timestamp                |                                          |
+
 
 ## Query User’s Account Information
 
