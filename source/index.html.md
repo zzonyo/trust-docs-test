@@ -38,7 +38,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
-## 1.0.4 2021-2-5 [Added: Set a Batch of Sub-Account Trading Permissions interface, Query a Batch of Sub-Account's Assets Information Modified: Query The Last Trade of a Contract interface, Query a Batch of Trade Records of a Contract interface, Subscribe Trade Detail Data interface, Request Trade Detail Data interface]
+## 1.0.4 2021-2-5 【Added: Set a Batch of Sub-Account Trading Permissions interface, Query a Batch of Sub-Account's Assets Information Modified: Query The Last Trade of a Contract interface, Query a Batch of Trade Records of a Contract interface, Subscribe Trade Detail Data interface, Request Trade Detail Data interface】
 
 ### 1. Added Set a Batch of Sub-Account Trading Permissions interface
  - Interface Name: Set a Batch of Sub-Account Trading Permissions
