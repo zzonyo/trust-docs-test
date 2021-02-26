@@ -265,6 +265,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-0-9-2021-2-26-added-query-asset-valuation-interface-query-a-batch-of-funding-rate-interface-modified-get-contract-price-limitation-interface-support-users-not-to-fill-in-all-input-parameters-and-the-interface-returns-the-price-limit-data-of-all-available-contracts-modified-query-the-last-trade-of-a-contract-interface-support-users-not-to-fill-in-all-input-parameters-the-interface-returns-the-latest-transaction-data-of-all-available-contracts-and-in-that-case-the-return-parameter-quot-ch-quot-value-is-quot-market-trade-detail-quot-added-one-field-in-return-quot-tick-quot-parameter-quot-contract_code-quot" class="toc-h2 toc-link" data-title="1.0.9 2021-2-26 【Added: Query Asset Valuation interface, Query a Batch of Funding Rate interface. Modified Get Contract Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter "ch" value is "market.*trade.detail". Added one field in return "tick" parameter: "contract_code")】">1.0.9 2021-2-26 【Added: Query Asset Valuation interface, Query a Batch of Funding Rate interface. Modified Get Contract Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter "ch" value is "market.*trade.detail". Added one field in return "tick" parameter: "contract_code")】</a>
+                  </li>
+                  <li>
                     <a href="#1-0-8-2021-2-5-added-get-history-orders-via-multiple-fields-cross-margin-and-isolated-margin-get-history-match-results-via-multiple-fields-cross-margin-and-isolated-margin-query-account-financial-records-via-multiple-fields-query-information-on-tiered-margin-cross-margin-and-isolated-margin-set-a-batch-of-sub-account-trading-permissions-query-a-batch-of-sub-account-39-s-assets-information-cross-margin-and-isolated-margin-11-14-modified-the-existing-interfaces-and-added-new-parameters" class="toc-h2 toc-link" data-title="1.0.8 2021-2-5 【Added: Get History Orders via Multiple Fields(cross margin and isolated margin), Get History Match Results via Multiple Fields(cross margin and isolated margin), Query account financial records via Multiple Fields, Query information on Tiered Margin(cross margin and isolated margin), Set a Batch of Sub-Account Trading Permissions, Query a Batch of Sub-Account's Assets Information(cross margin and isolated margin)。11-14 Modified the existing interfaces and added new parameters】">1.0.8 2021-2-5 【Added: Get History Orders via Multiple Fields(cross margin and isolated margin), Get History Match Results via Multiple Fields(cross margin and isolated margin), Query account financial records via Multiple Fields, Query information on Tiered Margin(cross margin and isolated margin), Set a Batch of Sub-Account Trading Permissions, Query a Batch of Sub-Account's Assets Information(cross margin and isolated margin)。11-14 Modified the existing interfaces and added new parameters】</a>
                   </li>
                   <li>
@@ -439,6 +442,9 @@
                     <a href="#general-query-funding-rate" class="toc-h2 toc-link" data-title="[General] Query funding rate">[General] Query funding rate</a>
                   </li>
                   <li>
+                    <a href="#general-query-a-batch-of-funding-rate" class="toc-h2 toc-link" data-title="[General]Query a Batch of Funding Rate">[General]Query a Batch of Funding Rate</a>
+                  </li>
+                  <li>
                     <a href="#general-query-historical-funding-rate" class="toc-h2 toc-link" data-title="[General] Query historical funding rate">[General] Query historical funding rate</a>
                   </li>
                   <li>
@@ -458,6 +464,9 @@
           <li>
             <a href="#swap-account-interface" class="toc-h1 toc-link" data-title="Swap Account Interface">Swap Account Interface</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#general-query-asset-valuation" class="toc-h2 toc-link" data-title="[General]Query Asset Valuation">[General]Query Asset Valuation</a>
+                  </li>
                   <li>
                     <a href="#isolated-query-user-s-account-information" class="toc-h2 toc-link" data-title="[Isolated] Query User’s Account Information">[Isolated] Query User’s Account Information</a>
                   </li>
@@ -950,7 +959,31 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-0-8-2021-2-5-added-get-history-orders-via-multiple-fields-cross-margin-and-isolated-margin-get-history-match-results-via-multiple-fields-cross-margin-and-isolated-margin-query-account-financial-records-via-multiple-fields-query-information-on-tiered-margin-cross-margin-and-isolated-margin-set-a-batch-of-sub-account-trading-permissions-query-a-batch-of-sub-account-39-s-assets-information-cross-margin-and-isolated-margin-11-14-modified-the-existing-interfaces-and-added-new-parameters'>1.0.8 2021-2-5 【Added: Get History Orders via Multiple Fields(cross margin and isolated margin), Get History Match Results via Multiple Fields(cross margin and isolated margin), Query account financial records via Multiple Fields, Query information on Tiered Margin(cross margin and isolated margin), Set a Batch of Sub-Account Trading Permissions, Query a Batch of Sub-Account&#39;s Assets Information(cross margin and isolated margin)。11-14 Modified the existing interfaces and added new parameters】</h2><h3 id='1-added-get-history-orders-via-multiple-fields-interface-isolated'>1. Added Get History Orders via Multiple Fields interface[Isolated]</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-0-9-2021-2-26-added-query-asset-valuation-interface-query-a-batch-of-funding-rate-interface-modified-get-contract-price-limitation-interface-support-users-not-to-fill-in-all-input-parameters-and-the-interface-returns-the-price-limit-data-of-all-available-contracts-modified-query-the-last-trade-of-a-contract-interface-support-users-not-to-fill-in-all-input-parameters-the-interface-returns-the-latest-transaction-data-of-all-available-contracts-and-in-that-case-the-return-parameter-quot-ch-quot-value-is-quot-market-trade-detail-quot-added-one-field-in-return-quot-tick-quot-parameter-quot-contract_code-quot'>1.0.9 2021-2-26 【Added: Query Asset Valuation interface, Query a Batch of Funding Rate interface. Modified Get Contract Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter &quot;ch&quot; value is &quot;market.*trade.detail&quot;. Added one field in return &quot;tick&quot; parameter: &quot;contract_code&quot;)】</h2><h3 id='1-added-query-asset-valuation-interface'>1. Added Query Asset Valuation interface</h3>
+<ul>
+<li>Interface Name: [General]Query Asset Valuation</li>
+<li>Interface Type: private</li>
+<li>interface URL: /linear-swap-api/v1/swap_balance_valuation</li>
+</ul>
+<h3 id='2-added-query-a-batch-of-funding-rate-interface'>2. Added Query a Batch of Funding Rate interface</h3>
+<ul>
+<li>Interface Name: [General]Query a Batch of Funding Rate</li>
+<li>Interface Type: public</li>
+<li>interface URL: /linear-swap-api/v1/swap_batch_funding_rate</li>
+</ul>
+<h3 id='3-modified-get-contract-price-limitation-interface-support-users-not-to-fill-in-all-input-parameters-and-the-interface-returns-the-price-limit-data-of-all-available-contracts'>3. Modified Get Contract Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts)</h3>
+<ul>
+<li>Interface Name: [General]Get Contract Price Limitation</li>
+<li>Interface Type: public</li>
+<li>interface URL: /linear-swap-api/v1/swap_price_limit</li>
+</ul>
+<h3 id='4-modified-query-the-last-trade-of-a-contract-interface-support-users-not-to-fill-in-all-input-parameters-the-interface-returns-the-latest-transaction-data-of-all-available-contracts-and-in-that-case-the-return-parameter-quot-ch-quot-value-is-quot-market-trade-detail-quot-added-one-field-in-return-quot-data-quot-parameter-quot-contract_code-quot'>4. Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter &quot;ch&quot; value is &quot;market.*trade.detail&quot;. Added one field in return &quot;data&quot; parameter: &quot;contract_code&quot;)</h3>
+<ul>
+<li>Interface Name: [General]Query The Last Trade of a Contract</li>
+<li>Interface Type: public</li>
+<li>interface URL: /linear-swap-ex/market/trade</li>
+</ul>
+<h2 id='1-0-8-2021-2-5-added-get-history-orders-via-multiple-fields-cross-margin-and-isolated-margin-get-history-match-results-via-multiple-fields-cross-margin-and-isolated-margin-query-account-financial-records-via-multiple-fields-query-information-on-tiered-margin-cross-margin-and-isolated-margin-set-a-batch-of-sub-account-trading-permissions-query-a-batch-of-sub-account-39-s-assets-information-cross-margin-and-isolated-margin-11-14-modified-the-existing-interfaces-and-added-new-parameters'>1.0.8 2021-2-5 【Added: Get History Orders via Multiple Fields(cross margin and isolated margin), Get History Match Results via Multiple Fields(cross margin and isolated margin), Query account financial records via Multiple Fields, Query information on Tiered Margin(cross margin and isolated margin), Set a Batch of Sub-Account Trading Permissions, Query a Batch of Sub-Account&#39;s Assets Information(cross margin and isolated margin)。11-14 Modified the existing interfaces and added new parameters】</h2><h3 id='1-added-get-history-orders-via-multiple-fields-interface-isolated'>1. Added Get History Orders via Multiple Fields interface[Isolated]</h3>
 <ul>
 <li> Interface Name: [Isolated]Get History Orders via Multiple Fields</li>
 <li> Interface Type: private </li>
@@ -1962,6 +1995,15 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Read</td>
 <td>Market Data</td>
 <td>general</td>
+<td>/linear-swap-api/v1/swap_batch_funding_rate</td>
+<td>GET</td>
+<td>[General]Query a Batch of Funding Rate</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Market Data</td>
+<td>general</td>
 <td>/linear-swap-api/v1/swap_historical_funding_rate</td>
 <td>GET</td>
 <td>Query Historical Funding Rate</td>
@@ -2110,6 +2152,15 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>GET</td>
 <td>[Cross]Query information on Tiered Margin</td>
 <td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Account</td>
+<td>isolated margin</td>
+<td>/linear-swap-api/v1/swap_balance_valuation</td>
+<td>POST</td>
+<td>[General]Query Asset Valuation</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>Read</td>
@@ -4930,8 +4981,8 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <tr>
 <td>contract_code</td>
 <td>string</td>
-<td>true</td>
-<td>Case-insenstive.such as:BTC-USDT  ...</td>
+<td>false</td>
+<td>Contract Code, Case-insenstive.such as:BTC-USDT ,All swaps default</td>
 </tr>
 </tbody></table>
 
@@ -6159,9 +6210,9 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 </thead><tbody>
 <tr>
 <td>contract_code</td>
-<td>true</td>
+<td>false</td>
 <td>string</td>
-<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC-USDT&quot;</td>
+<td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC-USDT&quot; ,All swaps default</td>
 </tr>
 </tbody></table>
 
@@ -6199,6 +6250,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
                 </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13083"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.006</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"trade_turnover"</span><span class="p">:</span><span class="w"> </span><span class="mf">78.498</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
@@ -6319,6 +6371,14 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>true</td>
 <td>string</td>
 <td>trading quantity(coin)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>Contract Code</td>
 <td></td>
 <td></td>
 </tr>
@@ -9166,6 +9226,148 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='general-query-a-batch-of-funding-rate'>[General]Query a Batch of Funding Rate</h2>
+<ul>
+<li>GET <code>/linear-swap-api/v1/swap_batch_funding_rate</code></li>
+</ul>
+<h4 id='note-9'>Note</h4>
+<ul>
+<li>The interface supports cross margin mode and isolated margin mode</li>
+</ul>
+<h3 id='request-parameter-26'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Parameter Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>false</td>
+<td>string</td>
+<td>contract code，if not filled in, default as all</td>
+<td>&quot;BTC-USDT&quot; ...</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"estimated_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.007500000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.007500000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETC-USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1613976000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"next_funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1614004800000"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"estimated_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.007500000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"funding_rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.007500000000000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADA-USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADA"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1613976000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"next_funding_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1614004800000"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1614045373795</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='returning-parameter-27'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Parameter Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>the result of server handles for the request</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>&quot;BTC-USDT&quot; ...</td>
+</tr>
+<tr>
+<td>fee_asset</td>
+<td>true</td>
+<td>string</td>
+<td>fee asset</td>
+<td>&quot;USDT...</td>
+</tr>
+<tr>
+<td>funding_time</td>
+<td>true</td>
+<td>string</td>
+<td>current funding time(Millisecond)</td>
+<td></td>
+</tr>
+<tr>
+<td>funding_rate</td>
+<td>true</td>
+<td>string</td>
+<td>current funding rate</td>
+<td></td>
+</tr>
+<tr>
+<td>estimated_rate</td>
+<td>true</td>
+<td>string</td>
+<td>estimated funding rate of current period</td>
+<td></td>
+</tr>
+<tr>
+<td>next_funding_time</td>
+<td>true</td>
+<td>string</td>
+<td>estimated funding rate of next period(Millisecond)</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <h2 id='general-query-historical-funding-rate'>[General] Query historical funding rate</h2>
 <ul>
 <li>GET <code>/linear-swap-api/v1/swap_historical_funding_rate</code></li>
@@ -9882,11 +10084,11 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>GET <code>/linear-swap-api/v1/swap_estimated_settlement_price</code></li>
 </ul>
-<h4 id='note-9'>Note</h4>
+<h4 id='note-10'>Note</h4>
 <ul>
 <li> The interface supports cross margin mode and isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-26'>Request Parameter</h3>
+<h3 id='request-parameter-27'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9919,7 +10121,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609751036345</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-27'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-28'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9979,13 +10181,106 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-10'>Note</h4>
+<h4 id='note-11'>Note</h4>
 <ul>
 <li>When the &quot;settlement_type&quot; is &quot;settlement&quot;, the &quot;estimated_settlement_price&quot; will be calculated and updated from 10 minutes before settlement and until the settlement. In the other moment(including settlement), &quot;estimated_settlement_price&quot; is empty, but the other fields will be displayed normally.</li>
 <li>When the &quot;settlement_type&quot; is &quot;delivery&quot;, the &quot;estimated_settlement_price&quot; will be calculated and updated from 10 minutes before settlement and until the delivery. In the other moment(including delivery), &quot;estimated_settlement_price&quot; is empty, but the other fields will be displayed normally.</li>
 <li>Estimated settlement price will be calculated and updated every 6 seconds.</li>
 </ul>
-<h1 id='swap-account-interface'>Swap Account Interface</h1><h2 id='isolated-query-user-s-account-information'>[Isolated] Query User’s Account Information</h2><h3 id='example-13'>Example</h3>
+<h1 id='swap-account-interface'>Swap Account Interface</h1><h2 id='general-query-asset-valuation'>[General]Query Asset Valuation</h2>
+<ul>
+<li>POST <code>/linear-swap-api/v1/swap_balance_valuation</code></li>
+</ul>
+<h4 id='note-12'>Note</h4>
+<ul>
+<li>The interface supports cross margin mode and isolated margin mode</li>
+</ul>
+<h3 id='request-parameter-28'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Parameter Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>valuation_asset</td>
+<td>false</td>
+<td>string</td>
+<td>The valuation according to the certain fiat currency. If not fill in, default as BTC</td>
+<td>&quot;BTC&quot;,&quot;USD&quot;,&quot;USDT&quot;,&quot;CNY&quot;,&quot;EUR&quot;,&quot;GBP&quot;,&quot;VND&quot;,&quot;HKD&quot;,&quot;TWD&quot;,&quot;MYR&quot;,&quot;SGD&quot;,&quot;KRW&quot;,&quot;RUB&quot;,&quot;TRY&quot;</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"valuation_asset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.378256726579799383"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1614045417046</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='returning-parameter-29'>Returning Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Parameter Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>the result of server handles for the request</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>valuation_asset</td>
+<td>true</td>
+<td>string</td>
+<td>The valuation according to the certain fiat currency</td>
+<td>&quot;BTC&quot;,&quot;USD&quot;,&quot;USDT&quot;,&quot;CNY&quot;,&quot;EUR&quot;,&quot;GBP&quot;,&quot;VND&quot;,&quot;HKD&quot;,&quot;TWD&quot;,&quot;MYR&quot;,&quot;SGD&quot;,&quot;KRW&quot;,&quot;RUB&quot;,&quot;TRY&quot;</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>true</td>
+<td>string</td>
+<td>Asset Valuation</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>timestamp</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='isolated-query-user-s-account-information'>[Isolated] Query User’s Account Information</h2><h3 id='example-13'>Example</h3>
 <ul>
 <li>POST /linear-swap-api/v1/swap_account_info</li>
 </ul>
@@ -9993,7 +10288,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-27'>Request Parameter</h3>
+<h3 id='request-parameter-29'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10040,7 +10335,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603697381238</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-28'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-30'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10206,7 +10501,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-28'>Request Parameter</h3>
+<h3 id='request-parameter-30'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10272,7 +10567,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1606906200680</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-29'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-31'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10473,7 +10768,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-29'>Request Parameter</h3>
+<h3 id='request-parameter-31'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10520,7 +10815,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603697821846</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-30'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-32'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10678,7 +10973,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-11'>Note</h4>
+<h4 id='note-13'>Note</h4>
 <ul>
 <li>If there are symbols in the settlement or delivery period,error code 1080(1080 In settlement or delivery. Unable to get positions of some contracts.) will return without request parameters. It&#39;s suggested to query the position info with request parameters to avoid raising the error code and not being able to query the position.</li>
 </ul>
@@ -10690,7 +10985,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-30'>Request Parameter</h3>
+<h3 id='request-parameter-32'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10737,7 +11032,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606962314205</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-31'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-33'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11271,7 +11566,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-31'>Request Parameter</h3>
+<h3 id='request-parameter-33'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11375,7 +11670,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1606965138763</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-32'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-34'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11705,12 +12000,12 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_sub_auth</code></li>
 </ul>
-<h4 id='note-12'>Note：</h4>
+<h4 id='note-14'>Note：</h4>
 <ul>
 <li><p>The interface supports cross margin mode and isolated margin mode.</p></li>
 <li><p>If the sub-account trading permission has been enable, the interface will directly return success when request to enable again; if the sub-account trading permission has been disable, the interface will directly return success when request to disable again;</p></li>
 </ul>
-<h3 id='request-parameter-32'>Request Parameter</h3>
+<h3 id='request-parameter-34'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11735,7 +12030,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-13'>Note：</h4>
+<h4 id='note-15'>Note：</h4>
 <ul>
 <li>When enable the transaction authority on the sub-account for the first time, deemed to agree to access the contract market.</li>
 </ul>
@@ -11758,7 +12053,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1612504316476</span><span class="w">
 </span><span class="p">}</span><span class="w">   
-</span></code></pre><h3 id='returning-parameter-33'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-35'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12020,7 +12315,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-33'>Request Parameter</h3>
+<h3 id='request-parameter-35'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12062,7 +12357,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606962745633</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-34'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-36'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12165,11 +12460,11 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_sub_account_info_list</code></li>
 </ul>
-<h4 id='note-14'>Note</h4>
+<h4 id='note-16'>Note</h4>
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-34'>Request Parameter</h3>
+<h3 id='request-parameter-36'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12201,7 +12496,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-15'>Note：</h4>
+<h4 id='note-17'>Note：</h4>
 <ul>
 <li>Only return data of sub-accounts that have agreed to access the contract market.</li>
 <li>By default, the list of sub-accounts is in ascending order according to the time when agree to access the contract market, and the earlier the agreed time, the first the position</li>
@@ -12237,7 +12532,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1612504756853</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-35'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-37'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12392,11 +12687,11 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_cross_sub_account_info_list</code></li>
 </ul>
-<h4 id='note-16'>Note</h4>
+<h4 id='note-18'>Note</h4>
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-35'>Request Parameter</h3>
+<h3 id='request-parameter-37'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12428,7 +12723,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-17'>Note：</h4>
+<h4 id='note-19'>Note：</h4>
 <ul>
 <li>Only return data of sub-accounts that have agreed to access the contract market.</li>
 <li>By default, the list of sub-accounts is in ascending order according to the time when agree to access the contract market, and and the earlier the agreed time, the first the position</li>
@@ -12461,7 +12756,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1612504845679</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-36'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-38'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12823,7 +13118,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-36'>Request Parameter*</h3>
+<h3 id='request-parameter-38'>Request Parameter*</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12897,7 +13192,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606963336786</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-37'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-39'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13321,7 +13616,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-37'>Request Parameter</h3>
+<h3 id='request-parameter-39'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13376,7 +13671,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606964256589</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-38'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-40'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13595,7 +13890,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-18'>Note:</h4>
+<h4 id='note-20'>Note:</h4>
 <ul>
 <li>It needs contract_code parameter for request in cross margin mode when query the trading financial records of a certain contract market. And it not need contract_code parameter in other scenarios.</li>
 </ul>
@@ -13759,11 +14054,11 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_financial_record_exact</code></li>
 </ul>
-<h4 id='note-19'>Note：</h4>
+<h4 id='note-21'>Note：</h4>
 <ul>
 <li>The interface supports cross margin mode and isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-38'>Request Parameter</h3>
+<h3 id='request-parameter-40'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13830,7 +14125,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>prev/next；default is prev</td>
 </tr>
 </tbody></table>
-<h4 id='note-20'>Note：</h4>
+<h4 id='note-22'>Note：</h4>
 <ul>
 <li>Value range description of start_time and end_time:
 
@@ -13961,7 +14256,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1612504058482</span><span class="w">
 </span><span class="p">}</span><span class="w">                                 
-</span></code></pre><h3 id='returning-parameter-39'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-41'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14084,7 +14379,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-21'>Note:</h3>
+<h3 id='note-23'>Note:</h3>
 <ul>
 <li>if type in (34, 35, 36, 37, 38, 39)，contract_code is empty string.</li>
 <li>if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id presents the last data on the next page.)</li>
@@ -14093,11 +14388,11 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>linear-swap-api/v1/swap_user_settlement_records</code></li>
 </ul>
-<h4 id='note-22'>Note：</h4>
+<h4 id='note-24'>Note：</h4>
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-39'>Request Parameter</h3>
+<h3 id='request-parameter-41'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14143,7 +14438,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>if not filled in is 20, and 50 at most(if more than 50, treated as 50</td>
 </tr>
 </tbody></table>
-<h4 id='note-23'>Note:</h4>
+<h4 id='note-25'>Note:</h4>
 <ul>
 <li>The data of response is descending sorted, the latest the first.</li>
 <li>The settlement records is between &quot;from&quot; and &quot;to&quot; </li>
@@ -14205,7 +14500,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1611052289681</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-40'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-42'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14458,11 +14753,11 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>linear-swap-api/v1/swap_cross_user_settlement_records</code></li>
 </ul>
-<h4 id='note-24'>Note：</h4>
+<h4 id='note-26'>Note：</h4>
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-40'>Request Parameter</h3>
+<h3 id='request-parameter-42'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14508,7 +14803,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>if not filled is 10, 25 at most(if more than 25, treated as 50)</td>
 </tr>
 </tbody></table>
-<h4 id='note-25'>Note:</h4>
+<h4 id='note-27'>Note:</h4>
 <ul>
 <li>The data of response is descending sorted, the latest the first.</li>
 <li>The settlement records is between &quot;from&quot; and &quot;to&quot; </li>
@@ -14593,7 +14888,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1611051729365</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-41'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-43'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14885,7 +15180,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-41'>Request Parameter：</h3>
+<h3 id='request-parameter-43'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -14903,7 +15198,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>“BTC-USDT”。。。</td>
 </tr>
 </tbody></table>
-<h3 id='returning-parameter-42'>Returning Parameter：</h3>
+<h3 id='returning-parameter-44'>Returning Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -14988,7 +15283,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-42'>Request Parameter</h3>
+<h3 id='request-parameter-44'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15023,7 +15318,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606965620243</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-43'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-45'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15091,7 +15386,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface supports cross margin mode and isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-43'>Request Parameter</h3>
+<h3 id='request-parameter-45'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15136,7 +15431,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603699658996</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-44'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-46'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15232,7 +15527,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface supports cross margin mode and isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-44'>Request Parameter</h3>
+<h3 id='request-parameter-46'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15270,7 +15565,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603699756575</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-45'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-47'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15366,7 +15661,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-45'>Request Parameter</h3>
+<h3 id='request-parameter-47'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15408,7 +15703,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603699803580</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-46'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-48'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15532,7 +15827,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-46'>Request Parameter</h3>
+<h3 id='request-parameter-48'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15574,7 +15869,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606964432217</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-47'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-49'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15691,7 +15986,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-47'>Request Parameter</h3>
+<h3 id='request-parameter-49'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15727,7 +16022,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603699957489</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-48'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-50'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15809,7 +16104,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-48'>Request Parameter</h3>
+<h3 id='request-parameter-50'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15853,7 +16148,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1606964793311</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-49'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-51'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15988,7 +16283,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>&quot;master_to_sub&quot; or &quot;sub_to_master&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-26'>Note：</h4>
+<h4 id='note-28'>Note：</h4>
 <ul>
 <li>When from_margin_account or to_margin_account is USDT, it means the transfer in or transfer out from cross margin account</li>
 <li>represents transfer from transfer_out margin account to transfer_in margin account. The currency transferred shall be the same as the denominated currency of the transfer_out margin account.；</li>
@@ -16287,7 +16582,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface supports cross margin mode and isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-49'>Request Parameter</h3>
+<h3 id='request-parameter-51'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -16326,7 +16621,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-27'><strong>Note:</strong></h4>
+<h4 id='note-29'><strong>Note:</strong></h4>
 <ul>
 <li>When from_margin_account or to_margin_account is USDT, it means the transfer in or transfer out from cross margin account</li>
 <li>represents transfer from transfer_out margin account to transfer_in margin account. The currency transferred shall be the same as the denominated currency of the transfer_out margin account.；</li>
@@ -16345,7 +16640,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603700570600</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-50'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-52'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -16641,7 +16936,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"sl_order_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29100"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sl_order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"optimal_5"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-50'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-52'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16735,7 +17030,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>Order type of stop-loss order    default is limit; limit，optimal_5，optimal_10，optimal_20</td>
 </tr>
 </tbody></table>
-<h3 id='note-28'>Note ：</h3>
+<h3 id='note-30'>Note ：</h3>
 <p>&quot;limit&quot;，&quot;post_only&quot;，&quot;ioc&quot; and &quot;fok&quot; the four order price type need price value and the other don&#39;t need.</p>
 
 <p>Post-Only orders are limit orders that will never take liquidity (also called maker-only order). There are order limit and position for post-only orders which the upper limit is 5,000,000 for open/close orders.</p>
@@ -16771,7 +17066,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603700946949</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-51'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-53'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16831,7 +17126,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-29'>Note</h3>
+<h3 id='note-31'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='cross-place-an-order'>[Cross] Place An Order</h2>
 <ul>
@@ -16860,7 +17155,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"sl_order_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29100"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sl_order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"optimal_5"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-51'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-53'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16969,7 +17264,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>limit，optimal_5，optimal_10，optimal_20</td>
 </tr>
 </tbody></table>
-<h4 id='note-30'>Note</h4>
+<h4 id='note-32'>Note</h4>
 <p>&quot;limit&quot;，&quot;post_only&quot;，&quot;ioc&quot; and &quot;fok&quot; the four order price type need price value and the other don&#39;t need.</p>
 
 <p>Post-Only orders are limit orders that will never take liquidity (also called maker-only order). There are order limit and position for post-only orders which the upper limit is 5,000,000 for open/close orders.</p>
@@ -17005,7 +17300,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606965863952</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-52'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-54'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17065,7 +17360,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-31'>Note</h4>
+<h4 id='note-33'>Note</h4>
 <ul>
 <li>The return order_id is 18 bits, it will make mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</li>
 </ul>
@@ -17115,7 +17410,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-52'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-54'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17229,7 +17524,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>Order type of stop-loss order    default is limit; limit，optimal_5，optimal_10，optimal_20</td>
 </tr>
 </tbody></table>
-<h3 id='note-32'>Note  ：</h3>
+<h3 id='note-34'>Note  ：</h3>
 <p>&quot;limit&quot;，&quot;post_only&quot;，&quot;ioc&quot; and &quot;fok&quot; the four order price type need price value and the other don&#39;t need.</p>
 
 <p>Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.</p>
@@ -17269,7 +17564,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603701117058</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-53'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-55'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17385,7 +17680,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-33'>Note</h3>
+<h3 id='note-35'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</p>
 <h2 id='cross-place-a-batch-of-orders'>[Cross] Place A Batch Of Orders</h2>
 <ul>
@@ -17433,7 +17728,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-53'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-55'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17556,7 +17851,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-34'>Note</h3>
+<h3 id='note-36'>Note</h3>
 <p>&quot;limit&quot;，&quot;post_only&quot;，&quot;ioc&quot; and &quot;fok&quot; the four order price type need price value and the other don&#39;t need.</p>
 
 <p>Description of post_only: assure that the maker order remains as maker order, it will not be filled immediately with the use of post_only, for the match system will automatically check whether the price of the maker order is higher/lower than the opponent first price, i.e. higher than bid price 1 or lower than the ask price 1. If yes, the maker order will placed on the orderbook, if not, the maker order will be cancelled.</p>
@@ -17595,7 +17890,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606967053089</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-54'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-56'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17711,7 +18006,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-35'>Note</h4>
+<h4 id='note-37'>Note</h4>
 <ul>
 <li>The return order_id is 18 bits, it will make mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</li>
 </ul>
@@ -17723,7 +18018,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-54'>Request Parameter</h3>
+<h3 id='request-parameter-56'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17751,7 +18046,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-36'>Note  ：</h3>
+<h3 id='note-38'>Note  ：</h3>
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
 
 <p>The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.</p>
@@ -17776,7 +18071,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603701351602</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-55'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-57'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17865,7 +18160,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-55'>Request Parameter</h3>
+<h3 id='request-parameter-57'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17897,7 +18192,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>&quot;BTC-USDT&quot; ...</td>
 </tr>
 </tbody></table>
-<h3 id='note-37'>Note:</h3>
+<h3 id='note-39'>Note:</h3>
 <ul>
 <li><p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p></li>
 <li><p>The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.</p></li>
@@ -17922,7 +18217,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606974744952</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-56'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-58'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18011,7 +18306,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-56'>Request Parameter</h3>
+<h3 id='request-parameter-58'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18039,7 +18334,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>offset direction（if not filled in means all）  [&quot;open&quot; , &quot;close&quot;]</td>
 </tr>
 </tbody></table>
-<h4 id='note-38'>Note:</h4>
+<h4 id='note-40'>Note:</h4>
 <ul>
 <li>You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including &quot;open&quot; and &quot;close&quot; offset)</li>
 </ul>
@@ -18056,7 +18351,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603701437838</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-57'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-59'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18145,7 +18440,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-57'>Request Parameter</h3>
+<h3 id='request-parameter-59'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18177,7 +18472,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-39'>Note:</h4>
+<h4 id='note-41'>Note:</h4>
 <ul>
 <li>You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including &quot;open&quot; and &quot;close&quot; offset)</li>
 </ul>
@@ -18194,7 +18489,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606974998510</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-58'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-60'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18279,13 +18574,13 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_switch_lever_rate</code></li>
 </ul>
-<h4 id='note-40'>Note</h4>
+<h4 id='note-42'>Note</h4>
 <ul>
 <li><p>This interface only supports isolated margin mode.</p></li>
 <li><p>Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.</p></li>
 <li><p>The interface limits the number of requests to 1 time per 3 seconds.</p></li>
 </ul>
-<h3 id='request-parameter-58'>Request Parameter</h3>
+<h3 id='request-parameter-60'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -18333,7 +18628,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603701654205</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-59'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-61'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18411,13 +18706,13 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_cross_switch_lever_rate</code></li>
 </ul>
-<h4 id='note-41'>Note</h4>
+<h4 id='note-43'>Note</h4>
 <ul>
 <li><p>The interface only supports cross margin mode.</p></li>
 <li><p>Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.</p></li>
 <li><p>The interface limits the number of requests to 1 time per 3 seconds.</p></li>
 </ul>
-<h3 id='request-parameter-59'>Request Parameter</h3>
+<h3 id='request-parameter-61'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18457,7 +18752,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606975779177</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-60'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-62'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18539,7 +18834,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-60'>Request Parameter</h3>
+<h3 id='request-parameter-62'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18585,7 +18880,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-42'>Note:</h3>
+<h3 id='note-44'>Note:</h3>
 <p>client_order_id, order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.</p>
 
 <blockquote>
@@ -18602,7 +18897,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-61'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-63'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18681,7 +18976,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-61'>Request Parameter</h3>
+<h3 id='request-parameter-63'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18727,7 +19022,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>&quot;lightning&quot; by default. &quot;lightning_fok&quot;: lightning FOK type,&quot;lightning_ioc&quot;: lightning IOC type</td>
 </tr>
 </tbody></table>
-<h4 id='note-43'>Note</h4>
+<h4 id='note-45'>Note</h4>
 <ul>
 <li><p>Lightning Close Position，is order with rival price and optimal 30 grades. And the unsettled part will be automatically converted into a limited price order.</p></li>
 <li><p>The closing price of lightning closing position has a predictable effect, which can avoid the loss of users when the order cannot be completed when the market price rises sharply and falls sharply.</p></li>
@@ -18746,7 +19041,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606976912267</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-62'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-64'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18814,7 +19109,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-62'>Request Parameter</h3>
+<h3 id='request-parameter-64'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18842,7 +19137,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>Case-Insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-44'>Note  ：</h3>
+<h3 id='note-46'>Note  ：</h3>
 <p>When getting information on order cancellation via get order Information interface, users can only query last 4-hour data</p>
 
 <p>At least one of order_id and client_order_id must be filled in</p>
@@ -18893,7 +19188,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603703631815</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-63'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-65'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -19135,7 +19430,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-45'>Note:</h4>
+<h4 id='note-47'>Note:</h4>
 <ul>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
 <li>Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value. And in the other orders created before that times, it is 0.</li>
@@ -19148,7 +19443,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-63'>Request Parameter</h3>
+<h3 id='request-parameter-65'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -19180,7 +19475,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>&quot;BTC-USDT&quot;...</td>
 </tr>
 </tbody></table>
-<h4 id='note-46'>Note：</h4>
+<h4 id='note-48'>Note：</h4>
 <ul>
 <li><p>When getting information on order cancellation via get order Information interface, users can only query last 4-hour data</p></li>
 <li><p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id. The order completed( 5.partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled; ) will be deleted after the settlement of funding rate on 04:00(GMT+8), 12:00(GMT+8) and 20:00(GMT+8).</p></li>
@@ -19227,7 +19522,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606975356655</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-64'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-66'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -19469,7 +19764,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-47'>Note:</h4>
+<h4 id='note-49'>Note:</h4>
 <ul>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
 <li>Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value. And in the other orders created before that times, it is 0.</li>
@@ -19482,7 +19777,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-64'>Request Parameter</h3>
+<h3 id='request-parameter-66'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -19528,7 +19823,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>Default 20，no more than 50</td>
 </tr>
 </tbody></table>
-<h3 id='note-48'>Note</h3>
+<h3 id='note-50'>Note</h3>
 <p>When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 24-hour data, while users who don’t type in parameters “created_at” and “order_type” can only query last 2-hour data.</p>
 
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
@@ -19599,7 +19894,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603703678477</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-65'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-67'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -19967,7 +20262,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-49'>Note:</h4>
+<h4 id='note-51'>Note:</h4>
 <ul>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
 <li>Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value.  And the real profit (real_profit) of the transaction information that orders traded after December 10, 2020 has a value.</li>
@@ -19980,7 +20275,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-65'>Request Parameter</h3>
+<h3 id='request-parameter-67'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20033,7 +20328,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-50'>Note</h3>
+<h3 id='note-52'>Note</h3>
 <p>When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 24-hour data, while users who don’t type in parameters “created_at” and “order_type” can only query last 2-hour data.</p>
 
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
@@ -20103,7 +20398,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606975532569</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-66'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-68'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20471,7 +20766,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-51'>Note:</h4>
+<h4 id='note-53'>Note:</h4>
 <ul>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
 <li>Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value.  And the real profit (real_profit) of the transaction information that orders traded after December 10, 2020 has a value.</li>
@@ -20484,7 +20779,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-66'>Request Parameter</h3>
+<h3 id='request-parameter-68'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20586,7 +20881,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603703993952</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-67'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-69'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20870,7 +21165,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-52'>Note:</h4>
+<h4 id='note-54'>Note:</h4>
 <ul>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
 <li>Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value. And in the other orders created before that times, it is 0.</li>
@@ -20883,7 +21178,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-67'>Request Parameter</h3>
+<h3 id='request-parameter-69'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20976,7 +21271,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606975988388</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-68'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-70'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -21246,7 +21541,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-53'>Note:</h4>
+<h4 id='note-55'>Note:</h4>
 <ul>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
 <li>Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value. And in the other orders created before that times, it is 0.</li>
@@ -21259,7 +21554,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-68'>Request Parameter</h3>
+<h3 id='request-parameter-70'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -21335,7 +21630,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>&quot;create_date&quot;：descending order by order create date , &quot;update_time&quot;: descending order by order update time</td>
 </tr>
 </tbody></table>
-<h4 id='note-54'>Note:</h4>
+<h4 id='note-56'>Note:</h4>
 <ul>
 <li>All via API interface submited price limit orders that had been cancelled will only be kept for 2 hours.</li>
 </ul>
@@ -21385,7 +21680,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603704312847</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-69'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-71'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -21655,7 +21950,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-55'>Note</h3>
+<h3 id='note-57'>Note</h3>
 <ul>
 <li>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by json-bigint package.</li>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
@@ -21669,7 +21964,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-69'>Request Parameter</h3>
+<h3 id='request-parameter-71'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -21736,7 +22031,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>&quot;create_date&quot;：descending order by order create date , &quot;update_time&quot;: descending order by order update time</td>
 </tr>
 </tbody></table>
-<h3 id='note-56'>Note:</h3>
+<h3 id='note-58'>Note:</h3>
 <ul>
 <li>All via API interface submited price limit orders that had been cancelled will only be kept for 2 hours.</li>
 </ul>
@@ -21785,7 +22080,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606976252777</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-70'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-72'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -22055,7 +22350,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-57'>Note:</h4>
+<h4 id='note-59'>Note:</h4>
 <ul>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
 <li>Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value. And in the other orders created before that times, it is 0.</li>
@@ -22064,11 +22359,11 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_hisorders_exact</code></li>
 </ul>
-<h4 id='note-58'>Note</h4>
+<h4 id='note-60'>Note</h4>
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-70'>Request Parameter</h3>
+<h3 id='request-parameter-72'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -22149,7 +22444,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>prev/next；default is prev</td>
 </tr>
 </tbody></table>
-<h4 id='note-59'>Note：</h4>
+<h4 id='note-61'>Note：</h4>
 <ul>
 <li>can&#39;t get information of cancelled order which operated via api and before 2 hours</li>
 <li>Value range description of start_time and end_time:
@@ -22298,7 +22593,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1612503332073</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-71'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-73'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -22554,7 +22849,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-60'>Note：</h4>
+<h4 id='note-62'>Note：</h4>
 <ul>
 <li>if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id presents the last data on the next page.)</li>
 </ul>
@@ -22562,11 +22857,11 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_cross_hisorders_exact</code></li>
 </ul>
-<h4 id='note-61'>Note</h4>
+<h4 id='note-63'>Note</h4>
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-71'>Request Parameter</h3>
+<h3 id='request-parameter-73'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -22647,7 +22942,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>prev/next；default is prev</td>
 </tr>
 </tbody></table>
-<h4 id='note-62'>Note：</h4>
+<h4 id='note-64'>Note：</h4>
 <ul>
 <li>can&#39;t get information of cancelled order which operated via api and before 2 hours</li>
 <li>Value range description of start_time and end_time:
@@ -22796,7 +23091,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1612503459830</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-72'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-74'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -23052,7 +23347,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-63'>Note：</h4>
+<h4 id='note-65'>Note：</h4>
 <ul>
 <li>if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id presents the last data on the next page.)</li>
 </ul>
@@ -23064,7 +23359,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-72'>Request Parameter</h3>
+<h3 id='request-parameter-74'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -23154,7 +23449,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603704407235</span><span class="w">
 </span><span class="p">}</span><span class="w">   
-</span></code></pre><h3 id='returning-parameter-73'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-75'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -23383,7 +23678,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-73'>Request Parameter</h3>
+<h3 id='request-parameter-75'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -23467,7 +23762,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606976521624</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-74'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-76'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -23681,7 +23976,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-64'>Note:</h4>
+<h4 id='note-66'>Note:</h4>
 <ul>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
 <li>The real profit (real_profit) parameter that orders created after December 10, 2020 has a value. And before that time it is 0.</li>
@@ -23690,11 +23985,11 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_matchresults_exact</code></li>
 </ul>
-<h4 id='note-65'>Note</h4>
+<h4 id='note-67'>Note</h4>
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-74'>Request Parameter</h3>
+<h3 id='request-parameter-76'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -23754,7 +24049,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>prev/next；default is prev</td>
 </tr>
 </tbody></table>
-<h4 id='note-66'>Note：</h4>
+<h4 id='note-68'>Note：</h4>
 <ul>
 <li>Value range description of start_time and end_time:
 
@@ -23897,7 +24192,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1612503560490</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-75'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-77'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -24111,7 +24406,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-67'>Note：</h4>
+<h4 id='note-69'>Note：</h4>
 <ul>
 <li>if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id presents the last data on the next page.)</li>
 </ul>
@@ -24119,11 +24414,11 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>linear-swap-api/v1/swap_cross_matchresults_exact</code></li>
 </ul>
-<h4 id='note-68'>Note</h4>
+<h4 id='note-70'>Note</h4>
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-75'>Request Parameter</h3>
+<h3 id='request-parameter-77'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -24183,7 +24478,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>prev/next；default is prev</td>
 </tr>
 </tbody></table>
-<h4 id='note-69'>Note：</h4>
+<h4 id='note-71'>Note：</h4>
 <ul>
 <li>Value range description of start_time and end_time:
 
@@ -24325,7 +24620,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1612503739717</span><span class="w">
 </span><span class="p">}</span><span class="w">                                   
-</span></code></pre><h3 id='returning-parameter-76'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-78'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -24539,7 +24834,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-70'>Note：</h4>
+<h4 id='note-72'>Note：</h4>
 <ul>
 <li>if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id presents the last data on the next page.)</li>
 </ul>
@@ -24642,7 +24937,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-71'>Note</h4>
+<h4 id='note-73'>Note</h4>
 <ul>
 <li><p>optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.</p></li>
 <li><p>If you’re holding a position currently, the leverage you choose when placing an order should be the same as the leverage of your current positions, otherwise, the order will fail to be placed. If you need a new leverage to place an order, you should switch the leverage of current positions first by using the Switch Leverage interface. </p></li>
@@ -24746,7 +25041,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-76'>Request Parameter</h3>
+<h3 id='request-parameter-78'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -24842,7 +25137,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Trigger order failed, please modify the price and place the order again or contact the customer service."</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606977396756</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-77'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-79'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -25033,7 +25328,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-77'>Request Parameter</h3>
+<h3 id='request-parameter-79'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -25076,7 +25371,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606977508308</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-78'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-80'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -25193,7 +25488,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>offset direction（if not filled in means all）  [&quot;open&quot; , &quot;close&quot;]</td>
 </tr>
 </tbody></table>
-<h3 id='note-72'>Note</h3>
+<h3 id='note-74'>Note</h3>
 <ul>
 <li>You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including &quot;open&quot; and &quot;close&quot; offset)</li>
 </ul>
@@ -25311,7 +25606,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-78'>Request Parameter</h3>
+<h3 id='request-parameter-80'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -25343,7 +25638,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>[&quot;open&quot; , &quot;close&quot;]</td>
 </tr>
 </tbody></table>
-<h3 id='note-73'>Note</h3>
+<h3 id='note-75'>Note</h3>
 <ul>
 <li>You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including &quot;open&quot; and &quot;close&quot; offset)</li>
 </ul>
@@ -25359,7 +25654,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606977712328</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-79'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-81'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -25448,7 +25743,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-79'>Request Parameter</h3>
+<h3 id='request-parameter-81'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -25519,7 +25814,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603705219567</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-80'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-82'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -25735,7 +26030,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-80'>Request Parameter</h3>
+<h3 id='request-parameter-82'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -25809,7 +26104,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606978195074</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-81'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-83'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -26031,7 +26326,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
   </span><span class="s2">"page_size"</span><span class="p">:</span><span class="mi">10</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-81'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-83'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -26099,7 +26394,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>&quot;created_at&quot;：descending order by order creation time, &quot;update_time&quot;: descending order by order update time</td>
 </tr>
 </tbody></table>
-<h3 id='note-74'>NOTE</h3>
+<h3 id='note-76'>NOTE</h3>
 <ul>
 <li>Default to query completed orders (order status is one of 4, 5, 6);</li>
 </ul>
@@ -26148,7 +26443,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1603705603369</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-82'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-84'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -26420,7 +26715,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>The interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-82'>Request Parameter</h3>
+<h3 id='request-parameter-84'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -26529,7 +26824,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606978565722</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-83'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-85'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -26789,7 +27084,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_tpsl_order</code></li>
 </ul>
-<h4 id='note-75'>Note:</h4>
+<h4 id='note-77'>Note:</h4>
 <ul>
 <li>All take-profit and stop-loss orders are position closing orders.</li>
 <li>This interface only supports isolated margin mode.</li>
@@ -26811,7 +27106,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"sl_order_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29000"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sl_order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"optimal_5"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-83'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-85'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -26913,7 +27208,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contract_code cannot be empty."</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604369954194</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-84'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-86'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -27022,7 +27317,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-76'>Note</h4>
+<h4 id='note-78'>Note</h4>
 <ul>
 <li>When only take-profit order or stop-loss order is set , the accordingly returned &quot;sl_order&quot; or &quot;tp_order&quot; will be empty.</li>
 </ul>
@@ -27030,7 +27325,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_cross_tpsl_order</code></li>
 </ul>
-<h3 id='note-77'>Note</h3>
+<h3 id='note-79'>Note</h3>
 <ul>
 <li>All take-profit and stop-loss orders are position closing orders.</li>
 <li>This interface only supports isolated margin mode.</li>
@@ -27052,7 +27347,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"sl_order_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29000"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sl_order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"optimal_5"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-84'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-86'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -27126,7 +27421,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>default is limit; limit，optimal_5，optimal_10，optimal_20</td>
 </tr>
 </tbody></table>
-<h4 id='note-78'>Note:</h4>
+<h4 id='note-80'>Note:</h4>
 <ul>
 <li>All take-profit and stop-loss orders are position closing orders.</li>
 </ul>
@@ -27158,7 +27453,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contract_code cannot be empty."</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604369954194</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-85'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-87'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -27267,7 +27562,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-79'>Note</h4>
+<h4 id='note-81'>Note</h4>
 <ul>
 <li>When only take-profit order or stop-loss order is set , the accordingly returned &quot;sl_order&quot; or &quot;tp_order&quot; will be empty.</li>
 </ul>
@@ -27275,12 +27570,12 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_tpsl_cancel</code></li>
 </ul>
-<h3 id='note-80'>Note</h3>
+<h3 id='note-82'>Note</h3>
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 <li>The frequency limit of this interface is 5 times per second.</li>
 </ul>
-<h3 id='request-parameter-85'>Request Parameter</h3>
+<h3 id='request-parameter-87'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -27323,7 +27618,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609754722004</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-86'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-88'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -27408,12 +27703,12 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_cross_tpsl_cancel</code></li>
 </ul>
-<h3 id='note-81'>Note</h3>
+<h3 id='note-83'>Note</h3>
 <ul>
 <li>This interface only supports cross margin mode.</li>
 <li>The frequency limit of this interface is 5 times per second.</li>
 </ul>
-<h3 id='request-parameter-86'>Request Parameter</h3>
+<h3 id='request-parameter-88'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -27456,7 +27751,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609754775942</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-87'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-89'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -27541,12 +27836,12 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_tpsl_cancelall</code></li>
 </ul>
-<h3 id='note-82'>Note</h3>
+<h3 id='note-84'>Note</h3>
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 <li>The frequency limit of this interface is 5 times per second.</li>
 </ul>
-<h3 id='request-parameter-87'>Request Parameter</h3>
+<h3 id='request-parameter-89'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -27583,7 +27878,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609754843671</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-88'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-90'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -27668,12 +27963,12 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_cross_tpsl_cancelall</code></li>
 </ul>
-<h3 id='note-83'>Note</h3>
+<h3 id='note-85'>Note</h3>
 <ul>
 <li>This interface only supports cross margin mode.</li>
 <li>The frequency limit of this interface is 5 times per second.</li>
 </ul>
-<h3 id='request-parameter-88'>Request Parameter</h3>
+<h3 id='request-parameter-90'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -27710,7 +28005,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609754894463</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-89'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-91'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -27795,11 +28090,11 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_tpsl_openorders</code></li>
 </ul>
-<h3 id='note-84'>Note</h3>
+<h3 id='note-86'>Note</h3>
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-89'>Request Parameter</h3>
+<h3 id='request-parameter-91'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -27874,7 +28169,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609755183516</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-90'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-92'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -28085,11 +28380,11 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_cross_tpsl_openorders</code></li>
 </ul>
-<h3 id='note-85'>Note</h3>
+<h3 id='note-87'>Note</h3>
 <ul>
 <li>This interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-90'>Request Parameter</h3>
+<h3 id='request-parameter-92'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -28164,7 +28459,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609756633067</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-91'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-93'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -28375,11 +28670,11 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_tpsl_hisorders</code></li>
 </ul>
-<h3 id='note-86'>Note</h3>
+<h3 id='note-88'>Note</h3>
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-91'>Request Parameter</h3>
+<h3 id='request-parameter-93'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -28474,7 +28769,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609756931689</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-92'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-94'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -28727,11 +29022,11 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>linear-swap-api/v1/swap_cross_tpsl_hisorders</code></li>
 </ul>
-<h3 id='note-87'>Note</h3>
+<h3 id='note-89'>Note</h3>
 <ul>
 <li>This interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-92'>Request Parameter</h3>
+<h3 id='request-parameter-94'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -28826,7 +29121,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609759934758</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-93'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-95'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -29079,11 +29374,11 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_relation_tpsl_order</code></li>
 </ul>
-<h3 id='note-88'>Note</h3>
+<h3 id='note-90'>Note</h3>
 <ul>
 <li>This interface only supports isolated margin mode.</li>
 </ul>
-<h3 id='request-parameter-93'>Request Parameter</h3>
+<h3 id='request-parameter-95'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -29183,7 +29478,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609810352828</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-94'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-96'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -29534,11 +29829,11 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/linear-swap-api/v1/swap_cross_relation_tpsl_order</code></li>
 </ul>
-<h3 id='note-89'>Note</h3>
+<h3 id='note-91'>Note</h3>
 <ul>
 <li>This interface only supports cross margin mode.</li>
 </ul>
-<h3 id='request-parameter-94'>Request Parameter</h3>
+<h3 id='request-parameter-96'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -29638,7 +29933,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609810242146</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-95'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-97'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -29997,7 +30292,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <p>API rate limit for this interface is 1 times/second.</p>
 
 <p>Transferring margin between Spot account and USDT Margined Swap account Interface, sets 8 decimal places for transferring amount of all coins.</p>
-<h3 id='request-parameter-95'>Request Parameter</h3>
+<h3 id='request-parameter-97'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -30043,7 +30338,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>e.g. BTC-USDT，ETH-USDT, USDT</td>
 </tr>
 </tbody></table>
-<h4 id='note-90'>note</h4>
+<h4 id='note-92'>note</h4>
 <ul>
 <li>when &quot;margin-account&quot; is USDT，it means the transfer in or transfer out from cross margin account.</li>
 </ul>
@@ -30066,7 +30361,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
    </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"The single transfer-out amount must be no less than 0.0008BTC"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"success"</span><span class="p">:</span><span class="kc">false</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-96'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-98'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -30750,7 +31045,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <p>System status updates subscription ：wss://api.btcgateway.pro/center-notification</p>
 
 <p>If you have further queries about Huobi USDT Margined Swap order push subscription, please refer to <a href="https://docs.huobigroup.com/docs/usdt_swap/v1/en/#code-demo">Demo</a></p>
-<h3 id='note-91'>Note:</h3>
+<h3 id='note-93'>Note:</h3>
 <p>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot; for debug purpose. If your server is deployed in AWS, we recommend using &quot;https://api.hbdm.vn&quot;.</p>
 <h2 id='api-rate-limit-illustration-2'>API Rate Limit Illustration</h2>
 <p>There is rate limit for both public and private interfaces. More details are laid out as below:</p>
@@ -30821,7 +31116,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <p><code>&quot;ts&quot;: &quot;1492420473058&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-92'>Note</h3>
+<h3 id='note-94'>Note</h3>
 <ul>
 <li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 5 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
 </ul>
@@ -30867,7 +31162,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 </ul>
 
 <p><code>wss://api.hbdm.com/linear-swap-notification</code></p>
-<h3 id='note-93'>Note</h3>
+<h3 id='note-95'>Note</h3>
 <p>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot; for debug purpose. If your server is deployed in AWS, we recommend using &quot;https://api.hbdm.vn&quot;.</p>
 
 <p>Please note that the WS request connection should not go over 30 normally.</p>
@@ -31151,7 +31446,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-96'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-98'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -31345,7 +31640,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573106298</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-97'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-99'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -31407,7 +31702,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-94'>Note</h4>
+<h4 id='note-96'>Note</h4>
 <p>If between time range [t1, t5], there are t1-t5 KLines in quantity.</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -31585,7 +31880,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-98'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-100'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -31635,7 +31930,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5,14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
-<h3 id='note-95'>Note:</h3>
+<h3 id='note-97'>Note:</h3>
 <ul>
 <li><p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p></li>
 <li><p>steps between step1 and step5, step14, step15 are merged orderbook data of step 150. 
@@ -31828,7 +32123,7 @@ Details are below:</p></li>
 </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-99'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-101'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -32017,7 +32312,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-96'>Note:</h3>
+<h3 id='note-98'>Note:</h3>
 <ul>
 <li>when <code>data_type</code> is <code>incremental</code>,<code>snapshot</code> data wil be pushed for the first time. When re-connection occurs, <code>snapshort</code> data will be pushed for the first time. </li>
 <li><code>version</code>: auto increment in single websocket connection. <code>version</code> may be different among several websocket subscription connections.</li>
@@ -32047,7 +32342,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-100'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-102'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -32226,7 +32521,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-97'>Note:</h4>
+<h4 id='note-99'>Note:</h4>
 <ul>
 <li>Bid price(p1) and ask price(p1) are not updated in real time, there will be some delay (about 500ms).</li>
 </ul>
@@ -32252,7 +32547,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-101'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-103'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -32437,7 +32732,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-102'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-104'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -32645,9 +32940,9 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='note-98'>Note:</h3>
+</span></code></pre><h3 id='note-100'>Note:</h3>
 <p>Clients can only access the recent 300 trade detail data </p>
-<h3 id='request-parameter-103'>Request Parameter</h3>
+<h3 id='request-parameter-105'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -32856,7 +33151,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-104'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-106'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -32906,7 +33201,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-99'>Note</h3>
+<h3 id='note-101'>Note</h3>
 <ul>
 <li><p>Pushed once the index data is changed.</p></li>
 <li><p>Periodical Push when the index data hasn&#39;t changed according to the kline period.</p></li>
@@ -32930,7 +33225,7 @@ Details are below:</p></li>
         </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">0</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-97'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-99'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -33047,7 +33342,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-105'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-107'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -33109,7 +33404,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-100'>Note：</h3>
+<h3 id='note-102'>Note：</h3>
 <ul>
 <li>Pushed once the index data is changed.</li>
 </ul>
@@ -33147,7 +33442,7 @@ Details are below:</p></li>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-98'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-100'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -33280,7 +33575,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-106'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-108'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -33330,7 +33625,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-101'>Note</h4>
+<h4 id='note-103'>Note</h4>
 <ul>
 <li><p>Pushed once the index data is changed.</p></li>
 <li><p>Periodical Push when the index data hasn&#39;t changed according to the kline period.</p></li>
@@ -33484,7 +33779,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-107'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-109'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -33546,7 +33841,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-102'>Note：</h3>
+<h3 id='note-104'>Note：</h3>
 <ul>
 <li>Pushed once the index data is updated.</li>
 </ul>
@@ -33721,7 +34016,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-108'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-110'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -33771,7 +34066,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-103'>Note:</h4>
+<h4 id='note-105'>Note:</h4>
 <ul>
 <li><p>Pushed once the kline data is changed.</p></li>
 <li><p>Periodical Push when the kline data hasn&#39;t changed according to the kline period.</p></li>
@@ -33925,7 +34220,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-109'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-111'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -34157,7 +34452,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-110'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-112'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -34333,7 +34628,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-111'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-113'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -34367,7 +34662,7 @@ Details are below:</p></li>
 <td>end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameter-112'>Request Parameter：</h3>
+<h3 id='request-parameter-114'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -34403,7 +34698,7 @@ Details are below:</p></li>
 <td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-104'>Note：</h3>
+<h3 id='note-106'>Note：</h3>
 <ul>
 <li>2000 data at most per request.</li>
 </ul>
@@ -34524,7 +34819,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='general-subscribe-kline-data-of-mark-price'>[General]Subscribe Kline Data of Mark Price</h2><h4 id='note-105'>Note：</h4>
+<h2 id='general-subscribe-kline-data-of-mark-price'>[General]Subscribe Kline Data of Mark Price</h2><h4 id='note-107'>Note：</h4>
 <ul>
 <li>The interface supports cross margin mode and isolated margin mode.</li>
 </ul>
@@ -34545,7 +34840,7 @@ Details are below:</p></li>
     </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.$contract_code.mark_price.$period"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
  </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-113'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-115'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -34620,7 +34915,7 @@ Details are below:</p></li>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-99'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-101'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -34736,7 +35031,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='general-request-kline-data-of-mark-price'>[General]Request Kline Data of Mark Price</h2><h4 id='note-106'>Note：</h4>
+<h2 id='general-request-kline-data-of-mark-price'>[General]Request Kline Data of Mark Price</h2><h4 id='note-108'>Note：</h4>
 <ul>
 <li>The interface supports cross margin mode and isolated margin mode.</li>
 </ul>
@@ -34764,7 +35059,7 @@ Details are below:</p></li>
     </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1579247342</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-114'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-116'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -34831,7 +35126,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-107'>Note</h4>
+<h4 id='note-109'>Note</h4>
 <ul>
 <li>At one time 2000 at most</li>
 <li>from and to both are mandatory</li>
@@ -34860,7 +35155,7 @@ Details are below:</p></li>
    </span><span class="p">}</span><span class="w">
  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-100'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-102'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -35343,7 +35638,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-108'>Note:</h4>
+<h4 id='note-110'>Note:</h4>
 <ul>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
 <li>Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value.  And the real profit (real_profit) of the transaction information that orders traded after December 10, 2020 has a value.</li>
@@ -35871,7 +36166,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-109'>Note:</h4>
+<h4 id='note-111'>Note:</h4>
 <ul>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
 <li>Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value.  And the real profit (real_profit) of the transaction information that orders traded after December 10, 2020 has a value.</li>
@@ -36011,7 +36306,7 @@ Details are below:</p></li>
 <td>Required；format: matchOrders.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-110'>Note:</h4>
+<h4 id='note-112'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 <li>The orders will be pushed when matched by matching engine.</li>
@@ -36435,7 +36730,7 @@ Details are below:</p></li>
 <td>Required；format: matchOrders_cross.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-111'>Note:</h4>
+<h4 id='note-113'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 <li>The orders will be pushed when matched by matching engine.</li>
@@ -36857,7 +37152,7 @@ Details are below:</p></li>
 <td>Required； Subscribe Topic Name，Required subscribe accounts.$contract_code   Subscribe/unsubscribe the balance change of a given coin，when the value of $contract_code is “*”, it means to subscribe/unsubscribe the balance change of all coins; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-112'>Note:</h3>
+<h3 id='note-114'>Note:</h3>
 <ul>
 <li>A regular push of account is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</li>
 </ul>
@@ -37160,7 +37455,7 @@ Details are below:</p></li>
 <td>Mandatory；topic name: accounts_cross.$margin_account，$margin_account now only（USDT）</td>
 </tr>
 </tbody></table>
-<h3 id='note-113'>Note:</h3>
+<h3 id='note-115'>Note:</h3>
 <ul>
 <li>A regular push of account is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</li>
 </ul>
@@ -37719,7 +38014,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-114'>Note:</h3>
+<h3 id='note-116'>Note:</h3>
 <ul>
 <li><p>A regular push of position is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</p></li>
 <li><p>When switching leverage with no positions, the event &quot;switch_lever_rate&quot; will not be pushed by the position topic.</p></li>
@@ -38073,7 +38368,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-115'>Note:</h3>
+<h3 id='note-117'>Note:</h3>
 <ul>
 <li><p>A regular push of position is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</p></li>
 <li><p>When switching leverage with no positions, the event &quot;switch_lever_rate&quot; will not be pushed by the position topic.</p></li>
@@ -38623,7 +38918,7 @@ Details are below:</p></li>
 <td>not allowed</td>
 </tr>
 </tbody></table>
-<h3 id='note-116'>Note</h3>
+<h3 id='note-118'>Note</h3>
 <ul>
 <li><p>Funding rate will be pushed every 60 seconds by default.Funding rate will not be calculated under conditions below:</p></li>
 <li><p>the contract can&#39;t be traded.eg:Pending Listing、Suspension、Delisting、In settlement、Delivering、Settlement Completed、Delivered,etc.  </p></li>
@@ -38786,7 +39081,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-117'>Note：</h3>
+<h3 id='note-119'>Note：</h3>
 <ul>
 <li>The websocket subscription of contract info event is pushed every 60 seconds, and the event is &quot;snapshot&quot;. </li>
 <li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is &quot;init&quot;.</li>
@@ -38903,7 +39198,7 @@ Details are below:</p></li>
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-115'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-117'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -39333,7 +39628,7 @@ Details are below:</p></li>
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-116'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-118'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -39759,7 +40054,7 @@ Details are below:</p></li>
     </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"topic "</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.linear-swap.heartbeat"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-117'><strong>Request Parameter</strong>:</h3>
+</span></code></pre><h3 id='request-parameter-119'><strong>Request Parameter</strong>:</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -39892,7 +40187,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-118'>Note</h3>
+<h3 id='note-120'>Note</h3>
 <ul>
 <li>Since this push is a poll query status, there may be a delay of 1-2 seconds.</li>
 </ul>
