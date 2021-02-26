@@ -12041,13 +12041,13 @@ The conditional order before triggering, as well as the conditional order failed
 </tr>
 </tbody></table>
 <h1 id='margin-loan-cross-isolated'>Margin Loan (Cross/Isolated)</h1><h2 id='introduction-9'>Introduction</h2>
-<p>Isolated/cross margin loan APIs provide loan related functionality such as request loan, repay loan, loan query and transfer.</p>
+<p>Isolated/cross margin loan APIs provide loan related functionality such as requesting and repaying loan, loan querying and transfer.</p>
 
 <aside class="notice">All endpoints in this section require authentication</aside>
 
-<aside class="notice">Currently loan only supports base currency of USDT, HUSD, and BTC</aside>
+<aside class="notice">Currently loan only supports pairs, in which base currency is USDT, HUSD or BTC</aside>
 
-<aside class="notice">Once completed a margin loan or transfer, please wait for 10 seconds before requesting for next margin loan or transfer.</aside>
+<aside class="notice">Once completed a margin loan or transfer, please wait for 10 seconds before requesting for the next margin loan or transfer.</aside>
 <h2 id='repay-margin-loan-cross-isolated'>Repay Margin Loan（Cross/Isolated ）</h2>
 <p>API Key Permission: Transaction</p>
 
@@ -12055,7 +12055,7 @@ The conditional order before triggering, as well as the conditional order failed
 
 <p>Available Accounts: Main and Sub-Accounts</p>
 
-<p>You should make a loan first before making a repayment. While repaying the loan, you should repay the loan interest first if there is no appointed transactId. </p>
+<p>While repaying the loan, loan interest will be paid first if there is no appointed transactId. Otherwise, currency will not be authenticated.</p>
 <h3 id='http-request-62'>HTTP Request</h3>
 <p><code>POST /v2/account/repayment</code></p>
 
@@ -12156,12 +12156,12 @@ The conditional order before triggering, as well as the conditional order failed
 </tr>
 </tbody></table>
 
-<p>Note: Back to “repayId” doesn’t mean the repayment is 100% successful. Please check the transaction record to confirm the repayment status. </p>
+<p>Note: Returning “repayId” doesn’t mean the repayment is 100% successful. Please check the transaction record to confirm the repayment status. </p>
 <h2 id='transfer-asset-from-spot-trading-account-to-isolated-margin-account-isolated'>Transfer Asset from Spot Trading Account to Isolated Margin Account（Isolated）</h2>
 <p>API Key Permission：Trade<br>
 Rate Limit (NEW): 2times/2s</p>
 
-<p>This endpoint transfer specific asset from spot trading account to isolated margin account.</p>
+<p>This endpoint transfers specific asset from spot trading account to isolated margin account.</p>
 <h3 id='http-request-63'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/transfer-in/margin</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-in/margin"</span> -d
@@ -12227,7 +12227,7 @@ Rate Limit (NEW): 2times/2s</p>
 <p>API Key Permission：Trade<br>
 Rate Limit (NEW): 2times/2s</p>
 
-<p>This endpoint transfer specific asset from isolated margin account to spot trading account.</p>
+<p>This endpoint transfers specific asset from isolated margin account to spot trading account.</p>
 <h3 id='http-request-64'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/transfer-out/margin</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-out/margin"</span> -d
@@ -12314,7 +12314,7 @@ Rate Limit (NEW): 20times/2s</p>
 <td>string</td>
 <td>false</td>
 <td>all</td>
-<td>Trading symbol (multiple selections acceptable, separated by comma)</td>
+<td>Trading symbol (multiple pairs available, separated by comma)</td>
 </tr>
 </tbody></table>
 
@@ -12399,7 +12399,7 @@ Rate Limit (NEW): 20times/2s</p>
 <p>API Key Permission：Trade<br>
 Rate Limit (NEW): 2times/2s</p>
 
-<p>This endpoint place an order to apply a margin loan.</p>
+<p>This endpoint places an order to apply a margin loan.</p>
 <h3 id='http-request-66'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/margin/orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/margin/orders"</span> -d
@@ -12449,8 +12449,6 @@ Rate Limit (NEW): 2times/2s</p>
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='response-content-67'>Response Content</h3>
-<aside class="notice">The return data contains a single value instead of an object</aside>
-
 <table><thead>
 <tr>
 <th>Field</th>
