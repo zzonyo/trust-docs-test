@@ -37,6 +37,22 @@ search: True
 
 # 更新日志
 
+## 1.0.5 2021年2月26日 【新增：获取账户总资产估值接口。修改获取合约最高限价和最低限价接口（支持用户所有入参都不填，接口返回所有当前上市合约的限价数据。）、修改获取市场最近成交记录接口（支持用户所有入参都不填，接口返回所有当前上市合约的最近成交数据；当用户不传入参时， 返参ch值为market.*trade.detail。在返参tick下新增字段：contract_code。）】
+
+### 1、新增获取账户总资产估值接口
+ - 接口名称：获取账户总资产估值
+ - 接口类型：私有接口
+ - 接口URL：/option-api/v1/option_balance_valuation
+
+### 2、修改获取合约最高限价和最低限价接口（支持用户所有入参都不填，接口返回所有当前上市合约的限价数据。）
+ - 接口名称：获取合约最高限价和最低限价
+ - 接口类型：共公接口
+ - 接口URL：/option-api/v1/option_price_limit
+
+### 3、修改获取市场最近成交记录接口（支持用户所有入参都不填，接口返回所有当前上市合约的最近成交数据；当用户不传入参时， 返参ch值为market.*trade.detail。在返参data下新增字段：contract_code。）
+ - 接口名称：获取市场最近成交记录
+ - 接口类型：共公接口
+ - 接口URL：/option-ex/market/trade
 
 ## 1.0.4 2021年2月5日【新增：批量设置子账户交易权限接口、批量获取子账户资产信息接口。修改：获取市场最近成交记录接口、批量获取最近的交易记录接口、订阅 Trade Detail 数据接口、请求 Trade Detail 数据接口】
 
@@ -145,6 +161,7 @@ search: True
 | 读取   | 市场行情接口 | /option-ex/market/detail/merged                         | GET      | 获取聚合行情                       |  否      
 | 读取   | 市场行情接口 | /option-ex/market/trade                                 | GET      | 获取市场最近成交记录                |  否     
 | 读取   | 市场行情接口 | /option-ex/market/history/trade                         | GET      | 批量获取最近的交易记录              |  否    
+| 读取   |  资产接口    | /option-api/v1/option_balance_valuation                | POST     |  获取账户总资产估值                  |  是  |
 | 读取   | 资产接口     | /option-api/v1/option_account_info                     | POST     | 获取用户账户信息                    | 是       
 | 读取   | 资产接口     | /option-api/v1/option_position_info                    | POST     | 获取用户持仓信息                    | 是   
 | 交易   |  账户接口    |  /option-api/v1/option_sub_auth                |    POST       |       批量设置子账户交易权限       |  是  |    
@@ -1289,7 +1306,7 @@ curl "https://api.hbdm.com/option-api/v1/option_price_limit?contract_code=BTC-US
 
 | 参数名称      | 是否必须 | 类型   | 描述     | 取值范围                                                     |
 | ------------- | -------- | ------ | -------- | ------------------------------------------------------------ |
-| contract_code | true    | string | 合约代码 | BTC-USDT-201225-C-13000                                        |
+| contract_code |   false    | string | 合约代码,不填返回所有当前上市合约的限价数据 | BTC-USDT-201225-C-13000                                        |
 
 >   Response:
 
@@ -1921,31 +1938,42 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-201225-
 
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围                                     |
 | ------ | ---- | ------ | ---- |---------------------------------------- |
-| contract_code | true | string | 合约代码 |  "BTC-USDT-201225-C-13000" ...  |
+| contract_code | false | string | 合约代码,不填返回所有当前上市合约的最近成交数据 |  "BTC-USDT-201225-C-13000" ...  |
 
 >   Response:
 
 ```json
 
 {
-    "ch": "market.BTC-USDT-201225-C-13000.trade.detail",
+    "ch": "market.*.trade.detail",
     "status": "ok",
     "tick": {
         "data": [
             {
-                "amount": "98",
+                "amount": "2",
+                "contract_code": "BTC-USDT-210326-C-20000",
+                "direction": "sell",
+                "id": 348060000,
+                "price": "27000.2",
+                "quantity": "0.002",
+                "trade_turnover": "54.0004",
+                "ts": 1614065387681
+            },
+            {
+                "amount": "2",
+                "contract_code": "BTC-USDT-210326-P-20000",
                 "direction": "buy",
-                "id": 1182841000001,
-                "price": "2855.11",
-                "ts": 1604615035549,
-                "quantity": "0.97",
-                "trade_turnover":"216.0683"
+                "id": 347030000,
+                "price": "88",
+                "quantity": "0.002",
+                "trade_turnover": "0.176",
+                "ts": 1613990541997
             }
         ],
-        "id": 1604642413998,
-        "ts": 1604642413998
+        "id": 1614074418045,
+        "ts": 1614074418045
     },
-    "ts": 1604642413998
+    "ts": 1614074418045
 }
 ```
 
@@ -1966,6 +1994,7 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-201225-
 | ts     | true | long | 成交时间       |      |
 | quantity  | true | string | 成交量（币）       |     
 | trade_turnover     | true | string | 成交额（计价币种）     |      |
+| contract_code     | true | string | 合约代码     |      |
 |\</data\>      |  |  |              |      |
 |\</tick\>      |  |  |              |      |
 | ts     | true | long | 发送时间       |      |
@@ -2069,6 +2098,43 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 
 # 合约资产接口
+
+## 获取账户总资产估值
+
+ - POST `/option-api/v1/option_balance_valuation`
+
+### 请求参数
+
+| 参数名称          | 是否必须  | 类型     | 描述   | 取值范围                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| valuation_asset   | false  | string    |    资产估值币种，即按该币种为单位进行估值，不填默认"BTC"    |   "BTC","USD","USDT","CNY","EUR","GBP","VND","HKD","TWD","MYR","SGD","KRW","RUB","TRY"    |
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "valuation_asset": "BTC",
+            "balance": "0.05402000000000000"
+        }
+    ],
+    "ts": 1614047794160
+}
+```
+
+### 返回参数
+
+| 参数名称                   | 是否必须 | 类型      | 描述                 | 取值范围                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | 请求处理结果             |                                          |
+| \<data\> | true     |  object array      |                    |                                          |
+| valuation_asset   | true  | string    |    资产估值币种，即按该币种为单位进行估值   |  "BTC","USD","USDT","CNY","EUR","GBP","VND","HKD","TWD","MYR","SGD","KRW","RUB","TRY"   |
+| balance        | true | string |    资产估值       |         |
+| \</data\>            |      |         |                    |                                          |
+| ts                     | true | long    | 时间戳                |                                          |
+
 
 ## 获取用户账户信息
 
