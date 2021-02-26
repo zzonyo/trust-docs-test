@@ -36,6 +36,28 @@ search: true
 
 # 更新日志
 
+## 1.0.9 2021年2月26日 【新增：获取账户总资产估值接口、批量获取合约资金费率接口。修改获取合约最高限价和最低限价接口（支持用户所有入参都不填，接口返回所有当前上市合约的限价数据。）、修改获取市场最近成交记录接口（支持用户所有入参都不填，接口返回所有当前上市合约的最近成交数据；当用户不传入参时， 返参ch值为market.*trade.detail。在返参tick下新增字段：contract_code。）】
+
+### 1、新增获取账户总资产估值接口
+ - 接口名称：【通用】获取账户总资产估值
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_balance_valuation
+
+### 2、新增批量获取合约资金费率接口
+ - 接口名称：【通用】批量获取合约资金费率
+ - 接口类型：共公接口
+ - 接口URL：/linear-swap-api/v1/swap_batch_funding_rate
+
+### 3、修改获取合约最高限价和最低限价接口（支持用户所有入参都不填，接口返回所有当前上市合约的限价数据。）
+ - 接口名称：【通用】获取合约最高限价和最低限价
+ - 接口类型：共公接口
+ - 接口URL：/linear-swap-api/v1/swap_price_limit
+
+### 4、修改获取市场最近成交记录接口（支持用户所有入参都不填，接口返回所有当前上市合约的最近成交数据；当用户不传入参时， 返参ch值为market.*trade.detail。在返参data下新增字段：contract_code。）
+ - 接口名称：【通用】获取市场最近成交记录
+ - 接口类型：共公接口
+ - 接口URL：/linear-swap-ex/market/trade
+
 ## 1.0.8 2021年2月5日【新增：组合查询合约历史委托（全仓和逐仓）、组合查询用户历史成交记录（全仓和逐仓）、组合查询用户财务记录、获取平台阶梯保证金（全仓和逐仓）、批量设置子账户交易权限、批量获取子账户资产信息（全仓和逐仓）。11-14 修改接口，新增字段。】
 
 ### 1、新增组合查询合约历史委托接口（逐仓）
@@ -1005,6 +1027,7 @@ search: true
 读取  | 基础信息接口 |  通用   | /linear-swap-api/v1/swap_settlement_records                        | GET    |      【通用】平台历史结算记录                    |       否          |
 读取  | 基础信息接口 |  逐仓   | /linear-swap-api/v1/swap_api_state                                 | GET    |      【逐仓】查询系统状态                        |       否          |
 读取  | 市场行情接口 |  通用   | /linear-swap-api/v1/swap_funding_rate                              | GET    |      【通用】获取合约的资金费率                  |       否          |
+读取  | 市场行情接口 |  通用   | /linear-swap-api/v1/swap_batch_funding_rate                        | GET    |      【通用】批量获取合约资金费率                  |       否          |
 读取  | 市场行情接口 |  通用   | /linear-swap-api/v1/swap_historical_funding_rate                   | GET    |      【通用】获取合约的历史资金费率              |       否          |
 读取  | 市场行情接口 |  通用   | /linear-swap-ex/market/depth                                       | GET    |      【通用】获取行情深度数据                    |       否          |
 读取  | 市场行情接口 |  通用   | /linear-swap-ex/market/history/kline                               | GET    |      【通用】获取K线数据                         |       否          |
@@ -1022,6 +1045,7 @@ search: true
 读取  | 基础信息接口 |  全仓    | /linear-swap-api/v1/swap_cross_adjustfactor                          | GET    |     【全仓】查询平台阶梯调整系数                                                |       否          |
 读取  | 基础信息接口 |  全仓    | /linear-swap-api/v1/swap_cross_transfer_state                        | GET    |     【全仓】查询系统划转权限                        |       否          |
 读取  | 基础信息接口 |  全仓    | /linear-swap-api/v1/swap_cross_trade_state                           | GET    |     【全仓】查询系统交易权限                        |       否          |
+读取  | 账户接口    |  通用  |  /linear-swap-api/v1/swap_batch_funding_rate                        | POST   |      【通用】获取账户总资产估值              |     是         |
 读取  | 账户接口    |  逐仓  |  /linear-swap-api/v1/swap_account_info                              | POST   |      【逐仓】获取用户的合约账户信息               |     是         |
 读取  | 账户接口    |  逐仓  |  /linear-swap-api/v1/swap_position_info                             | POST   |      【逐仓】获取用户的合约持仓信息               |     是         |
 读取  | 账户接口    |  逐仓  |  /linear-swap-api/v1/swap_available_level_rate                      | POST   |      【逐仓】查询用户可用杠杆倍数          |     是         |
@@ -2496,7 +2520,7 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_price_limit?contract_code=BTC
 
 | 参数名称  | 是否必须 | 类型 | 描述  | 取值范围 |
 | ------------- | ------ | ----- | ---------------------------------------- | ---- |
-| contract_code | true |  string | 合约代码 |    BTC-USDT    |
+| contract_code | false |  string | 合约代码,不填返回所有当前上市合约的限价数据 |    BTC-USDT    |
 
 > Response:
 
@@ -3056,7 +3080,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
 
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围                                     |
 | ------ | ---- | ------ | ---- |---------------------------------------- |
-| contract_code | true | string | 合约代码 |  "BTC-USDT" ...  |
+| contract_code | false | string | 合约代码,不填返回所有当前上市合约的最近成交数据 |  "BTC-USDT" ...  |
 
 > Tick说明：
 
@@ -3082,7 +3106,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
 ```json
 
 {
-    "ch": "market.BTC-USDT.trade.detail",
+    "ch": "market.*.trade.detail",
     "status": "ok",
     "tick": {
         "data": [
@@ -3093,6 +3117,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
                 "price": "13083",
                 "direction": "buy",
                 "quantity": 0.006,
+                 
                 "trade_turnover": 78.498
             }
         ],
@@ -3120,6 +3145,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
 | price     | true | string | 成交价       |      |
 | ts     | true | long | 成交时间       |      |
 | quantity   | true | string |  成交量（币）  |                |
+| contract_code     | true | string  | 合约代码       |      |
 | trade_turnover   | true | string |  成交额（计价币种）  |                |
 | \</data\>    |  |  |              |      |
 | \</tick\>    |  |  |              |      |
@@ -4163,6 +4189,66 @@ curl "https://api.hbdm.com/linear-swap-api/v1/swap_funding_rate?contract_code=BT
 | next_funding_time        | true | string | 下一期资金费率时间         |                |
 | \</data\>         |      |         |        |                |
 
+
+## 【通用】批量获取合约资金费率
+
+ - GET `/linear-swap-api/v1/swap_batch_funding_rate`
+
+#### 备注
+ - 该接口支持全仓模式和逐仓模式
+
+### 请求参数
+
+| 参数名称   | 是否必须  | 类型     | 描述   | 取值范围         |
+| ------ | ----- | ------ | ---- | ---------------------------- |
+| contract_code | false | string | 合约代码，不填返回全部合约 |"BTC-USDT" ...  |
+
+> Response
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "estimated_rate": "-0.007500000000000000",
+            "funding_rate": "-0.007500000000000000",
+            "contract_code": "ETC-USDT",
+            "symbol": "ETC",
+            "fee_asset": "USDT",
+            "funding_time": "1613976000000",
+            "next_funding_time": "1614004800000"
+        },
+        {
+            "estimated_rate": "-0.007500000000000000",
+            "funding_rate": "-0.007500000000000000",
+            "contract_code": "ADA-USDT",
+            "symbol": "ADA",
+            "fee_asset": "USDT",
+            "funding_time": "1613976000000",
+            "next_funding_time": "1614004800000"
+        }
+    ],
+    "ts": 1614045373795
+}
+```
+
+### 返回参数
+
+| 参数名称    | 是否必须 | 类型      | 描述            | 取值范围           |
+| ----------------- | ---- | ------- | ------------- | -------------- |
+| status            | true | string  | 请求处理结果        | "ok" , "error" |
+| ts                | true | long    | 响应生成时间点，单位：毫秒 |                |
+| \<data\>          |  true    |   object array      |               |          |
+| symbol        | true | string | 品种代码          |             |
+| contract_code        | true | string | 合约代码          |   "BTC-USDT" ...             |
+| fee_asset        | true | string | 资金费币种   |  "USDT...              |
+| funding_time        | true | string |当期资金费率时间（毫秒）        |                |
+| funding_rate        | true | string | 当期资金费率          |                |
+| estimated_rate        | true | string | 下一期预测资金费率   |                |
+| next_funding_time        | true | string | 下一期资金费率时间（毫秒）         |                |
+| \</data\>         |      |         |        |                |
+
+
 ## 【通用】获取合约的历史资金费率
 
 - GET `/linear-swap-api/v1/swap_historical_funding_rate`
@@ -4558,6 +4644,48 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 
 # 合约资产接口
+
+
+## 【通用】获取账户总资产估值
+
+ - POST `/linear-swap-api/v1/swap_balance_valuation`
+
+#### 备注
+ - 该接口支持全仓模式和逐仓模式
+
+### 请求参数
+
+| 参数名称          | 是否必须  | 类型     | 描述   | 取值范围                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| valuation_asset   | false  | string    |    资产估值币种，即按该币种为单位进行估值，不填默认"BTC"    |   "BTC","USD","USDT","CNY","EUR","GBP","VND","HKD","TWD","MYR","SGD","KRW","RUB","TRY"    |
+
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "valuation_asset": "BTC",
+            "balance": "0.378256726579799383"
+        }
+    ],
+    "ts": 1614045417046
+}
+```
+
+### 返回参数
+
+| 参数名称                   | 是否必须 | 类型      | 描述                 | 取值范围                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status                 | true | string  | 请求处理结果             |                                          |
+| \<data\> | true     |  object array      |                    |                                          |
+| valuation_asset   | true  | string    |    资产估值币种，即按该币种为单位进行估值   |  "BTC","USD","USDT","CNY","EUR","GBP","VND","HKD","TWD","MYR","SGD","KRW","RUB","TRY"   |
+| balance        | true | string |    资产估值       |         |
+| \</data\>            |      |         |                    |                                          |
+| ts                     | true | long    | 时间戳                |                                          |
+
 
 ## 【逐仓】获取用户账户信息
 
