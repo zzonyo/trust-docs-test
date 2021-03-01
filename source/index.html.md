@@ -26,8 +26,12 @@ table th {
 
 | 生效时间<br>(UTC +8) | 接口                                                         | 变化      | 摘要                                                         |
 | -------------------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
+<<<<<<< HEAD
 | 2021.3.1             | `POST /v2/sub-user/deduct-mode`                              | 新增      | 新增“设置母子用户手续费抵扣（HT或点卡）”接口                 |
 | 2021.3.1             | `GET /v2/sub-user/account-list`                              | 优化      | 新增“母子用户手续费抵扣”参数                                 |
+=======
+| 2021.2.28            | Account and order Websocket v1                               | 删除      | 资产和订单WebSocket v1接口关闭                               |
+>>>>>>> 4389b20f7cf54a618e1fd9417711fd20c8a44316
 | 2021.2.1             | `POST /v2/account/repayment`                                 | 优化      | 通用还币接口支持逐仓杠杆还币                                 |
 | 2021.1.19 19:00      | `GET /v1/order/matchresults`                                 | 优化      | 增加start-time/end-time参数，支持用户指定“时间范围“查询订单  |
 | 2021.1.19 19:00      | `GET /v2/etp/limit`                                          | 新增      | 新增ETP持仓限额接口                                          |
@@ -7795,9 +7799,9 @@ REQ频道支持5档/20档/150档全量数据的获取。<br>
 | 1008        | header required correct cloud-exchange | exchangeCode 参数错误    |
 | bad-request | request timeout                        | 请求超时                 |
 
-# Websocket资产及订单 v1（将于2月28日废弃）
+# Websocket资产及订单 v1（已废弃）
 
-<aside class="warning">Websocket资产及订单 v1接口将于2021年2月28日下线，您如果仍然使用该接口，请尽快迁移到v2接口。</aside>
+<aside class="warning">Websocket资产及订单 v1接口将于2021年2月28日后随时关闭，您如果仍然使用该接口，请尽快迁移到v2接口。</aside>
 
 # Websocket资产及订单（v2）
 
