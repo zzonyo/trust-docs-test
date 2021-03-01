@@ -30,6 +30,7 @@ table th {
 
 | Release Time <br>(UTC +8) | API  | New / Update    | Description     |
 | ------------------------ | ---------------------- | --------------- | ------------------------------------- |
+| 2021.2.28 | Account and Order WebSocket v1 | Delete | Account and WebSocket v1 was offline |
 | 2021.2.1 | `POST /v2/account/repayment` | Update | Support isolated repayment                                   |
 | 2021.1.22 19:00 | `GET /v1/order/matchresults` | Add | Add timestamp parameters |
 | 2021.1.19 19:00 | `GET /v2/etp/limit` | Add | Add “Get Holding Limit of Leveraged ETP” endpoints |
@@ -7836,11 +7837,11 @@ Below is the error code, error message and description returned by Market WebSoc
 | bad-request | not json string             | The request is not JSON format         |
 | bad-request | request timeout             | The request is time out                |
 
-# Websocket Asset and Order (to be obsolete on Feb 28)
+# Websocket Account and Order (obsoleted)
 
-<aside class="warning">Asset and Order Websocket v1 will be obsolete on Feb 28, 2021, please migrate to v2 if you are still using v1.</aside>
+<aside class="warning">Account and Order Websocket v1 will be shutdown at any time after Feb 28, 2021, please migrate to v2 if you are still using v1.</aside>
 
-# Websocket Asset and Order (v2)
+# Websocket Account and Order (v2)
 
 ## Introduction
 
