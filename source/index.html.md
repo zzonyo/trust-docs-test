@@ -7745,9 +7745,9 @@ REQ频道支持5档/20档/150档全量数据的获取。<br>
 | 1008        | header required correct cloud-exchange | exchangeCode 参数错误    |
 | bad-request | request timeout                        | 请求超时                 |
 
-# Websocket资产及订单 v1（将于2月28日废弃）
+# Websocket资产及订单 v1（已废弃）
 
-<aside class="warning">Websocket资产及订单 v1接口将于2021年2月28日下线，您如果仍然使用该接口，请尽快迁移到v2接口。</aside>
+<aside class="warning">Websocket资产及订单 v1接口将于2021年2月28日后随时关闭，您如果仍然使用该接口，请尽快迁移到v2接口。</aside>
 
 # Websocket资产及订单（v2）
 
