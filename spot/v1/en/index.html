@@ -13129,7 +13129,7 @@ Rate Limit (NEW): 100times/2s</p>
 <h2 id='request-a-margin-loan-cross'>Request a Margin Loan（Cross）</h2>
 <p>API Key Permission：Trade</p>
 
-<p>This endpoint place an order to apply a margin loan.</p>
+<p>This endpoint places an order to apply for a margin loan.</p>
 <h3 id='http-request-73'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/cross-margin/orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/cross-margin/orders"</span> -d
@@ -13608,7 +13608,7 @@ Rate Limit (NEW): 100times/2s</p>
 <td>sort</td>
 <td>string</td>
 <td>FALSE</td>
-<td>sort direction (virtual value: asc,  desc; default value: desc)</td>
+<td>sort direction (value: asc,  desc; default value: desc)</td>
 </tr>
 <tr>
 <td>limit</td>
@@ -13620,7 +13620,7 @@ Rate Limit (NEW): 100times/2s</p>
 <td>fromId</td>
 <td>long</td>
 <td>FALSE</td>
-<td>search original ID (only available when  searching for the next page)</td>
+<td>search ID from the start (only available when  searching for the next page)</td>
 </tr>
 </tbody></table>
 
@@ -13762,7 +13762,7 @@ Rate Limit (NEW): 100times/2s</p>
 </tr>
 <tr>
 <td>account-transfer-balance-overflow-error</td>
-<td>To account balance is overflow</td>
+<td>Account balance is overflow</td>
 </tr>
 <tr>
 <td>base-msg</td>
@@ -13794,7 +13794,7 @@ Rate Limit (NEW): 100times/2s</p>
 </tr>
 <tr>
 <td>base_request_exceed_number_limit</td>
-<td>Request exceed number limit, try again later</td>
+<td>Request exceeds number limit, try again later</td>
 </tr>
 <tr>
 <td>base-date-limit-error</td>
@@ -13842,7 +13842,7 @@ Rate Limit (NEW): 100times/2s</p>
 </tr>
 <tr>
 <td>margin-country-not-allow</td>
-<td>Your country is not allowed</td>
+<td>The registered country is forbidden to apply for margin</td>
 </tr>
 <tr>
 <td>margin-country-auth-required</td>
@@ -13992,7 +13992,7 @@ Rate Limit (NEW): 100times/2s</p>
 </tr>
 </tbody></table>
 <h2 id='faq-3'>FAQ</h2><h3 id='q1-i-can-see-i-have-loanable-amount-in-my-margin-account-why-the-api-returns-no-sufficient-amount-error-when-i-apply-margin-loan'>Q1: I can see I have loanable amount in my margin account, why the API returns no sufficient amount error when I apply margin loan?</h3>
-<p>A: The available amount depends on not only account available amount, but also the system available amount. Due to risk control, the system has a max available amount everyday. If the total loan amount reaches the max value, user will fail to apply loan, unless someone repays the loan in the same day. Right now we are implementing a more friendly solution that tries to provide more accurate information to API users.</p>
+<p>A: The available amount depends on not only account available amount, but also the system available amount. Due to risk control, the system has a max available amount everyday. If the total loan amount reaches the max value, user will fail to apply for loan, unless someone repays the loan in the same day. Right now we are implementing a more user-friendly solution that provides more accurate information to API users.</p>
 <h1 id='margin-loan-c2c'>Margin Loan (C2C)</h1><h2 id='introduction-10'>Introduction</h2>
 <p>C2C margin loan APIs provide the customer-to-customer loan functionality such as lend, borrow, repay, query and transfer.</p>
 
@@ -14000,7 +14000,7 @@ Rate Limit (NEW): 100times/2s</p>
 
 <p>The rate limit for all the endpoints of c2c margin is set as 2 times/sec.<br>
 All the c2c margin endpoints below are not available by sub user.<br>
-The account ID of borrowing account will be generated once the first time asset transfer (from spot account to the borrowing account) is accomplished on the web.<br></p>
+The account ID of borrowing account will be generated once the first time asset transfer (from spot account to the borrowing account) is accomplished on the web interface.<br></p>
 <h2 id='place-a-lending-borrowing-offer'>Place a lending/borrowing offer</h2>
 <p>POST /v2/c2c/offer<br>
 API Key Permission: Trade<br></p>
@@ -14213,11 +14213,11 @@ API Key Permission: Trade<br></p>
 </tbody></table>
 
 <p>Note:<br>
-• The acceptance of offer cancellation does not implicate a success of cancellation. User should query that offer after the cancellation to confirm its status. <br></p>
+• The acceptance of offer cancellation does not implicate the success of cancellation. Users should query the relevant offers after the cancellation to confirm their status. <br></p>
 <h2 id='cancel-all-lending-borrowing-offers'>Cancel all lending/borrowing offers</h2>
 <p>POST /v2/c2c/cancel-all<br>
 API Key Permission: Trade<br>
-Maximum 500 offers can be cancelled in a request. (to be cancelled in descending order of offerId)<br></p>
+Maximum 500 offers can be cancelled in a single request. (to be cancelled in descending order of offerId)<br></p>
 <h3 id='request-parameter-13'>Request Parameter</h3>
 <table><thead>
 <tr>
@@ -14327,7 +14327,7 @@ Maximum 500 offers can be cancelled in a request. (to be cancelled in descending
 </tbody></table>
 
 <p>Note:<br>
-• The acceptance of offer cancellation does not implicate a success of cancellation. User should query that offer after the cancellation to confirm its status.<br></p>
+• The acceptance of offer cancellation does not implicate the success of cancellation. Users should query the offer after the cancellation to confirm its status.<br></p>
 <h2 id='query-lending-borrow-offers'>Query lending/borrow offers</h2>
 <p>GET /v2/c2c/offers<br>
 API Key Permission: Read<br>
