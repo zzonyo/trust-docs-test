@@ -6033,7 +6033,7 @@ Null
 
 API Key Permission：Trade
 
-This endpoint place an order to apply a margin loan.
+This endpoint places an order to apply for a margin loan.
 
 ### HTTP Request
 
@@ -6290,9 +6290,9 @@ Sort by “repayTime”
 | currency  | string    | FALSE     | borrowing/lending currency (default  value: all currencies)  |
 | startTime | long      | FALSE     | start time (unix time in millisecond; range:  [(endTime – x D), endTime]; default value: (endTime – x D) |
 | endTime   | long      | FALSE     | end time (unix time in millisecond；range: [(present time – y D), present time]; default value:  present time) |
-| sort      | string    | FALSE     | sort direction (virtual value: asc,  desc; default value: desc) |
+| sort      | string    | FALSE     | sort direction (value: asc,  desc; default value: desc) |
 | limit     | integer   | FALSE     | max return items per page (range: [1,100];  default value: 50) |
-| fromId    | long      | FALSE     | search original ID (only available when  searching for the next page) |
+| fromId    | long      | FALSE     | search ID from the start (only available when  searching for the next page) |
 
 > Response:
 
@@ -6346,7 +6346,7 @@ Sort by “repayTime”
 | Error Code                                  | Description                                     |
 | ------------------------------------------- | ----------------------------------------------- |
 | account-transfer-balance-insufficient-error | Account balance is insufficient                 |
-| account-transfer-balance-overflow-error     | To account balance is overflow                  |
+| account-transfer-balance-overflow-error     | Account balance is overflow                  |
 | base-msg                                    | Customized error, check error message           |
 | base-system-error                           | Server internal error                           |
 | base-currency-error                         | currency is invalid                             |
@@ -6354,7 +6354,7 @@ Sort by “repayTime”
 | base-margin-symbol-invalid                  | symbol is invalid for margin                    |
 | base-record-invalid                         | The data is not found                           |
 | base-request-timeout                        | Request timeout, try again later                |
-| base_request_exceed_number_limit            | Request exceed number limit, try again later    |
+| base_request_exceed_number_limit            | Request exceeds number limit, try again later    |
 | base-date-limit-error                       | Date is invalid                                 |
 | base-update-error                           | Update operation error                          |
 | base-operation-forbidden                    | Operation is forbidden                          |
@@ -6366,7 +6366,7 @@ Sort by “repayTime”
 | loan-repay-max-limit                        | Repay amount is greater than requested          |
 | loan-insufficient-balance                   | Loan account balance is insufficient            |
 | login-required                              | Signature is missing                            |
-| margin-country-not-allow                    | Your country is not allowed                     |
+| margin-country-not-allow                    | The registered country is forbidden to apply for margin                    |
 | margin-country-auth-required                | Your IP is not allowed, require ID verification |
 | margin-trading-is-not-available             | Isolated margin trading is not available        |
 | margin-account-state-error                  | Margin account state is abnormal (liquidation)  |
@@ -6411,7 +6411,7 @@ Sort by “repayTime”
 ## FAQ
 
 ### Q1: I can see I have loanable amount in my margin account, why the API returns no sufficient amount error when I apply margin loan?
-A: The available amount depends on not only account available amount, but also the system available amount. Due to risk control, the system has a max available amount everyday. If the total loan amount reaches the max value, user will fail to apply loan, unless someone repays the loan in the same day. Right now we are implementing a more friendly solution that tries to provide more accurate information to API users.
+A: The available amount depends on not only account available amount, but also the system available amount. Due to risk control, the system has a max available amount everyday. If the total loan amount reaches the max value, user will fail to apply for loan, unless someone repays the loan in the same day. Right now we are implementing a more user-friendly solution that provides more accurate information to API users.
 
 # Margin Loan (C2C)
 
@@ -6423,7 +6423,7 @@ C2C margin loan APIs provide the customer-to-customer loan functionality such as
 
 The rate limit for all the endpoints of c2c margin is set as 2 times/sec.<br>
 All the c2c margin endpoints below are not available by sub user.<br>
-The account ID of borrowing account will be generated once the first time asset transfer (from spot account to the borrowing account) is accomplished on the web.<br>
+The account ID of borrowing account will be generated once the first time asset transfer (from spot account to the borrowing account) is accomplished on the web interface.<br>
 
 ## Place a lending/borrowing offer
 
@@ -6508,13 +6508,13 @@ API Key Permission: Trade<br>
 |	errMessage ]}	|	string	|	FALSE	|	Error message for rejection	|
 
 Note:<br>
-•	The acceptance of offer cancellation does not implicate a success of cancellation. User should query that offer after the cancellation to confirm its status. <br>
+•	The acceptance of offer cancellation does not implicate the success of cancellation. Users should query the relevant offers after the cancellation to confirm their status. <br>
 
 ## Cancel all lending/borrowing offers
 
 POST /v2/c2c/cancel-all<br>
 API Key Permission: Trade<br>
-Maximum 500 offers can be cancelled in a request. (to be cancelled in descending order of offerId)<br>
+Maximum 500 offers can be cancelled in a single request. (to be cancelled in descending order of offerId)<br>
 
 ### Request Parameter
 |	Field	|	Data Type	|	Mandatory	|	Description	|
@@ -6553,7 +6553,7 @@ Maximum 500 offers can be cancelled in a request. (to be cancelled in descending
 |	errMessage ]}	|	string	|	FALSE	|	Error message of rejection	|
 
 Note:<br>
-•	The acceptance of offer cancellation does not implicate a success of cancellation. User should query that offer after the cancellation to confirm its status.<br>
+•	The acceptance of offer cancellation does not implicate the success of cancellation. Users should query the offer after the cancellation to confirm its status.<br>
 
 ## Query lending/borrow offers
 
