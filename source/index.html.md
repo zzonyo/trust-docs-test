@@ -6810,7 +6810,7 @@ Note:<br>
 |	repayTime }	|	long	|	TRUE	|	Repay time (unix time in millisecond) 	|
 
 Note:<br>
-•	The receipt of repayment ID does not implicate the success of repayment. User should query the repayment history to confirm repay status. <br>
+•	The receipt of repayment ID does not implicate the success of repayment. User should query the repayment history to confirm its status. <br>
 
 ## Query C2C repayments
 
@@ -6898,7 +6898,7 @@ API Key Permission: Trade<br>
 |	amount	|	string	|	TRUE	|	Transfer value	|
 
 Note:<br>
-•	Only the transfer between spot account and specific borrowing account is allowed.<br>
+•	Only transfers between spot account and specific borrowing account are allowed.<br>
 
 > Response
 
