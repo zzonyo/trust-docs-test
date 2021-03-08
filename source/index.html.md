@@ -268,9 +268,9 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 
 **Websocket Feed（资产和订单）**
 
-**`wss://api.huobi.pro/ws/v1`**  
+**`wss://api.huobi.pro/ws/v2`**  
 
-**`wss://api-aws.huobi.pro/ws/v1`**     
+**`wss://api-aws.huobi.pro/ws/v2`**     
 
 <aside class="notice">
 请使用中国大陆以外的 IP 访问火币 API。
@@ -7796,17 +7796,13 @@ REQ频道支持5档/20档/150档全量数据的获取。<br>
 | 1008        | header required correct cloud-exchange | exchangeCode 参数错误    |
 | bad-request | request timeout                        | 请求超时                 |
 
-# Websocket资产及订单 v1（已废弃）
-
-<aside class="warning">Websocket资产及订单 v1接口将于2021年2月28日后随时关闭，您如果仍然使用该接口，请尽快迁移到v2接口。</aside>
-
-# Websocket资产及订单（v2）
+# Websocket资产及订单
 
 ## 简介
 
 ### 接入URL
 
-**Websocket资产及订单（v2）**
+**Websocket资产及订单**
 
 **`wss://api.huobi.pro/ws/v2`**  
 
@@ -7818,7 +7814,7 @@ REQ频道支持5档/20档/150档全量数据的获取。<br>
 
 ### 数据压缩
 
-与v1版本不同，v2版本返回的数据未进行 GZIP 压缩。
+与行情WebSocket不同，资产和订单返回的数据未进行 GZIP 压缩。
 
 ### 心跳消息
 
@@ -7907,7 +7903,7 @@ REQ频道支持5档/20档/150档全量数据的获取。<br>
 
 ### 签名步骤
 
-v2.1版本签名与v2.0版本签名步骤相似，具体区别如下：
+资产和订单WebSocket签名与Rest接口签名步骤相似，具体区别如下：
 
 1. 生成参与签名的字符串时，请求方法固定使用GET，请求地址固定为/ws/v2
 
@@ -7915,7 +7911,7 @@ v2.1版本签名与v2.0版本签名步骤相似，具体区别如下：
 
 3. signatureVersion版本升级为2.1
 
-v2版本签名步骤,您可以点击 <a href='https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc'>这里</a> 获取。
+Rest接口签名步骤,您可以点击 <a href='https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc'>这里</a> 获取。
 
 签名前最后生成的字符串如下：
 
