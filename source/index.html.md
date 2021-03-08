@@ -268,9 +268,9 @@ In general, the domain <u>api-aws.huobi.pro</u> is optimized for AWS client, the
 
 **Websocket Feed (account and order)**
 
-**`wss://api.huobi.pro/ws/v1`**  
+**`wss://api.huobi.pro/ws/v2`**  
 
-**`wss://api-aws.huobi.pro/ws/v1`**     
+**`wss://api-aws.huobi.pro/ws/v2`**     
 
 <aside class="notice">
 Please initiate API calls with non-China IP.
@@ -7837,17 +7837,13 @@ Below is the error code, error message and description returned by Market WebSoc
 | bad-request | not json string             | The request is not JSON format         |
 | bad-request | request timeout             | The request is time out                |
 
-# Websocket Account and Order (obsoleted)
-
-<aside class="warning">Account and Order Websocket v1 will be shutdown at any time after Feb 28, 2021, please migrate to v2 if you are still using v1.</aside>
-
-# Websocket Account and Order (v2)
+# Websocket Account and Order
 
 ## Introduction
 
 ### Access URL
 
-**Websocket Asset and Order (v2)**
+**Websocket Asset and Order**
 
 **`wss://api.huobi.pro/ws/v2`**  
 
@@ -7858,7 +7854,7 @@ By comparing to api.huobi.pro, the network latency to api-aws.huobi.pro is lower
 
 ### Message Compression
 
-Different with v1, the return data of websocket v2 are not compressed.
+Different with Market WebSocket, the return data of Account and Order Websocket are not compressed.
 
 ### Heartbeat
 
@@ -7946,10 +7942,10 @@ The response of success:
 
 ### Generating Signature 
 
-The signature generation method v2.1 is similar with v2.0, with only following differences:
+The signature generation method of Account and Order WebSocket is similar with Rest API , with only following differences:
 
 1. The request method should be "GET", to URL "/ws/v2".
-2. The involved field names in v2 signature generation are: accessKey，signatureMethod，signatureVersion，timestamp
+2. The involved field names in signature generation are: accessKey，signatureMethod，signatureVersion，timestamp
 3. The valid value of signatureVersion is 2.1.
 
 Please refer to detailed signature generation steps from: [https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc]
