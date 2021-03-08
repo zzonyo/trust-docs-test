@@ -777,10 +777,7 @@
               </ul>
           </li>
           <li>
-            <a href="#websocket-account-and-order-obsoleted" class="toc-h1 toc-link" data-title="Websocket Account and Order (obsoleted)">Websocket Account and Order (obsoleted)</a>
-          </li>
-          <li>
-            <a href="#websocket-account-and-order-v2" class="toc-h1 toc-link" data-title="Websocket Account and Order (v2)">Websocket Account and Order (v2)</a>
+            <a href="#websocket-account-and-order" class="toc-h1 toc-link" data-title="Websocket Account and Order">Websocket Account and Order</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#introduction-12" class="toc-h2 toc-link" data-title="Introduction">Introduction</a>
@@ -1705,9 +1702,9 @@ The API Key can bind maximum 20 IP addresses (either host IP or network IP), we 
 
 <p><strong>Websocket Feed (account and order)</strong></p>
 
-<p><strong><code>wss://api.huobi.pro/ws/v1</code></strong>  </p>
+<p><strong><code>wss://api.huobi.pro/ws/v2</code></strong>  </p>
 
-<p><strong><code>wss://api-aws.huobi.pro/ws/v1</code></strong>     </p>
+<p><strong><code>wss://api-aws.huobi.pro/ws/v2</code></strong>     </p>
 
 <aside class="notice">
 Please initiate API calls with non-China IP.
@@ -16734,10 +16731,8 @@ In the near future, Huobi Global will align the update behavior of 150-level inc
 <td>The request is time out</td>
 </tr>
 </tbody></table>
-<h1 id='websocket-account-and-order-obsoleted'>Websocket Account and Order (obsoleted)</h1>
-<aside class="warning">Account and Order Websocket v1 will be shutdown at any time after Feb 28, 2021, please migrate to v2 if you are still using v1.</aside>
-<h1 id='websocket-account-and-order-v2'>Websocket Account and Order (v2)</h1><h2 id='introduction-12'>Introduction</h2><h3 id='access-url'>Access URL</h3>
-<p><strong>Websocket Asset and Order (v2)</strong></p>
+<h1 id='websocket-account-and-order'>Websocket Account and Order</h1><h2 id='introduction-12'>Introduction</h2><h3 id='access-url'>Access URL</h3>
+<p><strong>Websocket Asset and Order</strong></p>
 
 <p><strong><code>wss://api.huobi.pro/ws/v2</code></strong>  </p>
 
@@ -16746,7 +16741,7 @@ In the near future, Huobi Global will align the update behavior of 150-level inc
 <p>Note: 
 By comparing to api.huobi.pro, the network latency to api-aws.huobi.pro is lower, for those client&#39;s servers locating at AWS.</p>
 <h3 id='message-compression'>Message Compression</h3>
-<p>Different with v1, the return data of websocket v2 are not compressed.</p>
+<p>Different with Market WebSocket, the return data of Account and Order Websocket are not compressed.</p>
 <h3 id='heartbeat'>Heartbeat</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ping"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -16878,11 +16873,11 @@ By comparing to api.huobi.pro, the network latency to api-aws.huobi.pro is lower
 </span></code></pre>
 <p>The response of success:</p>
 <h3 id='generating-signature'>Generating Signature</h3>
-<p>The signature generation method v2.1 is similar with v2.0, with only following differences:</p>
+<p>The signature generation method of Account and Order WebSocket is similar with Rest API , with only following differences:</p>
 
 <ol>
 <li>The request method should be &quot;GET&quot;, to URL &quot;/ws/v2&quot;.</li>
-<li>The involved field names in v2 signature generation are: accessKey，signatureMethod，signatureVersion，timestamp</li>
+<li>The involved field names in signature generation are: accessKey，signatureMethod，signatureVersion，timestamp</li>
 <li>The valid value of signatureVersion is 2.1.</li>
 </ol>
 
