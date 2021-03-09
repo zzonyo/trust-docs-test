@@ -8542,10 +8542,10 @@ API Key Permission：Read
 | currency       | string    | Stable coin name (PAX/USDC/TUSD)                             |
 | amount         | string    | Amount of stable coin to exchange (Due to factors such as the amount of the exchange account, the amount returned may be smaller than the amount requested.) |
 | type           | string    | Type of the exchange (buy/sell)                              |
-| exchangeAmount | string    | Amount of HUSD to exchange in or out                         |
+| exchangeAmount | string    | Amount of HUSD to exchange in or out. When type=buy, exchangeAmount is the HUSD amount the client need to pay; When type=sell, exchangeAmount is the HUSD amount client can gain.      |
 | exchangeFee    | string    | Exchange fee (in HUSD)                                       |
 | quoteId        | string    | Stable currency quoteID                                      |
-| expiration     | string    | Term of validity                                             |
+| expiration     | string    | Term of validity (usually 10 seconds after request)          |
 
 ## Exchange Stable Coin
 
@@ -8569,7 +8569,7 @@ API Key Permission：Trade
 | currency        | string    | Stable coin name (PAX/USDC/TUSD)     |
 | amount          | string    | Amount of stable coin to exchange    |
 | type            | string    | Type of the exchange (buy/sell)      |
-| exchange-amount | string    | Amount of HUSD to exchange in or out |
+| exchange-amount | string    | Amount of HUSD to exchange in or out.When type=buy, exchangeAmount is the HUSD amount the client need to pay; When type=sell, exchangeAmount is the HUSD amount client can gain. |
 | exchange-fee    | string    | Exchange fee (in HUSD)               |
 | time            | long      | Timestampe                           |
 
@@ -8580,15 +8580,15 @@ Below is the error code and the description from stable coin APIs
 | Error Code                     | Description                                                 |
 | ------------------------------ | ----------------------------------------------------------- |
 | invalid-currency               | invalid currency                                            |
-| invalid-amount                 | amount < 1,000 or amount > quota limit                      |
+| invalid-amount                 | amount < 1,000 or amount > current quota limit              |
 | invalid-type                   | type not 'buy' or 'sell'                                    |
 | quote-exceed-price-limit       | offered price exceed limit (less than 0.9 or more than 1.1) |
-| quote-exceed-time-limit        | offered price is out of time                                |
-| quote-failure                  | other errors                                                |
+| quote-exceed-time-limit        | offered price is timeout                                    |
+| quote-failure                  | other errors in backend causing quote failure               |
 | invalid-quote-id               | Paramemter ‘quote-id’ is invalid                            |
 | insufficient-balance           | insufficient balance to buy or sell stable coins            |
 | insufficient-quota             | the quota is exceeded                                       |
-| exchange-failure               | other errors                                                |
+| exchange-failure               | other errors happend in the backend                         |
 | Base-user-request-exceed-limit | Operation is too frequent                                   |
 
 # ETF (HB10)
