@@ -30,6 +30,8 @@ table th {
 
 | Release Time <br>(UTC +8) | API  | New / Update    | Description     |
 | ------------------------ | ---------------------- | --------------- | ------------------------------------- |
+| 2021.3.1 | `POST /v2/sub-user/deduct-mode` | Add | Set a deduction for master and sub user |
+| 2021.3.1 | `GET /v2/sub-user/account-list` | Update | Add deduct mode parameters |
 | 2021.2.28 | Account and Order WebSocket v1 | Delete | Account and WebSocket v1 was offline |
 | 2021.2.1 | `POST /v2/account/repayment` | Update | Support isolated repayment                                   |
 | 2021.1.22 19:00 | `GET /v1/order/matchresults` | Add | Add timestamp parameters |
@@ -268,9 +270,9 @@ In general, the domain <u>api-aws.huobi.pro</u> is optimized for AWS client, the
 
 **Websocket Feed (account and order)**
 
-**`wss://api.huobi.pro/ws/v1`**  
+**`wss://api.huobi.pro/ws/v2`**  
 
-**`wss://api-aws.huobi.pro/ws/v1`**     
+**`wss://api-aws.huobi.pro/ws/v2`**     
 
 <aside class="notice">
 Please initiate API calls with non-China IP.
@@ -2923,6 +2925,52 @@ Sub user management APIs provide sub user account management (creation, query, p
 
 <aside class="notice">All endpoints in this section require authentication</aside>
 
+## Set a deduction for parent and sub user
+
+This interface is to set the deduction fee for parent and sub user (HT or point ).
+
+API Key Permission：Trade
+
+### HTTP Request
+
+- POST /v2/sub-user/deduct-mode
+
+### Request Parameters
+
+| Parameter  | Required | Data Type | Description                                               | Default | Value Range |
+| ---------- | -------- | --------- | --------------------------------------------------------- | ------- | ----------- |
+| subUids    | true     | long      | Sub user's UID list (maximum 50 UIDs, separated by comma) | NA      |             |
+| deductMode | true     | string    | deduct mode：master ,sub                                  | NA      |             |
+
+> Response:
+
+```json
+{
+
+"code": 200,
+"data": [
+    {
+        "subUid": "132208121",
+        "deductMode": "sub"
+    }
+]
+}
+```
+
+### Response Content
+
+| Parameter   | Required | Data Type | Description | Value Range                                                  |      |
+| ----------- | -------- | --------- | ----------- | ------------------------------------------------------------ | ---- |
+| code        |          | true      | int         | Status code                                                  |      |
+| message     |          | false     | string      | Error message (if any)                                       |      |
+| data        |          | true      | object      |                                                              |      |
+| {subUid     |          | true      | string      | Sub user's UID                                               |      |
+| deductMode  |          | true      | string      | deduct mode                                                  |      |
+| errCode     |          | true      | string      | Error code in case of rejection (only valid when the requested UID being rejected) |      |
+| errMessage} |          | false     | string      | Error message in case of rejection (only valid when the requested UID being rejected) |      |
+
+## 
+
 ## API key query
 
 This  endpoint is used by the parent user to query their own API key information, and the parent user to query their sub user's API key information.
@@ -3312,6 +3360,7 @@ API Key Permission: Read
     "code": 200,
     "data": {
         "uid": 132208121,
+        "deductMode": "sub",
         "list": [
             {
                 "accountType": "isolated-margin",
@@ -3345,6 +3394,7 @@ API Key Permission: Read
 | message           | FALSE     | string    | Error message (if any)                                       |                                                   |
 | data              | TRUE      | object    |                                                              |                                                   |
 | { uid             | TRUE      | long      | Sub user’s UID                                               |                                                   |
+| deductMode        | TRUE      | string    | deduct mode                                                  |                                                   |
 | list              | TRUE      | object    |                                                              |                                                   |
 | { accountType     | TRUE      | string    | Account type                                                 | spot, isolated-margin, cross-margin, futures,swap |
 | activation        | TRUE      | string    | Account’s activation                                         | activated, deactivated                            |
@@ -7838,17 +7888,13 @@ Below is the error code, error message and description returned by Market WebSoc
 | bad-request | not json string             | The request is not JSON format         |
 | bad-request | request timeout             | The request is time out                |
 
-# Websocket Account and Order (obsoleted)
-
-<aside class="warning">Account and Order Websocket v1 will be shutdown at any time after Feb 28, 2021, please migrate to v2 if you are still using v1.</aside>
-
-# Websocket Account and Order (v2)
+# Websocket Account and Order
 
 ## Introduction
 
 ### Access URL
 
-**Websocket Asset and Order (v2)**
+**Websocket Asset and Order**
 
 **`wss://api.huobi.pro/ws/v2`**  
 
@@ -7859,7 +7905,7 @@ By comparing to api.huobi.pro, the network latency to api-aws.huobi.pro is lower
 
 ### Message Compression
 
-Different with v1, the return data of websocket v2 are not compressed.
+Different with Market WebSocket, the return data of Account and Order Websocket are not compressed.
 
 ### Heartbeat
 
@@ -7947,10 +7993,10 @@ The response of success:
 
 ### Generating Signature 
 
-The signature generation method v2.1 is similar with v2.0, with only following differences:
+The signature generation method of Account and Order WebSocket is similar with Rest API , with only following differences:
 
 1. The request method should be "GET", to URL "/ws/v2".
-2. The involved field names in v2 signature generation are: accessKey，signatureMethod，signatureVersion，timestamp
+2. The involved field names in signature generation are: accessKey，signatureMethod，signatureVersion，timestamp
 3. The valid value of signatureVersion is 2.1.
 
 Please refer to detailed signature generation steps from: [https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc]
@@ -8547,10 +8593,10 @@ API Key Permission：Read
 | currency       | string    | Stable coin name (PAX/USDC/TUSD)                             |
 | amount         | string    | Amount of stable coin to exchange (Due to factors such as the amount of the exchange account, the amount returned may be smaller than the amount requested.) |
 | type           | string    | Type of the exchange (buy/sell)                              |
-| exchangeAmount | string    | Amount of HUSD to exchange in or out                         |
+| exchangeAmount | string    | Amount of HUSD to exchange in or out. When type=buy, exchangeAmount is the HUSD amount the client need to pay; When type=sell, exchangeAmount is the HUSD amount client can gain.      |
 | exchangeFee    | string    | Exchange fee (in HUSD)                                       |
 | quoteId        | string    | Stable currency quoteID                                      |
-| expiration     | string    | Term of validity                                             |
+| expiration     | string    | Term of validity (usually 10 seconds after request)          |
 
 ## Exchange Stable Coin
 
@@ -8574,7 +8620,7 @@ API Key Permission：Trade
 | currency        | string    | Stable coin name (PAX/USDC/TUSD)     |
 | amount          | string    | Amount of stable coin to exchange    |
 | type            | string    | Type of the exchange (buy/sell)      |
-| exchange-amount | string    | Amount of HUSD to exchange in or out |
+| exchange-amount | string    | Amount of HUSD to exchange in or out.When type=buy, exchangeAmount is the HUSD amount the client need to pay; When type=sell, exchangeAmount is the HUSD amount client can gain. |
 | exchange-fee    | string    | Exchange fee (in HUSD)               |
 | time            | long      | Timestampe                           |
 
@@ -8585,16 +8631,16 @@ Below is the error code and the description from stable coin APIs
 | Error Code                     | Description                                                 |
 | ------------------------------ | ----------------------------------------------------------- |
 | invalid-currency               | invalid currency                                            |
-| invalid-amount                 | amount < 1,000 or amount > quota limit                      |
+| invalid-amount                 | amount < 1,000 or amount > current quota limit              |
 | invalid-type                   | type not 'buy' or 'sell'                                    |
 | quote-exceed-price-limit       | offered price exceed limit (less than 0.9 or more than 1.1) |
-| quote-exceed-time-limit        | offered price is out of time                                |
-| quote-failure                  | other errors                                                |
+| quote-exceed-time-limit        | offered price is timeout                                    |
+| quote-failure                  | other errors in backend causing quote failure               |
 | invalid-quote-id               | Paramemter ‘quote-id’ is invalid                            |
 | insufficient-balance           | insufficient balance to buy or sell stable coins            |
 | insufficient-quota             | the quota is exceeded                                       |
-| exchange-failure               | other errors                                                |
-| Base-user-request-exceed-limit | Operation is too frequent                                   |
+| exchange-failure               | other errors happend in the backend                         |
+| Base-user-request-exceed-limit | Operation is too frequently                                 |
 
 # ETF (HB10)
 
@@ -8652,16 +8698,16 @@ curl "https://api.huobi.pro/etf/swap/config?etf_name=hb10"
 
 ### Response Content
 
-| Field                 | Data Type | Description                                                  |      |
-| --------------------- | --------- | ------------------------------------------------------------ | ---- |
-| purchase_min_amount   | integer   | Minimum creation amounts per request                         |      |
-| purchase_max_amount   | integer   | Max creation amounts per request                             |      |
-| redemption_min_amount | integer   | Minimum redemption amounts per request                       |      |
-| redemption_max_amount | integer   | Max redemption amounts per request                           |      |
-| purchase_fee_rate     | decimal   | Creation fee rate                                            |      |
-| redemption_fee_rate   | decimal   | Redemption fee rate                                          |      |
-| etf_status            | integer   | status of the ETF: Normal(1), Rebalancing Start(2), Creation and Redemption Suspended(3), Creation Suspended(4), Redemption Suspended(5) |      |
-| unit_price            | array     | ETF constitution in format of {amount, currency}             |      |
+| Field                 | Data Type | Description                                                  | Mandatory  | 
+| --------------------- | --------- | ------------------------------------------------------------ | ---------- | 
+| purchase_min_amount   | integer   | Minimum creation amounts per request                         |    true    |
+| purchase_max_amount   | integer   | Maximum creation amounts per request                         |    false   |
+| redemption_min_amount | integer   | Minimum redemption amounts per request                       |    true    |
+| redemption_max_amount | integer   | Maximum redemption amounts per request                       |    false   |
+| purchase_fee_rate     | decimal   | Creation fee rate                                            |    ture    |
+| redemption_fee_rate   | decimal   | Redemption fee rate                                          |    ture    |
+| etf_status            | integer   | status of the ETF: Normal(1), Rebalancing Start(2), Creation and Redemption Suspended(3), Creation Suspended(4), Redemption Suspended(5) |                                                        ture    |
+| unit_price            | array     | ETF constitution in format of {amount, currency}             |    ture    |
 
 ## Order Creation/Redemption
 
@@ -8748,7 +8794,7 @@ curl "https://api.huobi.pro/etf/swap/list"
 | --------- | -------- | --------- | ---------------------------------------------------------- | ---- |
 | etf_name  | true     | string    | ETF name, currently only support hb10                      |      |
 | offset    | true     | integer   | The offset of the records, set to 0 for the latest records |      |
-| limit     | true     | integer   | The number of records to return, max is 100                |      |
+| limit     | true     | integer   | The number of records to return, min is 1, max is 100      |      |
 
 > Response:
 
@@ -8801,9 +8847,9 @@ curl "https://api.huobi.pro/etf/swap/list"
 | id          | integer   | Creation/Redemption id     |
 | gmt_created | integer   | Operation timestamp        |
 | currency    | string    | ETF name                   |
-| amount      | decimal   | Creation/Redmption amount  |
+| amount      | double    | Creation/Redmption amount  |
 | type        | integer   | Creation(1), Redemption(2) |
-| status      | integer   | Operation result           |
+| status      | integer   | Operation result (-2 if success) |
 | detail      | array     | Please find details below  |
 
 **Fields under "Detail"**
