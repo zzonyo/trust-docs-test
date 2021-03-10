@@ -4508,8 +4508,7 @@ sub_uid | true | long | 子账户的UID	 |  |  |
             "liquidation_price": null,
             "lever_rate": 5,
             "adjust_factor": 0.1,
-            "margin_static": 50,
-            "is_debit": 0
+            "margin_static": 5
         }
     ],
     "ts": 1604301730723
