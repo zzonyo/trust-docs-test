@@ -8589,7 +8589,7 @@ Below is the error code and the description from stable coin APIs
 | insufficient-balance           | insufficient balance to buy or sell stable coins            |
 | insufficient-quota             | the quota is exceeded                                       |
 | exchange-failure               | other errors happend in the backend                         |
-| Base-user-request-exceed-limit | Operation is too frequent                                   |
+| Base-user-request-exceed-limit | Operation is too frequently                                 |
 
 # ETF (HB10)
 
@@ -8647,16 +8647,16 @@ curl "https://api.huobi.pro/etf/swap/config?etf_name=hb10"
 
 ### Response Content
 
-| Field                 | Data Type | Description                                                  |      |
-| --------------------- | --------- | ------------------------------------------------------------ | ---- |
-| purchase_min_amount   | integer   | Minimum creation amounts per request                         |      |
-| purchase_max_amount   | integer   | Max creation amounts per request                             |      |
-| redemption_min_amount | integer   | Minimum redemption amounts per request                       |      |
-| redemption_max_amount | integer   | Max redemption amounts per request                           |      |
-| purchase_fee_rate     | decimal   | Creation fee rate                                            |      |
-| redemption_fee_rate   | decimal   | Redemption fee rate                                          |      |
-| etf_status            | integer   | status of the ETF: Normal(1), Rebalancing Start(2), Creation and Redemption Suspended(3), Creation Suspended(4), Redemption Suspended(5) |      |
-| unit_price            | array     | ETF constitution in format of {amount, currency}             |      |
+| Field                 | Data Type | Description                                                  | Mandatory  | 
+| --------------------- | --------- | ------------------------------------------------------------ | ---------- | 
+| purchase_min_amount   | integer   | Minimum creation amounts per request                         |    true    |
+| purchase_max_amount   | integer   | Maximum creation amounts per request                         |    false   |
+| redemption_min_amount | integer   | Minimum redemption amounts per request                       |    true    |
+| redemption_max_amount | integer   | Maximum redemption amounts per request                       |    false   |
+| purchase_fee_rate     | decimal   | Creation fee rate                                            |    ture    |
+| redemption_fee_rate   | decimal   | Redemption fee rate                                          |    ture    |
+| etf_status            | integer   | status of the ETF: Normal(1), Rebalancing Start(2), Creation and Redemption Suspended(3), Creation Suspended(4), Redemption Suspended(5) |                                                        ture    |
+| unit_price            | array     | ETF constitution in format of {amount, currency}             |    ture    |
 
 ## Order Creation/Redemption
 
@@ -8743,7 +8743,7 @@ curl "https://api.huobi.pro/etf/swap/list"
 | --------- | -------- | --------- | ---------------------------------------------------------- | ---- |
 | etf_name  | true     | string    | ETF name, currently only support hb10                      |      |
 | offset    | true     | integer   | The offset of the records, set to 0 for the latest records |      |
-| limit     | true     | integer   | The number of records to return, max is 100                |      |
+| limit     | true     | integer   | The number of records to return, min is 1, max is 100      |      |
 
 > Response:
 
@@ -8796,9 +8796,9 @@ curl "https://api.huobi.pro/etf/swap/list"
 | id          | integer   | Creation/Redemption id     |
 | gmt_created | integer   | Operation timestamp        |
 | currency    | string    | ETF name                   |
-| amount      | decimal   | Creation/Redmption amount  |
+| amount      | double    | Creation/Redmption amount  |
 | type        | integer   | Creation(1), Redemption(2) |
-| status      | integer   | Operation result           |
+| status      | integer   | Operation result (-2 if success) |
 | detail      | array     | Please find details below  |
 
 **Fields under "Detail"**
