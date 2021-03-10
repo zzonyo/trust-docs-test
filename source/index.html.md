@@ -6898,7 +6898,8 @@ API Key Permission: Trade<br>
 |	amount	|	string	|	TRUE	|	Transfer value	|
 
 Note:<br>
-•	Only transfers between spot account and specific borrowing account are allowed.<br>
+•	Only transfers between spot account and specific borrowing account are
+GET /v2/c2c/repayment allowed.<br>
 
 > Response
 
@@ -7071,9 +7072,9 @@ After connected to Huobi's Websocket server, the server will send heartbeat peri
 ```json
 {"pong": 1492420473027} 
 ```
-When client receives this heartbeat message, it should response with a matching "pong" message which has the same integer in it, e.g.
+When client receives this heartbeat message, it should respond with a matching "pong" message which has the same integer in it, e.g.
 
-<aside class="warning">After the server sent two consecutive heartbeat messages without receiving at least one matching "pong" response from a client, then right before server sends the next "ping" heartbeat, the server will disconnect this client</aside>
+<aside class="warning">After the server sent two consecutive heartbeat messages without receiving at least one matching "pong" response from a client, then right before server sends the next "ping" heartbeat, the server will be disconnected with the client server.</aside>
 
 ### Subscribe to Topic
 
@@ -7106,7 +7107,7 @@ To receive data you have to send a "sub" message first.
 
 After successfully subscribed, you will receive a response to confirm subscription
 
-Then, you will received message when there is update in this topic
+Then, you will received messages when there is any update in the subcribed topics.
 
 ### Unsubscribe
 
@@ -7137,7 +7138,7 @@ To unsubscribe, you need to send below message
 }
 ```
 
-And you will receive a message to confirm the unsubscribe
+And you will receive a message to confirm the action.
 
 ### Pull Data
 
@@ -7338,7 +7339,7 @@ Pull request is supported.
 
 ## Market By Price (incremental update)
 
-User could subscribe to this channel to receive incremental update of Market By Price order book. Refresh message, the full image of the order book, is acquirable from the same channel, upon "req" request.
+User could subscribe to this channel to receive incremental update of Market By Price order book. Refresh message, the full image of the order book, are acquirable from the same channel, upon "req" request.
 
 **MBP incremental channel & its REQ channel)**
 
@@ -7347,13 +7348,13 @@ or
 **`wss://api-aws.huobi.pro/feed`**
 
 Suggested downstream data processing:<br>
-1)	Subscribe incremental updates and start to cache them;<br>
-2)	Request refresh message (with same number of levels), and base on its “seqNum” to align it with the cached incremental message which having a same “prevSeqNum”;<br>
+1)	Subscribe to incremental updates and start to cache them;<br>
+2)	Request refresh message (with same number of levels), and base on its “seqNum” to align it with the cached incremental message which has the same “prevSeqNum”;<br>
 3)	Start to continuously process incremental messages to build up MBP book;<br>
-4)	The “prevSeqNum” of current incremental message must be same with “seqNum” of previous message, otherwise it implicates message loss which should require another round refresh message retrieval and alignment;<br>
-5)	Once receiving a new price level from incremental message, that price level should be inserted into appropriate position of existing MBP book;<br>
-6)	Once receiving an updated “size” at existing price level from incremental message, the level size should be replaced directly by the new value;<br>
-7)	Once receiving a “size=0” at existing price level from incremental message, that price level should be removed from MBP book;<br>
+4)	The “prevSeqNum” of the current incremental message must be the same with “seqNum” of the previous message, otherwise it implicates message loss which should require another round of refresh message retrieval and alignment;<br>
+5)	Once received a new price level from incremental message, that price level should be inserted into appropriate position of existing MBP book;<br>
+6)	Once received an updated “size” at the existing price level from incremental message, the size should be replaced directly by the new value;<br>
+7)	Once received a “size=0” at existing price level from incremental message, that price level should be removed from MBP book;<br>
 8)	If one incremental message includes updates of multiple price levels, all of those levels should be updated simultaneously in MBP book.<br>
 
 Currently Huobi Global only supports 5-level/20-level MBP incremental channel and 150-level incremental channel, the differences between them are -<br>
@@ -7391,7 +7392,7 @@ But the incremental message from 150 levels MBP feed contains not only that side
 }
 ```
 In the near future, Huobi Global will align the update behavior of 150-level incremental channel with 5-level/20-level, which means while single side order book changed (either bid or ask), the update message will be no longer including a blank object for another side.<br>
-4) While there is nothing change between two snapshots in past 100ms, the 150 levels incremental MBP feed still sends out a message which containing two blank objects – bids & asks. <br>
+4) While there is nothing change between two snapshots in past 100ms, the 150 levels incremental MBP feed still sends out a message which contains two blank objects – bids & asks. <br>
 
 ```json
 {
@@ -7406,10 +7407,10 @@ In the near future, Huobi Global will align the update behavior of 150-level inc
 }
 ```
 But 5-level/20-level incremental channel won’t disseminate any update in such a case.<br>
-In the near future, Huobi Global will align the update behavior of 150-level incremental channel with 5-level/20-level, which means while there is no order book change at all, the channel will be no longer disseminating blank objects any more.<br>
-5) 5-level/20-level incremental channel only supports these symbols at this stage - btcusdt,ethusdt,xrpusdt,eosusdt,ltcusdt,etcusdt,adausdt,dashusdt,bsvusdt, while 150-level incremental channel supports all.<br>
+In the future, Huobi Global will align the update behavior of 150-level incremental channel with 5-level/20-level, which means while there is no order book change at all, the channel will be no longer disseminating messages of blank object any more.<br>
+5) 5-level/20-level incremental channel only supports the following symbols at this stage - btcusdt,ethusdt,xrpusdt,eosusdt,ltcusdt,etcusdt,adausdt,dashusdt,bsvusdt, while 150-level incremental channel supports all symbols.<br>
 
-REQ channel supports refreshment message for 5-level, 20-level, and 150-level.
+REQ channel supports refreshing message for 5-level, 20-level, and 150-level.
 
 ### Subscribe incremntal updates
 
@@ -7578,7 +7579,7 @@ User could subscribe to this channel to receive refresh update of Market By Pric
 
 ## Best Bid/Offer
 
-While any of best bid, best ask, best bid size, best ask size is changing, subscriber can receive BBO (Best Bid/Offer) update in tick by tick mode.
+User can receive BBO (Best Bid/Offer) update in tick by tick mode.
 
 ### Topic
 
@@ -7705,10 +7706,10 @@ This topic sends the latest completed trade. It updates in tick by tick mode.
 | --------- | --------- | ------------------------------------------------------------ |
 | id        | integer   | Unique trade id (to be obsoleted)                            |
 | tradeId   | integer   | Unique trade id (NEW)                                        |
-| amount    | float     | Last trade volume (buy side or sell side)                    |
-| price     | float     | Last trade price                                             |
-| ts        | integer   | Last trade time (UNIX epoch time in millisecond)             |
-| direction | string    | Aggressive order side (taker's order side) of the trade: 'buy' or 'sell' |
+| amount    | float     | The volume of the trade (buy side or sell side)                    |
+| price     | float     | The price of the trade                                            |
+| ts        | integer   | timestamp (UNIX epoch time in millisecond)             |
+| direction | string    | direction of the trade (taker): 'buy' or 'sell' |
 
 ### Pull Request
 
