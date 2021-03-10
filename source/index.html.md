@@ -30,6 +30,8 @@ table th {
 
 | Release Time <br>(UTC +8) | API  | New / Update    | Description     |
 | ------------------------ | ---------------------- | --------------- | ------------------------------------- |
+| 2021.3.1 | `POST /v2/sub-user/deduct-mode` | Add | Set a deduction for master and sub user |
+| 2021.3.1 | `GET /v2/sub-user/account-list` | Update | Add deduct mode parameters |
 | 2021.2.28 | Account and Order WebSocket v1 | Delete | Account and WebSocket v1 was offline |
 | 2021.2.1 | `POST /v2/account/repayment` | Update | Support isolated repayment                                   |
 | 2021.1.22 19:00 | `GET /v1/order/matchresults` | Add | Add timestamp parameters |
@@ -2923,6 +2925,52 @@ Sub user management APIs provide sub user account management (creation, query, p
 
 <aside class="notice">All endpoints in this section require authentication</aside>
 
+## Set a deduction for parent and sub user
+
+This interface is to set the deduction fee for parent and sub user (HT or point ).
+
+API Key Permission：Trade
+
+### HTTP Request
+
+- POST /v2/sub-user/deduct-mode
+
+### Request Parameters
+
+| Parameter  | Required | Data Type | Description                                               | Default | Value Range |
+| ---------- | -------- | --------- | --------------------------------------------------------- | ------- | ----------- |
+| subUids    | true     | long      | Sub user's UID list (maximum 50 UIDs, separated by comma) | NA      |             |
+| deductMode | true     | string    | deduct mode：master ,sub                                  | NA      |             |
+
+> Response:
+
+```json
+{
+
+"code": 200,
+"data": [
+    {
+        "subUid": "132208121",
+        "deductMode": "sub"
+    }
+]
+}
+```
+
+### Response Content
+
+| Parameter   | Required | Data Type | Description | Value Range                                                  |      |
+| ----------- | -------- | --------- | ----------- | ------------------------------------------------------------ | ---- |
+| code        |          | true      | int         | Status code                                                  |      |
+| message     |          | false     | string      | Error message (if any)                                       |      |
+| data        |          | true      | object      |                                                              |      |
+| {subUid     |          | true      | string      | Sub user's UID                                               |      |
+| deductMode  |          | true      | string      | deduct mode                                                  |      |
+| errCode     |          | true      | string      | Error code in case of rejection (only valid when the requested UID being rejected) |      |
+| errMessage} |          | false     | string      | Error message in case of rejection (only valid when the requested UID being rejected) |      |
+
+## 
+
 ## API key query
 
 This  endpoint is used by the parent user to query their own API key information, and the parent user to query their sub user's API key information.
@@ -3312,6 +3360,7 @@ API Key Permission: Read
     "code": 200,
     "data": {
         "uid": 132208121,
+        "deductMode": "sub",
         "list": [
             {
                 "accountType": "isolated-margin",
@@ -3345,6 +3394,7 @@ API Key Permission: Read
 | message           | FALSE     | string    | Error message (if any)                                       |                                                   |
 | data              | TRUE      | object    |                                                              |                                                   |
 | { uid             | TRUE      | long      | Sub user’s UID                                               |                                                   |
+| deductMode        | TRUE      | string    | deduct mode                                                  |                                                   |
 | list              | TRUE      | object    |                                                              |                                                   |
 | { accountType     | TRUE      | string    | Account type                                                 | spot, isolated-margin, cross-margin, futures,swap |
 | activation        | TRUE      | string    | Account’s activation                                         | activated, deactivated                            |
