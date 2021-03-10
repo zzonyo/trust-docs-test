@@ -4450,8 +4450,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
             "liquidation_price": null,
             "lever_rate": 5,
             "adjust_factor": 0.1,
-            "margin_static": 50,
-            "is_debit": 0
+            "margin_static": 50
         }
     ],
     "ts": 1604301730723
