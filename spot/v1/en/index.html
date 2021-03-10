@@ -18295,7 +18295,7 @@ The topic disseminates the current static value of individual accounts first, at
 </tr>
 <tr>
 <td>Base-user-request-exceed-limit</td>
-<td>Operation is too frequent</td>
+<td>Operation is too frequently</td>
 </tr>
 </tbody></table>
 <h1 id='etf-hb10'>ETF (HB10)</h1><h2 id='introduction-14'>Introduction</h2>
@@ -18358,56 +18358,56 @@ The topic disseminates the current static value of individual accounts first, at
 <th>Field</th>
 <th>Data Type</th>
 <th>Description</th>
-<th></th>
+<th>Mandatory</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>purchase_min_amount</td>
 <td>integer</td>
 <td>Minimum creation amounts per request</td>
-<td></td>
+<td>true</td>
 </tr>
 <tr>
 <td>purchase_max_amount</td>
 <td>integer</td>
-<td>Max creation amounts per request</td>
-<td></td>
+<td>Maximum creation amounts per request</td>
+<td>false</td>
 </tr>
 <tr>
 <td>redemption_min_amount</td>
 <td>integer</td>
 <td>Minimum redemption amounts per request</td>
-<td></td>
+<td>true</td>
 </tr>
 <tr>
 <td>redemption_max_amount</td>
 <td>integer</td>
-<td>Max redemption amounts per request</td>
-<td></td>
+<td>Maximum redemption amounts per request</td>
+<td>false</td>
 </tr>
 <tr>
 <td>purchase_fee_rate</td>
 <td>decimal</td>
 <td>Creation fee rate</td>
-<td></td>
+<td>ture</td>
 </tr>
 <tr>
 <td>redemption_fee_rate</td>
 <td>decimal</td>
 <td>Redemption fee rate</td>
-<td></td>
+<td>ture</td>
 </tr>
 <tr>
 <td>etf_status</td>
 <td>integer</td>
 <td>status of the ETF: Normal(1), Rebalancing Start(2), Creation and Redemption Suspended(3), Creation Suspended(4), Redemption Suspended(5)</td>
-<td></td>
+<td>ture</td>
 </tr>
 <tr>
 <td>unit_price</td>
 <td>array</td>
 <td>ETF constitution in format of {amount, currency}</td>
-<td></td>
+<td>ture</td>
 </tr>
 </tbody></table>
 <h2 id='order-creation-redemption'>Order Creation/Redemption</h2>
@@ -18584,7 +18584,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <td>limit</td>
 <td>true</td>
 <td>integer</td>
-<td>The number of records to return, max is 100</td>
+<td>The number of records to return, min is 1, max is 100</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -18656,7 +18656,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 </tr>
 <tr>
 <td>amount</td>
-<td>decimal</td>
+<td>double</td>
 <td>Creation/Redmption amount</td>
 </tr>
 <tr>
@@ -18667,7 +18667,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <tr>
 <td>status</td>
 <td>integer</td>
-<td>Operation result</td>
+<td>Operation result (-2 if success)</td>
 </tr>
 <tr>
 <td>detail</td>
