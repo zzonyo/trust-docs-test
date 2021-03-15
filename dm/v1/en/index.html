@@ -265,6 +265,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-2-6-2021-3-15-added-get-kline-data-of-mark-price-interface-subscribe-kline-data-of-mark-price-interface-request-kline-data-of-mark-price-interface" class="toc-h2 toc-link" data-title="1.2.6 2021-3-15 【Added: Get Kline Data of Mark Price interface, Subscribe Kline Data of Mark Price interface, Request Kline Data of Mark Price interface】">1.2.6 2021-3-15 【Added: Get Kline Data of Mark Price interface, Subscribe Kline Data of Mark Price interface, Request Kline Data of Mark Price interface】</a>
+                  </li>
+                  <li>
                     <a href="#1-2-5-2021-2-26-added-query-asset-valuation-interface-modified-get-contract-price-limitation-interface-support-users-not-to-fill-in-all-input-parameters-and-the-interface-returns-the-price-limit-data-of-all-available-contracts-modified-query-the-last-trade-of-a-contract-interface-support-users-not-to-fill-in-all-input-parameters-the-interface-returns-the-latest-transaction-data-of-all-available-contracts-and-in-that-case-the-return-parameter-quot-ch-quot-value-is-quot-market-trade-detail-quot-added-one-field-in-return-quot-tick-quot-parameter-quot-symbol-quot" class="toc-h2 toc-link" data-title="1.2.5 2021-2-26 【Added: Query Asset Valuation interface. Modified Get Contract Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter "ch" value is "market.*trade.detail". Added one field in return "tick" parameter: "symbol")】">1.2.5 2021-2-26 【Added: Query Asset Valuation interface. Modified Get Contract Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter "ch" value is "market.*trade.detail". Added one field in return "tick" parameter: "symbol")】</a>
                   </li>
                   <li>
@@ -434,6 +437,9 @@
                   </li>
                   <li>
                     <a href="#get-kline-data" class="toc-h2 toc-link" data-title="Get Kline Data">Get Kline Data</a>
+                  </li>
+                  <li>
+                    <a href="#get-kline-data-of-mark-price" class="toc-h2 toc-link" data-title="Get Kline Data of Mark Price">Get Kline Data of Mark Price</a>
                   </li>
                   <li>
                     <a href="#get-market-data-overview" class="toc-h2 toc-link" data-title="Get Market Data Overview">Get Market Data Overview</a>
@@ -713,6 +719,12 @@
                   <li>
                     <a href="#subscribe-trade-detail-data" class="toc-h2 toc-link" data-title="Subscribe Trade Detail Data">Subscribe Trade Detail Data</a>
                   </li>
+                  <li>
+                    <a href="#subscribe-kline-data-of-mark-price" class="toc-h2 toc-link" data-title="Subscribe Kline Data of Mark Price">Subscribe Kline Data of Mark Price</a>
+                  </li>
+                  <li>
+                    <a href="#request-kline-data-of-mark-price-interface" class="toc-h2 toc-link" data-title="Request Kline Data of Mark Price interface">Request Kline Data of Mark Price interface</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -832,7 +844,25 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-2-5-2021-2-26-added-query-asset-valuation-interface-modified-get-contract-price-limitation-interface-support-users-not-to-fill-in-all-input-parameters-and-the-interface-returns-the-price-limit-data-of-all-available-contracts-modified-query-the-last-trade-of-a-contract-interface-support-users-not-to-fill-in-all-input-parameters-the-interface-returns-the-latest-transaction-data-of-all-available-contracts-and-in-that-case-the-return-parameter-quot-ch-quot-value-is-quot-market-trade-detail-quot-added-one-field-in-return-quot-tick-quot-parameter-quot-symbol-quot'>1.2.5 2021-2-26 【Added: Query Asset Valuation interface. Modified Get Contract Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter &quot;ch&quot; value is &quot;market.*trade.detail&quot;. Added one field in return &quot;tick&quot; parameter: &quot;symbol&quot;)】</h2><h3 id='1-added-query-asset-valuation-interface'>1. Added Query Asset Valuation interface</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-2-6-2021-3-15-added-get-kline-data-of-mark-price-interface-subscribe-kline-data-of-mark-price-interface-request-kline-data-of-mark-price-interface'>1.2.6 2021-3-15 【Added: Get Kline Data of Mark Price interface, Subscribe Kline Data of Mark Price interface, Request Kline Data of Mark Price interface】</h2><h3 id='1-added-get-kline-data-of-mark-price-interface'>1. Added Get Kline Data of Mark Price interface</h3>
+<ul>
+<li>Interface Name: Get Kline Data of Mark Price</li>
+<li>Interface Type: public</li>
+<li>Interface URL: /index/market/history/mark_price_kline</li>
+</ul>
+<h3 id='2-added-subscribe-kline-data-of-mark-price-interface'>2. Added Subscribe Kline Data of Mark Price interface</h3>
+<ul>
+<li>Interface Name: Subscribe Kline Data of Mark Price</li>
+<li>Interface Type: public</li>
+<li>Subscription topic:market.$symbol.mark_price.$period</li>
+</ul>
+<h3 id='3-added-request-kline-data-of-mark-price-interface'>3. Added Request Kline Data of Mark Price interface</h3>
+<ul>
+<li>Interface Name: Request Kline Data of Mark Price interface</li>
+<li>Interface Type: public</li>
+<li>Subscription topic:market.$symbol.mark_price.$period</li>
+</ul>
+<h2 id='1-2-5-2021-2-26-added-query-asset-valuation-interface-modified-get-contract-price-limitation-interface-support-users-not-to-fill-in-all-input-parameters-and-the-interface-returns-the-price-limit-data-of-all-available-contracts-modified-query-the-last-trade-of-a-contract-interface-support-users-not-to-fill-in-all-input-parameters-the-interface-returns-the-latest-transaction-data-of-all-available-contracts-and-in-that-case-the-return-parameter-quot-ch-quot-value-is-quot-market-trade-detail-quot-added-one-field-in-return-quot-tick-quot-parameter-quot-symbol-quot'>1.2.5 2021-2-26 【Added: Query Asset Valuation interface. Modified Get Contract Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter &quot;ch&quot; value is &quot;market.*trade.detail&quot;. Added one field in return &quot;tick&quot; parameter: &quot;symbol&quot;)】</h2><h3 id='1-added-query-asset-valuation-interface'>1. Added Query Asset Valuation interface</h3>
 <ul>
 <li>Interface Name: Query Asset Valuation</li>
 <li>Interface Type: private</li>
@@ -1800,6 +1830,14 @@ For <a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs
 <td>/market/history/kline</td>
 <td>GET</td>
 <td>Get Kline Data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Market Data</td>
+<td>/index/market/history/mark_price_kline</td>
+<td>GET</td>
+<td>Get Kline Data of Mark Price</td>
 <td>No</td>
 </tr>
 <tr>
@@ -4772,21 +4810,6 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 </tbody></table>
 
 <blockquote>
-<p>tick illustration:</p>
-</blockquote>
-<pre class="highlight plaintext"><code>"tick": {
-    "id": Message id,
-    "ts": Time of Message Generation, unit: millisecond,
-    "bids": Buying, [price(hanging unit price), vol(this price represent single contract)], According to the descending order of Price,
-    "asks": Selling, [price(hanging unit Price), vol(this price represent single contract)], According to the ascending order of Price,
-    "ch": Data channel,
-    "mrid": Order ID,
-    "ts": Time of Respond Generation,
-    "version": version ID 
-}
-
-</code></pre>
-<blockquote>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
@@ -4984,22 +5007,6 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 </ul>
 
 <blockquote>
-<p>Data Illustration：</p>
-</blockquote>
-<pre class="highlight plaintext"><code>"data": [
-  {
-        "id": Kline id,
-        "vol": Transaction Volume(amount),
-        "count": transaction count
-        "open": opening Price
-        "close": Closing Price, when the Kline is the latest one，it means the latest price
-        "low": Lowest price
-        "high": highest price
-        "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
-   }
-]
-</code></pre>
-<blockquote>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
@@ -5127,12 +5134,194 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='get-kline-data-of-mark-price'>Get Kline Data of Mark Price</h2>
+<ul>
+<li>GET <code>/index/market/history/mark_price_kline</code></li>
+</ul>
+<h3 id='request-parameter-8'>Request Parameter:</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
+<td></td>
+<td>&quot;BTC_CW&quot; represents BTC “This Week”, &quot;BTC_NW&quot; represents BTC “Next Week”, &quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>kline period</td>
+<td></td>
+<td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week,1mon</td>
+</tr>
+<tr>
+<td>size</td>
+<td>true</td>
+<td>int</td>
+<td>kline size</td>
+<td></td>
+<td>[1,2000]</td>
+</tr>
+</tbody></table>
+<h5 id='note-5'>Note:</h5>
+<ul>
+<li>At one time 2000 at most</li>
+<li>Case-Insenstive, both uppercase and lowercase are supported</li>
+</ul>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.mark_price.5min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65582.94"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65645.7"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1615773000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65582.85"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65623.97"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1615773225762</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='returning-parameter-10'>Returning Parameter:</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>channel</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>kline id</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>true</td>
+<td>string</td>
+<td>trade vol(cont), value is 0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>true</td>
+<td>string</td>
+<td>trade count, value is 0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>true</td>
+<td>string</td>
+<td>open price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>true</td>
+<td>string</td>
+<td>close price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>true</td>
+<td>string</td>
+<td>low price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>true</td>
+<td>string</td>
+<td>high price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>string</td>
+<td>trade amount(coin), value is 0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>status</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <h2 id='get-market-data-overview'>Get Market Data Overview</h2><h3 id='example-8'>Example</h3>
 <ul>
 <li>GET <code>/market/detail/merged</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"</span>
-</code></pre><h3 id='request-parameter-8'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-9'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5153,23 +5342,6 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 </tr>
 </tbody></table>
 
-<blockquote>
-<p>tick Illustration:</p>
-</blockquote>
-<pre class="highlight plaintext"><code>"tick": {
-    "id": Kline id,
-    "vol": transaction volume（contract）,
-    "count": transaction count
-    "open": opening price,
-    "close": Closing Price, when the Kline is the latest one，it means the latest price
-    "low": Lowest price
-    "high": highest price
-    "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
-    "bid": [price of buying one (amount)],
-    "ask": [price of selling one (amount)]
-
-  }
-</code></pre>
 <blockquote>
 <p>Response:</p>
 </blockquote>
@@ -5198,7 +5370,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604298319019</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-10'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-11'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5325,7 +5497,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <ul>
 <li>GET <code>/market/detail/batch_merged</code></li>
 </ul>
-<h3 id='request-parameter-9'>Request Parameter</h3>
+<h3 id='request-parameter-10'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5345,7 +5517,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”. Contract code is supported to query data. e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 </tbody></table>
-<h4 id='note-5'>Note</h4>
+<h4 id='note-6'>Note</h4>
 <ul>
 <li>The interface data updated frequency is 50ms</li>
 </ul>
@@ -5399,7 +5571,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1585818739007</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-11'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-12'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5527,7 +5699,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <li>GET <code>/market/trade</code><br></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/market/trade?symbol=BTC_CQ"</span>
-</code></pre><h3 id='request-parameter-10'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-11'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5548,24 +5720,6 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 </tr>
 </tbody></table>
 
-<blockquote>
-<p>Tick Illustration：</p>
-</blockquote>
-<pre class="highlight plaintext"><code>"tick": {
-  "id": Unique Order Id(symbol level),
-  "ts": Latest Transaction time,
-  "data": [
-    {
-      "id": Unique Transaction Id(symbol level),
-      "price": Transaction price,
-      "amount": transaction amount,
-      "direction": Active transaction direction,
-      "ts": transaction time
-
-    }
-  ]
-}
-</code></pre>
 <blockquote>
 <p>Response:</p>
 </blockquote>
@@ -5589,7 +5743,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1614068483482</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-12'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-13'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5734,7 +5888,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <li>GET <code>/market/history/trade</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&amp;size=100"</span>
-</code></pre><h3 id='request-parameter-11'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-12'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5763,22 +5917,6 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 </tr>
 </tbody></table>
 
-<blockquote>
-<p>data Illustration：</p>
-</blockquote>
-<pre class="highlight plaintext"><code>"data": {
-  "id": Unique Order Id(symbol level),
-  "ts": Latest transaction time,
-  "data": [
-    {
-      "id": Unique Transaction Id(symbol level),
-      "price": transaction price,
-      "amount": transaction (amount),
-      "direction": active transaction direction
-      "ts": transaction time
-      }
-}
-</code></pre>
 <blockquote>
 <p>Response:</p>
 </blockquote>
@@ -5818,7 +5956,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604298553734</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-13'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-14'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5959,7 +6097,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <li>GET <code>/api/v1/contract_risk_info</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/contract_risk_info"</span>
-</code></pre><h3 id='request-parameter-12'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-13'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5993,7 +6131,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604298633195</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-14'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-15'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6058,7 +6196,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <li>GET <code>/api/v1/contract_insurance_fund</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/contract_insurance_fund?symbol=BTC"</span>
-</code></pre><h3 id='request-parameter-13'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-14'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6098,7 +6236,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1604298695848</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-15'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-16'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6177,7 +6315,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <li>GET <code>/api/v1/contract_adjustfactor</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/contract_adjustfactor"</span>
-</code></pre><h3 id='request-parameter-14'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-15'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6234,7 +6372,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1604298785020</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-16'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-17'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6348,7 +6486,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <li>GET <code>/api/v1/contract_his_open_interest</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/contract_his_open_interest?symbol=BTC&amp;contract_type=this_week&amp;period=60min&amp;amount_type=1"</span>
-</code></pre><h3 id='request-parameter-15'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-16'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6419,7 +6557,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604298943494</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-17'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-18'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6516,7 +6654,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <ul>
 <li>GET <code>api/v1/contract_ladder_margin</code></li>
 </ul>
-<h3 id='request-parameter-16'>Request Parameter</h3>
+<h3 id='request-parameter-17'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6584,7 +6722,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1612489488052</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-18'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-19'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6698,7 +6836,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <li>GET <code>/api/v1/contract_api_state</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/contract_api_state"</span>
-</code></pre><h3 id='request-parameter-17'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-18'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6737,7 +6875,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604297099976</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-19'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-20'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6845,7 +6983,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <li>GET <code>/api/v1/contract_elite_account_ratio</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/contract_elite_account_ratio?symbol=BTC&amp;period=60min"</span>
-</code></pre><h3 id='request-parameter-18'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-19'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6890,7 +7028,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1604299070097</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-20'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-21'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6983,7 +7121,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <li>GET <code>/api/v1/contract_elite_position_ratio</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/contract_elite_position_ratio?symbol=BTC&amp;period=60min"</span>
-</code></pre><h3 id='request-parameter-19'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-20'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7032,7 +7170,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1604299402211</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-21'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-22'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7118,7 +7256,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <li>GET <code>/api/v1/contract_liquidation_orders</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&amp;trade_type=0&amp;create_date=7"</span>
-</code></pre><h3 id='request-parameter-20'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-21'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7196,7 +7334,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604299610722</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-22'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-23'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7330,7 +7468,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <ul>
 <li>GET <code>/api/v1/contract_settlement_records</code></li>
 </ul>
-<h3 id='request-parameter-21'>Request Parameter</h3>
+<h3 id='request-parameter-22'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7906,7 +8044,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <ul>
 <li>GET <code>/api/v1/contract_estimated_settlement_price</code></li>
 </ul>
-<h3 id='request-parameter-22'>Request Parameter</h3>
+<h3 id='request-parameter-23'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7964,7 +8102,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609749048045</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-23'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-24'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8052,7 +8190,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-6'>Note</h4>
+<h4 id='note-7'>Note</h4>
 <ul>
 <li>If the settement type is &quot;settlement&quot;, the field &quot;estimated_settlement_price&quot; will not be caluculated and shown updatedly until an hour before settlement. At other points (including the point of settlement), the field value will be empty; and other fields will be showned normally.</li>
 <li>If the settement type is &quot;delivery&quot;, the field &quot;estimated_settlement_price&quot; will not be caluculated and shown updatedly until an hour before delivery. At other points (including the point of delivery), the field value will be empty; and other fields will be showned normally.</li>
@@ -8062,7 +8200,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <ul>
 <li>POST <code>/api/v1/contract_balance_valuation</code></li>
 </ul>
-<h3 id='request-parameter-23'>Request Parameter</h3>
+<h3 id='request-parameter-24'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8095,7 +8233,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1614044220841</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-24'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-25'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8152,7 +8290,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <ul>
 <li>POST <code>/api/v1/contract_account_info</code><br></li>
 </ul>
-<h3 id='request-parameter-24'>Request Parameter</h3>
+<h3 id='request-parameter-25'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8199,7 +8337,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604300060777</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-25'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-26'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8333,7 +8471,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <ul>
 <li>POST  <code>/api/v1/contract_position_info</code> </li>
 </ul>
-<h3 id='request-parameter-25'>Request Parameter</h3>
+<h3 id='request-parameter-26'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8381,7 +8519,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604301441639</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-26'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-27'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8525,7 +8663,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-7'>Note</h4>
+<h4 id='note-8'>Note</h4>
 <ul>
 <li>If there are symbols in the settlement or delivery period,error code 1080(1080  In settlement or delivery. Unable to get positions of some contracts.  ) will return without request parameters. It&#39;s suggested to query the position info with request parameters to avoid raising the error code and not being able to query the position.</li>
 </ul>
@@ -8533,7 +8671,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <ul>
 <li>POST <code>/api/v1/contract_sub_auth</code></li>
 </ul>
-<h3 id='request-parameter-26'>Request Parameter</h3>
+<h3 id='request-parameter-27'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8558,7 +8696,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-8'>Note:</h4>
+<h4 id='note-9'>Note:</h4>
 <ul>
 <li>When enable the transaction authority on the sub-account for the first time, deemed to agree to access the contract market.</li>
 <li>If the sub-account trading permission has been enable, the interface will directly return success when request to enable again; if the sub-account trading permission has been disable, the interface will directly return success when request to disable again;</li>
@@ -8582,7 +8720,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1612490081318</span><span class="w">
 </span><span class="p">}</span><span class="w">   
-</span></code></pre><h3 id='returning-parameter-27'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-28'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8803,7 +8941,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <ul>
 <li>POST <code>/api/v1/contract_sub_account_info_list</code></li>
 </ul>
-<h3 id='request-parameter-27'>Request Parameter</h3>
+<h3 id='request-parameter-28'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8835,7 +8973,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-9'>Note:</h4>
+<h4 id='note-10'>Note:</h4>
 <ul>
 <li>Only return data of sub-accounts that have agreed to access the contract market.</li>
 </ul>
@@ -8876,7 +9014,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1612490180078</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-28'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-29'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9593,7 +9731,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <ul>
 <li>POST <code>/api/v1/contract_financial_record_exact</code></li>
 </ul>
-<h3 id='request-parameter-28'>Request Parameter</h3>
+<h3 id='request-parameter-29'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter name</th>
@@ -9653,7 +9791,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>prev ；next ；default value:prev</td>
 </tr>
 </tbody></table>
-<h4 id='note-10'>Note:</h4>
+<h4 id='note-11'>Note:</h4>
 <ul>
 <li>Value range description of start_time and end_time:
 
@@ -9789,7 +9927,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604305081144</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-29'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-30'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9898,7 +10036,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-11'>Note:</h4>
+<h4 id='note-12'>Note:</h4>
 <ul>
 <li>if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id  presents the last data on the next page.)</li>
 </ul>
@@ -9906,7 +10044,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <ul>
 <li>POST <code>/api/v1/contract_user_settlement_records</code></li>
 </ul>
-<h3 id='request-parameter-29'>Request Parameter</h3>
+<h3 id='request-parameter-30'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9952,7 +10090,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>Page 20 by default without given instruction,  ，no more than 50</td>
 </tr>
 </tbody></table>
-<h4 id='note-12'>Note:</h4>
+<h4 id='note-13'>Note:</h4>
 <ul>
 <li>The data is queried in reverse order by default; the newer the data, the closer to the front.</li>
 <li>If the start time or the end time is not within the value range, the system will report an error 1067 to indicate the parameter is invalid.<br></li>
@@ -10001,7 +10139,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604305358564</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-30'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-31'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10238,7 +10376,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <ul>
 <li>POST <code>/api/v1/contract_order_limit</code></li>
 </ul>
-<h3 id='request-parameter-30'>Request Parameter</h3>
+<h3 id='request-parameter-31'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10302,7 +10440,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604306946036</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-31'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-32'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10408,7 +10546,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <ul>
 <li>POST <code>/api/v1/contract_fee</code></li>
 </ul>
-<h3 id='request-parameter-31'>Request Parameter</h3>
+<h3 id='request-parameter-32'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10446,7 +10584,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604307012954</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-32'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-33'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10538,7 +10676,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <ul>
 <li>POST <code>/api/v1/contract_transfer_limit</code></li>
 </ul>
-<h3 id='request-parameter-32'>Request Parameter</h3>
+<h3 id='request-parameter-33'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10578,7 +10716,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604307084954</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-33'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-34'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10684,7 +10822,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <ul>
 <li>POST <code>/api/v1/contract_position_limit</code></li>
 </ul>
-<h3 id='request-parameter-33'>Request Parameter</h3>
+<h3 id='request-parameter-34'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10743,7 +10881,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604307195501</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-34'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-35'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11760,7 +11898,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"sl_order_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"330"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sl_order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"optimal_5"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-34'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-35'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11866,7 +12004,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Order type of stop-loss order    default is limit; limit，optimal_5，optimal_10，optimal_20</td>
 </tr>
 </tbody></table>
-<h3 id='note-13'>Note ：</h3>
+<h3 id='note-14'>Note ：</h3>
 <p>If there is a number in the Contract Code row，inquiry with Contract_Code. </p>
 
 <p>If there is no number，inquiry by Symbol + Contract Type.</p>
@@ -11905,7 +12043,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604367611267</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-35'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-36'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11965,7 +12103,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-14'>Note</h3>
+<h3 id='note-15'>Note</h3>
 <ul>
 <li>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</li>
 </ul>
@@ -12011,7 +12149,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-35'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-36'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12137,7 +12275,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Order type of stop-loss order    default is limit; limit，optimal_5，optimal_10，optimal_20</td>
 </tr>
 </tbody></table>
-<h3 id='note-15'>Note  ：</h3>
+<h3 id='note-16'>Note  ：</h3>
 <p>If there is a number in the Contract Code row,inquiry with Contract_Code. </p>
 
 <p>If there is no number,inquiry by Symbol + Contract Type.</p>
@@ -12177,7 +12315,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604367844388</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-36'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-37'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12293,13 +12431,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-16'>Note</h3>
+<h3 id='note-17'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
 <h2 id='cancel-an-order'>Cancel an Order</h2><h3 id='example-17'>Example</h3>
 <ul>
 <li>POST  <code>/api/v1/contract_cancel</code></li>
 </ul>
-<h3 id='request-parameter-36'>Request Parameter</h3>
+<h3 id='request-parameter-37'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12327,7 +12465,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Case-Insenstive.Both uppercase and lowercase are supported..&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
-<h3 id='note-17'>Note  ：</h3>
+<h3 id='note-18'>Note  ：</h3>
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
 
 <p>The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.</p>
@@ -12352,7 +12490,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604367997451</span><span class="w">
 </span><span class="p">}</span><span class="w"> 
-</span></code></pre><h3 id='returning-parameter-37'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-38'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12447,7 +12585,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"btc200925"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="s2">"quarter"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-37'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-38'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12487,7 +12625,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>offset direction（if not filled in means all）  [&quot;open&quot; , &quot;close&quot;]</td>
 </tr>
 </tbody></table>
-<h3 id='note-18'>Note</h3>
+<h3 id='note-19'>Note</h3>
 <ol>
 <li><p>Send symbol to cancel all the contracts of that kind of symbol, e.g. send “BTC” to cancel all BTC weekly, biweekly and quarterly contracts.</p></li>
 <li><p>Send contract_code to cancel the contracts of that code.</p></li>
@@ -12507,7 +12645,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604369127577</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-38'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-39'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12592,12 +12730,12 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_switch_lever_rate</code></li>
 </ul>
-<h4 id='note-19'>Note</h4>
+<h4 id='note-20'>Note</h4>
 <ul>
 <li><p>Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.</p></li>
 <li><p>The interface limits the number of requests to 1 time per 3 seconds.</p></li>
 </ul>
-<h3 id='request-parameter-38'>Request Parameter</h3>
+<h3 id='request-parameter-39'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -12646,7 +12784,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604369954194</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-39'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-40'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12717,7 +12855,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/lightning_close_position</code></li>
 </ul>
-<h3 id='request-parameter-39'>Request Parameter</h3>
+<h3 id='request-parameter-40'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12777,7 +12915,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>&quot;lightning&quot; by default. &quot;lightning_fok&quot;: lightning FOK type,&quot;lightning_ioc&quot;: lightning IOC type</td>
 </tr>
 </tbody></table>
-<h3 id='note-20'>Note:</h3>
+<h3 id='note-21'>Note:</h3>
 <p>client_order_id, order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.</p>
 
 <blockquote>
@@ -12794,7 +12932,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
      </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-40'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-41'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12869,7 +13007,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_order_info</code></li>
 </ul>
-<h3 id='request-parameter-40'>Request Parameter</h3>
+<h3 id='request-parameter-41'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12897,7 +13035,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Case-Insenstive.Both uppercase and lowercase are supported..&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
-<h3 id='note-21'>Note  ：</h3>
+<h3 id='note-22'>Note  ：</h3>
 <p>When getting information on order cancellation via get order information interface, users can only query last 4-hour data</p>
 
 <p>At least one of order_id and client_order_id must be filled in</p>
@@ -12945,7 +13083,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604370179844</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-41'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-42'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13173,7 +13311,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-22'>Note:</h4>
+<h4 id='note-23'>Note:</h4>
 <ul>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
 <li>Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value. And in the other orders created before that times, it is 0.</li>
@@ -13182,7 +13320,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_order_detail</code></li>
 </ul>
-<h3 id='request-parameter-41'>Request Parameter</h3>
+<h3 id='request-parameter-42'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13228,7 +13366,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Default 20，no more than 50</td>
 </tr>
 </tbody></table>
-<h3 id='note-23'>Note</h3>
+<h3 id='note-24'>Note</h3>
 <p>When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 24-hour data, while users who don’t type in parameters “created_at” and “order_type” can only query last 2-hour data.</p>
 
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jason-bigint package.</p>
@@ -13296,7 +13434,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604370259827</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-42'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-43'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13650,7 +13788,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-24'>Note:</h4>
+<h4 id='note-25'>Note:</h4>
 <ul>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
 <li>Only the real profit parameter (real_profit) of the transaction information that orders created after 0:00 on January 30, 2021 has a value . And of the other order transaction information that orders created  before that times, the real profit parameter is 0.</li>
@@ -13659,7 +13797,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST  <code>/api/v1/contract_openorders</code></li>
 </ul>
-<h3 id='request-parameter-42'>Request Parameter</h3>
+<h3 id='request-parameter-43'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13758,7 +13896,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604370488518</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-43'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-44'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14014,7 +14152,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-25'>Note:</h4>
+<h4 id='note-26'>Note:</h4>
 <ul>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
 <li>Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value. And in the other orders created before that times, it is 0.</li>
@@ -14039,7 +14177,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-43'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-44'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14131,7 +14269,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>&quot;create_date&quot;：descending order by order create date , &quot;update_time&quot;: descending order by order update time</td>
 </tr>
 </tbody></table>
-<h3 id='note-26'>Note</h3>
+<h3 id='note-27'>Note</h3>
 <p>All via API interface submited price limit orders that had been cancelled will only be kept for 2 hours.</p>
 
 <blockquote>
@@ -14177,7 +14315,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604370617322</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-44'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-45'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14433,7 +14571,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-27'>Note</h3>
+<h3 id='note-28'>Note</h3>
 <ul>
 <li>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</li>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
@@ -14443,7 +14581,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_hisorders_exact</code></li>
 </ul>
-<h3 id='request-parameter-44'>Request Parameter</h3>
+<h3 id='request-parameter-45'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14531,7 +14669,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>prev ；next ；default value:prev</td>
 </tr>
 </tbody></table>
-<h4 id='note-28'>Note：</h4>
+<h4 id='note-29'>Note：</h4>
 <ul>
 <li>Query history orders interface can only query the API order cancellation information within the last 2 hours.</li>
 <li>Value range description of start_time and end_time:
@@ -14680,7 +14818,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604371805794</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-45'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-46'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14929,7 +15067,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-29'>Note:</h4>
+<h4 id='note-30'>Note:</h4>
 <ul>
 <li>if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id  presents the last data on the next page.)</li>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
@@ -14939,7 +15077,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_matchresults</code></li>
 </ul>
-<h3 id='request-parameter-45'>Request Parameter</h3>
+<h3 id='request-parameter-46'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15036,7 +15174,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604371918571</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-46'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-47'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15254,7 +15392,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_matchresults_exact</code></li>
 </ul>
-<h3 id='request-parameter-46'>Request Parameter</h3>
+<h3 id='request-parameter-47'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15321,7 +15459,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>prev ；next ；Default value：prev</td>
 </tr>
 </tbody></table>
-<h4 id='note-30'>Note:</h4>
+<h4 id='note-31'>Note:</h4>
 <ul>
 <li>Value range description of start_time and end_time:
 
@@ -15463,7 +15601,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604372202243</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-47'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-48'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15670,7 +15808,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-31'>Note</h4>
+<h4 id='note-32'>Note</h4>
 <ul>
 <li>if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id  presents the last data on the next page.)</li>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
@@ -15785,7 +15923,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-32'>Note</h3>
+<h3 id='note-33'>Note</h3>
 <ul>
 <li><p>If the contract_code field is filled with a number, order will by placed by contract_code.</p></li>
 <li><p>If the contract_code field is None, order will by placed by symbol and contract_type.</p></li>
@@ -16041,7 +16179,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>offset direction（if not filled in means all）  [&quot;open&quot; , &quot;close&quot;]</td>
 </tr>
 </tbody></table>
-<h3 id='note-33'>Note</h3>
+<h3 id='note-34'>Note</h3>
 <ul>
 <li><p>If only symbol is filled, cancel all trigger orders of this symbol</p></li>
 <li><p>If contract_code is filled, cancel trigger orders of this contract code.</p></li>
@@ -16146,7 +16284,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_trigger_openorders</code></li>
 </ul>
-<h3 id='request-parameter-47'>Request Parameter</h3>
+<h3 id='request-parameter-48'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16221,7 +16359,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604374215911</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-48'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-49'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16426,7 +16564,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_trigger_hisorders</code></li>
 </ul>
-<h3 id='request-parameter-48'>Request Parameter</h3>
+<h3 id='request-parameter-49'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16502,7 +16640,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>&quot;created_at&quot;：descending order by order creation time, &quot;update_time&quot;: descending order by order update time</td>
 </tr>
 </tbody></table>
-<h3 id='note-34'>NOTE</h3>
+<h3 id='note-35'>NOTE</h3>
 <ul>
 <li>Default to query completed orders (order status is one of 4, 5, 6);</li>
 </ul>
@@ -16549,7 +16687,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604374349086</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-49'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-50'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16818,7 +16956,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"sl_order_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29000"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sl_order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"optimal_5"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-49'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-50'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16906,7 +17044,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>default is limit; limit，optimal_5，optimal_10，optimal_20</td>
 </tr>
 </tbody></table>
-<h3 id='note-35'>Note</h3>
+<h3 id='note-36'>Note</h3>
 <ul>
 <li>If the &quot;contract_code&quot; has been filled in with a value, the system will place an order based on &quot;contract_code&quot;; If not, the system will place an order based on &quot;symbol+contract_type&quot;.</li>
 <li>All take-profit and stop-loss orders are position closing orders.</li>
@@ -16940,7 +17078,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contract_code cannot be empty."</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604369954194</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-50'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-51'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17049,7 +17187,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-36'>Note</h4>
+<h4 id='note-37'>Note</h4>
 <ul>
 <li>When only take-profit order or stop-loss order is set , the accordingly returned &quot;sl_order&quot; or &quot;tp_order&quot; will be empty.</li>
 </ul>
@@ -17057,7 +17195,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_tpsl_cancel</code></li>
 </ul>
-<h3 id='request-parameter-50'>Request Parameter</h3>
+<h3 id='request-parameter-51'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17082,7 +17220,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-37'>Note</h4>
+<h4 id='note-38'>Note</h4>
 <ul>
 <li>The frequency limit of this interface is 5 times per second.</li>
 </ul>
@@ -17104,7 +17242,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609843174529</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-51'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-52'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17189,7 +17327,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_tpsl_cancelall</code></li>
 </ul>
-<h3 id='request-parameter-51'>Request Parameter</h3>
+<h3 id='request-parameter-52'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17228,7 +17366,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>[&quot;buy&quot; , &quot;sell&quot;]</td>
 </tr>
 </tbody></table>
-<h4 id='note-38'>Note:</h4>
+<h4 id='note-39'>Note:</h4>
 <ul>
 <li>If only &quot;symbol&quot; is set,  cancel all the take-profit and stop-loss orders of all expirations under this order type.</li>
 <li>If only &quot;contract_code“ is set, cancel all take-profit and stop-loss orders of the contracts of the code.</li>
@@ -17247,7 +17385,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609843284024</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-52'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-53'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17332,7 +17470,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_tpsl_openorders</code></li>
 </ul>
-<h3 id='request-parameter-52'>Request Parameter</h3>
+<h3 id='request-parameter-53'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17413,7 +17551,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609846316344</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-53'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-54'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17617,7 +17755,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_tpsl_hisorders</code></li>
 </ul>
-<h3 id='request-parameter-53'>Request Parameter</h3>
+<h3 id='request-parameter-54'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17719,7 +17857,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609846686146</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='returning-parameter-54'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-55'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17965,7 +18103,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_relation_tpsl_order</code></li>
 </ul>
-<h3 id='request-parameter-54'>Request Parameter</h3>
+<h3 id='request-parameter-55'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18064,7 +18202,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609847008041</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-55'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-56'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18416,7 +18554,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p>API rate limit for this interface is 1 times/second.</p>
 
 <p>Transferring margin between Spot account and Future account Interface, sets 8 decimal places for transferring amount of all coins.</p>
-<h3 id='request-parameter-55'>Request Parameter</h3>
+<h3 id='request-parameter-56'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18470,7 +18608,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"err-code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"base-currency-error"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The current coin does not exist."</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-56'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-57'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18740,6 +18878,22 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </tr>
 <tr>
 <td>Read</td>
+<td>Market Data Interface</td>
+<td>market.$symbol.mark_price.$period</td>
+<td>sub</td>
+<td>Subscribe Kline Data of Mark Price</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Market Data Interface</td>
+<td>market.$symbol.mark_price.$period</td>
+<td>req</td>
+<td>Request Kline Data of Mark Price interface</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Read</td>
 <td>System Status Interface</td>
 <td>public.$service.heartbeat</td>
 <td>sub</td>
@@ -18815,7 +18969,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p>System status updates subscription ：wss://api.btcgateway.pro/center-notification</p>
 
 <p>If you have further queries about Huobi Future order push subscription, please refer to <a href="https://github.com/huobiapi/Futures-Java-demo">Demo</a></p>
-<h3 id='note-39'>Note:</h3>
+<h3 id='note-40'>Note:</h3>
 <p>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot; for debug purpose. If your server is deployed in AWS, we recommend using &quot;https://api.hbdm.vn&quot;.</p>
 <h2 id='api-rate-limit-illustration-2'>API Rate Limit Illustration</h2>
 <p>There is rate limit for both public and private interfaces. More details are laid out as below:</p>
@@ -18886,7 +19040,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p><code>&quot;ts&quot;: &quot;1492420473058&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-40'>Note</h3>
+<h3 id='note-41'>Note</h3>
 <ul>
 <li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 5 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
 </ul>
@@ -18932,7 +19086,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </ul>
 
 <p><code>wss://api.hbdm.com/notification</code></p>
-<h3 id='note-41'>Note:</h3>
+<h3 id='note-42'>Note:</h3>
 <p>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot; for debug purpose. If your server is deployed in AWS, we recommend using &quot;https://api.hbdm.vn&quot;.</p>
 
 <p>Please note that the WS request connection should not go over 30 normally.</p>
@@ -19212,7 +19366,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-56'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-57'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -19282,7 +19436,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
         </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">0</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='note-42'>Note</h3>
+</span></code></pre><h3 id='note-43'>Note</h3>
 <ul>
 <li>Support to query K-line data of contracts which have been delisted in the last four weeks; User can enter contract code to query data of contracts delisted in the last four weeks.</li>
 </ul>
@@ -19397,7 +19551,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573106298</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-57'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-58'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -19459,7 +19613,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Case-Senstive.Only lowercase is supported.1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-43'>Note</h4>
+<h4 id='note-44'>Note</h4>
 <p>If between time range [t1, t5], there are t1-t5 Klines in quantity.</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -19624,7 +19778,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-58'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-59'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -19674,7 +19828,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5, 14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
-<h3 id='note-44'>Note:</h3>
+<h3 id='note-45'>Note:</h3>
 <ul>
 <li><p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p></li>
 <li><p>steps between step1 and step5, step14, step15 are merged orderbook data of step 150. 
@@ -19861,7 +20015,7 @@ Details are below:</p></li>
   </span><span class="s2">"data_type"</span><span class="p">:</span><span class="s2">"incremental"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-59'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-60'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20012,7 +20166,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-45'>Note:</h3>
+<h3 id='note-46'>Note:</h3>
 <ul>
 <li>when <code>data_type</code> is <code>incremental</code>,<code>snapshot</code> data wil be pushed for the first time. When re-connection occurs, <code>snapshort</code> data will be pushed for the first time. </li>
 <li><code>version</code>: auto increment in single websocket connection. <code>version</code> may be different among several websocket subscription connections.</li>
@@ -20075,7 +20229,7 @@ Details are below:</p></li>
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-60'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-61'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20097,7 +20251,7 @@ Details are below:</p></li>
 <td>id automatically generated by the business party</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameter-61'>Request Parameter</h3>
+<h3 id='request-parameter-62'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20229,7 +20383,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-46'>Note:</h3>
+<h3 id='note-47'>Note:</h3>
 <ul>
 <li><p>Once Best Bid/Ask Quotations (price,volume) change, it will be pushed.</p></li>
 <li><p>When the price and volume of Best Bid/Ask Quotations both change, only the latest BBO will be pushed.  </p></li>
@@ -20254,7 +20408,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-62'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-63'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20396,7 +20550,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-47'>Note:</h4>
+<h4 id='note-48'>Note:</h4>
 <ul>
 <li>Bid price(p1) and ask price(p1) are not updated in real time, there will be some delay (about 500ms).</li>
 </ul>
@@ -20648,7 +20802,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-63'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-64'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20830,7 +20984,457 @@ Details are below:</p></li>
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='websocket-index-and-basis-interface'>WebSocket Index and Basis Interface</h1><h3 id='the-websocket-url-of-index-and-basis-data-is-wss-api-hbdm-com-ws_index'>The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index</h3><h2 id='subscribe-index-kline-data'>Subscribe Index Kline Data</h2><h3 id='to-subscribe-index-kline-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below'>To subscribe index kline data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
+</span></code></pre><h2 id='subscribe-kline-data-of-mark-price'>Subscribe Kline Data of Mark Price</h2><h3 id='to-subscribe-kline-data-of-mark-price-data-clients-have-to-make-connection-to-websokcet-api-server-and-send-subscribe-request-in-the-format-below'>To subscribe Kline Data of Mark Price data, clients have to make connection to WebSokcet API Server and send subscribe request in the format below:</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;sub&quot;: &quot;market.$symbol.mark_price.$period&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generate by client&quot;</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>Example of a successful request: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CW.mark_price.1min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='request-parameter-65'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Default</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub</td>
+<td>true</td>
+<td>string</td>
+<td>the topic subscribed is fixed at: market.$symbol.mark_price.$period, and more details to see Subscribe Parameter Rules</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>false</td>
+<td>string</td>
+<td>id</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='subscribe-parameter-rules'>Subscribe Parameter Rules</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
+<td></td>
+<td>&quot;BTC_CW&quot; represents BTC “This Week”, &quot;BTC_NW&quot; represents BTC “Next Week”, &quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>kline period</td>
+<td></td>
+<td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>After subscription, clients can receive updates upon any change. Example</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC_CW.mark_price.15min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1615773631266</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1615773600</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"open"</span><span class="p">:</span><span class="s2">"60533.89"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"close"</span><span class="p">:</span><span class="s2">"60603.01"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"high"</span><span class="p">:</span><span class="s2">"60603.01"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"low"</span><span class="p">:</span><span class="s2">"60533.89"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vol"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='returning-parameter-58'>Returning Parameter:</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>channel</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;tick&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>kline id</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>true</td>
+<td>string</td>
+<td>trade vol(cont), value is 0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>true</td>
+<td>string</td>
+<td>trade count, value is 0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>true</td>
+<td>string</td>
+<td>open price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>true</td>
+<td>string</td>
+<td>close price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>true</td>
+<td>string</td>
+<td>low price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>true</td>
+<td>string</td>
+<td>high price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>string</td>
+<td>trade amount(coin), value is 0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='request-kline-data-of-mark-price-interface'>Request Kline Data of Mark Price interface</h2><h3 id='to-request-kline-data-of-mark-price-data-clients-have-to-make-connection-to-websokcet-api-server-and-send-subscribe-request-in-the-format-below'>To request Kline Data of Mark Price data, clients have to make connection to WebSokcet API Server and send subscribe request in the format below:</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;req&quot;: &quot;market.$symbol.mark_price.$period&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generated by client&quot;,</code></p>
+
+<p><code>&quot;from&quot;: &quot;type: long Unit: Second&quot;,</code></p>
+
+<p><code>&quot;to&quot;: &quot;type: long Unit: Second, must been greater than from&quot;,</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>Example of a successful request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CW.mark_price.1imin"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id4"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-parameter-66'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Desc</th>
+<th>Default</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>req</td>
+<td>true</td>
+<td>string</td>
+<td>the topic subscribed is fixed at: market.$symbol.mark_price.$period, and more details to see Request Parameter Rules</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>false</td>
+<td>string</td>
+<td>id</td>
+<td></td>
+</tr>
+<tr>
+<td>from</td>
+<td>true</td>
+<td>long</td>
+<td>start time, Unit: Second</td>
+<td></td>
+</tr>
+<tr>
+<td>to</td>
+<td>true</td>
+<td>long</td>
+<td>end time, Unit: Second, must been greater than from</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='request-parameter-rules'>Request Parameter Rules:</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
+<td></td>
+<td>&quot;BTC_CW&quot; represents BTC “This Week”, &quot;BTC_NW&quot; represents BTC “Next Week”, &quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>kline period</td>
+<td></td>
+<td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
+</tr>
+</tbody></table>
+<h3 id='note-49'>Note:</h3>
+<ul>
+<li>At one time 2000 at most</li>
+</ul>
+
+<blockquote>
+<p>Example of the response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"id4"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rep"</span><span class="p">:</span><span class="s2">"market.BTC_CW.mark_price.15min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"wsid"</span><span class="p">:</span><span class="mi">2998253842</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1615773843201</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1615651200</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open"</span><span class="p">:</span><span class="s2">"60284.67"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"close"</span><span class="p">:</span><span class="s2">"60362.04"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low"</span><span class="p">:</span><span class="s2">"60270.85"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high"</span><span class="p">:</span><span class="s2">"60468.55"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vol"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"count"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='returning-parameter-59'>Returning Parameter:</h3>
+<table><thead>
+<tr>
+<th><strong>Parameter Name</strong></th>
+<th><strong>Mandatory</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Desc</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Value Range</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>rep</td>
+<td>true</td>
+<td>string</td>
+<td>channel</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>status</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>string</td>
+<td>as same as request id</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>wsid</td>
+<td>true</td>
+<td>long</td>
+<td>wsid</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>kline id</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>true</td>
+<td>string</td>
+<td>trade vol(cont), value is 0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>true</td>
+<td>string</td>
+<td>trade count, value is 0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>true</td>
+<td>string</td>
+<td>open price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>true</td>
+<td>string</td>
+<td>close price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>true</td>
+<td>string</td>
+<td>low price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>true</td>
+<td>string</td>
+<td>high price</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>string</td>
+<td>trade amount(coin), value is 0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id='note-50'>Note</h4>
+<ul>
+<li>Data will be available after the marked price goes online on March 15, 2021. Please be aware that there is no historical data before.</li>
+</ul>
+<h1 id='websocket-index-and-basis-interface'>WebSocket Index and Basis Interface</h1><h3 id='the-websocket-url-of-index-and-basis-data-is-wss-api-hbdm-com-ws_index'>The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index</h3><h2 id='subscribe-index-kline-data'>Subscribe Index Kline Data</h2><h3 id='to-subscribe-index-kline-data-the-client-has-to-make-connection-to-the-server-and-send-subscribe-request-in-the-format-below'>To subscribe index kline data, the Client has to make connection to the Server and send subscribe request in the format below:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;sub&quot;: &quot;market.$symbol.index.$period&quot;,</code></p>
@@ -20848,7 +21452,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-64'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-67'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20898,7 +21502,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-48'>Note</h3>
+<h3 id='note-51'>Note</h3>
 <ul>
 <li><p>Pushed once the index data is changed.</p></li>
 <li><p>Periodical Push when the index data hasn&#39;t changed according to the kline period.</p></li>
@@ -20922,7 +21526,7 @@ Details are below:</p></li>
         </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">0</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-57'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-60'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -21035,7 +21639,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-65'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-68'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -21097,7 +21701,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-49'>Note：</h3>
+<h3 id='note-52'>Note：</h3>
 <ul>
 <li>Pushed once the index data is changed.</li>
 </ul>
@@ -21134,7 +21738,7 @@ Details are below:</p></li>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-58'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-61'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -21263,7 +21867,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-66'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-69'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -21321,7 +21925,7 @@ Details are below:</p></li>
 <td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-50'>Note:</h4>
+<h4 id='note-53'>Note:</h4>
 <ul>
 <li>The basis data of Next Quarterly Contract is available after 2020/6/15 14:00:00.</li>
 </ul>
@@ -21341,7 +21945,7 @@ Details are below:</p></li>
         </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="s2">"0.0014516721212147151654052074480586653"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-59'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-62'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -21442,7 +22046,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-67'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-70'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -21512,7 +22116,7 @@ Details are below:</p></li>
 <td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-51'>Note：</h3>
+<h3 id='note-54'>Note：</h3>
 <ul>
 <li>2000 data at most per request.</li>
 </ul>
@@ -21544,7 +22148,7 @@ Details are below:</p></li>
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1604387965575</span><span class="p">,</span><span class="w">
     </span><span class="s2">"wsid"</span><span class="p">:</span><span class="mi">3823737955</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='returning-parameter-60'>Returning Parameter</h3>
+</span></code></pre><h3 id='returning-parameter-63'>Returning Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -21690,7 +22294,7 @@ Details are below:</p></li>
 <td>Required；Topic name format: orders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported. e.g.:&quot;BTC,ETH&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-52'>Note:</h4>
+<h4 id='note-55'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 </ul>
@@ -22113,7 +22717,7 @@ Details are below:</p></li>
 <blockquote>
 <p>Illustration on detailed data format of orders Notification</p>
 </blockquote>
-<h4 id='note-53'>Note:</h4>
+<h4 id='note-56'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 <li>The orders will be pushed when matched by matching engine.</li>
@@ -22594,7 +23198,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-54'>Note</h3>
+<h3 id='note-57'>Note</h3>
 <ul>
 <li>A regular push of account is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</li>
 </ul>
@@ -22876,7 +23480,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-55'>Note</h3>
+<h3 id='note-58'>Note</h3>
 <ul>
 <li><p>A regular push of position is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</p></li>
 <li><p>When switching leverage with no positions, the event &quot;switch_lever_rate&quot; will not be pushed by the position topic.</p></li>
@@ -23396,7 +24000,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-56'>Note：</h3>
+<h3 id='note-59'>Note：</h3>
 <ul>
 <li>The websocket subscription of contract info event is pushed every 60 seconds, and the event is &quot;snapshot&quot;. </li>
 <li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is &quot;init&quot;.</li>
@@ -23503,7 +24107,7 @@ Details are below:</p></li>
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trigger_order.BTC"</span><span class="p">,</span><span class="w">   
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">          
 </span><span class="p">}</span><span class="w">                                    
-</span></code></pre><h3 id='request-parameter-68'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-71'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -23919,7 +24523,7 @@ Details are below:</p></li>
     </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.futures.heartbeat"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-69'><strong>Request Parameter</strong>:</h3>
+</span></code></pre><h3 id='request-parameter-72'><strong>Request Parameter</strong>:</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -24052,7 +24656,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-57'>Note</h3>
+<h3 id='note-60'>Note</h3>
 <ul>
 <li>Since this push is a poll query status, there may be a delay of 1-2 seconds.</li>
 </ul>
