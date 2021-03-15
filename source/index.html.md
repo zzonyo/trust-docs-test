@@ -7705,7 +7705,7 @@ This contract type doesn't exist.  |              |
  Read   |     Market Data Interface        |  market.$symbol.trade.detail  |               req        |    Request Trade Detail Data |  No|
  Read  |    Market Data Interface         |  market.$symbol.trade.detail  |        sub |  Subscribe Trade Detail Data | No  | 
  Read    |  Market Data Interface | market.$symbol.mark_price.$period           | sub  | Subscribe Kline Data of Mark Price          |       No      |
- Read    |  Market Data Interface | market.$symbol.mark_price.$period           | req  | Request Kline Data of Mark Price interface          |       Yes      |
+ Read    |  Market Data Interface | market.$symbol.mark_price.$period           | req  | Request Kline Data of Mark Price interface          |       NO      |
  Read   |  System Status Interface         |  public.$service.heartbeat  |    sub  | Subscription system status updates   | No  | 
  Trade |       Trade Interface      |  orders.$symbol  |        sub |  Subscribe Order Data  | Yes | 
  Trade |       Trade Interface      |  matchOrders.$symbol  |        sub |  Subscribe Order Data  | Yes | 
