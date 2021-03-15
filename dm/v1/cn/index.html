@@ -265,6 +265,15 @@
             <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-2-6-2021-3-15-k-k-k" class="toc-h2 toc-link" data-title="1.2.6 2021年3月15日 【新增：获取标记价格K线接口、订阅标记价格K线数据接口、请求标记价格K线数据接口】">1.2.6 2021年3月15日 【新增：获取标记价格K线接口、订阅标记价格K线数据接口、请求标记价格K线数据接口】</a>
+                  </li>
+                  <li>
+                    <a href="#2-k" class="toc-h2 toc-link" data-title="2、新增订阅标记价格K线数据接口">2、新增订阅标记价格K线数据接口</a>
+                  </li>
+                  <li>
+                    <a href="#3-k" class="toc-h2 toc-link" data-title="3、新增请求标记价格K线数据接口">3、新增请求标记价格K线数据接口</a>
+                  </li>
+                  <li>
                     <a href="#1-2-5-2021-2-26-ch-market-trade-detail-tick-symbol" class="toc-h2 toc-link" data-title="1.2.5 2021年2月26日 【新增：获取账户总资产估值接口。修改获取合约最高限价和最低限价接口（支持用户所有入参都不填，接口返回所有当前上市合约的限价数据。）、修改获取市场最近成交记录接口（支持用户所有入参都不填，接口返回所有当前上市合约的最近成交数据；当用户不传入参时， 返参ch值为market.*trade.detail。在返参tick下新增字段：symbol。）】">1.2.5 2021年2月26日 【新增：获取账户总资产估值接口。修改获取合约最高限价和最低限价接口（支持用户所有入参都不填，接口返回所有当前上市合约的限价数据。）、修改获取市场最近成交记录接口（支持用户所有入参都不填，接口返回所有当前上市合约的最近成交数据；当用户不传入参时， 返参ch值为market.*trade.detail。在返参tick下新增字段：symbol。）】</a>
                   </li>
                   <li>
@@ -442,6 +451,9 @@
                     <a href="#k" class="toc-h2 toc-link" data-title="获取K线数据">获取K线数据</a>
                   </li>
                   <li>
+                    <a href="#k-2" class="toc-h2 toc-link" data-title="获取标记价格的K线数据">获取标记价格的K线数据</a>
+                  </li>
+                  <li>
                     <a href="#c0732fad25" class="toc-h2 toc-link" data-title="获取聚合行情">获取聚合行情</a>
                   </li>
                   <li>
@@ -481,7 +493,7 @@
                     <a href="#7fbc5ed0d3" class="toc-h2 toc-link" data-title="查询平台历史结算记录">查询平台历史结算记录</a>
                   </li>
                   <li>
-                    <a href="#k-2" class="toc-h2 toc-link" data-title="获取指数K线数据">获取指数K线数据</a>
+                    <a href="#k-3" class="toc-h2 toc-link" data-title="获取指数K线数据">获取指数K线数据</a>
                   </li>
                   <li>
                     <a href="#8cfe8b0489" class="toc-h2 toc-link" data-title="获取基差数据">获取基差数据</a>
@@ -730,43 +742,49 @@
                   <li>
                     <a href="#req-4" class="toc-h2 toc-link" data-title="请求(req)基差数据">请求(req)基差数据</a>
                   </li>
+                  <li>
+                    <a href="#k-4" class="toc-h2 toc-link" data-title="订阅标记价格K线数据">订阅标记价格K线数据</a>
+                  </li>
+                  <li>
+                    <a href="#k-5" class="toc-h2 toc-link" data-title="请求标记价格K线数据">请求标记价格K线数据</a>
+                  </li>
               </ul>
           </li>
           <li>
             <a href="#websocket-5" class="toc-h1 toc-link" data-title="WebSocket订单和用户数据接口">WebSocket订单和用户数据接口</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#sub-10" class="toc-h2 toc-link" data-title="订阅订单成交数据（sub）">订阅订单成交数据（sub）</a>
+                    <a href="#sub-11" class="toc-h2 toc-link" data-title="订阅订单成交数据（sub）">订阅订单成交数据（sub）</a>
                   </li>
                   <li>
                     <a href="#unsub" class="toc-h2 toc-link" data-title="取消订阅订单成交数据（unsub）">取消订阅订单成交数据（unsub）</a>
                   </li>
                   <li>
-                    <a href="#sub-11" class="toc-h2 toc-link" data-title="订阅订单撮合数据（sub）">订阅订单撮合数据（sub）</a>
+                    <a href="#sub-12" class="toc-h2 toc-link" data-title="订阅订单撮合数据（sub）">订阅订单撮合数据（sub）</a>
                   </li>
                   <li>
                     <a href="#unsub-2" class="toc-h2 toc-link" data-title="取消订阅订单撮合数据（unsub）">取消订阅订单撮合数据（unsub）</a>
                   </li>
                   <li>
-                    <a href="#sub-12" class="toc-h2 toc-link" data-title="订阅资产变动数据（sub）">订阅资产变动数据（sub）</a>
+                    <a href="#sub-13" class="toc-h2 toc-link" data-title="订阅资产变动数据（sub）">订阅资产变动数据（sub）</a>
                   </li>
                   <li>
                     <a href="#unsub-3" class="toc-h2 toc-link" data-title="取消订阅资产变动数据（unsub）">取消订阅资产变动数据（unsub）</a>
                   </li>
                   <li>
-                    <a href="#sub-13" class="toc-h2 toc-link" data-title="订阅持仓变动更新数据（sub）">订阅持仓变动更新数据（sub）</a>
+                    <a href="#sub-14" class="toc-h2 toc-link" data-title="订阅持仓变动更新数据（sub）">订阅持仓变动更新数据（sub）</a>
                   </li>
                   <li>
                     <a href="#unsub-4" class="toc-h2 toc-link" data-title="取消订阅持仓变动更新数据（unsub）">取消订阅持仓变动更新数据（unsub）</a>
                   </li>
                   <li>
-                    <a href="#sub-14" class="toc-h2 toc-link" data-title="订阅强平订单数据(免鉴权)（sub）">订阅强平订单数据(免鉴权)（sub）</a>
+                    <a href="#sub-15" class="toc-h2 toc-link" data-title="订阅强平订单数据(免鉴权)（sub）">订阅强平订单数据(免鉴权)（sub）</a>
                   </li>
                   <li>
                     <a href="#unsub-5" class="toc-h2 toc-link" data-title="取消订阅强平订单(免鉴权)（unsub）">取消订阅强平订单(免鉴权)（unsub）</a>
                   </li>
                   <li>
-                    <a href="#sub-15" class="toc-h2 toc-link" data-title="订阅合约信息变动(免鉴权)（sub）">订阅合约信息变动(免鉴权)（sub）</a>
+                    <a href="#sub-16" class="toc-h2 toc-link" data-title="订阅合约信息变动(免鉴权)（sub）">订阅合约信息变动(免鉴权)（sub）</a>
                   </li>
                   <li>
                     <a href="#unsub-6" class="toc-h2 toc-link" data-title="取消订阅合约信息变动(免鉴权)（unsub）">取消订阅合约信息变动(免鉴权)（unsub）</a>
@@ -826,7 +844,25 @@
 <li>提供火币UID （需不存在返佣关系的 UID）；</li>
 <li>提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；</li>
 </ol>
-<h1 id='185368440e'>更新日志</h1><h2 id='1-2-5-2021-2-26-ch-market-trade-detail-tick-symbol'>1.2.5 2021年2月26日 【新增：获取账户总资产估值接口。修改获取合约最高限价和最低限价接口（支持用户所有入参都不填，接口返回所有当前上市合约的限价数据。）、修改获取市场最近成交记录接口（支持用户所有入参都不填，接口返回所有当前上市合约的最近成交数据；当用户不传入参时， 返参ch值为market.*trade.detail。在返参tick下新增字段：symbol。）】</h2><h3 id='1'>1、新增获取账户总资产估值接口</h3>
+<h1 id='185368440e'>更新日志</h1><h2 id='1-2-6-2021-3-15-k-k-k'>1.2.6 2021年3月15日 【新增：获取标记价格K线接口、订阅标记价格K线数据接口、请求标记价格K线数据接口】</h2><h3 id='1-k'>1、新增获取标记价格K线接口</h3>
+<ul>
+<li>接口名称：获取标记价格的K线数据</li>
+<li>接口类型：公共接口</li>
+<li>接口URL：/index/market/history/mark_price_kline</li>
+</ul>
+<h2 id='2-k'>2、新增订阅标记价格K线数据接口</h2>
+<ul>
+<li>接口名称：订阅标记价格K线数据</li>
+<li>接口类型：公共接口</li>
+<li>订阅地址：market.$symbol.mark_price.$period</li>
+</ul>
+<h2 id='3-k'>3、新增请求标记价格K线数据接口</h2>
+<ul>
+<li>接口名称：请求标记价格K线数据</li>
+<li>接口类型：公共接口</li>
+<li>订阅地址：market.$symbol.mark_price.$period</li>
+</ul>
+<h2 id='1-2-5-2021-2-26-ch-market-trade-detail-tick-symbol'>1.2.5 2021年2月26日 【新增：获取账户总资产估值接口。修改获取合约最高限价和最低限价接口（支持用户所有入参都不填，接口返回所有当前上市合约的限价数据。）、修改获取市场最近成交记录接口（支持用户所有入参都不填，接口返回所有当前上市合约的最近成交数据；当用户不传入参时， 返参ch值为market.*trade.detail。在返参tick下新增字段：symbol。）】</h2><h3 id='1'>1、新增获取账户总资产估值接口</h3>
 <ul>
 <li>接口名称：获取账户总资产估值</li>
 <li>接口类型：私有接口</li>
@@ -1210,7 +1246,7 @@
 <li>接口类型: 公共接口</li>
 <li>接口URL：/market/depth</li>
 </ul>
-<h3 id='2-k'>2、获取K线数据</h3>
+<h3 id='2-k-2'>2、获取K线数据</h3>
 <ul>
 <li>接口名称：获取K线数据</li>
 <li>接口类型: 公共接口</li>
@@ -1796,6 +1832,14 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 <td>/market/history/kline</td>
 <td>GET</td>
 <td>获取K线数据</td>
+<td>否</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>市场行情接口</td>
+<td>/index/market/history/mark_price_kline</td>
+<td>GET</td>
+<td>获取标记价格的K线数据</td>
 <td>否</td>
 </tr>
 <tr>
@@ -5053,20 +5097,6 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 </tbody></table>
 
 <blockquote>
-<p>tick 说明:</p>
-</blockquote>
-<pre class="highlight plaintext"><code>    "tick": {
-      "id": 消息id.
-      "ts": 消息生成时间，单位：毫秒.
-      "bids": 买盘,[price(挂单价), vol(此价格挂单张数)], //按price降序.
-      "asks": 卖盘,[price(挂单价), vol(此价格挂单张数)]  //按price升序.
-      "ch": 数据所属的 channel,
-      "mrid": 订单ID,
-      "ts": 时间戳,
-      "version": 版本
-    }
-</code></pre>
-<blockquote>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
@@ -5305,22 +5335,6 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 </ul>
 
 <blockquote>
-<p>Data说明：</p>
-</blockquote>
-<pre class="highlight plaintext"><code>"data": [
-  {
-    "id": K线id,
-    "vol": 成交量(张)，买卖双边成交量之和,
-    "count": 成交笔数,
-    "open": 开盘价,
-    "close": 收盘价,当K线为最晚的一根时，是最新成交价
-    "low": 最低价,
-    "high": 最高价,
-    "amount": 成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)
-   }
-]
-</code></pre>
-<blockquote>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
@@ -5448,6 +5462,188 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='k-2'>获取标记价格的K线数据</h2>
+<ul>
+<li>GET <code>/index/market/history/mark_price_kline</code></li>
+</ul>
+<h3 id='get-url'>请求参数（以GET URL方式传输参数）</h3>
+<table><thead>
+<tr>
+<th><strong>参数名称</strong></th>
+<th><strong>是否必须</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+<th><strong>默认值</strong></th>
+<th><strong>取值范围</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>合约标识</td>
+<td></td>
+<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约 ，&quot;BTC_NQ&quot;表示BTC次季度合约季度合约</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>K线类型</td>
+<td></td>
+<td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week,1mon</td>
+</tr>
+<tr>
+<td>size</td>
+<td>true</td>
+<td>int</td>
+<td>K线获取数量</td>
+<td></td>
+<td>[1,2000]</td>
+</tr>
+</tbody></table>
+<h5 id='9852b06629-4'>备注：</h5>
+<ul>
+<li>最多一次2000条数据</li>
+<li>入参大小写不敏感，均支持</li>
+</ul>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.mark_price.5min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65582.94"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65645.7"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1615773000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65582.85"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65623.97"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1615773225762</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='df22977071'>返回参数：</h3>
+<table><thead>
+<tr>
+<th><strong>参数名称</strong></th>
+<th><strong>是否必须</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+<th><strong>默认值</strong></th>
+<th><strong>取值范围</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>数据所属的 channel</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>k线id</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>true</td>
+<td>string</td>
+<td>成交量(张)，数值为0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>true</td>
+<td>string</td>
+<td>成交笔数，数值为0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>true</td>
+<td>string</td>
+<td>开盘值</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>true</td>
+<td>string</td>
+<td>收盘值</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>true</td>
+<td>string</td>
+<td>最低值</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>true</td>
+<td>string</td>
+<td>最高值</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>string</td>
+<td>成交量(币), 数值为0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <h2 id='c0732fad25'>获取聚合行情</h2><h3 id='30fd4ed55b-9'>示例</h3>
 <ul>
 <li>GET  <code>/market/detail/merged</code></li>
@@ -5474,22 +5670,6 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 </tr>
 </tbody></table>
 
-<blockquote>
-<p>tick说明:</p>
-</blockquote>
-<pre class="highlight plaintext"><code>    "tick": {
-      "id": K线id,
-      "vol": 成交量（张），买卖双边成交量之和,
-      "count": 成交笔数,
-      "open": 开盘价,
-      "close": 收盘价,当K线为最晚的一根时，是最新成交价
-      "low": 最低价,
-      "high": 最高价,
-      "amount": 成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)
-      "bid": [买1价,买1量(张)],
-      "ask": [卖1价,卖1量(张)]
-    }
-</code></pre>
 <blockquote>
 <p>Response:</p>
 </blockquote>
@@ -5859,23 +6039,6 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 </tbody></table>
 
 <blockquote>
-<p>Tick说明：</p>
-</blockquote>
-<pre class="highlight plaintext"><code>    "tick": {
-      "id": 订单唯一id（品种唯一),
-      "ts": 最新成交时间,
-      "data": [
-         {
-            "id": 成交唯一id（品种唯一）,
-            "price": 成交价钱,
-            "amount": 成交量(张)，买卖双边成交量之和,
-            "direction": 主动成交方向,
-            "ts": 成交时间
-         }
-      ]
-    }
-</code></pre>
-<blockquote>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -6055,23 +6218,6 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 </tr>
 </tbody></table>
 
-<blockquote>
-<p>data说明：</p>
-</blockquote>
-<pre class="highlight plaintext"><code>    "data": {
-      "id": 订单唯一id（品种唯一）,
-      "ts": 最新成交时间,
-      "data": [
-        {
-          "id": 成交唯一id（品种唯一）,
-          "price": 成交价,
-          "amount": 成交量(张)，买卖双边成交量之和,
-          "direction": 主动成交方向,
-          "ts": 成交时间
-        }
-      ]
-    }
-</code></pre>
 <blockquote>
 <p>Response:</p>
 </blockquote>
@@ -6860,7 +7006,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1612489488052</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='df22977071'>返回参数：</h3>
+</span></code></pre><h3 id='df22977071-2'>返回参数：</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -7680,7 +7826,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='k-2'>获取指数K线数据</h2><h3 id='69fffaf196-5'>实例</h3>
+<h2 id='k-3'>获取指数K线数据</h2><h3 id='69fffaf196-5'>实例</h3>
 <ul>
 <li>GET <code>/index/market/history/index</code></li>
 </ul>
@@ -7753,7 +7899,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604299755097</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='df22977071-2'>返回参数：</h3>
+</span></code></pre><h3 id='df22977071-3'>返回参数：</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -8514,7 +8660,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-4'>备注：</h4>
+<h4 id='9852b06629-5'>备注：</h4>
 <ul>
 <li>首次帮子账户开启交易权限时，系统会自动帮子账户先开通合约。</li>
 <li>若子账户交易权益已开启，此时请求开启权限，则接口会直接返回成功；若子账户交易权益已关闭，此时用户请求关闭权限，则接口会直接返回成功；</li>
@@ -8792,7 +8938,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-5'>备注：</h4>
+<h4 id='9852b06629-6'>备注：</h4>
 <ul>
 <li>只返回已经开通合约交易的子账户数据.</li>
 </ul>
@@ -9636,7 +9782,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>prev 向前；next 向后；默认值取prev</td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-6'>备注：</h4>
+<h4 id='9852b06629-7'>备注：</h4>
 <ul>
 <li>起始与结束时间取值说明：
 
@@ -9881,7 +10027,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-7'>备注：</h4>
+<h4 id='9852b06629-8'>备注：</h4>
 <ul>
 <li>当查询结果超过数据条数限制时，next_id为下一条数据的流水id（查询方向为prev时，next_id为下一页查询的第一条数据；查询方向为next时，next_id为下一页查询的最后一条数据）</li>
 </ul>
@@ -9935,7 +10081,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>不填默认20，不得多于50（超过则按照50进行查询）</td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-8'>备注：</h4>
+<h4 id='9852b06629-9'>备注：</h4>
 <ul>
 <li>默认按时间倒序查询，新数据排在前。</li>
 <li>起始时间与结束时间不符合取值范围时，报错1067，参数不合法。</li>
@@ -11153,7 +11299,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>仅支持小写,master_to_sub：母账户划转到子账户， sub_to_master：子账户划转到母账户</td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-9'>备注：</h3>
+<h3 id='9852b06629-10'>备注：</h3>
 <p>母账户与每个子账户相互划转限频10次/分钟。</p>
 
 <blockquote>
@@ -12315,7 +12461,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>支持大小写,&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-10'>备注：</h3>
+<h3 id='9852b06629-11'>备注：</h3>
 <ul>
 <li><p>order_id和client_order_id都可以用来撤单，至少要填写一个,同时只可以设置其中一种，如果设置了两种，默认以order_id来撤单。</p></li>
 <li><p>撤单接口返回结果只代表撤单命令发送成功，建议根据订单查询接口查询订单的状态来确定订单是否已真正撤销。</p></li>
@@ -12740,7 +12886,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>支持大小写，&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-11'>备注：</h3>
+<h3 id='9852b06629-12'>备注：</h3>
 <ul>
 <li><p>最多只能查询 4 小时内的撤单信息。</p></li>
 <li><p>order_id和client_order_id至少要填写一个。</p></li>
@@ -13015,7 +13161,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-12'>备注：</h4>
+<h4 id='9852b06629-13'>备注：</h4>
 <ul>
 <li>真实收益为开仓均价和成交价计算得出（订单的真实收益为订单下每笔成交的真实收益之和）。</li>
 <li>只有在2021年1月30日0点后创建的订单，真实收益（real_profit）字段才会有值。存量数据均为0。</li>
@@ -13502,7 +13648,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-13'>备注：</h4>
+<h4 id='9852b06629-14'>备注：</h4>
 <ul>
 <li>真实收益为开仓均价和成交价计算得出（订单的真实收益为订单下每笔成交的真实收益之和）。</li>
 <li>只有在2021年1月30日0点后创建的订单以及对应的成交，真实收益字段（real_profit）才会有值。存量数据均为0。</li>
@@ -13865,7 +14011,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-14'>备注：</h4>
+<h4 id='9852b06629-15'>备注：</h4>
 <ul>
 <li>真实收益为开仓均价和成交价计算得出（订单的真实收益为订单下每笔成交的真实收益之和）。</li>
 <li>只有在2021年1月30日0点后创建的订单，真实收益（real_profit）字段才会有值。存量数据均为0。</li>
@@ -14286,7 +14432,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-15'>备注：</h4>
+<h4 id='9852b06629-16'>备注：</h4>
 <ul>
 <li>真实收益为开仓均价和成交价计算得出（订单的真实收益为订单下每笔成交的真实收益之和）。</li>
 <li>只有在2021年1月30日0点后创建的订单，真实收益（real_profit）字段才会有值。存量数据均为0。</li>
@@ -14384,7 +14530,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>prev 向前；next 向后；默认值取prev</td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-16'>备注：</h4>
+<h4 id='9852b06629-17'>备注：</h4>
 <ul>
 <li>所有已撤销且无成交的API限价订单记录只保留最近2小时。</li>
 <li>起始与结束时间取值说明：
@@ -14782,7 +14928,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-17'>备注：</h4>
+<h4 id='9852b06629-18'>备注：</h4>
 <ul>
 <li>真实收益为开仓均价和成交价计算得出（订单的真实收益为订单下每笔成交的真实收益之和）。</li>
 <li>只有在2021年1月30日0点后创建的订单，真实收益（real_profit）字段才会有值。存量数据均为0。</li>
@@ -15185,7 +15331,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>prev 向前；next 向后；默认值取prev</td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-18'>备注：</h4>
+<h4 id='9852b06629-19'>备注：</h4>
 <ul>
 <li>起始与结束时间取值说明：
 
@@ -15534,7 +15680,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-19'>备注：</h4>
+<h4 id='9852b06629-20'>备注：</h4>
 <ul>
 <li>真实收益为开仓均价和成交价计算得出（订单的真实收益为订单下每笔成交的真实收益之和）。</li>
 <li>只有在2021年1月30日0点后创建的订单对应的成交，真实收益字段（real_profit）才会有值。存量数据均为0。</li>
@@ -17267,7 +17413,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>&quot;buy&quot;:买 &quot;sell&quot;:卖</td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-20'>备注：</h4>
+<h4 id='9852b06629-21'>备注：</h4>
 <ul>
 <li>只传symbol，则撤销该品种下该订单类型的所有周期合约的止盈止损订单</li>
 <li>只要有contract_code，则撤销该code的合约的止盈止损订单</li>
@@ -18843,6 +18989,22 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 </tr>
 <tr>
 <td>读取</td>
+<td>指数与基差接口</td>
+<td>market.$symbol.mark_price.$period</td>
+<td>sub</td>
+<td>订阅标记价格K线数据</td>
+<td>否</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>指数与基差接口</td>
+<td>market.$symbol.mark_price.$period</td>
+<td>req</td>
+<td>请求标记价格K线数据</td>
+<td>否</td>
+</tr>
+<tr>
+<td>读取</td>
 <td>交易接口</td>
 <td>public.$symbol.liquidation_orders</td>
 <td>sub</td>
@@ -18993,7 +19155,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <p><code>&quot;ts&quot;: &quot;1492420473058&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='9852b06629-21'>备注：</h3>
+<h3 id='9852b06629-22'>备注：</h3>
 <ul>
 <li><p>&quot;pong&quot;操作返回数据里面的&quot;ts&quot;的值为&quot;ping&quot;推送收到的&quot;ts&quot;值</p></li>
 <li><p>WebSocket Client 和 WebSocket Server 建⽴立连接之后，WebSocket Server 每隔 5s(这个频率可能会变化) 会向 WebSocket Client 发起⼀一次⼼心跳，WebSocket Client 忽略心跳 5 次后，WebSocket Server 将会主动断开连接。</p></li>
@@ -21822,7 +21984,457 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>基差率=基差/指数基准价</td>
 </tr>
 </tbody></table>
-<h1 id='websocket-5'>WebSocket订单和用户数据接口</h1><h2 id='sub-10'>订阅订单成交数据（sub）</h2>
+<h2 id='k-4'>订阅标记价格K线数据</h2><h3 id='websocket-api-server-13'>成功建立和 WebSocket API 的连接之后，向 Server发送如下格式的数据来订阅数据：</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;sub&quot;: &quot;market.$symbol.mark_price.$period&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generate by client&quot;</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>正确订阅请求参数的例子：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CW.mark_price.1min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+</span></code></pre><h3 id='1f9ac54b15-80'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sub</td>
+<td>true</td>
+<td>string</td>
+<td>需要订阅的主题，该接口固定为：market.$symbol.mark_price.$period，详细参数见sub订阅参数说明</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>false</td>
+<td>string</td>
+<td>业务方自主生成的id</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='sub-10'>sub订单参数说明</h3>
+<table><thead>
+<tr>
+<th><strong>参数名称</strong></th>
+<th><strong>是否必须</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+<th><strong>默认值</strong></th>
+<th><strong>取值范围</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>合约标识</td>
+<td></td>
+<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约 ，&quot;BTC_NQ&quot;表示BTC次季度合约季度合约</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>K线类型</td>
+<td></td>
+<td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>每当标记价格有更新时，client 会收到数据，例子</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC_CW.mark_price.15min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1615773631266</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tick"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1615773600</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"open"</span><span class="p">:</span><span class="s2">"60533.89"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"close"</span><span class="p">:</span><span class="s2">"60603.01"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"high"</span><span class="p">:</span><span class="s2">"60603.01"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"low"</span><span class="p">:</span><span class="s2">"60533.89"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vol"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"count"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='df22977071-4'>返回参数：</h3>
+<table><thead>
+<tr>
+<th><strong>参数名称</strong></th>
+<th><strong>是否必须</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+<th><strong>默认值</strong></th>
+<th><strong>取值范围</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ch</td>
+<td>true</td>
+<td>string</td>
+<td>数据所属的 channel</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;tick&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>k线id</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>true</td>
+<td>string</td>
+<td>成交量(张)，数值为0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>true</td>
+<td>string</td>
+<td>成交笔数，数值为0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>true</td>
+<td>string</td>
+<td>开盘值</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>true</td>
+<td>string</td>
+<td>收盘值</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>true</td>
+<td>string</td>
+<td>最低值</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>true</td>
+<td>string</td>
+<td>最高值</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>string</td>
+<td>成交量(币), 数值为0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='k-5'>请求标记价格K线数据</h2><h3 id='websocket-api-server-14'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：</h3>
+<p><code>{</code></p>
+
+<p><code>&quot;req&quot;: &quot;market.$symbol.mark_price.$period&quot;,</code></p>
+
+<p><code>&quot;id&quot;: &quot;id generated by client&quot;,</code></p>
+
+<p><code>&quot;from&quot;: &quot;type: long 单位：秒&quot;,</code></p>
+
+<p><code>&quot;to&quot;: &quot;type: long 单位：秒，必须比 from 大&quot;,</code></p>
+
+<p><code>}</code></p>
+
+<blockquote>
+<p>正确订阅请求参数的例子:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CW.mark_price.1imin"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id4"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-81'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>默认值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>req</td>
+<td>true</td>
+<td>string</td>
+<td>需要订阅的主题，该接口固定为：market.$symbol.mark_price.$period，详细参数见req请求参数说明</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>false</td>
+<td>string</td>
+<td>业务方自主生成的id</td>
+<td></td>
+</tr>
+<tr>
+<td>from</td>
+<td>true</td>
+<td>long</td>
+<td>开始时间，单位：秒</td>
+<td></td>
+</tr>
+<tr>
+<td>to</td>
+<td>true</td>
+<td>long</td>
+<td>结束时间，单位：秒，必须比 from 大</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='req-6'>req请求参数说明：</h3>
+<table><thead>
+<tr>
+<th><strong>参数名称</strong></th>
+<th><strong>是否必须</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+<th><strong>默认值</strong></th>
+<th><strong>取值范围</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>合约标识</td>
+<td></td>
+<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约 ，&quot;BTC_NQ&quot;表示BTC次季度合约季度合约</td>
+</tr>
+<tr>
+<td>period</td>
+<td>true</td>
+<td>string</td>
+<td>K线类型</td>
+<td></td>
+<td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
+</tr>
+</tbody></table>
+<h3 id='a2c8f89312-5'>说明：</h3>
+<ul>
+<li>一次返回最多2000条数据；</li>
+</ul>
+
+<blockquote>
+<p>请求成功返回数据的例子：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"id4"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rep"</span><span class="p">:</span><span class="s2">"market.BTC_CW.mark_price.15min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"wsid"</span><span class="p">:</span><span class="mi">2998253842</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1615773843201</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1615651200</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open"</span><span class="p">:</span><span class="s2">"60284.67"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"close"</span><span class="p">:</span><span class="s2">"60362.04"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low"</span><span class="p">:</span><span class="s2">"60270.85"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high"</span><span class="p">:</span><span class="s2">"60468.55"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vol"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"count"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='df22977071-5'>返回参数：</h3>
+<table><thead>
+<tr>
+<th><strong>参数名称</strong></th>
+<th><strong>是否必须</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>描述</strong></th>
+<th><strong>默认值</strong></th>
+<th><strong>取值范围</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>rep</td>
+<td>true</td>
+<td>string</td>
+<td>数据所属的 channel</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>string</td>
+<td>业务方id</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>wsid</td>
+<td>true</td>
+<td>long</td>
+<td>wsid</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>number</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>long</td>
+<td>k线id</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>true</td>
+<td>string</td>
+<td>成交量(张)，数值为0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>true</td>
+<td>string</td>
+<td>成交笔数，数值为0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>true</td>
+<td>string</td>
+<td>开盘值</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>true</td>
+<td>string</td>
+<td>收盘值</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>true</td>
+<td>string</td>
+<td>最低值</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>true</td>
+<td>string</td>
+<td>最高值</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>string</td>
+<td>成交量(币), 数值为0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id='e0361480e3-35'>备注</h4>
+<ul>
+<li>标记价格于2021-3-15上线后才有数据。此前是没有历史数据的请悉知。</li>
+</ul>
+<h1 id='websocket-5'>WebSocket订单和用户数据接口</h1><h2 id='sub-11'>订阅订单成交数据（sub）</h2>
 <p>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</p>
 <h3 id='99a3392418'>订阅请求数据格式</h3>
 <p><code>{</code></p>
@@ -22155,7 +22767,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-22'>备注：</h4>
+<h4 id='9852b06629-23'>备注：</h4>
 <ul>
 <li>真实收益为开仓均价和成交价计算得出（订单的真实收益为订单下每笔成交的真实收益之和）。</li>
 <li>只有在2021年1月30日0点后创建的订单以及对应的成交，真实收益字段（real_profit）才会有值。存量数据均为0。</li>
@@ -22241,7 +22853,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-11'>订阅订单撮合数据（sub）</h2>
+<h2 id='sub-12'>订阅订单撮合数据（sub）</h2>
 <p>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</p>
 <h3 id='99a3392418-2'>订阅请求数据格式</h3>
 <p><code>{</code></p>
@@ -22288,7 +22900,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>必填，订阅主题名称:matchOrders.$symbol;  symbol支持大小写，比如：BTC，ETH ; 当 $symbol值为 * 时代表订阅所有品种;</td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-23'>备注：</h4>
+<h4 id='9852b06629-24'>备注：</h4>
 <ul>
 <li>postOnly的报单收到的WS推送要么是报单成功，状态为3，要么是7，已撤单;</li>
 <li>撮合完成后就将订单的更新信息推送给客户端;</li>
@@ -22584,7 +23196,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-12'>订阅资产变动数据（sub）</h2>
+<h2 id='sub-13'>订阅资产变动数据（sub）</h2>
 <p>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</p>
 <h3 id='99a3392418-3'>订阅请求数据格式</h3>
 <p><code>{</code></p>
@@ -22854,7 +23466,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-13'>订阅持仓变动更新数据（sub）</h2>
+<h2 id='sub-14'>订阅持仓变动更新数据（sub）</h2>
 <p>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</p>
 <h3 id='99a3392418-4'>订阅请求数据格式</h3>
 <p><code>{</code></p>
@@ -23052,7 +23664,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-35'>备注</h3>
+<h3 id='e0361480e3-36'>备注</h3>
 <ul>
 <li><p>每 5 秒进行一次定期推送，由定期推送触发的数据中 event 参数值为“snapshot”，表示由系统定期推送触发。如果 5 秒内已经触发过推送，则该品种跳过该次定期推送。</p></li>
 <li><p>当用户持仓量为0时使用切换杠杆的接口，持仓推送接口不会推送&quot;switch_lever_rate&quot;。</p></li>
@@ -23138,7 +23750,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-14'>订阅强平订单数据(免鉴权)（sub）</h2><h3 id='4b550b6f5b'>订阅强平订单数据格式</h3>
+<h2 id='sub-15'>订阅强平订单数据(免鉴权)（sub）</h2><h3 id='4b550b6f5b'>订阅强平订单数据格式</h3>
 <p><code>{</code></p>
 
 <p><code>“op”: “sub”,</code></p>
@@ -23394,7 +24006,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='sub-15'>订阅合约信息变动(免鉴权)（sub）</h2>
+<h2 id='sub-16'>订阅合约信息变动(免鉴权)（sub）</h2>
 <p>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</p>
 
 <p><code>{</code></p>
@@ -23417,7 +24029,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-80'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-82'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -23629,7 +24241,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='a2c8f89312-5'>说明：</h3>
+<h3 id='a2c8f89312-6'>说明：</h3>
 <ul>
 <li>合约信息变动WS推送接口有定期推送逻辑，每60秒进行一次定期推送，由定期推送触发的数据中event参数值为“snapshot”，表示由系统定期推送触发。如果60秒内已经触发过推送，则跳过该次定期推送。</li>
 <li>订阅成功时，会立即推送一条最新的合约信息，event为init。</li>
@@ -23718,7 +24330,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>不允许</td>
 </tr>
 </tbody></table>
-<h2 id='022003d33a'>订阅计划委托订单更新</h2><h3 id='websocket-api-server-13'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</h3>
+<h2 id='022003d33a'>订阅计划委托订单更新</h2><h3 id='websocket-api-server-15'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来订阅数据:</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
@@ -23738,7 +24350,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trigger_order.BTC"</span><span class="p">,</span><span class="w">   
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">          
 </span><span class="p">}</span><span class="w">                                    
-</span></code></pre><h3 id='1f9ac54b15-81'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-83'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -24034,7 +24646,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='a2c8f89312-6'>说明：</h4>
+<h4 id='a2c8f89312-7'>说明：</h4>
 <ul>
 <li>订单状态系统处理的中间态不进行推送，比如报单中和撤单中；具体通知事件说明映射如下：
 
@@ -24130,7 +24742,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>系统状态更新订阅WS地址：wss://api.hbdm.com/center-notification</li>
 </ul>
-<h2 id='639acfa81d'>订阅系统状态更新</h2><h3 id='websocket-api-server-14'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：</h3>
+<h2 id='639acfa81d'>订阅系统状态更新</h2><h3 id='websocket-api-server-16'>成功建立和 WebSocket API 的连接之后，向 Server 发送如下格式的数据来请求数据：</h3>
 <p><code>{</code></p>
 
 <p><code>&quot;op&quot;: &quot;sub&quot;,</code></p>
@@ -24182,7 +24794,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='sub-16'><strong>sub订阅参数说明</strong>:</h3>
+<h3 id='sub-17'><strong>sub订阅参数说明</strong>:</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -24283,7 +24895,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='e0361480e3-36'>备注</h3>
+<h3 id='e0361480e3-37'>备注</h3>
 <ul>
 <li>这个推送由于是轮询判断状态的，所以推送可能存在1—2秒的延迟。</li>
 </ul>
