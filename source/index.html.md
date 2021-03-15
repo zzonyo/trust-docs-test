@@ -42,12 +42,12 @@ search: True
  - 接口类型：公共接口
  - 接口URL：/index/market/history/mark_price_kline
 
-## 2、新增订阅标记价格K线数据接口
+### 2、新增订阅标记价格K线数据接口
  - 接口名称：订阅标记价格K线数据
  - 接口类型：公共接口
  - 订阅地址：market.$symbol.mark_price.$period
 
-## 3、新增请求标记价格K线数据接口
+### 3、新增请求标记价格K线数据接口
  - 接口名称：请求标记价格K线数据
  - 接口类型：公共接口
  - 订阅地址：market.$symbol.mark_price.$period
