@@ -40,6 +40,23 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.2.6 2021-3-15 【Added: Get Kline Data of Mark Price interface, Subscribe Kline Data of Mark Price interface, Request Kline Data of Mark Price interface】
+
+### 1. Added Get Kline Data of Mark Price interface
+ - Interface Name: Get Kline Data of Mark Price
+ - Interface Type: public
+ - Interface URL: /index/market/history/mark_price_kline
+
+### 2. Added Subscribe Kline Data of Mark Price interface
+ - Interface Name: Subscribe Kline Data of Mark Price
+ - Interface Type: public
+ - Subscription topic:market.$symbol.mark_price.$period
+
+### 3. Added Request Kline Data of Mark Price interface
+ - Interface Name: Request Kline Data of Mark Price interface
+ - Interface Type: public
+ - Subscription topic:market.$symbol.mark_price.$period
+
 ## 1.2.5 2021-2-26 【Added: Query Asset Valuation interface. Modified Get Contract Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter "ch" value is "market.*trade.detail". Added one field in return "tick" parameter: "symbol")】
 
 ### 1. Added Query Asset Valuation interface
@@ -1065,6 +1082,7 @@ Read  | Market Data      |  /api/v1/contract_delivery_price     |  GET          
 Read     |  Market Data           |   /api/v1/contract_api_state   |                  GET        |  Query information on system status    |  No  |
 Read  | Market Data      |  /market/depth                  |  GET              | Get Market Depth                               | No                     |
 Read  | Market Data      | /market/history/kline          |  GET              | Get Kline Data                                | No                     |
+Read  |  Market Data           |  /index/market/history/mark_price_kline |        GET        |  Get Kline Data of Mark Price                 |  No  |
 Read  | Market Data      |  /market/detail/merged         |  GET              | Get Market Data Overview                       | No                     |
 Read  |  Market Data     |  /market/detail/batch_merged  |                 GET        |  Get a Batch of Market Data Overview                 |  No  |
 Read  | Market Data      |  /market/trade                  |  GET              | Query The Last Trade of a Contract                   | No                     |
@@ -2686,21 +2704,6 @@ curl "https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5"
 | symbol             | string             | true          | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”. Contract code is supported to query data. e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 | type               | string             | true          | Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5,14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged. |
 
->tick illustration:
-
-```
-"tick": {
-    "id": Message id,
-    "ts": Time of Message Generation, unit: millisecond,
-    "bids": Buying, [price(hanging unit price), vol(this price represent single contract)], According to the descending order of Price,
-    "asks": Selling, [price(hanging unit Price), vol(this price represent single contract)], According to the ascending order of Price,
-    "ch": Data channel,
-    "mrid": Order ID,
-    "ts": Time of Respond Generation,
-    "version": version ID 
-}
-
-```
 
 > Response:
 
@@ -2785,23 +2788,6 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 - If `size`, `from` and `to `are all filled in, the `from` and `to` parameters will be ignored.
 - Support to query K-line data of contracts which have been delisted in the last four weeks; User can enter contract code to query data of contracts delisted in the last four weeks.
 
-> Data Illustration：
-
-```
-"data": [
-  {
-        "id": Kline id,
-        "vol": Transaction Volume(amount),
-        "count": transaction count
-        "open": opening Price
-        "close": Closing Price, when the Kline is the latest one，it means the latest price
-        "low": Lowest price
-        "high": highest price
-        "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
-   }
-]
-```
-
 > Response:
 
 ```json
@@ -2857,6 +2843,61 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 | amount | decimal  |amount based on coins. Sum of both buy and sell sides|
 
 
+## Get Kline Data of Mark Price
+
+ - GET `/index/market/history/mark_price_kline`
+
+### Request Parameter: 
+| **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol | true | string  | symbol |  | "BTC_CW" represents BTC “This Week”, "BTC_NW" represents BTC “Next Week”, "BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”|
+| period          | true     | string  | kline period               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week,1mon     |
+| size  | true     | int    | kline size     |  | [1,2000] |
+
+##### Note: 
+- At one time 2000 at most
+- Case-Insenstive, both uppercase and lowercase are supported
+
+> Response
+
+```json
+{
+    "ch": "market.BTC_CQ.mark_price.5min",
+    "data": [
+        {
+            "amount": "0",
+            "close": "65582.94",
+            "count": "0",
+            "high": "65645.7",
+            "id": 1615773000,
+            "low": "65582.85",
+            "open": "65623.97",
+            "vol": "0"
+        }
+    ],
+    "status": "ok",
+    "ts": 1615773225762
+}
+```
+
+### Returning Parameter: 
+| **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| ch     | true | string | channel |                | |
+| \<data\> |   true   |    object array    |               |                | |
+| id     | true | long | kline id        |                | |
+| vol     | true | string | trade vol(cont), value is 0        |                | |
+| count     | true | string | trade count, value is 0        |                | |
+| open     | true | string | open price        |                | |
+| close     | true | string | close price        |                | |
+| low     | true | string | low price        |                | |
+| high     | true | string | high price        |                | |
+| amount     | true | string | trade amount(coin), value is 0        |                | |
+| \</data\>            |      |        |               |                | |
+| status | true | string | status                          | "ok" , "error" | |
+| ts     | true | number | Time of Respond Generation, Unit: Millisecond                  |                | |
+
+
 ##  Get Market Data Overview
 
 ###  Example            
@@ -2873,23 +2914,6 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
 | symbol             | true          | string   | Contract Name |             | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”. Contract code is supported to query data. e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 
-> tick Illustration:
-
-```
-"tick": {
-    "id": Kline id,
-    "vol": transaction volume（contract）,
-    "count": transaction count
-    "open": opening price,
-    "close": Closing Price, when the Kline is the latest one，it means the latest price
-    "low": Lowest price
-    "high": highest price
-    "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
-    "bid": [price of buying one (amount)],
-    "ask": [price of selling one (amount)]
-
-  }
-```
 
 > Response:
 
@@ -3045,25 +3069,6 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
 | symbol             | false          | string   | Contract Name |             | Case-Insenstive.Both uppercase and lowercase are supported.. e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”. Contract code is supported to query data. e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 
-> Tick Illustration：
-
-```
-"tick": {
-  "id": Unique Order Id(symbol level),
-  "ts": Latest Transaction time,
-  "data": [
-    {
-      "id": Unique Transaction Id(symbol level),
-      "price": Transaction price,
-      "amount": transaction amount,
-      "direction": Active transaction direction,
-      "ts": transaction time
-
-    }
-  ]
-}
-```
-
 > Response:
 
 ```json
@@ -3127,23 +3132,6 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | ------------------ | ------------- | ------------- | ------------------------------------- | ----------- | ------------------------------------------------------------ |
 | symbol             | true          | string        | Contract Name                         |             | Case-Insenstive.Both uppercase and lowercase are supported.. e.g. "BTC_CW" represents BTC “This Week”，"BTC_NW" represents BTC “Next Week”，"BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”. Contract code is supported to query data. e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 | size               | true         | int        | Number of Trading Records Acquisition | 1           | [1, 2000]                                                    |
-
-> data Illustration：
-
-```
-"data": {
-  "id": Unique Order Id(symbol level),
-  "ts": Latest transaction time,
-  "data": [
-    {
-      "id": Unique Transaction Id(symbol level),
-      "price": transaction price,
-      "amount": transaction (amount),
-      "direction": active transaction direction
-      "ts": transaction time
-      }
-}
-```
 
 > Response:
 
@@ -7716,6 +7704,8 @@ This contract type doesn't exist.  |              |
  Read  |      Market Data Interface       |  market.$symbol.detail  |               sub        |    Subscribe Market Detail Data    |   No  |
  Read   |     Market Data Interface        |  market.$symbol.trade.detail  |               req        |    Request Trade Detail Data |  No|
  Read  |    Market Data Interface         |  market.$symbol.trade.detail  |        sub |  Subscribe Trade Detail Data | No  | 
+ Read    |  Market Data Interface | market.$symbol.mark_price.$period           | sub  | Subscribe Kline Data of Mark Price          |       No      |
+ Read    |  Market Data Interface | market.$symbol.mark_price.$period           | req  | Request Kline Data of Mark Price interface          |       Yes      |
  Read   |  System Status Interface         |  public.$service.heartbeat  |    sub  | Subscription system status updates   | No  | 
  Trade |       Trade Interface      |  orders.$symbol  |        sub |  Subscribe Order Data  | Yes | 
  Trade |       Trade Interface      |  matchOrders.$symbol  |        sub |  Subscribe Order Data  | Yes | 
@@ -8796,8 +8786,6 @@ ts  |  true  |  long  |  server response time |   |
 -------------- |  -------------- |  ---------- |  ---------- |  ------------ |  --------------------------------------------------------------------------------|
   symbol         |  true           |  string     |  contract type    |            | Case-Insenstive.Both uppercase and lowercase are supported..E.g.: "BTC_CW" stands for BTC weekly contract,  "BTC_NW" stands for BTC bi-weekly contract, "BTC_CQ" stands for BTC quarterly contract."BTC_NQ" stands for BTC next quarterly contract. contract code is supported too, e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 
-
-
 ### Return Parameter
 
 Parameter Name     | Mandatory | Type  |  Description |  Default  | 
@@ -8848,6 +8836,170 @@ quantity  |  true  |  decimal  |  trading quantity(coin)  |   |
     }
 }
 ```
+
+
+## Subscribe Kline Data of Mark Price
+
+### To subscribe Kline Data of Mark Price data, clients have to make connection to WebSokcet API Server and send subscribe request in the format below: 
+
+`{`
+
+  `"sub": "market.$symbol.mark_price.$period",`
+
+  `"id": "id generate by client"`
+
+`}`
+
+> Example of a successful request: 
+
+```json
+
+    {
+    "sub": "market.BTC_CW.mark_price.1min",
+    "id": "id1"
+    }
+
+```
+### Request Parameter
+  Parameter Name  |   Mandatory   |   Type    |   Desc   |    Default  |  
+--------------| -----------------| ---------- |----------| ------------  | 
+  sub  |       true         |  string  |  the topic subscribed is fixed at: market.$symbol.mark_price.$period, and more details to see Subscribe Parameter Rules    |               |  
+  id   |     false          | string   |  id      |           |  
+
+### Subscribe Parameter Rules
+| **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol      | true | string  | symbol |   | "BTC_CW" represents BTC “This Week”, "BTC_NW" represents BTC “Next Week”, "BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”|
+| period      | true     | string  | kline period               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon     |
+
+
+> After subscription, clients can receive updates upon any change. Example
+
+```json
+{
+    "ch":"market.BTC_CW.mark_price.15min",
+    "ts":1615773631266,
+    "tick":{
+        "id":1615773600,
+        "open":"60533.89",
+        "close":"60603.01",
+        "high":"60603.01",
+        "low":"60533.89",
+        "amount":"0",
+        "vol":"0",
+        "count":"0"
+    }
+}
+```
+### Returning Parameter: 
+| **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| ch     | true | string | channel |                | |
+| \<tick\> |   true   |    object array    |               |                | |
+| id     | true | long | kline id        |                | |
+| vol     | true | string | trade vol(cont), value is 0        |                | |
+| count     | true | string | trade count, value is 0        |                | |
+| open     | true | string | open price        |                | |
+| close     | true | string | close price       |                | |
+| low     | true | string | low price        |                | |
+| high     | true | string | high price       |                | |
+| amount     | true | string | trade amount(coin), value is 0        |                | |
+| \</tick>            |      |        |               |                | |
+| ts     | true | number | Time of Respond Generation, Unit: Millisecond                  |                | |
+
+
+## Request Kline Data of Mark Price interface
+
+### To request Kline Data of Mark Price data, clients have to make connection to WebSokcet API Server and send subscribe request in the format below: 
+
+`{`
+     
+   `"req": "market.$symbol.mark_price.$period",`
+    
+   `"id": "id generated by client",`
+
+   `"from": "type: long Unit: Second",`
+   
+   `"to": "type: long Unit: Second, must been greater than from",`
+    
+`}`
+
+> Example of a successful request:
+
+```json
+
+    {
+    "req": "market.BTC_CW.mark_price.1imin",
+    "id": "id4",
+    "from":1571000000,
+    "to":1573098606
+    }
+```
+
+### Request Parameter
+
+  Parameter Name  |   Mandatory   |   Type    |   Desc   |    Default  |  
+--------------| -----------------| ---------- |----------| ------------  | 
+  req  |       true         |  string  |  the topic subscribed is fixed at: market.$symbol.mark_price.$period, and more details to see Request Parameter Rules    |               |  
+  id   |     false          | string   |  id      |           |  
+  from     | true     | long  | start time, Unit: Second              |         |  
+  to       | true     | long  | end time, Unit: Second, must been greater than from              |         | 
+
+### Request Parameter Rules: 
+| **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol      | true  | string  | symbol |   | "BTC_CW" represents BTC “This Week”, "BTC_NW" represents BTC “Next Week”, "BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”|
+| period      | true  | string  | kline period  |   | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon     |
+
+
+### Note: 
+- At one time 2000 at most
+
+> Example of the response
+
+```json
+{
+    "id":"id4",
+    "rep":"market.BTC_CW.mark_price.15min",
+    "wsid":2998253842,
+    "ts":1615773843201,
+    "status":"ok",
+    "data":[
+        {
+            "id":1615651200,
+            "open":"60284.67",
+            "close":"60362.04",
+            "low":"60270.85",
+            "high":"60468.55",
+            "amount":"0",
+            "vol":"0",
+            "count":"0"
+        }
+    ]
+}
+```
+
+### Returning Parameter: 
+| **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| rep     | true | string | channel|                | |
+| status | true | string | status                          | "ok" , "error" | |
+| id     | true | string | as same as request id       |                | |
+| wsid     | true | long | wsid           |                | |
+| ts     | true | number | Time of Respond Generation, Unit: Millisecond                  |                | |
+| \<data\> |   true   |    object array    |               |                | |
+| id     | true | long | kline id        |                | |
+| vol     | true | string | trade vol(cont), value is 0        |                | |
+| count     | true | string | trade count, value is 0        |                | |
+| open     | true | string | open price        |                | |
+| close     | true | string | close price      |                | |
+| low     | true | string | low price        |                | |
+| high     | true | string | high price      |                | |
+| amount     | true | string | trade amount(coin), value is 0        |                | |
+| \</data\>            |      |        |               |                | |
+
+#### Note
+ - Data will be available after the marked price goes online on March 15, 2021. Please be aware that there is no historical data before.
 
 
 # WebSocket Index and Basis Interface
