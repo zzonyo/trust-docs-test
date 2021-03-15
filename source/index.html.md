@@ -6338,7 +6338,7 @@ API Key 权限：读取
 | abnormal-users-cannot-transfer           | 非正常用户不能转出                    |
 | account-explosion-in-prohibited-transfer | 账户爆仓中禁止划转操作                |
 | account-is-abnormal-retry-after-refresh  | 账户异常请刷新重试                    |
-| account-balance-insufficient-error       | 账户余额不足，不区分动作类型          |
+| account-balance-insufficient-error       | 账户余额不足                          |
 | account-cannot-be-inquired               | 无法查询到全仓杠杆账户                |
 | base-not-in-white-list                   | 不是白名单用户                        |
 | base-currency-error                      | currency不存在                        |
@@ -6349,6 +6349,7 @@ API Key 权限：读取
 | exceed-maximum-amount                    | 超出最大数量                          |
 | start-date-cannot-greater-than-end-date  | 开始时间不能大于结束时间              |
 | frequent-invoke                          | 操作过于频繁，请稍后重试              |
+| insufficient-exchange-fund               | 交易所资金不足                        |
 | loan-order-not-found                     | 订单未找到                            |
 | loan-amount-scale-limit                  | 借贷&还款 金额精度限制                |
 | loan-repay-max-limit                     | 偿还大于借贷                          |
