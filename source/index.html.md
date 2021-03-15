@@ -6442,6 +6442,7 @@ Sort by “repayTime”
 | exceed-maximum-amount                    | Exceed the limit                                |
 | start-date-cannot-greater-than-end-date  | Start date cannot be greater than end date      |
 | frequent-invoke                          | Operates too frequently                         |
+| insufficient-exchange-fund               | Exchange fund is insufficient                   |
 | loan-order-not-found                     | Loan order is not found                         |
 | loan-amount-scale-limit                  | Loan order amount precision error               |
 | loan-repay-max-limit                     | Repay amount is greater than requested          |
@@ -8698,8 +8699,8 @@ curl "https://api.huobi.pro/etf/swap/config?etf_name=hb10"
 
 ### Response Content
 
-| Field                 | Data Type | Description                                                  | Mandatory  | 
-| --------------------- | --------- | ------------------------------------------------------------ | ---------- | 
+| Field                 | Data Type | Description                                                  | Mandatory  |
+| --------------------- | --------- | ------------------------------------------------------------ | ---------- |
 | purchase_min_amount   | integer   | Minimum creation amounts per request                         |    true    |
 | purchase_max_amount   | integer   | Maximum creation amounts per request                         |    false   |
 | redemption_min_amount | integer   | Minimum redemption amounts per request                       |    true    |
