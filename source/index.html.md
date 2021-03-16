@@ -8884,9 +8884,11 @@ Below is the error code and the description returned by ETF APIs
 
 ## Introduction
 
-ETP (Exchange Tradable Products) APIs provide ETP related functionality, such as swap in, swap out, query.
+ETP (Exchange Tradable Products) APIs provide ETP related functionality, such as creation, redemption, query.
 
 ## Get reference data of ETP
+
+Client can use this endpoint to query ETP's reference data
 
 ### HTTP Request
 
@@ -9194,7 +9196,7 @@ Rate Limit (NEW): 1 time /s<br>
 
 
 
-## Submit Cancel for ETP Multiple Orders
+## Batch Cancellation for ETP Orders
 
 ### HTTP Request
 
@@ -9241,10 +9243,10 @@ Rate Limit (NEW): 1 time /5s<br>
 |	Field Name	|	Data Type	|	Mandatory	|	Description	|
 |	-----	|	----	|	--------	|	-----	|
 |	code	|	integer	|	TRUE	|Status Code	|
-|	message	|	string	|	FALSE	|Error message (if any)	|
+|	message	|	string	|	FALSE	|Request status	|
 |	data	|	object	|	TRUE	| 	|
 |	{ success	|	string	|	TRUE	|List of successful ETP cancellation transactions	|
-|	errMsg	|	long	|	TRUE	|Position rebalance time (unix time in millisecond)|
+|	errMsg	|	long	|	TRUE	|Error message of order cancellation failure|
 |	errCode 	|	string	|	TRUE	|Error code of order cancellation failure	|
 |	transactId}	|	long	|	FALSE	| Transaction ID	|
 
@@ -9295,8 +9297,8 @@ GET /v2/etp/limit?currency=btc3l,btc3s
 | Field            | Data  Type | Required | Description             |
 | ---------------- | ---------- | -------- | ----------------------- |
 | code             | integer    | TRUE     | Status  Code            |
-| message          | string     | FALSE    | Error  message (if any) |
-| {  currency      | string     | TRUE     | Quote  currency         |
+| message          | string     | FALSE    | Status  message         |
+| {currency        | string     | TRUE     | Quote  currency         |
 | maxHoldings      | string     | TRUE     | Holding limit           |
 | remainingAmount} | string     | TRUE     | Remaining amount        |
 
@@ -9307,6 +9309,7 @@ Below is the error code and the description returend by ETP APIs
 | Error Code | Description                                                  |
 | ---------- | ------------------------------------------------------------ |
 | 1002       | This feature is not open to users in your country.           |
+| 2002	     | Wrong parameter is passed in symbols                         |
 | 80007      | Subscription closed. Order cancelled                         |
 | 80008      | Redemption closed. Order cancelled.                          |
 | 80009      | The subscription amount shall not be less than specified amount |
@@ -9326,3 +9329,8 @@ Below is the error code and the description returend by ETP APIs
 | 80026      | The system is busy, try again later                          |
 | 80027      | Redemption failed due to no availablity, Order cancelled.    |
 | 80028      | Order failed, exceeded the holding limit of this currency    |
+| 80041	     | Order cancellation failed, this order is already cancelled   |
+| 80042	     | Order cancellation failed, this order is already executed    |
+| 80043      | Order cancellation failed, this order does not exist         |
+| 80045	     | Order cancellation failed, the system is busy now, please try again later |
+| 80052	     | Excedds the maximun query limit 10                           |
