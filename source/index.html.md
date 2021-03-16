@@ -8236,7 +8236,7 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
 
 Clients can request 2000 Klines at most in one request
 
-> After subscription, Clients can receive the most recent data upon any update：
+> Example of a successful return data：
 
 ```json
 
