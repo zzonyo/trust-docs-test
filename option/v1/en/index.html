@@ -1705,7 +1705,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1071</td>
-<td>Repeated withdraw.</td>
+<td>Repeated cancellation. Your order has been canceled.</td>
 </tr>
 <tr>
 <td>1072</td>
@@ -1777,7 +1777,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1089</td>
-<td>{0} contract is restricted of transfer.  Please contact customer service.</td>
+<td>Transfer is temporarily restricted for {0} account, please contact customer service support.</td>
 </tr>
 <tr>
 <td>1090</td>
@@ -1829,7 +1829,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1106</td>
-<td>Abnormal contracts status. Can’t transfer.</td>
+<td>Delivery or settlement in progress, unable to transfer.</td>
 </tr>
 <tr>
 <td>1108</td>
@@ -1901,7 +1901,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1228</td>
-<td>Account has not opened, cannot agree to agreement.</td>
+<td>You have not activated contract trading currently, please activate first.</td>
 </tr>
 <tr>
 <td>1229</td>
@@ -1925,11 +1925,11 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </tr>
 <tr>
 <td>1234</td>
-<td>{0} contract opening orders cannot exceed {1}</td>
+<td>For {0} contracts, the number of the position-opening orders which are not fully filled cannot exceed {1}.</td>
 </tr>
 <tr>
 <td>1235</td>
-<td>{0} contract closing orders cannot exceed {1}</td>
+<td>For {0} contracts, the number of the position-closing orders which are not fully filled cannot exceed {1}.</td>
 </tr>
 <tr>
 <td>1250</td>
@@ -2140,8 +2140,132 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>{0} parameter is incorrect, please modify.</td>
 </tr>
 <tr>
+<td>1348</td>
+<td>This contract does not support cross margin mode.</td>
+</tr>
+<tr>
+<td>1349</td>
+<td>The leverage of the order does not match the leverage of the current position, please switch the leverage first.</td>
+</tr>
+<tr>
 <td>1401</td>
 <td>order price shall be lower than the strike price.</td>
+</tr>
+<tr>
+<td>1403</td>
+<td>The number of take-profit and stop-loss orders for {0} contract shall not exceed {1}</td>
+</tr>
+<tr>
+<td>1404</td>
+<td>Take-profit and stop-loss orders can only be bound with orders for opening a position</td>
+</tr>
+<tr>
+<td>1405</td>
+<td>The take-profit price shall not be {0}{1}{2}</td>
+</tr>
+<tr>
+<td>1406</td>
+<td>Your chances of lucky draw have been used up</td>
+</tr>
+<tr>
+<td>1407</td>
+<td>The stop-loss price shall not be {0}{1}{2}</td>
+</tr>
+<tr>
+<td>1408</td>
+<td>Unable to cancel because the take-profit and stop-loss order does not take effect.</td>
+</tr>
+<tr>
+<td>1409</td>
+<td>You have no access to set a take-profit and stop-loss order, please contact our customer service.</td>
+</tr>
+<tr>
+<td>1410</td>
+<td>The number of sub-accounts for batch operation cannot exceed {0}</td>
+</tr>
+<tr>
+<td>1411</td>
+<td>Settlement in progress, unable to query order information.</td>
+</tr>
+<tr>
+<td>1412</td>
+<td>{0} does not meet with the price precision limit {1}.</td>
+</tr>
+<tr>
+<td>1413</td>
+<td>You have no access to set a Trailing Stop order, please contact our customer service.</td>
+</tr>
+<tr>
+<td>1414</td>
+<td>You have not activated the grid trading. Please log in to the Web or APP with your main account, and agree with the protocol to activate the grid trading.</td>
+</tr>
+<tr>
+<td>1415</td>
+<td>Terminate price (Take-profit/Stop-loss price) cannot be within the range of grid price, please modify!</td>
+</tr>
+<tr>
+<td>1416</td>
+<td>Exceeds the maximum running time, which is{0} days and {1} hours, please modify!</td>
+</tr>
+<tr>
+<td>1417</td>
+<td>Exceeds the range of grid quantity, which is ({0} ~ {1}), please modify!</td>
+</tr>
+<tr>
+<td>1418</td>
+<td>At most {0} grids trading orders can be running at the same time, please cancel other grid trading orders first.</td>
+</tr>
+<tr>
+<td>1419</td>
+<td>Exceeds the range of initial margin ({0} ~ {1}} {2}).</td>
+</tr>
+<tr>
+<td>1420</td>
+<td>You have no access to grid trading on Huobi Futures, please contact our customer service.</td>
+</tr>
+<tr>
+<td>1421</td>
+<td>There are open orders or positions of the current contract, please cancel these orders or close these positions first.</td>
+</tr>
+<tr>
+<td>1422</td>
+<td>The PnL per grid is expected to be less than 0, please modify!</td>
+</tr>
+<tr>
+<td>1423</td>
+<td>The spread between the lowest and the highest grid price is unreasonable, please modify!</td>
+</tr>
+<tr>
+<td>1424</td>
+<td>This grid trading has been terminated for other reasons. Therefore, it cannot be modified or manually terminated now.</td>
+</tr>
+<tr>
+<td>1425</td>
+<td>The callback rate should be {0}{1}, please modify!</td>
+</tr>
+<tr>
+<td>1426</td>
+<td>The activation price should be {0} the latest price.</td>
+</tr>
+<tr>
+<td>1427</td>
+<td>The number of your {0} contract trailing stop order orders exceeds the limit {1}.</td>
+</tr>
+<tr>
+<td>1428</td>
+<td>The coupon for the same type of contract can only be collected once by each user.</td>
+</tr>
+<tr>
+<td>1429</td>
+<td>Already received; please do not collect again!</td>
+</tr>
+<tr>
+<td>1430</td>
+<td>Invalid coupon; please refresh!</td>
+</tr>
+<tr>
+<td>1431</td>
+<td>The system is in maintenance and is expected to resume at {0} (GMT+8).</td>
 </tr>
 <tr>
 <td>12001</td>
