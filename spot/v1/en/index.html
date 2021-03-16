@@ -864,7 +864,7 @@
                     <a href="#submit-cancel-for-an-etp-order" class="toc-h2 toc-link" data-title="Submit Cancel for an ETP Order">Submit Cancel for an ETP Order</a>
                   </li>
                   <li>
-                    <a href="#submit-cancel-for-etp-multiple-orders" class="toc-h2 toc-link" data-title="Submit Cancel for ETP Multiple Orders">Submit Cancel for ETP Multiple Orders</a>
+                    <a href="#batch-cancellation-for-etp-orders" class="toc-h2 toc-link" data-title="Batch Cancellation for ETP Orders">Batch Cancellation for ETP Orders</a>
                   </li>
                   <li>
                     <a href="#get-holding-limit-of-leveraged-etp" class="toc-h2 toc-link" data-title="Get Holding Limit of Leveraged ETP">Get Holding Limit of Leveraged ETP</a>
@@ -18773,8 +18773,10 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 </tr>
 </tbody></table>
 <h1 id='etp'>ETP</h1><h2 id='introduction-15'>Introduction</h2>
-<p>ETP (Exchange Tradable Products) APIs provide ETP related functionality, such as swap in, swap out, query.</p>
-<h2 id='get-reference-data-of-etp'>Get reference data of ETP</h2><h3 id='http-request-84'>HTTP Request</h3>
+<p>ETP (Exchange Tradable Products) APIs provide ETP related functionality, such as creation, redemption, query.</p>
+<h2 id='get-reference-data-of-etp'>Get reference data of ETP</h2>
+<p>Client can use this endpoint to query ETP&#39;s reference data</p>
+<h3 id='http-request-84'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v2/etp/reference</code></li>
 </ul>
@@ -19618,7 +19620,7 @@ Rate Limit (NEW): 1 time /s<br></p>
 <td>Error message (if any)</td>
 </tr>
 </tbody></table>
-<h2 id='submit-cancel-for-etp-multiple-orders'>Submit Cancel for ETP Multiple Orders</h2><h3 id='http-request-91'>HTTP Request</h3>
+<h2 id='batch-cancellation-for-etp-orders'>Batch Cancellation for ETP Orders</h2><h3 id='http-request-91'>HTTP Request</h3>
 <ul>
 <li>POST /v2/etp/batch-cancel</li>
 </ul>
@@ -19686,7 +19688,7 @@ Rate Limit (NEW): 1 time /5s<br></p>
 <td>message</td>
 <td>string</td>
 <td>FALSE</td>
-<td>Error message (if any)</td>
+<td>Request status</td>
 </tr>
 <tr>
 <td>data</td>
@@ -19704,7 +19706,7 @@ Rate Limit (NEW): 1 time /5s<br></p>
 <td>errMsg</td>
 <td>long</td>
 <td>TRUE</td>
-<td>Position rebalance time (unix time in millisecond)</td>
+<td>Error message of order cancellation failure</td>
 </tr>
 <tr>
 <td>errCode</td>
@@ -19784,10 +19786,10 @@ Rate Limit (NEW): 1 time /5s<br></p>
 <td>message</td>
 <td>string</td>
 <td>FALSE</td>
-<td>Error  message (if any)</td>
+<td>Status  message</td>
 </tr>
 <tr>
-<td>{  currency</td>
+<td>{currency</td>
 <td>string</td>
 <td>TRUE</td>
 <td>Quote  currency</td>
@@ -19817,6 +19819,10 @@ Rate Limit (NEW): 1 time /5s<br></p>
 <tr>
 <td>1002</td>
 <td>This feature is not open to users in your country.</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>Wrong parameter is passed in symbols</td>
 </tr>
 <tr>
 <td>80007</td>
@@ -19893,6 +19899,26 @@ Rate Limit (NEW): 1 time /5s<br></p>
 <tr>
 <td>80028</td>
 <td>Order failed, exceeded the holding limit of this currency</td>
+</tr>
+<tr>
+<td>80041</td>
+<td>Order cancellation failed, this order is already cancelled</td>
+</tr>
+<tr>
+<td>80042</td>
+<td>Order cancellation failed, this order is already executed</td>
+</tr>
+<tr>
+<td>80043</td>
+<td>Order cancellation failed, this order does not exist</td>
+</tr>
+<tr>
+<td>80045</td>
+<td>Order cancellation failed, the system is busy now, please try again later</td>
+</tr>
+<tr>
+<td>80052</td>
+<td>Excedds the maximun query limit 10</td>
 </tr>
 </tbody></table>
 
