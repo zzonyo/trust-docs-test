@@ -1730,7 +1730,7 @@ Error Code | Error Details Description|
 1068 | Export error.
 1069 | The price is not reasonable.
 1070 | Empty data, cannot be exported.
-1071 | Repeated withdraw.
+1071 | Repeated cancellation. Your order has been canceled.
 1072 |  Sell price must be lower than {0}{1}.
 1073 | Position abnormal. Please contact the customer service.
 1074 | Unable to order currently. Please contact the customer service.
@@ -1785,8 +1785,8 @@ Error Code | Error Details Description|
 1231 | You haven't finished the ID Verification.
 1232 | The format/size of the image you uploaded does not meet the requirements. Please re-upload.
 1233 | High leverage is not enabled (Please sign in the APP or web with your main account to agree to the High-Leverage Agreement)
-1234 | {0} contract opening orders cannot exceed {1}
-1235 | {0} contract closing orders cannot exceed {1}
+1234 | For {0} contracts, the number of the position-opening orders which are not fully filled cannot exceed {1}.
+1235 | For {0} contracts, the number of the position-closing orders which are not fully filled cannot exceed {1}.
 1250 | Unable to get the HT_token.
 1251 | Unable to get BTC assets. Please try again later.
 1252 | Unable to get currency account assets. Please try again later.
@@ -1849,6 +1849,28 @@ Error Code | Error Details Description|
 1407 | The stop-loss price shall not be {0}{1}{2}
 1408 | Unable to cancel because the take-profit and stop-loss order does not take effect.
 1409 | You have no access to set a take-profit and stop-loss order, please contact our customer service.
+1410 | The number of sub-accounts for batch operation cannot exceed {0}
+1411 | Settlement in progress, unable to query order information.
+1412 | {0} does not meet with the price precision limit {1}.
+1413 | You have no access to set a Trailing Stop order, please contact our customer service.
+1414 | You have not activated the grid trading. Please log in to the Web or APP with your main account, and agree with the protocol to activate the grid trading.
+1415 | Terminate price (Take-profit/Stop-loss price) cannot be within the range of grid price, please modify!
+1416 | Exceeds the maximum running time, which is{0} days and {1} hours, please modify!
+1417 | Exceeds the range of grid quantity, which is ({0} ~ {1}), please modify!
+1418 | At most {0} grids trading orders can be running at the same time, please cancel other grid trading orders first.
+1419 | Exceeds the range of initial margin ({0} ~ {1}} {2}).
+1420 | You have no access to grid trading on Huobi Futures, please contact our customer service.
+1421 | There are open orders or positions of the current contract, please cancel these orders or close these positions first.
+1422 | The PnL per grid is expected to be less than 0, please modify!
+1423 | The spread between the lowest and the highest grid price is unreasonable, please modify!
+1424 | This grid trading has been terminated for other reasons. Therefore, it cannot be modified or manually terminated now.
+1425 | The callback rate should be {0}{1}, please modify!
+1426 | The activation price should be {0} the latest price.
+1427 | The number of your {0} contract trailing stop order orders exceeds the limit {1}.
+1428 | The coupon for the same type of contract can only be collected once by each user.
+1429 | Already received; please do not collect again!
+1430 | Invalid coupon; please refresh!
+1431 | The system is in maintenance and is expected to resume at {0} (GMT+8).
 12001 | Invalid submission time.
 12002 | Incorrect signature version.
 12003 | Incorrect signature method.
