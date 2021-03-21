@@ -7906,7 +7906,7 @@ By comparing to api.huobi.pro, the network latency to api-aws.huobi.pro is lower
 
 ### Message Compression
 
-Different with Market WebSocket, the return data of Account and Order Websocket are not compressed.
+Unlike Market WebSocket, the return data of Account and Order Websocket are not compressed by GZIP.
 
 ### Heartbeat
 
@@ -7930,7 +7930,7 @@ Once the Websocket connection is established, Huobi server will periodically sen
 }
 ```
 
-Once client's server receives "ping", it should respond "pong" message back with the same integer.
+Once client receives "ping", it should respond "pong" message back with the same integer.
 
 ### Valid Values of `action`
 
@@ -7945,9 +7945,9 @@ Once client's server receives "ping", it should respond "pong" message back with
 
 There are multiple limitations for this version:
 
-- The limitation of single connection for **valid** request (including req, sub, unsub, not including ping/pong or other invalid request) is **50 per second**. It will return "too many request" when the limit is exceeded.
-- The limitation of single API Key is **10**. It will return "too many connection" when the limit is exceeded.
-- The limitation of single IP is **100 per second**. It will return "too many request" when the limitation is exceeded.
+- The limitation of single connection for **valid** request (including req, sub, unsub, excluding ping/pong or other invalid request) is **50 per second**. It will return "too many request" when the limit is exceeded.
+- A single API Key can establish **10** connections. It will return "too many connection" when the limit is exceeded.
+- The limitation of requests from single IP is **100 per second**. It will return "too many request" when the limitation is exceeded.
 
 ### Authentication
 
@@ -7957,7 +7957,7 @@ Authentication request field list
 | ---------------- | --------- | --------- | ------------------------------------------------------------ |
 | action           | true      | string    | Action type, valid value: "req"                              |
 | ch               | true      | string    | Channel, valid value: "auth"                                 |
-| authType         | true      | string    | Authentication type, valid value: "api". Note this is not part of signature calculation |
+| authType         | true      | string    | Authentication type, valid value: "api". Note: this is not part of signature calculation |
 | accessKey        | true      | string    | Access key                                                   |
 | signatureMethod  | true      | string    | Signature method, valid value: "HmacSHA256"                  |
 | signatureVersion | true      | string    | Signature version, valid value: "2.1"                        |
@@ -8051,7 +8051,7 @@ An order update can be triggered by any of following:<br>
 -	Order cancellation (eventType=cancellation)<br>
 
 The field list in order update message can be various per event type, developers can design the data structure in either of two ways:<br>
-- Define a data structure including fields for all event types, allowing a few of them null<br>
+- Define a data structure including fields for all event types, allowing a few of them are null<br>
 - Define different data structure for each event type to include specific fields, inheriting from a common data structure which has common fields
 
 ### Topic
@@ -8116,7 +8116,7 @@ After conditional order triggering failure –
 | orderStatus   | string    | Order status, valid value: rejected                          |
 | errCode       | int       | Error code for triggering failure                            |
 | errMessage    | string    | Error message for triggering failure                         |
-| lastActTime   | long      | Order trigger time                                           |
+| lastActTime   | long      | Order triggering failure time                                           |
 
 ```json
 {
@@ -8288,7 +8288,7 @@ Note:<br>
 
 API Key Permission: Read
 
-Only update when order transaction or cancellation. Order transaction update is in tick by tick mode, which means, if a taker’s order matches with multiple maker’s orders, the simultaneous multiple trades will be disseminated one by one. But, the update sequence of the multiple trades, may not be exactly same with the sequence of the transactions made. Also, if an order is auto cancelled immediately just after its partial fills, for example a typical IOC order, this channel would be possibly disseminate the cancellation update first prior to the trade. <br>
+Only update when order is in transaction or cancellation. Order transaction update is in tick by tick mode, which means, if a taker’s order matches with multiple maker’s orders, the simultaneous multiple trades will be disseminated one by one. But the update sequence of the multiple trades, may not be exactly the same as the sequence of the transactions made. Also, if an order is auto cancelled immediately just after its partial fills, for example a typical IOC order, this channel would possibly disseminate the cancellation update first prior to the trade. <br>
 
 If user willing to receive order updates in exact same sequence with the original happening, it is recommended to subscribe order update channel orders#${symbol}.<br>
 
@@ -8388,7 +8388,7 @@ About optional field ‘mode’: If not filled, or filled with 0, it implicates 
 | orderStatus     | string    | Order status, valid value: filled, partial-filled            |
 
 Notes:<br>
-- The calculated maker rebate value inside ‘transactFee’ would not be paid immediately.<br>
+- The calculated maker rebate value inside ‘transactFee’ may not be paid immediately.<br>
 
 ### Update Contents (after order cancellation)
 
@@ -8453,7 +8453,7 @@ Update when either account balance changed or available balance changed.
 
 4、Specify "mode" as 2:  
 accounts.update#2  
-Whenever  account balance or available balance changed, it will be updated together.
+Whenever account balance or available balance changed, it will be updated together.
 
 Note:
 The topic disseminates the current static value of individual accounts first, at the beginning of subscription, followed by account change updates. While disseminating the current static value of individual accounts, inside the message, field value of "changeType" and "changeTime" is null.
