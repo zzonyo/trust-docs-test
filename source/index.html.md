@@ -6442,6 +6442,7 @@ Sort by “repayTime”
 | exceed-maximum-amount                    | Exceed the limit                                |
 | start-date-cannot-greater-than-end-date  | Start date cannot be greater than end date      |
 | frequent-invoke                          | Operates too frequently                         |
+| insufficient-exchange-fund               | Exchange fund is insufficient                   |
 | loan-order-not-found                     | Loan order is not found                         |
 | loan-amount-scale-limit                  | Loan order amount precision error               |
 | loan-repay-max-limit                     | Repay amount is greater than requested          |
@@ -7905,7 +7906,7 @@ By comparing to api.huobi.pro, the network latency to api-aws.huobi.pro is lower
 
 ### Message Compression
 
-Different with Market WebSocket, the return data of Account and Order Websocket are not compressed.
+Unlike Market WebSocket, the return data of Account and Order Websocket are not compressed by GZIP.
 
 ### Heartbeat
 
@@ -7929,7 +7930,7 @@ Once the Websocket connection is established, Huobi server will periodically sen
 }
 ```
 
-Once client's server receives "ping", it should respond "pong" message back with the same integer.
+Once client receives "ping", it should respond "pong" message back with the same integer.
 
 ### Valid Values of `action`
 
@@ -7944,9 +7945,9 @@ Once client's server receives "ping", it should respond "pong" message back with
 
 There are multiple limitations for this version:
 
-- The limitation of single connection for **valid** request (including req, sub, unsub, not including ping/pong or other invalid request) is **50 per second**. It will return "too many request" when the limit is exceeded.
-- The limitation of single API Key is **10**. It will return "too many connection" when the limit is exceeded.
-- The limitation of single IP is **100 per second**. It will return "too many request" when the limitation is exceeded.
+- The limitation of single connection for **valid** request (including req, sub, unsub, excluding ping/pong or other invalid request) is **50 per second**. It will return "too many request" when the limit is exceeded.
+- A single API Key can establish **10** connections. It will return "too many connection" when the limit is exceeded.
+- The limitation of requests from single IP is **100 per second**. It will return "too many request" when the limitation is exceeded.
 
 ### Authentication
 
@@ -7956,7 +7957,7 @@ Authentication request field list
 | ---------------- | --------- | --------- | ------------------------------------------------------------ |
 | action           | true      | string    | Action type, valid value: "req"                              |
 | ch               | true      | string    | Channel, valid value: "auth"                                 |
-| authType         | true      | string    | Authentication type, valid value: "api". Note this is not part of signature calculation |
+| authType         | true      | string    | Authentication type, valid value: "api". Note: this is not part of signature calculation |
 | accessKey        | true      | string    | Access key                                                   |
 | signatureMethod  | true      | string    | Signature method, valid value: "HmacSHA256"                  |
 | signatureVersion | true      | string    | Signature version, valid value: "2.1"                        |
@@ -8050,7 +8051,7 @@ An order update can be triggered by any of following:<br>
 -	Order cancellation (eventType=cancellation)<br>
 
 The field list in order update message can be various per event type, developers can design the data structure in either of two ways:<br>
-- Define a data structure including fields for all event types, allowing a few of them null<br>
+- Define a data structure including fields for all event types, allowing a few of them are null<br>
 - Define different data structure for each event type to include specific fields, inheriting from a common data structure which has common fields
 
 ### Topic
@@ -8115,7 +8116,7 @@ After conditional order triggering failure –
 | orderStatus   | string    | Order status, valid value: rejected                          |
 | errCode       | int       | Error code for triggering failure                            |
 | errMessage    | string    | Error message for triggering failure                         |
-| lastActTime   | long      | Order trigger time                                           |
+| lastActTime   | long      | Order triggering failure time                                           |
 
 ```json
 {
@@ -8287,7 +8288,7 @@ Note:<br>
 
 API Key Permission: Read
 
-Only update when order transaction or cancellation. Order transaction update is in tick by tick mode, which means, if a taker’s order matches with multiple maker’s orders, the simultaneous multiple trades will be disseminated one by one. But, the update sequence of the multiple trades, may not be exactly same with the sequence of the transactions made. Also, if an order is auto cancelled immediately just after its partial fills, for example a typical IOC order, this channel would be possibly disseminate the cancellation update first prior to the trade. <br>
+Only update when order is in transaction or cancellation. Order transaction update is in tick by tick mode, which means, if a taker’s order matches with multiple maker’s orders, the simultaneous multiple trades will be disseminated one by one. But the update sequence of the multiple trades, may not be exactly the same as the sequence of the transactions made. Also, if an order is auto cancelled immediately just after its partial fills, for example a typical IOC order, this channel would possibly disseminate the cancellation update first prior to the trade. <br>
 
 If user willing to receive order updates in exact same sequence with the original happening, it is recommended to subscribe order update channel orders#${symbol}.<br>
 
@@ -8387,7 +8388,7 @@ About optional field ‘mode’: If not filled, or filled with 0, it implicates 
 | orderStatus     | string    | Order status, valid value: filled, partial-filled            |
 
 Notes:<br>
-- The calculated maker rebate value inside ‘transactFee’ would not be paid immediately.<br>
+- The calculated maker rebate value inside ‘transactFee’ may not be paid immediately.<br>
 
 ### Update Contents (after order cancellation)
 
@@ -8452,7 +8453,7 @@ Update when either account balance changed or available balance changed.
 
 4、Specify "mode" as 2:  
 accounts.update#2  
-Whenever  account balance or available balance changed, it will be updated together.
+Whenever account balance or available balance changed, it will be updated together.
 
 Note:
 The topic disseminates the current static value of individual accounts first, at the beginning of subscription, followed by account change updates. While disseminating the current static value of individual accounts, inside the message, field value of "changeType" and "changeTime" is null.
@@ -8698,8 +8699,8 @@ curl "https://api.huobi.pro/etf/swap/config?etf_name=hb10"
 
 ### Response Content
 
-| Field                 | Data Type | Description                                                  | Mandatory  | 
-| --------------------- | --------- | ------------------------------------------------------------ | ---------- | 
+| Field                 | Data Type | Description                                                  | Mandatory  |
+| --------------------- | --------- | ------------------------------------------------------------ | ---------- |
 | purchase_min_amount   | integer   | Minimum creation amounts per request                         |    true    |
 | purchase_max_amount   | integer   | Maximum creation amounts per request                         |    false   |
 | redemption_min_amount | integer   | Minimum redemption amounts per request                       |    true    |
@@ -8883,9 +8884,11 @@ Below is the error code and the description returned by ETF APIs
 
 ## Introduction
 
-ETP (Exchange Tradable Products) APIs provide ETP related functionality, such as swap in, swap out, query.
+ETP (Exchange Tradable Products) APIs provide ETP related functionality, such as creation, redemption, query.
 
 ## Get reference data of ETP
+
+Client can use this endpoint to query ETP's reference data
 
 ### HTTP Request
 
@@ -9193,7 +9196,7 @@ Rate Limit (NEW): 1 time /s<br>
 
 
 
-## Submit Cancel for ETP Multiple Orders
+## Batch Cancellation for ETP Orders
 
 ### HTTP Request
 
@@ -9240,10 +9243,10 @@ Rate Limit (NEW): 1 time /5s<br>
 |	Field Name	|	Data Type	|	Mandatory	|	Description	|
 |	-----	|	----	|	--------	|	-----	|
 |	code	|	integer	|	TRUE	|Status Code	|
-|	message	|	string	|	FALSE	|Error message (if any)	|
+|	message	|	string	|	FALSE	|Request status	|
 |	data	|	object	|	TRUE	| 	|
 |	{ success	|	string	|	TRUE	|List of successful ETP cancellation transactions	|
-|	errMsg	|	long	|	TRUE	|Position rebalance time (unix time in millisecond)|
+|	errMsg	|	long	|	TRUE	|Error message of order cancellation failure|
 |	errCode 	|	string	|	TRUE	|Error code of order cancellation failure	|
 |	transactId}	|	long	|	FALSE	| Transaction ID	|
 
@@ -9294,8 +9297,8 @@ GET /v2/etp/limit?currency=btc3l,btc3s
 | Field            | Data  Type | Required | Description             |
 | ---------------- | ---------- | -------- | ----------------------- |
 | code             | integer    | TRUE     | Status  Code            |
-| message          | string     | FALSE    | Error  message (if any) |
-| {  currency      | string     | TRUE     | Quote  currency         |
+| message          | string     | FALSE    | Status  message         |
+| {currency        | string     | TRUE     | Quote  currency         |
 | maxHoldings      | string     | TRUE     | Holding limit           |
 | remainingAmount} | string     | TRUE     | Remaining amount        |
 
@@ -9306,6 +9309,7 @@ Below is the error code and the description returend by ETP APIs
 | Error Code | Description                                                  |
 | ---------- | ------------------------------------------------------------ |
 | 1002       | This feature is not open to users in your country.           |
+| 2002	     | Wrong parameter is passed in symbols                         |
 | 80007      | Subscription closed. Order cancelled                         |
 | 80008      | Redemption closed. Order cancelled.                          |
 | 80009      | The subscription amount shall not be less than specified amount |
@@ -9325,3 +9329,8 @@ Below is the error code and the description returend by ETP APIs
 | 80026      | The system is busy, try again later                          |
 | 80027      | Redemption failed due to no availablity, Order cancelled.    |
 | 80028      | Order failed, exceeded the holding limit of this currency    |
+| 80041	     | Order cancellation failed, this order is already cancelled   |
+| 80042	     | Order cancellation failed, this order is already executed    |
+| 80043      | Order cancellation failed, this order does not exist         |
+| 80045	     | Order cancellation failed, the system is busy now, please try again later |
+| 80052	     | Excedds the maximun query limit 10                           |
