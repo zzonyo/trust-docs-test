@@ -7694,7 +7694,7 @@ User can receive BBO (Best Bid/Offer) update in tick by tick mode.
 
 ## Trade Detail
 
-This topic sends the latest completed trade. It updates in tick by tick mode.
+This topic sends the latest completed trades. It updates in tick by tick mode.
 
 ### Topic
 
