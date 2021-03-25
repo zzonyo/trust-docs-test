@@ -10057,7 +10057,7 @@ Response:</p>
 <p>API Key 权限：读取<br>
 限频值（NEW）：50次/2s</p>
 
-<p>此接口返回指定订单的最新状态和详情。通过API创建的订单，撤销超过2小时后无法查询。</p>
+<p>此接口返回指定订单的最新状态和详情。通过API创建的订单，撤销超过2小时后无法查询。通过API创建的订单返回order-id，按此order-id查询订单还是返回base-record-invalid是因为系统内部处理有延迟，但是不影响成交。建议您后续重试查询或者通过订阅订单推送WebSocket消息查询。</p>
 <h3 id='http-54'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/order/orders/{order-id}</code></li>
