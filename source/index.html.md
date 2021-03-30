@@ -365,7 +365,7 @@ For example below is the original parameters:
 Use UTF-8 encoding and URL encoded, the hex must be upper case. For example, The semicolon ':' should be encoded as '%3A', The space should be encoded as '%20'.
 </aside>
 <aside class="notice">
-The 'timestamp' should be formated as 'YYYY-MM-DDThh:mm:ss' and URL encoded.
+The 'timestamp' should be formated as 'YYYY-MM-DDThh:mm:ss' and URL encoded. The value is valid within 5 minutes.
 </aside>
 
 Then above parameter should be ordered like below:
