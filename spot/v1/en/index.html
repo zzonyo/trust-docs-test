@@ -10591,17 +10591,17 @@ Rate Limit (NEW): 20times/2s</p>
 <td>start-time</td>
 <td>false</td>
 <td>long</td>
-<td>Far point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days.</td>
-<td>((end-time) – 1hour)</td>
-<td>[((end-time) – 1hour), (end-time)]</td>
+<td>Far point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 48 hour. The query window can be shifted within 180 days.</td>
+<td>((end-time) – 48hour)</td>
+<td>[((end-time) – 48hour), (end-time)]</td>
 </tr>
 <tr>
 <td>end-time</td>
 <td>false</td>
 <td>long</td>
-<td>Near point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days.</td>
+<td>Near point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 48 hour. The query window can be shifted within 180 days.</td>
 <td>current-time</td>
-<td>[(current-time) – 29days,(current-time)]</td>
+<td>[(current-time) – 180days,(current-time)]</td>
 </tr>
 <tr>
 <td>start-date</td>
