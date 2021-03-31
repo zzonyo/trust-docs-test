@@ -13302,19 +13302,19 @@ trade_turnover   | true | decimal |  成交额（计价币种） |              
 | period          | true     | string  | 周期               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon     |
 | basis_price_type     | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    不填，默认为使用开盘价     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
 
-> 之后每当预测资金费率有更新时，client 会收到数据，例子：
+> 订阅成交后收到的数据，例子：
 
 ```json
 
 {
-    "ch":"market.BTC-USD.basis.15min.open",
-    "ts":1603709195504,
+    "ch":"market.BTC-USDT.basis.1min.open",
+    "ts":1617164081549,
     "tick":{
-        "id":1603709100,
-        "index_price":"13101.595",
-        "contract_price":"13100.9",
-        "basis":"-0.695",
-        "basis_rate":"-0.0000530469763414301846454572897422031"
+        "id":1617164040,
+        "index_price":"58686.78333333333",
+        "contract_price":"58765",
+        "basis":"78.21666666667",
+        "basis_rate":"0.0013327816285723049700163397705562309"
     }
 }
 ```
