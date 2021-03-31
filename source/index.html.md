@@ -13302,7 +13302,7 @@ trade_turnover   | true | decimal |  成交额（计价币种） |              
 | period          | true     | string  | 周期               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon     |
 | basis_price_type     | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    不填，默认为使用开盘价     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
 
-> 订阅成交后收到的数据，例子：
+> 订阅成功后收到的数据，例子：
 
 ```json
 
