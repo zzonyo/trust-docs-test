@@ -13421,14 +13421,14 @@ trade_turnover   | true | decimal |  trade turnover(quoted currency)  |         
 ```json
 
 {
-    "ch":"market.BTC-USD.basis.15min.open",
-    "ts":1603709195504,
+    "ch":"market.BTC-USDT.basis.1min.open",
+    "ts":1617164081549,
     "tick":{
-        "id":1603709100,
-        "index_price":"13101.595",
-        "contract_price":"13100.9",
-        "basis":"-0.695",
-        "basis_rate":"-0.0000530469763414301846454572897422031"
+        "id":1617164040,
+        "index_price":"58686.78333333333",
+        "contract_price":"58765",
+        "basis":"78.21666666667",
+        "basis_rate":"0.0013327816285723049700163397705562309"
     }
 }
 
