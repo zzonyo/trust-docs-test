@@ -12957,8 +12957,7 @@ trade_turnover   | true | decimal |  成交额（计价币种） |              
         "low":"0.000068125",
         "amount":"0",
         "vol":"0",
-        "count":"0",
-        "trade_turnover":"0"
+        "count":"0"
     }
 }
 
@@ -12978,7 +12977,6 @@ trade_turnover   | true | decimal |  成交额（计价币种） |              
 | low     | true | string | 最低值（溢价指数）        |                | |
 | high     | true | string | 最高值 （溢价指数）       |                | |
 | amount     | true | string | 成交量(币), 数值为0        |                | |
-| trade_turnover     | true | string | 成交额， 数值为0        |                | |
 | \</tick\>            |      |        |               |                | |
 | ts     | true | long | 响应生成时间点，单位：毫秒                   |                | |
 
@@ -13054,8 +13052,7 @@ trade_turnover   | true | decimal |  成交额（计价币种） |              
             "high":"0.0000997916666666",
             "amount":"0",
             "vol":"0",
-            "count":"0",
-            "trade_turnover":"0"
+            "count":"0"
         }
     ]
 }
@@ -13080,7 +13077,6 @@ trade_turnover   | true | decimal |  成交额（计价币种） |              
 | low     | true | string | 最低值 （溢价指数）       |                | |
 | high     | true | string | 最高值  （溢价指数）      |                | |
 | amount     | true | string | 成交量(币), 数值为0        |                | |
-| trade_turnover     | true | string | 成交额, 数值为0        |                | |
 | \</data\>            |      |        |               |                | |
 
 ## 【通用】订阅预测资金费率K线数据
