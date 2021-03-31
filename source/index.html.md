@@ -13079,8 +13079,7 @@ trade_turnover   | true | decimal |  trade turnover(quoted currency)  |         
         "low":"0.000068125",
         "amount":"0",
         "vol":"0",
-        "count":"0",
-        "trade_turnover":"0"
+        "count":"0"
     }
 }
 ```
@@ -13098,7 +13097,6 @@ trade_turnover   | true | decimal |  trade turnover(quoted currency)  |         
 | low     | true | string | lowest index price        |                | |
 | high     | true | string | highest index price         |                | |
 | amount     | true | string |amount based on coins.       |                | |
-| trade_turnover   | true | string | Transaction amount, the value is 0.        |                | |
 | \</tick\>            |      |        |               |                | |
 | ts     | true | long | Time of Respond Generation, Unit: Millisecond            |                | |
 
@@ -13173,8 +13171,7 @@ trade_turnover   | true | decimal |  trade turnover(quoted currency)  |         
             "high":"0.0000997916666666",
             "amount":"0",
             "vol":"0",
-            "count":"0",
-            "trade_turnover":"0"
+            "count":"0"
         }
     ]
 }
@@ -13197,7 +13194,6 @@ trade_turnover   | true | decimal |  trade turnover(quoted currency)  |         
 | low     | true | string | lowest index price       |                | |
 | high     | true | string | highest index price    |                | |
 | amount     | true | string | amount based on coins.      |                | |
-| trade_turnover     | true | string | Transaction amount, the value is 0.       |                | |
 | \</data\>            |      |        |               |                | |
 
 
