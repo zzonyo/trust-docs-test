@@ -4246,6 +4246,7 @@ API Key 权限：读取<br>
 | account-id | string   | true                                             | NA     | 账户 ID，取值参考 `GET /v1/account/accounts`。现货交易使用‘spot’账户的 account-id；逐仓杠杆交易，请使用 ‘margin’ 账户的 account-id；全仓杠杆交易，请使用 ‘super-margin’ 账户的 account-id；c2c杠杆交易，请使用borrow账户的account-id |
 | symbol     | string   | ture                                             | NA     | 交易对,即btcusdt, ethbtc...（取值参考`GET /v1/common/symbols`） |
 | side       | string   | false                                            | both   | 指定只返回某一个方向的订单，可能的值有: buy, sell. 默认两个方向都返回。 |
+| types      | false    | string | 查询的订单类型组合，使用逗号分割       |   
 | from       | string   | false                                            |        | 查询起始 ID，如果是向后查询，则赋值为上一次查询结果中得到的最后一条id ；如果是向前查询，则赋值为上一次查询结果中得到的第一条id |
 | direct     | string   | false (如字段'from'已设定，此字段'direct'为必填) |        | 查询方向，prev 向前；next 向后                               |
 | size       | int      | false                                            | 100    | 返回订单的数量，最大值500。                                  |
@@ -5094,7 +5095,7 @@ A: 您可以根据` GET /v1/common/symbols`接口返回数据中的字段区分�
 
 ## 简介
 
-策略委托，目前仅包括计划委托及追踪委托。与现有止盈止损订单相比，计划委托/追踪委托有以下显著不同 –<br>
+策略委托，目前仅包括计划委托及追踪委托。与现有止盈止损订单相比，计划委托/追踪委托有以下显著不同 –<br>特别说明，如遇行情或其他极端情况，策略委托单可能会延迟触发。
 
 1）	计划委托/追踪委托被创建后，未触发前，交易所将不会冻结委托保证金。仅当计划委托成功触发后，交易所才会冻结该委托的保证金。<br>
 2）	计划委托支持限价单和市价单类型，追踪委托仅支持市价单。<br>
