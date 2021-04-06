@@ -6444,7 +6444,7 @@ ts  |  true  |  long  |  时间戳  |    |
  order_id               | true     | long    | 订单ID               |              |
  order_id_str  |  true  |  string  |  订单ID，字符串类型  |    | 
  symbol                 | true     | string  | 品种代码               |              |
- order_source                 | true     | string  | 订单来源    |  （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）   |
+ order_source                 | true     | string  | 订单来源    |  （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发、tpsl:止盈止损触发）   |
  contract_code          | true     | string  | 合约代码               |  "BTC-USD" ...       |
  direction              | true     | string  | 订单方向        |  "buy":买 "sell":卖     |
  offset                 | true     | string  | 开平方向          |  "open":开 "close":平  |
@@ -6572,7 +6572,7 @@ ts  |  true  |  long  |  时间戳  |    |
 | role                   | true | string  | taker或maker        |                                          |
 | real_profit | true | decimal | 真实收益（使用开仓均价计算，包含仓位跨结算的已实现盈亏。）  |  |
 | fee_asset         | true | string  | 手续费币种       |  （"BTC","ETH"...）      |
-| order_source           | true | string  | 订单来源   | （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发） |
+| order_source           | true | string  | 订单来源   | （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发、tpsl:止盈止损触发） |
 | \</trades\>            |      |         |                    |                                          |
 | remain_size           | true | int  | 剩余数据条数（在时间范围内，因受到数据条数限制而未查询到的数据条数）   |                                          |
 | next_id           | true | long     | 下一条数据的query_id（仅在查询结果超过数据条数限制时才有值）            |                                          |
