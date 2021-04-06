@@ -8560,7 +8560,7 @@ ts  |    true  |  long  |  时间戳  |    |
 
 ## 【逐仓】获取合约历史委托
 
-- POST `/linear-swap-api/v1/swap_hisorders` 
+- POST `/linear-swap-api/v1/swap_hisorders`
 
 #### 备注
  - 该接口仅支持逐仓模式。
@@ -8903,7 +8903,7 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 | volume                 | true | decimal | 委托数量   |   |
 | price                  | true | decimal | 委托价格   |    |
 | create_date            | true | long    | 创建时间   |     |
-| order_source           | true | string  | 订单来源   |    |
+| order_source           | true | string  | 订单来源   | （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发、tpsl:止盈止损触发） |
 | order_price_type      | true  | string    |   订单报价类型        | 订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单, "opponent_ioc"： 对手价-IOC下单，"optimal_5_ioc"：最优5档-IOC下单，"optimal_10_ioc"：最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单,"opponent_fok"： 对手价-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 |
 | margin_frozen          | true | decimal | 冻结保证金  |   |
 | profit                 | true | decimal | 平仓盈亏     |    |
@@ -9038,7 +9038,7 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 | volume                 | true | decimal | 委托数量   |   |
 | price                  | true | decimal | 委托价格   |    |
 | create_date            | true | long    | 创建时间   |     |
-| order_source           | true | string  | 订单来源   |    |
+| order_source           | true | string  | 订单来源   | （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发、tpsl:止盈止损触发） |
 | order_price_type      | true  | string    |   订单报价类型        | 订单报价类型 "limit":限价 "opponent":对手价 "post_only":只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单, "opponent_ioc"： 对手价-IOC下单，"optimal_5_ioc"：最优5档-IOC下单，"optimal_10_ioc"：最优10档-IOC下单，"optimal_20_ioc"：最优20档-IOC下单,"opponent_fok"： 对手价-FOK下单，"optimal_5_fok"：最优5档-FOK下单，"optimal_10_fok"：最优10档-FOK下单，"optimal_20_fok"：最优20档-FOK下单 |
 | margin_frozen          | true | decimal | 冻结保证金  |   |
 | profit                 | true | decimal | 平仓盈亏    |    |
@@ -9132,7 +9132,7 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 | order_id               | true | long    | 订单ID               |   |
 | order_id_str      | true | string    | string格式的订单ID   |       |
 | symbol                 | true | string  | 品种代码               | |
-| order_source           | true | string  | 订单来源   | （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发）  |
+| order_source           | true | string  | 订单来源   | （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发、tpsl:止盈止损触发）  |
 | contract_code          | true | string  | 合约代码               | "BTC-USDT" ...                          |
 | direction              | true | string  | 买卖方向  |       "buy":买 "sell":卖                                   |
 | offset                 | true | string  | 开平方向 |    "open":开 "close":平          |
@@ -9228,7 +9228,7 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 | order_id               | true | long    | 订单ID               |   |
 | order_id_str      | true | string    | string格式的订单ID   |       |
 | symbol                 | true | string  | 品种代码               | |
-| order_source           | true | string  | 订单来源   |  （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发） |
+| order_source           | true | string  | 订单来源   |  （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发、tpsl:止盈止损触发） |
 | contract_code          | true | string  | 合约代码               | "BTC-USDT" ...                          |
 | direction              | true | string  |  买卖方向  |       "buy":买 "sell":卖                                   |
 | offset                 | true | string  | 开平方向 |    "open":开 "close":平          |
@@ -9363,7 +9363,7 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 | trade_fee             | true | decimal | 成交手续费              |                                          |
 | role                   | true | string  | taker或maker        |                                          |
 | fee_asset         | true | string  | 手续费币种       |  （"USDT"...）      |
-| order_source           | true | string  | 订单来源   |                                          |
+| order_source           | true | string  | 订单来源   | （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发、tpsl:止盈止损触发）   |
 | \</trades\>            |      |         |                    |                                          |
 | remain_size           | true | int  | 剩余数据条数（在时间范围内，因受到数据条数限制而未查询到的数据条数）   |                                          |
 | next_id           | true | long     | 下一条数据的query_id（仅在查询结果超过数据条数限制时才有值）            |                                          |
@@ -9482,7 +9482,7 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 | trade_fee             | true | decimal | 成交手续费              |                                          |
 | role                   | true | string  | taker或maker        |                                          |
 | fee_asset         | true | string  | 手续费币种       |  （"USDT"...）      |
-| order_source           | true | string  | 订单来源   |                                          |
+| order_source           | true | string  | 订单来源   | （system:系统、web:用户网页、api:用户API、m:用户M站、risk:风控系统、settlement:交割结算、ios：ios客户端、android：安卓客户端、windows：windows客户端、mac：mac客户端、trigger：计划委托触发、tpsl:止盈止损触发）   |
 | \</trades\>            |      |         |                    |                                          |
 | remain_size           | true | int  | 剩余数据条数（在时间范围内，因受到数据条数限制而未查询到的数据条数）   |                                          |
 | next_id           | true | long     | 下一条数据的query_id（仅在查询结果超过数据条数限制时才有值）            |                                          |
