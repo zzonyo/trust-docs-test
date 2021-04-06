@@ -9063,7 +9063,7 @@ Please note that created_at can't be "0"
 | volume                 | true | decimal | volume   |   |
 | price                  | true | decimal | price   |    |
 | create_date            | true | long    | create date   |     |
-| order_source           | true | string  | order source   |    |
+| order_source           | true | string  | order source   | system、web、api、m、risk、settlement、ios、android、windows、mac、trigger、tpsl |
 | order_price_type      | true  | string    |   order price type        | order price type, "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,fok：FOK Order, "opponent_ioc"：IOC order using the BBO price，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK |
 | margin_frozen          | true | decimal | margin frozen  |   |
 | profit                 | true | decimal | profit     |    |
@@ -9197,7 +9197,7 @@ Please note that created_at can't be "0"
 | volume                 | true | decimal | volume   |   |
 | price                  | true | decimal | price   |    |
 | create_date            | true | long    | create date   |     |
-| order_source           | true | string  | order source   |    |
+| order_source           | true | string  | order source   | system、web、api、m、risk、settlement、ios、android、windows、mac、trigger、tpsl |
 | order_price_type      | true  | string    |   order price type        | order price type, "limit”: Limit Order "opponent":BBO "post_only": Post-Only Order, No order limit but position limit for post-only orders.,optimal_5： Optimal , optimal_10： Optimal 10, optimal_20：Optimal 20，ioc: IOC Order,fok：FOK Order, "opponent_ioc"：IOC order using the BBO price，"optimal_5_ioc"：optimal_5 IOC，"optimal_10_ioc"：optimal_10 IOC，"optimal_20_ioc"：optimal_20 IOC, "opponent_fok"：FOK order using the BBO price，"optimal_5_fok"：optimal_5 FOK，"optimal_10_fok"：optimal_10 FOK，"optimal_20_fok"：optimal_20 FOK |
 | margin_frozen          | true | decimal | margin frozen  |   |
 | profit                 | true | decimal | profit    |    |
@@ -9291,7 +9291,7 @@ match_id               | true     | long    | match_id is the same with trade_id
 order_id               | true     | long    | order ID              |              |
 order_id_str               | true     | string    | order ID              |              |
 symbol                 | true     | string  | contract type code               |              |
-order_source                 | true     | string  | Order Source               |  system、web、api、m、risk、settlement、ios、android、windows、mac、trigger   |
+order_source                 | true     | string  | Order Source               |  system、web、api、m、risk、settlement、ios、android、windows、mac、trigger、tpsl   |
 contract_code          | true     | string  | contract code              |  "BTC-USDT" ...       |
 direction              | true     | string  | "buy": to bid/ go long; "sell": to ask/ go short.         |              |
 offset                 | true     | string  | "open": open positions; "close": close positions           |              |
@@ -9391,7 +9391,7 @@ ts                     | true     | long    | timestamp                |        
 | order_id               | true | long    | order ID               |   |
 | order_id_str      | true | string    | order ID   |       |
 | symbol                 | true | string  | symbol               | |
-| order_source           | true | string  | order source   |  system、web、api、m、risk、settlement、ios、android、windows、mac、trigger |
+| order_source           | true | string  | order source   |  system、web、api、m、risk、settlement、ios、android、windows、mac、trigger、tpsl |
 | contract_code          | true | string  | contract code               | "BTC-USDT" ...                          |
 | direction              | true | string  | direction | "buy"/"sell" |
 | offset                 | true | string  | offset | "open"/"close" |
@@ -9526,7 +9526,7 @@ ts                     | true     | long    | timestamp                |        
 | trade_fee             | true | decimal | trade fee              |                                          |
 | role                   | true | string  | taker or maker        |                                          |
 | fee_asset         | true | string  | fee asset       | ("USDT"...)      |
-| order_source           | true | string  | order source   |                                          |
+| order_source           | true | string  | order source   |  system、web、api、m、risk、settlement、ios、android、windows、mac、trigger、tpsl  |
 | \</trades\>            |      |         |                    |                                          |
 | remain_size           | true | int  | remain size(In the time range, the size that was not queried due to size restrictions)   |                                          |
 | next_id           | true | long     | query_id for next data(It only has a value when the query result exceeds the size limit)            |                                          |
@@ -9644,7 +9644,7 @@ ts                     | true     | long    | timestamp                |        
 | trade_fee             | true | decimal | trade fee              |                                          |
 | role                   | true | string  | taker or maker        |                                          |
 | fee_asset         | true | string  | fee asset       | ("USDT"...)      |
-| order_source           | true | string  | order source   |                                          |
+| order_source           | true | string  | order source   |  system、web、api、m、risk、settlement、ios、android、windows、mac、trigger、tpsl   |
 | \</trades\>            |      |         |                    |                                          |
 | remain_size           | true | int  | remain size(In the time range, the size that was not queried due to size restrictions)   |                                          |
 | next_id           | true | long     | query_id for next data(It only has a value when the query result exceeds the size limit)            |                                          |
