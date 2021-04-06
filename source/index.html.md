@@ -6582,7 +6582,7 @@ match_id               | true     | long    | match_id is the same with trade_id
 order_id               | true     | long    | order ID              |              |
 order_id_str               | true     | string    | order ID              |              |
 symbol                 | true     | string  | contract type code               |              |
-order_source                 | true     | string  | Order Source               |  system. web. api. m. risk. settlement. ios. android. windows. mac. trigger  |
+order_source                 | true     | string  | Order Source               |  system. web. api. m. risk. settlement. ios. android. windows. mac. trigger. tpsl  |
 contract_type          | true     | string  | contract type               |  deliver on this Friday then "this_week"; deliver on next Friday then "next_week"; for quarterly contract then "quarter", Next Quarterly Contract: "next_quarter"  |
 contract_code          | true     | string  | contract code              |  "BTC180914" ...       |
 direction              | true     | string  | "buy": to bid/ go long; "sell": to ask/ go short.         |              |
@@ -6715,7 +6715,7 @@ ts                     | true     | long    | timestamp                |        
 | trade_fee             | true | decimal | fees charged by platform       |                                          |
 | role                   | true | string  | taker or maker        |                                          |
 | fee_asset         | true | string  | the corresponding cryptocurrency to the given fee      |  （"BTC","ETH"...）      |
-| order_source           | true | string  | Order Source   |   system. web. api. m. risk. settlement. ios. android. windows. mac. trigger     |
+| order_source           | true | string  | Order Source   |   system. web. api. m. risk. settlement. ios. android. windows. mac. trigger. tpsl      |
 | real_profit | true | decimal | real profit (calculated with the opening average price, include profit in history settlement.) | |
 | \</trades\>            |      |         |                    |                                          |
 | remain_size           | true | int  | Remaining data number（the number of data that has not been queried due to the limitation of data number in the time range）  |                                          |
