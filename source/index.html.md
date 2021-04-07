@@ -4107,7 +4107,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 | ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
 | status                 | true | string  | the result of server handles for the request             |                                          |
 | \<data\> | true     |  object array      |                    |                                          |
-| valuation_asset   | true  | string    |    The valuation according to the certain fiat currency   |  "BTC","USD","USDT","CNY","EUR","GBP","VND","HKD","TWD","MYR","SGD","KRW","RUB","TRY"   |
+| valuation_asset   | true  | string    |    The valuation according to the certain fiat currency   |  "BTC","USD","CNY","EUR","GBP","VND","HKD","TWD","MYR","SGD","KRW","RUB","TRY"   |
 | balance        | true | string |    Asset Valuation       |         |
 | \</data\>            |      |         |                    |                                          |
 | ts                     | true | long    | timestamp                |                                          |
