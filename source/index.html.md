@@ -7934,7 +7934,7 @@ ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   |
 | contract_code          | true  | string | 合约代码 |"BTC-USDT"...                       |
 
 ####  备注：
- - 最多只能查询4小时内的撤单信息。
+ - 最多只能查询2小时内的撤单信息。
 
  - order_id和client_order_id至少要填写一个。
 
