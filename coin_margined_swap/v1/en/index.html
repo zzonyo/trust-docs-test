@@ -3942,10 +3942,18 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <p>Coin-margined swaps: https://status-swap.huobigroup.com/</p>
 
 <p>USDT-margined swaps: https://status-linear-swap.huobigroup.com/</p>
-<h3 id='q28-what-does-the-margin_balance-refer-to-in-query-user-s-account-information-interface-swap-api-v1-swap_account_info'>Q28: What does the “margin_balance” refer to in “Query User’s Account Information” interface (swap-api/v1/swap_account_info)?</h3>
-<p>”margin_balance” refers to the account equity;</p>
+<h3 id='q28-what-does-mean-the-margin_balance-in-query-user-s-account-information-interface-api-v1-contract_account_info'>Q28:  What does mean the “margin_balance” in “Query User’s Account Information” interface (api/v1/contract_account_info)?</h3>
+<p>”margin_balance” refers to the account equity</p>
 
-<p>margin_balance (Account Equity) = margin_position (Position Margin) + margin_frozen (Frozen Margin) + margin_available (Avail. Margin)</p>
+<ol>
+<li><p>margin_balance = margin_position + margin_frozen + margin_available</p></li>
+<li><p>margin_balance = margin_static + profit_unreal</p></li>
+<li><p>margin_balance = Account balance + profit_real + profit_unreal</p></li>
+</ol>
+
+<p>Note: Account balance = margin_static - profit_real, there is only margin_static in the return data of api interface</p>
+
+<p>Each of the three calculation methods above can get the margin_balance</p>
 <h3 id='q29-is-the-risk_rate-margin-rate-in-query-user-s-account-information-interface-swap-api-v1-swap_account_info-the-same-as-the-margin-rate-on-web'>Q29: Is the “risk_rate” (margin rate) in “Query User’s Account Information” interface (/swap-api/v1/swap_account_info) the same as the margin rate on WEB?</h3>
 <p>Yes, it is</p>
 
