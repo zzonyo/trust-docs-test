@@ -7971,7 +7971,7 @@ client_order_id, order status query is available for orders placed within 24 hou
 
 ###  Note  ：
 
-When getting information on order cancellation via get order Information interface, users can only query last 4-hour data
+When getting information on order cancellation via get order Information interface, users can only query last 2-hour data
 
 At least one of order_id and client_order_id must be filled in
 
