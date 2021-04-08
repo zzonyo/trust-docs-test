@@ -2064,11 +2064,19 @@ Coin-margined swaps: https://status-swap.huobigroup.com/
 
 USDT-margined swaps: https://status-linear-swap.huobigroup.com/
 
-### Q28: What does the “margin_balance” refer to in “Query User’s Account Information” interface (swap-api/v1/swap_account_info)?
+### Q28:  What does mean the “margin_balance” in “Query User’s Account Information” interface (api/v1/contract_account_info)?
 
-”margin_balance” refers to the account equity;
+”margin_balance” refers to the account equity
 
-margin_balance (Account Equity) = margin_position (Position Margin) + margin_frozen (Frozen Margin) + margin_available (Avail. Margin)
+1. margin_balance = margin_position + margin_frozen + margin_available
+
+2. margin_balance = margin_static + profit_unreal
+
+3. margin_balance = Account balance + profit_real + profit_unreal
+
+Note: Account balance = margin_static - profit_real, there is only margin_static in the return data of api interface
+
+Each of the three calculation methods above can get the margin_balance
 
 ### Q29: Is the “risk_rate” (margin rate) in “Query User’s Account Information” interface (/swap-api/v1/swap_account_info) the same as the margin rate on WEB?
 
