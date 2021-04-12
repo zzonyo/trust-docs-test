@@ -6318,7 +6318,7 @@ curl "https://api.huobi.pro/v1/cross-margin/accounts/balance?symbol=btcusdt"
 
 
 
-## Repayment Record Reference（Cross）
+## Repayment Record Reference
 
 API Key Permission: Read
 
