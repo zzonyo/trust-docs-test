@@ -5958,7 +5958,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 
 | 参数名称        | 是否必须  | 类型     | 描述    | 取值范围  |
 | ----------- | ----- | ------ | ---------------------- | ---------------------------------------- |
-| margin_account      | true <img width=250/>  | string | 保证金账户  <img width=1000/>    | "BTC-USDT"...     |
+| margin_account      | true <img width=250/>  | string | 保证金账户  <img width=1000/>    | "BTC-USDT"，"USDT"...     |
 | contract_code | false | string | 合约代码，不填查询所有  | 比如“BTC-USDT” |
 | type        | false | string | 不填查询全部类型,【查询多类型中间用，隔开】 | 3:平多; 4:平空; 5:开仓手续费-吃单; 6:开仓手续费-挂单; 7:平仓手续费-吃单; 8:平仓手续费-挂单; 9:交割平多; 10:交割平空; 11:交割手续费; 12:强制平多; 13:强制平空; 14:从币币转入; 15:转出至币币; 16:结算未实现盈亏-多仓; 17:结算未实现盈亏-空仓; 19:穿仓分摊; 26:系统; 28:活动奖励; 29:返利; 30:资金费-收入; 31:资金费-支出; 34:转出到子账号合约账户; 35:从子账号合约账户转入; 36:转出到母账号合约账户; 37:从母账号合约账户转入; 38:从其他保证金账户转入; 39:转出到其他保证金账户;  |
 | create_date | false | int    | 可随意输入正整数，如果参数超过90则默认查询90天的数据，默认7 |                                          |
@@ -6008,7 +6008,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | ts                    | true | long    | 创建时间          |                                          |
 | asset                | true | string  | 币种          | "USDT"...                           |
 | contract_code                | true | string  | 合约代码         | "BTC-USDT"...                           |
-| margin_account                | true | string  | 保证金账户          | "BTC-USDT"...                           |
+| margin_account                | true | string  | 保证金账户          | "BTC-USDT","USDT"...                           |
 | face_margin_account           | true | string  | 对手方保证金账户，仅在type交易类型为34、35、36、37、38、39时有值，其他类型为空字符串          | "BTC-USDT"...                           |
 | type                  | true | int     | 交易类型          | 3:平多; 4:平空; 5:开仓手续费-吃单; 6:开仓手续费-挂单; 7:平仓手续费-吃单; 8:平仓手续费-挂单; 9:交割平多; 10:交割平空; 11:交割手续费; 12:强制平多; 13:强制平空; 14:从币币转入; 15:转出至币币; 16:结算未实现盈亏-多仓; 17:结算未实现盈亏-空仓; 19:穿仓分摊; 26:系统; 28:活动奖励; 29:返利; 30:资金费-收入; 31:资金费-支出; 34:转出到子账号合约账户; 35:从子账号合约账户转入; 36:转出到母账号合约账户; 37:从母账号合约账户转入; 38:从其他保证金账户转入; 39:转出到其他保证金账户;   |
 | amount                | true | decimal | 金额（计价货币）            |                                          |
@@ -6031,7 +6031,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 ### 请求参数
 | 参数名称        | 是否必须  | 类型     | 描述    | 取值范围  |
 | ----------- | ----- | ------ | ---------------------- | ---------------------------------------- |
-| margin_account      | true  | string | 保证金账户                 | "BTC-USDT"...                         |
+| margin_account      | true  | string | 保证金账户                 | "BTC-USDT"，"USDT"...                         |
 | contract_code      | false  | string | 合约代码                   | "BTC-USDT"...                         |
 | type        | false | string | 不填查询全部类型,【查询多类型中间用，隔开】 | 	3:平多; 4:平空; 5:开仓手续费-吃单; 6:开仓手续费-挂单; 7:平仓手续费-吃单; 8:平仓手续费-挂单; 9:交割平多; 10:交割平空; 11:交割手续费; 12:强制平多; 13:强制平空; 14:从币币转入; 15:转出至币币; 16:结算未实现盈亏-多仓; 17:结算未实现盈亏-空仓; 19:穿仓分摊; 26:系统; 28:活动奖励; 29:返利; 30:资金费-收入; 31:资金费-支出; 34:转出到子账号合约账户; 35:从子账号合约账户转入; 36:转出到母账号合约账户; 37:从母账号合约账户转入;38:从其他保证金账户转入 ;39:转出到其他保证金账户 ;
 | start_time   | false  | long    | 起始时间（时间戳，单位毫秒）        | 详见备注    |
@@ -6048,6 +6048,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 - 无论查询方向是向前还是向后，返回的数据都是按创建时间倒序。
 - 当start_time或end_time填写值不符合取值范围，则报错参数不合法。
 - 仅支持查询90天内数据
+- 若需要查询全仓账户某一个合约市场的交易类财务记录才需要使用contract_code入参，其他场景无需填写。
 
 ### 查询案例如下（特殊错误情况未罗列）：
 | start_time | end_time | from_id  | size | direct | 查询结果 |
@@ -6103,7 +6104,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | ts                    | true | long    | 创建时间          |                                          |
 | asset                | true | string  | 币种          | "USDT"...                           |
 | contract_code                | true | string  | 合约代码         | "BTC-USDT"...                           |
-| margin_account                | true | string  | 保证金账户          | "BTC-USDT"...                           |
+| margin_account                | true | string  | 保证金账户          | "BTC-USDT"，"USDT"...                           |
 | face_margin_account           | true | string  | 对手方保证金账户，仅在type交易类型为34、35、36、37、38、39时有值，其他类型为空字符串          | "BTC-USDT"...                           |
 | type                  | true | int     | 交易类型          |  3:平多; 4:平空; 5:开仓手续费-吃单; 6:开仓手续费-挂单; 7:平仓手续费-吃单; 8:平仓手续费-挂单; 9:交割平多; 10:交割平空; 11:交割手续费; 12:强制平多; 13:强制平空; 14:从币币转入; 15:转出至币币; 16:结算未实现盈亏-多仓; 17:结算未实现盈亏-空仓; 19:穿仓分摊; 26:系统; 28:活动奖励; 29:返利; 30:资金费-收入; 31:资金费-支出; 34:转出到子账号合约账户; 35:从子账号合约账户转入; 36:转出到母账号合约账户; 37:从母账号合约账户转入;38:从其他保证金账户转入 ;39:转出到其他保证金账户 ;
 | amount                | true | decimal | 金额（计价货币）            |                                          |
