@@ -13948,7 +13948,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>true <img width=250/></td>
 <td>string <img width=250/></td>
 <td>Margin currency  <img width=1100/></td>
-<td>&quot;BTC-USDT&quot;...</td>
+<td>&quot;BTC-USDT&quot;,&quot;USDT&quot;(in cross mode)...</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -14087,7 +14087,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>true</td>
 <td>string</td>
 <td>margin account</td>
-<td>&quot;BTC-USDT&quot;...</td>
+<td>&quot;BTC-USDT&quot;,&quot;USDT&quot;...</td>
 </tr>
 <tr>
 <td>face_margin_account</td>
@@ -14169,7 +14169,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>true</td>
 <td>string</td>
 <td>margin account</td>
-<td>&quot;BTC-USDT&quot;...</td>
+<td>&quot;BTC-USDT&quot;,&quot;USDT&quot;(in cross mode)...</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -14234,6 +14234,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <li>Regardless of whether the query direction is prev or next, the data returned is in reverse order of creation time.</li>
 <li>If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid.</li>
 <li>Only data within 90 days are available to query.</li>
+<li>It needs contract_code parameter for request in cross margin mode when query the trading financial records of a certain contract market. And it not need contract_code parameter in other scenarios.</li>
 </ul>
 <h4 id='query-cases-are-as-below-special-cases-are-not-included'>Query cases are as below (special cases are not included)：</h4>
 <table><thead>
@@ -14423,7 +14424,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>true</td>
 <td>string</td>
 <td>margin account</td>
-<td>&quot;BTC-USDT&quot;...</td>
+<td>&quot;BTC-USDT&quot;,&quot;USDT&quot;...</td>
 </tr>
 <tr>
 <td>face_margin_account</td>
