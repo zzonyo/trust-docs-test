@@ -3016,7 +3016,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC
 | count     | true | decimal | 成交笔数（当前时间-24小时）小时成交笔数）。 值是买卖双边之和  |                |
 | high   | true | string | 最高价                                    |                |
 | low   | true | string | 最低价  |                |
-| vol   | true | string | 成交量（张），买卖双边成交量之和 （最近24（当前时间-24小时）小时成交量张）。 值是买卖双边之和  |                |
+| vol   | true | string | 成交量（张）（最近24（当前时间-24小时）小时成交量张）。 值是买卖双边之和  |                |
 | trade_turnover     | true | string | 成交额，即 sum（每一笔成交张数 \* 合约面值 \* 成交价格）（当前时间-24小时）小时成交额）。 值是买卖双边之和 |                |
 | ts   | true | long | 时间戳   |                |
 | \</tick\>            |      |        |               |                |
@@ -3078,16 +3078,16 @@ curl "https://api.hbdm.com/linear-swap-ex/market/detail/merged?contract_code=BTC
 | \<ticks\> |true  |  object array |           |                |
 | contract_code   | true | string  | 合约代码 | "BTC-USDT" ...  |
 | id   | true | long | K线id |                |
-| amount   | true | string | 成交量(币)    |                |
+| amount   | true | string | 成交量(币) （最近24（当前时间-24小时）小时成交量币）。 值是买卖双边之和   |                |
 | ask   | true | array | [卖1价,卖1量(张)] |                |
 | bid   | true | array | [买1价,买1量(张)] |                |
 | open     | true | string | 开盘价     |                |
 | close     | true | string | 收盘价,当K线为最晚的一根时，是最新成交价       |                |
-| count     | true | decimal | 成交笔数       |                |
+| count     | true | decimal | 成交笔数（当前时间-24小时）小时成交笔数）。 值是买卖双边之和      |                |
 | high   | true | string | 最高价                                    |                |
 | low   | true | string | 最低价  |                |
-| vol   | true | string | 成交量（张），买卖双边成交量之和                                    |                |
-| trade_turnover     | true | string | 成交额       |                |
+| vol   | true | string | 成交量（张）（最近24（当前时间-24小时）小时成交量张）。 值是买卖双边之和      |                |
+| trade_turnover     | true | string | 成交额 （当前时间-24小时）小时成交额）。 值是买卖双边之和      |                |
 | ts   | true | long | 时间戳   |                |
 | \</ticks\>            |      |        |               |                |
 | ts     | true | long | 响应生成时间点，单位：毫秒                            |                |
