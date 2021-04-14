@@ -5800,7 +5800,7 @@ contract_code  |  true   |  string   |  合约代码,支持大小写,"BTC-USD"  
 
 ###  备注：
 
-- 最多只能查询 4 小时内的撤单信息。
+- 最多只能查询 2 小时内的撤单信息。
 
 - order_id和client_order_id至少要填写一个。
 
