@@ -5760,7 +5760,7 @@ No：
 
 ###  Note  ：
 
-When getting information on order cancellation via get order Information interface, users can only query last 2-hour data
+When getting information on order cancellation via get order Information interface, users can only query last 2-hour data.
 
 At least one of order_id and client_order_id must be filled in
 
