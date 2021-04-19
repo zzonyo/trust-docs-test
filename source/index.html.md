@@ -3529,7 +3529,7 @@ API Key 权限：交易<br>
 | sub-uid         | true     | long     | 子用户uid                                                    | -                                                            |      |
 | currency        | true     | string   | 币种，即btc, ltc, bch, eth, etc ...(取值参考`GET /v1/common/currencys`) | -                                                            |      |
 | amount          | true     | decimal  | 划转金额                                                     | -                                                            |      |
-| client-order-id | false    | string   | 用户自编订单号（最大长度64个字符，幂等使用）                 |                                                              |      |
+| client-order-id | false    | string   | 用户自编订单号（幂等使用，长度10个字符）                     |                                                              |      |
 | type            | true     | string   | 划转类型                                                     | master-transfer-in（子用户划转给母用户虚拟币）/ master-transfer-out （母用户划转给子用户虚拟币）/master-point-transfer-in （子用户划转给母用户点卡）/master-point-transfer-out（母用户划转给子用户点卡） |      |
 
 > Response:
