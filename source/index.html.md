@@ -1946,6 +1946,10 @@ curl "https://status-linear-swap.huobigroup.com/api/v2/summary.json"
 
 - 推荐传参数client_order_id（用户级别唯一），主要防止下单和批量下单接口由于网络或其它原因接口超时或者没有返回，可以根据client_order_id通过请求接口/linear-swap-api/v1/swap_order_info来快速获取订单是否下单正常或者快速获取订单信息。
 
+### 7、服务器部署最佳选择：
+
+- 建议您将服务器放置在AWS东京C区，并且使用api.hbdm.vn域名，能有效减少网络断连与网络超时情况。
+
 
 ## 代码实例
 
@@ -3172,7 +3176,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
 | ts     | true | long | 最新成交时间       |      |
 | \<data\>    | true | object array |        |      |
 | amount     | true | string | 成交量(张)。 值是买卖双边之和 |      |
-| direction     | true | string | 主动成交方向       |      |
+| direction     | true | string | 买卖方向，即taker(主动成交)的方向     |      |
 | id     | true | long | 成交唯一id（品种唯一）      |      |
 | price     | true | string | 成交价       |      |
 | ts     | true | long | 成交时间       |      |
@@ -3262,7 +3266,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
 | \<data\> | true | object array |           |      |       |
 | \<data\>  | true | object array |           |      |       |
 | amount     | true | decimal | 成交量(张)。 值是买卖双边之和 |      |            |
-| direction     | true | string | 主动成交方向       |      |            |
+| direction     | true | string | 买卖方向，即taker(主动成交)的方向    |      |            |
 | id     | true | long | 成交唯一id（品种唯一）     |      |            |
 | price     | true | decimal | 成交价格       |      |            |
 | ts     | true | long | 成交时间       |      |            |
@@ -6045,7 +6049,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
    - start_time：取值范围为[(当前时间 - 90天)，当前时间] ；默认值取clamp（end_time - 10天，当前时间-90天，当前时间-10天），即时间最远取当前时间-90天，最近取当前时间-10天。
    - end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。
 - 当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询创建时间大于等于起始时间，且小于等于结束时间的财务记录数据。
-- 无论查询方向是向前还是向后，返回的数据都是按创建时间倒序。
+- 无论查询方向是向前还是向后，返回的数据都是按id倒序。
 - 当start_time或end_time填写值不符合取值范围，则报错参数不合法。
 - 仅支持查询90天内数据
 - 若需要查询全仓账户某一个合约市场的交易类财务记录才需要使用contract_code入参，其他场景无需填写。
@@ -8829,7 +8833,7 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
    - start_time：取值范围为[(当前时间 - 90天)，当前时间] ；默认值取clamp（end_time - 10天，当前时间-90天，当前时间-10天），即时间最远取当前时间-90天，最近取当前时间-10天。
    - end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。
 - 当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询创建时间大于等于起始时间，且小于等于结束时间的历史委托数据。
-- 无论查询方向是向前还是向后，返回的数据都是按创建时间倒序。
+- 无论查询方向是向前还是向后，返回的数据都是按query_id倒序。
 - 当start_time或end_time填写值不符合取值范围，则报错参数不合法。
 - 仅支持查询90天内数据。
 
@@ -8964,7 +8968,7 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
    - start_time：取值范围为[(当前时间 - 90天)，当前时间] ；默认值取clamp（end_time - 10天，当前时间-90天，当前时间-10天），即时间最远取当前时间-90天，最近取当前时间-10天。
    - end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。
 - 当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询创建时间大于等于起始时间，且小于等于结束时间的历史委托数据。
-- 无论查询方向是向前还是向后，返回的数据都是按创建时间倒序。
+- 无论查询方向是向前还是向后，返回的数据都是按query_id倒序。
 - 当start_time或end_time填写值不符合取值范围，则报错参数不合法。
 - 仅支持查询90天内数据。
 
@@ -9287,7 +9291,7 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
    - start_time：取值范围为[(当前时间 - 90天)，当前时间] ；默认值取clamp（end_time - 10天，当前时间-90天，当前时间-10天），即时间最远取当前时间-90天，最近取当前时间-10天。
    - end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。
 - 当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询成交时间大于等于起始时间，且小于等于结束时间的成交数据。
-- 无论查询方向是向前还是向后，返回的数据都是按成交时间倒序。
+- 无论查询方向是向前还是向后，返回的数据都是按query_id倒序。
 - 当start_time或end_time填写值不符合取值范围，则报错参数不合法。
 - 仅支持查询90天内数据。
 
@@ -9407,7 +9411,7 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
    - start_time：取值范围为[(当前时间 - 90天)，当前时间] ；默认值取clamp（end_time - 10天，当前时间-90天，当前时间-10天），即时间最远取当前时间-90天，最近取当前时间-10天。
    - end_time：取值范围为：[(当前时间 - 90天)，above++)，若大于当前时间则直接取当前时间；若填写了start_time，则end_time必须大于start_time。默认值直接取当前时间。
 - 当from_id缺省时，查询方向为prev则从结束时间往前查，查询方向为向后则从起始时间往后查；即查询成交时间大于等于起始时间，且小于等于结束时间的成交数据。
-- 无论查询方向是向前还是向后，返回的数据都是按成交时间倒序。
+- 无论查询方向是向前还是向后，返回的数据都是按query_id倒序。
 - 当start_time或end_time填写值不符合取值范围，则报错参数不合法。
 - 仅支持查询90天内数据。
 
@@ -12619,7 +12623,7 @@ id  |  true  |  long  |  请求唯一 ID  |   |
 id  |  true  |  long  |  成交唯一id（品种唯一）  |   |    
 price  |  true  |  string  |  价格  |   |    
 amount  |  true  |  string  |  数量（张）。 值是买卖双边之和 |   |    
-direction  |  true  |  string  |  买卖方向  |   |    
+direction  |  true  |  string  |  买卖方向，即taker(主动成交)的方向  |   |    
 ts  |  true  |  long  |  订单成交时间  |   | 
 quantity   | true | string |  成交量（币） |                |
 trade_turnover   | true | string |  成交额（计价币种） |                |   
@@ -12711,7 +12715,7 @@ amount  |  true  |  decimal  |  数量（张）。 值是买卖双边之和 |   
 ts  |  true  |  long  |  订单时间戳  |   |    
 id  |  true  |  long  |   成交唯一id（品种唯一）  |   |    
 price  |  true  |  decimal  |  价格  |   |    
-direction  |  true  |  string  |  买卖方向  |   |   
+direction  |  true  |  string  |  买卖方向，即taker(主动成交)的方向  |   |   
 quantity   | true | decimal |  成交量（币） |                |
 trade_turnover   | true | decimal |  成交额（计价币种） |                |  
  \</data\>    |               |    |      | 
