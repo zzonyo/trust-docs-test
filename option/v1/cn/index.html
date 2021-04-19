@@ -2390,6 +2390,10 @@ api.hbdm.com\n
 <ul>
 <li>推荐传参数client_order_id（用户级别唯一），主要防止下单和批量下单接口由于网络或其它原因接口超时或者没有返回，可以根据client_order_id通过请求接口option-api/v1/option_order_info来快速获取订单是否下单正常或者快速获取订单信息。</li>
 </ul>
+<h3 id='7-2'>7、服务器部署最佳选择：</h3>
+<ul>
+<li>建议您将服务器放置在AWS东京C区，并且使用api.hbdm.vn域名，能有效减少网络断连与网络超时情况。</li>
+</ul>
 <h2 id='2cff7db524'>代码实例</h2>
 <ul>
 <li><p><a href='https://github.com/hbdmapi/hbdm_Python'> Python </a>  </p></li>
@@ -4655,7 +4659,7 @@ curl <span class="s2">"https://api.hbdm.com/option-ex/market/trade?contract_code
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>主动成交方向</td>
+<td>买卖方向，即taker(主动成交)的方向</td>
 <td></td>
 </tr>
 <tr>
@@ -4847,7 +4851,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>主动成交方向</td>
+<td>买卖方向，即taker(主动成交)的方向</td>
 <td></td>
 </tr>
 <tr>
@@ -14860,7 +14864,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <p><code>}</code></p>
 
 <blockquote>
-<p>请求 Market Detail 数据请求参数的例子：</p>
+<p>请求 Trade Detail 数据请求参数的例子：</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -15017,7 +15021,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>买卖方向</td>
+<td>买卖方向，即taker(主动成交)的方向</td>
 <td></td>
 </tr>
 <tr>
@@ -15233,7 +15237,7 @@ curl <span class="s2">"https://api.hbdm.com/ /option-ex/market/history/trade?con
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>买卖方向</td>
+<td>买卖方向，即taker(主动成交)的方向</td>
 <td></td>
 </tr>
 <tr>
