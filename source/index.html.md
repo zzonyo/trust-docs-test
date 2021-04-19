@@ -800,6 +800,10 @@ api.hbdm.com\n
 
 - 推荐传参数client_order_id（用户级别唯一），主要防止下单和批量下单接口由于网络或其它原因接口超时或者没有返回，可以根据client_order_id通过请求接口option-api/v1/option_order_info来快速获取订单是否下单正常或者快速获取订单信息。
 
+### 7、服务器部署最佳选择：
+
+- 建议您将服务器放置在AWS东京C区，并且使用api.hbdm.vn域名，能有效减少网络断连与网络超时情况。
+
 
 ## 代码实例
 
@@ -2021,7 +2025,7 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-201225-
 | ts     | true | long | 最新成交时间       |      |
 | \<data\>      | true | object array |        |      |
 | amount     | true | string | 成交量(张)，买卖双边成交量之和       |      |
-| direction     | true | string | 主动成交方向       |      |
+| direction     | true | string | 买卖方向，即taker(主动成交)的方向     |      |
 | id     | true | long | 成交唯一id（品种唯一）      |      |
 | price     | true | string | 成交价       |      |
 | ts     | true | long | 成交时间       |      |
@@ -2113,7 +2117,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 | \<data\>   | true | object array |           |      |       |
 | \<data\>    | true | object array |           |      |       |
 | amount     | true | decimal | 成交量(张)，买卖双边成交量之和       |      |            |
-| direction     | true | string | 主动成交方向       |      |            |
+| direction     | true | string | 买卖方向，即taker(主动成交)的方向   |      |            |
 | id     | true | long | 成交唯一id（品种唯一）    |      |            |
 | price     | true | decimal | 成交价格       |      |            |
 | ts     | true | long | 成交时间       |      |            |
@@ -6031,7 +6035,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 `}`
 
 
->  请求 Market Detail 数据请求参数的例子：
+>  请求 Trade Detail 数据请求参数的例子：
 
 ```json
 
@@ -6103,7 +6107,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | id   | true | long  | 成交唯一id（品种唯一）   | |
 | price   | true | string  | 价格    | |
 | amount   | true | string  | 数量（张）    | |
-| direction   | true | string  | 买卖方向    | |
+| direction   | true | string  | 买卖方向，即taker(主动成交)的方向   | |
 | ts   | true | long  | 订单成交时间    | |
 | quantity   | true | string  |成交量（币）    | |
 | trade_turnover   | true | string  | 成交额（计价币种）    | |
@@ -6192,7 +6196,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | ts   | true | long  | 发送时间  |   |
 | id   | true | long  | 成交唯一id（品种唯一）  |   |
 | price   | true | decimal  |价格  |   |
-| direction   | true | string  | 买卖方向 |   |
+| direction   | true | string  | 买卖方向，即taker(主动成交)的方向 |   |
 | quantity   | true | decimal  |成交量（币）    | |
 | trade_turnover   | true | decimal  | 成交额（计价币种）    | |
 | \</data\>     |  |   |     |   |
