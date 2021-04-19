@@ -2904,7 +2904,7 @@ ts  |  true  |  long |  发送时间  |   |    |
 id  |  true  |  long  |   成交唯一id（品种唯一）  |   |    
 price  |  true  |  string  |  价格  |   |    
 amount  |  true  |  string  |  数量（张）。 值是买卖双边之和 |   |    
-direction  |  true  |  string  |  买卖方向  |   |    
+direction  |  true  |  string  |  买卖方向，即taker(主动成交)的方向  |   |    
 ts  |  true  |  long  |  订单成交时间  |   |  
 quantity  |  true  |  string  |  成交量（币）   |   |  
 contract_code     | true | string  | 合约代码       |      |
@@ -3008,7 +3008,7 @@ ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    |
 id  |  true  |  long  |   成交唯一id（品种唯一）  |   |    
 price  |  true  |  decimal  |  价格  |   |    
 amount  |  true  |  int  |  数量（张）。 值是买卖双边之和 |   |    
-direction  |  true  |  string  |  买卖方向  |   |    
+direction  |  true  |  string  |  买卖方向，即taker(主动成交)的方向  |   |    
 ts  |  true  |  long  |  订单成交时间  |   |  
 quantity  |  true  |  decimal  |  成交量（币）   |   |  
 \</data\>    |               |     |      |
@@ -8707,7 +8707,7 @@ id  |  true  |  long  | 请求 ID  |   |
 id  |  true  |  long  |   成交唯一id（品种唯一） |   |    
 price  |  true  |  string  |  价格  |   |    
 amount  |  true  |  string  |  数量（张）  |   |    
-direction  |  true  |  string  |  买卖方向  |   |    
+direction  |  true  |  string  |  买卖方向，即taker(主动成交)的方向  |   |    
 ts  |  true  |  long  |  订单成交时间  |   |    
 quantity  |  true  |  string  |  成交量（币）  |   |    
  \</data\>    |               |    |      | 
@@ -8794,7 +8794,7 @@ amount  |  true  |  decimal  |  数量（张）。 值是买卖双边之和 |   
 ts  |  true  |  long  |  订单时间戳  |   |    
 id  |  true  |  long  |   成交唯一id（品种唯一）  |   |    
 price  |  true  |  decimal  |  价格  |   |    
-direction  |  true  |  string  |  买卖方向  |   |    
+direction  |  true  |  string  |  买卖方向，即taker(主动成交)的方向  |   |    
 quantity  |  true  |  decimal  |  成交量（币）  |   | 
  \</data\>    |               |    |      | 
  \</tick\>    |               |    |      | 
