@@ -2356,6 +2356,10 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <li><p>We recommend to fill in the parameter “client_order_id”(should be unique from user-side),which can help users to acquire order status and other order information according to the parameter “client_order_id&quot; from</p></li>
 <li><p>query order information interface (URL: /option-api/v1/option_order_info ) when there is no returned information due to network or other problems.</p></li>
 </ul>
+<h3 id='7-the-best-deployment-of-program-server'>7. The best deployment of program server</h3>
+<ul>
+<li>It is recommended that place the server in AWS Tokyo C zone and use the api.hbdm.vn domain, which can effectively reduce network disconnection and network timeout.</li>
+</ul>
 <h2 id='code-demo'>Code Demo</h2>
 <p>PS: option api is similar to future and swap apis.</p>
 
@@ -4565,7 +4569,7 @@ It will be pushed only when position event is updated.</p>
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>Active Transaction Direction</td>
+<td>The direction to buy or sell is the direction of the taker (active transaction)</td>
 <td></td>
 </tr>
 <tr>
@@ -4771,7 +4775,7 @@ It will be pushed only when position event is updated.</p>
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>Active Transaction Direction</td>
+<td>The direction to buy or sell is the direction of the taker (active transaction)</td>
 <td></td>
 </tr>
 <tr>
@@ -14917,7 +14921,7 @@ It will be pushed only when position event is updated.</p>
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>Buy/Sell Direction</td>
+<td>The direction to buy or sell is the direction of the taker (active transaction)</td>
 <td></td>
 </tr>
 <tr>
@@ -15127,7 +15131,7 @@ It will be pushed only when position event is updated.</p>
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>Buy/Sell Direction</td>
+<td>The direction to buy or sell is the direction of the taker (active transaction)</td>
 <td></td>
 </tr>
 <tr>
