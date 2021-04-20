@@ -783,6 +783,10 @@ Error Code | Error Details Description|
 
 - query order information interface (URL: /option-api/v1/option_order_info ) when there is no returned information due to network or other problems.
 
+### 7. The best deployment of program server
+
+- It is recommended that place the server in AWS Tokyo C zone and use the api.hbdm.vn domain, which can effectively reduce network disconnection and network timeout.
+
 
 ## Code Demo
 
@@ -1903,7 +1907,7 @@ curl "https://api.hbdm.com/option-ex/market/trade?contract_code=BTC-USDT-201225-
 | ts        | true     | long         | Latest Transaction Time                                               |              |
 | \<data\>    | true     | object array |                                                              |              |
 | amount    | true     | string       | Trading Amount (conts)，the sum of bilateral (buy & sell) trading Amount.                                |              |
-| direction | true     | string       | Active Transaction Direction                                                 |              |
+| direction | true     | string       | The direction to buy or sell is the direction of the taker (active transaction)     |              |
 | id        | true     | long         | Unique Transaction Id(symbol level)                                        |              |
 | price     | true     | string       | Transaction Price                                                       |              |
 | ts        | true     | long         | Transaction Time                                                   |              |
@@ -2009,7 +2013,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | \<data\>    | true     | object array |                                                              |               |
 | \<data\>    | true     | object array |                                                              |               |
 | amount    | true     | decimal      | Trading Amount (conts)，the sum of bilateral (buy & sell) trading Amount.                                |               |
-| direction | true     | string       | Active Transaction Direction                                                 |               |
+| direction | true     | string       | The direction to buy or sell is the direction of the taker (active transaction)       |               |
 | id        | true     | long         | Unique Transaction Id(symbol level)                                           |               |
 | price     | true     | decimal      | Transaction Price                                                    |               |
 | ts        | true     | long         | Transaction Time                                                   |               |
@@ -5956,7 +5960,7 @@ Return to the current trade detail data only
 | id        | true     | long         | Unique Transaction Id(symbol level)              |                                           |
 | price     | true     | string       | Price               |                                           |
 | amount    | true     | string       | Quantity (cont)         |                                           |
-| direction | true     | string       | Buy/Sell Direction           |                                           |
+| direction | true     | string       | The direction to buy or sell is the direction of the taker (active transaction)   |                                           |
 | ts        | true     | long         | OrderTransaction Time     |                                           |
 | quantity     | true | string | trading quantity(coin)       |      |
 | trade_turnover     | true | string | trading amount(quoted currency)    |      |
@@ -6038,7 +6042,7 @@ Return to the current trade detail data only
 | ts        | true     | long         | Server response time                  |                      |
 | id        | true     | long         | Unique Transaction Id(symbol level)                 |                      |
 | price     | true     | decimal      | Price                      |                      |
-| direction | true     | string       | Buy/Sell Direction                   |                      |
+| direction | true     | string       | The direction to buy or sell is the direction of the taker (active transaction)     |                      |
 | quantity     | true | decimal | trading quantity(coin)       |      |
 | trade_turnover     | true | decimal | trading amount(quoted currency)    |      |
 | \</data>   |          |              |                            |                      |
