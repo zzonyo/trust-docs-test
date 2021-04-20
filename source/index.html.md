@@ -1928,6 +1928,10 @@ Error Code | Error Details Description|
 
 - query order information interface (URL: /linear-swap-api/v1/swap_order_info ) when there is no returned information due to network or other problems.
 
+### 7. The best deployment of program server
+
+- It is recommended that place the server in AWS Tokyo C zone and use the api.hbdm.vn domain, which can effectively reduce network disconnection and network timeout.
+
 
 ## Code Demo
 
@@ -3132,7 +3136,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/trade?contract_code=BTC-USDT"
 | id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
 | price  |  true  |  string  |  Price |   |    
 | amount  |  true  |  string  |  Quantity(Cont.). Sum of both buy and sell sides |   |    
-| direction  |  true  |  string  |  Order Direction  |   |    
+| direction  |  true  |  string  | The direction to buy or sell is the direction of the taker (active transaction)  |   |    
 | ts  |  true  |  long  |  Order Creation Time |   |    
 | quantity   | true | string |  trading quantity(coin)   |                |
 | contract_code   | true | string |  Contract Code   |                |
@@ -3214,7 +3218,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/trade?contract_code=BTC
 | \<data\> | true | object array |           |      |       |
 | \<data\>  | true | object array |           |      |       |
 | amount     | true | decimal | Quantity(Cont.). Sum of both buy and sell sides |      |            |
-| direction     | true | string |  Order Direction       |      |            |
+| direction     | true | string | The direction to buy or sell is the direction of the taker (active transaction)   |      |            |
 | id     | true | long | Unique Transaction Id(symbol level)      |      |            |
 | price     | true | decimal | Price       |      |            |
 | ts     | true | long |  Order Creation Time       |      |            |
@@ -6024,7 +6028,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
    - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default.
 - if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time.
 - if start_time, end_time and from_id all filled in，query according to from_id (but the data must between start_time and end_time)
-- Regardless of whether the query direction is prev or next, the data returned is in reverse order of creation time.
+- Regardless the query direction is prev or next, the data returned is reverse sorted by id. 
 - If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid.
 - Only data within 90 days are available to query.
 - It needs contract_code parameter for request in cross margin mode when query the trading financial records of a certain contract market. And it not need contract_code parameter in other scenarios.
@@ -8989,7 +8993,7 @@ Please note that created_at can't be "0"
    - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
    - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default.
 - if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time.
-- Regardless of whether the query direction is prev or next, the data returned is in reverse order of creation time.
+- Regardless the query direction is prev or next, the data returned is reverse sorted by query_id. 
 - If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid.
 - Only data within 90 days are available to query.
 
@@ -9124,7 +9128,7 @@ Please note that created_at can't be "0"
    - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
    - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default.
 - if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time.
-- Regardless of whether the query direction is prev or next, the data returned is in reverse order of creation time.
+- Regardless the query direction is prev or next, the data returned is reverse sorted by query_id. 
 - If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid.
 - Only data within 90 days are available to query.
 
@@ -9450,7 +9454,7 @@ ts                     | true     | long    | timestamp                |        
    - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
    - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default.
 - if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time.
-- Regardless of whether the query direction is prev or next, the data returned is in reverse order of creation time.
+- Regardless the query direction is prev or next, the data returned is reverse sorted by query_id. 
 - If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid.
 - Only data within 90 days are available to query.
 
@@ -9570,7 +9574,7 @@ ts                     | true     | long    | timestamp                |        
    - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
    - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default.
 - if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time.
-- Regardless of whether the query direction is prev or next, the data returned is in reverse order of creation time.
+- Regardless the query direction is prev or next, the data returned is reverse sorted by query_id. 
 - If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid.
 - Only data within 90 days are available to query.
 
@@ -12727,7 +12731,7 @@ id  |  true  |  long  |  Request ID  |   |
 id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
 price  |  true  |  string  |  Price |   |    
 amount  |  true  |  string  |  Quantity(Cont.). Sum of both buy and sell sides |   |    
-direction  |  true  |  string  |  Order Direction  |   |    
+direction  |  true  |  string  |  The direction to buy or sell is the direction of the taker (active transaction)  |   |    
 ts  |  true  |  long  |  Order Creation Time |   |   
 quantity   | true | string |  trading quantity(coin)   |                |
 trade_turnover   | true | string |  trade turnover(quoted currency)  |                | 
@@ -12822,7 +12826,7 @@ amount  |  true  |  decimal  |  quantity(Cont.). Sum of both buy and sell sides 
 ts  |  true  |  long  |  trade timestamp  |   |    
 id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
 price  |  true  |  decimal  |  Price  |   |    
-direction  |  true  |  string  |  Order direction  |   |   
+direction  |  true  |  string  |  The direction to buy or sell is the direction of the taker (active transaction)   |   |   
 quantity   | true | decimal |  trading quantity(coin)   |                |
 trade_turnover   | true | decimal |  trade turnover(quoted currency)  |                | 
  \</data\>    |               |    |      | 
