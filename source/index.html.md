@@ -1636,6 +1636,10 @@ Error Code | Error Details Description|
 
 - query order information interface (URL: /swap-api/v1/swap_order_info ) when there is no returned information due to network or other problems.
 
+### 7. The best deployment of program server
+
+- It is recommended that place the server in AWS Tokyo C zone and use the api.hbdm.vn domain, which can effectively reduce network disconnection and network timeout.
+
 
 ## Code Demo
 
@@ -2813,7 +2817,7 @@ curl "https://api.hbdm.com/swap-ex/market/trade?contract_code=BTC-USD"
 | id  |  true  |  long  | Unique Transaction Id(symbol level)  |   |    
 | price  |  true  |  string  |  Price |   |    
 | amount  |  true  |  string  |  Quantity(Cont.). Sum of both buy and sell sides  |   |    
-| direction  |  true  |  string  |  Order Direction  |   |    
+| direction  |  true  |  string  |  The direction to buy or sell is the direction of the taker (active transaction) |   |    
 | ts  |  true  |  long  |  Order Creation Time |   |  
 | quantity  |  true  |  string  |  trading quantity(coin)  |   |  
 | contrct_code  |  true  |  string  | Contract Code  |   |    
@@ -2912,7 +2916,7 @@ curl "https://api.hbdm.com/swap-ex/market/history/trade?contract_code=BTC-USD&si
 | id  |  true  |  long  | Unique Transaction Id(symbol level) |   |    
 | price  |  true  |  decimal  |  Price |   |    
 | amount  |  true  |  decimal  |  Quantity(Cont.). Sum of both buy and sell sides |   |    
-| direction  |  true  |  string  |  Order Direction  |   |    
+| direction  |  true  |  string  | The direction to buy or sell is the direction of the taker (active transaction)  |   |    
 | ts  |  true  |  long  |  Order Creation Time |   |    
 | quantity  |  true  |  decimal  |  trading quantity(coin)  |   | 
 |  \</list\>    |               |    |      | 
@@ -4662,7 +4666,7 @@ last_price | decimal  | true  | Last Price                                      
    - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
    - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. 
 - if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time. 
-- Regardless of whether the query direction is prev or next, the data returned is in reverse order of creation time. 
+- Regardless the query direction is prev or next, the data returned is reverse sorted by id. 
 - If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid. 
 - Only data within 90 days are available to query.
 
@@ -6233,7 +6237,7 @@ All via API interface submited price limit orders that had been cancelled will o
    - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
    - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. 
 - if from_id is not filled and the query direction is prev, query back from the end time; if from_id is not filled and the query direction is next, query from the start time. Query history orders with creation time greater than or equal to the start time but less than or equal to the end time. 
-- Regardless of whether the query direction is prev or next, the data returned is in reverse order of creation time. 
+- Regardless the query direction is prev or next, the data returned is reverse sorted by query_id. 
 - If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid. 
 - Only data within 90 days are available to query.
 
@@ -6454,7 +6458,7 @@ ts                     | true     | long    | timestamp                |        
    - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
    - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. 
 - if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time. 
-- Regardless of whether the query direction is prev or next, the data returned is in reverse order of creation time. 
+- Regardless the query direction is prev or next, the data returned is reverse sorted by query_id.  
 - If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid. 
 - Only data within 90 days are available to query.
 
@@ -8636,7 +8640,7 @@ id  |  true  |  long  | Request ID  |   |
 id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
 price  |  true  |  string  |  Price |   |    
 amount  |  true  |  string  |  Quantity(Cont.). Sum of both buy and sell sides |   |    
-direction  |  true  |  string  |  Order Direction  |   |    
+direction  |  true  |  string  | The direction to buy or sell is the direction of the taker (active transaction) |   |    
 ts  |  true  |  long  |  Order Creation Time |   |    
 quantity  |  true  |  string  |  trading quantity(coin)  |   | 
  \</data\>    |               |    |      | 
@@ -8722,7 +8726,7 @@ amount  |  true  |  decimal  |  quantity(Cont.). Sum of both buy and sell sides 
 ts  |  true  |  long  |  trade timestamp  |   |    
 id  |  true  |  long  | Unique Transaction Id(symbol level)  |   |    
 price  |  true  |  decimal  |  Price  |   |    
-direction  |  true  |  string  |  Order direction  |   | 
+direction  |  true  |  string  | The direction to buy or sell is the direction of the taker (active transaction) |   | 
 quantity  |  true  |  decimal  |  trading quantity(coin)  |   |    
  \</data\>    |               |    |      | 
  \</tick\>    |               |    |      | 
