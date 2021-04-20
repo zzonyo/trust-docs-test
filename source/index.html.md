@@ -1951,6 +1951,11 @@ Error Code | Error Details Description|
 
 - query order information interface (URL: /api/v1/contract_order_info ) when there is no returned information due to network or other problems.
 
+### 8. The best deployment of program server
+
+- It is recommended that place the server in AWS Tokyo C zone and use the api.hbdm.vn domain, which can effectively reduce network disconnection and network timeout.
+
+
 ## Code Demo
 
 **REST**
@@ -3138,7 +3143,7 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 | id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
 | price  |  true  |  string  |  Price |   |    
 | amount  |  true  |  string  |  Quantity(Cont.). Sum of both buy and sell sides |   |    
-| direction  |  true  |  string  |  Order Direction  |   |    
+| direction  |  true  |  string  |  The direction to buy or sell is the direction of the taker (active transaction)  |   |    
 | ts  |  true  |  long  |  Order Creation Time |   |    
 | quantity  | true | string | trading quantity(coin)    |      |
 | symbol  | true | string | symbol     |      |
@@ -3218,7 +3223,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 | id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
 | price  |  true  |  decimal  |  Price |   |    
 | amount  |  true  |  decimal  |  Quantity(Cont.). Sum of both buy and sell sides |   |    
-| direction  |  true  |  string  |  Order Direction  |   |    
+| direction  |  true  |  string  | The direction to buy or sell is the direction of the taker (active transaction)  |   |    
 | ts  |  true  |  long  |  Order Creation Time |   |    
 | quantity  | true | decimal | trading quantity(coin)    |      |
 |  \</list\>    |               |    |      | 
@@ -3226,6 +3231,7 @@ curl "https://api.hbdm.com/market/history/trade?symbol=BTC_CQ&size=100"
 
 #### Notice
 - There are "quantity" parameter in return data only after 21:00:00 on February 3, 2021
+
 
 ## Query information on contract insurance fund balance and estimated clawback rate
 
@@ -4651,7 +4657,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
    - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
    - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. 
 - if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time. 
-- Regardless of whether the query direction is prev or next, the data returned is in reverse order of creation time. 
+- Regardless the query direction is prev or next, the data returned is reverse sorted by id.  
 - If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid. 
 - Only data within 90 days are available to query.
 
@@ -6414,7 +6420,7 @@ All via API interface submited price limit orders that had been cancelled will o
    - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
    - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. 
 - if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time. 
-- Regardless of whether the query direction is prev or next, the data returned is in reverse order of creation time. 
+- Regardless the query direction is prev or next, the data returned is reverse sorted by query_id . 
 - If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid. 
 - Only data within 90 days are available to query.
 
@@ -6640,7 +6646,7 @@ ts                     | true     | long    | timestamp                |        
    - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
    - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. 
 - if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time. 
-- Regardless of whether the query direction is prev or next, the data returned is in reverse order of creation time. 
+- Regardless the query direction is prev or next, the data returned is reverse sorted by query_id.  
 - If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid. 
 - Only data within 90 days are available to query.
 
@@ -8701,7 +8707,7 @@ bid	true | true | object | Buy,[price(Bid price), vol(Bid orders(Cont.))]
 
 Return to the current trade detail data only
 
-> Example of requesting market detail data：
+> Example of requesting trade detail data：
 
 ```json
 
@@ -8770,7 +8776,7 @@ id  |  true  |  string  | Request ID  |   |
 id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
 price  |  true  |  string  |  Price |   |    
 amount  |  true  |  string  | Trade amount(Coin), trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price). Sum of both buy and sell sides  |   |    
-direction  |  true  |  string  |  Active transaction direction   |   |    
+direction  |  true  |  string  |  The direction to buy or sell is the direction of the taker (active transaction)  |   |    
 ts  |  true  |  long  |  Order Creation Time |   |   
 quantity  |  true  |  string  |  trading quantity(coin)  |   |   
  \</data\>    |               |    |      | 
@@ -8830,7 +8836,7 @@ amount  |  true  |  decimal  |  quantity(Cont.). Sum of both buy and sell sides 
 ts  |  true  |  long  |  trade timestamp  |   |    
 id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
 price  |  true  |  decimal  |  Price  |   |    
-direction  |  true  |  string  |  Order direction  |   |    
+direction  |  true  |  string  |  The direction to buy or sell is the direction of the taker (active transaction) |   |    
 quantity  |  true  |  decimal  |  trading quantity(coin)  |   |  
  \</data\>    |               |    |      | 
  \</tick\>    |               |    |      | 
@@ -8868,173 +8874,9 @@ quantity  |  true  |  decimal  |  trading quantity(coin)  |   |
 ```
 
 
-## Subscribe Kline Data of Mark Price
-
-### To subscribe Kline Data of Mark Price data, clients have to make connection to WebSokcet API Server and send subscribe request in the format below: 
-
-`{`
-
-  `"sub": "market.$symbol.mark_price.$period",`
-
-  `"id": "id generate by client"`
-
-`}`
-
-> Example of a successful request: 
-
-```json
-
-    {
-    "sub": "market.BTC_CW.mark_price.1min",
-    "id": "id1"
-    }
-
-```
-### Request Parameter
-  Parameter Name  |   Mandatory   |   Type    |   Desc   |    Default  |  
---------------| -----------------| ---------- |----------| ------------  | 
-  sub  |       true         |  string  |  the topic subscribed is fixed at: market.$symbol.mark_price.$period, and more details to see Subscribe Parameter Rules    |               |  
-  id   |     false          | string   |  id      |           |  
-
-### Subscribe Parameter Rules
-| **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | true | string  | symbol |   | "BTC_CW" represents BTC “This Week”, "BTC_NW" represents BTC “Next Week”, "BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”|
-| period      | true     | string  | kline period               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon     |
-
-
-> After subscription, clients can receive updates upon any change. Example
-
-```json
-{
-    "ch":"market.BTC_CW.mark_price.15min",
-    "ts":1615773631266,
-    "tick":{
-        "id":1615773600,
-        "open":"60533.89",
-        "close":"60603.01",
-        "high":"60603.01",
-        "low":"60533.89",
-        "amount":"0",
-        "vol":"0",
-        "count":"0"
-    }
-}
-```
-### Returning Parameter: 
-| **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| ch     | true | string | channel |                | |
-| \<tick\> |   true   |    object array    |               |                | |
-| id     | true | long | kline id        |                | |
-| vol     | true | string | trade vol(cont), value is 0        |                | |
-| count     | true | string | trade count, value is 0        |                | |
-| open     | true | string | open price        |                | |
-| close     | true | string | close price       |                | |
-| low     | true | string | low price        |                | |
-| high     | true | string | high price       |                | |
-| amount     | true | string | trade amount(coin), value is 0        |                | |
-| \</tick>            |      |        |               |                | |
-| ts     | true | number | Time of Respond Generation, Unit: Millisecond                  |                | |
-
-
-## Request Kline Data of Mark Price interface
-
-### To request Kline Data of Mark Price data, clients have to make connection to WebSokcet API Server and send subscribe request in the format below: 
-
-`{`
-     
-   `"req": "market.$symbol.mark_price.$period",`
-    
-   `"id": "id generated by client",`
-
-   `"from": "type: long Unit: Second",`
-   
-   `"to": "type: long Unit: Second, must been greater than from",`
-    
-`}`
-
-> Example of a successful request:
-
-```json
-
-    {
-    "req": "market.BTC_CW.mark_price.1imin",
-    "id": "id4",
-    "from":1571000000,
-    "to":1573098606
-    }
-```
-
-### Request Parameter
-
-  Parameter Name  |   Mandatory   |   Type    |   Desc   |    Default  |  
---------------| -----------------| ---------- |----------| ------------  | 
-  req  |       true         |  string  |  the topic subscribed is fixed at: market.$symbol.mark_price.$period, and more details to see Request Parameter Rules    |               |  
-  id   |     false          | string   |  id      |           |  
-  from     | true     | long  | start time, Unit: Second              |         |  
-  to       | true     | long  | end time, Unit: Second, must been greater than from              |         | 
-
-### Request Parameter Rules: 
-| **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | true  | string  | symbol |   | "BTC_CW" represents BTC “This Week”, "BTC_NW" represents BTC “Next Week”, "BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”|
-| period      | true  | string  | kline period  |   | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon     |
-
-
-### Note: 
-- At one time 2000 at most
-
-> Example of the response
-
-```json
-{
-    "id":"id4",
-    "rep":"market.BTC_CW.mark_price.15min",
-    "wsid":2998253842,
-    "ts":1615773843201,
-    "status":"ok",
-    "data":[
-        {
-            "id":1615651200,
-            "open":"60284.67",
-            "close":"60362.04",
-            "low":"60270.85",
-            "high":"60468.55",
-            "amount":"0",
-            "vol":"0",
-            "count":"0"
-        }
-    ]
-}
-```
-
-### Returning Parameter: 
-| **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| rep     | true | string | channel|                | |
-| status | true | string | status                          | "ok" , "error" | |
-| id     | true | string | as same as request id       |                | |
-| wsid     | true | long | wsid           |                | |
-| ts     | true | number | Time of Respond Generation, Unit: Millisecond                  |                | |
-| \<data\> |   true   |    object array    |               |                | |
-| id     | true | long | kline id        |                | |
-| vol     | true | string | trade vol(cont), value is 0        |                | |
-| count     | true | string | trade count, value is 0        |                | |
-| open     | true | string | open price        |                | |
-| close     | true | string | close price      |                | |
-| low     | true | string | low price        |                | |
-| high     | true | string | high price      |                | |
-| amount     | true | string | trade amount(coin), value is 0        |                | |
-| \</data\>            |      |        |               |                | |
-
-#### Note
- - Data will be available after the marked price goes online on March 15, 2021. Please be aware that there is no historical data before.
-
-
 # WebSocket Index and Basis Interface
 
-### The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index 
+ - The websocket url of Index and Basis Data is：wss://api.hbdm.com/ws_index 
 
 ## Subscribe Index Kline Data
 
@@ -9389,6 +9231,171 @@ quantity  |  true  |  decimal  |  trading quantity(coin)  |   |
 | index_price | true | string | index price|  |
 | basis | true | string | basis=contract_price - index_price |  |
 | basis_rate | true | string | basis_rate=basis/index_price |  |
+
+
+## Subscribe Kline Data of Mark Price
+
+### To subscribe Kline Data of Mark Price data, clients have to make connection to WebSokcet API Server and send subscribe request in the format below: 
+
+`{`
+
+  `"sub": "market.$symbol.mark_price.$period",`
+
+  `"id": "id generate by client"`
+
+`}`
+
+> Example of a successful request: 
+
+```json
+
+    {
+    "sub": "market.BTC_CW.mark_price.1min",
+    "id": "id1"
+    }
+
+```
+### Request Parameter
+  Parameter Name  |   Mandatory   |   Type    |   Desc   |    Default  |  
+--------------| -----------------| ---------- |----------| ------------  | 
+  sub  |       true         |  string  |  the topic subscribed is fixed at: market.$symbol.mark_price.$period, and more details to see Subscribe Parameter Rules    |               |  
+  id   |     false          | string   |  id      |           |  
+
+### Subscribe Parameter Rules
+| **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol      | true | string  | symbol |   | "BTC_CW" represents BTC “This Week”, "BTC_NW" represents BTC “Next Week”, "BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”|
+| period      | true     | string  | kline period               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon     |
+
+
+> After subscription, clients can receive updates upon any change. Example
+
+```json
+{
+    "ch":"market.BTC_CW.mark_price.15min",
+    "ts":1615773631266,
+    "tick":{
+        "id":1615773600,
+        "open":"60533.89",
+        "close":"60603.01",
+        "high":"60603.01",
+        "low":"60533.89",
+        "amount":"0",
+        "vol":"0",
+        "count":"0"
+    }
+}
+```
+### Returning Parameter: 
+| **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| ch     | true | string | channel |                | |
+| \<tick\> |   true   |    object array    |               |                | |
+| id     | true | long | kline id        |                | |
+| vol     | true | string | trade vol(cont), value is 0        |                | |
+| count     | true | string | trade count, value is 0        |                | |
+| open     | true | string | open price        |                | |
+| close     | true | string | close price       |                | |
+| low     | true | string | low price        |                | |
+| high     | true | string | high price       |                | |
+| amount     | true | string | trade amount(coin), value is 0        |                | |
+| \</tick>            |      |        |               |                | |
+| ts     | true | number | Time of Respond Generation, Unit: Millisecond                  |                | |
+
+
+## Request Kline Data of Mark Price interface
+
+### To request Kline Data of Mark Price data, clients have to make connection to WebSokcet API Server and send subscribe request in the format below: 
+
+`{`
+     
+   `"req": "market.$symbol.mark_price.$period",`
+    
+   `"id": "id generated by client",`
+
+   `"from": "type: long Unit: Second",`
+   
+   `"to": "type: long Unit: Second, must been greater than from",`
+    
+`}`
+
+> Example of a successful request:
+
+```json
+
+    {
+    "req": "market.BTC_CW.mark_price.1imin",
+    "id": "id4",
+    "from":1571000000,
+    "to":1573098606
+    }
+```
+
+### Request Parameter
+
+  Parameter Name  |   Mandatory   |   Type    |   Desc   |    Default  |  
+--------------| -----------------| ---------- |----------| ------------  | 
+  req  |       true         |  string  |  the topic subscribed is fixed at: market.$symbol.mark_price.$period, and more details to see Request Parameter Rules    |               |  
+  id   |     false          | string   |  id      |           |  
+  from     | true     | long  | start time, Unit: Second              |         |  
+  to       | true     | long  | end time, Unit: Second, must been greater than from              |         | 
+
+### Request Parameter Rules: 
+| **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| symbol      | true  | string  | symbol |   | "BTC_CW" represents BTC “This Week”, "BTC_NW" represents BTC “Next Week”, "BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”|
+| period      | true  | string  | kline period  |   | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon     |
+
+
+### Note: 
+- At one time 2000 at most
+
+> Example of the response
+
+```json
+{
+    "id":"id4",
+    "rep":"market.BTC_CW.mark_price.15min",
+    "wsid":2998253842,
+    "ts":1615773843201,
+    "status":"ok",
+    "data":[
+        {
+            "id":1615651200,
+            "open":"60284.67",
+            "close":"60362.04",
+            "low":"60270.85",
+            "high":"60468.55",
+            "amount":"0",
+            "vol":"0",
+            "count":"0"
+        }
+    ]
+}
+```
+
+### Returning Parameter: 
+| **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
+| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| rep     | true | string | channel|                | |
+| status | true | string | status                          | "ok" , "error" | |
+| id     | true | string | as same as request id       |                | |
+| wsid     | true | long | wsid           |                | |
+| ts     | true | number | Time of Respond Generation, Unit: Millisecond                  |                | |
+| \<data\> |   true   |    object array    |               |                | |
+| id     | true | long | kline id        |                | |
+| vol     | true | string | trade vol(cont), value is 0        |                | |
+| count     | true | string | trade count, value is 0        |                | |
+| open     | true | string | open price        |                | |
+| close     | true | string | close price      |                | |
+| low     | true | string | low price        |                | |
+| high     | true | string | high price      |                | |
+| amount     | true | string | trade amount(coin), value is 0        |                | |
+| \</data\>            |      |        |               |                | |
+
+#### Note
+ - Data will be available after the marked price goes online on March 15, 2021. Please be aware that there is no historical data before.
+
 
 # Orders and Accounts WebSocket Interfaces
 
