@@ -9574,7 +9574,7 @@ ts                     | true     | long    | timestamp                |        
    - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
    - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default.
 - if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time.
-- Regardless the query direction is prev or next, the data returned is reverse sorted by query_id. 
+- Regardless the query direction is prev or next, the data returned is reverse sorted by query_id.  
 - If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid.
 - Only data within 90 days are available to query.
 
