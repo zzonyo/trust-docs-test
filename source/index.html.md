@@ -2474,8 +2474,6 @@ contract_code | string   | false      | BTC180914|
 
  - If there is a number in the Contract Code row，inquiry with Contract_Code. If there is no number，inquiry by Symbol + Contract Type. One of the query conditions must be chosen.
 
- - Support to query the K-line data of the delisting contract in one month(that is, the contract's expired date is not before one month ago), and you can enter the contract code to get the K-line data.
-
 > Response
 
 ```json
