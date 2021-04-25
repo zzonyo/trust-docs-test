@@ -8185,7 +8185,7 @@ API Key 权限：读取
 | aggressor     | bool     | 是否交易主动方，有效值： true (taker), false (maker)         |
 | orderStatus   | string   | 订单状态，有效值：partial-filled, filled                     |
 | remainAmt     | string   | 该订单未成交数量（市价买单为未成交金额）                     |
-| execAmt       | string   | 该订单累计成交金额                                           |
+| execAmt       | string   | 该订单累计成交量（市价买单为成交金额）                       |
 
 注：<br>
 - 止盈止损订单的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<br>
@@ -8230,7 +8230,7 @@ API Key 权限：读取
 | orderValue    | string   | 原始订单金额（仅对市价买单有效）                             |
 | orderStatus   | string   | 订单状态，有效值：partial-canceled, canceled                 |
 | remainAmt     | string   | 该订单未成交数量（市价买单为未成交金额）                     |
-| execAmt       | string   | 该订单累计成交金额                                           |
+| execAmt       | string   | 该订单累计成交量（市价买单为成交金额）                       |
 | lastActTime   | long     | 订单最近更新时间                                             |
 注：<br>
 - 止盈止损订单的订单类型不再是原始订单类型“buy-stop-limit”或“sell-stop-limit”，而是变为“buy-limit”或“sell-limit”。<br>
