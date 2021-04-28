@@ -34,7 +34,7 @@ search: True
 
 # 更新日志
 
-## 1.2.7 2020年3月30日 【新增:获取市场最优挂单接口。修改：获取标记价格K线接口（支持symbol入参直接使用合约代码请求，例于：BTC210326）、订阅标记价格K线数据接口（支持symbol入参直接使用合约代码请求，例于：BTC210326）、请求标记价格K线数据接口（支持symbol入参直接使用合约代码请求，例于：BTC210326）】
+## 1.2.7 2020年4月28日 【新增:获取市场最优挂单接口。修改：获取标记价格K线接口（支持symbol入参直接使用合约代码请求，例于：BTC210326）、订阅标记价格K线数据接口（支持symbol入参直接使用合约代码请求，例于：BTC210326）、请求标记价格K线数据接口（支持symbol入参直接使用合约代码请求，例于：BTC210326）】
 
 ### 1、新增获取市场最优挂单接口
  - 接口名称：获取市场最优挂单
@@ -1190,11 +1190,13 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
 读取  | 策略接口  |  /api/v1/contract_tpsl_openorders                       | POST    |     止盈止损订单当前委托       |       是          |
 读取  | 策略接口  |  /api/v1/contract_tpsl_hisorders                        | POST    |     止盈止损订单历史委托       |       是          |
 读取  | 策略接口  |  /api/v1/contract_relation_tpsl_order                   | POST    |     查询开仓单关联的止盈止损订单       |       是          | 
-<!--交易     |  策略接口           |  /api/v1/contract_track_order |        POST        | 跟踪委托订单下单            |  是  |
+<!-- 
+交易     |  策略接口           |  /api/v1/contract_track_order |        POST        | 跟踪委托订单下单            |  是  |
 交易     |  策略接口           |  /api/v1/contract_track_cancel |        POST        | 跟踪委托订单撤单            |  是  |
 交易     |  策略接口           |  /api/v1/contract_track_cancelall |        POST        | 跟踪委托订单全部撤单            |  是  |
 读取     |  策略接口           |  /api/v1/contract_track_openorders |        POST        | 跟踪委托订单当前委托            |  是  |
-读取     |  策略接口           |  /api/v1/contract_track_hisorders |        POST        | 跟踪委托订单历史委托            |  是  |-->
+读取     |  策略接口           |  /api/v1/contract_track_hisorders |        POST        | 跟踪委托订单历史委托            |  是  | 
+-->
 
 
 ## 访问地址
