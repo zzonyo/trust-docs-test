@@ -40,6 +40,28 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.2.7 2020-4-28 【Added: Get Market BBO Data interface. Modified: Get Kline Data of Mark Price interface(supports symbol that value is contract code as request parameter, such as: BTC210326). Subscribe Kline Data of Mark Price interface(supports symbol that value is contract code as request parameter, such as: BTC210326). Request Kline Data of Mark Price interface(supports symbol that value is contract code as request parameter, such as: BTC210326)】
+
+### 1. Added Get Market BBO Data interface
+ - Interface Name: Get Market BBO Data
+ - Interface Type: public
+ - Interface URL: /market/bbo
+
+### 2. Modified Get Kline Data of Mark Price interface(supports symbol that value is contract code as request parameter, such as: BTC210326)
+ - Interface Name: Get Kline Data of Mark Price
+ - Interface Type: public
+ - Interface URL: /index/market/history/mark_price_kline
+
+### 3. Modified Subscribe Kline Data of Mark Price interface(supports symbol that value is contract code as request parameter, such as: BTC210326)
+ - Interface Name: Subscribe Kline Data of Mark Price
+ - Interface Type: public
+ - Subscription Topic: market.$symbol.mark_price.$period
+
+### 4. Modified Request Kline Data of Mark Price interface(supports symbol that value is contract code as request parameter, such as: BTC210326)
+ - Interface Name: Request Kline Data of Mark Price
+ - Interface Type: public
+ - Subscription Topic: market.$symbol.mark_price.$period
+
 ## 1.2.6 2021-3-15 【Added: Get Kline Data of Mark Price interface, Subscribe Kline Data of Mark Price interface, Request Kline Data of Mark Price interface】
 
 ### 1. Added Get Kline Data of Mark Price interface
@@ -1079,8 +1101,9 @@ Read  | Market Data      | /api/v1/contract_index             |  GET            
 Read  | Market Data      |  /api/v1/contract_price_limit       |  GET              | Get Contract Price Limitation                     | No                     |
 Read  | Market Data      |  /api/v1/contract_open_interest     |  GET              | Get Contract Open Interest Information         | No                     |
 Read  | Market Data      |  /api/v1/contract_delivery_price     |  GET              |  Get the estimated delivery price         | No                     |          
-Read     |  Market Data           |   /api/v1/contract_api_state   |                  GET        |  Query information on system status    |  No  |
+Read  | Market Data      |   /api/v1/contract_api_state   |                  GET        |  Query information on system status    |  No  |
 Read  | Market Data      |  /market/depth                  |  GET              | Get Market Depth                               | No                     |
+Read  | Market Data      |  /market/bbo                    |  GET        | Get Market BBO Data            |  No  |
 Read  | Market Data      | /market/history/kline          |  GET              | Get Kline Data                                | No                     |
 Read  |  Market Data           |  /index/market/history/mark_price_kline |        GET        |  Get Kline Data of Mark Price                 |  No  |
 Read  | Market Data      |  /market/detail/merged         |  GET              | Get Market Data Overview                       | No                     |
@@ -1142,7 +1165,11 @@ Trade | Strategy  |  /api/v1/contract_tpsl_cancelall                        | PO
 Read  | Strategy  |  /api/v1/contract_tpsl_openorders                       | POST    |     Open take-profit and stop-loss orders        |      Yes         |
 Read  | Strategy  |  /api/v1/contract_tpsl_hisorders                        | POST    |     Take-profit and stop-loss histoty orders       |      Yes         |
 Read  | Strategy  |  /api/v1/contract_relation_tpsl_order                   | POST    |     Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order       |      Yes         |
-
+<!--Trade | Strategy  |  /api/v1/contract_track_order |        POST        | Place a Trailing Order           |  Yes  |
+Trade | Strategy  |  /api/v1/contract_track_cancel |        POST        | Cancel a Trailing Order      |  Yes  |
+Trade | Strategy  |  /api/v1/contract_track_cancelall |        POST        | Cancel All Trailing Order     |  Yes  |
+Read  | Strategy  |  /api/v1/contract_track_openorders |        POST        |Current unfilled trailing order acquisition    |  Yes  |
+Read  | Strategy  |  /api/v1/contract_track_hisorders |        POST        |  Get History Trailing Orders     |  Yes  |-->
 
 ##  Address
 
@@ -2794,6 +2821,57 @@ curl "https://api.hbdm.com/market/depth?symbol=BTC_CQ&type=step5"
 | \</tick\>    |               |    |      |            | | 
 
 
+## Get Market BBO Data
+
+ - GET `/market/bbo`
+
+### Request Parameter
+| Parameter Name   | Mandatory | Type     | Description  | Value Range |
+| ------ | ---- | ------ | ---------------------------------------- | ---- |
+| symbol | false | string | symbol, if not filled in, return all | such as "BTC_CW" represents BTC “This Week”, "BTC_NW" represents BTC “Next Week”, "BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”. Contract code is supported, e.g.: BTC200220 |
+
+### Note: 
+ - If not filled in any symbol, return the Market BBO Data of all symbol. 
+
+>Response
+
+```json
+{
+    "status": "ok",
+    "ticks": [
+        {
+            "symbol": "BTC_CQ",
+            "ask": [
+                53443,
+                10
+            ],
+            "bid": [
+                53333,
+                8
+            ],
+            "mrid": 219674,
+            "ts": 1616745068985
+        }
+    ],
+    "ts": 1616745078403
+}
+```
+
+###  Return Parameter
+
+| Parameter Name   | Mandatory | Type   | Description  | Value Range           |
+| ------ | ---- | ------ | ---------------------------------------- | -------------- |
+| status | true | string |  the result of server handling to request     | "ok" , "error" |
+| \<ticks\> |true  |  object array |           |                |
+| symbol  | true | string  | symbol  | "BTC","ETH"...   |
+| mrid   | true | long | Match ID, unique identification  |                |
+| ask   | true | array | [Ask 1 price, Ask 1 qty (cont)] |                |
+| bid   | true | array | [Bid 1 price, Bid 1 qty (cont)] |                |
+| ts   | true | long | The system detects the orderbook time point, unit: milliseconds   |                |
+| \</ticks\>            |      |        |               |                |
+| ts     | true | long | Time of Respond Generation, Unit: Millisecond                            |                |
+
+
 ## Get Kline Data
 
 ###  Example     
@@ -2883,7 +2961,7 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 ### Request Parameter: 
 | **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol | true | string  | symbol |  | "BTC_CW" represents BTC “This Week”, "BTC_NW" represents BTC “Next Week”, "BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”|
+| symbol | true | string  | symbol |  | "BTC_CW" represents BTC “This Week”, "BTC_NW" represents BTC “Next Week”, "BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”.  Contract code is supported to query data. e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 | period          | true     | string  | kline period               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week,1mon     |
 | size  | true     | int    | kline size     |  | [1,2000] |
 
@@ -2988,13 +3066,13 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
 | ts                 | true          | long        | Time of Respond Generation, Unit: Millisecond                |                 |
 | \<tick\>     |               |    |  kline data (Start at 00:00(UTC+8) of the day)    |            | 
 | id    |     true          | long   |  kline id,the same as kline timestamp    |            
-| vol    |     true          | string   |  Trade Volume(Cont.). Sum of both buy and sell sides |            
-| count    |     true          | int   |   Order Quantity. Sum of both buy and sell sides |            
+| vol    |     true          | string   |  Trade Volume(Cont.). from nowtime - 24 hours. Sum of both buy and sell sides |            
+| count    |     true          | int   |   Order Quantity. from nowtime - 24 hours. Sum of both buy and sell sides |            
 | open    |     true          | string   |   Open Price  |            
 | close    |     true          | string   |  Clos Price,  the price in the last kline is the latest order price   |            
 | low    |     true          | string   |  Low Price   |            
 | high    |     true          | string   |  High Price  |            
-| amount    |     true          | string   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price). Sum of both buy and sell sides |            
+| amount    |     true          | string   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price). from nowtime - 24 hours. Sum of both buy and sell sides |            
 | ask | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 | bid | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
   \</tick\>    |               |     |      |  
@@ -3072,15 +3150,15 @@ curl "https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"
 | \<ticks\> |true  |  object array |           |                |
 | symbol  | true | string  | symbol  | "BTC_CW","BTC_NW","BTC_CQ","BTC_NQ"   |
 | id   | true | long | the id of kline |                |
-| amount   | true | string | amount(coin)  |                |
+| amount   | true | string | amount(coin), from nowtime - 24 hours. Sum of both buy and sell sides  |                |
 | ask   | true | array | [ask one price, ask one vol(cont)] |                |
 | bid   | true | array | [bid one price], bid one vol(cont)] |                |
 | open     | true | string | open price     |                |
 | close     | true | string | close price       |                |
-| count     | true | decimal | trade count       |                |
+| count     | true | decimal | trade count ,from nowtime - 24 hours. Sum of both buy and sell sides      |                |
 | high   | true | string | high price                                    |                |
 | low   | true | string | low price  |                |
-| vol   | true | string | trade vol, sum of both buy and sell side |                |
+| vol   | true | string | trade vol, from nowtime - 24 hours. Sum of both buy and sell sides  |                |
 | ts   | true | long | timestamp   |                |
 | \</ticks\>            |      |        |               |                |
 | ts     | true | long | Time of Respond Generation, Unit：Millisecond |                |
@@ -3141,7 +3219,7 @@ curl "https://api.hbdm.com/market/trade?symbol=BTC_CQ"
 | id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
 | price  |  true  |  string  |  Price |   |    
 | amount  |  true  |  string  |  Quantity(Cont.). Sum of both buy and sell sides |   |    
-| direction  |  true  |  string  |  The direction to buy or sell is the direction of the taker (active transaction)  |   |    
+| direction  |  true  |  string  | The direction to buy or sell is the direction of the taker (active transaction) |   |    
 | ts  |  true  |  long  |  Order Creation Time |   |    
 | quantity  | true | string | trading quantity(coin)    |      |
 | symbol  | true | string | symbol     |      |
@@ -3391,12 +3469,12 @@ curl "https://api.hbdm.com/api/v1/contract_adjustfactor"
 | symbol | true  | string | Contract Code | "BTC","ETH"... |
 | \<list\> |  |  |  |  |
 | lever_rate   | true     | decimal  | Leverage               |                |
-| \<ladderDetail\> |  |  |  |  |
+| \<ladders\> |  |  |  |  |
 | min_size | true | decimal | Min net position limit |  |
 | max_size | true | decimal | Max net position limit |  |
 | ladder | true | int | Tier |  |
 | adjust_factor | true | decimal | Adjustment Factor |  |
-| \</ladderDetail\> |  |  |  |  |
+| \</ladders\> |  |  |  |  |
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
@@ -4248,7 +4326,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 | profit                         | true          | decimal  | profit                                        |                                     |
 | position_margin                | true          | decimal  | Position margin                               |                                     |
 | lever_rate                     | true          | int      | Leverage rate                                 |                                     |
-| direction                      | true          | string   | Transaction direction                         |                                     |
+| direction                      | true          | string   | transaction direction of positions            |  "buy":long "sell":short            |
 | last_price                     | true          | decimal  | Latest price                                  |                                     |
 | \</list\>                      |               |          |                                               |                                     |
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                     |
@@ -4655,7 +4733,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
    - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
    - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. 
 - if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time. 
-- Regardless the query direction is prev or next, the data returned is reverse sorted by id.  
+- Regardless the query direction is prev or next, the data returned is reverse sorted by id.
 - If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid. 
 - Only data within 90 days are available to query.
 
@@ -5164,7 +5242,7 @@ profit_rate | decimal  | true  | Profit Rate                                    
 profit |  decimal |  true | Profit                                                      |
 position_margin |  decimal |  true | Position Margin                                    |
 lever_rate | int | true | Leverage Rate                                               |
-direction | string  | true  | "buy" "sell"	                                            |
+direction | string  | true  | transaction direction of positions  "buy":long "sell":short          |
 last_price | decimal  | true  | Last Price                                              |
 \</positions\>                  |              |          |                            |
 \</data\>                  |              |          |                            |
@@ -5795,7 +5873,7 @@ client_order_id, order status query is available for orders placed within 24 hou
 
 | **Parameter Name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| symbol | true | String | Variety code	 | "BTC","ETH"... |
+| symbol | true | string | Variety code	 | "BTC","ETH"... |
 | lever_rate | true | int | Leverage to switch.[Using Leverage greater than 20 times requires prior approval of high-leverage agreement for the first time. ] | |
 
 > Response:
@@ -5854,7 +5932,7 @@ No：
 | order_price_type | false  | string | order price type  | "lightning" by default. "lightning_fok": lightning FOK type,"lightning_ioc": lightning IOC type| 
 
 ###  Note:
-client_order_id, order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.
+ - Lightning Close Position，is order with rival price and optimal 30 grades. And the unsettled part will be automatically converted into a limited price order.
 
 > Response:
 
@@ -6418,7 +6496,7 @@ All via API interface submited price limit orders that had been cancelled will o
    - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
    - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. 
 - if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time. 
-- Regardless the query direction is prev or next, the data returned is reverse sorted by query_id . 
+- Regardless the query direction is prev or next, the data returned is reverse sorted by query_id.
 - If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid. 
 - Only data within 90 days are available to query.
 
@@ -6594,7 +6672,7 @@ match_id               | true     | long    | match_id is the same with trade_id
 order_id               | true     | long    | order ID              |              |
 order_id_str               | true     | string    | order ID              |              |
 symbol                 | true     | string  | contract type code               |              |
-order_source                 | true     | string  | Order Source               |  system. web. api. m. risk. settlement. ios. android. windows. mac. trigger. tpsl  |
+order_source                 | true     | string  | Order Source               |  system、web、api、m、risk、settlement、ios、android、windows、mac、trigger、tpsl  |
 contract_type          | true     | string  | contract type               |  deliver on this Friday then "this_week"; deliver on next Friday then "next_week"; for quarterly contract then "quarter", Next Quarterly Contract: "next_quarter"  |
 contract_code          | true     | string  | contract code              |  "BTC180914" ...       |
 direction              | true     | string  | "buy": to bid/ go long; "sell": to ask/ go short.         |              |
@@ -6644,7 +6722,7 @@ ts                     | true     | long    | timestamp                |        
    - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
    - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. 
 - if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time. 
-- Regardless the query direction is prev or next, the data returned is reverse sorted by query_id.  
+- Regardless the query direction is prev or next, the data returned is reverse sorted by query_id.
 - If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid. 
 - Only data within 90 days are available to query.
 
@@ -6727,7 +6805,7 @@ ts                     | true     | long    | timestamp                |        
 | trade_fee             | true | decimal | fees charged by platform       |                                          |
 | role                   | true | string  | taker or maker        |                                          |
 | fee_asset         | true | string  | the corresponding cryptocurrency to the given fee      |  （"BTC","ETH"...）      |
-| order_source           | true | string  | Order Source   |   system. web. api. m. risk. settlement. ios. android. windows. mac. trigger. tpsl      |
+| order_source           | true | string  | Order Source   |   system、web、api、m、risk、settlement、ios、android、windows、mac、trigger、tpsl    |
 | real_profit | true | decimal | real profit (calculated with the opening average price, include profit in history settlement.) | |
 | \</trades\>            |      |         |                    |                                          |
 | remain_size           | true | int  | Remaining data number（the number of data that has not been queried due to the limitation of data number in the time range）  |                                          |
@@ -7143,9 +7221,9 @@ ts                     | true     | long    | timestamp                |        
 
 | Parameter Name  | Mandatory  | Type    | Description  | Value Range                                 |
 | --------------- | ----- | ------ | --------------------- | ---------------------------------------- |
-| symbol          | false | String | symbol                | "BTC","ETH"...                           |
-| contract_type   | false | String | contract type         | “this_week”，“next_week”，“quarter”，“next_quarter” |
-| contract_code   | false | String | contract code    | BTC190903                                |
+| symbol          | false | string | symbol                | "BTC","ETH"...                           |
+| contract_type   | false | string | contract type         | “this_week”，“next_week”，“quarter”，“next_quarter” |
+| contract_code   | false | string | contract code    | BTC190903                                |
 | direction | true | string | direction| "buy", "sell"  |
 | volume | true | decimal | Numbers of orders (volume) |  |
 | tp_trigger_price          | false | decimal | Trigger price of take-profit order                  |                            |
@@ -7269,7 +7347,7 @@ ts                     | true     | long    | timestamp                |        
 
 | Parameter Name          | Mandatory  | Type    | Description   | Value Range              |
 | ------------- | ----- | ------ | ------------- | ---------------------------------------- |
-| symbol        | false  | String | symbol        | "BTC","ETH"...                           |
+| symbol        | false  | string | symbol        | "BTC","ETH"...                           |
 | contract_code | false | string | contract code |  "BTC180914" ...                         |
 | contract_type | false | string | contract type |  "this_week", "next_week", "quarter"，“next_quarter”  |
 | direction | false  | string | Transaction direction(if not filled in means all)  |   ["buy" , "sell"] |
@@ -7317,7 +7395,7 @@ ts                     | true     | long    | timestamp                |        
 
 | Parameter Name | Mandatory  | Type    | Description   | Value Range                                    |
 | -------------- | ----- | ------ | ------------- | ---------------------------------------- |
-| symbol         | true  | String | symbol                 | "BTC","ETH"...                           |
+| symbol         | true  | string | symbol                 | "BTC","ETH"...                           |
 | contract_code  | false | string | contract code,"BTC180914" ...|    |
 | page_index     | false | int | page index. 1 by default |    |
 | page_size      | false | int | page size.20 by default. 50 at most |    |
@@ -7399,7 +7477,7 @@ ts                     | true     | long    | timestamp                |        
 
 | Parameter Name | Mandatory  | Type    | Description   | Value Range |
 | ------------- | ----- | ------ | ------------- | ---------------------------------------- |
-| symbol          | true | String | symbol                  | "BTC","ETH"...                           |
+| symbol          | true | string | symbol                  | "BTC","ETH"...                           |
 | contract_code | true | string | contract code,"BTC-USD" ...|    |
 | status | true | string | status| Multiple orders are separated by English commas, and the status of stop-profit and stop-loss orders is: 0:all(representing all orders in the end state), 4:Have sumbmitted the orders, 5:orders failed, 6:orders canceled, 11:expired   |
 | create_date | true | long | days | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.   |
@@ -7496,7 +7574,7 @@ ts                     | true     | long    | timestamp                |        
 
 | Parameter Name          | Mandatory  | Type    | Description   | Value Range                                    |
 | ------------- | ----- | ------ | ------------- | ---------------------------------------- |
-| symbol          | true | String | symbol                 | "BTC","ETH"...                           |
+| symbol          | true | string | symbol                 | "BTC","ETH"...                           |
 | order_id | true | long |  order id  |    |
 
 > Response
@@ -7626,6 +7704,333 @@ ts                     | true     | long    | timestamp                |        
 | \</data\>       |       |        |     |  |
 | ts              | true  | long   | Time of Respond Generation，Unit: Millisecond                 |     |
 
+<!--
+## Place a Trailing Order
+
+ - POST `/api/v1/contract_track_order`
+
+### Request Parameter
+| Parameter Name            | Mandatory  | Type     | Description                    | Value Range |
+| --------------- | ----- | ------ | --------------------- | ---------------------------------------- |
+| symbol          | false | string | symbol                | "BTC","ETH"...                           |
+| contract_type   | false | string | contract type         | this_week, next_week, quarter, next_quarter |
+| contract_code   | false | string | contract code    | BTC190903                                |
+| direction | true | string | direction| buy, sell  |
+| offset | true | string | offset |   open, close  |
+| lever_rate | false | int | lever rate, is required when open position, is optional when close position |    |
+| volume | true | decimal | volume(cont) |  |
+| callback_rate          | true | decimal | callback rate  |  Such as: 0.01 means 1%. And must be not less than 0.001 (0.1%) |
+| active price   | true | decimal | active price                 |  |
+| order_price_type | true | string | order price type |  optimal_5, optimal_10, optimal_20, formula_price  |
+
+#### Note: 
+ - When order_price_type is the formula_price, it means that after the tracking order is triggered successfully, use the lowest (highest) market price *(1 ± callback rate) that from statistic since place trading order, as the order price (the precision is the minimum variation of the contract price and be truncated) to place a limit price order 
+ - whether filled in with the optimal N or the formula price, there is no guarantee that the order can be completely filled, which mainly depends on the market conditions.
+ - Symbol+contract_type and contract_code must be filled in one of them, as long as contract_code is filled in, contract_code will be taken directly.
+
+
+> Response
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "order_id": 825041038916751360,
+        "order_id_str": "825041038916751360"
+    },
+    "ts": 1616746712203
+}
+```
+
+### Return Parameter
+
+| Parameter Name            | Mandatory  | Type     | Description                            | Value Range                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status                     | true         | string   |  the result of server handling to request               | "ok" , "error" |
+| ts |  true  | long | timestamp | |
+| \<data\> |  true  | object | the returned data which is successful | |
+| order_id  |  true  | long | trailing order id[Globally Unique]   | |
+| order_id_str |  true  | string | trailing order id in string format   | |
+| \</data\> |   | |  | |
+
+
+
+## Cancel a Trailing Order
+
+ - POST `/api/v1/contract_track_cancel`
+
+### Request Parameter
+
+| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| symbol          | true | string | symbol                  | "BTC","ETH"...                           |
+| order_id | true | string | User's trailing order id (multiple order IDs are separated by ",", a maximum of 10 orders are allowed to be withdrawn at a time)|    |
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "order_id": "825041038916751361",
+                "err_code": 1061,
+                "err_msg": "This order doesnt exist."
+            }
+        ],
+        "successes": "825041038916751360"
+    },
+    "ts": 1616746795262
+}
+```
+
+### Return Parameter
+| Parameter Name            | Mandatory  | Type     | Description                            | Value Range                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status          | true  | string |  the result of server handling to request                        | "ok" :success, "error": failed |
+| \<data\>        |   true    |   object     |                               | dictionary                   |
+| \<errors\>        |   true    |   object     |                               | dictionary                   |
+| order_id        | true  | string | trailing order id[Globally Unique] |                      |
+| err_code              | false  | long   | error code               |                      |
+| err_msg              | false  | string   | error msg               |                      |
+| \</errors\>       |       |        |     |  |
+| successes              | true  | string   | the orders that are success                 |     |
+| \</data\>       |       |        |     |  |
+| ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
+
+
+## Cancel All Trailing Orders
+
+ - POST `/api/v1/contract_track_cancelall`
+
+### Request Parameter
+
+| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| symbol          | true | string | symbol                  | "BTC","ETH"...                           |
+| contract_code | false | string | contract code|  "BTC180914" ...  |
+| contract_type | false | string | contract type |  this_week, next_week, quarter, next_quarter  |
+| direction | false  | string | direction(if not filled in, means all)  |  buy, sell |
+| offset | false  | string | offset (if not filled in, means all)  | open, close  |
+
+#### Note: 
+ - Send symbol to cancel all the contracts of that kind of symbol
+ - Send contract_code to cancel the contracts of that code.
+ - Send symbol+contract_type to cancel the certain contracts under the symbol of that contract_type
+ - You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including "open" and "close" offset)
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "errors": [],
+        "successes": "825041902725271552,825042030290833408,825042223069433856"
+    },
+    "ts": 1616747043604
+}
+```
+
+### Return Parameter
+
+| Parameter Name                   | Mandatory | Type      | Description                 | Value Range                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status          | true  | string |  the result of server handling to request | "ok" :success, "error": failed |
+| \<data\>        |   true    |   object     |                               | dictionary                   |
+| \<errors\>        |   true    |   object     |                               | dictionary                   |
+| order_id        | true  | string | trailing order id[Globally Unique] |                      |
+| err_code              | false  | long   | error code               |                      |
+| err_msg              | false  | string   | error msg               |                      |
+| \</errors\>       |       |        |     |  |
+| successes              | true  | string   | the orders that are success                 |     |
+| \</data\>       |       |        |     |  |
+| ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
+
+
+## Current unfilled trailing order acquisition
+
+ - POST `/api/v1/contract_track_openorders`
+
+### Request Parameter
+
+| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| symbol          | true | string | symbol                  | "BTC","ETH"...                           |
+| contract_code | false | string | contract code,"BTC180914" ...|    |
+| trade_type | false  | int | trade type(if not filled in, means all)  |  0:all,1: buy long,2: sell short,3: buy short,4: sell long |
+| page_index | false | int | page index, if not filled in as 1st|    |
+| page_size | false | int | if not filled in as 20, and no more than 50|    |
+
+> Response: 
+
+```json
+{
+    "status":"ok",
+    "data":{
+        "orders":[
+            {
+                "symbol":"BTC",
+                "contract_type":"quarter",
+                "contract_code":"BTC210326",
+                "volume":1,
+                "order_type":1,
+                "direction":"sell",
+                "offset":"close",
+                "lever_rate":75,
+                "order_id":825042343047499776,
+                "order_id_str":"825042343047499776",
+                "order_source":"api",
+                "created_at":1616747023128,
+                "order_price_type":"formula_price",
+                "status":2,
+                "callback_rate":0.003,
+                "active_price":54323,
+                "is_active":0
+            }
+        ],
+        "total_page":1,
+        "current_page":1,
+        "total_size":3
+    },
+    "ts":1616747242096
+}
+```
+
+### Return Parameter
+
+| Parameter Name            | Mandatory  | Type     | Description                            | Value Range                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status          | true  | string |  the result of server handling to request                        | "ok" :success, "error": failed |
+| \<data\>        |   true    |   object     |                               | dictionary                   |
+| total_page        | true | int | total page   |                |
+| total_size        | true | int | total size   |                |
+| current_page        | true | int | current page   |                |
+| \<orders\>        |   true    |   object array    |                               |     |
+| symbol                 | true | string  | symbol               |                                          |
+| contract_type          | true | string  | contract type               | this_week, next_week, quarter，next_quarter |
+| contract_code          | true | string  | contract code               | "BTC180914" ...                          |
+| volume                 | true | decimal  | volume |      |
+| order_type           | true | int | order type: 1. Quotation; 2. Cancelled order               |                                          |
+| direction            | true | string | direction                |           buy, sell         |
+| offset         | true | string | offset               |                  open, close        |
+| lever_rate            | true | int    | lever rate               |                                       |
+| order_id      | true | long | trailing order id                |                                          |
+| order_id_str             | true | string | trailing order id in string format              |                                          |
+| order_source      | true | string  | order source        |                                          |
+| created_at        | true  | long | created at |                      |
+| order_price_type        | true  | string | order price type  |  optimal_5, optimal_10, optimal_20, formula_price    |
+| status        | true  | int | order status  |     2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled              |
+| callback_rate          | true | decimal | callback rate           |  such as: 0.01 means 1%                         |
+| active price   | true | decimal | active price             |  |
+| is_active   | true | int | Is the active price activated?             |  1: activated; 0: not activated|
+| \</orders\>       |       |        |     |  |
+| \</data\>       |       |        |     |  |
+| ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
+
+
+## Get History Trailing Orders
+
+ - POST `/api/v1/contract_track_hisorders`
+
+### Request Parameter
+
+| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| symbol          | true | string | symbol                  | "BTC","ETH"...                           |
+| contract_code | false | string | contract code,"BTC180914" ...|    |
+| status | true | string | order status| Multiple separated by English commas, Trailing Order status: 2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled   |
+| trade_type | true  | int | trade type  |  0:all,1: buy long,2: sell short,3: buy short,4: sell long |
+| create_date | true | long | days| any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.   |
+| page_index | false | int | page index, if not filled in as 1st|    |
+| page_size | false | int | if not filled in as 20, and no more than 50|    |
+| sort_by | false | string | sort fields(descending), if not filled in, sort by created_at descending |  "create_date"：descending order by order create date , "update_time": descending order by order update time  |
+
+> Response: 
+
+```json
+{
+    "status":"ok",
+    "data":{
+        "orders":[
+            {
+                "symbol":"BTC",
+                "contract_type":"quarter",
+                "contract_code":"BTC210326",
+                "triggered_price":null,
+                "volume":1,
+                "order_type":1,
+                "direction":"buy",
+                "offset":"close",
+                "lever_rate":75,
+                "order_id":825042223069433856,
+                "order_id_str":"825042223069433856",
+                "order_source":"api",
+                "created_at":1616746994523,
+                "update_time":1616747101872,
+                "order_price_type":"formula_price",
+                "status":6,
+                "canceled_at":1616747044182,
+                "fail_code":null,
+                "fail_reason":null,
+                "callback_rate":0.003,
+                "active_price":52323,
+                "is_active":0,
+                "market_limit_price":null,
+                "formula_price":null,
+                "real_volume":0,
+                "relation_order_id":"-1"
+            }
+        ],
+        "total_page":1,
+        "current_page":1,
+        "total_size":5
+    },
+    "ts":1616747533336
+}
+```
+
+### Return Parameter
+
+| Parameter Name            | Mandatory  | Type     | Description                            | Value Range                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status          | true  | string |  the result of server handling to request                        | "ok" :success, "error": failed |
+| \<data\>        |   true    |   object     |                               | dictionary                   |
+| total_page        | true | int | total page   |                |
+| total_size        | true | int | total size   |                |
+| current_page        | true | int | current page   |                |
+| \<orders\>        |   true    |   object array    |                               |     |
+| symbol                 | true | string  | symbol               |                                          |
+| contract_type          | true | string  | contract type               | this_week, next_week, quarter，next_quarter |
+| contract_code          | true | string  | contract code               | "BTC180914" ...                          |
+| volume                 | true | decimal  | volume |      |
+| order_type           | true | int | order type: 1. Quotation; 2. Cancelled order               |                                          |
+| direction            | true | string | direction                |           buy, sell         |
+| offset         | true | string | offset               |                  open, close        |
+| lever_rate            | true | int    | lever rate               |                                       |
+| order_id      | true | long | trailing order id                |                                          |
+| order_id_str             | true | string | trailing order id in string format              |                                          |
+| order_source      | true | string  | order source        |                                          |
+| created_at        | true  | long | created at |                      |
+| update_time        | true  | long | update time, unit: millisecond |                      |
+| order_price_type        | true  | string | order price type  |   optimal_5, optimal_10, optimal_20, formula_price        |
+| status        | true  | int | order status  |    2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled          |
+| canceled_at        | true  | long | canceled at |                      |
+| fail_code        | true  | int | error code when place limit price order |                      |
+| fail_reason        | true  | string | error reason when place limit price order |                      |
+| callback_rate          | true | decimal | callback rate             |  such as: 0.01 means 1%                         |
+| active price   | true | decimal | active price           |  |
+| is_active   | true | int | Is the active price activated?             |  1: activated; 0: not activated|
+| market_limit_price   | true | decimal |  lowest/highest market price (use the lowest price when buy. use the highest when sell)           |  |
+| formula_price   | true | decimal | formula price(the lowest (highest) market price* (1 ± callback rate)) |  |
+| real_volume   | true | decimal | real volume                |  |
+| triggered_price   | true | decimal | triggered price           |  |
+| relation_order_id          | true | string |  relation_order_id is the string related to the limit orders， The value is -1 before the trigger orders executed.	           |                       |
+| \</orders\>       |       |        |     |  |
+| \</data\>       |       |        |     |  |
+| ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
+-->
 
 # Future Transferring Interface
 
@@ -8774,7 +9179,7 @@ id  |  true  |  string  | Request ID  |   |
 id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
 price  |  true  |  string  |  Price |   |    
 amount  |  true  |  string  | Trade amount(Coin), trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price). Sum of both buy and sell sides  |   |    
-direction  |  true  |  string  |  The direction to buy or sell is the direction of the taker (active transaction)  |   |    
+direction  |  true  |  string  | The direction to buy or sell is the direction of the taker (active transaction)   |   |    
 ts  |  true  |  long  |  Order Creation Time |   |   
 quantity  |  true  |  string  |  trading quantity(coin)  |   |   
  \</data\>    |               |    |      | 
@@ -9262,7 +9667,7 @@ quantity  |  true  |  decimal  |  trading quantity(coin)  |   |
 ### Subscribe Parameter Rules
 | **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | true | string  | symbol |   | "BTC_CW" represents BTC “This Week”, "BTC_NW" represents BTC “Next Week”, "BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”|
+| symbol      | true | string  | symbol |   | "BTC_CW" represents BTC “This Week”, "BTC_NW" represents BTC “Next Week”, "BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”.  Contract code is supported to query data. e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly)|
 | period      | true     | string  | kline period               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon     |
 
 
@@ -9341,7 +9746,7 @@ quantity  |  true  |  decimal  |  trading quantity(coin)  |   |
 ### Request Parameter Rules: 
 | **Parameter Name**    | **Mandatory** | **Type** | **Desc**        | **Default** | **Value Range**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| symbol      | true  | string  | symbol |   | "BTC_CW" represents BTC “This Week”, "BTC_NW" represents BTC “Next Week”, "BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”|
+| symbol      | true  | string  | symbol |   | "BTC_CW" represents BTC “This Week”, "BTC_NW" represents BTC “Next Week”, "BTC_CQ" represents BTC “Quarter”."BTC_NQ" represents BTC “Next Quarter”.  Contract code is supported to query data. e.g.: "BTC200918"(weekly), "BTC200925"(Bi-weekly),"BTC201225"(quarterly),"BTC210326"(next quarterly) |
 | period      | true  | string  | kline period  |   | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon     |
 
 
@@ -10004,7 +10409,7 @@ To subscribe position updates data, the client has to make connection to the ser
 | profit                 | decimal     | Profits/Losses                                                     |
 | position_margin        | decimal    | Position Margin                                                      |
 | lever_rate             | decimal     | Leverage                                                    |
-| direction              | string    | Position direction   "buy":Long "sell":Short                                                     |
+| direction              | string    | transaction direction of positions  "buy":long "sell":short                         |
 | last_price              | decimal    | Last Price                                                     |
 | \</data\>            |   |                                                        |
 
@@ -10637,7 +11042,7 @@ To subscribe basis data, the Client has to make connection to the Server and sen
 | 2030   | Exceeds connection limit of single user. |
 | 2040   | Missing required parameter.              |
 
-  
+
 </br>
 </br>
 </br>
