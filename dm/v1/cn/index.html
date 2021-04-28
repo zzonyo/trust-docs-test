@@ -265,6 +265,9 @@
             <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-2-7-2020-3-30-k-symbol-btc210326-k-symbol-btc210326-k-symbol-btc210326" class="toc-h2 toc-link" data-title="1.2.7 2020年3月30日 【新增:获取市场最优挂单接口。修改：获取标记价格K线接口（支持symbol入参直接使用合约代码请求，例于：BTC210326）、订阅标记价格K线数据接口（支持symbol入参直接使用合约代码请求，例于：BTC210326）、请求标记价格K线数据接口（支持symbol入参直接使用合约代码请求，例于：BTC210326）】">1.2.7 2020年3月30日 【新增:获取市场最优挂单接口。修改：获取标记价格K线接口（支持symbol入参直接使用合约代码请求，例于：BTC210326）、订阅标记价格K线数据接口（支持symbol入参直接使用合约代码请求，例于：BTC210326）、请求标记价格K线数据接口（支持symbol入参直接使用合约代码请求，例于：BTC210326）】</a>
+                  </li>
+                  <li>
                     <a href="#1-2-6-2021-3-15-k-k-k" class="toc-h2 toc-link" data-title="1.2.6 2021年3月15日 【新增：获取标记价格K线接口、订阅标记价格K线数据接口、请求标记价格K线数据接口】">1.2.6 2021年3月15日 【新增：获取标记价格K线接口、订阅标记价格K线数据接口、请求标记价格K线数据接口】</a>
                   </li>
                   <li>
@@ -440,6 +443,9 @@
                   </li>
                   <li>
                     <a href="#1716b8327e" class="toc-h2 toc-link" data-title="获取行情深度数据">获取行情深度数据</a>
+                  </li>
+                  <li>
+                    <a href="#163b90c2f0" class="toc-h2 toc-link" data-title="获取市场最优挂单">获取市场最优挂单</a>
                   </li>
                   <li>
                     <a href="#k" class="toc-h2 toc-link" data-title="获取K线数据">获取K线数据</a>
@@ -838,7 +844,31 @@
 <li>提供火币UID （需不存在返佣关系的 UID）；</li>
 <li>提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；</li>
 </ol>
-<h1 id='185368440e'>更新日志</h1><h2 id='1-2-6-2021-3-15-k-k-k'>1.2.6 2021年3月15日 【新增：获取标记价格K线接口、订阅标记价格K线数据接口、请求标记价格K线数据接口】</h2><h3 id='1-k'>1、新增获取标记价格K线接口</h3>
+<h1 id='185368440e'>更新日志</h1><h2 id='1-2-7-2020-3-30-k-symbol-btc210326-k-symbol-btc210326-k-symbol-btc210326'>1.2.7 2020年3月30日 【新增:获取市场最优挂单接口。修改：获取标记价格K线接口（支持symbol入参直接使用合约代码请求，例于：BTC210326）、订阅标记价格K线数据接口（支持symbol入参直接使用合约代码请求，例于：BTC210326）、请求标记价格K线数据接口（支持symbol入参直接使用合约代码请求，例于：BTC210326）】</h2><h3 id='1'>1、新增获取市场最优挂单接口</h3>
+<ul>
+<li>接口名称：获取市场最优挂单</li>
+<li>接口类型：公共接口</li>
+<li>接口URL：/market/bbo</li>
+</ul>
+<h3 id='2-k-symbol-btc210326'>2、修改获取标记价格K线接口（支持symbol入参直接使用合约代码请求，例于：BTC210326）</h3>
+<ul>
+<li>接口名称：获取标记价格的K线数据</li>
+<li>接口类型：公共接口</li>
+<li>接口URL：/index/market/history/mark_price_kline</li>
+</ul>
+<h3 id='3-k-symbol-btc210326'>3、修改订阅标记价格K线数据接口（支持symbol入参直接使用合约代码请求，例于：BTC210326）</h3>
+<ul>
+<li>接口名称：订阅标记价格K线数据</li>
+<li>接口类型：公共接口</li>
+<li>订阅地址：market.$symbol.mark_price.$period</li>
+</ul>
+<h3 id='4-k-symbol-btc210326'>4、修改请求标记价格K线数据接口（支持symbol入参直接使用合约代码请求，例于：BTC210326）</h3>
+<ul>
+<li>接口名称：请求标记价格K线数据</li>
+<li>接口类型：公共接口</li>
+<li>订阅地址：market.$symbol.mark_price.$period</li>
+</ul>
+<h2 id='1-2-6-2021-3-15-k-k-k'>1.2.6 2021年3月15日 【新增：获取标记价格K线接口、订阅标记价格K线数据接口、请求标记价格K线数据接口】</h2><h3 id='1-k'>1、新增获取标记价格K线接口</h3>
 <ul>
 <li>接口名称：获取标记价格的K线数据</li>
 <li>接口类型：公共接口</li>
@@ -856,7 +886,7 @@
 <li>接口类型：公共接口</li>
 <li>订阅地址：market.$symbol.mark_price.$period</li>
 </ul>
-<h2 id='1-2-5-2021-2-26-ch-market-trade-detail-tick-symbol'>1.2.5 2021年2月26日 【新增：获取账户总资产估值接口。修改获取合约最高限价和最低限价接口（支持用户所有入参都不填，接口返回所有当前上市合约的限价数据。）、修改获取市场最近成交记录接口（支持用户所有入参都不填，接口返回所有当前上市合约的最近成交数据；当用户不传入参时， 返参ch值为market.*trade.detail。在返参tick下新增字段：symbol。）】</h2><h3 id='1'>1、新增获取账户总资产估值接口</h3>
+<h2 id='1-2-5-2021-2-26-ch-market-trade-detail-tick-symbol'>1.2.5 2021年2月26日 【新增：获取账户总资产估值接口。修改获取合约最高限价和最低限价接口（支持用户所有入参都不填，接口返回所有当前上市合约的限价数据。）、修改获取市场最近成交记录接口（支持用户所有入参都不填，接口返回所有当前上市合约的最近成交数据；当用户不传入参时， 返参ch值为market.*trade.detail。在返参tick下新增字段：symbol。）】</h2><h3 id='1-2'>1、新增获取账户总资产估值接口</h3>
 <ul>
 <li>接口名称：获取账户总资产估值</li>
 <li>接口类型：私有接口</li>
@@ -874,7 +904,7 @@
 <li>接口类型：共公接口</li>
 <li>接口URL：/market/trade</li>
 </ul>
-<h2 id='1-2-4-2021-2-5-4-7-8-90'>1.2.4 2021年2月5日【新增：获取平台阶梯保证金接口、批量设置子账户交易权限接口、批量获取子账户资产信息接口。4-7 修改接口，新增字段。8 查询用户结算记录接口（为避免影响系统性能，接口仅支持查询最近90天用户结算记录）】</h2><h3 id='1-2'>1、新增获取平台阶梯保证金接口</h3>
+<h2 id='1-2-4-2021-2-5-4-7-8-90'>1.2.4 2021年2月5日【新增：获取平台阶梯保证金接口、批量设置子账户交易权限接口、批量获取子账户资产信息接口。4-7 修改接口，新增字段。8 查询用户结算记录接口（为避免影响系统性能，接口仅支持查询最近90天用户结算记录）】</h2><h3 id='1-3'>1、新增获取平台阶梯保证金接口</h3>
 <ul>
 <li>接口名称：获取平台阶梯保证金</li>
 <li>接口类型：公共接口</li>
@@ -922,7 +952,7 @@
 <li>接口类型：私有接口</li>
 <li>接口URL：/api/v1/contract_user_settlement_records</li>
 </ul>
-<h2 id='1-2-3-2021-1-29-2-14-id-id-18-id-order_id_str-id'>1.2.3 2021年1月29日 【新增：批量获取聚合行情接口。 2-14 修改接口，新增字段。修改：计划委托订单的订单ID由原本的自然数自增ID 改为长度为 18 位的唯一标识ID。推荐使用下单后返回的 order_id_str（字符串类型的订单 ID），避免发生长度过大而被系统截断的情况。】</h2><h3 id='1-3'>1、新增批量获取聚合行情接口</h3>
+<h2 id='1-2-3-2021-1-29-2-14-id-id-18-id-order_id_str-id'>1.2.3 2021年1月29日 【新增：批量获取聚合行情接口。 2-14 修改接口，新增字段。修改：计划委托订单的订单ID由原本的自然数自增ID 改为长度为 18 位的唯一标识ID。推荐使用下单后返回的 order_id_str（字符串类型的订单 ID），避免发生长度过大而被系统截断的情况。】</h2><h3 id='1-4'>1、新增批量获取聚合行情接口</h3>
 <ul>
 <li>接口名称：批量获取聚合行情</li>
 <li>接口类型：公共接口</li>
@@ -1006,7 +1036,7 @@
 <li>接口类型：私有接口</li>
 <li>接口URL：/api/v1/contract_tpsl_openorders</li>
 </ul>
-<h2 id='1-2-2-2021-01-12-1-2-7-api-8-23'>1.2.2 2021年01月12号 【1 新增获取预估结算价。2-7 新增止盈止损API接口，8-23 修改接口，新增字段。新增【合约策略订单】一级菜单，将本次新增的双向止盈止损相关接口以及原有的计划委托相关接口挪到该菜单下】</h2><h3 id='1-4'>1、新增获取预估结算价</h3>
+<h2 id='1-2-2-2021-01-12-1-2-7-api-8-23'>1.2.2 2021年01月12号 【1 新增获取预估结算价。2-7 新增止盈止损API接口，8-23 修改接口，新增字段。新增【合约策略订单】一级菜单，将本次新增的双向止盈止损相关接口以及原有的计划委托相关接口挪到该菜单下】</h2><h3 id='1-5'>1、新增获取预估结算价</h3>
 <ul>
 <li>接口名称: 获取预估结算价</li>
 <li>接口类型: 公共接口</li>
@@ -1162,7 +1192,7 @@
 <li><p>接口类型：私有接口</p></li>
 <li><p>接口URL：api/v1/contract_hisorders_exact</p></li>
 </ul>
-<h2 id='1-2-0-2020-11-24'>1.2.0 2020年11月24日 【新增：查询平台历史结算记录；修改：获取强平订单接口新增返参字段，订阅强平订单数据接口新增返参字段】</h2><h3 id='1-5'>1、新增查询平台历史结算记录接口</h3>
+<h2 id='1-2-0-2020-11-24'>1.2.0 2020年11月24日 【新增：查询平台历史结算记录；修改：获取强平订单接口新增返参字段，订阅强平订单数据接口新增返参字段】</h2><h3 id='1-6'>1、新增查询平台历史结算记录接口</h3>
 <ul>
 <li><p>接口名称：查询平台历史结算记录</p></li>
 <li><p>接口类型：公共接口</p></li>
@@ -1180,7 +1210,7 @@
 <li><p>接口类型：公共接口</p></li>
 <li><p>订阅主题：public.$symbol.liquidation_orders</p></li>
 </ul>
-<h2 id='1-1-9-2020-10-28-1'>1.1.9 2020年10月28日 【新增：1、新增组合查询财务记录接口、组合查询合约历史委托接口、组合查询历史成交记录接口。】</h2><h3 id='1-6'>1、新增组合查询合约历史成交记录接口</h3>
+<h2 id='1-1-9-2020-10-28-1'>1.1.9 2020年10月28日 【新增：1、新增组合查询财务记录接口、组合查询合约历史委托接口、组合查询历史成交记录接口。】</h2><h3 id='1-7'>1、新增组合查询合约历史成交记录接口</h3>
 <ul>
 <li><p>接口名称：组合查询合约历史成交记录</p></li>
 <li><p>接口类型：私有接口</p></li>
@@ -1198,7 +1228,7 @@
 <li><p>接口类型：私有接口</p></li>
 <li><p>接口地址：api/v1/contract_financial_record_exact</p></li>
 </ul>
-<h2 id='1-1-8-2020-10-15-ws-ws-24-4'>1.1.8 2020年10月15日 【新增：切换杠杆倍数接口；修改：切换杠杆成功时 WS 资产接口推送更新信息，切换杠杆成功时 WS 持仓接口推送更新信息，订单撮合推送接口新增返参字段，获取合约订单信息接口（将原支持查询 24 小时的撤单数据改为支持查询 4 小时撤单数据）】</h2><h3 id='1-7'>1、新增切换杠杆倍数接口</h3>
+<h2 id='1-1-8-2020-10-15-ws-ws-24-4'>1.1.8 2020年10月15日 【新增：切换杠杆倍数接口；修改：切换杠杆成功时 WS 资产接口推送更新信息，切换杠杆成功时 WS 持仓接口推送更新信息，订单撮合推送接口新增返参字段，获取合约订单信息接口（将原支持查询 24 小时的撤单数据改为支持查询 4 小时撤单数据）】</h2><h3 id='1-8'>1、新增切换杠杆倍数接口</h3>
 <ul>
 <li><p>接口名称：切换杠杆</p></li>
 <li><p>接口类型：私有接口</p></li>
@@ -1234,7 +1264,7 @@
 <li>接口类型: 公共接口</li>
 <li>订阅主题：public.$service.heartbeat</li>
 </ul>
-<h2 id='1-1-6-2020-9-22-code-rest-ws-symbol-code-btc200925-code'>1.1.6 2020年9月22日 【新增：市场行情接口已支持按照合约code调用，包括rest和ws接口。请求参数的“symbol”字段中，新增合约code类型，格式固定为“品种”、“年”、“月”、“日”，比如：BTC200925；通过合约code调用暂时只支持查询当前上市中的合约。】</h2><h3 id='1-8'>1、获取行情深度数据</h3>
+<h2 id='1-1-6-2020-9-22-code-rest-ws-symbol-code-btc200925-code'>1.1.6 2020年9月22日 【新增：市场行情接口已支持按照合约code调用，包括rest和ws接口。请求参数的“symbol”字段中，新增合约code类型，格式固定为“品种”、“年”、“月”、“日”，比如：BTC200925；通过合约code调用暂时只支持查询当前上市中的合约。】</h2><h3 id='1-9'>1、获取行情深度数据</h3>
 <ul>
 <li>接口名称：获取行情深度数据</li>
 <li>接口类型: 公共接口</li>
@@ -1312,7 +1342,7 @@
 <li>接口类型: 公共接口</li>
 <li>订阅主题：market.$symbol.bbo</li>
 </ul>
-<h2 id='1-1-5-2020-8-6'>1.1.5 2020年8月6日 【新增：查询用户结算记录接口；订阅计划委托订单更新接口】</h2><h3 id='1-9'>1、新增查询用户结算记录接口</h3>
+<h2 id='1-1-5-2020-8-6'>1.1.5 2020年8月6日 【新增：查询用户结算记录接口；订阅计划委托订单更新接口】</h2><h3 id='1-10'>1、新增查询用户结算记录接口</h3>
 <ul>
 <li><p>接口名称：查询用户结算记录</p></li>
 <li><p>接口类型：私有接口</p></li>
@@ -1536,7 +1566,7 @@
 <li>接口类型：私有接口</li>
 <li>接口URL：api/v1/contract_api_trading_status</li>
 </ul>
-<h2 id='1-0-11-2020-2-21-20-10'>1.0.11  2020年2月21日【更新：批量20个订单改成批量最多10个订单】</h2><h3 id='1-10'>1、接口名称：合约批量下单</h3>
+<h2 id='1-0-11-2020-2-21-20-10'>1.0.11  2020年2月21日【更新：批量20个订单改成批量最多10个订单】</h2><h3 id='1-11'>1、接口名称：合约批量下单</h3>
 <ul>
 <li>接口URL：api/v1/contract_batchorder</li>
 <li>接口类型：私有接口</li>
@@ -1564,7 +1594,7 @@
 <ul>
 <li>/api/v1/contract_order_detail 获取订单明细</li>
 </ul>
-<h2 id='1-0-9-2019-12-2'>1.0.9 2019年12月2日【更新:新增计划委托接口】</h2><h3 id='1-11'>1、新增查询资金持仓接口</h3>
+<h2 id='1-0-9-2019-12-2'>1.0.9 2019年12月2日【更新:新增计划委托接口】</h2><h3 id='1-12'>1、新增查询资金持仓接口</h3>
 <p>rest接口api/v1/contract_account_position_info，用于获取到当前的资产和持仓信息。</p>
 <h3 id='2-8'>2、新增计划委托接口</h3>
 <ul>
@@ -1625,7 +1655,7 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 具体参考nodejs的demo，点击<a href='https://github.com/huobiapi/Futures-Node.js-demo/tree/master/REST-Node.js-demo'>查看</a>。
 详细说明，请点击<a href='https://github.com/huobiapi/Futures-Node.js-demo/blob/master/Nodejs%20%E5%90%88%E7%BA%A6%20DEMO%E4%BF%AE%E6%94%B9.docx?raw=true'>下载</a>
 </aside>
-<h3 id='1-12'>1、修改接口获取用户账户信息</h3>
+<h3 id='1-13'>1、修改接口获取用户账户信息</h3>
 <p>rest接口api/v1/contract_account_info增加返回字段‘ margin_static’，表示用户的静态权益</p>
 <h3 id='2-9'>2、修改获取订单明细信息</h3>
 <p>rest接口api/v1/contract_order_detail、查询用户的成交记录</p>
@@ -1683,7 +1713,7 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 <p>rest接口，下单接口和批量下单接口新增最优5、10、20档下单；</p>
 
 <p>rest接口，获取成交记录增加按照合约code查询；</p>
-<h2 id='1-0-4-2019-6-6-restful'>1.0.4 2019年6月6日【更新: Restful查询接口】</h2><h3 id='1-13'>1.查询母账户下所有子账户资产信息</h3>
+<h2 id='1-0-4-2019-6-6-restful'>1.0.4 2019年6月6日【更新: Restful查询接口】</h2><h3 id='1-14'>1.查询母账户下所有子账户资产信息</h3>
 <p>URL：api/v1/contract_sub_account_list</p>
 
 <p>备注：只返回已经开通合约交易的子账户数据</p>
@@ -1850,6 +1880,14 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 <td>/market/detail/batch_merged</td>
 <td>GET</td>
 <td>批量获取聚合行情</td>
+<td>否</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>市场行情接口</td>
+<td>/market/bbo</td>
+<td>GET</td>
+<td>获取市场最优挂单</td>
 <td>否</td>
 </tr>
 <tr>
@@ -2306,6 +2344,46 @@ nodejs和Javascript的用户请特别注意：order_id返回是18位，nodejs和
 <td>/api/v1/contract_relation_tpsl_order</td>
 <td>POST</td>
 <td>查询开仓单关联的止盈止损订单</td>
+<td>是</td>
+</tr>
+<tr>
+<td>&lt;!--交易</td>
+<td>策略接口</td>
+<td>/api/v1/contract_track_order</td>
+<td>POST</td>
+<td>跟踪委托订单下单</td>
+<td>是</td>
+</tr>
+<tr>
+<td>交易</td>
+<td>策略接口</td>
+<td>/api/v1/contract_track_cancel</td>
+<td>POST</td>
+<td>跟踪委托订单撤单</td>
+<td>是</td>
+</tr>
+<tr>
+<td>交易</td>
+<td>策略接口</td>
+<td>/api/v1/contract_track_cancelall</td>
+<td>POST</td>
+<td>跟踪委托订单全部撤单</td>
+<td>是</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>策略接口</td>
+<td>/api/v1/contract_track_openorders</td>
+<td>POST</td>
+<td>跟踪委托订单当前委托</td>
+<td>是</td>
+</tr>
+<tr>
+<td>读取</td>
+<td>策略接口</td>
+<td>/api/v1/contract_track_hisorders</td>
+<td>POST</td>
+<td>跟踪委托订单历史委托</td>
 <td>是</td>
 </tr>
 </tbody></table>
@@ -4279,9 +4357,11 @@ step6是不合并小数；
 </tr>
 </tbody></table>
 <h3 id='9852b06629-2'>备注：</h3>
-<p>如果不填，默认查询所有所有合约信息;
-如果contract_code填了值，那就按照contract_code去查询;
-如果contract_code没有填值，则按照symbol+contract_type去查询;</p>
+<p>如果不填，默认查询所有所有合约信息;</p>
+
+<p>如果contract_code填了值，那就按照contract_code去查询;</p>
+
+<p>如果contract_code没有填值，则按照symbol+contract_type去查询;</p>
 
 <blockquote>
 <p>Response:</p>
@@ -4545,9 +4625,11 @@ step6是不合并小数；
 </tr>
 </tbody></table>
 <h3 id='9852b06629-3'>备注：</h3>
-<p>所有入参都不填，接口返回所有当前上市合约的限价数据。
-如果contract_code填了值，那就按照contract_code去查询；
-contract_type参数需要和symbol配合查询，仅传contract_type查询不到合约数据。</p>
+<p>所有入参都不填，接口返回所有当前上市合约的限价数据。</p>
+
+<p>如果contract_code填了值，那就按照contract_code去查询；</p>
+
+<p>contract_type参数需要和symbol配合查询，仅传contract_type查询不到合约数据。</p>
 
 <blockquote>
 <p>Response:</p>
@@ -5370,12 +5452,135 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>10</td>
 </tr>
 </tbody></table>
+<h2 id='163b90c2f0'>获取市场最优挂单</h2>
+<ul>
+<li>GET <code>/market/bbo</code></li>
+</ul>
+<h3 id='1f9ac54b15-11'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>false</td>
+<td>string</td>
+<td>合约标识，不填返回全部合约的最优挂单信息</td>
+<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约 ，&quot;BTC_NQ&quot;表示BTC次季度合约。 支持使用合约code来查询数据， 例如：&quot;BTC200918&quot;(当周)，&quot;BTC200925&quot;(次周)，&quot;BTC201225&quot;(季度)，&quot;BTC210326&quot;(次季度)。</td>
+</tr>
+</tbody></table>
+<h3 id='9852b06629-4'>备注：</h3>
+<ul>
+<li>不填合约标识时，返回所有合约的最优挂单信息。</li>
+</ul>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ticks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_CQ"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">53443</span><span class="p">,</span><span class="w">
+                </span><span class="mi">10</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">53333</span><span class="p">,</span><span class="w">
+                </span><span class="mi">8</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">219674</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1616745068985</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1616745078403</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='70bdef7e25-11'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>数据类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>请求处理结果</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>&lt;ticks&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>品种代码</td>
+<td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
+</tr>
+<tr>
+<td>mrid</td>
+<td>true</td>
+<td>long</td>
+<td>撮合ID，唯一标识</td>
+<td></td>
+</tr>
+<tr>
+<td>ask</td>
+<td>true</td>
+<td>array</td>
+<td>[卖1价,卖1量(张)]</td>
+<td></td>
+</tr>
+<tr>
+<td>bid</td>
+<td>true</td>
+<td>array</td>
+<td>[买1价,买1量(张)]</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>系统检测orderbook时间点，单位：毫秒</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/ticks&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>响应生成时间点，单位：毫秒</td>
+<td></td>
+</tr>
+</tbody></table>
 <h2 id='k'>获取K线数据</h2><h3 id='30fd4ed55b-8'>示例</h3>
 <ul>
 <li>GET  <code>/market/history/kline</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/market/history/kline?period=1min&amp;size=200&amp;symbol=BTC_CQ"</span>
-</code></pre><h3 id='1f9ac54b15-11'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-12'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5467,7 +5672,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604297729928</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-11'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-12'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5585,7 +5790,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>string</td>
 <td>合约标识</td>
 <td></td>
-<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约 ，&quot;BTC_NQ&quot;表示BTC次季度合约季度合约</td>
+<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约 ，&quot;BTC_NQ&quot;表示BTC次季度合约季度合约。支持使用合约code来查询数据， 例如：&quot;BTC200918&quot;(当周)，&quot;BTC200925&quot;(次周)，&quot;BTC201225&quot;(季度)，&quot;BTC210326&quot;(次季度)。</td>
 </tr>
 <tr>
 <td>period</td>
@@ -5604,7 +5809,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>[1,2000]</td>
 </tr>
 </tbody></table>
-<h5 id='9852b06629-4'>备注：</h5>
+<h5 id='9852b06629-5'>备注：</h5>
 <ul>
 <li>最多一次2000条数据</li>
 <li>入参大小写不敏感，均支持</li>
@@ -5751,7 +5956,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <li>GET  <code>/market/detail/merged</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/market/detail/merged?symbol=BTC_CQ"</span>
-</code></pre><h3 id='1f9ac54b15-12'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-13'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5800,7 +6005,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604298319019</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-12'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-13'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5919,7 +6124,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>GET <code>/market/detail/batch_merged</code></li>
 </ul>
-<h3 id='1f9ac54b15-13'>请求参数</h3>
+<h3 id='1f9ac54b15-14'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -5991,7 +6196,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1585818739007</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-13'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-14'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6033,7 +6238,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>amount</td>
 <td>true</td>
 <td>string</td>
-<td>成交量(币)</td>
+<td>成交量(币) （最近24（当前时间-24小时）小时成交量币）。 值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
@@ -6068,7 +6273,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>count</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交笔数</td>
+<td>成交笔数（最近24（当前时间-24小时）小时成交笔数）。 值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
@@ -6089,7 +6294,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>vol</td>
 <td>true</td>
 <td>string</td>
-<td>成交量（张），买卖双边成交量之和</td>
+<td>成交量（张）（最近24（当前时间-24小时）小时成交量张）。 值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
@@ -6119,7 +6324,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <li>GET  <code>/market/trade</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/market/trade?symbol=BTC_CQ"</span>
-</code></pre><h3 id='1f9ac54b15-14'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-15'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6163,7 +6368,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1614068483482</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-14'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-15'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6359,7 +6564,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-15'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-16'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6484,7 +6689,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <li>GET <code>/api/v1/contract_risk_info</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/contract_risk_info"</span>
-</code></pre><h3 id='1f9ac54b15-15'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-16'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6518,7 +6723,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604298633195</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-16'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-17'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6583,7 +6788,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <li>GET <code>/api/v1/contract_insurance_fund</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/contract_insurance_fund?symbol=ETH"</span>
-</code></pre><h3 id='1f9ac54b15-16'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-17'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6624,7 +6829,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1604298695848</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-17'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-18'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6703,7 +6908,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <li>GET <code>/api/v1/contract_adjustfactor</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/contract_adjustfactor"</span>
-</code></pre><h3 id='1f9ac54b15-17'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-18'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6760,7 +6965,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1604298785020</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-18'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-19'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6874,7 +7079,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <li>GET <code>/api/v1/contract_his_open_interest</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/contract_his_open_interest?symbol=BTC&amp;contract_type=this_week&amp;period=60min&amp;amount_type=1"</span>
-</code></pre><h3 id='1f9ac54b15-18'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-19'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -6945,7 +7150,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604298943494</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-19'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-20'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7222,7 +7427,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <li>GET <code>/api/v1/contract_elite_account_ratio</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/contract_elite_account_ratio?symbol=BTC&amp;period=60min"</span>
-</code></pre><h3 id='1f9ac54b15-19'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-20'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7267,7 +7472,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1604299070097</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-20'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-21'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7360,7 +7565,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <li>GET <code>/api/v1/contract_elite_position_ratio</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/contract_elite_position_ratio?symbol=BTC&amp;period=60min"</span>
-</code></pre><h3 id='1f9ac54b15-20'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-21'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7410,7 +7615,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1604299402211</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-21'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-22'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7496,7 +7701,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <li>GET <code>/api/v1/contract_liquidation_orders</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/api/v1/contract_liquidation_orders?symbol=BTC&amp;trade_type=0&amp;create_date=7"</span>
-</code></pre><h3 id='1f9ac54b15-21'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-22'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7575,7 +7780,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604299610722</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-22'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-23'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7709,7 +7914,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>GET <code>/api/v1/contract_settlement_records</code></li>
 </ul>
-<h3 id='1f9ac54b15-22'>请求参数</h3>
+<h3 id='1f9ac54b15-23'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7798,7 +8003,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606295834648</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-23'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-24'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -7933,7 +8138,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <li>GET <code>/index/market/history/index</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/index/market/history/index?symbol=BTC-USD&amp;period=1min&amp;size=150"</span>
-</code></pre><h3 id='1f9ac54b15-23'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-24'>请求参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -8108,7 +8313,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <li>GET <code>/index/market/history/basis</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/index/market/history/basis?symbol=BTC_CQ&amp;period=1min&amp;size=150&amp;basis_price_type=open"</span>
-</code></pre><h3 id='1f9ac54b15-24'>请求参数</h3>
+</code></pre><h3 id='1f9ac54b15-25'>请求参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -8178,7 +8383,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604299816352</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-24'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-25'>返回参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -8267,7 +8472,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST <code>/api/v1/contract_balance_valuation</code></li>
 </ul>
-<h3 id='1f9ac54b15-25'>请求参数</h3>
+<h3 id='1f9ac54b15-26'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8299,7 +8504,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1614044220841</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-25'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-26'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8356,7 +8561,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST  <code>/api/v1/contract_account_info</code></li>
 </ul>
-<h3 id='1f9ac54b15-26'>请求参数</h3>
+<h3 id='1f9ac54b15-27'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8403,7 +8608,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604300060777</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-26'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-27'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8537,7 +8742,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST <code>/api/v1/contract_position_info</code></li>
 </ul>
-<h3 id='1f9ac54b15-27'>请求参数</h3>
+<h3 id='1f9ac54b15-28'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8585,7 +8790,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604301441639</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-27'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-28'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8704,7 +8909,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>&quot;buy&quot;:买 &quot;sell&quot;:卖</td>
+<td>仓位方向  &quot;buy&quot;:买，即多仓  &quot;sell&quot;:卖，即空仓</td>
 <td></td>
 </tr>
 <tr>
@@ -8737,7 +8942,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST <code>/api/v1/contract_sub_auth</code></li>
 </ul>
-<h3 id='1f9ac54b15-28'>请求参数</h3>
+<h3 id='1f9ac54b15-29'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8762,7 +8967,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-5'>备注：</h4>
+<h4 id='9852b06629-6'>备注：</h4>
 <ul>
 <li>首次帮子账户开启交易权限时，系统会自动帮子账户先开通合约。</li>
 <li>若子账户交易权益已开启，此时请求开启权限，则接口会直接返回成功；若子账户交易权益已关闭，此时用户请求关闭权限，则接口会直接返回成功；</li>
@@ -8786,7 +8991,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1612490081318</span><span class="w">
 </span><span class="p">}</span><span class="w"> 
-</span></code></pre><h3 id='70bdef7e25-28'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-29'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -8867,7 +9072,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='a2a4472972'>查询母账户下所有子账户资产信息</h2><h3 id='1f9ac54b15-29'>请求参数</h3>
+<h2 id='a2a4472972'>查询母账户下所有子账户资产信息</h2><h3 id='1f9ac54b15-30'>请求参数</h3>
 <ul>
 <li>POST <code>/api/v1/contract_sub_account_list</code></li>
 </ul>
@@ -8914,7 +9119,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604301647427</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-29'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-30'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9008,7 +9213,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST <code>/api/v1/contract_sub_account_info_list</code></li>
 </ul>
-<h3 id='1f9ac54b15-30'>请求参数</h3>
+<h3 id='1f9ac54b15-31'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9040,7 +9245,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-6'>备注：</h4>
+<h4 id='9852b06629-7'>备注：</h4>
 <ul>
 <li>只返回已经开通合约交易的子账户数据.</li>
 </ul>
@@ -9082,7 +9287,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1612490180078</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-30'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-31'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9272,7 +9477,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604301730723</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-31'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-32'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9418,7 +9623,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="mi">123456789</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-31'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-32'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9475,7 +9680,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604302891178</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-32'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-33'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9602,7 +9807,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>true</td>
 <td>string</td>
 <td>仓位方向</td>
-<td>&quot;buy&quot;:多 &quot;sell&quot;:空</td>
+<td>&quot;buy&quot;:买，即多仓  &quot;sell&quot;:卖，即空仓</td>
 </tr>
 <tr>
 <td>last_price</td>
@@ -9634,7 +9839,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"3,4"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"page_size"</span><span class="p">:</span><span class="mi">20</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-32'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-33'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9704,7 +9909,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604306015124</span><span class="w">
 </span><span class="p">}</span><span class="w">                                
-</span></code></pre><h3 id='70bdef7e25-33'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-34'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9824,7 +10029,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST <code>/api/v1/contract_financial_record_exact</code></li>
 </ul>
-<h3 id='1f9ac54b15-33'>请求参数</h3>
+<h3 id='1f9ac54b15-34'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9884,7 +10089,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>prev 向前；next 向后；默认值取prev</td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-7'>备注：</h4>
+<h4 id='9852b06629-8'>备注：</h4>
 <ul>
 <li>起始与结束时间取值说明：
 
@@ -10020,7 +10225,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604305081144</span><span class="w">
 </span><span class="p">}</span><span class="w">                              
-</span></code></pre><h3 id='70bdef7e25-34'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-35'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10129,7 +10334,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-8'>备注：</h4>
+<h4 id='9852b06629-9'>备注：</h4>
 <ul>
 <li>当查询结果超过数据条数限制时，next_id为下一条数据的流水id（查询方向为prev时，next_id为下一页查询的第一条数据；查询方向为next时，next_id为下一页查询的最后一条数据）</li>
 </ul>
@@ -10137,7 +10342,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST <code>/api/v1/contract_user_settlement_records</code></li>
 </ul>
-<h3 id='1f9ac54b15-34'>请求参数</h3>
+<h3 id='1f9ac54b15-35'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10183,7 +10388,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>不填默认20，不得多于50（超过则按照50进行查询）</td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-9'>备注：</h4>
+<h4 id='9852b06629-10'>备注：</h4>
 <ul>
 <li>默认按时间倒序查询，新数据排在前。</li>
 <li>起始时间与结束时间不符合取值范围时，报错1067，参数不合法。</li>
@@ -10233,7 +10438,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604305358564</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-35'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-36'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10478,7 +10683,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="s2">"limit"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-35'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-36'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10543,7 +10748,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604306946036</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-36'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-37'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10649,7 +10854,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST <code>/api/v1/contract_fee</code></li>
 </ul>
-<h3 id='1f9ac54b15-36'>请求参数</h3>
+<h3 id='1f9ac54b15-37'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10688,7 +10893,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604307012954</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-37'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-38'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10780,7 +10985,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST <code>/api/v1/contract_transfer_limit</code></li>
 </ul>
-<h3 id='1f9ac54b15-37'>请求参数</h3>
+<h3 id='1f9ac54b15-38'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10820,7 +11025,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604307084954</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-38'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-39'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10926,7 +11131,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>post <code>/api/v1/contract_position_limit</code></li>
 </ul>
-<h3 id='1f9ac54b15-38'>请求参数</h3>
+<h3 id='1f9ac54b15-39'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10986,7 +11191,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604307195501</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-39'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-40'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11071,7 +11276,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>post <code>/api/v1/contract_account_position_info</code></li>
 </ul>
-<h3 id='1f9ac54b15-39'>请求参数</h3>
+<h3 id='1f9ac54b15-40'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11134,7 +11339,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604307305267</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-40'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-41'>返回参数</h3>
 <table><thead>
 <tr>
 <th>属性</th>
@@ -11327,7 +11532,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>direction</td>
 <td>string</td>
 <td>true</td>
-<td>&quot;buy&quot;:买 &quot;sell&quot;:卖</td>
+<td>仓位方向  &quot;buy&quot;:买，即多仓  &quot;sell&quot;:卖，即空仓</td>
 </tr>
 <tr>
 <td>last_price</td>
@@ -11362,7 +11567,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"master_to_sub"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-40'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-41'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11401,7 +11606,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>仅支持小写,master_to_sub：母账户划转到子账户， sub_to_master：子账户划转到母账户</td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-10'>备注：</h3>
+<h3 id='9852b06629-11'>备注：</h3>
 <p>母账户与每个子账户相互划转限频10次/分钟。</p>
 
 <blockquote>
@@ -11416,7 +11621,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604309247876</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-41'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-42'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11466,7 +11671,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>post <code>/api/v1/contract_master_sub_transfer_record</code></li>
 </ul>
-<h3 id='1f9ac54b15-41'>请求参数</h3>
+<h3 id='1f9ac54b15-42'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11546,7 +11751,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604309883224</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-42'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-43'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11673,7 +11878,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>get <code>/api/v1/contract_api_trading_status</code></li>
 </ul>
-<h3 id='1f9ac54b15-42'>请求参数</h3>
+<h3 id='1f9ac54b15-43'>请求参数</h3>
 <p>无</p>
 <h3 id='response'>Response:</h3>
 <table><thead>
@@ -11893,7 +12098,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>Post <code>/api/v1/contract_available_level_rate</code></li>
 </ul>
-<h3 id='1f9ac54b15-43'>请求参数</h3>
+<h3 id='1f9ac54b15-44'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12002,7 +12207,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"sl_order_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"330"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sl_order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"optimal_5"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-44'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-45'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名</th>
@@ -12069,7 +12274,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>order_price_type</td>
 <td>string</td>
 <td>true</td>
-<td>订单报价类型 &quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单, &quot;opponent_ioc&quot;： 对手价-IOC下单，&quot;optimal_5_ioc&quot;：最优5档-IOC下单，&quot;optimal_10_ioc&quot;：最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单,&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
+<td>订单报价类型 &quot;limit&quot;:限价，&quot;opponent&quot;:对手价 ，&quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,&quot;optimal_5&quot;：最优5档，&quot;optimal_10&quot;：最优10档，&quot;optimal_20&quot;：最优20档，&quot;ioc&quot;:IOC订单，&quot;fok&quot;：FOK订单, &quot;opponent_ioc&quot;： 对手价-IOC下单，&quot;optimal_5_ioc&quot;：最优5档-IOC下单，&quot;optimal_10_ioc&quot;：最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单,&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
 </tr>
 <tr>
 <td>tp_trigger_price</td>
@@ -12141,7 +12346,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604367611267</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-43'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-44'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12245,7 +12450,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-45'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-46'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名</th>
@@ -12328,7 +12533,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>orderPriceType</td>
 <td>string</td>
 <td>true</td>
-<td>订单报价类型 &quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc：IOC订单，fok：FOK订单,&quot;opponent_ioc&quot;： 对手价-IOC下单，&quot;optimal_5_ioc&quot;：最优5档-IOC下单，&quot;optimal_10_ioc&quot;：最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单,&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
+<td>订单报价类型 &quot;limit&quot;:限价，&quot;opponent&quot;:对手价 ，&quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,&quot;optimal_5&quot;：最优5档，&quot;optimal_10&quot;：最优10档，&quot;optimal_20&quot;：最优20档，&quot;ioc&quot;:IOC订单，&quot;fok&quot;：FOK订单,&quot;opponent_ioc&quot;： 对手价-IOC下单，&quot;optimal_5_ioc&quot;：最优5档-IOC下单，&quot;optimal_10_ioc&quot;：最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单,&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
 </tr>
 <tr>
 <td>tp_trigger_price</td>
@@ -12404,7 +12609,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604367844388</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-44'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-45'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12535,7 +12740,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"order_id"</span><span class="p">:</span><span class="s2">"634696656176029696,634693443368525824"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btc"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-46'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-47'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12563,7 +12768,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>支持大小写,&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-11'>备注：</h3>
+<h3 id='9852b06629-12'>备注：</h3>
 <ul>
 <li><p>order_id和client_order_id都可以用来撤单，至少要填写一个,同时只可以设置其中一种，如果设置了两种，默认以order_id来撤单。</p></li>
 <li><p>撤单接口返回结果只代表撤单命令发送成功，建议根据订单查询接口查询订单的状态来确定订单是否已真正撤销。</p></li>
@@ -12588,7 +12793,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604367997451</span><span class="w">
 </span><span class="p">}</span><span class="w"> 
-</span></code></pre><h3 id='70bdef7e25-45'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-46'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12682,7 +12887,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"btc200925"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="s2">"quarter"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-47'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-48'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12742,7 +12947,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604369127577</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-46'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-47'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12832,7 +13037,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <li><p>只有在单个品种下只有持仓，且没有挂单的场景下，才可以切换该品种当前的倍数。</p></li>
 <li><p>接口限制请求次数为每3秒一次。</p></li>
 </ul>
-<h3 id='1f9ac54b15-48'>请求参数</h3>
+<h3 id='1f9ac54b15-49'>请求参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -12845,7 +13050,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <tr>
 <td>symbol</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>品种代码</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
@@ -12880,7 +13085,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The leverage is invalid. Please contact the customer service."</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604369954194</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-47'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-48'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12951,7 +13156,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST  <code>/api/v1/contract_order_info</code></li>
 </ul>
-<h3 id='1f9ac54b15-49'>请求参数</h3>
+<h3 id='1f9ac54b15-50'>请求参数</h3>
 <blockquote>
 <p>Request:</p>
 </blockquote>
@@ -12988,7 +13193,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>支持大小写，&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
-<h3 id='9852b06629-12'>备注：</h3>
+<h3 id='9852b06629-13'>备注：</h3>
 <ul>
 <li><p>最多只能查询 4 小时内的撤单信息。</p></li>
 <li><p>order_id和client_order_id至少要填写一个。</p></li>
@@ -13099,7 +13304,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>true</td>
 <td>string</td>
 <td>订单报价类型</td>
-<td>订单报价类型 订单报价类型 &quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单</td>
+<td>订单报价类型 订单报价类型 &quot;limit&quot;:限价，&quot;opponent&quot;:对手价 ，&quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,&quot;optimal_5&quot;：最优5档，&quot;optimal_10&quot;：最优10档，&quot;optimal_20&quot;：最优20档，&quot;ioc&quot;:IOC订单，&quot;fok&quot;：FOK订单,</td>
 </tr>
 <tr>
 <td>direction</td>
@@ -13263,7 +13468,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-13'>备注：</h4>
+<h4 id='9852b06629-14'>备注：</h4>
 <ul>
 <li>真实收益为开仓均价和成交价计算得出（订单的真实收益为订单下每笔成交的真实收益之和）。</li>
 <li>只有在2021年1月30日0点后创建的订单，真实收益（real_profit）字段才会有值。存量数据均为0。</li>
@@ -13284,7 +13489,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"page_size"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-50'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-51'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13502,7 +13707,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>true</td>
 <td>string</td>
 <td>订单报价类型</td>
-<td>订单报价类型 &quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单</td>
+<td>订单报价类型 &quot;limit&quot;:限价，&quot;opponent&quot;:对手价 ，&quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,&quot;optimal_5&quot;：最优5档，&quot;optimal_10&quot;：最优10档，&quot;optimal_20&quot;：最优20档，&quot;ioc&quot;:IOC订单，&quot;fok&quot;：FOK订单,</td>
 </tr>
 <tr>
 <td>margin_frozen</td>
@@ -13750,7 +13955,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-14'>备注：</h4>
+<h4 id='9852b06629-15'>备注：</h4>
 <ul>
 <li>真实收益为开仓均价和成交价计算得出（订单的真实收益为订单下每笔成交的真实收益之和）。</li>
 <li>只有在2021年1月30日0点后创建的订单以及对应的成交，真实收益字段（real_profit）才会有值。存量数据均为0。</li>
@@ -13759,7 +13964,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST <code>/api/v1/contract_openorders</code><br></li>
 </ul>
-<h3 id='1f9ac54b15-51'>请求参数</h3>
+<h3 id='1f9ac54b15-52'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13857,7 +14062,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604370488518</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-48'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-49'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13928,7 +14133,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>true</td>
 <td>string</td>
 <td>订单报价类型</td>
-<td>&quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制</td>
+<td>&quot;limit&quot;:限价，&quot;opponent&quot;:对手价 ，&quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制</td>
 </tr>
 <tr>
 <td>order_type</td>
@@ -14113,7 +14318,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-15'>备注：</h4>
+<h4 id='9852b06629-16'>备注：</h4>
 <ul>
 <li>真实收益为开仓均价和成交价计算得出（订单的真实收益为订单下每笔成交的真实收益之和）。</li>
 <li>只有在2021年1月30日0点后创建的订单，真实收益（real_profit）字段才会有值。存量数据均为0。</li>
@@ -14138,7 +14343,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-52'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-53'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14278,7 +14483,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604370617322</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-49'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-50'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14534,7 +14739,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-16'>备注：</h4>
+<h4 id='9852b06629-17'>备注：</h4>
 <ul>
 <li>真实收益为开仓均价和成交价计算得出（订单的真实收益为订单下每笔成交的真实收益之和）。</li>
 <li>只有在2021年1月30日0点后创建的订单，真实收益（real_profit）字段才会有值。存量数据均为0。</li>
@@ -14544,7 +14749,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST <code>/api/v1/contract_hisorders_exact</code></li>
 </ul>
-<h3 id='1f9ac54b15-53'>请求参数</h3>
+<h3 id='1f9ac54b15-54'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14594,7 +14799,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>false</td>
 <td>string</td>
 <td>订单报价类型</td>
-<td>订单报价类型 &quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单, &quot;opponent_ioc&quot;： 对手价-IOC下单，&quot;optimal_5_ioc&quot;：最优5档-IOC下单，&quot;optimal_10_ioc&quot;：最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单,&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
+<td>订单报价类型 &quot;limit&quot;:限价，&quot;opponent&quot;:对手价 ，&quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,&quot;optimal_5&quot;：最优5档，&quot;optimal_10&quot;：最优10档，&quot;optimal_20&quot;：最优20档，&quot;ioc&quot;:IOC订单，&quot;fok&quot;：FOK订单, &quot;opponent_ioc&quot;： 对手价-IOC下单，&quot;optimal_5_ioc&quot;：最优5档-IOC下单，&quot;optimal_10_ioc&quot;：最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单,&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
 </tr>
 <tr>
 <td>start_time</td>
@@ -14632,7 +14837,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>prev 向前；next 向后；默认值取prev</td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-17'>备注：</h4>
+<h4 id='9852b06629-18'>备注：</h4>
 <ul>
 <li>所有已撤销且无成交的API限价订单记录只保留最近2小时。</li>
 <li>起始与结束时间取值说明：
@@ -14781,7 +14986,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604371805794</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-50'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-51'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14908,7 +15113,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>true</td>
 <td>string</td>
 <td>订单报价类型</td>
-<td>订单报价类型 &quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc:IOC订单，fok：FOK订单, &quot;opponent_ioc&quot;： 对手价-IOC下单，&quot;optimal_5_ioc&quot;：最优5档-IOC下单，&quot;optimal_10_ioc&quot;：最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单,&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
+<td>订单报价类型 &quot;limit&quot;:限价，&quot;opponent&quot;:对手价 ，&quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,&quot;optimal_5&quot;：最优5档，&quot;optimal_10&quot;：最优10档，&quot;optimal_20&quot;：最优20档，&quot;ioc&quot;:IOC订单，&quot;fok&quot;：FOK订单, &quot;opponent_ioc&quot;： 对手价-IOC下单，&quot;optimal_5_ioc&quot;：最优5档-IOC下单，&quot;optimal_10_ioc&quot;：最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单,&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
 </tr>
 <tr>
 <td>margin_frozen</td>
@@ -15030,7 +15235,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-18'>备注：</h4>
+<h4 id='9852b06629-19'>备注：</h4>
 <ul>
 <li>真实收益为开仓均价和成交价计算得出（订单的真实收益为订单下每笔成交的真实收益之和）。</li>
 <li>只有在2021年1月30日0点后创建的订单，真实收益（real_profit）字段才会有值。存量数据均为0。</li>
@@ -15052,7 +15257,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"page_index"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"page_size"</span><span class="p">:</span><span class="mi">20</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-54'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-55'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -15149,7 +15354,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604371918571</span><span class="w">
 </span><span class="p">}</span><span class="w">                                             
-</span></code></pre><h3 id='70bdef7e25-51'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-52'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -15366,7 +15571,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST <code>/api/v1/contract_matchresults_exact</code></li>
 </ul>
-<h3 id='1f9ac54b15-55'>请求参数</h3>
+<h3 id='1f9ac54b15-56'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -15433,7 +15638,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>prev 向前；next 向后；默认值取prev</td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-19'>备注：</h4>
+<h4 id='9852b06629-20'>备注：</h4>
 <ul>
 <li>起始与结束时间取值说明：
 
@@ -15575,7 +15780,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604372202243</span><span class="w">
 </span><span class="p">}</span><span class="w">                 
-</span></code></pre><h3 id='70bdef7e25-52'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-53'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -15782,7 +15987,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-20'>备注：</h4>
+<h4 id='9852b06629-21'>备注：</h4>
 <ul>
 <li>真实收益为开仓均价和成交价计算得出（订单的真实收益为订单下每笔成交的真实收益之和）。</li>
 <li>只有在2021年1月30日0点后创建的订单对应的成交，真实收益字段（real_profit）才会有值。存量数据均为0。</li>
@@ -15792,7 +15997,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST <code>/api/v1/lightning_close_position</code></li>
 </ul>
-<h3 id='1f9ac54b15-56'>请求参数</h3>
+<h3 id='1f9ac54b15-57'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -15856,7 +16061,6 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li><p>如果contract_code填了值，那就按照contract_code去下单，如果contract_code没有填值，则按照symbol+contract_type去下单。</p></li>
 <li><p>闪电平仓，是指在对手价平仓的基础上，实行&#39;最优30档&#39;成交，即用户发出的平仓订单能够迅速以30档范围内对手方价格进行成交，未成交部分自动转为限价委托单。</p></li>
-<li><p>client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。</p></li>
 </ul>
 
 <blockquote>
@@ -15872,7 +16076,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">158797866555</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-53'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-54'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -15971,7 +16175,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
      </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="s2">"ge"</span><span class="p">,</span><span class="w">
      </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">1</span><span class="w">
  </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-57'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-58'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -16083,7 +16287,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The leverage is invalid. Please contact the customer service."</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1605495536623</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-54'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-55'>返回参数</h3>
 <table><thead>
 <tr>
 <th>属性</th>
@@ -16153,7 +16357,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST <code>/api/v1/contract_trigger_cancel</code></li>
 </ul>
-<h3 id='1f9ac54b15-58'>请求参数</h3>
+<h3 id='1f9ac54b15-59'>请求参数</h3>
 <table><thead>
 <tr>
 <th>属性</th>
@@ -16194,7 +16398,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604372746401</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-55'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-56'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -16279,7 +16483,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST <code>/api/v1/contract_trigger_cancelall</code></li>
 </ul>
-<h3 id='1f9ac54b15-59'>请求参数</h3>
+<h3 id='1f9ac54b15-60'>请求参数</h3>
 <table><thead>
 <tr>
 <th>属性</th>
@@ -16340,7 +16544,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604373863946</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-56'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-57'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -16425,7 +16629,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST <code>/api/v1/contract_trigger_openorders</code></li>
 </ul>
-<h3 id='1f9ac54b15-60'>请求参数</h3>
+<h3 id='1f9ac54b15-61'>请求参数</h3>
 <table><thead>
 <tr>
 <th>属性</th>
@@ -16500,7 +16704,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604374215911</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-57'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-58'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -16705,7 +16909,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST <code>/api/v1/contract_trigger_hisorders</code></li>
 </ul>
-<h3 id='1f9ac54b15-61'>请求参数</h3>
+<h3 id='1f9ac54b15-62'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -16828,7 +17032,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604374349086</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-58'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-59'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -17104,7 +17308,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"sl_order_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29000"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sl_order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"optimal_5"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-62'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-63'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -17117,21 +17321,21 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <tr>
 <td>symbol</td>
 <td>false</td>
-<td>String</td>
+<td>string</td>
 <td>品种代码</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 <tr>
 <td>contract_type</td>
 <td>false</td>
-<td>String</td>
+<td>string</td>
 <td>合约类型</td>
 <td>“this_week”:当周，“next_week”:次周，“quarter”:当季，“next_quarter”：次季度</td>
 </tr>
 <tr>
 <td>contract_code</td>
 <td>false</td>
-<td>String</td>
+<td>string</td>
 <td>合约代码</td>
 <td>BTC190903</td>
 </tr>
@@ -17227,7 +17431,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contract_code cannot be empty."</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604369954194</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-59'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-60'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -17344,7 +17548,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST <code>/api/v1/contract_tpsl_cancel</code></li>
 </ul>
-<h3 id='1f9ac54b15-63'>请求参数</h3>
+<h3 id='1f9ac54b15-64'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -17391,7 +17595,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609843174529</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-60'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-61'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -17476,7 +17680,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST <code>/api/v1/contract_tpsl_cancelall</code></li>
 </ul>
-<h3 id='1f9ac54b15-64'>请求参数</h3>
+<h3 id='1f9ac54b15-65'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -17489,7 +17693,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <tr>
 <td>symbol</td>
 <td>false</td>
-<td>String</td>
+<td>string</td>
 <td>品种代码</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
@@ -17515,7 +17719,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>&quot;buy&quot;:买 &quot;sell&quot;:卖</td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-21'>备注：</h4>
+<h4 id='9852b06629-22'>备注：</h4>
 <ul>
 <li>只传symbol，则撤销该品种下该订单类型的所有周期合约的止盈止损订单</li>
 <li>只要有contract_code，则撤销该code的合约的止盈止损订单</li>
@@ -17534,7 +17738,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609843284024</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-61'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-62'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -17619,7 +17823,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST <code>/api/v1/contract_tpsl_openorders</code></li>
 </ul>
-<h3 id='1f9ac54b15-65'>请求参数</h3>
+<h3 id='1f9ac54b15-66'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -17632,7 +17836,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <tr>
 <td>symbol</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>品种代码</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
@@ -17700,7 +17904,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609846316344</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-62'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-63'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -17904,7 +18108,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST <code>/api/v1/contract_tpsl_hisorders</code></li>
 </ul>
-<h3 id='1f9ac54b15-66'>请求参数</h3>
+<h3 id='1f9ac54b15-67'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -17917,7 +18121,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <tr>
 <td>symbol</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>品种代码</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
@@ -18006,7 +18210,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609846686146</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-63'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-64'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -18252,7 +18456,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <ul>
 <li>POST <code>/api/v1/contract_relation_tpsl_order</code></li>
 </ul>
-<h3 id='1f9ac54b15-67'>请求参数</h3>
+<h3 id='1f9ac54b15-68'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -18265,7 +18469,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <tr>
 <td>symbol</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>品种代码</td>
 <td>&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
@@ -18351,7 +18555,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1609847008041</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-64'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-65'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -18691,6 +18895,334 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
+
+<!--
+## 跟踪委托订单下单
+
+ - POST `/api/v1/contract_track_order`
+
+### 请求参数
+| 参数名称            | 是否必须  | 类型     | 描述                    | 取值范围                                     |
+| --------------- | ----- | ------ | --------------------- | ---------------------------------------- |
+| symbol          | false（请看备注） | string | 品种代码                  | "BTC","ETH"...                           |
+| contract_type   | false（请看备注） | string | 合约类型                  | “this_week”:当周，“next_week”:次周，“quarter”:当季，“next_quarter”：次季度 |
+| contract_code   | false（请看备注） | string | 合约代码    | BTC190903                                |
+| direction | true | string | 买卖方向| buy:买 sell:卖  |
+| offset | true | string | 开平方向|   open:开 close:平  |
+| lever_rate | false | int | 杠杆倍数，开仓操作为必填，平仓操作为非必填|    |
+| volume | true | decimal |委托数量(张)|  |
+| callback_rate          | true | decimal | 回调幅度              |  如：0.01 表示1%，不可小于0.001（0.1%）                         |
+| active_price   | true | decimal | 激活价格                 |  |
+| order_price_type | true | string | 委托类型 |  最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20，理论价格：formula_price  |
+
+#### 备注：
+ - 委托类型为理论价格，表示跟踪委托触发成功后，以下单以来市场最低（最高）价的（1 ± 回调幅度）作为委托价（精度为币种最小变动单位，截断）向市场下委托类型为limit的订单。
+ - 无论是最优N档还是理论价格下单，都不能保证订单能完全成交，主要取决于市场情况。
+ - symbol+contract_type和contract_code必填其一，只要填写了contract_code就直接取contract_code。
+
+
+> Response
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "order_id": 825041038916751360,
+        "order_id_str": "825041038916751360"
+    },
+    "ts": 1616746712203
+}
+```
+
+### 返回参数
+
+| 参数名称            | 是否必须  | 类型     | 描述                            | 取值范围                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status                     | true         | string   | 请求处理结果               | "ok" , "error" |
+| ts |  true  | long | 时间戳 | |
+| \<data\> |  true  | object | 成功处理返回的数据  | |
+| order_id  |  true  | long | 跟踪委托订单ID[全局唯一]   | |
+| order_id_str |  true  | string | 字符串类型的跟踪委托订单ID   | |
+| \</data\> |   | |  | |
+
+
+
+## 跟踪委托订单撤单
+
+ - POST `/api/v1/contract_track_cancel`
+
+### 请求参数
+
+| 参数名称          | 是否必须  | 类型     | 描述   | 取值范围                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| symbol          | true | string | 品种代码                  | "BTC","ETH"...                           |
+| order_id | true | string | 用户跟踪委托订单ID（多个订单ID中间以","分隔,一次最多允许撤消10个订单 ）|    |
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "order_id": "825041038916751361",
+                "err_code": 1061,
+                "err_msg": "This order doesnt exist."
+            }
+        ],
+        "successes": "825041038916751360"
+    },
+    "ts": 1616746795262
+}
+```
+
+### 返回参数
+| 参数名称            | 是否必须  | 类型     | 描述                            | 取值范围                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status          | true  | string | 请求处理结果                        | "ok" :成功, "error"：失败 |
+| \<data\>        |   true    |   object     |                               | 字典                   |
+| \<errors\>        |   true    |   object     |                               | 字典                   |
+| order_id        | true  | string | 跟踪委托订单ID[全局唯一] |                      |
+| err_code              | false  | long   | 错误码                |                      |
+| err_msg              | false  | string   | 错误信息               |                      |
+| \</errors\>       |       |        |     |  |
+| successes              | true  | string   | 成功的订单                 |     |
+| \</data\>       |       |        |     |  |
+| ts              | true  | long   | 响应生成时间点，单位：毫秒                 |     |
+
+
+## 跟踪委托订单全部撤单
+
+ - POST `/api/v1/contract_track_cancelall`
+
+### 请求参数
+
+| 参数名称          | 是否必须  | 类型     | 描述   | 取值范围                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| symbol          | true | string | 品种代码                  | "BTC","ETH"...                           |
+| contract_code | false | string | 合约代码|  "BTC180914" ...  |
+| contract_type | false | string | 合约类型 |  当周:"this_week", 周:"next_week", 当季:"quarter"，次季度：“next_quarter”  |
+| direction | false  | string | 买卖方向（不填默认全部）  |  "buy":买 "sell":卖 |
+| offset | false  | string | 开平方向（不填默认全部）  | "open":开 "close":平  |
+
+#### 备注：
+ - 只传symbol，撤该该品种下该订单类型的所有周期合约的跟踪委托订单
+ - 只要有contract_code，则撤销该code的合约的跟踪委托订单
+ - 只传symbol+contract_type， 则撤销二者拼接所成的合约跟踪委托订单
+ - direction与offset可只填其一，只填其一则按对应的条件去撤单。（如用户只传了direction=buy，则撤销所有买单，包括开仓和平仓）
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "errors": [],
+        "successes": "825041902725271552,825042030290833408,825042223069433856"
+    },
+    "ts": 1616747043604
+}
+```
+
+### 返回参数
+
+| 参数名称                   | 是否必须 | 类型      | 描述                 | 取值范围                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status          | true  | string | 请求处理结果                        | "ok" :成功, "error"：失败 |
+| \<data\>        |   true    |   object     |                               | 字典                   |
+| \<errors\>        |   true    |   object     |                               | 字典                   |
+| order_id        | true  | string | 跟踪委托订单ID[全局唯一] |                      |
+| err_code              | false  | long   | 错误码                |                      |
+| err_msg              | false  | string   | 错误信息               |                      |
+| \</errors\>       |       |        |     |  |
+| successes              | true  | string   | 成功的订单                 |     |
+| \</data\>       |       |        |     |  |
+| ts              | true  | long   | 响应生成时间点，单位：毫秒                 |     |
+
+
+## 跟踪委托订单当前委托
+
+ - POST `/api/v1/contract_track_openorders`
+
+### 请求参数
+
+| 参数名称          | 是否必须  | 类型     | 描述   | 取值范围                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| symbol          | true | string | 品种代码                  | "BTC","ETH"...                           |
+| contract_code | false | string | 合约代码,"BTC180914" ...|    |
+| trade_type | false  | int | 交易类型（不填默认查询全部）  |  0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多 |
+| page_index | false | int | 第几页，不填默认第一页|    |
+| page_size | false | int | 不填默认20，不得多于50|    |
+
+> Response: 
+
+```json
+{
+    "status":"ok",
+    "data":{
+        "orders":[
+            {
+                "symbol":"BTC",
+                "contract_type":"quarter",
+                "contract_code":"BTC210326",
+                "volume":1,
+                "order_type":1,
+                "direction":"sell",
+                "offset":"close",
+                "lever_rate":75,
+                "order_id":825042343047499776,
+                "order_id_str":"825042343047499776",
+                "order_source":"api",
+                "created_at":1616747023128,
+                "order_price_type":"formula_price",
+                "status":2,
+                "callback_rate":0.003,
+                "active_price":54323,
+                "is_active":0
+            }
+        ],
+        "total_page":1,
+        "current_page":1,
+        "total_size":3
+    },
+    "ts":1616747242096
+}
+```
+
+### 返回参数
+
+| 参数名称            | 是否必须  | 类型     | 描述                            | 取值范围                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status          | true  | string | 请求处理结果                        | "ok" :成功, "error"：失败 |
+| \<data\>        |   true    |   object     |                               | 字典                   |
+| total_page        | true | int | 总页数   |                |
+| total_size        | true | int | 总条数   |                |
+| current_page        | true | int | 当前页   |                |
+| \<orders\>        |   true    |   object array    |                               |     |
+| symbol                 | true | string  | 品种代码               |                                          |
+| contract_type          | true | string  | 合约类型               | 当周:"this_week", 次周:"next_week", 当季:"quarter" ，次季度：“next_quarter” |
+| contract_code          | true | string  | 合约代码               | "BTC180914" ...                          |
+| volume                 | true | decimal  | 委托数量 |      |
+| order_type           | true | int | 订单类型：1、报单 2、撤单               |                                          |
+| direction            | true | string | 买卖方向                |           买："buy",卖："sell"         |
+| offset         | true | string | 开平方向              |                  开："open",平："close"        |
+| lever_rate            | true | int    | 杠杆倍数               |                                       |
+| order_id      | true | long | 跟踪委托订单ID                |                                          |
+| order_id_str             | true | string | 字符串类型的跟踪委托订单ID              |                                          |
+| order_source      | true | string  | 来源        |                                          |
+| created_at        | true  | long | 订单创建时间 |                      |
+| order_price_type        | true  | string | 订单报价类型  |  最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20，理论价格：formula_price    |
+| status        | true  | int | 订单状态： |     2:等待委托、4:已委托、5:委托失败、6:已撤单              |
+| callback_rate          | true | decimal | 回调幅度           |  如：0.01 表示1%                         |
+| active_price   | true | decimal | 激活价格             |  |
+| is_active   | true | int | 激活价格是否已激活             |  1：已激活；0：未激活|
+| \</orders\>       |       |        |     |  |
+| \</data\>       |       |        |     |  |
+| ts              | true  | long   | 响应生成时间点，单位：毫秒                 |     |
+
+
+## 跟踪委托订单历史委托
+
+ - POST `/api/v1/contract_track_hisorders`
+
+### 请求参数
+
+| 参数名称          | 是否必须  | 类型     | 描述   | 取值范围                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| symbol          | true | string | 品种代码                  | "BTC","ETH"...                           |
+| contract_code | false | string | 合约代码,"BTC180914" ...|    |
+| status | true | string | 订单状态| 多个以英文逗号隔开，跟踪委托订单状态：0:全部（表示全部结束状态的订单）、4:已委托、5:委托失败、6:已撤单   |
+| trade_type | true  | int | 交易类型  |  0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多 |
+| create_date | true | long | 日期| 可随意输入正整数，如果参数超过90则默认查询90天的数据   |
+| page_index | false | int | 第几页，不填默认第一页|    |
+| page_size | false | int | 不填默认20，不得多于50|    |
+| sort_by | false | string | 排序字段（降序），不填默认按照created_at降序 |  "created_at"：按订单创建时间进行降序，"update_time"：按订单更新时间进行降序  |
+
+> Response: 
+
+```json
+{
+    "status":"ok",
+    "data":{
+        "orders":[
+            {
+                "symbol":"BTC",
+                "contract_type":"quarter",
+                "contract_code":"BTC210326",
+                "triggered_price":null,
+                "volume":1,
+                "order_type":1,
+                "direction":"buy",
+                "offset":"close",
+                "lever_rate":75,
+                "order_id":825042223069433856,
+                "order_id_str":"825042223069433856",
+                "order_source":"api",
+                "created_at":1616746994523,
+                "update_time":1616747101872,
+                "order_price_type":"formula_price",
+                "status":6,
+                "canceled_at":1616747044182,
+                "fail_code":null,
+                "fail_reason":null,
+                "callback_rate":0.003,
+                "active_price":52323,
+                "is_active":0,
+                "market_limit_price":null,
+                "formula_price":null,
+                "real_volume":0,
+                "relation_order_id":"-1"
+            }
+        ],
+        "total_page":1,
+        "current_page":1,
+        "total_size":5
+    },
+    "ts":1616747533336
+}
+```
+
+### 返回参数
+
+| 参数名称            | 是否必须  | 类型     | 描述                            | 取值范围                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status          | true  | string | 请求处理结果                        | "ok" :成功, "error"：失败 |
+| \<data\>        |   true    |   object     |                               | 字典                   |
+| total_page        | true | int | 总页数   |                |
+| total_size        | true | int | 总条数   |                |
+| current_page        | true | int | 当前页   |                |
+| \<orders\>        |   true    |   object array    |                               |     |
+| symbol                 | true | string  | 品种代码               |                                          |
+| contract_type          | true | string  | 合约类型               | 当周:"this_week", 次周:"next_week", 当季:"quarter" ，次季度：“next_quarter” |
+| contract_code          | true | string  | 合约代码               | "BTC180914" ...                          |
+| volume                 | true | decimal  | 委托数量 |      |
+| order_type           | true | int | 订单类型：1、报单 2、撤单               |                                          |
+| direction            | true | string | 买卖方向                |           买："buy",卖："sell"         |
+| offset         | true | string | 开平方向              |                  开："open",平："close"        |
+| lever_rate            | true | int    | 杠杆倍数               |                                       |
+| order_id      | true | long | 跟踪委托订单ID                |                                          |
+| order_id_str             | true | string | 字符串类型的跟踪委托订单ID              |                                          |
+| order_source      | true | string  | 来源        |                                          |
+| created_at        | true  | long | 订单创建时间 |                      |
+| update_time        | true  | long | 订单更新时间，单位毫秒 |                      |
+| order_price_type        | true  | string | 订单报价类型  |   最优5档：optimal_5，最优10档：optimal_10，最优20档：optimal_20 ，理论价格：formula_price        |
+| status        | true  | int | 订单状态： |    2:等待委托、4:已委托、5:委托失败、6:已撤单          |
+| canceled_at        | true  | long | 撤单时间 |                      |
+| fail_code        | true  | int | 被触发时下order单失败错误码 |                      |
+| fail_reason        | true  | string | 被触发时下order单失败原因 |                      |
+| callback_rate          | true | decimal | 回调幅度             |  如：0.01 表示1%                         |
+| active_price   | true | decimal | 激活价格           |  |
+| is_active   | true | int | 激活价格是否已激活             |  1：已激活；0：未激活|
+| market_limit_price   | true | decimal |  市场最低/最高价（买入则为市场最低价、卖出则为市场最高价）           |  |
+| formula_price   | true | decimal | 理论价格（市场最低（最高）价的（1 ± 回调幅度））           |  |
+| real_volume   | true | decimal | 实际委托数量                |  |
+| triggered_price   | true | decimal | 被触发时的价格           |  |
+| relation_order_id          | true | string |  该字段为关联限价单的关联字段，未触发前数值为-1               |                       |
+| \</orders\>       |       |        |     |  |
+| \</data\>       |       |        |     |  |
+| ts              | true  | long   | 响应生成时间点，单位：毫秒                 |     |
+-->
 <h1 id='0bd35efd6a'>合约划转接口</h1><h2 id='88a4ecc2bc'>现货-交割合约账户间进行资金的划转</h2><h3 id='69fffaf196-8'>实例</h3>
 <ul>
 <li>POST <code>https://api.huobi.pro/v1/futures/transfer</code></li>
@@ -18705,7 +19237,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <p>注意：请求地址为火币Global地址</p>
 
 <p>现货与交割合约划转接口，所有划转的币的精度是8位小数。</p>
-<h3 id='1f9ac54b15-68'>请求参数</h3>
+<h3 id='1f9ac54b15-69'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -18755,7 +19287,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"err-msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The current coin does not exist."</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='70bdef7e25-65'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-66'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -19257,7 +19789,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <p><code>&quot;ts&quot;: &quot;1492420473058&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='9852b06629-22'>备注：</h3>
+<h3 id='9852b06629-23'>备注：</h3>
 <ul>
 <li><p>&quot;pong&quot;操作返回数据里面的&quot;ts&quot;的值为&quot;ping&quot;推送收到的&quot;ts&quot;值</p></li>
 <li><p>WebSocket Client 和 WebSocket Server 建⽴立连接之后，WebSocket Server 每隔 5s(这个频率可能会变化) 会向 WebSocket Client 发起⼀一次⼼心跳，WebSocket Client 忽略心跳 5 次后，WebSocket Server 将会主动断开连接。</p></li>
@@ -19568,7 +20100,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-69'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-70'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -19645,7 +20177,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
         </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">0</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-66'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-67'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -19757,7 +20289,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-70'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-71'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -19844,7 +20376,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <p>from: t1 and to: t2, should satisfy 1325347200  &lt; t1  &lt; t2  &lt; 2524579200.</p>
 
 <p>一次最多2000条。</p>
-<h3 id='70bdef7e25-67'>返回参数</h3>
+<h3 id='70bdef7e25-68'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -19990,7 +20522,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-71'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-72'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -20174,7 +20706,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
         </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC_CQ.depth.step6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-68'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-69'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -20379,7 +20911,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1604385634838</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-69'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-70'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -20501,7 +21033,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.bbo"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-72'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-73'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -20570,7 +21102,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
         </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC_CQ.bbo"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-70'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-71'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -20684,7 +21216,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-73'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-74'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -20757,7 +21289,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-71'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-72'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -20883,7 +21415,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-74'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-75'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -20966,7 +21498,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1604386202755</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-72'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-73'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -21029,7 +21561,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>成交方向,即taker(主动成交)的方向</td>
+<td>买卖方向，即taker(主动成交)的方向</td>
 <td></td>
 </tr>
 <tr>
@@ -21083,7 +21615,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-75'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-76'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -21159,7 +21691,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-73'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-74'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -21243,7 +21775,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>买卖方向,即taker(主动成交)的方向</td>
+<td>买卖方向，即taker(主动成交)的方向</td>
 <td></td>
 </tr>
 <tr>
@@ -21288,7 +21820,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-76'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-77'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -21365,7 +21897,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
         </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">0</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-74'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-75'>返回参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -21478,7 +22010,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-77'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-78'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -21582,7 +22114,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-75'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-76'>返回参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -21711,7 +22243,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-78'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-79'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -21792,7 +22324,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
         </span><span class="s2">"basis_rate"</span><span class="p">:</span><span class="s2">"0.0014516721212147151654052074480586653"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-76'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-77'>返回参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -21885,7 +22417,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-79'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-80'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -21992,7 +22524,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1604387965575</span><span class="p">,</span><span class="w">
     </span><span class="s2">"wsid"</span><span class="p">:</span><span class="mi">3823737955</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-77'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-78'>返回参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -22104,7 +22636,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-80'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-81'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -22146,7 +22678,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>string</td>
 <td>合约标识</td>
 <td></td>
-<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约 ，&quot;BTC_NQ&quot;表示BTC次季度合约季度合约</td>
+<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约 ，&quot;BTC_NQ&quot;表示BTC次季度合约季度合约。支持使用合约code来查询数据， 例如：&quot;BTC200918&quot;(当周)，&quot;BTC200925&quot;(次周)，&quot;BTC201225&quot;(季度)，&quot;BTC210326&quot;(次季度)。</td>
 </tr>
 <tr>
 <td>period</td>
@@ -22306,7 +22838,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-81'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-82'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -22362,7 +22894,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>string</td>
 <td>合约标识</td>
 <td></td>
-<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约 ，&quot;BTC_NQ&quot;表示BTC次季度合约季度合约</td>
+<td>如&quot;BTC_CW&quot;表示BTC当周合约，&quot;BTC_NW&quot;表示BTC次周合约，&quot;BTC_CQ&quot;表示BTC当季合约 ，&quot;BTC_NQ&quot;表示BTC次季度合约季度合约。支持使用合约code来查询数据， 例如：&quot;BTC200918&quot;(当周)，&quot;BTC200925&quot;(次周)，&quot;BTC201225&quot;(季度)，&quot;BTC210326&quot;(次季度)。</td>
 </tr>
 <tr>
 <td>period</td>
@@ -22869,7 +23401,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-23'>备注：</h4>
+<h4 id='9852b06629-24'>备注：</h4>
 <ul>
 <li>真实收益为开仓均价和成交价计算得出（订单的真实收益为订单下每笔成交的真实收益之和）。</li>
 <li>只有在2021年1月30日0点后创建的订单以及对应的成交，真实收益字段（real_profit）才会有值。存量数据均为0。</li>
@@ -23002,7 +23534,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <td>必填，订阅主题名称:matchOrders.$symbol;  symbol支持大小写，比如：BTC，ETH ; 当 $symbol值为 * 时代表订阅所有品种;</td>
 </tr>
 </tbody></table>
-<h4 id='9852b06629-24'>备注：</h4>
+<h4 id='9852b06629-25'>备注：</h4>
 <ul>
 <li>postOnly的报单收到的WS推送要么是报单成功，状态为3，要么是7，已撤单;</li>
 <li>撮合完成后就将订单的更新信息推送给客户端;</li>
@@ -23214,7 +23746,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <tr>
 <td>order_price_type</td>
 <td>string</td>
-<td>订单报价类型: &quot;limit&quot;:限价 &quot;opponent&quot;:对手价 &quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,optimal_5：最优5档、optimal_10：最优10档、optimal_20：最优20档，ioc：IOC订单，fok：FOK订单,&quot;opponent_ioc&quot;: 对手价-IOC下单，&quot;optimal_5_ioc&quot;: 最优5档-IOC下单，&quot;optimal_10_ioc&quot;: 最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单，&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
+<td>订单报价类型: &quot;limit&quot;:限价，&quot;opponent&quot;:对手价 ，&quot;post_only&quot;:只做maker单,post only下单只受用户持仓数量限制,&quot;optimal_5&quot;：最优5档，&quot;optimal_10&quot;：最优10档，&quot;optimal_20&quot;：最优20档，&quot;ioc&quot;:IOC订单，&quot;fok&quot;：FOK订单,&quot;opponent_ioc&quot;: 对手价-IOC下单，&quot;optimal_5_ioc&quot;: 最优5档-IOC下单，&quot;optimal_10_ioc&quot;: 最优10档-IOC下单，&quot;optimal_20_ioc&quot;：最优20档-IOC下单，&quot;opponent_fok&quot;： 对手价-FOK下单，&quot;optimal_5_fok&quot;：最优5档-FOK下单，&quot;optimal_10_fok&quot;：最优10档-FOK下单，&quot;optimal_20_fok&quot;：最优20档-FOK下单</td>
 </tr>
 </tbody></table>
 <h2 id='unsub-2'>取消订阅订单撮合数据（unsub）</h2>
@@ -23753,7 +24285,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
 <tr>
 <td>direction</td>
 <td>string</td>
-<td>仓位方向   &quot;buy&quot;:买 &quot;sell&quot;:卖</td>
+<td>仓位方向  &quot;buy&quot;:买，即多仓  &quot;sell&quot;:卖，即空仓</td>
 </tr>
 <tr>
 <td>last_price</td>
@@ -24131,7 +24663,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-82'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-83'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -24220,7 +24752,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='70bdef7e25-78'>返回参数</h3>
+</span></code></pre><h3 id='70bdef7e25-79'>返回参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -24452,7 +24984,7 @@ contract_type参数需要和symbol配合查询，仅传contract_type查询不到
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trigger_order.BTC"</span><span class="p">,</span><span class="w">   
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">          
 </span><span class="p">}</span><span class="w">                                    
-</span></code></pre><h3 id='1f9ac54b15-83'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-84'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
