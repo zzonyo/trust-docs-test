@@ -38,6 +38,13 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.1.7 2021-4-28 【Added: Get Market BBO Data interface. 】 
+
+### 1. Added Get Market BBO Data interface
+ - Interface Name: Get Market BBO Data
+ - Interface Type: public
+ - Interface URL: /swap-ex/market/bbo
+
 ## 1.1.6 2021-2-26 【Added: Query Asset Valuation interface, Query a Batch of Funding Rate interface. Modified Query Swap Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter "ch" value is "market.*trade.detail". Added one field in return "tick" parameter: "contract_code")】
 
 ### 1. Added Query Asset Valuation interface
@@ -769,6 +776,7 @@ Read  | Market Data      |  /swap-api/v1/swap_open_interest     |  GET          
 Read  | Market Data      |  /swap-api/v1/swap_delivery_price     |  GET              |  Get the estimated delivery price         | No                     |
 Read  |  Market Data     |   /swap-api/v1/swap_api_state   |          GET        |  Query information on system status    |  No  |
 Read  | Market Data      |  /swap-ex/market/depth                  |  GET              | Get Market Depth                               | No                     |
+Read  | Market Data      |  /swap-ex/market/bbo |        GET        | Get Market BBO Data            |  No  |
 Read  | Market Data      | /swap-ex/market/history/kline          |  GET              | Get KLine Data                                | No                     |
 Read  |  Market Data     |  /index/market/history/swap_mark_price_kline  |                 GET        |  Get Kline Data of Mark Price  |  No  |
 Read  | Market Data      |  /swap-ex/market/detail/merged         |  GET              | Get Market Data Overview                       | No                     |
@@ -831,6 +839,14 @@ Trade | Strategy   |  /swap-api/v1/swap_tpsl_cancelall      | POST | Cancel all 
 Read  | Strategy   |  /swap-api/v1/swap_tpsl_openorders      | POST | Open take-profit and stop-loss orders       |      Yes         |
 Read  | Strategy   |  /swap-api/v1/swap_tpsl_hisorders       | POST | Take-profit and stop-loss histoty orders    |      Yes         |
 Read  | Strategy   |  /swap-api/v1/swap_relation_tpsl_order  | POST | Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order | Yes |
+<!--
+Trade | Strategy   |  /swap-api/v1/swap_track_order |        POST        | Place a Trailing Order            |  Yes |
+Trade | Strategy   |  /swap-api/v1/swap_track_cancel |        POST        | Cancel a Trailing Order          |  Yes |
+Trade | Strategy   |  /swap-api/v1/swap_track_cancelall |        POST        | Cancel All Trailing Orders           |  Yes |
+Read  | Strategy   |  /swap-api/v1/swap_track_openorders |        POST        | Current unfilled trailing order acquisition           |  Yes |
+Read  | Strategy   |  /swap-api/v1/swap_track_hisorders |        POST        | Current unfilled trailing order acquisition       |  Yes |
+-->
+
 
 ##  Address
 
@@ -2406,6 +2422,54 @@ curl "https://api.hbdm.com/swap-ex/market/depth?contract_code=BTC-USD&type=step5
 | \</tick\>    |               |    |      |            | | 
 
 
+## Get Market BBO Data
+
+ - GET `/swap-ex/market/bbo`
+
+### Request Parameter
+| Parameter Name   | Mandatory | Type     | Description  | Value Range |
+| ------ | ---- | ------ | ---------------------------------------- | ---- |
+| contract_code | false | string | contract code，if not filled in, return all | "BTC-USD" ...   |
+
+> Response
+
+```json
+{
+    "status": "ok",
+    "ticks": [
+        {
+            "contract_code": "LTC-USD",
+            "ask": [
+                178,
+                10
+            ],
+            "bid": [
+                176,
+                9
+            ],
+            "mrid": 1301759,
+            "ts": 1616747942659
+        }
+    ],
+    "ts": 1616747957364
+}
+```
+
+###  Return Parameter
+
+| Parameter Name   | Mandatory | Type   | Description  | Value Range           |
+| ------ | ---- | ------ | ---------------------------------------- | -------------- |
+| status | true | string |  the result of server handling to request     | "ok" , "error" |
+| \<ticks\> |true  |  object array |           |                |
+| contract_code  | true | string  | contract code  | "BTC-USD","ETH-USD"...   |
+| mrid   | true | long | Match ID, unique identification  |                |
+| ask   | true | array | [Ask 1 price, Ask 1 qty (cont)] |                |
+| bid   | true | array | [Bid 1 price, Bid 1 qty (cont)] |                |
+| ts   | true | long | The system detects the orderbook time point, unit: milliseconds   |                |
+| \</ticks\>            |      |        |               |                |
+| ts     | true | long | Time of Respond Generation, Unit: Millisecond                            |                |
+
+
 ## Get KLine Data
 
 ###  Example     
@@ -2432,23 +2496,6 @@ curl "https://api.hbdm.com/swap-ex/market/history/kline?period=1min&size=200&con
 - If `from` field is filled, `to` field need to filled too.
 - The api can mostly return the klines of last two years.
 - If `from` `to` `size` are all filled,'from' and 'to' will be ignored.
-
-> Data Illustration：
-
-```
-"data": [
-  {
-        "id": KLine id,
-        "vol": Transaction Volume(amount),
-        "count": transaction count
-        "open": opening Price
-        "close": Closing Price, when the Kline is the latest one，it means the latest price
-        "low": Lowest price
-        "high": highest price
-        "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
-   }
-]
-```
 
 > Response:
 
@@ -2585,24 +2632,6 @@ curl "https://api.hbdm.com/swap-ex/market/detail/merged?contract_code=BTC-USD"
 | ------------------ | ------------- | -------- | ------------- | ----------- | ------------------------------------------------------------ |
 | contract_code             | true             | string          | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
 
-> tick Illustration:
-
-```
-"tick": {
-    "id": KLine id,
-    "vol": transaction volume（contract）,
-    "count": transaction count
-    "open": opening price,
-    "close": Closing Price, when the Kline is the latest one，it means the latest price
-    "low": Lowest price
-    "high": highest price
-    "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
-    "bid": [price of buying one (amount)],
-    "ask": [price of selling one (amount)]
-
-  }
-```
-
 > Response:
 
 ```json
@@ -2643,13 +2672,13 @@ curl "https://api.hbdm.com/swap-ex/market/detail/merged?contract_code=BTC-USD"
 | ts                 | true          | long        | Time of Respond Generation, Unit: Millisecond                |                 |
 |  \<tick\>    |               |     | kline data (Start at 00:00(UTC+8) of the day)      |            | 
 |  id    |     true          | long   |  kline id,the same as kline timestamp   |            
-|  vol    |     true          | string   |  Trade Volume(Cont.). Sum of both buy and sell sides |            
-| count    |     true          | decimal   |   Order Quantity. Sum of both buy and sell sides |            
+|  vol    |     true          | string   |  Trade Volume(Cont.).from nowtime - 24 hours. Sum of both buy and sell sides |            
+| count    |     true          | decimal   |   Order Quantity. from nowtime - 24 hours. Sum of both buy and sell sides |            
 |  open    |     true          | string   |   Opening Price  |            
 |  close    |     true          | string   |  Closing Price,  the price in the last kline is the latest order price   |            
 |  low    |     true          | string   |  Low    |            
 |  high    |     true          | string   |  High   |            
-|  amount    |     true          | string   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price). Sum of both buy and sell sides |            
+|  amount    |     true          | string   |  Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price). from nowtime - 24 hours. Sum of both buy and sell sides |            
 | ask | true | object |Sell,[price(Ask price), vol(Ask orders (cont.) )], price in ascending sequence | | 
 | bid | true| object | Buy,[price(Bid price), vol(Bid orders(Cont.))], Price in descending sequence | | 
 | ts  | true          | long        | Timestamp               |                 |
@@ -2728,15 +2757,15 @@ curl "https://api.hbdm.com/swap-ex/market/detail/merged?contract_code=BTC-USD"
 | \<ticks\> |true  |  object array |           |                |
 | contract_code   | true | string  | contract code | "BTC-USD" ...  |
 | id   | true | long | id |                |
-| amount   | true | string | trade amount(coin)  |                |
+| amount   | true | string | trade amount(coin), from nowtime - 24 hours. Sum of both buy and sell sides  |                |
 | ask   | true | array | [ask one price, ask one vol(cont)] |                |
 | bid   | true | array | [bid one price, bid one vol(cont)] |                |
 | open     | true | string | open price     |                |
 | close     | true | string | close price |                |
-| count     | true | decimal | trade count |                |
+| count     | true | decimal | trade count, from nowtime - 24 hours. Sum of both buy and sell sides |                |
 | high   | true | string | hight price |                |
 | low   | true | string | low price  |                |
-| vol   | true | string | trade vol, sum of both buy and sell side  |                |
+| vol   | true | string | trade vol, from nowtime - 24 hours. Sum of both buy and sell sides  |                |
 | ts   | true | long | timestamp   |                |
 | \</ticks\>            |      |        |               |                |
 | ts     | true | long | Time of Respond Generation, Unit：Millisecond |                |
@@ -2757,24 +2786,6 @@ curl "https://api.hbdm.com/swap-ex/market/trade?contract_code=BTC-USD"
 |   Parameter Name   |   Mandatory   |   Type   |   Desc        | 
 | ------------------ | ------------- | -------- | ------------- | 
 | contract_code             | false            | string          | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD", All swaps default |
-
-> Tick Illustration：
-
-```
-"tick": {
-  "id": Unique Order Id(symbol level),
-  "ts": Latest Transaction time,
-  "data": [
-    {
-      "id": Unique Transaction Id(symbol level),
-      "price": Transaction price,
-      "amount": transaction amount,
-      "direction": Active transaction direction,
-      "ts": transaction time
-    }
-  ]
-}
-```
 
 > Response:
 
@@ -2817,7 +2828,7 @@ curl "https://api.hbdm.com/swap-ex/market/trade?contract_code=BTC-USD"
 | id  |  true  |  long  | Unique Transaction Id(symbol level)  |   |    
 | price  |  true  |  string  |  Price |   |    
 | amount  |  true  |  string  |  Quantity(Cont.). Sum of both buy and sell sides  |   |    
-| direction  |  true  |  string  |  The direction to buy or sell is the direction of the taker (active transaction) |   |    
+| direction  |  true  |  string  |  The direction to buy or sell is the direction of the taker (active transaction)  |   |    
 | ts  |  true  |  long  |  Order Creation Time |   |  
 | quantity  |  true  |  string  |  trading quantity(coin)  |   |  
 | contrct_code  |  true  |  string  | Contract Code  |   |    
@@ -2841,23 +2852,6 @@ curl "https://api.hbdm.com/swap-ex/market/history/trade?contract_code=BTC-USD&si
 | ------------------ | ------------- | ------------- | ------------------------------------- | ----------- | ------------------------------------------------------------ |
 | contract_code     | true             | string    |  contract code  |  | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USD" |
 | size               | true         | int        | Number of Trading Records Acquisition | 1           | [1, 2000]                                                    |
-
-> data Illustration：
-
-```
-"data": {
-  "id": Unique Order Id(symbol level),
-  "ts": Latest transaction time,
-  "data": [
-    {
-      "id": Unique Transaction Id(symbol level),
-      "price": transaction price,
-      "amount": transaction (amount),
-      "direction": active transaction direction
-      "ts": transaction time
-      }
-}
-```
 
 > Response:
 
@@ -2916,7 +2910,7 @@ curl "https://api.hbdm.com/swap-ex/market/history/trade?contract_code=BTC-USD&si
 | id  |  true  |  long  | Unique Transaction Id(symbol level) |   |    
 | price  |  true  |  decimal  |  Price |   |    
 | amount  |  true  |  decimal  |  Quantity(Cont.). Sum of both buy and sell sides |   |    
-| direction  |  true  |  string  | The direction to buy or sell is the direction of the taker (active transaction)  |   |    
+| direction  |  true  |  string  |  The direction to buy or sell is the direction of the taker (active transaction)   |   |    
 | ts  |  true  |  long  |  Order Creation Time |   |    
 | quantity  |  true  |  decimal  |  trading quantity(coin)  |   | 
 |  \</list\>    |               |    |      | 
@@ -3097,12 +3091,12 @@ curl "https://api.hbdm.com/swap-api/v1/swap_adjustfactor"
 | contract_code     | true     |  string | Contract Code   | e.g. "BTC-USD" |
 | \<list\> |  |  |  |  |
 | lever_rate   | true     | int  | Leverage               |                |
-| \<ladderDetail\> |  |  |  |  |
+| \<ladders\> |  |  |  |  |
 | min_size | true | decimal | Min net position limit |  |
 | max_size | true | decimal | Max net position limit |  |
 | ladder | true | int | Tier |  |
 | adjust_factor | true | decimal | Adjustment Factor |  |
-| \</ladderDetail\> |  |  |  |  |
+| \</ladders\> |  |  |  |  |
 | \</list\> |  |  |  |  |
 | \</data\> |  |  |  |  |
 
@@ -4156,7 +4150,7 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 | profit                         | true          | decimal  | profit                                        |                                     |
 | position_margin                | true          | decimal  | Position margin                               |                                     |
 | lever_rate                     | true          | int      | Leverage rate                                 |                                     |
-| direction                      | true          | string   | Transaction direction                         |                                     |
+| direction                      | true          | string   | transaction direction of positions            |  "buy":long "sell":short            |
 | last_price                     | true          | decimal  | Latest price                                  |                                     |
 | \</list\>                      |               |          |                                               |                                     |
 | ts                             | true          | long     | Time of Respond Generation, Unit: Millisecond |                                     |
@@ -4255,7 +4249,7 @@ profit_rate | decimal  | true  | Profit Rate                                    
 profit |  decimal |  true | Profit                                                      |
 position_margin |  decimal |  true | Position Margin                                    |
 lever_rate | int | true | Leverage Rate                                               |
-direction | string  | true  | "buy" "sell"	                                            |
+direction | string  | true  | transaction direction of positions  "buy":long "sell":short           |
 last_price | decimal  | true  | Last Price                                              |
 \</list\>                  |              |          |                            |
 \</data\>            |        |         |                      |  
@@ -4666,7 +4660,7 @@ last_price | decimal  | true  | Last Price                                      
    - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
    - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. 
 - if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time. 
-- Regardless the query direction is prev or next, the data returned is reverse sorted by id. 
+- Regardless the query direction is prev or next, the data returned is reverse sorted by id.
 - If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid. 
 - Only data within 90 days are available to query.
 
@@ -5648,7 +5642,7 @@ client_order_id, order status query is available for orders placed within 24 hou
 | order_price_type | false  | string | "lightning" by default. "lightning_fok": lightning FOK type,"lightning_ioc": lightning IOC type|  |
 
 ###  Note:
-client_order_id, order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.
+ - Lightning Close Position，is order with rival price and optimal 30 grades. And the unsettled part will be automatically converted into a limited price order.
 
 > Response:
 
@@ -5706,7 +5700,7 @@ client_order_id, order status query is available for orders placed within 24 hou
 
 | **Parameter Name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| contract_code | true | String | contract code	 |  “BTC-USD” |
+| contract_code | true | string | contract code	 |  “BTC-USD” |
 | lever_rate | true | int | Leverage to switch.[Using Leverage greater than 20 times requires prior approval of high-leverage agreement for the first time.] |  |
 
 > Response:
@@ -6237,7 +6231,7 @@ All via API interface submited price limit orders that had been cancelled will o
    - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
    - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. 
 - if from_id is not filled and the query direction is prev, query back from the end time; if from_id is not filled and the query direction is next, query from the start time. Query history orders with creation time greater than or equal to the start time but less than or equal to the end time. 
-- Regardless the query direction is prev or next, the data returned is reverse sorted by query_id. 
+- Regardless the query direction is prev or next, the data returned is reverse sorted by query_id.
 - If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid. 
 - Only data within 90 days are available to query.
 
@@ -6458,7 +6452,7 @@ ts                     | true     | long    | timestamp                |        
    - start_time: value range is [(current time - 90 days)，current time] ；default value is clamp（end_time - 10 days，current time -90 days，current time -10 days）which means the furthest time is the current time minus 90 days and the most recent time is current time minus 10 days.
    - end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. 
 - if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time. 
-- Regardless the query direction is prev or next, the data returned is reverse sorted by query_id.  
+- Regardless the query direction is prev or next, the data returned is reverse sorted by query_id.
 - If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid. 
 - Only data within 90 days are available to query.
 
@@ -6985,7 +6979,7 @@ ts                     | true     | long    | timestamp                |        
 
 | Parameter Name            | Mandatory  | Type    | Description                    | Value Range                                    |
 | --------------- | ----- | ------ | --------------------- | ---------------------------------------- |
-| contract_code   | true | String | contract code    | BTC-USD                                |
+| contract_code   | true | string | contract code    | BTC-USD                                |
 | direction | true | string | direction| "buy", "sell"  |
 | volume | true | decimal | Numbers of orders (volume) |  |
 | tp_trigger_price          | false | decimal | Trigger price of take-profit order                  |                            |
@@ -7456,6 +7450,318 @@ ts                     | true     | long    | timestamp                |        
 | \</data\>       |       |        |     |  |
 | ts              | true  | long   | Time of Respond Generation，Unit: Millisecond                 |     |
 
+<!--
+## Place a Trailing Order
+
+ - POST `/swap-api/v1/swap_track_order`
+
+### Request Parameter
+| Parameter Name            | Mandatory  | Type     | Description                    | Value Range                                     |
+| --------------- | ----- | ------ | --------------------- | ---------------------------------------- |
+| contract_code   | true | string | contract code    | BTC-USD                               |
+| direction | true | string | direction| buy, sell  |
+| offset | true | string | offset |   open, close  |
+| lever_rate | false | int | lever rate, is required when open position, is optional when close position|    |
+| volume | true | decimal | volume(cont) |  |
+| callback_rate          | true | decimal | callback rate              |  Such as: 0.01 means 1%. And must be not less than 0.001 (0.1%)                         |
+| active price   | true | decimal | active price                 |  |
+| order_price_type | true | string | order price type |  optimal_5, optimal_10, optimal_20, formula_price  |
+
+
+#### Note: 
+ - When order_price_type is the formula_price, it means that after the tracking order is triggered successfully, use the lowest (highest) market price *(1 ± callback rate) that from statistic since place trading order, as the order price (the precision is the minimum variation of the contract price and be truncated) to place a limit price order 
+ - whether filled in with the optimal N or the formula price, there is no guarantee that the order can be completely filled, which mainly depends on the market conditions.
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "order_id": 825057614106017792,
+        "order_id_str": "825057614106017792"
+    },
+    "ts": 1616750664047
+}
+```
+
+### Return Parameter
+
+| Parameter Name            | Mandatory  | Type     | Description                            | Value Range                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status                     | true         | string   |  the result of server handling to request               | "ok" , "error" |
+| ts |  true  | long | timestamp | |
+| \<data\> |  true  | object | the returned data which is successful | |
+| order_id  |  true  | long | trailing order id [Globally Unique]  | |
+| order_id_str |  true  | string | trailing order id in string format   | |
+| \</data\> |   | |  | |
+
+
+## Cancel a Trailing Order
+
+ - POST `/swap-api/v1/swap_track_cancel`
+
+### Request Parameter
+
+| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| contract_code   | true | string | contract code    | BTC-USD                               |
+| order_id | true | string | User's trailing order id (multiple order IDs are separated by ",", a maximum of 10 orders are allowed to be withdrawn at a time)|    |
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "order_id": "825057948169748481",
+                "err_code": 1061,
+                "err_msg": "This order doesnt exist."
+            }
+        ],
+        "successes": "825057948169748480"
+    },
+    "ts": 1616750767892
+}
+```
+
+### Return Parameter
+| Parameter Name            | Mandatory  | Type     | Description                            | Value Range                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status          | true  | string |  the result of server handling to request                        | "ok" :success, "error": failed |
+| \<data\>        |   true    |   object     |                               | dictionary                   |
+| \<errors\>        |   true    |   object     |                               | dictionary                   |
+| order_id        | true  | string | trailing order id[Globally Unique]  |                      |
+| err_code              | false  | long   | error code               |                      |
+| err_msg              | false  | string   | error msg               |                      |
+| \</errors\>       |       |        |     |  |
+| successes              | true  | string   | the orders that are success                 |     |
+| \</data\>       |       |        |     |  |
+| ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
+
+
+## Cancel All Trailing Orders
+
+ - POST `/swap-api/v1/swap_track_cancelall`
+
+### Request Parameter
+
+| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| contract_code   | true | string | contract code    | BTC-USD                               |
+| direction | false  | string | direction(if not filled in, means all)  |  buy, sell |
+| offset | false  | string | offset (if not filled in, means all)  | open, close  |
+
+#### Note: 
+ - You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including "open" and "close" offset)
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "errors": [],
+        "successes": "825057614106017792,825057886882578432"
+    },
+    "ts": 1616750829839
+}
+```
+
+### Return Parameter
+
+| Parameter Name                   | Mandatory | Type      | Description                 | Value Range                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status          | true  | string |  the result of server handling to request                        | "ok" :success, "error": failed |
+| \<data\>        |   true    |   object     |                               | dictionary                   |
+| \<errors\>        |   true    |   object     |                               | dictionary                   |
+| order_id        | true  | string | trailing order id[Globally Unique] |                      |
+| err_code              | false  | long   | error code               |                      |
+| err_msg              | false  | string   | error msg               |                      |
+| \</errors\>       |       |        |     |  |
+| successes              | true  | string   | the orders that are success                 |     |
+| \</data\>       |       |        |     |  |
+| ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
+
+
+## Current unfilled trailing order acquisition
+
+ - POST `/swap-api/v1/swap_track_openorders`
+
+### Request Parameter
+
+| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| contract_code   | true | string | contract code    | BTC-USD                               |
+| trade_type | false  | int | trade type(if not filled in, means all)  |  0:all,1: buy long,2: sell short,3: buy short,4: sell long |
+| page_index | false | int | page index, if not filled in as 1st|    |
+| page_size | false | int | if not filled in as 20, and no more than 50|    |
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "symbol": "LTC",
+                "contract_code": "LTC-USD",
+                "volume": 1.000000000000000000,
+                "order_type": 1,
+                "direction": "sell",
+                "offset": "open",
+                "lever_rate": 5,
+                "order_id": 825057944222908416,
+                "order_id_str": "825057944222908416",
+                "order_source": "api",
+                "created_at": 1616750742739,
+                "order_price_type": "formula_price",
+                "status": 2,
+                "callback_rate": 0.003000000000000000,
+                "active_price": 179.000000000000000000,
+                "is_active": 0
+            }
+        ],
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 1
+    },
+    "ts": 1616750875170
+}
+```
+
+### Return Parameter
+
+| Parameter Name            | Mandatory  | Type     | Description                            | Value Range                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status          | true  | string |  the result of server handling to request                        | "ok" :success, "error": failed |
+| \<data\>        |   true    |   object     |                               | dictionary                   |
+| total_page        | true | int | total page   |                |
+| total_size        | true | int | total size   |                |
+| current_page        | true | int | current page   |                |
+| \<orders\>        |   true    |   object array    |                               |     |
+| symbol                 | true | string  | symbol               |                                          |
+| contract_code   | true | string | contract code    | BTC-USD                               |
+| volume                 | true | decimal  | volume |      |
+| order_type           | true | int | order type: 1. Quotation; 2. Cancelled order               |                                          |
+| direction            | true | string | direction                |           buy, sell         |
+| offset         | true | string | offset               |                  open, close        |
+| lever_rate            | true | int    | lever rate               |                                       |
+| order_id      | true | long | trailing order id                |                                          |
+| order_id_str             | true | string | trailing order id in string format              |                                          |
+| order_source      | true | string  | order source        |                                          |
+| created_at        | true  | long | created at |                      |
+| order_price_type        | true  | string | order price type  |  optimal_5, optimal_10, optimal_20, formula_price    |
+| status        | true  | int | order status  |    2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled                |
+| callback_rate          | true | decimal | callback rate           |  such as: 0.01 means 1%                         |
+| active price   | true | decimal | active price             |  |
+| is_active   | true | int | Is the active price activated?             |  1: activated; 0: not activated|
+| \</orders\>       |       |        |     |  |
+| \</data\>       |       |        |     |  |
+| ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
+
+
+## Get History Trailing Orders
+
+ - POST `/swap-api/v1/swap_track_hisorders`
+
+### Request Parameter
+
+| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| contract_code   | true | string | contract code    | BTC-USD                               |
+| status | true | string | order status| Multiple separated by English commas, Trailing Order status: 2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled   |
+| trade_type | true  | int | trade type(if not filled in, means all)  |  0:all,1: buy long,2: sell short,3: buy short,4: sell long |
+| create_date | true | long | days| any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.   |
+| page_index | false | int | page index, if not filled in as 1st|    |
+| page_size | false | int | if not filled in as 20, and no more than 50|    |
+| sort_by | false | string |sort fields(descending), if not filled in, sort by created_at descending |  "create_date"：descending order by order create date , "update_time": descending order by order update time  |
+
+> Response: 
+
+```json
+{
+    "status":"ok",
+    "data":{
+        "orders":[
+            {
+                "symbol":"LTC",
+                "contract_code":"LTC-USD",
+                "triggered_price":null,
+                "volume":1,
+                "order_type":1,
+                "direction":"sell",
+                "offset":"open",
+                "lever_rate":5,
+                "order_id":825057948169748480,
+                "order_id_str":"825057948169748480",
+                "order_source":"api",
+                "created_at":1616750743680,
+                "update_time":1616750784353,
+                "order_price_type":"formula_price",
+                "status":6,
+                "canceled_at":1616750768281,
+                "fail_code":null,
+                "fail_reason":null,
+                "callback_rate":0.003,
+                "active_price":179,
+                "is_active":0,
+                "market_limit_price":null,
+                "formula_price":null,
+                "real_volume":0,
+                "relation_order_id":"-1"
+            }
+        ],
+        "total_page":1,
+        "current_page":1,
+        "total_size":3
+    },
+    "ts":1616751416065
+}
+```
+
+### Return Parameter
+
+| Parameter Name            | Mandatory  | Type     | Description                            | Value Range                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status          | true  | string |  the result of server handling to request                        | "ok" :success, "error": failed |
+| \<data\>        |   true    |   object     |                               | dictionary                   |
+| total_page        | true | int | total page   |                |
+| total_size        | true | int | total size   |                |
+| current_page        | true | int | current page   |                |
+| \<orders\>        |   true    |   object array    |                               |     |
+| symbol                 | true | string  | symbol               |                                          |
+| contract_code   | true | string | contract code    | BTC-USD                               |
+| volume                 | true | decimal  | volume |      |
+| order_type           | true | int | order type: 1. Quotation; 2. Cancelled order               |                                          |
+| direction            | true | string | direction                |           buy, sell         |
+| offset         | true | string | offset               |                  open, close        |
+| lever_rate            | true | int    | lever rate               |                                       |
+| order_id      | true | long | trailing order id                |                                          |
+| order_id_str             | true | string | trailing order id in string format              |                                          |
+| order_source      | true | string  | order source        |                                          |
+| created_at        | true  | long | created at |                      |
+| update_time        | true  | long | update time, unit: millisecond|                      |
+| order_price_type        | true  | string | order price type  |   optimal_5, optimal_10, optimal_20, formula_price        |
+| status        | true  | int | order status  |    2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled          |
+| canceled_at        | true  | long | canceled at |                      |
+| fail_code        | true  | int | error code when place limit price order |                      |
+| fail_reason        | true  | string | error reason when place limit price order |                      |
+| callback_rate          | true | decimal | callback rate             |  such as: 0.01 means 1%                         |
+| active price   | true | decimal | active price           |  |
+| is_active   | true | int | Is the active price activated?             |  1: activated; 0: not activated|
+| market_limit_price   | true | decimal |  lowest/highest market price (use the lowest price when buy. use the highest when sell)           |  |
+| formula_price   | true | decimal | formula price(the lowest (highest) market price* (1 ± callback rate)) |  |
+| real_volume   | true | decimal | real volume                |  |
+| triggered_price   | true | decimal | triggered price           |  |
+| relation_order_id          | true | string |  relation_order_id is the string related to the limit orders， The value is -1 before the trigger orders executed.	           |                       |
+| \</orders\>       |       |        |     |  |
+| \</data\>       |       |        |     |  |
+| ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
+-->
 
 # Swap Transferring Interface
 
@@ -8640,7 +8946,7 @@ id  |  true  |  long  | Request ID  |   |
 id  |  true  |  long  |  Unique Transaction Id(symbol level)  |   |    
 price  |  true  |  string  |  Price |   |    
 amount  |  true  |  string  |  Quantity(Cont.). Sum of both buy and sell sides |   |    
-direction  |  true  |  string  | The direction to buy or sell is the direction of the taker (active transaction) |   |    
+direction  |  true  |  string  | The direction to buy or sell is the direction of the taker (active transaction)  |   |    
 ts  |  true  |  long  |  Order Creation Time |   |    
 quantity  |  true  |  string  |  trading quantity(coin)  |   | 
  \</data\>    |               |    |      | 
@@ -10240,7 +10546,7 @@ To subscribe position updates data, the client has to make connection to the ser
 | profit                 | decimal     | Profits/Losses                                                     |
 | position_margin        | decimal    | Position Margin                                                      |
 | lever_rate             | int     | Leverage                                                    |
-| direction              | string    | Position direction   "buy":Long "sell":Short                                                     |
+| direction              | string    | transaction direction of positions "buy":long "sell":short           |
 | last_price              | decimal    | Last Price                                                     |
 | \</data\>            |   |                                                        |
 
