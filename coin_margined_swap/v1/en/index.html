@@ -265,6 +265,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-1-7-2021-4-28-added-get-market-bbo-data-interface" class="toc-h2 toc-link" data-title="1.1.7 2021-4-28 【Added: Get Market BBO Data interface. 】">1.1.7 2021-4-28 【Added: Get Market BBO Data interface. 】</a>
+                  </li>
+                  <li>
                     <a href="#1-1-6-2021-2-26-added-query-asset-valuation-interface-query-a-batch-of-funding-rate-interface-modified-query-swap-price-limitation-interface-support-users-not-to-fill-in-all-input-parameters-and-the-interface-returns-the-price-limit-data-of-all-available-contracts-modified-query-the-last-trade-of-a-contract-interface-support-users-not-to-fill-in-all-input-parameters-the-interface-returns-the-latest-transaction-data-of-all-available-contracts-and-in-that-case-the-return-parameter-quot-ch-quot-value-is-quot-market-trade-detail-quot-added-one-field-in-return-quot-tick-quot-parameter-quot-contract_code-quot" class="toc-h2 toc-link" data-title="1.1.6 2021-2-26 【Added: Query Asset Valuation interface, Query a Batch of Funding Rate interface. Modified Query Swap Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter "ch" value is "market.*trade.detail". Added one field in return "tick" parameter: "contract_code")】">1.1.6 2021-2-26 【Added: Query Asset Valuation interface, Query a Batch of Funding Rate interface. Modified Query Swap Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter "ch" value is "market.*trade.detail". Added one field in return "tick" parameter: "contract_code")】</a>
                   </li>
                   <li>
@@ -392,6 +395,9 @@
                   </li>
                   <li>
                     <a href="#get-market-depth" class="toc-h2 toc-link" data-title="Get Market Depth">Get Market Depth</a>
+                  </li>
+                  <li>
+                    <a href="#get-market-bbo-data" class="toc-h2 toc-link" data-title="Get Market BBO Data">Get Market BBO Data</a>
                   </li>
                   <li>
                     <a href="#get-kline-data" class="toc-h2 toc-link" data-title="Get KLine Data">Get KLine Data</a>
@@ -824,7 +830,13 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-1-6-2021-2-26-added-query-asset-valuation-interface-query-a-batch-of-funding-rate-interface-modified-query-swap-price-limitation-interface-support-users-not-to-fill-in-all-input-parameters-and-the-interface-returns-the-price-limit-data-of-all-available-contracts-modified-query-the-last-trade-of-a-contract-interface-support-users-not-to-fill-in-all-input-parameters-the-interface-returns-the-latest-transaction-data-of-all-available-contracts-and-in-that-case-the-return-parameter-quot-ch-quot-value-is-quot-market-trade-detail-quot-added-one-field-in-return-quot-tick-quot-parameter-quot-contract_code-quot'>1.1.6 2021-2-26 【Added: Query Asset Valuation interface, Query a Batch of Funding Rate interface. Modified Query Swap Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter &quot;ch&quot; value is &quot;market.*trade.detail&quot;. Added one field in return &quot;tick&quot; parameter: &quot;contract_code&quot;)】</h2><h3 id='1-added-query-asset-valuation-interface'>1. Added Query Asset Valuation interface</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-1-7-2021-4-28-added-get-market-bbo-data-interface'>1.1.7 2021-4-28 【Added: Get Market BBO Data interface. 】</h2><h3 id='1-added-get-market-bbo-data-interface'>1. Added Get Market BBO Data interface</h3>
+<ul>
+<li>Interface Name: Get Market BBO Data</li>
+<li>Interface Type: public</li>
+<li>Interface URL: /swap-ex/market/bbo</li>
+</ul>
+<h2 id='1-1-6-2021-2-26-added-query-asset-valuation-interface-query-a-batch-of-funding-rate-interface-modified-query-swap-price-limitation-interface-support-users-not-to-fill-in-all-input-parameters-and-the-interface-returns-the-price-limit-data-of-all-available-contracts-modified-query-the-last-trade-of-a-contract-interface-support-users-not-to-fill-in-all-input-parameters-the-interface-returns-the-latest-transaction-data-of-all-available-contracts-and-in-that-case-the-return-parameter-quot-ch-quot-value-is-quot-market-trade-detail-quot-added-one-field-in-return-quot-tick-quot-parameter-quot-contract_code-quot'>1.1.6 2021-2-26 【Added: Query Asset Valuation interface, Query a Batch of Funding Rate interface. Modified Query Swap Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter &quot;ch&quot; value is &quot;market.*trade.detail&quot;. Added one field in return &quot;tick&quot; parameter: &quot;contract_code&quot;)】</h2><h3 id='1-added-query-asset-valuation-interface'>1. Added Query Asset Valuation interface</h3>
 <ul>
 <li>Interface Name: Query Asset Valuation</li>
 <li>Interface Type: private</li>
@@ -1575,6 +1587,14 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <tr>
 <td>Read</td>
 <td>Market Data</td>
+<td>/swap-ex/market/bbo</td>
+<td>GET</td>
+<td>Get Market BBO Data</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Market Data</td>
 <td>/swap-ex/market/history/kline</td>
 <td>GET</td>
 <td>Get KLine Data</td>
@@ -2069,6 +2089,14 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Yes</td>
 </tr>
 </tbody></table>
+
+<!--
+Trade | Strategy   |  /swap-api/v1/swap_track_order |        POST        | Place a Trailing Order            |  Yes |
+Trade | Strategy   |  /swap-api/v1/swap_track_cancel |        POST        | Cancel a Trailing Order          |  Yes |
+Trade | Strategy   |  /swap-api/v1/swap_track_cancelall |        POST        | Cancel All Trailing Orders           |  Yes |
+Read  | Strategy   |  /swap-api/v1/swap_track_openorders |        POST        | Current unfilled trailing order acquisition           |  Yes |
+Read  | Strategy   |  /swap-api/v1/swap_track_hisorders |        POST        | Current unfilled trailing order acquisition       |  Yes |
+-->
 <h2 id='address'>Address</h2>
 <table><thead>
 <tr>
@@ -4615,12 +4643,131 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='get-market-bbo-data'>Get Market BBO Data</h2>
+<ul>
+<li>GET <code>/swap-ex/market/bbo</code></li>
+</ul>
+<h3 id='request-parameter-6'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>false</td>
+<td>string</td>
+<td>contract code，if not filled in, return all</td>
+<td>&quot;BTC-USD&quot; ...</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ticks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LTC-USD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ask"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">178</span><span class="p">,</span><span class="w">
+                </span><span class="mi">10</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"bid"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="mi">176</span><span class="p">,</span><span class="w">
+                </span><span class="mi">9</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"mrid"</span><span class="p">:</span><span class="w"> </span><span class="mi">1301759</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1616747942659</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1616747957364</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='return-parameter'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>the result of server handling to request</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>&lt;ticks&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>&quot;BTC-USD&quot;,&quot;ETH-USD&quot;...</td>
+</tr>
+<tr>
+<td>mrid</td>
+<td>true</td>
+<td>long</td>
+<td>Match ID, unique identification</td>
+<td></td>
+</tr>
+<tr>
+<td>ask</td>
+<td>true</td>
+<td>array</td>
+<td>[Ask 1 price, Ask 1 qty (cont)]</td>
+<td></td>
+</tr>
+<tr>
+<td>bid</td>
+<td>true</td>
+<td>array</td>
+<td>[Bid 1 price, Bid 1 qty (cont)]</td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>The system detects the orderbook time point, unit: milliseconds</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/ticks&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+</tbody></table>
 <h2 id='get-kline-data'>Get KLine Data</h2><h3 id='example-6'>Example</h3>
 <ul>
 <li>GET <code>/swap-ex/market/history/kline</code> </li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-ex/market/history/kline?period=1min&amp;size=200&amp;contract_code=BTC-USD"</span>
-</code></pre><h3 id='request-parameter-6'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-7'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -4681,22 +4828,6 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <li>If <code>from</code> <code>to</code> <code>size</code> are all filled,&#39;from&#39; and &#39;to&#39; will be ignored.</li>
 </ul>
 
-<blockquote>
-<p>Data Illustration：</p>
-</blockquote>
-<pre class="highlight plaintext"><code>"data": [
-  {
-        "id": KLine id,
-        "vol": Transaction Volume(amount),
-        "count": transaction count
-        "open": opening Price
-        "close": Closing Price, when the Kline is the latest one，it means the latest price
-        "low": Lowest price
-        "high": highest price
-        "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
-   }
-]
-</code></pre>
 <blockquote>
 <p>Response:</p>
 </blockquote>
@@ -4834,7 +4965,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>GET <code>/index/market/history/swap_mark_price_kline</code></li>
 </ul>
-<h3 id='request-parameter-7'>Request Parameter：</h3>
+<h3 id='request-parameter-8'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5028,7 +5159,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <li>GET <code>/swap-ex/market/detail/merged</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-ex/market/detail/merged?contract_code=BTC-USD"</span>
-</code></pre><h3 id='request-parameter-8'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-9'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5049,23 +5180,6 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 </tr>
 </tbody></table>
 
-<blockquote>
-<p>tick Illustration:</p>
-</blockquote>
-<pre class="highlight plaintext"><code>"tick": {
-    "id": KLine id,
-    "vol": transaction volume（contract）,
-    "count": transaction count
-    "open": opening price,
-    "close": Closing Price, when the Kline is the latest one，it means the latest price
-    "low": Lowest price
-    "high": highest price
-    "amount": transaction volume(currency), sum(every transaction volume(amount)*every contract value/transaction price for this contract)
-    "bid": [price of buying one (amount)],
-    "ask": [price of selling one (amount)]
-
-  }
-</code></pre>
 <blockquote>
 <p>Response:</p>
 </blockquote>
@@ -5144,14 +5258,14 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>vol</td>
 <td>true</td>
 <td>string</td>
-<td>Trade Volume(Cont.). Sum of both buy and sell sides</td>
+<td>Trade Volume(Cont.).from nowtime - 24 hours. Sum of both buy and sell sides</td>
 <td></td>
 </tr>
 <tr>
 <td>count</td>
 <td>true</td>
 <td>decimal</td>
-<td>Order Quantity. Sum of both buy and sell sides</td>
+<td>Order Quantity. from nowtime - 24 hours. Sum of both buy and sell sides</td>
 <td></td>
 </tr>
 <tr>
@@ -5186,7 +5300,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>amount</td>
 <td>true</td>
 <td>string</td>
-<td>Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price). Sum of both buy and sell sides</td>
+<td>Trade Amount(Coin),  trade amount(coin)=sum(order quantity of a single order * face value of the coin/order price). from nowtime - 24 hours. Sum of both buy and sell sides</td>
 <td></td>
 </tr>
 <tr>
@@ -5222,7 +5336,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>GET <code>/swap-ex/market/detail/batch_merged</code></li>
 </ul>
-<h3 id='request-parameter-9'>Request Parameter</h3>
+<h3 id='request-parameter-10'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5338,7 +5452,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>amount</td>
 <td>true</td>
 <td>string</td>
-<td>trade amount(coin)</td>
+<td>trade amount(coin), from nowtime - 24 hours. Sum of both buy and sell sides</td>
 <td></td>
 </tr>
 <tr>
@@ -5373,7 +5487,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>count</td>
 <td>true</td>
 <td>decimal</td>
-<td>trade count</td>
+<td>trade count, from nowtime - 24 hours. Sum of both buy and sell sides</td>
 <td></td>
 </tr>
 <tr>
@@ -5394,7 +5508,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>vol</td>
 <td>true</td>
 <td>string</td>
-<td>trade vol, sum of both buy and sell side</td>
+<td>trade vol, from nowtime - 24 hours. Sum of both buy and sell sides</td>
 <td></td>
 </tr>
 <tr>
@@ -5424,7 +5538,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <li>GET <code>/swap-ex/market/trade</code><br></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-ex/market/trade?contract_code=BTC-USD"</span>
-</code></pre><h3 id='request-parameter-10'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-11'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5441,23 +5555,6 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 </tr>
 </tbody></table>
 
-<blockquote>
-<p>Tick Illustration：</p>
-</blockquote>
-<pre class="highlight plaintext"><code>"tick": {
-  "id": Unique Order Id(symbol level),
-  "ts": Latest Transaction time,
-  "data": [
-    {
-      "id": Unique Transaction Id(symbol level),
-      "price": Transaction price,
-      "amount": transaction amount,
-      "direction": Active transaction direction,
-      "ts": transaction time
-    }
-  ]
-}
-</code></pre>
 <blockquote>
 <p>Response:</p>
 </blockquote>
@@ -5628,7 +5725,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <li>GET <code>/swap-ex/market/history/trade</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-ex/market/history/trade?contract_code=BTC-USD&amp;size=100"</span>
-</code></pre><h3 id='request-parameter-11'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-12'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5657,22 +5754,6 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 </tr>
 </tbody></table>
 
-<blockquote>
-<p>data Illustration：</p>
-</blockquote>
-<pre class="highlight plaintext"><code>"data": {
-  "id": Unique Order Id(symbol level),
-  "ts": Latest transaction time,
-  "data": [
-    {
-      "id": Unique Transaction Id(symbol level),
-      "price": transaction price,
-      "amount": transaction (amount),
-      "direction": active transaction direction
-      "ts": transaction time
-      }
-}
-</code></pre>
 <blockquote>
 <p>Response:</p>
 </blockquote>
@@ -5839,7 +5920,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <li>GET <code>/swap-api/v1/swap_risk_info</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_risk_info"</span>
-</code></pre><h3 id='request-parameter-12'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-13'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -5938,7 +6019,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <li>GET <code>/swap-api/v1/swap_insurance_fund</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_insurance_fund?contract_code=BTC-USD"</span>
-</code></pre><h3 id='request-parameter-13'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-14'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6100,7 +6181,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <li>GET <code>/swap-api/v1/swap_adjustfactor</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_adjustfactor"</span>
-</code></pre><h3 id='request-parameter-14'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-15'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6219,7 +6300,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 <tr>
-<td>&lt;ladderDetail&gt;</td>
+<td>&lt;ladders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -6254,7 +6335,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 <tr>
-<td>&lt;/ladderDetail&gt;</td>
+<td>&lt;/ladders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -6280,7 +6361,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <li>GET <code>/swap-api/v1/swap_his_open_interest</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_his_open_interest?contract_code=BTC-USD&amp;period=60min&amp;amount_type=1"</span>
-</code></pre><h3 id='request-parameter-15'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-16'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6436,7 +6517,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>GET <code>/swap-api/v1/swap_ladder_margin</code></li>
 </ul>
-<h3 id='request-parameter-16'>Request Parameter</h3>
+<h3 id='request-parameter-17'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6626,7 +6707,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <li>GET <code>/swap-api/v1/swap_api_state</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_api_state"</span>
-</code></pre><h3 id='request-parameter-17'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-18'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6784,7 +6865,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <li>GET <code>/swap-api/v1/swap_elite_account_ratio</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_elite_account_ratio?contract_code=BTC-USD&amp;period=60min"</span>
-</code></pre><h3 id='request-parameter-18'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-19'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -6937,7 +7018,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <li>GET <code>/swap-api/v1/swap_elite_position_ratio</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_elite_position_ratio?contract_code=BTC-USD&amp;period=60min"</span>
-</code></pre><h3 id='request-parameter-19'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-20'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7081,7 +7162,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>GET <code>/swap-api/v1/swap_estimated_settlement_price</code></li>
 </ul>
-<h3 id='request-parameter-20'>Request Parameter</h3>
+<h3 id='request-parameter-21'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7190,7 +7271,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <li>GET <code>/swap-api/v1/swap_liquidation_orders</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC-USD&amp;trade_type=0&amp;create_date=7"</span>
-</code></pre><h3 id='request-parameter-21'>Request Parameter</h3>
+</code></pre><h3 id='request-parameter-22'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7402,7 +7483,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>GET <code>/swap-api/v1/swap_settlement_records</code></li>
 </ul>
-<h3 id='request-parameter-22'>Request Parameter</h3>
+<h3 id='request-parameter-23'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7472,7 +7553,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1606379293628</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-2'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -7709,7 +7790,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>GET <code>/swap-api/v1/swap_batch_funding_rate</code></li>
 </ul>
-<h3 id='request-parameter-23'>Request Parameter</h3>
+<h3 id='request-parameter-24'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8548,7 +8629,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/swap-api/v1/swap_balance_valuation</code></li>
 </ul>
-<h3 id='request-parameter-24'>Request Parameter</h3>
+<h3 id='request-parameter-25'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8637,7 +8718,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/swap-api/v1/swap_account_info</code><br></li>
 </ul>
-<h3 id='request-parameter-25'>Request Parameter</h3>
+<h3 id='request-parameter-26'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8823,7 +8904,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST  <code>/swap-api/v1/swap_position_info</code> </li>
 </ul>
-<h3 id='request-parameter-26'>Request Parameter</h3>
+<h3 id='request-parameter-27'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -8981,8 +9062,8 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>direction</td>
 <td>true</td>
 <td>string</td>
-<td>Transaction direction</td>
-<td></td>
+<td>transaction direction of positions</td>
+<td>&quot;buy&quot;:long &quot;sell&quot;:short</td>
 </tr>
 <tr>
 <td>last_price</td>
@@ -9270,7 +9351,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>direction</td>
 <td>string</td>
 <td>true</td>
-<td>&quot;buy&quot; &quot;sell&quot;</td>
+<td>transaction direction of positions  &quot;buy&quot;:long &quot;sell&quot;:short</td>
 </tr>
 <tr>
 <td>last_price</td>
@@ -9295,7 +9376,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/swap-api/v1/swap_sub_auth</code></li>
 </ul>
-<h3 id='request-parameter-27'>Request Parameter</h3>
+<h3 id='request-parameter-28'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -9576,7 +9657,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/swap-api/v1/swap_sub_account_info_list</code></li>
 </ul>
-<h3 id='request-parameter-28'>Request Parameter</h3>
+<h3 id='request-parameter-29'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -10358,7 +10439,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>swap-api/v1/swap_financial_record_exact</code></li>
 </ul>
-<h3 id='request-parameter-29'>Request Parameter</h3>
+<h3 id='request-parameter-30'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter name</th>
@@ -10427,7 +10508,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <li>end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. </li>
 </ul></li>
 <li>if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time. </li>
-<li>Regardless the query direction is prev or next, the data returned is reverse sorted by id. </li>
+<li>Regardless the query direction is prev or next, the data returned is reverse sorted by id.</li>
 <li>If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid. </li>
 <li>Only data within 90 days are available to query.</li>
 </ul>
@@ -10671,7 +10752,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>swap-api/v1/swap_user_settlement_records</code></li>
 </ul>
-<h3 id='request-parameter-30'>Request Parameter</h3>
+<h3 id='request-parameter-31'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11012,7 +11093,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>swap-api/v1/swap_available_level_rate</code></li>
 </ul>
-<h3 id='request-parameter-31'>Request Parameter：</h3>
+<h3 id='request-parameter-32'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -11103,7 +11184,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/swap-api/v1/swap_order_limit</code></li>
 </ul>
-<h3 id='request-parameter-32'>Request Parameter</h3>
+<h3 id='request-parameter-33'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11241,7 +11322,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/swap-api/v1/swap_fee</code></li>
 </ul>
-<h3 id='request-parameter-33'>Request Parameter</h3>
+<h3 id='request-parameter-34'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11372,7 +11453,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/swap-api/v1/swap_transfer_limit</code></li>
 </ul>
-<h3 id='request-parameter-34'>Request Parameter</h3>
+<h3 id='request-parameter-35'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -11526,7 +11607,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/swap-api/v1/swap_position_limit</code></li>
 </ul>
-<h3 id='request-parameter-35'>Request Parameter</h3>
+<h3 id='request-parameter-36'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12205,7 +12286,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"sl_order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"optimal_5"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-36'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-37'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12437,7 +12518,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-37'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-38'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12709,7 +12790,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST  <code>/swap-api/v1/swap_cancel</code></li>
 </ul>
-<h3 id='request-parameter-38'>Request Parameter</h3>
+<h3 id='request-parameter-39'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12849,7 +12930,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/swap-api/v1/swap_cancelall</code></li>
 </ul>
-<h3 id='request-parameter-39'>Request Parameter</h3>
+<h3 id='request-parameter-40'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -12980,7 +13061,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/swap-api/v1/swap_lightning_close_position</code></li>
 </ul>
-<h3 id='request-parameter-40'>Request Parameter</h3>
+<h3 id='request-parameter-41'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13027,7 +13108,9 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 </tr>
 </tbody></table>
 <h3 id='note-19'>Note:</h3>
-<p>client_order_id, order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.</p>
+<ul>
+<li>Lightning Close Position，is order with rival price and optimal 30 grades. And the unsettled part will be automatically converted into a limited price order.</li>
+</ul>
 
 <blockquote>
 <p>Response:</p>
@@ -13124,7 +13207,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <li><p>Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.</p></li>
 <li><p>The interface limits the number of requests to 1 time per 3 seconds.</p></li>
 </ul>
-<h3 id='request-parameter-41'>Request Parameter</h3>
+<h3 id='request-parameter-42'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -13137,7 +13220,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <tr>
 <td>contract_code</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>contract code</td>
 <td>“BTC-USD”</td>
 </tr>
@@ -13244,7 +13327,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/swap-api/v1/swap_order_info</code></li>
 </ul>
-<h3 id='request-parameter-42'>Request Parameter</h3>
+<h3 id='request-parameter-43'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -13549,7 +13632,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/swap-api/v1/swap_order_detail</code></li>
 </ul>
-<h3 id='request-parameter-43'>Request Parameter</h3>
+<h3 id='request-parameter-44'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14005,7 +14088,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST  <code>/swap-api/v1/swap_openorders</code></li>
 </ul>
-<h3 id='request-parameter-44'>Request Parameter</h3>
+<h3 id='request-parameter-45'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14360,7 +14443,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/swap-api/v1/swap_hisorders</code></li>
 </ul>
-<h3 id='request-parameter-45'>Request Parameter</h3>
+<h3 id='request-parameter-46'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14733,7 +14816,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>swap-api/v1/swap_hisorders_exact</code></li>
 </ul>
-<h3 id='request-parameter-46'>Request Parameter</h3>
+<h3 id='request-parameter-47'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -14824,7 +14907,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <li>end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. </li>
 </ul></li>
 <li>if from_id is not filled and the query direction is prev, query back from the end time; if from_id is not filled and the query direction is next, query from the start time. Query history orders with creation time greater than or equal to the start time but less than or equal to the end time. </li>
-<li>Regardless the query direction is prev or next, the data returned is reverse sorted by query_id. </li>
+<li>Regardless the query direction is prev or next, the data returned is reverse sorted by query_id.</li>
 <li>If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid. </li>
 <li>Only data within 90 days are available to query.</li>
 </ul>
@@ -15214,7 +15297,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/swap-api/v1/swap_matchresults</code></li>
 </ul>
-<h3 id='request-parameter-47'>Request Parameter</h3>
+<h3 id='request-parameter-48'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15513,7 +15596,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>swap-api/v1/swap_matchresults_exact</code></li>
 </ul>
-<h3 id='request-parameter-48'>Request Parameter</h3>
+<h3 id='request-parameter-49'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -15582,7 +15665,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <li>end_time: value range is [(current day - 90 days)，above++)，if the end_time is greater than the current time, use current time; if start_time is filled，the end_time shall be greater than start_time. The system will use current time by default. </li>
 </ul></li>
 <li>if from_id is not filled and the query direction is prev, query from back to front from the end time; if from_id is not filled and the query direction is next, query from front to back from the start time. Query financial records with creation time greater than or equal to the start time but less than or equal to the end time. </li>
-<li>Regardless the query direction is prev or next, the data returned is reverse sorted by query_id.<br></li>
+<li>Regardless the query direction is prev or next, the data returned is reverse sorted by query_id.</li>
 <li>If the value of start_time or end_time filled in is not within the value range, the system will report that the parameter is invalid. </li>
 <li>Only data within 90 days are available to query.</li>
 </ul>
@@ -16392,7 +16475,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>swap-api/v1/swap_trigger_openorders</code></li>
 </ul>
-<h3 id='request-parameter-49'>Request Parameter</h3>
+<h3 id='request-parameter-50'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -16659,7 +16742,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/swap-api/v1/swap_trigger_hisorders</code></li>
 </ul>
-<h3 id='request-parameter-50'>Request Parameter</h3>
+<h3 id='request-parameter-51'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17064,7 +17147,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"sl_order_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"139"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sl_order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-51'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-52'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17077,7 +17160,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <tr>
 <td>contract_code</td>
 <td>true</td>
-<td>String</td>
+<td>string</td>
 <td>contract code</td>
 <td>BTC-USD</td>
 </tr>
@@ -17289,7 +17372,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/swap-api/v1/swap_tpsl_cancel</code></li>
 </ul>
-<h3 id='request-parameter-52'>Request Parameter</h3>
+<h3 id='request-parameter-53'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17421,7 +17504,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/swap-api/v1/swap_tpsl_cancelall</code></li>
 </ul>
-<h3 id='request-parameter-53'>Request Parameter</h3>
+<h3 id='request-parameter-54'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17547,7 +17630,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/swap-api/v1/swap_tpsl_openorders</code></li>
 </ul>
-<h3 id='request-parameter-54'>Request Parameter</h3>
+<h3 id='request-parameter-55'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -17817,7 +17900,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/swap-api/v1/swap_tpsl_hisorders</code></li>
 </ul>
-<h3 id='request-parameter-55'>Request Parameter</h3>
+<h3 id='request-parameter-56'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18149,7 +18232,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li>POST <code>/swap-api/v1/swap_relation_tpsl_order</code></li>
 </ul>
-<h3 id='request-parameter-56'>Request Parameter</h3>
+<h3 id='request-parameter-57'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -18580,6 +18663,319 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
+
+<!--
+## Place a Trailing Order
+
+ - POST `/swap-api/v1/swap_track_order`
+
+### Request Parameter
+| Parameter Name            | Mandatory  | Type     | Description                    | Value Range                                     |
+| --------------- | ----- | ------ | --------------------- | ---------------------------------------- |
+| contract_code   | true | string | contract code    | BTC-USD                               |
+| direction | true | string | direction| buy, sell  |
+| offset | true | string | offset |   open, close  |
+| lever_rate | false | int | lever rate, is required when open position, is optional when close position|    |
+| volume | true | decimal | volume(cont) |  |
+| callback_rate          | true | decimal | callback rate              |  Such as: 0.01 means 1%. And must be not less than 0.001 (0.1%)                         |
+| active price   | true | decimal | active price                 |  |
+| order_price_type | true | string | order price type |  optimal_5, optimal_10, optimal_20, formula_price  |
+
+
+#### Note: 
+ - When order_price_type is the formula_price, it means that after the tracking order is triggered successfully, use the lowest (highest) market price *(1 ± callback rate) that from statistic since place trading order, as the order price (the precision is the minimum variation of the contract price and be truncated) to place a limit price order 
+ - whether filled in with the optimal N or the formula price, there is no guarantee that the order can be completely filled, which mainly depends on the market conditions.
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "order_id": 825057614106017792,
+        "order_id_str": "825057614106017792"
+    },
+    "ts": 1616750664047
+}
+```
+
+### Return Parameter
+
+| Parameter Name            | Mandatory  | Type     | Description                            | Value Range                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status                     | true         | string   |  the result of server handling to request               | "ok" , "error" |
+| ts |  true  | long | timestamp | |
+| \<data\> |  true  | object | the returned data which is successful | |
+| order_id  |  true  | long | trailing order id [Globally Unique]  | |
+| order_id_str |  true  | string | trailing order id in string format   | |
+| \</data\> |   | |  | |
+
+
+## Cancel a Trailing Order
+
+ - POST `/swap-api/v1/swap_track_cancel`
+
+### Request Parameter
+
+| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| contract_code   | true | string | contract code    | BTC-USD                               |
+| order_id | true | string | User's trailing order id (multiple order IDs are separated by ",", a maximum of 10 orders are allowed to be withdrawn at a time)|    |
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "errors": [
+            {
+                "order_id": "825057948169748481",
+                "err_code": 1061,
+                "err_msg": "This order doesnt exist."
+            }
+        ],
+        "successes": "825057948169748480"
+    },
+    "ts": 1616750767892
+}
+```
+
+### Return Parameter
+| Parameter Name            | Mandatory  | Type     | Description                            | Value Range                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status          | true  | string |  the result of server handling to request                        | "ok" :success, "error": failed |
+| \<data\>        |   true    |   object     |                               | dictionary                   |
+| \<errors\>        |   true    |   object     |                               | dictionary                   |
+| order_id        | true  | string | trailing order id[Globally Unique]  |                      |
+| err_code              | false  | long   | error code               |                      |
+| err_msg              | false  | string   | error msg               |                      |
+| \</errors\>       |       |        |     |  |
+| successes              | true  | string   | the orders that are success                 |     |
+| \</data\>       |       |        |     |  |
+| ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
+
+
+## Cancel All Trailing Orders
+
+ - POST `/swap-api/v1/swap_track_cancelall`
+
+### Request Parameter
+
+| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| contract_code   | true | string | contract code    | BTC-USD                               |
+| direction | false  | string | direction(if not filled in, means all)  |  buy, sell |
+| offset | false  | string | offset (if not filled in, means all)  | open, close  |
+
+#### Note: 
+ - You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including "open" and "close" offset)
+
+> Response: 
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "errors": [],
+        "successes": "825057614106017792,825057886882578432"
+    },
+    "ts": 1616750829839
+}
+```
+
+### Return Parameter
+
+| Parameter Name                   | Mandatory | Type      | Description                 | Value Range                                     |
+| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
+| status          | true  | string |  the result of server handling to request                        | "ok" :success, "error": failed |
+| \<data\>        |   true    |   object     |                               | dictionary                   |
+| \<errors\>        |   true    |   object     |                               | dictionary                   |
+| order_id        | true  | string | trailing order id[Globally Unique] |                      |
+| err_code              | false  | long   | error code               |                      |
+| err_msg              | false  | string   | error msg               |                      |
+| \</errors\>       |       |        |     |  |
+| successes              | true  | string   | the orders that are success                 |     |
+| \</data\>       |       |        |     |  |
+| ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
+
+
+## Current unfilled trailing order acquisition
+
+ - POST `/swap-api/v1/swap_track_openorders`
+
+### Request Parameter
+
+| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| contract_code   | true | string | contract code    | BTC-USD                               |
+| trade_type | false  | int | trade type(if not filled in, means all)  |  0:all,1: buy long,2: sell short,3: buy short,4: sell long |
+| page_index | false | int | page index, if not filled in as 1st|    |
+| page_size | false | int | if not filled in as 20, and no more than 50|    |
+
+> Response:
+
+```json
+{
+    "status": "ok",
+    "data": {
+        "orders": [
+            {
+                "symbol": "LTC",
+                "contract_code": "LTC-USD",
+                "volume": 1.000000000000000000,
+                "order_type": 1,
+                "direction": "sell",
+                "offset": "open",
+                "lever_rate": 5,
+                "order_id": 825057944222908416,
+                "order_id_str": "825057944222908416",
+                "order_source": "api",
+                "created_at": 1616750742739,
+                "order_price_type": "formula_price",
+                "status": 2,
+                "callback_rate": 0.003000000000000000,
+                "active_price": 179.000000000000000000,
+                "is_active": 0
+            }
+        ],
+        "total_page": 1,
+        "current_page": 1,
+        "total_size": 1
+    },
+    "ts": 1616750875170
+}
+```
+
+### Return Parameter
+
+| Parameter Name            | Mandatory  | Type     | Description                            | Value Range                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status          | true  | string |  the result of server handling to request                        | "ok" :success, "error": failed |
+| \<data\>        |   true    |   object     |                               | dictionary                   |
+| total_page        | true | int | total page   |                |
+| total_size        | true | int | total size   |                |
+| current_page        | true | int | current page   |                |
+| \<orders\>        |   true    |   object array    |                               |     |
+| symbol                 | true | string  | symbol               |                                          |
+| contract_code   | true | string | contract code    | BTC-USD                               |
+| volume                 | true | decimal  | volume |      |
+| order_type           | true | int | order type: 1. Quotation; 2. Cancelled order               |                                          |
+| direction            | true | string | direction                |           buy, sell         |
+| offset         | true | string | offset               |                  open, close        |
+| lever_rate            | true | int    | lever rate               |                                       |
+| order_id      | true | long | trailing order id                |                                          |
+| order_id_str             | true | string | trailing order id in string format              |                                          |
+| order_source      | true | string  | order source        |                                          |
+| created_at        | true  | long | created at |                      |
+| order_price_type        | true  | string | order price type  |  optimal_5, optimal_10, optimal_20, formula_price    |
+| status        | true  | int | order status  |    2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled                |
+| callback_rate          | true | decimal | callback rate           |  such as: 0.01 means 1%                         |
+| active price   | true | decimal | active price             |  |
+| is_active   | true | int | Is the active price activated?             |  1: activated; 0: not activated|
+| \</orders\>       |       |        |     |  |
+| \</data\>       |       |        |     |  |
+| ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
+
+
+## Get History Trailing Orders
+
+ - POST `/swap-api/v1/swap_track_hisorders`
+
+### Request Parameter
+
+| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
+| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
+| contract_code   | true | string | contract code    | BTC-USD                               |
+| status | true | string | order status| Multiple separated by English commas, Trailing Order status: 2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled   |
+| trade_type | true  | int | trade type(if not filled in, means all)  |  0:all,1: buy long,2: sell short,3: buy short,4: sell long |
+| create_date | true | long | days| any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.   |
+| page_index | false | int | page index, if not filled in as 1st|    |
+| page_size | false | int | if not filled in as 20, and no more than 50|    |
+| sort_by | false | string |sort fields(descending), if not filled in, sort by created_at descending |  "create_date"：descending order by order create date , "update_time": descending order by order update time  |
+
+> Response: 
+
+```json
+{
+    "status":"ok",
+    "data":{
+        "orders":[
+            {
+                "symbol":"LTC",
+                "contract_code":"LTC-USD",
+                "triggered_price":null,
+                "volume":1,
+                "order_type":1,
+                "direction":"sell",
+                "offset":"open",
+                "lever_rate":5,
+                "order_id":825057948169748480,
+                "order_id_str":"825057948169748480",
+                "order_source":"api",
+                "created_at":1616750743680,
+                "update_time":1616750784353,
+                "order_price_type":"formula_price",
+                "status":6,
+                "canceled_at":1616750768281,
+                "fail_code":null,
+                "fail_reason":null,
+                "callback_rate":0.003,
+                "active_price":179,
+                "is_active":0,
+                "market_limit_price":null,
+                "formula_price":null,
+                "real_volume":0,
+                "relation_order_id":"-1"
+            }
+        ],
+        "total_page":1,
+        "current_page":1,
+        "total_size":3
+    },
+    "ts":1616751416065
+}
+```
+
+### Return Parameter
+
+| Parameter Name            | Mandatory  | Type     | Description                            | Value Range                 |
+| --------------- | ----- | ------ | ----------------------------- | -------------------- |
+| status          | true  | string |  the result of server handling to request                        | "ok" :success, "error": failed |
+| \<data\>        |   true    |   object     |                               | dictionary                   |
+| total_page        | true | int | total page   |                |
+| total_size        | true | int | total size   |                |
+| current_page        | true | int | current page   |                |
+| \<orders\>        |   true    |   object array    |                               |     |
+| symbol                 | true | string  | symbol               |                                          |
+| contract_code   | true | string | contract code    | BTC-USD                               |
+| volume                 | true | decimal  | volume |      |
+| order_type           | true | int | order type: 1. Quotation; 2. Cancelled order               |                                          |
+| direction            | true | string | direction                |           buy, sell         |
+| offset         | true | string | offset               |                  open, close        |
+| lever_rate            | true | int    | lever rate               |                                       |
+| order_id      | true | long | trailing order id                |                                          |
+| order_id_str             | true | string | trailing order id in string format              |                                          |
+| order_source      | true | string  | order source        |                                          |
+| created_at        | true  | long | created at |                      |
+| update_time        | true  | long | update time, unit: millisecond|                      |
+| order_price_type        | true  | string | order price type  |   optimal_5, optimal_10, optimal_20, formula_price        |
+| status        | true  | int | order status  |    2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled          |
+| canceled_at        | true  | long | canceled at |                      |
+| fail_code        | true  | int | error code when place limit price order |                      |
+| fail_reason        | true  | string | error reason when place limit price order |                      |
+| callback_rate          | true | decimal | callback rate             |  such as: 0.01 means 1%                         |
+| active price   | true | decimal | active price           |  |
+| is_active   | true | int | Is the active price activated?             |  1: activated; 0: not activated|
+| market_limit_price   | true | decimal |  lowest/highest market price (use the lowest price when buy. use the highest when sell)           |  |
+| formula_price   | true | decimal | formula price(the lowest (highest) market price* (1 ± callback rate)) |  |
+| real_volume   | true | decimal | real volume                |  |
+| triggered_price   | true | decimal | triggered price           |  |
+| relation_order_id          | true | string |  relation_order_id is the string related to the limit orders， The value is -1 before the trigger orders executed.             |                       |
+| \</orders\>       |       |        |     |  |
+| \</data\>       |       |        |     |  |
+| ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
+-->
 <h1 id='swap-transferring-interface'>Swap Transferring Interface</h1><h2 id='transfer-margin-between-spot-account-and-coin-margined-swap-account'>Transfer margin between Spot account and Coin Margined Swap account</h2><h3 id='example-24'>Example</h3>
 <ul>
 <li>POST <code>https://api.huobi.pro/v2/account/transfer</code></li>
@@ -18590,7 +18986,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <p>API rate limit for this interface is 1 times/second.</p>
 
 <p>Transferring margin between Spot account and Coin Margined Swap account Interface, sets 8 decimal places for transferring amount of all coins.</p>
-<h3 id='request-parameter-57'>Request Parameter</h3>
+<h3 id='request-parameter-58'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -19648,7 +20044,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-58'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-59'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -19719,7 +20115,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-2'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-3'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -19831,7 +20227,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573106298</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-59'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-60'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -19947,7 +20343,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-3'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-4'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20059,7 +20455,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-60'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-61'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20189,7 +20585,7 @@ Details are below:</p></li>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-4'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-5'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20297,7 +20693,7 @@ Details are below:</p></li>
 </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-61'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-62'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20391,7 +20787,7 @@ Details are below:</p></li>
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603875997120</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-5'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-6'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20512,7 +20908,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-62'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-63'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20583,7 +20979,7 @@ Details are below:</p></li>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-6'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-7'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20705,7 +21101,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-63'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-64'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20770,7 +21166,7 @@ Details are below:</p></li>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-7'><strong>Return Parameter</strong>：</h3>
+</span></code></pre><h3 id='return-parameter-8'><strong>Return Parameter</strong>：</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20887,7 +21283,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-64'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-65'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -20957,7 +21353,7 @@ Details are below:</p></li>
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603876266723</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-8'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-9'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -21074,7 +21470,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-65'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-66'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -21140,7 +21536,7 @@ Details are below:</p></li>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-9'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-10'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -21271,7 +21667,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-66'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-67'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -21458,7 +21854,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-67'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-68'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -21686,7 +22082,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-68'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-69'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -21873,7 +22269,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-69'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-70'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -22099,7 +22495,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-70'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-71'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -22287,7 +22683,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-71'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-72'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -22321,7 +22717,7 @@ Details are below:</p></li>
 <td>end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameter-72'>Request Parameter：</h3>
+<h3 id='request-parameter-73'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -22512,7 +22908,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-73'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-74'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -22687,7 +23083,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-74'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-75'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -22721,7 +23117,7 @@ Details are below:</p></li>
 <td>end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameter-75'>Request Parameter：</h3>
+<h3 id='request-parameter-76'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -22906,7 +23302,7 @@ Details are below:</p></li>
     </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.$contract_code.mark_price.$period"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
  </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-76'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-77'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -23121,7 +23517,7 @@ Details are below:</p></li>
     </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1579247342</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-77'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-78'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -24608,7 +25004,7 @@ Details are below:</p></li>
 <tr>
 <td>direction</td>
 <td>string</td>
-<td>Position direction   &quot;buy&quot;:Long &quot;sell&quot;:Short</td>
+<td>transaction direction of positions &quot;buy&quot;:long &quot;sell&quot;:short</td>
 </tr>
 <tr>
 <td>last_price</td>
@@ -24752,7 +25148,7 @@ Details are below:</p></li>
 <td>Required；Topic name format: public.$contract_code.liquidation_orders. contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USD&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='return-parameter-10'>Return Parameter</h3>
+<h3 id='return-parameter-11'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -25401,7 +25797,7 @@ Details are below:</p></li>
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-78'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-79'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -25810,7 +26206,7 @@ Details are below:</p></li>
     </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.swap.heartbeat"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-79'><strong>Request Parameter</strong>:</h3>
+</span></code></pre><h3 id='request-parameter-80'><strong>Request Parameter</strong>:</h3>
 <table><thead>
 <tr>
 <th>Name</th>
