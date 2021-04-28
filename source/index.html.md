@@ -40,7 +40,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
-## 1.2.7 2020-4-28 【Added: Get Market BBO Data interface. Modified: Get Kline Data of Mark Price interface(supports symbol that value is contract code as request parameter, such as: BTC210326). Subscribe Kline Data of Mark Price interface(supports symbol that value is contract code as request parameter, such as: BTC210326). Request Kline Data of Mark Price interface(supports symbol that value is contract code as request parameter, such as: BTC210326)】
+## 1.2.7 2021-4-28 【Added: Get Market BBO Data interface. Modified: Get Kline Data of Mark Price interface(supports symbol that value is contract code as request parameter, such as: BTC210326). Subscribe Kline Data of Mark Price interface(supports symbol that value is contract code as request parameter, such as: BTC210326). Request Kline Data of Mark Price interface(supports symbol that value is contract code as request parameter, such as: BTC210326)】
 
 ### 1. Added Get Market BBO Data interface
  - Interface Name: Get Market BBO Data
@@ -1165,11 +1165,13 @@ Trade | Strategy  |  /api/v1/contract_tpsl_cancelall                        | PO
 Read  | Strategy  |  /api/v1/contract_tpsl_openorders                       | POST    |     Open take-profit and stop-loss orders        |      Yes         |
 Read  | Strategy  |  /api/v1/contract_tpsl_hisorders                        | POST    |     Take-profit and stop-loss histoty orders       |      Yes         |
 Read  | Strategy  |  /api/v1/contract_relation_tpsl_order                   | POST    |     Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order       |      Yes         |
-<!--Trade | Strategy  |  /api/v1/contract_track_order |        POST        | Place a Trailing Order           |  Yes  |
+<!-- 
+Trade | Strategy  |  /api/v1/contract_track_order |        POST        | Place a Trailing Order           |  Yes  |
 Trade | Strategy  |  /api/v1/contract_track_cancel |        POST        | Cancel a Trailing Order      |  Yes  |
 Trade | Strategy  |  /api/v1/contract_track_cancelall |        POST        | Cancel All Trailing Order     |  Yes  |
 Read  | Strategy  |  /api/v1/contract_track_openorders |        POST        |Current unfilled trailing order acquisition    |  Yes  |
-Read  | Strategy  |  /api/v1/contract_track_hisorders |        POST        |  Get History Trailing Orders     |  Yes  |-->
+Read  | Strategy  |  /api/v1/contract_track_hisorders |        POST        |  Get History Trailing Orders     |  Yes  |
+-->
 
 ##  Address
 
