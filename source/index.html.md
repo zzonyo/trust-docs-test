@@ -38,7 +38,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
-## 1.1.0 2021-4-28 【Added: Get Market BBO Data interface. Added: Trailing Order interface. 】 
+## 1.1.0 2021-4-28 【Added: Get Market BBO Data interface. 】 
 
 ### 1. Added Get Market BBO Data interface
  - Interface Name: [General]Get Market BBO Data
