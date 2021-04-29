@@ -265,6 +265,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-1-1-2021-04-29-modified-cancel-an-order-change-the-valid-time-of-the-client_order_id-from-24-hours-to-8-hours-clients-can-39-t-get-the-order-info-with-client_order_id-which-order-placed-beyond-8-hours-modified-get-information-of-an-order-change-the-valid-time-of-the-client_order_id-from-24-hours-to-8-hours-clients-can-39-t-get-the-order-info-with-client_order_id-which-order-placed-beyond-8-hours-client-can-query-the-order-info-which-has-been-cancelled-within-2-hours-original-is-4-hours" class="toc-h2 toc-link" data-title="1.1.1 2021-04-29 【Modified Cancel an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours). Modified Get Information of an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours.Client can query the order info which has been cancelled within 2 hours(original is 4 hours)）】">1.1.1 2021-04-29 【Modified Cancel an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours). Modified Get Information of an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours.Client can query the order info which has been cancelled within 2 hours(original is 4 hours)）】</a>
+                  </li>
+                  <li>
                     <a href="#1-1-0-2021-4-28-added-get-market-bbo-data-interface" class="toc-h2 toc-link" data-title="1.1.0 2021-4-28 【Added: Get Market BBO Data interface. 】">1.1.0 2021-4-28 【Added: Get Market BBO Data interface. 】</a>
                   </li>
                   <li>
@@ -962,10 +965,34 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <p>Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Futures long-term Market Maker project.If you have more than 3 BTC in your Huobi future account, or more than 3 BTC in your Huobi coin margined swap account, or you have more than 3 BTC in your Huobi option account,or more than 100000 USDT in your Huobi USDT Margined swap account, please send the following information to dm_mm@huobi.com:</p>
 
 <ol>
-<li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
+<li>Huobi UIDs (not linked to any rebate program in any accounts) </li>
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 </ol>
-<h1 id='changelog'>Changelog</h1><h2 id='1-1-0-2021-4-28-added-get-market-bbo-data-interface'>1.1.0 2021-4-28 【Added: Get Market BBO Data interface. 】</h2><h3 id='1-added-get-market-bbo-data-interface'>1. Added Get Market BBO Data interface</h3>
+<h1 id='changelog'>Changelog</h1><h2 id='1-1-1-2021-04-29-modified-cancel-an-order-change-the-valid-time-of-the-client_order_id-from-24-hours-to-8-hours-clients-can-39-t-get-the-order-info-with-client_order_id-which-order-placed-beyond-8-hours-modified-get-information-of-an-order-change-the-valid-time-of-the-client_order_id-from-24-hours-to-8-hours-clients-can-39-t-get-the-order-info-with-client_order_id-which-order-placed-beyond-8-hours-client-can-query-the-order-info-which-has-been-cancelled-within-2-hours-original-is-4-hours'>1.1.1 2021-04-29 【Modified Cancel an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can&#39;t get the order info with client_order_id which order placed beyond 8 hours). Modified Get Information of an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can&#39;t get the order info with client_order_id which order placed beyond 8 hours.Client can query the order info which has been cancelled within 2 hours(original is 4 hours)）】</h2><h3 id='1-modified-cancel-an-order-isolated-interface-change-the-valid-time-of-the-client_order_id-from-24-hours-to-8-hours-clients-can-39-t-get-the-order-info-with-client_order_id-which-order-placed-beyond-8-hours'>1. Modified Cancel an Order(isolated) interface(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can&#39;t get the order info with client_order_id which order placed beyond 8 hours)</h3>
+<ul>
+<li>Interface Name: [Isolated]Cancel an Order</li>
+<li>Interface Type: private</li>
+<li>Interface URL: /linear-swap-api/v1/swap_cancel</li>
+</ul>
+<h3 id='2-modified-cancel-an-order-cross-interface-change-the-valid-time-of-the-client_order_id-from-24-hours-to-8-hours-clients-can-39-t-get-the-order-info-with-client_order_id-which-order-placed-beyond-8-hours'>2. Modified Cancel an Order(cross) interface(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can&#39;t get the order info with client_order_id which order placed beyond 8 hours)</h3>
+<ul>
+<li>Interface Name: [Cross]Cancel an Order</li>
+<li>Interface Type: private</li>
+<li>Interface URL: /linear-swap-api/v1/swap_cross_cancel</li>
+</ul>
+<h3 id='3-modified-get-information-of-an-order-isolated-interface-change-the-valid-time-of-the-client_order_id-from-24-hours-to-8-hours-clients-can-39-t-get-the-order-info-with-client_order_id-which-order-placed-beyond-8-hours-client-can-query-the-order-info-which-has-been-cancelled-within-2-hours-original-is-4-hours'>3. Modified Get Information of an Order(isolated) interface(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can&#39;t get the order info with client_order_id which order placed beyond 8 hours. Client can query the order info which has been cancelled within 2 hours(original is 4 hours)）</h3>
+<ul>
+<li>Interface Name: [Isolated]Get Information of an Order</li>
+<li>Interface Type: private</li>
+<li>Interface URL: /linear-swap-api/v1/swap_order_info</li>
+</ul>
+<h3 id='4-modified-get-information-of-an-order-cross-interface-change-the-valid-time-of-the-client_order_id-from-24-hours-to-8-hours-clients-can-39-t-get-the-order-info-with-client_order_id-which-order-placed-beyond-8-hours-client-can-query-the-order-info-which-has-been-cancelled-within-2-hours-original-is-4-hours'>4. Modified Get Information of an Order(cross) interface(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can&#39;t get the order info with client_order_id which order placed beyond 8 hours. Client can query the order info which has been cancelled within 2 hours(original is 4 hours)）</h3>
+<ul>
+<li>Interface Name: [Cross]Get Information of an Order</li>
+<li>Interface Type: private</li>
+<li>Interface URL: /linear-swap-api/v1/swap_cross_order_info</li>
+</ul>
+<h2 id='1-1-0-2021-4-28-added-get-market-bbo-data-interface'>1.1.0 2021-4-28 【Added: Get Market BBO Data interface. 】</h2><h3 id='1-added-get-market-bbo-data-interface'>1. Added Get Market BBO Data interface</h3>
 <ul>
 <li>Interface Name: [General]Get Market BBO Data</li>
 <li>Interface Type: public</li>
@@ -18242,7 +18269,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 
 <p>The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.</p>
 
-<p>client_order_id, order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.</p>
+<p>client_order_id, order status query is available for orders placed within 8 hours; Otherwise, clients cannot check orders placed beyond 8 hours.</p>
 
 <blockquote>
 <p>Response: result of multiple order withdrawls (successful withdrew order ID, failed withdrew order ID)</p>
@@ -18387,7 +18414,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li><p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p></li>
 <li><p>The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.</p></li>
-<li><p>client_order_id, order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.</p></li>
+<li><p>client_order_id, order status query is available for orders placed within 8 hours; Otherwise, clients cannot check orders placed beyond 8 hours.</p></li>
 </ul>
 
 <blockquote>
@@ -19336,7 +19363,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id. The order completed( 5.partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled; ) will be deleted after the settlement of funding rate on 04:00(GMT+8), 12:00(GMT+8) and 20:00(GMT+8).</p>
 
-<p>client_order_id，order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.</p>
+<p>client_order_id，order status query is available for orders placed within 8 hours; Otherwise, clients cannot check orders placed beyond 8 hours.</p>
 
 <blockquote>
 <p>Response:</p>
@@ -19671,7 +19698,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <ul>
 <li><p>When getting information on order cancellation via get order Information interface, users can only query last 2-hour data</p></li>
 <li><p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id. The order completed( 5.partially fulfilled but cancelled by client; 6. Fully fulfilled; 7. Cancelled; ) will be deleted after the settlement of funding rate on 04:00(GMT+8), 12:00(GMT+8) and 20:00(GMT+8).</p></li>
-<li><p>client_order_id，order status query is available for orders placed within 24 hours; Otherwise, clients cannot check orders placed beyond 24 hours.</p></li>
+<li><p>client_order_id，order status query is available for orders placed within 8 hours; Otherwise, clients cannot check orders placed beyond 8 hours.</p></li>
 </ul>
 
 <blockquote>
