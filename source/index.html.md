@@ -38,7 +38,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
-## 1.1.1 2021-04-30 【Modified Cancel an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours). Modified Get Information of an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours.Client can query the order info which has been cancelled within 2 hours(original is 4 hours)）】
+## 1.1.1 2021-04-29 【Modified Cancel an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours). Modified Get Information of an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours.Client can query the order info which has been cancelled within 2 hours(original is 4 hours)）】
 
 ### 1. Modified Cancel an Order(isolated) interface(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours)
  - Interface Name: [Isolated]Cancel an Order
