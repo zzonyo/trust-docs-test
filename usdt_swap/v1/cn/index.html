@@ -265,6 +265,9 @@
             <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-1-1-2021-04-29-client_order_id-24-8-8-client_order_id-client_order_id-24-8-8-client_order_id-4-2" class="toc-h2 toc-link" data-title="1.1.1 2021年04月29日 【修改撤销订单接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。）、修改获取合约订单信息接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。将原来只能查询最近4小时内的撤单信息改为只可以查询最近2小时内的撤单信息。）】">1.1.1 2021年04月29日 【修改撤销订单接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。）、修改获取合约订单信息接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。将原来只能查询最近4小时内的撤单信息改为只可以查询最近2小时内的撤单信息。）】</a>
+                  </li>
+                  <li>
                     <a href="#1-1-0-2021-4-28" class="toc-h2 toc-link" data-title="1.1.0 2021年4月28日 【新增:获取市场最优挂单接口。】">1.1.0 2021年4月28日 【新增:获取市场最优挂单接口。】</a>
                   </li>
                   <li>
@@ -964,7 +967,31 @@
 <li>提供火币 UID （需不存在返佣关系的 UID）；</li>
 <li>提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；</li>
 </ol>
-<h1 id='185368440e'>更新日志</h1><h2 id='1-1-0-2021-4-28'>1.1.0 2021年4月28日 【新增:获取市场最优挂单接口。】</h2><h3 id='1'>1、新增获取市场最优挂单接口</h3>
+<h1 id='185368440e'>更新日志</h1><h2 id='1-1-1-2021-04-29-client_order_id-24-8-8-client_order_id-client_order_id-24-8-8-client_order_id-4-2'>1.1.1 2021年04月29日 【修改撤销订单接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。）、修改获取合约订单信息接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。将原来只能查询最近4小时内的撤单信息改为只可以查询最近2小时内的撤单信息。）】</h2><h3 id='1-client_order_id-24-8-8-client_order_id'>1、修改撤销订单（逐仓）接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。）</h3>
+<ul>
+<li>接口名称：【逐仓】撤销订单</li>
+<li>接口类型：私有接口</li>
+<li>接口URL：/linear-swap-api/v1/swap_cancel</li>
+</ul>
+<h3 id='2-client_order_id-24-8-8-client_order_id'>2、修改撤销订单（全仓）接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。）</h3>
+<ul>
+<li>接口名称：【全仓】撤销订单</li>
+<li>接口类型：私有接口</li>
+<li>接口URL：/linear-swap-api/v1/swap_cross_cancel</li>
+</ul>
+<h3 id='3-client_order_id-24-8-8-client_order_id-4-2'>3、修改获取合约订单信息（逐仓）接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。将原来只能查询最近4小时内的撤单信息改为只可以查询最近2小时内的撤单信息。）</h3>
+<ul>
+<li>接口名称：【逐仓】获取合约订单信息</li>
+<li>接口类型：私有接口</li>
+<li>接口URL：/linear-swap-api/v1/swap_order_info</li>
+</ul>
+<h3 id='4-client_order_id-24-8-8-client_order_id-4-2'>4、修改获取合约订单信息（全仓）接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。将原来只能查询最近4小时内的撤单信息改为只可以查询最近2小时内的撤单信息。）</h3>
+<ul>
+<li>接口名称：【全仓】获取合约订单信息</li>
+<li>接口类型：私有接口</li>
+<li>接口URL：/linear-swap-api/v1/swap_cross_order_info</li>
+</ul>
+<h2 id='1-1-0-2021-4-28'>1.1.0 2021年4月28日 【新增:获取市场最优挂单接口。】</h2><h3 id='1'>1、新增获取市场最优挂单接口</h3>
 <ul>
 <li>接口名称：【通用】获取市场最优挂单</li>
 <li>接口类型：公共接口</li>
@@ -18341,7 +18368,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <ul>
 <li><p>order_id和client_order_id都可以用来撤单，至少要填写一个,同时只可以设置其中一种，如果设置了两种，默认以order_id来撤单。</p></li>
 <li><p>撤单接口返回结果只代表撤单命令发送成功，建议根据订单查询接口查询订单的状态来确定订单是否已真正撤销。</p></li>
-<li><p>client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。</p></li>
+<li><p>client_order_id，8 小时有效，超过 8 小时的订单根据client_order_id将查询不到。</p></li>
 </ul>
 
 <blockquote>
@@ -18488,7 +18515,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <ul>
 <li><p>order_id和client_order_id都可以用来撤单，至少要填写一个,同时只可以设置其中一种，如果设置了两种，默认以order_id来撤单。</p></li>
 <li><p>撤单接口返回结果只代表撤单命令发送成功，建议根据订单查询接口查询订单的状态来确定订单是否已真正撤销。</p></li>
-<li><p>client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。</p></li>
+<li><p>client_order_id，8 小时有效，超过 8 小时的订单根据client_order_id将查询不到。</p></li>
 </ul>
 
 <blockquote>
@@ -19167,7 +19194,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <li><p>最多只能查询2小时内的撤单信息。</p></li>
 <li><p>order_id和client_order_id至少要填写一个。</p></li>
 <li><p>order_id和client_order_id都可以用来查询，同时只可以设置其中一种，如果设置了两种，默认以order_id来查询。结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。</p></li>
-<li><p>client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。</p></li>
+<li><p>client_order_id，8 小时有效，超过 8 小时的订单根据client_order_id将查询不到。</p></li>
 </ul>
 
 <blockquote>
@@ -19504,7 +19531,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <li><p>最多只能查询2小时内的撤单信息。</p></li>
 <li><p>order_id和client_order_id至少要填写一个。</p></li>
 <li><p>order_id和client_order_id都可以用来查询，同时只可以设置其中一种，如果设置了两种，默认以order_id来查询。结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。</p></li>
-<li><p>client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。</p></li>
+<li><p>client_order_id，8 小时有效，超过 8 小时的订单根据client_order_id将查询不到。</p></li>
 </ul>
 
 <blockquote>
