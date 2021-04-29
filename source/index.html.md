@@ -36,6 +36,28 @@ search: true
 
 # 更新日志
 
+## 1.1.1 2021年04月30日 【修改撤销订单接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。）、修改获取合约订单信息接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。将原来只能查询最近4小时内的撤单信息改为只可以查询最近2小时内的撤单信息。）】
+
+### 1、修改撤销订单（逐仓）接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。）
+ - 接口名称：【逐仓】撤销订单
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_cancel
+
+### 2、修改撤销订单（全仓）接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。）
+ - 接口名称：【全仓】撤销订单
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_cross_cancel
+
+### 3、修改获取合约订单信息（逐仓）接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。将原来只能查询最近4小时内的撤单信息改为只可以查询最近2小时内的撤单信息。）
+ - 接口名称：【逐仓】获取合约订单信息
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_order_info
+
+### 4、修改获取合约订单信息（全仓）接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。将原来只能查询最近4小时内的撤单信息改为只可以查询最近2小时内的撤单信息。）
+ - 接口名称：【全仓】获取合约订单信息
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_cross_order_info
+
 ## 1.1.0 2021年4月28日 【新增:获取市场最优挂单接口。】 
 
 ### 1、新增获取市场最优挂单接口
@@ -7505,7 +7527,7 @@ orders_data  | List\<Object\>   |    |    |
 
  - 撤单接口返回结果只代表撤单命令发送成功，建议根据订单查询接口查询订单的状态来确定订单是否已真正撤销。
  
- - client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。
+ - client_order_id，8 小时有效，超过 8 小时的订单根据client_order_id将查询不到。
 
 > Response:
 
@@ -7564,7 +7586,7 @@ ts  |  true  |  long  |  响应生成时间点，单位：毫秒  |   |
 
  - 撤单接口返回结果只代表撤单命令发送成功，建议根据订单查询接口查询订单的状态来确定订单是否已真正撤销。
  
- - client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。
+ - client_order_id，8 小时有效，超过 8 小时的订单根据client_order_id将查询不到。
  
 > Response
 
@@ -7825,7 +7847,7 @@ ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   |
 
 - order_id和client_order_id都可以用来查询，同时只可以设置其中一种，如果设置了两种，默认以order_id来查询。结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。
 
-- client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。
+- client_order_id，8 小时有效，超过 8 小时的订单根据client_order_id将查询不到。
 
 > Response:
 
@@ -7936,7 +7958,7 @@ ts  | true  |  long  |  响应生成时间点，单位：毫秒  |   |
 
  - order_id和client_order_id都可以用来查询，同时只可以设置其中一种，如果设置了两种，默认以order_id来查询。结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。
 
- - client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。
+ - client_order_id，8 小时有效，超过 8 小时的订单根据client_order_id将查询不到。
 
 > Response
 
