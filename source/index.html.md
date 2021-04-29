@@ -36,6 +36,18 @@ search: True
 
 # 更新日志
 
+## 1.1.8 2021年04月30日 【修改撤销订单接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。）、修改获取合约订单信息接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。将原来只能查询最近4小时内的撤单信息改为只可以查询最近2小时内的撤单信息。）】
+
+### 1、修改撤销订单接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。）
+ - 接口名称：撤销订单
+ - 接口类型：私有接口
+ - 接口URL：/swap-api/v1/swap_cancel
+
+### 2、修改获取合约订单信息接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。将原来只能查询最近4小时内的撤单信息改为只可以查询最近2小时内的撤单信息。）
+ - 接口名称：获取合约订单信息
+ - 接口类型：私有接口
+ - 接口URL：/swap-api/v1/swap_order_info
+
 ## 1.1.7 2021年4月28日 【新增:获取市场最优挂单接口。】 
 
 ### 1、新增获取市场最优挂单接口
@@ -5617,7 +5629,7 @@ contract_code  |  true   |  string   |  合约代码,支持大小写,"BTC-USD"  
 
  - 撤单接口返回结果只代表撤单命令发送成功，建议根据订单查询接口查询订单的状态来确定订单是否已真正撤销。
 
- - client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。
+ - client_order_id，8 小时有效，超过 8 小时的订单根据client_order_id将查询不到。
 
 > Response:
 
@@ -5779,7 +5791,7 @@ contract_code  |  true   |  string   |  合约代码,支持大小写,"BTC-USD"  
 
 - order_id和client_order_id都可以用来查询，同时只可以设置其中一种，如果设置了两种，默认以order_id来查询。结算后，会把结束状态的订单（5部分成交已撤单 6全部成交 7已撤单）删除掉。
 
-- client_order_id，24小时有效，超过24小时的订单根据client_order_id将查询不到。
+- client_order_id，8 小时有效，超过 8 小时的订单根据client_order_id将查询不到。
 
 > Response:
 
