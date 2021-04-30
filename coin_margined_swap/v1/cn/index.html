@@ -892,25 +892,25 @@
 <li>接口类型：私有接口</li>
 <li>接口URL：/swap-api/v1/swap_sub_account_info_list</li>
 </ul>
-<h3 id='4-data-quantity'>4、修改获取市场最近成交记录接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值/成交价格）</h3>
+<h3 id='4-data-quantity'>4、修改获取市场最近成交记录接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）* 合约面值/成交价格）</h3>
 <ul>
 <li>接口名称：获取市场最近成交记录</li>
 <li>接口类型：公共接口</li>
 <li>接口URL：/swap-ex/market/trade</li>
 </ul>
-<h3 id='5-data-data-quantity'>5、修改批量获取最近的交易记录接口（返参data参数下内层data中新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值/成交价格）</h3>
+<h3 id='5-data-data-quantity'>5、修改批量获取最近的交易记录接口（返参data参数下内层data中新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）* 合约面值/成交价格）</h3>
 <ul>
 <li>接口名称：批量获取最近的交易记录</li>
 <li>接口类型：公共接口</li>
 <li>接口URL：/swap-ex/market/history/trade</li>
 </ul>
-<h3 id='6-trade-detail-tick-data-quantity'>6、修改订阅 Trade Detail 数据接口（返参tick参数下的data参数中新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值/成交价格）</h3>
+<h3 id='6-trade-detail-tick-data-quantity'>6、修改订阅 Trade Detail 数据接口（返参tick参数下的data参数中新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）* 合约面值/成交价格）</h3>
 <ul>
 <li>接口名称：订阅 Trade Detail 数据</li>
 <li>接口类型：公共接口</li>
 <li>订阅地址：market.$contract_code.trade.detail</li>
 </ul>
-<h3 id='7-trade-detail-data-quantity'>7、修改请求 Trade Detail 数据接口（返参data参数中新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值/成交价格）</h3>
+<h3 id='7-trade-detail-data-quantity'>7、修改请求 Trade Detail 数据接口（返参data参数中新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）* 合约面值/成交价格）</h3>
 <ul>
 <li>接口名称：请求 Trade Detail 数据</li>
 <li>接口类型：公共接口</li>
@@ -3950,7 +3950,7 @@ step6是不合并小数；
 <p>amount: 成交量(张), 买卖双边成交量之和</p>
 
 <p>direction: 主动成交方向</p>
-<h3 id='q24-k-swap-ex-market-history-kline-from-to-2000-period-data'>Q24: 获取K线数据(swap-ex/market/history/kline)时, from 和 to 的时间间隔是 2000*period, 为什么获取的 data 为[]?</h3>
+<h3 id='q24-k-swap-ex-market-history-kline-from-to-2000-period-data'>Q24: 获取K线数据(swap-ex/market/history/kline)时, from 和 to 的时间间隔是 2000 * period, 为什么获取的 data 为[]?</h3>
 <p>获取 K 线时, from 和 to 两个时间点是全都包含在内的, 因此是 2001 条数据. 此时数量超出了最大条数 2000. 所以返回 []</p>
 
 <p>另外，当 from 和 to 的时间超过 2 年，返回的数据也会是 []</p>
@@ -4996,7 +4996,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-ex/market/history/kline?contrac
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)。 值是买卖双边之和</td>
+<td>成交量(币), 即 sum(每一笔成交量(张) * 单张合约面值/该笔成交价)。 值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
@@ -5357,7 +5357,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-ex/market/detail/merged?contrac
 <td>amount</td>
 <td>true</td>
 <td>string</td>
-<td>成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价) （最近24（当前时间-24小时）小时成交量币）。 值是买卖双边之和</td>
+<td>成交量(币), 即 sum(每一笔成交量(张) * 单张合约面值/该笔成交价) （最近24（当前时间-24小时）小时成交量币）。 值是买卖双边之和</td>
 <td></td>
 </tr>
 <tr>
@@ -20293,7 +20293,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)。 值是买卖双边之和</td>
+<td>成交量(币), 即 sum(每一笔成交量(张) * 单张合约面值/该笔成交价)。 值是买卖双边之和</td>
 </tr>
 <tr>
 <td>&lt;/tick&gt;</td>
@@ -20519,7 +20519,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)。 值是买卖双边之和</td>
+<td>成交量(币), 即 sum(每一笔成交量(张) * 单张合约面值/该笔成交价)。 值是买卖双边之和</td>
 </tr>
 <tr>
 <td>&lt;/data&gt;</td>
@@ -21231,7 +21231,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)。 值是买卖双边之和</td>
+<td>成交量(币), 即 sum(每一笔成交量(张) * 单张合约面值/该笔成交价)。 值是买卖双边之和</td>
 </tr>
 <tr>
 <td>vol</td>
@@ -21331,7 +21331,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tbody></table>
 
 <blockquote>
-<p><strong>返回示例</strong>:</p>
+<p>返回示例:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -21353,7 +21353,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
         </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USD.bbo"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='66d8016b4f'><strong>返回参数说明</strong>：</h3>
+</span></code></pre><h3 id='97ad64e404'>返回参数说明：</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -21441,9 +21441,8 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 </tbody></table>
-
+<h4 id='a2c8f89312'>说明：</h4>
 <ul>
-<li><strong>说明</strong>：</li>
 <li>当买一价、买一量、卖一价、卖一量，其中任一数据发生变化时，进行逐笔推送；</li>
 <li>如果同一时刻有多个买一卖一的价格/单量的变化，直接用最新的买一卖一进行推送，直接丢弃中间结果；</li>
 <li>由于客户端网络等原因导致接收数据失败，服务端会丢弃旧的队列数据；</li>
@@ -22113,7 +22112,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='a2c8f89312'>说明：</h3>
+<h3 id='a2c8f89312-2'>说明：</h3>
 <ul>
 <li>一次返回最多2000条数据；</li>
 </ul>
@@ -25708,7 +25707,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='ca88326368-2'><strong>请求参数</strong></h3>
+</span></code></pre><h3 id='1f9ac54b15-92'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -25968,7 +25967,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-92'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-93'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -26132,7 +26131,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='a2c8f89312-2'>说明：</h3>
+<h3 id='a2c8f89312-3'>说明：</h3>
 <ul>
 <li>合约信息变动WS推送接口有定期推送逻辑，每60秒进行一次定期推送，由定期推送触发的数据中event参数值为“snapshot”，表示由系统定期推送触发。如果60秒内已经触发过推送，则跳过该次定期推送。</li>
 <li>订阅成功时，会立即推送一条最新的合约信息，event为init。</li>
@@ -26243,7 +26242,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-93'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-94'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -26277,7 +26276,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tbody></table>
 
 <blockquote>
-<p><strong>返回示例</strong>:</p>
+<p>返回示例:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -26314,7 +26313,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='66d8016b4f-2'><strong>返回参数说明</strong>：</h3>
+</span></code></pre><h3 id='97ad64e404-2'>返回参数说明：</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -26535,7 +26534,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='062bb701f5'><strong>说明</strong>：</h4>
+<h4 id='a2c8f89312-4'>说明：</h4>
 <ul>
 <li>订单状态系统处理的中间态不进行推送，比如报单中和撤单中；具体通知事件说明映射如下：
 
@@ -26651,7 +26650,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
     </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.swap.heartbeat"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='587ce2d22d'><strong>请求参数</strong>:</h3>
+</span></code></pre><h3 id='2eb6f47757'>请求参数:</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -26683,7 +26682,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='sub-20'><strong>sub订阅参数说明</strong>:</h3>
+<h3 id='sub-20'>sub订阅参数说明:</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -26703,7 +26702,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 </tbody></table>
 
 <blockquote>
-<p><strong>返回示例</strong>:</p>
+<p>返回示例:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -26717,7 +26716,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='66d8016b4f-3'><strong>返回参数说明</strong>：</h3>
+</span></code></pre><h3 id='97ad64e404-3'>返回参数说明：</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
