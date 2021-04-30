@@ -1150,7 +1150,7 @@ amount: 成交量(张), 买卖双边成交量之和
 
 direction: 主动成交方向
 
-### Q21: 获取K线数据时, from 和 to 的时间间隔是 2000*period, 为什么获取的 data 为[]?
+### Q21: 获取K线数据时, from 和 to 的时间间隔是 2000 * period, 为什么获取的 data 为[]?
 
 获取 K 线时, from 和 to 两个时间点是全都包含在内的, 因此是 2001 条数据. 此时数量超出了最大条数 2000. 所以返回 []
 
@@ -1887,8 +1887,8 @@ curl "https://api.hbdm.com//option-ex/market/history/kline?period=1min&size=200&
 | close     | true | decimal | 收盘价,当K线为最晚的一根时，是最新成交价        |                |
 | low     | true | decimal | 最低价        |                |
 | high     | true | decimal | 最高价        |                |
-| amount     | true | decimal | 成交量(币), 即 (成交量(张)\*单张合约面值)        |                |
-| trade_turnover     | true | decimal | 成交额（即成交的权利金总额），即 sum（每一笔成交张数\*合约面值\*成交价格）       |                |
+| amount     | true | decimal | 成交量(币), 即 (成交量(张) * 单张合约面值)        |                |
+| trade_turnover     | true | decimal | 成交额（即成交的权利金总额），即 sum（每一笔成交张数 * 合约面值 * 成交价格）       |                |
 | \</data\>              |      |        |               |                |
 | status | true | string | 请求处理结果                          | "ok" , "error" |
 | ts     | true | long | 响应生成时间点，单位：毫秒                   |                |
@@ -1947,7 +1947,7 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
 | status | true | string | 请求处理结果     | "ok" , "error" |
 | \<tick\>   |true  | object | 开盘价和收盘价（从当天零点(UTC+8)开始）         |                |
 | id   | true | long | K线ID,也就是K线时间戳  |                |
-| amount   | true | decimal | 成交量(币), 即 (成交量(张)\*单张合约面值)（最近24（当前时间-24小时）小时成交量币）   |                |
+| amount   | true | decimal | 成交量(币), 即 (成交量(张) * 单张合约面值)（最近24（当前时间-24小时）小时成交量币）   |                |
 | ask   | true | array | [卖1价,卖1量(张)] |                |
 | bid   | true | array | [买1价,买1量(张)] |                |
 | open     | true | string | 开盘价     |                |
@@ -1956,7 +1956,7 @@ curl "https://api.hbdm.com/option-ex/market/detail/merged?contract_code=BTC-USDT
 | high   | true | string | 最高价                                    |                |
 | low   | true | string | 最低价  |                |
 | vol   | true | string | 成交量（张），买卖双边成交量之和（最近24（当前时间-24小时）小时成交量张）        |                |
-| trade_turnover     | true | string | 成交额（即成交的权利金总额），即 sum（每一笔成交张数\*合约面值\*成交价格）（最近24（当前时间-24小时）小时成交额）       |                |
+| trade_turnover     | true | string | 成交额（即成交的权利金总额），即 sum（每一笔成交张数 * 合约面值 * 成交价格）（最近24（当前时间-24小时）小时成交额）       |                |
 | ts   | true | long | 时间戳   |                |
 | \</tick\>              |      |        |               |                |
 | ts     | true | long | 响应生成时间点，单位：毫秒                            |                |
@@ -2999,7 +2999,7 @@ curl "https://api.hbdm.com/ /option-ex/market/history/trade?contract_code=BTC-US
 
 ### 备注：
 
-  - 当费率类型为”相对费用“时，则手续费按手续费率收取，即为权利金*对应的手续费率；当 费率类型为”绝对费用“时，则手续费固定按每张多少计价货币收取，但不能超过手续费收取/支出上限（即权利金*手续费收取上限比率）；
+  - 当费率类型为”相对费用“时，则手续费按手续费率收取，即为权利金 * 对应的手续费率；当 费率类型为”绝对费用“时，则手续费固定按每张多少计价货币收取，但不能超过手续费收取/支出上限（即权利金 * 手续费收取上限比率）；
   
   - 比如：在USDT交易区的BTC期权下，open_maker_fee（开仓挂单的手续费/手续费率）值为0.4，那么在相对费用时表示开仓手续费率为40%，在绝对费用时表示开仓每张期权合约手续费为0.4USDT。
 
@@ -5561,7 +5561,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
 | close   | true | decimal  | 收盘价,当K线为最晚的一根时，是最新成交价  |    |
 | low   | true | decimal  | 最低价    |    |
 | high   | true | decimal  | 最高价    |    |
-| amount   | true | decimal  | 成交量(币), 即(成交量(张)*单张合约面值)    |    |
+| amount   | true | decimal  | 成交量(币), 即(成交量(张) * 单张合约面值)    |    |
 | trade_turnover   | true | decimal  | 成交额（即成交的权利金总额）, 即sum（每一笔成交张数 * 合约面值 * 成交价格）   |    |
 | \</tick>  \   |  |   |     |    |       
 
@@ -5686,7 +5686,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | close   | true | decimal  | 收盘价,当K线为最晚的一根时，是最新成交价    |   |
 | low   | true | decimal  | 最低价    |   |
 | high   | true | decimal  | 最高价    |   |
-| amount   | true | decimal  | 成交量(币), 即(成交量(张)*单张合约面值)    |   |
+| amount   | true | decimal  | 成交量(币), 即(成交量(张) * 单张合约面值)    |   |
 | trade_turnover   | true | decimal  | 成交额（即成交的权利金总额）, 即sum（每一笔成交张数 * 合约面值 * 成交价格）   |    |
 | vol   | true | decimal  | 成交量张数    |   |
 | count   | true | decimal  | 成交笔数    |   |
@@ -6009,7 +6009,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 | close   | true | decimal  | 收盘价,当K线为最晚的一根时，是最新成交价 |  |
 | high   | true | decimal  | 最高价  |  |
 | low   | true | decimal  | 最低价  |  |
-| amount   | true | decimal  |成交量(币)，即(成交量(张)*单张合约面值)   |  |
+| amount   | true | decimal  |成交量(币)，即(成交量(张) * 单张合约面值)   |  |
 | vol   | true | decimal  | 成交量（张），买卖双边成交量之和  |  |
 | trade_turnover   | true | decimal  | 成交额（即成交的权利金总额），即sum（每一笔成交张数 * 合约面值 * 成交价格） |  |
 | count   | true | decimal  | 成交笔数  |  |
@@ -6887,20 +6887,20 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 }
 ```
 
-### **请求参数**:
+### 请求参数:
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
 | op | true | string | 订阅固定值为sub	 |  |
 | cid | false| string | Client 请求唯一 ID	 | |
 | topic | true| string | 订阅主题名称，必填 (public.$service.heartbeat) 订阅某个业务的系统状态信息 | |
 
-### **sub订阅参数说明**:
+### sub订阅参数说明:
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
 | service | true | string | 业务代码	 | option：期权  |
 
 
-> **返回示例**:
+> 返回示例:
 
 ```json
 
@@ -6917,7 +6917,7 @@ from: t1 and to: t2, should satisfy 1325347200 < t1 < t2 < 2524579200.
 
 ```
 
-### **返回参数说明**：
+### 返回参数说明：
 | 参数名称   |   是否必须  |   数据类型   |   描述   |   取值范围   |
 | -------- | -------- | -------- |  --------------------------------------- | -------------- | 
 | op   | true | string  | 操作名称，推送固定值为 notify;    |   |
