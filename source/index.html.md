@@ -107,22 +107,22 @@ search: True
  - 接口类型：私有接口
  - 接口URL：/api/v1/contract_sub_account_info_list
 
-### 4、修改获取市场最近成交记录接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值/成交价格）
+### 4、修改获取市场最近成交记录接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）* 合约面值/成交价格）
  - 接口名称：获取市场最近成交记录
  - 接口类型：公共接口
  - 接口URL：/market/trade
 
-### 5、修改批量获取最近的交易记录接口（返参data参数下内层data中新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值/成交价格）
+### 5、修改批量获取最近的交易记录接口（返参data参数下内层data中新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）* 合约面值/成交价格）
  - 接口名称：批量获取最近的交易记录
  - 接口类型：公共接口
  - 接口URL：/market/history/trade
 
-### 6、修改订阅 Trade Detail 数据接口（返参tick参数下的data参数中新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值/成交价格）
+### 6、修改订阅 Trade Detail 数据接口（返参tick参数下的data参数中新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）* 合约面值/成交价格）
  - 接口名称：订阅 Trade Detail 数据
  - 接口类型：公共接口
  - 订阅地址：market.$symbol.trade.detail
 
-### 7、修改请求 Trade Detail 数据接口（返参data参数中新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值/成交价格）
+### 7、修改请求 Trade Detail 数据接口（返参data参数中新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）* 合约面值/成交价格）
  - 接口名称：请求 Trade Detail 数据
  - 接口类型：公共接口
  - 订阅地址：market.$symbol.trade.detail
@@ -2433,7 +2433,7 @@ amount: 成交量(张), 买卖双边成交量之和
 
 direction: 主动成交方向
 
-### Q24: 获取K线数据时, from 和 to 的时间间隔是 2000*period, 为什么获取的 data 为[]?
+### Q24: 获取K线数据时, from 和 to 的时间间隔是 2000 * period, 为什么获取的 data 为[]?
 
 获取 K 线时, from 和 to 两个时间点是全都包含在内的, 因此是 2001 条数据. 此时数量超出了最大条数 2000. 所以返回 []
 
@@ -4152,7 +4152,7 @@ curl "https://api.hbdm.com/index/market/history/index?symbol=BTC-USD&period=1min
 | close         | true     | decimal   |  收盘指数价,当K线为最晚的一根时，是最新成交价     |       |        
 | low           | true     | decimal   |  最低指数价         |     |         
 | high          | true     | decimal   |  最高指数价         |     |         
-| amount        | true     | decimal   |  成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)，值为0    |     |          
+| amount        | true     | decimal   |  成交量(币), 即 sum(每一笔成交量(张) * 单张合约面值/该笔成交价)，值为0    |     |          
 | \</data\>     |      |     | 	                |    |
 | status        | true     | string    | 请求处理结果         |  "ok" , "error" |
 | ts            | true     | long      | 响应生成时间点 单位：毫秒       |   |
@@ -4596,7 +4596,7 @@ risk_rate | true | decimal | 保证金率 |  |
     "sub_uid":123456789
 }
 ```
-###  请求参数*
+###  请求参数
 
   参数名称     |   是否必须   |  类型  |  描述         |   默认值   |   取值范围                                 |
 ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
@@ -8712,7 +8712,7 @@ WebSocket API 返回的所有数据都进⾏了 GZIP 压缩，需要 client 在�
   close    |     true          | decimal   |  收盘价,当K线为最晚的一根时，是最新成交价     |            
   low    |     true          | decimal   |  最低价    |            
   high    |     true          | decimal   |  最高价    |            
-  amount    |     true          | decimal   |  成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)。 值是买卖双边之和 |            
+  amount    |     true          | decimal   |  成交量(币), 即 sum(每一笔成交量(张) * 单张合约面值/该笔成交价)。 值是买卖双边之和 |            
   \</tick\>    |               |     |      |          
 
 
@@ -8800,7 +8800,7 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
   close    |     true          | decimal   |  收盘价,当K线为最晚的一根时，是最新成交价     |            
   low    |     true          | decimal   |  最低价    |            
   high    |     true          | decimal   |  最高价    |            
-  amount    |     true          | decimal   |  成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)。 值是买卖双边之和 |            
+  amount    |     true          | decimal   |  成交量(币), 即 sum(每一笔成交量(张) * 单张合约面值/该笔成交价)。 值是买卖双边之和 |            
   \</data\>    |               |     |      |          
 
   
@@ -9225,7 +9225,7 @@ open  |  true  |  decimal  |    开盘价  |
 close  |  true  |  decimal  |    收盘价,当K线为最晚的一根时，是最新成交价  |    
 high  |  true  |  decimal  |    最高价  |     
 low  |  true  |  decimal  |    最低价  |     
-amount  |  true  |  decimal  |    成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)。 值是买卖双边之和  |   
+amount  |  true  |  decimal  |    成交量(币), 即 sum(每一笔成交量(张) * 单张合约面值/该笔成交价)。 值是买卖双边之和  |   
 vol  |  true  |  decimal  |   成交量（张）。 值是买卖双边之和 |     
 count  |  true  |  decimal  |   成交笔数。 值是买卖双边之和  |   
 ask  |  true  |  array  |   [卖1价,卖1量(张)]  | 
@@ -10630,14 +10630,14 @@ quantity  |  true  |  decimal  |  成交量（币）  |   |
 
 ```
 
-### **请求参数**
+### 请求参数
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
 | op | true | string | 订阅固定值为sub	 |  |
 | cid | false| string | Client 请求唯一 ID	 | |
 | topic | true| string |必填;订阅主题名称:public.$symbol.liquidation_orders; 订阅某个品种下的强平订单信息；$symbol为品种代码（BTC、ETH），如果值为 * 时代表订阅所有品种; symbol支持大小写| |
 
-### **返回参数说明**
+### 返回参数说明
 | 参数名称   |   是否必须  |   数据类型   |   描述   |   取值范围   |
 | -------- | -------- | -------- |  --------------------------------------- | -------------- | 
 | op   | true | string  | 操作名称，推送固定值为 notify;    |   |
@@ -10925,7 +10925,7 @@ quantity  |  true  |  decimal  |  成交量（币）  |   |
 | cid | false| string | 选填；Client 请求唯一 ID	 | 
 | topic | true| string | 必填；订阅主题名称:trigger_order.$symbol; 订阅某个品种下的计划委托订单更新信息；$symbol为品种代码（BTC、ETH），如果值为 * 时代表订阅所有品种; symbol支持大小写; | 
 
-> **返回示例**:
+> 返回示例:
 
 ```json
 
@@ -10966,7 +10966,7 @@ quantity  |  true  |  decimal  |  成交量（币）  |   |
 }
 ``` 
  
-### **返回参数说明**：
+### 返回参数说明：
 | 参数名称   |   是否必须  |   数据类型   |   描述   |   取值范围   |
 | -------- | -------- | -------- |  --------------------------------------- | -------------- |
 | op | true |  string | 操作名称，推送固定值为 notify | |
@@ -11086,20 +11086,20 @@ quantity  |  true  |  decimal  |  成交量（币）  |   |
 }
 ```
 
-### **请求参数**:
+### 请求参数:
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
 | op | true | string | 必填;订阅固定值为sub	 |  |
 | cid | false| string | 选填;Client 请求唯一 ID	 | |
 | topic | true| string | 必填;订阅主题名称:public.$service.heartbeat; 订阅交割合约的系统状态信息 | |
 
-### **sub订阅参数说明**:
+### sub订阅参数说明:
 | 参数名称   | 是否必须 | 类型     | 描述   | 取值范围           |
 | ------ | ---- | ------ | -------- | -------------- |
 | service | true | string | 业务代码	 | futures：交割 |
 
 
-> **返回示例**:
+> 返回示例:
 
 ```json
 
@@ -11116,7 +11116,7 @@ quantity  |  true  |  decimal  |  成交量（币）  |   |
 
 ```
 
-### **返回参数说明**：
+### 返回参数说明：
 | 参数名称   |   是否必须  |   数据类型   |   描述   |   取值范围   |
 | -------- | -------- | -------- |  --------------------------------------- | -------------- | 
 | op   | true | string  | 操作名称，推送固定值为 notify;    |   |
