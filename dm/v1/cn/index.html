@@ -922,25 +922,25 @@
 <li>接口类型：私有接口</li>
 <li>接口URL：/api/v1/contract_sub_account_info_list</li>
 </ul>
-<h3 id='4-data-quantity'>4、修改获取市场最近成交记录接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值/成交价格）</h3>
+<h3 id='4-data-quantity'>4、修改获取市场最近成交记录接口（返参data参数下新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）* 合约面值/成交价格）</h3>
 <ul>
 <li>接口名称：获取市场最近成交记录</li>
 <li>接口类型：公共接口</li>
 <li>接口URL：/market/trade</li>
 </ul>
-<h3 id='5-data-data-quantity'>5、修改批量获取最近的交易记录接口（返参data参数下内层data中新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值/成交价格）</h3>
+<h3 id='5-data-data-quantity'>5、修改批量获取最近的交易记录接口（返参data参数下内层data中新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）* 合约面值/成交价格）</h3>
 <ul>
 <li>接口名称：批量获取最近的交易记录</li>
 <li>接口类型：公共接口</li>
 <li>接口URL：/market/history/trade</li>
 </ul>
-<h3 id='6-trade-detail-tick-data-quantity'>6、修改订阅 Trade Detail 数据接口（返参tick参数下的data参数中新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值/成交价格）</h3>
+<h3 id='6-trade-detail-tick-data-quantity'>6、修改订阅 Trade Detail 数据接口（返参tick参数下的data参数中新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）* 合约面值/成交价格）</h3>
 <ul>
 <li>接口名称：订阅 Trade Detail 数据</li>
 <li>接口类型：公共接口</li>
 <li>订阅地址：market.$symbol.trade.detail</li>
 </ul>
-<h3 id='7-trade-detail-data-quantity'>7、修改请求 Trade Detail 数据接口（返参data参数中新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）*合约面值/成交价格）</h3>
+<h3 id='7-trade-detail-data-quantity'>7、修改请求 Trade Detail 数据接口（返参data参数中新增quantity，表示成交量（币）。计算公式：成交量（币） = 成交量（张）* 合约面值/成交价格）</h3>
 <ul>
 <li>接口名称：请求 Trade Detail 数据</li>
 <li>接口类型：公共接口</li>
@@ -4238,7 +4238,7 @@ step6是不合并小数；
 <p>amount: 成交量(张), 买卖双边成交量之和</p>
 
 <p>direction: 主动成交方向</p>
-<h3 id='q24-k-from-to-2000-period-data'>Q24: 获取K线数据时, from 和 to 的时间间隔是 2000*period, 为什么获取的 data 为[]?</h3>
+<h3 id='q24-k-from-to-2000-period-data'>Q24: 获取K线数据时, from 和 to 的时间间隔是 2000 * period, 为什么获取的 data 为[]?</h3>
 <p>获取 K 线时, from 和 to 两个时间点是全都包含在内的, 因此是 2001 条数据. 此时数量超出了最大条数 2000. 所以返回 []</p>
 
 <p>另外，当 from 和 to 的时间超过 2 年，返回的数据也会是 []</p>
@@ -8251,7 +8251,7 @@ step6是不合并小数；
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)，值为0</td>
+<td>成交量(币), 即 sum(每一笔成交量(张) * 单张合约面值/该笔成交价)，值为0</td>
 <td></td>
 </tr>
 <tr>
@@ -9390,7 +9390,7 @@ step6是不合并小数；
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="mi">123456789</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='e2716ec5c1'>请求参数*</h3>
+</span></code></pre><h3 id='1f9ac54b15-32'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9591,7 +9591,7 @@ step6是不合并小数；
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sub_uid"</span><span class="p">:</span><span class="mi">123456789</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-32'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-33'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9807,7 +9807,7 @@ step6是不合并小数；
     </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"3,4"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"page_size"</span><span class="p">:</span><span class="mi">20</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-33'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-34'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -9997,7 +9997,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>/api/v1/contract_financial_record_exact</code></li>
 </ul>
-<h3 id='1f9ac54b15-34'>请求参数</h3>
+<h3 id='1f9ac54b15-35'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10310,7 +10310,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>/api/v1/contract_user_settlement_records</code></li>
 </ul>
-<h3 id='1f9ac54b15-35'>请求参数</h3>
+<h3 id='1f9ac54b15-36'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10651,7 +10651,7 @@ step6是不合并小数；
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="s2">"limit"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-36'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-37'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10822,7 +10822,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>/api/v1/contract_fee</code></li>
 </ul>
-<h3 id='1f9ac54b15-37'>请求参数</h3>
+<h3 id='1f9ac54b15-38'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -10953,7 +10953,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>/api/v1/contract_transfer_limit</code></li>
 </ul>
-<h3 id='1f9ac54b15-38'>请求参数</h3>
+<h3 id='1f9ac54b15-39'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11099,7 +11099,7 @@ step6是不合并小数；
 <ul>
 <li>post <code>/api/v1/contract_position_limit</code></li>
 </ul>
-<h3 id='1f9ac54b15-39'>请求参数</h3>
+<h3 id='1f9ac54b15-40'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11244,7 +11244,7 @@ step6是不合并小数；
 <ul>
 <li>post <code>/api/v1/contract_account_position_info</code></li>
 </ul>
-<h3 id='1f9ac54b15-40'>请求参数</h3>
+<h3 id='1f9ac54b15-41'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11535,7 +11535,7 @@ step6是不合并小数；
     </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"master_to_sub"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-41'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-42'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11639,7 +11639,7 @@ step6是不合并小数；
 <ul>
 <li>post <code>/api/v1/contract_master_sub_transfer_record</code></li>
 </ul>
-<h3 id='1f9ac54b15-42'>请求参数</h3>
+<h3 id='1f9ac54b15-43'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -11846,7 +11846,7 @@ step6是不合并小数；
 <ul>
 <li>get <code>/api/v1/contract_api_trading_status</code></li>
 </ul>
-<h3 id='1f9ac54b15-43'>请求参数</h3>
+<h3 id='1f9ac54b15-44'>请求参数</h3>
 <p>无</p>
 <h3 id='response'>Response:</h3>
 <table><thead>
@@ -12066,7 +12066,7 @@ step6是不合并小数；
 <ul>
 <li>Post <code>/api/v1/contract_available_level_rate</code></li>
 </ul>
-<h3 id='1f9ac54b15-44'>请求参数</h3>
+<h3 id='1f9ac54b15-45'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12175,7 +12175,7 @@ step6是不合并小数；
     </span><span class="s2">"sl_order_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"330"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sl_order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"optimal_5"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-45'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-46'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名</th>
@@ -12418,7 +12418,7 @@ step6是不合并小数；
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-46'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-47'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名</th>
@@ -12708,7 +12708,7 @@ step6是不合并小数；
     </span><span class="s2">"order_id"</span><span class="p">:</span><span class="s2">"634696656176029696,634693443368525824"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"btc"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-47'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-48'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -12855,7 +12855,7 @@ step6是不合并小数；
     </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"btc200925"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="s2">"quarter"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-48'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-49'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13005,7 +13005,7 @@ step6是不合并小数；
 <li><p>只有在单个品种下只有持仓，且没有挂单的场景下，才可以切换该品种当前的倍数。</p></li>
 <li><p>接口限制请求次数为每3秒一次。</p></li>
 </ul>
-<h3 id='1f9ac54b15-49'>请求参数</h3>
+<h3 id='1f9ac54b15-50'>请求参数</h3>
 <table><thead>
 <tr>
 <th><strong>参数名称</strong></th>
@@ -13124,7 +13124,7 @@ step6是不合并小数；
 <ul>
 <li>POST  <code>/api/v1/contract_order_info</code></li>
 </ul>
-<h3 id='1f9ac54b15-50'>请求参数</h3>
+<h3 id='1f9ac54b15-51'>请求参数</h3>
 <blockquote>
 <p>Request:</p>
 </blockquote>
@@ -13457,7 +13457,7 @@ step6是不合并小数；
     </span><span class="s2">"page_size"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
     </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-51'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-52'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -13932,7 +13932,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>/api/v1/contract_openorders</code><br></li>
 </ul>
-<h3 id='1f9ac54b15-52'>请求参数</h3>
+<h3 id='1f9ac54b15-53'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14311,7 +14311,7 @@ step6是不合并小数；
     </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-53'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-54'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -14717,7 +14717,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>/api/v1/contract_hisorders_exact</code></li>
 </ul>
-<h3 id='1f9ac54b15-54'>请求参数</h3>
+<h3 id='1f9ac54b15-55'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -15225,7 +15225,7 @@ step6是不合并小数；
     </span><span class="s2">"page_index"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"page_size"</span><span class="p">:</span><span class="mi">20</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-55'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-56'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -15539,7 +15539,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>/api/v1/contract_matchresults_exact</code></li>
 </ul>
-<h3 id='1f9ac54b15-56'>请求参数</h3>
+<h3 id='1f9ac54b15-57'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -15965,7 +15965,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>/api/v1/lightning_close_position</code></li>
 </ul>
-<h3 id='1f9ac54b15-57'>请求参数</h3>
+<h3 id='1f9ac54b15-58'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -16143,7 +16143,7 @@ step6是不合并小数；
      </span><span class="s2">"trigger_type"</span><span class="p">:</span><span class="s2">"ge"</span><span class="p">,</span><span class="w">
      </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">1</span><span class="w">
  </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-58'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-59'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -16325,7 +16325,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>/api/v1/contract_trigger_cancel</code></li>
 </ul>
-<h3 id='1f9ac54b15-59'>请求参数</h3>
+<h3 id='1f9ac54b15-60'>请求参数</h3>
 <table><thead>
 <tr>
 <th>属性</th>
@@ -16451,7 +16451,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>/api/v1/contract_trigger_cancelall</code></li>
 </ul>
-<h3 id='1f9ac54b15-60'>请求参数</h3>
+<h3 id='1f9ac54b15-61'>请求参数</h3>
 <table><thead>
 <tr>
 <th>属性</th>
@@ -16597,7 +16597,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>/api/v1/contract_trigger_openorders</code></li>
 </ul>
-<h3 id='1f9ac54b15-61'>请求参数</h3>
+<h3 id='1f9ac54b15-62'>请求参数</h3>
 <table><thead>
 <tr>
 <th>属性</th>
@@ -16877,7 +16877,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>/api/v1/contract_trigger_hisorders</code></li>
 </ul>
-<h3 id='1f9ac54b15-62'>请求参数</h3>
+<h3 id='1f9ac54b15-63'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -17276,7 +17276,7 @@ step6是不合并小数；
     </span><span class="s2">"sl_order_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29000"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"sl_order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"optimal_5"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-63'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-64'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -17516,7 +17516,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>/api/v1/contract_tpsl_cancel</code></li>
 </ul>
-<h3 id='1f9ac54b15-64'>请求参数</h3>
+<h3 id='1f9ac54b15-65'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -17648,7 +17648,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>/api/v1/contract_tpsl_cancelall</code></li>
 </ul>
-<h3 id='1f9ac54b15-65'>请求参数</h3>
+<h3 id='1f9ac54b15-66'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -17791,7 +17791,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>/api/v1/contract_tpsl_openorders</code></li>
 </ul>
-<h3 id='1f9ac54b15-66'>请求参数</h3>
+<h3 id='1f9ac54b15-67'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -18076,7 +18076,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>/api/v1/contract_tpsl_hisorders</code></li>
 </ul>
-<h3 id='1f9ac54b15-67'>请求参数</h3>
+<h3 id='1f9ac54b15-68'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -18424,7 +18424,7 @@ step6是不合并小数；
 <ul>
 <li>POST <code>/api/v1/contract_relation_tpsl_order</code></li>
 </ul>
-<h3 id='1f9ac54b15-68'>请求参数</h3>
+<h3 id='1f9ac54b15-69'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -19205,7 +19205,7 @@ step6是不合并小数；
 <p>注意：请求地址为火币Global地址</p>
 
 <p>现货与交割合约划转接口，所有划转的币的精度是8位小数。</p>
-<h3 id='1f9ac54b15-69'>请求参数</h3>
+<h3 id='1f9ac54b15-70'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -20068,7 +20068,7 @@ step6是不合并小数；
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-70'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-71'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -20224,7 +20224,7 @@ step6是不合并小数；
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)。 值是买卖双边之和</td>
+<td>成交量(币), 即 sum(每一笔成交量(张) * 单张合约面值/该笔成交价)。 值是买卖双边之和</td>
 </tr>
 <tr>
 <td>&lt;/tick&gt;</td>
@@ -20257,7 +20257,7 @@ step6是不合并小数；
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-71'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-72'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -20429,7 +20429,7 @@ step6是不合并小数；
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)。 值是买卖双边之和</td>
+<td>成交量(币), 即 sum(每一笔成交量(张) * 单张合约面值/该笔成交价)。 值是买卖双边之和</td>
 </tr>
 <tr>
 <td>&lt;/data&gt;</td>
@@ -20490,7 +20490,7 @@ step6是不合并小数；
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-72'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-73'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -21001,7 +21001,7 @@ step6是不合并小数；
     </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.bbo"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-73'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-74'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -21184,7 +21184,7 @@ step6是不合并小数；
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-74'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-75'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -21324,7 +21324,7 @@ step6是不合并小数；
 <td>amount</td>
 <td>true</td>
 <td>decimal</td>
-<td>成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)。 值是买卖双边之和</td>
+<td>成交量(币), 即 sum(每一笔成交量(张) * 单张合约面值/该笔成交价)。 值是买卖双边之和</td>
 </tr>
 <tr>
 <td>vol</td>
@@ -21383,7 +21383,7 @@ step6是不合并小数；
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-75'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-76'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -21583,7 +21583,7 @@ step6是不合并小数；
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-76'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-77'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -21788,7 +21788,7 @@ step6是不合并小数；
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-77'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-78'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -21978,7 +21978,7 @@ step6是不合并小数；
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-78'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-79'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -22211,7 +22211,7 @@ step6是不合并小数；
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-79'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-80'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -22385,7 +22385,7 @@ step6是不合并小数；
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-80'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-81'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -22604,7 +22604,7 @@ step6是不合并小数；
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-81'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-82'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -22806,7 +22806,7 @@ step6是不合并小数；
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-82'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-83'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -24373,7 +24373,7 @@ step6是不合并小数；
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.BTC.liquidation_orders"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='ca88326368'><strong>请求参数</strong></h3>
+</span></code></pre><h3 id='1f9ac54b15-84'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -24405,7 +24405,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='ef87ad8012'><strong>返回参数说明</strong></h3>
+<h3 id='51d2618749-2'>返回参数说明</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -24631,7 +24631,7 @@ step6是不合并小数；
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='1f9ac54b15-83'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-85'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -24952,7 +24952,7 @@ step6是不合并小数；
   </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trigger_order.BTC"</span><span class="p">,</span><span class="w">   
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">          
 </span><span class="p">}</span><span class="w">                                    
-</span></code></pre><h3 id='1f9ac54b15-84'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-86'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -24982,7 +24982,7 @@ step6是不合并小数；
 </tbody></table>
 
 <blockquote>
-<p><strong>返回示例</strong>:</p>
+<p>返回示例:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -25020,7 +25020,7 @@ step6是不合并小数；
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='66d8016b4f'><strong>返回参数说明</strong>：</h3>
+</span></code></pre><h3 id='97ad64e404'>返回参数说明：</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -25364,7 +25364,7 @@ step6是不合并小数；
     </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.futures.heartbeat"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='587ce2d22d'><strong>请求参数</strong>:</h3>
+</span></code></pre><h3 id='2eb6f47757'>请求参数:</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -25396,7 +25396,7 @@ step6是不合并小数；
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='sub-17'><strong>sub订阅参数说明</strong>:</h3>
+<h3 id='sub-17'>sub订阅参数说明:</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -25416,7 +25416,7 @@ step6是不合并小数；
 </tbody></table>
 
 <blockquote>
-<p><strong>返回示例</strong>:</p>
+<p>返回示例:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -25430,7 +25430,7 @@ step6是不合并小数；
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='66d8016b4f-2'><strong>返回参数说明</strong>：</h3>
+</span></code></pre><h3 id='97ad64e404-2'>返回参数说明：</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
