@@ -6696,6 +6696,8 @@ client_order_id | false | long | 用户自己的订单id |  |
 
 - 若存在持仓，那么下单时杠杆倍数必须与持仓杠杆相同，否则下单失败。若需使用新杠杆下单，则必须先使用切换杠杆接口将持仓杠杆切换成功后再下单。
 
+- 该接口的限频次数为1秒5次。
+
 > Response:
 
 ```json
@@ -6748,6 +6750,8 @@ client_order_id | false | long | 用户自己的订单id |  |
 | contract_code | true | string | 合约代码 |BTC-USD |
 | order_id | true | string | 用户订单ID（多个订单ID中间以","分隔,一次最多允许撤消10个订单 ） |  |
 
+#### 备注
+ - 该接口的限频次数为1秒5次。
 
 > Response:
 
@@ -6802,6 +6806,7 @@ client_order_id | false | long | 用户自己的订单id |  |
 
 #### 备注：
  - direction与offset可只填其一，只填其一则按对应的条件去撤单。（如用户只传了direction=buy，则撤销所有买单，包括开仓和平仓）
+ - 该接口的限频次数为1秒5次。
 
 > Response:
 
@@ -6833,8 +6838,6 @@ client_order_id | false | long | 用户自己的订单id |  |
 | successes                  | true        | string   | 成功的订单，多个订单号以“,”相连                 |                |
 | \</data\> |   | |  | |
 | ts                         | true         | long     | 响应生成时间点，单位：毫秒 |  |
-
-
 
 > 错误示例：
 
