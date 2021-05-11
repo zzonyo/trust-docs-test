@@ -34,6 +34,33 @@ search: True
 
 # 更新日志
 
+## 1.2.8 2021年5月11日 【新增：跟踪委托订单接口】
+
+### 1、新增跟踪委托订单下单接口
+ - 接口名称：跟踪委托订单下单
+ - 接口类型：私有接口
+ - 接口URL：/api/v1/contract_track_order
+
+### 2、新增跟踪委托订单撤单接口
+ - 接口名称：跟踪委托订单撤单
+ - 接口类型：私有接口
+ - 接口URL：/api/v1/contract_track_cancel
+
+### 3、新增跟踪委托订单全部撤单接口
+ - 接口名称：跟踪委托订单全部撤单
+ - 接口类型：私有接口
+ - 接口URL：/api/v1/contract_track_cancelall
+
+### 4、新增跟踪委托订单当前委托接口
+ - 接口名称：跟踪委托订单当前委托
+ - 接口类型：私有接口
+ - 接口URL：/api/v1/contract_track_openorders
+
+### 5、新增跟踪委托订单历史委托接口
+ - 接口名称：跟踪委托订单历史委托
+ - 接口类型：私有接口
+ - 接口URL：/api/v1/contract_track_hisorders
+
 ## 1.2.7 2021年4月28日 【新增:获取市场最优挂单接口。修改：获取标记价格K线接口（支持symbol入参直接使用合约代码请求，例于：BTC210326）、订阅标记价格K线数据接口（支持symbol入参直接使用合约代码请求，例于：BTC210326）、请求标记价格K线数据接口（支持symbol入参直接使用合约代码请求，例于：BTC210326）】
 
 ### 1、新增获取市场最优挂单接口
@@ -1190,13 +1217,11 @@ rest接口获取用户的持仓信息接口api/v1/contract_position_info增加�
 读取  | 策略接口  |  /api/v1/contract_tpsl_openorders                       | POST    |     止盈止损订单当前委托       |       是          |
 读取  | 策略接口  |  /api/v1/contract_tpsl_hisorders                        | POST    |     止盈止损订单历史委托       |       是          |
 读取  | 策略接口  |  /api/v1/contract_relation_tpsl_order                   | POST    |     查询开仓单关联的止盈止损订单       |       是          | 
-<!-- 
 交易     |  策略接口           |  /api/v1/contract_track_order |        POST        | 跟踪委托订单下单            |  是  |
 交易     |  策略接口           |  /api/v1/contract_track_cancel |        POST        | 跟踪委托订单撤单            |  是  |
 交易     |  策略接口           |  /api/v1/contract_track_cancelall |        POST        | 跟踪委托订单全部撤单            |  是  |
 读取     |  策略接口           |  /api/v1/contract_track_openorders |        POST        | 跟踪委托订单当前委托            |  是  |
 读取     |  策略接口           |  /api/v1/contract_track_hisorders |        POST        | 跟踪委托订单历史委托            |  是  | 
--->
 
 
 ## 访问地址
@@ -6945,6 +6970,8 @@ client_order_id | false | long | 用户自己的订单id |  |
   
   - 若存在持仓，那么下单时杠杆倍数必须与持仓杠杆相同，否则下单失败。若需使用新杠杆下单，则必须先使用切换杠杆接口将持仓杠杆切换成功后再下单。
   
+  - 该接口的限频次数为1秒5次。
+   
  >  Request:
  
  ```json
@@ -7036,6 +7063,9 @@ client_order_id | false | long | 用户自己的订单id |  |
 |  symbol |  string  |  true  |  支持大小写,BTC,LTC...  |
 |  order_id  |  string  |  true  |  用户订单ID（多个订单ID中间以","分隔,一次最多允许撤消10个订单 ）|
 
+#### 备注
+ - 该接口的限频次数为1秒5次。
+
 > Response:
 
 ```json
@@ -7072,7 +7102,6 @@ client_order_id | false | long | 用户自己的订单id |  |
 | ts                         | true         | long     | 响应生成时间点，单位：毫秒 |  |
 
 
-
 ## 合约计划委托全部撤单
 
 - POST `/api/v1/contract_trigger_cancelall`
@@ -7096,6 +7125,8 @@ client_order_id | false | long | 用户自己的订单id |  |
 - 只传symbol+contract_type， 则撤销二者拼接所成的合约订单
 
 - direction与offset可只填其一，只填其一则按对应的条件去撤单。（如用户只传了direction=buy，则撤销所有买单，包括开仓和平仓）
+
+- 该接口的限频次数为1秒5次。
 
 > Response:
 
@@ -7126,7 +7157,6 @@ client_order_id | false | long | 用户自己的订单id |  |
 | successes                  | true         | string   | 成功的订单                 |                |
 | \</data\>                  |              |          |                            |                |
 | ts                         | true         | long     | 响应生成时间点，单位：毫秒 |   |
-
 
 
 ## 获取计划委托当前委托
@@ -7838,7 +7868,7 @@ client_order_id | false | long | 用户自己的订单id |  |
 | \</data\>       |       |        |     |  |
 | ts              | true  | long   | 响应生成时间点，单位：毫秒                 |     |
 
-<!--
+
 ## 跟踪委托订单下单
 
  - POST `/api/v1/contract_track_order`
@@ -7861,7 +7891,7 @@ client_order_id | false | long | 用户自己的订单id |  |
  - 委托类型为理论价格，表示跟踪委托触发成功后，以下单以来市场最低（最高）价的（1 ± 回调幅度）作为委托价（精度为币种最小变动单位，截断）向市场下委托类型为limit的订单。
  - 无论是最优N档还是理论价格下单，都不能保证订单能完全成交，主要取决于市场情况。
  - symbol+contract_type和contract_code必填其一，只要填写了contract_code就直接取contract_code。
-
+ - 该接口的限频次数为1秒5次。
 
 > Response
 
@@ -7899,6 +7929,9 @@ client_order_id | false | long | 用户自己的订单id |  |
 | ------------- | ----- | ------ | ------------- | ---------------------------------------- |
 | symbol          | true | string | 品种代码                  | "BTC","ETH"...                           |
 | order_id | true | string | 用户跟踪委托订单ID（多个订单ID中间以","分隔,一次最多允许撤消10个订单 ）|    |
+
+#### 备注
+ - 该接口的限频次数为1秒5次。
 
 > Response: 
 
@@ -7953,7 +7986,8 @@ client_order_id | false | long | 用户自己的订单id |  |
  - 只要有contract_code，则撤销该code的合约的跟踪委托订单
  - 只传symbol+contract_type， 则撤销二者拼接所成的合约跟踪委托订单
  - direction与offset可只填其一，只填其一则按对应的条件去撤单。（如用户只传了direction=buy，则撤销所有买单，包括开仓和平仓）
-
+ - 该接口的限频次数为1秒5次。
+ 
 > Response: 
 
 ```json
@@ -8164,7 +8198,6 @@ client_order_id | false | long | 用户自己的订单id |  |
 | \</orders\>       |       |        |     |  |
 | \</data\>       |       |        |     |  |
 | ts              | true  | long   | 响应生成时间点，单位：毫秒                 |     |
--->
 
 
 # 合约划转接口
