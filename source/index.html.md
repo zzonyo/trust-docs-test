@@ -38,6 +38,33 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.1.9 2021-05-11 【Added: Trailing Order interface. 】 
+
+### 1. Added Place a Trailing Order interface
+ - Interface Name: Place a Trailing Order
+ - Interface Type: private
+ - Interface URL: /swap-api/v1/swap_track_order
+
+### 2. Added Cancel a Trailing Order interface
+ - Interface Name: Cancel a Trailing Order
+ - Interface Type: private
+ - Interface URL: /swap-api/v1/swap_track_cancel
+
+### 3. Added Cancel All Trailing Orders interface
+ - Interface Name: Cancel All Trailing Orders
+ - Interface Type: private
+ - Interface URL: /swap-api/v1/swap_track_cancelall
+
+### 4. Added Current unfilled trailing order acquisition interface
+ - Interface Name: Current unfilled trailing order acquisition
+ - Interface Type: private
+ - Interface URL: /swap-api/v1/swap_track_openorders
+
+### 5. Added Get History Trailing Orders
+ - Interface Name: Get History Trailing Orders
+ - Interface Type: private
+ - Interface URL: /swap-api/v1/swap_track_hisorders
+
 ## 1.1.8 2021-04-29 【Modified Cancel an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours). Modified Get Information of an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours. Client can query the order info which has been cancelled within 2 hours(original is 4 hours)）】
 
 ### 1. Modified Cancel an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours)
@@ -851,13 +878,11 @@ Trade | Strategy   |  /swap-api/v1/swap_tpsl_cancelall      | POST | Cancel all 
 Read  | Strategy   |  /swap-api/v1/swap_tpsl_openorders      | POST | Open take-profit and stop-loss orders       |      Yes         |
 Read  | Strategy   |  /swap-api/v1/swap_tpsl_hisorders       | POST | Take-profit and stop-loss histoty orders    |      Yes         |
 Read  | Strategy   |  /swap-api/v1/swap_relation_tpsl_order  | POST | Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order | Yes |
-<!--
 Trade | Strategy   |  /swap-api/v1/swap_track_order |        POST        | Place a Trailing Order            |  Yes |
 Trade | Strategy   |  /swap-api/v1/swap_track_cancel |        POST        | Cancel a Trailing Order          |  Yes |
 Trade | Strategy   |  /swap-api/v1/swap_track_cancelall |        POST        | Cancel All Trailing Orders           |  Yes |
 Read  | Strategy   |  /swap-api/v1/swap_track_openorders |        POST        | Current unfilled trailing order acquisition           |  Yes |
 Read  | Strategy   |  /swap-api/v1/swap_track_hisorders |        POST        | Current unfilled trailing order acquisition       |  Yes |
--->
 
 
 ##  Address
@@ -6576,11 +6601,10 @@ ts                     | true     | long    | timestamp                |        
 | offset | true | string | open close |  |
 | lever_rate | false | int | Long leverage shall be equal to short leverage.[Using Leverage greater than 20 times requires prior approval of high-leverage agreement for the first time.] |  |
 
-### Note
-  
-  - optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.
- 
-  - If you’re holding a position currently, the leverage you choose when placing an order should be the same as the leverage of your current positions, otherwise, the order will fail to be placed. If you need a new leverage to place an order, you should switch the leverage of current positions first by using the Switch Leverage interface. 
+### Note 
+ - optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed. 
+ - If you’re holding a position currently, the leverage you choose when placing an order should be the same as the leverage of your current positions, otherwise, the order will fail to be placed. If you need a new leverage to place an order, you should switch the leverage of current positions first by using the Switch Leverage interface. 
+ - The frequency limit of this interface is 5 times per second.
 
 > Request:
 
@@ -6655,13 +6679,16 @@ ts                     | true     | long    | timestamp                |        
 |  contract_code |  string  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported.BTC-USD...  |
 |  order_id  |  string  |  true  |  order id. multiple orderids need to be joined by ",".Max number of order ids is 10 once.|
 
+#### Note
+ - The frequency limit of this interface is 5 times per second.
+
 > Request :
 
 ```json
 
 {
 	"contract_code": "BTC-USD",
-	"order_id": "7002236,7002242",
+	"order_id": "7002236,7002242"
 }
 ```
 
@@ -6716,6 +6743,7 @@ ts                     | true     | long    | timestamp                |        
 
 ### Note
  - You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including "open" and "close" offset)
+ - The frequency limit of this interface is 5 times per second.
 
 > Response:
 
@@ -7462,7 +7490,7 @@ ts                     | true     | long    | timestamp                |        
 | \</data\>       |       |        |     |  |
 | ts              | true  | long   | Time of Respond Generation，Unit: Millisecond                 |     |
 
-<!--
+
 ## Place a Trailing Order
 
  - POST `/swap-api/v1/swap_track_order`
@@ -7483,6 +7511,7 @@ ts                     | true     | long    | timestamp                |        
 #### Note: 
  - When order_price_type is the formula_price, it means that after the tracking order is triggered successfully, use the lowest (highest) market price *(1 ± callback rate) that from statistic since place trading order, as the order price (the precision is the minimum variation of the contract price and be truncated) to place a limit price order 
  - whether filled in with the optimal N or the formula price, there is no guarantee that the order can be completely filled, which mainly depends on the market conditions.
+ - The frequency limit of this interface is 5 times per second.
 
 > Response: 
 
@@ -7519,6 +7548,9 @@ ts                     | true     | long    | timestamp                |        
 | ------------- | ----- | ------ | ------------- | ---------------------------------------- |
 | contract_code   | true | string | contract code    | BTC-USD                               |
 | order_id | true | string | User's trailing order id (multiple order IDs are separated by ",", a maximum of 10 orders are allowed to be withdrawn at a time)|    |
+
+#### Note
+ - The frequency limit of this interface is 5 times per second.
 
 > Response: 
 
@@ -7568,6 +7600,7 @@ ts                     | true     | long    | timestamp                |        
 
 #### Note: 
  - You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including "open" and "close" offset)
+ - The frequency limit of this interface is 5 times per second.
 
 > Response: 
 
@@ -7773,7 +7806,7 @@ ts                     | true     | long    | timestamp                |        
 | \</orders\>       |       |        |     |  |
 | \</data\>       |       |        |     |  |
 | ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
--->
+
 
 # Swap Transferring Interface
 
@@ -11270,7 +11303,7 @@ To subscribe basis data, the Client has to make connection to the Server and sen
 | 2030   | Exceeds connection limit of single user. |
 | 2040   | Missing required parameter.              |
 
-  
+<!---->
 </br>
 </br>
 </br>
