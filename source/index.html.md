@@ -38,6 +38,58 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.1.2 2021-05-11 【Added: Trailing Order interface. 】 
+
+### 1. Added Place a Trailing Order(isolated) interface
+ - Interface Name: [Isolated]Place a Trailing Order
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_track_order
+
+### 2. Added Place a Trailing Order(cross) interface
+ - Interface Name: [Cross]Place a Trailing Order
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_cross_track_order
+
+### 3. Added Cancel a Trailing Order(isolated) interface
+ - Interface Name: [Isolated]Cancel a Trailing Order
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_track_cancel
+
+### 4. Added Cancel a Trailing Order(cross) interface
+ - Interface Name: [Cross]Cancel a Trailing Order
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_cross_track_cancel
+
+### 5. Added Cancel All Trailing Orders(isolated) interface
+ - Interface Name: [Isolated]Cancel All Trailing Orders
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_track_cancelall
+
+### 6. Added Cancel All Trailing Orders(cross) interface
+ - Interface Name: [Cross]Cancel All Trailing Orders
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_cross_track_cancelall
+
+### 7. Added Current unfilled trailing order acquisition(isolated) interface
+ - Interface Name: [Isolated]Current unfilled trailing order acquisition
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_track_openorders
+
+### 8. Added Current unfilled trailing order acquisition(cross) interface
+ - Interface Name: [Cross]Current unfilled trailing order acquisition
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_cross_track_openorders
+
+### 9. Added Get History Trailing Orders(isolated) interface
+ - Interface Name: [Isolated]Get History Trailing Orders
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_track_hisorders
+
+### 10. Added Get History Trailing Orders(cross) interface
+ - Interface Name: [Cross]Get History Trailing Orders
+ - Interface Type: private
+ - Interface URL: /linear-swap-api/v1/swap_cross_track_hisorders
+
 ## 1.1.1 2021-04-29 【Modified Cancel an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours). Modified Get Information of an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours.Client can query the order info which has been cancelled within 2 hours(original is 4 hours)）】
 
 ### 1. Modified Cancel an Order(isolated) interface(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours)
@@ -1157,7 +1209,6 @@ Read  | Strategy   | cross margin |  /linear-swap-api/v1/swap_cross_tpsl_openord
 Read  | Strategy   | cross margin |  /linear-swap-api/v1/swap_cross_tpsl_hisorders                       | POST    |     [Cross]Take-profit and stop-loss histoty orders       |      Yes         |
 Read  | Strategy   | cross margin |  /linear-swap-api/v1/swap_cross_relation_tpsl_order                  | POST    |     [Cross]Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order       |      Yes         |
 Trade  | Account  | general |https://api.huobi.pro/v2/account/transfer                         | POST   |      Transfer margin between Spot account and USDT Margined Swap account     |     Yes       |
-<!--
 Trade   |  Strategy  | Isolated |  /linear-swap-api/v1/swap_track_order |        POST        | 【Isolated】Place a Trailing Order            |  Yes  |
 Trade   |  Strategy  | Isolated |  /linear-swap-api/v1/swap_track_cancel |        POST        | 【Isolated】Cancel a Trailing Order Order            |  Yes  |
 Trade   |  Strategy  | Isolated |  /linear-swap-api/v1/swap_track_cancelall |        POST        | 【Isolated】Cancel All Trailing Orders            |  Yes  |
@@ -1168,7 +1219,6 @@ Trade   |  Strategy  | Cross |  /linear-swap-api/v1/swap_cross_track_cancel |   
 Trade   |  Strategy  | Cross |  /linear-swap-api/v1/swap_cross_track_cancelall |        POST        | 【Cross】Cancel All Trailing Orders          |  Yes  |
 Read   |  Strategy  | Cross |  /linear-swap-api/v1/swap_cross_track_openorders |        POST        | 【Cross】Current unfilled trailing order acquisition            |  Yes  |
 Read   |  Strategy  | Cross |  /linear-swap-api/v1/swap_cross_track_hisorders |        POST        | 【Cross】Get History Trailing Orders          |  Yes  |
--->
 
 
 
@@ -9697,9 +9747,9 @@ ts                     | true     | long    | timestamp                |        
  - POST `/linear-swap-api/v1/swap_trigger_order`
 
 #### Remarks
-
  - This interface only supports isolated margin mode.
-
+ - The frequency limit of this interface is 5 times per second.
+ 
 > Request:
 
 ```json
@@ -9788,8 +9838,8 @@ ts                     | true     | long    | timestamp                |        
  - POST `/linear-swap-api/v1/swap_cross_trigger_order`
 
 #### Remarks
-
  - The interface only supports cross margin mode.
+ - The frequency limit of this interface is 5 times per second.
 
 ### Request Parameter
 
@@ -9845,9 +9895,9 @@ Error：
 - POST `/linear-swap-api/v1/swap_trigger_cancel`
 
 #### Remarks
-
  - This interface only supports isolated margin mode.
-
+ - The frequency limit of this interface is 5 times per second.
+ 
 ### request params
 
 | field | type | Mandatory |  desc  |
@@ -9897,8 +9947,8 @@ Error：
  - POST `/linear-swap-api/v1/swap_cross_trigger_cancel`
 
 #### Remarks
-
  - The interface only supports cross margin mode.
+ - The frequency limit of this interface is 5 times per second.
 
 ### Request Parameter
 
@@ -9947,8 +9997,8 @@ Error：
 - POST `/linear-swap-api/v1/swap_trigger_cancelall`
 
 #### Remarks
-
  - This interface only supports isolated margin mode.
+ - The frequency limit of this interface is 5 times per second.
 
 ### Params
 
@@ -10010,9 +10060,9 @@ Error：
  - POST ‘/linear-swap-api/v1/swap_cross_trigger_cancelall’
 
 #### Remarks
-
  - The interface only supports cross margin mode.
-
+ - The frequency limit of this interface is 5 times per second.
+ 
 ### Request Parameter
 
 | Parameter Name            | Mandatory  | Type     | Desc                    | Data Value                                     |
@@ -11513,14 +11563,13 @@ Error：
 | ts              | true  | long   | Time of Respond Generation，Unit: Millisecond                 |     |
 
 
-<!--
 ## [Isolated]Place a Trailing Order
 
  - POST `/linear-swap-api/v1/swap_track_order`
 
 #### Note
  - This interface only supports isolated margin mode.
- - The frequency limit of this interface is 5 times per second.(Not yet determined)
+ - The frequency limit of this interface is 5 times per second.
 
 ### Request Parameter
 | Parameter Name            | Mandatory  | Type     | Description                    | Value Range                                     |
@@ -11569,7 +11618,7 @@ Error：
 
 #### Note: 
  - The interface only supports cross margin mode.
- - The frequency limit of this interface is 5 times per second.(Not yet determined)
+ - The frequency limit of this interface is 5 times per second.
 
 ### Request Parameter
 | Parameter Name            | Mandatory  | Type     | Description                    | Value Range                                     |
@@ -11618,7 +11667,7 @@ Error：
 
 #### Note: 
  - This interface only supports isolated margin mode.
- - The frequency limit of this interface is 5 times per second.(Not yet determined)
+ - The frequency limit of this interface is 5 times per second.
 
 | Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
 | ------------- | ----- | ------ | ------------- | ---------------------------------------- |
@@ -11667,7 +11716,7 @@ Error：
 
 #### Note: 
  - The interface only supports cross margin mode.
- - The frequency limit of this interface is 5 times per second.(Not yet determined)
+ - The frequency limit of this interface is 5 times per second.
 
 ### Request Parameter
 
@@ -11717,7 +11766,7 @@ Error：
 
 #### Note: 
  - This interface only supports isolated margin mode.
- - The frequency limit of this interface is 5 times per second.(Not yet determined)
+ - The frequency limit of this interface is 5 times per second.
  - You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including "open" and "close" offset)
 
  ### Request Parameter
@@ -11763,7 +11812,7 @@ Error：
 
 #### Note: 
  - The interface only supports cross margin mode.
- - The frequency limit of this interface is 5 times per second.(Not yet determined)
+ - The frequency limit of this interface is 5 times per second.
  - You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including "open" and "close" offset)
 
 ### Request Parameter
@@ -11809,7 +11858,6 @@ Error：
 
 #### Note: 
  - This interface only supports isolated margin mode.
- - The frequency limit of this interface is 5 times per second.(Not yet determined)
 
 ### Request Parameter
 
@@ -11895,7 +11943,6 @@ Error：
 
 #### Note: 
  - The interface only supports cross margin mode.
- - The frequency limit of this interface is 5 times per second.(Not yet determined)
 
 ### Request Parameter
 
@@ -11981,7 +12028,6 @@ Error：
 
 #### Note: 
  - This interface only supports isolated margin mode.
- - The frequency limit of this interface is 5 times per second.(Not yet determined)
 
 ### Request Parameter
 
@@ -12088,7 +12134,6 @@ Error：
 
 #### Note: 
  - The interface only supports cross margin mode.
- - The frequency limit of this interface is 5 times per second.(Not yet determined)
 
 ### Request Parameter
 
@@ -12187,7 +12232,7 @@ Error：
 | \</orders\>       |       |        |     |  |
 | \</data\>       |       |        |     |  |
 | ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
--->
+
 
 # Swap Transferring Interface
 
@@ -16742,7 +16787,7 @@ To subscribe basis data, the Client has to make connection to the Server and sen
 | 2030   | Exceeds connection limit of single user. |
 | 2040   | Missing required parameter.              |
 
-  
+<!---->
 </br>
 </br>
 </br>
