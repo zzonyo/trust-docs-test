@@ -37,7 +37,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 2. Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges
 
 # Changelog
-
+<!--
 ## 1.1.2 2021-05-11 【Added: Trailing Order interface. 】 
 
 ### 1. Added Place a Trailing Order(isolated) interface
@@ -89,7 +89,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
  - Interface Name: [Cross]Get History Trailing Orders
  - Interface Type: private
  - Interface URL: /linear-swap-api/v1/swap_cross_track_hisorders
-
+-->
 ## 1.1.1 2021-04-29 【Modified Cancel an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours). Modified Get Information of an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours.Client can query the order info which has been cancelled within 2 hours(original is 4 hours)）】
 
 ### 1. Modified Cancel an Order(isolated) interface(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours)
@@ -1209,6 +1209,7 @@ Read  | Strategy   | cross margin |  /linear-swap-api/v1/swap_cross_tpsl_openord
 Read  | Strategy   | cross margin |  /linear-swap-api/v1/swap_cross_tpsl_hisorders                       | POST    |     [Cross]Take-profit and stop-loss histoty orders       |      Yes         |
 Read  | Strategy   | cross margin |  /linear-swap-api/v1/swap_cross_relation_tpsl_order                  | POST    |     [Cross]Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order       |      Yes         |
 Trade  | Account  | general |https://api.huobi.pro/v2/account/transfer                         | POST   |      Transfer margin between Spot account and USDT Margined Swap account     |     Yes       |
+<!--
 Trade   |  Strategy  | Isolated |  /linear-swap-api/v1/swap_track_order |        POST        | 【Isolated】Place a Trailing Order            |  Yes  |
 Trade   |  Strategy  | Isolated |  /linear-swap-api/v1/swap_track_cancel |        POST        | 【Isolated】Cancel a Trailing Order Order            |  Yes  |
 Trade   |  Strategy  | Isolated |  /linear-swap-api/v1/swap_track_cancelall |        POST        | 【Isolated】Cancel All Trailing Orders            |  Yes  |
@@ -1219,7 +1220,7 @@ Trade   |  Strategy  | Cross |  /linear-swap-api/v1/swap_cross_track_cancel |   
 Trade   |  Strategy  | Cross |  /linear-swap-api/v1/swap_cross_track_cancelall |        POST        | 【Cross】Cancel All Trailing Orders          |  Yes  |
 Read   |  Strategy  | Cross |  /linear-swap-api/v1/swap_cross_track_openorders |        POST        | 【Cross】Current unfilled trailing order acquisition            |  Yes  |
 Read   |  Strategy  | Cross |  /linear-swap-api/v1/swap_cross_track_hisorders |        POST        | 【Cross】Get History Trailing Orders          |  Yes  |
-
+-->
 
 
 ##  Address
@@ -11564,7 +11565,7 @@ Error：
 | \</data\>       |       |        |     |  |
 | ts              | true  | long   | Time of Respond Generation，Unit: Millisecond                 |     |
 
-
+<!--
 ## [Isolated]Place a Trailing Order
 
  - POST `/linear-swap-api/v1/swap_track_order`
@@ -12234,7 +12235,7 @@ Error：
 | \</orders\>       |       |        |     |  |
 | \</data\>       |       |        |     |  |
 | ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
-
+-->
 
 # Swap Transferring Interface
 
