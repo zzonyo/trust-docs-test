@@ -36,6 +36,58 @@ search: true
 
 # 更新日志
 
+## 1.1.2 2021年05月11日 【新增：跟踪委托订单接口。】 
+
+### 1、新增跟踪委托订单下单（逐仓）接口
+ - 接口名称：【逐仓】跟踪委托订单下单
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_track_order
+
+### 2、新增跟踪委托订单下单（全仓）接口
+ - 接口名称：【全仓】跟踪委托订单下单
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_cross_track_order
+
+### 3、新增跟踪委托订单撤单（逐仓）接口
+ - 接口名称：【逐仓】跟踪委托订单撤单
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_track_cancel
+
+### 4、新增跟踪委托订单撤单（全仓）接口
+ - 接口名称：【全仓】跟踪委托订单撤单
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_cross_track_cancel
+
+### 5、新增跟踪委托订单全部撤单（逐仓）接口
+ - 接口名称：【逐仓】跟踪委托订单全部撤单
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_track_cancelall
+
+### 6、新增跟踪委托订单全部撤单（全仓）接口
+ - 接口名称：【全仓】跟踪委托订单全部撤单
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_cross_track_cancelall
+
+### 7、新增跟踪委托订单当前委托（逐仓）接口
+ - 接口名称：【逐仓】跟踪委托订单当前委托
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_track_openorders
+
+### 8、新增跟踪委托订单当前委托（全仓）接口
+ - 接口名称：【全仓】跟踪委托订单当前委托
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_cross_track_openorders
+
+### 9、新增跟踪委托订单历史委托（逐仓）接口
+ - 接口名称：【逐仓】跟踪委托订单历史委托
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_track_hisorders
+
+### 10、新增跟踪委托订单历史委托（全仓）接口
+ - 接口名称：【全仓】跟踪委托订单历史委托
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_cross_track_hisorders
+
 ## 1.1.1 2021年04月29日 【修改撤销订单接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。）、修改获取合约订单信息接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。将原来只能查询最近4小时内的撤单信息改为只可以查询最近2小时内的撤单信息。）】
 
 ### 1、修改撤销订单（逐仓）接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。）
@@ -1156,7 +1208,6 @@ search: true
 读取  | 策略接口  | 全仓 |  /linear-swap-api/v1/swap_cross_tpsl_hisorders                       | POST    |     【全仓】止盈止损订单历史委托       |       是          |
 读取  | 策略接口  | 全仓 |  /linear-swap-api/v1/swap_cross_relation_tpsl_order                  | POST    |     【全仓】查询开仓单关联的止盈止损订单       |       是          |
 交易  | 账户接口    |  通用  |  https://api.huobi.pro/v2/account/transfer                         | POST   |      【通用】现货-USDT本位永续账户间进行资金的划转              |     是        |
-<!--
 交易   |  策略接口  | 逐仓 |  /linear-swap-api/v1/swap_track_order |        POST        | 【逐仓】跟踪委托订单下单            |  是  |
 交易   |  策略接口  | 逐仓 |  /linear-swap-api/v1/swap_track_cancel |        POST        | 【逐仓】跟踪委托订单撤单            |  是  |
 交易   |  策略接口  | 逐仓 |  /linear-swap-api/v1/swap_track_cancelall |        POST        | 【逐仓】跟踪委托订单全部撤单            |  是  |
@@ -1167,7 +1218,6 @@ search: true
 交易   |  策略接口  | 全仓 |  /linear-swap-api/v1/swap_cross_track_cancelall |        POST        | 【全仓】跟踪委托订单全部撤单          |  是  |
 读取   |  策略接口  | 全仓 |  /linear-swap-api/v1/swap_cross_track_openorders |        POST        | 【全仓】跟踪委托订单当前委托            |  是  |
 读取   |  策略接口  | 全仓 |  /linear-swap-api/v1/swap_cross_track_hisorders |        POST        | 【全仓】跟踪委托订单历史委托           |  是  |
--->
 
 
 ## 访问地址
@@ -11398,14 +11448,13 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 | ts              | true  | long   | 响应生成时间点，单位：毫秒                 |     |
 
 
-<!--
 ## 【逐仓】跟踪委托订单下单
 
  - POST `/linear-swap-api/v1/swap_track_order`
 
 #### 备注
  - 该接口仅支持逐仓模式
- - 该接口的限频次数为1秒5次。（暂时还未确定）
+ - 该接口的限频次数为1秒5次。
 
 ### 请求参数
 | 参数名称            | 是否必须  | 类型     | 描述                    | 取值范围                                     |
@@ -11454,7 +11503,7 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 
 #### 备注：
  - 该接口仅支持全仓模式
- - 该接口的限频次数为1秒5次。（暂时还未确定）
+ - 该接口的限频次数为1秒5次。
 
 ### 请求参数
 | 参数名称            | 是否必须  | 类型     | 描述                    | 取值范围                                     |
@@ -11503,7 +11552,7 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 
 #### 备注：
  - 该接口仅支持逐仓模式
- - 该接口的限频次数为1秒5次。（暂时还未确定）
+ - 该接口的限频次数为1秒5次。
 
 | 参数名称          | 是否必须  | 类型     | 描述   | 取值范围                                     |
 | ------------- | ----- | ------ | ------------- | ---------------------------------------- |
@@ -11552,7 +11601,7 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 
 #### 备注：
  - 该接口仅支持全仓模式
- - 该接口的限频次数为1秒5次。（暂时还未确定）
+ - 该接口的限频次数为1秒5次。
 
 ### 请求参数
 
@@ -11602,7 +11651,7 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 
 #### 备注：
  - 该接口仅支持逐仓模式
- - 该接口的限频次数为1秒5次。（暂时还未确定）
+ - 该接口的限频次数为1秒5次。
  - direction与offset可只填其一，只填其一则按对应的条件去撤单。（如用户只传了direction=buy，则撤销所有买单，包括开仓和平仓）
 
 ### 请求参数
@@ -11648,7 +11697,7 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 
 #### 备注：
  - 该接口仅支持全仓模式
- - 该接口的限频次数为1秒5次。（暂时还未确定）
+ - 该接口的限频次数为1秒5次。
  - direction与offset可只填其一，只填其一则按对应的条件去撤单。（如用户只传了direction=buy，则撤销所有买单，包括开仓和平仓）
 
 ### 请求参数
@@ -11688,13 +11737,12 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 | ts              | true  | long   | 响应生成时间点，单位：毫秒                 |     |
 
 
-## 【逐仓】跟踪委托订单当前委托
+## 【逐仓】跟踪委托订单当前委托
 
  - POST `/linear-swap-api/v1/swap_track_openorders`
 
 #### 备注：
  - 该接口仅支持逐仓模式
- - 该接口的限频次数为1秒5次。（暂时还未确定）
 
 ### 请求参数
 
@@ -11774,13 +11822,12 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 | ts              | true  | long   | 响应生成时间点，单位：毫秒                 |     |
 
 
-## 【全仓】查询跟踪委托订单当前委托
+## 【全仓】查询跟踪委托订单当前委托
 
  - POST `/linear-swap-api/v1/swap_cross_track_openorders`
 
 #### 备注：
  - 该接口仅支持全仓模式
- - 该接口的限频次数为1秒5次。（暂时还未确定）
 
 ### 请求参数
 
@@ -11866,7 +11913,6 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 
 #### 备注：
  - 该接口仅支持逐仓模式
- - 该接口的限频次数为1秒5次。（暂时还未确定）
 
 ### 请求参数
 
@@ -11973,7 +12019,6 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 
 #### 备注：
  - 该接口仅支持全仓模式
- - 该接口的限频次数为1秒5次。（暂时还未确定）
 
 ### 请求参数
 
@@ -12072,7 +12117,7 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 | \</orders\>       |       |        |     |  |
 | \</data\>       |       |        |     |  |
 | ts              | true  | long   | 响应生成时间点，单位：毫秒                 |     |
--->
+
 
 # USDT本位永续合约划转接口
 
