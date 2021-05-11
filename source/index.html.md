@@ -1988,11 +1988,11 @@ Error Code | Error Details Description|
 
 ### 5. WebSocket subscription to Market Depth data:
 
-- For acquiring market depth data within 150 steps, you are kindly suggested to use step0, step1, step2, step3, step4, step5, step14, step15；
+- For acquiring market depth data within 150 steps, you are kindly suggested to use step0, step1, step2, step3, step4, step5, step14, step15, step16, step17；
 
-- For acquiring market depth data within 20 steps, you are kindly suggested to use step6, step7, step8, step9, step10, step11, step12, step13；
+- For acquiring market depth data within 20 steps, you are kindly suggested to use step6, step7, step8, step9, step10, step11, step12, step13, step18, step19；
 
-- Since the large volume of pushing 150 steps data every 100ms, WebSocket disconnection may occur frequently if client’s network bandwidth is insufficient or the processing is not in time; therefore, we highly recommend users using step6, step7, step8, step9, step10, step11, step12, step13 to acquire 20 steps data. For instance, subscribing 20 steps data.
+- Since the large volume of pushing 150 steps data every 100ms, WebSocket disconnection may occur frequently if client’s network bandwidth is insufficient or the processing is not in time; therefore, we highly recommend users using step6, step7, step8, step9, step10, step11, step12, step13, step18, step19 to acquire 20 steps data. For instance, subscribing 20 steps data.
 
 `{`
 
@@ -2133,6 +2133,8 @@ The Subscription of MBP data: market.$contract_code.depth.$type.150 price level 
 
 The subscrpition of MBP data:market.$contract_code.depth.$type：
 
+step16 and step18 are merged by 7 decimal places.bids down,asks up.
+step17 and step19 are merged by 6 decimal places.bids down,asks up.
 step1 and step7 are merged by 5 decimal places.bids down,asks up.
 step2 and step8 are merged by 4 decimal places.bids down,asks up.
 step3 and step9 are merged by 3 decimal places.bids down,asks up.
@@ -2153,9 +2155,9 @@ The merged asks price are 100.13, 100.25.
 
 ("Down" and "Up" are rounded up or down, if the price is down, the asks price is not rounded down, and the bids price is rounded up.)
 
-150 price level: step0 to step5, step14, step15；
+150 price level: step0 to step5, step14 to step17；
 
-20 price level: step6 to step13;
+20 price level: step6 to step13, step18, step19;
 
 More examples：
 
@@ -2766,7 +2768,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/depth?contract_code=BTC-USDT&ty
 |   Parameter Name   |   Parameter Type   |   Mandatory   |   Desc                                                       |
 | ------------------ | ------------------ | ------------- | ----------------------------------------------------------------- |
 | contract_code      | string             | true          | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USDT" |
-| type               | string             | true          | Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5,14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged. |
+| type               | string             | true          | Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15, step16, step17（merged depth data 0-5,14-17）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13, step18, step19(merged depth data 7-13,18-19); when step is 6, depth data will not be merged. |
 
 > Response:
 
@@ -13012,18 +13014,20 @@ Clients can request 2000 Klines at most in one request
  Parameter Name   |  Mandatory   |  Type   |  Description      |    Default   |  Value Range  |
   -------------- |   -------------- |  ---------- |  ------------ |  ------------ |  ---------------------------------------------------------------------------------  |
   contract_code  |       true         |  string  |   swap code  |               |  Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USDT" |
-  type           |  true           |  string     |    Depth Type      |        |  Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5,14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged. |
+  type           |  true           |  string     |    Depth Type      |        |  Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15, step16, step17（merged depth data 0-5,14-17）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13, step18, step19(merged depth data 7-13,18-19); when step is 6, depth data will not be merged. |
 
 ### Note:
 
 - When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.
 
-- steps between step1 and step5, step14, step15 are merged orderbook data of step 150. 
-steps between step7 and step13 are merged orderbook data of step 20. 
+- steps between step1 and step5, step14 and step17 are merged orderbook data of step 150. 
+steps between step7 and step13, step18, step19  are merged orderbook data of step 20. 
 Details are below:
 
 | Depth | precision |
 |----|----|
+|step16、step18|0.0000001|
+|step17、step19|0.000001|
 |step1、step7|0.00001|
 |step2、step8|0.0001|
 |step3、step9|0.001|
