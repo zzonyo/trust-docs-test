@@ -967,7 +967,61 @@
 <li>提供火币 UID （需不存在返佣关系的 UID）；</li>
 <li>提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；</li>
 </ol>
-<h1 id='185368440e'>更新日志</h1><h2 id='1-1-1-2021-04-29-client_order_id-24-8-8-client_order_id-client_order_id-24-8-8-client_order_id-4-2'>1.1.1 2021年04月29日 【修改撤销订单接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。）、修改获取合约订单信息接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。将原来只能查询最近4小时内的撤单信息改为只可以查询最近2小时内的撤单信息。）】</h2><h3 id='1-client_order_id-24-8-8-client_order_id'>1、修改撤销订单（逐仓）接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。）</h3>
+<h1 id='185368440e'>更新日志</h1>
+<!--
+## 1.1.2 2021年05月11日 【新增：跟踪委托订单接口。】 
+
+### 1、新增跟踪委托订单下单（逐仓）接口
+ - 接口名称：【逐仓】跟踪委托订单下单
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_track_order
+
+### 2、新增跟踪委托订单下单（全仓）接口
+ - 接口名称：【全仓】跟踪委托订单下单
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_cross_track_order
+
+### 3、新增跟踪委托订单撤单（逐仓）接口
+ - 接口名称：【逐仓】跟踪委托订单撤单
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_track_cancel
+
+### 4、新增跟踪委托订单撤单（全仓）接口
+ - 接口名称：【全仓】跟踪委托订单撤单
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_cross_track_cancel
+
+### 5、新增跟踪委托订单全部撤单（逐仓）接口
+ - 接口名称：【逐仓】跟踪委托订单全部撤单
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_track_cancelall
+
+### 6、新增跟踪委托订单全部撤单（全仓）接口
+ - 接口名称：【全仓】跟踪委托订单全部撤单
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_cross_track_cancelall
+
+### 7、新增跟踪委托订单当前委托（逐仓）接口
+ - 接口名称：【逐仓】跟踪委托订单当前委托
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_track_openorders
+
+### 8、新增跟踪委托订单当前委托（全仓）接口
+ - 接口名称：【全仓】跟踪委托订单当前委托
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_cross_track_openorders
+
+### 9、新增跟踪委托订单历史委托（逐仓）接口
+ - 接口名称：【逐仓】跟踪委托订单历史委托
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_track_hisorders
+
+### 10、新增跟踪委托订单历史委托（全仓）接口
+ - 接口名称：【全仓】跟踪委托订单历史委托
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_cross_track_hisorders
+-->
+<h2 id='1-1-1-2021-04-29-client_order_id-24-8-8-client_order_id-client_order_id-24-8-8-client_order_id-4-2'>1.1.1 2021年04月29日 【修改撤销订单接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。）、修改获取合约订单信息接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。将原来只能查询最近4小时内的撤单信息改为只可以查询最近2小时内的撤单信息。）】</h2><h3 id='1-client_order_id-24-8-8-client_order_id'>1、修改撤销订单（逐仓）接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。）</h3>
 <ul>
 <li>接口名称：【逐仓】撤销订单</li>
 <li>接口类型：私有接口</li>
@@ -4499,9 +4553,9 @@ api.hbdm.com\n
 </ul>
 <h3 id='5-market-depth-websocket'>5、订阅Market Depth 数据的WebSocket：</h3>
 <ul>
-<li><p>获得150档深度数据，使用step0, step1, step2, step3, step4, step5, step14, step15；</p></li>
-<li><p>获得20档深度数据，使用 step6, step7, step8, step9, step10, step11, step12, step13；</p></li>
-<li><p>由于每100ms推送一次150档全量数据，数据量比较大，如果客户端网络带宽不足或者处理不及时，webSocket断开可能比较频繁，强烈建议使用step6, step7, step8, step9, step10, step11, step12, step13 取20档数据。比如订阅20档数据</p></li>
+<li><p>获得150档深度数据，使用step0, step1, step2, step3, step4, step5, step14, step15, step16, step17；</p></li>
+<li><p>获得20档深度数据，使用 step6, step7, step8, step9, step10, step11, step12, step13, step18, step19；</p></li>
+<li><p>由于每100ms推送一次150档全量数据，数据量比较大，如果客户端网络带宽不足或者处理不及时，webSocket断开可能比较频繁，强烈建议使用step6, step7, step8, step9, step10, step11, step12, step13, step18, step19 取20档数据。比如订阅20档数据</p></li>
 </ul>
 
 <p><code>{</code></p>
@@ -4596,7 +4650,9 @@ api.hbdm.com\n
 <h3 id='q7-type'>Q7: 获取行情深度数据中请求参数type的“合并深度”是什么意思？</h3>
 <p>订阅行情深度(market.$contract_code.depth.$type)：</p>
 
-<p>step1和step7 按5位小数合并，买盘向下、卖盘向上
+<p>step16和step18 按7位小数合并，买盘向下、卖盘向上
+step17和step19 按6位小数合并，买盘向下、卖盘向上
+step1和step7 按5位小数合并，买盘向下、卖盘向上
 step2和step8 按4位小数合并，买盘向下、卖盘向上
 step3和step9 按3位小数合并，买盘向下、卖盘向上
 step4和step10 按2位小数合并，买盘向下、卖盘向上
@@ -4608,8 +4664,8 @@ step4 合并为0.01 例如，下买单价格 100.123， 100.245，
 如果是卖单 盘口显示价格： 100.13， 100.25</p>
 
 <p>（“向下”和“向上”即是否四舍五入，如买盘向下则不进一位，卖盘向上则进一位）
-step0到step5,step14,step15是150档；
-step6到step13是20档；
+step0到step5,step14到step17是150档；
+step6到step13,step18、step19是20档；
 step6是不合并小数；
 结合以上举例说明：</p>
 
@@ -5384,7 +5440,7 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-api/v1/swap_open_interes
 </ul>
 <h2 id='da161d5f98'>【通用】获取行情深度数据</h2><h3 id='30fd4ed55b-5'>示例</h3>
 <ul>
-<li>GET <code>/linear-swap-ex/market/depth</code></li>
+<li>GET <code>/linear-swap-ex/market/depth</code></li>
 </ul>
 <pre class="highlight shell tab-shell"><code>
 curl <span class="s2">"https://api.hbdm.com/linear-swap-ex/market/depth?contract_code=BTC-USDT&amp;type=step0"</span>
@@ -5415,7 +5471,7 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-ex/market/depth?contract
 <td>true</td>
 <td>string</td>
 <td>深度类型</td>
-<td>(150档数据)  step0, step1, step2, step3, step4, step5, step14, step15（合并深度1-5,14-15）；step0时，不合并深度, (20档数据)  step6, step7, step8, step9, step10, step11, step12, step13（合并深度7-13）；step6时，不合并深度</td>
+<td>(150档数据)  step0, step1, step2, step3, step4, step5, step14, step15, step16, step17（合并深度1-5,14-17）；step0时，不合并深度, (20档数据)  step6, step7, step8, step9, step10, step11, step12, step13, step18, step19（合并深度7-13,18-19）；step6时，不合并深度</td>
 </tr>
 </tbody></table>
 
@@ -5554,7 +5610,7 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-ex/market/depth?contract
 <h3 id='e0361480e3-9'>备注</h3>
 <ul>
 <li><p>合并深度仅改变显示方式，不改变实际成交价格。</p></li>
-<li><p>step1至step5, step14, step15是进行了深度合并后的150档深度数据，step7至step13是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
+<li><p>step1至step5, step14至step17是进行了深度合并后的150档深度数据，step7至step13, step18, step19 是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
 </ul>
 
 <table><thead>
@@ -5563,6 +5619,14 @@ curl <span class="s2">"https://api.hbdm.com/linear-swap-ex/market/depth?contract
 <th>精度</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>step16、step18</td>
+<td>0.0000001</td>
+</tr>
+<tr>
+<td>step17、step19</td>
+<td>0.000001</td>
+</tr>
 <tr>
 <td>step1、step7</td>
 <td>0.00001</td>
@@ -25160,6 +25224,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <h4 id='e0361480e3-111'>备注</h4>
 <ul>
 <li>该接口仅支持逐仓模式。</li>
+<li>该接口的限频次数为1秒5次。</li>
 </ul>
 
 <blockquote>
@@ -25342,6 +25407,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <h4 id='e0361480e3-112'>备注</h4>
 <ul>
 <li>该接口仅支持全仓模式。</li>
+<li>该接口的限频次数为1秒5次。</li>
 </ul>
 <h3 id='1f9ac54b15-90'>请求参数</h3>
 <table><thead>
@@ -25499,6 +25565,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <h4 id='e0361480e3-113'>备注</h4>
 <ul>
 <li>该接口仅支持逐仓模式。</li>
+<li>该接口的限频次数为1秒5次。</li>
 </ul>
 <h3 id='1f9ac54b15-91'>请求参数</h3>
 <table><thead>
@@ -25633,6 +25700,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <h4 id='e0361480e3-114'>备注</h4>
 <ul>
 <li>该接口仅支持全仓模式。</li>
+<li>该接口的限频次数为1秒5次。</li>
 </ul>
 <h3 id='1f9ac54b15-92'>请求参数</h3>
 <table><thead>
@@ -25765,6 +25833,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <h4 id='e0361480e3-115'>备注</h4>
 <ul>
 <li>该接口仅支持逐仓模式。</li>
+<li>该接口的限频次数为1秒5次。</li>
 </ul>
 <h3 id='1f9ac54b15-93'>请求参数</h3>
 <table><thead>
@@ -25916,6 +25985,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <h4 id='e0361480e3-116'>备注</h4>
 <ul>
 <li>该接口仅支持全仓模式。</li>
+<li>该接口的限频次数为1秒5次。</li>
 </ul>
 <h3 id='1f9ac54b15-94'>请求参数</h3>
 <table><thead>
@@ -26053,6 +26123,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <h4 id='e0361480e3-117'>备注</h4>
 <ul>
 <li>该接口仅支持逐仓模式。</li>
+<li>该接口的限频次数为1秒5次。</li>
 </ul>
 <h3 id='1f9ac54b15-95'>请求参数</h3>
 <table><thead>
@@ -30578,7 +30649,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 
 #### 备注
  - 该接口仅支持逐仓模式
- - 该接口的限频次数为1秒5次。（暂时还未确定）
+ - 该接口的限频次数为1秒5次。
 
 ### 请求参数
 | 参数名称            | 是否必须  | 类型     | 描述                    | 取值范围                                     |
@@ -30627,7 +30698,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 
 #### 备注：
  - 该接口仅支持全仓模式
- - 该接口的限频次数为1秒5次。（暂时还未确定）
+ - 该接口的限频次数为1秒5次。
 
 ### 请求参数
 | 参数名称            | 是否必须  | 类型     | 描述                    | 取值范围                                     |
@@ -30676,7 +30747,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 
 #### 备注：
  - 该接口仅支持逐仓模式
- - 该接口的限频次数为1秒5次。（暂时还未确定）
+ - 该接口的限频次数为1秒5次。
 
 | 参数名称          | 是否必须  | 类型     | 描述   | 取值范围                                     |
 | ------------- | ----- | ------ | ------------- | ---------------------------------------- |
@@ -30725,7 +30796,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 
 #### 备注：
  - 该接口仅支持全仓模式
- - 该接口的限频次数为1秒5次。（暂时还未确定）
+ - 该接口的限频次数为1秒5次。
 
 ### 请求参数
 
@@ -30775,7 +30846,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 
 #### 备注：
  - 该接口仅支持逐仓模式
- - 该接口的限频次数为1秒5次。（暂时还未确定）
+ - 该接口的限频次数为1秒5次。
  - direction与offset可只填其一，只填其一则按对应的条件去撤单。（如用户只传了direction=buy，则撤销所有买单，包括开仓和平仓）
 
 ### 请求参数
@@ -30821,7 +30892,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 
 #### 备注：
  - 该接口仅支持全仓模式
- - 该接口的限频次数为1秒5次。（暂时还未确定）
+ - 该接口的限频次数为1秒5次。
  - direction与offset可只填其一，只填其一则按对应的条件去撤单。（如用户只传了direction=buy，则撤销所有买单，包括开仓和平仓）
 
 ### 请求参数
@@ -30861,13 +30932,12 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 | ts              | true  | long   | 响应生成时间点，单位：毫秒                 |     |
 
 
-## 【逐仓】跟踪委托订单当前委托
+## 【逐仓】跟踪委托订单当前委托
 
  - POST `/linear-swap-api/v1/swap_track_openorders`
 
 #### 备注：
  - 该接口仅支持逐仓模式
- - 该接口的限频次数为1秒5次。（暂时还未确定）
 
 ### 请求参数
 
@@ -30947,13 +31017,12 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 | ts              | true  | long   | 响应生成时间点，单位：毫秒                 |     |
 
 
-## 【全仓】查询跟踪委托订单当前委托
+## 【全仓】查询跟踪委托订单当前委托
 
  - POST `/linear-swap-api/v1/swap_cross_track_openorders`
 
 #### 备注：
  - 该接口仅支持全仓模式
- - 该接口的限频次数为1秒5次。（暂时还未确定）
 
 ### 请求参数
 
@@ -31039,7 +31108,6 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 
 #### 备注：
  - 该接口仅支持逐仓模式
- - 该接口的限频次数为1秒5次。（暂时还未确定）
 
 ### 请求参数
 
@@ -31146,7 +31214,6 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 
 #### 备注：
  - 该接口仅支持全仓模式
- - 该接口的限频次数为1秒5次。（暂时还未确定）
 
 ### 请求参数
 
@@ -32899,13 +32966,13 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>string</td>
 <td>Depth 类型</td>
 <td></td>
-<td>(150档数据)  step0, step1, step2, step3, step4, step5, step14, step15（合并深度1-5,14-15）,step0时，不合并深度;(20档数据)  step6, step7, step8, step9, step10, step11, step12, step13（合并深度7-13）；step6时，不合并深度；step12（表示合并精度1的20档深度数据，表示整数位的个位）、step13（表示合并精度10的20档深度数据，表示整数位的十位）、step14（表示合并精度1的150档深度数据，表示整数位的个位）、step15（表示合并精度10的150档深度数据，表示整数位的十位）</td>
+<td>(150档数据)  step0, step1, step2, step3, step4, step5, step14, step15, step16, step17（合并深度1-5,14-17）,step0时，不合并深度;(20档数据)  step6, step7, step8, step9, step10, step11, step12, step13, step18, step19（合并深度7-13,18-19）；step6时，不合并深度；</td>
 </tr>
 </tbody></table>
 <h4 id='e0361480e3-137'>备注</h4>
 <ul>
 <li><p>合并深度仅改变显示方式，不改变实际成交价格。</p></li>
-<li><p>step1至step5, step14, step15是进行了深度合并后的150档深度数据，step7至step13是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
+<li><p>step1至step5, step14至step17是进行了深度合并后的150档深度数据，step7至step13, step18, step19是进行了深度合并后的20档深度数据，对应精度如下：</p></li>
 </ul>
 
 <table><thead>
@@ -32919,6 +32986,16 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>150档</td>
 <td>step0</td>
 <td>不合并</td>
+</tr>
+<tr>
+<td>150档</td>
+<td>step16</td>
+<td>0.0000001</td>
+</tr>
+<tr>
+<td>150档</td>
+<td>step17</td>
+<td>0.000001</td>
 </tr>
 <tr>
 <td>150档</td>
@@ -32959,6 +33036,16 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>20档</td>
 <td>step6</td>
 <td>不合并</td>
+</tr>
+<tr>
+<td>20档</td>
+<td>step18</td>
+<td>0.0000001</td>
+</tr>
+<tr>
+<td>20档</td>
+<td>step19</td>
+<td>0.000001</td>
 </tr>
 <tr>
 <td>20档</td>
