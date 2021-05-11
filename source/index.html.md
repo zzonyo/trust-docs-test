@@ -40,6 +40,33 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.2.8 2021-5-11 【Added: Trailing Order interface.】
+
+### 1. Added Place a Trailing Order interface
+ - Interface Name: Place a Trailing Order
+ - Interface Type: private
+ - Interface URL: /api/v1/contract_track_order
+
+### 2. Added Cancel a Trailing Order interface
+ - Interface Name: Cancel a Trailing Order
+ - Interface Type: private
+ - Interface URL: /api/v1/contract_track_cancel
+
+### 3. Added Cancel All Trailing Orders interface
+ - Interface Name: Cancel All Trailing Orders
+ - Interface Type: private
+ - Interface URL: /api/v1/contract_track_cancelall
+
+### 4. Added Current unfilled trailing order acquisition interface
+ - Interface Name: Current unfilled trailing order acquisition
+ - Interface Type: private
+ - Interface URL: /api/v1/contract_track_openorders
+
+### 5. Added Get History Trailing Orders interface
+ - Interface Name: Get History Trailing Orders
+ - Interface Type: private
+ - Interface URL: /api/v1/contract_track_hisorders
+
 ## 1.2.7 2021-4-28 【Added: Get Market BBO Data interface. Modified: Get Kline Data of Mark Price interface(supports symbol that value is contract code as request parameter, such as: BTC210326). Subscribe Kline Data of Mark Price interface(supports symbol that value is contract code as request parameter, such as: BTC210326). Request Kline Data of Mark Price interface(supports symbol that value is contract code as request parameter, such as: BTC210326)】
 
 ### 1. Added Get Market BBO Data interface
@@ -1165,13 +1192,12 @@ Trade | Strategy  |  /api/v1/contract_tpsl_cancelall                        | PO
 Read  | Strategy  |  /api/v1/contract_tpsl_openorders                       | POST    |     Open take-profit and stop-loss orders        |      Yes         |
 Read  | Strategy  |  /api/v1/contract_tpsl_hisorders                        | POST    |     Take-profit and stop-loss histoty orders       |      Yes         |
 Read  | Strategy  |  /api/v1/contract_relation_tpsl_order                   | POST    |     Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order       |      Yes         |
-<!-- 
 Trade | Strategy  |  /api/v1/contract_track_order |        POST        | Place a Trailing Order           |  Yes  |
 Trade | Strategy  |  /api/v1/contract_track_cancel |        POST        | Cancel a Trailing Order      |  Yes  |
 Trade | Strategy  |  /api/v1/contract_track_cancelall |        POST        | Cancel All Trailing Order     |  Yes  |
 Read  | Strategy  |  /api/v1/contract_track_openorders |        POST        |Current unfilled trailing order acquisition    |  Yes  |
 Read  | Strategy  |  /api/v1/contract_track_hisorders |        POST        |  Get History Trailing Orders     |  Yes  |
--->
+
 
 ##  Address
 
@@ -6821,6 +6847,7 @@ ts                     | true     | long    | timestamp                |        
  - The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).
  - Only the real profit parameter (real_profit) of the transaction information that orders created after 0:00 on January 30, 2021 has a value . And of the other order transaction information that orders created  before that times, the real profit parameter is 0.
 
+
 # Contract Strategy Order Interface
 
 ## Place Trigger Order
@@ -6863,13 +6890,15 @@ ts                     | true     | long    | timestamp                |        
 
 ### Note
 
-  - If the contract_code field is filled with a number, order will by placed by contract_code.
+ - If the contract_code field is filled with a number, order will by placed by contract_code.
   
-  - If the contract_code field is None, order will by placed by symbol and contract_type.
+ - If the contract_code field is None, order will by placed by symbol and contract_type.
   
-  - optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.
+ - optimal_5: top 5 optimal BBO price. optimal_10: top 10 optimal BBO price. optimal_20: top 20 optimal BBO price. limit: the limit order, order_price needed.
  
-  - If you’re holding a position currently, the leverage you choose when placing an order should be the same as the leverage of your current positions, otherwise, the order will fail to be placed. If you need a new leverage to place an order, you should switch the leverage of current positions first by using the Switch Leverage interface. 
+ - If you’re holding a position currently, the leverage you choose when placing an order should be the same as the leverage of your current positions, otherwise, the order will fail to be placed. If you need a new leverage to place an order, you should switch the leverage of current positions first by using the Switch Leverage interface. 
+ 
+ - The frequency limit of this interface is 5 times per second.
 
 > Response:
 
@@ -6914,6 +6943,9 @@ ts                     | true     | long    | timestamp                |        
 | -----  | -----  | -----  | ----- |
 |  symbol |  string  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported.BTC,LTC...  |
 |  order_id  |  string  |  true  |  order id. multiple orderids need to be joined by ",".Max number of order ids is 10 once.|
+
+#### Note
+ - The frequency limit of this interface is 5 times per second.
 
 > Response:
 
@@ -6974,6 +7006,8 @@ ts                     | true     | long    | timestamp                |        
 - If symbol and contract_type are filled, cancel trigger orders of this symbol and contract code.
 
 - You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including "open" and "close" offset)
+
+- The frequency limit of this interface is 5 times per second.
 
 > Response:
 
@@ -7706,7 +7740,7 @@ ts                     | true     | long    | timestamp                |        
 | \</data\>       |       |        |     |  |
 | ts              | true  | long   | Time of Respond Generation，Unit: Millisecond                 |     |
 
-<!--
+
 ## Place a Trailing Order
 
  - POST `/api/v1/contract_track_order`
@@ -7729,7 +7763,7 @@ ts                     | true     | long    | timestamp                |        
  - When order_price_type is the formula_price, it means that after the tracking order is triggered successfully, use the lowest (highest) market price *(1 ± callback rate) that from statistic since place trading order, as the order price (the precision is the minimum variation of the contract price and be truncated) to place a limit price order 
  - whether filled in with the optimal N or the formula price, there is no guarantee that the order can be completely filled, which mainly depends on the market conditions.
  - Symbol+contract_type and contract_code must be filled in one of them, as long as contract_code is filled in, contract_code will be taken directly.
-
+ - The frequency limit of this interface is 5 times per second.
 
 > Response
 
@@ -7767,6 +7801,9 @@ ts                     | true     | long    | timestamp                |        
 | ------------- | ----- | ------ | ------------- | ---------------------------------------- |
 | symbol          | true | string | symbol                  | "BTC","ETH"...                           |
 | order_id | true | string | User's trailing order id (multiple order IDs are separated by ",", a maximum of 10 orders are allowed to be withdrawn at a time)|    |
+
+#### Note
+ - The frequency limit of this interface is 5 times per second.
 
 > Response: 
 
@@ -7821,6 +7858,7 @@ ts                     | true     | long    | timestamp                |        
  - Send contract_code to cancel the contracts of that code.
  - Send symbol+contract_type to cancel the certain contracts under the symbol of that contract_type
  - You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including "open" and "close" offset)
+ - The frequency limit of this interface is 5 times per second.
 
 > Response: 
 
@@ -8032,7 +8070,7 @@ ts                     | true     | long    | timestamp                |        
 | \</orders\>       |       |        |     |  |
 | \</data\>       |       |        |     |  |
 | ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
--->
+
 
 # Future Transferring Interface
 
@@ -11044,7 +11082,7 @@ To subscribe basis data, the Client has to make connection to the Server and sen
 | 2030   | Exceeds connection limit of single user. |
 | 2040   | Missing required parameter.              |
 
-
+<!---->
 </br>
 </br>
 </br>
