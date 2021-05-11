@@ -36,6 +36,33 @@ search: True
 
 # 更新日志
 
+## 1.1.9 2021年05月11日 【新增：跟踪委托订单接口】
+
+### 1、新增跟踪委托订单下单接口
+ - 接口名称：跟踪委托订单下单
+ - 接口类型：私有接口
+ - 接口URL：/swap-api/v1/swap_track_order
+
+### 2、新增跟踪委托订单撤单接口
+ - 接口名称：跟踪委托订单撤单
+ - 接口类型：私有接口
+ - 接口URL：/swap-api/v1/swap_track_cancel
+
+### 3、新增跟踪委托订单全部撤单接口
+ - 接口名称：跟踪委托订单全部撤单
+ - 接口类型：私有接口
+ - 接口URL：/swap-api/v1/swap_track_cancelall
+
+### 4、新增跟踪委托订单当前委托接口
+ - 接口名称：跟踪委托订单当前委托
+ - 接口类型：私有接口
+ - 接口URL：/swap-api/v1/swap_track_openorders
+
+### 5、新增跟踪委托订单历史委托接口
+ - 接口名称：跟踪委托订单历史委托
+ - 接口类型：私有接口
+ - 接口URL：/swap-api/v1/swap_track_hisorders
+
 ## 1.1.8 2021年04月29日 【修改撤销订单接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。）、修改获取合约订单信息接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。将原来只能查询最近4小时内的撤单信息改为只可以查询最近2小时内的撤单信息。）】
 
 ### 1、修改撤销订单接口（将原来的 client_order_id 有效时间从24小时改为8小时。超过8小时的订单根据client_order_id将查询不到。）
@@ -891,13 +918,12 @@ search: True
 读取      | 策略接口          |  /swap-api/v1/swap_tpsl_openorders                       | POST    |     止盈止损订单当前委托       |       是          |
 读取      | 策略接口          |  /swap-api/v1/swap_tpsl_hisorders                        | POST    |     止盈止损订单历史委托       |       是          |
 读取      | 策略接口          |  /swap-api/v1/swap_relation_tpsl_order                   | POST    |     查询开仓单关联的止盈止损订单       |       是          |
-<!--
 交易     |  策略接口           |  /swap-api/v1/swap_track_order |        POST        | 跟踪委托订单下单            |  是 |
 交易     |  策略接口           |  /swap-api/v1/swap_track_cancel |        POST        | 跟踪委托订单撤单            |  是 |
 交易     |  策略接口           |  /swap-api/v1/swap_track_cancelall |        POST        | 跟踪委托订单全部撤单            |  是 |
 读取     |  策略接口           |  /swap-api/v1/swap_track_openorders |        POST        | 跟踪委托订单当前委托            |  是 |
 读取     |  策略接口           |  /swap-api/v1/swap_track_hisorders |        POST        | 跟踪委托订单历史委托           |  是 |
--->
+
 
 ## 访问地址
 
@@ -7508,7 +7534,7 @@ client_order_id | false | long | 用户自己的订单id |  |
 | \</data\>       |       |        |     |  |
 | ts              | true  | long   | 响应生成时间点，单位：毫秒                 |     |
 
-<!--
+
 ## 跟踪委托订单下单
 
  - POST `/swap-api/v1/swap_track_order`
@@ -7529,6 +7555,7 @@ client_order_id | false | long | 用户自己的订单id |  |
 #### 备注：
  - 委托类型为理论价格，表示跟踪委托触发成功后，以下单以来市场最低（最高）价的（1 ± 回调幅度）作为委托价（精度为币种最小变动单位，截断）向市场下委托类型为limit的订单。
  - 无论是最优N档还是理论价格下单，都不能保证订单能完全成交，主要取决于市场情况。
+ - 该接口的限频次数为1秒5次。
 
 > Response: 
 
@@ -7565,6 +7592,9 @@ client_order_id | false | long | 用户自己的订单id |  |
 | ------------- | ----- | ------ | ------------- | ---------------------------------------- |
 | contract_code   | true | string | 合约代码    | BTC-USD                               |
 | order_id | true | string | 用户跟踪委托订单ID（多个订单ID中间以","分隔,一次最多允许撤消10个订单 ）|    |
+
+#### 备注
+ - 该接口的限频次数为1秒5次。
 
 > Response: 
 
@@ -7614,6 +7644,7 @@ client_order_id | false | long | 用户自己的订单id |  |
 
 #### 备注：
  - direction与offset可只填其一，只填其一则按对应的条件去撤单。（如用户只传了direction=buy，则撤销所有买单，包括开仓和平仓）
+ - 该接口的限频次数为1秒5次。
 
 > Response: 
 
@@ -7819,7 +7850,7 @@ client_order_id | false | long | 用户自己的订单id |  |
 | \</orders\>       |       |        |     |  |
 | \</data\>       |       |        |     |  |
 | ts              | true  | long   | 响应生成时间点，单位：毫秒                 |     |
--->
+
 
 
 # 币本位永续合约划转接口
