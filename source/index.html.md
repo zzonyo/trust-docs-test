@@ -38,7 +38,7 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
-## 1.1.9 2021-05-11 【Added: Trailing Order interface. 】 
+## 1.1.9 2021-05-12 【Added: Trailing Order interface. 】 
 
 ### 1. Added Place a Trailing Order interface
  - Interface Name: Place a Trailing Order
