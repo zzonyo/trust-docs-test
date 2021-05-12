@@ -5464,6 +5464,10 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15, step16, step17（merged depth data 0-5,14-17）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13, step18, step19(merged depth data 7-13,18-19); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
+<h4 id='node'>Node</h4>
+<ul>
+<li>step16, step17, step18, and step19 are only for SHIB-USDT contract, and the other contracts is not supported now.</li>
+</ul>
 
 <blockquote>
 <p>Response:</p>
@@ -32886,6 +32890,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <h3 id='note-98'>Note:</h3>
 <ul>
 <li><p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p></li>
+<li><p>step16, step17, step18, and step19 are only for SHIB-USDT contract, and the other contracts is not supported now.</p></li>
 <li><p>steps between step1 and step5, step14 and step17 are merged orderbook data of step 150. 
 steps between step7 and step13, step18, step19  are merged orderbook data of step 20. 
 Details are below:</p></li>
