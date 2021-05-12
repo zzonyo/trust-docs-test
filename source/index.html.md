@@ -30,6 +30,7 @@ table th {
 
 | Release Time <br>(UTC +8) | API  | New / Update    | Description     |
 | ------------------------ | ---------------------- | --------------- | ------------------------------------- |
+| 2021.5.12 | GET `/v2/etp/transactions` | Update | "etpNames" and "transactTypes" are changed to "required" and "Only supports filling in one value" |
 | 2021.3.1 | `POST /v2/sub-user/deduct-mode` | Add | Set a deduction for master and sub user |
 | 2021.3.1 | `GET /v2/sub-user/account-list` | Update | Add deduct mode parameters |
 | 2021.2.28 | Account and Order WebSocket v1 | Delete | Account and WebSocket v1 was offline |
