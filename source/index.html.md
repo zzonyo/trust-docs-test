@@ -2835,6 +2835,8 @@ curl "https://api.hbdm.com/linear-swap-ex/market/depth?contract_code=BTC-USDT&ty
 
 - 合并深度仅改变显示方式，不改变实际成交价格。
 
+- step16、step17、step18、step19仅供SHIB-USDT合约使用，暂不支持其他合约使用。
+
 - step1至step5, step14至step17是进行了深度合并后的150档深度数据，step7至step13, step18, step19 是进行了深度合并后的20档深度数据，对应精度如下：
 
 | Depth 类型 | 精度 |
@@ -12905,6 +12907,8 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
 #### 备注
 
 - 合并深度仅改变显示方式，不改变实际成交价格。
+
+- step16、step17、step18、step19仅供SHIB-USDT合约使用，暂不支持其他合约使用。
 
 - step1至step5, step14至step17是进行了深度合并后的150档深度数据，step7至step13, step18, step19是进行了深度合并后的20档深度数据，对应精度如下：
 
