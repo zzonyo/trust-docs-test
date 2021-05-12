@@ -265,6 +265,9 @@
             <a href="#changelog" class="toc-h1 toc-link" data-title="Changelog">Changelog</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-1-2-2021-05-12-added-trailing-order-interface" class="toc-h2 toc-link" data-title="1.1.2 2021-05-12 【Added: Trailing Order interface. 】">1.1.2 2021-05-12 【Added: Trailing Order interface. 】</a>
+                  </li>
+                  <li>
                     <a href="#1-1-1-2021-04-29-modified-cancel-an-order-change-the-valid-time-of-the-client_order_id-from-24-hours-to-8-hours-clients-can-39-t-get-the-order-info-with-client_order_id-which-order-placed-beyond-8-hours-modified-get-information-of-an-order-change-the-valid-time-of-the-client_order_id-from-24-hours-to-8-hours-clients-can-39-t-get-the-order-info-with-client_order_id-which-order-placed-beyond-8-hours-client-can-query-the-order-info-which-has-been-cancelled-within-2-hours-original-is-4-hours" class="toc-h2 toc-link" data-title="1.1.1 2021-04-29 【Modified Cancel an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours). Modified Get Information of an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours.Client can query the order info which has been cancelled within 2 hours(original is 4 hours)）】">1.1.1 2021-04-29 【Modified Cancel an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours). Modified Get Information of an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can't get the order info with client_order_id which order placed beyond 8 hours.Client can query the order info which has been cancelled within 2 hours(original is 4 hours)）】</a>
                   </li>
                   <li>
@@ -723,6 +726,36 @@
                   <li>
                     <a href="#cross-query-info-of-take-profit-and-stop-loss-order-that-related-to-position-opening-order" class="toc-h2 toc-link" data-title="[Cross]Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order">[Cross]Query Info Of Take-profit and Stop-loss Order That Related To Position Opening Order</a>
                   </li>
+                  <li>
+                    <a href="#isolated-place-a-trailing-order" class="toc-h2 toc-link" data-title="[Isolated]Place a Trailing Order">[Isolated]Place a Trailing Order</a>
+                  </li>
+                  <li>
+                    <a href="#cross-place-a-trailing-order" class="toc-h2 toc-link" data-title="[Cross]Place a Trailing Order">[Cross]Place a Trailing Order</a>
+                  </li>
+                  <li>
+                    <a href="#isolated-cancel-a-trailing-order" class="toc-h2 toc-link" data-title="[Isolated]Cancel a Trailing Order">[Isolated]Cancel a Trailing Order</a>
+                  </li>
+                  <li>
+                    <a href="#cross-cancel-a-trailing-order" class="toc-h2 toc-link" data-title="[Cross]Cancel a Trailing Order">[Cross]Cancel a Trailing Order</a>
+                  </li>
+                  <li>
+                    <a href="#isolated-cancel-all-trailing-orders" class="toc-h2 toc-link" data-title="[Isolated]Cancel All Trailing Orders">[Isolated]Cancel All Trailing Orders</a>
+                  </li>
+                  <li>
+                    <a href="#cross-cancel-all-trailing-orders" class="toc-h2 toc-link" data-title="[Cross]Cancel All Trailing Orders">[Cross]Cancel All Trailing Orders</a>
+                  </li>
+                  <li>
+                    <a href="#isolated-current-unfilled-trailing-order-acquisition" class="toc-h2 toc-link" data-title="[Isolated]Current unfilled trailing order acquisition">[Isolated]Current unfilled trailing order acquisition</a>
+                  </li>
+                  <li>
+                    <a href="#cross-current-unfilled-trailing-order-acquisition" class="toc-h2 toc-link" data-title="[cross]Current unfilled trailing order acquisition">[cross]Current unfilled trailing order acquisition</a>
+                  </li>
+                  <li>
+                    <a href="#isolated-get-history-trailing-orders" class="toc-h2 toc-link" data-title="[Isolated]Get History Trailing Orders">[Isolated]Get History Trailing Orders</a>
+                  </li>
+                  <li>
+                    <a href="#cross-get-history-trailing-orders" class="toc-h2 toc-link" data-title="[Cross]Get History Trailing Orders">[Cross]Get History Trailing Orders</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -968,60 +1001,66 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Huobi UIDs (not linked to any rebate program in any accounts) </li>
 <li>Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges</li>
 </ol>
-<h1 id='changelog'>Changelog</h1>
-<!--
-## 1.1.2 2021-05-11 【Added: Trailing Order interface. 】 
-
-### 1. Added Place a Trailing Order(isolated) interface
- - Interface Name: [Isolated]Place a Trailing Order
- - Interface Type: private
- - Interface URL: /linear-swap-api/v1/swap_track_order
-
-### 2. Added Place a Trailing Order(cross) interface
- - Interface Name: [Cross]Place a Trailing Order
- - Interface Type: private
- - Interface URL: /linear-swap-api/v1/swap_cross_track_order
-
-### 3. Added Cancel a Trailing Order(isolated) interface
- - Interface Name: [Isolated]Cancel a Trailing Order
- - Interface Type: private
- - Interface URL: /linear-swap-api/v1/swap_track_cancel
-
-### 4. Added Cancel a Trailing Order(cross) interface
- - Interface Name: [Cross]Cancel a Trailing Order
- - Interface Type: private
- - Interface URL: /linear-swap-api/v1/swap_cross_track_cancel
-
-### 5. Added Cancel All Trailing Orders(isolated) interface
- - Interface Name: [Isolated]Cancel All Trailing Orders
- - Interface Type: private
- - Interface URL: /linear-swap-api/v1/swap_track_cancelall
-
-### 6. Added Cancel All Trailing Orders(cross) interface
- - Interface Name: [Cross]Cancel All Trailing Orders
- - Interface Type: private
- - Interface URL: /linear-swap-api/v1/swap_cross_track_cancelall
-
-### 7. Added Current unfilled trailing order acquisition(isolated) interface
- - Interface Name: [Isolated]Current unfilled trailing order acquisition
- - Interface Type: private
- - Interface URL: /linear-swap-api/v1/swap_track_openorders
-
-### 8. Added Current unfilled trailing order acquisition(cross) interface
- - Interface Name: [Cross]Current unfilled trailing order acquisition
- - Interface Type: private
- - Interface URL: /linear-swap-api/v1/swap_cross_track_openorders
-
-### 9. Added Get History Trailing Orders(isolated) interface
- - Interface Name: [Isolated]Get History Trailing Orders
- - Interface Type: private
- - Interface URL: /linear-swap-api/v1/swap_track_hisorders
-
-### 10. Added Get History Trailing Orders(cross) interface
- - Interface Name: [Cross]Get History Trailing Orders
- - Interface Type: private
- - Interface URL: /linear-swap-api/v1/swap_cross_track_hisorders
--->
+<h1 id='changelog'>Changelog</h1><h2 id='1-1-2-2021-05-12-added-trailing-order-interface'>1.1.2 2021-05-12 【Added: Trailing Order interface. 】</h2><h3 id='1-added-place-a-trailing-order-isolated-interface'>1. Added Place a Trailing Order(isolated) interface</h3>
+<ul>
+<li>Interface Name: [Isolated]Place a Trailing Order</li>
+<li>Interface Type: private</li>
+<li>Interface URL: /linear-swap-api/v1/swap_track_order</li>
+</ul>
+<h3 id='2-added-place-a-trailing-order-cross-interface'>2. Added Place a Trailing Order(cross) interface</h3>
+<ul>
+<li>Interface Name: [Cross]Place a Trailing Order</li>
+<li>Interface Type: private</li>
+<li>Interface URL: /linear-swap-api/v1/swap_cross_track_order</li>
+</ul>
+<h3 id='3-added-cancel-a-trailing-order-isolated-interface'>3. Added Cancel a Trailing Order(isolated) interface</h3>
+<ul>
+<li>Interface Name: [Isolated]Cancel a Trailing Order</li>
+<li>Interface Type: private</li>
+<li>Interface URL: /linear-swap-api/v1/swap_track_cancel</li>
+</ul>
+<h3 id='4-added-cancel-a-trailing-order-cross-interface'>4. Added Cancel a Trailing Order(cross) interface</h3>
+<ul>
+<li>Interface Name: [Cross]Cancel a Trailing Order</li>
+<li>Interface Type: private</li>
+<li>Interface URL: /linear-swap-api/v1/swap_cross_track_cancel</li>
+</ul>
+<h3 id='5-added-cancel-all-trailing-orders-isolated-interface'>5. Added Cancel All Trailing Orders(isolated) interface</h3>
+<ul>
+<li>Interface Name: [Isolated]Cancel All Trailing Orders</li>
+<li>Interface Type: private</li>
+<li>Interface URL: /linear-swap-api/v1/swap_track_cancelall</li>
+</ul>
+<h3 id='6-added-cancel-all-trailing-orders-cross-interface'>6. Added Cancel All Trailing Orders(cross) interface</h3>
+<ul>
+<li>Interface Name: [Cross]Cancel All Trailing Orders</li>
+<li>Interface Type: private</li>
+<li>Interface URL: /linear-swap-api/v1/swap_cross_track_cancelall</li>
+</ul>
+<h3 id='7-added-current-unfilled-trailing-order-acquisition-isolated-interface'>7. Added Current unfilled trailing order acquisition(isolated) interface</h3>
+<ul>
+<li>Interface Name: [Isolated]Current unfilled trailing order acquisition</li>
+<li>Interface Type: private</li>
+<li>Interface URL: /linear-swap-api/v1/swap_track_openorders</li>
+</ul>
+<h3 id='8-added-current-unfilled-trailing-order-acquisition-cross-interface'>8. Added Current unfilled trailing order acquisition(cross) interface</h3>
+<ul>
+<li>Interface Name: [Cross]Current unfilled trailing order acquisition</li>
+<li>Interface Type: private</li>
+<li>Interface URL: /linear-swap-api/v1/swap_cross_track_openorders</li>
+</ul>
+<h3 id='9-added-get-history-trailing-orders-isolated-interface'>9. Added Get History Trailing Orders(isolated) interface</h3>
+<ul>
+<li>Interface Name: [Isolated]Get History Trailing Orders</li>
+<li>Interface Type: private</li>
+<li>Interface URL: /linear-swap-api/v1/swap_track_hisorders</li>
+</ul>
+<h3 id='10-added-get-history-trailing-orders-cross-interface'>10. Added Get History Trailing Orders(cross) interface</h3>
+<ul>
+<li>Interface Name: [Cross]Get History Trailing Orders</li>
+<li>Interface Type: private</li>
+<li>Interface URL: /linear-swap-api/v1/swap_cross_track_hisorders</li>
+</ul>
 <h2 id='1-1-1-2021-04-29-modified-cancel-an-order-change-the-valid-time-of-the-client_order_id-from-24-hours-to-8-hours-clients-can-39-t-get-the-order-info-with-client_order_id-which-order-placed-beyond-8-hours-modified-get-information-of-an-order-change-the-valid-time-of-the-client_order_id-from-24-hours-to-8-hours-clients-can-39-t-get-the-order-info-with-client_order_id-which-order-placed-beyond-8-hours-client-can-query-the-order-info-which-has-been-cancelled-within-2-hours-original-is-4-hours'>1.1.1 2021-04-29 【Modified Cancel an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can&#39;t get the order info with client_order_id which order placed beyond 8 hours). Modified Get Information of an Order(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can&#39;t get the order info with client_order_id which order placed beyond 8 hours.Client can query the order info which has been cancelled within 2 hours(original is 4 hours)）】</h2><h3 id='1-modified-cancel-an-order-isolated-interface-change-the-valid-time-of-the-client_order_id-from-24-hours-to-8-hours-clients-can-39-t-get-the-order-info-with-client_order_id-which-order-placed-beyond-8-hours'>1. Modified Cancel an Order(isolated) interface(Change the valid time of the client_order_id from 24 hours to 8 hours. Clients can&#39;t get the order info with client_order_id which order placed beyond 8 hours)</h3>
 <ul>
 <li>Interface Name: [Isolated]Cancel an Order</li>
@@ -2984,20 +3023,97 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <td>Transfer margin between Spot account and USDT Margined Swap account</td>
 <td>Yes</td>
 </tr>
+<tr>
+<td>Trade</td>
+<td>Strategy</td>
+<td>Isolated</td>
+<td>/linear-swap-api/v1/swap_track_order</td>
+<td>POST</td>
+<td>【Isolated】Place a Trailing Order</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Trade</td>
+<td>Strategy</td>
+<td>Isolated</td>
+<td>/linear-swap-api/v1/swap_track_cancel</td>
+<td>POST</td>
+<td>【Isolated】Cancel a Trailing Order Order</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Trade</td>
+<td>Strategy</td>
+<td>Isolated</td>
+<td>/linear-swap-api/v1/swap_track_cancelall</td>
+<td>POST</td>
+<td>【Isolated】Cancel All Trailing Orders</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Strategy</td>
+<td>Isolated</td>
+<td>/linear-swap-api/v1/swap_track_openorders</td>
+<td>POST</td>
+<td>【Isolated】Current unfilled trailing order acquisition</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Strategy</td>
+<td>Isolated</td>
+<td>/linear-swap-api/v1/swap_track_hisorders</td>
+<td>POST</td>
+<td>【Isolated】Get History Trailing Orders</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Trade</td>
+<td>Strategy</td>
+<td>Cross</td>
+<td>/linear-swap-api/v1/swap_cross_track_order</td>
+<td>POST</td>
+<td>【Cross】Place a Trailing Order</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Trade</td>
+<td>Strategy</td>
+<td>Cross</td>
+<td>/linear-swap-api/v1/swap_cross_track_cancel</td>
+<td>POST</td>
+<td>【Cross】Cancel a Trailing Order Order</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Trade</td>
+<td>Strategy</td>
+<td>Cross</td>
+<td>/linear-swap-api/v1/swap_cross_track_cancelall</td>
+<td>POST</td>
+<td>【Cross】Cancel All Trailing Orders</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Strategy</td>
+<td>Cross</td>
+<td>/linear-swap-api/v1/swap_cross_track_openorders</td>
+<td>POST</td>
+<td>【Cross】Current unfilled trailing order acquisition</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Read</td>
+<td>Strategy</td>
+<td>Cross</td>
+<td>/linear-swap-api/v1/swap_cross_track_hisorders</td>
+<td>POST</td>
+<td>【Cross】Get History Trailing Orders</td>
+<td>Yes</td>
+</tr>
 </tbody></table>
-
-<!--
-Trade   |  Strategy  | Isolated |  /linear-swap-api/v1/swap_track_order |        POST        | 【Isolated】Place a Trailing Order            |  Yes  |
-Trade   |  Strategy  | Isolated |  /linear-swap-api/v1/swap_track_cancel |        POST        | 【Isolated】Cancel a Trailing Order Order            |  Yes  |
-Trade   |  Strategy  | Isolated |  /linear-swap-api/v1/swap_track_cancelall |        POST        | 【Isolated】Cancel All Trailing Orders            |  Yes  |
-Read   |  Strategy  | Isolated |  /linear-swap-api/v1/swap_track_openorders |        POST        | 【Isolated】Current unfilled trailing order acquisition            |  Yes  |
-Read   |  Strategy  | Isolated |  /linear-swap-api/v1/swap_track_hisorders |        POST        | 【Isolated】Get History Trailing Orders          |  Yes  |
-Trade   |  Strategy  | Cross |  /linear-swap-api/v1/swap_cross_track_order |        POST        | 【Cross】Place a Trailing Order            |  Yes  |
-Trade   |  Strategy  | Cross |  /linear-swap-api/v1/swap_cross_track_cancel |        POST        | 【Cross】Cancel a Trailing Order Order           |  Yes  |
-Trade   |  Strategy  | Cross |  /linear-swap-api/v1/swap_cross_track_cancelall |        POST        | 【Cross】Cancel All Trailing Orders          |  Yes  |
-Read   |  Strategy  | Cross |  /linear-swap-api/v1/swap_cross_track_openorders |        POST        | 【Cross】Current unfilled trailing order acquisition            |  Yes  |
-Read   |  Strategy  | Cross |  /linear-swap-api/v1/swap_cross_track_hisorders |        POST        | 【Cross】Get History Trailing Orders          |  Yes  |
--->
 <h2 id='address'>Address</h2>
 <table><thead>
 <tr>
@@ -30565,678 +30681,2150 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td></td>
 </tr>
 </tbody></table>
-
-<!--
-## [Isolated]Place a Trailing Order
-
- - POST `/linear-swap-api/v1/swap_track_order`
-
-#### Note
- - This interface only supports isolated margin mode.
- - The frequency limit of this interface is 5 times per second.
-
-### Request Parameter
-| Parameter Name            | Mandatory  | Type     | Description                    | Value Range                                     |
-| --------------- | ----- | ------ | --------------------- | ---------------------------------------- |
-| contract_code   | true | string | contract code    | BTC-USDT                               |
-| direction | true | string | direction| buy, sell  |
-| offset | true | string | offset |   open, close  |
-| lever_rate | false | int | lever rate, is required when open position, is optional when close position|    |
-| volume | true | decimal | volume(cont) |  |
-| callback_rate          | true | decimal | callback rate              |  Such as: 0.01 means 1%. And must be not less than 0.001 (0.1%)                         |
-| active price   | true | decimal | active price                 |  |
-| order_price_type | true | string | order price type |  optimal_5, optimal_10, optimal_20, formula_price  |
-
-#### Note
- - When order_price_type is the formula_price, it means that after the tracking order is triggered successfully, use the lowest (highest) market price *(1 ± callback rate) that from statistic since place trading order, as the order price (the precision is the minimum variation of the contract price and be truncated) to place a limit price order 
- - whether filled in with the optimal N or the formula price, there is no guarantee that the order can be completely filled, which mainly depends on the market conditions.
-
- > Response: 
-
-```json
-{
-    "status": "ok",
-    "data": {
-        "order_id": 826052268312821760,
-        "order_id_str": "826052268312821760"
-    },
-    "ts": 1616987808080
-}
-```
-
-### Return Parameter
-
-| Parameter Name            | Mandatory  | Type     | Description                            | Value Range                 |
-| --------------- | ----- | ------ | ----------------------------- | -------------------- |
-| status                     | true         | string   |  the result of server handling to request               | "ok" , "error" |
-| ts |  true  | long | timestamp | |
-| \<data\> |  true  | object | the returned data which is successful | |
-| order_id  |  true  | long | trailing order id[Globally Unique]   | |
-| order_id_str |  true  | string | trailing order id in string format   | |
-| \</data\> |   | |  | |
-
-
-## [Cross]Place a Trailing Order
-
- - POST `/linear-swap-api/v1/swap_cross_track_order`
-
-#### Note: 
- - The interface only supports cross margin mode.
- - The frequency limit of this interface is 5 times per second.
-
-### Request Parameter
-| Parameter Name            | Mandatory  | Type     | Description                    | Value Range                                     |
-| --------------- | ----- | ------ | --------------------- | ---------------------------------------- |
-| contract_code   | true | string | contract code    | BTC-USDT                               |
-| direction | true | string | direction| buy, sell  |
-| offset | true | string | offset |   open, close  |
-| lever_rate | false | int | lever rate, is required when open position, is optional when close position|    |
-| volume | true | decimal | volume(cont) |  |
-| callback_rate          | true | decimal | callback rate              |  Such as: 0.01 means 1%. And must be not less than 0.001 (0.1%)                         |
-| active price   | true | decimal | active price                 |  |
-| order_price_type | true | string | order price type |  optimal_5, optimal_10, optimal_20, formula_price  |
-
-#### Note
- - When order_price_type is the formula_price, it means that after the tracking order is triggered successfully, use the lowest (highest) market price *(1 ± callback rate) that from statistic since place trading order, as the order price (the precision is the minimum variation of the contract price and be truncated) to place a limit price order 
- - whether filled in with the optimal N or the formula price, there is no guarantee that the order can be completely filled, which mainly depends on the market conditions.
-
-> Response: 
-
-```json
-{
-    "status": "ok",
-    "data": {
-        "order_id": 826052906719444992,
-        "order_id_str": "826052906719444992"
-    },
-    "ts": 1616987960287
-}
-```
-
-### Return Parameter
-
-| Parameter Name            | Mandatory  | Type     | Description                            | Value Range                 |
-| --------------- | ----- | ------ | ----------------------------- | -------------------- |
-| status                     | true         | string   |  the result of server handling to request               | "ok" , "error" |
-| ts |  true  | long | timestamp | |
-| \<data\> |  true  | object | the returned data which is successful | |
-| order_id  |  true  | long | trailing order id[Globally Unique]   | |
-| order_id_str |  true  | string | trailing order id in string format   | |
-| \</data\> |   | |  | |
-
-
-## [Isolated]Cancel a Trailing Order
-
- - POST `/linear-swap-api/v1/swap_track_cancel`
-
-#### Note: 
- - This interface only supports isolated margin mode.
- - The frequency limit of this interface is 5 times per second.
-
-| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
-| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
-| contract_code   | true | string | contract code    | BTC-USDT                               |
-| order_id | true | string | User's trailing order id (multiple order IDs are separated by ",", a maximum of 10 orders are allowed to be withdrawn at a time)|    |
-
-> Response: 
-
-```json
-{
-    "status": "ok",
-    "data": {
-        "errors": [
-            {
-                "order_id": "826052268312821761",
-                "err_code": 1061,
-                "err_msg": "This order doesnt exist."
-            }
-        ],
-        "successes": "826052268312821760"
-    },
-    "ts": 1616988039695
-}
-```
-
-### Return Parameter
-
-
-| Parameter Name            | Mandatory  | Type     | Description                            | Value Range                 |
-| --------------- | ----- | ------ | ----------------------------- | -------------------- |
-| status          | true  | string |  the result of server handling to request                        | "ok" :success, "error": failed |
-| \<data\>        |   true    |   object     |                               | dictionary                   |
-| <errors>        |   true    |   object     |                               | dictionary                   |
-| order_id        | true  | string | trailing order id[Globally Unique] |                      |
-| err_code              | false  | long   | error code               |                      |
-| err_msg              | false  | string   | error msg               |                      |
-| </errors>       |       |        |     |  |
-| successes              | true  | string   | the orders that are success                 |     |
-| \</data\>       |       |        |     |  |
-| ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
-
-
-## [Cross]Cancel a Trailing Order
-
- - POST `/linear-swap-api/v1/swap_cross_track_cancel`
-
-#### Note: 
- - The interface only supports cross margin mode.
- - The frequency limit of this interface is 5 times per second.
-
-### Request Parameter
-
-| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
-| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
-| contract_code   | true | string | contract code    | BTC-USDT                               |
-| order_id | true | string | User's trailing order id (multiple order IDs are separated by ",", a maximum of 10 orders are allowed to be withdrawn at a time)|    |
-
-> Response: 
-
-```json
-{
-    "status": "ok",
-    "data": {
-        "errors": [
-            {
-                "order_id": "826052906719444993",
-                "err_code": 1061,
-                "err_msg": "This order doesnt exist."
-            }
-        ],
-        "successes": "826053970168446976"
-    },
-    "ts": 1616988232517
-}
-```
-
-### Return Parameter
-
-| Parameter Name            | Mandatory  | Type     | Description                            | Value Range                 |
-| --------------- | ----- | ------ | ----------------------------- | -------------------- |
-| status          | true  | string |  the result of server handling to request                        | "ok" :success, "error": failed |
-| \<data\>        |   true    |   object     |                               | dictionary                   |
-| \<errors\>        |   true    |   object     |                               | dictionary                   |
-| order_id        | true  | string | trailing order id[Globally Unique] |                      |
-| err_code              | false  | long   | error code               |                      |
-| err_msg              | false  | string   | error msg               |                      |
-| \</errors\>       |       |        |     |  |
-| successes              | true  | string   | the orders that are success                 |     |
-| \</data\>       |       |        |     |  |
-| ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
-
-
-## [Isolated]Cancel All Trailing Orders
-
- - POST `/linear-swap-api/v1/swap_track_cancelall`
-
-#### Note: 
- - This interface only supports isolated margin mode.
- - The frequency limit of this interface is 5 times per second.
- - You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including "open" and "close" offset)
-
- ### Request Parameter
-
-| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
-| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
-| contract_code   | true | string | contract code    | BTC-USDT                               |
-| direction | false  | string | direction(if not filled in as all)  |  buy, sell |
-| offset | false  | string | offset(if not filledin as all)  | open, close  |
-
-> Response: 
-
-```json
-{
-    "status": "ok",
-    "data": {
-        "errors": [],
-        "successes": "826054603831312384,826054608491184128,826054686706565120"
-    },
-    "ts": 1616988392280
-}
-```
-
-### Return Parameter
-
-| Parameter Name                   | Mandatory | Type      | Description                 | Value Range                                     |
-| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
-| status          | true  | string |  the result of server handling to request                        | "ok" :success, "error": failed |
-| \<data\>        |   true    |   object     |                               | dictionary                   |
-| \<errors\>        |   true    |   object     |                               | dictionary                   |
-| order_id        | true  | string | trailing order id[Globally Unique]  |                      |
-| err_code              | false  | long   | error code               |                      |
-| err_msg              | false  | string   | error msg               |                      |
-| \</errors\>       |       |        |     |  |
-| successes              | true  | string   | the orders that are success                 |     |
-| \</data\>       |       |        |     |  |
-| ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
-
-
-## [Cross]Cancel All Trailing Orders
-
- - POST `/linear-swap-api/v1/swap_cross_track_cancelall`
-
-#### Note: 
- - The interface only supports cross margin mode.
- - The frequency limit of this interface is 5 times per second.
- - You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including "open" and "close" offset)
-
-### Request Parameter
-
-| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
-| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
-| contract_code   | true | string | contract code    | BTC-USDT                               |
-| direction | false  | string | direction(if not filled in, means all)  |  buy, sell |
-| offset | false  | string | offset (if not filled in, means all)  | open, close  |
-
-> Response: 
-
-```json
-{
-    "status": "ok",
-    "data": {
-        "errors": [],
-        "successes": "826054813483597824,826054818734866432,826054867657228288"
-    },
-    "ts": 1616988442893
-}
-```
-
-### Return Parameter
-
-| Parameter Name                   | Mandatory | Type      | Description                 | Value Range                                     |
-| ---------------------- | ---- | ------- | ------------------ | ---------------------------------------- |
-| status          | true  | string |  the result of server handling to request                        | "ok" :success, "error": failed |
-| \<data\>        |   true    |   object     |                               | dictionary                   |
-| \<errors\>        |   true    |   object     |                               | dictionary                   |
-| order_id        | true  | string | trailing order id[Globally Unique]  |                      |
-| err_code              | false  | long   | error code               |                      |
-| err_msg              | false  | string   | error msg               |                      |
-| \</errors\>       |       |        |     |  |
-| successes              | true  | string   | the orders that are success                 |     |
-| \</data\>       |       |        |     |  |
-| ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
-
-
-## [Isolated]Current unfilled trailing order acquisition
-
- - POST `/linear-swap-api/v1/swap_track_openorders`
-
-#### Note: 
- - This interface only supports isolated margin mode.
-
-### Request Parameter
-
-| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
-| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
-| contract_code   | true | string | contract code    | BTC-USDT                               |
-| trade_type | false  | int | trade type(if not filled in, means all)  |  0:all,1: buy long,2: sell short,3: buy short,4: sell long |
-| page_index | false | int | page index, if not filled in as 1st|    |
-| page_size | false | int | if not filled in as 20, and no more than 50|    |
-
-> Response: 
-
-```json
-{
-    "status": "ok",
-    "data": {
-        "orders": [
-            {
-                "symbol": "BTC",
-                "contract_code": "BTC-USDT",
-                "volume": 1.000000000000000000,
-                "order_type": 1,
-                "direction": "buy",
-                "offset": "open",
-                "lever_rate": 5,
-                "order_id": 826055066114916352,
-                "order_id_str": "826055066114916352",
-                "order_source": "api",
-                "created_at": 1616988475122,
-                "order_price_type": "formula_price",
-                "status": 2,
-                "callback_rate": 0.030000000000000000,
-                "active_price": 48888.000000000000000000,
-                "is_active": 0,
-                "margin_mode": "isolated",
-                "margin_account": "BTC-USDT"
-            }
-        ],
-        "total_page": 1,
-        "current_page": 1,
-        "total_size": 1
-    },
-    "ts": 1616988497109
-}
-```
-
-### Return Parameter
-
-| Parameter Name            | Mandatory  | Type     | Description                            | Value Range                 |
-| --------------- | ----- | ------ | ----------------------------- | -------------------- |
-| status          | true  | string |  the result of server handling to request                        | "ok" :success, "error": failed |
-| \<data\>        |   true    |   object     |                               | dictionary                   |
-| total_page        | true | int | total page   |                |
-| total_size        | true | int | total size   |                |
-| current_page        | true | int | current page   |                |
-| \<orders\>        |   true    |   object array    |                               |     |
-| symbol                 | true | string  | symbol               |                                          |
-| contract_code   | true | string | contract code    | BTC-USDT                               |
-| volume                 | true | decimal  | volume |      |
-| order_type           | true | int | order type: 1. Quotation; 2. Cancelled order               |                                          |
-| direction            | true | string | direction                |           buy, sell         |
-| offset         | true | string | offset               |                  open, close        |
-| lever_rate            | true | int    | lever rate               |                                       |
-| order_id      | true | long | trailing order id                |                                          |
-| order_id_str             | true | string | trailing order id in string format              |                                          |
-| order_source      | true | string  | order source        |                                          |
-| created_at        | true  | long | created at |                      |
-| order_price_type        | true  | string | order price type  |  optimal_5, optimal_10, optimal_20, formula_price    |
-| status        | true  | int | order status  |     2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled                |
-| callback_rate          | true | decimal | callback rate           |  such as: 0.01 means 1%                         |
-| active price   | true | decimal | active price             |  |
-| is_active   | true | int | Is the active price activated?             |  1: activated; 0: not activated|
-| margin_mode   | true | string | margin mode    | isolated                          |
-| margin_account   | true | string | margin account    | e.g：“BTC-USDT”                               |
-| \</orders\>       |       |        |     |  |
-| \</data\>       |       |        |     |  |
-| ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
-
-
-## [cross]Current unfilled trailing order acquisition
-
- - POST `/linear-swap-api/v1/swap_cross_track_openorders`
-
-#### Note: 
- - The interface only supports cross margin mode.
-
-### Request Parameter
-
-| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
-| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
-| contract_code   | true | string | contract code    | BTC-USDT                               |
-| trade_type | false  | int | trade type(if not filled in, means all)  |  0:all,1: buy long,2: sell short,3: buy short,4: sell long |
-| page_index | false | int | page index, if not filled in as 1st|    |
-| page_size | false | int | if not filled in as 20, and no more than 50|    |
-
-> Response: 
-
-```json
-{
-    "status": "ok",
-    "data": {
-        "orders": [
-            {
-                "symbol": "BTC",
-                "contract_code": "BTC-USDT",
-                "volume": 1.000000000000000000,
-                "order_type": 1,
-                "direction": "sell",
-                "offset": "open",
-                "lever_rate": 5,
-                "order_id": 826057232472932352,
-                "order_id_str": "826057232472932352",
-                "order_source": "api",
-                "created_at": 1616988991622,
-                "order_price_type": "formula_price",
-                "status": 2,
-                "callback_rate": 0.030000000000000000,
-                "active_price": 51111.000000000000000000,
-                "is_active": 0,
-                "margin_mode": "cross",
-                "margin_account": "USDT"
-            }
-        ],
-        "total_page": 1,
-        "current_page": 1,
-        "total_size": 1
-    },
-    "ts": 1616988996255
-}
-```
-
-### Return Parameter
-
-| Parameter Name            | Mandatory  | Type     | Description                            | Value Range                 |
-| --------------- | ----- | ------ | ----------------------------- | -------------------- |
-| status          | true  | string |  the result of server handling to request                        | "ok" :success, "error": failed |
-| \<data\>        |   true    |   object     |                               | dictionary                   |
-| total_page        | true | int | total page   |                |
-| total_size        | true | int | total size   |                |
-| current_page        | true | int | current page   |                |
-| \<orders\>        |   true    |   object array    |                               |     |
-| symbol                 | true | string  | symbol               |                                          |
-| contract_code   | true | string | contract code    | BTC-USDT                               |
-| volume                 | true | decimal  | volume |      |
-| order_type           | true | int | order type: 1. Quotation; 2. Cancelled order               |                                          |
-| direction            | true | string | direction                |           buy, sell         |
-| offset         | true | string | offset               |                  open, close        |
-| lever_rate            | true | int    | lever rate               |                                       |
-| order_id      | true | long | trailing order id                |                                          |
-| order_id_str             | true | string | trailing order id in string format              |                                          |
-| order_source      | true | string  | order source        |                                          |
-| created_at        | true  | long | created at |                      |
-| order_price_type        | true  | string | order price type  |  optimal_5, optimal_10, optimal_20, formula_price    |
-| status        | true  | int | order status  |    2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled                |
-| callback_rate          | true | decimal | callback rate           |  such as: 0.01 means 1%                         |
-| active price   | true | decimal | active price             |  |
-| is_active   | true | int | Is the active price activated?             |  1: activated; 0: not activated|
-| margin_mode   | true | string | margin mode    | cross                          |
-| margin_account   | true | string | margin account    | e.g：“BTC-USDT”                               |
-| \</orders\>       |       |        |     |  |
-| \</data\>       |       |        |     |  |
-| ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
-
-
-## [Isolated]Get History Trailing Orders
-
- - POST `/linear-swap-api/v1/swap_track_hisorders`
-
-#### Note: 
- - This interface only supports isolated margin mode.
-
-### Request Parameter
-
-| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
-| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
-| contract_code   | true | string | contract code    | BTC-USDT                               |
-| status | true | string | order status| Multiple separated by English commas, Trailing Order status: 2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled   |
-| trade_type | true  | int | trade type  |  0:all,1: buy long,2: sell short,3: buy short,4: sell long |
-| create_date | true | long | days| any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.   |
-| page_index | false | int | page index, if not filled in as 1st|    |
-| page_size | false | int | if not filled in as 20, and no more than 50|    |
-| sort_by | false | string |sort fields(descending), if not filled in, sort by created_at descending |  "create_date"：descending order by order create date , "update_time": descending order by order update time  |
-
-> Response: 
-
-```json
-{
-    "status":"ok",
-    "data":{
-        "orders":[
-            {
-                "symbol":"BTC",
-                "contract_code":"BTC-USDT",
-                "triggered_price":null,
-                "volume":1,
-                "order_type":1,
-                "direction":"sell",
-                "offset":"open",
-                "lever_rate":5,
-                "order_id":826054686706565120,
-                "order_id_str":"826054686706565120",
-                "order_source":"api",
-                "created_at":1616988384665,
-                "update_time":1616988430833,
-                "order_price_type":"formula_price",
-                "status":6,
-                "canceled_at":1616988393365,
-                "fail_code":null,
-                "fail_reason":null,
-                "callback_rate":0.03,
-                "active_price":51111,
-                "is_active":0,
-                "market_limit_price":null,
-                "formula_price":null,
-                "real_volume":0,
-                "relation_order_id":"-1",
-                "margin_mode":"isolated",
-                "margin_account":"BTC-USDT"
-            }
-        ],
-        "total_page":1,
-        "current_page":1,
-        "total_size":4
-    },
-    "ts":1616989113947
-}
-```
-
-### Return Parameter
-
-| Parameter Name            | Mandatory  | Type     | Description                            | Value Range                 |
-| --------------- | ----- | ------ | ----------------------------- | -------------------- |
-| status          | true  | string |  the result of server handling to request                        | "ok" :success, "error": failed |
-| \<data\>        |   true    |   object     |                               | dictionary                   |
-| total_page        | true | int | total page   |                |
-| total_size        | true | int | total size   |                |
-| current_page        | true | int | current page   |                |
-| \<orders\>        |   true    |   object array    |                               |     |
-| symbol                 | true | string  | symbol               |                                          |
-| contract_code   | true | string | contract code    | BTC-USDT                               |
-| volume                 | true | decimal  | volume |      |
-| order_type           | true | int | order type: 1. Quotation; 2. Cancelled order               |                                          |
-| direction            | true | string | direction                |           buy, sell         |
-| offset         | true | string | offset               |                  open, close        |
-| lever_rate            | true | int    | lever rate               |                                       |
-| order_id      | true | long | trailing order id                |                                          |
-| order_id_str             | true | string | trailing order id in string format              |                                          |
-| order_source      | true | string  | order source        |                                          |
-| created_at        | true  | long | created at |                      |
-| update_time        | true  | long | update time, unit: millisecond     |                      |
-| order_price_type        | true  | string | order price type  |   optimal_5, optimal_10, optimal_20, formula_price        |
-| status        | true  | int | order status  |    2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled          |
-| canceled_at        | true  | long | canceled at |                      |
-| fail_code        | true  | int | error code when place limit price order |                      |
-| fail_reason        | true  | string | error reason when place limit price order |                      |
-| callback_rate          | true | decimal | callback rate             |  such as: 0.01 means 1%                         |
-| active price   | true | decimal | active price           |  |
-| is_active   | true | int | Is the active price activated?             |  1: activated; 0: not activated|
-| market_limit_price   | true | decimal |  lowest/highest market price (use the lowest price when buy. use the highest when sell)           |  |
-| formula_price   | true | decimal | formula price(the lowest (highest) market price* (1 ± callback rate)) |  |
-| real_volume   | true | decimal | real volume                |  |
-| triggered_price   | true | decimal | triggered price           |  |
-| relation_order_id          | true | string |  relation_order_id is the string related to the limit orders， The value is -1 before the trigger orders executed.             |                       |
-| margin_mode   | true | string | margin mode    | isolated                          |
-| margin_account   | true | string | margin account    | e.g：“BTC-USDT”                               |
-| \</orders\>       |       |        |     |  |
-| \</data\>       |       |        |     |  |
-| ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
-
-
-## [Cross]Get History Trailing Orders
-
- - POST `/linear-swap-api/v1/swap_cross_track_hisorders`
-
-#### Note: 
- - The interface only supports cross margin mode.
-
-### Request Parameter
-
-| Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
-| ------------- | ----- | ------ | ------------- | ---------------------------------------- |
-| contract_code   | true | string | contract code    | BTC-USDT                               |
-| status | true | string | order status| Multiple separated by English commas, Trailing Order status: 2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled   |
-| trade_type | true  | int | trade type(if not filled in, means all)  |  0:all,1: buy long,2: sell short,3: buy short,4: sell long |
-| create_date | true | long | days| any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.   |
-| page_index | false | int | page index, if not filled in as 1st|    |
-| page_size | false | int | if not filled in as 20, and no more than 50|    |
-| sort_by | false | string |sort fields(descending), if not filled in, sort by created_at descending |  "create_date"：descending order by order create date , "update_time": descending order by order update time  |
-
-> Response: 
-
-```json
-{
-    "status":"ok",
-    "data":{
-        "orders":[
-            {
-                "symbol":"BTC",
-                "contract_code":"BTC-USDT",
-                "triggered_price":null,
-                "volume":1,
-                "order_type":1,
-                "direction":"sell",
-                "offset":"open",
-                "lever_rate":5,
-                "order_id":826054867657228288,
-                "order_id_str":"826054867657228288",
-                "order_source":"api",
-                "created_at":1616988427806,
-                "update_time":1616988490957,
-                "order_price_type":"formula_price",
-                "status":6,
-                "canceled_at":1616988443567,
-                "fail_code":null,
-                "fail_reason":null,
-                "callback_rate":0.03,
-                "active_price":51111,
-                "is_active":0,
-                "market_limit_price":null,
-                "formula_price":null,
-                "real_volume":0,
-                "relation_order_id":"-1",
-                "margin_mode":"cross",
-                "margin_account":"USDT"
-            }
-        ],
-        "total_page":1,
-        "current_page":1,
-        "total_size":6
-    },
-    "ts":1616996696057
-}
-```
-
-### Return Parameter
-
-| Parameter Name            | Mandatory  | Type     | Description                            | Value Range                 |
-| --------------- | ----- | ------ | ----------------------------- | -------------------- |
-| status          | true  | string |  the result of server handling to request                        | "ok" :success, "error": failed |
-| \<data\>        |   true    |   object     |                               | dictionary                   |
-| total_page        | true | int | total page   |                |
-| total_size        | true | int | total size   |                |
-| current_page        | true | int | current page   |                |
-| \<orders\>        |   true    |   object array    |                               |     |
-| symbol                 | true | string  | symbol               |                                          |
-| contract_code   | true | string | contract code    | BTC-USDT                               |
-| volume                 | true | decimal  | volume |      |
-| order_type           | true | int | order type: 1. Quotation; 2. Cancelled order               |                                          |
-| direction            | true | string | direction                |           buy, sell         |
-| offset         | true | string | offset               |                  open, close        |
-| lever_rate            | true | int    | lever rate               |                                       |
-| order_id      | true | long | trailing order id                |                                          |
-| order_id_str             | true | string | trailing order id in string format              |                                          |
-| order_source      | true | string  | order source        |                                          |
-| created_at        | true  | long | created at |                      |
-| update_time        | true  | long | update time, unit: millisecond     |                      |
-| order_price_type        | true  | string | order price type  |   optimal_5, optimal_10, optimal_20, formula_price        |
-| status        | true  | int | order status  |    2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled          |
-| canceled_at        | true  | long | canceled at |                      |
-| fail_code        | true  | int | error code when place limit price order |                      |
-| fail_reason        | true  | string | error reason when place limit price order |                      |
-| callback_rate          | true | decimal | callback rate             |  such as: 0.01 means 1%                         |
-| active price   | true | decimal | active price           |  |
-| is_active   | true | int | Is the active price activated?             |  1: activated; 0: not activated|
-| market_limit_price   | true | decimal |  lowest/highest market price (use the lowest price when buy. use the highest when sell)           |  |
-| formula_price   | true | decimal | formula price(the lowest (highest) market price* (1 ± callback rate)) |  |
-| real_volume   | true | decimal | real volume                |  |
-| triggered_price   | true | decimal | triggered price           |  |
-| relation_order_id          | true | string |  relation_order_id is the string related to the limit orders， The value is -1 before the trigger orders executed.             |                       |
-| margin_mode   | true | string | margin mode    | cross                          |
-| margin_account   | true | string | margin account    | e.g：“BTC-USDT”                               |
-| \</orders\>       |       |        |     |  |
-| \</data\>       |       |        |     |  |
-| ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
--->
+<h2 id='isolated-place-a-trailing-order'>[Isolated]Place a Trailing Order</h2>
+<ul>
+<li>POST <code>/linear-swap-api/v1/swap_track_order</code></li>
+</ul>
+<h4 id='note-93'>Note</h4>
+<ul>
+<li>This interface only supports isolated margin mode.</li>
+<li>The frequency limit of this interface is 5 times per second.</li>
+</ul>
+<h3 id='request-parameter-98'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>BTC-USDT</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>true</td>
+<td>string</td>
+<td>direction</td>
+<td>buy, sell</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>true</td>
+<td>string</td>
+<td>offset</td>
+<td>open, close</td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>false</td>
+<td>int</td>
+<td>lever rate, is required when open position, is optional when close position</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>true</td>
+<td>decimal</td>
+<td>volume(cont)</td>
+<td></td>
+</tr>
+<tr>
+<td>callback_rate</td>
+<td>true</td>
+<td>decimal</td>
+<td>callback rate</td>
+<td>Such as: 0.01 means 1%. And must be not less than 0.001 (0.1%)</td>
+</tr>
+<tr>
+<td>active price</td>
+<td>true</td>
+<td>decimal</td>
+<td>active price</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>true</td>
+<td>string</td>
+<td>order price type</td>
+<td>optimal_5, optimal_10, optimal_20, formula_price</td>
+</tr>
+</tbody></table>
+<h4 id='note-94'>Note</h4>
+<ul>
+<li>When order_price_type is the formula_price, it means that after the tracking order is triggered successfully, use the lowest (highest) market price *(1 ± callback rate) that from statistic since place trading order, as the order price (the precision is the minimum variation of the contract price and be truncated) to place a limit price order </li>
+<li>whether filled in with the optimal N or the formula price, there is no guarantee that the order can be completely filled, which mainly depends on the market conditions.</li>
+</ul>
+
+<blockquote>
+<p>Response: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">826052268312821760</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"826052268312821760"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1616987808080</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='return-parameter-3'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>the result of server handling to request</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object</td>
+<td>the returned data which is successful</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>long</td>
+<td>trailing order id[Globally Unique]</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>true</td>
+<td>string</td>
+<td>trailing order id in string format</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='cross-place-a-trailing-order'>[Cross]Place a Trailing Order</h2>
+<ul>
+<li>POST <code>/linear-swap-api/v1/swap_cross_track_order</code></li>
+</ul>
+<h4 id='note-95'>Note:</h4>
+<ul>
+<li>The interface only supports cross margin mode.</li>
+<li>The frequency limit of this interface is 5 times per second.</li>
+</ul>
+<h3 id='request-parameter-99'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>BTC-USDT</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>true</td>
+<td>string</td>
+<td>direction</td>
+<td>buy, sell</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>true</td>
+<td>string</td>
+<td>offset</td>
+<td>open, close</td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>false</td>
+<td>int</td>
+<td>lever rate, is required when open position, is optional when close position</td>
+<td></td>
+</tr>
+<tr>
+<td>volume</td>
+<td>true</td>
+<td>decimal</td>
+<td>volume(cont)</td>
+<td></td>
+</tr>
+<tr>
+<td>callback_rate</td>
+<td>true</td>
+<td>decimal</td>
+<td>callback rate</td>
+<td>Such as: 0.01 means 1%. And must be not less than 0.001 (0.1%)</td>
+</tr>
+<tr>
+<td>active price</td>
+<td>true</td>
+<td>decimal</td>
+<td>active price</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>true</td>
+<td>string</td>
+<td>order price type</td>
+<td>optimal_5, optimal_10, optimal_20, formula_price</td>
+</tr>
+</tbody></table>
+<h4 id='note-96'>Note</h4>
+<ul>
+<li>When order_price_type is the formula_price, it means that after the tracking order is triggered successfully, use the lowest (highest) market price *(1 ± callback rate) that from statistic since place trading order, as the order price (the precision is the minimum variation of the contract price and be truncated) to place a limit price order </li>
+<li>whether filled in with the optimal N or the formula price, there is no guarantee that the order can be completely filled, which mainly depends on the market conditions.</li>
+</ul>
+
+<blockquote>
+<p>Response: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">826052906719444992</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"826052906719444992"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1616987960287</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='return-parameter-4'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>the result of server handling to request</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object</td>
+<td>the returned data which is successful</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>long</td>
+<td>trailing order id[Globally Unique]</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>true</td>
+<td>string</td>
+<td>trailing order id in string format</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='isolated-cancel-a-trailing-order'>[Isolated]Cancel a Trailing Order</h2>
+<ul>
+<li>POST <code>/linear-swap-api/v1/swap_track_cancel</code></li>
+</ul>
+<h4 id='note-97'>Note:</h4>
+<ul>
+<li>This interface only supports isolated margin mode.</li>
+<li>The frequency limit of this interface is 5 times per second.</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>BTC-USDT</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>string</td>
+<td>User&#39;s trailing order id (multiple order IDs are separated by &quot;,&quot;, a maximum of 10 orders are allowed to be withdrawn at a time)</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"826052268312821761"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1061</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This order doesnt exist."</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"successes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"826052268312821760"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1616988039695</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='return-parameter-5'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>the result of server handling to request</td>
+<td>&quot;ok&quot; :success, &quot;error&quot;: failed</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object</td>
+<td></td>
+<td>dictionary</td>
+</tr>
+<tr>
+<td><errors></td>
+<td>true</td>
+<td>object</td>
+<td></td>
+<td>dictionary</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>string</td>
+<td>trailing order id[Globally Unique]</td>
+<td></td>
+</tr>
+<tr>
+<td>err_code</td>
+<td>false</td>
+<td>long</td>
+<td>error code</td>
+<td></td>
+</tr>
+<tr>
+<td>err_msg</td>
+<td>false</td>
+<td>string</td>
+<td>error msg</td>
+<td></td>
+</tr>
+<tr>
+<td></errors></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>successes</td>
+<td>true</td>
+<td>string</td>
+<td>the orders that are success</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='cross-cancel-a-trailing-order'>[Cross]Cancel a Trailing Order</h2>
+<ul>
+<li>POST <code>/linear-swap-api/v1/swap_cross_track_cancel</code></li>
+</ul>
+<h4 id='note-98'>Note:</h4>
+<ul>
+<li>The interface only supports cross margin mode.</li>
+<li>The frequency limit of this interface is 5 times per second.</li>
+</ul>
+<h3 id='request-parameter-100'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>BTC-USDT</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>string</td>
+<td>User&#39;s trailing order id (multiple order IDs are separated by &quot;,&quot;, a maximum of 10 orders are allowed to be withdrawn at a time)</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"826052906719444993"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"err_code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1061</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"err_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This order doesnt exist."</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"successes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"826053970168446976"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1616988232517</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='return-parameter-6'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>the result of server handling to request</td>
+<td>&quot;ok&quot; :success, &quot;error&quot;: failed</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object</td>
+<td></td>
+<td>dictionary</td>
+</tr>
+<tr>
+<td>&lt;errors&gt;</td>
+<td>true</td>
+<td>object</td>
+<td></td>
+<td>dictionary</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>string</td>
+<td>trailing order id[Globally Unique]</td>
+<td></td>
+</tr>
+<tr>
+<td>err_code</td>
+<td>false</td>
+<td>long</td>
+<td>error code</td>
+<td></td>
+</tr>
+<tr>
+<td>err_msg</td>
+<td>false</td>
+<td>string</td>
+<td>error msg</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/errors&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>successes</td>
+<td>true</td>
+<td>string</td>
+<td>the orders that are success</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='isolated-cancel-all-trailing-orders'>[Isolated]Cancel All Trailing Orders</h2>
+<ul>
+<li>POST <code>/linear-swap-api/v1/swap_track_cancelall</code></li>
+</ul>
+<h4 id='note-99'>Note:</h4>
+<ul>
+<li>This interface only supports isolated margin mode.</li>
+<li>The frequency limit of this interface is 5 times per second.</li>
+<li>You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including &quot;open&quot; and &quot;close&quot; offset)</li>
+</ul>
+
+<p>### Request Parameter</p>
+
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>BTC-USDT</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>false</td>
+<td>string</td>
+<td>direction(if not filled in as all)</td>
+<td>buy, sell</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>false</td>
+<td>string</td>
+<td>offset(if not filledin as all)</td>
+<td>open, close</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"successes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"826054603831312384,826054608491184128,826054686706565120"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1616988392280</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='return-parameter-7'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>the result of server handling to request</td>
+<td>&quot;ok&quot; :success, &quot;error&quot;: failed</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object</td>
+<td></td>
+<td>dictionary</td>
+</tr>
+<tr>
+<td>&lt;errors&gt;</td>
+<td>true</td>
+<td>object</td>
+<td></td>
+<td>dictionary</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>string</td>
+<td>trailing order id[Globally Unique]</td>
+<td></td>
+</tr>
+<tr>
+<td>err_code</td>
+<td>false</td>
+<td>long</td>
+<td>error code</td>
+<td></td>
+</tr>
+<tr>
+<td>err_msg</td>
+<td>false</td>
+<td>string</td>
+<td>error msg</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/errors&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>successes</td>
+<td>true</td>
+<td>string</td>
+<td>the orders that are success</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='cross-cancel-all-trailing-orders'>[Cross]Cancel All Trailing Orders</h2>
+<ul>
+<li>POST <code>/linear-swap-api/v1/swap_cross_track_cancelall</code></li>
+</ul>
+<h4 id='note-100'>Note:</h4>
+<ul>
+<li>The interface only supports cross margin mode.</li>
+<li>The frequency limit of this interface is 5 times per second.</li>
+<li>You can fill in only one of direction and offset to cancel the orders. (such as direction=buy, all buy orders will be cancelled, including &quot;open&quot; and &quot;close&quot; offset)</li>
+</ul>
+<h3 id='request-parameter-101'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>BTC-USDT</td>
+</tr>
+<tr>
+<td>direction</td>
+<td>false</td>
+<td>string</td>
+<td>direction(if not filled in, means all)</td>
+<td>buy, sell</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>false</td>
+<td>string</td>
+<td>offset (if not filled in, means all)</td>
+<td>open, close</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"successes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"826054813483597824,826054818734866432,826054867657228288"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1616988442893</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='return-parameter-8'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>the result of server handling to request</td>
+<td>&quot;ok&quot; :success, &quot;error&quot;: failed</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object</td>
+<td></td>
+<td>dictionary</td>
+</tr>
+<tr>
+<td>&lt;errors&gt;</td>
+<td>true</td>
+<td>object</td>
+<td></td>
+<td>dictionary</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>string</td>
+<td>trailing order id[Globally Unique]</td>
+<td></td>
+</tr>
+<tr>
+<td>err_code</td>
+<td>false</td>
+<td>long</td>
+<td>error code</td>
+<td></td>
+</tr>
+<tr>
+<td>err_msg</td>
+<td>false</td>
+<td>string</td>
+<td>error msg</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/errors&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>successes</td>
+<td>true</td>
+<td>string</td>
+<td>the orders that are success</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='isolated-current-unfilled-trailing-order-acquisition'>[Isolated]Current unfilled trailing order acquisition</h2>
+<ul>
+<li>POST <code>/linear-swap-api/v1/swap_track_openorders</code></li>
+</ul>
+<h4 id='note-101'>Note:</h4>
+<ul>
+<li>This interface only supports isolated margin mode.</li>
+</ul>
+<h3 id='request-parameter-102'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>BTC-USDT</td>
+</tr>
+<tr>
+<td>trade_type</td>
+<td>false</td>
+<td>int</td>
+<td>trade type(if not filled in, means all)</td>
+<td>0:all,1: buy long,2: sell short,3: buy short,4: sell long</td>
+</tr>
+<tr>
+<td>page_index</td>
+<td>false</td>
+<td>int</td>
+<td>page index, if not filled in as 1st</td>
+<td></td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>false</td>
+<td>int</td>
+<td>if not filled in as 20, and no more than 50</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.000000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">826055066114916352</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"826055066114916352"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1616988475122</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"formula_price"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"callback_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.030000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"active_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">48888.000000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"margin_mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"isolated"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"margin_account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1616988497109</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='return-parameter-9'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>the result of server handling to request</td>
+<td>&quot;ok&quot; :success, &quot;error&quot;: failed</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object</td>
+<td></td>
+<td>dictionary</td>
+</tr>
+<tr>
+<td>total_page</td>
+<td>true</td>
+<td>int</td>
+<td>total page</td>
+<td></td>
+</tr>
+<tr>
+<td>total_size</td>
+<td>true</td>
+<td>int</td>
+<td>total size</td>
+<td></td>
+</tr>
+<tr>
+<td>current_page</td>
+<td>true</td>
+<td>int</td>
+<td>current page</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;orders&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>BTC-USDT</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>true</td>
+<td>decimal</td>
+<td>volume</td>
+<td></td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>true</td>
+<td>int</td>
+<td>order type: 1. Quotation; 2. Cancelled order</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>true</td>
+<td>string</td>
+<td>direction</td>
+<td>buy, sell</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>true</td>
+<td>string</td>
+<td>offset</td>
+<td>open, close</td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>true</td>
+<td>int</td>
+<td>lever rate</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>long</td>
+<td>trailing order id</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>true</td>
+<td>string</td>
+<td>trailing order id in string format</td>
+<td></td>
+</tr>
+<tr>
+<td>order_source</td>
+<td>true</td>
+<td>string</td>
+<td>order source</td>
+<td></td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>true</td>
+<td>long</td>
+<td>created at</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>true</td>
+<td>string</td>
+<td>order price type</td>
+<td>optimal_5, optimal_10, optimal_20, formula_price</td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>int</td>
+<td>order status</td>
+<td>2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled</td>
+</tr>
+<tr>
+<td>callback_rate</td>
+<td>true</td>
+<td>decimal</td>
+<td>callback rate</td>
+<td>such as: 0.01 means 1%</td>
+</tr>
+<tr>
+<td>active price</td>
+<td>true</td>
+<td>decimal</td>
+<td>active price</td>
+<td></td>
+</tr>
+<tr>
+<td>is_active</td>
+<td>true</td>
+<td>int</td>
+<td>Is the active price activated?</td>
+<td>1: activated; 0: not activated</td>
+</tr>
+<tr>
+<td>margin_mode</td>
+<td>true</td>
+<td>string</td>
+<td>margin mode</td>
+<td>isolated</td>
+</tr>
+<tr>
+<td>margin_account</td>
+<td>true</td>
+<td>string</td>
+<td>margin account</td>
+<td>e.g：“BTC-USDT”</td>
+</tr>
+<tr>
+<td>&lt;/orders&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='cross-current-unfilled-trailing-order-acquisition'>[cross]Current unfilled trailing order acquisition</h2>
+<ul>
+<li>POST <code>/linear-swap-api/v1/swap_cross_track_openorders</code></li>
+</ul>
+<h4 id='note-102'>Note:</h4>
+<ul>
+<li>The interface only supports cross margin mode.</li>
+</ul>
+<h3 id='request-parameter-103'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>BTC-USDT</td>
+</tr>
+<tr>
+<td>trade_type</td>
+<td>false</td>
+<td>int</td>
+<td>trade type(if not filled in, means all)</td>
+<td>0:all,1: buy long,2: sell short,3: buy short,4: sell long</td>
+</tr>
+<tr>
+<td>page_index</td>
+<td>false</td>
+<td>int</td>
+<td>page index, if not filled in as 1st</td>
+<td></td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>false</td>
+<td>int</td>
+<td>if not filled in as 20, and no more than 50</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.000000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">826057232472932352</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"826057232472932352"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1616988991622</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"formula_price"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"callback_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.030000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"active_price"</span><span class="p">:</span><span class="w"> </span><span class="mf">51111.000000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_active"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"margin_mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cross"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"margin_account"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"current_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1616988996255</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='return-parameter-10'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>the result of server handling to request</td>
+<td>&quot;ok&quot; :success, &quot;error&quot;: failed</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object</td>
+<td></td>
+<td>dictionary</td>
+</tr>
+<tr>
+<td>total_page</td>
+<td>true</td>
+<td>int</td>
+<td>total page</td>
+<td></td>
+</tr>
+<tr>
+<td>total_size</td>
+<td>true</td>
+<td>int</td>
+<td>total size</td>
+<td></td>
+</tr>
+<tr>
+<td>current_page</td>
+<td>true</td>
+<td>int</td>
+<td>current page</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;orders&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>BTC-USDT</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>true</td>
+<td>decimal</td>
+<td>volume</td>
+<td></td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>true</td>
+<td>int</td>
+<td>order type: 1. Quotation; 2. Cancelled order</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>true</td>
+<td>string</td>
+<td>direction</td>
+<td>buy, sell</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>true</td>
+<td>string</td>
+<td>offset</td>
+<td>open, close</td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>true</td>
+<td>int</td>
+<td>lever rate</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>long</td>
+<td>trailing order id</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>true</td>
+<td>string</td>
+<td>trailing order id in string format</td>
+<td></td>
+</tr>
+<tr>
+<td>order_source</td>
+<td>true</td>
+<td>string</td>
+<td>order source</td>
+<td></td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>true</td>
+<td>long</td>
+<td>created at</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>true</td>
+<td>string</td>
+<td>order price type</td>
+<td>optimal_5, optimal_10, optimal_20, formula_price</td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>int</td>
+<td>order status</td>
+<td>2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled</td>
+</tr>
+<tr>
+<td>callback_rate</td>
+<td>true</td>
+<td>decimal</td>
+<td>callback rate</td>
+<td>such as: 0.01 means 1%</td>
+</tr>
+<tr>
+<td>active price</td>
+<td>true</td>
+<td>decimal</td>
+<td>active price</td>
+<td></td>
+</tr>
+<tr>
+<td>is_active</td>
+<td>true</td>
+<td>int</td>
+<td>Is the active price activated?</td>
+<td>1: activated; 0: not activated</td>
+</tr>
+<tr>
+<td>margin_mode</td>
+<td>true</td>
+<td>string</td>
+<td>margin mode</td>
+<td>cross</td>
+</tr>
+<tr>
+<td>margin_account</td>
+<td>true</td>
+<td>string</td>
+<td>margin account</td>
+<td>e.g：“BTC-USDT”</td>
+</tr>
+<tr>
+<td>&lt;/orders&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='isolated-get-history-trailing-orders'>[Isolated]Get History Trailing Orders</h2>
+<ul>
+<li>POST <code>/linear-swap-api/v1/swap_track_hisorders</code></li>
+</ul>
+<h4 id='note-103'>Note:</h4>
+<ul>
+<li>This interface only supports isolated margin mode.</li>
+</ul>
+<h3 id='request-parameter-104'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>BTC-USDT</td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>order status</td>
+<td>Multiple separated by English commas, Trailing Order status: 2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled</td>
+</tr>
+<tr>
+<td>trade_type</td>
+<td>true</td>
+<td>int</td>
+<td>trade type</td>
+<td>0:all,1: buy long,2: sell short,3: buy short,4: sell long</td>
+</tr>
+<tr>
+<td>create_date</td>
+<td>true</td>
+<td>long</td>
+<td>days</td>
+<td>any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.</td>
+</tr>
+<tr>
+<td>page_index</td>
+<td>false</td>
+<td>int</td>
+<td>page index, if not filled in as 1st</td>
+<td></td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>false</td>
+<td>int</td>
+<td>if not filled in as 20, and no more than 50</td>
+<td></td>
+</tr>
+<tr>
+<td>sort_by</td>
+<td>false</td>
+<td>string</td>
+<td>sort fields(descending), if not filled in, sort by created_at descending</td>
+<td>&quot;create_date&quot;：descending order by order create date , &quot;update_time&quot;: descending order by order update time</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"orders"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"triggered_price"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_type"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"offset"</span><span class="p">:</span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="mi">826054686706565120</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="s2">"826054686706565120"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="mi">1616988384665</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"update_time"</span><span class="p">:</span><span class="mi">1616988430833</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="s2">"formula_price"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="mi">1616988393365</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fail_code"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fail_reason"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"callback_rate"</span><span class="p">:</span><span class="mf">0.03</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"active_price"</span><span class="p">:</span><span class="mi">51111</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_active"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"market_limit_price"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"formula_price"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"real_volume"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"relation_order_id"</span><span class="p">:</span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"margin_mode"</span><span class="p">:</span><span class="s2">"isolated"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"margin_account"</span><span class="p">:</span><span class="s2">"BTC-USDT"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"current_page"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="mi">4</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1616989113947</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='return-parameter-11'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>the result of server handling to request</td>
+<td>&quot;ok&quot; :success, &quot;error&quot;: failed</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object</td>
+<td></td>
+<td>dictionary</td>
+</tr>
+<tr>
+<td>total_page</td>
+<td>true</td>
+<td>int</td>
+<td>total page</td>
+<td></td>
+</tr>
+<tr>
+<td>total_size</td>
+<td>true</td>
+<td>int</td>
+<td>total size</td>
+<td></td>
+</tr>
+<tr>
+<td>current_page</td>
+<td>true</td>
+<td>int</td>
+<td>current page</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;orders&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>BTC-USDT</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>true</td>
+<td>decimal</td>
+<td>volume</td>
+<td></td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>true</td>
+<td>int</td>
+<td>order type: 1. Quotation; 2. Cancelled order</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>true</td>
+<td>string</td>
+<td>direction</td>
+<td>buy, sell</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>true</td>
+<td>string</td>
+<td>offset</td>
+<td>open, close</td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>true</td>
+<td>int</td>
+<td>lever rate</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>long</td>
+<td>trailing order id</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>true</td>
+<td>string</td>
+<td>trailing order id in string format</td>
+<td></td>
+</tr>
+<tr>
+<td>order_source</td>
+<td>true</td>
+<td>string</td>
+<td>order source</td>
+<td></td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>true</td>
+<td>long</td>
+<td>created at</td>
+<td></td>
+</tr>
+<tr>
+<td>update_time</td>
+<td>true</td>
+<td>long</td>
+<td>update time, unit: millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>true</td>
+<td>string</td>
+<td>order price type</td>
+<td>optimal_5, optimal_10, optimal_20, formula_price</td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>int</td>
+<td>order status</td>
+<td>2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled</td>
+</tr>
+<tr>
+<td>canceled_at</td>
+<td>true</td>
+<td>long</td>
+<td>canceled at</td>
+<td></td>
+</tr>
+<tr>
+<td>fail_code</td>
+<td>true</td>
+<td>int</td>
+<td>error code when place limit price order</td>
+<td></td>
+</tr>
+<tr>
+<td>fail_reason</td>
+<td>true</td>
+<td>string</td>
+<td>error reason when place limit price order</td>
+<td></td>
+</tr>
+<tr>
+<td>callback_rate</td>
+<td>true</td>
+<td>decimal</td>
+<td>callback rate</td>
+<td>such as: 0.01 means 1%</td>
+</tr>
+<tr>
+<td>active price</td>
+<td>true</td>
+<td>decimal</td>
+<td>active price</td>
+<td></td>
+</tr>
+<tr>
+<td>is_active</td>
+<td>true</td>
+<td>int</td>
+<td>Is the active price activated?</td>
+<td>1: activated; 0: not activated</td>
+</tr>
+<tr>
+<td>market_limit_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>lowest/highest market price (use the lowest price when buy. use the highest when sell)</td>
+<td></td>
+</tr>
+<tr>
+<td>formula_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>formula price(the lowest (highest) market price* (1 ± callback rate))</td>
+<td></td>
+</tr>
+<tr>
+<td>real_volume</td>
+<td>true</td>
+<td>decimal</td>
+<td>real volume</td>
+<td></td>
+</tr>
+<tr>
+<td>triggered_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>triggered price</td>
+<td></td>
+</tr>
+<tr>
+<td>relation_order_id</td>
+<td>true</td>
+<td>string</td>
+<td>relation_order_id is the string related to the limit orders， The value is -1 before the trigger orders executed.</td>
+<td></td>
+</tr>
+<tr>
+<td>margin_mode</td>
+<td>true</td>
+<td>string</td>
+<td>margin mode</td>
+<td>isolated</td>
+</tr>
+<tr>
+<td>margin_account</td>
+<td>true</td>
+<td>string</td>
+<td>margin account</td>
+<td>e.g：“BTC-USDT”</td>
+</tr>
+<tr>
+<td>&lt;/orders&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='cross-get-history-trailing-orders'>[Cross]Get History Trailing Orders</h2>
+<ul>
+<li>POST <code>/linear-swap-api/v1/swap_cross_track_hisorders</code></li>
+</ul>
+<h4 id='note-104'>Note:</h4>
+<ul>
+<li>The interface only supports cross margin mode.</li>
+</ul>
+<h3 id='request-parameter-105'>Request Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>BTC-USDT</td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>order status</td>
+<td>Multiple separated by English commas, Trailing Order status: 2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled</td>
+</tr>
+<tr>
+<td>trade_type</td>
+<td>true</td>
+<td>int</td>
+<td>trade type(if not filled in, means all)</td>
+<td>0:all,1: buy long,2: sell short,3: buy short,4: sell long</td>
+</tr>
+<tr>
+<td>create_date</td>
+<td>true</td>
+<td>long</td>
+<td>days</td>
+<td>any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.</td>
+</tr>
+<tr>
+<td>page_index</td>
+<td>false</td>
+<td>int</td>
+<td>page index, if not filled in as 1st</td>
+<td></td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>false</td>
+<td>int</td>
+<td>if not filled in as 20, and no more than 50</td>
+<td></td>
+</tr>
+<tr>
+<td>sort_by</td>
+<td>false</td>
+<td>string</td>
+<td>sort fields(descending), if not filled in, sort by created_at descending</td>
+<td>&quot;create_date&quot;：descending order by order create date , &quot;update_time&quot;: descending order by order update time</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response: </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"orders"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"BTC-USDT"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"triggered_price"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"volume"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_type"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"sell"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"offset"</span><span class="p">:</span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id"</span><span class="p">:</span><span class="mi">826054867657228288</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_id_str"</span><span class="p">:</span><span class="s2">"826054867657228288"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_source"</span><span class="p">:</span><span class="s2">"api"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"created_at"</span><span class="p">:</span><span class="mi">1616988427806</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"update_time"</span><span class="p">:</span><span class="mi">1616988490957</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"order_price_type"</span><span class="p">:</span><span class="s2">"formula_price"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"status"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"canceled_at"</span><span class="p">:</span><span class="mi">1616988443567</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fail_code"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fail_reason"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"callback_rate"</span><span class="p">:</span><span class="mf">0.03</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"active_price"</span><span class="p">:</span><span class="mi">51111</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"is_active"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"market_limit_price"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"formula_price"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"real_volume"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"relation_order_id"</span><span class="p">:</span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"margin_mode"</span><span class="p">:</span><span class="s2">"cross"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"margin_account"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"total_page"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"current_page"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total_size"</span><span class="p">:</span><span class="mi">6</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1616996696057</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='return-parameter-12'>Return Parameter</h3>
+<table><thead>
+<tr>
+<th>Parameter Name</th>
+<th>Mandatory</th>
+<th>Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>the result of server handling to request</td>
+<td>&quot;ok&quot; :success, &quot;error&quot;: failed</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object</td>
+<td></td>
+<td>dictionary</td>
+</tr>
+<tr>
+<td>total_page</td>
+<td>true</td>
+<td>int</td>
+<td>total page</td>
+<td></td>
+</tr>
+<tr>
+<td>total_size</td>
+<td>true</td>
+<td>int</td>
+<td>total size</td>
+<td></td>
+</tr>
+<tr>
+<td>current_page</td>
+<td>true</td>
+<td>int</td>
+<td>current page</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;orders&gt;</td>
+<td>true</td>
+<td>object array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>symbol</td>
+<td>true</td>
+<td>string</td>
+<td>symbol</td>
+<td></td>
+</tr>
+<tr>
+<td>contract_code</td>
+<td>true</td>
+<td>string</td>
+<td>contract code</td>
+<td>BTC-USDT</td>
+</tr>
+<tr>
+<td>volume</td>
+<td>true</td>
+<td>decimal</td>
+<td>volume</td>
+<td></td>
+</tr>
+<tr>
+<td>order_type</td>
+<td>true</td>
+<td>int</td>
+<td>order type: 1. Quotation; 2. Cancelled order</td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>true</td>
+<td>string</td>
+<td>direction</td>
+<td>buy, sell</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>true</td>
+<td>string</td>
+<td>offset</td>
+<td>open, close</td>
+</tr>
+<tr>
+<td>lever_rate</td>
+<td>true</td>
+<td>int</td>
+<td>lever rate</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>true</td>
+<td>long</td>
+<td>trailing order id</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id_str</td>
+<td>true</td>
+<td>string</td>
+<td>trailing order id in string format</td>
+<td></td>
+</tr>
+<tr>
+<td>order_source</td>
+<td>true</td>
+<td>string</td>
+<td>order source</td>
+<td></td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>true</td>
+<td>long</td>
+<td>created at</td>
+<td></td>
+</tr>
+<tr>
+<td>update_time</td>
+<td>true</td>
+<td>long</td>
+<td>update time, unit: millisecond</td>
+<td></td>
+</tr>
+<tr>
+<td>order_price_type</td>
+<td>true</td>
+<td>string</td>
+<td>order price type</td>
+<td>optimal_5, optimal_10, optimal_20, formula_price</td>
+</tr>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>int</td>
+<td>order status</td>
+<td>2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled</td>
+</tr>
+<tr>
+<td>canceled_at</td>
+<td>true</td>
+<td>long</td>
+<td>canceled at</td>
+<td></td>
+</tr>
+<tr>
+<td>fail_code</td>
+<td>true</td>
+<td>int</td>
+<td>error code when place limit price order</td>
+<td></td>
+</tr>
+<tr>
+<td>fail_reason</td>
+<td>true</td>
+<td>string</td>
+<td>error reason when place limit price order</td>
+<td></td>
+</tr>
+<tr>
+<td>callback_rate</td>
+<td>true</td>
+<td>decimal</td>
+<td>callback rate</td>
+<td>such as: 0.01 means 1%</td>
+</tr>
+<tr>
+<td>active price</td>
+<td>true</td>
+<td>decimal</td>
+<td>active price</td>
+<td></td>
+</tr>
+<tr>
+<td>is_active</td>
+<td>true</td>
+<td>int</td>
+<td>Is the active price activated?</td>
+<td>1: activated; 0: not activated</td>
+</tr>
+<tr>
+<td>market_limit_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>lowest/highest market price (use the lowest price when buy. use the highest when sell)</td>
+<td></td>
+</tr>
+<tr>
+<td>formula_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>formula price(the lowest (highest) market price* (1 ± callback rate))</td>
+<td></td>
+</tr>
+<tr>
+<td>real_volume</td>
+<td>true</td>
+<td>decimal</td>
+<td>real volume</td>
+<td></td>
+</tr>
+<tr>
+<td>triggered_price</td>
+<td>true</td>
+<td>decimal</td>
+<td>triggered price</td>
+<td></td>
+</tr>
+<tr>
+<td>relation_order_id</td>
+<td>true</td>
+<td>string</td>
+<td>relation_order_id is the string related to the limit orders， The value is -1 before the trigger orders executed.</td>
+<td></td>
+</tr>
+<tr>
+<td>margin_mode</td>
+<td>true</td>
+<td>string</td>
+<td>margin mode</td>
+<td>cross</td>
+</tr>
+<tr>
+<td>margin_account</td>
+<td>true</td>
+<td>string</td>
+<td>margin account</td>
+<td>e.g：“BTC-USDT”</td>
+</tr>
+<tr>
+<td>&lt;/orders&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
+</tr>
+</tbody></table>
 <h1 id='swap-transferring-interface'>Swap Transferring Interface</h1><h2 id='general-transfer-margin-between-spot-account-and-usdt-margined-swap-account'>[General] Transfer margin between Spot account and USDT Margined Swap account</h2><h3 id='example-19'>Example</h3>
 <ul>
 <li>POST <code>https://api.huobi.pro/v2/account/transfer</code></li>
@@ -31249,7 +32837,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <p>API rate limit for this interface is 1 times/second.</p>
 
 <p>Transferring margin between Spot account and USDT Margined Swap account Interface, sets 8 decimal places for transferring amount of all coins.</p>
-<h3 id='request-parameter-98'>Request Parameter</h3>
+<h3 id='request-parameter-106'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -31295,7 +32883,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>e.g. BTC-USDT，ETH-USDT, USDT</td>
 </tr>
 </tbody></table>
-<h4 id='note-93'>note</h4>
+<h4 id='note-105'>note</h4>
 <ul>
 <li>when &quot;margin-account&quot; is USDT，it means the transfer in or transfer out from cross margin account.</li>
 </ul>
@@ -32002,7 +33590,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <p>System status updates subscription ：wss://api.btcgateway.pro/center-notification</p>
 
 <p>If you have further queries about Huobi USDT Margined Swap order push subscription, please refer to <a href="https://docs.huobigroup.com/docs/usdt_swap/v1/en/#code-demo">Demo</a></p>
-<h3 id='note-94'>Note:</h3>
+<h3 id='note-106'>Note:</h3>
 <p>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot; for debug purpose. If your server is deployed in AWS, we recommend using &quot;https://api.hbdm.vn&quot;.</p>
 <h2 id='api-rate-limit-illustration-2'>API Rate Limit Illustration</h2>
 <p>There is rate limit for both public and private interfaces. More details are laid out as below:</p>
@@ -32073,7 +33661,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <p><code>&quot;ts&quot;: &quot;1492420473058&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-95'>Note</h3>
+<h3 id='note-107'>Note</h3>
 <ul>
 <li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 5 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
 </ul>
@@ -32119,7 +33707,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 </ul>
 
 <p><code>wss://api.hbdm.com/linear-swap-notification</code></p>
-<h3 id='note-96'>Note</h3>
+<h3 id='note-108'>Note</h3>
 <p>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot; for debug purpose. If your server is deployed in AWS, we recommend using &quot;https://api.hbdm.vn&quot;.</p>
 
 <p>Please note that the WS request connection should not go over 30 normally.</p>
@@ -32403,7 +33991,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-99'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-107'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -32475,7 +34063,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-3'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-13'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -32597,7 +34185,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1573106298</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-100'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-108'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -32659,7 +34247,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-97'>Note</h4>
+<h4 id='note-109'>Note</h4>
 <p>If between time range [t1, t5], there are t1-t5 KLines in quantity.</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -32715,7 +34303,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-4'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-14'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -32837,7 +34425,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id5"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-101'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-109'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -32887,7 +34475,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15, step16, step17（merged depth data 0-5,14-17）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13, step18, step19(merged depth data 7-13,18-19); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
-<h3 id='note-98'>Note:</h3>
+<h3 id='note-110'>Note:</h3>
 <ul>
 <li><p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p></li>
 <li><p>step16, step17, step18, and step19 are only for SHIB-USDT contract, and the other contracts is not supported now.</p></li>
@@ -32977,7 +34565,7 @@ Details are below:</p></li>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-5'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-15'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -33089,7 +34677,7 @@ Details are below:</p></li>
 </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-102'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-110'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -33183,7 +34771,7 @@ Details are below:</p></li>
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603707712357</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-6'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-16'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -33278,7 +34866,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-99'>Note:</h3>
+<h3 id='note-111'>Note:</h3>
 <ul>
 <li>when <code>data_type</code> is <code>incremental</code>,<code>snapshot</code> data wil be pushed for the first time. When re-connection occurs, <code>snapshort</code> data will be pushed for the first time. </li>
 <li><code>version</code>: auto increment in single websocket connection. <code>version</code> may be different among several websocket subscription connections.</li>
@@ -33308,7 +34896,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id6"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-103'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-111'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -33381,7 +34969,7 @@ Details are below:</p></li>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-7'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-17'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -33487,7 +35075,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-100'>Note:</h4>
+<h4 id='note-112'>Note:</h4>
 <ul>
 <li>Bid price(p1) and ask price(p1) are not updated in real time, there will be some delay (about 500ms).</li>
 </ul>
@@ -33513,7 +35101,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-104'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-112'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -33577,7 +35165,7 @@ Details are below:</p></li>
         </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"market.BTC-USDT.bbo"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='return-parameter-8'><strong>Return Parameter</strong>：</h3>
+</span></code></pre><h3 id='return-parameter-18'><strong>Return Parameter</strong>：</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -33698,7 +35286,7 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id8"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-105'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-113'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -33778,7 +35366,7 @@ Details are below:</p></li>
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1603708046534</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-9'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-19'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -33906,9 +35494,9 @@ Details are below:</p></li>
      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='note-101'>Note:</h3>
+</span></code></pre><h3 id='note-113'>Note:</h3>
 <p>Clients can only access the recent 300 trade detail data </p>
-<h3 id='request-parameter-106'>Request Parameter</h3>
+<h3 id='request-parameter-114'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -33975,7 +35563,7 @@ Details are below:</p></li>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-10'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-20'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -34117,7 +35705,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-107'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-115'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -34167,7 +35755,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-102'>Note</h3>
+<h3 id='note-114'>Note</h3>
 <ul>
 <li><p>Pushed once the index data is changed.</p></li>
 <li><p>Periodical Push when the index data hasn&#39;t changed according to the kline period.</p></li>
@@ -34308,7 +35896,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-108'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-116'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -34370,7 +35958,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-103'>Note：</h3>
+<h3 id='note-115'>Note：</h3>
 <ul>
 <li>Pushed once the index data is changed.</li>
 </ul>
@@ -34541,7 +36129,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-109'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-117'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -34591,7 +36179,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-104'>Note</h4>
+<h4 id='note-116'>Note</h4>
 <ul>
 <li><p>Pushed once the index data is changed.</p></li>
 <li><p>Periodical Push when the index data hasn&#39;t changed according to the kline period.</p></li>
@@ -34615,7 +36203,7 @@ Details are below:</p></li>
         </span><span class="s2">"count"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='return-parameter-11'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-21'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -34737,7 +36325,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-110'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-118'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -34799,7 +36387,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-105'>Note：</h3>
+<h3 id='note-117'>Note：</h3>
 <ul>
 <li>Pushed once the index data is updated.</li>
 </ul>
@@ -34966,7 +36554,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-111'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-119'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -35016,7 +36604,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-106'>Note:</h4>
+<h4 id='note-118'>Note:</h4>
 <ul>
 <li><p>Pushed once the kline data is changed.</p></li>
 <li><p>Periodical Push when the kline data hasn&#39;t changed according to the kline period.</p></li>
@@ -35170,7 +36758,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-112'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-120'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -35402,7 +36990,7 @@ Details are below:</p></li>
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-113'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-121'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -35578,7 +37166,7 @@ Details are below:</p></li>
     </span><span class="s2">"from"</span><span class="p">:</span><span class="mi">1571000000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"to"</span><span class="p">:</span><span class="mi">1573098606</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-114'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-122'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -35612,7 +37200,7 @@ Details are below:</p></li>
 <td>end time, from 2017-07-28T00:00:00+08:00 to 2050-01-01T00:00:00+08:00. timestamp unit：seconds. larger than &#39;from&#39; value</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameter-115'>Request Parameter：</h3>
+<h3 id='request-parameter-123'>Request Parameter：</h3>
 <table><thead>
 <tr>
 <th><strong>Parameter Name</strong></th>
@@ -35648,7 +37236,7 @@ Details are below:</p></li>
 <td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-107'>Note：</h3>
+<h3 id='note-119'>Note：</h3>
 <ul>
 <li>2000 data at most per request.</li>
 </ul>
@@ -35769,7 +37357,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='general-subscribe-kline-data-of-mark-price'>[General]Subscribe Kline Data of Mark Price</h2><h4 id='note-108'>Note：</h4>
+<h2 id='general-subscribe-kline-data-of-mark-price'>[General]Subscribe Kline Data of Mark Price</h2><h4 id='note-120'>Note：</h4>
 <ul>
 <li>The interface supports cross margin mode and isolated margin mode.</li>
 </ul>
@@ -35790,7 +37378,7 @@ Details are below:</p></li>
     </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.$contract_code.mark_price.$period"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
  </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-116'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-124'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -35981,7 +37569,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='general-request-kline-data-of-mark-price'>[General]Request Kline Data of Mark Price</h2><h4 id='note-109'>Note：</h4>
+<h2 id='general-request-kline-data-of-mark-price'>[General]Request Kline Data of Mark Price</h2><h4 id='note-121'>Note：</h4>
 <ul>
 <li>The interface supports cross margin mode and isolated margin mode.</li>
 </ul>
@@ -36009,7 +37597,7 @@ Details are below:</p></li>
     </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="mi">1579247342</span><span class="w">
     </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-117'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-125'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -36076,7 +37664,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-110'>Note</h4>
+<h4 id='note-122'>Note</h4>
 <ul>
 <li>At one time 2000 at most</li>
 <li>from and to both are mandatory</li>
@@ -36588,7 +38176,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-111'>Note:</h4>
+<h4 id='note-123'>Note:</h4>
 <ul>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
 <li>Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value.  And the real profit (real_profit) of the transaction information that orders traded after December 10, 2020 has a value.</li>
@@ -37116,7 +38704,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-112'>Note:</h4>
+<h4 id='note-124'>Note:</h4>
 <ul>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
 <li>Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value.  And the real profit (real_profit) of the transaction information that orders traded after December 10, 2020 has a value.</li>
@@ -37256,7 +38844,7 @@ Details are below:</p></li>
 <td>Required；format: matchOrders.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-113'>Note:</h4>
+<h4 id='note-125'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 <li>The orders will be pushed when matched by matching engine.</li>
@@ -37680,7 +39268,7 @@ Details are below:</p></li>
 <td>Required；format: matchOrders_cross.$contract_code; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-114'>Note:</h4>
+<h4 id='note-126'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 <li>The orders will be pushed when matched by matching engine.</li>
@@ -38102,7 +39690,7 @@ Details are below:</p></li>
 <td>Required； Subscribe Topic Name，Required subscribe accounts.$contract_code   Subscribe/unsubscribe the balance change of a given coin，when the value of $contract_code is “*”, it means to subscribe/unsubscribe the balance change of all coins; contract_code is case-insenstive.Both uppercase and lowercase are supported.e.g. &quot;BTC-USDT&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-115'>Note:</h3>
+<h3 id='note-127'>Note:</h3>
 <ul>
 <li>A regular push of account is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</li>
 </ul>
@@ -38405,7 +39993,7 @@ Details are below:</p></li>
 <td>Mandatory；topic name: accounts_cross.$margin_account，$margin_account now only（USDT）</td>
 </tr>
 </tbody></table>
-<h3 id='note-116'>Note:</h3>
+<h3 id='note-128'>Note:</h3>
 <ul>
 <li>A regular push of account is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</li>
 </ul>
@@ -38964,7 +40552,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-117'>Note:</h3>
+<h3 id='note-129'>Note:</h3>
 <ul>
 <li><p>A regular push of position is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</p></li>
 <li><p>When switching leverage with no positions, the event &quot;switch_lever_rate&quot; will not be pushed by the position topic.</p></li>
@@ -39318,7 +40906,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-118'>Note:</h3>
+<h3 id='note-130'>Note:</h3>
 <ul>
 <li><p>A regular push of position is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</p></li>
 <li><p>When switching leverage with no positions, the event &quot;switch_lever_rate&quot; will not be pushed by the position topic.</p></li>
@@ -39480,7 +41068,7 @@ Details are below:</p></li>
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='return-parameter-12'>Return Parameter</h3>
+</span></code></pre><h3 id='return-parameter-22'>Return Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -39868,7 +41456,7 @@ Details are below:</p></li>
 <td>not allowed</td>
 </tr>
 </tbody></table>
-<h3 id='note-119'>Note</h3>
+<h3 id='note-131'>Note</h3>
 <ul>
 <li><p>Funding rate will be pushed every 60 seconds by default.Funding rate will not be calculated under conditions below:</p></li>
 <li><p>the contract can&#39;t be traded.eg:Pending Listing、Suspension、Delisting、In settlement、Delivering、Settlement Completed、Delivered,etc.  </p></li>
@@ -40031,7 +41619,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-120'>Note：</h3>
+<h3 id='note-132'>Note：</h3>
 <ul>
 <li>The websocket subscription of contract info event is pushed every 60 seconds, and the event is &quot;snapshot&quot;. </li>
 <li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is &quot;init&quot;.</li>
@@ -40148,7 +41736,7 @@ Details are below:</p></li>
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-118'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-126'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -40578,7 +42166,7 @@ Details are below:</p></li>
   </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40sG903yz80oDFWr"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='request-parameter-119'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-127'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Parameter Name</th>
@@ -41004,7 +42592,7 @@ Details are below:</p></li>
     </span><span class="s2">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id generated by client"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"topic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public.linear-swap.heartbeat"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='request-parameter-120'><strong>Request Parameter</strong>:</h3>
+</span></code></pre><h3 id='request-parameter-128'><strong>Request Parameter</strong>:</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -41137,7 +42725,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-121'>Note</h3>
+<h3 id='note-133'>Note</h3>
 <ul>
 <li>Since this push is a poll query status, there may be a delay of 1-2 seconds.</li>
 </ul>
@@ -41260,13 +42848,11 @@ Details are below:</p></li>
 </tr>
 </tbody></table>
 
-<!---->
-
-<p></br>
-</br>
-</br>
-</br>
-</br></p>
+<p><br>
+<br>
+<br>
+<br>
+<br></p>
 
       </div>
       <div class="dark-box">
