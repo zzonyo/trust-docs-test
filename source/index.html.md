@@ -26,6 +26,7 @@ table th {
 
 | 生效时间<br>(UTC +8) | 接口     | 变化      | 摘要         |
 | ---------- | --------- | --------- | --------------- |
+| 2021.5.12 | GET `/v2/etp/transactions` | 优化 | "etpNames"和"transactTypes"变更为"必填"且“只能填一个” |
 | 2021.3.1   | `POST /v2/sub-user/deduct-mode`   | 新增  | 新增“设置母子用户手续费抵扣（HT或点卡）”接口  |
 | 2021.3.1             | `GET /v2/sub-user/account-list`                              | 优化      | 新增“母子用户手续费抵扣”参数                                 |
 | 2021.2.28            | Account and order Websocket v1                               | 删除      | 资产和订单WebSocket v1接口关闭                               |
@@ -8725,9 +8726,9 @@ API Key 权限：交易<br>
 注：
 返回transactId不意味着赎回成功，用户须在赎回后通过查询交易记录确认该赎回状态。
 
-## 获取杠杆ETP换入换出记录
+## 获取杠杆ETP申赎记录
 
-用户可以通过该接口获取杠杆ETP换入换出记录。
+用户可以通过该接口获取杠杆ETP申赎记录。
 
 ### HTTP 请求
 
@@ -8741,9 +8742,9 @@ API Key 权限：读取<br>
 
 |	名称	|	类型	|	是否必需	|	描述	|
 |	-----	|	----	|	------	|	-----	|
-|	etpNames	|	string	|	FALSE	| ETP名称（可多填，以逗号分隔；缺省值：所有ETP名称; for example: btc3l）	|
+|	etpNames	|	string	|	TRUE	| ETP名称（可多填，以逗号分隔；缺省值：所有ETP名称; for example: btc3l）	|
 |	currencies	|	string	|	FALSE	| 计价币种（仅对transactTypes=creation有效；可多填，以逗号分隔；缺省值：该ETP下所有计价币种）	|
-|	transactTypes	|	string	|	FALSE	| 交易类型（可多填，以逗号分隔；有效值：creation, redemption；缺省值：所有交易类型）	|
+|	transactTypes	|	string	|	TRUE	| 交易类型（可多填，以逗号分隔；有效值：creation, redemption；缺省值：所有交易类型）	|
 |	transactStatus	|	string	|	FALSE	|交易状态（可多填，以逗号分隔；有效值：completed, processing, clearing, rejected；缺省值：所有交易状态）	|
 |	startTime|	long	|	FALSE	|远点时间（unix time in millisecond；取值范围：[(endTime - 10天), endTime]；缺省值：(endTime - 10天)）	|
 |	endTime|	long	|	FALSE	|近点时间（unix time in millisecond；取值范围：[(当前时间 - 180天), 当前时间]；缺省值：当前时间）	|
@@ -8781,9 +8782,9 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
 注：<br>
 如用户查询时，实际交易数量、实际交易金额、实际交易价格尚未生成，字段transactAmount、transactValue、transactPrice更新为空。<br>
 
-## 获取特定杠杆ETP换入换出记录
+## 获取特定杠杆ETP申赎记录
 
-用户可以通过该接口获取特定杠杆ETP换入换出记录。
+用户可以通过该接口获取特定杠杆ETP申赎记录。
 
 ### HTTP 请求
 
