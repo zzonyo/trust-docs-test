@@ -826,10 +826,10 @@
                     <a href="#etp-5" class="toc-h2 toc-link" data-title="杠杆ETP换出">杠杆ETP换出</a>
                   </li>
                   <li>
-                    <a href="#etp-6" class="toc-h2 toc-link" data-title="获取杠杆ETP换入换出记录">获取杠杆ETP换入换出记录</a>
+                    <a href="#etp-6" class="toc-h2 toc-link" data-title="获取杠杆ETP申赎记录">获取杠杆ETP申赎记录</a>
                   </li>
                   <li>
-                    <a href="#etp-7" class="toc-h2 toc-link" data-title="获取特定杠杆ETP换入换出记录">获取特定杠杆ETP换入换出记录</a>
+                    <a href="#etp-7" class="toc-h2 toc-link" data-title="获取特定杠杆ETP申赎记录">获取特定杠杆ETP申赎记录</a>
                   </li>
                   <li>
                     <a href="#etp-8" class="toc-h2 toc-link" data-title="获取杠杆ETP调仓记录">获取杠杆ETP调仓记录</a>
@@ -874,6 +874,12 @@ table th {
 <th>摘要</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>2021.5.12</td>
+<td>GET <code>/v2/etp/transactions</code></td>
+<td>优化</td>
+<td>&quot;etpNames&quot;和&quot;transactTypes&quot;变更为&quot;必填&quot;且“只能填一个”</td>
+</tr>
 <tr>
 <td>2021.3.1</td>
 <td><code>POST /v2/sub-user/deduct-mode</code></td>
@@ -19391,8 +19397,8 @@ API Key 权限：交易</p>
 
 <p>注：
 返回transactId不意味着赎回成功，用户须在赎回后通过查询交易记录确认该赎回状态。</p>
-<h2 id='etp-6'>获取杠杆ETP换入换出记录</h2>
-<p>用户可以通过该接口获取杠杆ETP换入换出记录。</p>
+<h2 id='etp-6'>获取杠杆ETP申赎记录</h2>
+<p>用户可以通过该接口获取杠杆ETP申赎记录。</p>
 <h3 id='http-78'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v2/etp/transactions</code></li>
@@ -19413,7 +19419,7 @@ API Key 权限：交易</p>
 <tr>
 <td>etpNames</td>
 <td>string</td>
-<td>FALSE</td>
+<td>TRUE</td>
 <td>ETP名称（可多填，以逗号分隔；缺省值：所有ETP名称; for example: btc3l）</td>
 </tr>
 <tr>
@@ -19425,7 +19431,7 @@ API Key 权限：交易</p>
 <tr>
 <td>transactTypes</td>
 <td>string</td>
-<td>FALSE</td>
+<td>TRUE</td>
 <td>交易类型（可多填，以逗号分隔；有效值：creation, redemption；缺省值：所有交易类型）</td>
 </tr>
 <tr>
@@ -19595,8 +19601,8 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
 
 <p>注：<br>
 如用户查询时，实际交易数量、实际交易金额、实际交易价格尚未生成，字段transactAmount、transactValue、transactPrice更新为空。<br></p>
-<h2 id='etp-7'>获取特定杠杆ETP换入换出记录</h2>
-<p>用户可以通过该接口获取特定杠杆ETP换入换出记录。</p>
+<h2 id='etp-7'>获取特定杠杆ETP申赎记录</h2>
+<p>用户可以通过该接口获取特定杠杆ETP申赎记录。</p>
 <h3 id='http-79'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v2/etp/transaction</code></li>
