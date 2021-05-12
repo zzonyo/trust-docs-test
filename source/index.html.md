@@ -8742,10 +8742,10 @@ API Key 权限：读取<br>
 
 |	名称	|	类型	|	是否必需	|	描述	|
 |	-----	|	----	|	------	|	-----	|
-|	etpNames	|	string	|	TRUE	| ETP名称（可多填，以逗号分隔；缺省值：所有ETP名称; for example: btc3l）	|
+|	etpNames	|	string	|	TRUE	| ETP名称， for example: btc3，仅支持单个查询 |
 |	currencies	|	string	|	FALSE	| 计价币种（仅对transactTypes=creation有效；可多填，以逗号分隔；缺省值：该ETP下所有计价币种）	|
 |	transactTypes	|	string	|	TRUE	| 交易类型（可多填，以逗号分隔；有效值：creation, redemption；缺省值：所有交易类型）	|
-|	transactStatus	|	string	|	FALSE	|交易状态（可多填，以逗号分隔；有效值：completed, processing, clearing, rejected；缺省值：所有交易状态）	|
+|	transactStatus	|	string	|	FALSE	|交易状态，有效值：completed, processing, clearing, rejected，仅支持单个查询	|
 |	startTime|	long	|	FALSE	|远点时间（unix time in millisecond；取值范围：[(endTime - 10天), endTime]；缺省值：(endTime - 10天)）	|
 |	endTime|	long	|	FALSE	|近点时间（unix time in millisecond；取值范围：[(当前时间 - 180天), 当前时间]；缺省值：当前时间）	|
 |	sort|	string	|	FALSE	|检索方向（有效值：asc 由远及近, desc 由近及远；缺省值：desc）	|
