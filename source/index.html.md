@@ -9024,9 +9024,9 @@ Searching by transactTime<br>
 
 |	Field Name	|	Data Type	|	Mandatory	|	Description	|
 |	-----	|	----	|	------	|	-----	|
-|	etpNames	|	string	|	TRUE	| ETP code	|
+|	etpNames	|	string	|	TRUE	| ETP code,for example: btc3l,Only support one	|
 |	currencies	|	string	|	FALSE	| Quote currency (only valid for transactTypes=creation; multiple inputs acceptable, separated by comma; default value: all available quote currencies under the ETP code)	|
-|	transactTypes	|	string	|	FALSE	| Transaction type 	|
+|	transactTypes	|	string	|	FALSE	| Transaction type,Only support one ,Valid values: completed, processing, clearing, rejected |
 |	transactStatus	|	string	|	FALSE	|Transaction status (multiple inputs acceptable, separated by comma; valid values: completed, processing, clearing, rejected; default value: all transaction status)	|
 |	startTime|	long	|	FALSE	|Farthest time (unix time in millisecond; valid value:[(endTime – 10 days), endTime]; default value: (endTime – 10 days))|
 |	endTime|	long	|	FALSE	|Nearest time (unix time in millisecond; valid value: [(current time – 180 days), current time]; default value: current time)	|
