@@ -16796,9 +16796,9 @@ To subscribe basis data, the Client has to make connection to the Server and sen
 | 2030   | Exceeds connection limit of single user. |
 | 2040   | Missing required parameter.              |
 
-<!---->
-</br>
-</br>
-</br>
-</br>
-</br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
