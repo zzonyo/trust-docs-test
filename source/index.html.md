@@ -2771,6 +2771,9 @@ curl "https://api.hbdm.com/linear-swap-ex/market/depth?contract_code=BTC-USDT&ty
 | contract_code      | string             | true          | Case-Insenstive.Both uppercase and lowercase are supported..e.g. "BTC-USDT" |
 | type               | string             | true          | Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15, step16, step17（merged depth data 0-5,14-17）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13, step18, step19(merged depth data 7-13,18-19); when step is 6, depth data will not be merged. |
 
+#### Node
+ - step16, step17, step18, and step19 are only for SHIB-USDT contract, and the other contracts is not supported now.
+
 > Response:
 
 ```json
@@ -13020,6 +13023,8 @@ Clients can request 2000 Klines at most in one request
 ### Note:
 
 - When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.
+
+- step16, step17, step18, and step19 are only for SHIB-USDT contract, and the other contracts is not supported now.
 
 - steps between step1 and step5, step14 and step17 are merged orderbook data of step 150. 
 steps between step7 and step13, step18, step19  are merged orderbook data of step 20. 
