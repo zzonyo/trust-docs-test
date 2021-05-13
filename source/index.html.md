@@ -5869,7 +5869,7 @@ curl "https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"
 
 API Key 权限：交易
 
-限频值（NEW）：transfer-in：2次/s；transfer-out：10次/s
+限频值（NEW）：10次/s
 
 此接口用于现货账户与全仓杠杆账户的资产互转。
 
