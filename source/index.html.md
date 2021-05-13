@@ -5949,9 +5949,13 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/cross
 
 API Key Permission：Trade
 
+Rate Limit (NEW): 10times/s
+
 This endpoint transfers specific asset from cross margin account to spot trading account.
 
 ### HTTP Request
+
+`POST https://api.huobi.pro/v1/cross-margin/transfer-in`
 
 `POST https://api.huobi.pro/v1/cross-margin/transfer-out`
 
