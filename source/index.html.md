@@ -11705,11 +11705,11 @@ Error：
 | --------------- | ----- | ------ | ----------------------------- | -------------------- |
 | status          | true  | string |  the result of server handling to request                        | "ok" :success, "error": failed |
 | \<data\>        |   true    |   object     |                               | dictionary                   |
-| <errors>        |   true    |   object     |                               | dictionary                   |
+| \<errors\>        |   true    |   object     |                               | dictionary                   |
 | order_id        | true  | string | trailing order id[Globally Unique] |                      |
 | err_code              | false  | long   | error code               |                      |
 | err_msg              | false  | string   | error msg               |                      |
-| </errors>       |       |        |     |  |
+| \</errors\>       |       |        |     |  |
 | successes              | true  | string   | the orders that are success                 |     |
 | \</data\>       |       |        |     |  |
 | ts              | true  | long   | Time of Respond Generation, Unit: Millisecond                 |     |
@@ -12039,7 +12039,7 @@ Error：
 | Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
 | ------------- | ----- | ------ | ------------- | ---------------------------------------- |
 | contract_code   | true | string | contract code    | BTC-USDT                               |
-| status | true | string | order status| Multiple separated by English commas, Trailing Order status: 2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled   |
+| status | true | string | order status| Multiple separated by English commas, Trailing Order status: 0:all(representing all orders in the end state), 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled   |
 | trade_type | true  | int | trade type  |  0:all,1: buy long,2: sell short,3: buy short,4: sell long |
 | create_date | true | long | days| any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.   |
 | page_index | false | int | page index, if not filled in as 1st|    |
@@ -12145,7 +12145,7 @@ Error：
 | Parameter Name          | Mandatory  | Type     | Description   | Value Range                                     |
 | ------------- | ----- | ------ | ------------- | ---------------------------------------- |
 | contract_code   | true | string | contract code    | BTC-USDT                               |
-| status | true | string | order status| Multiple separated by English commas, Trailing Order status: 2.Ready to submit the orders, 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled   |
+| status | true | string | order status| Multiple separated by English commas, Trailing Order status: 0:all(representing all orders in the end state), 4.Submit the orders success, 5.Submit the orders failed, 6.Orders cancelled   |
 | trade_type | true  | int | trade type(if not filled in, means all)  |  0:all,1: buy long,2: sell short,3: buy short,4: sell long |
 | create_date | true | long | days| any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.   |
 | page_index | false | int | page index, if not filled in as 1st|    |
