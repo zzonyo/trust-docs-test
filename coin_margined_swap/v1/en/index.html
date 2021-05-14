@@ -3733,8 +3733,8 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 </ul>
 <h3 id='5-websocket-subscription-to-market-depth-data'>5. WebSocket subscription to Market Depth data:</h3>
 <ul>
-<li><p>For acquiring market depth data within 150 steps, you are kindly suggested to use step0, step1, step2, step3, step4, step5, step14, step15；</p></li>
-<li><p>For acquiring market depth data within 20 steps, you are kindly suggested to use step6, step7, step8, step9, step10, step11, step12, step13；</p></li>
+<li><p>For acquiring market depth data within 150 steps, you are kindly suggested to use step0, step1, step2, step3, step4, step5, step14, step15, step16, step17；</p></li>
+<li><p>For acquiring market depth data within 20 steps, you are kindly suggested to use step6, step7, step8, step9, step10, step11, step12, step13, step18, step19；</p></li>
 <li><p>Since the large volume of pushing 150 steps data every 100ms, WebSocket disconnection may occur frequently if client’s network bandwidth is insufficient or the processing is not in time; therefore, we highly recommend users using step6, step7, step8, step9, step10, step11, step12, step13 to acquire 20 steps data. For instance, subscribing 20 steps data.</p></li>
 </ul>
 
@@ -3839,7 +3839,9 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <h3 id='q7-what-is-the-meaning-of-merged-depth-when-subscribing-mbp-data'>Q7: What is the meaning of merged depth when subscribing MBP data?</h3>
 <p>The subscrpition of MBP data:market.$contract_code.depth.$type：</p>
 
-<p>step1 and step7 are merged by 5 decimal places.bids down,asks up.
+<p>step16 and step18 are merged by 7 decimal places.bids down,asks up. 
+step17 and step19 are merged by 6 decimal places.bids down,asks up.
+step1 and step7 are merged by 5 decimal places.bids down,asks up.
 step2 and step8 are merged by 4 decimal places.bids down,asks up.
 step3 and step9 are merged by 3 decimal places.bids down,asks up.
 step4 and step10 are merged by 2 decimal places.bids down,asks up.
@@ -3859,9 +3861,9 @@ The merged asks price are 100.13, 100.25.</p>
 
 <p>(&quot;Down&quot; and &quot;Up&quot; are rounded up or down, if the price is down, the asks price is not rounded down, and the bids price is rounded up.)</p>
 
-<p>150 price level: step0 to step5, step14, step15；</p>
+<p>150 price level: step0 to step5, step14 to step17；</p>
 
-<p>20 price level: step6 to step13;</p>
+<p>20 price level: step6 to step13, step18, step19;</p>
 
 <p>More examples：</p>
 
@@ -4603,9 +4605,13 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>type</td>
 <td>string</td>
 <td>true</td>
-<td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5,14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged.</td>
+<td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15, step16, step17（merged depth data 0-5,14-17）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13, step18, step19(merged depth data 7-13,18-19); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
+<h4 id='node'>Node</h4>
+<ul>
+<li>step16, step17, step18, and step19 are only for SHIB-USD contract, and the other contracts is not supported now.</li>
+</ul>
 
 <blockquote>
 <p>Response:</p>
@@ -21315,15 +21321,16 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>string</td>
 <td>Depth Type</td>
 <td></td>
-<td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5,14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged.</td>
+<td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15, step16, step17（merged depth data 0-5,14-17）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13, step18, step19(merged depth data 7-13,18-19); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
 <h3 id='note-47'>Note:</h3>
 <ul>
-<li><p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p></li>
-<li><p>steps between step1 and step5, step14, step15 are merged orderbook data of step 150. 
-steps between step7 and step13 are merged orderbook data of step 20. 
-Details are below:</p></li>
+<li>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</li>
+<li>step16, step17, step18, and step19 are only for SHIB-USD contract, and the other contracts is not supported now.</li>
+<li>steps between step1 and step5, step14 and step17 are merged orderbook data of step 150. 
+steps between step7 and step13, step18, step19 are merged orderbook data of step 20.
+Details are below:</li>
 </ul>
 
 <table><thead>
@@ -21332,6 +21339,14 @@ Details are below:</p></li>
 <th>precision</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>step16、step18</td>
+<td>0.0000001</td>
+</tr>
+<tr>
+<td>step17、step19</td>
+<td>0.000001</td>
+</tr>
 <tr>
 <td>step1、step7</td>
 <td>0.00001</td>
