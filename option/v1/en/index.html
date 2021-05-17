@@ -8000,10 +8000,19 @@ It will be pushed only when position event is updated.</p>
 <td>Transfer Type</td>
 <td>master_to_sub: transfer from master account to sub-account， sub_to_master: transfer from sub-account to master account</td>
 </tr>
+<tr>
+<td>client_order_id</td>
+<td>false</td>
+<td>long</td>
+<td>Clients fill and maintain themselves.</td>
+<td>must be Less or Equal than 9223372036854775807</td>
+</tr>
 </tbody></table>
 <h3 id='note-12'>Note：</h3>
 <ul>
 <li>the rate limit between the master account and each subaccount is 10 times/ minute</li>
+<li>The client_order_id is valid in 8 hours only, that is the user cannot use the same client_order_id beyonds one times for the same transfer path (for example, transfer currency from master account to sub-account using client_order_id=1, and you can&#39;t do that transfe currency from master account to sub-account using client_order_id=1 in the next time; but you can 
+transfer currency from sub-account to  master account using client_order_id=1).</li>
 </ul>
 
 <blockquote>
@@ -8054,6 +8063,13 @@ It will be pushed only when position event is updated.</p>
 <td>true</td>
 <td>long</td>
 <td>Transfer Order ID</td>
+<td></td>
+</tr>
+<tr>
+<td>client_order_id</td>
+<td>false</td>
+<td>long</td>
+<td>the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned</td>
 <td></td>
 </tr>
 <tr>
@@ -17074,11 +17090,11 @@ It will be pushed only when position event is updated.</p>
 </tr>
 </tbody></table>
 
-<p></br>
-</br>
-</br>
-</br>
-</br></p>
+<p><br>
+<br>
+<br>
+<br>
+<br></p>
 
       </div>
       <div class="dark-box">
