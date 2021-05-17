@@ -5141,10 +5141,13 @@ last_price | decimal  | true  | Last Price                                      
 | contract_code | true | string | contract code | Case-Insenstive.Both uppercase and lowercase are supported.e.g. "BTC-USD" |
 | amount | true | decimal | transfer amount ||
 | type | true | string | transfer type | "master_to_sub" or "sub_to_master" |
+| client_order_id | false | long | Clients fill and maintain themselves. | must be Less or Equal than 9223372036854775807 |
 
 ### Note：
   - the rate limit between the master account and each subaccount is 10 times/ minute
-  
+  - The client_order_id is valid in 8 hours only, that is the user cannot use the same client_order_id beyonds one times for the same transfer path (for example, transfer currency from master account to sub-account using client_order_id=1, and you can't do that transfe currency from master account to sub-account using client_order_id=1 in the next time; but you can 
+    transfer currency from sub-account to  master account using client_order_id=1).
+
 > Response:
 
 ```json
@@ -5167,6 +5170,7 @@ last_price | decimal  | true  | Last Price                                      
 | ts            | true | long    | response timestamp，millionseconds   |                                          |
 | \<data\>      | true     |  object        |      |   |
 | order_id        | true | string  | order id            |  |
+| client_order_id | false | long | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned		| 
 | \</data\>     |      |         |         |   |
 
 ## Query transfer records between master and sub account
