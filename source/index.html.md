@@ -6874,13 +6874,15 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | to_margin_account | true | string | 转入的保证金账户	 |  "BTC-USDT"，"USDT"... |
 | amount | true | decimal | 划转金额 ||
 | type | true | string | 划转类型 | master_to_sub：母账户划转到子账户， sub_to_master：子账户划转到母账户 |
+| client_order_id | false | long | 客户自己填写和维护的订单号 | 必须为数字,请注意必须小于等于9223372036854775807 |
 
 #### 备注：
  - 当from_margin_account或to_margin_account 为USDT时，代表是从全仓保证金中转入或划出。
  - 从转出的保证金账户划转到转入的保证金账户，币种必须为转出的保证金账户的计价币种；
  - 转出的保证金账户与转入的保证金账户的计价币种必须一致（如BTC-USDT可以划转USDT到ETH-USDT，而没办法划转到ETH-HUSD）.
  - 母账户与每个子账户相互划转限频10次/分钟。
-  
+ - client_order_id仅在8小时内有效，即8小时内同一个用户同一个划转路径无法使用相同的client_order_id进行二次划转（比如母账户发起母转子，使用client_order_id=1，则8小时内无法继续使用client_order_id=1进行母转子；但是可以用client_order_id=1进行子转母。）。 
+
 > Response:
 
 ```json
@@ -6902,6 +6904,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | ts            | true | long    | 响应生成时间点，单位：毫秒   |                                          |
 | \<data\>      | true     |  object        |      |   |
 | order_id        | true | string  | 划转订单ID            |  |
+| client_order_id | false | long | 用户下单时填写的客户端订单ID，没填则不返回	| 
 | \</data\>     |      |         |         |   |
 
 ## 【通用】获取母账户下的所有母子账户划转记录
@@ -6989,12 +6992,14 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | from_margin_account | true | string | 转出的保证金账户	 |  "BTC-USDT"，"USDT"... |
 | to_margin_account | true | string | 转入的保证金账户	 |  "ETH-USDT"，"USDT"... |
 | amount | true | decimal | 划转数额（单位为合约的计价币种）	 |  |
+| client_order_id | false | long | 客户自己填写和维护的订单号 | 必须为数字,请注意必须小于等于9223372036854775807 |
 
 #### 备注：
 - 当from_margin_account或to_margin_account 为USDT时，代表是从全仓保证金中转入或划出。
 - 从转出的保证金账户划转到转入的保证金账户，划转的币种必须为转出的保证金账户的计价币种；
 - 转出的保证金账户与转入的保证金账户的计价币种必须一致（如BTC-USDT可以划转USDT到ETH-USDT，而没办法划转到ETH-HUSD）。
 - 此接口的访问频次的限制为1分钟10次。
+- client_order_id仅在8小时内有效，即8小时内同一个用户无法使用相同的client_order_id进行二次划转。
 
 > 返回示例：
 
@@ -7016,6 +7021,7 @@ curl "https://api.hbdm.com/index/market/history/linear_swap_basis?contract_code=
 | status | true | string | 请求处理结果	 | "ok" , "error" |
 | \<data\> |  |  |  | 字典数据 |
 | order_id | true  | string | 划转订单ID |  |
+| client_order_id | false | long | 用户下单时填写的客户端订单ID，没填则不返回	| 
 | \</data\> |  |  |  |  |
 | ts | true  | long | 响应生成时间点，单位：毫秒 |  |
 
