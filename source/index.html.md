@@ -38,6 +38,18 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.1.3 2021-5-17 【Transfer between master and sub account（Added parameters in request: client_order_id）。Transfer between different margin accounts under the same account（Added parameters in request: client_order_id）】
+
+### 1、Transfer between master and sub account（Added parameters in request: client_order_id）
+ - Interface Name：[General]Transfer between master and sub account
+ - Interface Type：private
+ - Interface URL：/linear-swap-api/v1/swap_master_sub_transfer
+
+### 2、Transfer between different margin accounts under the same account（Added parameters in request: client_order_id）
+ - Interface Name：[General]Transfer between different margin accounts under the same account
+ - Interface Type：private
+ - Interface URL：/linear-swap-api/v1/swap_transfer_inner
+
 ## 1.1.2 2021-05-12 【Added: Trailing Order interface. 】 
 
 ### 1. Added Place a Trailing Order(isolated) interface
