@@ -265,6 +265,9 @@
             <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#1-0-6-2021-5-17-client_order_id" class="toc-h2 toc-link" data-title="1.0.6 2021年5月17日 【修改：母子账户划转（新增选填入参：client_order_id）】">1.0.6 2021年5月17日 【修改：母子账户划转（新增选填入参：client_order_id）】</a>
+                  </li>
+                  <li>
                     <a href="#1-0-5-2021-2-26-ch-market-trade-detail-tick-contract_code" class="toc-h2 toc-link" data-title="1.0.5 2021年2月26日 【新增：获取账户总资产估值接口。修改获取合约最高限价和最低限价接口（支持用户所有入参都不填，接口返回所有当前上市合约的限价数据。）、修改获取市场最近成交记录接口（支持用户所有入参都不填，接口返回所有当前上市合约的最近成交数据；当用户不传入参时， 返参ch值为market.*trade.detail。在返参tick下新增字段：contract_code。）】">1.0.5 2021年2月26日 【新增：获取账户总资产估值接口。修改获取合约最高限价和最低限价接口（支持用户所有入参都不填，接口返回所有当前上市合约的限价数据。）、修改获取市场最近成交记录接口（支持用户所有入参都不填，接口返回所有当前上市合约的最近成交数据；当用户不传入参时， 返参ch值为market.*trade.detail。在返参tick下新增字段：contract_code。）】</a>
                   </li>
                   <li>
@@ -645,7 +648,13 @@
 <li>提供火币 UID （需不存在返佣关系的 UID）；</li>
 <li>提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；</li>
 </ol>
-<h1 id='185368440e'>更新日志</h1><h2 id='1-0-5-2021-2-26-ch-market-trade-detail-tick-contract_code'>1.0.5 2021年2月26日 【新增：获取账户总资产估值接口。修改获取合约最高限价和最低限价接口（支持用户所有入参都不填，接口返回所有当前上市合约的限价数据。）、修改获取市场最近成交记录接口（支持用户所有入参都不填，接口返回所有当前上市合约的最近成交数据；当用户不传入参时， 返参ch值为market.*trade.detail。在返参tick下新增字段：contract_code。）】</h2><h3 id='1'>1、新增获取账户总资产估值接口</h3>
+<h1 id='185368440e'>更新日志</h1><h2 id='1-0-6-2021-5-17-client_order_id'>1.0.6 2021年5月17日 【修改：母子账户划转（新增选填入参：client_order_id）】</h2><h3 id='1-client_order_id'>1、修改母子账户划转接口（新增选填入参：client_order_id）</h3>
+<ul>
+<li>接口名称：母子账户划转</li>
+<li>接口类型：私有接口</li>
+<li>接口URL：/option-api/v1/option_master_sub_transfer</li>
+</ul>
+<h2 id='1-0-5-2021-2-26-ch-market-trade-detail-tick-contract_code'>1.0.5 2021年2月26日 【新增：获取账户总资产估值接口。修改获取合约最高限价和最低限价接口（支持用户所有入参都不填，接口返回所有当前上市合约的限价数据。）、修改获取市场最近成交记录接口（支持用户所有入参都不填，接口返回所有当前上市合约的最近成交数据；当用户不传入参时， 返参ch值为market.*trade.detail。在返参tick下新增字段：contract_code。）】</h2><h3 id='1'>1、新增获取账户总资产估值接口</h3>
 <ul>
 <li>接口名称：获取账户总资产估值</li>
 <li>接口类型：私有接口</li>
