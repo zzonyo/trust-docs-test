@@ -16767,6 +16767,13 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>划转类型</td>
 <td>master_to_sub：母账户划转到子账户， sub_to_master：子账户划转到母账户</td>
 </tr>
+<tr>
+<td>client_order_id</td>
+<td>false</td>
+<td>long</td>
+<td>客户自己填写和维护的订单号</td>
+<td>必须为数字,请注意必须小于等于9223372036854775807</td>
+</tr>
 </tbody></table>
 <h4 id='9852b06629-15'>备注：</h4>
 <ul>
@@ -16774,6 +16781,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <li>从转出的保证金账户划转到转入的保证金账户，币种必须为转出的保证金账户的计价币种；</li>
 <li>转出的保证金账户与转入的保证金账户的计价币种必须一致（如BTC-USDT可以划转USDT到ETH-USDT，而没办法划转到ETH-HUSD）.</li>
 <li>母账户与每个子账户相互划转限频10次/分钟。</li>
+<li>client_order_id仅在8小时内有效，即8小时内同一个用户同一个划转路径无法使用相同的client_order_id进行二次划转（比如母账户发起母转子，使用client_order_id=1，则8小时内无法继续使用client_order_id=1进行母转子；但是可以用client_order_id=1进行子转母。）。 </li>
 </ul>
 
 <blockquote>
@@ -16823,6 +16831,13 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>true</td>
 <td>string</td>
 <td>划转订单ID</td>
+<td></td>
+</tr>
+<tr>
+<td>client_order_id</td>
+<td>false</td>
+<td>long</td>
+<td>用户下单时填写的客户端订单ID，没填则不返回</td>
 <td></td>
 </tr>
 <tr>
@@ -17105,6 +17120,13 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>划转数额（单位为合约的计价币种）</td>
 <td></td>
 </tr>
+<tr>
+<td>client_order_id</td>
+<td>false</td>
+<td>long</td>
+<td>客户自己填写和维护的订单号</td>
+<td>必须为数字,请注意必须小于等于9223372036854775807</td>
+</tr>
 </tbody></table>
 <h4 id='9852b06629-16'>备注：</h4>
 <ul>
@@ -17112,6 +17134,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <li>从转出的保证金账户划转到转入的保证金账户，划转的币种必须为转出的保证金账户的计价币种；</li>
 <li>转出的保证金账户与转入的保证金账户的计价币种必须一致（如BTC-USDT可以划转USDT到ETH-USDT，而没办法划转到ETH-HUSD）。</li>
 <li>此接口的访问频次的限制为1分钟10次。</li>
+<li>client_order_id仅在8小时内有效，即8小时内同一个用户无法使用相同的client_order_id进行二次划转。</li>
 </ul>
 
 <blockquote>
@@ -17154,6 +17177,13 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/linear_swap_bas
 <td>true</td>
 <td>string</td>
 <td>划转订单ID</td>
+<td></td>
+</tr>
+<tr>
+<td>client_order_id</td>
+<td>false</td>
+<td>long</td>
+<td>用户下单时填写的客户端订单ID，没填则不返回</td>
 <td></td>
 </tr>
 <tr>
