@@ -11640,11 +11640,19 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>transfer type</td>
 <td>&quot;master_to_sub&quot; or &quot;sub_to_master&quot;</td>
 </tr>
+<tr>
+<td>client_order_id</td>
+<td>false</td>
+<td>long</td>
+<td>Clients fill and maintain themselves.</td>
+<td>must be Less or Equal than 9223372036854775807</td>
+</tr>
 </tbody></table>
-
+<h4 id='note-15'>Note：</h4>
 <ul>
-<li>Note：
-the rate limit between the master account and each subaccount is 10 times/ minute</li>
+<li>the rate limit between the master account and each subaccount is 10 times/ minute</li>
+<li>The client_order_id is valid in 8 hours only, that is the user cannot use the same client_order_id beyonds one times for the same transfer path (for example, transfer currency from master account to sub-account using client_order_id=1, and you can&#39;t do that transfe currency from master account to sub-account using client_order_id=1 in the next time; but you can 
+transfer currency from sub-account to  master account using client_order_id=1).</li>
 </ul>
 
 <blockquote>
@@ -11694,6 +11702,13 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>true</td>
 <td>string</td>
 <td>order id</td>
+<td></td>
+</tr>
+<tr>
+<td>client_order_id</td>
+<td>false</td>
+<td>long</td>
+<td>the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned</td>
 <td></td>
 </tr>
 <tr>
@@ -12349,7 +12364,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Order type of stop-loss order    default is limit; limit，optimal_5，optimal_10，optimal_20</td>
 </tr>
 </tbody></table>
-<h3 id='note-15'>Note ：</h3>
+<h3 id='note-16'>Note ：</h3>
 <p>If there is a number in the Contract Code row，inquiry with Contract_Code. </p>
 
 <p>If there is no number，inquiry by Symbol + Contract Type.</p>
@@ -12448,7 +12463,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-16'>Note</h3>
+<h3 id='note-17'>Note</h3>
 <ul>
 <li>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</li>
 </ul>
@@ -12620,7 +12635,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Order type of stop-loss order    default is limit; limit，optimal_5，optimal_10，optimal_20</td>
 </tr>
 </tbody></table>
-<h3 id='note-17'>Note  ：</h3>
+<h3 id='note-18'>Note  ：</h3>
 <p>If there is a number in the Contract Code row,inquiry with Contract_Code. </p>
 
 <p>If there is no number,inquiry by Symbol + Contract Type.</p>
@@ -12776,7 +12791,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-18'>Note</h3>
+<h3 id='note-19'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
 <h2 id='cancel-an-order'>Cancel an Order</h2><h3 id='example-17'>Example</h3>
 <ul>
@@ -12810,7 +12825,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Case-Insenstive.Both uppercase and lowercase are supported..&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
-<h3 id='note-19'>Note  ：</h3>
+<h3 id='note-20'>Note  ：</h3>
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
 
 <p>The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.</p>
@@ -12970,7 +12985,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>offset direction（if not filled in means all）  [&quot;open&quot; , &quot;close&quot;]</td>
 </tr>
 </tbody></table>
-<h3 id='note-20'>Note</h3>
+<h3 id='note-21'>Note</h3>
 <ol>
 <li><p>Send symbol to cancel all the contracts of that kind of symbol, e.g. send “BTC” to cancel all BTC weekly, biweekly and quarterly contracts.</p></li>
 <li><p>Send contract_code to cancel the contracts of that code.</p></li>
@@ -13075,7 +13090,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <ul>
 <li>POST <code>/api/v1/contract_switch_lever_rate</code></li>
 </ul>
-<h4 id='note-21'>Note</h4>
+<h4 id='note-22'>Note</h4>
 <ul>
 <li><p>Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.</p></li>
 <li><p>The interface limits the number of requests to 1 time per 3 seconds.</p></li>
@@ -13260,7 +13275,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>&quot;lightning&quot; by default. &quot;lightning_fok&quot;: lightning FOK type,&quot;lightning_ioc&quot;: lightning IOC type</td>
 </tr>
 </tbody></table>
-<h3 id='note-22'>Note:</h3>
+<h3 id='note-23'>Note:</h3>
 <ul>
 <li>Lightning Close Position，is order with rival price and optimal 30 grades. And the unsettled part will be automatically converted into a limited price order.</li>
 </ul>
@@ -13382,7 +13397,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Case-Insenstive.Both uppercase and lowercase are supported..&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
-<h3 id='note-23'>Note  ：</h3>
+<h3 id='note-24'>Note  ：</h3>
 <p>When getting information on order cancellation via get order information interface, users can only query last 4-hour data</p>
 
 <p>At least one of order_id and client_order_id must be filled in</p>
@@ -13658,7 +13673,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-24'>Note:</h4>
+<h4 id='note-25'>Note:</h4>
 <ul>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
 <li>Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value. And in the other orders created before that times, it is 0.</li>
@@ -13713,7 +13728,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Default 20，no more than 50</td>
 </tr>
 </tbody></table>
-<h3 id='note-25'>Note</h3>
+<h3 id='note-26'>Note</h3>
 <p>When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 6-hour data, while users who don’t type in parameters “created_at” and “order_type” can only query last 2-hour data.</p>
 
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jason-bigint package.</p>
@@ -14135,7 +14150,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-26'>Note:</h4>
+<h4 id='note-27'>Note:</h4>
 <ul>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
 <li>Only the real profit parameter (real_profit) of the transaction information that orders created after 0:00 on January 30, 2021 has a value . And of the other order transaction information that orders created  before that times, the real profit parameter is 0.</li>
@@ -14499,7 +14514,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-27'>Note:</h4>
+<h4 id='note-28'>Note:</h4>
 <ul>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
 <li>Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value. And in the other orders created before that times, it is 0.</li>
@@ -14616,7 +14631,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>&quot;create_date&quot;：descending order by order create date , &quot;update_time&quot;: descending order by order update time</td>
 </tr>
 </tbody></table>
-<h3 id='note-28'>Note</h3>
+<h3 id='note-29'>Note</h3>
 <p>All via API interface submited price limit orders that had been cancelled will only be kept for 2 hours.</p>
 
 <blockquote>
@@ -14918,7 +14933,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-29'>Note</h3>
+<h3 id='note-30'>Note</h3>
 <ul>
 <li>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</li>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
@@ -15016,7 +15031,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>prev ；next ；default value:prev</td>
 </tr>
 </tbody></table>
-<h4 id='note-30'>Note：</h4>
+<h4 id='note-31'>Note：</h4>
 <ul>
 <li>Query history orders interface can only query the API order cancellation information within the last 2 hours.</li>
 <li>Value range description of start_time and end_time:
@@ -15414,7 +15429,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-31'>Note:</h4>
+<h4 id='note-32'>Note:</h4>
 <ul>
 <li>if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id  presents the last data on the next page.)</li>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
@@ -15806,7 +15821,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>prev ；next ；Default value：prev</td>
 </tr>
 </tbody></table>
-<h4 id='note-32'>Note:</h4>
+<h4 id='note-33'>Note:</h4>
 <ul>
 <li>Value range description of start_time and end_time:
 
@@ -16155,7 +16170,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-33'>Note</h4>
+<h4 id='note-34'>Note</h4>
 <ul>
 <li>if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id  presents the last data on the next page.)</li>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
@@ -16270,7 +16285,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-34'>Note</h3>
+<h3 id='note-35'>Note</h3>
 <ul>
 <li><p>If the contract_code field is filled with a number, order will by placed by contract_code.</p></li>
 <li><p>If the contract_code field is None, order will by placed by symbol and contract_type.</p></li>
@@ -16383,7 +16398,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>order id. multiple orderids need to be joined by &quot;,&quot;.Max number of order ids is 10 once.</td>
 </tr>
 </tbody></table>
-<h4 id='note-35'>Note</h4>
+<h4 id='note-36'>Note</h4>
 <ul>
 <li>The frequency limit of this interface is 5 times per second.</li>
 </ul>
@@ -16531,7 +16546,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>offset direction（if not filled in means all）  [&quot;open&quot; , &quot;close&quot;]</td>
 </tr>
 </tbody></table>
-<h3 id='note-36'>Note</h3>
+<h3 id='note-37'>Note</h3>
 <ul>
 <li><p>If only symbol is filled, cancel all trigger orders of this symbol</p></li>
 <li><p>If contract_code is filled, cancel trigger orders of this contract code.</p></li>
@@ -16993,7 +17008,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>&quot;created_at&quot;：descending order by order creation time, &quot;update_time&quot;: descending order by order update time</td>
 </tr>
 </tbody></table>
-<h3 id='note-37'>NOTE</h3>
+<h3 id='note-38'>NOTE</h3>
 <ul>
 <li>Default to query completed orders (order status is one of 4, 5, 6);</li>
 </ul>
@@ -17397,7 +17412,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>default is limit; limit，optimal_5，optimal_10，optimal_20</td>
 </tr>
 </tbody></table>
-<h3 id='note-38'>Note</h3>
+<h3 id='note-39'>Note</h3>
 <ul>
 <li>If the &quot;contract_code&quot; has been filled in with a value, the system will place an order based on &quot;contract_code&quot;; If not, the system will place an order based on &quot;symbol+contract_type&quot;.</li>
 <li>All take-profit and stop-loss orders are position closing orders.</li>
@@ -17540,7 +17555,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-39'>Note</h4>
+<h4 id='note-40'>Note</h4>
 <ul>
 <li>When only take-profit order or stop-loss order is set , the accordingly returned &quot;sl_order&quot; or &quot;tp_order&quot; will be empty.</li>
 </ul>
@@ -17573,7 +17588,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-40'>Note</h4>
+<h4 id='note-41'>Note</h4>
 <ul>
 <li>The frequency limit of this interface is 5 times per second.</li>
 </ul>
@@ -17719,7 +17734,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>[&quot;buy&quot; , &quot;sell&quot;]</td>
 </tr>
 </tbody></table>
-<h4 id='note-41'>Note:</h4>
+<h4 id='note-42'>Note:</h4>
 <ul>
 <li>If only &quot;symbol&quot; is set,  cancel all the take-profit and stop-loss orders of all expirations under this order type.</li>
 <li>If only &quot;contract_code“ is set, cancel all take-profit and stop-loss orders of the contracts of the code.</li>
@@ -18980,7 +18995,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>optimal_5, optimal_10, optimal_20, formula_price</td>
 </tr>
 </tbody></table>
-<h4 id='note-42'>Note:</h4>
+<h4 id='note-43'>Note:</h4>
 <ul>
 <li>When order_price_type is the formula_price, it means that after the tracking order is triggered successfully, use the lowest (highest) market price *(1 ± callback rate) that from statistic since place trading order, as the order price (the precision is the minimum variation of the contract price and be truncated) to place a limit price order </li>
 <li>whether filled in with the optimal N or the formula price, there is no guarantee that the order can be completely filled, which mainly depends on the market conditions.</li>
@@ -19081,7 +19096,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-43'>Note</h4>
+<h4 id='note-44'>Note</h4>
 <ul>
 <li>The frequency limit of this interface is 5 times per second.</li>
 </ul>
@@ -19234,7 +19249,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>open, close</td>
 </tr>
 </tbody></table>
-<h4 id='note-44'>Note:</h4>
+<h4 id='note-45'>Note:</h4>
 <ul>
 <li>Send symbol to cancel all the contracts of that kind of symbol</li>
 <li>Send contract_code to cancel the contracts of that code.</li>
@@ -20409,7 +20424,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p>System status updates subscription ：wss://api.btcgateway.pro/center-notification</p>
 
 <p>If you have further queries about Huobi Future order push subscription, please refer to <a href="https://github.com/huobiapi/Futures-Java-demo">Demo</a></p>
-<h3 id='note-45'>Note:</h3>
+<h3 id='note-46'>Note:</h3>
 <p>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot; for debug purpose. If your server is deployed in AWS, we recommend using &quot;https://api.hbdm.vn&quot;.</p>
 <h2 id='api-rate-limit-illustration-2'>API Rate Limit Illustration</h2>
 <p>There is rate limit for both public and private interfaces. More details are laid out as below:</p>
@@ -20480,7 +20495,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <p><code>&quot;ts&quot;: &quot;1492420473058&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-46'>Note</h3>
+<h3 id='note-47'>Note</h3>
 <ul>
 <li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 5 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
 </ul>
@@ -20526,7 +20541,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 </ul>
 
 <p><code>wss://api.hbdm.com/notification</code></p>
-<h3 id='note-47'>Note:</h3>
+<h3 id='note-48'>Note:</h3>
 <p>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot; for debug purpose. If your server is deployed in AWS, we recommend using &quot;https://api.hbdm.vn&quot;.</p>
 
 <p>Please note that the WS request connection should not go over 30 normally.</p>
@@ -20876,7 +20891,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
         </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">0</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='note-48'>Note</h3>
+</span></code></pre><h3 id='note-49'>Note</h3>
 <ul>
 <li>Support to query K-line data of contracts which have been delisted in the last four weeks; User can enter contract code to query data of contracts delisted in the last four weeks.</li>
 </ul>
@@ -21053,7 +21068,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Case-Senstive.Only lowercase is supported.1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-49'>Note</h4>
+<h4 id='note-50'>Note</h4>
 <p>If between time range [t1, t5], there are t1-t5 Klines in quantity.</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -21268,7 +21283,7 @@ the rate limit between the master account and each subaccount is 10 times/ minut
 <td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5, 14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
-<h3 id='note-50'>Note:</h3>
+<h3 id='note-51'>Note:</h3>
 <ul>
 <li><p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p></li>
 <li><p>steps between step1 and step5, step14, step15 are merged orderbook data of step 150. 
@@ -21606,7 +21621,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-51'>Note:</h3>
+<h3 id='note-52'>Note:</h3>
 <ul>
 <li>when <code>data_type</code> is <code>incremental</code>,<code>snapshot</code> data wil be pushed for the first time. When re-connection occurs, <code>snapshort</code> data will be pushed for the first time. </li>
 <li><code>version</code>: auto increment in single websocket connection. <code>version</code> may be different among several websocket subscription connections.</li>
@@ -21823,7 +21838,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-52'>Note:</h3>
+<h3 id='note-53'>Note:</h3>
 <ul>
 <li><p>Once Best Bid/Ask Quotations (price,volume) change, it will be pushed.</p></li>
 <li><p>When the price and volume of Best Bid/Ask Quotations both change, only the latest BBO will be pushed.  </p></li>
@@ -21990,7 +22005,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-53'>Note:</h4>
+<h4 id='note-54'>Note:</h4>
 <ul>
 <li>Bid price(p1) and ask price(p1) are not updated in real time, there will be some delay (about 500ms).</li>
 </ul>
@@ -22496,7 +22511,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-54'>Note</h3>
+<h3 id='note-55'>Note</h3>
 <ul>
 <li><p>Pushed once the index data is changed.</p></li>
 <li><p>Periodical Push when the index data hasn&#39;t changed according to the kline period.</p></li>
@@ -22695,7 +22710,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-55'>Note：</h3>
+<h3 id='note-56'>Note：</h3>
 <ul>
 <li>Pushed once the index data is changed.</li>
 </ul>
@@ -22919,7 +22934,7 @@ Details are below:</p></li>
 <td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-56'>Note:</h4>
+<h4 id='note-57'>Note:</h4>
 <ul>
 <li>The basis data of Next Quarterly Contract is available after 2020/6/15 14:00:00.</li>
 </ul>
@@ -23110,7 +23125,7 @@ Details are below:</p></li>
 <td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-57'>Note：</h3>
+<h3 id='note-58'>Note：</h3>
 <ul>
 <li>2000 data at most per request.</li>
 </ul>
@@ -23528,7 +23543,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-58'>Note:</h3>
+<h3 id='note-59'>Note:</h3>
 <ul>
 <li>At one time 2000 at most</li>
 </ul>
@@ -23687,7 +23702,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-59'>Note</h4>
+<h4 id='note-60'>Note</h4>
 <ul>
 <li>Data will be available after the marked price goes online on March 15, 2021. Please be aware that there is no historical data before.</li>
 </ul>
@@ -23738,7 +23753,7 @@ Details are below:</p></li>
 <td>Required；Topic name format: orders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported. e.g.:&quot;BTC,ETH&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-60'>Note:</h4>
+<h4 id='note-61'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 </ul>
@@ -24161,7 +24176,7 @@ Details are below:</p></li>
 <blockquote>
 <p>Illustration on detailed data format of orders Notification</p>
 </blockquote>
-<h4 id='note-61'>Note:</h4>
+<h4 id='note-62'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 <li>The orders will be pushed when matched by matching engine.</li>
@@ -24642,7 +24657,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-62'>Note</h3>
+<h3 id='note-63'>Note</h3>
 <ul>
 <li>A regular push of account is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</li>
 </ul>
@@ -24924,7 +24939,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-63'>Note</h3>
+<h3 id='note-64'>Note</h3>
 <ul>
 <li><p>A regular push of position is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</p></li>
 <li><p>When switching leverage with no positions, the event &quot;switch_lever_rate&quot; will not be pushed by the position topic.</p></li>
@@ -25444,7 +25459,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-64'>Note：</h3>
+<h3 id='note-65'>Note：</h3>
 <ul>
 <li>The websocket subscription of contract info event is pushed every 60 seconds, and the event is &quot;snapshot&quot;. </li>
 <li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is &quot;init&quot;.</li>
@@ -26100,7 +26115,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-65'>Note</h3>
+<h3 id='note-66'>Note</h3>
 <ul>
 <li>Since this push is a poll query status, there may be a delay of 1-2 seconds.</li>
 </ul>
