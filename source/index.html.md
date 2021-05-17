@@ -6883,12 +6883,15 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | to_margin_account | true | string | to margin account	 |  "BTC-USDT","USDT"... |
 | amount | true | decimal | transfer amount ||
 | type | true | string | transfer type | "master_to_sub" or "sub_to_master" |
+| client_order_id | false | long | Clients fill and maintain themselves. | must be Less or Equal than 9223372036854775807 |
 
 #### Note：
 - When from_margin_account or to_margin_account is USDT, it means the transfer in or transfer out from cross margin account
 - represents transfer from transfer_out margin account to transfer_in margin account. The currency transferred shall be the same as the denominated currency of the transfer_out margin account.；
 - The denominated currency of the transfer_out margin account and transfer_in margin account must be the same. (eg, USDT can be transferred from BTC-USDT to ETH-USDT, but cannot be transferred from BTC-USDT to ETH-HUSD account).
 - the rate limit between the master account and each subaccount is 10 times/ minute
+- The client_order_id is valid in 8 hours only, that is the user cannot use the same client_order_id beyonds one times for the same transfer path (for example, transfer currency from master account to sub-account using client_order_id=1, and you can't do that transfe currency from master account to sub-account using client_order_id=1 in the next time; but you can 
+  transfer currency from sub-account to  master account using client_order_id=1).
 
 > Response:
 
@@ -6911,6 +6914,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | ts            | true | long    | response timestamp，millionseconds   |                                          |
 | \<data\>      | true     |  object        |      |   |
 | order_id        | true | string  | order id            |  |
+| client_order_id | false | long | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned		| 
 | \</data\>     |      |         |         |   |
 
 ## [General] Query transfer records between master and sub account
@@ -7001,12 +7005,14 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | from_margin_account | true | string | from margin account	 |  "BTC-USDT","USDT"... |
 | to_margin_account | true | string | to margin account	 |  "ETH-USDT","USDT"... |
 | amount | true | decimal | amount（The unit is the denominated currency of the contract.）	 |  |
+| client_order_id | false | long | Clients fill and maintain themselves. | must be Less or Equal than 9223372036854775807 |
 
 #### **Note:**
 - When from_margin_account or to_margin_account is USDT, it means the transfer in or transfer out from cross margin account
 - represents transfer from transfer_out margin account to transfer_in margin account. The currency transferred shall be the same as the denominated currency of the transfer_out margin account.；
 - The denominated currency of the transfer_out margin account and transfer_in margin account must be the same. (eg, USDT can be transferred from BTC-USDT to ETH-USDT, but cannot be transferred from BTC-USDT to ETH-HUSD account)。
 - API rate limit for this interface is up to 10 times per minute.
+- The client_order_id is valid in 8 hours only, that is the user cannot use the same client_order_id beyonds one times
 
 > response：
 
@@ -7028,6 +7034,7 @@ contract_code | true | string | contract code	 |Case-Insenstive.Both uppercase a
 | status | true | string | response status	 | "ok" , "error" |
 | \<data\> |  |  |  | object array  |
 | order_id | true  | string | order id |  |
+| client_order_id | false | long | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned		| 
 | \</data\> |  |  |  |  |
 | ts | true  | long | response millionseconds.  |  |
 
