@@ -36,6 +36,18 @@ search: true
 
 # 更新日志
 
+## 1.1.3 2021年5月17日 【修改：母子账户划转（新增选填入参：client_order_id）。同账号不同保证金账户的划转（新增选填入参：client_order_id）】
+
+### 1、修改母子账户划转接口（新增选填入参：client_order_id）
+ - 接口名称：【通用】母子账户划转
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_master_sub_transfer
+
+### 2、修改同账号不同保证金账户的划转接口（新增选填入参：client_order_id）
+ - 接口名称：【通用】同账号不同保证金账户的划转
+ - 接口类型：私有接口
+ - 接口URL：/linear-swap-api/v1/swap_transfer_inner
+
 ## 1.1.2 2021年05月12日 【新增：跟踪委托订单接口。】 
 
 ### 1、新增跟踪委托订单下单（逐仓）接口
