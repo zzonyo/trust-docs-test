@@ -3212,11 +3212,13 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | trade_partition | true     | string  | Trade Partition  | "USDT"                                                       |
 | amount          | true     | decimal | Transfer Amount  |                                                              |
 | type            | true     | string  | Transfer Type  | master_to_sub: transfer from master account to sub-account， sub_to_master: transfer from sub-account to master account |
+| client_order_id | false | long | Clients fill and maintain themselves. | must be Less or Equal than 9223372036854775807 |
 
 ### Note：
+ - the rate limit between the master account and each subaccount is 10 times/ minute
+ - The client_order_id is valid in 8 hours only, that is the user cannot use the same client_order_id beyonds one times for the same transfer path (for example, transfer currency from master account to sub-account using client_order_id=1, and you can't do that transfe currency from master account to sub-account using client_order_id=1 in the next time; but you can 
+   transfer currency from sub-account to  master account using client_order_id=1).
 
-  - the rate limit between the master account and each subaccount is 10 times/ minute
-  
 > Response:
 
 ```json
@@ -3239,6 +3241,7 @@ curl "https://api.hbdm.com/option-ex/market/history/trade?contract_code=BTC-USDT
 | ts       | true     | long   | Time of Response Generation, unit: millisecond |                |
 | \<data\>   | true     | object |                            |                |
 | order_id | true     | long   | Transfer Order ID                 |                |
+| client_order_id | false | long | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned		| 
 | \</data\>  |          |        |                            |                |
 
 ## Query transfer records between master and sub account
@@ -6807,8 +6810,8 @@ Return to the current trade detail data only
 | 2040   | Missing required parameter.              |
 
 
-</br>
-</br>
-</br>
-</br>
-</br>
+<br>
+<br>
+<br>
+<br>
+<br>
