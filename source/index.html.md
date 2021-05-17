@@ -38,6 +38,13 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.0.6 2021-5-17 【Transfer between master and sub account（Added parameters in request: client_order_id）】
+
+### 1、Transfer between master and sub account（Added parameters in request: client_order_id）
+ - Interface Name：Transfer between master and sub account
+ - Interface Type：private
+ - Interface URL：/option-api/v1/option_master_sub_transfer
+
 ## 1.0.5 2021-2-26 【Added: Query Asset Valuation interface. Modified Query Option Price Limitation interface(Support users not to fill in all input parameters, and the interface returns the price limit data of all available contracts). Modified Query The Last Trade of a Contract interface(Support users not to fill in all input parameters, the interface returns the latest transaction data of all available contracts; And in that case, the return parameter "ch" value is "market.*trade.detail". Added one field in return "tick" parameter: "contract_code")】
 
 ### 1. Added Query Asset Valuation interface
