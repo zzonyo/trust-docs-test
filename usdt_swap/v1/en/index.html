@@ -16676,6 +16676,13 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>transfer type</td>
 <td>&quot;master_to_sub&quot; or &quot;sub_to_master&quot;</td>
 </tr>
+<tr>
+<td>client_order_id</td>
+<td>false</td>
+<td>long</td>
+<td>Clients fill and maintain themselves.</td>
+<td>must be Less or Equal than 9223372036854775807</td>
+</tr>
 </tbody></table>
 <h4 id='note-29'>Note：</h4>
 <ul>
@@ -16683,6 +16690,8 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <li>represents transfer from transfer_out margin account to transfer_in margin account. The currency transferred shall be the same as the denominated currency of the transfer_out margin account.；</li>
 <li>The denominated currency of the transfer_out margin account and transfer_in margin account must be the same. (eg, USDT can be transferred from BTC-USDT to ETH-USDT, but cannot be transferred from BTC-USDT to ETH-HUSD account).</li>
 <li>the rate limit between the master account and each subaccount is 10 times/ minute</li>
+<li>The client_order_id is valid in 8 hours only, that is the user cannot use the same client_order_id beyonds one times for the same transfer path (for example, transfer currency from master account to sub-account using client_order_id=1, and you can&#39;t do that transfe currency from master account to sub-account using client_order_id=1 in the next time; but you can 
+transfer currency from sub-account to  master account using client_order_id=1).</li>
 </ul>
 
 <blockquote>
@@ -16732,6 +16741,13 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>true</td>
 <td>string</td>
 <td>order id</td>
+<td></td>
+</tr>
+<tr>
+<td>client_order_id</td>
+<td>false</td>
+<td>long</td>
+<td>the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned</td>
 <td></td>
 </tr>
 <tr>
@@ -17014,6 +17030,13 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>amount（The unit is the denominated currency of the contract.）</td>
 <td></td>
 </tr>
+<tr>
+<td>client_order_id</td>
+<td>false</td>
+<td>long</td>
+<td>Clients fill and maintain themselves.</td>
+<td>must be Less or Equal than 9223372036854775807</td>
+</tr>
 </tbody></table>
 <h4 id='note-30'><strong>Note:</strong></h4>
 <ul>
@@ -17021,6 +17044,7 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <li>represents transfer from transfer_out margin account to transfer_in margin account. The currency transferred shall be the same as the denominated currency of the transfer_out margin account.；</li>
 <li>The denominated currency of the transfer_out margin account and transfer_in margin account must be the same. (eg, USDT can be transferred from BTC-USDT to ETH-USDT, but cannot be transferred from BTC-USDT to ETH-HUSD account)。</li>
 <li>API rate limit for this interface is up to 10 times per minute.</li>
+<li>The client_order_id is valid in 8 hours only, that is the user cannot use the same client_order_id beyonds one times</li>
 </ul>
 
 <blockquote>
@@ -17063,6 +17087,13 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 <td>true</td>
 <td>string</td>
 <td>order id</td>
+<td></td>
+</tr>
+<tr>
+<td>client_order_id</td>
+<td>false</td>
+<td>long</td>
+<td>the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned</td>
 <td></td>
 </tr>
 <tr>
