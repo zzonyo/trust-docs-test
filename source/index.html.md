@@ -5392,10 +5392,12 @@ last_price | decimal  | true  | 最新价                                       
 | symbol | true | string | 品种代码 | 支持大小写,"BTC","ETH"... |
 | amount | true | decimal | 划转金额 ||
 | type | true | string | 划转类型 | 仅支持小写,master_to_sub：母账户划转到子账户， sub_to_master：子账户划转到母账户 |
+| client_order_id | false | long | 客户自己填写和维护的订单号 | 必须为数字,请注意必须小于等于9223372036854775807 |
 
 ### 备注：
-  母账户与每个子账户相互划转限频10次/分钟。
-  
+ - 母账户与每个子账户相互划转限频10次/分钟。
+ - client_order_id仅在8小时内有效，即8小时内同一个用户同一个划转路径无法使用相同的client_order_id进行二次划转（比如母账户发起母转子，使用client_order_id=1，则8小时内无法继续使用client_order_id=1进行母转子；但是可以用client_order_id=1进行子转母。）。
+
 > Response:
 
 ```json
@@ -5418,6 +5420,7 @@ last_price | decimal  | true  | 最新价                                       
 | ts            | true | long    | 响应生成时间点，单位：毫秒   |                                          |
 | \<data\>      | true     |  object        |      |   |
 | order_id        | true | string  | 划转订单ID            |  |
+| client_order_id | false | long | 用户下单时填写的客户端订单ID，没填则不返回	| 
 | \</data\>     |      |         |         |   |
 
 ## 获取母账户下的所有母子账户划转记录
