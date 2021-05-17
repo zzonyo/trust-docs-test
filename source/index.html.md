@@ -40,6 +40,13 @@ Welcome users, who are dedicated to maker strategy and have created large tradin
 
 # Changelog
 
+## 1.2.9 2021-5-17 【Transfer between master and sub account（Added parameters in request: client_order_id）】
+
+### 1、Transfer between master and sub account（Added parameters in request: client_order_id）
+ - Interface Name：Transfer between master and sub account
+ - Interface Type：private
+ - Interface URL：/api/v1/contract_master_sub_transfer
+
 ## 1.2.8 2021-5-12 【Added: Trailing Order interface.】
 
 ### 1. Added Place a Trailing Order interface
