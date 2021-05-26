@@ -12754,13 +12754,13 @@ Add computed value into the Signature parameter in API request. Please note  the
 ```json
  
 {
-  "op": "auth",
-  "type":"api",
-  "ts": 1489474081631,
-  "err-code": 0,
-  "data": {
-    "user-id": "12345678"
-  }
+   "op": "auth",
+   "type":"api",
+   "ts": 1489474081631,
+   "err-code": 0,
+   "data": {
+       "user-id": "12345678"
+   }
 }
 
 ```
