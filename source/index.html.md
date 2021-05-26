@@ -8300,7 +8300,7 @@ Add computed value into the Signature parameter in API request. Please note  the
 | err-code | int | 0 means successfully response, others means response failure  return 0 if success , For detailed Response code（Err-Code）, please refer to appendix  |
 | err-msg  | string  | optional， response detailed error code when error occurs                         |
 | ts       | long    |  server responds timestamp                                |
-| user-id  | long    |  client ID                                           |
+| user-id  | string    |  client ID                                           |
 
 > Example of A Success Authentication Response
 
@@ -8312,7 +8312,7 @@ Add computed value into the Signature parameter in API request. Please note  the
   "ts": 1489474081631,
   "err-code": 0,
   "data": {
-    "user-id": 12345678
+    "user-id": "12345678"
   }
 }
 
