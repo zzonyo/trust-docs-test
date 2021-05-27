@@ -2757,9 +2757,9 @@ API Key 权限：提币<br>
 ### 响应数据
 
 
-| 参数名称 | 是否必须 | 数据类型 | 描述    | 取值范围 |
-| -------- | -------- | -------- | ------- | -------- |
-| data     | false    | long     | 提币 ID |          |
+| 参数名称 | 是否必须 | 数据类型 | 描述    | 取值范围                                         |
+| -------- | -------- | -------- | ------- | ------------------------------------------------ |
+| data     | false    | long     | 提币 ID | （取消成功返回提币ID，取消失败返回错误码和原因） |
 
 ## 充提记录
 
@@ -2908,9 +2908,9 @@ A：请参考/v2/account/withdraw/quota接口返回值，返回信息中包含�
 
 <aside class="notice">访问子用户管理的相关接口需要进行签名认证。</aside>
 
-## 设置母子用户手续费抵扣（HT或点卡）
+## 设置子用户手续费抵扣模式
 
-此接口用于设置母子用户手续费抵扣顺序（HT或点卡）。
+此接口用于设置子用户手续费抵扣模式（子用户抵扣或母用户抵扣）
 
 API Key 权限：交易
 
@@ -5046,7 +5046,10 @@ curl "https://api.huobi.pro/v2/reference/transact-fee-rate?symbols=btcusdt,ethus
 | validation-constraints-required                              | 指定的必填参数缺失                                           |
 | symbol-not-support                                           | 交易对不支持，全仓杠杆或c2c                                  |
 | not-found                                                    | 撤单时订单不存在                                             |
-| base-not-found                                               | 未找到记录            |
+| base-not-found                                               | 未找到记录                                                   |
+| base_record_invalid                                          | 订单不存在 （传错订单ID）                                    |
+| dw_cancel_withdraw_failed                                    | 取消失败，订单状态错误                                       |
+| base_update_error                                            | 内部系统错误                                                 |
 
 ## 常见问题
 
