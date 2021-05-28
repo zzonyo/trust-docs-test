@@ -1176,12 +1176,12 @@ curl "https://api.huobi.pro/v1/common/symbols"
 | -------------------------- | -------- | -------- | ------------------------------------------------------------ |
 | base-currency              | true     | string   | 交易对中的基础币种                                           |
 | quote-currency             | true     | string   | 交易对中的报价币种                                           |
-| price-precision            | true     | integer  | 交易对报价的精度（小数点后位数）                             |
-| amount-precision           | true     | integer  | 交易对基础币种计数精度（小数点后位数）                       |
+| price-precision            | true     | integer  | 交易对报价的精度（小数点后位数），限价买入与限价卖出价格使用 |
+| amount-precision           | true     | integer  | 交易对基础币种计数精度（小数点后位数），限价买入、限价卖出、市价卖出数量使用 |
 | symbol-partition           | true     | string   | 交易区，可能值: [main，innovation]                           |
 | symbol                     | true     | string   | 交易对                                                       |
 | state                      | true     | string   | 交易对状态；可能值: [online，offline,suspend] online - 已上线；offline - 交易对已下线，不可交易；suspend -- 交易暂停；pre-online - 即将上线 |
-| value-precision            | true     | integer  | 交易对交易金额的精度（小数点后位数）                         |
+| value-precision            | true     | integer  | 交易对交易金额的精度（小数点后位数），市价买入金额使用       |
 | min-order-amt              | true     | float    | 交易对限价单最小下单量 ，以基础币种为单位（即将废弃）        |
 | max-order-amt              | true     | float    | 交易对限价单最大下单量 ，以基础币种为单位（即将废弃）        |
 | limit-order-min-order-amt  | true     | float    | 交易对限价单最小下单量 ，以基础币种为单位（NEW）             |
