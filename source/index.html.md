@@ -30,6 +30,7 @@ table th {
 
 | Release Time <br>(UTC +8) | API  | New / Update    | Description     |
 | ------------------------ | ---------------------- | --------------- | ------------------------------------- |
+| 2021.5.26 | `GET /v1/order/orders/getClientOrder`<br>`POST /v1/order/orders/place`<br>`POST/v1/order/orders/submitCancelClientOrder` | Update | For completed orders, clientOrderId will be valid for 2 hours since the order creation (it is still valid for 8 hours concerning other orders).<br>The uniqueness of the clientOrderId passed in when you place an order will no longer be verified. |
 | 2021.5.12 | GET `/v2/etp/transactions` | Update | "etpNames" and "transactTypes" are changed to "required" and "Only supports filling in one value" |
 | 2021.3.1 | `POST /v2/sub-user/deduct-mode` | Add | Set a deduction for master and sub user |
 | 2021.3.1 | `GET /v2/sub-user/account-list` | Update | Add deduct mode parameters |
@@ -639,7 +640,7 @@ The JSON data type described in this document is defined as below:
 **Place an order (/v1/order/orders/place)**
 
 - It is suggested to follow the symbol reference (`/v1/common/symbols`) to validate the amount and value before placing the older, otherwise you may place an invalid order and waste your time.
-- It is suggested to provide an unique `client-order-id` field when placing the order, it is useful to track your orders status if you fail to get the order id response. Later you can use the `client-order-id` to match the WebSocket order notification or query order detail by interface `/v1/order/orders/getClientOrder`.
+- It is suggested to provide an unique `client-order-id` field when placing the order, it is useful to track your orders status if you fail to get the order id response. Later you can use the `client-order-id` to match the WebSocket order notification or query order detail by interface `/v1/order/orders/getClientOrder`.The uniqueness of the clientOrderId passed in when you place an order will no longer be verified. We recommend you to manage clientOrderId by yourself to ensure its uniqueness. If multiple orders use the same clientOrderId, the latest order corresponding to the clientOrderId will be returned when querying/canceling an order.
 
 **Search history olders (/v1/order/orders)**
 
@@ -3881,7 +3882,7 @@ type:
 **IDs**: The frequently used identities are listed below:
 
 - order-id: The unique identity for order.
-- client-order-id: The identity defined by the client. This id is included in order creation request, and will be returned as order-id. This id is valid within 24 hours. The allowed characters are letters (case sensitive), digit, underscore (_) and hyphen (-), no more than 64 chars.
+- client-order-id: The identity defined by the client. This id is included in order creation request, and will be returned as order-id. For completed orders, clientOrderId will be valid for 2 hours since the order creation (it is still valid for 8 hours concerning other orders). That is to say, if an order has been created for more than 2 hours, clientOrderId can’t be used to query the completed order (It is recommended to check it with orderid). Among them, the status of the completed order includes partially canceled, canceled, and fully executed. The allowed characters are letters (case sensitive), digit, underscore (_) and hyphen (-), no more than 64 chars.
 - match-id : The identity for order matching.
 - trade-id : The unique identity for the trade.
 
@@ -3989,7 +3990,7 @@ A batch contains at most 10 orders.
 | amount          | string    | true     | NA       | The order size (for buy market order, it's order value)      |
 | price           | string    | false    | NA       | The order price (not available for market order)             |
 | source          | string    | false    | spot-api | When trade with spot use 'spot-api';When trade with margin use 'margin-api'; When trade with super-margin use 'super-margin-api';When trade with c2c-margin use 'c2c-margin-api' |
-| client-order-id | string    | false    | NA       | Client order ID (maximum 64-character length, to be unique within 24 hours) |
+| client-order-id | string    | false    | NA       | Client order ID (maximum 64-character length)                |
 | stop-price      | string    | false    | NA       | Trigger price of stop limit order                            |
 | operator}]      | string    | false    | NA       | Operation character of stop price, use 'gte' for greater than and equal (>=), use 'lte' for less than and equal (<=) |
 
@@ -4032,7 +4033,7 @@ If the order price is greater than the highest buy price in the market, the orde
 | err-code        | string    | The error code (only for rejected order)    |
 | err-msg}]       | string    | The error message (only for rejected order) |
 
-If client order ID duplicates with a previous order (within 24 hours), the endpoint responds that previous order's Id and client order ID.
+If client order ID duplicates with a previous order , the endpoint responds that previous order's Id and client order ID.
 
 ## Submit Cancel for an Order
 
@@ -4095,7 +4096,7 @@ The possible values of "order-state" includes -
 API Key Permission：Trade<br>
 Rate Limit (NEW): 100times/2s
 
-This endpoint submit a request to cancel an order based on client-order-id (within 24 hours).
+This endpoint submit a request to cancel an order based on client-order-id .
 
 <aside class="notice">It is suggested to use /v1/order/orders/{order-id}/submitcancel to cancel a single order, which is faster and more stable</aside>
 <aside class="warning">This only submits the cancel request, the actual result of the canel request needs to be checked by order status or match result endpoints</aside>
