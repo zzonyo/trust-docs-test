@@ -902,6 +902,12 @@ table th {
 </tr>
 </thead><tbody>
 <tr>
+<td>2021.5.26</td>
+<td><code>GET /v1/order/orders/getClientOrder</code><br><code>POST /v1/order/orders/place</code><br><code>POST/v1/order/orders/submitCancelClientOrder</code></td>
+<td>Update</td>
+<td>For completed orders, clientOrderId will be valid for 2 hours since the order creation (it is still valid for 8 hours concerning other orders).<br>The uniqueness of the clientOrderId passed in when you place an order will no longer be verified.</td>
+</tr>
+<tr>
 <td>2021.5.12</td>
 <td>GET <code>/v2/etp/transactions</code></td>
 <td>Update</td>
@@ -2245,7 +2251,7 @@ The types include:</p>
 
 <ul>
 <li>It is suggested to follow the symbol reference (<code>/v1/common/symbols</code>) to validate the amount and value before placing the older, otherwise you may place an invalid order and waste your time.</li>
-<li>It is suggested to provide an unique <code>client-order-id</code> field when placing the order, it is useful to track your orders status if you fail to get the order id response. Later you can use the <code>client-order-id</code> to match the WebSocket order notification or query order detail by interface <code>/v1/order/orders/getClientOrder</code>.</li>
+<li>It is suggested to provide an unique <code>client-order-id</code> field when placing the order, it is useful to track your orders status if you fail to get the order id response. Later you can use the <code>client-order-id</code> to match the WebSocket order notification or query order detail by interface <code>/v1/order/orders/getClientOrder</code>.The uniqueness of the clientOrderId passed in when you place an order will no longer be verified. We recommend you to manage clientOrderId by yourself to ensure its uniqueness. If multiple orders use the same clientOrderId, the latest order corresponding to the clientOrderId will be returned when querying/canceling an order.</li>
 </ul>
 
 <p><strong>Search history olders (/v1/order/orders)</strong></p>
@@ -8665,7 +8671,7 @@ Rate Limit (NEW): 20times/2s</p>
 
 <ul>
 <li>order-id: The unique identity for order.</li>
-<li>client-order-id: The identity defined by the client. This id is included in order creation request, and will be returned as order-id. This id is valid within 24 hours. The allowed characters are letters (case sensitive), digit, underscore (_) and hyphen (-), no more than 64 chars.</li>
+<li>client-order-id: The identity defined by the client. This id is included in order creation request, and will be returned as order-id. For completed orders, clientOrderId will be valid for 2 hours since the order creation (it is still valid for 8 hours concerning other orders). That is to say, if an order has been created for more than 2 hours, clientOrderId can’t be used to query the completed order (It is recommended to check it with orderid). Among them, the status of the completed order includes partially canceled, canceled, and fully executed. The allowed characters are letters (case sensitive), digit, underscore (_) and hyphen (-), no more than 64 chars.</li>
 <li>match-id : The identity for order matching.</li>
 <li>trade-id : The unique identity for the trade.</li>
 </ul>
@@ -8875,7 +8881,7 @@ Rate Limit (NEW): 50times/2s</p>
 <td>string</td>
 <td>false</td>
 <td>NA</td>
-<td>Client order ID (maximum 64-character length, to be unique within 24 hours)</td>
+<td>Client order ID (maximum 64-character length)</td>
 </tr>
 <tr>
 <td>stop-price</td>
@@ -8951,7 +8957,7 @@ Rate Limit (NEW): 50times/2s</p>
 </tr>
 </tbody></table>
 
-<p>If client order ID duplicates with a previous order (within 24 hours), the endpoint responds that previous order&#39;s Id and client order ID.</p>
+<p>If client order ID duplicates with a previous order , the endpoint responds that previous order&#39;s Id and client order ID.</p>
 <h2 id='submit-cancel-for-an-order'>Submit Cancel for an Order</h2>
 <p>API Key Permission：Trade<br>
 Rate Limit (NEW): 100times/2s</p>
@@ -9033,7 +9039,7 @@ Rate Limit (NEW): 100times/2s</p>
 <p>API Key Permission：Trade<br>
 Rate Limit (NEW): 100times/2s</p>
 
-<p>This endpoint submit a request to cancel an order based on client-order-id (within 24 hours).</p>
+<p>This endpoint submit a request to cancel an order based on client-order-id .</p>
 
 <aside class="notice">It is suggested to use /v1/order/orders/{order-id}/submitcancel to cancel a single order, which is faster and more stable</aside>
 
@@ -13098,8 +13104,12 @@ Rate Limit (NEW): 100times/2s</p>
 <h2 id='transfer-asset-from-cross-margin-account-to-spot-trading-account-cross'>Transfer Asset from Cross Margin Account to Spot Trading Account（Cross）</h2>
 <p>API Key Permission：Trade</p>
 
+<p>Rate Limit (NEW): 10times/s</p>
+
 <p>This endpoint transfers specific asset from cross margin account to spot trading account.</p>
 <h3 id='http-request-72'>HTTP Request</h3>
+<p><code>POST https://api.huobi.pro/v1/cross-margin/transfer-in</code></p>
+
 <p><code>POST https://api.huobi.pro/v1/cross-margin/transfer-out</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/cross-margin/transfer-out"</span> -d
 <span class="s1">'{
