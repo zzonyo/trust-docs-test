@@ -26,6 +26,7 @@ table th {
 
 | 生效时间<br>(UTC +8) | 接口     | 变化      | 摘要         |
 | ---------- | --------- | --------- | --------------- |
+| 2021.5.26 | `GET /v1/order/orders/getClientOrder`<br/>`POST /v1/order/orders/place`<br/>` POST /v1/order/orders/submitCancelClientOrder` | 优化 | clientOrderId的有效期从原订单创建8小时内有效改为：对于已完结状态订单，2小时内有效。<br/>对于用户下单时传入的clientOrderId 的唯一性将不再进行校验 |
 | 2021.5.12 | GET `/v2/etp/transactions` | 优化 | "etpNames"和"transactTypes"变更为"必填"且“只能填一个” |
 | 2021.3.1   | `POST /v2/sub-user/deduct-mode`   | 新增  | 新增“设置母子用户手续费抵扣（HT或点卡）”接口  |
 | 2021.3.1             | `GET /v2/sub-user/account-list`                              | 优化      | 新增“母子用户手续费抵扣”参数                                 |
@@ -662,7 +663,7 @@ account-id可通过/v1/account/accounts接口获取，并根据account-type区�
 **下单接口（/v1/order/orders/place）**
 
 - 建议用户下单前根据`/v1/common/symbols`接口中返回的币种对参数数据对下单价格、下单数量等参进行校验，避免产生无效的下单请求。
-- 推荐下单时携带`client-order-id`参数，且能够保证该参数的唯一性（每次发送请求时都不同，且唯一），该参数能够防止在发起下单请求时由于网络或其他原因造成接口超时或没有返回的情况，在此情况下，可根据`client-order-id`对WebSocket中推送过来的数据进行验证，或使用`/v1/order/orders/getClientOrder`接口查询该订单信息。
+- 推荐下单时携带`client-order-id`参数，且建议用户保证该参数的唯一性（每次发送请求时都不同，且唯一），该参数能够防止在发起下单请求时由于网络或其他原因造成接口超时或没有返回的情况，在此情况下，可根据`client-order-id`对WebSocket中推送过来的数据进行验证，或使用`/v1/order/orders/getClientOrder`接口查询该订单信息。 （对于用户下单时传入的clientOrderId 的唯一性不进行校验，若发生多笔订单使用同一clientOrderId的情况，查询/撤单时将返回该clientOrderId对映的最近一笔订单。）
 
 **搜索历史订单（/v1/order/orders）**
 
@@ -3874,8 +3875,15 @@ API Key 权限：读取<br>
 **相关ID**
 
 - order-id : 订单的唯一编号
-- client-order-id : 客户自定义ID，该ID在下单时传入，与下单成功后返回的order-id对应，该ID 24小时内有效。 允许的字符包括字母(大小写敏感)、数字、下划线 (_)和横线(-)，最长64位
+
+- client-order-id : 客户自定义ID，该ID在下单时传入，与下单成功后返回的order-id对应。
+
+  client-order-id 时效：对于已完结状态订单，2小时内有效。（其他状态订单有效时间仍为8小时有效）即订单创建超过2h，将无法使用clientOrderId查询已完结状态订单，建议用户通过orderid进行查询。其中，已完结订单状态包括部分成交已撤销、已撤销和完全成交。
+
+- 。 允许的字符包括字母(大小写敏感)、数字、下划线 (_)和横线(-)，最长64位
+
 - match-id : 订单在撮合中的顺序编号
+
 - trade-id : 成交的唯一编号
 
 ## 下单
