@@ -14513,8 +14513,8 @@ trade_turnover   | true | decimal |  成交额（计价币种） |              
 | trade_turnover   | true | decimal  | 成交金额（成交数量 * 合约面值 * 成交价格 ）    |    |
 | created_at   | true | long  | 成交创建时间    |    |
 | role   | true | string  | taker或maker    |    |
-| real_profit | decimal | 该笔成交的真实收益（使用开仓均价计算，包含仓位跨结算的已实现盈亏。）  |  |
-| profit                  | decimal | 该笔成交的平仓盈亏（使用持仓均价计算，不包含仓位跨结算的已实现盈亏。）             |
+| real_profit | true | decimal | 该笔成交的真实收益（使用开仓均价计算，包含仓位跨结算的已实现盈亏。）  |  |
+| profit  | true | decimal | 该笔成交的平仓盈亏（使用持仓均价计算，不包含仓位跨结算的已实现盈亏。）             |
 | fee_asset   | true | string  | 手续费币种   |  “USDT”  |
 | \</trade\>   |  |   |     |
 
@@ -14713,8 +14713,8 @@ trade_turnover   | true | decimal |  成交额（计价币种） |              
 | trade_turnover   | true | decimal  | 成交金额（成交数量 * 合约面值 * 成交价格 ）    |    |
 | created_at   | true | long  | 成交创建时间    |    |
 | role   | true | string  | taker或maker    |    |
-| real_profit | decimal | 该笔成交的真实收益（使用开仓均价计算，包含仓位跨结算的已实现盈亏。）  |  |
-| profit                  | decimal | 该笔成交的平仓盈亏（使用持仓均价计算，不包含仓位跨结算的已实现盈亏。）             |
+| real_profit | true | decimal | 该笔成交的真实收益（使用开仓均价计算，包含仓位跨结算的已实现盈亏。）  |  |
+| profit  | true | decimal | 该笔成交的平仓盈亏（使用持仓均价计算，不包含仓位跨结算的已实现盈亏。）             |
 | fee_asset   | true | string  | 手续费币种   |  “USDT”  |
 | \</trade\>   |  |   |     |
 
