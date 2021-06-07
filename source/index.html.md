@@ -14847,8 +14847,8 @@ To subscribe order data, Clients have to make connection to the Server and send 
 | trade_turnover   | true | decimal  | trade amount    |    |
 | created_at   | true | long  | trade time   |    |
 | role   | true | string  | taker/maker    |    |
-| real_profit  | decimal | real profit of the transaction (calculated with the opening average price, include profit in history settlement.) | |
-| profit                  | decimal |  profit or loss  of the transaction (calculated with the average price of position, exclude profit in history settlement.)       |
+| real_profit  | true | decimal | real profit of the transaction (calculated with the opening average price, include profit in history settlement.) | |
+| profit  | true | decimal |  profit or loss  of the transaction (calculated with the average price of position, exclude profit in history settlement.)       |
 | fee_asset   | true | string  | fee asset   |  “USDT”  |
 | \</trade\>   |  |   |     |
 
