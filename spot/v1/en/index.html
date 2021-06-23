@@ -8756,7 +8756,7 @@ Rate Limit (NEW): 100times/2s</p>
 <td>string</td>
 <td>false</td>
 <td>NA</td>
-<td>Client order ID (maximum 64-character length, to be unique within 24 hours)</td>
+<td>Client order ID (maximum 64-character length, to be unique within 8 hours)</td>
 <td></td>
 </tr>
 <tr>
@@ -8784,7 +8784,7 @@ Rate Limit (NEW): 100times/2s</p>
 </span></code></pre><h3 id='response-content-44'>Response Content</h3>
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
 
-<p>If client order ID duplicates with a previous order (within 24 hours), the endpoint reverts error message <code>invalid.client.order.id</code>.</p>
+<p>If client order ID duplicates with a previous order (within 8 hours), the endpoint reverts error message <code>invalid.client.order.id</code>.</p>
 
 <p><strong>buy-limit-maker</strong></p>
 
@@ -9065,7 +9065,7 @@ Rate Limit (NEW): 100times/2s</p>
 <td>string</td>
 <td>true</td>
 <td>NA</td>
-<td>Client order ID, it must exist within 24 hours, otherwise it is not allowed to use when placing a new order</td>
+<td>Client order ID, it must exist within 8 hours, otherwise it is not allowed to use when placing a new order</td>
 </tr>
 </tbody></table>
 
@@ -9717,7 +9717,7 @@ Rate Limit (NEW): 50times/2s</p>
 <tr>
 <td>client-order-id</td>
 <td>string</td>
-<td>Client order id (&quot;client-order-id&quot; (if specified) can be returned from all open orders.  &quot;client-order-id&quot;  (if specified) can be returned only from closed orders (state &lt;&gt; canceled) created within 7 days.    &quot;client-order-id&quot;  (if specified) can be returned only from closed orders (state = canceled) created within 24 hours.)</td>
+<td>Client order id (&quot;client-order-id&quot; (if specified) can be returned from all open orders.  &quot;client-order-id&quot;  (if specified) can be returned only from closed orders (state &lt;&gt; canceled) created within 7 days.    &quot;client-order-id&quot;  (if specified) can be returned only from closed orders (state = canceled) created within 8 hours.)</td>
 </tr>
 <tr>
 <td>symbol</td>
@@ -9799,7 +9799,7 @@ Rate Limit (NEW): 50times/2s</p>
 <p>API Key Permission：Read<br>
 Rate Limit (NEW):50times/2s</p>
 
-<p>This endpoint returns the detail of one order by specified client order id (within 24 hours). The order created via API will no longer be queryable after being cancelled for more than 2 hours. It is suggested to cancel orders via <code>GET /v1/order/orders/{order-id}</code>, which is faster and more stable.</p>
+<p>This endpoint returns the detail of one order by specified client order id (within 8 hours). The order created via API will no longer be queryable after being cancelled for more than 2 hours. It is suggested to cancel orders via <code>GET /v1/order/orders/{order-id}</code>, which is faster and more stable.</p>
 <h3 id='http-request-57'>HTTP Request</h3>
 <p><code>GET /v1/order/orders/getClientOrder</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"</span>
@@ -9860,7 +9860,7 @@ Rate Limit (NEW):50times/2s</p>
 <tr>
 <td>client-order-id</td>
 <td>string</td>
-<td>Client order id (only those orders created within 24 hours can be returned.)</td>
+<td>Client order id (only those orders created within 8 hours can be returned.)</td>
 </tr>
 <tr>
 <td>symbol</td>
@@ -10254,7 +10254,7 @@ Rate Limit (NEW): 50times/2s</p>
 <tr>
 <td>client-order-id</td>
 <td>string</td>
-<td>Client order id (&quot;client-order-id&quot; (if specified) can be returned from all open orders.  &quot;client-order-id&quot; (if specified) can be returned only from closed orders (state &lt;&gt; canceled) created within 7 days. only those closed orders (state = canceled) created within 24 hours can be returned.)</td>
+<td>Client order id (&quot;client-order-id&quot; (if specified) can be returned from all open orders.  &quot;client-order-id&quot; (if specified) can be returned only from closed orders (state &lt;&gt; canceled) created within 7 days. only those closed orders (state = canceled) created within 8 hours can be returned.)</td>
 </tr>
 <tr>
 <td>account-id</td>
@@ -10521,7 +10521,7 @@ The orders created via API will no longer be queryable after being cancelled for
 <tr>
 <td>client-order-id</td>
 <td>string</td>
-<td>Client order id (&quot;client-order-id&quot; (if specified) can be returned only from closed orders (state &lt;&gt; canceled) created within 48 hours, upon order creation time.  only those closed orders (state = canceled) created within 24 hours can be returned.)</td>
+<td>Client order id (&quot;client-order-id&quot; (if specified) can be returned only from closed orders (state &lt;&gt; canceled) created within 48 hours, upon order creation time.  only those closed orders (state = canceled) created within 8 hours can be returned.)</td>
 </tr>
 <tr>
 <td>price</td>
@@ -11151,7 +11151,7 @@ Rate Limit (NEW): 20times/2s</p>
 </tr>
 </tbody></table>
 <h2 id='faq-2'>FAQ</h2><h3 id='q1-what-is-client-order-id'>Q1：What is client-order-id?</h3>
-<p>A： The <code>client-order-id</code> is an optional request parameter while placing order. It&#39;s string type which maximum length is 64. The client order id is generated by client, and is only valid within 24 hours.</p>
+<p>A： The <code>client-order-id</code> is an optional request parameter while placing order. It&#39;s string type which maximum length is 64. The client order id is generated by client, and is only valid within 8 hours (It’s only valid within 2 hours for the final state).</p>
 <h3 id='q2-how-to-get-the-order-size-price-and-decimal-precision'>Q2：How to get the order size, price and decimal precision?</h3>
 <p>A： You can call API <code>GET /v1/common/symbols</code> to get the currency pair information, pay attention to the difference between the minimum amount and the minimum price.   </p>
 
