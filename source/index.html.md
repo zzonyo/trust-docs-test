@@ -3920,7 +3920,7 @@ curl -X POST -H "Content-Type: application/json" "https://api.huobi.pro/v1/order
 | amount          | string    | true     | NA       | order size (for buy market order, it's order value)          | NA                                                           |
 | price           | string    | false    | NA       | The order price (not available for market order)             | NA                                                           |
 | source          | string    | false    | spot-api | When trade with spot use 'spot-api';When trade with isolated margin use 'margin-api'; When trade with cross margin use 'super-margin-api';When trade with c2c-margin use 'c2c-margin-api'; | api, margin-api,super-margin-api,c2c-margin-api              |
-| client-order-id | string    | false    | NA       | Client order ID (maximum 64-character length, to be unique within 24 hours) |                                                              |
+| client-order-id | string    | false    | NA       | Client order ID (maximum 64-character length, to be unique within 8 hours) |                                                              |
 | stop-price      | string    | false    | NA       | Trigger price of stop limit order                            |                                                              |
 | operator        | string    | false    | NA       | operation charactor of stop price                            | gte – greater than and equal (>=), lte – less than and equal (<=) |
 
@@ -3933,7 +3933,7 @@ curl -X POST -H "Content-Type: application/json" "https://api.huobi.pro/v1/order
 ### Response Content
 
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
-If client order ID duplicates with a previous order (within 24 hours), the endpoint reverts error message `invalid.client.order.id`.
+If client order ID duplicates with a previous order (within 8 hours), the endpoint reverts error message `invalid.client.order.id`.
 
 **buy-limit-maker**
 
@@ -4116,7 +4116,7 @@ curl -X POST -H "Content-Type: application/json" "https://api.huobi.pro/v1/order
 
 | Parameter       | Data Type | Required | Default | Description                                                  |
 | --------------- | --------- | -------- | ------- | ------------------------------------------------------------ |
-| client-order-id | string    | true     | NA      | Client order ID, it must exist within 24 hours, otherwise it is not allowed to use when placing a new order |
+| client-order-id | string    | true     | NA      | Client order ID, it must exist within 8 hours, otherwise it is not allowed to use when placing a new order |
 
 > The above command returns JSON structured like this:
 
@@ -4478,7 +4478,7 @@ curl "https://api.huobi.pro/v1/order/orders/59378"
 | Field              | Data Type | Description                                                  |
 | ------------------ | --------- | ------------------------------------------------------------ |
 | id                 | integer   | order id                                                     |
-| client-order-id    | string    | Client order id ("client-order-id" (if specified) can be returned from all open orders.	"client-order-id"  (if specified) can be returned only from closed orders (state <> canceled) created within 7 days.	"client-order-id"  (if specified) can be returned only from closed orders (state = canceled) created within 24 hours.) |
+| client-order-id    | string    | Client order id ("client-order-id" (if specified) can be returned from all open orders.	"client-order-id"  (if specified) can be returned only from closed orders (state <> canceled) created within 7 days.	"client-order-id"  (if specified) can be returned only from closed orders (state = canceled) created within 8 hours.) |
 | symbol             | string    | The trading symbol to trade, e.g. btcusdt, bccbtc            |
 | account-id         | string    | The account id which this order belongs to                   |
 | amount             | string    | The amount of base currency in this order                    |
@@ -4491,9 +4491,9 @@ curl "https://api.huobi.pro/v1/order/orders/59378"
 | filled-cash-amount | string    | The filled total in quote currency                           |
 | filled-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint) |
 | source             | string    | All possible order source (refer to introduction in this section) |
-| state              | string    | All possible order state (refer to introduction in this section)     |
+| state              | string    | All possible order state (refer to introduction in this section) |
 | stop-price         | string    | trigger price of stop limit order                            |
-| operator           | string    | operation character of stop price: gte, lte                            |
+| operator           | string    | operation character of stop price: gte, lte                  |
 
 
 
@@ -4502,7 +4502,7 @@ curl "https://api.huobi.pro/v1/order/orders/59378"
 API Key Permission：Read<br>
 Rate Limit (NEW):50times/2s
 
-This endpoint returns the detail of one order by specified client order id (within 24 hours). The order created via API will no longer be queryable after being cancelled for more than 2 hours. It is suggested to cancel orders via `GET /v1/order/orders/{order-id}`, which is faster and more stable.
+This endpoint returns the detail of one order by specified client order id (within 8 hours). The order created via API will no longer be queryable after being cancelled for more than 2 hours. It is suggested to cancel orders via `GET /v1/order/orders/{order-id}`, which is faster and more stable.
 
 ### HTTP Request
 
@@ -4547,7 +4547,7 @@ curl "https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"
 | Field              | Data Type | Description                                                  |
 | ------------------ | --------- | ------------------------------------------------------------ |
 | id                 | integer   | order id                                                     |
-| client-order-id    | string    | Client order id (only those orders created within 24 hours can be returned.) |
+| client-order-id    | string    | Client order id (only those orders created within 8 hours can be returned.) |
 | symbol             | string    | The trading symbol to trade, e.g. btcusdt, bccbtc            |
 | account-id         | string    | The account id which this order belongs to                   |
 | amount             | string    | The amount of base currency in this order                    |
@@ -4560,7 +4560,7 @@ curl "https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"
 | filled-cash-amount | string    | The filled total in quote currency                           |
 | filled-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint) |
 | source             | string    | All possible order source (refer to introduction in this section) |
-| state              | string    | All possible order state (refer to introduction in this section)     |
+| state              | string    | All possible order state (refer to introduction in this section) |
 | stop-price         | string    | trigger price of stop limit order                            |
 | operator           | string    | operation character of stop price                            |
 
@@ -4730,7 +4730,7 @@ curl "https://api.huobi.pro/v1/order/orders?symbol=ethusdt&type=buy-limit&staet=
 | Field              | Data Type | Description                                                  |
 | ------------------ | --------- | ------------------------------------------------------------ |
 | id                 | long      | Order id                                                     |
-| client-order-id    | string    | Client order id ("client-order-id" (if specified) can be returned from all open orders.	"client-order-id" (if specified) can be returned only from closed orders (state <> canceled) created within 7 days.	only those closed orders (state = canceled) created within 24 hours can be returned.) |
+| client-order-id    | string    | Client order id ("client-order-id" (if specified) can be returned from all open orders.	"client-order-id" (if specified) can be returned only from closed orders (state <> canceled) created within 7 days.	only those closed orders (state = canceled) created within 8 hours can be returned.) |
 | account-id         | long      | Account id                                                   |
 | user-id            | integer   | User id                                                      |
 | amount             | string    | The amount of base currency in this order                    |
@@ -4739,16 +4739,16 @@ curl "https://api.huobi.pro/v1/order/orders?symbol=ethusdt&type=buy-limit&staet=
 | created-at         | long      | The timestamp in milliseconds when the order was created     |
 | canceled-at        | long      | The timestamp in milliseconds when the order was canceled, or 0 if not canceled |
 | finished-at        | long      | The timestamp in milliseconds when the order was finished, or 0 if not finished |
-| type               | string    | All possible order type (refer to introduction in this section)   |
-| filled-amount      | string    | The amount which has been filled                                  |
-| filled-cash-amount | string    | The filled total in quote currency                                |
-| filled-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint)    |
+| type               | string    | All possible order type (refer to introduction in this section) |
+| filled-amount      | string    | The amount which has been filled                             |
+| filled-cash-amount | string    | The filled total in quote currency                           |
+| filled-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint) |
 | source             | string    | All possible order source (refer to introduction in this section) |
-| state              | string    | All possible order state (refer to introduction in this section)  |
-| exchange           | string    | Internal data                                                     |
-| batch              | string    | Internal data                                                     |
-| stop-price         | string    | trigger price of stop limit order                                 |
-| operator           | string    | operation character of stop price                                 |
+| state              | string    | All possible order state (refer to introduction in this section) |
+| exchange           | string    | Internal data                                                |
+| batch              | string    | Internal data                                                |
+| stop-price         | string    | trigger price of stop limit order                            |
+| operator           | string    | operation character of stop price                            |
 
 ### Error code for invalid start-date/end-date
 
@@ -4834,9 +4834,9 @@ The orders created via API will no longer be queryable after being cancelled for
 | field-fees        | string    | Transaction fee (Accurate fees refer to matchresults endpoint) |
 | finished-at       | long      | Last trade time                                              |
 | id                | long      | Order ID                                                     |
-| client-order-id   | string    | Client order id ("client-order-id" (if specified) can be returned only from closed orders (state <> canceled) created within 48 hours, upon order creation time.	only those closed orders (state = canceled) created within 24 hours can be returned.) |
+| client-order-id   | string    | Client order id ("client-order-id" (if specified) can be returned only from closed orders (state <> canceled) created within 48 hours, upon order creation time.	only those closed orders (state = canceled) created within 8 hours can be returned.) |
 | price             | string    | Order price                                                  |
-| source            | string    | All possible order source (refer to introduction in this section)  |
+| source            | string    | All possible order source (refer to introduction in this section) |
 | state             | string    | Order status ( filled, partial-canceled, canceled )          |
 | symbol            | string    | Trading symbol                                               |
 | stop-price        | string    | trigger price of stop limit order                            |
@@ -5065,7 +5065,7 @@ Below is the error code and description returned by Trading APIs
 ## FAQ
 
 ### Q1：What is client-order-id?
-A： The `client-order-id` is an optional request parameter while placing order. It's string type which maximum length is 64. The client order id is generated by client, and is only valid within 24 hours.
+A： The `client-order-id` is an optional request parameter while placing order. It's string type which maximum length is 64. The client order id is generated by client, and is only valid within 8 hours (It’s only valid within 2 hours for the final state).
 
 ### Q2：How to get the order size, price and decimal precision?
 A： You can call API `GET /v1/common/symbols` to get the currency pair information, pay attention to the difference between the minimum amount and the minimum price.   
