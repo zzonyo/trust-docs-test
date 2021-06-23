@@ -3921,7 +3921,7 @@ API Key 权限：交易
 | amount          | string   | true     | NA       | 订单交易量（市价买单为订单交易额）                           |
 | price           | string   | false    | NA       | 订单价格（对市价单无效）                                     |
 | source          | string   | false    | spot-api | 现货交易填写“spot-api”，逐仓杠杆交易填写“margin-api”，全仓杠杆交易填写“super-margin-api”, C2C杠杆交易填写"c2c-margin-api" |
-| client-order-id | string   | false    | NA       | 用户自编订单号（最大长度64个字符，须在24小时内保持唯一性）   |
+| client-order-id | string   | false    | NA       | 用户自编订单号（最大长度64个字符，须在8小时内保持唯一性）    |
 | stop-price      | string   | false    | NA       | 止盈止损订单触发价格                                         |
 | operator        | string   | false    | NA       | 止盈止损订单触发价运算符 gte – greater than and equal (>=), lte – less than and equal (<=) |
 
@@ -3950,7 +3950,7 @@ API Key 权限：交易
 
 返回的主数据对象是一个对应下单单号的字符串。
 
-如client order ID（在24小时内）被复用，节点将返回错误消息invalid.client.order.id。
+如client order ID（在8小时内）被复用，节点将返回错误消息invalid.client.order.id。
 
 ## 批量下单
 
@@ -3996,7 +3996,7 @@ API Key 权限：交易<br>
 | amount          | string   | true     | NA       | 订单交易量（市价买单为订单交易额）                           |
 | price           | string   | false    | NA       | 订单价格（对市价单无效）                                     |
 | source          | string   | false    | spot-api | 现货交易填写“spot-api”，逐仓杠杆交易填写“margin-api”，全仓杠杆交易填写“super-margin-api”, C2C杠杆交易填写"c2c-margin-api" |
-| client-order-id | string   | false    | NA       | 用户自编订单号（最大长度64个字符，须在24小时内保持唯一性）   |
+| client-order-id | string   | false    | NA       | 用户自编订单号（最大长度64个字符，须在8小时内保持唯一性）    |
 | stop-price      | string   | false    | NA       | 止盈止损订单触发价格                                         |
 | operator }]     | string   | false    | NA       | 止盈止损订单触发价运算符 gte – greater than and equal (>=), lte – less than and equal (<=) |
 
@@ -4039,7 +4039,7 @@ API Key 权限：交易<br>
 | err-code        | string   | 订单被拒错误码（仅对被拒订单有效）   |
 | err-msg }]      | string   | 订单被拒错误信息（仅对被拒订单有效） |
 
-如client order ID（在24小时内）被复用，节点返回先前订单的order ID及client order ID。
+如client order ID（在8小时内）被复用，节点返回先前订单的order ID及client order ID。
 
 ## 撤销订单
 
@@ -4101,7 +4101,7 @@ API Key 权限：交易<br>
 API Key 权限：交易<br>
 限频值（NEW）：100次/2s
 
-此接口基于client-order-id（24小时内有效）发送一个撤销订单的请求。
+此接口基于client-order-id（8小时内有效）发送一个撤销订单的请求。
 
 <aside class="notice">撤单个订单建议通过接口/v1/order/orders/{order-id}/submitcancel，会更快更稳定</aside>
 <aside class="warning">此接口只提交取消请求，实际取消结果需要通过订单状态，撮合状态等接口来确认。</aside>
@@ -4124,7 +4124,7 @@ API Key 权限：交易<br>
 
 | 参数名称        | 是否必须 | 类型   | 描述                                                         | 默认值 | 取值范围 |
 | --------------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
-| client-order-id | true     | string | 用户自编订单号，必须24小时内已有该订单存在，否则下次下单时不允许用此值 |        |          |
+| client-order-id | true     | string | 用户自编订单号，必须8小时内已有该订单存在，否则下次下单时不允许用此值 |        |          |
 
 
 > Response:
@@ -4485,25 +4485,25 @@ API Key 权限：读取<br>
 
 ### 响应数据
 
-| 字段名称          | 是否必须 | 数据类型 | 描述                                                         | 取值范围                                                     |
-| ----------------- | -------- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| account-id        | true     | long     | 账户 ID                                                      |                                                              |
-| amount            | true     | string   | 订单数量                                                     |                                                              |
-| canceled-at       | false    | long     | 订单撤销时间                                                 |                                                              |
-| created-at        | true     | long     | 订单创建时间                                                 |                                                              |
-| field-amount      | true     | string   | 已成交数量                                                   |                                                              |
-| field-cash-amount | true     | string   | 已成交总金额                                                 |                                                              |
-| field-fees        | true     | string   | 已成交手续费（准确数值请参考matchresults接口）                           |                                                              |
-| finished-at       | false    | long     | 订单变为终结态的时间，不是成交时间，包含“已撤单”状态         |                                                              |
-| id                | true     | long     | 订单ID                                                       |                                                              |
-| client-order-id   | false    | string   | 用户自编订单号（所有open订单可返回client-order-id（如有）；仅7天内（基于订单创建时间）的closed订单（state <> canceled）可返回client-order-id（如有）；仅24小时内（基于订单创建时间）的closed订单（state = canceled）可返回client-order-id（如有）） |                                                              |
-| price             | true     | string   | 订单价格                                                     |                                                              |
-| source            | true     | string   | 订单来源                                                     | api                                                          |
+| 字段名称          | 是否必须 | 数据类型 | 描述                                                         | 取值范围                           |
+| ----------------- | -------- | -------- | ------------------------------------------------------------ | ---------------------------------- |
+| account-id        | true     | long     | 账户 ID                                                      |                                    |
+| amount            | true     | string   | 订单数量                                                     |                                    |
+| canceled-at       | false    | long     | 订单撤销时间                                                 |                                    |
+| created-at        | true     | long     | 订单创建时间                                                 |                                    |
+| field-amount      | true     | string   | 已成交数量                                                   |                                    |
+| field-cash-amount | true     | string   | 已成交总金额                                                 |                                    |
+| field-fees        | true     | string   | 已成交手续费（准确数值请参考matchresults接口）               |                                    |
+| finished-at       | false    | long     | 订单变为终结态的时间，不是成交时间，包含“已撤单”状态         |                                    |
+| id                | true     | long     | 订单ID                                                       |                                    |
+| client-order-id   | false    | string   | 用户自编订单号（所有open订单可返回client-order-id（如有）；仅7天内（基于订单创建时间）的closed订单（state <> canceled）可返回client-order-id（如有）；仅8小时内（基于订单创建时间）的closed订单（state = canceled）可返回client-order-id（如有）） |                                    |
+| price             | true     | string   | 订单价格                                                     |                                    |
+| source            | true     | string   | 订单来源                                                     | api                                |
 | state             | true     | string   | 订单状态                                                     | 所有可能的订单状态（见本章节简介） |
-| symbol            | true     | string   | 交易对                                                       | btcusdt, ethbtc, rcneth ...                                  |
+| symbol            | true     | string   | 交易对                                                       | btcusdt, ethbtc, rcneth ...        |
 | type              | true     | string   | 订单类型                                                     | 所有可能的订单类型（见本章节简介） |
-| stop-price        | false    | string   | 止盈止损订单触发价格                                         |                                                              |
-| operator          | false    | string   | 止盈止损订单触发价运算符                                     | gte,lte                                                      |
+| stop-price        | false    | string   | 止盈止损订单触发价格                                         |                                    |
+| operator          | false    | string   | 止盈止损订单触发价运算符                                     | gte,lte                            |
 
 
 ## 查询订单详情（基于client order ID）
@@ -4511,7 +4511,7 @@ API Key 权限：读取<br>
 API Key 权限：读取<br>
 限频值（NEW）：50次/2s
 
-此接口返回指定用户自编订单号（24小时内）的订单最新状态和详情。通过API创建的订单，撤销超过2小时后无法查询。建议通过GET `/v1/order/orders/{order-id}`来撤单，比使用clientOrderId更快更稳定
+此接口返回指定用户自编订单号（8小时内）的订单最新状态和详情。通过API创建的订单，撤销超过2小时后无法查询。建议通过GET `/v1/order/orders/{order-id}`来撤单，比使用clientOrderId更快更稳定
 
 ### HTTP 请求
 
@@ -4550,25 +4550,25 @@ API Key 权限：读取<br>
 
 ### 响应数据
 
-| 字段名称          | 是否必须 | 数据类型 | 描述                                                         | 取值范围                                                     |
-| ----------------- | -------- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| account-id        | true     | long     | 账户 ID                                                      |                                                              |
-| amount            | true     | string   | 订单数量                                                     |                                                              |
-| canceled-at       | false    | long     | 订单撤销时间                                                 |                                                              |
-| created-at        | true     | long     | 订单创建时间                                                 |                                                              |
-| field-amount      | true     | string   | 已成交数量                                                   |                                                              |
-| field-cash-amount | true     | string   | 已成交总金额                                                 |                                                              |
-| field-fees        | true     | string   | 已成交手续费（准确数值请参考matchresults接口）                           |                                                              |
-| finished-at       | false    | long     | 订单变为终结态的时间，不是成交时间，包含“已撤单”状态         |                                                              |
-| id                | true     | long     | 订单ID                                                       |                                                              |
-| client-order-id   | false    | string   | 用户自编订单号（仅24小时内（基于订单创建时间）的订单可被查询.） |                                                              |
-| price             | true     | string   | 订单价格                                                     |                                                              |
-| source            | true     | string   | 订单来源                                                     | api                                                          |
+| 字段名称          | 是否必须 | 数据类型 | 描述                                                         | 取值范围                           |
+| ----------------- | -------- | -------- | ------------------------------------------------------------ | ---------------------------------- |
+| account-id        | true     | long     | 账户 ID                                                      |                                    |
+| amount            | true     | string   | 订单数量                                                     |                                    |
+| canceled-at       | false    | long     | 订单撤销时间                                                 |                                    |
+| created-at        | true     | long     | 订单创建时间                                                 |                                    |
+| field-amount      | true     | string   | 已成交数量                                                   |                                    |
+| field-cash-amount | true     | string   | 已成交总金额                                                 |                                    |
+| field-fees        | true     | string   | 已成交手续费（准确数值请参考matchresults接口）               |                                    |
+| finished-at       | false    | long     | 订单变为终结态的时间，不是成交时间，包含“已撤单”状态         |                                    |
+| id                | true     | long     | 订单ID                                                       |                                    |
+| client-order-id   | false    | string   | 用户自编订单号（仅8小时内（基于订单创建时间）的订单可被查询，订单状态是终态的2小时内可查询） |                                    |
+| price             | true     | string   | 订单价格                                                     |                                    |
+| source            | true     | string   | 订单来源                                                     | api                                |
 | state             | true     | string   | 订单状态                                                     | 所有可能的订单状态（见本章节简介） |
-| symbol            | true     | string   | 交易对                                                       | btcusdt, ethbtc, rcneth ...                                  |
+| symbol            | true     | string   | 交易对                                                       | btcusdt, ethbtc, rcneth ...        |
 | type              | true     | string   | 订单类型                                                     | 所有可能的订单类型（见本章节简介） |
-| stop-price        | false    | string   | 止盈止损订单触发价格                                         |                                                              |
-| operator          | false    | string   | 止盈止损订单触发价运算符                                     | gte,lte                                                      |
+| stop-price        | false    | string   | 止盈止损订单触发价格                                         |                                    |
+| operator          | false    | string   | 止盈止损订单触发价运算符                                     | gte,lte                            |
 
 如client order ID不存在，返回如下错误信息 
 {
@@ -4740,7 +4740,7 @@ API Key 权限：读取<br>
 | field-fees        | true     | string   | 已成交手续费（准确数值请参考matchresults接口）                   |                                                              |
 | finished-at       | false    | long     | 最后成交时间                                                 |                                                              |
 | id                | true     | long     | 订单ID，无大小顺序，可作为下一次翻页查询请求的from字段       |                                                              |
-| client-order-id   | false    | string   | 用户自编订单号（所有open订单可返回client-order-id（如有）；仅7天内（基于订单创建时间）的closed订单（state <> canceled）可返回client-order-id（如有）；仅24小时内（基于订单创建时间）的closed订单（state = canceled）可被查询） |                                                              |
+| client-order-id   | false    | string   | 用户自编订单号（所有open订单可返回client-order-id（如有）；仅7天内（基于订单创建时间）的closed订单（state <> canceled）可返回client-order-id（如有）；仅8小时内（基于订单创建时间）的closed订单（state = canceled）可被查询） |                                                              |
 | price   | true   | string   | 订单价格  |        |
 | source  | true   | string   | 订单来源  | 所有可能的订单来源（见本章节简介） |
 | state  | true   | string   | 订单状态  | 所有可能的订单状态（见本章节简介） |
@@ -4829,7 +4829,7 @@ API Key 权限：读取<br>
 | field-fees        | true     | string   | 已成交手续费（准确数值请参考matchresults接口） |                                                              |
 | finished-at       | false    | long     | 最后成交时间                                                 |                                                              |
 | id                | true     | long     | 订单ID，无大小顺序                                           |                                                              |
-| client-order-id   | false    | string   | 用户自编订单号（仅48小时内（基于订单创建时间）的closed订单（state <> canceled）可返回client-order-id（如有）；仅24小时内（基于订单创建时间）的closed订单（state = canceled）可被查询） |                                                              |
+| client-order-id   | false    | string   | 用户自编订单号（仅48小时内（基于订单创建时间）的closed订单（state <> canceled）可返回client-order-id（如有）；仅8小时内（基于订单创建时间）的closed订单（state = canceled）可被查询） |                                                              |
 | price             | true     | string   | 订单价格                                                     |                                                              |
 | source  | true  | string  | 订单来源 | 所有可能的订单来源（见本章节简介）   |
 | state             | true     | string   | 订单状态                                                     | partial-canceled 部分成交撤销, filled 完全成交, canceled 已撤销 |
@@ -5062,7 +5062,7 @@ curl "https://api.huobi.pro/v2/reference/transact-fee-rate?symbols=btcusdt,ethus
 ## 常见问题
 
 ### Q1：client-order-id是什么？
-A： client-order-id作为下单请求标识的一个参数，类型为字符串，长度为64。 此id为用户自己生成，24小时内有效。
+A： client-order-id作为下单请求标识的一个参数，类型为字符串，长度为64。 此id为用户自己生成，8小时内有效。如果是终态订单仅2小时有效。
 
 ### Q2：如何获取下单数量、金额、小数限制、精度的信息？
 A： 可使用 Rest API `GET /v1/common/symbols` 获取相关币对信息， 下单时注意最小下单数量和最小下单金额的区别。 
@@ -5141,7 +5141,7 @@ API Key 权限：交易<br>
 
 注：<br>
 •	orderPrice与stopPrice的偏离率不能超出交易所对该币对的价格限制（百分比），例如，当交易所限定，限价买单的订单价格不能高于市价的110%时，该限制比率也同样适用于orderPrice与stopPrice之比。<br>
-•	用户须保证策略委托在触发时，其clientOrderId不与该用户的其它（24小时内）订单重复，否则，会导致触发失败。<br>
+•	用户须保证策略委托在触发时，其clientOrderId不与该用户的其它（8小时内）订单重复，否则，会导致触发失败。<br>
 •	用户须保证相关账户（accountId）中存有足够资金作为委托保证金，否则将导致策略委托触发时校验失败。<br>
 •	timeInForce字段中各枚举值含义：gtc - good till cancel (除非用户主动撤销否则一直有效)，boc - book or cancel（即post only，或称book only，除非成功挂单否则自动撤销），ioc - immediate or cancel（立即成交剩余部分自动撤销），fok - fill or kill（立即全部成交否则全部自动撤销）<br>
 
