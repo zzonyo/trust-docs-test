@@ -872,7 +872,7 @@ The historical kline data can be obtained via API interface /market/history/klin
 
 The historical trade data can be obtained by subscribing the websocket topic: market.$symbol.trade.detail 
 
-or can be downloaded from <a href=' '>download historical market data</a >
+or can be downloaded from <a href=' '>download historical market data</a > 
 
 But also, you can download that data using <a href='https://github.com/hbdmapi/huobi_public_data'>The demo of downloading historical market data</a >
 
