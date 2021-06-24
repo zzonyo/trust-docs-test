@@ -892,7 +892,7 @@ api.hbdm.vn域名使用的是AWS的CDN服务，理论上AWS服务器用户使用
 
 市场公开逐笔成交market.$contract_code.trade.detail是有成交则推送。
 
-### Q3: 有没有历史K线数据或者历史的公开市场逐笔成交数据？
+### Q3: 有没有历史K线数据或者历史的公开市场逐笔成交数据？ 
 
 历史K线数据可以通过API接口/market/history/kline去获取，通过from,to来截取时间段获取（时间段不能超过两年），每次获取的数据不得超过2000条。
 
