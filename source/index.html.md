@@ -2124,9 +2124,13 @@ The market trade subscription will be pushed when there is a transaction.
 
 ### Q3: Are there historical Kline data or historical market trade data? 
 
-Historical Kline data can be obtained through the API interface:/linear-swap-ex/market/history/kline.Only the from and to parameters need to be filled in, and the size parameter is not needed.At most, only two consecutive years of data can be obtained.
+The historical kline data can be obtained via API interface /market/history/kline with the request params from, to (the time period cannot exceed two years). And the qty of data records cannot be exceeding 2000 in each time.
 
-The historical market trade data is currently not available, you can store it locally by subscribing to market trade: market.$Contract_code.trade.detail.
+The historical trade data can be obtained by subscribing the websocket topic: market.$symbol.trade.detail 
+
+or can be downloaded from <a href=' '>download historical market data</a > 
+
+But also, you can download that data using <a href='https://github.com/hbdmapi/huobi_public_data'>The demo of downloading historical market data</a >
 
 ### Q4: How to get MACD and other technical indicators on Kline? 
 
