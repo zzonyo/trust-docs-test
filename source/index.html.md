@@ -215,6 +215,12 @@ table th {
 
 [https://github.com/huobiapi?tab=repositories](https://github.com/huobiapi?tab=repositories)
 
+## 在线问答知识库系统
+
+**用户可以在线提问与搜索相关问题**
+
+[CMS](https://open.huobigroup.com/cms) 
+
 ## 测试环境（已停止）
 
 测试环境运行了一段时间后，因用户访问量很少，而维护成本很高，我们慎重决定后将其停止。
