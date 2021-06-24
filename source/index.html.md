@@ -2121,7 +2121,7 @@ The snapshot orderbook subscription(market.$symbol.depth.$type) is checked once 
 
 The market trade subscription will be pushed when there is a transaction. 
 
-### Q3: Are there historical Kline data or historical market trade data? 
+### Q3: Are there historical Kline data or historical market trade data?
 
 The historical kline data can be obtained via API interface /market/history/kline with the request params from, to (the time period cannot exceed two years). And the qty of data records cannot be exceeding 2000 in each time.
 
