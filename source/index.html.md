@@ -870,7 +870,9 @@ The market trade subscription will be pushed when there is a transaction.
 
 The historical kline data can be obtained via API interface /market/history/kline with the request params from, to (the time period cannot exceed two years). And the qty of data records cannot be exceeding 2000 in each time.
 
-The historical trade data can be obtained by subscribing the websocket topic: market.$symbol.trade.detail or can be downloaded from <a href=' '>download historical market data</a >
+The historical trade data can be obtained by subscribing the websocket topic: market.$symbol.trade.detail 
+
+or can be downloaded from <a href=' '>download historical market data</a >
 
 But also, you can download that data using <a href='https://github.com/hbdmapi/huobi_public_data'>The demo of downloading historical market data</a >
 
