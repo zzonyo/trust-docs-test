@@ -4759,9 +4759,13 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <h3 id='q2-how-often-is-the-market-trade-subscription-pushed'>Q2: How often is the market trade subscription pushed?</h3>
 <p>The market trade subscription will be pushed when there is a transaction. </p>
 <h3 id='q3-are-there-historical-kline-data-or-historical-market-trade-data'>Q3: Are there historical Kline data or historical market trade data?</h3>
-<p>Historical Kline data can be obtained through the API interface:/linear-swap-ex/market/history/kline.Only the from and to parameters need to be filled in, and the size parameter is not needed.At most, only two consecutive years of data can be obtained.</p>
+<p>The historical kline data can be obtained via API interface /market/history/kline with the request params from, to (the time period cannot exceed two years). And the qty of data records cannot be exceeding 2000 in each time.</p>
 
-<p>The historical market trade data is currently not available, you can store it locally by subscribing to market trade: market.$Contract_code.trade.detail.</p>
+<p>The historical trade data can be obtained by subscribing the websocket topic: market.$symbol.trade.detail </p>
+
+<p>or can be downloaded from <a href=' '>download historical market data</a > </p>
+
+<p>But also, you can download that data using <a href='https://github.com/hbdmapi/huobi_public_data'>The demo of downloading historical market data</a ></p>
 <h3 id='q4-how-to-get-macd-and-other-technical-indicators-on-kline'>Q4: How to get MACD and other technical indicators on Kline?</h3>
 <p>The API does not have interfaces to get technical indicators such as MACD. You can refer to TradingView and other websites to calculate them.</p>
 <h3 id='q5-what-is-the-definition-of-timestamp-in-the-document'>Q5: What is the definition of timestamp in the document?</h3>
