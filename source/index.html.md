@@ -2174,7 +2174,7 @@ colo相当于是 创建一个VPC节点，直接连了火币合约的内网，会
 
 历史K线数据可以通过API接口/market/history/kline去获取，通过from,to来截取时间段获取（时间段不能超过两年），每次获取的数据不得超过2000条。
 
-历史的公开市场逐笔成交数据，您可以通过订阅market.$symbol.trade.detail来本地进行存储。
+历史的公开市场逐笔成交数据，您可以通过订阅market.$symbol.trade.detail来本地进行存储。 
 
 或者您可以通过<a href='https://futures.huobi.be/zh-cn/data/landing_page'>历史行情数据下载</a> 来获取数据。
 
