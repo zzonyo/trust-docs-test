@@ -877,6 +877,8 @@ api.hbdm.vn域名使用的是AWS的CDN服务，理论上AWS服务器用户使用
 
 12. Api Key 与 Secret Key中是否存在隐藏特殊字符，影响签名。
 
+如果通过以上的方法还没找出签名失败的原因，可以通过专门验证签名的 <a href='https://github.com/hbdmapi/huobi_api_rules '>  demo </a> 来确认您的签名是在哪一步出现问题。
+
 ### Q6: 公开行情根据ip限速，需要私钥的根据uid限速是吗？
 
 是的。私有的根据UID来限速，不是根据API—KEY限速，母子帐号是分开分别限速，互不影响。
