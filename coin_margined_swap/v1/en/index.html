@@ -3827,10 +3827,12 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <li>The host in signature text should be the same as the host in your API request.The proxy may change the request host, you can try without proxy;Some http/websocket library may include port in the host, you can try to append port in signature host, like &quot;api.hbdm.com:443&quot;</li>
 <li>The hidden text in API Key and Secret Key may have impact on the signature.</li>
 </ol>
+
+<p>If the reason for signature failure has not been found through the above methods. And you can confirm that by this <a href='https://github.com/hbdmapi/huobi_api_rules '>  demo </a > which is specially explaining the signature.</p>
 <h3 id='q7-is-the-ratelimit-of-public-market-based-on-ip-is-the-ratelimit-of-interface-with-private-key-based-on-uid'>Q7: Is the ratelimit of public market based on  IP ? Is the ratelimit of interface with  private key based on UID?</h3>
 <p>Yes. The ratelimit of interface with private key is based on the UID, not the API key. The master and sub accounts are separately ratelimited and don&#39;t affect each other.</p>
 <h3 id='q8-is-there-any-recommendation-for-third-party-framework-which-integrates-huobi-swap'>Q8: Is there any recommendation for third-party framework which integrates Huobi swap?</h3>
-<p>There is an open source asynchronous quantization framework which integrates Huobi future and Huobi swap: <a href=https://github.com/hbdmapi/hbdm_Python>here</a>. If you have any quetsions, please open a ticket in github issues.</p>
+<p>There is an open source asynchronous quantization framework which integrates Huobi future and Huobi swap: <a href=https://github.com/hbdmapi/hbdm_Python>here</a>. If you have any quetsions, please open a ticket in github issues. </p>
 <h2 id='market-and-websocket'>Market and Websocket</h2><h3 id='q1-how-often-are-the-snapshot-orderbook-subscription-and-incremental-orderbook-subscription-pushed'>Q1: How often are the snapshot orderbook subscription and incremental orderbook subscription pushed?</h3>
 <p>The snapshot orderbook subscription(market.$contract_code.depth.$type) is checked once every 100MS.If there is an update,it will be pushed. It will be pushed at least 1 second.The incremental orderbook subscription is checked once every 30MS.If there is an update,it will be pushed.If there is no update, it will not be pushed.</p>
 <h3 id='q2-how-often-is-the-market-trade-subscription-pushed'>Q2: How often is the market trade subscription pushed?</h3>
