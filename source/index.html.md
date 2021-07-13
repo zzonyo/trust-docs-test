@@ -1778,7 +1778,7 @@ Yes. The ratelimit of interface with private key is based on the UID, not the AP
 
 ### Q8: Is there any recommendation for third-party framework which integrates Huobi swap?
 
-There is an open source asynchronous quantization framework which integrates Huobi future and Huobi swap: <a href=https://github.com/hbdmapi/hbdm_Python>here</a>. If you have any quetsions, please open a ticket in github issues.
+There is an open source asynchronous quantization framework which integrates Huobi future and Huobi swap: <a href=https://github.com/hbdmapi/hbdm_Python>here</a>. If you have any quetsions, please open a ticket in github issues. 
 
 
 ## Market and Websocket
