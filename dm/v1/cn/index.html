@@ -4106,6 +4106,8 @@ api.hbdm.com\n
 <li><p>签名时所带Host应与请求接口时Host相同。如果您使用了代理，代理可能会改变请求Host，可以尝试去掉代理；您使用的网络连接库可能会把端口包含在Host内，可以尝试在签名用到的Host中包含端口，如“api.hbdm.com:443&quot;</p></li>
 <li><p>Api Key 与 Secret Key中是否存在隐藏特殊字符，影响签名.</p></li>
 </ol>
+
+<p>如果通过以上的方法还没找出签名失败的原因，可以通过专门验证签名的 <a href='https://github.com/hbdmapi/huobi_api_rules '>  demo </a> 来确认您的签名是在哪一步出现问题。</p>
 <h3 id='q7-ip-uid'>Q7: 公开行情根据ip限速，需要私钥的根据uid限速是吗？</h3>
 <p>是的。私有的根据UID来限速，不是根据API—KEY限速，母子帐号是分开分别限速，互不影响。</p>
 <h3 id='q8'>Q8: 第三方框架集成火币合约是否有推荐？</h3>
@@ -4119,9 +4121,9 @@ api.hbdm.com\n
 
 <p>历史的公开市场逐笔成交数据，您可以通过订阅market.$symbol.trade.detail来本地进行存储。 </p>
 
-<p>或者您可以通过<a href='https://futures.huobi.be/zh-cn/data/landing_page'>历史行情数据下载</a> 来获取数据。</p>
+<p>或者您可以通过 <a href='https://futures.huobi.be/zh-cn/data/landing_page'>历史行情数据下载</a> 来获取数据。</p>
 
-<p>您也可以通过<a href='https://github.com/hbdmapi/huobi_public_data'>Python的历史行情数据下载DEMO</a> 来获取数据。</p>
+<p>您也可以通过 <a href='https://github.com/hbdmapi/huobi_public_data'>Python的历史行情数据下载DEMO</a> 来获取数据。</p>
 <h3 id='q4-k-macd'>Q4: 如何获取K线上的MACD等技术指标？</h3>
 <p>API没有获取K线上的MACD等技术指标接口，您可以参考TradingView等网站来计算。</p>
 <h3 id='q5-timestamp'>Q5: 文档里的时间戳timestamp定义是什么？</h3>
