@@ -2948,7 +2948,7 @@ curl "https://api.hbdm.com/linear-swap-ex/market/history/kline?contract_code=BTC
 
 ### 备注
 
-- 1、size与from&to 必填其一，若全不填则返回空数据。
+- 1、size与from&to 必填其一，均不填写，则返回错误。
 - 2、如果填写from，也要填写to。最多可获取连续两年的数据。
 - 3、如果size、from、to 均填写，会忽略from、to参数。
 
