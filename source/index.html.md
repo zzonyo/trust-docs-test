@@ -4058,6 +4058,7 @@ curl -X POST "https://api.huobi.pro/v1/order/orders/59378/submitcancel"
 | Parameter       | Data Type | Required | Default | Description                                                  |
 | --------------- | --------- | -------- | ------- | ------------------------------------------------------------ |
 | order-id | string    | true     | NA      | order id which needs to be filled in the path |
+| symbol | string    | false     | NA      | symbol which needs to be filled in the URL |
 
 > The above command returns JSON structured like this:
 
