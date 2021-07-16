@@ -4066,7 +4066,7 @@ API Key 权限：交易<br>
 | 参数名称 | 是否必须 | 类型   | 描述               | 默认值 | 取值范围 |
 | -------- | -------- | ------ | ------------------ | ------ | -------- |
 | order-id | true     | string | 订单ID，填在path中 |        |          |
-
+| symbol | false     | string | 交易对，填在URL请求参数中 |        |          |
 
 > Success response:
 
