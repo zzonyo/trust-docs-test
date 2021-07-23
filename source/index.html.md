@@ -1620,6 +1620,24 @@ Error Code | Error Details Description|
 1429 | Already received; please do not collect again!
 1430 | Invalid coupon; please refresh!
 1431 | The system is in maintenance and is expected to resume at {0} (GMT+8).
+1432 | A grid trading is being initialized or terminated; unable to place an order currently.
+1433 | The grid trading is terminated caused by placing/canceling order manually; please check “Order History” for details. 
+1434 | Less than the minimum initial margin ({0}{1}), which causes the quantity per grid less than the minimum order quantity, please modify!
+1435 | The grid has been terminated by you.
+1436 | The grid trading exceeds the effective duration; terminated automatically.
+1437 | The grid trading has been terminated for system reasons, please contact our customer service.
+1438 | The grid trading has been terminated due to the termination condition being triggered.
+1439 | The grid trading has been terminated due to a liquidation being triggered.
+1440 | {0} contracts fail to be cancelled.
+1441 | The trigger price must be lower than the highest termination price and higher than the lowest termination price, please modify!
+1442 | The effective duration must be a minute longer than the running time, please modify! 
+1443 | Delivery of {0} contract causes grid trading termination.
+1450 | The risk level you ranked does not support the use of current leverage. 
+1451 | The risk level you ranked does not support the use of current leverage, please log in the main account for checking.
+1452 | The number of grid orders exceeds the order quantity limits; Unable to place any order temporarily.
+1453 | The number of all your trigger orders exceeds the limit set by the platform; Unable to place any orders temporarily.
+1454 | The number of all your take profit and stop loss orders exceeds the limit set by the platform; Unable to place any orders temporarily.
+1455 | The number of all your trailing stop orders exceeds the limit set by the platform; Unable to place any orders temporarily.
 12001 | Invalid submission time.
 12002 | Incorrect signature version.
 12003 | Incorrect signature method.
