@@ -1969,7 +1969,7 @@ Error Code | Error Details Description|
 1441 | The trigger price must be lower than the highest termination price and higher than the lowest termination price, please modify!
 1442 | The effective duration must be a minute longer than the running time, please modify! 
 1443 | Delivery of {0} contract causes grid trading termination.
-1450 | The risk level you ranked does not support the use of current leverage. 
+1450 | The risk level you ranked does not support the use of current leverage.  
 1451 | The risk level you ranked does not support the use of current leverage, please log in the main account for checking.
 1452 | The number of grid orders exceeds the order quantity limits; Unable to place any order temporarily.
 1453 | The number of all your trigger orders exceeds the limit set by the platform; Unable to place any orders temporarily.
