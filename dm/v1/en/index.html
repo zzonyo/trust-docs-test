@@ -863,7 +863,7 @@
 Market makers will not be able to use point cards, VIP rate, rebate or any other fee promotion.
 </aside>
 <h3 id='eligibility-criteria-as-a-market-maker-on-huobi-future'>Eligibility Criteria as a Market Maker on Huobi Future</h3>
-<p>Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Futures long-term Market Maker project.If you have more than 3 BTC in your Huobi future account, or more than 3 BTC in your Huobi coin margined swap account, or you have more than 3 BTC in your Huobi option account,or more than 100000 USDT in your Huobi USDT Margined swap account, please send the following information to dm_mm@huobi.com:</p>
+<p>Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Futures long-term Market Maker project.If you have more than 3 BTC in your Huobi future account, or more than 3 BTC in your Huobi coin margined swap account, or more than 100000 USDT in your Huobi USDT Margined swap account, please send the following information to dm_mm@huobi.com:</p>
 
 <ol>
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
@@ -1139,11 +1139,12 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 <li>Interface Type: private</li>
 <li>Interface URL: /api/v1/contract_relation_tpsl_order</li>
 </ul>
-<h3 id='8-modifed-quot-place-an-order-quot-interface'>8. Modifed &quot;Place an order&quot; Interface</h3>
-<p>（added optional parameters: tp_trigger_price (Trigger price of take-profit order), tp_order_price (Order price of take-profit order), tp_order_price_type (Order type of take-profit order), sl_trigger_price (Trigger price of stop-loss order), sl_order_price (Order price of stop-loss order), sl_order_price_type (Order type of stop-loss order)）
- - Interface Name: Place an order
- - Interface Type: private
- - Interface URL: /api/v1/contract_order</p>
+<h3 id='8-modifed-quot-place-an-order-quot-interface-added-optional-parameters-tp_trigger_price-trigger-price-of-take-profit-order-tp_order_price-order-price-of-take-profit-order-tp_order_price_type-order-type-of-take-profit-order-sl_trigger_price-trigger-price-of-stop-loss-order-sl_order_price-order-price-of-stop-loss-order-sl_order_price_type-order-type-of-stop-loss-order'>8. Modifed &quot;Place an order&quot; Interface（added optional parameters: tp_trigger_price (Trigger price of take-profit order), tp_order_price (Order price of take-profit order), tp_order_price_type (Order type of take-profit order), sl_trigger_price (Trigger price of stop-loss order), sl_order_price (Order price of stop-loss order), sl_order_price_type (Order type of stop-loss order)）</h3>
+<ul>
+<li>Interface Name: Place an order</li>
+<li>Interface Type: private</li>
+<li>Interface URL: /api/v1/contract_order</li>
+</ul>
 <h3 id='9-modified-quot-place-a-batch-of-orders-quot-interface-added-optional-parameters-in-parameters-quot-orders_data-quot-tp_trigger_price-trigger-price-of-take-profit-order-tp_order_price-order-price-of-take-profit-order-tp_order_price_typeorder-type-of-take-profit-order-sl_trigger_price-trigger-price-of-stop-loss-order-sl_order_price-order-price-of-stop-loss-order-sl_order_price_type-order-type-of-stop-loss-order'>9. Modified &quot;Place a batch of orders&quot; Interface (added optional parameters in parameters &quot;orders_data&quot;: tp_trigger_price (Trigger price of take-profit order)，tp_order_price (Order price of take-profit order), tp_order_price_typeOrder type of take-profit order), sl_trigger_price (Trigger price of stop-loss order), sl_order_price (Order price of stop-loss order), sl_order_price_type (Order type of stop-loss order)）</h3>
 <ul>
 <li>Interface Name: Place a batch of orders</li>
@@ -2574,7 +2575,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <li><p>Add the digital Signature encoded with URL code into the path parameters with the parameter name of &quot;Signature&quot;.</p></li>
 </ol>
 <h2 id='api-rate-limit-illustration'>API Rate Limit Illustration</h2>
-<p>Future, Coin Margined Swap,Option Swap and USDT Margined Swap are using separate API rate limits.</p>
+<p>Future, Coin Margined Swap and USDT Margined Swap are using separate API rate limits.</p>
 
 <p>Please note that, for both public interface and private interface, there are rate limits, more details are as below:</p>
 
@@ -2583,7 +2584,7 @@ Timestamp should be written in the form of YYYY-MM-DDThh:mm:ss and encoded with 
 <li><p>For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 120 times every 3 seconds at most for each IP (this 120 times every 3 seconds public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).</p></li>
 <li><p>For public interface to get market data such as  Get Kline data, Get Market Data Overview, Get Contract Information,Get market depth data, Get index kline, Get basis data, Get the last Trade of a Contract and so on：</p>
 
-<p>(1) For restful interfaces：all products(futures, coin margined swap, usdt margined swap and option) 800 times/second for one IP at most</p>
+<p>(1) For restful interfaces：all products(futures, coin margined swap, usdt margined swap ) 800 times/second for one IP at most</p>
 
 <p>（2）For websocket: The rate limit for “req” request is 50 times at once. No limit for “sub” request as the data will be pushed by sever voluntarily.</p></li>
 <li><p>WebSocket, the private order push interface, requires API KEY Verification:</p>
@@ -3031,16 +3032,6 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <td>null: normal. coin margined swap estimated recovery time millionseconds.</td>
 </tr>
 <tr>
-<td>option_heartbeat</td>
-<td>int</td>
-<td>option 1: avaiable 0: not available(maintenance with service suspended)</td>
-</tr>
-<tr>
-<td>option_estimated_recovery_time</td>
-<td>long</td>
-<td>null: normal. option estimated recovery time :millionseconds.</td>
-</tr>
-<tr>
 <td>linear_swap_heartbeat</td>
 <td>long</td>
 <td>USDT margined swap 1: avaiable 0: not available(maintenance with service suspended)</td>
@@ -3068,8 +3059,6 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
         </span><span class="s2">"estimated_recovery_time"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"swap_heartbeat"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"swap_estimated_recovery_time"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"option_heartbeat"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"option_estimated_recovery_time"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"linear_swap_heartbeat"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"linear_swap_estimated_recovery_time"</span><span class="p">:</span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -4151,7 +4140,7 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 
 <p>Note : Colo needs to use api.hbdm.com for signature(authentication) to avoid getting 403 error: Verification failure. </p>
 <h3 id='q6-why-does-signature-verification-return-failure-403-verification-failure'>Q6: Why does signature verification return failure (403: Verification failure) ?</h3>
-<p>The signature process of future is similar to huobi Spot . In addition to the following precautions,please refer to the swap or spot demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful.  The coin margined  swap code demo is <a href=https://docs.huobigroup.com/docs/coin_margined_swap/v1/en/#code-demo>here</a>. The future code demo is <a href=https://docs.huobigroup.com/docs/dm/v1/en/#code-demo>here</a>.The option code demo is <a href=https://docs.huobigroup.com/docs/option/v1/en/#code-demo>here</a>. The USDT Margined Swap code demo is <a href=https://docs.huobigroup.com/docs/usdt_swap/v1/en/#code-demo>here</a>.</p>
+<p>The signature process of future is similar to huobi Spot . In addition to the following precautions,please refer to the swap or spot demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful.  The coin margined  swap code demo is <a href=https://docs.huobigroup.com/docs/coin_margined_swap/v1/en/#code-demo>here</a>. The future code demo is <a href=https://docs.huobigroup.com/docs/dm/v1/en/#code-demo>here</a>. The USDT Margined Swap code demo is <a href=https://docs.huobigroup.com/docs/usdt_swap/v1/en/#code-demo>here</a>.</p>
 
 <ol>
 <li>Check if the API key is valid and copied correctly.</li>
@@ -4267,9 +4256,9 @@ It will be pushed only when position event is updated.</p>
 <h3 id='q14-will-the-quarter-contract-of-the-delivery-contract-be-converted-to-the-next-week-contract-will-it-be-notified-or-changged-by-ws'>Q14: Will the quarter contract of the delivery contract be converted to the next week contract, will it be notified or changged by WS?</h3>
 <p>If a quarterly contract such as BTC_CQ is converted to the next week contract BTC_NW, WS will not automatically notify you, you need to change the subscription to BTC_NW.</p>
 <h3 id='q15-when-subscribing-the-same-topic-of-several-contract-codes-will-several-ws-be-needed'>Q15: When subscribing the same topic of several contract codes, will several ws be needed?</h3>
-<p>Since Futures, Coin Margined swaps, USDT Margined swaps and Options are different contracts with different interface addresses, different ws will be needed.</p>
+<p>Since Futures, Coin Margined swaps, USDT Margined swaps are different contracts with different interface addresses, different ws will be needed.</p>
 
-<p>In Futures, Coin Margined swaps, USDT Margined swaps and Options thereof, as long as the interface address is the same, one ws is enough.</p>
+<p>In Futures, Coin Margined swaps, USDT Margined swaps thereof, as long as the interface address is the same, one ws is enough.</p>
 <h3 id='q16-is-it-available-to-place-cancel-an-order-via-ws'>Q16: Is it available to place/cancel an order via WS??</h3>
 <p>Currently, it is not supported.</p>
 <h3 id='q17-how-to-subscribe-order-status'>Q17: How to subscribe order status?</h3>
@@ -4463,7 +4452,7 @@ b.  b. There is a delay in “Order Details Acquisition” interface (/api/v1/co
 <li>The pending take-profit and stop-loss (tp/sl) orders and trigger orders will not occupy the quantity of the position.</li>
 </ol>
 <h3 id='q3-what-is-the-reason-for-1032-error-code'>Q3: What is the reason for 1032 error code?</h3>
-<p>1032 means that your request exceeds the ratelimit. The coin margined swap, future, option swap and USDT margined swap limit the rate separately. Please check the ratelimit in the api ratelimit instructions, and you can print the current ratelimit in the header of the API response to check whether the ratelimit is exceeded. It is recommended to increase the request interval delay to avoid exceeding the ratelimit.</p>
+<p>1032 means that your request exceeds the ratelimit. The coin margined swap, future and USDT margined swap limit the rate separately. Please check the ratelimit in the api ratelimit instructions, and you can print the current ratelimit in the header of the API response to check whether the ratelimit is exceeded. It is recommended to increase the request interval delay to avoid exceeding the ratelimit.</p>
 <h2 id='how-to-solve-problems-more-effectively'>How to solve problems more effectively?</h2>
 <p>When you report an API error, you need to attach your request URL, the original complete body of the request and the complete request URL parameters, and the original complete log of the server&#39;s response. If it is a websocket subscription, you need to provide the address of the subscription, the topic of the subscription, and the original complete log pushed by the server.</p>
 
@@ -20523,7 +20512,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <li><p>For public interface to get market data such as  Get Kline data, Get Market Data Overview, Get Contract Information,Get market depth data, Get index kline, Get basis data, Get the last Trade of a Contract and so on：</p></li>
 </ul>
 
-<p>(1) For restful interfaces：all products(futures, coin margined swap, usdt margined swap and option) 800 times/second for one IP at most </p>
+<p>(1) For restful interfaces：all products(futures, coin margined swap, usdt margined swap) 800 times/second for one IP at most </p>
 
 <p>(2)  The rate limit for “req” request is 50 times/s at most. No limit for “sub” request as the data will be pushed by server voluntarily. </p>
 
