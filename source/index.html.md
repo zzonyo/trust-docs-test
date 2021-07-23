@@ -30,7 +30,7 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </aside>
 
 ### Eligibility Criteria as a Market Maker on Huobi Futures
- <!-- , or you have more than 3 BTC in your Huobi option account -->
+
 Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Futures long-term Market Maker project . If you have more than 3 BTC in your Huobi future account,or more than 100000 USDT in your Huobi USDT Margined swap account, or more than 3 BTC in your Huobi coin margined swap account , please send the following information to dm_mm@huobi.com:
 
 1. Huobi UIDs (not linked to any rebate program in any accounts) 
@@ -1386,7 +1386,7 @@ The final request sent to Server via API should be like:
 
 ## API Rate Limit Illustration
 
-Future, Coin Margined Swap,Option Swap and USDT Margined Swap are using separate API rate limits.
+Future, Coin Margined Swap and USDT Margined Swap are using separate API rate limits.
 
 Please note that, for both public interface and private interface, there are rate limits, more details are as below:
 
@@ -1399,9 +1399,7 @@ Please note that, for both public interface and private interface, there are rat
     （1）For restful interfaces, products,  (future, coin margined swap, usdt margined swap)800 times/second for one IP at most
 
     （2）For websocket: The rate limit for “req” request is 50 times at once. No limit for “sub” request as the data will be pushed by sever voluntarily.
-<!-- 
-and option 
--->
+
 * WebSocket, the private order push interface, requires API KEY Verification:
 
     Each UID can build at most create 30 WS connections for private order push at the same time. For each account, 
@@ -1698,10 +1696,6 @@ No parameter is available for this endpoint.
 | swap_heartbeat             | int                   | coin margined swap 1: avaiable 0: not available(maintenance with service suspended)
 | estimated_recovery_time             | long                   | null: normal. estimated recovery time :millionseconds.
 | swap_estimated_recovery_time             | long                   | null: normal. coin margined swap estimated recovery time millionseconds.
-<!-- 
-| option_heartbeat             | int                   | option 1: avaiable 0: not available(maintenance with service suspended)
-| option_estimated_recovery_time             | long                   | null: normal. option estimated recovery time :millionseconds.
--->
 | linear_swap_heartbeat             | long                   | USDT margined swap 1: avaiable 0: not available(maintenance with service suspended)
 | linear_swap_estimated_recovery_time             | long                   | null: normal. USDT margined swap estimated recovery time millionseconds.
 | \</data\>             |                  | 
@@ -1725,10 +1719,7 @@ No parameter is available for this endpoint.
 ```
 
 - Notice: Heartbeat is 1 is available, 0 is not available. 
-<!-- 
-        "option_heartbeat":1,
-        "option_estimated_recovery_time":null,
--->
+
 ## Get current system timestamp
 
  get `https://api.hbdm.com/api/v1/timestamp`
@@ -2109,9 +2100,7 @@ huobi future and huobi swap have the same colo, so the domain name connecting th
 Note : Colo needs to use api.hbdm.com for signature(authentication) to avoid getting 403 error: Verification failure. 
 
 ### Q6: Why does signature verification return failure (403: Verification failure) ?
-<!-- 
-The option code demo is <a href=https://docs.huobigroup.com/docs/option/v1/en/#code-demo>here</a>.
--->
+
 The signature process of USDT Margined swap is similar to huobi future and coin margined swap . In addition to the following precautions,please refer to the swap or future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful. The coin margined  swap code demo is <a href=https://docs.huobigroup.com/docs/coin_margined_swap/v1/en/#code-demo>here</a>. The future code demo is <a href=https://docs.huobigroup.com/docs/dm/v1/en/#code-demo>here</a>. The USDT Margined Swap code demo is <a href=https://docs.huobigroup.com/docs/usdt_swap/v1/en/#code-demo>here</a>.
 
 1. Check if the API key is valid and copied correctly.
@@ -2266,9 +2255,9 @@ Generally, "funding_rate" is equal to "realized_rate".Only when the payment of f
 
 ### Q15: When subscribing the same topic of several contract codes, will several ws be needed?
 
-Since Futures, Coin Margined swaps, USDT Margined swaps and Options are different contracts with different interface addresses, different ws will be needed.
+Since Futures, Coin Margined swaps, USDT Margined swaps are different contracts with different interface addresses, different ws will be needed.
 
-In Futures, Coin Margined swaps, USDT Margined swaps and Options thereof, as long as the interface address is the same, one ws is enough.
+In Futures, Coin Margined swaps, USDT Margined swaps thereof, as long as the interface address is the same, one ws is enough.
 
 ### Q16: Is it available to place/cancel an order via WS??
 
