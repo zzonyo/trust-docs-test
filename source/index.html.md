@@ -30,8 +30,8 @@ Market makers will not be able to use point cards, VIP rate, rebate or any other
 </aside>
 
 ### Eligibility Criteria as a Market Maker on Huobi Futures
-
-Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Futures long-term Market Maker project.If you have more than 3 BTC in your Huobi future account, or more than 3 BTC in your Huobi coin margined swap account, or you have more than 3 BTC in your Huobi option account,or more than 100000 USDT in your Huobi USDT Margined swap account, please send the following information to dm_mm@huobi.com:
+ <!-- , or you have more than 3 BTC in your Huobi option account -->
+Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Futures long-term Market Maker project . If you have more than 3 BTC in your Huobi future account,or more than 100000 USDT in your Huobi USDT Margined swap account, or more than 3 BTC in your Huobi coin margined swap account , please send the following information to dm_mm@huobi.com:
 
 1. Huobi UIDs (not linked to any rebate program in any accounts) 
 2. Provide screenshot of trading volume for the past 30 days or VIP/corporate status with other Exchanges
@@ -1395,11 +1395,13 @@ Please note that, for both public interface and private interface, there are rat
 * For public interface used to get information of index, price limit, settlement, delivery, open positions and so on, the rate limit is 120 times every 3 second at most for each IP (this 120 times every 3 second public interface rate limit is shared by all the requests from that IP of non-marketing information, like above).
 
 * For public interface to get market data such as  Get Kline data, Get Market Data Overview, Get Contract Information,Get market in-depth data, Get premium index Kline, Get real-time forecast capital rate kline, Get basis data, Get the last Trade of a Contract and so on：
-
-    （1）For restful interfaces, products,  (future, coin margined swap, usdt margined swap and option)800 times/second for one IP at most
+ 
+    （1）For restful interfaces, products,  (future, coin margined swap, usdt margined swap)800 times/second for one IP at most
 
     （2）For websocket: The rate limit for “req” request is 50 times at once. No limit for “sub” request as the data will be pushed by sever voluntarily.
-
+<!-- 
+and option 
+-->
 * WebSocket, the private order push interface, requires API KEY Verification:
 
     Each UID can build at most create 30 WS connections for private order push at the same time. For each account, 
@@ -1696,8 +1698,10 @@ No parameter is available for this endpoint.
 | swap_heartbeat             | int                   | coin margined swap 1: avaiable 0: not available(maintenance with service suspended)
 | estimated_recovery_time             | long                   | null: normal. estimated recovery time :millionseconds.
 | swap_estimated_recovery_time             | long                   | null: normal. coin margined swap estimated recovery time millionseconds.
+<!-- 
 | option_heartbeat             | int                   | option 1: avaiable 0: not available(maintenance with service suspended)
 | option_estimated_recovery_time             | long                   | null: normal. option estimated recovery time :millionseconds.
+-->
 | linear_swap_heartbeat             | long                   | USDT margined swap 1: avaiable 0: not available(maintenance with service suspended)
 | linear_swap_estimated_recovery_time             | long                   | null: normal. USDT margined swap estimated recovery time millionseconds.
 | \</data\>             |                  | 
@@ -1713,8 +1717,6 @@ No parameter is available for this endpoint.
         "estimated_recovery_time":null,
         "swap_heartbeat":1,
         "swap_estimated_recovery_time":null,
-        "option_heartbeat":1,
-        "option_estimated_recovery_time":null,
         "linear_swap_heartbeat":1,
         "linear_swap_estimated_recovery_time":null
     },
@@ -1723,8 +1725,10 @@ No parameter is available for this endpoint.
 ```
 
 - Notice: Heartbeat is 1 is available, 0 is not available. 
-
-
+<!-- 
+        "option_heartbeat":1,
+        "option_estimated_recovery_time":null,
+-->
 ## Get current system timestamp
 
  get `https://api.hbdm.com/api/v1/timestamp`
@@ -2105,8 +2109,10 @@ huobi future and huobi swap have the same colo, so the domain name connecting th
 Note : Colo needs to use api.hbdm.com for signature(authentication) to avoid getting 403 error: Verification failure. 
 
 ### Q6: Why does signature verification return failure (403: Verification failure) ?
-
-The signature process of USDT Margined swap is similar to huobi future and coin margined swap . In addition to the following precautions,please refer to the swap or future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful. The coin margined  swap code demo is <a href=https://docs.huobigroup.com/docs/coin_margined_swap/v1/en/#code-demo>here</a>. The future code demo is <a href=https://docs.huobigroup.com/docs/dm/v1/en/#code-demo>here</a>.The option code demo is <a href=https://docs.huobigroup.com/docs/option/v1/en/#code-demo>here</a>. The USDT Margined Swap code demo is <a href=https://docs.huobigroup.com/docs/usdt_swap/v1/en/#code-demo>here</a>.
+<!-- 
+The option code demo is <a href=https://docs.huobigroup.com/docs/option/v1/en/#code-demo>here</a>.
+-->
+The signature process of USDT Margined swap is similar to huobi future and coin margined swap . In addition to the following precautions,please refer to the swap or future demo to verify whether the signature is successful. Please check your own signature code after demo verification is successful. The coin margined  swap code demo is <a href=https://docs.huobigroup.com/docs/coin_margined_swap/v1/en/#code-demo>here</a>. The future code demo is <a href=https://docs.huobigroup.com/docs/dm/v1/en/#code-demo>here</a>. The USDT Margined Swap code demo is <a href=https://docs.huobigroup.com/docs/usdt_swap/v1/en/#code-demo>here</a>.
 
 1. Check if the API key is valid and copied correctly.
 2. Check if the IP is in whitelist
@@ -2530,7 +2536,7 @@ Only “direction” need to be uploaded when placing a flash close order (close
 
 ### Q3: What is the reason for 1032 error code? 
 
-1032 means that your request exceeds the ratelimit. The coin margined swap, future, option swap and USDT margined swap limit the rate separately. Please check the ratelimit in the api ratelimit instructions, and you can print the current ratelimit in the header of the API response to check whether the ratelimit is exceeded. It is recommended to increase the request interval delay to avoid exceeding the ratelimit.
+1032 means that your request exceeds the ratelimit. The coin margined swap, future and USDT margined swap limit the rate separately. Please check the ratelimit in the api ratelimit instructions, and you can print the current ratelimit in the header of the API response to check whether the ratelimit is exceeded. It is recommended to increase the request interval delay to avoid exceeding the ratelimit.
 
 ## The usage of and the difference between cross margin mode and isolated margin mode
 
@@ -12488,7 +12494,7 @@ There is rate limit for both public and private interfaces. More details are lai
 
 - For public interface to get market data such as  Get Kline data, Get Market Data Overview, Get Contract Information,Get market in-depth data, Get premium index Kline, Get real-time forecast capital rate kline, Get basis data, Get the last Trade of a Contract and so on：
 
-   (1) For restful interfaces, products,  (future, coin margined swap, usdt margined swap and option)800 times/second for one IP at most
+   (1) For restful interfaces, products,  (future, coin margined swap, usdt margined swap)800 times/second for one IP at most
 　　
    (2) The rate limit for “req” request is 50 times/s at most. No limit for “sub” request as the data will be pushed by server voluntarily. 
 
