@@ -27,7 +27,7 @@ search: True
 做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动。
 </aside>
 
-欢迎有优秀 maker 策略交易量大的用户参与长期合约做市商项目。如果您的火币交割合约账户中有折合大于 3 BTC 资产，或火币币本位永续合约账户中有折合大于 3 BTC 资产，或火币期权合约账户中有折合大于 3 BTC 资产，或火币USDT本位永续合约账户中有大于 100000 USDT 资产，请提供以下信息到 dm_mm@huobi.com（做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动）:
+欢迎有优秀 maker 策略交易量大的用户参与长期合约做市商项目。如果您的火币交割合约账户中有折合大于 3 BTC 资产，或火币币本位永续合约账户中有折合大于 3 BTC 资产，或火币USDT本位永续合约账户中有大于 100000 USDT 资产，请提供以下信息到 dm_mm@huobi.com（做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动）:
 
 1. 提供火币UID （需不存在返佣关系的 UID）；
 2. 提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；
@@ -1383,7 +1383,7 @@ api.hbdm.com\n
 
 ## 访问次数限制
 
-* 交割合约、币本位永续合约、期权合约和USDT本位永续合约都分开限频
+* 交割合约、币本位永续合约和USDT本位永续合约都分开限频
 
 * 公开行情接口和用户私有接口都有访问次数限制
 
@@ -1393,7 +1393,7 @@ api.hbdm.com\n
 
 - 行情类的公开接口，比如：获取K线数据、获取聚合行情、市场行情、获取行情深度数据、获取指数k线、获取基差数、获取市场最近成交记录：
 
-    （1） restful接口：同一个IP, 所有业务（交割合约、币本位永续合约、期权合约和USDT本位永续合约）总共1秒最多800个请求
+    （1） restful接口：同一个IP, 所有业务（交割合约、币本位永续合约和USDT本位永续合约）总共1秒最多800个请求
 
     （2） websocket：req请求，同一时刻最多请求50次；sub请求，无限制，服务器主动推送数据
     
@@ -1713,8 +1713,6 @@ curl "https://status-dm.huobigroup.com/api/v2/summary.json"
 | swap_heartbeat             | int                   | 币本位永续 1: 可用 0: 不可用(即停服维护) 
 | estimated_recovery_time             | long                   | null: 正常. 交割合约预计恢复时间， 单位:毫秒
 | swap_estimated_recovery_time             | long                   | null: 正常. 币本位永续合约预计恢复时间，单位：毫秒.
-| option_heartbeat             | int                   | 期权合约 1: 可用 0: 不可用(即停服维护)  
-| option_estimated_recovery_time             | long                   | null: 正常. 期权合约预计恢复时间，单位：毫秒.
 | linear_swap_heartbeat             | long                   | USDT本位永续 1: 可用 0: 不可用(即停服维护)  
 | linear_swap_estimated_recovery_time             | long                   | null: 正常. USDT本位永续合约预计恢复时间，单位：毫秒.
 | \</data\>             |                  | 
@@ -1730,8 +1728,6 @@ curl "https://status-dm.huobigroup.com/api/v2/summary.json"
         "estimated_recovery_time":null,
         "swap_heartbeat":1,
         "swap_estimated_recovery_time":null,
-        "option_heartbeat":1,
-        "option_estimated_recovery_time":null,
         "linear_swap_heartbeat":1,
         "linear_swap_estimated_recovery_time":null
     },
@@ -2141,7 +2137,7 @@ colo相当于是 创建一个VPC节点，直接连了火币合约的内网，会
 
 ### Q6: 为什么签名认证总返回失败(403:Verification failure [校验失败]) ？
 
-交割签名过程和现货签名过程类似，除了参考以下注意事项外，请参照现货或者永续的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。币本位永续的demo代码在 <a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。交割的demo代码在<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#2cff7db524'>  这里</a>  查看。期权的demo代码在<a href='https://docs.huobigroup.com/docs/option/v1/cn/#2cff7db524'>  这里</a>  查看。USDT本位永续的demo代码在 <a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#2cff7db524'>  这里 </a>  查看。
+交割签名过程和现货签名过程类似，除了参考以下注意事项外，请参照现货或者永续的demo代码来验证签名是否成功，demo代码验证通过后，再去核对您自己的签名代码。币本位永续的demo代码在 <a href='https://docs.huobigroup.com/docs/coin_margined_swap/v1/cn/#2cff7db524'>  这里 </a>   查看。交割的demo代码在<a href='https://docs.huobigroup.com/docs/dm/v1/cn/#2cff7db524'>  这里</a>  查看。USDT本位永续的demo代码在 <a href='https://docs.huobigroup.com/docs/usdt_swap/v1/cn/#2cff7db524'>  这里 </a>  查看。
 
 1. 检查 API Key 是否有效，是否复制正确
 
@@ -2279,9 +2275,9 @@ market.$symbol.depth.$type是全量数据，market.$symbol.depth.size_${size}.hi
 
 ### Q15: 订阅多个合约代码同一主题时, 需要多个 ws 连接吗?
 
-对于交割合约、币永续、u永续、期权之间, 由于是不同的接口地址, 需要不同的 ws 连接
+对于交割合约、币永续、u永续之间, 由于是不同的接口地址, 需要不同的 ws 连接
 
-对于交割合约、币永续、u永续、期权各自里面, 只要接口地址是一样的, 一个 ws 连接即可. 
+对于交割合约、币永续、u永续各自里面, 只要接口地址是一样的, 一个 ws 连接即可. 
 
 ### Q16: 是否可以通过 ws 下单和撤单?
 
@@ -2554,7 +2550,7 @@ margin_balance 是指账户权益
 
 ### Q3: API返回1032错误码是什么原因？
 
-1032代表您的访问次数超出限制，币本位永续合约、交割合约、期权合约和USDT永续合约是分开限制频率，请查看合约交易接入说明中的访问次数限制，并且可以在api接口response中的header打印当前的频率限制次数来看是否超出限制频率。建议加大请求间隔延时避免超出限制频率。
+1032代表您的访问次数超出限制，币本位永续合约、交割合约和USDT永续合约是分开限制频率，请查看合约交易接入说明中的访问次数限制，并且可以在api接口response中的header打印当前的频率限制次数来看是否超出限制频率。建议加大请求间隔延时避免超出限制频率。
 
 ## 如何更有效的解决问题
 
@@ -8398,7 +8394,7 @@ err-msg(中文） |  err-msg(English)  |  补充说明   |
 
 - 行情类的公开接口，比如：获取K线数据、获取聚合行情、市场行情、获取行情深度数据、获取指数k线、获取基差数据、获取市场最近成交记录：
 
-    （1） restful接口：同一个IP, 所有业务（交割合约、币本位永续合约、期权合约和USDT本位永续合约）总共1秒最多800个请求
+    （1） restful接口：同一个IP, 所有业务（交割合约、币本位永续合约和USDT本位永续合约）总共1秒最多800个请求
 
     （2） websocket：req请求，同一时刻最多请求50次；sub请求，无限制，服务器主动推送数据
 
