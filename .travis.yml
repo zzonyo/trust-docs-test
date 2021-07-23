@@ -15,10 +15,10 @@ branches:
     - coin_margined_swap_en
     - usdt_swap_cn
     - usdt_swap_en
-    - option_cn
-    - option_en
+#    - option_cn
+#    - option_en
 
 cache: bundler
 
-script: 
+script:
   - ./deploy.sh
