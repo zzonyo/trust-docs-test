@@ -30,6 +30,8 @@ table th {
 
 | Release Time <br>(UTC +8) | API  | New / Update    | Description     |
 | ------------------------ | ---------------------- | --------------- | ------------------------------------- |
+| 2021.7.26 | `market.$symbol.mbp.$levels` | Update | Add 400 depth data|
+| 2021.7.23 | `GET /v1/account/history` | Update | Detailed in detail the type of change in the account flow interface, that is, "Transact-Types" increases classification, such as Note 3. |
 | 2021.5.26 | `GET /v1/order/orders/getClientOrder`<br>`POST /v1/order/orders/place`<br>`POST/v1/order/orders/submitCancelClientOrder` | Update | For completed orders, clientOrderId will be valid for 2 hours since the order creation (it is still valid for 8 hours concerning other orders).<br>The uniqueness of the clientOrderId passed in when you place an order will no longer be verified. |
 | 2021.5.12 | GET `/v2/etp/transactions` | Update | "etpNames" and "transactTypes" are changed to "required" and "Only supports filling in one value" |
 | 2021.3.1 | `POST /v2/sub-user/deduct-mode` | Add | Set a deduction for master and sub user |
@@ -2204,587 +2206,296 @@ Note 3:<br>
 
 Change type contains a detailed list of account types：
 
-| transact-types   | account types | 
-
-| ------------- | -------- | 
-
+| Transact Type        | Account Type | 
+| ------------- | -------------------- | 
 | trade | match-income | 撮合成交收入 |
-
 | trade | match-payout | 撮合成交支付 |
-
 | trade | otc-trade | OTC交易资产同步 |
-
 | trade | point-purchased | 购买点卡 |
-
 | trade | point-purchased-pay | 购买点卡支付 |
-
 | trade | member-purchase | 会员购买 |
-
 | trade | matching-transfer-frozen-to-clearing-v2 | 撮合成交转账冻结子账户到清算子帐户 |
-
 | trade | matching-transfer-clearing-to-trade-v2 | 撮合成交转账清算子账户到交易子帐户 |
-
 | trade | otc-options-user-to-principal-clct-v2 | 用户涡轮业务账户到涡轮本金归集账户 |
-
 | trade | otc-options-income-to-user-v2 | 涡轮收益归集账户到用户涡轮账户 |
-
 | etf | etf-subscription-apply-transfer | 用户冻结账户转到系统ETF账户 |
-
 | etf | etf-subscription-apply-cancel | 系统ETF账户转到用户trade账户 |
-
 | etf | etf-subscription-settle-transfer | 系统ETF账户转到用户trade账户 |
-
 | etf | etf-subscription-apply-receivable | 系统ETF应付账户转到用户的ETF账户，用于认购申请平账 |
-
 | etf | etf-subscription-settle-receivable | 用户的ETF账户转到系统ETF应付账户，用于认购结算平账 |
-
 | etf | etf-subscription-open-position-todo | 系统ETF账户转到建仓的普通账户 |
-
 | etf | etf-subscription-open-position-done | 建仓的普通账户转到系统ETF账户 |
-
 | etf | etf-purchase-cancel | 系统ETF账户转到用户trade账户 |
-
 | etf | etf-purchase-apply-transfer | 用户冻结账户转到系统ETF账户 |
-
 | etf | etf-purchase-settle-transfer | 系统ETF账户转到用户trade账户 |
-
 | etf | etf-redemption-cancel | 系统ETF账户转到用户币币账户 |
-
 | etf | etf-redemption-apply-transfer | 用户冻结账户转到系统ETF账户 |
-
 | etf | etf-redemption-settle-transfer | 系统ETF账户转到用户币币账户 |
-
 | transact-fee | matching-transfer-fee-v2 | 撮合成交手续费转账清算子账户到系统子账户 |
-
 | transact-fee | otc-trade-fee | OTC交易手续费同步 |
-
 | transact-fee | point-etf-fee-deduction | 抵扣ETF手续费返还币 |
-
 | transact-fee | otc-charge-in | OTC收费 |
-
 | transact-fee | otc-charge-out | OTC退费 |
-
 | transact-fee | etf-subscription-charge-receivable | 用户的ETF账户转到系统ETF应付账户，用于认购手续费平账 |
-
 | transact-fee | matching-transfer-fee-v3 | 撮合成交手续费转账清算子账户到系统子账户 |
-
 | fee-deduction | point-fee-deduction-v3 | 抵扣手续费 |
-
 | fee-deduction | point-fee-deduction-pay-v2 | 抵扣手续费支付 |
-
 | fee-deduction | point-fee-deduction-pay-v3 | 抵扣手续费支付 |
-
 | fee-deduction | revert-point-fee-deduction-pay | 抵扣手续费的点卡返还用户 |
-
 | fee-deduction | point-interest-deduction-pay | 抵扣借贷利息支付点卡 |
-
 | fee-deduction | point-etf-fee-deduction-pay | 抵扣ETF手续费支付点卡 |
-
 | fee-deduction | trade-fee-deduction | 抵扣手续费 |
-
 | fee-deduction | otc-point-pay | OTC点卡支付费用 |
-
 | fee-deduction | trade-fee-deduction-pay-user-trade-to-match | 抵扣手续费支付-用户交易账户划转到清算账户 |
-
 | fee-deduction | trade-fee-deduction-user-trade-to-match | 新版抵扣手续费支付-用户交易账户划转到清算账户 |
-
 | fee-deduction | revert-point-fee-deduction | 抵扣手续费归还系统账户 |
-
 | fee-deduction | super-margin-interest-deduct-repay | 利息抵扣：用户交易账户转到系统利息账户 |
-
 | transfer | user-account-transfer-inner-in | 用户内部转账转入 |
-
 | transfer | user-account-transfer-inner-out | 用户内部转账转出消账 |
-
 | transfer | mine-account-to-user-account | 矿池账户转用户 |
-
 | transfer | user-account-to-mine-account | 用户转矿池账户 |
-
 | transfer | otc-transfer-in | 转账划入OTC |
-
 | transfer | otc-transfer-in-v2 | 转账划入OTC |
-
 | transfer | otc-transfer-out | 转账划出OTC |
-
 | transfer | otc-transfer-out-v2 | 转账划出OTC |
-
 | transfer | margin-transfer-in | 借贷划转: 现货交易账户转到借贷交易账户 |
-
 | transfer | margin-transfer-out | 借贷划转: 借贷交易账户转到现货交易账户 |
-
 | transfer | point-transfer | 点卡转让 |
-
 | transfer | point-transfer-pay | 点卡转让支付 |
-
 | transfer | mine-pool-transfer-in | 矿池账户转入 |
-
 | transfer | mine-pool-transfer-out | 矿池账户转出 |
-
 | transfer | chat-transfer-in | 转账划入chat |
-
 | transfer | chat-transfer-in-v2 | 转账划入chat |
-
 | transfer | chat-transfer-out | 转账划出chat |
-
 | transfer | chat-transfer-out-v2 | 转账划出chat |
-
 | transfer | chat-to-otc | chat划转至OTC |
-
 | transfer | otc-to-chat | OTC划转至chat |
-
 | transfer | master-transfer-in | 子账户转到母账户 |
-
 | transfer | master-transfer-out | 母账户转到子账户 |
-
 | transfer | margin-to-margin | 借贷划转: 逐仓杠杆交易账户转到逐仓杠杆交易账户 |
-
 | transfer | master-point-transfer-in | 子账户转到母账户，点卡 |
-
 | transfer | master-point-transfer-out | 母账户转到子账户，点卡 |
-
 | transfer | sub-transfer | 子子划转 |
-
 | transfer | sub-point-transfer | 子子点卡划转 |
-
 | transfer | futures-transfer-in | 转账划入合约账户 |
-
 | transfer | futures-transfer-in-v2 | 转账划入合约账户V2|
-
 | transfer | futures-transfer-out | 转账划出合约账户 |
-
 | transfer | futures-transfer-out-v2 | 转账划出合约账户V2 |
-
 | transfer | institution-transfer-in | 转账划入机构 |
-
 | transfer | institution-transfer-in-v2 | 转账划入机构 |
-
 | transfer | institution-transfer-out | 转账划出机构 |
-
 | transfer | institution-transfer-out-v2 | 转账划出机构 |
-
 | transfer | swap-transfer-in | 转账划入合约账户 |
-
 | transfer | swap-transfer-out | 转账划出合约账户 |
-
 | transfer | dm-swap-transfer-in | 转账划入反向永续合约账户 |
-
 | transfer | dm-swap-transfer-out | 转账划出反向永续合约账户 |
-
 | transfer | option-transfer-in | 转账划入期权账户 |
-
 | transfer | option-transfer-out | 转账划出期权账户 |
-
 | transfer | cfd-transfer-in | 转账划入CFD账户 |
-
 | transfer | cfd-transfer-out | 转账划出CFD账户 |
-
 | transfer | super-margin-transfer-out | 全仓杠杆交易账户转入 |
-
 | transfer | super-margin-transfer-in | 全仓杠杆交易账户转出 |
-
 | transfer | japan-donations-operation-to-system | 运营账户到捐款系统账户 |
-
 | transfer | japan-donations-system-to-operation | 捐款系统账户到运营账户 |
-
 | transfer | japan-donations-system-to-user | 日本首里城火灾捐款付款:捐款系统账户 到 普通用户账户 |
-
 | transfer | japan-donations-user-to-system | 日本首里城火灾捐款收款:普通用户账户 到 捐款系统账户 |
-
 | transfer | japan-discount-user-to-system | 币币账户 到 折扣抢购系统账户 |
-
 | transfer | japan-discount-system-to-user | 折扣抢购系统账户 到 币币账户 |
-
 | transfer | japan-discount-operation-to-system | 运营账户 到 折扣抢购系统账户 |
-
 | transfer | japan-discount-system-to-operation | 折扣抢购系统账户 到 运营账户 |
-
 | transfer | directed-card-system-to-operation | 系统定向点卡专项转款账户到运营账户 |
-
 | transfer | directed-card-operation-to-system | 运营账户到系统定向点卡专项转款账户 |
-
 | transfer | system-to-user-account | 土耳其兑换系统账户到用户账户 |
-
 | transfer | user-account-to-system | 用户账户到土耳其兑换系统账户 |
-
 | transfer | liquidity-account-to-system | 香港流动性运营账户到土耳其兑换系统账户 |
-
 | transfer | system-to-liquidity-account | 土耳其兑换系统账户到香港流动性运营账户 |
-
 | transfer | linear-swap-transfer-in | 转账划入正向永续账户 |
-
 | transfer | linear-swap-transfer-out | 转账划出正向永续账户 |
-
 | transfer | custody-transfer-in | 转账划入香港站资金账户 |
-
 | transfer | custody-transfer-out | 转账划出香港站资金账户 |
-
 | transfer | operation-to-margin-trade | 运营账户到逐仓杠杆账户 |
-
 | transfer | margin-trade-to-operation | 逐仓杠杆账户到运营账户 |
-
 | transfer | grid-transfer-in | 网格划转: 现货交易账户转到网格交易账户 |
-
 | transfer | grid-transfer-out | 网格划转: 网格交易账户转到现货交易账户 |
-
 | transfer | otc-generic-transfer-in | OTC账户 通用划转划入 |
-
 | transfer | otc-generic-transfer-out | OTC账户 通用划转转出 |
-
 | transfer | spot-generic-transfer-in | 币币账户 通用划转划入 |
-
 | transfer | spot-generic-transfer-out | 币币账户 通用划转转出 |
-
 | transfer | margin-generic-transfer-in | 逐仓杠杆 通用划转划入 |
-
 | transfer | margin-generic-transfer-out | 逐仓杠杆 通用划转转出 |
-
 | transfer | point-generic-transfer-in | 点卡 通用划转划入 |
-
 | transfer | point-generic-transfer-out | 点卡 通用划转转出 |
-
 | transfer | minepool-generic-transfer-in | 矿池 通用划转划入 |
-
 | transfer | minepool-generic-transfer-out | 矿池 通用划转转出 |
-
 | transfer | super-margin-generic-transfer-in | 全仓杠杆 通用划转划入 |
-
 | transfer | super-margin-generic-transfer-out | 全仓杠杆 通用划转转出 |
-
 | transfer | investment-generic-transfer-in | C2C出借账户 通用划转划入 |
-
 | transfer | investment-generic-transfer-out | C2C出借账户 通用划转转出 |
-
 | transfer | borrow-generic-transfer-in | C2C借款账户 通用划转划入 |
-
 | transfer | borrow-generic-transfer-out | C2C借款账户 通用划转转出 |
-
 | transfer | deposit-earning-generic-transfer-in | Savings理财账户 通用划转划入 |
-
 | transfer | deposit-earning-generic-transfer-out | Savings理财账户 通用划转转出 |
-
 | transfer | crypto-loans-generic-transfer-in | 质押借贷 通用划转划入 |
-
 | transfer | crypto-loans-generic-transfer-out | 质押借贷 通用划转转出 |
-
 | transfer | grid-trading-generic-transfer-in | 网格交易账户 通用划转划入 |
-
 | transfer | grid-trading-generic-transfer-out | 网格交易账户 通用划转转出 |
-
 | transfer | mine-pool-mall-lease-spot-to-settlement-system | 商城算力租赁收款UID划转到商城算力租赁结算系统账户 |
-
 | transfer | mine-pool-mall-lease-settlement-system-to-spot | 商城算力租赁结算系统账户划转到用户UID币币账户 |
-
 | transfer | kr-savings-spot-to-clct | 用户币币账户到系统理财归集账户 |
-
 | transfer | kr-savings-clct-to-transition-spot | 系统理财归集账户到指定财务中转账户（用户账户） |
-
 | transfer | kr-savings-transition-spot-to-intermediate | 指定财务中转账户（用户账户）到系统理财中间账户 |
-
 | transfer | kr-savings-return-to-spot | 系统理财归还账户到用户币币账户 |
-
 | transfer | kr-savings-income-to-spot | 系统理财收益账户到用户币币账户 |
-
 | transfer | kr-savings-transition-spot-to-clct | 指定财务中转账户（用户账户）到系统理财归集账户 |
-
 | transfer | jp-coupon-ops-to-sys | 运营账户 到 优惠券系统账户 |
-
 | transfer | jp-coupon-sys-to-spot | 优惠券系统账户 到 用户币币 |
-
 | transfer | otc-options-master-transfer-in | 涡轮业务专用：子账户转到母账户 |
-
 | transfer | otc-options-master-transfer-in-manual | 手工涡轮业务专用：子账户转到母账户 |
-
 | transfer | otc-options-master-transfer-out | 涡轮业务专用：母账户转到子账户 |
-
 | transfer | otc-options-master-transfer-out-manual | 手工涡轮业务专用：母账户转到子账户 |
-
 | transfer | mine-pool-staking-lock | 用户币币转到用户锁仓 |
-
 | transfer | mine-pool-staking-unlock | 用户锁仓转到用户币币 |
-
 | transfer | mine-pool-staking-reward-system-to-spot | 系统账户-备付金账户转到用户币币 |
-
 | transfer | airdrop-user-spot-oneside-in | 空投用户账户入账 |
-
 | transfer | project-airdrop-user-spot-oneside-in | 项目方空投用户账户入账 |
-
 | credit | margin-loan-transfer | 申请借贷: 系统现金池转到用户交易账户 |
-
 | credit | margin-loan-transfer-v2 | 申请借贷: 系统现金池转到用户交易账户 |
-
 | credit | margin-repay-loan-transfer | 归还借贷本金: 用户交易冻结账户转到系统现金池 |
-
 | credit | margin-repay-loan-transfer-v2 | 归还借贷本金: 用户交易账户转到系统现金池 |
-
 | credit | super-margin-loan-transfer | 申请借贷: 系统现金池转到用户交易账户 |
-
 | credit | super-margin-repay | 还款: 用户交易账户转到系统借贷资金池 |
-
 | credit | auto-super-margin-repay | 自动还款: 用户交易账户转到系统借贷资金池 |
-
 | credit | operations-account-recycling-user-trade-principal | 运营账户回收用户交易子账户借款本金转账 |
-
 | credit | operations-account-to-outside-loan-account | 运营账户->场外借贷用户 |
-
 | credit | outside-loan-account-to-operations-account | 场外借贷用户->运营账户 |
-
 | credit | pledged-loan-lending | 质押借贷-借出 |
-
 | credit | pledged-loan-receiving | 质押借贷-收款 |
-
 | credit | super-margin-loan-receivable | 申请借贷: 用户应付本金转到系统应收本金 |
-
 | credit | super-margin-interest-accrued | 借贷计息: 用户应付利息转到系统应收利息 |
-
 | credit | super-margin-interest-deduct-refund | 利息抵扣: 系统应收利息转到用户应付利息 |
-
 | credit | super-margin-refund | 还款: 系统应收本金转到用户应付本金 |
-
 | credit | margin-repay-loan-receivable | 归还借贷本金: 系统应收本金转到用户应付本金 |
-
 | credit | margin-repay-loan-receivable-v2 | 归还借贷本金: 系统应收本金转到用户应付本金 |
-
 | credit | otc-options-user-asset-ops-borrow | 财务运营账户到涡轮运营子账户（现货账户）- 借款 |
-
 | credit | otc-options-user-asset-ops-borrow-debt | 财务运营账户到涡轮运营子账户（涡轮应收本金账户）- 借款 |
-
 | credit | otc-options-user-asset-ops-repay | 涡轮运营子账户到财务运营账户（现货账户）-还款 |
-
 | credit | otc-options-user-asset-ops-repay-debt | 涡轮运营子账户到财务运营账户（涡轮应还本金账户）- 还款 |
-
 | liquidation | margin-auto-repay-interest-transfer | 归还借贷利息: 用户交易账户转到系统实收本金 |
-
 | liquidation | margin-auto-repay-interest-transfer-v2 | 归还借贷利息: 用户交易账户转到系统实收本金 |
-
 | liquidation | margin-auto-repay-loan-transfer | 归还借贷本金: 用户交易账户转到系统现金池 |
-
 | liquidation | margin-auto-repay-loan-transfer-v2 | 归还借贷本金: 用户交易账户转到系统现金池 |
-
 | interest | margin-repay-interest-transfer | 归还借贷利息: 用户交易冻结账户转到系统实收本金 |
-
 | interest | margin-repay-interest-transfer-v2 | 归还借贷利息: 用户交易账户转到系统实收本金 |
-
 | interest | point-interest-deduction | 抵扣借贷利息返还币 |
-
 | interest | super-margin-interest-repay | 还息：用户交易账户转到系统已收利息 |
-
 | interest | auto-super-margin-interest-repay | 自动还息：用户交易账户转到系统已收利息 |
-
 | interest | margin-repay-interest-receivable | 归还借贷利息: 系统应收利息转到用户应付利息 |
-
 | interest | margin-repay-interest-receivable-v2 | 归还借贷利息: 系统应收利息转到用户应付利息 |
-
 | interest | margin-interest-accrued | 借贷计息: 用户应付利息转到系统应收利息 |
-
 | interest | margin-interest-accrued-v2 | 借贷计息: 用户应付利息转到系统应收利息 |
-
 | deposit | user-account-deposit | 用户账户充值转账 |
-
 | deposit | user-account-fast-deposit | 用户账户快速充值转账 |
-
 | deposit | user-credit-loan-to-system | 用户撤销充值，欠费币币账户转账到系统账户 |
-
 | deposit | user-account-mgt-special-deposit | 用户账户MGT异常充值 |
-
 | deposit | operations-account-deposit-compensate-expenditure | 充币业务补偿支出 |
-
 | deposit | operations-account-deposit-compensate-earning | 充币业务补偿收入 |
-
 | withdraw | user-apply-withdraw | 用户申请提现冻结 |
-
 | withdraw | user-apply-fiat-withdraw | 用户申请法币Fiat提现冻结 |
-
 | withdraw | user-account-withdraw | 用户账户提现转账 |
-
 | withdraw | user-account-fast-withdraw | 用户账户快速提现转账 |
-
 | withdraw | operations-account-withdraw-compensate-expenditure | 提币业务补偿支出 |
-
 | withdraw | operations-account-withdraw-compensate-earning | 提币业务补偿收入 |
-
 | withdraw-fee | system-withdraw-fee-in | 扣用户提现手续费 |
-
 | withdraw-fee | system-withdraw-fee-out | 返还用户提现手续费 |
-
 | exchange | stable-currency-transfer-in-v2 | 系统稳定币转给用户 |
-
 | exchange | stable-currency-transfer-out-v2 | 用户稳定币转给系统 |
-
 | rebate | negative-maker-sys-oneside-out | 负maker系统账户出账 |
-
 | rebate | negative-maker-user-oneside-in | 负maker用户账户入账 |
-
 | etp | etp-purchase-transfer | 申购的USDT: 用户账户转到杠杆代币申购赎回系统账户 |
-
 | etp | etp-purchase-receivable | 申购的杠杆代币: 杠杆代币申购赎回系统账户-杠杆代币转到用户账户 |
-
 | etp | etp-purchase-charge | 申购手续费: 用户账户转到杠杆代币收入系统账户 |
-
 | etp | etp-redemption-transfer | 赎回的杠杆代币: 用户账户转到杠杆代币申购赎回系统账户 |
-
 | etp | etp-redemption-settle-transfer | 给赎回的USDT: 杠杆代币申购赎回系统账户转到用户账户 |
-
 | etp | etp-redemption-charge | 赎回手续费: 杠杆代币申购赎回系统账户转到杠杆代币收入系统账户 |
-
 | etp | etp-management-charge | 划转管理费: 用户账户转到杠杆代币收入系统账户 |
-
 | etp | etp-cash-concentration | 收入归集: 杠杆代币收入系统账户转到收入归集系统账户 |
-
 | etp | etp-usdt-hedge-sys-to-user | USDT对冲: 杠杆代币申购赎回系统账户转到用户账户 |
-
 | etp | etp-usdt-hedge-user-to-sys | USDT对冲: 用户账户转到杠杆代币申购赎回系统账户 |
-
 | etp | etp-futures-hedge-sys-to-user | 合约对冲: 杠杆代币申购赎回系统账户转到用户账户 |
-
 | etp | etp-futures-hedge-user-to-sys | 合约对冲: 用户账户转到杠杆代币申购赎回系统账户 |
-
 | etp | etp-usdt-spot-sys-to-user | 杠杆代币申购赎回系统账户转到用户杠杆代币现货管理账户 |
-
 | etp | etp-usdt-spot-user-to-sys | 用户杠杆代币现货管理账户转到杠杆代币申购赎回系统账户 |
-
 | savings | deposit-earning-to-spot | 理财账户转到币币账户 |
-
 | savings | spot-to-deposit-earning | 币币账户转到理财账户 |
-
 | savings | deposit-earning-to-collect | 理财账户转到资金归集账户 |
-
 | savings | collect-to-deposit-earning | 资金归集账户转到理财账户 |
-
 | savings | operation-to-collect | 运营账户转到资金归集账户 |
-
 | savings | collect-to-operation | 资金归集账户转到运营账户 |
-
 | savings | operation-to-interest | 运营账户转到利息支付账户 |
-
 | savings | interest-to-operation | 利息支付账户转到运营账户 |
-
 | savings | interest-to-deposit-earning | 利息支付账户转到理财账户 |
-
 | savings | deposit-earning-to-interest | 理财账户转到利息支付账户 |
-
 | savings | collect-to-expend | 资金归集账户转到资金支出账户 |
-
 | savings | expend-to-collect | 资金支出账户转到资金归集账户 |
-
 | savings | expend-to-operation | 资金支出账户转到运营账户 |
-
 | savings | operation-to-expend | 运营账户转到资金支出账户 |
-
 | other-types | operations-account-transfer-in | 运营账户转入转账 |
-
 | other-types | operations-account-transfer-out | 运营账户转出转账 |
-
 | other-types | operations-account-user-event-in | 运营账户活动策划转入 |
-
 | other-types | operations-account-user-event-out | 运营账户活动策划转出 |
-
 | other-types | operations-account-loan-to-user-trade | 运营账户借款给用户交易子账户转账 |
-
 | other-types | operations-account-expenditure | 运营账户支出转账 |
-
 | other-types | inspire-account-to-user-account | 激励账户到用户 |
-
 | other-types | user-account-to-inspire-account | 用户账户到激励账户 |
-
 | other-types | activity-account-to-user-account | 活动账户转用户 |
-
 | other-types | user-account-to-activity-account | 用户转活动账户 |
-
 | other-types | brokerage-account-to-user-account | 返佣账户转用户 |
-
 | other-types | user-account-to-brokerage-account | 用户转返佣账户 |
-
 | other-types | exchange-operation-to-user | 交易所运营账户转到用户trade账户:拨款 |
-
 | other-types | operations-account-earning | 运营账户收入转账 |
-
 | other-types | market-account-to-user-account | 市场账户转用户 |
-
 | other-types | user-account-to-market-account | 用户转市场账户 |
-
 | other-types | trade-account-to-user-account | 交易账户转用户 |
-
 | other-types | user-account-to-trade-account | 用户转交易账户 |
-
 | other-types | backup-account-to-user-account | 备用转用户 |
-
 | other-types | user-account-to-backup-account | 用户转备用 |
-
 | other-types | fork-transfer-in | 分叉币转换生成 |
-
 | other-types | fork-transfer-out | 分叉币转换消耗 |
-
 | other-types | point-purchased-gift | 购买点卡赠币 |
-
 | other-types | matching-fee-brokerage | 手续费返佣金 |
-
 | other-types | matching-fee-brokerage-point | 手续费返佣点卡 |
-
 | other-types | api-matching-fee-brokerage | 渠道返佣金 |
-
 | other-types | api-matching-fee-brokerage-point | 渠道返佣点卡 |
-
 | other-types | matching-fee-cashback | 手续费返现金 |
-
 | other-types | matching-fee-cashback-point | 手续费返现点卡 |
-
 | other-types | exchange-fee-to-user | 交易所手续费账户转到邀请人账户 |
-
 | other-types | otc-adjust-account-in | OTC手动给用户充值 |
-
 | other-types | otc-adjust-account-out | OTC手动给用户扣款 |
-
 | other-types | otc-adjust-transfer-in | OTC强制增加用户欠费 |
-
 | other-types | otc-adjust-transfer-out | OTC强制增加用户资产 |
-
 | other-types | option-liquidity-borrow | 期权流动性借出 |
-
 | other-types | option-liquidity-refund | 期权流动性还款 |
-
 | other-types | option-liquidity-other-borrow | 期权其他借出 |
-
 | other-types | option-liquidity-other-refund | 期权其他还款 |
-
 | other-types | linear-swap-liquidity-borrow | 正向永续合约流动性借出 |
-
 | other-types | linear-swap-liquidity-refund | 正向永续合约流动性还款 |
-
 | other-types | linear-swap-liquidity-other-borrow | 正向永续合约其他借出 |
-
 | other-types | linear-swap-liquidity-other-refund | 正向永续合约其他还款 |
-
 | other-types | otc-options-principal-clct-to-user-asset-ops-v3 | 手工涡轮本金归集账户到涡轮运营母账户 |
-
 | other-types | otc-options-income-to-user-asset-ops-manual | 手工涡轮收益归集账户到涡轮运营母账户 |
-
 | other-types | otc-options-user-asset-ops-to-income-manual | 手工涡轮运营母账户到涡轮收益归集账户 |
-
 | other-types | finance-clear-spot-to-sys-usa-jp | 美/日籍用户清退资产返还收款 |
-
 | other-types | finance-clear-sys-to-spot-usa-jp | 美/日籍用户清退资产返还借出 |
-
 | other-types | change-coin-chain-spot-to-sys | 换币换链收入 |
-
 | other-types | change-coin-chain-sys-to-spot | 换币换链支出 |
-
 | other-types | huoban-fund-spot-to-sys | 火伴基金收款 |
-
 | other-types | huoban-fund-sys-to-spot | 火伴基金借出 |
-
 | other-types | huoban-fund-interest-spot-to-sys | 火伴基金利息收入 |
-
 | other-types | head-hunting-sys-to-spot | 猎头费支出 |
-
 | other-types | project-activity-spot-to-sys | 项目方出资活动收入 |
-
 | other-types | project-activity-sys-to-spot | 项目方出资活动支出 |
-
 | other-types | operation-to-super-margin-trade | 运营账户转到用户账户-全仓杠杆账户 |
-
 | other-types | super-margin-trade-to-operation | 用户账户-全仓杠杆账户转到运营账户 |
-
- 
 
 ## Get Account Ledger
 
@@ -8088,7 +7799,7 @@ REQ channel supports refreshing message for 5-level, 20-level, and 150-level.
 | Field Name | Data Type | Mandatory | Default Value | Description                                    | Value Range                                                  |
 | ---------- | --------- | --------- | ------------- | ---------------------------------------------- | ------------------------------------------------------------ |
 | symbol     | string    | true      | NA            | Trading symbol (wildcard inacceptable)         |                                                              |
-| levels     | integer   | true      | NA            | Number of price levels (Valid value: 5,20,150) | Only support the number of price levels at 5, 20, or 150 at this point of time. |
+| levels     | integer   | true      | NA            | Number of price levels (Valid value: 5,20,150,400) | Only support the number of price levels at 5, 20,150 or 400 at this point of time. |
 
 > Response (Incremental update subscription)
 
