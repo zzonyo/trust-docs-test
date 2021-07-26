@@ -26,6 +26,7 @@ table th {
 
 | 生效时间<br>(UTC +8) | 接口     | 变化      | 摘要         |
 | ---------- | --------- | --------- | --------------- |
+| 2021.7.26 | `market.$symbol.mbp.$levels` | 优化 | 增加400档深度数据|
 | 2021.7.23 | `GET /v1/account/history`<br/>| 优化 | 账户流水接口中的变动类型，即“transact-types”增加分类明细，如注3. |
 | 2021.5.26 | `GET /v1/order/orders/getClientOrder`<br/>`POST /v1/order/orders/place`<br/>` POST /v1/order/orders/submitCancelClientOrder` | 优化 | clientOrderId的有效期从原订单创建8小时内有效改为：对于已完结状态订单，2小时内有效。<br/>对于用户下单时传入的clientOrderId 的唯一性将不再进行校验 |
 | 2021.5.12 | GET `/v2/etp/transactions` | 优化 | "etpNames"和"transactTypes"变更为"必填"且“只能填一个” |
@@ -7726,7 +7727,7 @@ REQ频道支持5档/20档/150档全量数据的获取。<br>
 | 参数   | 数据类型 | 是否必需 | 缺省值 | 描述                         | 取值范围                         |
 | ------ | -------- | -------- | ------ | ---------------------------- | -------------------------------- |
 | symbol | string   | true     | NA     | 交易代码（不支持通配符）     |                                  |
-| levels | integer  | true     | NA     | 深度档位（取值：5, 20, 150） | 当前仅支持5档，20档，或150档深度 |
+| levels | integer  | true     | NA     | 深度档位（取值：5， 20， 150，400） | 当前仅支持5档，20档，150或400档深度 |
 
 > Response (增量订阅)
 
