@@ -4385,6 +4385,9 @@ The possible values of "order-state" includes -
 | order-state | Description                                                  |
 | ----------- | ------------------------------------------------------------ |
 | -1          | order was already closed in the long past (order state = cancelled, partially-cancelled, filled, partially-filled) |
+| 1           | created                                             |
+| 3           | submitted                                           |
+| 4           | partial-filled                                      |
 | 5           | partially-cancelled                                             |
 | 6           | filled                                                       |
 | 7           | cancelled                                                     |
