@@ -752,6 +752,9 @@
                     <a href="#k-2" class="toc-h2 toc-link" data-title="K线数据">K线数据</a>
                   </li>
                   <li>
+                    <a href="#ticker-2" class="toc-h2 toc-link" data-title="聚合行情(Ticker)数据">聚合行情(Ticker)数据</a>
+                  </li>
+                  <li>
                     <a href="#8742b7d9f7" class="toc-h2 toc-link" data-title="市场深度行情数据">市场深度行情数据</a>
                   </li>
                   <li>
@@ -18194,9 +18197,117 @@ API Key 权限：读取<br></p>
 <td>[1501174800, 2556115200] or ($from, 2556115200] if &quot;from&quot; is set</td>
 </tr>
 </tbody></table>
+<h2 id='ticker-2'>聚合行情(Ticker)数据</h2><h3 id='a94c7743c5-2'>主题订阅</h3>
+<p>获取市场聚合行情数据，每100ms推送一次。</p>
+
+<p><code>market.$symbol.ticker</code></p>
+
+<blockquote>
+<p>订阅请求</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.ethbtc.ticker"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='1f9ac54b15-92'>请求参数</h3>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>数据类型</th>
+<th>是否必须</th>
+<th>默认值</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>交易对</td>
+<td>btcusdt, ethbtc...（取值参考<code>GET /v1/common/symbols</code>）</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1499225271</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1499225271000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"close"</span><span class="p">:</span><span class="mf">1885.0000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"open"</span><span class="p">:</span><span class="mf">1960.0000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"high"</span><span class="p">:</span><span class="mf">1985.0000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"low"</span><span class="p">:</span><span class="mf">1856.0000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">81486.2926</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">42122</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"vol"</span><span class="p">:</span><span class="mf">157052744.85708200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ask"</span><span class="p">:[</span><span class="mf">1885.0000</span><span class="p">,</span><span class="mf">21.8804</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"bid"</span><span class="p">:[</span><span class="mf">1884.0000</span><span class="p">,</span><span class="mf">1.6702</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-86'>响应数据</h3>
+<table><thead>
+<tr>
+<th>字段名称</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>long</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>float</td>
+<td>以基础币种计量的交易量（以滚动24小时计）</td>
+</tr>
+<tr>
+<td>count</td>
+<td>integer</td>
+<td>交易次数（以滚动24小时计）</td>
+</tr>
+<tr>
+<td>open</td>
+<td>float</td>
+<td>本阶段开盘价（以滚动24小时计）</td>
+</tr>
+<tr>
+<td>close</td>
+<td>float</td>
+<td>本阶段最新价（以滚动24小时计）</td>
+</tr>
+<tr>
+<td>low</td>
+<td>float</td>
+<td>本阶段最低价（以滚动24小时计）</td>
+</tr>
+<tr>
+<td>high</td>
+<td>float</td>
+<td>本阶段最高价（以滚动24小时计）</td>
+</tr>
+<tr>
+<td>vol</td>
+<td>float</td>
+<td>以报价币种计量的交易量（以滚动24小时计）</td>
+</tr>
+<tr>
+<td>bid</td>
+<td>object</td>
+<td>当前的最高买价 [price, size]</td>
+</tr>
+<tr>
+<td>ask</td>
+<td>object</td>
+<td>当前的最低卖价 [price, size]</td>
+</tr>
+</tbody></table>
 <h2 id='8742b7d9f7'>市场深度行情数据</h2>
 <p>此主题发送最新市场深度快照。快照频率为每秒1次。</p>
-<h3 id='a94c7743c5-2'>主题订阅</h3>
+<h3 id='a94c7743c5-3'>主题订阅</h3>
 <p><code>market.$symbol.depth.$type</code></p>
 
 <blockquote>
@@ -18637,7 +18748,7 @@ API Key 权限：读取<br></p>
 </tbody></table>
 <h2 id='9d97b30872'>买一卖一逐笔行情</h2>
 <p>当买一价、买一量、卖一价、卖一量，其中任一数据发生变化时，此主题推送逐笔更新。</p>
-<h3 id='a94c7743c5-3'>主题订阅</h3>
+<h3 id='a94c7743c5-4'>主题订阅</h3>
 <p><code>market.$symbol.bbo</code></p>
 
 <blockquote>
@@ -18738,7 +18849,7 @@ API Key 权限：读取<br></p>
 <td>消息序号</td>
 </tr>
 </tbody></table>
-<h2 id='56c6c47284-2'>成交明细</h2><h3 id='a94c7743c5-4'>主题订阅</h3>
+<h2 id='56c6c47284-2'>成交明细</h2><h3 id='a94c7743c5-5'>主题订阅</h3>
 <p>此主题提供市场最新成交逐笔明细。</p>
 
 <p><code>market.$symbol.trade.detail</code></p>
@@ -18848,7 +18959,7 @@ API Key 权限：读取<br></p>
   </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.trade.detail"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id11"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='7c47ef3411'>市场概要</h2><h3 id='a94c7743c5-5'>主题订阅</h3>
+</span></code></pre><h2 id='7c47ef3411'>市场概要</h2><h3 id='a94c7743c5-6'>主题订阅</h3>
 <p>此主题提供24小时内最新市场概要快照。快照频率不超过每秒10次。</p>
 
 <p><code>market.$symbol.detail</code></p>
@@ -18963,7 +19074,7 @@ API Key 权限：读取<br></p>
   </span><span class="s2">"req"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.detail"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id11"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h2 id='etp-2'>杠杆ETP实时净值推送</h2><h3 id='a94c7743c5-6'>主题订阅</h3>
+</span></code></pre><h2 id='etp-2'>杠杆ETP实时净值推送</h2><h3 id='a94c7743c5-7'>主题订阅</h3>
 <p>此主题提供杠杆ETP实时净值的推送。</p>
 
 <p><code>market.$symbol.etp</code></p>
@@ -20358,7 +20469,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
 <h2 id='612d7943b6'>稳定币兑换价格查询</h2>
 <p>GET v1/stable-coin/quote
 API Key 权限：读取</p>
-<h3 id='1f9ac54b15-92'>请求参数</h3>
+<h3 id='1f9ac54b15-93'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -20390,7 +20501,7 @@ API Key 权限：读取</p>
 <td>buy兑入/sell兑出</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-86'>响应数据</h3>
+<h3 id='2213f4c32f-87'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -20453,7 +20564,7 @@ API Key 权限：读取</p>
 <h2 id='c2a4e601a0'>兑换稳定币</h2>
 <p>POST v1/stable-coin/exchange
 API Key 权限：交易</p>
-<h3 id='1f9ac54b15-93'>请求参数</h3>
+<h3 id='1f9ac54b15-94'>请求参数</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -20471,7 +20582,7 @@ API Key 权限：交易</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-87'>响应数据</h3>
+<h3 id='2213f4c32f-88'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
@@ -20595,7 +20706,7 @@ API Key 权限：交易</p>
 </ul>
 
 <p>公共数据接口</p>
-<h3 id='1f9ac54b15-94'>请求参数</h3>
+<h3 id='1f9ac54b15-95'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -20637,7 +20748,7 @@ API Key 权限：交易</p>
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-88'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-89'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -20752,7 +20863,7 @@ API Key 权限：交易</p>
 
 <p>API Key 权限：交易<br>
 限频值：2次/秒<br></p>
-<h3 id='1f9ac54b15-95'>请求参数</h3>
+<h3 id='1f9ac54b15-96'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -20780,7 +20891,7 @@ API Key 权限：交易</p>
 <td>申购金额单位（计价币种）</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-89'>响应数据</h3>
+<h3 id='2213f4c32f-90'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -20832,7 +20943,7 @@ API Key 权限：交易</p>
 
 <p>API Key 权限：交易<br>
 限频值：2次/秒<br></p>
-<h3 id='1f9ac54b15-96'>请求参数</h3>
+<h3 id='1f9ac54b15-97'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -20860,7 +20971,7 @@ API Key 权限：交易</p>
 <td>赎回数量</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-90'>响应数据</h3>
+<h3 id='2213f4c32f-91'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -20913,7 +21024,7 @@ API Key 权限：交易</p>
 <p>API Key 权限：读取<br>
 限频值：2次/秒<br>
 按transactTime检索<br></p>
-<h3 id='1f9ac54b15-97'>请求参数</h3>
+<h3 id='1f9ac54b15-98'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -20980,7 +21091,7 @@ API Key 权限：交易</p>
 
 <p>注：<br>
 startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口可在“之前180天”与“当前时间”范围内平移。<br></p>
-<h3 id='2213f4c32f-91'>响应数据</h3>
+<h3 id='2213f4c32f-92'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -21116,7 +21227,7 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
 
 <p>API Key 权限：读取<br>
 限频值：2次/秒<br></p>
-<h3 id='1f9ac54b15-98'>请求参数</h3>
+<h3 id='1f9ac54b15-99'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -21132,7 +21243,7 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
 <td>交易ID</td>
 </tr>
 </tbody></table>
-<h3 id='2213f4c32f-92'>响应数据</h3>
+<h3 id='2213f4c32f-93'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -21262,7 +21373,7 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
 
 <p>公共数据接口<br>
 按rebalTime检索<br></p>
-<h3 id='1f9ac54b15-99'>请求参数</h3>
+<h3 id='1f9ac54b15-100'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -21337,7 +21448,7 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"nextId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2989</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-93'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-94'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -21397,7 +21508,7 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
 </ul>
 
 <p>API Key 权限：交易<br>限频值：1次/秒<br></p>
-<h3 id='1f9ac54b15-100'>请求参数</h3>
+<h3 id='1f9ac54b15-101'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -21423,7 +21534,7 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
 </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"撤单失败，订单不存在"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='2213f4c32f-94'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-95'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -21453,7 +21564,7 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
 </ul>
 
 <p>API Key 权限：交易<br>限频值：1次/5秒<br></p>
-<h3 id='1f9ac54b15-101'>请求参数</h3>
+<h3 id='1f9ac54b15-102'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -21494,7 +21605,7 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"message"</span><span class="p">:</span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-95'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-96'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -21561,7 +21672,7 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
 <p>Request:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/v</span><span class="mi">2</span><span class="err">/etp/limit?currency=btc</span><span class="mi">3</span><span class="err">l</span><span class="p">,</span><span class="err">btc</span><span class="mi">3</span><span class="err">s</span><span class="w">
-</span></code></pre><h3 id='1f9ac54b15-102'>请求参数</h3>
+</span></code></pre><h3 id='1f9ac54b15-103'>请求参数</h3>
 <table><thead>
 <tr>
 <th>名称</th>
@@ -21597,7 +21708,7 @@ startTime与endTime构成查询窗口，窗口最大可设置为10天，窗口�
 </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
 </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='2213f4c32f-96'>响应数据</h3>
+</span></code></pre><h3 id='2213f4c32f-97'>响应数据</h3>
 <table><thead>
 <tr>
 <th>名称</th>
