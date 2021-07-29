@@ -4436,6 +4436,9 @@ curl -X POST -H "Content-Type: application/json" "https://api.huobi.pro/v1/order
 | ----------- | ------------------------------------------------------------ |
 | -1          | order was already closed in the long past (order state = cancelled, partially-cancelled, filled, partially-filled) |
 | 0           | client-order-id not found                                    |
+| 1           | created                                             |
+| 3           | submitted                                           |
+| 4           | partial-filled                                      |
 | 5           | partially-cancelled                                             |
 | 6           | filled                                                       |
 | 7           | cancelled                                                     |
