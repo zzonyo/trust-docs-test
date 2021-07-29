@@ -7601,6 +7601,64 @@ Pull request is supported with extra parameters to define the range. The maximum
 | from      | integer   | false    | 1501174800(2017-07-28T00:00:00+08:00) | "From" time (epoch time in second) | [1501174800, 2556115200]                                     |
 | to        | integer   | false    | 2556115200(2050-01-01T00:00:00+08:00) | "To" time (epoch time in second)   | [1501174800, 2556115200] or ($from, 2556115200] if "from" is set |
 
+## Market Ticker
+
+Retrieve the market ticker,data is pushed every 100ms.
+
+### Topic
+
+`market.$symbol.ticker`
+
+> Subscribe request
+
+```json
+{
+  "sub": "market.ethbtc.ticker",
+  "id": "id1"
+}
+```
+
+### Request Parameters
+
+| Parameter | Data Type | Required | Default | Description                 | Value Range                                                  |
+| --------- | --------- | -------- | ------- | --------------------------- | ------------------------------------------------------------ |
+| symbol    | string    | true     | NA      | The trading symbol to query | All supported trading symbol, e.g. btcusdt, bccbtc.Refer to `/v1/common/symbols` |
+
+> The above command returns JSON structured like this:
+
+```json
+"data": {
+  "id":1499225271,
+  "ts":1499225271000,
+  "close":1885.0000,
+  "open":1960.0000,
+  "high":1985.0000,
+  "low":1856.0000,
+  "amount":81486.2926,
+  "count":42122,
+  "vol":157052744.85708200,
+  "ask":[1885.0000,21.8804],
+  "bid":[1884.0000,1.6702]
+}
+```
+
+### Response Content
+
+| Field  | Data Type | Description                                                  |
+| ------ | --------- | ------------------------------------------------------------ |
+| id     | long      | The internal identity                                        |
+| amount | float     | Accumulated trading volume of last 24 hours (rotating 24h), in base currency |
+| count  | integer   | The number of completed trades (rotating 24h)                |
+| open   | float     | The opening price of last 24 hours (rotating 24h)            |
+| close  | float     | The last price of last 24 hours (rotating 24h)               |
+| low    | float     | The lowest price of last 24 hours (rotating 24h)             |
+| high   | float     | The highest price of last 24 hours (rotating 24h)            |
+| vol    | float     | Accumulated trading value of last 24 hours (rotating 24h), in quote currency |
+| bid    | object    | The current best bid in format [price, size]                 |
+| ask    | object    | The current best ask in format [price, size]                 |
+
+## 
+
 ## Market Depth
 
 This topic sends the latest market by price order book in snapshot mode at 1-second interval.
