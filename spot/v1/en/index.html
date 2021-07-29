@@ -755,6 +755,9 @@
                     <a href="#market-candlestick" class="toc-h2 toc-link" data-title="Market Candlestick">Market Candlestick</a>
                   </li>
                   <li>
+                    <a href="#market-ticker" class="toc-h2 toc-link" data-title="Market Ticker">Market Ticker</a>
+                  </li>
+                  <li>
                     <a href="#market-depth" class="toc-h2 toc-link" data-title="Market Depth">Market Depth</a>
                   </li>
                   <li>
@@ -17195,9 +17198,117 @@ or
 <td>[1501174800, 2556115200] or ($from, 2556115200] if &quot;from&quot; is set</td>
 </tr>
 </tbody></table>
+<h2 id='market-ticker'>Market Ticker</h2>
+<p>Retrieve the market ticker,data is pushed every 100ms.</p>
+<h3 id='topic-2'>Topic</h3>
+<p><code>market.$symbol.ticker</code></p>
+
+<blockquote>
+<p>Subscribe request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.ethbtc.ticker"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-parameters-72'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>The trading symbol to query</td>
+<td>All supported trading symbol, e.g. btcusdt, bccbtc.Refer to <code>/v1/common/symbols</code></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1499225271</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1499225271000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"close"</span><span class="p">:</span><span class="mf">1885.0000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"open"</span><span class="p">:</span><span class="mf">1960.0000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"high"</span><span class="p">:</span><span class="mf">1985.0000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"low"</span><span class="p">:</span><span class="mf">1856.0000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">81486.2926</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">42122</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"vol"</span><span class="p">:</span><span class="mf">157052744.85708200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ask"</span><span class="p">:[</span><span class="mf">1885.0000</span><span class="p">,</span><span class="mf">21.8804</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"bid"</span><span class="p">:[</span><span class="mf">1884.0000</span><span class="p">,</span><span class="mf">1.6702</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-content-90'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>long</td>
+<td>The internal identity</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>float</td>
+<td>Accumulated trading volume of last 24 hours (rotating 24h), in base currency</td>
+</tr>
+<tr>
+<td>count</td>
+<td>integer</td>
+<td>The number of completed trades (rotating 24h)</td>
+</tr>
+<tr>
+<td>open</td>
+<td>float</td>
+<td>The opening price of last 24 hours (rotating 24h)</td>
+</tr>
+<tr>
+<td>close</td>
+<td>float</td>
+<td>The last price of last 24 hours (rotating 24h)</td>
+</tr>
+<tr>
+<td>low</td>
+<td>float</td>
+<td>The lowest price of last 24 hours (rotating 24h)</td>
+</tr>
+<tr>
+<td>high</td>
+<td>float</td>
+<td>The highest price of last 24 hours (rotating 24h)</td>
+</tr>
+<tr>
+<td>vol</td>
+<td>float</td>
+<td>Accumulated trading value of last 24 hours (rotating 24h), in quote currency</td>
+</tr>
+<tr>
+<td>bid</td>
+<td>object</td>
+<td>The current best bid in format [price, size]</td>
+</tr>
+<tr>
+<td>ask</td>
+<td>object</td>
+<td>The current best ask in format [price, size]</td>
+</tr>
+</tbody></table>
 <h2 id='market-depth'>Market Depth</h2>
 <p>This topic sends the latest market by price order book in snapshot mode at 1-second interval.</p>
-<h3 id='topic-2'>Topic</h3>
+<h3 id='topic-3'>Topic</h3>
 <p><code>market.$symbol.depth.$type</code></p>
 
 <blockquote>
@@ -17635,7 +17746,7 @@ In the future, Huobi Global will align the update behavior of 150-level incremen
 </tbody></table>
 <h2 id='best-bid-offer'>Best Bid/Offer</h2>
 <p>User can receive BBO (Best Bid/Offer) update in tick by tick mode.</p>
-<h3 id='topic-3'>Topic</h3>
+<h3 id='topic-4'>Topic</h3>
 <p><code>market.$symbol.bbo</code></p>
 
 <blockquote>
@@ -17738,7 +17849,7 @@ In the future, Huobi Global will align the update behavior of 150-level incremen
 </tbody></table>
 <h2 id='trade-detail'>Trade Detail</h2>
 <p>This topic sends the latest completed trades. It updates in tick by tick mode.</p>
-<h3 id='topic-4'>Topic</h3>
+<h3 id='topic-5'>Topic</h3>
 <p><code>market.$symbol.trade.detail</code></p>
 
 <blockquote>
@@ -17848,7 +17959,7 @@ In the future, Huobi Global will align the update behavior of 150-level incremen
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='market-details'>Market Details</h2>
 <p>This topic sends the latest market stats with 24h summary. It updates in snapshot mode, in frequency of no more than 10 times per second.</p>
-<h3 id='topic-5'>Topic</h3>
+<h3 id='topic-6'>Topic</h3>
 <p><code>market.$symbol.detail</code></p>
 
 <blockquote>
@@ -18272,7 +18383,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
 <p>The field list in order update message can be various per event type, developers can design the data structure in either of two ways:<br>
 - Define a data structure including fields for all event types, allowing a few of them are null<br>
 - Define different data structure for each event type to include specific fields, inheriting from a common data structure which has common fields</p>
-<h3 id='topic-6'>Topic</h3>
+<h3 id='topic-7'>Topic</h3>
 <p><code>orders#${symbol}</code></p>
 
 <blockquote>
@@ -18749,7 +18860,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
 <p>Only update when order is in transaction or cancellation. Order transaction update is in tick by tick mode, which means, if a taker’s order matches with multiple maker’s orders, the simultaneous multiple trades will be disseminated one by one. But the update sequence of the multiple trades, may not be exactly the same as the sequence of the transactions made. Also, if an order is auto cancelled immediately just after its partial fills, for example a typical IOC order, this channel would possibly disseminate the cancellation update first prior to the trade. <br></p>
 
 <p>If user willing to receive order updates in exact same sequence with the original happening, it is recommended to subscribe order update channel orders#${symbol}.<br></p>
-<h3 id='topic-7'>Topic</h3>
+<h3 id='topic-8'>Topic</h3>
 <p><code>trade.clearing#${symbol}#${mode}</code></p>
 <h3 id='subscription-field-2'>Subscription Field</h3>
 <table><thead>
@@ -19046,7 +19157,7 @@ About optional field ‘mode’: If not filled, or filled with 0, it implicates 
 <p>API Key Permission: Read</p>
 
 <p>The topic updates account change details.</p>
-<h3 id='topic-8'>Topic</h3>
+<h3 id='topic-9'>Topic</h3>
 <p><code>accounts.update#${mode}</code></p>
 
 <p>Upon subscription field value specified, the update can be triggered by either of following events:</p>
@@ -19308,7 +19419,7 @@ The topic disseminates the current static value of individual accounts first, at
 <p>API Key Permission：Read</p>
 <h3 id='http-request-79'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/stable-coin/quote</code></p>
-<h3 id='request-parameters-72'>Request Parameters</h3>
+<h3 id='request-parameters-73'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -19340,7 +19451,7 @@ The topic disseminates the current static value of individual accounts first, at
 <td>Type of the exchange (buy/sell)</td>
 </tr>
 </tbody></table>
-<h3 id='response-content-90'>Response Content</h3>
+<h3 id='response-content-91'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -19388,7 +19499,7 @@ The topic disseminates the current static value of individual accounts first, at
 <p>API Key Permission：Trade</p>
 <h3 id='http-request-80'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/stable-coin/exchange</code></p>
-<h3 id='request-parameters-73'>Request Parameters</h3>
+<h3 id='request-parameters-74'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -19406,7 +19517,7 @@ The topic disseminates the current static value of individual accounts first, at
 <td>stable currency quoteID</td>
 </tr>
 </tbody></table>
-<h3 id='response-content-91'>Response Content</h3>
+<h3 id='response-content-92'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -19558,7 +19669,7 @@ The topic disseminates the current static value of individual accounts first, at
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-92'>Response Content</h3>
+</span></code></pre><h3 id='response-content-93'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -19662,7 +19773,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-93'>Response Content</h3>
+</span></code></pre><h3 id='response-content-94'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -19837,7 +19948,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-94'>Response Content</h3>
+</span></code></pre><h3 id='response-content-95'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
