@@ -4451,6 +4451,9 @@ API Key 权限：交易<br>
 | ----------- | ------------------------------------------------------------ |
 | -1          | order was already closed in the long past (order state = canceled, partial-canceled, filled, partial-filled) |
 | 0           | client-order-id not found                                    |
+| 1           | created                                             |
+| 3           | submitted                                           |
+| 4           | partial-filled                                      |
 | 5           | partial-canceled                                             |
 | 6           | filled                                                       |
 | 7           | canceled                                                     |
