@@ -6321,6 +6321,65 @@ API Key 权限：读取<br>
 | loanable-amt  | string   | 最大可借金额                                                 |
 | actual-rate } | string   | 抵扣后的实际币息率，如不适用抵扣或未启用抵扣则返回基础日币息率 |
 
+## 获取杠杆持仓限额（全仓）
+
+API Key 权限：读取<br>
+
+限频值（NEW）：2次/2s
+
+此接口返回用户级别的持仓限额。
+
+### HTTP 请求
+
+- `GET /v2/margin/limit?currency=btc`
+
+> Request:
+
+```json
+GET /v2/margin/limit?currency=btc
+```
+
+### 请求参数
+
+| 参数名称 | 数据类型 | 是否必需 | 默认值 | 描述                                                         |
+| -------- | -------- | -------- | ------ | ------------------------------------------------------------ |
+| currency | string   | true     | NA     | 币种，支持批量查询(币种之间用英文逗号分隔)，单次最多可查10个币种 |
+
+
+> 
+
+> Response:
+
+```json
+{
+"data": [
+    {
+        "currency": "btc",
+        "maxHoldings": "2"
+    },
+    {
+        "currency": "btc3s",
+        "maxHoldings": "12000"
+    },
+"code": 200
+}
+```
+
+### 响应数据
+
+### 
+
+| 名称         | 类型    | 描述             |
+| ------------ | ------- | ---------------- |
+| code         | integer | 状态码           |
+| message      | string  | 错误描述（如有） |
+| { currency   | string  | 币种             |
+| maxHoldings} | string  | 持仓限额         |
+
+
+
+## 
+
 ## 申请借币（全仓）
 
 API Key 权限：交易<br>
@@ -9412,13 +9471,13 @@ GET /v2/etp/limit?currency=btc3l,btc3s
 
 ### 响应数据
 
-| 名称             | 类型    | 是否必需 | 描述             |
-| ---------------- | ------- | -------- | ---------------- |
-| code             | integer | TRUE     | 状态码           |
-| message          | string  | FALSE    | 错误描述（如有） |
-| { currency       | string  | TRUE     | ETP交易代码      |
-| maxHoldings      | string  | TRUE     | 持仓限额         |
-| remainingAmount} | string  | TRUE     | 剩余额度         |
+| 名称             | 类型    | 描述             |
+| ---------------- | ------- | ---------------- |
+| code             | integer | 状态码           |
+| message          | string  | 错误描述（如有） |
+| { currency       | string  | ETP交易代码      |
+| maxHoldings      | string  | 持仓限额         |
+| remainingAmount} | string  | 剩余额度         |
 
 
 
