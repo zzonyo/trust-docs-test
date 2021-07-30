@@ -30,6 +30,7 @@ table th {
 
 | Release Time <br>(UTC +8) | API  | New / Update    | Description     |
 | ------------------------ | ---------------------- | --------------- | ------------------------------------- |
+| 2021.7.30 | `market.$symbol.ticker` | Add | Add Market Ticker data |
 | 2021.7.26 | `market.$symbol.mbp.$levels` | Update | Add 400 depth data|
 | 2021.7.23 | `GET /v1/account/history` | Update | Detailed in detail the type of change in the account flow interface, that is, "Transact-Types" increases classification, such as Note 3. |
 | 2021.5.26 | `GET /v1/order/orders/getClientOrder`<br>`POST /v1/order/orders/place`<br>`POST/v1/order/orders/submitCancelClientOrder` | Update | For completed orders, clientOrderId will be valid for 2 hours since the order creation (it is still valid for 8 hours concerning other orders).<br>The uniqueness of the clientOrderId passed in when you place an order will no longer be verified. |
