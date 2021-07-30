@@ -26,6 +26,7 @@ table th {
 
 | 生效时间<br>(UTC +8) | 接口     | 变化      | 摘要         |
 | ---------- | --------- | --------- | --------------- |
+| 2021.7.30 | `market.$symbol.ticker` | 新增 | 增加聚合行情（Ticker）数据 |
 | 2021.7.26 | `market.$symbol.mbp.$levels` | 优化 | 增加400档深度数据|
 | 2021.7.23 | `GET /v1/account/history`<br/>| 优化 | 账户流水接口中的变动类型，即“transact-types”增加分类明细，如注3. |
 | 2021.5.26 | `GET /v1/order/orders/getClientOrder`<br/>`POST /v1/order/orders/place`<br/>` POST /v1/order/orders/submitCancelClientOrder` | 优化 | clientOrderId的有效期从原订单创建8小时内有效改为：对于已完结状态订单，2小时内有效。<br/>对于用户下单时传入的clientOrderId 的唯一性将不再进行校验 |
