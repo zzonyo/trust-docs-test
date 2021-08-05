@@ -2207,8 +2207,8 @@ Note 3:<br>
 
 Change type contains a detailed list of account types：
 
-| Transact Type        | Account Type | 
-| ------------- | -------------------- | 
+| Transact Type        | Account Type |
+| ------------- | -------------------- |
 | trade | match-income | 撮合成交收入 |
 | trade | match-payout | 撮合成交支付 |
 | trade | otc-trade | OTC交易资产同步 |
@@ -5003,8 +5003,6 @@ curl "https://api.huobi.pro/v1/order/orders?symbol=ethusdt&type=buy-limit&staet=
 | types      | string    | false    | NA      | One or more types of order to include in the search, use comma to separate. | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-stop-limit, sell-stop-limit, buy-limit-fok, sell-limit-fok, buy-stop-limit-fok, sell-stop-limit-fok |
 | start-time | long      | false    | -48h    | Search starts time, UTC time in millisecond                  | Value range [((end-time) – 48h), (end-time)], maximum query window size is 48 hours, query window shift should be within past 180 days, query window shift should be within past 2 hours for cancelled order (state = "canceled") |
 | end-time   | long      | false    | present | Search ends time, UTC time in millisecond                    | Value range [(present-179d), present], maximum query window size is 48 hours, query window shift should be within past 180 days, queriable range should be within past 2 hours for cancelled order (state = "canceled") |
-| start-date | string    | false    | -1d     | Search starts date, in format yyyy-mm-dd                     | Value range [((end-date) – 1), (end-date)], maximum query window size is 2 days, query window shift should be within past 180 days, query window shift should be within past 2 hours for cancelled order (state = "canceled") |
-| end-date   | string    | false    | today   | Search ends date, in format yyyy-mm-dd                       | Value range [(today-179), today], maximum query window size is 2 days, query window shift should be within past 180 days, queriable range should be within past 2 hours for cancelled order (state = "canceled") |
 | states     | string    | true     | NA      | One or more  states of order to include in the search, use comma to separate. | All possible order state (refer to introduction in this section) |
 | from       | string    | false    | NA      | Search order id to begin with                                | NA                                                           |
 | direct     | string    | false    | both    | Search direction when 'from' is used                         | next, prev                                                   |
@@ -5175,10 +5173,8 @@ curl "https://api.huobi.pro/v1/order/matchresults?symbol=ethusdt"
 | ---------- | --------- | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | symbol     | string    | true     | N/A                                                          | The trading symbol to trade                                  | All supported trading symbol, e.g. btcusdt, bccbtc.Refer to `GET /v1/common/symbols` |
 | types      | string    | false    | all                                                          | The types of order to include in the search                  | buy-market, sell-market, buy-limit, sell-limit, buy-ioc, sell-ioc, buy-limit-maker, sell-limit-maker, buy-stop-limit, sell-stop-limit |
-| start-time | false     | long     | Far point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 48 hour. The query window can be shifted within 180 days. | ((end-time) – 48hour)                                        | [((end-time) – 48hour), (end-time)]                          |
-| end-time   | false     | long     | Near point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 48 hour. The query window can be shifted within 180 days. | current-time                                                 | [(current-time) – 180days,(current-time)]                    |
-| start-date | string    | false    | -1d                                                          | Search starts date (Singapore timezone), in format yyyy-mm-dd | Value range [((end-date) – 1), (end-date)], maximum query window size is 2 days, query window shift should be within past 61 days |
-| end-date   | string    | false    | today                                                        | Search ends date (Singapore timezone), in format yyyy-mm-dd  | Value range [(today-60), today], maximum query window size is 2 days, query window shift should be within past 61 days |
+| start-time | false     | long     | Far point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 48 hour. The query window can be shifted within 120 days. | ((end-time) – 48hour)                                        | [((end-time) – 48hour), (end-time)]                          |
+| end-time   | false     | long     | Near point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 48 hour. The query window can be shifted within 120 days. | current-time                                                 | [(current-time) – 120days,(current-time)]                    |
 | from       | string    | false    | N/A                                                          | Search internal id to begin with                             | if search next page, then this should be the last id (not trade-id) of last page; if search previous page, then this should be the first id (not trade-id) of last page |
 | direct     | string    | false    | next                                                         | Search direction when 'from' is used                         | next, prev                                                   |
 | size       | int       | false    | 100                                                          | The number of orders to return                               | [1, 500]                                                     |
