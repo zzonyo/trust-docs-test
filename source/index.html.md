@@ -29,6 +29,7 @@ table th {
 | 2021.7.30 | `market.$symbol.ticker` | 新增 | 增加聚合行情（Ticker）数据 |
 | 2021.7.26 | `market.$symbol.mbp.$levels` | 优化 | 增加400档深度数据|
 | 2021.7.23 | `GET /v1/account/history`<br/>| 优化 | 账户流水接口中的变动类型，即“transact-types”增加分类明细，如注3. |
+| 2021.6.12 | `GET/v2/account/valuation` | 新增 | 获取平台资产总估值 |
 | 2021.5.26 | `GET /v1/order/orders/getClientOrder`<br/>`POST /v1/order/orders/place`<br/>` POST /v1/order/orders/submitCancelClientOrder` | 优化 | clientOrderId的有效期从原订单创建8小时内有效改为：对于已完结状态订单，2小时内有效。<br/>对于用户下单时传入的clientOrderId 的唯一性将不再进行校验 |
 | 2021.5.12 | GET `/v2/etp/transactions` | 优化 | "etpNames"和"transactTypes"变更为"必填"且“只能填一个” |
 | 2021.3.1   | `POST /v2/sub-user/deduct-mode`   | 新增  | 新增“设置母子用户手续费抵扣（HT或点卡）”接口  |
@@ -2022,7 +2023,159 @@ list字段说明
 | currency | true     | string   | 币种 |                                                              |
 | type     | true     | string   | 类型 | trade: 交易余额，frozen: 冻结余额, loan: 待还借贷本金, interest: 待还借贷利息, lock: 锁仓, bank: 储蓄 |
 
-## 获取账户资产估值
+## 获取平台资产总估值
+
+API Key 权限：读取
+
+限频值（NEW）：100次/2s
+
+按照BTC或法币计价单位，获取平台账户的总资产估值。
+
+### HTTP 请求
+
+- GET `/v2/account/valuation`
+
+### 请求参数
+
+|参数|	是否必填|	数据类型|	描述|	默认值	|取值范围|
+| ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
+|accountType	|false	|string|	账户类型，详见账户类型数据字典	 |
+|valuationCurrency 	|false	|string| 不填默认为btc估值（目前暂只支持BTC估值）
+
+> Responds:
+
+```lang=json
+{
+    "message": null,
+    "success": true,
+    "code":200,
+    "data":"{
+        "todayProfit": null,
+        "updated": null,
+        "totalBalance": "68232.925885978428351309",
+        "todayProfitRate": null,
+        "profitAccountBalanceList": [
+            {
+                "distributionType": "1",
+                "success": true,
+                "accountBalance": "68232.925885978428351309"
+            },
+            {
+                "distributionType": "2",
+                "success": true,
+                "accountBalance": "0"
+            },
+            {
+                "distributionType": "3",
+                "success": true,
+                "accountBalance": "0"
+            },
+            {
+                "distributionType": "4",
+                "success": true,
+                "accountBalance": "0"
+            },
+            {
+                "distributionType": "5",
+                "success": true,
+                "accountBalance": "0"
+            },
+            {
+                "distributionType": "6",
+                "success": true,
+                "accountBalance": "0"
+            },
+            {
+                "distributionType": "7",
+                "success": true,
+                "accountBalance": "0"
+            },
+            {
+                "distributionType": "8",
+                "success": true,
+                "accountBalance": "0"
+            },
+            {
+                "distributionType": "9",
+                "success": true,
+                "accountBalance": "0"
+            },
+            {
+                "distributionType": "10",
+                "success": true,
+                "accountBalance": "0"
+            },
+            {
+                "distributionType": "11",
+                "success": true,
+                "accountBalance": "0"
+            },
+            {
+                "distributionType": "12",
+                "success": true,
+                "accountBalance": "0"
+            },
+            {
+                "distributionType": "13",
+                "success": true,
+                "accountBalance": "0"
+            },
+            {
+                "distributionType": "14",
+                "success": true,
+                "accountBalance": "0"
+            },
+            {
+                "distributionType": "15",
+                "success": true,
+                "accountBalance": "0"
+            },
+            {
+                "distributionType": "16",
+                "success": false,
+                "accountBalance": "0"
+            }
+        ]
+    
+    }"
+}
+```
+
+### 响应数据
+
+| 参数名称 |  数据类型 | 描述                      |
+| -------- | -------- | -------- | 
+|todayProfit|String|今日总收益，按估值参数计价
+|todayProfitRate|Long|今日收益率
+|accountList|List<AccountBalance>|账户资产列表
+|{accountType|String|账户类型
+|accountBalance|String|账户资产
+|success}|Boolean|账户资产是否成功获取,为false时accountBalance返回0
+|timestamp	|long	|数据返回时间，为unix time in millisecond|
+
+### 账户类型数据字典
+|code| 说明
+|-----|-----|
+| 1 | 币币账户 |
+| 2 | 逐仓杠杆账户 |
+| 3 | 全仓杠杆账户 |
+| 4 | 交割合约账户 |
+| 5 | 法币账户 |
+| 6 | 矿池账户 |
+| 7 | 永续合约账户 |
+| 8 | C2C出借账户 |
+| 9 | C2C借款账户 |
+| 10 | 存币宝账户 |
+| 11 | 正向合约账户 |
+| 12 | 期权合约账户 |
+| 13 | 场外期权账户 |
+| 14 | 抵押借贷账户 |
+| 15 | 网格交易账户 |
+| 16 | 挖矿宝账户 |
+
+
+
+## 获取指定账户资产估值（现货、杠杆、OTC）
 
 API Key 权限：读取
 
