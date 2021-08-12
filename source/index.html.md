@@ -30,8 +30,8 @@ table th {
 
 | Release Time <br>(UTC +8) | API  | New / Update    | Description     |
 | ------------------------ | ---------------------- | --------------- | ------------------------------------- |
-| 2021.7.30 | `market.$symbol.ticker` | Add | Add Market Ticker data |
-| 2021.7.26 | `market.$symbol.mbp.$levels` | Update | Add 400 depth data|
+| 2021.8.12 | `market.$symbol.ticker` | Add | Add Market Ticker data |
+| 2021.8.12 | `market.$symbol.mbp.$levels` | Update | Add 400 depth data|
 | 2021.7.23 | `GET /v1/account/history` | Update | Detailed in detail the type of change in the account flow interface, that is, "Transact-Types" increases classification, such as Note 3. |
 | 2021.5.26 | `GET /v1/order/orders/getClientOrder`<br>`POST /v1/order/orders/place`<br>`POST/v1/order/orders/submitCancelClientOrder` | Update | For completed orders, clientOrderId will be valid for 2 hours since the order creation (it is still valid for 8 hours concerning other orders).<br>The uniqueness of the clientOrderId passed in when you place an order will no longer be verified. |
 | 2021.5.12 | GET `/v2/etp/transactions` | Update | "etpNames" and "transactTypes" are changed to "required" and "Only supports filling in one value" |
@@ -7619,8 +7619,7 @@ Retrieve the market ticker,data is pushed every 100ms.
 
 ```json
 {
-  "sub": "market.ethbtc.ticker",
-  "id": "id1"
+  "sub": "market.btcusdt.ticker"
 }
 ```
 
@@ -7633,35 +7632,45 @@ Retrieve the market ticker,data is pushed every 100ms.
 > The above command returns JSON structured like this:
 
 ```json
-"data": {
-  "id":1499225271,
-  "ts":1499225271000,
-  "close":1885.0000,
-  "open":1960.0000,
-  "high":1985.0000,
-  "low":1856.0000,
-  "amount":81486.2926,
-  "count":42122,
-  "vol":157052744.85708200,
-  "ask":[1885.0000,21.8804],
-  "bid":[1884.0000,1.6702]
+{
+"ch": "market.btcusdt.ticker", 
+"ts": 1628587397308, 
+"tick": {
+"open": 44718.5, 
+"high": 46711, 
+"low": 44480.81, 
+"close": 45868.99, 
+"amount": 22527.427922989766, 
+"vol": 1030630905.0136755, 
+"count": 676424, 
+"bid": 45868.98, 
+"bidSize": 0.016782, 
+"ask": 45868.99, 
+"askSize": 3.1279664455029423, 
+"lastPrice": 45868.99, 
+"lastSize": 0.007444
+}
 }
 ```
 
 ### Response Content
 
-| Field  | Data Type | Description                                                  |
-| ------ | --------- | ------------------------------------------------------------ |
-| id     | long      | The internal identity                                        |
-| amount | float     | Accumulated trading volume of last 24 hours (rotating 24h), in base currency |
-| count  | integer   | The number of completed trades (rotating 24h)                |
-| open   | float     | The opening price of last 24 hours (rotating 24h)            |
-| close  | float     | The last price of last 24 hours (rotating 24h)               |
-| low    | float     | The lowest price of last 24 hours (rotating 24h)             |
-| high   | float     | The highest price of last 24 hours (rotating 24h)            |
-| vol    | float     | Accumulated trading value of last 24 hours (rotating 24h), in quote currency |
-| bid    | object    | The current best bid in format [price, size]                 |
-| ask    | object    | The current best ask in format [price, size]                 |
+| Field     | Data Type | Description                                                  |
+| --------- | --------- | ------------------------------------------------------------ |
+| id        | long      | The internal identity                                        |
+| amount    | float     | Accumulated trading volume of last 24 hours (rotating 24h), in base currency |
+| count     | integer   | The number of completed trades (rotating 24h)                |
+| open      | float     | The opening price of last 24 hours (rotating 24h)            |
+| close     | float     | The last price of last 24 hours (rotating 24h)               |
+| low       | float     | The lowest price of last 24 hours (rotating 24h)             |
+| high      | float     | The highest price of last 24 hours (rotating 24h)            |
+| vol       | float     | Accumulated trading value of last 24 hours (rotating 24h), in quote currency |
+| bid       | float     | Best bid price                                               |
+| bidSize   | float     | Best bid size                                                |
+| ask       | float     | Best ask price                                               |
+| askSize   | float     | Best ask size                                                |
+| lastPrice | float     | Last traded price                                            |
+| lastSize  | float     | Last traded size                                             |
 
 ## 
 
