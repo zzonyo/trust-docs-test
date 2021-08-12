@@ -26,8 +26,8 @@ table th {
 
 | 生效时间<br>(UTC +8) | 接口     | 变化      | 摘要         |
 | ---------- | --------- | --------- | --------------- |
-| 2021.7.30 | `market.$symbol.ticker` | 新增 | 增加聚合行情（Ticker）数据 |
-| 2021.7.26 | `market.$symbol.mbp.$levels` | 优化 | 增加400档深度数据|
+| 2021.8.12 | `market.$symbol.ticker` | 新增 | 增加聚合行情（Ticker）数据 |
+| 2021.8.12 | `market.$symbol.mbp.$levels` | 优化 | 增加400档深度数据|
 | 2021.7.23 | `GET /v1/account/history`<br/>| 优化 | 账户流水接口中的变动类型，即“transact-types”增加分类明细，如注3. |
 | 2021.6.12 | `GET/v2/account/valuation` | 新增 | 获取平台资产总估值 |
 | 2021.5.26 | `GET /v1/order/orders/getClientOrder`<br/>`POST /v1/order/orders/place`<br/>` POST /v1/order/orders/submitCancelClientOrder` | 优化 | clientOrderId的有效期从原订单创建8小时内有效改为：对于已完结状态订单，2小时内有效。<br/>对于用户下单时传入的clientOrderId 的唯一性将不再进行校验 |
@@ -7761,8 +7761,7 @@ Websocket服务器同时支持一次性请求数据（pull）。
 
 ```json
 {
-  "sub": "market.ethbtc.ticker",
-  "id": "id1"
+  "sub": "market.btcusdt.ticker"
 }
 ```
 
@@ -7776,34 +7775,45 @@ Websocket服务器同时支持一次性请求数据（pull）。
 
 ```json
 {
-  "id":1499225271,
-  "ts":1499225271000,
-  "close":1885.0000,
-  "open":1960.0000,
-  "high":1985.0000,
-  "low":1856.0000,
-  "amount":81486.2926,
-  "count":42122,
-  "vol":157052744.85708200,
-  "ask":[1885.0000,21.8804],
-  "bid":[1884.0000,1.6702]
+"ch": "market.btcusdt.ticker", 
+"ts": 1628587397308, 
+"tick": {
+"open": 44718.5, 
+"high": 46711, 
+"low": 44480.81, 
+"close": 45868.99, 
+"amount": 22527.427922989766, 
+"vol": 1030630905.0136755, 
+"count": 676424, 
+"bid": 45868.98, 
+"bidSize": 0.016782, 
+"ask": 45868.99, 
+"askSize": 3.1279664455029423, 
+"lastPrice": 45868.99, 
+"lastSize": 0.007444
 }
+}
+
 ```
 
 ### 响应数据
 
-| 字段名称 | 数据类型 | 描述                                     |
-| -------- | -------- | ---------------------------------------- |
-| id       | long     | NA                                       |
-| amount   | float    | 以基础币种计量的交易量（以滚动24小时计） |
-| count    | integer  | 交易次数（以滚动24小时计）               |
-| open     | float    | 本阶段开盘价（以滚动24小时计）           |
-| close    | float    | 本阶段最新价（以滚动24小时计）           |
-| low      | float    | 本阶段最低价（以滚动24小时计）           |
-| high     | float    | 本阶段最高价（以滚动24小时计）           |
-| vol      | float    | 以报价币种计量的交易量（以滚动24小时计） |
-| bid      | object   | 当前的最高买价 [price, size]             |
-| ask      | object   | 当前的最低卖价 [price, size]             |
+| 字段名称  | 数据类型 | 描述                                     |
+| --------- | -------- | ---------------------------------------- |
+| id        | long     | NA                                       |
+| amount    | float    | 以基础币种计量的交易量（以滚动24小时计） |
+| count     | integer  | 交易次数（以滚动24小时计）               |
+| open      | float    | 本阶段开盘价（以滚动24小时计）           |
+| close     | float    | 本阶段最新价（以滚动24小时计）           |
+| low       | float    | 本阶段最低价（以滚动24小时计）           |
+| high      | float    | 本阶段最高价（以滚动24小时计）           |
+| vol       | float    | 以报价币种计量的交易量（以滚动24小时计） |
+| bid       | float    | 当前的最高买价                           |
+| bidSize   | float    | 最高买价对应的量                         |
+| ask       | float    | 当前的最低卖价                           |
+| askSize   | float    | 最低卖价对应的量                         |
+| lastPrice | float    | 最新成交价                               |
+| lastSize  | float    | 最新成交价对应的量                       |
 
 ## 
 
