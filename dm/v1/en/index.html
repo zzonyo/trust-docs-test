@@ -863,7 +863,7 @@
 Market makers will not be able to use point cards, VIP rate, rebate or any other fee promotion.
 </aside>
 <h3 id='eligibility-criteria-as-a-market-maker-on-huobi-future'>Eligibility Criteria as a Market Maker on Huobi Future</h3>
-<p>Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Futures long-term Market Maker project.If you have more than 3 BTC in your Huobi future account, or more than 3 BTC in your Huobi coin margined swap account, or more than 100000 USDT in your Huobi USDT Margined swap account, please send the following information to dm_mm@huobi.com:</p>
+<p>Welcome users, who are dedicated to maker strategy and have created large trading volume, to participate in Huobi Futures long-term Market Maker project.If you have more than 3 BTC in your Huobi future account, or more than 3 BTC in your Huobi coin margined swap account, or more than 100000 USDT in your Huobi USDT Margined swap account, please send the following information to Vip@global-hgroup.com :</p>
 
 <ol>
 <li>Huobi UIDs (not linked to any rebate program in any accounts)</li>
@@ -4535,7 +4535,7 @@ b.  b. There is a delay in “Order Details Acquisition” interface (/api/v1/co
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>&lt;list&gt;(Attribute Name: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -4593,14 +4593,14 @@ b.  b. There is a delay in “Order Details Acquisition” interface (/api/v1/co
 <tr>
 <td>settlement_time</td>
 <td>true</td>
-<td>long</td>
+<td>string</td>
 <td>Next settlement time（timestamp，unit: millisecond）</td>
 <td></td>
 </tr>
 <tr>
 <td>delivery_time</td>
 <td>true</td>
-<td>long</td>
+<td>string</td>
 <td>delivery time（timestamp，unit: millisecond）</td>
 <td></td>
 </tr>
@@ -4612,7 +4612,7 @@ b.  b. There is a delay in “Order Details Acquisition” interface (/api/v1/co
 <td>0: Delisting,1: Listing,2: Pending Listing,3: Suspension,4: Suspending of Listing,5: In Settlement,6: Delivering,7: Settlement Completed,8: Delivered,9: Suspending of Trade</td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -4681,7 +4681,7 @@ b.  b. There is a delay in “Order Details Acquisition” interface (/api/v1/co
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>&lt;list&gt;(Attribute Name: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -4709,7 +4709,7 @@ b.  b. There is a delay in “Order Details Acquisition” interface (/api/v1/co
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -4796,7 +4796,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>&quot;ok&quot; ,&quot;error&quot;</td>
 </tr>
 <tr>
-<td>&lt;list&gt;(Attribute Name: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -4838,7 +4838,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>&quot;this_week&quot;,&quot;next_week&quot;,&quot;quarter&quot; ,&quot;next_quarter&quot;</td>
 </tr>
 <tr>
-<td>&lt;list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -4885,6 +4885,10 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>BTC180914</td>
 </tr>
 </tbody></table>
+<h3 id='note-4'>Note  ：</h3>
+<p>If not any parameter is filled, the interface returns the price limitation data of all currently available contracts.
+If the contract_code is filled in, query by the contract_code;
+The contract_type parameter needs to together with symbol, and can&#39;t get contract data only by contract_type</p>
 
 <blockquote>
 <p>Response:</p>
@@ -4924,7 +4928,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>&lt;list&gt;(Attribute Name: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -4987,7 +4991,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -5052,7 +5056,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>&lt;list&gt;(Attribute Name: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -5066,7 +5070,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -5261,7 +5265,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>such as &quot;BTC_CW&quot; represents BTC “This Week”, &quot;BTC_NW&quot; represents BTC “Next Week”, &quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”. Contract code is supported, e.g.: BTC200220</td>
 </tr>
 </tbody></table>
-<h3 id='note-4'>Note:</h3>
+<h3 id='note-5'>Note:</h3>
 <ul>
 <li>If not filled in any symbol, return the Market BBO Data of all symbol. </li>
 </ul>
@@ -5399,7 +5403,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>false</td>
 <td>int</td>
 <td>Acquisition Quantity</td>
-<td>150</td>
+<td></td>
 <td>[1,2000]</td>
 </tr>
 <tr>
@@ -5419,7 +5423,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-5'>Note</h3>
+<h3 id='note-6'>Note</h3>
 <ul>
 <li>Either <code>size</code> field or <code>from</code>/<code>to</code> fields need to be filled.</li>
 <li>If <code>size</code> field and <code>from</code>/<code>to</code> fields are not filled, It will return error messages.</li>
@@ -5477,10 +5481,73 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 <tr>
-<td>data</td>
+<td>&lt;data&gt;</td>
 <td>true</td>
 <td>object</td>
 <td>Kline Data</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>int</td>
+<td>kline id,the same as kline timestamp, kline start timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>true</td>
+<td>decimal</td>
+<td>volume. Sum of both buy and sell sides</td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>true</td>
+<td>decimal</td>
+<td>count. Sum of both buy and sell sides</td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>true</td>
+<td>decimal</td>
+<td>open price</td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>true</td>
+<td>decimal</td>
+<td>close  price</td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>true</td>
+<td>decimal</td>
+<td>lowest  price</td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>true</td>
+<td>decimal</td>
+<td>highest price</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>decimal</td>
+<td>amount based on coins. Sum of both buy and sell sides</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -5495,64 +5562,6 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>true</td>
 <td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
-<td></td>
-</tr>
-</tbody></table>
-<h3 id='data-parameters'>data parameters</h3>
-<table><thead>
-<tr>
-<th><strong>parameter name</strong></th>
-<th><strong>type</strong></th>
-<th><strong>desc</strong></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>int</td>
-<td>kline id,the same as kline timestamp, kline start timestamp</td>
-<td></td>
-</tr>
-<tr>
-<td>vol</td>
-<td>decimal</td>
-<td>volume. Sum of both buy and sell sides</td>
-<td></td>
-</tr>
-<tr>
-<td>count</td>
-<td>decimal</td>
-<td>count. Sum of both buy and sell sides</td>
-<td></td>
-</tr>
-<tr>
-<td>open</td>
-<td>decimal</td>
-<td>open price</td>
-<td></td>
-</tr>
-<tr>
-<td>close</td>
-<td>decimal</td>
-<td>close  price</td>
-<td></td>
-</tr>
-<tr>
-<td>low</td>
-<td>decimal</td>
-<td>lowest  price</td>
-<td></td>
-</tr>
-<tr>
-<td>high</td>
-<td>decimal</td>
-<td>highest price</td>
-<td></td>
-</tr>
-<tr>
-<td>amount</td>
-<td>decimal</td>
-<td>amount based on coins. Sum of both buy and sell sides</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -5596,7 +5605,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>[1,2000]</td>
 </tr>
 </tbody></table>
-<h5 id='note-6'>Note:</h5>
+<h5 id='note-7'>Note:</h5>
 <ul>
 <li>At one time 2000 at most</li>
 <li>Case-Insenstive, both uppercase and lowercase are supported</li>
@@ -5939,7 +5948,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>Case-Insenstive.Both uppercase and lowercase are supported..e.g. &quot;BTC_CW&quot; represents BTC “This Week”，&quot;BTC_NW&quot; represents BTC “Next Week”，&quot;BTC_CQ&quot; represents BTC “Quarter”.&quot;BTC_NQ&quot; represents BTC “Next Quarter”. Contract code is supported to query data. e.g.: &quot;BTC200918&quot;(weekly), &quot;BTC200925&quot;(Bi-weekly),&quot;BTC201225&quot;(quarterly),&quot;BTC210326&quot;(next quarterly)</td>
 </tr>
 </tbody></table>
-<h4 id='note-7'>Note</h4>
+<h4 id='note-8'>Note</h4>
 <ul>
 <li>The interface data updated frequency is 50ms</li>
 </ul>
@@ -6201,7 +6210,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 <tr>
-<td>&lt;dict&gt; (attrs: tick)</td>
+<td>&lt;tick&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -6225,7 +6234,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;  (attrs: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -6289,7 +6298,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -6297,7 +6306,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 <tr>
-<td>&lt;/dict&gt;</td>
+<td>&lt;/tick&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -6334,7 +6343,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>true</td>
 <td>int</td>
 <td>Number of Trading Records Acquisition</td>
-<td>1</td>
+<td></td>
 <td>[1, 2000]</td>
 </tr>
 </tbody></table>
@@ -6414,7 +6423,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 <tr>
-<td>&lt;dict&gt; (attrs: tick)</td>
+<td>&lt;tick&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -6438,7 +6447,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;  (attrs: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -6494,7 +6503,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -6502,7 +6511,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 <tr>
-<td>&lt;/dict&gt;</td>
+<td>&lt;/tick&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -7007,7 +7016,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>&lt;data&gt;</td>
 <td></td>
 <td></td>
-<td>Dictionary Data</td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -7392,14 +7401,6 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='notice-4'>Notice</h3>
-<ul>
-<li><p>“open” is one of the trading access in “API-Open-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；</p></li>
-<li><p>“close” is one of the trading access in “API-Close-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；</p></li>
-<li><p>“cancel” is one of the trading access in “API-Cancel-Ordinary Order”. “On” stands for opening this access; “Off” stands for closing this access；</p></li>
-<li><p>“transfer_in” is one of the trading access in “Others-Transfer-Deposit”. “On” stands for opening this access; “Off” stands for closing this access；</p></li>
-<li><p>transfer_out，”transfer_out” is one of the trading access in “Others-Transfer-Withdraw”. “On” stands for opening this access; “Off” stands for closing this access；</p></li>
-</ul>
 <h2 id='query-top-trader-sentiment-index-function-account'>Query Top Trader Sentiment Index Function-Account</h2>
 <ul>
 <li>GET <code>/api/v1/contract_elite_account_ratio</code></li>
@@ -7774,14 +7775,14 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 <tr>
-<td>&lt;object&gt;(object name: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;( object name: orders)</td>
+<td>&lt;orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -7844,7 +7845,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -7872,7 +7873,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 <tr>
-<td>&lt;/object&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -8146,7 +8147,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>true</td>
 <td>integer</td>
 <td>data size</td>
-<td>150</td>
+<td></td>
 <td>[1,2000]</td>
 </tr>
 </tbody></table>
@@ -8343,7 +8344,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>true</td>
 <td>integer</td>
 <td>data size</td>
-<td>150</td>
+<td></td>
 <td>[1,2000]</td>
 </tr>
 </tbody></table>
@@ -8454,11 +8455,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 </tbody></table>
-
-<ul>
-<li>Note：</li>
-</ul>
-
+<h4 id='note-9'>Note：</h4>
 <p>2000 size at most per request ；</p>
 
 <p>The basis data of Next Quarterly Contract is available after 2020/6/15 14:00:00.</p>
@@ -8612,7 +8609,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-8'>Note</h4>
+<h4 id='note-10'>Note</h4>
 <ul>
 <li>If the settement type is &quot;settlement&quot;, the field &quot;estimated_settlement_price&quot; will not be caluculated and shown updatedly until an hour before settlement. At other points (including the point of settlement), the field value will be empty; and other fields will be showned normally.</li>
 <li>If the settement type is &quot;delivery&quot;, the field &quot;estimated_settlement_price&quot; will not be caluculated and shown updatedly until an hour before delivery. At other points (including the point of delivery), the field value will be empty; and other fields will be showned normally.</li>
@@ -8777,7 +8774,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>&lt;list&gt;(Attribute Name: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -8875,7 +8872,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -8959,7 +8956,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>&lt;list&gt;(Attribute Name: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -9071,7 +9068,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -9085,7 +9082,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-9'>Note</h4>
+<h4 id='note-11'>Note</h4>
 <ul>
 <li>If there are symbols in the settlement or delivery period,error code 1080(1080  In settlement or delivery. Unable to get positions of some contracts.  ) will return without request parameters. It&#39;s suggested to query the position info with request parameters to avoid raising the error code and not being able to query the position.</li>
 </ul>
@@ -9118,7 +9115,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-10'>Note:</h4>
+<h4 id='note-12'>Note:</h4>
 <ul>
 <li>When enable the transaction authority on the sub-account for the first time, deemed to agree to access the contract market.</li>
 <li>If the sub-account trading permission has been enable, the interface will directly return success when request to enable again; if the sub-account trading permission has been disable, the interface will directly return success when request to disable again;</li>
@@ -9357,7 +9354,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='notice-5'>Notice</h4>
+<h4 id='notice-4'>Notice</h4>
 <p>Only return data for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission). </p>
 <h2 id='query-a-batch-of-sub-account-39-s-assets-information'>Query a Batch of Sub-Account&#39;s Assets Information</h2>
 <ul>
@@ -9395,7 +9392,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-11'>Note:</h4>
+<h4 id='note-13'>Note:</h4>
 <ul>
 <li>Only return data of sub-accounts that have agreed to access the contract market.</li>
 </ul>
@@ -9747,11 +9744,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 </tbody></table>
-
-<ul>
-<li>Notice</li>
-</ul>
-
+<h4 id='notice-5'>Notice</h4>
 <p>Only query account information for activated contract sub-account (i.e. sub-accounts that have gained contract trading permission);</p>
 
 <p>No data return for sub-accounts which has logged in hbdm but have not gained trading permission/activated.</p>
@@ -10213,7 +10206,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>prev ；next ；default value:prev</td>
 </tr>
 </tbody></table>
-<h4 id='note-12'>Note:</h4>
+<h4 id='note-14'>Note:</h4>
 <ul>
 <li>Value range description of start_time and end_time:
 
@@ -10458,7 +10451,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-13'>Note:</h4>
+<h4 id='note-15'>Note:</h4>
 <ul>
 <li>if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id  presents the last data on the next page.)</li>
 </ul>
@@ -10512,7 +10505,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>Page 20 by default without given instruction,  ，no more than 50</td>
 </tr>
 </tbody></table>
-<h4 id='note-14'>Note:</h4>
+<h4 id='note-16'>Note:</h4>
 <ul>
 <li>The data is queried in reverse order by default; the newer the data, the closer to the front.</li>
 <li>If the start time or the end time is not within the value range, the system will report an error 1067 to indicate the parameter is invalid.<br></li>
@@ -11725,7 +11718,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>must be Less or Equal than 9223372036854775807</td>
 </tr>
 </tbody></table>
-<h4 id='note-15'>Note：</h4>
+<h4 id='note-17'>Note：</h4>
 <ul>
 <li>the rate limit between the master account and each subaccount is 10 times/ minute</li>
 <li>The client_order_id is valid in 8 hours only, that is the user cannot use the same client_order_id beyonds one times for the same transfer path (for example, transfer currency from master account to sub-account using client_order_id=1, and you can&#39;t do that transfe currency from master account to sub-account using client_order_id=1 in the next time; but you can 
@@ -12441,7 +12434,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>Order type of stop-loss order    default is limit; limit，optimal_5，optimal_10，optimal_20</td>
 </tr>
 </tbody></table>
-<h3 id='note-16'>Note ：</h3>
+<h3 id='note-18'>Note ：</h3>
 <p>If there is a number in the Contract Code row，inquiry with Contract_Code. </p>
 
 <p>If there is no number，inquiry by Symbol + Contract Type.</p>
@@ -12540,7 +12533,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-17'>Note</h3>
+<h3 id='note-19'>Note</h3>
 <ul>
 <li>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</li>
 </ul>
@@ -12712,7 +12705,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>Order type of stop-loss order    default is limit; limit，optimal_5，optimal_10，optimal_20</td>
 </tr>
 </tbody></table>
-<h3 id='note-18'>Note  ：</h3>
+<h3 id='note-20'>Note  ：</h3>
 <p>If there is a number in the Contract Code row,inquiry with Contract_Code. </p>
 
 <p>If there is no number,inquiry by Symbol + Contract Type.</p>
@@ -12868,7 +12861,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-19'>Note</h3>
+<h3 id='note-21'>Note</h3>
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</p>
 <h2 id='cancel-an-order'>Cancel an Order</h2><h3 id='example-17'>Example</h3>
 <ul>
@@ -12902,7 +12895,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>Case-Insenstive.Both uppercase and lowercase are supported..&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
-<h3 id='note-20'>Note  ：</h3>
+<h3 id='note-22'>Note  ：</h3>
 <p>Both order_id and client_order_id can be used for order withdrawl，one of them needed at one time，if both of them are set，the default will be order id。</p>
 
 <p>The return data from Cancel An Order Interface only means that order cancelation designation is executed successfully. To check cancelation result, please check your order status at Get Information Of An Order interface.</p>
@@ -13062,7 +13055,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>offset direction（if not filled in means all）  [&quot;open&quot; , &quot;close&quot;]</td>
 </tr>
 </tbody></table>
-<h3 id='note-21'>Note</h3>
+<h3 id='note-23'>Note</h3>
 <ol>
 <li><p>Send symbol to cancel all the contracts of that kind of symbol, e.g. send “BTC” to cancel all BTC weekly, biweekly and quarterly contracts.</p></li>
 <li><p>Send contract_code to cancel the contracts of that code.</p></li>
@@ -13167,7 +13160,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <ul>
 <li>POST <code>/api/v1/contract_switch_lever_rate</code></li>
 </ul>
-<h4 id='note-22'>Note</h4>
+<h4 id='note-24'>Note</h4>
 <ul>
 <li><p>Only if a user has positions of a single token and has no open orders, the leverage is available to be switched flexibly.</p></li>
 <li><p>The interface limits the number of requests to 1 time per 3 seconds.</p></li>
@@ -13352,7 +13345,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>&quot;lightning&quot; by default. &quot;lightning_fok&quot;: lightning FOK type,&quot;lightning_ioc&quot;: lightning IOC type</td>
 </tr>
 </tbody></table>
-<h3 id='note-23'>Note:</h3>
+<h3 id='note-25'>Note:</h3>
 <ul>
 <li>Lightning Close Position，is order with rival price and optimal 30 grades. And the unsettled part will be automatically converted into a limited price order.</li>
 </ul>
@@ -13474,7 +13467,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>Case-Insenstive.Both uppercase and lowercase are supported..&quot;BTC&quot;,&quot;ETH&quot;...</td>
 </tr>
 </tbody></table>
-<h3 id='note-24'>Note  ：</h3>
+<h3 id='note-26'>Note  ：</h3>
 <p>When getting information on order cancellation via get order information interface, users can only query last 4-hour data</p>
 
 <p>At least one of order_id and client_order_id must be filled in</p>
@@ -13750,7 +13743,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-25'>Note:</h4>
+<h4 id='note-27'>Note:</h4>
 <ul>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
 <li>Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value. And in the other orders created before that times, it is 0.</li>
@@ -13805,7 +13798,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>Default 20，no more than 50</td>
 </tr>
 </tbody></table>
-<h3 id='note-26'>Note</h3>
+<h3 id='note-28'>Note</h3>
 <p>When getting information on order cancellation via query order detail interface, users who type in parameters “created_at” and “order_type” can query last 6-hour data, while users who don’t type in parameters “created_at” and “order_type” can only query last 2-hour data.</p>
 
 <p>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jason-bigint package.</p>
@@ -14227,7 +14220,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-27'>Note:</h4>
+<h4 id='note-29'>Note:</h4>
 <ul>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
 <li>Only the real profit parameter (real_profit) of the transaction information that orders created after 0:00 on January 30, 2021 has a value . And of the other order transaction information that orders created  before that times, the real profit parameter is 0.</li>
@@ -14591,7 +14584,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-28'>Note:</h4>
+<h4 id='note-30'>Note:</h4>
 <ul>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
 <li>Only of the order information that orders created after 0:00 on January 30, 2021, the real profit (real_profit) parameter has a value. And in the other orders created before that times, it is 0.</li>
@@ -14708,7 +14701,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>&quot;create_date&quot;：descending order by order create date , &quot;update_time&quot;: descending order by order update time</td>
 </tr>
 </tbody></table>
-<h3 id='note-29'>Note</h3>
+<h3 id='note-31'>Note</h3>
 <p>All via API interface submited price limit orders that had been cancelled will only be kept for 2 hours.</p>
 
 <blockquote>
@@ -15010,7 +15003,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-30'>Note</h3>
+<h3 id='note-32'>Note</h3>
 <ul>
 <li>The return order_id is 18 bits, it will make  mistake when nodejs and JavaScript analysed 18 bits. Because the Json.parse in nodejs and JavaScript is int by default. so the number over 18 bits need be parsed by jaso-bigint package.</li>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
@@ -15108,7 +15101,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>prev ；next ；default value:prev</td>
 </tr>
 </tbody></table>
-<h4 id='note-31'>Note：</h4>
+<h4 id='note-33'>Note：</h4>
 <ul>
 <li>Query history orders interface can only query the API order cancellation information within the last 2 hours.</li>
 <li>Value range description of start_time and end_time:
@@ -15506,7 +15499,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-32'>Note:</h4>
+<h4 id='note-34'>Note:</h4>
 <ul>
 <li>if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id  presents the last data on the next page.)</li>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
@@ -15898,7 +15891,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>prev ；next ；Default value：prev</td>
 </tr>
 </tbody></table>
-<h4 id='note-33'>Note:</h4>
+<h4 id='note-35'>Note:</h4>
 <ul>
 <li>Value range description of start_time and end_time:
 
@@ -16247,7 +16240,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-34'>Note</h4>
+<h4 id='note-36'>Note</h4>
 <ul>
 <li>if the query result exceeds the data limit, next_id is the id of next data. ( when the query direction is prev, next_id presents the first data on the next page; when the query direction is next, next_id  presents the last data on the next page.)</li>
 <li>The real_profit is calculated with the average price in open position and the transaction average price in close position (the real profit is the sum of each profit of order matched).</li>
@@ -16362,7 +16355,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-35'>Note</h3>
+<h3 id='note-37'>Note</h3>
 <ul>
 <li><p>If the contract_code field is filled with a number, order will by placed by contract_code.</p></li>
 <li><p>If the contract_code field is None, order will by placed by symbol and contract_type.</p></li>
@@ -16475,7 +16468,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>order id. multiple orderids need to be joined by &quot;,&quot;.Max number of order ids is 10 once.</td>
 </tr>
 </tbody></table>
-<h4 id='note-36'>Note</h4>
+<h4 id='note-38'>Note</h4>
 <ul>
 <li>The frequency limit of this interface is 5 times per second.</li>
 </ul>
@@ -16623,7 +16616,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>offset direction（if not filled in means all）  [&quot;open&quot; , &quot;close&quot;]</td>
 </tr>
 </tbody></table>
-<h3 id='note-37'>Note</h3>
+<h3 id='note-39'>Note</h3>
 <ul>
 <li><p>If only symbol is filled, cancel all trigger orders of this symbol</p></li>
 <li><p>If contract_code is filled, cancel trigger orders of this contract code.</p></li>
@@ -17085,7 +17078,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>&quot;created_at&quot;：descending order by order creation time, &quot;update_time&quot;: descending order by order update time</td>
 </tr>
 </tbody></table>
-<h3 id='note-38'>NOTE</h3>
+<h3 id='note-40'>NOTE</h3>
 <ul>
 <li>Default to query completed orders (order status is one of 4, 5, 6);</li>
 </ul>
@@ -17489,7 +17482,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>default is limit; limit，optimal_5，optimal_10，optimal_20</td>
 </tr>
 </tbody></table>
-<h3 id='note-39'>Note</h3>
+<h3 id='note-41'>Note</h3>
 <ul>
 <li>If the &quot;contract_code&quot; has been filled in with a value, the system will place an order based on &quot;contract_code&quot;; If not, the system will place an order based on &quot;symbol+contract_type&quot;.</li>
 <li>All take-profit and stop-loss orders are position closing orders.</li>
@@ -17632,7 +17625,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-40'>Note</h4>
+<h4 id='note-42'>Note</h4>
 <ul>
 <li>When only take-profit order or stop-loss order is set , the accordingly returned &quot;sl_order&quot; or &quot;tp_order&quot; will be empty.</li>
 </ul>
@@ -17665,7 +17658,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-41'>Note</h4>
+<h4 id='note-43'>Note</h4>
 <ul>
 <li>The frequency limit of this interface is 5 times per second.</li>
 </ul>
@@ -17811,7 +17804,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>[&quot;buy&quot; , &quot;sell&quot;]</td>
 </tr>
 </tbody></table>
-<h4 id='note-42'>Note:</h4>
+<h4 id='note-44'>Note:</h4>
 <ul>
 <li>If only &quot;symbol&quot; is set,  cancel all the take-profit and stop-loss orders of all expirations under this order type.</li>
 <li>If only &quot;contract_code“ is set, cancel all take-profit and stop-loss orders of the contracts of the code.</li>
@@ -19072,7 +19065,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>optimal_5, optimal_10, optimal_20, formula_price</td>
 </tr>
 </tbody></table>
-<h4 id='note-43'>Note:</h4>
+<h4 id='note-45'>Note:</h4>
 <ul>
 <li>When order_price_type is the formula_price, it means that after the tracking order is triggered successfully, use the lowest (highest) market price *(1 ± callback rate) that from statistic since place trading order, as the order price (the precision is the minimum variation of the contract price and be truncated) to place a limit price order </li>
 <li>whether filled in with the optimal N or the formula price, there is no guarantee that the order can be completely filled, which mainly depends on the market conditions.</li>
@@ -19173,7 +19166,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-44'>Note</h4>
+<h4 id='note-46'>Note</h4>
 <ul>
 <li>The frequency limit of this interface is 5 times per second.</li>
 </ul>
@@ -19326,7 +19319,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>open, close</td>
 </tr>
 </tbody></table>
-<h4 id='note-45'>Note:</h4>
+<h4 id='note-47'>Note:</h4>
 <ul>
 <li>Send symbol to cancel all the contracts of that kind of symbol</li>
 <li>Send contract_code to cancel the contracts of that code.</li>
@@ -20501,7 +20494,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <p>System status updates subscription ：wss://api.btcgateway.pro/center-notification</p>
 
 <p>If you have further queries about Huobi Future order push subscription, please refer to <a href="https://github.com/huobiapi/Futures-Java-demo">Demo</a></p>
-<h3 id='note-46'>Note:</h3>
+<h3 id='note-48'>Note:</h3>
 <p>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot; for debug purpose. If your server is deployed in AWS, we recommend using &quot;https://api.hbdm.vn&quot;.</p>
 <h2 id='api-rate-limit-illustration-2'>API Rate Limit Illustration</h2>
 <p>There is rate limit for both public and private interfaces. More details are laid out as below:</p>
@@ -20572,7 +20565,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <p><code>&quot;ts&quot;: &quot;1492420473058&quot;</code></p>
 
 <p><code>}</code></p>
-<h3 id='note-47'>Note</h3>
+<h3 id='note-49'>Note</h3>
 <ul>
 <li>&quot;ts&quot; value in the return &quot;pong&quot; message is the &quot;ts&quot; value from &quot;ping&quot; push Once the WebSocket Client and WebSocket Server connected, Websocket Server will send a heartbeat every 5 seconds (the frequency might change) to Wesocket Client. If WebSocket Client ignores the heartbeat message for 5 times, it will get disconnected with Websocket Sever automatically. Under abnormal conditions, WebSocket Server will return error message like:</li>
 </ul>
@@ -20618,7 +20611,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 </ul>
 
 <p><code>wss://api.hbdm.com/notification</code></p>
-<h3 id='note-48'>Note:</h3>
+<h3 id='note-50'>Note:</h3>
 <p>If you can&#39;t connect &quot;https://api.hbdm.com&quot;, please use &quot;https://api.btcgateway.pro&quot; for debug purpose. If your server is deployed in AWS, we recommend using &quot;https://api.hbdm.vn&quot;.</p>
 
 <p>Please note that the WS request connection should not go over 30 normally.</p>
@@ -20968,7 +20961,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
         </span><span class="s2">"count"</span><span class="p">:</span><span class="mi">0</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='note-49'>Note</h3>
+</span></code></pre><h3 id='note-51'>Note</h3>
 <ul>
 <li>Support to query K-line data of contracts which have been delisted in the last four weeks; User can enter contract code to query data of contracts delisted in the last four weeks.</li>
 </ul>
@@ -21145,7 +21138,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>Case-Senstive.Only lowercase is supported.1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon</td>
 </tr>
 </tbody></table>
-<h4 id='note-50'>Note</h4>
+<h4 id='note-52'>Note</h4>
 <p>If between time range [t1, t5], there are t1-t5 Klines in quantity.</p>
 
 <p>from: t1, to: t5, return [t1, t5].</p>
@@ -21360,7 +21353,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>Get depth data within step 150, use step0, step1, step2, step3, step4, step5, step14, step15（merged depth data 0-5, 14-15）；when step is 0，depth data will not be merged; Get depth data within step 20, use step6, step7, step8, step9, step10, step11, step12, step13(merged depth data 7-13); when step is 6, depth data will not be merged.</td>
 </tr>
 </tbody></table>
-<h3 id='note-51'>Note:</h3>
+<h3 id='note-53'>Note:</h3>
 <ul>
 <li><p>When clients choose merged depth data, WebSocket server will only display the merged price within price steps in order book. Please note that the merged depth price will not make any change on the actual order price.</p></li>
 <li><p>steps between step1 and step5, step14, step15 are merged orderbook data of step 150. 
@@ -21698,7 +21691,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-52'>Note:</h3>
+<h3 id='note-54'>Note:</h3>
 <ul>
 <li>when <code>data_type</code> is <code>incremental</code>,<code>snapshot</code> data wil be pushed for the first time. When re-connection occurs, <code>snapshort</code> data will be pushed for the first time. </li>
 <li><code>version</code>: auto increment in single websocket connection. <code>version</code> may be different among several websocket subscription connections.</li>
@@ -21915,7 +21908,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-53'>Note:</h3>
+<h3 id='note-55'>Note:</h3>
 <ul>
 <li><p>Once Best Bid/Ask Quotations (price,volume) change, it will be pushed.</p></li>
 <li><p>When the price and volume of Best Bid/Ask Quotations both change, only the latest BBO will be pushed.  </p></li>
@@ -22082,7 +22075,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-54'>Note:</h4>
+<h4 id='note-56'>Note:</h4>
 <ul>
 <li>Bid price(p1) and ask price(p1) are not updated in real time, there will be some delay (about 500ms).</li>
 </ul>
@@ -22588,7 +22581,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-55'>Note</h3>
+<h3 id='note-57'>Note</h3>
 <ul>
 <li><p>Pushed once the index data is changed.</p></li>
 <li><p>Periodical Push when the index data hasn&#39;t changed according to the kline period.</p></li>
@@ -22787,7 +22780,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-56'>Note：</h3>
+<h3 id='note-58'>Note：</h3>
 <ul>
 <li>Pushed once the index data is changed.</li>
 </ul>
@@ -22877,7 +22870,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='data-parameters-2'>data parameters</h3>
+<h3 id='data-parameters'>data parameters</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -23011,7 +23004,7 @@ Details are below:</p></li>
 <td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-57'>Note:</h4>
+<h4 id='note-59'>Note:</h4>
 <ul>
 <li>The basis data of Next Quarterly Contract is available after 2020/6/15 14:00:00.</li>
 </ul>
@@ -23202,7 +23195,7 @@ Details are below:</p></li>
 <td>open price：&quot;open&quot;，close price：&quot;close&quot;，highest price：&quot;high&quot;，lowest price：&quot;low&quot;，avg=（high price +low price）/2：&quot;average&quot;</td>
 </tr>
 </tbody></table>
-<h3 id='note-58'>Note：</h3>
+<h3 id='note-60'>Note：</h3>
 <ul>
 <li>2000 data at most per request.</li>
 </ul>
@@ -23620,7 +23613,7 @@ Details are below:</p></li>
 <td>1min, 5min, 15min, 30min, 60min,4hour,1day, 1week, 1mon</td>
 </tr>
 </tbody></table>
-<h3 id='note-59'>Note:</h3>
+<h3 id='note-61'>Note:</h3>
 <ul>
 <li>At one time 2000 at most</li>
 </ul>
@@ -23779,7 +23772,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='note-60'>Note</h4>
+<h4 id='note-62'>Note</h4>
 <ul>
 <li>Data will be available after the marked price goes online on March 15, 2021. Please be aware that there is no historical data before.</li>
 </ul>
@@ -23830,7 +23823,7 @@ Details are below:</p></li>
 <td>Required；Topic name format: orders.$symbol; symbol is case-insenstive.Both uppercase and lowercase are supported. e.g.:&quot;BTC,ETH&quot;</td>
 </tr>
 </tbody></table>
-<h4 id='note-61'>Note:</h4>
+<h4 id='note-63'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 </ul>
@@ -24253,7 +24246,7 @@ Details are below:</p></li>
 <blockquote>
 <p>Illustration on detailed data format of orders Notification</p>
 </blockquote>
-<h4 id='note-62'>Note:</h4>
+<h4 id='note-64'>Note:</h4>
 <ul>
 <li>The order status of &#39;post_only&#39; type pushed by ws is ethier &#39;7:canceled&#39; or &#39;3:submitted&#39;.</li>
 <li>The orders will be pushed when matched by matching engine.</li>
@@ -24734,7 +24727,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-63'>Note</h3>
+<h3 id='note-65'>Note</h3>
 <ul>
 <li>A regular push of account is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</li>
 </ul>
@@ -25016,7 +25009,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-64'>Note</h3>
+<h3 id='note-66'>Note</h3>
 <ul>
 <li><p>A regular push of position is performed every 5 sedconds.The event field of the reponse is &quot;snapshot&quot;.If there is a push in 5 seconds, snapshot push will be skipped.</p></li>
 <li><p>When switching leverage with no positions, the event &quot;switch_lever_rate&quot; will not be pushed by the position topic.</p></li>
@@ -25536,7 +25529,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-65'>Note：</h3>
+<h3 id='note-67'>Note：</h3>
 <ul>
 <li>The websocket subscription of contract info event is pushed every 60 seconds, and the event is &quot;snapshot&quot;. </li>
 <li>When the subscription is successful, the latest contract information will be pushed immediately, and the event is &quot;init&quot;.</li>
@@ -26192,7 +26185,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='note-66'>Note</h3>
+<h3 id='note-68'>Note</h3>
 <ul>
 <li>Since this push is a poll query status, there may be a delay of 1-2 seconds.</li>
 </ul>
@@ -26333,7 +26326,7 @@ Details are below:</p></li>
       const btn_spot = document.getElementById('btn_spot');
       const btn_dm = document.getElementById('btn_dm');
       const btn_coin_margined_swap = document.getElementById('btn_coin_margined_swap');
-      const btn_usdt_swap = document.getElementById('btn_usdt_swap')
+      const btn_usdt_swap = document.getElementById('btn_usdt_swap');
     //  const btn_option = document.getElementById('btn_option');
       const v1_url = document.getElementById('v1_url');
       const url = GetUrlRelativePath();
