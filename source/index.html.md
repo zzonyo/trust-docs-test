@@ -159,7 +159,7 @@ Welcome to Huobi API！
 
 This is the official Huobi API document, and will be continue updating. Huobi will also publish API announcement in advance for any API change. Please subscribe to our announcements so that you can get the latest updates.
 
-You can click <a href='https://huobiglobal.zendesk.com/hc/en-us/sections/360000070201-API-Announcements'>Here</a> to view the announcements. If you want to subscribe, please click "Follow" button in the top right of the page. After login and click "Follow" again, then choose the type you want to follow. After you subscribe, the button will be changed to "Following". If you don't have any account, you need to register first in the login dialog.
+You can click <a href='https://www.huobi.pe/support/en-us/list/360000070201'>Here</a> to view the announcements. If you want to subscribe, please click "Follow" button in the top right of the page. After login and click "Follow" again, then choose the type you want to follow. After you subscribe, the button will be changed to "Following". If you don't have any account, you need to register first in the login dialog.
 
 **How to read this document**
 
