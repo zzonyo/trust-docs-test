@@ -841,8 +841,8 @@ api-aws.huobi.pro域名对使用aws云服务的用户做了链路延迟优化，
 
 欢迎有优秀 maker 策略且交易量大的用户参与长期做市商项目。如果您的火币现货账户或者合约账户中有折合大于10BTC资产（币币和合约账户分开统计），请提供以下信息发送邮件至：
 
-- [MM_service@huobi.com](mailto:MM_service@huobi.com) Huobi Global（现货 / 杠杆）做市商申请；
-- [dm_mm@huobi.com](mailto:dm_mm@huobi.com) HBDM（合约）做市商申请。
+- [Vip@global-hgroup.com](mailto:Vip@global-hgroup.com) Huobi Global（现货 / 杠杆）做市商申请；
+- [Vip@global-hgroup.com](mailto:Vip@global-hgroup.com) HBDM（合约）做市商申请。
 
 1. 提供 UID （需不存在返佣关系的 UID）；
 2. 提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；
