@@ -811,8 +811,8 @@ It indicates the request path doesn't exist, please check the path spelling care
 
 It is very welcome for market maker who has good market making strategy and large trading volume. If your Huobi Spot account or Contract account has at least 10 BTC, you can send your email to:
 
-- [MM_service@huobi.com](mailto:MM_service@huobi.com) for Huobi Global (spot / leverage) market maker
-- [dm_mm@huobi.com](mailto:dm_mm@huobi.com) for Huobi Contract market maker
+- [Vip@global-hgroup.com](mailto:Vip@global-hgroup.com) for Huobi Global (spot / leverage) market maker
+- [Vip@global-hgroup.com](mailto:Vip@global-hgroup.com) for Huobi Contract market maker
 
 And provide below details:
 
@@ -4106,7 +4106,7 @@ curl "https://api.huobi.pro/v1/account/accounts/10758899"
 <aside class="notice">The returned "data" object is a list of accounts under this sub-user</aside>
 | Field | Data Type | Description                          | Value Range                           |
 | ----- | --------- | ------------------------------------ | ------------------------------------- |
-| id    | integer   | Sub account's UID                 | NA                                    |
+| id    | integer   | account's ID                 | NA                                    |
 | type  | string    | The type of this account             | spot, margin, otc, point,super-margin |
 | list  | object    | The balance details of each currency | NA                                    |
 
