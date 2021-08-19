@@ -906,6 +906,18 @@ table th {
 </tr>
 </thead><tbody>
 <tr>
+<td>2021.8.19</td>
+<td><code>accounts.update#${mode}</code></td>
+<td>优化</td>
+<td>Add “Serial Number of Account Change” parameter：“seqNum”</td>
+</tr>
+<tr>
+<td>2021.8.19</td>
+<td><code>GET /v1/account/accounts/{account-id}/balance</code></td>
+<td>优化</td>
+<td>Add “Serial Number of Account Change” parameter：“seq-num”</td>
+</tr>
+<tr>
 <td>2021.8.12</td>
 <td><code>market.$symbol.ticker</code></td>
 <td>Add</td>
@@ -4470,16 +4482,19 @@ Rate Limit (NEW): 100times/2s</p>
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"seq-num"</span><span class="p">:</span><span class="w"> </span><span class="s2">"86872993928"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500009195917.4362872650"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"frozen"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"seq-num"</span><span class="p">:</span><span class="w"> </span><span class="s2">"86872993928"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"328048.1199920000"</span><span class="w">
       </span><span class="p">},</span><span class="w">
      </span><span class="p">{</span><span class="w">
         </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"etc"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"seq-num"</span><span class="p">:</span><span class="w"> </span><span class="s2">"86872993928"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"499999894616.1302471000"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -4546,6 +4561,12 @@ Rate Limit (NEW): 100times/2s</p>
 <td>balance</td>
 <td>string</td>
 <td>The balance in the main currency unit</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>seq-num</td>
+<td>string</td>
+<td>Serial Number of Account Change</td>
 <td>NA</td>
 </tr>
 </tbody></table>
@@ -19271,6 +19292,7 @@ The topic disseminates the current static value of individual accounts first, at
         </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23.111"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"changeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transfer"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"accountType"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"seqNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"86872993928"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"changeTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1568601800000</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -19285,6 +19307,7 @@ The topic disseminates the current static value of individual accounts first, at
         </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2028.699426619837209087"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"changeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.match"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"accountType"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"seqNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"86872993928"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"changeTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1574393385167</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -19297,6 +19320,7 @@ The topic disseminates the current static value of individual accounts first, at
         </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2065.100267619837209301"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"changeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order.match"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"accountType"</span><span class="p">:</span><span class="s2">"trade"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"seqNum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"86872993928"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"changeTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1574393385122</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -19342,6 +19366,11 @@ The topic disseminates the current static value of individual accounts first, at
 <td>changeTime</td>
 <td>long</td>
 <td>Change time, unix time in millisecond</td>
+</tr>
+<tr>
+<td>seqNum</td>
+<td>long</td>
+<td>Serial Number of Account Change</td>
 </tr>
 </tbody></table>
 
