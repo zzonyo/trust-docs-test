@@ -2559,22 +2559,34 @@ contract_code | string   | false      | BTC180914|
 ```json
 
 {
-    "status": "ok",
-    "data": [
+    "status":"ok",
+    "data":[
         {
-            "symbol": "BTC",
-            "contract_code": "BTC210326",
-            "contract_type": "quarter",
-            "contract_size": 100,
-            "price_tick": 0.000001,
-            "delivery_date": "20210326",
-            "delivery_time": "1616760600000",
-            "create_date": "20200818",
-            "contract_status": 1,
-            "settlement_time": "1609762200000"
+            "symbol":"BTC",
+            "contract_code":"BTC210813",
+            "contract_type":"this_week",
+            "contract_size":100,
+            "price_tick":0.01,
+            "delivery_date":"20210813",
+            "delivery_time":"1628841600000",
+            "create_date":"20210730",
+            "contract_status":1,
+            "settlement_time":"1628668800000"
+        },
+        {
+            "symbol":"ETH",
+            "contract_code":"ETH210813",
+            "contract_type":"this_week",
+            "contract_size":10,
+            "price_tick":0.001,
+            "delivery_date":"20210813",
+            "delivery_time":"1628841600000",
+            "create_date":"20210730",
+            "contract_status":1,
+            "settlement_time":"1628668800000"
         }
     ],
-    "ts": 1604296501822
+    "ts":1628650535608
 }
 ```
 
@@ -3028,22 +3040,33 @@ curl "https://api.hbdm.com/market/history/kline?period=1min&size=200&symbol=BTC_
 > Response
 
 ```json
+
 {
     "ch": "market.BTC_CQ.mark_price.5min",
     "data": [
         {
             "amount": "0",
-            "close": "65582.94",
+            "close": "45853.29",
             "count": "0",
-            "high": "65645.7",
-            "id": 1615773000,
-            "low": "65582.85",
-            "open": "65623.97",
+            "high": "45936.25",
+            "id": 1628652300,
+            "low": "45853.05",
+            "open": "45931.25",
+            "vol": "0"
+        },
+        {
+            "amount": "0",
+            "close": "45862.49",
+            "count": "0",
+            "high": "45862.49",
+            "id": 1628652600,
+            "low": "45851.31",
+            "open": "45852.5",
             "vol": "0"
         }
     ],
     "status": "ok",
-    "ts": 1615773225762
+    "ts": 1628652647728
 }
 ```
 
@@ -4281,8 +4304,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
             "liquidation_price": null,
             "lever_rate": 10,
             "adjust_factor": 0.2,
-            "margin_static": 453.151955780787465997,
-            "is_debit": 0
+            "margin_static": 453.151955780787465997
         }
     ],
     "ts": 1604300060777
