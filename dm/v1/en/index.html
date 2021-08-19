@@ -3069,7 +3069,9 @@ contracts. Please note that the rate limit of WS order push and RESTFUL private 
 <li>Notice: Heartbeat is 1 is available, 0 is not available. </li>
 </ul>
 <h2 id='get-current-system-timestamp'>Get current system timestamp</h2>
-<p>get <code>https://api.hbdm.com/api/v1/timestamp</code></p>
+<ul>
+<li>GET <code>https://api.hbdm.com/api/v1/timestamp</code></li>
+</ul>
 <h3 id='request'>request</h3>
 <p>null</p>
 
@@ -11379,7 +11381,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 </tbody></table>
 <h2 id='query-assets-and-positions'>Query Assets And Positions</h2>
 <ul>
-<li>post <code>/api/v1/contract_account_position_info</code></li>
+<li>POST <code>/api/v1/contract_account_position_info</code></li>
 </ul>
 <h3 id='params'>params</h3>
 <table><thead>
@@ -11451,24 +11453,28 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <th>type</th>
 <th>Mandatory</th>
 <th>desc</th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>status</td>
 <td>string</td>
 <td>true</td>
-<td>Request Processing Result  &quot;ok&quot; , &quot;error&quot;</td>
+<td>Request Processing Result</td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
 <td>ts</td>
 <td>long</td>
 <td>true</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
+<td></td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
 <td>object array</td>
 <td>true</td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -11476,81 +11482,95 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>string</td>
 <td>true</td>
 <td>contract type</td>
+<td></td>
 </tr>
 <tr>
 <td>margin_balance</td>
 <td>decimal</td>
 <td>true</td>
 <td>Balance Margin</td>
+<td></td>
 </tr>
 <tr>
 <td>margin_position</td>
 <td>decimal</td>
 <td>true</td>
 <td>Postion Margin</td>
+<td></td>
 </tr>
 <tr>
 <td>margin_frozen</td>
 <td>decimal</td>
 <td>true</td>
 <td>Frozen Margin</td>
+<td></td>
 </tr>
 <tr>
 <td>margin_available</td>
 <td>decimal</td>
 <td>true</td>
 <td>Available Margin</td>
+<td></td>
 </tr>
 <tr>
 <td>profit_real</td>
 <td>decimal</td>
 <td>true</td>
 <td>Realized Profit</td>
+<td></td>
 </tr>
 <tr>
 <td>profit_unreal</td>
 <td>decimal</td>
 <td>true</td>
 <td>Unreadlized Profit</td>
+<td></td>
 </tr>
 <tr>
 <td>risk_rate</td>
 <td>decimal</td>
 <td>true</td>
 <td>risk rate</td>
+<td></td>
 </tr>
 <tr>
 <td>withdraw_available</td>
 <td>decimal</td>
 <td>true</td>
 <td>Available Withdraw</td>
+<td></td>
 </tr>
 <tr>
 <td>liquidation_price</td>
 <td>decimal</td>
 <td>true</td>
 <td>Estimated Liquidation Price</td>
+<td></td>
 </tr>
 <tr>
 <td>lever_rate</td>
 <td>decimal</td>
 <td>true</td>
 <td>Leverage Rate</td>
+<td></td>
 </tr>
 <tr>
 <td>adjust_factor</td>
 <td>decimal</td>
 <td>true</td>
 <td>Adjustment Factor</td>
+<td></td>
 </tr>
 <tr>
 <td>margin_static</td>
 <td>decimal</td>
 <td>true</td>
 <td>Static Margin</td>
+<td></td>
 </tr>
 <tr>
 <td>&lt;positions&gt;</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -11560,93 +11580,109 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td>string</td>
 <td>true</td>
 <td>Variety Code</td>
+<td></td>
 </tr>
 <tr>
 <td>contract_code</td>
 <td>string</td>
 <td>true</td>
-<td>Contract Code &quot;BTC180914&quot; ...</td>
+<td>Contract Code</td>
+<td>&quot;BTC180914&quot; ...</td>
 </tr>
 <tr>
 <td>contract_type</td>
 <td>string</td>
 <td>true</td>
-<td>Contract Type &quot;this_week&quot;, &quot;next_week&quot;, &quot;quarter&quot;  &quot;next_quarter&quot;</td>
+<td>Contract Type</td>
+<td>&quot;this_week&quot;, &quot;next_week&quot;, &quot;quarter&quot;  &quot;next_quarter&quot;</td>
 </tr>
 <tr>
 <td>volume</td>
 <td>decimal</td>
 <td>true</td>
 <td>Position Quantity</td>
+<td></td>
 </tr>
 <tr>
 <td>available</td>
 <td>decimal</td>
 <td>true</td>
 <td>Available position quatity can be closed</td>
+<td></td>
 </tr>
 <tr>
 <td>frozen</td>
 <td>decimal</td>
 <td>true</td>
 <td>forzen postion Quantity</td>
+<td></td>
 </tr>
 <tr>
 <td>cost_open</td>
 <td>decimal</td>
 <td>true</td>
 <td>Opening Average Price</td>
+<td></td>
 </tr>
 <tr>
 <td>cost_hold</td>
 <td>decimal</td>
 <td>true</td>
 <td>Average position price</td>
+<td></td>
 </tr>
 <tr>
 <td>profit_unreal</td>
 <td>decimal</td>
 <td>true</td>
 <td>Unrealized profit</td>
+<td></td>
 </tr>
 <tr>
 <td>profit_rate</td>
 <td>decimal</td>
 <td>true</td>
 <td>Profit Rate</td>
+<td></td>
 </tr>
 <tr>
 <td>profit</td>
 <td>decimal</td>
 <td>true</td>
 <td>Profit</td>
+<td></td>
 </tr>
 <tr>
 <td>position_margin</td>
 <td>decimal</td>
 <td>true</td>
 <td>Position Margin</td>
+<td></td>
 </tr>
 <tr>
 <td>lever_rate</td>
 <td>int</td>
 <td>true</td>
 <td>Leverage Rate</td>
+<td></td>
 </tr>
 <tr>
 <td>direction</td>
 <td>string</td>
 <td>true</td>
-<td>transaction direction of positions  &quot;buy&quot;:long &quot;sell&quot;:short</td>
+<td>transaction direction of positions</td>
+<td>&quot;buy&quot;:long &quot;sell&quot;:short</td>
 </tr>
 <tr>
 <td>last_price</td>
 <td>decimal</td>
 <td>true</td>
 <td>Last Price</td>
+<td></td>
 </tr>
 <tr>
 <td>&lt;/positions&gt;</td>
+<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -11656,11 +11692,12 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
 </tbody></table>
 <h2 id='transfer-between-master-and-sub-account'>Transfer between master and sub account</h2>
 <ul>
-<li>post <code>/api/v1/contract_master_sub_transfer</code></li>
+<li>POST <code>/api/v1/contract_master_sub_transfer</code></li>
 </ul>
 
 <blockquote>
@@ -11679,7 +11716,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <th>required</th>
 <th>type</th>
 <th>desc</th>
-<th></th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -11743,7 +11780,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <th>required</th>
 <th>type</th>
 <th>desc</th>
-<th></th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -11791,7 +11828,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 </tbody></table>
 <h2 id='get-transfer-records-between-master-and-sub-account'>Get transfer records between master and sub account</h2>
 <ul>
-<li>post <code>/api/v1/contract_master_sub_transfer_record</code></li>
+<li>POST <code>/api/v1/contract_master_sub_transfer_record</code></li>
 </ul>
 <h3 id='request-2'>request</h3>
 <table><thead>
@@ -11800,7 +11837,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <th>required</th>
 <th>type</th>
 <th>desc</th>
-<th></th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -11829,14 +11866,14 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>false</td>
 <td>int</td>
 <td>1 by default</td>
-<td>1</td>
+<td></td>
 </tr>
 <tr>
 <td>page_size</td>
 <td>false</td>
 <td>int</td>
 <td>20 by default.less than or equal to 50.</td>
-<td>20</td>
+<td>[1-50]</td>
 </tr>
 </tbody></table>
 
@@ -11880,7 +11917,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <th>required</th>
 <th>type</th>
 <th>desc</th>
-<th></th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -11998,7 +12035,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 </tbody></table>
 <h2 id='query-user-39-s-api-indicator-disable-information'>Query user&#39;s API indicator disable information</h2>
 <ul>
-<li>get <code>/api/v1/contract_api_trading_status</code></li>
+<li>GET <code>/api/v1/contract_api_trading_status</code></li>
 </ul>
 <h3 id='request-body'>request body</h3>
 <p>null</p>
@@ -12043,7 +12080,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <th>required</th>
 <th>type</th>
 <th>desc</th>
-<th></th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -12226,7 +12263,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <th>required</th>
 <th>type</th>
 <th>desc</th>
-<th></th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -12259,7 +12296,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <th>required</th>
 <th>type</th>
 <th>desc</th>
-<th></th>
+<th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -12770,7 +12807,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(Attribute Name: errors)</td>
+<td>&lt;errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -12798,14 +12835,14 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(Attribute Name: success)</td>
+<td>&lt;success&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -12840,7 +12877,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/success&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -12938,14 +12975,14 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>&lt;dict&gt;(Key Name: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(Attribute Name: errors)</td>
+<td>&lt;errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -12973,7 +13010,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -12987,7 +13024,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;/dict&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -13093,14 +13130,14 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>&lt;dict&gt;(Key Name: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(Attribute Name: errors)</td>
+<td>&lt;errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -13128,7 +13165,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -13142,7 +13179,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;/dict&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -13533,7 +13570,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>&lt;list&gt;(Attribute Name: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -13600,7 +13637,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>true</td>
 <td>int</td>
 <td>Leverage rate</td>
-<td>1\5\10\20</td>
+<td>1，5，10，20</td>
 </tr>
 <tr>
 <td>order_id</td>
@@ -13729,7 +13766,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -13884,7 +13921,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>&lt;object&gt; (Attribute Name: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -13916,7 +13953,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>true</td>
 <td>int</td>
 <td>Leverage Rate</td>
-<td>1\5\10\20</td>
+<td>1,5,10,20</td>
 </tr>
 <tr>
 <td>direction</td>
@@ -14122,7 +14159,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt; (Attribute Name: trades)</td>
+<td>&lt;trades&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -14199,14 +14236,14 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/trades&gt;</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;/object &gt;</td>
+<td>&lt;/data &gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -14262,7 +14299,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>int</td>
 <td>Default 20，no more than 50</td>
 <td>20</td>
-<td></td>
+<td>[1-50]</td>
 </tr>
 <tr>
 <td>sort_by</td>
@@ -14346,7 +14383,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(Attribute Name: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -14570,7 +14607,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -14674,7 +14711,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>int</td>
 <td>Default 20，no more than 50</td>
 <td>20</td>
-<td></td>
+<td>[1-50]</td>
 </tr>
 <tr>
 <td>contract_code</td>
@@ -14765,14 +14802,14 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;object&gt;(Attribute Name: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(Attribute Name: orders)</td>
+<td>&lt;orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -14961,7 +14998,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -14989,7 +15026,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;/object&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -15566,7 +15603,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>int</td>
 <td>if not enter, it will be the default value of 20; the number should ≤50</td>
 <td>20</td>
-<td></td>
+<td>[1-50]</td>
 </tr>
 </tbody></table>
 
@@ -15624,14 +15661,14 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;object&gt;(attribute name: data: data)</td>
+<td>&lt;data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(attribute name: data: trades)</td>
+<td>&lt;trades&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -15771,7 +15808,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/trades&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -15799,7 +15836,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;/object&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -16404,31 +16441,11 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>error message</td>
 </tr>
 <tr>
-<td>data</td>
-<td>List<OrderInsertRspInfo></td>
+<td>&lt;data&gt;</td>
+<td>List</td>
 <td>false</td>
 <td>list info</td>
 </tr>
-<tr>
-<td>ts</td>
-<td>long</td>
-<td>true</td>
-<td>timestamp</td>
-</tr>
-</tbody></table>
-
-<ul>
-<li>OrderInsertRspInfo</li>
-</ul>
-
-<table><thead>
-<tr>
-<th>field</th>
-<th>type</th>
-<th>Mandatory</th>
-<th>Desc</th>
-</tr>
-</thead><tbody>
 <tr>
 <td>order_id</td>
 <td>long</td>
@@ -16440,6 +16457,18 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>string</td>
 <td>true</td>
 <td>order id str</td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>true</td>
+<td>timestamp</td>
 </tr>
 </tbody></table>
 <h2 id='cancel-trigger-order'>Cancel Trigger Order</h2>
@@ -16523,7 +16552,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(field name: errors)</td>
+<td>&lt;errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -16551,7 +16580,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -16662,7 +16691,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(data name: errors)</td>
+<td>&lt;errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -16690,7 +16719,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/errors&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -16801,48 +16830,26 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <table><thead>
 <tr>
 <th>Parameter Name</th>
-<th>Mandatory</th>
 <th>Type</th>
+<th>Mandatory</th>
 <th>Description</th>
 <th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>status</td>
-<td>true</td>
 <td>string</td>
+<td>true</td>
 <td>Request Processing Result</td>
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>data</td>
-<td>true</td>
+<td>&lt;data&gt;</td>
 <td>object</td>
+<td>true</td>
 <td>Returned data</td>
 <td></td>
 </tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>Time stamp of response, Unit: millisecond</td>
-<td></td>
-</tr>
-</tbody></table>
-
-<ul>
-<li>data details</li>
-</ul>
-
-<table><thead>
-<tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Description</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
 <tr>
 <td>total_page</td>
 <td>int</td>
@@ -16865,7 +16872,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt; (Attribute Name: orders)</td>
+<td>&lt;orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -16896,8 +16903,8 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>trigger_type</td>
 <td>string</td>
 <td>true</td>
-<td>trigger type： <code>ge</code>great than or equal to；<code>le</code>less than or equal to</td>
-<td></td>
+<td>trigger type</td>
+<td><code>ge</code>great than or equal to；<code>le</code>less than or equal to</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -16910,29 +16917,29 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>order_type</td>
 <td>int</td>
 <td>true</td>
-<td>Transaction Type 1. Place orders 2. cancel orders</td>
-<td></td>
+<td>Transaction Type</td>
+<td>1. Place orders 2. cancel orders</td>
 </tr>
 <tr>
 <td>direction</td>
 <td>string</td>
 <td>true</td>
-<td>order direction [buy,sell]</td>
-<td></td>
+<td>order direction</td>
+<td>[buy,sell]</td>
 </tr>
 <tr>
 <td>offset</td>
 <td>string</td>
 <td>true</td>
-<td>offset direction [open,close]</td>
-<td></td>
+<td>offset direction</td>
+<td>[open,close]</td>
 </tr>
 <tr>
 <td>lever_rate</td>
 <td>int</td>
 <td>true</td>
-<td>Leverage 1\5\10\20</td>
-<td></td>
+<td>Leverage</td>
+<td>1,5,10,20</td>
 </tr>
 <tr>
 <td>order_id</td>
@@ -16952,8 +16959,8 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>order_source</td>
 <td>string</td>
 <td>true</td>
-<td>order source ( system. web. api. m. risk. settlement. ios. android. windows. mac. trigger)</td>
-<td></td>
+<td>order source</td>
+<td>( system. web. api. m. risk. settlement. ios. android. windows. mac. trigger)</td>
 </tr>
 <tr>
 <td>trigger_price</td>
@@ -16980,21 +16987,35 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>order_price_type</td>
 <td>string</td>
 <td>true</td>
-<td>order price type &quot;limit&quot;: limit order，&quot;optimal_5&quot;:optimal 5，&quot;optimal_10&quot;:optimal 10，&quot;optimal_20&quot;:optimal 20</td>
-<td></td>
+<td>order price type</td>
+<td>&quot;limit&quot;: limit order，&quot;optimal_5&quot;:optimal 5，&quot;optimal_10&quot;:optimal 10，&quot;optimal_20&quot;:optimal 20</td>
 </tr>
 <tr>
 <td>status</td>
 <td>int</td>
 <td>true</td>
-<td>order status：1:ready to submit、2:submited、3:order accepted、7:wrong order、8：canceled orders but not found、9：canceling order、10：failed&#39;</td>
+<td>order status</td>
+<td>1:ready to submit、2:submited、3:order accepted、7:wrong order、8：canceled orders but not found、9：canceling order、10：failed&#39;</td>
+</tr>
+<tr>
+<td>&lt;/orders&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 <td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>true</td>
+<td>long</td>
+<td>Time stamp of response, Unit: millisecond</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -17059,7 +17080,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>int</td>
 <td>Page, 1st page by default without given instruction</td>
 <td>1</td>
-<td>page，1st page by default without given instruction</td>
+<td></td>
 </tr>
 <tr>
 <td>page_size</td>
@@ -17067,7 +17088,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>int</td>
 <td>Page 20 by default without given instruction,  ，no more than 50</td>
 <td>20</td>
-<td>Page 20 by default without given instruction,  ，no more than 50</td>
+<td>[1-50]</td>
 </tr>
 <tr>
 <td>sort_by</td>
@@ -17129,48 +17150,26 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <table><thead>
 <tr>
 <th>Parameter Name</th>
-<th>Mandatory</th>
 <th>Type</th>
+<th>Mandatory</th>
 <th>Desc</th>
 <th>Value Range</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>status</td>
-<td>true</td>
 <td>string</td>
+<td>true</td>
 <td>Request Processing Result</td>
 <td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
-<td>data</td>
-<td>true</td>
+<td>&lt;data&gt;</td>
 <td>object</td>
+<td>true</td>
 <td>Return data</td>
 <td></td>
 </tr>
-<tr>
-<td>ts</td>
-<td>true</td>
-<td>long</td>
-<td>Time of Respond Generation, Unit: Millisecond</td>
-<td></td>
-</tr>
-</tbody></table>
-
-<ul>
-<li> Data details：</li>
-</ul>
-
-<table><thead>
-<tr>
-<th>Parameter Name</th>
-<th>Mandatory</th>
-<th>Type</th>
-<th>Desc</th>
-<th>Value Range</th>
-</tr>
-</thead><tbody>
 <tr>
 <td>total_page</td>
 <td>int</td>
@@ -17193,7 +17192,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;list&gt;(Attribute Name: orders)</td>
+<td>&lt;orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
@@ -17224,8 +17223,8 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>trigger_type</td>
 <td>string</td>
 <td>true</td>
-<td>trigger： <code>ge</code> Equal to or Greater than；<code>le</code> Less than or Equal to</td>
-<td></td>
+<td>trigger</td>
+<td><code>ge</code> Equal to or Greater than；<code>le</code> Less than or Equal to</td>
 </tr>
 <tr>
 <td>volume</td>
@@ -17238,29 +17237,29 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>order_type</td>
 <td>int</td>
 <td>true</td>
-<td>Transaction type：1、Place orders  2、Cancel orders</td>
-<td></td>
+<td>Transaction type</td>
+<td>1、Place orders  2、Cancel orders</td>
 </tr>
 <tr>
 <td>direction</td>
 <td>string</td>
 <td>true</td>
-<td>order direction, [Buy (buy), Sell(sell)]</td>
-<td></td>
+<td>order direction</td>
+<td>[Buy (buy), Sell(sell)]</td>
 </tr>
 <tr>
 <td>offset</td>
 <td>string</td>
 <td>true</td>
-<td>offset direction [Open(open), Close(lose)]</td>
-<td></td>
+<td>offset direction</td>
+<td>[Open(open), Close(lose)]</td>
 </tr>
 <tr>
 <td>lever_rate</td>
 <td>int</td>
 <td>true</td>
-<td>leverage 1\5\10\20</td>
-<td></td>
+<td>leverage</td>
+<td>1,5,10,20</td>
 </tr>
 <tr>
 <td>order_id</td>
@@ -17287,22 +17286,22 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>order_price_type</td>
 <td>string</td>
 <td>true</td>
-<td>order type &quot;limit&quot;: Limit order price，&quot;optimal_5&quot;: Optimal 5  price level，&quot;optimal_10&quot;:Optimal 10 price level，&quot;optimal_20&quot;: the Optimal 20 price level</td>
-<td></td>
+<td>order type &quot;limit&quot;</td>
+<td>Limit order price，&quot;optimal_5&quot;: Optimal 5  price level，&quot;optimal_10&quot;:Optimal 10 price level，&quot;optimal_20&quot;: the Optimal 20 price level</td>
 </tr>
 <tr>
 <td>status</td>
 <td>int</td>
 <td>true</td>
-<td>Order status (4:Orders accepted、5: Orders failing being placed、6: Orders canceled )</td>
-<td></td>
+<td>Order status</td>
+<td>(4:Orders accepted、5: Orders failing being placed、6: Orders canceled )</td>
 </tr>
 <tr>
 <td>order_source</td>
 <td>string</td>
 <td>true</td>
-<td>Order source ( system. web. api. m. risk. settlement. ios. android. windows. mac. trigger)</td>
-<td></td>
+<td>Order source</td>
+<td>( system. web. api. m. risk. settlement. ios. android. windows. mac. trigger)</td>
 </tr>
 <tr>
 <td>trigger_price</td>
@@ -17368,10 +17367,24 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td></td>
 </tr>
 <tr>
-<td>&lt;/list&gt;</td>
+<td>&lt;/orders&gt;</td>
 <td></td>
 <td></td>
 <td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>true</td>
+<td>Time of Respond Generation, Unit: Millisecond</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -17929,8 +17942,8 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>contract_code</td>
 <td>false</td>
 <td>string</td>
-<td>contract code,&quot;BTC180914&quot; ...</td>
-<td></td>
+<td>contract code</td>
+<td>&quot;BTC180914&quot; ...</td>
 </tr>
 <tr>
 <td>page_index</td>
@@ -17944,7 +17957,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>false</td>
 <td>int</td>
 <td>page size.20 by default. 50 at most</td>
-<td></td>
+<td>[1-50]</td>
 </tr>
 <tr>
 <td>trade_type</td>
@@ -18073,8 +18086,8 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>order_type</td>
 <td>true</td>
 <td>int</td>
-<td>Order type: 1. Quotation; 2. Cancelled order</td>
-<td></td>
+<td>Order type</td>
+<td>1. Quotation; 2. Cancelled order</td>
 </tr>
 <tr>
 <td>tpsl_order_type</td>
@@ -18115,8 +18128,8 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>trigger_type</td>
 <td>true</td>
 <td>string</td>
-<td>trigger type: ge, le</td>
-<td></td>
+<td>trigger type</td>
+<td>ge, le</td>
 </tr>
 <tr>
 <td>trigger_price</td>
@@ -18243,7 +18256,7 @@ transfer currency from sub-account to  master account using client_order_id=1).<
 <td>false</td>
 <td>int</td>
 <td>page size.20 by default. 50 at most</td>
-<td></td>
+<td>[1-50]</td>
 </tr>
 <tr>
 <td>sort_by</td>
@@ -21565,7 +21578,7 @@ Details are below:</p></li>
 <td>data_type</td>
 <td>false</td>
 <td>string</td>
-<td>Depth size</td>
+<td>data type. <code>snapshot</code> by default. <code>incremental</code>: incremental data.<code>snapshot</code>: full data.</td>
 </tr>
 </tbody></table>
 <h3 id='sub-request-parameter-rules'>sub Request Parameter Rules</h3>
@@ -22104,7 +22117,7 @@ Details are below:</p></li>
         </span><span class="s2">"ask"</span><span class="p">:[</span><span class="w">
             </span><span class="mf">13684.6</span><span class="p">,</span><span class="w">
             </span><span class="mi">3440</span><span class="w">
-        </span><span class="p">],</span><span class="w">
+        </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='request-trade-detail-data'>Request Trade Detail Data</h2><h3 id='to-request-trade-detail-data-clients-have-to-make-connection-to-the-websocket-server-and-send-request-data-in-the-format-below'>To request Trade detail data, Clients have to make connection to the WebSocket Server and send request data in the format below：</h3>
@@ -22623,10 +22636,73 @@ Details are below:</p></li>
 <td></td>
 </tr>
 <tr>
-<td>tick</td>
+<td>&lt;tick&gt;</td>
 <td>true</td>
 <td>object array</td>
 <td>Details：tick parameters</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>true</td>
+<td>string</td>
+<td>index kline id,the same as kline timestamp,kline start timestamp</td>
+<td></td>
+</tr>
+<tr>
+<td>vol</td>
+<td>true</td>
+<td>string</td>
+<td>Trade Volume. The value is 0.</td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>true</td>
+<td>decimal</td>
+<td>count. The value is 0.</td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>true</td>
+<td>string</td>
+<td>open index price</td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>true</td>
+<td>string</td>
+<td>close index price</td>
+<td></td>
+</tr>
+<tr>
+<td>low</td>
+<td>true</td>
+<td>string</td>
+<td>lowest index price</td>
+<td></td>
+</tr>
+<tr>
+<td>high</td>
+<td>true</td>
+<td>string</td>
+<td>highest index price</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>string</td>
+<td>amount based on coins.</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
@@ -22634,64 +22710,6 @@ Details are below:</p></li>
 <td>true</td>
 <td>long</td>
 <td>Time of Respond Generation, Unit: Millisecond</td>
-<td></td>
-</tr>
-</tbody></table>
-<h3 id='tick-parameters'>tick parameters</h3>
-<table><thead>
-<tr>
-<th><strong>parameter name</strong></th>
-<th><strong>type</strong></th>
-<th><strong>desc</strong></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>string</td>
-<td>index kline id,the same as kline timestamp,kline start timestamp</td>
-<td></td>
-</tr>
-<tr>
-<td>vol</td>
-<td>string</td>
-<td>Trade Volume. The value is 0.</td>
-<td></td>
-</tr>
-<tr>
-<td>count</td>
-<td>decimal</td>
-<td>count. The value is 0.</td>
-<td></td>
-</tr>
-<tr>
-<td>open</td>
-<td>string</td>
-<td>open index price</td>
-<td></td>
-</tr>
-<tr>
-<td>close</td>
-<td>string</td>
-<td>close index price</td>
-<td></td>
-</tr>
-<tr>
-<td>low</td>
-<td>string</td>
-<td>lowest index price</td>
-<td></td>
-</tr>
-<tr>
-<td>high</td>
-<td>string</td>
-<td>highest index price</td>
-<td></td>
-</tr>
-<tr>
-<td>amount</td>
-<td>string</td>
-<td>amount based on coins.</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -22863,68 +22881,73 @@ Details are below:</p></li>
 <td></td>
 </tr>
 <tr>
-<td>data</td>
+<td>&lt;data&gt;</td>
 <td>true</td>
 <td>object array</td>
 <td>Details：data parameters</td>
 <td></td>
 </tr>
-</tbody></table>
-<h3 id='data-parameters'>data parameters</h3>
-<table><thead>
-<tr>
-<th><strong>parameter name</strong></th>
-<th><strong>type</strong></th>
-<th><strong>desc</strong></th>
-<th></th>
-</tr>
-</thead><tbody>
 <tr>
 <td>id</td>
+<td>true</td>
 <td>int</td>
 <td>index kline id,the same as kline timestamp,kline start timestamp</td>
 <td></td>
 </tr>
 <tr>
 <td>vol</td>
+<td>true</td>
 <td>decimal</td>
 <td>Trade Volume. The value is 0.</td>
 <td></td>
 </tr>
 <tr>
 <td>count</td>
+<td>true</td>
 <td>decimal</td>
 <td>count. The value is 0.</td>
 <td></td>
 </tr>
 <tr>
 <td>open</td>
+<td>true</td>
 <td>decimal</td>
 <td>open index price</td>
 <td></td>
 </tr>
 <tr>
 <td>close</td>
+<td>true</td>
 <td>decimal</td>
 <td>close index price</td>
 <td></td>
 </tr>
 <tr>
 <td>low</td>
+<td>true</td>
 <td>decimal</td>
 <td>lowest index price</td>
 <td></td>
 </tr>
 <tr>
 <td>high</td>
+<td>true</td>
 <td>decimal</td>
 <td>highest index price</td>
 <td></td>
 </tr>
 <tr>
 <td>amount</td>
+<td>true</td>
 <td>decimal</td>
 <td>amount based on coins.</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 </tbody></table>
@@ -23056,7 +23079,7 @@ Details are below:</p></li>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='tick-parameters-2'>tick Parameters</h3>
+<h3 id='tick-parameters'>tick Parameters</h3>
 <table><thead>
 <tr>
 <th><strong>parameter name</strong></th>
@@ -23273,23 +23296,12 @@ Details are below:</p></li>
 <td></td>
 </tr>
 <tr>
-<td>tick</td>
+<td>&lt;tick&gt;</td>
 <td>true</td>
 <td>object array</td>
-<td>Details：tick parameters</td>
+<td></td>
 <td></td>
 </tr>
-</tbody></table>
-<h3 id='tick-parameters-3'>tick Parameters</h3>
-<table><thead>
-<tr>
-<th><strong>parameter name</strong></th>
-<th><strong>Mandatory</strong></th>
-<th><strong>Type</strong></th>
-<th><strong>Desc</strong></th>
-<th><strong>Value Range</strong></th>
-</tr>
-</thead><tbody>
 <tr>
 <td>id</td>
 <td>true</td>
@@ -23323,6 +23335,13 @@ Details are below:</p></li>
 <td>true</td>
 <td>string</td>
 <td>basis_rate=basis/index_price</td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/tick&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 </tr>
 </tbody></table>
@@ -25209,7 +25228,7 @@ Details are below:</p></li>
 <td>Order Creation Time</td>
 </tr>
 <tr>
-<td>&lt;\data&gt;</td>
+<td>&lt;/data&gt;</td>
 <td></td>
 <td></td>
 </tr>
