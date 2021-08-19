@@ -5256,9 +5256,9 @@ symbol | true | string | symbol	 |Case-Insenstive.Both uppercase and lowercase a
 
 ### response
 
-attr | type | Mandatory | desc     |
------  | -----  | -----  | -----  |
-status     |  string  | true  | Request Processing Result  "ok" , "error" |
+attr | type | Mandatory | desc     |  Value Range       |
+-----  | -----  | -----  | -----  | -----  |
+status     |  string  | true  | Request Processing Result  | "ok" , "error" |
 ts       | long | true    | Time of Respond Generation, Unit: Millisecond                 |
 \<data\> |   object array     |  true       |                             |
 symbol | string | true | contract type                                     |
@@ -5276,8 +5276,8 @@ adjust_factor | decimal | true | Adjustment Factor                          |
 margin_static | decimal  | true  | Static Margin                          |
 \<positions\> |              |          |                            |
 symbol | string | true | Variety Code                                                    |
-contract_code |  string | true  | Contract Code	"BTC180914" ...                         |
-contract_type  | string |  true | Contract Type	"this_week", "next_week", "quarter"  "next_quarter"    |
+contract_code |  string | true  | Contract Code  |	"BTC180914" ...                         |
+contract_type  | string |  true | Contract Type  |	"this_week", "next_week", "quarter"  "next_quarter"    |
 volume  | decimal  |  true | Position Quantity                                           |
 available  |  decimal |  true  | Available position quatity can be closed                |
 frozen  |  decimal |  true | forzen postion Quantity                                     |
@@ -5288,7 +5288,7 @@ profit_rate | decimal  | true  | Profit Rate                                    
 profit |  decimal |  true | Profit                                                      |
 position_margin |  decimal |  true | Position Margin                                    |
 lever_rate | int | true | Leverage Rate                                               |
-direction | string  | true  | transaction direction of positions  "buy":long "sell":short          |
+direction | string  | true  | transaction direction of positions  | "buy":long "sell":short          |
 last_price | decimal  | true  | Last Price                                              |
 \</positions\>                  |              |          |                            |
 \</data\>                  |              |          |                            |
@@ -5310,7 +5310,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ### params
 
-| attr   | required  | type     | desc   |     |
+| attr   | required  | type     | desc   |  Value Range       |
 | ------ | ----- | ------ | ---- | ---------------------------- |
 | sub_uid | true | long | uid of sub account	 |  |
 | symbol | true | string | symbol | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"... |
@@ -5338,7 +5338,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ### response
 
-| attr          | required | type      | desc              |                                      |
+| attr          | required | type      | desc              |        Value Range       |
 | ------------- | ---- | ------- | --------------- | ---------------------------------------- |
 | status        | true | string  | status          | "ok" , "error"                           |
 | ts            | true | long    | response timestamp，millionseconds   |                                          |
@@ -5351,17 +5351,17 @@ last_price | decimal  | true  | Last Price                                      
 
 ## Get transfer records between master and sub account
 
-- post `/api/v1/contract_master_sub_transfer_record`
+- POST `/api/v1/contract_master_sub_transfer_record`
 
 ### request
 
-| attr   | required  | type    | desc   |      |
+| attr   | required  | type    | desc   |  Value Range       |
 | ------ | ----- | ------ | ---- | ---------------------------- |
 | symbol | true | string | symbol | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"... |
 | transfer_type | false | string | All by default【multiple types need to be joined with ';'】 | 34:transfer to sub account 35:transfer from sub account  |
 | create_date | true | int | days | days need to be less than or equal to 90 |
-| page_index | false | int | 1 by default | 1 |
-| page_size | false | int | 20 by default.less than or equal to 50. | 20 |
+| page_index | false | int | 1 by default |  |
+| page_size | false | int | 20 by default.less than or equal to 50. | [1-50] |
 
 > Response:
 
@@ -5400,7 +5400,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ### response
 
-| attr          | required | type     | desc |  |
+| attr          | required | type     | desc |  Value Range       |
 | ------------- | ---- | ------- | --------------- | ---------------------------------------- |
 | status        | true | string  | respone status          | "ok" , "error"                           |
 | ts            | true | long    | response millionseconds.   |                                          |
@@ -5465,7 +5465,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ### Response:
 
-| attr          | required | type     | desc  |  |
+| attr          | required | type     | desc  |  Value Range       |
 | ------------- | ---- | ------- | --------------- | ---------------------------------------- |
 | status        | true | string  | response status          | "ok" , "error"                           |
 | ts            | true | long    | response millionseconds   |                                          |
@@ -5501,7 +5501,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ### request body
  
-| attr          | required | type     | desc  |  |
+| attr          | required | type     | desc  |  Value Range       |
 | ------------- | ---- | ------- | --------------- | ---------------------------------------- |
 | symbol        | false | string  | case-insensitive          | "BTC" , "ETH"                           |
 
@@ -5523,7 +5523,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ### Response:
 
-| attr          | required | type     | desc  |  |
+| attr          | required | type     | desc  |  Value Range       |
 | ------------- | ---- | ------- | --------------- | ---------------------------------------- |
 | status        | true | string  | response status          | "ok" , "error"                           |
 | ts            | true | long    | response millionseconds   |                                          |
@@ -5764,17 +5764,17 @@ No need to transfer BBO order price(ask 1 and bid 1) parameter, optimal_5: top 5
 | --------------------------------- | ------------- | -------- | ------------------------------------------------------------ | --------------- |
 | status                            | true          | string   | Request Processing Result                                    | "ok" , "error"  |
 | \<data\>                          |               |          |                                                              |                 |
-| \<list\>(Attribute Name: errors)  |               |          |                                                              |                 |
+| \<errors\>      |               |          |                                                              |                 |
 | index                             | true          | int      | order Index                                                  |                 |
 | err_code                          | true          | int      | Error code                                                   |                 |
 | err_msg                           | true          | string   | Error information                                            |                 |
-| \</list\>                         |               |          |                                                              |                 |
-| \<list\>(Attribute Name: success) |               |          |                                                              |                 |
+| \</errors\>                         |               |          |                                                              |                 |
+| \<success\>      |               |          |                                                              |                 |
 | index                             | true          | int      | order Index                                                  |                 |
 | order_id                          | true          | long     | Order ID                                                     |                 |
 | order_id_str                          | true          | string     | Order ID                                                     |                 |
 | client_order_id                   | true          | long     | the client ID that is filled in when the order is placed, if it’s not filled, it won’t be returned |                 |
-| \</list\>                         |               |          |                                                              |                 |
+| \</success\>                         |               |          |                                                              |                 |
 | \</data\>                         |               |          |                                                              |                 |
 | ts                                | true          | long     | Time of Respond Generation, Unit: Millisecond                |                 |
 
@@ -5830,14 +5830,14 @@ client_order_id, order status query is available for orders placed within 24 hou
 |   Parameter Name                 |   Mandatory   |   Type   |   Desc                                                    |   Value Range   |
 | -------------------------------- | ------------- | -------- | --------------------------------------------------------- | --------------- |
 | status                           | true          | string   | Request Processing Result                                 | "ok" , "error"  |
-| \<dict\>(Key Name: data) |               |          |                                                           |                 |
-| \<list\>(Attribute Name: errors) |               |          |                                                           |                 |
+| \<data\>   |               |          |                                                           |                 |
+| \<errors\>    |               |          |                                                           |                 |
 | order_id                         | true          | string   | Order ID                                                  |                 |
 | err_code                         | true          | int      | Error code                                                |                 |
 | err_msg                          | true          | string   | Error information                                         |                 |
-| \</list\>                        |               |          |                                                           |                 |
+| \</errors\>                        |               |          |                                                           |                 |
 | successes                        | true          | string   | Successfully withdrew list of order_id or client_order_id |                 |
-| \</dict\>                        |               |          |                                                           |                 |
+| \</data\>                        |               |          |                                                           |                 |
 | ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond             |                 |
 
 
@@ -5898,14 +5898,14 @@ client_order_id, order status query is available for orders placed within 24 hou
 |   Parameter Name                 |   Mandatory   |   Type   |   Desc                                        |   Value Range   |
 | -------------------------------- | ------------- | -------- | --------------------------------------------- | --------------- |
 | status                           | true          | string   | Request Processing Result                     | "ok" , "error"  |
-| \<dict\>(Key Name: data) |               |          |                                                           |                 |
-| \<list\>(Attribute Name: errors) |               |          |                                               |                 |
+| \<data\>    |               |          |                                                           |                 |
+| \<errors\>   |               |          |                                               |                 |
 | order_id                         | true          | string   | Order ID                                      |                 |
 | err_code                         | true          | int      | failed order error messageError code          |                 |
 | err_msg                          | true          | string      | failed order information                      |                 |
-| \</list\>                        |               |          |                                               |                 |
+| \</errors\>                        |               |          |                                               |                 |
 | successes                        | true          | string   | Successful order                              |                 |
-| \</dict\>                        |               |          |                                                           |                 |
+| \</data\>                        |               |          |                                                           |                 |
 | ts                               | true          | long     | Time of Respond Generation, Unit: Millisecond |                 |
 
 
@@ -6095,7 +6095,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 |   Parameter Name               |   Mandatory   |   Type   |   Desc                                                       |   Value Range                       |
 | ------------------------------ | ------------- | -------- | ------------------------------------------------------------ | ----------------------------------- |
 | status                         | true          | string   | Request Processing Result                                    | "ok" , "error"                      |
-| \<list\>(Attribute Name: data) |               |          |                                                              |                                     |
+| \<data\>    |               |          |                                                              |                                     |
 | symbol                         | true          | string   | Variety code                                                 |                                     |
 | contract_type                  | true          | string   | Contract Type                                                | "this_week", "next_week", "quarter","next_quarter" |
 | contract_code                  | true          | string   | Contract Code                                                | "BTC180914" ...                     |
@@ -6104,7 +6104,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 | order_price_type               | true          | string   | "limit", "opponent","post_only" Position limit will be applied to post_only while order limit will not. |                                     |
 | direction                      | true          | string   | Transaction direction                                        |                                     |
 | offset                         | true          | string   | "open": "close"                                              |                                     |
-| lever_rate                     | true          | int      | Leverage rate                                                | 1\\5\\10\\20                        |
+| lever_rate                     | true          | int      | Leverage rate                                                | 1，5，10，20                        |
 | order_id                       | true          | long     | Order ID                                                     |                                     |
 | order_id_str                       | true          | string     | Order ID                                                     |                                     |
 | order_type         |	true         |	int     |  Order type: 1. Quotation; 2. Cancelled order; 3. Forced liquidation; 4. Delivery Order  |
@@ -6123,7 +6123,7 @@ client_order_id，order status query is available for orders placed within 24 ho
 | liquidation_type              | true | string     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
 | is_tpsl	| true	| int	| whether to set take-profit and stop-loss order | 	1：yes；0：no | 
 | real_profit | true | decimal | real profit (calculated with the opening average price, include profit in history settlement.) | |
-| \</list\>                      |               |          |                                                              |                                     |
+| \</data\>                      |               |          |                                                              |                                     |
 | ts                             | true          | long     | Timestamp                                                    |                                     |
 
 #### Note:
@@ -6224,11 +6224,11 @@ Please note that created_at can't be "0"
 |   Parameter Name                  |   Mandatory   |   Type   |   Desc                                                       |   Value Range                     |
 | --------------------------------- | ------------- | -------- | ------------------------------------------------------------ | --------------------------------- |
 | status                            | true          | string   | Request Processing Result                                    | "ok" , "error"                    |
-| \<object\> (Attribute Name: data) |               |          |                                                              |                                   |
+| \<data\>    |               |          |                                                              |                                   |
 | symbol                            | true          | string   | Variety code                                                 |                                   |
 | contract_type                     | true          | string   | Contract Type                                                | "this_week","next_week","quarter","next_quarter" |
 | contract_code                     | true          | string   | Contract Code                                                | "BTC180914" ...                   |
-| lever_rate                        | true          | int      | Leverage Rate                                                | 1\\5\\10\\20                      |
+| lever_rate                        | true          | int      | Leverage Rate                                                | 1,5,10,20                      |
 | direction                         | true          | string   | Transaction direction                                        |                                   |
 | offset                            | true          | string   | "open": "close"                                              |                                   |
 | volume                            | true          | decimal  | Number of Order                                              |                                   |
@@ -6258,7 +6258,7 @@ Please note that created_at can't be "0"
 | liquidation_type              | true | string  |  liquidation type   | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
 | is_tpsl	| true	| int	| whether to set take-profit and stop-loss order | 	1：yes；0：no | 
 | real_profit                       | true          | decimal | total real profit of order (calculated with the opening average price, include profit in history settlement.) | |
-| \<list\> (Attribute Name: trades) |               |          |                                                              |                                   |
+| \<trades\>    |               |          |                                                              |                                   |
 | id                          | true          | string     |  the global unique id of the trade.                                         |                                   |
 | trade_id                          | true          | long     | In this interface, trade_id is the same with match_id of /api/v1/contract_matchresults. trade_id  is the result of sets of order execution and trade confirmation. NOTE: trade_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same trade_id.                                               |                                   |
 | trade_price                       | true          | decimal  | Match Price                                                  |                                   |
@@ -6269,8 +6269,8 @@ Please note that created_at can't be "0"
 | created_at                        | true          | long     | Creation time                                                |                                   |
 | profit                            | true          | decimal  |  profit or loss  of the transaction (calculated with the average price of position, exclude profit in history settlement.)   |                                   |
 | real_profit                       | true          | decimal | real profit of the transaction (calculated with the opening average price, include profit in history settlement.) | |
-| \</list\>                         |               |          |                                                              |                                   |
-| \</object \>                      |               |          |                                                              |                                   |
+| \</trades\>                         |               |          |                                                              |                                   |
+| \</data \>                      |               |          |                                                              |                                   |
 | ts                                | true          | long     | Timestamp                                                    |                                   |
 
 #### Note:
@@ -6290,7 +6290,7 @@ Please note that created_at can't be "0"
 | ------------------ | ------------- | -------- | --------------------------- | ----------- | --------------- |
 | symbol             | true         | string   | Variety code                |             | Case-Insenstive.Both uppercase and lowercase are supported."BTC","ETH"...  |
 | page_index         | false         | int      | Page, default 1st page      | 1           |                 |
-| page_size          | false         | int      | Default 20，no more than 50 | 20          |                 |
+| page_size          | false         | int      | Default 20，no more than 50 | 20          |    [1-50]             |
 | sort_by  | false | string    |  sort fields(descending)    |   created_at   | “created_at”descending order by order created at, "update_time": descending order by order update time   |
 | trade_type  | false | int    |  trade type(Default:all)    |  0   | 0:all,1: buy long,2: sell short,3: buy short,4: sell  long   |
 
@@ -6347,7 +6347,7 @@ Please note that created_at can't be "0"
 |   Parameter Name               |   Mandatory   |   Type   |   Desc                                                       |   Value Range                     |
 | ------------------------------ | ------------- | -------- | ------------------------------------------------------------ | --------------------------------- |
 | status                         | true          | string   | Request Processing Result                                    |                                   |
-| \<list\>(Attribute Name: data) |               |          |                                                              |                                   |
+| \<data\>     |               |          |                                                              |                                   |
 | \<orders\>                     |               |          |                                                              |                                   |
 | symbol                         | true          | string   | Variety code                                                 |                                   |
 | contract_type                  | true          | string   | Contract Type                                                | "this_week","next_week","quarter","next_quarter" |
@@ -6379,7 +6379,7 @@ Please note that created_at can't be "0"
 | total_page                     | true          | int      | Total Pages                                                  |                                   |
 | current_page                   | true          | int      | Current Page                                                 |                                   |
 | total_size                     | true          | int      | Total Size                                                   |                                   |
-| \</list\>                      |               |          |                                                              |                                   |
+| \</data\>                      |               |          |                                                              |                                   |
 | ts                             | true          | long     | Timestamp                                                    |                                   |
 
 #### Note:
@@ -6419,7 +6419,7 @@ Please note that created_at can't be "0"
 | status             | true          | string      | Order Status                |          | support multiple query seperated by ',',such as  '3,4,5','0': all.  3. Have sumbmitted the orders; 4. Orders partially matched; 5. Orders cancelled with  partially matched; 6. Orders fully matched; 7. Orders cancelled;  |
 | create_date        | true          | int      | Date                        |             | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.                                     |
 | page_index         | false         | int      | Page, default 1st page      | 1           |                                                              |
-| page_size          | false         | int      | Default 20，no more than 50 | 20          |                                                              |
+| page_size          | false         | int      | Default 20，no more than 50 | 20          |             [1-50]                                       |
 | contract_code          | false         | string      | Contract Code  |           |     "BTC180914" ...         |                                                 |
 | order_type          | false         | string      | Order Type |           |     1:"limit"，3:"opponent"，4:"lightning",5:"Trigger Order",6:"pst_only",7:"optimal_5"，8:"optimal_10"，9:"optimal_20",10:"fok":FOK order,11:"ioc":ioc order      |                                                      |
 | sort_by	| false	| string	| sort fields(descending)	| create_date	| "create_date"：descending order by order create date , "update_time": descending order by order update time
@@ -6479,8 +6479,8 @@ All via API interface submited price limit orders that had been cancelled will o
 |   Parameter Name                 |   Mandatory   |   Type   |   Desc                                                       |   Value Range                     |
 | -------------------------------- | ------------- | -------- | ------------------------------------------------------------ | --------------------------------- |
 | status                           | true          | string   | Request Processing Result                                    |                                   |
-| \<object\>(Attribute Name: data) |               |          |                                                              |                                   |
-| \<list\>(Attribute Name: orders) |               |          |                                                              |                                   |
+| \<data\>   |               |          |                                                              |                                   |
+| \<orders\>   |               |          |                                                              |                                   |
 | order_id                         | true          | long     | Order ID                                                     |                                   |
 | order_id_str                         | true          | string     | Order ID                                                     |                                   |
 | symbol                           | true          | string   | Variety code                                                 |                                   |
@@ -6507,11 +6507,11 @@ All via API interface submited price limit orders that had been cancelled will o
 | liquidation_type              | true | string | liquidation_type     | 0:Not Forced Liquidation Type，1：Netting Type， 2: Partial Takeover，3：All Takeover       |                                          |
 | is_tpsl	| true	| int	| whether to set take-profit and stop-loss order	| 1：yes；0：no | 
 | real_profit | true | decimal | real profit (calculated with the opening average price, include profit in history settlement.) | |
-| \</list\>                        |               |          |                                                              |                                   |
+| \</orders\>                        |               |          |                                                              |                                   |
 | total_page                       | true          | int      | Total Pages                                                  |                                   |
 | current_page                     | true          | int      | Current Page                                                 |                                   |
 | total_size                       | true          | int      | Total Size                                                   |                                   |
-| \</object\>                      |               |          |                                                              |                                   |
+| \</data\>                      |               |          |                                                              |                                   |
 | ts                               | true          | long     | Timestamp                                                    |                                   |
 
 ### Note
@@ -6670,7 +6670,7 @@ trade_type  | true     | int    | trasanction types          |         |  0:All;
 create_date | true     | int    | date            |         | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.                            |
 contract_code      | false     | string | contract code          |         |                          |
 page_index  | false    | int    | page; if not enter, it will be the default value of the 1st page.  | 1       |                                          |
-page_size   | false    | int    | if not enter, it will be the default value of 20; the number should ≤50 | 20      |                                          |
+page_size   | false    | int    | if not enter, it will be the default value of 20; the number should ≤50 | 20      |        [1-50]                    |
 
 > Response:
 
@@ -6715,8 +6715,8 @@ page_size   | false    | int    | if not enter, it will be the default value of 
  Parameter Name                |  Mandatory   |  Type  |  Desc                                                      |   Value Range                  |
 ---------------------- | -------- | ------- | ------------------ | ------------ |
 status                 | true     | string  | request handling result            |              |
-\<object\>(attribute name: data: data) |          |         |                    |              |
-\<list\>(attribute name: data: trades) |          |         |                    |              |
+\<data\>    |          |         |                    |              |
+\<trades\>    |          |         |                    |              |
 id               | true     | string    | the global unique ID of the trade.               |              |
 match_id               | true     | long    | match_id is the same with trade_id of the websocket subscriptions: orders.$symbol and matchOrders.$symbol.match_id is the result of sets of order execution and trade confirmation. NOTE: match_id is not unique, which includes all trade records of a taker order and N maker orders. If the taker order matches with N maker orders, it will create N trades with same match_id.              |              |
 order_id               | true     | long    | order ID              |              |
@@ -6736,11 +6736,11 @@ trade_fee                    | true     | decimal | fees charged by platform    
 role                        | true          | string |   taker or maker     |                  |
 fee_asset | true  | string | the corresponding cryptocurrency to the given fee | "BTC","ETH"... |
 real_profit | true | decimal | real profit (calculated with the opening average price, include profit in history settlement.) | |
-\</list\>              |          |         |                    |              |
+\</trades\>              |          |         |                    |              |
 total_page             | true     | int     | total pages                |              |
 current_page           | true     | int     | current page                |              |
 total_size             | true     | int     | total size of the list                |              |
-\</object\>            |          |         |                    |              |
+\</data\>            |          |         |                    |              |
 ts                     | true     | long    | timestamp                |              |
 
 ### Notice
@@ -6943,15 +6943,11 @@ ts                     | true     | long    | timestamp                |        
 | status | string | true | status: ok,error
 | err_code | int | false | error code
 | err_msg | string| false | error message
-| data | List<OrderInsertRspInfo>| false | list info
-| ts | long| true | timestamp
-
-- OrderInsertRspInfo
-
-| field | type | Mandatory | Desc
-| -----  | -----  | -----  | -----
+| \<data\> | List  | false | list info
 | order_id | long | true | order id. 
 | order_id_str | string | true | order id str 
+| \</data\> |  |  |   |  |
+| ts | long| true | timestamp
 
 
 
@@ -6996,11 +6992,11 @@ ts                     | true     | long    | timestamp                |        
 | status                     | true         | string   | response status               | "ok" , "error" |
 | \<data\> |              |          |                            |                |
 | successes                  | true         | string   | successful orders                 |                |
-| \<list\>(field name: errors) |              |          |                            |                |
+| \<errors\>         |              |          |                            |                |
 | order_id                   | true         | string   | order id                     |                |
 | err_code                   | true         | int      | error code             |                |
 | err_msg                    | true         | string      | error messages               |                |
-| \</list\>                  |              |          |                            |                |
+| \</errors\>                  |              |          |                            |                |
 | \</data\> |              |          |                            |                |
 | ts                         | true         | long     | response timestamp millseconds |  |
 
@@ -7051,11 +7047,11 @@ ts                     | true     | long    | timestamp                |        
 | -------------------------- | ------------ | -------- | -------------------------- | -------------- |
 | status                     | true         | string   | status               | "ok" , "error" |
 | \<data\> |              |          |                            |                |
-| \<list\>(data name: errors) |              |          |                            |                |
+| \<errors\>    |              |          |                            |                |
 | order_id                   | true         | string   | order id                    |                |
 | err_code                   | true         | int      | error code            |                |
 | err_msg                    | true         | string      | error message               |                |
-| \</list\>                  |              |          |                            |                |
+| \</errors\>                  |              |          |                            |                |
 | successes                  | true         | string   | successful orders                 |                |
 | \</data\> |              |          |                            |                |
 | ts                         | true         | long     | response timestamp in millseconds |   |
@@ -7067,7 +7063,7 @@ ts                     | true     | long    | timestamp                |        
 
 ### Request Parameter
  
-|Parameter Name	| Type | Mandatory | Description
+|Parameter Name	| Type | Mandatory | Description  |
 | -----  | -----   | -----  | ----- |
 |  symbol  |  string  |  true  |  Case-Insenstive.Both uppercase and lowercase are supported.BTC,LTC... |
 |  contract_code|  string  |  false  |  Case-Insenstive.Both uppercase and lowercase are supported..contract code  |
@@ -7113,38 +7109,34 @@ ts                     | true     | long    | timestamp                |        
 
 ### Returning Parameter
 
-| Parameter Name      | Mandatory | Type | Description            |  Value Range  |
+| Parameter Name      | Type | Mandatory | Description            |  Value Range  |
 | -------------------------- | ------------ | -------- | -------------------------- | -------------- |
-| status   | true   | string   | Request Processing Result    | "ok" , "error" |
-| data    |    true   |      object    |    Returned data          |               |
-| ts     | true         | long     | Time stamp of response, Unit: millisecond   |   |
-
-- data details
-
-| Parameter Name      | Mandatory | Type | Description            |  Value Range  |
-| -------------------------- | ------------ | -------- | -------------------------- | -------------- |
+| status   |  string  | true   | Request Processing Result    | "ok" , "error" |
+| \<data\>    |   object    |      true    |    Returned data          |               |
 | total_page   | int | true | total page
 | current_page | int | true | current page
 | total_size   | int | true | total size
-| \<list\> (Attribute Name: orders)   |              |          |                            |                |
+| \<orders\>     |              |          |                            |                |
 | symbol |string| true | Cryptocurrency
 | contract_code | string | true | contract code
 | contract_type | string | true | contract type
-| trigger_type | string | true | trigger type： `ge`great than or equal to；`le`less than or equal to
+| trigger_type | string | true | trigger type  |   `ge`great than or equal to；`le`less than or equal to
 | volume | decimal | true | trigger order volume
-| order_type | int | true | Transaction Type 1. Place orders 2. cancel orders
-| direction | string | true | order direction [buy,sell]
-| offset | string | true | offset direction [open,close]
-| lever_rate | int | true | Leverage 1\5\10\20
+| order_type | int | true | Transaction Type  |   1. Place orders 2. cancel orders
+| direction | string | true | order direction  |   [buy,sell]
+| offset | string | true | offset direction  |   [open,close]
+| lever_rate | int | true | Leverage   |  1,5,10,20
 | order_id | long | true | trigger order ID
 | order_id_str | string | true | the order ID with string
-| order_source | string | true | order source ( system. web. api. m. risk. settlement. ios. android. windows. mac. trigger)
+| order_source | string | true | order source   |   ( system. web. api. m. risk. settlement. ios. android. windows. mac. trigger)
 | trigger_price | decimal | true | trigger price
 | order_price | decimal | true | the preset price by the client
 | created_at | long | true | order creation time
-| order_price_type | string | true | order price type "limit": limit order，"optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20
-| status | int | true | order status：1:ready to submit、2:submited、3:order accepted、7:wrong order、8：canceled orders but not found、9：canceling order、10：failed'
-| \</list\>                  |              |          |                            |                |
+| order_price_type | string | true | order price type   |   "limit": limit order，"optimal_5":optimal 5，"optimal_10":optimal 10，"optimal_20":optimal 20
+| status | int | true | order status  |  1:ready to submit、2:submited、3:order accepted、7:wrong order、8：canceled orders but not found、9：canceling order、10：failed'
+| \</orders\>                  |              |          |                            |                |
+| \</data\>    |    |    |    |    | 
+| ts     | true         | long     | Time stamp of response, Unit: millisecond   |   |
 
 
 ## Query Trigger Order History
@@ -7160,8 +7152,8 @@ ts                     | true     | long    | timestamp                |        
 | trade_type        | true         | int      |    Transaction type            |            | 0: All ,1: Open Long,2: Close Short,3: Open Short,4: Close Long；the system will transfer these parameters into offset and direction and query the requested data. Please note that no data can be requested with parameter out of this range. |
 | status        | true         | string      | Order Status              |            | data divided with several commas, trigger orders ready to be submitted：0: All (All filled orders),4: Trigger orders successfully submitted,5: Trigger orders failed being submitted, 6: Trigger orders cancelled |
 | create_date   | true         | int      | Date                 |            | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.    |
-| page_index    | false        | int      | Page, 1st page by default without given instruction  | 1          | page，1st page by default without given instruction|
-| page_size     | false        | int      | Page 20 by default without given instruction,  ，no more than 50 | 20         | Page 20 by default without given instruction,  ，no more than 50  |
+| page_index    | false        | int      | Page, 1st page by default without given instruction  | 1          |    |
+| page_size     | false        | int      | Page 20 by default without given instruction,  ，no more than 50 | 20         | [1-50]  |
 | sort_by	| false	| string	| sort fields(descending)	| created_at	| "created_at"：descending order by order creation time, "update_time": descending order by order update time | 
 
 ### NOTE
@@ -7216,33 +7208,27 @@ ts                     | true     | long    | timestamp                |        
 
 | Parameter Name             | Mandatory | Type |Desc                 | Value Range |
 | -------------------------- | ------------ | -------- | -------------------------- | -------------- |
-| status                     | true         | string   | Request Processing Result             | "ok" , "error" |
-| data |       true       |      object    |         Return data                |                |
-| ts                         | true         | long     |Time of Respond Generation, Unit: Millisecond |   |
-
--  Data details：
-
-| Parameter Name          | Mandatory | Type |  Desc          | Value Range |
-| -------------------------- | ------------ | -------- | -------------------------- | -------------- |
+| status                     | string         |  true  | Request Processing Result             | "ok" , "error" |
+| \<data\> |       object         |     true   |         Return data                |                |
 | total_page   | int | true | Total page
 | current_page | int | true | Current page
 | total_size   | int | true | Total Size
-| \<list\>(Attribute Name: orders)|              |          |                            |                |
+| \<orders\>     |              |          |                            |                |
 | symbol |string| true | Cryptocurrency
 | contract_code | string | true | Contract Code
 | contract_type | string | true | Contract Type
-| trigger_type | string | true | trigger： `ge` Equal to or Greater than；`le` Less than or Equal to
+| trigger_type | string | true | trigger |     `ge` Equal to or Greater than；`le` Less than or Equal to
 | volume | decimal | true | Numbers of order placed
-| order_type | int | true | Transaction type：1、Place orders  2、Cancel orders
-| direction | string | true | order direction, [Buy (buy), Sell(sell)]
-| offset | string | true | offset direction [Open(open), Close(lose)]
-| lever_rate | int | true | leverage 1\5\10\20
+| order_type | int | true | Transaction type |    1、Place orders  2、Cancel orders
+| direction | string | true | order direction |     [Buy (buy), Sell(sell)]
+| offset | string | true | offset direction |     [Open(open), Close(lose)]
+| lever_rate | int | true | leverage |     1,5,10,20
 | order_id | int | true | Trigger order ID
 | order_id_str | string | true | the order ID with string 
 | relation_order_id | string | true | Relation order ID is the string related to the limit orders. The value is -1 before the trigger orders executed. 
-| order_price_type | string | true | order type "limit": Limit order price，"optimal_5": Optimal 5  price level，"optimal_10":Optimal 10 price level，"optimal_20": the Optimal 20 price level
-| status | int | true | Order status (4:Orders accepted、5: Orders failing being placed、6: Orders canceled )
-| order_source | string | true | Order source ( system. web. api. m. risk. settlement. ios. android. windows. mac. trigger)
+| order_price_type | string | true | order type "limit" |   Limit order price，"optimal_5": Optimal 5  price level，"optimal_10":Optimal 10 price level，"optimal_20": the Optimal 20 price level
+| status | int | true | Order status |     (4:Orders accepted、5: Orders failing being placed、6: Orders canceled )
+| order_source | string | true | Order source |     ( system. web. api. m. risk. settlement. ios. android. windows. mac. trigger)
 | trigger_price | decimal | true | trigger price
 | triggered_price | decimal | true | the price when trigger orders executed
 | order_price | decimal | true | the order price preset by the client
@@ -7252,7 +7238,9 @@ ts                     | true     | long    | timestamp                |        
 | canceled_at | long | true | Order cancelation time
 | fail_code | int | true | the error code when the triggered orders failed to be filled
 | fail_reason | string | true | the error message with failure reason when triggered orders failed to filled.
-| \</list\>                  |              |          |                            |                |
+| \</orders\>                  |              |          |                            |                |
+| \</data\> |   |   |   |   |  
+| ts                         | true         | long     |Time of Respond Generation, Unit: Millisecond |   |
 
 
 ## Set a Take-profit and Stop-loss Order for an Existing Position
@@ -7454,9 +7442,9 @@ ts                     | true     | long    | timestamp                |        
 | Parameter Name | Mandatory  | Type    | Description   | Value Range                                    |
 | -------------- | ----- | ------ | ------------- | ---------------------------------------- |
 | symbol         | true  | string | symbol                 | "BTC","ETH"...                           |
-| contract_code  | false | string | contract code,"BTC180914" ...|    |
+| contract_code  | false | string | contract code  |  "BTC180914" ...  |
 | page_index     | false | int | page index. 1 by default |    |
-| page_size      | false | int | page size.20 by default. 50 at most |    |
+| page_size      | false | int | page size.20 by default. 50 at most |  [1-50]  |
 | trade_type  | false | int    |  trade type(Default:all)    | 0:all,3: buy short,4: sell  long   |
 
 > Response
@@ -7509,13 +7497,13 @@ ts                     | true     | long    | timestamp                |        
 | contract_type   | true | string  | contract type               | "this_week", "next_week", "quarter"，“next_quarter” |
 | contract_code   | true | string  | contract code               | "BTC180914" ...                          |
 | volume          | true | decimal  | Numbers of orders (volume) |      |
-| order_type      | true | int | Order type: 1. Quotation; 2. Cancelled order               |                                          |
+| order_type      | true | int | Order type  |  1. Quotation; 2. Cancelled order               |                                          |
 | tpsl_order_type | true | string | Order type(take-profit order/stop-loss order) | “tp”:take-profit order；"sl"stop-loss order  |
 | direction       | true | string | direction                |           "buy", "sell"         |
 | order_id        | true | long | order id(take-profit order/stop-loss order)                |                                          |
 | order_id_str    | true | string | order id in string(take-profit order/stop-loss order)              |                                          |
 | order_source    | true | string  | order source         |   system. web. api. m. risk. settlement. ios. android. windows. mac. trigger   |
-| trigger_type    | true | string  | trigger type: ge, le  |              |
+| trigger_type    | true | string  | trigger type    |      ge, le        |
 | trigger_price   | true | decimal | trigger price              |                      |
 | created_at      | true  | long | created time |                      |
 | order_price_type | true  | string | order price type  |  limit, optimal_5, optimal_10, optimal_20        |
@@ -7540,7 +7528,7 @@ ts                     | true     | long    | timestamp                |        
 | status | true | string | status| Multiple orders are separated by English commas, and the status of stop-profit and stop-loss orders is: 0:all(representing all orders in the end state), 4:Have sumbmitted the orders, 5:orders failed, 6:orders canceled, 11:expired   |
 | create_date | true | long | days | any positive integer available. Requesting data beyond 90 will not be supported, otherwise, system will return trigger history data within the last 90 days by default.   |
 | page_index | false | int | page index. 1 by default |    |
-| page_size | false | int | page size.20 by default. 50 at most |    |
+| page_size | false | int | page size.20 by default. 50 at most | [1-50]  |
 | sort_by | false  | string | for sortting, descende order by created_at when without value |  "created_at": descending order by order created at, "update_time": descending order by order update time|
 
 > Response
@@ -8910,7 +8898,7 @@ ch | true |  string | Data channel, Format： market.period | |
 |  ------- |  -------  |  ------- |  ------- |
 |  sub |  true  |  string |  the themes that need to be subscribed; the interface is fixed at: market.$symbol.depth.size_${size}.high_freq，For parameter details please check sub Subscribe Parameter Rules |
 |  id |  false  |  string |  id automatically generated by the business party |
-|  data_type           |  false          |  string     |    Depth size      |        |  data type. `snapshot` by default. `incremental`: incremental data.`snapshot`: full data.|
+|  data_type           |  false          |  string     |   data type. `snapshot` by default. `incremental`: incremental data.`snapshot`: full data.|
 
 ### sub Request Parameter Rules
 
@@ -9153,7 +9141,7 @@ bid	true | true | object | Buy,[price(Bid price), vol(Bid orders(Cont.))]
         "ask":[
             13684.6,
             3440
-        ],
+        ]
     }
 }
 ```
@@ -9405,22 +9393,19 @@ quantity  |  true  |  decimal  |  trading quantity(coin)  |   |
 ```
 ### Returning Parameter
 | **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| ----------- | -------- | ------ | ------------- | ----------------------------------------- |
 | ch     | true | string | Data channel，Format：market.$symbol.index.$period |                | |
-| tick |   true   |    object array    |  Details：tick parameters             |                | |
+| \<tick\> |   true   |    object array    |  Details：tick parameters             |                | |
+| id |   true   | string | index kline id,the same as kline timestamp,kline start timestamp  |
+| vol |   true   | string  | Trade Volume. The value is 0.             |
+| count |   true   | decimal  | count. The value is 0.              |
+| open |   true   | string  | open index price               |
+| close |   true   | string  | close index price             |
+| low |   true   | string  |  lowest index price             |
+| high |   true   | string  | highest index price               |
+| amount |   true   | string  |amount based on coins.            |
+| \</tick\> |    |    |    |   | 
 | ts     | true | long | Time of Respond Generation, Unit: Millisecond            |                | |
-
-### tick parameters
-| **parameter name** | **type** | **desc**        |                                  |
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| id | string | index kline id,the same as kline timestamp,kline start timestamp  |
-| vol | string  | Trade Volume. The value is 0.             |
-| count | decimal  | count. The value is 0.              |
-| open | string  | open index price               |
-| close | string  | close index price             |
-| low | string  |  lowest index price             |
-| high | string  | highest index price               |
-| amount | string  |amount based on coins.            |
 
 
 ## Request Index Kline Data
@@ -9506,25 +9491,23 @@ quantity  |  true  |  decimal  |  trading quantity(coin)  |   |
 
 ### Returning Parameter
 | **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| ----------- | -------- | ------ | ------------- |  ---------------------------------------- |
 | req     | true | string | Data channel，Format：market.$symbol.index.$period |                | |
 | status | true | string | Request processing result          | "ok" , "error" | |
 | id     | true | string | ID       |                | |
 | wsid     | true | long | wsid           |                | |
 | ts     | true | long | Time of Respond Generation, Unit: Millisecond          |                | |
-| data |   true   |    object array    |   Details：data parameters            |                | |
+| \<data\> |   true   |    object array    |   Details：data parameters            |                | |
+| id | true | int | index kline id,the same as kline timestamp,kline start timestamp  |
+| vol | true | decimal  | Trade Volume. The value is 0.             |
+| count | true | decimal  | count. The value is 0.              |
+| open | true | decimal  | open index price               |
+| close | true | decimal  | close index price             |
+| low | true | decimal  |  lowest index price             |
+| high | true | decimal  | highest index price               |
+| amount | true | decimal  |amount based on coins.            |
+| \</data\> |   |   |   |   | 
 
-### data parameters
-| **parameter name** | **type** | **desc**        |                                  |
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| id | int | index kline id,the same as kline timestamp,kline start timestamp  |
-| vol | decimal  | Trade Volume. The value is 0.             |
-| count | decimal  | count. The value is 0.              |
-| open | decimal  | open index price               |
-| close | decimal  | close index price             |
-| low | decimal  |  lowest index price             |
-| high | decimal  | highest index price               |
-| amount | decimal  |amount based on coins.            |
 
 
 ## Subscribe Basis Data
@@ -9679,23 +9662,19 @@ quantity  |  true  |  decimal  |  trading quantity(coin)  |   |
 
 ### Returning Parameter
 | **parameter name** | **Mandatory** | **type** | **desc**        |    **Value Range**             |
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| ----------- | -------- | ------ | ------------- |  ---------------------------------------- |
 | req     | true | string | Data channel，Format：market.$symbol.basis.$period.$basis_price_type |                | |
 | status | true | string | Request processing result          | "ok" , "error" | |
 | id     | true | string | ID       |                | |
 | wsid     | true | long | wsid           |                | |
 | ts     | true | long | Time of Respond Generation, Unit: Millisecond          |                | |
-| tick |   true   |    object array    |   Details：tick parameters            |                | |
-
-### tick Parameters
-
-| **parameter name**                | **Mandatory** | **Type**  | **Desc**             | **Value Range**       |
-| ----------------------- | -------- | ------- | ------------------ | -------------- |
+| \<tick\> |   true   |    object array    |            |                | |
 | id | true | long | unique id |  |
 | contract_price | true | string | contract last price |  |
 | index_price | true | string | index price|  |
 | basis | true | string | basis=contract_price - index_price |  |
 | basis_rate | true | string | basis_rate=basis/index_price |  |
+| \</tick\> | | | |  
 
 
 ## Subscribe Kline Data of Mark Price
@@ -10579,7 +10558,7 @@ To unsubscribe, the client has to make connection to the server and send unsubsc
 | amount       | decimal | liquidation amount (token)           |              |
 | price              | decimal  | bankruptcy price               |
 | created_at              | long  | Order Creation Time                                          |
-| \<\data> | | |  | |
+| \</data> | | |  | |
 
 
 > When there commences any liquidation order, the server will send notification with return parameter. For example：
