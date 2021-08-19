@@ -4502,22 +4502,34 @@ b.  b. There is a delay in “Order Details Acquisition” interface (/api/v1/co
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC210326"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarter"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"contract_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"price_tick"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000001</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"delivery_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20210326"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"delivery_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1616760600000"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"create_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20200818"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"contract_status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"settlement_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1609762200000"</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"BTC210813"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_size"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price_tick"</span><span class="p">:</span><span class="mf">0.01</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delivery_date"</span><span class="p">:</span><span class="s2">"20210813"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delivery_time"</span><span class="p">:</span><span class="s2">"1628841600000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"create_date"</span><span class="p">:</span><span class="s2">"20210730"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_status"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"settlement_time"</span><span class="p">:</span><span class="s2">"1628668800000"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_code"</span><span class="p">:</span><span class="s2">"ETH210813"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_type"</span><span class="p">:</span><span class="s2">"this_week"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_size"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"price_tick"</span><span class="p">:</span><span class="mf">0.001</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delivery_date"</span><span class="p">:</span><span class="s2">"20210813"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delivery_time"</span><span class="p">:</span><span class="s2">"1628841600000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"create_date"</span><span class="p">:</span><span class="s2">"20210730"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"contract_status"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"settlement_time"</span><span class="p">:</span><span class="s2">"1628668800000"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604296501822</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1628650535608</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='returning-parameter-3'>Returning Parameter</h3>
 <table><thead>
@@ -5616,22 +5628,33 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
 <blockquote>
 <p>Response</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
     </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.BTC_CQ.mark_price.5min"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65582.94"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45853.29"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65645.7"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1615773000</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65582.85"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"65623.97"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45936.25"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1628652300</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45853.05"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45931.25"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45862.49"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45862.49"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1628652600</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45851.31"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45852.5"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1615773225762</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1628652647728</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='returning-parameter-10'>Returning Parameter:</h3>
 <table><thead>
@@ -8752,8 +8775,7 @@ The contract_type parameter needs to together with symbol, and can&#39;t get con
             </span><span class="s2">"liquidation_price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="s2">"lever_rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
             </span><span class="s2">"adjust_factor"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mf">453.151955780787465997</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"is_debit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="s2">"margin_static"</span><span class="p">:</span><span class="w"> </span><span class="mf">453.151955780787465997</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1604300060777</span><span class="w">
