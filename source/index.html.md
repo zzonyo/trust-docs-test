@@ -1699,7 +1699,7 @@ No parameter is available for this endpoint.
 
 ## Get current system timestamp
 
- get `https://api.hbdm.com/api/v1/timestamp`
+- GET `https://api.hbdm.com/api/v1/timestamp`
 
 ### request
    null
@@ -5200,7 +5200,7 @@ curl "https://api.hbdm.com/index/market/history/basis?symbol=BTC-USD&period=1min
 
 ## Query Assets And Positions
 
-- post `/api/v1/contract_account_position_info`
+- POST `/api/v1/contract_account_position_info`
 
 ### params
 
@@ -5295,7 +5295,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ## Transfer between master and sub account
 
-- post `/api/v1/contract_master_sub_transfer`
+- POST `/api/v1/contract_master_sub_transfer`
 
 > Request:
 
@@ -5422,7 +5422,7 @@ last_price | decimal  | true  | Last Price                                      
 
 ## Query user's API indicator disable information
 
-- get `/api/v1/contract_api_trading_status`
+- GET `/api/v1/contract_api_trading_status`
 
 ### request body
 
@@ -7206,7 +7206,7 @@ ts                     | true     | long    | timestamp                |        
 
 ### Returning Parameter
 
-| Parameter Name             | Mandatory | Type |Desc                 | Value Range |
+| Parameter Name             |  Type  |  Mandatory  |  Desc                 | Value Range |
 | -------------------------- | ------------ | -------- | -------------------------- | -------------- |
 | status                     | string         |  true  | Request Processing Result             | "ok" , "error" |
 | \<data\> |       object         |     true   |         Return data                |                |
@@ -7240,7 +7240,7 @@ ts                     | true     | long    | timestamp                |        
 | fail_reason | string | true | the error message with failure reason when triggered orders failed to filled.
 | \</orders\>                  |              |          |                            |                |
 | \</data\> |   |   |   |   |  
-| ts                         | true         | long     |Time of Respond Generation, Unit: Millisecond |   |
+| ts      |   long      | true      | Time of Respond Generation, Unit: Millisecond |   |
 
 
 ## Set a Take-profit and Stop-loss Order for an Existing Position
@@ -7439,7 +7439,7 @@ ts                     | true     | long    | timestamp                |        
 
 ### Request Parameter
 
-| Parameter Name | Mandatory  | Type    | Description   | Value Range                                    |
+| Parameter Name | Mandatory  | Type    | Description   | Value Range      |
 | -------------- | ----- | ------ | ------------- | ---------------------------------------- |
 | symbol         | true  | string | symbol                 | "BTC","ETH"...                           |
 | contract_code  | false | string | contract code  |  "BTC180914" ...  |
