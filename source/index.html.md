@@ -30,6 +30,8 @@ table th {
 
 | Release Time <br>(UTC +8) | API  | New / Update    | Description     |
 | ------------------------ | ---------------------- | --------------- | ------------------------------------- |
+| 2021.8.19 | `accounts.update#${mode}` | 优化 | Add “Serial Number of Account Change” parameter：“seqNum” |
+| 2021.8.19 | `GET /v1/account/accounts/{account-id}/balance` | 优化 | Add “Serial Number of Account Change” parameter：“seq-num” |
 | 2021.8.12 | `market.$symbol.ticker` | Add | Add Market Ticker data |
 | 2021.8.12 | `market.$symbol.mbp.$levels` | Update | Add 400 depth data|
 | 2021.7.23 | `GET /v1/account/history` | Update | Detailed in detail the type of change in the account flow interface, that is, "Transact-Types" increases classification, such as Note 3. |
@@ -1983,16 +1985,19 @@ curl "https://api.huobi.pro/v1/account/accounts/100009/balance"
       {
         "currency": "usdt",
         "type": "trade",
+        "seq-num": "86872993928",
         "balance": "500009195917.4362872650"
       },
       {
         "currency": "usdt",
         "type": "frozen",
+        "seq-num": "86872993928",
         "balance": "328048.1199920000"
       },
      {
         "currency": "etc",
         "type": "trade",
+       "seq-num": "86872993928",
         "balance": "499999894616.1302471000"
       }
     ],
@@ -2016,6 +2021,9 @@ curl "https://api.huobi.pro/v1/account/accounts/100009/balance"
 | currency | string    | The currency of this balance          | NA            |
 | type     | string    | The balance type                      | trade, frozen |
 | balance  | string    | The balance in the main currency unit | NA            |
+| seq-num  | string    | Serial Number of Account Change       | NA            |
+
+
 
 ## Get Asset Valuation
 
@@ -8869,6 +8877,7 @@ accounts.update#0：
 		"balance": "23.111",
 		"changeType": "transfer",
            	"accountType":"trade",
+    "seqNum": "86872993928",
 		"changeTime": 1568601800000
 	}
 }
@@ -8883,6 +8892,7 @@ accounts.update#1：
 		"available": "2028.699426619837209087",
 		"changeType": "order.match",
          		"accountType":"trade",
+    "seqNum": "86872993928",
 		"changeTime": 1574393385167
 	}
 }
@@ -8895,6 +8905,7 @@ accounts.update#1：
 		"balance": "2065.100267619837209301",
 		"changeType": "order.match",
            	"accountType":"trade",
+    "seqNum": "86872993928",
 		"changeTime": 1574393385122
 	}
 }
@@ -8911,6 +8922,7 @@ accounts.update#1：
 | changeType  | string    | Change type, valid value: order-place,order-match,order-refund,order-cancel,order-fee-refund,margin-transfer,margin-loan,margin-interest,margin-repay,deposit,withdraw,other |
 | accountType | string    | account type, valid value: trade, loan, interest             |
 | changeTime  | long      | Change time, unix time in millisecond                        |
+| seqNum      | long      | Serial Number of Account Change                              |
 
 Note:<br>
 
