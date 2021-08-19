@@ -26,7 +26,8 @@ table th {
 
 | 生效时间<br>(UTC +8) | 接口     | 变化      | 摘要         |
 | ---------- | --------- | --------- | --------------- |
-| 2021.8.1 |  |  |  |
+| 2021.8.19 | `accounts.update#${mode}` | 优化 | 增加“账户变更的序号”参数“seqNum” |
+| 2021.8.19 | `GET /v1/account/accounts/{account-id}/balance` | 优化 | 增加“账户变更的序号”参数“seq-num” |
 | 2021.8.12 | `market.$symbol.ticker` | 新增 | 增加聚合行情（Ticker）数据 |
 | 2021.8.12 | `market.$symbol.mbp.$levels` | 优化 | 增加400档深度数据|
 | 2021.7.23 | `GET /v1/account/history`<br/>| 优化 | 账户流水接口中的变动类型，即“transact-types”增加分类明细，如注3. |
@@ -1995,11 +1996,13 @@ spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，point：
       {
         "currency": "usdt",
         "type": "trade",
+        "seq-num": "82782378928",
         "balance": "5007.4362872650"
       },
       {
         "currency": "usdt",
         "type": "frozen",
+        "seq-num": "86872993928",
         "balance": "348.1199920000"
       }
     ]
@@ -2018,11 +2021,12 @@ spot：现货账户， margin：逐仓杠杆账户，otc：OTC 账户，point：
 
 list字段说明
 
-| 参数名称 | 是否必须 | 数据类型 | 描述 | 取值范围                                                     |
-| -------- | -------- | -------- | ---- | ------------------------------------------------------------ |
-| balance  | true     | string   | 余额 |                                                              |
-| currency | true     | string   | 币种 |                                                              |
-| type     | true     | string   | 类型 | trade: 交易余额，frozen: 冻结余额, loan: 待还借贷本金, interest: 待还借贷利息, lock: 锁仓, bank: 储蓄 |
+| 参数名称 | 数据类型 | 描述           | 取值范围                                                     |
+| -------- | -------- | -------------- | ------------------------------------------------------------ |
+| balance  | string   | 余额           |                                                              |
+| currency | string   | 币种           |                                                              |
+| type     | string   | 类型           | trade: 交易余额，frozen: 冻结余额, loan: 待还借贷本金, interest: 待还借贷利息, lock: 锁仓, bank: 储蓄 |
+| seq-num  | string   | 账户变更的序号 |                                                              |
 
 ## 获取平台资产总估值
 
@@ -9056,6 +9060,7 @@ accounts.update#0：
 		"balance": "23.111",
 		"changeType": "transfer",
            	"accountType":"trade",
+    "seqNum": "86872993928",
 		"changeTime": 1568601800000
 	}
 }
@@ -9070,6 +9075,7 @@ accounts.update#1：
 		"available": "2028.699426619837209087",
 		"changeType": "order.match",
          		"accountType":"trade",
+    "seqNum": "86872993928",
 		"changeTime": 1574393385167
 	}
 }
@@ -9082,6 +9088,7 @@ accounts.update#1：
 		"balance": "2065.100267619837209301",
 		"changeType": "order.match",
            	"accountType":"trade",
+    "seqNum": "86872993928",
 		"changeTime": 1574393385122
 	}
 }
@@ -9098,6 +9105,7 @@ accounts.update#1：
 | changeType  | string   | 余额变动类型，有效值：order-place(订单创建)，order-match(订单成交)，order-refund(订单成交退款)，order-cancel(订单撤销)，order-fee-refund(点卡抵扣交易手续费)，margin-transfer(杠杆账户划转)，margin-loan(借币本金)，margin-interest(借币计息)，margin-repay(归还借币本金币息)，deposit (充币）, withdraw (提币)，other(其他资产变化) |
 | accountType | string   | 账户类型，有效值：trade, loan, interest                      |
 | changeTime  | long     | 余额变动时间，unix time in millisecond                       |
+| seqNum      | long     | 账户变更的序号                                               |
 
 注：<br>
 账户更新推送的是到账金额，多笔成交产生的多笔交易返佣可能会合并到帐。<br>
