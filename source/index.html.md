@@ -1441,7 +1441,7 @@ curl "https://status-swap.huobigroup.com/api/v2/summary.json"
 
 ## 获取当前系统时间戳
 
- get `https://api.hbdm.com/api/v1/timestamp`
+- GET `https://api.hbdm.com/api/v1/timestamp`
 
 ### 请求参数
    无
@@ -2246,7 +2246,7 @@ margin_balance 是指账户权益
 
 ###  示例
 
-- GET `/swap-api/v1/swap_contract_info`
+- GET `/swap-api/v1/swap_contract_info`
 
 ```shell
 
@@ -2352,7 +2352,7 @@ ts                         |  true           |  long       |  时间戳，单位
 
 ###  示例
 
-- GET `/swap-api/v1/swap_price_limit`
+- GET `/swap-api/v1/swap_price_limit`
 
 ```shell
 
@@ -2402,7 +2402,7 @@ ts  |    true  |  long  |  响应生成时间点，单位：毫秒              
 
 ###  示例
 
-- GET `/swap-api/v1/swap_open_interest`
+- GET `/swap-api/v1/swap_open_interest`
 
 ```shell
 
@@ -2459,7 +2459,7 @@ ts  |    true  |  long  |  响应生成时间点，单位：毫秒   |
 
 ###  示例
 
-- GET `/swap-ex/market/depth`
+- GET `/swap-ex/market/depth`
 
 
 ```shell
@@ -2517,13 +2517,13 @@ type  |  string  |    true  |  (150档数据)  step0, step1, step2, step3, step4
 
 参数名称   |   是否必须  |   数据类型   |   描述   |   取值范围   |
 -------- | -------- | -------- |  --------------------------------------- | -------------- | 
-ch | true |  string | 数据所属的 channel，格式： market.period | | 
+ch | true |  string | 数据所属的 channel，格式： market.$contract_code.depth.$type | | 
 status | true |  string | 请求处理结果 | "ok" , "error" | 
  \<tick\>  |  |  |  |  |
 asks | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按price升序 | | 
 bids | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
 mrid  | true| long | 订单ID | | 
-ch  | true| string | 订阅Channel | | 
+ch  | true| string | 订阅Channel，格式： market.$contract_code.depth.$type  | | 
 id  | true| long | tick id | | 
 version | true| long | 版本号 | | 
 ts | true | long | 深度生成时间戳，单位：毫秒 | |
@@ -2664,7 +2664,7 @@ to  |  false  |  long  |   结束时间戳 10位 单位S |    |
 
 参数名称   |  是否必须     |  数据类型     |  描述  |   取值范围  |
 --------------  |  -------------- |  -------------- |  ------------------------------------------ |  ----------------  |
-ch  |  true  |  string  |    数据所属的 channel，格式： market.period   |        |
+ch  |  true  |  string  |    数据所属的 channel，格式： market.$contract_code.kline.$period   |        |
 status  |    true  |  string  |    请求处理结果  |  "ok" , "error"  |
 ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    | 
  \<data\>   |               |    |      |            | 
@@ -2688,7 +2688,7 @@ ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | contract_code      | true     | string | 合约代码         |         | "BTC-USD","ETH-USD"...                           |
 | period          | true     | string  | K线类型               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week,1mon     |
-| size  | true     | int    | K线获取数量     |  | [1,2000] |
+| size  | true     | int    | K线获取数量     |  | [1-2000] |
 
 #### 备注
 
@@ -2732,7 +2732,7 @@ ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    |
 ### 返回参数：
 | **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| ch     | true | string | 数据所属的 channel，格式： market.period |                | |
+| ch     | true | string | 数据所属的 channel，格式： market.$contract_code.mark_price.$period |                | |
 | \<data\> |   true   |    object array    |               |                | |
 | id     | true | long | k线id        |                | |
 | vol     | true | string | 成交量(张)，数值为0        |                | |
@@ -2752,7 +2752,7 @@ ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    |
 
 ###  示例
 
-- GET `/swap-ex/market/detail/merged`
+- GET `/swap-ex/market/detail/merged`
 
 ```shell
 
@@ -2801,7 +2801,7 @@ contract_code             |  true           |  string     |  合约代码       
 
 参数名称     |  是否必须    |   数据类型     |  描述  |    取值范围  |
 -------------- |  -------------- |  -------------- |  ----------------------------------------------------------| ----------------  |
-ch  |  true  |  string  |    数据所属的 channel，格式： market.\$contract_code.detail.merged   |     |
+ch  |  true  |  string  |    数据所属的 channel，格式： market.$contract_code.detail.merged   |     |
 status  |    true  |  string  |    请求处理结果  |  "ok" , "error"  |
 ts  |  true  |  long  |    响应生成时间点，单位：毫秒  |    | 
  \<tick\>    |               |    |  开盘价和收盘价（从当天零点(UTC+8)开始）     |            | 
@@ -2956,7 +2956,7 @@ contract_code             | false           |  string     |  合约代码,支持
 
 参数名称     |  是否必须   |  类型   |  描述  |  默认值   |  取值范围  |
 --------------  | --------------  | ----------  | ---------------------------------------------------------  | ------------ |  --------------  |
-ch  |  true  |  string  |  数据所属的 channel，格式： market.\$contract_code.trade.detail  |  |   |
+ch  |  true  |  string  |  数据所属的 channel，格式： market.$contract_code.trade.detail  |  |   |
 status  |  true  |  string  |  |  |  "ok","error" |
 ts  |  true  |  long |  发送时间  |   |    |
  \<tick\>     |               |    |  Trade数据     |            | 
@@ -2977,7 +2977,7 @@ ts  |  true  |  long  |  最新成交时间 |   |
 
 ###  示例
 
-- GET `/swap-ex/market/history/trade`
+- GET `/swap-ex/market/history/trade`
 
 ```shell
 
@@ -2990,7 +2990,7 @@ curl "https://api.hbdm.com/swap-ex/market/history/trade?contract_code=BTC-USD&si
 参数名称     |  是否必须     | 数据类型   |  描述  |    默认值    |  取值范围  |
 -------------- |  -------------- |  -------------- |  -------------------- |  ------------ |  --------------------------------------------------------------------------------  |
 contract_code             |  true           |  string     |  合约代码,支持大小写                          |  "BTC-USD" ...  |
-size  |  true  |  int  |    获取交易记录的数量  | 1  |  [1, 2000]  |
+size  |  true  |  int  |    获取交易记录的数量  | 1  |  [1-2000]  |
 
 > Response:
 
@@ -3121,8 +3121,8 @@ curl "https://api.hbdm.com/swap-api/v1/swap_insurance_fund?contract_code=BTC-USD
   参数名称                |   是否必须   |   类型    |    描述             |   取值范围       |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
 contract_code  |  true   |  string   |  合约代码   | 支持大小写，例如 "BTC-USD" ...  |
-page_index  | false    | int    | 页码，不填默认第1页    | 1       |                                          |
-page_size   | false    | int    | 不填默认100，不得多于100 | 100      |   
+page_index  | false    | int    | 页码，不填默认第1页    |       |                                          |
+page_size   | false    | int    | 不填默认100，不得多于100 | [1-100]      |   
 
 > Response:
 
@@ -3262,7 +3262,7 @@ curl "https://api.hbdm.com/swap-api/v1/swap_his_open_interest?contract_code=BTC-
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
 | contract_code | true | string | 合约代码   | 支持大小写，"BTC-USD" ... |
 | period | true | string | 时间周期类型 | 1小时:"60min"，4小时:"4hour"，12小时:"12hour"，1天:"1day" |
-| size | false | int | 获取数量 | 默认为：48，取值范围 [1,200]  |
+| size | false | int | 获取数量 | 默认为：48，取值范围  [1-200]  |
 | amount_type | true | int | 计价单位 | 1:张，2:币  |
 
 > Response:
@@ -3768,8 +3768,8 @@ curl "https://api.hbdm.com/swap-api/v1/swap_historical_funding_rate?contract_cod
   参数名称                 |  是否必须  |   类型   |   描述              |   取值范围        |
 ----------------------- | -------- | ------- | ------------------ | -------------- |
 contract_code  |  true   |  string   |  合约代码   |  支持大小写，"BTC-USD" ...  |
-page_index  | false    | int    | 页码，不填默认第1页    | 1       |                                          |
-page_size   | false    | int    | 不填默认20，不得多于50 | 20      |                                          |
+page_index  | false    | int    | 页码，不填默认第1页    |      |
+page_size   | false    | int    | 不填默认20，不得多于50 |    [1-50]     |
 
 > Response:
 
@@ -3843,10 +3843,10 @@ curl "https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?contract_code=BTC
   参数名称     |   是否必须   |   类型   |    描述         |   默认值   |   取值范围                                  |
 ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 contract_code  |  true   |  string   |  合约代码   |    |  支持大小写，"BTC-USD" ... |
-trade_type      | true     | int  | 交易类型         |               |0:全部,5: 卖出强平,6: 买入强平 |
+trade_type      | true     | int  | 交易类型         |               | 0:全部,5: 卖出强平,6: 买入强平 |
 create_date | true     | int    | 日期            |         | 7，90（7天或者90天）        |
-page_index | false     | int    | 页码,不填默认第1页            |         |         |
-page_size | false     | int    | 不填默认20，不得多于50            |         |        |
+page_index | false     | int    | 页码,不填默认第1页            |    1     |         |
+page_size | false     | int    | 不填默认20，不得多于50            |   20      |   [1-50]     |
 
 > Response:
 
@@ -3911,7 +3911,7 @@ ts                     | true     | long    | 时间戳                |        
 | start_time   | false  | long    | 起始时间（时间戳，单位毫秒）         |  取值范围：[(当前时间 - 90天), 当前时间] ，默认取当前时间- 90天   |
 | end_time   | false  | long    | 结束时间（时间戳，单位毫秒）         | 取值范围：(start_time, 当前时间)，默认取当前时间  |
 | page_index        | false  | int |    页码，不填默认第1页       |                        |
-| page_size        | false  | int | 页长，不填默认20，不得多于50         |                          |
+| page_size        | false  | int | 页长，不填默认20，不得多于50         |       [1-50]        |
 
 
 > Response: 
@@ -3977,7 +3977,7 @@ curl "https://api.hbdm.com/index/market/history/swap_premium_index_kline?contrac
 ----------------------- | -------- | ------- | ------------------ | -------------- |
 contract_code  |  true   |  string   |  合约代码   |  支持大小写，"BTC-USD" ...  |
 period  | true    | string    | K线类型    | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week,1mon       |                                          |
-size   | true    | int    | K线获取数量 | [1,2000]   （最多2000）   |                                          |
+size   | true    | int    | K线获取数量（最多2000） | [1-2000]      |                                          |
 
 > Response:
 
@@ -4007,7 +4007,7 @@ size   | true    | int    | K线获取数量 | [1,2000]   （最多2000）   |  
 
  参数名称    |  是否必须   |   类型  |   描述        |   默认值   |   取值范围                                 |
 ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-ch     | true | string | 数据所属的 channel，格式： market.period |                | |
+ch     | true | string | 数据所属的 channel，格式：market.$contract_code.premium_index.$period |                | |
 \<data\> |   true   |    object array    |               |                | |
 id     | true | long | 指数K线ID,也就是K线时间戳，K线起始时间       |                | |
 vol     | true | string | 成交量(张)，数值为0        |                | |
@@ -4037,7 +4037,7 @@ curl "https://api.hbdm.com/index/market/history/swap_estimated_rate_kline?contra
 ----------------------- | -------- | ------- | ------------------ | -------------- |
 contract_code  |  true   |  string   |  合约代码   |  支持大小写，"BTC-USD" ...  |
 period  | true    | string    | K线类型    | 1min, 5min, 15min, 30min, 60min,4hour,1day, 1week,1mon       |                                          |
-size   | true    | int    | K线获取数量 | [1,2000]   （最多2000）   |                                          |
+size   | true    | int    | K线获取数量（最多2000） | [1-2000]      |                                          |
 
 > Response:
 
@@ -4066,7 +4066,7 @@ size   | true    | int    | K线获取数量 | [1,2000]   （最多2000）   |  
 
 | **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| ch     | true | string | 数据所属的 channel，格式： market.period |                | |
+| ch     | true | string | 数据所属的 channel，格式：market.$contract_code.estimated_rate.$period |                | |
 | \<data\> |   true   |    object array    |               |                | |
 | id     | true | long | k线id        |                | |
 | vol     | true | string | 成交量(张)，数值为0        |                | |
@@ -4097,8 +4097,8 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | contract_code      | true     | string | 合约代码          |         | 如"BTC-USD"           |
 | period          | true     | string  | 周期               |         | 1min,5min, 15min, 30min, 60min,4hour,1day,1week,1mon     |
-| basis_price_type          | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    不填，默认使用开盘价     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
-| size  | true     | int    | 基差获取数量          | | [1,2000] |
+| basis_price_type          | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    开盘价：open     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
+| size  | true     | int    | 基差获取数量          | | [1-2000] |
 
 #### 备注：目前只支持查询2020/6/5 20:13:00之后的基差数据。
 
@@ -4134,7 +4134,7 @@ curl "https://api.hbdm.com/index/market/history/swap_basis?contract_code=BTC-USD
 
 | **参数名称**                | **是否必须** | **类型**  | **描述**             | **取值范围**       |
 | ----------------------- | -------- | ------- | ------------------ | -------------- |
-| ch     | true | string | 数据所属的 channel，格式： market.basis |                | |
+| ch     | true | string | 数据所属的 channel，格式：market.$contract_code.basis.$period.open |                | |
 | \<data\> |  | object array |  |  |
 | id | true | long | 唯一标识 |  |
 | contract_price | true | string | 合约最新成交价 |  |
@@ -4257,7 +4257,7 @@ ts  |    long  |    long  |  响应生成时间点，单位：毫秒  |    |
 
 ###  示例
 
-- POST `/swap-api/v1/swap_position_info`
+- POST `/swap-api/v1/swap_position_info`
 
 ###  请求参数
 
@@ -4312,7 +4312,7 @@ profit_rate  |    true  |  decimal    |  收益率  |   |
 profit  |  true  |  decimal   |  收益  |    |
 position_margin  |  true  |  decimal    |  持仓保证金  |    |   
 lever_rate  |  true  |  int  |   杠杠倍数  |    |
-direction  |  true  |  string  | 仓位方向 "buy":买，即多仓  "sell":卖，即空仓  |    |
+direction  |  true  |  string  | 仓位方向  | "buy":买，即多仓  "sell":卖，即空仓  |    |
 last_price  |  true  |  decimal    |  最新价  |     | 
 \</data\>  |    |    |    |    |
 ts  |    true  |  long  |  响应生成时间点，单位：毫秒   |    |
@@ -4323,7 +4323,7 @@ ts  |    true  |  long  |  响应生成时间点，单位：毫秒   |    |
 
 ## 查询用户账户和持仓信息
 
-- post `/swap-api/v1/swap_account_position_info`
+- POST `/swap-api/v1/swap_account_position_info`
   
 ### 请求参数
 
@@ -4538,7 +4538,7 @@ risk_rate | true | decimal | 保证金率 |  |
 | ------ | ----- | ------ |  ---- | ------------------------------ |
 | contract_code | false | string | 合约代码 |  "BTC-USD"... ,如果缺省，默认返回所有合约  |
 | page_index  | false | int    | 第几页,不填默认第一页            |                                          |
-| page_size   | false | int    | 不填默认20，不得多于50          |                                          |
+| page_size   | false | int    | 不填默认20，不得多于50          |          [1-50]          |
 
 #### 备注：
 - 只返回已经开通合约交易的子账户数据.
@@ -4645,7 +4645,7 @@ sub_uid | true | long | 子账户的UID	 |  |
 status | true | string | 请求处理结果	 | "ok" , "error" |
 ts                       | true | long | 响应生成时间点，单位：毫秒 |  |
 \<data\>  |  |  |  |  |
-symbol                  | true     | string  | 品种代码               | "BTC","ETH"...，当 $contract_code值为 * 时代表订阅所有品种 |
+symbol                  | true     | string  | 品种代码               | "BTC","ETH"... |
 contract_code  |  true   |  string   |  合约代码   |  "BTC-USD" ...  |
 margin_balance                  | true     | decimal  | 账户权益               |                |
 margin_position                 | true     | decimal  | 持仓保证金（当前持有仓位所占用的保证金）               |                |
@@ -4740,9 +4740,9 @@ last_price               | true     | decimal	  |   最新价           |   |
 ----------------------- | -------- | ------- | ------------------ | ------------------------------- |
 contract_code | true <img width=250/> | string | 合约代码 <img width=1000/>  | 支持大小写，"BTC-USD"... |
 type | false | string | 不填查询全部类型,【查询多类型中间用，隔开】 | 3:平多; 4:平空; 5:开仓手续费-吃单; 6:开仓手续费-挂单; 7:平仓手续费-吃单; 8:平仓手续费-挂单; 9:交割平多; 10:交割平空; 11:交割手续费; 12:强制平多; 13:强制平空; 14:从币币转入; 15:转出至币币; 16:结算未实现盈亏-多仓; 17:结算未实现盈亏-空仓; 19:穿仓分摊; 26:系统; 28:活动奖励; 29:返利; 30:资金费-收入; 31:资金费-支出; 34:转出到子账号合约账户; 35:从子账号合约账户转入; 36:转出到母账号合约账户; 37:从母账号合约账户转入; |
-create_date | false | int | 可随意输入正整数，如果参数超过90则默认查询90天的数据 |  |
+create_date | false | int | 可随意输入正整数，如果参数超过90则默认查询90天的数据 | [1-90] |
 page_index | false | int | 第几页,不填默认第一页 |  |
-page_size | false | int | 不填默认20，不得多于50 |  |
+page_size | false | int | 不填默认20，不得多于50 | [1-50] |
 
 > Response:
 
@@ -4907,7 +4907,7 @@ total_size | true  | int | 总条数 |  |
 | start_time   | false  | long    | 起始时间（时间戳，单位毫秒）        |  取值范围：[(当前时间 - 90天), 当前时间] ，默认取当前时间- 90天   |
 | end_time   | false  | long    | 结束时间（时间戳，单位毫秒）        | 取值范围：(start_time, 当前时间]，默认取当前时间  |
 | page_index	| false |	int	|页码 |不填默认第1页	|
-| page_size	| false |	int	|页大小|不填默认20，不得多于50（超过则按照50进行查询）|
+| page_size	| false |	int	|页大小|不填默认20，不得多于50 [1-50]|
 
 #### 备注
  - 默认按照时间倒序查询，新数据排在前
@@ -5193,7 +5193,7 @@ contract_code   |  false  | string |  合约代码 |  支持大小写，"BTC-USD
 
 ## 用户持仓量限制的查询
 
-- post `/swap-api/v1/swap_position_limit`
+- POST `/swap-api/v1/swap_position_limit`
   
 ### 请求参数
 
@@ -5235,7 +5235,7 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 
 ## 母子账户划转
 
-- post `/swap-api/v1/swap_master_sub_transfer`
+- POST `/swap-api/v1/swap_master_sub_transfer`
 
 > Request:
 
@@ -5288,7 +5288,7 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 
 ## 获取母账户下的所有母子账户划转记录
 
-- post `/swap-api/v1/swap_master_sub_transfer_record`
+- POST `/swap-api/v1/swap_master_sub_transfer_record`
 
 
 ### 请求参数
@@ -5365,7 +5365,7 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
 
 ## 获取用户的API指标禁用信息
 
-- get `/swap-api/v1/swap_api_trading_status`
+- GET `/swap-api/v1/swap_api_trading_status`
 
 
 ### 请求参数
@@ -5453,15 +5453,15 @@ sell_limit | true | decimal | 合约空仓持仓的最大值，单位为张 |  |
     "contract_code": "ltc-usd",
     "direction": "sell",
     "offset":"open",
-    "price":"136",
+    "price":136,
     "lever_rate":5,
     "volume": 1,
     "order_price_type":"post_only",
     "tp_trigger_price": 135,
     "tp_order_price": 135,
     "tp_order_price_type": "optimal_5",
-    "sl_trigger_price": "138",
-    "sl_order_price": "138",
+    "sl_trigger_price": 138,
+    "sl_order_price": 138,
     "sl_order_price_type": "optimal_5"
 }
 
@@ -6147,7 +6147,7 @@ trade_type  | false | int    |  交易类型，不填默认查询全部     |  0
 
 参数名称  |   是否必须  |  类型   |  描述  |   取值范围  |
 -------------------------- | -------------- | ---------- | --------------------------------------------------------------- | ------------------------------------------------------ |
-status  |  true  |  string  |  请求处理结果  |    |
+status  |  true  |  string  |  请求处理结果  |   "ok" ,"error"  |
 \<data\>  |    |    |    |    |   
 \<orders\>              |    |    |    |    |   
 symbol  |  true  |  string  |  品种代码  |    |  
@@ -6202,7 +6202,7 @@ type  |  true  |  int  |   类型  |  1:所有订单,2:结束状态的订单  |
 status  |    true  |  string  |   订单状态  |  可查询多个状态，"3,4,5" , 0:全部,3:未成交, 4: 部分成交,5: 部分成交已撤单,6: 全部成交,7:已撤单  |
 create_date |  true  |  int  |   日期  |   可随意输入正整数，如果参数超过90则默认查询90天的数据 |
 page_index  |  false  |  int  |   |  页码，不填默认第1页  |  1  | 
-page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | 不得多于50  |
+page_size  |  false  |  int   |  每页条数，不填默认20  |  20  | [1-50]  |
 sort_by | false  | string | 排序字段（降序），不填默认按照create_date降序 | create_date  | "create_date"：按订单创建时间进行降序，"update_time"：按订单更新时间进行降序|
 
 ### 备注：
@@ -6257,7 +6257,7 @@ sort_by | false  | string | 排序字段（降序），不填默认按照create_
 
 参数名称  |  是否必须   |  类型    |  描述  |  取值范围  |
 ---------------------------- | -------------- | ---------- | --------------------------------------------- | ------------------------------------------------------ |
-status <img width=250/> |  true <img width=250/> |  string <img width=250/> |  请求处理结果 <img width=1000/> |    |  
+status <img width=250/> |  true <img width=250/> |  string <img width=250/> |  请求处理结果 <img width=1000/> |  "ok" ,"error"  |  
 \<data\>  |    |    |    |    | 
 \<orders\>   |    |    |    |    | 
 order_id  |    true  |  long  |  订单ID  |  
@@ -6298,7 +6298,7 @@ ts  |  true  |  long  |  时间戳  |    |
 
 ## 组合查询合约历史委托
 
-- POST `/swap-api/v1/swap_hisorders_exact`
+- POST `/swap-api/v1/swap_hisorders_exact`
 
 ###  请求参数
 
@@ -6433,7 +6433,7 @@ ts  |  true  |  long  |  时间戳  |    |
 
 ### 实例
 
-- POST `/swap-api/v1/swap_matchresults`
+- POST `/swap-api/v1/swap_matchresults`
 
 ### 请求参数
 
@@ -6443,7 +6443,7 @@ ts  |  true  |  long  |  时间戳  |    |
  trade_type  | true     | int    | 交易类型          |         | 0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多,5: 卖出强平,6: 买入强平 |
  create_date | true     | int    | 日期            |         | 可随意输入正整数，如果参数超过90则默认查询90天的数据 |
  page_index  | false    | int    | 页码，不填默认第1页    | 1       |                                          |
- page_size   | false    | int    | 不填默认20，不得多于50 | 20      |                                          |
+ page_size   | false    | int    | 不填默认20，不得多于50 | 20      |          [1-50]               |
 
 > Response: 
 
@@ -7721,7 +7721,7 @@ client_order_id | false | long | 用户自己的订单id |  |
 | contract_code   | true | string | 合约代码    | BTC-USD                               |
 | trade_type | false  | int | 交易类型（不填默认查询全部）  |  0:全部,1:买入开多,2: 卖出开空,3: 买入平空,4: 卖出平多 |
 | page_index | false | int | 第几页，不填默认第一页|    |
-| page_size | false | int | 不填默认20，不得多于50|    |
+| page_size | false | int | 不填默认20，不得多于50| [1-50]   |
 
 > Response:
 
@@ -7894,7 +7894,7 @@ client_order_id | false | long | 用户自己的订单id |  |
 
 ### 实例
 
-- POST `https://api.huobi.pro/v2/account/transfer`
+- POST `https://api.huobi.pro/v2/account/transfer`
 
 ### 备注
 
@@ -8666,7 +8666,7 @@ from: t1 and to: t2, should satisfy 1325347200  < t1  < t2  < 2524579200.
  
 参数名称   |   是否必须  |   数据类型   |   描述   |   取值范围   |
 -------- | -------- | -------- |  --------------------------------------- | -------------- | 
-ch | true |  string | 数据所属的 channel，格式： market.period | | 
+ch | true |  string | 数据所属的 channel，格式： market.$contract_code.depth.$type | | 
 ts | true | long | 数据进入行情服务器时间戳，单位：毫秒 | |
 \<tick\>     |               |    |      |            | 
 mrid  | true| long | 订单ID | 
@@ -8675,7 +8675,7 @@ asks | true | object |卖盘,[price(挂单价), vol(此价格挂单张数)], 按
 bids | true| object | 买盘,[price(挂单价), vol(此价格挂单张数)], 按price降序 | | 
 ts | true | long | 深度生成时间戳，每100MS生成一次，单位：毫秒 | |
 version | true | long | 版本号 | |
-ch | true |  string | 数据所属的 channel，格式： market.period | | 
+ch | true |  string | 数据所属的 channel，格式： market.$contract_code.depth.$type | | 
  \</tick\>    |               |    |      |            | | 
 
 
@@ -9234,11 +9234,7 @@ quantity  |  true  |  decimal  |  成交量（币）  |   |
 | -----------  | ------ | ------------- | ------- | ---------------------------------------- |
 | ch      | string | 数据所属的 channel，格式： market.$contract_code.index.$period |                | |
 | ts      | long | 响应生成时间点，单位：毫秒                   |                | |
-| tick      | object array | tick返回，详情：推送tick参数                  |                | |
-
-### 推送tick参数
-| **参数名称** | **类型** | **描述**        |                                  |
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
+| \<tick\>      | object array |           |                | |
 | id | string | 指数K线id,也就是K线时间戳，K线起始时间  |
 | vol | string  | 成交量张数为0             |
 | count | decimal  | 成交笔数为0              |
@@ -9247,6 +9243,7 @@ quantity  |  true  |  decimal  |  成交量（币）  |   |
 | low | string  |  最低指数价             |
 | high | string  | 最高指数价               |
 | amount | string  | 数值为0              |
+| \</tick\>      |      |     | 
 
 
 ## 请求(req)指数K线数据
@@ -9338,19 +9335,16 @@ quantity  |  true  |  decimal  |  成交量（币）  |   |
 | id     | true | string | 业务方id       |                | |
 | wsid     | true | long | wsid           |                | |
 | ts     | true | long | 响应生成时间点，单位：毫秒                   |                | |
-| tick    |    object array    |  tick返回，详情：推送tick参数         |                | |
-
-### 推送tick参数
-| **参数名称** | **类型** | **描述**        |                                  |
-| ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| id | decimal | 指数K线id,也就是K线时间戳，K线起始时间  |
-| vol | decimal  | 成交量张数为0             |
-| count | decimal  | 成交笔数为0              |
-| open | decimal  | 开盘指数价               |
-| close | decimal  | 收盘指数价              |
-| low | decimal  |  最低指数价             |
-| high | decimal  | 最高指数价               |
-| amount | decimal  | 数值为0              |
+| \<tick\>    |    object array    |         |                | |
+| id | true | decimal | 指数K线id,也就是K线时间戳，K线起始时间  |
+| vol | true | decimal  | 成交量张数为0             |
+| count | true | decimal  | 成交笔数为0              |
+| open | true | decimal  | 开盘指数价               |
+| close | true | decimal  | 收盘指数价              |
+| low | true | decimal  |  最低指数价             |
+| high | true | decimal  | 最高指数价               |
+| amount | true | decimal  | 数值为0              |
+| \</tick\>    |     |    |    | 
 
 
 ## 订阅溢价指数K线数据
@@ -9415,7 +9409,7 @@ quantity  |  true  |  decimal  |  成交量（币）  |   |
 
 | **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| ch     | true | string | 数据所属的 channel，格式： market.period |                | |
+| ch     | true | string | 数据所属的 channel，格式：market.$contract_code.premium_index.$period |                | |
 | \<tick\> |   true   |    object array    |               |                | |
 | id     | true | long | 指数K线id,也就是K线时间戳，K线起始时间	     |                | |
 | vol     | true | string | 成交量(张)，数值为0        |                | |
@@ -9520,7 +9514,7 @@ quantity  |  true  |  decimal  |  成交量（币）  |   |
 
 | **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| rep    | true | string | 数据所属的 channel，格式： market.period |                | |
+| rep    | true | string | 数据所属的 channel，格式：market.$contract_code.premium_index.$period |                | |
 | status | true | string | 请求处理结果                          | "ok" , "error" | |
 | id     | true | string | 业务方id       |                | |
 | wsid     | true | long | wsid           |                | |
@@ -9600,7 +9594,7 @@ quantity  |  true  |  decimal  |  成交量（币）  |   |
 
 | **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| ch     | true | string | 数据所属的 channel，格式： market.period |                | |
+| ch     | true | string | 数据所属的 channel，格式：market.$contract_code.estimated_rate.$period |                | |
 | \<tick\> |   true   |    object array    |               |                | |
 | id     | true | long | k线id        |                | |
 | vol     | true | string | 成交量(张)，数值为0        |                | |
@@ -9706,7 +9700,7 @@ quantity  |  true  |  decimal  |  成交量（币）  |   |
 
 | **参数名称**    | **是否必须** | **类型** | **描述**        | **默认值** | **取值范围**                                 |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
-| rep     | true | string | 数据所属的 channel，格式： market.period |                | |
+| rep     | true | string | 数据所属的 channel，格式：market.$contract_code.estimated_rate.$period |                | |
 | status | true | string | 请求处理结果                          | "ok" , "error" | |
 | id     | true | string | 业务方id       |                | |
 | wsid     | true | long | wsid           |                | |
@@ -9759,7 +9753,7 @@ quantity  |  true  |  decimal  |  成交量（币）  |   |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | contract_code      | true     | string | 合约名称          |         | 如"BTC-USD"                          |
 | period          | true     | string  | 周期               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon     |
-| basis_price_type     | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    不填，默认为使用开盘价     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
+| basis_price_type     | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    开盘价：open     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
 
 > 订阅成功后收到的数据，例子：
 
@@ -9783,7 +9777,7 @@ quantity  |  true  |  decimal  |  成交量（币）  |   |
 
 | **参数名称**    | **类型** | **描述**        | **默认值** | **取值范围**                                 |
 | -----------  | ------ | ------------- | ------- | ---------------------------------------- |
-| ch      | string | 数据所属的 channel，格式： market.period |                | |
+| ch      | string | 数据所属的 channel，格式： market.$contract_code.basis.$period.$basis_price_type |                | |
 | \<tick\>    |    object array    |               |                | |
 | id  | long | 唯一标识 |  |
 | contract_price  | string | 合约最新成交价 |  |
@@ -9838,7 +9832,7 @@ quantity  |  true  |  decimal  |  成交量（币）  |   |
 | ----------- | -------- | ------ | ------------- | ------- | ---------------------------------------- |
 | contract_code      | true     | string | 合约名称          |         | 如"BTC-USD"                          |
 | period          | true     | string  | 周期               |         | 1min, 5min, 15min, 30min, 60min,4hour,1day,1week, 1mon     |
-| basis_price_type     | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    不填，默认为使用开盘价     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
+| basis_price_type     | false     | string  | 基差价格类型，表示在周期内计算基差使用的价格类型              |    开盘价：open     |    开盘价：open，收盘价：close，最高价：high，最低价：low，平均价=（最高价+最低价）/2：average   |
 
 
 #### 备注：目前只支持查询2020/6/5 20:13:00之后的基差数据。
@@ -9877,7 +9871,7 @@ quantity  |  true  |  decimal  |  成交量（币）  |   |
 
 | **参数名称**    | **类型** | **描述**        | **默认值** | **取值范围**                                 |
 | -----------  | ------ | ------------- | ------- | ---------------------------------------- |
-| rep     | true | string | 数据所属的 channel，格式： market.basis |                | |
+| rep     | true | string | 数据所属的 channel，格式：market.$contract_code.basis.$period.$basis_price_type  |                | |
 | status | true | string | 请求处理结果                          | "ok" , "error" | |
 | id     | true | string | 业务方id       |                | |
 | wsid     | true | long | wsid           |                | |
@@ -10791,7 +10785,7 @@ topic    | string | 必填;必填；必填；订阅主题名称，必填 (accoun
 | amount   | true | decimal  | 强平数量(币)  |   |
 | price   | true | decimal  | 破产价格  |   |
 | created_at   | true | long  | 订单创建时间  |   |
-| \<\data> | | |  | |
+| \</data\> | | |  | |
 
 
 
