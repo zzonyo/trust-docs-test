@@ -7495,16 +7495,6 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_api_state?contract_
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='26670dda42'>说明</h3>
-<ul>
-<li><p>open，指交易权限中对应的“API-开仓-普通订单”的权限，开启为可用，关闭为不可用；</p></li>
-<li><p>close，指交易权限中对应的“API-平仓-普通订单”的权限，开启为可用，关闭为不可用；</p></li>
-<li><p>cancel，指交易权限中对应的“API-撤单-普通订单”的权限，开启为可用，关闭为不可用；</p></li>
-<li><p>transfer_in，指交易权限中对应的“其他-划转-从币币转入”的权限，开启为可用，关闭为不可用；</p></li>
-<li><p>transfer_out，指交易权限中对应的“其他-划转-转出至币币”的权限，开启为可用，关闭为不可用；</p></li>
-<li><p>master_transfer_sub，指交易权限中对应的“母账户划转到子账户”的权限，开启为可用，关闭为不可用；</p></li>
-<li><p>sub_transfer_master，指交易权限中对应的“子账户划转到母账户”的权限，开启为可用，关闭为不可用；</p></li>
-</ul>
 <h2 id='4a42f6a161'>获取合约的资金费率</h2>
 <ul>
 <li>GET <code>/swap-api/v1/swap_funding_rate</code></li>
@@ -8071,7 +8061,7 @@ curl <span class="s2">"https://api.hbdm.com/swap-api/v1/swap_liquidation_orders?
 <td>true</td>
 <td>string</td>
 <td>请求处理结果</td>
-<td></td>
+<td>&quot;ok&quot; , &quot;error&quot;</td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
@@ -8446,7 +8436,6 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_premium_in
 <th>是否必须</th>
 <th>类型</th>
 <th>描述</th>
-<th>默认值</th>
 <th>取值范围</th>
 </tr>
 </thead><tbody>
@@ -8456,13 +8445,11 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_premium_in
 <td>string</td>
 <td>数据所属的 channel，格式：market.$contract_code.premium_index.$period</td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>&lt;data&gt;</td>
 <td>true</td>
 <td>object array</td>
-<td></td>
 <td></td>
 <td></td>
 </tr>
@@ -8472,14 +8459,12 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_premium_in
 <td>long</td>
 <td>指数K线ID,也就是K线时间戳，K线起始时间</td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>vol</td>
 <td>true</td>
 <td>string</td>
 <td>成交量(张)，数值为0</td>
-<td></td>
 <td></td>
 </tr>
 <tr>
@@ -8488,14 +8473,12 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_premium_in
 <td>string</td>
 <td>成交笔数，数值为0</td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>open</td>
 <td>true</td>
 <td>string</td>
 <td>开盘值（溢价指数）</td>
-<td></td>
 <td></td>
 </tr>
 <tr>
@@ -8504,14 +8487,12 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_premium_in
 <td>string</td>
 <td>收盘值（溢价指数）</td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>low</td>
 <td>true</td>
 <td>string</td>
 <td>最低值（溢价指数）</td>
-<td></td>
 <td></td>
 </tr>
 <tr>
@@ -8520,7 +8501,6 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_premium_in
 <td>string</td>
 <td>最高值（溢价指数）</td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>amount</td>
@@ -8528,11 +8508,9 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_premium_in
 <td>string</td>
 <td>成交量(币), 数值为0</td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>&lt;/data&gt;</td>
-<td></td>
 <td></td>
 <td></td>
 <td></td>
@@ -8544,14 +8522,12 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_premium_in
 <td>string</td>
 <td>请求处理结果</td>
 <td>&quot;ok&quot; , &quot;error&quot;</td>
-<td></td>
 </tr>
 <tr>
 <td>ts</td>
 <td>true</td>
 <td>long</td>
 <td>响应生成时间点，单位：毫秒</td>
-<td></td>
 <td></td>
 </tr>
 </tbody></table>
@@ -11411,7 +11387,7 @@ curl <span class="s2">"https://api.hbdm.com/index/market/history/swap_basis?cont
 <td></td>
 </tr>
 </tbody></table>
-<h4 id='26670dda42-2'>说明</h4>
+<h4 id='26670dda42'>说明</h4>
 <ul>
 <li>settlement_time本期结算时间为结算开始时间。</li>
 <li>只要用户曾有过资金，就会有结算记录。若查询的用户没有结算记录，则直接返回空数据（data为空数组）</li>
