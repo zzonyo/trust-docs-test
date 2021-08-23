@@ -1127,12 +1127,13 @@ curl "https://api.huobi.pro/v2/market-status"
 |	-----	|	---------	|	--------	|	-----------	|
 |	code	|	integer	|	TRUE	|	状态码	|
 |	message	|	string	|	FALSE	|	错误描述（如有）	|
-|	data	|	object	|	TRUE	|		|
-|	{ marketStatus	|	integer	|	TRUE	|	市场状态（1=normal, 2=halted, 3=cancel-only）	|
+|	\<data\>	|	object	|	TRUE	|		|
+|	marketStatus	|	integer	|	TRUE	|	市场状态（1=normal, 2=halted, 3=cancel-only）	|
 |	haltStartTime	|	long	|	FALSE	|	市场暂停开始时间（unix time in millisecond），仅对marketStatus=halted或cancel-only有效	|
 |	haltEndTime	|	long	|	FALSE	|	市场暂停预计结束时间（unix time in millisecond），仅对marketStatus=halted或cancel-only有效；如在marketStatus=halted或cancel-only时未返回此字段，意味着市场暂停结束时间暂时无法预计	|
 |	haltReason	|	integer	|	FALSE	|	市场暂停原因（2=emergency-maintenance, 3=scheduled-maintenance），仅对marketStatus=halted或cancel-only有效	|
-|	affectedSymbols }	|	string	|	FALSE	|	市场暂停影响的交易对列表，以逗号分隔，如影响所有交易对返回"all"，仅对marketStatus=halted或cancel-only有效	|
+|	affectedSymbols	|	string	|	FALSE	|	市场暂停影响的交易对列表，以逗号分隔，如影响所有交易对返回"all"，仅对marketStatus=halted或cancel-only有效	|
+|	\</data\>	|	 	|	 	|		|
 
 ## 获取所有交易对
 
@@ -1188,6 +1189,8 @@ curl "https://api.huobi.pro/v1/common/symbols"
 
 | 字段名称                   | 是否必须 | 数据类型 | 描述                                                         |
 | -------------------------- | -------- | -------- | ------------------------------------------------------------ |
+| status             | true     | string   | 接口请求返回的结果（"ok","error"）                                          |
+| \<data\>             | true     | object   |                                         |
 | base-currency              | true     | string   | 交易对中的基础币种                                           |
 | quote-currency             | true     | string   | 交易对中的报价币种                                           |
 | price-precision            | true     | integer  | 交易对报价的精度（小数点后位数），限价买入与限价卖出价格使用 |
@@ -1213,6 +1216,8 @@ curl "https://api.huobi.pro/v1/common/symbols"
 | rebal-threshold            | false    | float    | 临时调仓阈值 (以实际杠杆率计，仅对杠杆ETP交易对有效)         |
 | init-nav                   | false    | float    | 初始净值（仅对杠杆ETP交易对有效）                            |
 | api-trading                | true     | string   | API交易使能标记（有效值：enabled, disabled）                 |
+| \</data\>             |      |    |                                         |
+
 
 ## 获取所有币种
 
@@ -1236,17 +1241,31 @@ curl "https://api.huobi.pro/v1/common/currencys"
 > Response:
 
 ```json
-  "data": [
-    "usdt",
-    "eth",
-    "etc"
-  ]
+{
+    "status": "ok",
+    "data": [
+        "usdt",
+        "btc",
+        "bch",
+        "eth",
+        "xrp",
+        "ltc",
+        "ht",
+        "ada"
+    ]
+}
 ```
 
 ### 返回字段
 
+| 字段名称       | 是否必需 | 类型    | 字段描述   |
+| -------------- | -------- | ------- | ---------- | 
+| status         | true     | string   | 接口请求返回的结果（"ok","error"）               |
+| data         | true     | array   |  每一个字符串代表一个支持的币种              |
 
 <aside class="notice">返回的“data”对象是一个字符串数组，每一个字符串代表一个支持的币种。</aside>
+
+
 ## APIv2 币链参考信息
 
 此节点用于查询各币种及其所在区块链的静态参考信息（公共数据）
@@ -1351,9 +1370,9 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
 | ----------------------- | -------- | -------- | ------------------------------------------------------------ | ---------------------- |
 | code                    | true     | int      | 状态码                                                       |                        |
 | message                 | false    | string   | 错误描述（如有）                                             |                        |
-| data                    | true     | object   |                                                              |                        |
-| { currency              | true     | string   | 币种                                                         |                        |
-| { chains                | true     | object   |                                                              |                        |
+| \<data\>                | true     | object   |                                                              |                        |
+| currency                | true     | string   | 币种                                                         |                        |
+| \<chains\>                | true     | object   |                                                              |                        |
 | chain                   | true     | string   | 链名称                                                       |                        |
 | displayName             | true     | string   | 链显示名称                                                   |                        |
 | baseChain               | false    | string   | 底层链名称                                                   |                        |
@@ -1374,8 +1393,11 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
 | minTransactFeeWithdraw  | false    | string   | 最小单次提币手续费（仅对区间类型和有下限的比例类型有效，withdrawFeeType=circulated or ratio） |                        |
 | maxTransactFeeWithdraw  | false    | string   | 最大单次提币手续费（仅对区间类型和有上限的比例类型有效，withdrawFeeType=circulated or ratio） |                        |
 | transactFeeRateWithdraw | false    | string   | 单次提币手续费率（仅对比例类型有效，withdrawFeeType=ratio）  |                        |
-| withdrawStatus}         | true     | string   | 提币状态                                                     | allowed,prohibited     |
-| instStatus }            | true     | string   | 币种状态                                                     | normal,delisted        |
+| withdrawStatus          | true     | string   | 提币状态                                                     | allowed,prohibited     |
+| \</data\>               |      |    |                                                              |                        |
+| instStatus              | true     | string   | 币种状态                                                     | normal,delisted        |
+| \</chains\>             |      |    |                                                              |                        |
+
 
 ### 状态码
 
