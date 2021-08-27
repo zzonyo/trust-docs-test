@@ -2947,13 +2947,13 @@ api.huobi.pro\n
 <td>错误描述（如有）</td>
 </tr>
 <tr>
-<td>data</td>
+<td>&lt;data&gt;</td>
 <td>object</td>
 <td>TRUE</td>
 <td></td>
 </tr>
 <tr>
-<td>{ marketStatus</td>
+<td>marketStatus</td>
 <td>integer</td>
 <td>TRUE</td>
 <td>市场状态（1=normal, 2=halted, 3=cancel-only）</td>
@@ -2977,10 +2977,16 @@ api.huobi.pro\n
 <td>市场暂停原因（2=emergency-maintenance, 3=scheduled-maintenance），仅对marketStatus=halted或cancel-only有效</td>
 </tr>
 <tr>
-<td>affectedSymbols }</td>
+<td>affectedSymbols</td>
 <td>string</td>
 <td>FALSE</td>
 <td>市场暂停影响的交易对列表，以逗号分隔，如影响所有交易对返回&quot;all&quot;，仅对marketStatus=halted或cancel-only有效</td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody></table>
 <h2 id='0e505d18dc'>获取所有交易对</h2>
@@ -3033,6 +3039,18 @@ api.huobi.pro\n
 <th>描述</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>接口请求返回的结果（&quot;ok&quot;,&quot;error&quot;）</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>true</td>
+<td>object</td>
+<td></td>
+</tr>
 <tr>
 <td>base-currency</td>
 <td>true</td>
@@ -3183,6 +3201,12 @@ api.huobi.pro\n
 <td>string</td>
 <td>API交易使能标记（有效值：enabled, disabled）</td>
 </tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </tbody></table>
 <h2 id='7393cc8596'>获取所有币种</h2>
 <p>此接口返回所有火币全球站支持的币种。</p>
@@ -3197,13 +3221,43 @@ api.huobi.pro\n
 <blockquote>
 <p>Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"etc"</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bch"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"xrp"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ltc"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ht"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ada"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='aceee0d936-4'>返回字段</h3>
 <aside class="notice">返回的“data”对象是一个字符串数组，每一个字符串代表一个支持的币种。</aside>
+
+<table><thead>
+<tr>
+<th>字段名称</th>
+<th>是否必需</th>
+<th>类型</th>
+<th>字段描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true</td>
+<td>string</td>
+<td>接口请求返回的结果（&quot;ok&quot;,&quot;error&quot;）</td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>array</td>
+<td>每一个字符串代表一个支持的币种</td>
+</tr>
+</tbody></table>
 <h2 id='apiv2'>APIv2 币链参考信息</h2>
 <p>此节点用于查询各币种及其所在区块链的静态参考信息（公共数据）</p>
 <h3 id='http-5'>HTTP 请求</h3>
@@ -3338,21 +3392,21 @@ api.huobi.pro\n
 <td></td>
 </tr>
 <tr>
-<td>data</td>
+<td>&lt;data&gt;</td>
 <td>true</td>
 <td>object</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>{ currency</td>
+<td>currency</td>
 <td>true</td>
 <td>string</td>
 <td>币种</td>
 <td></td>
 </tr>
 <tr>
-<td>{ chains</td>
+<td>&lt;chains&gt;</td>
 <td>true</td>
 <td>object</td>
 <td></td>
@@ -3499,18 +3553,32 @@ api.huobi.pro\n
 <td></td>
 </tr>
 <tr>
-<td>withdrawStatus}</td>
+<td>withdrawStatus</td>
 <td>true</td>
 <td>string</td>
 <td>提币状态</td>
 <td>allowed,prohibited</td>
 </tr>
 <tr>
-<td>instStatus }</td>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>instStatus</td>
 <td>true</td>
 <td>string</td>
 <td>币种状态</td>
 <td>normal,delisted</td>
+</tr>
+<tr>
+<td>&lt;/chains&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='2fd51d31a7'>状态码</h3>
@@ -3550,8 +3618,36 @@ api.huobi.pro\n
 <blockquote>
 <p>Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1494900087029</span><span class="w">
-</span></code></pre><h1 id='d9d514d202'>行情数据</h1><h2 id='5ea2e0cde2-3'>简介</h2>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="mi">1629715504949</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='70bdef7e25'>返回参数</h3>
+<table><thead>
+<tr>
+<th>参数名称</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+<th>取值范围</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>true    string  请求处理结果</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>true</td>
+<td>long</td>
+<td>当前系统时间戳</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='d9d514d202'>行情数据</h1><h2 id='5ea2e0cde2-3'>简介</h2>
 <p>行情数据接口提供了多种K线、深度以及最新成交记录等行情数据。</p>
 
 <p>行情接口提供的数据每1分钟更新一次</p>
@@ -3599,25 +3695,40 @@ api.huobi.pro\n
 <td>false</td>
 <td>150</td>
 <td>返回 K 线数据条数</td>
-<td>[1, 2000]</td>
+<td>[1-2000]</td>
 </tr>
 </tbody></table>
 
 <blockquote>
 <p>Response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1499184000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">37593.0266</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">1935.2000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">1879.0000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">1856.0000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">1940.0000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mf">71031537.97866500</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"ch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market.btcusdt.kline.5min"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1629769247172</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1629769200</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">49056.37</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">49025.51</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">49022.86</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">49056.38</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.946281917950917</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mf">193489.67275732</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">196</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1629768900</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"open"</span><span class="p">:</span><span class="w"> </span><span class="mf">48994.61</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"close"</span><span class="p">:</span><span class="w"> </span><span class="mf">49056.37</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"low"</span><span class="p">:</span><span class="w"> </span><span class="mf">48966.72</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"high"</span><span class="p">:</span><span class="w"> </span><span class="mf">49072.46</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">30.72223099519689</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"vol"</span><span class="p">:</span><span class="w"> </span><span class="mf">1505870.732227976</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1504</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='2213f4c32f-2'>响应数据</h3>
 <table><thead>
 <tr>
@@ -3626,6 +3737,26 @@ api.huobi.pro\n
 <th>描述</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>请求处理结果  &quot;ok&quot;,&quot;error&quot;</td>
+</tr>
+<tr>
+<td>ch</td>
+<td>string</td>
+<td>数据所属的 channel，格式：market.$symbol.kline.$period</td>
+</tr>
+<tr>
+<td>ts</td>
+<td>long</td>
+<td>系统响应时间</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>object</td>
+<td></td>
+</tr>
 <tr>
 <td>id</td>
 <td>long</td>
@@ -3665,6 +3796,11 @@ api.huobi.pro\n
 <td>vol</td>
 <td>float</td>
 <td>以报价币种计量的交易量</td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td>object</td>
+<td></td>
 </tr>
 </tbody></table>
 <h2 id='ticker'>聚合行情（Ticker）</h2>
@@ -4161,7 +4297,7 @@ curl &quot;https://api.huobi.pro/market/tickers&quot;
          </span><span class="p">{</span><span class="w">  
             </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">73.771000000000000000</span><span class="p">,</span><span class="w">
             </span><span class="s2">"ts"</span><span class="p">:</span><span class="mi">1544390317905</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"trade-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102043483473</span><span class="w">
+            </span><span class="s2">"trade-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">102043483473</span><span class="p">,</span><span class="w">
             </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">3161878751418918532514</span><span class="p">,</span><span class="w">
             </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">94.660000000000000000</span><span class="p">,</span><span class="w">
             </span><span class="s2">"direction"</span><span class="p">:</span><span class="s2">"sell"</span><span class="w">
@@ -4496,7 +4632,7 @@ curl &quot;https://api.huobi.pro/market/tickers&quot;
       </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spot"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"subtype"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"working"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100002</span><span class="p">,</span><span class="w">
       </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"margin"</span><span class="p">,</span><span class="w">
@@ -4686,7 +4822,7 @@ curl &quot;https://api.huobi.pro/market/tickers&quot;
 <h2 id='be75b07cd4'>获取平台资产总估值</h2>
 <p>API Key 权限：读取</p>
 
-<p>限频值（NEW）：100次/2s</p>
+<p>限频值（NEW）：3次/2s</p>
 
 <p>按照BTC或法币计价单位，获取平台账户的总资产估值。</p>
 <h3 id='http-17'>HTTP 请求</h3>
@@ -4700,7 +4836,6 @@ curl &quot;https://api.huobi.pro/market/tickers&quot;
 <th>是否必填</th>
 <th>数据类型</th>
 <th>描述</th>
-<th>默认值</th>
 <th>取值范围</th>
 </tr>
 </thead><tbody>
@@ -4710,14 +4845,12 @@ curl &quot;https://api.huobi.pro/market/tickers&quot;
 <td>string</td>
 <td>账户类型，详见账户类型数据字典</td>
 <td></td>
-<td></td>
 </tr>
 <tr>
 <td>valuationCurrency</td>
 <td>false</td>
 <td>string</td>
-<td>不填默认为btc估值（目前暂只支持BTC估值）</td>
-<td></td>
+<td>不填默认为btc估值（目前暂只支持BTC估值，参数值需大写）</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -4725,142 +4858,137 @@ curl &quot;https://api.huobi.pro/market/tickers&quot;
 <blockquote>
 <p>Responds:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-    "message": null,
-    "success": true,
-    "code":200,
-    "data":"{
-        "todayProfit": null,
-        "updated": null,
-        "totalBalance": "68232.925885978428351309",
-        "todayProfitRate": null,
-        "profitAccountBalanceList": [
-            {
-                "distributionType": "1",
-                "success": true,
-                "accountBalance": "68232.925885978428351309"
-            },
-            {
-                "distributionType": "2",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "3",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "4",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "5",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "6",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "7",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "8",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "9",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "10",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "11",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "12",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "13",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "14",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "15",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "16",
-                "success": false,
-                "accountBalance": "0"
-            }
-        ]
-
-    }"
-}
-</code></pre><h3 id='2213f4c32f-12'>响应数据</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1629916724000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"todayProfitRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.004638293764657609"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.06276321"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"todayProfit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00028977"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profitAccountBalanceList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"distributionType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05728808</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"accountBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.05728808"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='2213f4c32f-12'>响应数据</h3>
 <table><thead>
 <tr>
 <th>参数名称</th>
+<th>是否必须</th>
 <th>数据类型</th>
 <th>描述</th>
 </tr>
 </thead><tbody>
 <tr>
+<td>code</td>
+<td>TRUE</td>
+<td>int</td>
+<td>状态码</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>TRUE</td>
+<td>object</td>
+<td>--------</td>
+</tr>
+<tr>
+<td>totalBalance</td>
+<td>TRUE</td>
+<td>string</td>
+<td>总账户资产，按估值参数计价</td>
+</tr>
+<tr>
 <td>todayProfit</td>
-<td>String</td>
+<td>TRUE</td>
+<td>string</td>
 <td>今日总收益，按估值参数计价</td>
 </tr>
 <tr>
 <td>todayProfitRate</td>
-<td>Long</td>
+<td>TRUE</td>
+<td>string</td>
 <td>今日收益率</td>
 </tr>
 <tr>
-<td>accountList</td>
-<td>List<AccountBalance></td>
-<td>账户资产列表</td>
+<td>&lt;profitAccountBalanceList&gt;</td>
+<td>TRUE</td>
+<td>list</td>
+<td></td>
 </tr>
 <tr>
-<td>{accountType</td>
-<td>String</td>
-<td>账户类型</td>
+<td>distributionType</td>
+<td>TRUE</td>
+<td>string</td>
+<td>查询账户类型</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>TRUE</td>
+<td>float</td>
+<td>查询账户资产，按估值参数计价</td>
+</tr>
+<tr>
+<td>success</td>
+<td>TRUE</td>
+<td>boolean</td>
+<td>查询账户资产是否成功 失败时accountBalance和balance为0</td>
 </tr>
 <tr>
 <td>accountBalance</td>
-<td>String</td>
-<td>账户资产</td>
+<td>TRUE</td>
+<td>string</td>
+<td>查询账户资产，按估值参数计价</td>
 </tr>
 <tr>
-<td>success}</td>
-<td>Boolean</td>
-<td>账户资产是否成功获取,为false时accountBalance返回0</td>
+<td>&lt;/profitAccountBalanceList&gt;</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td>timestamp</td>
+<td>&lt;updated&gt;</td>
+<td>TRUE</td>
+<td>list</td>
+<td></td>
+</tr>
+<tr>
+<td>success</td>
+<td>TRUE</td>
+<td>boolean</td>
+<td>今日收益是否已更新</td>
+</tr>
+<tr>
+<td>time</td>
+<td>TRUE</td>
 <td>long</td>
-<td>数据返回时间，为unix time in millisecond</td>
+<td>收益更新日期</td>
+</tr>
+<tr>
+<td>&lt;/updated&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>success</td>
+<td>TRUE</td>
+<td>boolean</td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='714e47be75'>账户类型数据字典</h3>
