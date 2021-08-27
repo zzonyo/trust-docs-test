@@ -1426,8 +1426,18 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 > Response:
 
 ```json
-  "data": 1494900087029
+{
+    "status":"ok",
+    "data":1629715504949
+}
 ```
+
+### 返回参数
+
+| 参数名称 | 	是否必须 | 	类型 | 	描述 | 	取值范围 | 
+| ------ | ------ | ------ | ------ | ------| 
+| status | 	true	string	请求处理结果	| 
+| data | 	true | 	long | 	当前系统时间戳	 | 
 
 # 行情数据
 
@@ -1459,29 +1469,48 @@ curl "https://api.huobi.pro/market/history/kline?period=1day&size=200&symbol=btc
 | ------ | -------- | -------- | ------ | ------------------------------------------ | ------------------------------------------------------------ |
 | symbol | string   | true     | NA     | 交易对                                     | btcusdt, ethbtc等（如需获取杠杆ETP净值K线，净值symbol = 杠杆ETP交易对symbol + 后缀‘nav’，例如：btc3lusdtnav） |
 | period | string   | true     | NA     | 返回数据时间粒度，也就是每根蜡烛的时间区间 | 1min, 5min, 15min, 30min, 60min, 4hour, 1day, 1mon, 1week, 1year |
-| size   | integer  | false    | 150    | 返回 K 线数据条数                          | [1, 2000]                                                    |
+| size   | integer  | false    | 150    | 返回 K 线数据条数                          | [1-2000]                                                    |
 
 > Response:
 
 ```json
-[
-  {
-    "id": 1499184000,
-    "amount": 37593.0266,
-    "count": 0,
-    "open": 1935.2000,
-    "close": 1879.0000,
-    "low": 1856.0000,
-    "high": 1940.0000,
-    "vol": 71031537.97866500
-  }
-]
+{
+    "ch": "market.btcusdt.kline.5min",
+    "status": "ok",
+    "ts": 1629769247172,
+    "data": [
+        {
+            "id": 1629769200,
+            "open": 49056.37,
+            "close": 49025.51,
+            "low": 49022.86,
+            "high": 49056.38,
+            "amount": 3.946281917950917,
+            "vol": 193489.67275732,
+            "count": 196
+        },
+        {
+            "id": 1629768900,
+            "open": 48994.61,
+            "close": 49056.37,
+            "low": 48966.72,
+            "high": 49072.46,
+            "amount": 30.72223099519689,
+            "vol": 1505870.732227976,
+            "count": 1504
+        }
+    ]
+}
 ```
 
 ### 响应数据
 
 | 字段名称 | 数据类型 | 描述                                                    |
 | -------- | -------- | ------------------------------------------------------- |
+| status       | string     | 请求处理结果  "ok","error" |
+| ch       | string     | 数据所属的 channel，格式：market.$symbol.kline.$period |
+| ts       | long     |  系统响应时间  |
+| \<data\>   | object     |    |
 | id       | long     | 调整为新加坡时间的时间戳，单位秒，并以此作为此K线柱的id |
 | amount   | float    | 以基础币种计量的交易量                                  |
 | count    | integer  | 交易次数                                                |
@@ -1490,7 +1519,7 @@ curl "https://api.huobi.pro/market/history/kline?period=1day&size=200&symbol=btc
 | low      | float    | 本阶段最低价                                            |
 | high     | float    | 本阶段最高价                                            |
 | vol      | float    | 以报价币种计量的交易量                                  |
-
+| \</data\>   | object     |    |
 
 
 ## 聚合行情（Ticker）
@@ -2054,7 +2083,7 @@ list字段说明
 
 API Key 权限：读取
 
-限频值（NEW）：100次/2s
+限频值（NEW）：3次/2s
 
 按照BTC或法币计价单位，获取平台账户的总资产估值。
 
@@ -2064,121 +2093,58 @@ API Key 权限：读取
 
 ### 请求参数
 
-|参数|	是否必填|	数据类型|	描述|	默认值	|取值范围|
-| ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
+|参数|	是否必填|	数据类型|	描述|  取值范围|
+| ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | 
 |accountType	|false	|string|	账户类型，详见账户类型数据字典	 |
-|valuationCurrency 	|false	|string| 不填默认为btc估值（目前暂只支持BTC估值）
+|valuationCurrency 	|false	|string| 不填默认为btc估值（目前暂只支持BTC估值，参数值需大写） | 
 
 > Responds:
 
-```lang=json
+```json
 {
-    "message": null,
-    "success": true,
-    "code":200,
-    "data":"{
-        "todayProfit": null,
-        "updated": null,
-        "totalBalance": "68232.925885978428351309",
-        "todayProfitRate": null,
+    "code": 200,
+    "data": {
+        "updated": {
+            "success": true,
+            "time": 1629916724000
+        },
+        "todayProfitRate": "0.004638293764657609",
+        "totalBalance": "0.06276321",
+        "todayProfit": "0.00028977",
         "profitAccountBalanceList": [
             {
-                "distributionType": "1",
-                "success": true,
-                "accountBalance": "68232.925885978428351309"
-            },
-            {
-                "distributionType": "2",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "3",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "4",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "5",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "6",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "7",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "8",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "9",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "10",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
                 "distributionType": "11",
+                "balance": 0.05728808,
                 "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "12",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "13",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "14",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "15",
-                "success": true,
-                "accountBalance": "0"
-            },
-            {
-                "distributionType": "16",
-                "success": false,
-                "accountBalance": "0"
+                "accountBalance": "0.05728808"
             }
         ]
-    
-    }"
+    },
+    "success": true
 }
 ```
 
 ### 响应数据
 
-| 参数名称 |  数据类型 | 描述                      |
-| -------- | -------- | -------- | 
-|todayProfit|String|今日总收益，按估值参数计价
-|todayProfitRate|Long|今日收益率
-|accountList|List<AccountBalance>|账户资产列表
-|{accountType|String|账户类型
-|accountBalance|String|账户资产
-|success}|Boolean|账户资产是否成功获取,为false时accountBalance返回0
-|timestamp	|long	|数据返回时间，为unix time in millisecond|
+| 参数名称            | 是否必须 | 数据类型 | 描述         |
+| --------          | -------- | -------- | -------- |
+| code              | TRUE | int | 状态码 | 
+| \<data\>          | TRUE | object | -------- | 
+| totalBalance      | TRUE | string |总账户资产，按估值参数计价| 
+| todayProfit       | TRUE | string | 今日总收益，按估值参数计价 | 
+| todayProfitRate   | TRUE | string | 今日收益率 | 
+| \<profitAccountBalanceList\> | TRUE | list |  | 
+| distributionType  | TRUE | string | 查询账户类型 | 
+| balance           | TRUE | float | 查询账户资产，按估值参数计价 | 
+| success           | TRUE | boolean | 查询账户资产是否成功 失败时accountBalance和balance为0 | 
+| accountBalance    | TRUE | string | 查询账户资产，按估值参数计价 | 
+| \</profitAccountBalanceList\> |  |  |  | 
+| \<updated\>       | TRUE | list |  | 
+| success           | TRUE | boolean | 今日收益是否已更新 | 
+| time              | TRUE | long | 收益更新日期 | 
+| \</updated\>      |  |  |  | 
+| \</data\>         |  |  |  |
+| success           | TRUE | boolean |  | 
 
 ### 账户类型数据字典
 |code| 说明
