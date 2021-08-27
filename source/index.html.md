@@ -1258,12 +1258,12 @@ curl "https://api.huobi.pro/v1/common/currencys"
 
 ### 返回字段
 
+<aside class="notice">返回的“data”对象是一个字符串数组，每一个字符串代表一个支持的币种。</aside>
+
 | 字段名称       | 是否必需 | 类型    | 字段描述   |
 | -------------- | -------- | ------- | ---------- | 
 | status         | true     | string   | 接口请求返回的结果（"ok","error"）               |
 | data         | true     | array   |  每一个字符串代表一个支持的币种              |
-
-<aside class="notice">返回的“data”对象是一个字符串数组，每一个字符串代表一个支持的币种。</aside>
 
 
 ## APIv2 币链参考信息
@@ -1793,7 +1793,7 @@ curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
          {  
             "amount":73.771000000000000000,
             "ts":1544390317905,
-            "trade-id": 102043483473
+            "trade-id": 102043483473,
             "id":3161878751418918532514,
             "price":94.660000000000000000,
             "direction":"sell"
@@ -1987,7 +1987,7 @@ API Key 权限：读取<br>
       "type": "spot",
       "subtype": "",
       "state": "working"
-    }
+    },
     {
       "id": 100002,
       "type": "margin",
