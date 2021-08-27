@@ -1436,7 +1436,7 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 
 | 参数名称 | 	是否必须 | 	类型 | 	描述 | 	取值范围 | 
 | ------ | ------ | ------ | ------ | ------| 
-| status | 	true	string	请求处理结果	| 
+| status | 	true  |	string |	请求处理结果	| 
 | data | 	true | 	long | 	当前系统时间戳	 | 
 
 # 行情数据
@@ -2129,7 +2129,7 @@ API Key 权限：读取
 | 参数名称            | 是否必须 | 数据类型 | 描述         |
 | --------          | -------- | -------- | -------- |
 | code              | TRUE | int | 状态码 | 
-| \<data\>          | TRUE | object | -------- | 
+| \<data\>          | TRUE | object |     | 
 | totalBalance      | TRUE | string |总账户资产，按估值参数计价| 
 | todayProfit       | TRUE | string | 今日总收益，按估值参数计价 | 
 | todayProfitRate   | TRUE | string | 今日收益率 | 
