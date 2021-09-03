@@ -1261,7 +1261,7 @@ curl "https://api.huobi.pro/v1/common/currencys"
 <aside class="notice">返回的“data”对象是一个字符串数组，每一个字符串代表一个支持的币种。</aside>
 
 | 字段名称       | 是否必需 | 类型    | 字段描述   |
-| -------------- | -------- | ------- | ---------- | 
+| -------------- | -------- | ------- | ---------- |
 | status         | true     | string   | 接口请求返回的结果（"ok","error"）               |
 | data         | true     | array   |  每一个字符串代表一个支持的币种              |
 
@@ -1434,10 +1434,10 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 
 ### 返回参数
 
-| 参数名称 | 	是否必须 | 	类型 | 	描述 | 	取值范围 | 
-| ------ | ------ | ------ | ------ | ------| 
-| status | 	true  |	string |	请求处理结果	| 
-| data | 	true | 	long | 	当前系统时间戳	 | 
+| 参数名称 | 	是否必须 | 	类型 | 	描述 | 	取值范围 |
+| ------ | ------ | ------ | ------ | ------|
+| status | 	true  |	string |	请求处理结果	|
+| data | 	true | 	long | 	当前系统时间戳	 |
 
 # 行情数据
 
@@ -2094,9 +2094,9 @@ API Key 权限：读取
 ### 请求参数
 
 |参数|	是否必填|	数据类型|	描述|  取值范围|
-| ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | 
+| ---------- | -------- | ------ | ------------------------------------------------------------ | ------ |
 |accountType	|false	|string|	账户类型，详见账户类型数据字典	 |
-|valuationCurrency 	|false	|string| 不填默认为btc估值（目前暂只支持BTC估值，参数值需大写） | 
+|valuationCurrency 	|false	|string| 不填默认为btc估值（目前暂只支持BTC估值，参数值需大写） |
 
 > Responds:
 
@@ -2128,23 +2128,23 @@ API Key 权限：读取
 
 | 参数名称            | 是否必须 | 数据类型 | 描述         |
 | --------          | -------- | -------- | -------- |
-| code              | TRUE | int | 状态码 | 
-| \<data\>          | TRUE | object |     | 
-| totalBalance      | TRUE | string |总账户资产，按估值参数计价| 
-| todayProfit       | TRUE | string | 今日总收益，按估值参数计价 | 
-| todayProfitRate   | TRUE | string | 今日收益率 | 
-| \<profitAccountBalanceList\> | TRUE | list |  | 
-| distributionType  | TRUE | string | 查询账户类型 | 
-| balance           | TRUE | float | 查询账户资产，按估值参数计价 | 
-| success           | TRUE | boolean | 查询账户资产是否成功 失败时accountBalance和balance为0 | 
-| accountBalance    | TRUE | string | 查询账户资产，按估值参数计价 | 
-| \</profitAccountBalanceList\> |  |  |  | 
-| \<updated\>       | TRUE | list |  | 
-| success           | TRUE | boolean | 今日收益是否已更新 | 
-| time              | TRUE | long | 收益更新日期 | 
-| \</updated\>      |  |  |  | 
+| code              | TRUE | int | 状态码 |
+| \<data\>          | TRUE | object |     |
+| totalBalance      | TRUE | string |总账户资产，按估值参数计价|
+| todayProfit       | TRUE | string | 今日总收益，按估值参数计价 |
+| todayProfitRate   | TRUE | string | 今日收益率 |
+| \<profitAccountBalanceList\> | TRUE | list |  |
+| distributionType  | TRUE | string | 查询账户类型 |
+| balance           | TRUE | float | 查询账户资产，按估值参数计价 |
+| success           | TRUE | boolean | 查询账户资产是否成功 失败时accountBalance和balance为0 |
+| accountBalance    | TRUE | string | 查询账户资产，按估值参数计价 |
+| \</profitAccountBalanceList\> |  |  |  |
+| \<updated\>       | TRUE | list |  |
+| success           | TRUE | boolean | 今日收益是否已更新 |
+| time              | TRUE | long | 收益更新日期 |
+| \</updated\>      |  |  |  |
 | \</data\>         |  |  |  |
-| success           | TRUE | boolean |  | 
+| success           | TRUE | boolean |  |
 
 ### 账户类型数据字典
 |code| 说明
@@ -3109,17 +3109,17 @@ API Key 权限：读取<br>
 ```
 
 ### 响应数据
-| 参数名称   | 是否必须 | 数据类型 | 描述                                                         | 取值范围 |
-| ---------- | -------- | -------- | ------------------------------------------------------------ | -------- |
-| code       | true     | int      | 状态码                                                       |          |
-| message    | false    | string   | 错误描述（如有）                                             |          |
-| data       | true     | object   |                                                              |          |
-| { currency | true     | string   | 币种                                                         |          |
-| chain      | true     | string   | 链名称                                                       |          |
-| note       | true     | string   | 地址备注                                                     |          |
-| addressTag | false    | string   | 地址标签，如有                                               |          |
-| address }  | true     | string   | 地址                                                         |          |
-| nextId     | false    | long     | 下页起始编号（提币地址ID，仅在查询结果需要分页返回时，包含此字段，详细见备注） |          |
+| 参数名称    | 是否必须 | 数据类型 | 描述                                                         | 取值范围 |
+| ----------- | -------- | -------- | ------------------------------------------------------------ | -------- |
+| code        | true     | int      | 状态码                                                       |          |
+| message     | false    | string   | 错误描述（如有）                                             |          |
+| data        | true     | object   |                                                              |          |
+| [{ currency | true     | string   | 币种                                                         |          |
+| chain       | true     | string   | 链名称                                                       |          |
+| note        | true     | string   | 地址备注                                                     |          |
+| addressTag  | false    | string   | 地址标签，如有                                               |          |
+| address }]  | true     | string   | 地址                                                         |          |
+| nextId      | false    | long     | 下页起始编号（提币地址ID，仅在查询结果需要分页返回时，包含此字段，详细见备注） |          |
 
 备注：<br>
 仅当用户请求查询的数据条目超出单页限制（由“limit“字段设定）时，服务器才返回”nextId“字段。用户收到服务器返回的”nextId“后 –<br>
