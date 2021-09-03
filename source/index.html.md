@@ -2977,17 +2977,17 @@ This endpoint allows parent user to query withdraw address available for API key
 ```
 
 ### Response Content
-| Field Name | Mandatory | Data Type | Description                                                  | Value Range |
-| ---------- | --------- | --------- | ------------------------------------------------------------ | ----------- |
-| code       | true      | int       | Status code                                                  |             |
-| message    | false     | string    | Error message (if any)                                       |             |
-| data       | true      | object    |                                                              |             |
-| { currency | true      | string    | Crypto currency                                              |             |
-| chain      | true      | string    | Block chain name                                             |             |
-| note       | true      | string    | The address note                                             |             |
-| addressTag | false     | string    | The address tag，if any                                      |             |
-| address }  | true      | string    | Withdraw address                                             |             |
-| nextId     | false     | long      | First record ID in next page (only valid if exceeded page size) |             |
+| Field Name  | Mandatory | Data Type | Description                                                  | Value Range |
+| ----------- | --------- | --------- | ------------------------------------------------------------ | ----------- |
+| code        | true      | int       | Status code                                                  |             |
+| message     | false     | string    | Error message (if any)                                       |             |
+| data        | true      | object    |                                                              |             |
+| [{ currency | true      | string    | Crypto currency                                              |             |
+| chain       | true      | string    | Block chain name                                             |             |
+| note        | true      | string    | The address note                                             |             |
+| addressTag  | false     | string    | The address tag，if any                                      |             |
+| address }]  | true      | string    | Withdraw address                                             |             |
+| nextId      | false     | long      | First record ID in next page (only valid if exceeded page size) |             |
 
 Note:<br>
 Only when the number of items within the query window exceeded the page limitation (defined by “limit”), Huobi server returns “nextId”. Once received “nextId”, API user should –<br>
