@@ -4369,11 +4369,15 @@ Users can judge from the value “heartbeat” pushed by the “Queried if syste
 
 <p>b. Check whether the precision of the coin does not exceed 8 decimal places? </p>
 <h3 id='q19-how-to-confirm-whether-the-position-is-opened-or-closed-successfully'>Q19: How to confirm whether the position is opened or closed successfully?</h3>
-<p>Placing an order successfully through “Place an Order” interface (/api/v1/contract_order) or “Place a batch of orders” interface (/api/v1/contract_batchorder) just means the server has received your order placing instructions rather than you have opened/closed a position successfully.
-You can check the order status by filling the returned “order_id” in the “Get Information of an Order” interface (/api/v1/contract_order_info) or the “Order Details Acquisition” interface (/api/v1/contract_order_detail); If the order has been filled, the “status” value in the return parameter will turn out 6 (wholly filled)
-It is important to note:
-a.  For “Get Information of an order” interface (/api/v1/contract_order_info), after the settlement or delivery, the system will delete all the orders in ended status (5: partially filled orders have been cancelled; 6: wholly filled; 7: cancelled);
-b.  b. There is a delay in “Order Details Acquisition” interface (/api/v1/contract_order_detail), so it is better to fill in “created_at” (order timestamp) and “order_type” (order type, fill in 1 by default). In this way, it will directly query the database, so the query results will be more timely.</p>
+<p>Placing an order successfully through “Place an Order” interface (/api/v1/contract_order) or “Place a batch of orders” interface (/api/v1/contract_batchorder) just means the server has received your order placing instructions rather than you have opened/closed a position successfully.</p>
+
+<p>You can check the order status by filling the returned “order_id” in the “Get Information of an Order” interface (/api/v1/contract_order_info) or the “Order Details Acquisition” interface (/api/v1/contract_order_detail); If the order has been filled, the “status” value in the return parameter will turn out 6 (wholly filled)</p>
+
+<p>It is important to note:</p>
+
+<p>a.  For “Get Information of an order” interface (/api/v1/contract_order_info), after the settlement or delivery, the system will delete all the orders in ended status (5: partially filled orders have been cancelled; 6: wholly filled; 7: cancelled);</p>
+
+<p>b.  There is a delay in “Order Details Acquisition” interface (/api/v1/contract_order_detail), so it is better to fill in “created_at” (order timestamp) and “order_type” (order type, fill in 1 by default). In this way, it will directly query the database, so the query results will be more timely.</p>
 <h3 id='q20-why-are-orders-canceled-by-the-system-automatically'>Q20: Why are orders canceled by the system automatically?</h3>
 <p>The order_price_type which can be chosen are IOC, FOK and Maker (Post Only). When the order book cannot meet with the corresponding conditions, the system will cancel the orders automatically:</p>
 
@@ -4422,14 +4426,13 @@ b.  b. There is a delay in “Order Details Acquisition” interface (/api/v1/co
 <p>”margin_balance” refers to the account equity</p>
 
 <ol>
-<li><p>margin_balance = margin_position + margin_frozen + margin_available</p></li>
 <li><p>margin_balance = margin_static + profit_unreal</p></li>
 <li><p>margin_balance = Account balance + profit_real + profit_unreal</p></li>
 </ol>
 
 <p>Note: Account balance = margin_static - profit_real, there is only margin_static in the return data of api interface</p>
 
-<p>Each of the three calculation methods above can get the margin_balance</p>
+<p>Each of the two calculation methods above can get the margin_balance</p>
 <h3 id='q29-is-the-risk_rate-margin-rate-in-query-user-s-account-information-interface-api-v1-contract_account_info-the-same-as-the-margin-rate-on-web'>Q29: Is the “risk_rate” (margin rate) in “Query User’s Account Information” interface (/api/v1/contract_account_info) the same as the margin rate on WEB?</h3>
 <p>Yes, it is</p>
 
