@@ -2517,15 +2517,13 @@ USDT本位永续: https://status-linear-swap.huobigroup.com/
 
 margin_balance 是指账户权益
 
-1、账户权益 (margin_balance) = 持仓保证金(margin_position) + 冻结保证金 (margin_frozen) + 可用保证金(margin_available)
+1、账户权益（margin_balance）= 静态权益（margin_static）+ 未实现盈亏（profit_unreal）。
 
-2、账户权益（margin_balance）= 静态权益（margin_static）+ 未实现盈亏（profit_unreal）。
-
-3、账户权益（margin_balance）= 账户余额 + 已实现盈亏（profit_real）+ 未实现盈亏（profit_unreal）。
+2、账户权益（margin_balance）= 账户余额 + 已实现盈亏（profit_real）+ 未实现盈亏（profit_unreal）。
 
 注：账户余额 = 静态权益（margin_static）- 已实现盈亏（profit_real），我们在API中只给出了静态权益字段。
 
-以上三种计算方式都可以得出帐户权益。
+以上二种计算方式都可以得出帐户权益。
 
 ### Q29: 获取用户账户信息（/api/v1/contract_account_info）中的risk_rate "保证金率”和WEB端的"担保资产率”是一样的吗?
 
