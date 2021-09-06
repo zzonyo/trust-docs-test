@@ -30,8 +30,8 @@ table th {
 
 | Release Time <br>(UTC +8) | API  | New / Update    | Description     |
 | ------------------------ | ---------------------- | --------------- | ------------------------------------- |
-| 2021.8.19 | `accounts.update#${mode}` | 优化 | Add “Serial Number of Account Change” parameter：“seqNum” |
-| 2021.8.19 | `GET /v1/account/accounts/{account-id}/balance` | 优化 | Add “Serial Number of Account Change” parameter：“seq-num” |
+| 2021.8.19 | `accounts.update#${mode}` | 优化 | Add "Serial Number of Account Change" parameter："seqNum" |
+| 2021.8.19 | `GET /v1/account/accounts/{account-id}/balance` | 优化 | Add "Serial Number of Account Change" parameter："seq-num" |
 | 2021.8.12 | `market.$symbol.ticker` | Add | Add Market Ticker data |
 | 2021.8.12 | `market.$symbol.mbp.$levels` | Update | Add 400 depth data|
 | 2021.7.23 | `GET /v1/account/history` | Update | Detailed in detail the type of change in the account flow interface, that is, "Transact-Types" increases classification, such as Note 3. |
@@ -42,10 +42,10 @@ table th {
 | 2021.2.28 | Account and Order WebSocket v1 | Delete | Account and WebSocket v1 was offline |
 | 2021.2.1 | `POST /v2/account/repayment` | Update | Support isolated repayment                                   |
 | 2021.1.22 19:00 | `GET /v1/order/matchresults` | Add | Add timestamp parameters |
-| 2021.1.19 19:00 | `GET /v2/etp/limit` | Add | Add “Get Holding Limit of Leveraged ETP” endpoints |
+| 2021.1.19 19:00 | `GET /v2/etp/limit` | Add | Add "Get Holding Limit of Leveraged ETP" endpoints |
 | 2020.1.8 19:00 | `POST/v2/algo-orders/cancel-all-after` | Add | Add Dead man’s switch endpoints |
 | 2020.1.5 19:00 | accounts.update#${mode} | Update | added Specify "mode" as 2:  <br/>accounts.update#2  <br/>Whenever  account balance or available balance changed, it will be updated together. |
-| 2020.12.16 19:00         | `GET /v1/order/matchresults ` and `GET /v1/order/orders/{order-id}/matchresults` | Update          | Add "fee-deduct-state" parameter to indicate the status of “In deduction” and “deduction completed” |
+| 2020.12.16 19:00         | `GET /v1/order/matchresults ` and `GET /v1/order/orders/{order-id}/matchresults` | Update          | Add "fee-deduct-state" parameter to indicate the status of "In deduction" and "deduction completed" |
 | 2020.12.14 19:00         | `POST /v2/etp/{transactId}/cancel ` and`POST /v2/etp/batch-cancel` | Add             | Add "Submit Cancel for ETP Multiple Orders" and"Submit Cancel for an ETP Order" endpoints |
 | 2020.11.26 19:00        | `GET /v2/user/uid `      | Add             | Add Get UID  endpoints      |
 | 2020.10.16 19:00         | `orders#${symbol} `                                          | Add             | Add accountId for order creation event                       |
@@ -145,7 +145,7 @@ table th {
 | 2019.06.05 20:00         | All APIs that need authentication                            | Update          | Set up 3 permission for API Key: Read, Trade and Withdraw    |
 | 2019.06.10 00:00         | `GET /v1/order/orders`<br />`GET /v1/order/matchresults`     | Update          | Adjusted query window as 48 hours                            |
 | 2019.05.15 10:00         | `POST /v1/futures/transfer`                                  | New             | Allow a user to tranfer fund between spot account and future contract account. |
-| 2019.04.29 19:00         | `GET /v1/order/history`                                      | New             | Support historical order querying within 48 hours. With the launching of this new endpoint, the existing REST endpoint “v1/order/orders” will be kept in service. However, the new endpoint “/v1/order/history” will have better service level than the “/v1/order/orders”, especially when the service loading exceeds the threshold of our system, which means in some extremely cases, “v1/order/orders” would become unavailable, but “/v1/order/history” would be kept alive. Meanwhile, Huobi is planning to have a delegated data service to support users’ demands on long-term history data. Once this new service become available, the “v1/order/orders” will be deprecated. We will keep you informed promptly once the timeline determined. |
+| 2019.04.29 19:00         | `GET /v1/order/history`                                      | New             | Support historical order querying within 48 hours. With the launching of this new endpoint, the existing REST endpoint "v1/order/orders" will be kept in service. However, the new endpoint "/v1/order/history" will have better service level than the "/v1/order/orders", especially when the service loading exceeds the threshold of our system, which means in some extremely cases, "v1/order/orders" would become unavailable, but "/v1/order/history" would be kept alive. Meanwhile, Huobi is planning to have a delegated data service to support users’ demands on long-term history data. Once this new service become available, the "v1/order/orders" will be deprecated. We will keep you informed promptly once the timeline determined. |
 | 2019.04.17 10:00         | `GET /v1/order/orders`                                       | Update          | Add clarification on the value range for start-date in documents |
 | 2019.04.16 10:00         | `GET /v1/order/openOrders`                                   | Update          | Correct the documents error. Both account-id and symbol are required |
 | 2019.01.17 07:00         | Websocket accounts                                           | Update          | Add subscription parameter model<br>Subscription does not return frozen balance of sub-user anymore |
@@ -329,18 +329,18 @@ This is a full URL to query one order:
 
 `&order-id=1234567890`
 
-**1. The request Method (GET or POST, WebSocket use GET), append line break “\n”**
+**1. The request Method (GET or POST, WebSocket use GET), append line break "\n"**
 
 `GET\n`
 
-**2. The host with lower case, append line break “\n”**
+**2. The host with lower case, append line break "\n"**
 
 Example:
 `
 api.huobi.pro\n
 `
 
-**3. The path, append line break “\n”**
+**3. The path, append line break "\n"**
 
 For example, query orders:
 
@@ -388,7 +388,7 @@ Then above parameter should be ordered like below:
 
 `order-id=1234567890`
 
-**5. Use char  “&” to concatenate all parameters**
+**5. Use char  "&" to concatenate all parameters**
 
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&order-id=1234567890`
@@ -416,7 +416,7 @@ Then above parameter should be ordered like below:
 For Rest interface:
 
 1. Put all the parameters in the URL
-2. Encode signature by URL encoding and append in the URL with parameter name “Signature”.
+2. Encode signature by URL encoding and append in the URL with parameter name "Signature".
 
 Finally, the request sent to API should be:
 
@@ -499,7 +499,7 @@ The sub user can access all public API (including basic information and market d
 | [GET /v2/etp/rebalance](#get-position-rebalance-history)     | Get Position Rebalance History                               |
 
 <aside class="notice">
-All other APIs couldn't be accessed by sub user, otherwise the API will return “error-code 403”。
+All other APIs couldn't be accessed by sub user, otherwise the API will return "error-code 403"。
 </aside>
 
 ## Glossary
@@ -2205,11 +2205,11 @@ Note 1:<br>
 - A paid maker rebate could possibly include rebate from multiple trades.<br>
 
 Note 2:<br>
-Only when the number of items within the query window (between “start-time” and ”end-time”) exceeded the page limitation (defined by “size”), Huobi server returns “next-id”. Once received “next-id”, API user should –<br>
+Only when the number of items within the query window (between "start-time" and "end-time") exceeded the page limitation (defined by "size"), Huobi server returns "next-id". Once received "next-id", API user should –<br>
 
 1) Be aware of that, some items within the query window were not returned due to the page size limitation.<br>
-2) In order to get these items from Huobi server, adopt the “next-id” as “from-id” and submit another request, with other request parameters no change.<br>
-3) As database record ID, “next-id” and “from-id” are for recurring query purpose and the ID itself does not have any business implication.<br>
+2) In order to get these items from Huobi server, adopt the "next-id" as "from-id" and submit another request, with other request parameters no change.<br>
+3) As database record ID, "next-id" and "from-id" are for recurring query purpose and the ID itself does not have any business implication.<br>
 
 Note 3:<br>
 
@@ -2512,10 +2512,10 @@ API Key Permission：Read
 
 This endpoint returns the amount changes of specified user's account.<br>
 
-Phase 1 release only supports historical assets transfer querying (“transactType” = “transfer”).<br>
+Phase 1 release only supports historical assets transfer querying ("transactType" = "transfer").<br>
 
-The maximum query window size set by “startTime” & “endTime” is 10-day, which mean a maximum of 10-day records are queriable per request.
-The query window can be within the last 180 days, which means, by adjusting “startTime” & “endTime” accordingly, the records in last 180 days are queriable.<br>
+The maximum query window size set by "startTime" & "endTime" is 10-day, which mean a maximum of 10-day records are queriable per request.
+The query window can be within the last 180 days, which means, by adjusting "startTime" & "endTime" accordingly, the records in last 180 days are queriable.<br>
 
 ### HTTP Request
 
@@ -2585,7 +2585,7 @@ endTime default value: current time
 | ------------ | --------- | --------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | code         | integer   | TRUE      | Status code                                                  |                                                              |
 | message      | string    | FALSE     | Error message (if any)                                       |                                                              |
-| data         | object    | TRUE      | Sorting as user defined (in request parameter “sort”	)    |                                                              |
+| data         | object    | TRUE      | Sorting as user defined (in request parameter "sort"	)    |                                                              |
 | { accountId  | integer   | TRUE      | Account ID                                                   |                                                              |
 | currency     | string    | TRUE      | Cryptocurrency                                               |                                                              |
 | transactAmt  | number    | TRUE      | Transaction amount (income positive, expenditure negative)   |                                                              |
@@ -2598,10 +2598,10 @@ endTime default value: current time
 | nextId       | integer   | FALSE     | First record ID in next page (only valid if exceeded page size. please refer to note 3.) |                                                              |
 
 Note 3:<br>
-Only when the number of items within the query window (between “startTime” and ”endTime”) exceeded the page limitation (defined by “limit”), Huobi server returns “nextId”. Once received “nextId”, API user should –<br>
+Only when the number of items within the query window (between "startTime" and "endTime") exceeded the page limitation (defined by "limit"), Huobi server returns "nextId". Once received "nextId", API user should –<br>
 1)	Be aware of that, some items within the query window were not returned due to the page size limitation.<br>
-2)	In order to get these items from Huobi server, adopt the “nextId” as “fromId” and submit another request, with other request parameters no change.<br>
-3)	As database record ID, “nextId” and “fromId” are for recurring query purpose and the ID itself does not have any business implication.<br>
+2)	In order to get these items from Huobi server, adopt the "nextId" as "fromId" and submit another request, with other request parameters no change.<br>
+3)	As database record ID, "nextId" and "fromId" are for recurring query purpose and the ID itself does not have any business implication.<br>
 
 
 ## Transfer Fund Between Spot Account and Future Contract Account
@@ -2630,7 +2630,7 @@ Transferring from a spot account to a contract account, the type is pro-to-futur
 | --------- | --------- | -------- | -------------------------- | ------------------------------------ |
 | currency  | TRUE      | String   | Currency name              | Refer to `GET /v1/common/currencys`  |
 | amount    | TRUE      | Decimal  | Amount of fund to transfer |                                      |
-| type      | TRUE      | String   | Type of the transfer       | “futures-to-pro” or “pro-to-futures” |
+| type      | TRUE      | String   | Type of the transfer       | "futures-to-pro" or "pro-to-futures" |
 
 > Response:
 
@@ -2811,7 +2811,7 @@ Below is the error code, error message and description returned by Account APIs.
 | 2002       | "invalid field value in `currency`"         | Parameter currency is invalid                                |
 | 2002       | "invalid field value in `transactTypes`"    | Parameter transactTypes is invalid (should be transfer)      |
 | 2002       | "invalid field value in `sort`"             | Parameter sort is invalid (should be 'asc' or 'desc')        |
-| 2002       | "value in `fromId` is not found in record”  | Value fromId doesn't exist                                   |
+| 2002       | "value in `fromId` is not found in record"  | Value fromId doesn't exist                                   |
 | 2002       | "invalid field value in `accountId`"        | Parameter accountId is invalid (should not be empty)         |
 | 2002       | "value in `startTime` exceeded valid range" | Value startTime is later than current time or earlier than 180 days ago |
 | 2002       | "value in `endTime` exceeded valid range")  | Value endTime is earlier than startTime, or 10 days later than startTime |
@@ -2990,10 +2990,10 @@ This endpoint allows parent user to query withdraw address available for API key
 | nextId      | false     | long      | First record ID in next page (only valid if exceeded page size) |             |
 
 Note:<br>
-Only when the number of items within the query window exceeded the page limitation (defined by “limit”), Huobi server returns “nextId”. Once received “nextId”, API user should –<br>
+Only when the number of items within the query window exceeded the page limitation (defined by "limit"), Huobi server returns "nextId". Once received "nextId", API user should –<br>
 1) Be aware of that, some items within the query window were not returned due to the page size limitation.<br>
-2) In order to get these items from Huobi server, adopt the “nextId” as “fromId” and submit another request, with other request parameters no change.<br>
-3) “nextId” and “fromId” are for recurring query purpose and the ID itself does not have any business implication.<br>
+2) In order to get these items from Huobi server, adopt the "nextId" as "fromId" and submit another request, with other request parameters no change.<br>
+3) "nextId" and "fromId" are for recurring query purpose and the ID itself does not have any business implication.<br>
 
 
 ## Create a Withdraw Request
@@ -3952,10 +3952,10 @@ endTime valid range: Unlimited<br>
 endTime default value: current time<br>
 
 Note 3:<br>
-Only when the number of items within the query window (between “startTime” and ”endTime”) exceeded the page limitation (defined by “limit”), Huobi server returns “nextId”. Once received “nextId”, API user should –<br>
+Only when the number of items within the query window (between "startTime" and "endTime") exceeded the page limitation (defined by "limit"), Huobi server returns "nextId". Once received "nextId", API user should –<br>
 1)	Be aware of that, some items within the query window were not returned due to the page size limitation.<br>
-2)	In order to get these items from Huobi server, adopt the “nextId” as “fromId” and submit another request, with other request parameters no change.<br>
-3)	“nextId” and “fromId” are for recurring query purpose and the ID itself does not have any business implication.<br>
+2)	In order to get these items from Huobi server, adopt the "nextId" as "fromId" and submit another request, with other request parameters no change.<br>
+3)	"nextId" and "fromId" are for recurring query purpose and the ID itself does not have any business implication.<br>
 
 > The above command returns JSON structured like this:
 
@@ -4973,13 +4973,13 @@ Rate Limit (NEW): 50times/2s
 This endpoint returns orders based on a specific searching criteria. The order created via API will no longer be queryable after being cancelled for more than 2 hours.
 
 
-- Upon user defined “start-time” AND/OR “end-time”, Huobi server will return historical orders whose order creation time falling into the period. The maximum query window between “start-time” and “end-time” is 48-hour. Oldest order searchable should be within recent 180 days. If either “start-time” or “end-time” is defined, Huobi server will ignore “start-date” and “end-date” regardless they were filled or not.
+- Upon user defined "start-time" AND/OR "end-time", Huobi server will return historical orders whose order creation time falling into the period. The maximum query window between "start-time" and "end-time" is 48-hour. Oldest order searchable should be within recent 180 days. If either "start-time" or "end-time" is defined, Huobi server will ignore "start-date" and "end-date" regardless they were filled or not.
 
-- If user does neither define “start-time” nor “end-time”, but “start-date”/”end-date”, the order searching will be based on defined “date range”, as usual. The maximum query window is 2 days, and oldest order searchable should be within recent 180 days.
+- If user does neither define "start-time" nor "end-time", but "start-date"/"end-date", the order searching will be based on defined "date range", as usual. The maximum query window is 2 days, and oldest order searchable should be within recent 180 days.
 
-- If user does not define any of “start-time”/”end-time”/”start-date”/”end-date”, by default Huobi server will treat current time as “end-time”, and then return historical orders within recent 48 hours.
+- If user does not define any of "start-time"/"end-time"/"start-date"/"end-date", by default Huobi server will treat current time as "end-time", and then return historical orders within recent 48 hours.
 
-Huobi Global suggests API users to search historical orders based on “time” filter instead of “date”. In the near future, Huobi Global would remove “start-date”/”end-date” fields from the endpoint, through another notification.
+Huobi Global suggests API users to search historical orders based on "time" filter instead of "date". In the near future, Huobi Global would remove "start-date"/"end-date" fields from the endpoint, through another notification.
 
 
 ### HTTP Request
@@ -5105,7 +5105,7 @@ The orders created via API will no longer be queryable after being cancelled for
 | symbol     | false    | string    | The trading symbol to trade                                  | all                   | All supported trading symbol, e.g. btcusdt, bccbtc.Refer to `GET /v1/common/symbols` |
 | start-time | false    | long      | Start time (included)                                        | The time 48 hours ago | UTC time in millisecond                                      |
 | end-time   | false    | long      | End time (included)                                          | The query time        | UTC time in millisecond                                      |
-| direct     | false    | string    | Direction of the query. (Note: If the total number of items in the search result is within the limitation defined in “size”, this field does not take effect.) | next                  | prev, next                                                   |
+| direct     | false    | string    | Direction of the query. (Note: If the total number of items in the search result is within the limitation defined in "size", this field does not take effect.) | next                  | prev, next                                                   |
 | size       | false    | int       | Number of items in each response                             | 100                   | [10,1000]                                                    |
 
 
@@ -5157,7 +5157,7 @@ The orders created via API will no longer be queryable after being cancelled for
 | stop-price        | string    | trigger price of stop limit order                            |
 | operator          | string    | operation character of stop price. e.g. get, lte             |
 | type}             | string    | All possible order type (refer to introduction in this section) |
-| next-time         | long      | Next query “start-time” (in response of “direct” = prev), Next query “end-time” (in response of “direct” = next). Note: Only when the total number of items in the search result exceeded the limitation defined in “size”, this field exists. UTC time in millisecond. |
+| next-time         | long      | Next query "start-time" (in response of "direct" = prev), Next query "end-time" (in response of "direct" = next). Note: Only when the total number of items in the search result exceeded the limitation defined in "size", this field exists. UTC time in millisecond. |
 
 
 ## Search Match Results
@@ -5816,7 +5816,7 @@ While repaying the loan, loan interest will be paid first if there is no appoint
 | { repayId   | string        | TRUE          | repayment ID                               |
 | repayTime } | long          | TRUE          | repayment time (unix  time in millisecond) |
 
-Note: Returning “repayId” doesn’t mean the repayment is 100% successful. Please check the transaction record to confirm the repayment status. 
+Note: Returning "repayId" doesn’t mean the repayment is 100% successful. Please check the transaction record to confirm the repayment status. 
 
 ## Transfer Asset from Spot Trading Account to Isolated Margin Account（Isolated）
 
@@ -6645,7 +6645,7 @@ Frequency Limit: 2/s
 
 Available Accounts: Main and Sub-Accounts
 
-Sort by “repayTime” 
+Sort by "repayTime" 
 
 ### HTTP Request
 
@@ -7367,9 +7367,9 @@ API Key Permission: Read<br>
 |	{ subAccountType	|	string	|	TRUE	|	Sub account (trade, lending, earnings, loan, interest, advance) 	|
 |	currency	|	string	|	TRUE	|	Currency	|
 |	acctBalance	|	string	|	TRUE	|	Account balance	|
-|	availBalance	|	string	|	FALSE	|	Available balance  (Only valid for sub account “trade”) 	|
-|	transferable	|	string	|	FALSE	|	Transferable value  (Only valid for sub account “trade”) 	|
-|	borrowable }}	|	string	|	FALSE	|	Borrowable value  (Only valid for sub account “trade”) 	|
+|	availBalance	|	string	|	FALSE	|	Available balance  (Only valid for sub account "trade") 	|
+|	transferable	|	string	|	FALSE	|	Transferable value  (Only valid for sub account "trade") 	|
+|	borrowable }}	|	string	|	FALSE	|	Borrowable value  (Only valid for sub account "trade") 	|
 
 Note:<br>
 •	Sub account trade, loan, interest, advance are only valid for borrowing account；<br>
@@ -7786,12 +7786,12 @@ or
 
 Suggested downstream data processing:<br>
 1)	Subscribe to incremental updates and start to cache them;<br>
-2)	Request refresh message (with same number of levels), and base on its “seqNum” to align it with the cached incremental message which has the same “prevSeqNum”;<br>
+2)	Request refresh message (with same number of levels), and base on its "seqNum" to align it with the cached incremental message which has the same "prevSeqNum";<br>
 3)	Start to continuously process incremental messages to build up MBP book;<br>
-4)	The “prevSeqNum” of the current incremental message must be the same with “seqNum” of the previous message, otherwise it implicates message loss which should require another round of refresh message retrieval and alignment;<br>
+4)	The "prevSeqNum" of the current incremental message must be the same with "seqNum" of the previous message, otherwise it implicates message loss which should require another round of refresh message retrieval and alignment;<br>
 5)	Once received a new price level from incremental message, that price level should be inserted into appropriate position of existing MBP book;<br>
-6)	Once received an updated “size” at the existing price level from incremental message, the size should be replaced directly by the new value;<br>
-7)	Once received a “size=0” at existing price level from incremental message, that price level should be removed from MBP book;<br>
+6)	Once received an updated "size" at the existing price level from incremental message, the size should be replaced directly by the new value;<br>
+7)	Once received a "size=0" at existing price level from incremental message, that price level should be removed from MBP book;<br>
 8)	If one incremental message includes updates of multiple price levels, all of those levels should be updated simultaneously in MBP book.<br>
 
 Currently Huobi Global only supports 5-level/20-level MBP incremental channel and 150-level incremental channel, the differences between them are -<br>
@@ -7942,8 +7942,8 @@ REQ channel supports refreshing message for 5-level, 20-level, and 150-level.
 | ---------- | --------- | ------------------------------------------------------------ |
 | seqNum     | integer   | Sequence number of the message                               |
 | prevSeqNum | integer   | Sequence number of previous message                          |
-| bids       | object    | Bid side, (in descending order of “price”), ["price","size"] |
-| asks       | object    | Ask side, (in ascending order of “price”), ["price","size"]  |
+| bids       | object    | Bid side, (in descending order of "price"), ["price","size"] |
+| asks       | object    | Ask side, (in ascending order of "price"), ["price","size"]  |
 
 ## Market By Price (refresh update)
 
@@ -8011,8 +8011,8 @@ User could subscribe to this channel to receive refresh update of Market By Pric
 | Field Name | Data Type | Description                                                  |
 | ---------- | --------- | ------------------------------------------------------------ |
 | seqNum     | integer   | Sequence number of the message                               |
-| bids       | object    | Bid side, (in descending order of “price”), ["price","size"] |
-| asks       | object    | Ask side, (in ascending order of “price”), ["price","size"]  |
+| bids       | object    | Bid side, (in descending order of "price"), ["price","size"] |
+| asks       | object    | Ask side, (in ascending order of "price"), ["price","size"]  |
 
 ## Best Bid/Offer
 
@@ -8573,7 +8573,7 @@ After order is submitted –
 Note:<br>
 - If a stop limit order is created but not yet triggered, the topic won’t send an update.<br>
 - The topic will send creation update for taker's order before it being filled.<br>
-- Stop limit order's type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<br>
+- Stop limit order's type is no longer as "buy-stop-limit" or "sell-stop-limit", but changing to "buy-limit" or "sell-limit".<br>
 
 ```json
 {
@@ -8624,7 +8624,7 @@ After order matching –
 | execAmt       | string    | Accumulative amount (for buy-market order it is accumulative value) |
 
 Note:<br>
-- Stop limit order's type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<br>
+- Stop limit order's type is no longer as "buy-stop-limit" or "sell-stop-limit", but changing to "buy-limit" or "sell-limit".<br>
 - If a taker’s order matching with multiple orders at opposite side simultaneously, the multiple trades will be disseminated over separately instead of merging into one trade.<br>
 
 ```json
@@ -8668,7 +8668,7 @@ After order cancellation –
 | lastActTime   | long      | Last activity time                                           |
 
 Note:<br>
-- Stop limit order's type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<br>
+- Stop limit order's type is no longer as "buy-stop-limit" or "sell-stop-limit", but changing to "buy-limit" or "sell-limit".<br>
 
 ## Subscribe Trade Details & Order Cancellation post Clearing
 
