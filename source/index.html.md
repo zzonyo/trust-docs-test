@@ -2411,9 +2411,13 @@ b. Check whether the precision of the coin does not exceed 8 decimal places?
 ### Q19: How to confirm whether the position is opened or closed successfully?
 
 Placing an order successfully through “Place an Order” interface (/api/v1/contract_order) or “Place a batch of orders” interface (/api/v1/contract_batchorder) just means the server has received your order placing instructions rather than you have opened/closed a position successfully.
+
 You can check the order status by filling the returned “order_id” in the “Get Information of an Order” interface (/api/v1/contract_order_info) or the “Order Details Acquisition” interface (/api/v1/contract_order_detail); If the order has been filled, the “status” value in the return parameter will turn out 6 (wholly filled)
+
 It is important to note:
+
 a.	For “Get Information of an order” interface (/api/v1/contract_order_info), after the settlement or delivery, the system will delete all the orders in ended status (5: partially filled orders have been cancelled; 6: wholly filled; 7: cancelled);
+
 b.	There is a delay in “Order Details Acquisition” interface (/api/v1/contract_order_detail), so it is better to fill in “created_at” (order timestamp) and “order_type” (order type, fill in 1 by default). In this way, it will directly query the database, so the query results will be more timely.
 
 ### Q20: Why are orders canceled by the system automatically?
