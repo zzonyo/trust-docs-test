@@ -2418,7 +2418,7 @@ It is important to note:
 
 a.	For “Get Information of an order” interface (/linear-swap-api/v1/swap_order_info), after the settlement or delivery, the system will delete all the orders in ended status (5: partially filled orders have been cancelled; 6: wholly filled; 7: cancelled);
 
-b.	b. There is a delay in “Order Details Acquisition” interface (/linear-swap-api/v1/swap_order_detail), so it is better to fill in “created_at” (order timestamp) and “order_type” (order type, fill in 1 by default). In this way, it will directly query the database, so the query results will be more timely.
+b.	There is a delay in “Order Details Acquisition” interface (/linear-swap-api/v1/swap_order_detail), so it is better to fill in “created_at” (order timestamp) and “order_type” (order type, fill in 1 by default). In this way, it will directly query the database, so the query results will be more timely.
 
 ### Q20: Why are orders canceled by the system automatically?
 
@@ -2484,15 +2484,13 @@ USDT-margined swaps: https://status-linear-swap.huobigroup.com/
 
 ”margin_balance” refers to the account equity
 
-1. margin_balance = margin_position + margin_frozen + margin_available
+1. margin_balance = margin_static + profit_unreal
 
-2. margin_balance = margin_static + profit_unreal
-
-3. margin_balance = Account balance + profit_real + profit_unreal
+2. margin_balance = Account balance + profit_real + profit_unreal
 
 Note: Account balance = margin_static - profit_real, there is only margin_static in the return data of api interface
 
-Each of the three calculation methods above can get the margin_balance
+Each of the two calculation methods above can get the margin_balance
 
 ### Q29: Is the “risk_rate” (margin rate) in “Query User’s Account Information” interface (/linear-swap-api/v1/swap_account_info) the same as the margin rate on WEB?
 
