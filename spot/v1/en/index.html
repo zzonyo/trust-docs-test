@@ -909,13 +909,13 @@ table th {
 <td>2021.8.19</td>
 <td><code>accounts.update#${mode}</code></td>
 <td>优化</td>
-<td>Add “Serial Number of Account Change” parameter：“seqNum”</td>
+<td>Add &quot;Serial Number of Account Change&quot; parameter：&quot;seqNum&quot;</td>
 </tr>
 <tr>
 <td>2021.8.19</td>
 <td><code>GET /v1/account/accounts/{account-id}/balance</code></td>
 <td>优化</td>
-<td>Add “Serial Number of Account Change” parameter：“seq-num”</td>
+<td>Add &quot;Serial Number of Account Change&quot; parameter：&quot;seq-num&quot;</td>
 </tr>
 <tr>
 <td>2021.8.12</td>
@@ -981,7 +981,7 @@ table th {
 <td>2021.1.19 19:00</td>
 <td><code>GET /v2/etp/limit</code></td>
 <td>Add</td>
-<td>Add “Get Holding Limit of Leveraged ETP” endpoints</td>
+<td>Add &quot;Get Holding Limit of Leveraged ETP&quot; endpoints</td>
 </tr>
 <tr>
 <td>2020.1.8 19:00</td>
@@ -999,7 +999,7 @@ table th {
 <td>2020.12.16 19:00</td>
 <td><code>GET /v1/order/matchresults</code> and <code>GET /v1/order/orders/{order-id}/matchresults</code></td>
 <td>Update</td>
-<td>Add &quot;fee-deduct-state&quot; parameter to indicate the status of “In deduction” and “deduction completed”</td>
+<td>Add &quot;fee-deduct-state&quot; parameter to indicate the status of &quot;In deduction&quot; and &quot;deduction completed&quot;</td>
 </tr>
 <tr>
 <td>2020.12.14 19:00</td>
@@ -1599,7 +1599,7 @@ table th {
 <td>2019.04.29 19:00</td>
 <td><code>GET /v1/order/history</code></td>
 <td>New</td>
-<td>Support historical order querying within 48 hours. With the launching of this new endpoint, the existing REST endpoint “v1/order/orders” will be kept in service. However, the new endpoint “/v1/order/history” will have better service level than the “/v1/order/orders”, especially when the service loading exceeds the threshold of our system, which means in some extremely cases, “v1/order/orders” would become unavailable, but “/v1/order/history” would be kept alive. Meanwhile, Huobi is planning to have a delegated data service to support users’ demands on long-term history data. Once this new service become available, the “v1/order/orders” will be deprecated. We will keep you informed promptly once the timeline determined.</td>
+<td>Support historical order querying within 48 hours. With the launching of this new endpoint, the existing REST endpoint &quot;v1/order/orders&quot; will be kept in service. However, the new endpoint &quot;/v1/order/history&quot; will have better service level than the &quot;/v1/order/orders&quot;, especially when the service loading exceeds the threshold of our system, which means in some extremely cases, &quot;v1/order/orders&quot; would become unavailable, but &quot;/v1/order/history&quot; would be kept alive. Meanwhile, Huobi is planning to have a delegated data service to support users’ demands on long-term history data. Once this new service become available, the &quot;v1/order/orders&quot; will be deprecated. We will keep you informed promptly once the timeline determined.</td>
 </tr>
 <tr>
 <td>2019.04.17 10:00</td>
@@ -1816,18 +1816,18 @@ It is recommended to access Huobi API from AWS Japan for better stability. If yo
 
 <p><code>&amp;order-id=1234567890</code></p>
 
-<p><strong>1. The request Method (GET or POST, WebSocket use GET), append line break “\n”</strong></p>
+<p><strong>1. The request Method (GET or POST, WebSocket use GET), append line break &quot;\n&quot;</strong></p>
 
 <p><code>GET\n</code></p>
 
-<p><strong>2. The host with lower case, append line break “\n”</strong></p>
+<p><strong>2. The host with lower case, append line break &quot;\n&quot;</strong></p>
 
 <p>Example:
 <code>
 api.huobi.pro\n
 </code></p>
 
-<p><strong>3. The path, append line break “\n”</strong></p>
+<p><strong>3. The path, append line break &quot;\n&quot;</strong></p>
 
 <p>For example, query orders:</p>
 
@@ -1873,7 +1873,7 @@ The 'timestamp' should be formated as 'YYYY-MM-DDThh:mm:ss' and URL encoded. The
 
 <p><code>order-id=1234567890</code></p>
 
-<p><strong>5. Use char  “&amp;” to concatenate all parameters</strong></p>
+<p><strong>5. Use char  &quot;&amp;&quot; to concatenate all parameters</strong></p>
 
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;order-id=1234567890</code></p>
 
@@ -1902,7 +1902,7 @@ The 'timestamp' should be formated as 'YYYY-MM-DDThh:mm:ss' and URL encoded. The
 
 <ol>
 <li>Put all the parameters in the URL</li>
-<li>Encode signature by URL encoding and append in the URL with parameter name “Signature”.</li>
+<li>Encode signature by URL encoding and append in the URL with parameter name &quot;Signature&quot;.</li>
 </ol>
 
 <p>Finally, the request sent to API should be:</p>
@@ -2100,7 +2100,7 @@ The 'timestamp' should be formated as 'YYYY-MM-DDThh:mm:ss' and URL encoded. The
 </tbody></table>
 
 <aside class="notice">
-All other APIs couldn't be accessed by sub user, otherwise the API will return “error-code 403”。
+All other APIs couldn't be accessed by sub user, otherwise the API will return "error-code 403"。
 </aside>
 <h2 id='glossary'>Glossary</h2><h3 id='trading-symbols'>Trading symbols</h3>
 <p>The trading symbols are consist of base currency and quote currency. Take the symbol <code>BTC/USDT</code> as an example, <code>BTC</code> is the base currency, and <code>USDT</code> is the quote currency.  </p>
@@ -4987,11 +4987,11 @@ Rate Limit (NEW): 5times/2s</p>
 </ul>
 
 <p>Note 2:<br>
-Only when the number of items within the query window (between “start-time” and ”end-time”) exceeded the page limitation (defined by “size”), Huobi server returns “next-id”. Once received “next-id”, API user should –<br></p>
+Only when the number of items within the query window (between &quot;start-time&quot; and &quot;end-time&quot;) exceeded the page limitation (defined by &quot;size&quot;), Huobi server returns &quot;next-id&quot;. Once received &quot;next-id&quot;, API user should –<br></p>
 
 <p>1) Be aware of that, some items within the query window were not returned due to the page size limitation.<br>
-2) In order to get these items from Huobi server, adopt the “next-id” as “from-id” and submit another request, with other request parameters no change.<br>
-3) As database record ID, “next-id” and “from-id” are for recurring query purpose and the ID itself does not have any business implication.<br></p>
+2) In order to get these items from Huobi server, adopt the &quot;next-id&quot; as &quot;from-id&quot; and submit another request, with other request parameters no change.<br>
+3) As database record ID, &quot;next-id&quot; and &quot;from-id&quot; are for recurring query purpose and the ID itself does not have any business implication.<br></p>
 
 <p>Note 3:<br></p>
 
@@ -6161,10 +6161,10 @@ Only when the number of items within the query window (between “start-time” 
 
 <p>This endpoint returns the amount changes of specified user&#39;s account.<br></p>
 
-<p>Phase 1 release only supports historical assets transfer querying (“transactType” = “transfer”).<br></p>
+<p>Phase 1 release only supports historical assets transfer querying (&quot;transactType&quot; = &quot;transfer&quot;).<br></p>
 
-<p>The maximum query window size set by “startTime” &amp; “endTime” is 10-day, which mean a maximum of 10-day records are queriable per request.
-The query window can be within the last 180 days, which means, by adjusting “startTime” &amp; “endTime” accordingly, the records in last 180 days are queriable.<br></p>
+<p>The maximum query window size set by &quot;startTime&quot; &amp; &quot;endTime&quot; is 10-day, which mean a maximum of 10-day records are queriable per request.
+The query window can be within the last 180 days, which means, by adjusting &quot;startTime&quot; &amp; &quot;endTime&quot; accordingly, the records in last 180 days are queriable.<br></p>
 <h3 id='http-request-20'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v2/account/ledger</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v2/account/ledger?account-id=5260185"</span>
@@ -6294,7 +6294,7 @@ endTime default value: current time</p>
 <td>data</td>
 <td>object</td>
 <td>TRUE</td>
-<td>Sorting as user defined (in request parameter “sort”   )</td>
+<td>Sorting as user defined (in request parameter &quot;sort&quot;   )</td>
 <td></td>
 </tr>
 <tr>
@@ -6370,10 +6370,10 @@ endTime default value: current time</p>
 </tbody></table>
 
 <p>Note 3:<br>
-Only when the number of items within the query window (between “startTime” and ”endTime”) exceeded the page limitation (defined by “limit”), Huobi server returns “nextId”. Once received “nextId”, API user should –<br>
+Only when the number of items within the query window (between &quot;startTime&quot; and &quot;endTime&quot;) exceeded the page limitation (defined by &quot;limit&quot;), Huobi server returns &quot;nextId&quot;. Once received &quot;nextId&quot;, API user should –<br>
 1)  Be aware of that, some items within the query window were not returned due to the page size limitation.<br>
-2)  In order to get these items from Huobi server, adopt the “nextId” as “fromId” and submit another request, with other request parameters no change.<br>
-3)  As database record ID, “nextId” and “fromId” are for recurring query purpose and the ID itself does not have any business implication.<br></p>
+2)  In order to get these items from Huobi server, adopt the &quot;nextId&quot; as &quot;fromId&quot; and submit another request, with other request parameters no change.<br>
+3)  As database record ID, &quot;nextId&quot; and &quot;fromId&quot; are for recurring query purpose and the ID itself does not have any business implication.<br></p>
 <h2 id='transfer-fund-between-spot-account-and-future-contract-account'>Transfer Fund Between Spot Account and Future Contract Account</h2>
 <p>API Key Permission：Trade<br></p>
 
@@ -6416,7 +6416,7 @@ Only when the number of items within the query window (between “startTime” a
 <td>TRUE</td>
 <td>String</td>
 <td>Type of the transfer</td>
-<td>“futures-to-pro” or “pro-to-futures”</td>
+<td>&quot;futures-to-pro&quot; or &quot;pro-to-futures&quot;</td>
 </tr>
 </tbody></table>
 
@@ -6894,7 +6894,7 @@ Callable by sub user<br></p>
 </tr>
 <tr>
 <td>2002</td>
-<td>&quot;value in <code>fromId</code> is not found in record”</td>
+<td>&quot;value in <code>fromId</code> is not found in record&quot;</td>
 <td>Value fromId doesn&#39;t exist</td>
 </tr>
 <tr>
@@ -7281,10 +7281,10 @@ Rate Limit (NEW): 20times/2s</p>
 </tbody></table>
 
 <p>Note:<br>
-Only when the number of items within the query window exceeded the page limitation (defined by “limit”), Huobi server returns “nextId”. Once received “nextId”, API user should –<br>
+Only when the number of items within the query window exceeded the page limitation (defined by &quot;limit&quot;), Huobi server returns &quot;nextId&quot;. Once received &quot;nextId&quot;, API user should –<br>
 1) Be aware of that, some items within the query window were not returned due to the page size limitation.<br>
-2) In order to get these items from Huobi server, adopt the “nextId” as “fromId” and submit another request, with other request parameters no change.<br>
-3) “nextId” and “fromId” are for recurring query purpose and the ID itself does not have any business implication.<br></p>
+2) In order to get these items from Huobi server, adopt the &quot;nextId&quot; as &quot;fromId&quot; and submit another request, with other request parameters no change.<br>
+3) &quot;nextId&quot; and &quot;fromId&quot; are for recurring query purpose and the ID itself does not have any business implication.<br></p>
 <h2 id='create-a-withdraw-request'>Create a Withdraw Request</h2>
 <p>API Key Permission：Withdraw<br>
 Rate Limit (NEW): 20times/2s</p>
@@ -9462,10 +9462,10 @@ endTime valid range: Unlimited<br>
 endTime default value: current time<br></p>
 
 <p>Note 3:<br>
-Only when the number of items within the query window (between “startTime” and ”endTime”) exceeded the page limitation (defined by “limit”), Huobi server returns “nextId”. Once received “nextId”, API user should –<br>
+Only when the number of items within the query window (between &quot;startTime&quot; and &quot;endTime&quot;) exceeded the page limitation (defined by &quot;limit&quot;), Huobi server returns &quot;nextId&quot;. Once received &quot;nextId&quot;, API user should –<br>
 1)  Be aware of that, some items within the query window were not returned due to the page size limitation.<br>
-2)  In order to get these items from Huobi server, adopt the “nextId” as “fromId” and submit another request, with other request parameters no change.<br>
-3)  “nextId” and “fromId” are for recurring query purpose and the ID itself does not have any business implication.<br></p>
+2)  In order to get these items from Huobi server, adopt the &quot;nextId&quot; as &quot;fromId&quot; and submit another request, with other request parameters no change.<br>
+3)  &quot;nextId&quot; and &quot;fromId&quot; are for recurring query purpose and the ID itself does not have any business implication.<br></p>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -11350,12 +11350,12 @@ Rate Limit (NEW): 50times/2s</p>
 <p>This endpoint returns orders based on a specific searching criteria. The order created via API will no longer be queryable after being cancelled for more than 2 hours.</p>
 
 <ul>
-<li><p>Upon user defined “start-time” AND/OR “end-time”, Huobi server will return historical orders whose order creation time falling into the period. The maximum query window between “start-time” and “end-time” is 48-hour. Oldest order searchable should be within recent 180 days. If either “start-time” or “end-time” is defined, Huobi server will ignore “start-date” and “end-date” regardless they were filled or not.</p></li>
-<li><p>If user does neither define “start-time” nor “end-time”, but “start-date”/”end-date”, the order searching will be based on defined “date range”, as usual. The maximum query window is 2 days, and oldest order searchable should be within recent 180 days.</p></li>
-<li><p>If user does not define any of “start-time”/”end-time”/”start-date”/”end-date”, by default Huobi server will treat current time as “end-time”, and then return historical orders within recent 48 hours.</p></li>
+<li><p>Upon user defined &quot;start-time&quot; AND/OR &quot;end-time&quot;, Huobi server will return historical orders whose order creation time falling into the period. The maximum query window between &quot;start-time&quot; and &quot;end-time&quot; is 48-hour. Oldest order searchable should be within recent 180 days. If either &quot;start-time&quot; or &quot;end-time&quot; is defined, Huobi server will ignore &quot;start-date&quot; and &quot;end-date&quot; regardless they were filled or not.</p></li>
+<li><p>If user does neither define &quot;start-time&quot; nor &quot;end-time&quot;, but &quot;start-date&quot;/&quot;end-date&quot;, the order searching will be based on defined &quot;date range&quot;, as usual. The maximum query window is 2 days, and oldest order searchable should be within recent 180 days.</p></li>
+<li><p>If user does not define any of &quot;start-time&quot;/&quot;end-time&quot;/&quot;start-date&quot;/&quot;end-date&quot;, by default Huobi server will treat current time as &quot;end-time&quot;, and then return historical orders within recent 48 hours.</p></li>
 </ul>
 
-<p>Huobi Global suggests API users to search historical orders based on “time” filter instead of “date”. In the near future, Huobi Global would remove “start-date”/”end-date” fields from the endpoint, through another notification.</p>
+<p>Huobi Global suggests API users to search historical orders based on &quot;time&quot; filter instead of &quot;date&quot;. In the near future, Huobi Global would remove &quot;start-date&quot;/&quot;end-date&quot; fields from the endpoint, through another notification.</p>
 <h3 id='http-request-59'>HTTP Request</h3>
 <p><code>GET /v1/order/orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders?symbol=ethusdt&amp;type=buy-limit&amp;staet=filled"</span>
@@ -11662,7 +11662,7 @@ The orders created via API will no longer be queryable after being cancelled for
 <td>direct</td>
 <td>false</td>
 <td>string</td>
-<td>Direction of the query. (Note: If the total number of items in the search result is within the limitation defined in “size”, this field does not take effect.)</td>
+<td>Direction of the query. (Note: If the total number of items in the search result is within the limitation defined in &quot;size&quot;, this field does not take effect.)</td>
 <td>next</td>
 <td>prev, next</td>
 </tr>
@@ -11796,7 +11796,7 @@ The orders created via API will no longer be queryable after being cancelled for
 <tr>
 <td>next-time</td>
 <td>long</td>
-<td>Next query “start-time” (in response of “direct” = prev), Next query “end-time” (in response of “direct” = next). Note: Only when the total number of items in the search result exceeded the limitation defined in “size”, this field exists. UTC time in millisecond.</td>
+<td>Next query &quot;start-time&quot; (in response of &quot;direct&quot; = prev), Next query &quot;end-time&quot; (in response of &quot;direct&quot; = next). Note: Only when the total number of items in the search result exceeded the limitation defined in &quot;size&quot;, this field exists. UTC time in millisecond.</td>
 </tr>
 </tbody></table>
 <h2 id='search-match-results'>Search Match Results</h2>
@@ -13531,7 +13531,7 @@ The conditional order before triggering, as well as the conditional order failed
 </tr>
 </tbody></table>
 
-<p>Note: Returning “repayId” doesn’t mean the repayment is 100% successful. Please check the transaction record to confirm the repayment status. </p>
+<p>Note: Returning &quot;repayId&quot; doesn’t mean the repayment is 100% successful. Please check the transaction record to confirm the repayment status. </p>
 <h2 id='transfer-asset-from-spot-trading-account-to-isolated-margin-account-isolated'>Transfer Asset from Spot Trading Account to Isolated Margin Account（Isolated）</h2>
 <p>API Key Permission：Trade<br>
 Rate Limit (NEW): 2times/2s</p>
@@ -14935,7 +14935,7 @@ Rate Limit (NEW): 100times/2s</p>
 
 <p>Available Accounts: Main and Sub-Accounts</p>
 
-<p>Sort by “repayTime” </p>
+<p>Sort by &quot;repayTime&quot; </p>
 <h3 id='http-request-78'>HTTP Request</h3>
 <p><code>GET /v2/account/repayment</code></p>
 <h3 id='request-parameters-71'>Request Parameters</h3>
@@ -16843,19 +16843,19 @@ API Key Permission: Read<br></p>
 <td>availBalance</td>
 <td>string</td>
 <td>FALSE</td>
-<td>Available balance  (Only valid for sub account “trade”)</td>
+<td>Available balance  (Only valid for sub account &quot;trade&quot;)</td>
 </tr>
 <tr>
 <td>transferable</td>
 <td>string</td>
 <td>FALSE</td>
-<td>Transferable value  (Only valid for sub account “trade”)</td>
+<td>Transferable value  (Only valid for sub account &quot;trade&quot;)</td>
 </tr>
 <tr>
 <td>borrowable }}</td>
 <td>string</td>
 <td>FALSE</td>
-<td>Borrowable value  (Only valid for sub account “trade”)</td>
+<td>Borrowable value  (Only valid for sub account &quot;trade&quot;)</td>
 </tr>
 </tbody></table>
 
@@ -17519,12 +17519,12 @@ or
 
 <p>Suggested downstream data processing:<br>
 1)  Subscribe to incremental updates and start to cache them;<br>
-2)  Request refresh message (with same number of levels), and base on its “seqNum” to align it with the cached incremental message which has the same “prevSeqNum”;<br>
+2)  Request refresh message (with same number of levels), and base on its &quot;seqNum&quot; to align it with the cached incremental message which has the same &quot;prevSeqNum&quot;;<br>
 3)  Start to continuously process incremental messages to build up MBP book;<br>
-4)  The “prevSeqNum” of the current incremental message must be the same with “seqNum” of the previous message, otherwise it implicates message loss which should require another round of refresh message retrieval and alignment;<br>
+4)  The &quot;prevSeqNum&quot; of the current incremental message must be the same with &quot;seqNum&quot; of the previous message, otherwise it implicates message loss which should require another round of refresh message retrieval and alignment;<br>
 5)  Once received a new price level from incremental message, that price level should be inserted into appropriate position of existing MBP book;<br>
-6)  Once received an updated “size” at the existing price level from incremental message, the size should be replaced directly by the new value;<br>
-7)  Once received a “size=0” at existing price level from incremental message, that price level should be removed from MBP book;<br>
+6)  Once received an updated &quot;size&quot; at the existing price level from incremental message, the size should be replaced directly by the new value;<br>
+7)  Once received a &quot;size=0&quot; at existing price level from incremental message, that price level should be removed from MBP book;<br>
 8)  If one incremental message includes updates of multiple price levels, all of those levels should be updated simultaneously in MBP book.<br></p>
 
 <p>Currently Huobi Global only supports 5-level/20-level MBP incremental channel and 150-level incremental channel, the differences between them are -<br>
@@ -17695,12 +17695,12 @@ In the future, Huobi Global will align the update behavior of 150-level incremen
 <tr>
 <td>bids</td>
 <td>object</td>
-<td>Bid side, (in descending order of “price”), [&quot;price&quot;,&quot;size&quot;]</td>
+<td>Bid side, (in descending order of &quot;price&quot;), [&quot;price&quot;,&quot;size&quot;]</td>
 </tr>
 <tr>
 <td>asks</td>
 <td>object</td>
-<td>Ask side, (in ascending order of “price”), [&quot;price&quot;,&quot;size&quot;]</td>
+<td>Ask side, (in ascending order of &quot;price&quot;), [&quot;price&quot;,&quot;size&quot;]</td>
 </tr>
 </tbody></table>
 <h2 id='market-by-price-refresh-update'>Market By Price (refresh update)</h2>
@@ -17792,12 +17792,12 @@ In the future, Huobi Global will align the update behavior of 150-level incremen
 <tr>
 <td>bids</td>
 <td>object</td>
-<td>Bid side, (in descending order of “price”), [&quot;price&quot;,&quot;size&quot;]</td>
+<td>Bid side, (in descending order of &quot;price&quot;), [&quot;price&quot;,&quot;size&quot;]</td>
 </tr>
 <tr>
 <td>asks</td>
 <td>object</td>
-<td>Ask side, (in ascending order of “price”), [&quot;price&quot;,&quot;size&quot;]</td>
+<td>Ask side, (in ascending order of &quot;price&quot;), [&quot;price&quot;,&quot;size&quot;]</td>
 </tr>
 </tbody></table>
 <h2 id='best-bid-offer'>Best Bid/Offer</h2>
@@ -18688,7 +18688,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
 <p>Note:<br>
 - If a stop limit order is created but not yet triggered, the topic won’t send an update.<br>
 - The topic will send creation update for taker&#39;s order before it being filled.<br>
-- Stop limit order&#39;s type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<br></p>
+- Stop limit order&#39;s type is no longer as &quot;buy-stop-limit&quot; or &quot;sell-stop-limit&quot;, but changing to &quot;buy-limit&quot; or &quot;sell-limit&quot;.<br></p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"action"</span><span class="p">:</span><span class="s2">"push"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ch"</span><span class="p">:</span><span class="s2">"orders#btcusdt"</span><span class="p">,</span><span class="w">
@@ -18810,7 +18810,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
 </tbody></table>
 
 <p>Note:<br>
-- Stop limit order&#39;s type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<br>
+- Stop limit order&#39;s type is no longer as &quot;buy-stop-limit&quot; or &quot;sell-stop-limit&quot;, but changing to &quot;buy-limit&quot; or &quot;sell-limit&quot;.<br>
 - If a taker’s order matching with multiple orders at opposite side simultaneously, the multiple trades will be disseminated over separately instead of merging into one trade.<br></p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"action"</span><span class="p">:</span><span class="s2">"push"</span><span class="p">,</span><span class="w">
@@ -18909,7 +18909,7 @@ accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&amp;signatureMethod=HmacSHA256&amp;
 </tbody></table>
 
 <p>Note:<br>
-- Stop limit order&#39;s type is no longer as “buy-stop-limit” or “sell-stop-limit”, but changing to “buy-limit” or “sell-limit”.<br></p>
+- Stop limit order&#39;s type is no longer as &quot;buy-stop-limit&quot; or &quot;sell-stop-limit&quot;, but changing to &quot;buy-limit&quot; or &quot;sell-limit&quot;.<br></p>
 <h2 id='subscribe-trade-details-amp-order-cancellation-post-clearing'>Subscribe Trade Details &amp; Order Cancellation post Clearing</h2>
 <p>API Key Permission: Read</p>
 
