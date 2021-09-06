@@ -2087,7 +2087,7 @@ It is important to note:
 
 a.	For “Get Information of an order” interface (/swap-api/v1/swap_order_info), after the settlement or delivery, the system will delete all the orders in ended status (5: partially filled orders have been cancelled; 6: wholly filled; 7: cancelled);
 
-b.	b. There is a delay in “Order Details Acquisition” interface (/swap-api/v1/swap_order_detail), so it is better to fill in “created_at” (order timestamp) and “order_type” (order type, fill in 1 by default). In this way, it will directly query the database, so the query results will be more timely.
+b.	There is a delay in “Order Details Acquisition” interface (/swap-api/v1/swap_order_detail), so it is better to fill in “created_at” (order timestamp) and “order_type” (order type, fill in 1 by default). In this way, it will directly query the database, so the query results will be more timely.
 
 ### Q20: Why are orders canceled by the system automatically?
 
