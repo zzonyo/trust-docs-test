@@ -35,6 +35,7 @@ table th {
 | 2021.8.12 | `market.$symbol.ticker` | Add | Add Market Ticker data |
 | 2021.8.12 | `market.$symbol.mbp.$levels` | Update | Add 400 depth data|
 | 2021.7.23 | `GET /v1/account/history` | Update | Detailed in detail the type of change in the account flow interface, that is, "Transact-Types" increases classification, such as Note 3. |
+| 2021.6.12 | `GET/v2/account/valuation`  | Add  | Get The Total Valuation of Platform Assets
 | 2021.5.26 | `GET /v1/order/orders/getClientOrder`<br>`POST /v1/order/orders/place`<br>`POST/v1/order/orders/submitCancelClientOrder` | Update | For completed orders, clientOrderId will be valid for 2 hours since the order creation (it is still valid for 8 hours concerning other orders).<br>The uniqueness of the clientOrderId passed in when you place an order will no longer be verified. |
 | 2021.5.12 | GET `/v2/etp/transactions` | Update | "etpNames" and "transactTypes" are changed to "required" and "Only supports filling in one value" |
 | 2021.3.1 | `POST /v2/sub-user/deduct-mode` | Add | Set a deduction for master and sub user |
@@ -2023,6 +2024,94 @@ curl "https://api.huobi.pro/v1/account/accounts/100009/balance"
 | balance  | string    | The balance in the main currency unit | NA            |
 | seq-num  | string    | Serial Number of Account Change       | NA            |
 
+
+## Get The Total Valuation of Platform Assets
+
+permission type：Read
+
+API Rate Limit(NEW）：3/1s
+
+Obtain the total asset valuation of the platform account according to the BTC or legal currency denominated unit.
+
+### HTTP Request
+
+- GET `/v2/account/valuation`
+
+### Query Parameters
+
+| Parameter  |	Required |	Data Type |	Description | Value Range |
+| ---------- | --------  | ------ | ------------------------------------------------------------ | ------ | 
+| accountType	| false	| string |	account type, more to see "Account type data dictionary"	 |
+| valuationCurrency 	| false	|string| If not filled, the default is BTC (only BTC supported now, and must be capitalized)  | 
+
+> Responds:
+
+```json
+{
+    "code": 200,
+    "data": {
+        "updated": {
+            "success": true,
+            "time": 1629916724000
+        },
+        "todayProfitRate": "0.004638293764657609",
+        "totalBalance": "0.06276321",
+        "todayProfit": "0.00028977",
+        "profitAccountBalanceList": [
+            {
+                "distributionType": "11",
+                "balance": 0.05728808,
+                "success": true,
+                "accountBalance": "0.05728808"
+            }
+        ]
+    },
+    "success": true
+}
+```
+
+### Response Content
+
+| Parameter         | Required | Data Type | Description         |
+| --------          | -------- | -------- | -------- |
+| code              | TRUE | int | status code | 
+| \<data\>          | TRUE | object | -------- | 
+| totalBalance      | TRUE | string | total balance | 
+| todayProfit       | TRUE | string | today profit | 
+| todayProfitRate   | TRUE | string | today profit rate | 
+| \<profitAccountBalanceList\> | TRUE | list |  | 
+| distributionType  | TRUE | string | distribution type | 
+| balance           | TRUE | float | balance  | 
+| success           | TRUE | boolean | get data successful or not. When fails, the accountBalance and balance are 0 | 
+| accountBalance    | TRUE | string | account balance | 
+| \</profitAccountBalanceList\> |  |  |  | 
+| \<updated\>       | TRUE | list |  | 
+| success           | TRUE | boolean | updated today, yes or not | 
+| time              | TRUE | long | updated time | 
+| \</updated\>      |  |  |  | 
+| \</data\>         |  |  |  |
+| success           | TRUE | boolean |  | 
+
+
+### Account type data dictionary
+| code | description |
+| ----- |----- |
+| 1 | spot |
+| 2 | Isolated |
+| 3 | cross |
+| 4 | coin futures |
+| 5 | flat |
+| 6 | minepool |
+| 7 | coin swaps |
+| 8 | investment |
+| 9 | borrow |
+| 10 | earn  |
+| 11 | usdt swaps |
+| 12 | option |
+| 13 | otc-options |
+| 14 | crypto-loans |
+| 15 | grid-trading |
+| 16 | minepool |
 
 
 ## Get Asset Valuation
