@@ -435,6 +435,9 @@
                     <a href="#get-account-balance-of-a-specific-account" class="toc-h2 toc-link" data-title="Get Account Balance of a Specific Account">Get Account Balance of a Specific Account</a>
                   </li>
                   <li>
+                    <a href="#get-the-total-valuation-of-platform-assets" class="toc-h2 toc-link" data-title="Get The Total Valuation of Platform Assets">Get The Total Valuation of Platform Assets</a>
+                  </li>
+                  <li>
                     <a href="#get-asset-valuation" class="toc-h2 toc-link" data-title="Get Asset Valuation">Get Asset Valuation</a>
                   </li>
                   <li>
@@ -934,6 +937,12 @@ table th {
 <td><code>GET /v1/account/history</code></td>
 <td>Update</td>
 <td>Detailed in detail the type of change in the account flow interface, that is, &quot;Transact-Types&quot; increases classification, such as Note 3.</td>
+</tr>
+<tr>
+<td>2021.6.12</td>
+<td><code>GET/v2/account/valuation</code></td>
+<td>Add</td>
+<td>Get The Total Valuation of Platform Assets</td>
 </tr>
 <tr>
 <td>2021.5.26</td>
@@ -4570,13 +4579,257 @@ Rate Limit (NEW): 100times/2s</p>
 <td>NA</td>
 </tr>
 </tbody></table>
+<h2 id='get-the-total-valuation-of-platform-assets'>Get The Total Valuation of Platform Assets</h2>
+<p>permission type：Read</p>
+
+<p>API Rate Limit(NEW）：3/1s</p>
+
+<p>Obtain the total asset valuation of the platform account according to the BTC or legal currency denominated unit.</p>
+<h3 id='http-request-17'>HTTP Request</h3>
+<ul>
+<li>GET <code>/v2/account/valuation</code></li>
+</ul>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Data Type</th>
+<th>Description</th>
+<th>Value Range</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accountType</td>
+<td>false</td>
+<td>string</td>
+<td>account type, more to see &quot;Account type data dictionary&quot;</td>
+<td></td>
+</tr>
+<tr>
+<td>valuationCurrency</td>
+<td>false</td>
+<td>string</td>
+<td>If not filled, the default is BTC (only BTC supported now, and must be capitalized)</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Responds:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"updated"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1629916724000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"todayProfitRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.004638293764657609"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.06276321"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"todayProfit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00028977"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"profitAccountBalanceList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"distributionType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"balance"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05728808</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"accountBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.05728808"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-content-16'>Response Content</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>TRUE</td>
+<td>int</td>
+<td>status code</td>
+</tr>
+<tr>
+<td>&lt;data&gt;</td>
+<td>TRUE</td>
+<td>object</td>
+<td>--------</td>
+</tr>
+<tr>
+<td>totalBalance</td>
+<td>TRUE</td>
+<td>string</td>
+<td>total balance</td>
+</tr>
+<tr>
+<td>todayProfit</td>
+<td>TRUE</td>
+<td>string</td>
+<td>today profit</td>
+</tr>
+<tr>
+<td>todayProfitRate</td>
+<td>TRUE</td>
+<td>string</td>
+<td>today profit rate</td>
+</tr>
+<tr>
+<td>&lt;profitAccountBalanceList&gt;</td>
+<td>TRUE</td>
+<td>list</td>
+<td></td>
+</tr>
+<tr>
+<td>distributionType</td>
+<td>TRUE</td>
+<td>string</td>
+<td>distribution type</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>TRUE</td>
+<td>float</td>
+<td>balance</td>
+</tr>
+<tr>
+<td>success</td>
+<td>TRUE</td>
+<td>boolean</td>
+<td>get data successful or not. When fails, the accountBalance and balance are 0</td>
+</tr>
+<tr>
+<td>accountBalance</td>
+<td>TRUE</td>
+<td>string</td>
+<td>account balance</td>
+</tr>
+<tr>
+<td>&lt;/profitAccountBalanceList&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;updated&gt;</td>
+<td>TRUE</td>
+<td>list</td>
+<td></td>
+</tr>
+<tr>
+<td>success</td>
+<td>TRUE</td>
+<td>boolean</td>
+<td>updated today, yes or not</td>
+</tr>
+<tr>
+<td>time</td>
+<td>TRUE</td>
+<td>long</td>
+<td>updated time</td>
+</tr>
+<tr>
+<td>&lt;/updated&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;/data&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>success</td>
+<td>TRUE</td>
+<td>boolean</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='account-type-data-dictionary'>Account type data dictionary</h3>
+<table><thead>
+<tr>
+<th>code</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>spot</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Isolated</td>
+</tr>
+<tr>
+<td>3</td>
+<td>cross</td>
+</tr>
+<tr>
+<td>4</td>
+<td>coin futures</td>
+</tr>
+<tr>
+<td>5</td>
+<td>flat</td>
+</tr>
+<tr>
+<td>6</td>
+<td>minepool</td>
+</tr>
+<tr>
+<td>7</td>
+<td>coin swaps</td>
+</tr>
+<tr>
+<td>8</td>
+<td>investment</td>
+</tr>
+<tr>
+<td>9</td>
+<td>borrow</td>
+</tr>
+<tr>
+<td>10</td>
+<td>earn</td>
+</tr>
+<tr>
+<td>11</td>
+<td>usdt swaps</td>
+</tr>
+<tr>
+<td>12</td>
+<td>option</td>
+</tr>
+<tr>
+<td>13</td>
+<td>otc-options</td>
+</tr>
+<tr>
+<td>14</td>
+<td>crypto-loans</td>
+</tr>
+<tr>
+<td>15</td>
+<td>grid-trading</td>
+</tr>
+<tr>
+<td>16</td>
+<td>minepool</td>
+</tr>
+</tbody></table>
 <h2 id='get-asset-valuation'>Get Asset Valuation</h2>
 <p>API Key Permission：Read</p>
 
 <p>Rate Limit (NEW): 100times/2s</p>
 
 <p>This endpoint returns the valuation of the total assets of the account in btc or fiat currency.</p>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v2/account/asset-valuation</code></li>
 </ul>
@@ -4628,7 +4881,7 @@ Rate Limit (NEW): 100times/2s</p>
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"ok"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-16'>Response Content</h3>
+</span></code></pre><h3 id='response-content-17'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4668,7 +4921,7 @@ Rate Limit (NEW): 100times/2s</p>
 2.Transfer asset from sub user’s spot account to parent user’s spot account;<br></p>
 
 <p>Other transfer functions will be gradually launched later, please take note on API announcement in near future. <br></p>
-<h3 id='http-request-18'>HTTP Request</h3>
+<h3 id='http-request-19'>HTTP Request</h3>
 <ul>
 <li>POST <code>/v1/account/transfer</code></li>
 </ul>
@@ -4750,7 +5003,7 @@ Rate Limit (NEW): 100times/2s</p>
         </span><span class="s2">"transact-time"</span><span class="p">:</span><span class="w"> </span><span class="mi">1590662591832</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-17'>Response Content</h3>
+</span></code></pre><h3 id='response-content-18'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -4794,7 +5047,7 @@ Rate Limit (NEW): 100times/2s</p>
 Rate Limit (NEW): 5times/2s</p>
 
 <p>This endpoint returns the amount changes of a specified user&#39;s account.</p>
-<h3 id='http-request-19'>HTTP Request</h3>
+<h3 id='http-request-20'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/account/history</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/account/history?account-id=5260185"</span>
 </code></pre><h3 id='request-parameters-16'>Request Parameters</h3>
@@ -4902,7 +5155,7 @@ Rate Limit (NEW): 5times/2s</p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-18'>Response Content</h3>
+</span></code></pre><h3 id='response-content-19'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -6165,7 +6418,7 @@ Only when the number of items within the query window (between &quot;start-time&
 
 <p>The maximum query window size set by &quot;startTime&quot; &amp; &quot;endTime&quot; is 10-day, which mean a maximum of 10-day records are queriable per request.
 The query window can be within the last 180 days, which means, by adjusting &quot;startTime&quot; &amp; &quot;endTime&quot; accordingly, the records in last 180 days are queriable.<br></p>
-<h3 id='http-request-20'>HTTP Request</h3>
+<h3 id='http-request-21'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v2/account/ledger</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v2/account/ledger?account-id=5260185"</span>
 </code></pre><h3 id='request-parameters-17'>Request Parameters</h3>
@@ -6266,7 +6519,7 @@ endTime default value: current time</p>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-19'>Response Content</h3>
+</span></code></pre><h3 id='response-content-20'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -6380,7 +6633,7 @@ Only when the number of items within the query window (between &quot;startTime&q
 <p>This endpoint allows a user to transfer fund between spot accounts and futrue contract accounts.</p>
 
 <p>Transferring from a spot account to a contract account, the type is pro-to-futures; transferring from a contract account to a spot account, the type is futures-to-pro</p>
-<h3 id='http-request-21'>HTTP Request</h3>
+<h3 id='http-request-22'>HTTP Request</h3>
 <p><code>POST /v1/futures/transfer</code></p>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="s2">"currency"</span><span class="p">:</span><span class="w">  </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
@@ -6427,7 +6680,7 @@ Only when the number of items within the query window (between &quot;startTime&q
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 
-</span></code></pre><h3 id='response-content-20'>Response Content</h3>
+</span></code></pre><h3 id='response-content-21'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -6643,7 +6896,7 @@ User can only exchange Huobi point via Huobi official web or app.<br></p>
 <p>API Key Permission：Read<br>
 Rate Limit: 2times/s<br>
 Callable by sub user<br></p>
-<h3 id='http-request-22'>HTTP Request</h3>
+<h3 id='http-request-23'>HTTP Request</h3>
 <p><code>GET /v2/point/account</code></p>
 <h3 id='request-parameters-19'>Request Parameters</h3>
 <table><thead>
@@ -6681,7 +6934,7 @@ Callable by sub user<br></p>
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-21'>Response Content</h3>
+</span></code></pre><h3 id='response-content-22'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -6766,7 +7019,7 @@ Before parent user trying to transfer the terminable points back from sub user&#
 <p>API Key Permission：Trade<br>
 Rate Limit: 2times/s<br>
 Callable by sub user<br></p>
-<h3 id='http-request-23'>HTTP Request</h3>
+<h3 id='http-request-24'>HTTP Request</h3>
 <p><code>POST /v2/point/transfer</code></p>
 <h3 id='request-parameters-20'>Request Parameters</h3>
 <table><thead>
@@ -6817,7 +7070,7 @@ Callable by sub user<br></p>
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-22'>Response Content</h3>
+</span></code></pre><h3 id='response-content-23'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -6924,7 +7177,7 @@ Callable by sub user<br></p>
 Rate Limit (NEW): 20times/2s</p>
 
 <aside class="notice"> The endpoint does not support deposit address querying for currency "IOTA" at this moment </aside>
-<h3 id='http-request-24'>HTTP Request</h3>
+<h3 id='http-request-25'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v2/account/deposit/address</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v2/account/deposit/address?currency=btc"</span>
 </code></pre><h3 id='request-parameters-21'>Request Parameters</h3>
@@ -6960,7 +7213,7 @@ Rate Limit (NEW): 20times/2s</p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-23'>Response Content</h3>
+</span></code></pre><h3 id='response-content-24'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -7009,7 +7262,7 @@ Rate Limit (NEW): 20times/2s</p>
 
 <p>API Key Permission：Read<br>
 Rate Limit (NEW): 20times/2s</p>
-<h3 id='http-request-25'>HTTP Request</h3>
+<h3 id='http-request-26'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v2/account/withdraw/quota</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"</span>
 </code></pre><h3 id='request-parameters-22'>Request Parameters</h3>
@@ -7053,7 +7306,7 @@ Rate Limit (NEW): 20times/2s</p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-24'>Response Content</h3>
+</span></code></pre><h3 id='response-content-25'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -7133,7 +7386,7 @@ Rate Limit (NEW): 20times/2s</p>
 <p>This endpoint allows parent user to query withdraw address available for API key.<br></p>
 
 <aside class="notice">To get the withdraw address from API , user needs to add the withdrawal address from the Web UI first</aside>
-<h3 id='http-request-26'>HTTP Request</h3>
+<h3 id='http-request-27'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v2/account/withdraw/address</code></li>
 </ul>
@@ -7205,7 +7458,7 @@ Rate Limit (NEW): 20times/2s</p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-25'>Response Content</h3>
+</span></code></pre><h3 id='response-content-26'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -7294,7 +7547,7 @@ Rate Limit (NEW): 20times/2s</p>
 <aside class="notice">If user has chosen fast withdraw preferred in  <a href='https://www.hbg.com/en-us/user_center/uc_setting/'>settings </a>, the withdraw requests submitted via this endpoint would choose 'fast withdraw' as preferred channel. It means if the withdraw address is managed by Huobi, the withdraw transfer is not on-chain, and then the transaction hash (tx-hash) field will be empty in withdraw record.</aside>
 
 <aside class="notice">Only support the existed addresses in your  <a href='https://www.hbg.com/en-us/withdraw_address/'>withdraw address list</a>. The once-off withdraw address of IOTA couldn't be set in the list, thus IOTA withdrawal is not supported through API. </aside>
-<h3 id='http-request-27'>HTTP Request</h3>
+<h3 id='http-request-28'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/withdraw/api/create</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s2">"Content-Type: application/json"</span> <span class="s2">"https://api.huobi.pro/v1/dw/withdraw/api/create"</span> -d
 <span class="s1">'{
@@ -7363,7 +7616,7 @@ Rate Limit (NEW): 20times/2s</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-26'>Response Content</h3>
+</span></code></pre><h3 id='response-content-27'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -7386,7 +7639,7 @@ Rate Limit (NEW): 20times/2s</p>
 Rate Limit (NEW): 20times/2s</p>
 
 <p>Parent user cancels a previously created withdrawal request by its transfer id.</p>
-<h3 id='http-request-28'>HTTP Request</h3>
+<h3 id='http-request-29'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/withdraw-virtual/{withdraw-id}/cancel</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"https://api.huobi.pro/v1/dw/withdraw-virtual/1000/cancel"</span>
 </code></pre>
@@ -7398,7 +7651,7 @@ Rate Limit (NEW): 20times/2s</p>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">700</span><span class="w">
-</span></code></pre><h3 id='response-content-27'>Response Content</h3>
+</span></code></pre><h3 id='response-content-28'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -7419,7 +7672,7 @@ Rate Limit (NEW): 20times/2s</p>
 Rate Limit (NEW): 20times/2s</p>
 
 <p>Parent user and sub user search for all existed withdraws and deposits and return their latest status.</p>
-<h3 id='http-request-29'>HTTP Request</h3>
+<h3 id='http-request-30'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/query/deposit-withdraw</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/query/deposit-withdraw?currency=xrp&amp;type=deposit&amp;from=5&amp;size=12"</span>
 </code></pre><h3 id='request-parameters-26'>Request Parameters</h3>
@@ -7501,7 +7754,7 @@ Rate Limit (NEW): 20times/2s</p>
         </span><span class="s2">"updated-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1571303815826</span><span class="w">
     </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-28'>Response Content</h3>
+</span></code></pre><h3 id='response-content-29'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -7764,7 +8017,7 @@ Rate Limit (NEW): 20times/2s</p>
 <p>This interface is to set the deduction fee for parent and sub user (HT or point ).</p>
 
 <p>API Key Permission：Trade</p>
-<h3 id='http-request-30'>HTTP Request</h3>
+<h3 id='http-request-31'>HTTP Request</h3>
 <ul>
 <li>POST /v2/sub-user/deduct-mode</li>
 </ul>
@@ -7810,7 +8063,7 @@ Rate Limit (NEW): 20times/2s</p>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-29'>Response Content</h3>
+</span></code></pre><h3 id='response-content-30'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7882,7 +8135,7 @@ Rate Limit (NEW): 20times/2s</p>
 <p>This  endpoint is used by the parent user to query their own API key information, and the parent user to query their sub user&#39;s API key information.</p>
 
 <p>API Key Permission：Read</p>
-<h3 id='http-request-31'>HTTP Request</h3>
+<h3 id='http-request-32'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v2/user/api-key</code></li>
 </ul>
@@ -7934,7 +8187,7 @@ Rate Limit (NEW): 20times/2s</p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-30'>Response Content</h3>
+</span></code></pre><h3 id='response-content-31'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -8026,7 +8279,7 @@ Rate Limit (NEW): 20times/2s</p>
 <p>This  endpoint allow users to view the user ID of the account easily. </p>
 
 <p>API Key Permission：Read</p>
-<h3 id='http-request-32'>HTTP Request</h3>
+<h3 id='http-request-33'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v2/user/uid</code></li>
 </ul>
@@ -8040,7 +8293,7 @@ Rate Limit (NEW): 20times/2s</p>
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">63628520</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-31'>Response Content</h3>
+</span></code></pre><h3 id='response-content-32'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -8076,7 +8329,7 @@ Rate Limit (NEW): 20times/2s</p>
 <p>This endpoint is used by the parent user to create sub users, up to 50 at a time</p>
 
 <p>API Key Permission：Trade</p>
-<h3 id='http-request-33'>HTTP Request</h3>
+<h3 id='http-request-34'>HTTP Request</h3>
 <ul>
 <li>POST <code>/v2/sub-user/creation</code></li>
 </ul>
@@ -8153,7 +8406,7 @@ Rate Limit (NEW): 20times/2s</p>
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-32'>Response Content</h3>
+</span></code></pre><h3 id='response-content-33'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -8224,7 +8477,7 @@ Rate Limit (NEW): 20times/2s</p>
 <p>Via this endpoint parent user is able to query a full list of sub user&#39;s UID as well as their status.</p>
 
 <p>API Key Permission: Read</p>
-<h3 id='http-request-34'>HTTP Request</h3>
+<h3 id='http-request-35'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v2/sub-user/user-list</code></li>
 </ul>
@@ -8323,7 +8576,7 @@ Rate Limit (NEW): 20times/2s</p>
 Rate Limit (NEW): 20times/2s</p>
 
 <p>This endpoint allows parent user to lock or unlock a specific sub user.</p>
-<h3 id='http-request-35'>HTTP Request</h3>
+<h3 id='http-request-36'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v2/sub-user/management</code></p>
 <h3 id='request-parameters-31'>Request Parameters</h3>
 <table><thead>
@@ -8360,7 +8613,7 @@ Rate Limit (NEW): 20times/2s</p>
      </span><span class="s2">"subUid"</span><span class="p">:</span><span class="w"> </span><span class="mi">12902150</span><span class="p">,</span><span class="w">
      </span><span class="s2">"userState"</span><span class="p">:</span><span class="s2">"lock"</span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-33'>Response Content</h3>
+</span></code></pre><h3 id='response-content-34'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -8386,7 +8639,7 @@ Rate Limit (NEW): 20times/2s</p>
 <p>Via this endpoint, parent user is able to query sub user&#39;s status by specifying a UID.</p>
 
 <p>API Key Permission: Read</p>
-<h3 id='http-request-36'>HTTP Request</h3>
+<h3 id='http-request-37'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v2/sub-user/user-state</code></li>
 </ul>
@@ -8472,7 +8725,7 @@ Rate Limit (NEW): 20times/2s</p>
 
 <p>Parent user is able to set tradable market for a batch of sub users through this endpoint.
 By default, sub user’s trading permission in spot market is activated.</p>
-<h3 id='http-request-37'>HTTP Request</h3>
+<h3 id='http-request-38'>HTTP Request</h3>
 <ul>
 <li>POST <code>/v2/sub-user/tradable-market</code></li>
 </ul>
@@ -8526,7 +8779,7 @@ By default, sub user’s trading permission in spot market is activated.</p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-34'>Response Content</h3>
+</span></code></pre><h3 id='response-content-35'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -8607,7 +8860,7 @@ By default, sub user’s trading permission in spot market is activated.</p>
 
 <p>Parent user is able to set asset transfer permission for a batch of sub users.
 By default, the asset transfer from sub user’s spot account to parent user’s spot account is allowed.</p>
-<h3 id='http-request-38'>HTTP Request</h3>
+<h3 id='http-request-39'>HTTP Request</h3>
 <ul>
 <li>POST <code>/v2/sub-user/transferability</code></li>
 </ul>
@@ -8661,7 +8914,7 @@ By default, the asset transfer from sub user’s spot account to parent user’s
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-35'>Response Content</h3>
+</span></code></pre><h3 id='response-content-36'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -8741,7 +8994,7 @@ By default, the asset transfer from sub user’s spot account to parent user’s
 <p>Via this endpoint parent user is able to query account list of sub user by specifying a UID.</p>
 
 <p>API Key Permission: Read</p>
-<h3 id='http-request-39'>HTTP Request</h3>
+<h3 id='http-request-40'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v2/sub-user/account-list</code></li>
 </ul>
@@ -8903,7 +9156,7 @@ By default, the asset transfer from sub user’s spot account to parent user’s
 <p>This endpoint is used by the parent user to create the API key of the sub user</p>
 
 <p>API Key Permission：Trade</p>
-<h3 id='http-request-40'>HTTP Request</h3>
+<h3 id='http-request-41'>HTTP Request</h3>
 <ul>
 <li>POST <code>/v2/sub-user/api-key-generation</code></li>
 </ul>
@@ -8973,7 +9226,7 @@ By default, the asset transfer from sub user’s spot account to parent user’s
         </span><span class="s2">"ipAddresses"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.1.1.1,1.1.1.2"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-36'>Response Content</h3>
+</span></code></pre><h3 id='response-content-37'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -9044,7 +9297,7 @@ By default, the asset transfer from sub user’s spot account to parent user’s
 <p>This endpoint is used by the parent user to modify the API key of the sub user</p>
 
 <p>API Key Permission：Trade</p>
-<h3 id='http-request-41'>HTTP Request</h3>
+<h3 id='http-request-42'>HTTP Request</h3>
 <ul>
 <li>POST <code>/v2/sub-user/api-key-modification</code></li>
 </ul>
@@ -9112,7 +9365,7 @@ By default, the asset transfer from sub user’s spot account to parent user’s
         </span><span class="s2">"ipAddresses"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.1.1.3"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-37'>Response Content</h3>
+</span></code></pre><h3 id='response-content-38'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -9169,7 +9422,7 @@ By default, the asset transfer from sub user’s spot account to parent user’s
 <p>This endpoint is used by the parent user to delete the API key of the sub user.</p>
 
 <p>API Key Permission：Trade</p>
-<h3 id='http-request-42'>HTTP Request</h3>
+<h3 id='http-request-43'>HTTP Request</h3>
 <ul>
 <li>POST <code>/v2/sub-user/api-key-deletion</code></li>
 </ul>
@@ -9209,7 +9462,7 @@ By default, the asset transfer from sub user’s spot account to parent user’s
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-38'>Response Content</h3>
+</span></code></pre><h3 id='response-content-39'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -9239,7 +9492,7 @@ By default, the asset transfer from sub user’s spot account to parent user’s
 Rate Limit (NEW): 2times/2s</p>
 
 <p>This endpoint allows user to transfer asset between parent and sub account.</p>
-<h3 id='http-request-43'>HTTP Request</h3>
+<h3 id='http-request-44'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/subuser/transfer</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"https://api.huobi.pro/v1/subuser/transfer"</span> -H <span class="s2">"Content-Type: application/json"</span> -d <span class="s1">'{"sub-uid": 12345, "currency": "btc", "amount": 123.5, "type": "master-transfer-in"}'</span>
 </code></pre><h3 id='request-parameters-37'>Request Parameters</h3>
@@ -9286,7 +9539,7 @@ Rate Limit (NEW): 2times/2s</p>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="w">
-</span></code></pre><h3 id='response-content-39'>Response Content</h3>
+</span></code></pre><h3 id='response-content-40'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -9308,7 +9561,7 @@ Rate Limit (NEW): 2times/2s</p>
 <p>API Key Permission：Read</p>
 
 <aside class="notice"> The endpoint does not support deposit address querying for currency "IOTA" at this moment </aside>
-<h3 id='http-request-44'>HTTP Request</h3>
+<h3 id='http-request-45'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v2/sub-user/deposit-address</code></p>
 <h3 id='request-parameters-38'>Request Parameters</h3>
 <table><thead>
@@ -9350,7 +9603,7 @@ Rate Limit (NEW): 2times/2s</p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-40'>Response Content</h3>
+</span></code></pre><h3 id='response-content-41'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -9398,7 +9651,7 @@ Rate Limit (NEW): 2times/2s</p>
 <p>API Key Permission：Read</p>
 
 <p>Parent user could query sub user&#39;s deposit history via this endpoint.</p>
-<h3 id='http-request-45'>HTTP Request</h3>
+<h3 id='http-request-46'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v2/sub-user/query-deposit</code></p>
 <h3 id='request-parameters-39'>Request Parameters</h3>
 <table><thead>
@@ -9487,7 +9740,7 @@ Only when the number of items within the query window (between &quot;startTime&q
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-41'>Response Content</h3>
+</span></code></pre><h3 id='response-content-42'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -9616,7 +9869,7 @@ Only when the number of items within the query window (between &quot;startTime&q
 Rate Limit (NEW): 2times/2s</p>
 
 <p>This endpoint returns the aggregated balance from all the sub-users.</p>
-<h3 id='http-request-46'>HTTP Request</h3>
+<h3 id='http-request-47'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/subuser/aggregate-balance</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/subuser/aggregate-balance"</span>
 </code></pre>
@@ -9642,7 +9895,7 @@ Rate Limit (NEW): 2times/2s</p>
    </span><span class="p">]</span><span class="w">
 </span></code></pre><h3 id='request-parameters-40'>Request Parameters</h3>
 <aside class="notice">No parameter is needed for this endpoint</aside>
-<h3 id='response-content-42'>Response Content</h3>
+<h3 id='response-content-43'>Response Content</h3>
 <aside class="notice">The returned "data" object is a list of aggregated balances</aside>
 
 <table><thead>
@@ -9673,7 +9926,7 @@ Rate Limit (NEW): 2times/2s</p>
 Rate Limit (NEW): 20times/2s</p>
 
 <p>This endpoint returns the balance of a sub-user specified by sub-uid.</p>
-<h3 id='http-request-47'>HTTP Request</h3>
+<h3 id='http-request-48'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/account/accounts/{sub-uid}</code></p>
 
 <p>&#39;sub-uid&#39;: The specified sub user id to get balance for.</p>
@@ -9721,7 +9974,7 @@ Rate Limit (NEW): 20times/2s</p>
     </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='response-content-43'>Response Content</h3>
+</span></code></pre><h3 id='response-content-44'>Response Content</h3>
 <aside class="notice">The returned "data" object is a list of accounts under this sub-user</aside>
 
 <table><thead>
@@ -9888,7 +10141,7 @@ Rate Limit (NEW): 20times/2s</p>
 Rate Limit (NEW): 100times/2s</p>
 
 <p>This endpoint places a new order and sends to the exchange to be matched.</p>
-<h3 id='http-request-48'>HTTP Request</h3>
+<h3 id='http-request-49'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/order/orders/place</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s2">"Content-Type: application/json"</span> <span class="s2">"https://api.huobi.pro/v1/order/orders/place"</span> -d
 <span class="s1">'{
@@ -9989,7 +10242,7 @@ Rate Limit (NEW): 100times/2s</p>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59378"</span><span class="w">
-</span></code></pre><h3 id='response-content-44'>Response Content</h3>
+</span></code></pre><h3 id='response-content-45'>Response Content</h3>
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
 
 <p>If client order ID duplicates with a previous order (within 8 hours), the endpoint reverts error message <code>invalid.client.order.id</code>.</p>
@@ -10010,7 +10263,7 @@ Rate Limit (NEW): 100times/2s</p>
 Rate Limit (NEW): 50times/2s</p>
 
 <p>A batch contains at most 10 orders.</p>
-<h3 id='http-request-49'>HTTP Request</h3>
+<h3 id='http-request-50'>HTTP Request</h3>
 <ul>
 <li>POST <code>/v1/order/batch-orders</code></li>
 </ul>
@@ -10135,7 +10388,7 @@ Rate Limit (NEW): 50times/2s</p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-45'>Response Content</h3>
+</span></code></pre><h3 id='response-content-46'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -10173,7 +10426,7 @@ Rate Limit (NEW): 100times/2s</p>
 <p>This endpoint submits a request to cancel an order.</p>
 
 <aside class="warning">The actual result of the cancellation request needs to be checked by order status or match result endpoints after submitting the request.</aside>
-<h3 id='http-request-50'>HTTP Request</h3>
+<h3 id='http-request-51'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/order/orders/{order-id}/submitcancel</code></p>
 
 <p>&#39;order-id&#39;: the previously returned order id when order was created</p>
@@ -10208,7 +10461,7 @@ Rate Limit (NEW): 100times/2s</p>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59378"</span><span class="w">
-</span></code></pre><h3 id='response-content-46'>Response Content</h3>
+</span></code></pre><h3 id='response-content-47'>Response Content</h3>
 <aside class="notice">The returned data object is a single string which represents the order id</aside>
 <h3 id='error-code-6'>Error Code</h3>
 <blockquote>
@@ -10271,7 +10524,7 @@ Rate Limit (NEW): 100times/2s</p>
 <aside class="notice">It is suggested to use /v1/order/orders/{order-id}/submitcancel to cancel a single order, which is faster and more stable</aside>
 
 <aside class="warning">This only submits the cancel request, the actual result of the canel request needs to be checked by order status or match result endpoints</aside>
-<h3 id='http-request-51'>HTTP Request</h3>
+<h3 id='http-request-52'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/order/orders/submitCancelClientOrder</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s2">"Content-Type: application/json"</span> <span class="s2">"https://api.huobi.pro/v1/order/orders/submitCancelClientOrder"</span> -d
 <span class="s1">'{
@@ -10300,7 +10553,7 @@ Rate Limit (NEW): 100times/2s</p>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59378"</span><span class="w">
-</span></code></pre><h3 id='response-content-47'>Response Content</h3>
+</span></code></pre><h3 id='response-content-48'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -10363,7 +10616,7 @@ Rate Limit (NEW): 100times/2s</p>
 Rate Limit (NEW): 50times/2s</p>
 
 <p>This endpoint returns all open orders which have not been filled completely.</p>
-<h3 id='http-request-52'>HTTP Request</h3>
+<h3 id='http-request-53'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/openOrders</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/openOrders?account-id=100009&amp;symbol=btcusdt&amp;side=buy&amp;size=5"</span>
 </code></pre><h3 id='request-parameters-46'>Request Parameters</h3>
@@ -10446,7 +10699,7 @@ Rate Limit (NEW): 50times/2s</p>
       </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"submitted"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='response-content-48'>Response Content</h3>
+</span></code></pre><h3 id='response-content-49'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -10528,7 +10781,7 @@ Rate Limit (NEW): 50times/2s</p>
 
 <p>This endpoint only submit the cancellation request, the actual cancellation result will need to be confirmed by other endpoints 
 like order status, matchresult, etc.</p>
-<h3 id='http-request-53'>HTTP Request</h3>
+<h3 id='http-request-54'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/order/orders/batchCancelOpenOrders</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/order/orders/batchCancelOpenOrders"</span> -d
 <span class="s1">'{
@@ -10598,7 +10851,7 @@ like order status, matchresult, etc.</p>
     </span><span class="s2">"failed-count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"next-id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5454600</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-49'>Response Content</h3>
+</span></code></pre><h3 id='response-content-50'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -10628,7 +10881,7 @@ Rate Limit (NEW): 50times/2s</p>
 
 <p>This endpoint submit cancellation for multiple orders at once with given ids. It is suggested to use order-ids instead of 
 client-order-ids, so that the cancellation is faster, more accurate and more stable. </p>
-<h3 id='http-request-54'>HTTP Request</h3>
+<h3 id='http-request-55'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/order/orders/batchcancel</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/order/orders/batchcancel"</span> -d
 <span class="s1">'{
@@ -10695,7 +10948,7 @@ client-order-ids, so that the cancellation is faster, more accurate and more sta
           </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-50'>Response Content</h3>
+</span></code></pre><h3 id='response-content-51'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -10797,7 +11050,7 @@ client-order-ids, so that the cancellation is faster, more accurate and more sta
 
 <p>The Dead man’s switch  protects the user’s assets when the connection to the exchange is lost due to network or system errors. <br>
 Turn on/off the Dead man’s switch. If the Dead man’s switch is turned on and the API call isn’t sent twice within the set time, the platform will cancel all of your orders on the spot market（a maximum cancellation of 500 orders）.</p>
-<h3 id='http-request-55'>HTTP Request</h3>
+<h3 id='http-request-56'>HTTP Request</h3>
 <ul>
 <li>POST <code>/v2/algo-orders/cancel-all-after</code></li>
 </ul>
@@ -10865,7 +11118,7 @@ Response:</p>
 </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">2003</span><span class="p">,</span><span class="w">
 </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"missing mandatory field"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-51'>Response Content</h3>
+</span></code></pre><h3 id='response-content-52'>Response Content</h3>
 <table><thead>
 <tr>
 <th><strong>Name</strong></th>
@@ -10910,7 +11163,7 @@ Response:</p>
 Rate Limit (NEW): 50times/2s</p>
 
 <p>This endpoint returns the detail of a specific order. If an order is created via API, then it&#39;s no longer queryable after being cancelled for 2 hours.</p>
-<h3 id='http-request-56'>HTTP Request</h3>
+<h3 id='http-request-57'>HTTP Request</h3>
 <p><code>GET /v1/order/orders/{order-id}</code></p>
 <h3 id='request-parameters-49'>Request Parameters</h3>
 <table><thead>
@@ -10952,7 +11205,7 @@ Rate Limit (NEW): 50times/2s</p>
     </span><span class="s2">"canceled-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-52'>Response Content</h3>
+</span></code></pre><h3 id='response-content-53'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11051,7 +11304,7 @@ Rate Limit (NEW): 50times/2s</p>
 Rate Limit (NEW):50times/2s</p>
 
 <p>This endpoint returns the detail of one order by specified client order id (within 8 hours). The order created via API will no longer be queryable after being cancelled for more than 2 hours. It is suggested to cancel orders via <code>GET /v1/order/orders/{order-id}</code>, which is faster and more stable.</p>
-<h3 id='http-request-57'>HTTP Request</h3>
+<h3 id='http-request-58'>HTTP Request</h3>
 <p><code>GET /v1/order/orders/getClientOrder</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"</span>
 </code></pre><h3 id='request-parameters-50'>Request Parameters</h3>
@@ -11095,7 +11348,7 @@ Rate Limit (NEW):50times/2s</p>
     </span><span class="s2">"canceled-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-53'>Response Content</h3>
+</span></code></pre><h3 id='response-content-54'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11202,7 +11455,7 @@ Rate Limit (NEW):50times/2s</p>
 Rate Limit (NEW): 50times/2s</p>
 
 <p>This endpoint returns the match result of an order.</p>
-<h3 id='http-request-58'>HTTP Request</h3>
+<h3 id='http-request-59'>HTTP Request</h3>
 <p><code>GET /v1/order/orders/{order-id}/matchresults</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders/59378/matchresults"</span>
 </code></pre><h3 id='request-parameters-51'>Request Parameters</h3>
@@ -11246,7 +11499,7 @@ Rate Limit (NEW): 50times/2s</p>
       </span><span class="s2">"fee-deduct-state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"done"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='response-content-54'>Response Content</h3>
+</span></code></pre><h3 id='response-content-55'>Response Content</h3>
 <aside class="notice">The return data contains a list and each item in the list represents a match result</aside>
 
 <table><thead>
@@ -11356,7 +11609,7 @@ Rate Limit (NEW): 50times/2s</p>
 </ul>
 
 <p>Huobi Global suggests API users to search historical orders based on &quot;time&quot; filter instead of &quot;date&quot;. In the near future, Huobi Global would remove &quot;start-date&quot;/&quot;end-date&quot; fields from the endpoint, through another notification.</p>
-<h3 id='http-request-59'>HTTP Request</h3>
+<h3 id='http-request-60'>HTTP Request</h3>
 <p><code>GET /v1/order/orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/orders?symbol=ethusdt&amp;type=buy-limit&amp;staet=filled"</span>
 </code></pre>
@@ -11473,7 +11726,7 @@ Rate Limit (NEW): 50times/2s</p>
       </span><span class="s2">"canceled-at"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='response-content-55'>Response Content</h3>
+</span></code></pre><h3 id='response-content-56'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11608,7 +11861,7 @@ Rate Limit (NEW): 20times/2s</p>
 
 <p>This endpoint returns orders based on a specific searching criteria.
 The orders created via API will no longer be queryable after being cancelled for more than 2 hours. </p>
-<h3 id='http-request-60'>HTTP Request</h3>
+<h3 id='http-request-61'>HTTP Request</h3>
 <p><code>GET /v1/order/history</code></p>
 
 <blockquote>
@@ -11700,7 +11953,7 @@ The orders created via API will no longer be queryable after being cancelled for
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-56'>Response Content</h3>
+</span></code></pre><h3 id='response-content-57'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -11804,7 +12057,7 @@ The orders created via API will no longer be queryable after being cancelled for
 Rate Limit (NEW): 20times/2s</p>
 
 <p>This endpoint returns the match results of past and current filled, or partially filled orders based on specific search criteria.</p>
-<h3 id='http-request-61'>HTTP Request</h3>
+<h3 id='http-request-62'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/order/matchresults</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/order/matchresults?symbol=ethusdt"</span>
 </code></pre><h3 id='request-parameters-54'>Request Parameters</h3>
@@ -11898,7 +12151,7 @@ Rate Limit (NEW): 20times/2s</p>
       </span><span class="s2">"fee-deduct-state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"done"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='response-content-57'>Response Content</h3>
+</span></code></pre><h3 id='response-content-58'>Response Content</h3>
 <aside class="notice">The return data contains a list and each item in the list represents a match result</aside>
 
 <table><thead>
@@ -12020,7 +12273,7 @@ Rate Limit (NEW): 20times/2s</p>
 
 <p>API Key Permission：Read</p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v2/reference/transact-fee-rate?symbols=btcusdt,ethusdt,ltcusdt"</span>
-</code></pre><h3 id='http-request-62'>HTTP Request</h3>
+</code></pre><h3 id='http-request-63'>HTTP Request</h3>
 <p><code>GET /v2/reference/transact-fee-rate</code></p>
 <h3 id='request-parameters-55'>Request Parameters</h3>
 <table><thead>
@@ -12072,7 +12325,7 @@ Rate Limit (NEW): 20times/2s</p>
      }
    ]
 }
-</span></code></pre><h3 id='response-content-58'>Response Content</h3>
+</span></code></pre><h3 id='response-content-59'>Response Content</h3>
 <table><thead>
 <tr>
 <th></th>
@@ -12538,7 +12791,7 @@ Conditional order can be only placed via this endpoint instead of any endpoint i
         </span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a001"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-59'>Response Content</h3>
+</span></code></pre><h3 id='response-content-60'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -12611,7 +12864,7 @@ Before a conditional order triggering, it can be only cancelled via this endpoin
         </span><span class="s2">"rejected"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-60'>Response Content</h3>
+</span></code></pre><h3 id='response-content-61'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -12750,7 +13003,7 @@ Before a conditional order triggering, it can be queried out through this endpoi
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-61'>Response Content</h3>
+</span></code></pre><h3 id='response-content-62'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -12998,7 +13251,7 @@ The cancelled conditional order before triggering, as well as the conditional or
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-62'>Response Content</h3>
+</span></code></pre><h3 id='response-content-63'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -13195,7 +13448,7 @@ The conditional order before triggering, as well as the conditional order failed
         </span><span class="s2">"orderStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"canceled"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-63'>Response Content</h3>
+</span></code></pre><h3 id='response-content-64'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -13431,7 +13684,7 @@ The conditional order before triggering, as well as the conditional order failed
 <p>Available Accounts: Main and Sub-Accounts</p>
 
 <p>While repaying the loan, loan interest will be paid first if there is no appointed transactId. Otherwise, currency will not be authenticated.</p>
-<h3 id='http-request-63'>HTTP Request</h3>
+<h3 id='http-request-64'>HTTP Request</h3>
 <p><code>POST /v2/account/repayment</code></p>
 
 <blockquote>
@@ -13490,7 +13743,7 @@ The conditional order before triggering, as well as the conditional order failed
       </span><span class="p">}</span><span class="w">
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-64'>Response Content</h3>
+</span></code></pre><h3 id='response-content-65'>Response Content</h3>
 <table><thead>
 <tr>
 <th><strong>Field</strong></th>
@@ -13537,7 +13790,7 @@ The conditional order before triggering, as well as the conditional order failed
 Rate Limit (NEW): 2times/2s</p>
 
 <p>This endpoint transfers specific asset from spot trading account to isolated margin account.</p>
-<h3 id='http-request-64'>HTTP Request</h3>
+<h3 id='http-request-65'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/dw/transfer-in/margin</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-in/margin"</span> -d
 <span class="s1">'{
@@ -13546,72 +13799,6 @@ Rate Limit (NEW): 2times/2s</p>
   "amount": "1.0"
 }'</span>
 </code></pre><h3 id='request-parameters-57'>Request Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Data Type</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>symbol</td>
-<td>string</td>
-<td>true</td>
-<td>NA</td>
-<td>The trading symbol, e.g. btcusdt, bccbtc</td>
-</tr>
-<tr>
-<td>currency</td>
-<td>string</td>
-<td>true</td>
-<td>NA</td>
-<td>The currency to transfer</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>string</td>
-<td>true</td>
-<td>NA</td>
-<td>The amount of currency to transfer</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span></code></pre><h3 id='response-content-65'>Response Content</h3>
-<aside class="notice">The return data contains a single value instead of an object</aside>
-
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Data Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>data</td>
-<td>integer</td>
-<td>Transfer id</td>
-</tr>
-</tbody></table>
-<h2 id='transfer-asset-from-isolated-margin-account-to-spot-trading-account-isolated'>Transfer Asset from Isolated Margin Account to Spot Trading Account（Isolated）</h2>
-<p>API Key Permission：Trade<br>
-Rate Limit (NEW): 2times/2s</p>
-
-<p>This endpoint transfers specific asset from isolated margin account to spot trading account.</p>
-<h3 id='http-request-65'>HTTP Request</h3>
-<p><code>POST https://api.huobi.pro/v1/dw/transfer-out/margin</code></p>
-<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-out/margin"</span> -d
-<span class="s1">'{
-  "symbol": "ethusdt",
-  "currency": "eth",
-  "amount": "1.0"
-}'</span>
-</code></pre><h3 id='request-parameters-58'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -13664,12 +13851,78 @@ Rate Limit (NEW): 2times/2s</p>
 <td>Transfer id</td>
 </tr>
 </tbody></table>
+<h2 id='transfer-asset-from-isolated-margin-account-to-spot-trading-account-isolated'>Transfer Asset from Isolated Margin Account to Spot Trading Account（Isolated）</h2>
+<p>API Key Permission：Trade<br>
+Rate Limit (NEW): 2times/2s</p>
+
+<p>This endpoint transfers specific asset from isolated margin account to spot trading account.</p>
+<h3 id='http-request-66'>HTTP Request</h3>
+<p><code>POST https://api.huobi.pro/v1/dw/transfer-out/margin</code></p>
+<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/dw/transfer-out/margin"</span> -d
+<span class="s1">'{
+  "symbol": "ethusdt",
+  "currency": "eth",
+  "amount": "1.0"
+}'</span>
+</code></pre><h3 id='request-parameters-58'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>The trading symbol, e.g. btcusdt, bccbtc</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>The currency to transfer</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>The amount of currency to transfer</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+</span></code></pre><h3 id='response-content-67'>Response Content</h3>
+<aside class="notice">The return data contains a single value instead of an object</aside>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>integer</td>
+<td>Transfer id</td>
+</tr>
+</tbody></table>
 <h2 id='get-loan-interest-rate-and-quota-isolated'>Get Loan Interest Rate and Quota（Isolated）</h2>
 <p>API Key Permission: Read<br>
 Rate Limit (NEW): 20times/2s</p>
 
 <p>The endpoint returns loan interest rates and quota applied on the user.</p>
-<h3 id='http-request-66'>HTTP Request</h3>
+<h3 id='http-request-67'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v1/margin/loan-info</code></li>
 </ul>
@@ -13721,7 +13974,7 @@ Rate Limit (NEW): 20times/2s</p>
             </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-67'>Response Content</h3>
+</span></code></pre><h3 id='response-content-68'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -13775,7 +14028,7 @@ Rate Limit (NEW): 20times/2s</p>
 Rate Limit (NEW): 2times/2s</p>
 
 <p>This endpoint places an order to apply a margin loan.</p>
-<h3 id='http-request-67'>HTTP Request</h3>
+<h3 id='http-request-68'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/margin/orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/margin/orders"</span> -d
 <span class="s1">'{
@@ -13823,7 +14076,7 @@ Rate Limit (NEW): 2times/2s</p>
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-68'>Response Content</h3>
+</span></code></pre><h3 id='response-content-69'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -13847,7 +14100,7 @@ Rate Limit (NEW): 2times/2s</p>
 Rate Limit (NEW): 2times/2s</p>
 
 <p>This endpoint repays margin loan with your asset in your margin account.</p>
-<h3 id='http-request-68'>HTTP Request</h3>
+<h3 id='http-request-69'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/margin/orders/{order-id}/repay</code></p>
 
 <p>&#39;order-id&#39;: the previously returned order id when loan order was created</p>
@@ -13885,7 +14138,7 @@ Rate Limit (NEW): 2times/2s</p>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span></code></pre><h3 id='response-content-69'>Response Content</h3>
+</span></code></pre><h3 id='response-content-70'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -13906,7 +14159,7 @@ Rate Limit (NEW): 2times/2s</p>
 Rate Limit (NEW): 100times/2s</p>
 
 <p>This endpoint returns margin orders based on a specific searching criteria.</p>
-<h3 id='http-request-69'>HTTP Request</h3>
+<h3 id='http-request-70'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/margin/loan-orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/load-orders?symbol=ethusdt"</span>
 </code></pre><h3 id='request-parameters-62'>Request Parameters</h3>
@@ -14017,7 +14270,7 @@ Rate Limit (NEW): 100times/2s</p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-70'>Response Content</h3>
+</span></code></pre><h3 id='response-content-71'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -14136,7 +14389,7 @@ Rate Limit (NEW): 100times/2s</p>
 Rate Limit (NEW): 100times/2s</p>
 
 <p>This endpoint returns the balance of the margin loan account.</p>
-<h3 id='http-request-70'>HTTP Request</h3>
+<h3 id='http-request-71'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/margin/accounts/balance</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"</span>
 </code></pre><h3 id='request-parameters-63'>Request Parameters</h3>
@@ -14211,7 +14464,7 @@ Rate Limit (NEW): 100times/2s</p>
             </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='response-content-71'>Response Content</h3>
+</span></code></pre><h3 id='response-content-72'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -14264,7 +14517,7 @@ Rate Limit (NEW): 100times/2s</p>
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint transfers specific asset from spot trading account to cross margin account.</p>
-<h3 id='http-request-71'>HTTP Request</h3>
+<h3 id='http-request-72'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/cross-margin/transfer-in</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/cross-margin/transfer-in"</span> -d
 <span class="s1">'{
@@ -14272,70 +14525,6 @@ Rate Limit (NEW): 100times/2s</p>
   "amount": "1.0"
 }'</span>
 </code></pre><h3 id='request-parameters-64'>Request Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Data Type</th>
-<th>Required</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>currency</td>
-<td>string</td>
-<td>true</td>
-<td>NA</td>
-<td>Currency</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>string</td>
-<td>true</td>
-<td>NA</td>
-<td>Transfer amount</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-72'>Response Content</h3>
-<aside class="notice">The return data contains a single value instead of an object</aside>
-
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Data Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>data</td>
-<td>integer</td>
-<td>Transfer id</td>
-</tr>
-</tbody></table>
-<h2 id='transfer-asset-from-cross-margin-account-to-spot-trading-account-cross'>Transfer Asset from Cross Margin Account to Spot Trading Account（Cross）</h2>
-<p>API Key Permission：Trade</p>
-
-<p>Rate Limit (NEW): 10times/s</p>
-
-<p>This endpoint transfers specific asset from cross margin account to spot trading account.</p>
-<h3 id='http-request-72'>HTTP Request</h3>
-<p><code>POST https://api.huobi.pro/v1/cross-margin/transfer-in</code></p>
-
-<p><code>POST https://api.huobi.pro/v1/cross-margin/transfer-out</code></p>
-<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/cross-margin/transfer-out"</span> -d
-<span class="s1">'{
-  "currency": "eth",
-  "amount": "1.0"
-}'</span>
-</code></pre><h3 id='request-parameters-65'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -14384,11 +14573,75 @@ Rate Limit (NEW): 100times/2s</p>
 <td>Transfer id</td>
 </tr>
 </tbody></table>
+<h2 id='transfer-asset-from-cross-margin-account-to-spot-trading-account-cross'>Transfer Asset from Cross Margin Account to Spot Trading Account（Cross）</h2>
+<p>API Key Permission：Trade</p>
+
+<p>Rate Limit (NEW): 10times/s</p>
+
+<p>This endpoint transfers specific asset from cross margin account to spot trading account.</p>
+<h3 id='http-request-73'>HTTP Request</h3>
+<p><code>POST https://api.huobi.pro/v1/cross-margin/transfer-in</code></p>
+
+<p><code>POST https://api.huobi.pro/v1/cross-margin/transfer-out</code></p>
+<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/cross-margin/transfer-out"</span> -d
+<span class="s1">'{
+  "currency": "eth",
+  "amount": "1.0"
+}'</span>
+</code></pre><h3 id='request-parameters-65'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>Currency</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>true</td>
+<td>NA</td>
+<td>Transfer amount</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='response-content-74'>Response Content</h3>
+<aside class="notice">The return data contains a single value instead of an object</aside>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>integer</td>
+<td>Transfer id</td>
+</tr>
+</tbody></table>
 <h2 id='get-loan-interest-rate-and-quota-cross'>Get Loan Interest Rate and Quota（Cross）</h2>
 <p>API Key Permission: Read</p>
 
 <p>This endpoint returns loan interest rates and loan quota applied on the user.</p>
-<h3 id='http-request-73'>HTTP Request</h3>
+<h3 id='http-request-74'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v1/cross-margin/loan-info</code></li>
 </ul>
@@ -14460,7 +14713,7 @@ Rate Limit (NEW): 100times/2s</p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-74'>Response Content</h3>
+</span></code></pre><h3 id='response-content-75'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -14503,7 +14756,7 @@ Rate Limit (NEW): 100times/2s</p>
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint places an order to apply for a margin loan.</p>
-<h3 id='http-request-74'>HTTP Request</h3>
+<h3 id='http-request-75'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/cross-margin/orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/v1/cross-margin/orders"</span> -d
 <span class="s1">'{
@@ -14543,7 +14796,7 @@ Rate Limit (NEW): 100times/2s</p>
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-75'>Response Content</h3>
+</span></code></pre><h3 id='response-content-76'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -14563,7 +14816,7 @@ Rate Limit (NEW): 100times/2s</p>
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint repays margin loan with you asset in your margin account.</p>
-<h3 id='http-request-75'>HTTP Request</h3>
+<h3 id='http-request-76'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/cross-margin/orders/{order-id}/repay</code></p>
 
 <p>&#39;order-id&#39;: the previously returned order id when loan order was created</p>
@@ -14597,7 +14850,7 @@ Rate Limit (NEW): 100times/2s</p>
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-76'>Response Content</h3>
+</span></code></pre><h3 id='response-content-77'>Response Content</h3>
 <aside class="notice">The return data contains a single value instead of an object</aside>
 
 <table><thead>
@@ -14617,7 +14870,7 @@ Rate Limit (NEW): 100times/2s</p>
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns margin orders based on a specific searching criteria.</p>
-<h3 id='http-request-76'>HTTP Request</h3>
+<h3 id='http-request-77'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/cross-margin/loan-orders</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/cross-margin/loan-orders?symbol=ethusdt"</span>
 </code></pre><h3 id='request-parameters-69'>Request Parameters</h3>
@@ -14720,7 +14973,7 @@ Rate Limit (NEW): 100times/2s</p>
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-77'>Response Content</h3>
+</span></code></pre><h3 id='response-content-78'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -14798,7 +15051,7 @@ Rate Limit (NEW): 100times/2s</p>
 <p>API Key Permission：Read</p>
 
 <p>This endpoint returns the balance of the margin loan account.</p>
-<h3 id='http-request-77'>HTTP Request</h3>
+<h3 id='http-request-78'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/cross-margin/accounts/balance</code></p>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/v1/cross-margin/accounts/balance?symbol=btcusdt"</span>
 </code></pre><h3 id='request-parameters-70'>Request Parameters</h3>
@@ -14869,7 +15122,7 @@ Rate Limit (NEW): 100times/2s</p>
       </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-78'>Response Content</h3>
+</span></code></pre><h3 id='response-content-79'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -14936,7 +15189,7 @@ Rate Limit (NEW): 100times/2s</p>
 <p>Available Accounts: Main and Sub-Accounts</p>
 
 <p>Sort by &quot;repayTime&quot; </p>
-<h3 id='http-request-78'>HTTP Request</h3>
+<h3 id='http-request-79'>HTTP Request</h3>
 <p><code>GET /v2/account/repayment</code></p>
 <h3 id='request-parameters-71'>Request Parameters</h3>
 <table><thead>
@@ -15020,7 +15273,7 @@ Rate Limit (NEW): 100times/2s</p>
             </span><span class="p">}</span><span class="w">
      </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-79'>Response Content</h3>
+</span></code></pre><h3 id='response-content-80'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -15448,7 +15701,7 @@ API Key Permission: Trade<br></p>
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-80'>Response Content</h3>
+</span></code></pre><h3 id='response-content-81'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -15524,7 +15777,7 @@ API Key Permission: Trade<br></p>
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-81'>Response Content</h3>
+</span></code></pre><h3 id='response-content-82'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -15638,7 +15891,7 @@ Maximum 500 offers can be cancelled in a single request. (to be cancelled in des
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-82'>Response Content</h3>
+</span></code></pre><h3 id='response-content-83'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -15804,7 +16057,7 @@ Searched by createTime<br></p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-83'>Response Content</h3>
+</span></code></pre><h3 id='response-content-84'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -15963,7 +16216,7 @@ API Key Permission: Read<br></p>
         </span><span class="s2">"createTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1593175645809</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-84'>Response Content</h3>
+</span></code></pre><h3 id='response-content-85'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -16210,7 +16463,7 @@ Searched by transactTime<br></p>
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-85'>Response Content</h3>
+</span></code></pre><h3 id='response-content-86'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -16374,7 +16627,7 @@ API Key Permission: Trade<br></p>
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-86'>Response Content</h3>
+</span></code></pre><h3 id='response-content-87'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -16510,7 +16763,7 @@ Seached by repayTime<br></p>
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-87'>Response Content</h3>
+</span></code></pre><h3 id='response-content-88'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -16651,7 +16904,7 @@ GET /v2/c2c/repayment allowed.<br></p>
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-88'>Response Content</h3>
+</span></code></pre><h3 id='response-content-89'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -16764,7 +17017,7 @@ API Key Permission: Read<br></p>
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-89'>Response Content</h3>
+</span></code></pre><h3 id='response-content-90'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -17283,7 +17536,7 @@ or
 </span><span class="s2">"lastSize"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.007444</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-90'>Response Content</h3>
+</span></code></pre><h3 id='response-content-91'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -19481,7 +19734,7 @@ The topic disseminates the current static value of individual accounts first, at
 <aside class="notice">All endpoints in this section require authentication</aside>
 <h2 id='get-exchange-rate'>Get Exchange Rate</h2>
 <p>API Key Permission：Read</p>
-<h3 id='http-request-79'>HTTP Request</h3>
+<h3 id='http-request-80'>HTTP Request</h3>
 <p><code>GET https://api.huobi.pro/v1/stable-coin/quote</code></p>
 <h3 id='request-parameters-73'>Request Parameters</h3>
 <table><thead>
@@ -19515,7 +19768,7 @@ The topic disseminates the current static value of individual accounts first, at
 <td>Type of the exchange (buy/sell)</td>
 </tr>
 </tbody></table>
-<h3 id='response-content-91'>Response Content</h3>
+<h3 id='response-content-92'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -19561,7 +19814,7 @@ The topic disseminates the current static value of individual accounts first, at
 </tbody></table>
 <h2 id='exchange-stable-coin'>Exchange Stable Coin</h2>
 <p>API Key Permission：Trade</p>
-<h3 id='http-request-80'>HTTP Request</h3>
+<h3 id='http-request-81'>HTTP Request</h3>
 <p><code>POST https://api.huobi.pro/v1/stable-coin/exchange</code></p>
 <h3 id='request-parameters-74'>Request Parameters</h3>
 <table><thead>
@@ -19581,7 +19834,7 @@ The topic disseminates the current static value of individual accounts first, at
 <td>stable currency quoteID</td>
 </tr>
 </tbody></table>
-<h3 id='response-content-92'>Response Content</h3>
+<h3 id='response-content-93'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -19683,7 +19936,7 @@ The topic disseminates the current static value of individual accounts first, at
 <p>Huobi&#39;s platform allows clients to create ETF holdings with their matching assets, and also allows clients to redempt ETF to comprised assets.</p>
 <h2 id='creation-and-redemption-configuration'>Creation and Redemption Configuration</h2>
 <p>This endpoint will return the basic information of ETF creation and redemption, as well as ETF constituents, including max amount of creation, min amount of creation, max amount of redemption, min amount of redemption, creation fee rate, redemption fee rate, eft create/redeem status.</p>
-<h3 id='http-request-81'>HTTP Request</h3>
+<h3 id='http-request-82'>HTTP Request</h3>
 <ul>
 <li>GET <code>/etf/swap/config</code></li>
 </ul>
@@ -19733,7 +19986,7 @@ The topic disseminates the current static value of individual accounts first, at
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-93'>Response Content</h3>
+</span></code></pre><h3 id='response-content-94'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -19795,7 +20048,7 @@ The topic disseminates the current static value of individual accounts first, at
 <p>API Key Permission：Trade</p>
 
 <p>This endpoint allow clients to order creation or redemption of ETF.</p>
-<h3 id='http-request-82'>HTTP Request</h3>
+<h3 id='http-request-83'>HTTP Request</h3>
 <ul>
 <li><p>POST <code>/etf/swap/in</code></p></li>
 <li><p>POST <code>/etf/swap/out</code></p></li>
@@ -19837,7 +20090,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
     </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-94'>Response Content</h3>
+</span></code></pre><h3 id='response-content-95'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -19932,7 +20185,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <p>API Key Permission：Read</p>
 
 <p>This endpoints allows clients to get past creation and redemption.(up to 100 records)</p>
-<h3 id='http-request-83'>HTTP Request</h3>
+<h3 id='http-request-84'>HTTP Request</h3>
 <ul>
 <li>GET <code>/etf/swap/list</code></li>
 </ul>
@@ -20012,7 +20265,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-95'>Response Content</h3>
+</span></code></pre><h3 id='response-content-96'>Response Content</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -20152,7 +20405,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <p>ETP (Exchange Tradable Products) APIs provide ETP related functionality, such as creation, redemption, query.</p>
 <h2 id='get-reference-data-of-etp'>Get reference data of ETP</h2>
 <p>Client can use this endpoint to query ETP&#39;s reference data</p>
-<h3 id='http-request-84'>HTTP Request</h3>
+<h3 id='http-request-85'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v2/etp/reference</code></li>
 </ul>
@@ -20306,7 +20559,7 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <td>ETP status（normal, creation-only, redemption-only, halted）</td>
 </tr>
 </tbody></table>
-<h2 id='etp-creation'>ETP Creation</h2><h3 id='http-request-85'>HTTP Request</h3>
+<h2 id='etp-creation'>ETP Creation</h2><h3 id='http-request-86'>HTTP Request</h3>
 <ul>
 <li>POST <code>/v2/etp/creation</code></li>
 </ul>
@@ -20384,7 +20637,7 @@ Rate Limit: 2times/sec<br></p>
 
 <p>Note:<br>
 The receipt of transactId doesn’t implicate the success of creation. User should query creation history to confirm the transaction status post creation.<br></p>
-<h2 id='etp-redemption'>ETP Redemption</h2><h3 id='http-request-86'>HTTP Request</h3>
+<h2 id='etp-redemption'>ETP Redemption</h2><h3 id='http-request-87'>HTTP Request</h3>
 <ul>
 <li>POST <code>/v2/etp/redemption</code></li>
 </ul>
@@ -20463,7 +20716,7 @@ Rate Limit: 2times/sec<br></p>
 <p>Note:<br>
 The receipt of transactId doesn’t implicate the success of redemption. User should query redemption history to confirm the transaction status post
 redemption.<br></p>
-<h2 id='get-etp-creation-amp-redemption-history'>Get ETP Creation &amp; Redemption History</h2><h3 id='http-request-87'>HTTP Request</h3>
+<h2 id='get-etp-creation-amp-redemption-history'>Get ETP Creation &amp; Redemption History</h2><h3 id='http-request-88'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v2/etp/transactions</code></li>
 </ul>
@@ -20665,7 +20918,7 @@ The query window is circled by startTime and endTime. The maximum window size is
 
 <p>Note:<br>
 If user querying occurs just after the transaction, transactAmount、transactValue、transactPrice might be updated as blank.<br></p>
-<h2 id='get-specific-etp-creation-or-redemption-record'>Get Specific ETP Creation or Redemption Record</h2><h3 id='http-request-88'>HTTP Request</h3>
+<h2 id='get-specific-etp-creation-or-redemption-record'>Get Specific ETP Creation or Redemption Record</h2><h3 id='http-request-89'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v2/etp/transaction</code></li>
 </ul>
@@ -20809,7 +21062,7 @@ Rate Limit: 2times/sec<br></p>
 
 <p>Note:<br>
 If user querying occurs just after the transaction, transactAmount、transactValue、transactPrice might be updated as blank.<br></p>
-<h2 id='get-position-rebalance-history'>Get Position Rebalance History</h2><h3 id='http-request-89'>HTTP Request</h3>
+<h2 id='get-position-rebalance-history'>Get Position Rebalance History</h2><h3 id='http-request-90'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v2/etp/rebalance</code></li>
 </ul>
@@ -20943,7 +21196,7 @@ The query window is circled by startTime and endTime. The maximum window size is
 <td>First record ID in next page (only valid if exceeded page size)</td>
 </tr>
 </tbody></table>
-<h2 id='submit-cancel-for-an-etp-order'>Submit Cancel for an ETP Order</h2><h3 id='http-request-90'>HTTP Request</h3>
+<h2 id='submit-cancel-for-an-etp-order'>Submit Cancel for an ETP Order</h2><h3 id='http-request-91'>HTTP Request</h3>
 <ul>
 <li>POST /v2/etp/{transactId}/cancel</li>
 </ul>
@@ -20996,7 +21249,7 @@ Rate Limit (NEW): 1 time /s<br></p>
 <td>Error message (if any)</td>
 </tr>
 </tbody></table>
-<h2 id='batch-cancellation-for-etp-orders'>Batch Cancellation for ETP Orders</h2><h3 id='http-request-91'>HTTP Request</h3>
+<h2 id='batch-cancellation-for-etp-orders'>Batch Cancellation for ETP Orders</h2><h3 id='http-request-92'>HTTP Request</h3>
 <ul>
 <li>POST /v2/etp/batch-cancel</li>
 </ul>
@@ -21097,7 +21350,7 @@ Rate Limit (NEW): 1 time /5s<br></p>
 <td>Transaction ID</td>
 </tr>
 </tbody></table>
-<h2 id='get-holding-limit-of-leveraged-etp'>Get Holding Limit of Leveraged ETP</h2><h3 id='http-request-92'>HTTP Request</h3>
+<h2 id='get-holding-limit-of-leveraged-etp'>Get Holding Limit of Leveraged ETP</h2><h3 id='http-request-93'>HTTP Request</h3>
 <ul>
 <li>GET /v2/etp/limit</li>
 </ul>
