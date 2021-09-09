@@ -12831,7 +12831,16 @@ API Key Permission: Trade<br>
 Rate Limit (NEW): 20times/2sec<br>
 This endpoint only supports order cancellation for those conditional orders which have not triggered yet. To cancel a triggered order, please refer to the endpoints in &quot;Trading&quot; section.<br>
 Before a conditional order triggering, it can be only cancelled via this endpoint instead of any endpoint in &quot;Trading&quot; section.<br></p>
-<h3 id='request-parameter-7'>Request Parameter</h3>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"clientOrderIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"zy0002"</span><span class="p">,</span><span class="s2">"zy0003"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-parameter-7'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -12847,7 +12856,7 @@ Before a conditional order triggering, it can be only cancelled via this endpoin
 <td>string[]</td>
 <td>TRUE</td>
 <td></td>
-<td>Client order ID (maximum 50 orders are allowed, separated by comma)</td>
+<td>Client order ID (maximum 50 orders are allowed, Transfer in the form of as array)</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -12859,7 +12868,8 @@ Before a conditional order triggering, it can be only cancelled via this endpoin
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"accepted"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="s2">"a001"</span><span class="w">
+            </span><span class="s2">"zy0002"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"zy0003"</span><span class="w">
         </span><span class="p">],</span><span class="w">
         </span><span class="s2">"rejected"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
     </span><span class="p">}</span><span class="w">
