@@ -5578,10 +5578,20 @@ Rate Limit (NEW): 20times/2sec<br>
 This endpoint only supports order cancellation for those conditional orders which have not triggered yet. To cancel a triggered order, please refer to the endpoints in "Trading" section.<br>
 Before a conditional order triggering, it can be only cancelled via this endpoint instead of any endpoint in "Trading" section.<br>
 
+> Request
+
+```json
+{
+    "clientOrderIds": [
+        "zy0002","zy0003"
+    ]
+}
+```
+
 ### Request Parameter
 |	Field	|	Data Type	|	Mandatory	|	Default Value|	Description	|	Valid Value	|
 |	-----	|	-----	|	------	|	----	|	------	|	----	|
-|	clientOrderIds	|	string[]	|	TRUE	|		|	Client order ID (maximum 50 orders are allowed, separated by comma) 	|		|
+|	clientOrderIds	|	string[]	|	TRUE	|		|	Client order ID (maximum 50 orders are allowed, Transfer in the form of as array) 	|		|
 
 > Response
 
@@ -5590,7 +5600,8 @@ Before a conditional order triggering, it can be only cancelled via this endpoin
     "code": 200,
     "data": {
         "accepted": [
-            "a001"
+            "zy0002",
+            "zy0003"
         ],
         "rejected": []
     }
