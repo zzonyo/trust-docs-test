@@ -9133,6 +9133,7 @@ Below is the error code and the description from stable coin APIs
 | exchange-failure               | other errors happend in the backend                         |
 | Base-user-request-exceed-limit | Operation is too frequently                                 |
 
+<!--
 # ETF (HB10)
 
 ## Introduction
@@ -9369,6 +9370,8 @@ Below is the error code and the description returned by ETF APIs
 | 13604      | Swap-in has been suspended                                   |
 | 13605      | Swap-out has been suspended                                  |
 | 13606      | Incorrect transaction share, exceed the limit                |
+
+-->
 
 # ETP
 
