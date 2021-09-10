@@ -1100,12 +1100,14 @@ None.
 |	-----	|	---------	|	--------	|	-----------	|
 |	code	|	integer	|	TRUE	|	Status code	|
 |	message	|	string	|	FALSE	|	Error message (if any)	|
-|	data	|	object	|	TRUE	|		|
-|	{ marketStatus	|	integer	|	TRUE	|	Market status (1=normal, 2=halted, 3=cancel-only) 	|
+|	\<data\>	|	object	|	TRUE	|		|
+|	marketStatus	|	integer	|	TRUE	|	Market status (1=normal, 2=halted, 3=cancel-only) 	|
 |	haltStartTime	|	long	|	FALSE	|	Halt start time (unix time in millisecond) , only valid for marketStatus=halted or cancel-only	|
 |	haltEndTime	|	long	|	FALSE	|	Estimated halt end time (unix time in millisecond) , only valid for marketStatus=halted or cancel-only; if this field is not returned during marketStatus=halted or cancel-only, it implicates the halt end time cannot be estimated at this time.	|
 |	haltReason	|	integer	|	FALSE	|	Halt reason (2=emergency-maintenance, 3=scheduled-maintenance) , only valid for marketStatus=halted or cancel-only	|
-|	affectedSymbols }	|	string	|	FALSE	|	Affected symbols, separated by comma. If affect all symbols just respond with value ‘all’. Only valid for marketStatus=halted or cancel-only	|
+|	affectedSymbols 	|	string	|	FALSE	|	Affected symbols, separated by comma. If affect all symbols just respond with value ‘all’. Only valid for marketStatus=halted or cancel-only	|
+|	\</data\>	|	 	|	 	|		|
+
 
 ## Get all Supported Trading Symbol
 
@@ -1117,7 +1119,7 @@ curl "https://api.huobi.pro/v1/common/symbols"
 
 ### HTTP Request
 
-`GET /v1/common/symbols`
+ - GET `/v1/common/symbols`
 
 ### Request Parameters
 
@@ -1130,28 +1132,47 @@ No parameter is needed for this endpoint.
     "status": "ok",
     "data": [
         {
-           "base-currency": "btc",
+            "base-currency": "ekt",
             "quote-currency": "usdt",
-            "price-precision": 2,
-            "amount-precision": 6,
-            "symbol-partition": "main",
-            "symbol": "btcusdt",
+            "price-precision": 6,
+            "amount-precision": 2,
+            "symbol-partition": "innovation",
+            "symbol": "ektusdt",
             "state": "online",
             "value-precision": 8,
-            "min-order-amt": 0.0001,
-            "max-order-amt": 1000,
+            "min-order-amt": 0.1,
+            "max-order-amt": 10000000,
             "min-order-value": 5,
-            "limit-order-min-order-amt": 0.0001,
-            "limit-order-max-order-amt": 1000,
-            "sell-market-min-order-amt": 0.0001,
-            "sell-market-max-order-amt": 100,
-            "buy-market-max-order-value": 1000000,
-            "leverage-ratio": 5,
-            "super-margin-leverage-ratio": 3,
-            "funding-leverage-ratio": 3,
+            "limit-order-min-order-amt": 0.1,
+            "limit-order-max-order-amt": 10000000,
+            "limit-order-max-buy-amt": 10000000,
+            "limit-order-max-sell-amt": 10000000,
+            "sell-market-min-order-amt": 0.1,
+            "sell-market-max-order-amt": 1000000,
+            "buy-market-max-order-value": 200000,
             "api-trading": "enabled"
         },
-    ......
+        {
+            "base-currency": "snx",
+            "quote-currency": "husd",
+            "price-precision": 4,
+            "amount-precision": 2,
+            "symbol-partition": "innovation",
+            "symbol": "snxhusd",
+            "state": "online",
+            "value-precision": 8,
+            "min-order-amt": 0.01,
+            "max-order-amt": 250000,
+            "min-order-value": 5,
+            "limit-order-min-order-amt": 0.01,
+            "limit-order-max-order-amt": 250000,
+            "limit-order-max-buy-amt": 250000,
+            "limit-order-max-sell-amt": 250000,
+            "sell-market-min-order-amt": 0.01,
+            "sell-market-max-order-amt": 25000,
+            "buy-market-max-order-value": 100000,
+            "api-trading": "enabled"
+        }
     ]
 }
 ```
@@ -1160,6 +1181,8 @@ No parameter is needed for this endpoint.
 
 | Parameter                  | Required | Data Type | Description                                                  |
 | -------------------------- | -------- | --------- | ------------------------------------------------------------ |
+| status             | true     | string   | Request Processing Result（"ok","error"）                                 |
+| \<data\>             | true     | object   |                                         |
 | base-currency              | true     | string    | Base currency in a trading symbol                            |
 | quote-currency             | true     | string    | Quote currency in a trading symbol                           |
 | price-precision            | true     | integer   | Quote currency precision when quote price(decimal places)）  |
@@ -1185,6 +1208,7 @@ No parameter is needed for this endpoint.
 | rebal-threshold            | false    | float     | The threshold which triggers adhoc position rebalance (evaluated by actual leverage ratio, only valid for ETP symbols) |
 | init-nav                   | false    | float     | Initial NAV (only valid for ETP symbols)                     |
 | api-trading                | true     | string    | API trading enabled or not (possible value: enabled, disabled) |
+| \</data\>             |      |    |                                         |
 
 
 ## Get all Supported Currencies
@@ -1197,7 +1221,7 @@ curl "https://api.huobi.pro/v1/common/currencys"
 
 ### HTTP Request
 
-`GET /v1/common/currencys`
+ - GET `/v1/common/currencys`
 
 ### Request Parameters
 
@@ -1206,23 +1230,38 @@ No parameter is needed for this endpoint.
 > Response:
 
 ```json
-  "data": [
-    "usdt",
-    "eth",
-    "etc"
-  ]
+{
+    "status": "ok",
+    "data": [
+        "usdt",
+        "btc",
+        "bch",
+        "eth",
+        "xrp",
+        "ltc",
+        "ht",
+        "ada"
+    ]
+}
 ```
 
 ### Response Content
 
 <aside class="notice">The returned "data" field contains a list of string with each string represents a suppported currency.</aside>
+
+| Field Name      | Mandatory | Data Type   | Description   |
+| -------------- | -------- | ------- | ---------- | 
+| status         | true     | string   | Request Processing Result（"ok","error"）               |
+| data         | true     | array   |  with each string represents a suppported currency             |
+
+
 ## APIv2 - Currency & Chains
 
 API user could query static reference information for each currency, as well as its corresponding chain(s). (Public Endpoint)
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v2/reference/currencies`
+ - GET `/v2/reference/currencies`
 
 ```shell
 curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
@@ -1308,7 +1347,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
             "currency":"usdt",
             "instStatus":"normal"
         }
-        ]
+    ]
 }
 
 ```
@@ -1320,9 +1359,9 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
 | ----------------------- | --------- | --------- | ------------------------------------------------------------ | ---------------------- |
 | code                    | true      | int       | Status code                                                  |                        |
 | message                 | false     | string    | Error message (if any)                                       |                        |
-| data                    | true      | object    |                                                              |                        |
-| { currency              | true      | string    | Currency                                                     |                        |
-| { chains                | true      | object    |                                                              |                        |
+| \<data\>                | true     | object   |                                                              |                        |
+| currency                | true      | string    | Currency                                                     |                        |
+| \<chains\>              | true      | object    |                                                              |                        |
 | chain                   | true      | string    | Chain name                                                   |                        |
 | displayName             | true      | string    | Chain display name                                           |                        |
 | baseChain               | false     | string    | Base chain name                                              |                        |
@@ -1343,8 +1382,11 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
 | minTransactFeeWithdraw  | false     | string    | Minimal withdraw fee in each request (only applicable to withdrawFeeType = circulated or ratio) |                        |
 | maxTransactFeeWithdraw  | false     | string    | Maximum withdraw fee in each request (only applicable to withdrawFeeType = circulated or ratio) |                        |
 | transactFeeRateWithdraw | false     | string    | Withdraw fee in each request (only applicable to withdrawFeeType = ratio) |                        |
-| withdrawStatus}         | true      | string    | Withdraw status                                              | allowed,prohibited     |
-| instStatus }            | true      | string    | Instrument status                                            | normal,delisted        |
+| withdrawStatus         | true      | string    | Withdraw status                                              | allowed,prohibited     |
+| \</data\>               |      |    |                                                              |                        |
+| instStatus             | true      | string    | Instrument status                                            | normal,delisted        |
+| \</chains\>             |      |    |                                                              |                        |
+
 
 ### Status Code
 
@@ -1364,7 +1406,7 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 
 ### HTTP Request
 
-`GET /v1/common/timestamp`
+ - GET `/v1/common/timestamp`
 
 ### Request Parameters
 
@@ -1373,12 +1415,19 @@ No parameter is needed for this endpoint.
 > Response:
 
 ```json
-  "data": 1494900087029
+{
+    "status":"ok",
+    "data":1629715504949
+}
 ```
 
 ### Response Content
 
-The returned "Data" field contains an integer representing the timestamp in milliseconds adjusted to Singapore time.
+| 参数名称 | 	是否必须 | 	类型 | 	描述 | 	取值范围 | 
+| ------ | ------ | ------ | ------ | ------| 
+| status | 	true  |	string  |	Request Processing Result		| 
+| data | 	true | 	long | 	current system timestamp		 | 
+
 
 # Market Data
 
@@ -1394,7 +1443,7 @@ This endpoint retrieves all klines in a specific range.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/market/history/kline`
+ - GET `/market/history/kline`
 
 ```shell
 curl "https://api.huobi.pro/market/history/kline?period=1day&size=200&symbol=btcusdt"
@@ -1406,7 +1455,7 @@ curl "https://api.huobi.pro/market/history/kline?period=1day&size=200&symbol=btc
 | --------- | --------- | -------- | ------- | --------------------------- | ------------------------------------------------------------ |
 | symbol    | string    | true     | NA      | The trading symbol to query | All trading symbol supported, e.g. btcusdt, bccbtcn (to retrieve candlesticks for ETP NAV, symbol = ETP trading symbol + suffix 'nav'，for example: btc3lusdtnav) |
 | period    | string    | true     | NA      | The period of each candle   | 1min, 5min, 15min, 30min, 60min, 4hour, 1day, 1mon, 1week, 1year |
-| size      | integer   | false    | 150     | The number of data returns  | [1, 2000]                                                    |
+| size      | integer   | false    | 150     | The number of data returns  | [1-2000]                                    |
 
 <aside class="notice">This API doesn't support customized period, refer to Websocket K line API to get the emurated period value.</aside>
 <aside class="notice">To query HB10, put "hb10" at symbol position.</aside>
@@ -1414,24 +1463,43 @@ curl "https://api.huobi.pro/market/history/kline?period=1day&size=200&symbol=btc
 > The above command returns JSON structured like this:
 
 ```json
-"data": [
-  {
-    "id": 1499184000,
-    "amount": 37593.0266,
-    "count": 0,
-    "open": 1935.2000,
-    "close": 1879.0000,
-    "low": 1856.0000,
-    "high": 1940.0000,
-    "vol": 71031537.97866500
-  }
-]
+{
+    "ch": "market.btcusdt.kline.5min",
+    "status": "ok",
+    "ts": 1629769247172,
+    "data": [
+        {
+            "id": 1629769200,
+            "open": 49056.37,
+            "close": 49025.51,
+            "low": 49022.86,
+            "high": 49056.38,
+            "amount": 3.946281917950917,
+            "vol": 193489.67275732,
+            "count": 196
+        },
+        {
+            "id": 1629768900,
+            "open": 48994.61,
+            "close": 49056.37,
+            "low": 48966.72,
+            "high": 49072.46,
+            "amount": 30.72223099519689,
+            "vol": 1505870.732227976,
+            "count": 1504
+        }
+    ]
+}
 ```
 
 ### Response Content
 
 | Field  | Data Type | Description                                  |
 | ------ | --------- | -------------------------------------------- |
+| status       | string     | Request Processing Result  "ok","error" |
+| ch       | string     | Data belonged channel，Format：market.$symbol.kline.$period |
+| ts       | long     |  Time of Respond Generation, Unit: Millisecond         |
+| \<data\>   | object     |    |
 | id     | long      | The UNIX timestamp in seconds as response id |
 | amount | float     | Accumulated trading volume, in base currency |
 | count  | integer   | The number of completed trades               |
@@ -1440,6 +1508,8 @@ curl "https://api.huobi.pro/market/history/kline?period=1day&size=200&symbol=btc
 | low    | float     | The low price                                |
 | high   | float     | The high price                               |
 | vol    | float     | Accumulated trading value, in quote currency |
+| \</data\>   |      |    |
+
 
 ## Get Latest Aggregated Ticker
 
@@ -1447,7 +1517,7 @@ This endpoint retrieves the latest ticker with some important 24h aggregated mar
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/market/detail/merged`
+ - GET `/market/detail/merged`
 
 ```shell
 curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
@@ -1462,18 +1532,29 @@ curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
 > The above command returns JSON structured like this:
 
 ```json
-"data": {
-  "id":1499225271,
-  "ts":1499225271000,
-  "close":1885.0000,
-  "open":1960.0000,
-  "high":1985.0000,
-  "low":1856.0000,
-  "amount":81486.2926,
-  "count":42122,
-  "vol":157052744.85708200,
-  "ask":[1885.0000,21.8804],
-  "bid":[1884.0000,1.6702]
+{
+    "ch": "market.btcusdt.detail.merged",
+    "status": "ok",
+    "ts": 1629788763750,
+    "tick": {
+        "id": 272156789143,
+        "version": 272156789143,
+        "open": 50080.0,
+        "close": 49820.92,
+        "low": 48767.0,
+        "high": 50500.0,
+        "amount": 12055.365781937457,
+        "vol": 5.985618685709001E8,
+        "count": 420573,
+        "bid": [
+            49819.48,
+            2.58112
+        ],
+        "ask": [
+            49819.49,
+            0.002411
+        ]
+    }
 }
 ```
 
@@ -1481,6 +1562,10 @@ curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
 
 | Field  | Data Type | Description                                                  |
 | ------ | --------- | ------------------------------------------------------------ |
+| status   | string     |  Request Processing Result "ok","error"                 |
+| ch       | string     | Data belonged channel，Format：market.$symbol.detail.merged    |
+| ts       | long       |  Time of Respond Generation, Unit: Millisecond       |
+| \<tick\> | object     |                                  |
 | id     | long      | The internal identity                                        |
 | amount | float     | Accumulated trading volume of last 24 hours (rotating 24h), in base currency |
 | count  | integer   | The number of completed trades (rotating 24h)                |
@@ -1491,15 +1576,18 @@ curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
 | vol    | float     | Accumulated trading value of last 24 hours (rotating 24h), in quote currency |
 | bid    | object    | The current best bid in format [price, size]                 |
 | ask    | object    | The current best ask in format [price, size]                 |
+| \</tick\> |      |                                        |
+
 
 ## Get Latest Tickers for All Pairs
 
 This endpoint retrieves the latest tickers for all supported pairs.
 
 <aside class="notice">The returned data object can contain large amount of tickers.</aside>
+
 ### HTTP Request
 
-`GET https://api.huobi.pro/market/tickers`
+ - GET `/market/tickers`
 
 ```shell
 curl "https://api.huobi.pro/market/tickers"
@@ -1512,36 +1600,40 @@ No parameters are needed for this endpoint.
 > The above command returns JSON structured like this:
 
 ```json
-"data": [  
-    {  
-        "open":0.044297,
-        "close":0.042178,
-        "low":0.040110,
-        "high":0.045255,
-        "amount":12880.8510,  
-        "count":12838,
-        "vol":563.0388715740,
-        "symbol":"ethbtc",
-        "bid":0.007545,
-        "bidSize":0.008,
-        "ask":0.008088,
-        "askSize":0.009
-    },
-    {  
-        "open":0.008545,
-        "close":0.008656,
-        "low":0.008088,
-        "high":0.009388,
-        "amount":88056.1860,
-        "count":16077,
-        "vol":771.7975953754,
-        "symbol":"ltcbtc",
-        "bid":0.007545,
-        "bidSize":0.008,
-        "ask":0.008088,
-        "askSize":0.009
-    }
-]
+{
+    "status":"ok",
+    "ts":1629789355531,
+    "data":[
+        {
+            "symbol":"smtusdt",
+            "open":0.004659,     
+            "high":0.004696,     
+            "low":0.0046,        
+            "close":0.00468,     
+            "amount":36551302.17544405,
+            "vol":170526.0643855023,
+            "count":1709,
+            "bid":0.004651,
+            "bidSize":54300.341,
+            "ask":0.004679,
+            "askSize":1923.4879
+        },
+        {
+            "symbol":"ltcht",
+            "open":12.795626,
+            "high":12.918053,
+            "low":12.568926,
+            "close":12.918053,
+            "amount":1131.801675005825,
+            "vol":14506.9381937385,
+            "count":923,
+            "bid":12.912687,
+            "bidSize":0.1068,
+            "ask":12.927032,
+            "askSize":5.3228
+        }
+    ]
+}
 ```
 
 ### Response Content
@@ -1550,6 +1642,9 @@ Response content is an array of object, each object has below fields.
 
 | Field   | Data Type | Description                                                  |
 | ------- | --------- | ------------------------------------------------------------ |
+| status   | string   |  Request Processing Result "ok","error"    |
+| ts       | long     |  Time of Respond Generation, Unit: Millisecond    |
+| \<data\> | object   |          |
 | amount  | float     | The aggregated trading volume in last 24 hours (rotating 24h) |
 | count   | integer   | The number of completed trades of last 24 hours (rotating 24h) |
 | open    | float     | The opening price of a nature day (Singapore time)           |
@@ -1562,6 +1657,8 @@ Response content is an array of object, each object has below fields.
 | bidSize | float     | Best bid size                                                |
 | ask     | float     | Best ask price                                               |
 | askSize | float     | Best ask size                                                |
+| \</data\> |     |          |
+
 
 ## Get Market Depth
 
@@ -1569,10 +1666,10 @@ This endpoint retrieves the current order book of a specific pair.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/market/depth`
+ - GET `/market/depth`
 
 ```shell
-curl "https://api.huobi.pro/market/depth?symbol=btcusdt&type=step1"
+curl "https://api.huobi.pro/market/depth?symbol=btcusdt&type=step0"
 ```
 
 ### Request Parameters
@@ -1598,66 +1695,76 @@ curl "https://api.huobi.pro/market/depth?symbol=btcusdt&type=step1"
 > The above command returns JSON structured like this:
 
 ```json
-"tick": {
-    "version": 31615842081,
-    "ts": 1489464585407,
-    "bids": [
-      [7964, 0.0678],
-      [7963, 0.9162],
-      [7961, 0.1],
-      [7960, 12.8898],
-      [7958, 1.2],
-      [7955, 2.1009],
-      [7954, 0.4708],
-      [7953, 0.0564],
-      [7951, 2.8031],
-      [7950, 13.7785],
-      [7949, 0.125],
-      [7948, 4],
-      [7942, 0.4337],
-      [7940, 6.1612],
-      [7936, 0.02],
-      [7935, 1.3575],
-      [7933, 2.002],
-      [7932, 1.3449],
-      [7930, 10.2974],
-      [7929, 3.2226]
-    ],
-    "asks": [
-      [7979, 0.0736],
-      [7980, 1.0292],
-      [7981, 5.5652],
-      [7986, 0.2416],
-      [7990, 1.9970],
-      [7995, 0.88],
-      [7996, 0.0212],
-      [8000, 9.2609],
-      [8002, 0.02],
-      [8008, 1],
-      [8010, 0.8735],
-      [8011, 2.36],
-      [8012, 0.02],
-      [8014, 0.1067],
-      [8015, 12.9118],
-      [8016, 2.5206],
-      [8017, 0.0166],
-      [8018, 1.3218],
-      [8019, 0.01],
-      [8020, 13.6584]
-    ]
-  }
+{
+    "ch": "market.btcusdt.depth.step0",
+    "status": "ok",
+    "ts": 1629790438801,
+    "tick": {
+        "ts": 1629790438215,
+        "version": 136107114472,
+        "bids": [
+            [
+                49790.87,
+                0.779876
+            ],
+            [
+                49785.9,
+                1.82E-4
+            ],
+            [
+                49784.48,
+                0.002758
+            ],
+            [
+                49784.29,
+                0.05
+            ],
+            [
+                49783.06,
+                0.005038
+            ]
+        ],
+        "asks": [
+            [
+                49790.88,
+                2.980472
+            ],
+            [
+                49790.89,
+                0.006613
+            ],
+            [
+                49792.16,
+                0.080302
+            ],
+            [
+                49792.67,
+                0.030112
+            ],
+            [
+                49793.23,
+                0.043103
+            ]
+        ]
+    }
+}
 ```
 
 ### Response Content
 
 <aside class="notice">The returned data object is under 'tick' object instead of 'data' object in the top level JSON</aside>
+
 | Field   | Data Type | Description                                                  |
 | ------- | --------- | ------------------------------------------------------------ |
+| status   | string | Request Processing Result  "ok","error" |
+| ch       | string | Data belonged channel，Format： market.$symbol.depth.$type |
+| ts       | long   | Time of Respond Generation, Unit: Millisecond     |
+| \<tick\> | object |   |
 | ts      | integer   | The UNIX timestamp in milliseconds is adjusted to Singapore time |
 | version | integer   | Internal data                                                |
 | bids    | object    | The current all bids in format [price, size]                 |
 | asks    | object    | The current all asks in format [price, size]                 |
-
+| \</tick\> |   |   |
 
 ## Get the Last Trade
 
@@ -1665,7 +1772,7 @@ This endpoint retrieves the latest trade with its price, volume, and direction.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/market/trade`
+ - GET `/market/trade`
 
 ```shell
 curl "https://api.huobi.pro/market/trade?symbol=ethusdt"
@@ -1680,33 +1787,57 @@ curl "https://api.huobi.pro/market/trade?symbol=ethusdt"
 > The above command returns JSON structured like this:
 
 ```json
-"tick": {
-    "id": 600848670,
-    "ts": 1489464451000,
-    "data": [
-      {
-        "id": 600848670,
-        "trade-id": 102043494568,
-        "price": 7962.62,
-        "amount": 0.0122,
-        "direction": "buy",
-        "ts": 1489464451000
-      }
-    ]
+{
+    "ch": "market.btcusdt.trade.detail",
+    "status": "ok",
+    "ts": 1629792192037,
+    "tick": {
+        "id": 136107843051,
+        "ts": 1629792191928,
+        "data": [
+            {
+                "id": 136107843051348400221001656,
+                "ts": 1629792191928,
+                "trade-id": 102517374388,
+                "amount": 0.028416,
+                "price": 49806.0,
+                "direction": "buy"
+            },
+            {
+                "id": 136107843051348400229813302,
+                "ts": 1629792191928,
+                "trade-id": 102517374387,
+                "amount": 0.025794,
+                "price": 49806.0,
+                "direction": "buy"
+            }
+        ]
+    }
 }
 ```
 
 ### Response Content
 
 <aside class="notice">The returned data object is under 'tick' object instead of 'data' object in the top level JSON</aside>
+
 | Parameter | Data Type | Description                                                  |
 | --------- | --------- | ------------------------------------------------------------ |
+| status    | string | Request Processing Result  "ok","error" |
+| ch        | string | Data belonged channel，Format：market.$symbol.trade.detail |
+| ts        | long   | Time of Respond Generation, Unit: Millisecond |
+| \<tick\>  | object |    |
+| id        | long |  global transaction ID  |
+| ts        | long |  Latest Creation Time  |
+| \<data\>  | object |    |
 | id        | integer   | The unique trade id of this trade (to be obsoleted)          |
 | trade-id  | integer   | The unique trade id (NEW)                                    |
 | amount    | float     | The trading volume in base currency                          |
 | price     | float     | The trading price in quote currency                          |
 | ts        | integer   | The UNIX timestamp in milliseconds adjusted to Singapore time |
 | direction | string    | The direction of the taker trade: 'buy' or 'sell'            |
+| \</data\> |  |    |
+| \</tick\> |   |  |
+
 
 ## Get the Most Recent Trades
 
@@ -1714,7 +1845,7 @@ This endpoint retrieves the most recent trades with their price, volume, and dir
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/market/history/trade`
+ - GET `/market/history/trade`
 
 ```shell
 curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
@@ -1725,62 +1856,78 @@ curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
 | Parameter | Data Type | Required | Default Value | Description                 | Value Range                                                  |
 | --------- | --------- | -------- | ------------- | --------------------------- | ------------------------------------------------------------ |
 | symbol    | string    | true     | NA            | The trading symbol to query | All supported trading symbol, e.g. btcusdt, bccbtc.Refer to `GET /v1/common/symbols` |
-| size      | integer   | false    | 1             | The number of data returns  | [1, 2000]                                                    |
+| size      | integer   | false    | 1             | The number of data returns  | [1-2000]                                   |
 
 > The above command returns JSON structured like this:
 
 ```json
-"data": [  
-   {  
-      "id":31618787514,
-      "ts":1544390317905,
-      "data":[  
-         {  
-            "amount":9.000000000000000000,
-            "ts":1544390317905,
-            "id":3161878751418918529341,
-            "trade-id": 102043495672,
-            "price":94.690000000000000000,
-            "direction":"sell"
-         },
-         {  
-            "amount":73.771000000000000000,
-            "ts":1544390317905,
-            "id":3161878751418918532514,
-            "trade-id": 102043495673,
-            "price":94.660000000000000000,
-            "direction":"sell"
-         }
-      ]
-   },
-   {  
-      "id":31618776989,
-      "ts":1544390311353,
-      "data":[  
-         {  
-            "amount":1.000000000000000000,
-            "ts":1544390311353,
-            "id":3161877698918918522622,
-            "trade-id": 102043495674,
-            "price":94.710000000000000000,
-            "direction":"buy"
-         }
-      ]
-   }
+{
+    "ch": "market.btcusdt.trade.detail",
+    "status": "ok",
+    "ts": 1629793657842,
+    "data": [
+        {
+            "id": 136108764379,
+            "ts": 1629793656939,
+            "data": [
+                {
+                    "id": 136108764379348400430265987,
+                    "ts": 1629793656939,
+                    "trade-id": 102517381182,
+                    "amount": 1.24E-4,
+                    "price": 49656.4,
+                    "direction": "buy"
+                }
+            ]
+        },
+        {
+            "id": 136108763320,
+            "ts": 1629793656198,
+            "data": [
+                {
+                    "id": 136108763320348400439066863,
+                    "ts": 1629793656198,
+                    "trade-id": 102517381181,
+                    "amount": 0.01125,
+                    "price": 49655.0,
+                    "direction": "buy"
+                },
+                {
+                    "id": 136108763320348400429773626,
+                    "ts": 1629793656198,
+                    "trade-id": 102517381180,
+                    "amount": 8.3E-4,
+                    "price": 49651.35,
+                    "direction": "buy"
+                }
+            ]
+        }
+    ]
 }
 ```
 
 ### Response Content
 
 <aside class="notice">The returned data object is an array which represents one recent timestamp; each timestamp object again is an array which represents all trades occurred at this timestamp.</aside>
+
 | Field     | Data Type | Description                                                  |
 | --------- | --------- | ------------------------------------------------------------ |
+| status    | string | Request Processing Result  "ok","error" |
+| ch        | string | Data belonged channel，Format：market.$symbol.trade.detail  |
+| ts        | long   | Time of Respond Generation, Unit: Millisecond |
+| \<data\>  | object |    |
+| id        | long |  global transaction ID  |
+| ts        | long |  Latest Creation Time  |
+| \<data\>  | object |    |
 | id        | integer   | The unique trade id of this trade (to be obsoleted)          |
 | trade-id  | integer   | The unique trade id (NEW)                                    |
 | amount    | float     | The trading volume in base currency                          |
 | price     | float     | The trading price in quote currency                          |
 | ts        | integer   | The UNIX timestamp in milliseconds adjusted to Singapore time |
 | direction | string    | The direction of the taker trade: 'buy' or 'sell'            |
+| \</data\>  |   |                              |
+| \</data\>  |   |                              |
+
 
 ## Get the Last 24h Market Summary
 
@@ -1790,7 +1937,7 @@ This endpoint retrieves the summary of trading in the market for the last 24 hou
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/market/detail/`
+ - GET  `/market/detail/`
 
 ```shell
 curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
@@ -1805,24 +1952,34 @@ curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
 > The above command returns JSON structured like this:
 
 ```json
-"tick": {  
-   "amount":613071.438479561,
-   "open":86.21,
-   "close":94.35,
-   "high":98.7,
-   "id":31619471534,
-   "count":138909,
-   "low":84.63,
-   "version":31619471534,
-   "vol":5.6617373443873316E7
+{
+    "ch": "market.btcusdt.detail",
+    "status": "ok",
+    "ts": 1629795484817,
+    "tick": {
+        "id": 272164011416,
+        "low": 48767.0,
+        "high": 50500.0,
+        "open": 50266.89,
+        "close": 49728.71,
+        "vol": 6.010379336834868E8,
+        "amount": 12110.642402972368,
+        "version": 272164011416,
+        "count": 420452
+    }
 }
 ```
 
 ### Response Content
 
 <aside class="notice">The returned data object is under 'tick' object instead of 'data' object in the top level JSON</aside>
+
 | Field   | Data Type | Description                                                  |
 | ------- | --------- | ------------------------------------------------------------ |
+| status   | string  | Request Processing Result "ok","error"           |
+| ch       | string  | Data belonged channel，Format： market.$symbol.detail      |
+| ts       | long  | Time of Respond Generation, Unit: Millisecond                 |
+| \<tick\>       | object  |                                    |
 | id      | integer   | The internal identity                                        |
 | amount  | float     | The aggregated trading volume in USDT of last 24 hours (rotating 24h) |
 | count   | integer   | The number of completed trades of last 24 hours (rotating 24h) |
@@ -1832,6 +1989,8 @@ curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
 | high    | float     | The highest price of last 24 hours (rotating 24h)               |
 | vol     | float     | The trading volume in base currency of last 24 hours (rotating 24h) |
 | version | integer   | Internal data                                                |
+| \</tick\>       |   |                                    |
+
 
 ## Get real time NAV
 
@@ -1882,14 +2041,21 @@ curl "https://api.huobi.pro/market/etp?symbol=btc3lusdt"
 
 | Field Name     | Data Type | Description                            |
 | -------------- | --------- | -------------------------------------- |
+| status    | string | Request Processing Result  "ok","error" |
+| ch        | string | Data belonged channel，Format：market.$symbol.etp  |
+| ts        | long | Time of Respond Generation, Unit: Millisecond   |
+| \<tick\>  | object |  |
 | symbol         | string    | ETP trading symbol                     |
 | nav            | float     | Latest NAV                             |
 | navTime        | long      | Update time (unix time in millisecond) |
 | outstanding    | float     | Outstanding shares                     |
-| basket         | object    | Basket                                 |
-| { currency     | float     | Currency                               |
-| amount }       | float     | Amount                                 |
+| \<basket\>     | object    | Basket                                 |
+| currency       | float     | Currency                               |
+| amount         | float     | Amount                                 |
+| \</basket\>     |    |                                         |
 | actualLeverage | float     | Actual leverage ratio                  |
+| \</tick\>  |  |  |
+
 
 ## Error Code
 
@@ -1904,6 +2070,7 @@ Below is the error code, error message and description returned by Market data A
 | invalid-parameter | invalid size                        | Parameter size is invalid                        |
 | invalid-parameter | invalid size,valid range: [1, 2000] | Parameter size range is invalid                  |
 | invalid-parameter | request timeout                     | Request timeout please try again                 |
+
 
 # Account
 
@@ -1922,36 +2089,51 @@ This endpoint returns a list of accounts owned by this API user.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/account/accounts`
-
-```shell
-curl "https://api.huobi.pro/v1/account/accounts"
-```
+ - GET `/v1/account/accounts`
 
 ### Request Parameters
 
 <aside class="notice">No parameter is available for this endpoint</aside>
+
 > The above command returns JSON structured like this:
 
 ```json
-  "data": [
-    {
-      "id": 100009,
-      "type": "spot",
-      "subtype": "",
-      "state": "working"
-    }
-  ]
+{
+    "status": "ok",
+    "data": [
+        {
+            "id": 10000001,
+            "type": "spot",
+            "subtype": "",
+            "state": "working"
+        },
+        {
+            "id": 10000002,
+            "type": "otc",
+            "subtype": "",
+            "state": "working"
+        },
+        {
+            "id": 10000003,
+            "type": "point",
+            "subtype": "",
+            "state": "working"
+        }
+    ]
+}
 ```
 
 ### Response Content
 
 | Field   | Data Type | Description                                                  | Value Range                                                  |
 | ------- | --------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| status   | true     | string   | Request Processing Result       |      "ok","error"                                  |
+| \<data\> | true     | object   |                          |                                                              |
 | id      | integer   | Unique account id                                            | NA                                                           |
 | state   | string    | Account state                                                | working, lock                                                |
 | type    | string    | The type of this account                                     | spot, margin, otc, point, super-margin, investment, borrow   |
 | subtype | string    | The type of sub account (applicable only for isolated margin accout) | The corresponding trading symbol (currency pair) the isolated margin is based on, e.g. btcusdt |
+| \</data\> | true     | object   |                          |                                                              |
 
 <aside class="notice">Margin/super-margin/borrow account will only be created after the initial incoming asset transfer.</aside>
 
@@ -1964,45 +2146,44 @@ This endpoint returns the balance of an account specified by account id.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/account/accounts/{account-id}/balance`
+ - GET `/v1/account/accounts/{account-id}/balance`
 
 'account-id': The specified account id to get balance for, can be found by query '/v1/account/accounts' endpoint.
-
-```shell
-curl "https://api.huobi.pro/v1/account/accounts/100009/balance"
-```
 
 ### Request Parameters
 
 <aside class="notice">No parameter is needed for this endpoint</aside>
+
 > The above command returns JSON structured like this:
 
 ```json
-"data": {
-    "id": 100009,
-    "type": "spot",
-    "state": "working",
-    "list": [
-      {
-        "currency": "usdt",
-        "type": "trade",
-        "seq-num": "86872993928",
-        "balance": "500009195917.4362872650"
-      },
-      {
-        "currency": "usdt",
-        "type": "frozen",
-        "seq-num": "86872993928",
-        "balance": "328048.1199920000"
-      },
-     {
-        "currency": "etc",
-        "type": "trade",
-       "seq-num": "86872993928",
-        "balance": "499999894616.1302471000"
-      }
-    ],
-  }
+{
+    "status": "ok",
+    "data": {
+        "id": 1000001,
+        "type": "spot",
+        "state": "working",
+        "list": [
+            {
+                "currency": "usdt",
+                "type": "trade",
+                "balance": "91.850043797676510303",
+                "seq-num": "477"
+            },
+            {
+                "currency": "usdt",
+                "type": "frozen",
+                "balance": "5.160000000000000015",
+                "seq-num": "477"
+            },
+            {
+                "currency": "poly",
+                "type": "trade",
+                "balance": "147.928994082840236",
+                "seq-num": "2"
+            }
+        ]
+    }
 }
 ```
 
@@ -2010,19 +2191,18 @@ curl "https://api.huobi.pro/v1/account/accounts/100009/balance"
 
 | Field | Data Type | Description                          | Value Range                                                |
 | ----- | --------- | ------------------------------------ | ---------------------------------------------------------- |
+| status   | string   | Request Processing Result  |        "ok","error"                  |
+| \<data\> | object   |    |                                                              |
 | id    | integer   | Unique account id                    | NA                                                         |
 | state | string    | Account state                        | working, lock                                              |
 | type  | string    | The type of this account             | spot, margin, otc, point, super-margin, investment, borrow |
-| list  | object    | The balance details of each currency |                                                            |
-
-**Per list item content**
-
-| Field    | Data Type | Description                           | Value Range   |
-| -------- | --------- | ------------------------------------- | ------------- |
+| \<list\>     |  Array    |          |  
 | currency | string    | The currency of this balance          | NA            |
-| type     | string    | The balance type                      | trade, frozen |
+| type     | string    | The balance type                      |  trade，frozen, loan, interest, lock, bank  |
 | balance  | string    | The balance in the main currency unit | NA            |
 | seq-num  | string    | Serial Number of Account Change       | NA            |
+| \</list\>     |     |     |          |    
+| \</data\>      |     |    |    |     
 
 
 ## Get The Total Valuation of Platform Assets
@@ -2151,8 +2331,12 @@ This endpoint returns the valuation of the total assets of the account in btc or
 
 | Parameter | Required | Data Type | Description                                          |
 | --------- | -------- | --------- | ---------------------------------------------------- |
+| code      | true     | string   |   status code   |
+| ok        | true     | string   |          |
+| \<data\>  | true     | object   |          |
 | balance   | true     | string    | The valuation according to the certain fiat currency |
 | timestamp | true     | long      | Return time                                          |
+| \</data\>  |      |    |          |
 
 
 ## Asset Transfer
@@ -2209,9 +2393,10 @@ Other transfer functions will be gradually launched later, please take note on A
 | Field          | Required | Data Type | Description    | Values          |
 | -------------- | -------- | --------- | -------------- | --------------- |
 | status         | true     | string    | Request status | "ok" or "error" |
-| data           | true     | list      |                |                 |
-| {transact-id   | true     | int       | Transfer id    |                 |
-| transact-time} | true     | long      | Transfer time  |                 |
+| \<data\>       | true     | list     |            |                 |
+| transact-id    | true     | int       | Transfer id    |                 |
+| transact-time  | true     | long      | Transfer time  |                 |
+| \</data\>        |      |      |            |                 |
 
 
 ## Get Account History
@@ -2223,7 +2408,7 @@ This endpoint returns the amount changes of a specified user's account.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/account/history`
+ - GET `/v1/account/history`
 
 ```shell
 curl "https://api.huobi.pro/v1/account/history?account-id=5260185"
@@ -2239,7 +2424,7 @@ curl "https://api.huobi.pro/v1/account/history?account-id=5260185"
 | start-time     | false    | long      | The start time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days. | ((end-time) – 1hour) | [((end-time) – 1hour), (end-time)]                           |
 | end-time       | false    | long      | The end time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 1 hour. The query window can be shifted within 30 days. | current-time         | [(current-time) – 29days,(current-time)]                     |
 | sort           | false    | string    | Sorting order                                                | asc                  | asc or desc                                                  |
-| size           | false    | int       | Maximum number of items in each response                     | 100                  | [1,500]                                                      |
+| size           | false    | int       | Maximum number of items in each response                     | 100                  | [1-500]                                                      |
 | from-id        | false    | long      | First record ID in this query (only valid for next page querying, see Note 2) |                      |                                                              |
 
 > The above command returns JSON structured like this:
@@ -2249,26 +2434,27 @@ curl "https://api.huobi.pro/v1/account/history?account-id=5260185"
     "status": "ok",
     "data": [
         {
-            "account-id": 5260185,
-            "currency": "btc",
-            "transact-amt": "0.002393000000000000",
-            "transact-type": "transfer",
-            "record-id": 89373333576,
-            "avail-balance": "0.002393000000000000",
-            "acct-balance": "0.002393000000000000",
-            "transact-time": 1571393524526
+            "account-id": 10000001,
+            "currency": "usdt",
+            "record-id": 359044707902783794,
+            "transact-amt": "-10.000000000000000000",
+            "transact-type": "other-types",
+            "avail-balance": "81.850043797676510303",
+            "acct-balance": "97.010043797676510318",
+            "transact-time": 1629882096557
         },
         {
-            "account-id": 5260185,
-            "currency": "btc",
-            "transact-amt": "-0.002393000000000000",
+            "account-id": 10000001,
+            "currency": "usdt",
+            "record-id": 359044690723242123,
+            "transact-amt": "-10.000000000000000000",
             "transact-type": "transfer",
-            "record-id": 89373382631,
-            "avail-balance": "0E-18",
-            "acct-balance": "0E-18",
-            "transact-time": 1571393578496
+            "avail-balance": "81.850043797676510303",
+            "acct-balance": "87.010043797676510318",
+            "transact-time": 1629882096569
         }
-    ]
+    ],
+    "next-id": 47996522235
 }
 ```
 
@@ -2277,16 +2463,18 @@ curl "https://api.huobi.pro/v1/account/history?account-id=5260185"
 | Field         | Data Type | Description                                                  | Value Range |
 | ------------- | --------- | ------------------------------------------------------------ | ----------- |
 | status        | string    | Status code                                                  |             |
-| data          | object    |                                                              |             |
-| { account-id  | long      | Account ID                                                   |             |
+| \<data\>      | object    |                                                              |             |
+| account-id    | long      | Account ID                                                   |             |
 | currency      | string    | Currency                                                     |             |
 | transact-amt  | string    | Amount change (positive value if income, negative value if outcome) |             |
 | transact-type | string    | Amount change types                                          |             |
 | avail-balance | string    | Available balance                                            |             |
 | acct-balance  | string    | Account balance                                              |             |
 | transact-time | long      | Transaction time (database time)                             |             |
-| record-id }   | long      | Unique record ID in the database                             |             |
+| record-id     | long      | Unique record ID in the database                             |             |
+| \</data\>      |          |                                                             |          |
 | next-id       | long      | First record ID in next page (only valid if exceeded page size, see Note 2) |             |
+
 
 Note 1:<br>
 
@@ -2595,6 +2783,7 @@ Change type contains a detailed list of account types：
 | other-types | operation-to-super-margin-trade | 运营账户转到用户账户-全仓杠杆账户 |
 | other-types | super-margin-trade-to-operation | 用户账户-全仓杠杆账户转到运营账户 |
 
+
 ## Get Account Ledger
 
 API Key Permission：Read
@@ -2608,11 +2797,7 @@ The query window can be within the last 180 days, which means, by adjusting "sta
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v2/account/ledger`
-
-```shell
-curl "https://api.huobi.pro/v2/account/ledger?account-id=5260185"
-```
+ - GET `/v2/account/ledger`
 
 ### Request Parameters
 
@@ -2624,7 +2809,7 @@ curl "https://api.huobi.pro/v2/account/ledger?account-id=5260185"
 | startTime     | long      | FALSE     | Farthest time (please refer to note 1 for valid range and default value) |
 | endTime       | long      | FALSE     | Nearest time (please refer to note 2 for valid range and default value) |
 | sort          | string    | FALSE     | Sorting order (enumerated values: asc, desc)                 |
-| limit         | int       | FALSE     | Maximum number of items in one page (valid range:[1,500]; default value:100) |
+| limit         | int       | FALSE     | Maximum number of items in one page (valid range:[1-500]; default value:100) |
 | fromId        | long      | FALSE     | First record ID in this query (only valid for next page querying. please refer to note 3) |
 
 Note 1:<br>
@@ -2639,32 +2824,34 @@ endTime default value: current time
 
 ```json
 {
-"code": 200,
-"message": "success",
-"data": [
-    {
-        "accountId": 5260185,
-        "currency": "btc",
-        "transactAmt": 1.000000000000000000,
-        "transactType": "transfer",
-        "transferType": "margin-transfer-out",
-        "transactId": 0,
-        "transactTime": 1585573286913,
-        "transferer": 5463409,
-        "transferee": 5260185
-    },
-    {
-        "accountId": 5260185,
-        "currency": "btc",
-        "transactAmt": -1.000000000000000000,
-        "transactType": "transfer",
-        "transferType": "margin-transfer-in",
-        "transactId": 0,
-        "transactTime": 1585573281160,
-        "transferer": 5260185,
-        "transferee": 5463409
-    }
-]
+    "code": 200,
+    "message": "success",
+    "data": [
+        {
+            "accountId": 10000001,
+            "currency": "usdt",
+            "transactAmt": 10.000000000000000000,
+            "transactType": "transfer",
+            "transferType": "margin-transfer-out",
+            "transactId": 0,
+            "transactTime": 1629882331066,
+            "transferer": 28483123,
+            "transferee": 13496526
+        },
+        {
+            "accountId": 10000001,
+            "currency": "usdt",
+            "transactAmt": -10.000000000000000000,
+            "transactType": "transfer",
+            "transferType": "margin-transfer-in",
+            "transactId": 0,
+            "transactTime": 1629882096562,
+            "transferer": 13496526,
+            "transferee": 28483123
+        }
+    ],
+    "nextId": 1624316679,
+    "ok": true
 }
 ```
 
@@ -2674,8 +2861,8 @@ endTime default value: current time
 | ------------ | --------- | --------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | code         | integer   | TRUE      | Status code                                                  |                                                              |
 | message      | string    | FALSE     | Error message (if any)                                       |                                                              |
-| data         | object    | TRUE      | Sorting as user defined (in request parameter "sort"	)    |                                                              |
-| { accountId  | integer   | TRUE      | Account ID                                                   |                                                              |
+| \<data\>     | object    | TRUE      | Sorting as user defined (in request parameter "sort"	)    |                                                              |
+| accountId    | integer   | TRUE      | Account ID                                                   |                                                              |
 | currency     | string    | TRUE      | Cryptocurrency                                               |                                                              |
 | transactAmt  | number    | TRUE      | Transaction amount (income positive, expenditure negative)   |                                                              |
 | transactType | string    | TRUE      | Transaction type                                             |                                                              |
@@ -2684,6 +2871,7 @@ endTime default value: current time
 | transactTime | integer   | TRUE      | Transaction time                                             |                                                              |
 | transferer   | integer   | FALSE     | Transferer’s account ID                                      |                                                              |
 | transferee } | integer   | FALSE     | Transferee’s account ID                                      |                                                              |
+| \</data\>         |    |      |                            |   
 | nextId       | integer   | FALSE     | First record ID in next page (only valid if exceeded page size. please refer to note 3.) |                                                              |
 
 Note 3:<br>
@@ -2704,14 +2892,16 @@ Transferring from a spot account to a contract account, the type is pro-to-futur
 
 ### HTTP Request
 
-`POST /v1/futures/transfer`
+ - POST `/v1/futures/transfer`
+
+> Request
 
 ```json
-  {"currency":  "btc",
-  "amount": 0.01,
+{
+  "currency": "btc",
+  "amount": 0.001,
   "type": "pro-to-futures"
-  }
- 
+}
 ```
 ### Request Parameters
 
@@ -2724,10 +2914,19 @@ Transferring from a spot account to a contract account, the type is pro-to-futur
 > Response:
 
 ```json
-  {"data":  123456,
+
+{  
+  "data": 12345,
   "status": "ok"
-  }
- 
+}
+
+> Error response:
+{
+    "status": "error",
+    "data": null,
+    "err-code": "base-msg",
+    "err-msg": "Insufficient amount available."
+}
 ```
 ### Response Content
 
@@ -2791,7 +2990,7 @@ Callable by sub user<br>
 
 ### HTTP Request
 
-`GET /v2/point/account`
+ - GET `/v2/point/account`
 
 ### Request Parameters
 
@@ -2819,20 +3018,23 @@ Callable by sub user<br>
     "success": true
 }
 ```
+
 ### Response Content
 
 |	Field	|	Data Type	|	Mandatory	|	Description	|
 |	-----	|	--------	|	--------	|	----------	|
 |	code	|	integer	|	TRUE	|	Status code	|
 |	message	|	string	|	FALSE	|	Error message (if any)	|
-|	data	|	object	|	TRUE	|		|
-|	{ accountId	|	string	|	TRUE	|	Account ID	|
+|	\<data> |	object	|	TRUE	|		|
+|	accountId	|	string	|	TRUE	|	Account ID	|
 |	accountStatus	|	string	|	TRUE	|	Account status (working, lock, fl-sys, fl-mgt, fl-end, fl-negative) 	|
 |	acctBalance	|	string	|	TRUE	|	Account balance	|
-|	groupIds	|	object	|	TRUE	|	Group ID list	|
-|	{ groupId	|	long	|	TRUE	|	Group ID	|
+|	\<groupIds\>	|	object	|	TRUE	|	Group ID list	|
+|	groupId	 |	long	|	TRUE	|	Group ID	|
 |	expiryDate	|	long	|	TRUE	|	Expiration date (unix time in millisecond) 	|
-|	remainAmt }}	|	string	|	TRUE	|	Remaining amount	|
+|	remainAmt 	|	string	|	TRUE	|	Remaining amount	|
+|	\</groupIds\>	|	 	|	 	|  	|
+|	\</data>	|	 	|	 	|	|
 
 Note:<br>
 Group ID is the transaction ID generated while parent user exchanging the ‘terminable’ points.<br>
@@ -2853,7 +3055,7 @@ Callable by sub user<br>
 
 ### HTTP Request
 
-`POST /v2/point/transfer`
+ - POST `/v2/point/transfer`
 
 ### Request Parameters
 
@@ -2885,9 +3087,10 @@ Note:<br>
 |	-----	|	--------	|	--------	|	----------	|
 |	code	|	integer	|	TRUE	|	Status code	|
 |	message	|	string	|	FALSE	|	Error message (if any)	|
-|	data	|	object	|	TRUE	|		|
-|	{ transactId	|	string	|	TRUE	|	Transaction ID	|
-|	transactTime }	|	long	|	TRUE	|	Transaction time (unix time in millisecond) 	|
+|	\<data\> 	|	object	|	TRUE	|		|
+|	transactId	|	string	|	TRUE	|	Transaction ID	|
+|	transactTime 	|	long	|	TRUE	|	Transaction time (unix time in millisecond) 	|
+|   \</data\>    |         |          |    
 
 ## Error Code
 
@@ -2924,11 +3127,7 @@ Rate Limit (NEW): 20times/2s
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v2/account/deposit/address`
-
-```shell
-curl "https://api.huobi.pro/v2/account/deposit/address?currency=btc"
-```
+ - GET `/v2/account/deposit/address`
 
 ### Request Parameters
 
@@ -2943,10 +3142,25 @@ curl "https://api.huobi.pro/v2/account/deposit/address?currency=btc"
     "code": 200,
     "data": [
         {
+            "userId": 12345678,
             "currency": "btc",
-            "address": "1PSRjPg53cX7hMRYAXGJnL8mqHtzmQgPUs",
+            "address": "0xd476b0d77583fbda5180039f1f513b750cb4f527",
+            "addressTag": "",
+            "chain": "hbtc"
+        },
+        {
+            "userId": 12345678,
+            "currency": "btc",
+            "address": "16egzDeZiVDJ4D44UbWKN6snLYFjS1aEmJ",
             "addressTag": "",
             "chain": "btc"
+        },
+        {
+            "userId": 12345678,
+            "currency": "btc",
+            "address": "0xd476b0d77583fbda5180039f1f513b750cb4f527",
+            "addressTag": "",
+            "chain": "hrc20btc"
         }
     ]
 }
@@ -2958,11 +3172,13 @@ curl "https://api.huobi.pro/v2/account/deposit/address?currency=btc"
 | ---------- | --------- | ---------------------- |
 | code       | int       | Status code            |
 | message    | string    | Error message (if any) |
-| data       | object    |                        |
-| { currency | string    | Crypto currency        |
+| \<data\>   | object    |                        |
+| currency   | string    | Crypto currency        |
 | address    | string    | Deposit address        |
 | addressTag | string    | Deposit address tag    |
-| chain }    | string    | Block chain name       |
+| chain      | string    | Block chain name       |
+| \</data\>   |      |    |                  |          
+
 
 ## Query Withdraw Quota
 
@@ -2973,11 +3189,8 @@ Rate Limit (NEW): 20times/2s
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v2/account/withdraw/quota`
+ - GET `/v2/account/withdraw/quota`
 
-```shell
-curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
-```
 
 ### Request Parameters
 
@@ -2990,22 +3203,51 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
 ```json
 {
     "code": 200,
-    "data": 
-        {
-            "currency": "btc",
-            "chains": [
-                {
-                    "chain": "btc",
-                    "maxWithdrawAmt": "200.00000000",
-                    "withdrawQuotaPerDay": "200.00000000",
-                    "remainWithdrawQuotaPerDay": "200.000000000000000000",
-                    "withdrawQuotaPerYear": "700000.00000000",
-                    "remainWithdrawQuotaPerYear": "700000.000000000000000000",
-                    "withdrawQuotaTotal": "7000000.00000000",
-                    "remainWithdrawQuotaTotal": "7000000.000000000000000000"
-                }
-        }
-    ]
+    "data": {
+        "currency": "usdt",
+        "chains": [
+            {
+                "chain": "hrc20usdt",
+                "maxWithdrawAmt": "2000000.000000000000000000",
+                "withdrawQuotaPerDay": "4845303.99999991",
+                "remainWithdrawQuotaPerDay": "4845303.99999991",
+                "withdrawQuotaPerYear": "-1",
+                "remainWithdrawQuotaPerYear": "-1",
+                "withdrawQuotaTotal": "-1",
+                "remainWithdrawQuotaTotal": "-1"
+            },
+            {
+                "chain": "trc20usdt",
+                "maxWithdrawAmt": "1000000.000000000000000000",
+                "withdrawQuotaPerDay": "4845303.99999991",
+                "remainWithdrawQuotaPerDay": "4845303.99999991",
+                "withdrawQuotaPerYear": "-1",
+                "remainWithdrawQuotaPerYear": "-1",
+                "withdrawQuotaTotal": "-1",
+                "remainWithdrawQuotaTotal": "-1"
+            },
+            {
+                "chain": "usdt",
+                "maxWithdrawAmt": "600000.000000000000000000",
+                "withdrawQuotaPerDay": "4845303.99999991",
+                "remainWithdrawQuotaPerDay": "4845303.99999991",
+                "withdrawQuotaPerYear": "-1",
+                "remainWithdrawQuotaPerYear": "-1",
+                "withdrawQuotaTotal": "-1",
+                "remainWithdrawQuotaTotal": "-1"
+            },
+            {
+                "chain": "usdterc20",
+                "maxWithdrawAmt": "1000000.000000000000000000",
+                "withdrawQuotaPerDay": "4845303.99999991",
+                "remainWithdrawQuotaPerDay": "4845303.99999991",
+                "withdrawQuotaPerYear": "-1",
+                "remainWithdrawQuotaPerYear": "-1",
+                "withdrawQuotaTotal": "-1",
+                "remainWithdrawQuotaTotal": "-1"
+            }
+        ]
+    }
 }
 ```
 
@@ -3015,17 +3257,19 @@ curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
 | -------------------------- | --------- | --------------------------------------- |
 | code                       | int       | Status code                             |
 | message                    | string    | Error message (if any)                  |
-| data                       | object    |                                         |
+| \<data\>                   | object    |                                         |
 | currency                   | string    | Crypto currency                         |
-| chains                     | object    |                                         |
-| { chain                    | string    | Block chain name                        |
+| \<chains\>                 | object    |                                         |
+| chain                      | string    | Block chain name                        |
 | maxWithdrawAmt             | string    | Maximum withdraw amount in each request |
 | withdrawQuotaPerDay        | string    | Maximum withdraw amount in a day        |
 | remainWithdrawQuotaPerDay  | string    | Remaining withdraw quota in the day     |
 | withdrawQuotaPerYear       | string    | Maximum withdraw amount in a year       |
 | remainWithdrawQuotaPerYear | string    | Remaining withdraw quota in the year    |
 | withdrawQuotaTotal         | string    | Maximum withdraw amount in total        |
-| remainWithdrawQuotaTotal } | string    | Remaining withdraw quota in total       |
+| remainWithdrawQuotaTotal   | string    | Remaining withdraw quota in total       |
+| \</chains\>                |      |    |                  |          |
+| \</data\>                  |      |    |                  |          |
 
 ## Query withdraw address
 
@@ -3046,7 +3290,7 @@ This endpoint allows parent user to query withdraw address available for API key
 | currency  | true     | string    | Crypto currency                                              |                                                              | btc, ltc, bch, eth, etc ...(refer to GET /v1/common/currencys) |
 | chain     | false    | string    | Block chain name                                             | When chain is not specified, the reponse would include the records of ALL chains. |                                                              |
 | note      | false    | string    | The note of withdraw address                                 | When note is not specified, the reponse would include the records of ALL notes. |                                                              |
-| limit     | false    | int       | The number of items to return                                | 100                                                          | [1,500]                                                      |
+| limit     | false    | int       | The number of items to return                                | 100                                                          | [1-500]                                                      |
 | fromId    | false    | long      | First record ID in this query (only valid for next page querying; please refer to note) | NA                                                           |                                                              |
 > Response:
 
@@ -3056,12 +3300,13 @@ This endpoint allows parent user to query withdraw address available for API key
     "data": [
         {
             "currency": "usdt",
-            "chain": "usdt",
-            "note": "币安",
+            "chain": "hrc20usdt",
+            "note": "tom",
             "addressTag": "",
-            "address": "15PrEcqTJRn4haLeby3gJJebtyf4KgWmSd"
+            "address": "0x3b994f25c4c25e99d4d26364ffc014cce64600ca"
         }
-    ]
+    ],
+    "next-id": 30137790
 }
 ```
 
@@ -3070,12 +3315,13 @@ This endpoint allows parent user to query withdraw address available for API key
 | ----------- | --------- | --------- | ------------------------------------------------------------ | ----------- |
 | code        | true      | int       | Status code                                                  |             |
 | message     | false     | string    | Error message (if any)                                       |             |
-| data        | true      | object    |                                                              |             |
-| [{ currency | true      | string    | Crypto currency                                              |             |
+| \<data\>    | true      | object    |                                                              |             |
+| currency    | true      | string    | Crypto currency                                              |             |
 | chain       | true      | string    | Block chain name                                             |             |
 | note        | true      | string    | The address note                                             |             |
 | addressTag  | false     | string    | The address tag，if any                                      |             |
 | address }]  | true      | string    | Withdraw address                                             |             |
+| \</data\>   |      |    |                                                              |     
 | nextId      | false     | long      | First record ID in next page (only valid if exceeded page size) |             |
 
 Note:<br>
@@ -3097,16 +3343,17 @@ Parent user creates a withdraw request from spot account to an external address 
 
 ### HTTP Request
 
-`POST https://api.huobi.pro/v1/dw/withdraw/api/create`
+ - POST `/v1/dw/withdraw/api/create`
 
-```shell
-curl -X POST -H "Content-Type: application/json" "https://api.huobi.pro/v1/dw/withdraw/api/create" -d
-'{
+> Request:
+
+```json
+{
   "address": "0xde709f2102306220921060314715629080e2fb77",
   "amount": "0.05",
   "currency": "eth",
   "fee": "0.01"
-}'
+}
 ```
 
 ### Request Parameters
@@ -3131,6 +3378,7 @@ curl -X POST -H "Content-Type: application/json" "https://api.huobi.pro/v1/dw/wi
 ### Response Content
 
 <aside class="notice">The return data contains a single value instead of an object</aside>
+
 | Field | Data Type | Description |
 | ----- | --------- | ----------- |
 | data  | integer   | Transfer id |
@@ -3146,26 +3394,26 @@ Parent user cancels a previously created withdrawal request by its transfer id.
 
 ### HTTP Request
 
-`POST https://api.huobi.pro/v1/dw/withdraw-virtual/{withdraw-id}/cancel`
-
-```shell
-curl -X POST "https://api.huobi.pro/v1/dw/withdraw-virtual/1000/cancel"
-```
+ - POST `/v1/dw/withdraw-virtual/{withdraw-id}/cancel`
 
 'withdraw-id': the id returned when previously created a withdraw request
 
 ### Request Parameters
 
 <aside class="notice">No parameter is needed for this endpoint</aside>
+
 > The above command returns JSON structured like this:
 
 ```json
+{
   "data": 700
+}
 ```
 
 ### Response Content
 
 <aside class="notice">The return data contains a single value instead of an object</aside>
+
 | Parameter | Data Type | Description        |
 | --------- | --------- | ------------------ |
 | data      | integer   | Withdraw cancel id |
@@ -3180,11 +3428,7 @@ Parent user and sub user search for all existed withdraws and deposits and retur
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/query/deposit-withdraw`
-
-```shell
-curl "https://api.huobi.pro/v1/query/deposit-withdraw?currency=xrp&type=deposit&from=5&size=12"
-```
+ - GET `/v1/query/deposit-withdraw`
 
 ### Request Parameters
 
@@ -3193,28 +3437,48 @@ curl "https://api.huobi.pro/v1/query/deposit-withdraw?currency=xrp&type=deposit&
 | currency  | string    | false    | The crypto currency to withdraw | NA                                               | When currency is not specified, the response would include the records of ALL currencies. |      |
 | type      | string    | true     | Define transfer type to search  |       | deposit, withdraw, sub user can only use deposit                                                             |      |
 | from      | string    | false    | The transfer id to begin search | 1 ~ latest record ID                             | When 'from' is not specified, the default value would be 1 if 'direct' is 'prev' with the response in ascending order, the default value would be the ID of latest record if 'direct' is 'next' with the response in descending order. |      |
-| size      | string    | false    | The number of items to return   | 1-500                                            | 100                                                          |      |
+| size      | string    | false    | The number of items to return   | [1-500]                                            | 100                                                          |      |
 | direct    | string    | false    | the order of response           | 'prev' (ascending), 'next' (descending)          | 'prev'                                                       |      |
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-	"status": "ok",
-	"data": [{
-		"id": 24383070,
-		"type": "deposit",
-		"currency": "usdt",
-		"chain": "usdterc20",
-		"tx-hash": "16382690",
-		"amount": 4.000000000000000000,
-		"address": "0x138d709030b4e096044d371a27efc5c562889b9b",
-		"address-tag": "",
-		"fee": 0,
-		"state": "safe",
-		"created-at": 1571303815800,
-		"updated-at": 1571303815826
-	}]
+    "status":"ok",
+    "data":[
+        {
+            "id":45182894,
+            "type":"withdraw",
+            "sub-type":"FAST",
+            "currency":"usdt",
+            "chain":"trc20usdt",
+            "tx-hash":"",
+            "amount":400,
+            "from-addr-tag":"",
+            "address":"TRwkUYHWgUh23jbKpgTcYHgE9CcBzhGno9",
+            "address-tag":"",
+            "fee":0,
+            "state":"confirmed",
+            "created-at":1612261330443,
+            "updated-at":1612261389250
+        },
+        {
+            "id":61003926,
+            "type":"withdraw",
+            "sub-type":"FAST",
+            "currency":"usdt",
+            "chain":"trc20usdt",
+            "tx-hash":"",
+            "amount":2,
+            "from-addr-tag":"",
+            "address":"TYGvZSD1duPctGaMPSP12Fy8BrQMu2KCdp",
+            "address-tag":"",
+            "fee":0,
+            "state":"confirmed",
+            "created-at":1621416907639,
+            "updated-at":1621416907788
+        }
+    ]
 }
 ```
 
@@ -3222,6 +3486,8 @@ curl "https://api.huobi.pro/v1/query/deposit-withdraw?currency=xrp&type=deposit&
 
 | Field       | Data Type | Description                                                  |
 | ----------- | --------- | ------------------------------------------------------------ |
+| status      | string     | Request Processing Result       |      "ok" or "error"             |
+| \<data\>    | object     |                |                                          |
 | id          | integer   | Transfer id                                                  |
 | type        | string    | Define transfer type to search, possible values: [deposit, withdraw] Sub-user can only put "deposit"|
 | currency    | string    | The crypto currency to withdraw                              |
@@ -3236,6 +3502,8 @@ curl "https://api.huobi.pro/v1/query/deposit-withdraw?currency=xrp&type=deposit&
 | error-msg   | string    | Error description of withdrawal failure, only returned when the type is "withdraw" and the state is "reject", "wallet-reject" and "failed". |
 | created-at  | integer   | The timestamp in milliseconds for the transfer creation      |
 | updated-at  | integer   | The timestamp in milliseconds for the transfer's latest update |
+| \</data\>    |      |      |                |                                          |
+
 
 **List of possible deposit state**
 
@@ -3331,7 +3599,7 @@ API Key Permission：Trade
 
 ### HTTP Request
 
-- POST /v2/sub-user/deduct-mode
+- POST `/v2/sub-user/deduct-mode`
 
 ### Request Parameters
 
@@ -3344,14 +3612,20 @@ API Key Permission：Trade
 
 ```json
 {
-
-"code": 200,
-"data": [
-    {
-        "subUid": "132208121",
-        "deductMode": "sub"
-    }
-]
+    "code": 200,
+    "data": [
+        {
+            "subUid": "158069153",
+            "deductMode": "master"
+        },
+        {
+            "subUid": "1461901631",
+            "deductMode": null,
+            "errCode": 1002,
+            "errMessage": "forbidden"
+        }
+    ],
+    "ok": true
 }
 ```
 
@@ -3361,13 +3635,13 @@ API Key Permission：Trade
 | ----------- | -------- | --------- | ----------- | ------------------------------------------------------------ | ---- |
 | code        |          | true      | int         | Status code                                                  |      |
 | message     |          | false     | string      | Error message (if any)                                       |      |
-| data        |          | true      | object      |                                                              |      |
-| {subUid     |          | true      | string      | Sub user's UID                                               |      |
+|\<data\>     |          | true      | object      |                                                              |      |
+| subUid      |          | true      | string      | Sub user's UID                                               |      |
 | deductMode  |          | true      | string      | deduct mode                                                  |      |
 | errCode     |          | true      | string      | Error code in case of rejection (only valid when the requested UID being rejected) |      |
-| errMessage} |          | false     | string      | Error message in case of rejection (only valid when the requested UID being rejected) |      |
+| errMessage |          | false     | string      | Error message in case of rejection (only valid when the requested UID being rejected) |      |
+| \</data\>    |      |    |                  |          |
 
-## 
 
 ## API key query
 
@@ -3389,20 +3663,31 @@ API Key Permission：Read
 
 ```json
 {
-    "code": 200,
-    "message": "success",
-    "data": [
+    "code":200,
+    "message":"success",
+    "data":[
         {
-            "accessKey": "4ba5cdf2-4a92c5da-718ba144-dbuqg6hkte",
-            "status": "normal",
-            "note": "62924133",
-            "permission": "readOnly,trade",
-            "ipAddresses": "1.1.1.1,1.1.1.2",
-            "validDays": -1,
-            "createTime": 1591348751000,
-            "updateTime": 1591348751000
+            "accessKey":"160bb889-b7XXXXbe-e0XXXXf5-ghxertfvbf",
+            "status":"normal",
+            "note":"host",
+            "permission":"trade,readOnly",
+            "ipAddresses":"192.168.0.1,192.168.1.1",
+            "validDays":-1,
+            "createTime":1615192704000,
+            "updateTime":1623030338000
+        },
+        {
+            "accessKey":"5000d371-edXXXXf5tf-40XXXX8b-ab8e5",
+            "status":"normal",
+            "note":"host two",
+            "permission":"readOnly,trade,withdraw",
+            "ipAddresses":"",
+            "validDays":7,
+            "createTime":1623158078000,
+            "updateTime":1629875976000
         }
-    ]
+    ],
+    "ok":true
 }
 ```
 
@@ -3411,15 +3696,17 @@ API Key Permission：Read
 | ------------- | -------- | --------- | -------------------------- | --------------------------------------- |
 | code          | true     | int       | Status code                |                                         |
 | message       | false    | string    | Error message (if any)     |                                         |
-| data          | true     | object    |                            |                                         |
-| [{ accessKey  | true     | string    | access key                 |                                         |
+| \<data\>      | true     | object    |                            |                                         |
+| accessKey     | true     | string    | access key                 |                                         |
 | note          | true     | string    | API key note               |                                         |
 | permission    | true     | string    | API key permission         |                                         |
 | ipAddresses   | true     | string    | API key IP addresses       |                                         |
 | validDays     | true     | int       | API key expire in (days)   | If it is -1, it means permanently valid |
 | status        | true     | string    | API key status             | normal, expired                         |
 | createTime    | true     | long      | API key creation time      |                                         |
-| updateTime }] | true     | long      | API key last modified time |                                         |
+| updateTime    | true     | long      | API key last modified time |                                         |
+| \</data\>      |       |     |                         |                               |
+
 
 ## Get UID
 
@@ -3463,48 +3750,48 @@ API Key Permission：Trade
 
 - POST `/v2/sub-user/creation`
 
-### Request Parameters
-| Parameter   | Required | Data Type | Description                                                  | Default | Value Range                                                  |
-| ----------- | -------- | --------- | ------------------------------------------------------------ | ------- | ------------------------------------------------------------ |
-| userList    | true     | object    |                                                              |         |                                                              |
-| [{ userName | true     | string    | Sub user name, an important identifier of the sub user's identity, requires unique within the huobi platform | NA      | The combination of 6 to 20 letters and numbers, or only letters. Letter is not case sensitive. The first character has to be a letter. |
-| note }]     | false    | string    | Sub user note, no unique requirements                        | NA      | Up to 20 characters, unlimited character types               |
-
 > Request:
 
 ```json
 {
-"userList":
-[
-{
-"userName":"test123",
-"note":"huobi"
-},
-{
-"userName":"test456",
-"note":"huobi"
-}
-]
+    "userList":[
+        {
+            "userName":"test123",
+            "note":"huobi"
+        },
+        {
+            "userName":"test456",
+            "note":"huobi two"
+        }
+    ]
 }
 ```
+
+### Request Parameters
+| Parameter   | Required | Data Type | Description                                                  | Default | Value Range                                                  |
+| ----------- | -------- | --------- | ------------------------------------------------------------ | ------- | ------------------------------------------------------------ |
+| \<userList\>     | true     | object    |          |         |                                        |
+| userName         | true     | string    | Sub user name, an important identifier of the sub user's identity, requires unique within the huobi platform | NA      | The combination of 6 to 20 letters and numbers, or only letters. Letter is not case sensitive. The first character has to be a letter. |
+| note             | false    | string    | Sub user note, no unique requirements                        | NA      | Up to 20 characters, unlimited character types               |
+| \</userList\>    |      |  |                           |        |                                                  
 
 > Response:
 
 ```json
 {
-    "code": 200,
-    "data": [
+    "code":200,
+    "data":[
         {
-    "userName": "test123",
-    "note": "huobi",
-    "uid": 123
-      },
+            "userName":"test123",
+            "note":"huobi",
+            "uid":123
+        },
         {
-    "userName": "test456",
-    "note": "huobi",
-    "errCode": "2002",
-    "errMessage": "value in user name duplicated with existing record"
-      }
+            "userName":"test456",
+            "note":"huobi two",
+            "errCode":"2002",
+            "errMessage":"value in user name duplicated with existing record"
+        }
     ]
 }
 ```
@@ -3514,12 +3801,14 @@ API Key Permission：Trade
 | ------------- | -------- | --------- | ------------------------------------------------------------ | ----------- |
 | code          | true     | int       | Status code                                                  |             |
 | message       | false    | string    | Error message (if any)                                       |             |
-| data          | true     | object    |                                                              |             |
-| [{ userName   | true     | string    | Sub user name                                                |             |
+| \<data\>      | true     | object    |                                                              |             |
+| userName      | true     | string    | Sub user name                                                |             |
 | note          | false    | string    | Sub user note (only valid for sub-users with note)）         |             |
 | uid           | false    | long      | Sub user UID (only valid for successfully created sub users) |             |
 | errCode       | false    | string    | Error code for creation failure (only valid for sub users that failed to create) |             |
-| errMessage }] | false    | string    | Cause of creation failure error (only valid for sub users that failed to create) |             |
+| errMessage    | false    | string    | Cause of creation failure error (only valid for sub users that failed to create) |             |
+| \</data\>     |      |    |                                              |          |
+
 
 ## Get Sub User's List
 
@@ -3561,9 +3850,10 @@ API Key Permission: Read
 | ----------- | --------- | --------- | ------------------------------------------------------------ | -------------- |
 | code        | TRUE      | int       | Status code                                                  |                |
 | message     | FALSE     | string    | Error message (if any)                                       |                |
-| data        | TRUE      | object    | In ascending order of uid, each response contains maximum 100 records |                |
-| { uid       | TRUE      | long      | Sub user’s UID                                               |                |
-| userState } | TRUE      | string    | Sub user’s status                                            | lock, normal   |
+|\<data\>     | TRUE      | object    | In ascending order of uid, each response contains maximum 100 records |       |
+| uid         | TRUE      | long      | Sub user’s UID                                               |                |
+| userState   | TRUE      | string    | Sub user’s status                                            | lock, normal   |
+| \</data\>   |      |    |                                            |              |
 | nextId      | FALSE     | long      | First record ID in next page (only valid if exceeded page size) |                |
 
 ## Lock/Unlock Sub User
@@ -3575,7 +3865,7 @@ This endpoint allows parent user to lock or unlock a specific sub user.
 
 ### HTTP Request
 
-`POST https://api.huobi.pro/v2/sub-user/management`
+ - POST `/v2/sub-user/management`
 
 ### Request Parameters
 
@@ -3588,10 +3878,12 @@ This endpoint allows parent user to lock or unlock a specific sub user.
 
 ```json
 {
-  "code": 200,
-	"data": {
-     "subUid": 12902150,
-     "userState":"lock"}
+    "code": 200,
+    "data": {
+        "subUid": 245686628,
+        "userState": "lock"
+    },
+    "ok": true
 }
 ```
 
@@ -3599,8 +3891,12 @@ This endpoint allows parent user to lock or unlock a specific sub user.
 
 | Field               | Data Type | Description                           | Value Range
 | ---------           | --------- | -----------                           | -----------
+| code      | true     | int      |  status code  |                          |
+| \<data\>  | true     | object   |    |                          |
 | subUid                 | long   | sub user UID                     | NA
 | userState                | string    | The state of sub user             | lock,normal
+| \</data\>  |      |    |    |                          |
+
 
 ## Get Sub User's Status
 
@@ -3636,9 +3932,11 @@ API Key Permission: Read
 | ----------- | --------- | --------- | ---------------------- | -------------- |
 | code        | TRUE      | int       | Status code            |                |
 | message     | FALSE     | string    | Error message (if any) |                |
-| data        | TRUE      | object    |                        |                |
-| { uid       | TRUE      | long      | Sub user’s UID         |                |
-| userState } | TRUE      | string    | Sub user’s status      | lock, normal   |
+| \<data\>    | TRUE      | object    |                        |                |
+| uid         | TRUE      | long      | Sub user’s UID         |                |
+| userState   | TRUE      | string    | Sub user’s status      | lock, normal   |
+| \</data\>    | TRUE     | object   |                  |              |
+
 
 ## Set Tradable Market for Sub Users
 
@@ -3666,11 +3964,18 @@ By default, sub user’s trading permission in spot market is activated.
     "code": 200,
     "data": [
         {
-            "subUid": "132208121",
+            "subUid": "12345678",
             "accountType": "isolated-margin",
             "activation": "activated"
+        },
+        {
+            "subUid": "123456781",
+            "accountType": "isolated-margin",
+            "errCode": 1002,
+            "errMessage": "forbidden"
         }
-    ]
+    ],
+    "ok": true
 }
 ```
 
@@ -3680,12 +3985,14 @@ By default, sub user’s trading permission in spot market is activated.
 | ----------- | --------- | --------- | ------ | ------------------------------------------------------------ | ---------------------------- |
 | code        | true      | int       | -      | Status code                                                  |                              |
 | message     | false     | string    | -      | Error message (if any)                                       |                              |
-| data        | true      | object    |        |                                                              |                              |
-| {subUid     | true      | string    | -      | Sub user's UID                                               | -                            |
+| \<data\>    | true      | object    |        |                                                              |                              |
+|  subUid     | true      | string    | -      | Sub user's UID                                               | -                            |
 | accountType | true      | string    | -      | Account type                                                 | isolated-margin,cross-margin |
 | activation  | true      | string    | -      | Account activation                                           | activated,deactivated        |
 | errCode     | false     | int       | -      | Error code in case of rejection (only valid when the requested UID being rejected) |                              |
 | errMessage} | false     | string    | -      | Error message in case of rejection (only valid when the requested UID being rejected) |                              |
+| \</data\>   |      |    |                                                            |                              |
+
 
 ## Set Asset Transfer Permission for Sub Users
 
@@ -3715,9 +4022,16 @@ By default, the asset transfer from sub user’s spot account to parent user’s
         {
             "accountType": "spot",
             "transferrable": true,
-            "subUid": 13220823
+            "subUid": 245686628
+        },
+        {
+            "accountType": "spot",
+            "subUid": 2215699261,
+            "errCode": 2002,
+            "errMessage": "invalid field value in `2,215,699,261`"
         }
-    ]
+    ],
+    "ok": true
 }
 ```
 
@@ -3728,12 +4042,14 @@ By default, the asset transfer from sub user’s spot account to parent user’s
 | ------------- | --------- | --------- | ------ | ------------------------------------------------------------ | -------------- |
 | code          | true      | int       | -      | Status code                                                  |                |
 | message       | false     | string    | -      | Error message (if any)                                       |                |
-| data          | true      | object    |        |                                                              |                |
-| {subUid       | true      | long      | -      | Sub user's UID                                               | -              |
+| \<data\>      | true      | object    |        |                                                              |                |
+|  subUid       | true      | long      | -      | Sub user's UID                                               | -              |
 | accountType   | true      | string    | -      | Account type                                                 | spot           |
 | transferrable | true      | bool      | -      | Transferrability                                             | true,false     |
 | errCode       | false     | int       | -      | Error code in case of rejection (only valid when the requested UID being rejected) |                |
-| errMessage}   | false     | string    | -      | Error code in case of rejection (only valid when the requested UID being rejected) |                |
+| errMessage   | false     | string    | -      | Error code in case of rejection (only valid when the requested UID being rejected) |                |
+| \</data\>     |      |    |                                                            |            |
+
 
 ## Get Sub User's Account List
 
@@ -3790,17 +4106,20 @@ API Key Permission: Read
 | ----------------- | --------- | --------- | ------------------------------------------------------------ | ------------------------------------------------- |
 | code              | TRUE      | int       | Status code                                                  |                                                   |
 | message           | FALSE     | string    | Error message (if any)                                       |                                                   |
-| data              | TRUE      | object    |                                                              |                                                   |
-| { uid             | TRUE      | long      | Sub user’s UID                                               |                                                   |
+| \<data\>         | TRUE      | object    |                                                              |                                                   |
+| uid              | TRUE      | long      | Sub user’s UID                                               |                                                   |
 | deductMode        | TRUE      | string    | deduct mode                                                  |                                                   |
-| list              | TRUE      | object    |                                                              |                                                   |
-| { accountType     | TRUE      | string    | Account type                                                 | spot, isolated-margin, cross-margin, futures,swap |
+| \<list\>           | TRUE      | object    |                                                              |                                                   |
+| accountType     | TRUE      | string    | Account type                                                 | spot, isolated-margin, cross-margin, futures,swap |
 | activation        | TRUE      | string    | Account’s activation                                         | activated, deactivated                            |
 | transferrable     | FALSE     | bool      | Transfer permission (only valid for accountType=spot)        | true, false                                       |
-| accountIds        | FALSE     | object    |                                                              |                                                   |
-| { accountId       | TRUE      | string    | Account ID                                                   |                                                   |
+| \<accountIds\>     | FALSE     | object    |                                                              |                                                   |
+| accountId       | TRUE      | string    | Account ID                                                   |                                                   |
 | subType           | FALSE     | string    | Account sub type (only valid for accountType=isolated-margin) |                                                   |
-| accountStatus }}} | TRUE      | string    | Account status                                               | normal, locked                                    |
+| accountStatus    | TRUE      | string    | Account status                                               | normal, locked                                    |
+| \</accountIds\>    |     |    |                                                   |                                                   |
+| \</list\>          |      |    |                                                   |                                                   |
+| \</data\>          |      |    |                                                   |                                                   |
 
 ## Sub user API key creation
 
@@ -3831,7 +4150,7 @@ API Key Permission：Trade
         "secretKey": "c405c550-6fa0583b-fb4bc38e-d317e",
         "note": "62924133",
         "permission": "trade,readOnly",
-        "ipAddresses": "1.1.1.1,1.1.1.2"
+        "ipAddresses": "192.168.0.1,192.168.1.1"
     }
 }
 ```
@@ -3841,13 +4160,13 @@ API Key Permission：Trade
 | ------------- | -------- | --------- | ---------------------- | ----------- |
 | code          | true     | int       | Status code            |             |
 | message       | false    | string    | Error message (if any) |             |
-| data          | true     | object    |                        |             |
-| { note        | true     | string    | API key note           |             |
+| \<data\>      | true     | object    |                        |             |
+| note          | true     | string    | API key note           |             |
 | accessKey     | true     | string    | access key             |             |
 | secretKey     | true     | string    | secret key             |             |
 | permission    | true     | string    | API key  permission    |             |
-| ipAddresses } | true     | string    | API key IP addresses   |             |
-
+| ipAddresses   | true     | string    | API key IP addresses   |             |
+| \</data\>     |      |    |                     |          |
 
 ## Sub user API key modification
 
@@ -3874,10 +4193,11 @@ API Key Permission：Trade
 {
     "code": 200,
     "data": {
-        "note": "test",
-        "permission": "readOnly",
-        "ipAddresses": "1.1.1.3"
-    }
+        "note": "tom",
+        "permission": "trade,readOnly",
+        "ipAddresses": "192.168.1.1"
+    },
+    "ok": true
 }
 ```
 
@@ -3886,10 +4206,12 @@ API Key Permission：Trade
 | ------------- | -------- | --------- | ------------------------------------------------------------ | ----------- |
 | code          | true     | int       | Status code                                                  |             |
 | message       | false    | string    | Error message (if any)                                       |             |
-| data          | true     | object    |                                                              |             |
+|  \<data\>     | true     | object    |                                                              |             |
 | { note        | true     | string    | API key note                                                 |             |
 | permission    | true     | string    | API key permission                                           |             |
-| ipAddresses } | true     | string    | IPv4/IPv6 host address(es) or IPv4 network address(es) bind to the API key |             |
+| ipAddresses   | true     | string    | IPv4/IPv6 host address(es) or IPv4 network address(es) bind to the API key |             |
+| \</data\>     |      |    |                     |          |
+
 
 ## Sub user API key deletion
 
@@ -3933,11 +4255,7 @@ This endpoint allows user to transfer asset between parent and sub account.
 
 ### HTTP Request
 
-`POST https://api.huobi.pro/v1/subuser/transfer`
-
-```shell
-curl -X POST "https://api.huobi.pro/v1/subuser/transfer" -H "Content-Type: application/json" -d '{"sub-uid": 12345, "currency": "btc", "amount": 123.5, "type": "master-transfer-in"}'
-```
+ - POST `/v1/subuser/transfer`
 
 ### Request Parameters
 
@@ -3951,7 +4269,10 @@ curl -X POST "https://api.huobi.pro/v1/subuser/transfer" -H "Content-Type: appli
 > The above command returns JSON structured like this:
 
 ```json
-  "data": 12345
+{
+  "data":123456,
+  "status":"ok"
+}
 ```
 
 ### Response Content
@@ -3960,6 +4281,7 @@ curl -X POST "https://api.huobi.pro/v1/subuser/transfer" -H "Content-Type: appli
 | Field | Data Type | Description        |
 | ----- | --------- | ------------------ |
 | data  | integer   | Unique transfer id |
+| status | string   |  status       | "ok" or "error" |      |
 
 ## Query Deposit Address of Sub User
 
@@ -3971,7 +4293,7 @@ API Key Permission：Read
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v2/sub-user/deposit-address`
+ - GET `/v2/sub-user/deposit-address`
 
 ### Request Parameters
 
@@ -3988,10 +4310,25 @@ API Key Permission：Read
     "code": 200,
     "data": [
         {
+            "userId": 12345678,
             "currency": "btc",
-            "address": "1PSRjPg53cX7hMRYAXGJnL8mqHtzmQgPUs",
+            "address": "0x4efee1ca7fc887d921f4bbcc444fbc12c464d87f",
+            "addressTag": "",
+            "chain": "hbtc"
+        },
+        {
+            "userId": 12345678,
+            "currency": "btc",
+            "address": "1C4o8WmACM8yHBbJjbdzLbc9ei7WFLFoMk",
             "addressTag": "",
             "chain": "btc"
+        },
+        {
+            "userId": 12345678,
+            "currency": "btc",
+            "address": "0x4efee1ca7fc887d921f4bbcc444fbc12c464d87f",
+            "addressTag": "",
+            "chain": "hrc20btc"
         }
     ]
 }
@@ -4003,12 +4340,12 @@ API Key Permission：Read
 | ---------- | --------- | ---------------------- |
 | code       | int       | Status code            |
 | message    | string    | Error message (if any) |
-| data       | object    |                        |
-| { currency | string    | Crypto currency        |
+| \<data\>   | object    |                        |
+| currency   | string    | Crypto currency        |
 | address    | string    | Deposit address        |
 | addressTag | string    | Deposit address tag    |
-| chain }    | string    | Block chain name       |
-
+| chain      | string    | Block chain name       |
+| \</data\>  |      |    |                  |          |
 
 ## Query Deposit History of Sub User
 
@@ -4018,7 +4355,7 @@ Parent user could query sub user's deposit history via this endpoint.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v2/sub-user/query-deposit`
+ - GET `/v2/sub-user/query-deposit`
 
 ### Request Parameters
 
@@ -4029,7 +4366,7 @@ Parent user could query sub user's deposit history via this endpoint.
 |startTime	|long		|FALSE		|Farthest time (please refer to note 1 for valid range and default value)				|
 |endTime	|long		|FALSE		|Nearest time (please refer to note 2 for valid range and default value)				|
 |sort		|string		|FALSE		|Sorting order (enumerated values: asc, desc)							|
-|limit		|int		|FALSE		|Maximum number of items in one page (valid range:[1,500]; default value:100)			|
+|limit		|int		|FALSE		|Maximum number of items in one page (valid range:[1-500]; default value:100)			|
 |fromId	|long|FALSE|First record ID in this query (only valid for next page querying; please refer to note 3)	|
 
 Note 1:<br>
@@ -4074,8 +4411,8 @@ Only when the number of items within the query window (between "startTime" and "
 |	-------		|	-------		|	-------		|	-------									|
 |	code		|	integer		|	TRUE		|	Status code								|
 |	message	|	string		|	FALSE		|	Error message (if any)							|
-|	data		|	object		|	TRUE		|	                                                                                                 		|
-|	{ id          	|	long		|	TRUE		|	Deposit id								|
+|	\<data\>  	|	object		|	TRUE		|	                                                                                                 		|
+|	id          	|	long		|	TRUE		|	Deposit id								|
 |	currency	|	string		|	TRUE		|	Cryptocurrency							|
 |	txHash  	|	string    	|	TRUE		|	The on-chain transaction hash                                                       	|
 |	chain     	|	string		|	TRUE		|	Block chain name							|
@@ -4084,7 +4421,8 @@ Only when the number of items within the query window (between "startTime" and "
 |	addressTag	|	string    	|	FALSE		|	The user defined address tag                                               		|
 |	state     	|	string    	|	TRUE		|	The state of this transfer (see below for details)                       	|
 |	createTime	|	long    	|	TRUE		|	The timestamp in milliseconds for the transfer creation                      |
-|	updateTime }   |	long    	|	TRUE 	            |	The timestamp in milliseconds for the transfer's latest update   |
+|	updateTime   |	long    	|	TRUE 	            |	The timestamp in milliseconds for the transfer's latest update   |
+| \</data\>    |      |      |                                                              |              |
 |	nextId		|	long		|	FALSE		|	First record ID in next page (only valid if exceeded page size)	 |
 
 **List of possible deposit state**
@@ -4107,45 +4445,52 @@ This endpoint returns the aggregated balance from all the sub-users.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/subuser/aggregate-balance`
+ - GET `/v1/subuser/aggregate-balance`
 
-```shell
-curl "https://api.huobi.pro/v1/subuser/aggregate-balance"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-  "data": [
-      {
-        "currency": "eos",
-        "type": "spot",
-        "balance": "1954559.809500000000000000"
-      },
-      {
-        "currency": "btc",
-        "type": "spot",
-        "balance": "0.000000000000000000"
-      },
-      {
-        "currency": "usdt",
-        "type": "spot",
-        "balance": "2925209.411300000000000000"
-      }
-   ]
-```
 
 ### Request Parameters
 
 <aside class="notice">No parameter is needed for this endpoint</aside>
 ### Response Content
 
+> The above command returns JSON structured like this:
+
+```json
+{
+    "status": "ok",
+    "data": [
+        {
+            "currency": "hbpoint",
+            "balance": "10",
+            "type": "point"
+        },
+        {
+            "currency": "ada",
+            "balance": "0",
+            "type": "spot"
+        },
+        {
+            "currency": "usdt",
+            "balance": "8.08559165",
+            "type": "spot"
+        }
+    ]
+}
+```
+
+### Response Parameters
+
 <aside class="notice">The returned "data" object is a list of aggregated balances</aside>
+
 | Field    | Data Type | Description                                                  |
 | -------- | --------- | ------------------------------------------------------------ |
+| status   | true     |  string   | status | "OK" or "Error" |   
+| \<data\> | true     | list     |      |             |  
 | currency | string    | The currency of this balance                                 |
 | type     | string    | account type (spot, margin, point,super-margin)              |
 | balance  | string    | The total balance in the main currency unit including all balance and frozen banlance |
+| \</data\> |      |      |      |             |      |
+
 
 ## Get Account Balance of a Sub-User
 
@@ -4156,64 +4501,69 @@ This endpoint returns the balance of a sub-user specified by sub-uid.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/account/accounts/{sub-uid}`
+ - GET `/v1/account/accounts/{sub-uid}`
 
 'sub-uid': The specified sub user id to get balance for.
-
-```shell
-curl "https://api.huobi.pro/v1/account/accounts/10758899"
-```
 
 ### Request Parameters
 
 |Field Name	|Data Type	|Mandatory	|Description												|
 |-------		|-------		|-------		|-------													|
-| subUid	| long		| ture		| Sub user UID												|
+| sub-uid	| long		| ture		| Sub user UID												|
 
 > The above command returns JSON structured like this:
 
 ```json
-"data": [
-  {
-    "id": 9910049,
-    "type": "spot",
-    "list": [
-              {
-        "currency": "btc",
-          "type": "trade",
-          "balance": "1.00"
-      },
-      {
-        "currency": "eth",
-        "type": "trade",
-        "balance": "1934.00"
-      }
-      ]
-  },
-  {
-    "id": 9910050,
-    "type": "point",
-    "list": []
-  }
-]
+{
+    "status": "ok",
+    "data": [
+        {
+            "id": 13704588,
+            "type": "spot",
+            "state": "working",
+            "list": [
+                {
+                    "currency": "usdt",
+                    "type": "trade",
+                    "balance": "8.0855916572"
+                }
+            ],
+            "symbol": ""
+        },
+        {
+            "id": 24994285,
+            "type": "point",
+            "state": "working",
+            "list": [
+                {
+                    "currency": "hbpoint",
+                    "type": "trade",
+                    "balance": "10"
+                }
+            ],
+            "symbol": ""
+        }
+    ]
+}
 ```
 
 ### Response Content
 
 <aside class="notice">The returned "data" object is a list of accounts under this sub-user</aside>
+
 | Field | Data Type | Description                          | Value Range                           |
 | ----- | --------- | ------------------------------------ | ------------------------------------- |
+| status   | TRUE    | string     |  status | "OK" or "Error"      |      |
+| \<data\>   | TRUE       | object     |    |                              |      |
 | id    | integer   | account's ID                 | NA                                    |
 | type  | string    | The type of this account             | spot, margin, otc, point,super-margin |
-| list  | object    | The balance details of each currency | NA                                    |
-
-**Per list item content**
-
-| Field    | Data Type | Description                           | Value Range   |
-| -------- | --------- | ------------------------------------- | ------------- |
-| currency | string    | The currency of this balance          | NA            |
-| type     | string    | The balance type                      | trade, frozen |
-| balance  | string    | The balance in the main currency unit | NA            |
+| \<list\> | TRUE      | object   |         |                                                            |      |
+| currency | TRUE      | string    | The currency of this balance          | NA            |
+| type     | TRUE      | string    | The balance type                      | trade, frozen |
+| balance  | TRUE      | string    | The balance in the main currency unit | NA            |
+| \</list\> |          |    |          |                                                            |      |
+| symbol   | TRUE       | string     |   |     |      |
+| \</data\>   |       |      |    |                              |      |
 
 ## Error Code
 
@@ -4291,19 +4641,18 @@ This endpoint places a new order and sends to the exchange to be matched.
 
 ### HTTP Request
 
-`POST https://api.huobi.pro/v1/order/orders/place`
+ - POST `/v1/order/orders/place`
 
-```shell
-curl -X POST -H "Content-Type: application/json" "https://api.huobi.pro/v1/order/orders/place" -d
-'{
-   "account-id": "100009",
-   "amount": "10.1",
-   "price": "100.1",
-   "source": "api",
-   "symbol": "ethusdt",
-   "type": "buy-limit",
-   "client-order-id": "a0001"
-  }'
+```json
+{
+  "account-id": "100009",
+  "amount": "10.1",
+  "price": "100.1",
+  "source": "api",
+  "symbol": "ethusdt",
+  "type": "buy-limit",
+  "client-order-id": "a0001"
+}
 ```
 
 ### Request Parameters
@@ -4323,7 +4672,10 @@ curl -X POST -H "Content-Type: application/json" "https://api.huobi.pro/v1/order
 > The above command returns JSON structured like this:
 
 ```json
-  "data": "59378"
+{
+    "status": "ok",
+    "data": "356501383558845"
+}
 ```
 
 ### Response Content
@@ -4353,27 +4705,28 @@ A batch contains at most 10 orders.
 
 ### HTTP Request
 
-- POST ` /v1/order/batch-orders`
+- POST `/v1/order/batch-orders`
 
 ```json
- [
- 	{
-     "account-id": "123456",
-     "price": "7801",
-     "amount": "0.001",
-     "symbol": "btcusdt",
-     "type": "sell-limit",
-     "client-order-id": "c1"
- 	},
- 	{
-     "account-id": "123456",
-     "price": "7802",
-     "amount": "0.001",
-     "symbol": "btcusdt",
-     "type": "sell-limit",
-     "client-order-id": "d2"
- 	}
- ]
+[
+    {
+        "account-id": "13496526",
+        "symbol": "adausdt",
+        "type": "buy-limit-maker",
+        "amount": "5",
+        "price": "1",
+        "source": "spot-api",
+        "client-order-id": "2345"
+    },
+    {
+        "account-id": "13496526",
+        "symbol": "adausdt",
+        "type": "buy-limit-maker",
+        "amount": "4",
+        "price": "1",
+        "source": "spot-api","client-order-id": "23456"
+    }
+]
 ```
 
 ### Request Parameters
@@ -4409,12 +4762,13 @@ If the order price is greater than the highest buy price in the market, the orde
     "status": "ok",
     "data": [
         {
-            "order-id": 61713400772,
-            "client-order-id": "c1"
+            "order-id": 361560582529749,
+            "client-order-id": "2345"
         },
         {
-            "order-id": 61713400940,
-            "client-order-id": "d2"
+            "client-order-id": "23456",
+            "err-code": "order-value-min-error",
+            "err-msg": "Order total cannot be lower than: 5 USDT"
         }
     ]
 }
@@ -4424,10 +4778,13 @@ If the order price is greater than the highest buy price in the market, the orde
 
 | Field           | Data Type | Description                                 |
 | --------------- | --------- | ------------------------------------------- |
-| [{order-id      | integer   | The order id                                |
+| status          | string  | status                      |
+| \<data\>        | object  |                              |
+| order-id        | integer   | The order id                                |
 | client-order-id | string    | The client order id (if available)          |
 | err-code        | string    | The error code (only for rejected order)    |
-| err-msg}]       | string    | The error message (only for rejected order) |
+| err-msg         | string    | The error message (only for rejected order) |
+| \</data\>       |   |                              |
 
 If client order ID duplicates with a previous order , the endpoint responds that previous order's Id and client order ID.
 
@@ -4439,15 +4796,12 @@ Rate Limit (NEW): 100times/2s
 This endpoint submits a request to cancel an order.
 
 <aside class="warning">The actual result of the cancellation request needs to be checked by order status or match result endpoints after submitting the request.</aside>
+
 ### HTTP Request
 
-`POST https://api.huobi.pro/v1/order/orders/{order-id}/submitcancel`
+ - POST `/v1/order/orders/{order-id}/submitcancel`
 
 'order-id': the previously returned order id when order was created
-
-```shell
-curl -X POST "https://api.huobi.pro/v1/order/orders/59378/submitcancel"
-```
 
 ### Request Parameters
 
@@ -4459,7 +4813,10 @@ curl -X POST "https://api.huobi.pro/v1/order/orders/59378/submitcancel"
 > The above command returns JSON structured like this:
 
 ```json
-  "data": "59378"
+{
+    "status": "ok",
+    "data": "356501495694025"
+}
 ```
 
 ### Response Content
@@ -4471,10 +4828,11 @@ curl -X POST "https://api.huobi.pro/v1/order/orders/59378/submitcancel"
 
 ```json
 {
-  "status": "error",
-  "err-code": "order-orderstate-error",
-  "err-msg": "Incorrect order state",
-  "order-state":-1 // current order state
+    "status": "error",
+    "err-code": "order-orderstate-error",
+    "err-msg": "Incorrect order state",
+    "data": null,
+    "order-state": 7   // current order state
 }
 ```
 
@@ -4503,13 +4861,12 @@ This endpoint submit a request to cancel an order based on client-order-id .
 
 ### HTTP Request
 
-`POST https://api.huobi.pro/v1/order/orders/submitCancelClientOrder`
+ - POST `/v1/order/orders/submitCancelClientOrder`
 
-```shell
-curl -X POST -H "Content-Type: application/json" "https://api.huobi.pro/v1/order/orders/submitCancelClientOrder" -d
-'{
+```json
+{
   "client-order-id": "a0001"
-  }'
+}
 ```
 
 ### Request Parameters
@@ -4521,7 +4878,10 @@ curl -X POST -H "Content-Type: application/json" "https://api.huobi.pro/v1/order
 > The above command returns JSON structured like this:
 
 ```json
-  "data": "59378"
+{
+    "status": "ok",
+    "data": 10
+}
 ```
 
 ### Response Content
@@ -4552,10 +4912,16 @@ This endpoint returns all open orders which have not been filled completely.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/openOrders`
+ - GET `/v1/order/openOrders`
 
-```shell
-curl "https://api.huobi.pro/v1/order/openOrders?account-id=100009&symbol=btcusdt&side=buy&size=5"
+> Request:
+
+```json
+{
+   "account-id": "100009",
+   "symbol": "ethusdt",
+   "side": "buy"
+}
 ```
 
 ### Request Parameters
@@ -4572,28 +4938,34 @@ curl "https://api.huobi.pro/v1/order/openOrders?account-id=100009&symbol=btcusdt
 > The above command returns JSON structured like this:
 
 ```json
-  "data": [
-    {
-      "id": 5454937,
-      "symbol": "ethusdt",
-      "account-id": 30925,
-      "amount": "1.000000000000000000",
-      "price": "0.453000000000000000",
-      "created-at": 1530604762277,
-      "type": "sell-limit",
-      "filled-amount": "0.0",
-      "filled-cash-amount": "0.0",
-      "filled-fees": "0.0",
-      "source": "web",
-      "state": "submitted"
-    }
-  ]
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "apnusdt",
+            "source": "web",
+            "price": "1.555550000000000000",
+            "created-at": 1630633835224,
+            "amount": "572.330000000000000000",
+            "account-id": 13496526,
+            "filled-cash-amount": "0.0",
+            "client-order-id": "",
+            "filled-amount": "0.0",
+            "filled-fees": "0.0",
+            "id": 357630527817871,
+            "state": "submitted",
+            "type": "sell-limit"
+        }
+    ]
+}
 ```
 
 ### Response Content
 
 | Field              | Data Type | Description                                                  |
 | ------------------ | --------- | ------------------------------------------------------------ |
+| status             | string  | status  |
+| \<data\>           | object  |     |
 | id                 | integer   | Order id                                                     |
 | client-order-id    | string    | Client order id, can be returned from all open orders (if specified). |
 | symbol             | string    | The trading symbol to trade, e.g. btcusdt, bccbtc            |
@@ -4607,6 +4979,8 @@ curl "https://api.huobi.pro/v1/order/openOrders?account-id=100009&symbol=btcusdt
 | state              | string    | Order status, valid values: created, submitted, partial-filled |
 | stop-price         | string    | false                                                        |
 | operator           | string    | false                                                        |
+| \</data\>          |   |     |
+
 
 ## Submit Cancel for Multiple Orders by Criteria
 
@@ -4620,16 +4994,17 @@ like order status, matchresult, etc.
 
 ### HTTP Request
 
-`POST https://api.huobi.pro/v1/order/orders/batchCancelOpenOrders`
+ - POST `/v1/order/orders/batchCancelOpenOrders`
 
-```shell
-curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order/orders/batchCancelOpenOrders" -d
-'{
+> Request
+
+```json
+{
   "account-id": "100009",
   "symbol": "btcusdt,btchusd",
   "side": "buy",
   "size": 5
-}'
+}
 ```
 
 | Parameter  | Data Type | Required | Default | Description                                                  | Value Range                                                  |
@@ -4643,20 +5018,27 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 > The above command returns JSON structured like this:
 
 ```json
-  "data": {
-    "success-count": 2,
-    "failed-count": 0,
-    "next-id": 5454600
-  }
+{
+    "status":"ok",
+    "data":{
+        "success-count":2,
+        "failed-count":0,
+        "next-id":5454600
+    }
+}
 ```
 
 ### Response Content
 
 | Field         | Data Type | Description                                                  |
 | ------------- | --------- | ------------------------------------------------------------ |
+| status        | string      | status       |
+| \<data\>      | object      |        |
 | success-count | integer   | The number of cancel request sent successfully               |
 | failed-count  | integer   | The number of cancel request failed                          |
 | next-id       | integer   | the next order id that can be cancelled, -1 indicates no open orders |
+| \</data\>     |      |       |        |
+
 
 ## Submit Cancel for Multiple Orders by IDs
 
@@ -4668,15 +5050,14 @@ client-order-ids, so that the cancellation is faster, more accurate and more sta
 
 ### HTTP Request
 
-`POST https://api.huobi.pro/v1/order/orders/batchcancel`
+ - POST `/v1/order/orders/batchcancel`
 
-```shell
-curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order/orders/batchcancel" -d
-'{
-  "client-order-ids": [
-    "5983466", "5722939", "5721027", "5719487"
-  ]
-}'
+```json
+{
+    "client-order-ids": [
+         "12345", "123456"
+    ]
+}
 ```
 
 ### Request Parameters
@@ -4693,30 +5074,17 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
     "status": "ok",
     "data": {
         "success": [
-            "5983466"            
+            "12345"
         ],
         "failed": [
             {
-              "err-msg": "Incorrect order state",
-              "order-state": 7,
-              "order-id": "",
-              "err-code": "order-orderstate-error",
-              "client-order-id": "first"
-            },
-            {
-              "err-msg": "Incorrect order state",
-              "order-state": 7,
-              "order-id": "",
-              "err-code": "order-orderstate-error",
-              "client-order-id": "second"
-            },
-            {
-              "err-msg": "The record is not found.",
-              "order-id": "",
-              "err-code": "base-not-found",
-              "client-order-id": "third"
+                "err-msg": "Incorrect order state",
+                "order-state": 7,
+                "order-id": "357631450723117",
+                "err-code": "order-orderstate-error",
+                "client-order-id": "123456"
             }
-          ]
+        ]
     }
 }
 ```
@@ -4725,18 +5093,17 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/order
 
 | Field    | Data Type | Description                                                  |
 | -------- | --------- | ------------------------------------------------------------ |
-| {success | string[]  | Cancelled order list (Can be order ID list or client order list, based on the request) |
-| failed}  | string[]  | Failed order list (Can be order ID list or client order list, based on the request) |
-
-The failed id list has below fields
-
-| Fields          | Data Type | Description                                                  |
-| --------------- | --------- | ------------------------------------------------------------ |
-| [{ order-id     | string    | The order id (if the request is based on order-ids)          |
+| status          | string | 状态 |
+| \<data\>        | object |  |
+| success       | array  | Cancelled order list (Can be order ID list or client order list, based on the request) |
+| \<failed\>  | object  | Failed order list (Can be order ID list or client order list, based on the request) |
+| order-id     | string    | The order id (if the request is based on order-ids)          |
 | client-order-id | string    | The client order id (if the request is based on client-order-ids) |
 | err-code        | string    | The error code (only applicable for rejected order)          |
 | err-msg         | string    | The error message (only applicable for rejected order)       |
-| order-state }]  | string    | Current order state (if available)                           |
+| order-state   | string    | Current order state (if available)                           |
+| \</failed\>     |  |  |
+| \</data\>       |  |  |
 
 The possible values of "order-state" includes -
 
@@ -4784,13 +5151,12 @@ Response:
 
 ```json
 {
-"code": 200,
-"data": [
-    {
-       "currentTime":"1587971400",
-       "triggerTime":"1587971460"
-  }
-]
+    "code": 200,
+    "message": "success",
+    "data": {
+        "currentTime": 1630491627230,
+        "triggerTime": 1630491637230
+    }
 }
 ```
 
@@ -4800,24 +5166,24 @@ Response:
 
 ```json
 {
-"code": 200,
-"data": [
-    {
-       "currentTime":"1587971400",
-       "triggerTime":"0"
-  }
-]
+    "code": 200,
+    "message": "success",
+    "data": {
+        "currentTime": 1630491780445,
+        "triggerTime": 0
+    }
 }
 ```
 
 
 > Turn On/Off Failed
-> Response:
+Response:
 
 ```json
 {
-"code": 2003,
-"message": "missing mandatory field"
+    "code": 2002,
+    "message": "Invalid constraints error timeout",
+    "data": null
 }
 ```
 
@@ -4827,12 +5193,11 @@ Response:
 | ------------- | ------------- | -------- | -------------------------- |
 | code          | true          | int      | status code                |
 | message       | false         | string   | error description (if any) |
-| data          | true          | object   |                            |
-| { currentTime | true          | long     | current time               |
-| triggerTime } | true          | long     | trigger time               |
+| \<data\>      | true          | object   |                            |
+| currentTime | true          | long     | current time               |
+| triggerTime | true          | long     | trigger time               |
+| \</data\>     |          |        |                  |
 
-
-## 
 
 ## Get the Order Detail of an Order
 
@@ -4843,39 +5208,35 @@ This endpoint returns the detail of a specific order. If an order is created via
 
 ### HTTP Request
 
-`GET /v1/order/orders/{order-id}`
+ - GET `/v1/order/orders/{order-id}`
 
 ### Request Parameters
 | **Name**      | **Mandatory** | **Type** | **Description**            |
 | ------------- | ------------- | -------- | -------------------------- |
 | order-id      | true          | string   | order id when order was created. Place it within path|
 
-```shell
-curl "https://api.huobi.pro/v1/order/orders/59378"
-```
-
-
 > The above command returns JSON structured like this:
 
 ```json
-{  
-  "data": {
-    "id": 59378,
-    "symbol": "ethusdt",
-    "account-id": 100009,
-    "amount": "10.1000000000",
-    "price": "100.1000000000",
-    "created-at": 1494901162595,
-    "type": "buy-limit",
-    "field-amount": "10.1000000000",
-    "field-cash-amount": "1011.0100000000",
-    "field-fees": "0.0202000000",
-    "finished-at": 1494901400468,
-    "user-id": 1000,
-    "source": "api",
-    "state": "filled",
-    "canceled-at": 0
-  }
+{
+    "status": "ok",
+    "data": {
+        "id": 357632718898331,
+        "symbol": "adausdt",
+        "account-id": 13496526,
+        "client-order-id": "23456",
+        "amount": "5.000000000000000000",
+        "price": "1.000000000000000000",
+        "created-at": 1630649406687,
+        "type": "buy-limit-maker",
+        "field-amount": "0.0",
+        "field-cash-amount": "0.0",
+        "field-fees": "0.0",
+        "finished-at": 0,
+        "source": "spot-api",
+        "state": "submitted",
+        "canceled-at": 0
+    }
 }
 ```
 
@@ -4883,6 +5244,8 @@ curl "https://api.huobi.pro/v1/order/orders/59378"
 
 | Field              | Data Type | Description                                                  |
 | ------------------ | --------- | ------------------------------------------------------------ |
+| status            |  string     | status                                                      |          |
+| \<data\>          |  object     |                                                          |            |
 | id                 | integer   | order id                                                     |
 | client-order-id    | string    | Client order id ("client-order-id" (if specified) can be returned from all open orders.	"client-order-id"  (if specified) can be returned only from closed orders (state <> canceled) created within 7 days.	"client-order-id"  (if specified) can be returned only from closed orders (state = canceled) created within 8 hours.) |
 | symbol             | string    | The trading symbol to trade, e.g. btcusdt, bccbtc            |
@@ -4900,7 +5263,7 @@ curl "https://api.huobi.pro/v1/order/orders/59378"
 | state              | string    | All possible order state (refer to introduction in this section) |
 | stop-price         | string    | trigger price of stop limit order                            |
 | operator           | string    | operation character of stop price: gte, lte                  |
-
+| \</data\>         |      |      |                           |                                    |
 
 
 ## Get the Order Detail of an Order (based on client order ID)
@@ -4912,39 +5275,36 @@ This endpoint returns the detail of one order by specified client order id (with
 
 ### HTTP Request
 
-`GET /v1/order/orders/getClientOrder`
-
-```shell
-curl "https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"
-```
+ - GET `/v1/order/orders/getClientOrder`
 
 ### Request Parameters
 
 | Parameter     | Data Type | Required | Default | Description     |
 | ------------- | --------- | -------- | ------- | --------------- |
-| order-id      | string    | true     | NA      | Client order ID |
+| clientOrderId    | string    | true     | NA      | Client order ID |
 
 > The above command returns JSON structured like this:
 
 ```json
-{  
-  "data": {
-    "id": 59378,
-    "symbol": "ethusdt",
-    "account-id": 100009,
-    "amount": "10.1000000000",
-    "price": "100.1000000000",
-    "created-at": 1494901162595,
-    "type": "buy-limit",
-    "field-amount": "10.1000000000",
-    "field-cash-amount": "1011.0100000000",
-    "field-fees": "0.0202000000",
-    "finished-at": 1494901400468,
-    "user-id": 1000,
-    "source": "api",
-    "state": "filled",
-    "canceled-at": 0
-  }
+{
+    "status": "ok",
+    "data": {
+        "id": 357632718898331,
+        "symbol": "adausdt",
+        "account-id": 13496526,
+        "client-order-id": "23456",
+        "amount": "5.000000000000000000",
+        "price": "1.000000000000000000",
+        "created-at": 1630649406687,
+        "type": "buy-limit-maker",
+        "field-amount": "0.0",
+        "field-cash-amount": "0.0",
+        "field-fees": "0.0",
+        "finished-at": 0,
+        "source": "spot-api",
+        "state": "submitted",
+        "canceled-at": 0
+    }
 }
 ```
 
@@ -4952,6 +5312,8 @@ curl "https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"
 
 | Field              | Data Type | Description                                                  |
 | ------------------ | --------- | ------------------------------------------------------------ |
+| status            |  string   | status                    |                                    |
+| \<data\>          | object   |                               |                                    |
 | id                 | integer   | order id                                                     |
 | client-order-id    | string    | Client order id (only those orders created within 8 hours can be returned.) |
 | symbol             | string    | The trading symbol to trade, e.g. btcusdt, bccbtc            |
@@ -4969,15 +5331,19 @@ curl "https://api.huobi.pro/v1/order/orders/getClientOrder?clientOrderId=a0001"
 | state              | string    | All possible order state (refer to introduction in this section) |
 | stop-price         | string    | trigger price of stop limit order                            |
 | operator           | string    | operation character of stop price                            |
+| \</data\>         |      |    |                                                       |                                    |
 
-If the client order ID is not found, following error message will be returned:
+
+> If the client order ID is not found, following error message will be returned:
+
+```json
 {
     "status": "error",
     "err-code": "base-record-invalid",
     "err-msg": "record invalid",
     "data": null
 }
-
+```
 
 
 ## Get the Match Result of an Order
@@ -4989,12 +5355,7 @@ This endpoint returns the match result of an order.
 
 ### HTTP Request
 
-`GET /v1/order/orders/{order-id}/matchresults`
-
-
-```shell
-curl "https://api.huobi.pro/v1/order/orders/59378/matchresults"
-```
+ - GET `/v1/order/orders/{order-id}/matchresults`
 
 ### Request Parameters
 
@@ -5006,32 +5367,39 @@ curl "https://api.huobi.pro/v1/order/orders/59378/matchresults"
 > The above command returns JSON structured like this:
 
 ```json
-  "data": [
-    {
-      "id": 29553,
-      "order-id": 59378,
-      "match-id": 59335,
-      "trade-id": 100282808529,
-      "symbol": "ethusdt",
-      "type": "buy-limit",
-      "source": "api",
-      "price": "100.1000000000",
-      "filled-amount": "9.1155000000",
-      "filled-fees": "0.0182310000",
-      "created-at": 1494901400435,
-      "role": maker,
-      "filled-points": "0.0",
-      "fee-deduct-currency": "",
-      "fee-deduct-state": "done"
-    }
-  ]
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "polyusdt",
+            "fee-currency": "poly",
+            "source": "spot-web",
+            "order-id": 345487249132375,
+            "price": "0.338",
+            "created-at": 1629443051839,
+            "role": "taker",
+            "match-id": 5014,
+            "filled-amount": "147.928994082840236",
+            "filled-fees": "0",
+            "filled-points": "0.1",
+            "fee-deduct-currency": "hbpoint",
+            "fee-deduct-state": "done",
+            "trade-id": 1085,
+            "id": 313288753120940,
+            "type": "buy-market"
+        }
+    ]
+}
 ```
 
 ### Response Content
 
 <aside class="notice">The return data contains a list and each item in the list represents a match result</aside>
+
 | Parameter           | Data Type | Description                                                  |
 | ------------------- | --------- | ------------------------------------------------------------ |
+| status              |  string     | status                     |                        |
+| \<data\>            |  object     |                         |               |
 | id                  | long      | Internal id                                                  |
 | symbol              | string    | The trading symbol to trade, e.g. btcusdt, bccbtc            |
 | order-id            | long      | The order id of this order                                   |
@@ -5048,6 +5416,7 @@ curl "https://api.huobi.pro/v1/order/orders/59378/matchresults"
 | filled-points       | string    | deduction amount (unit: in ht or hbpoint)                    |
 | fee-deduct-currency | string    | deduction type. if blank, the transaction fee is based on original currency; if showing value as "ht", the transaction fee is deducted by HT; if showing value as "hbpoint", the transaction fee is deducted by HB point. |
 | fee-deduct-state | string    | Fee deduction status，In deduction：ongoing，Deduction completed：done |
+| \</data\>           |      |      |                         |                                                              |
 
 Notes:<br>
 
@@ -5073,22 +5442,20 @@ Huobi Global suggests API users to search historical orders based on "time" filt
 
 ### HTTP Request
 
-`GET /v1/order/orders`
+ - GET `/v1/order/orders`
 
-```shell
-curl "https://api.huobi.pro/v1/order/orders?symbol=ethusdt&type=buy-limit&staet=filled"
-```
-> Request
+> Request:
+
 ```json
   
-    {
+{
    "account-id": "100009",
    "amount": "10.1",
    "price": "100.1",
    "source": "api",
    "symbol": "ethusdt",
    "type": "buy-limit"
-    }
+}
 ```
 
 
@@ -5103,36 +5470,41 @@ curl "https://api.huobi.pro/v1/order/orders?symbol=ethusdt&type=buy-limit&staet=
 | states     | string    | true     | NA      | One or more  states of order to include in the search, use comma to separate. | All possible order state (refer to introduction in this section) |
 | from       | string    | false    | NA      | Search order id to begin with                                | NA                                                           |
 | direct     | string    | false    | both    | Search direction when 'from' is used                         | next, prev                                                   |
-| size       | integer   | false    | 100     | The number of orders to return                               | [1, 100]                                                     |
+| size       | integer   | false    | 100     | The number of orders to return              | [1-100]         |
 
 > The above command returns JSON structured like this:
 
 ```json
-  "data": [
-    {
-      "id": 59378,
-      "symbol": "ethusdt",
-      "account-id": 100009,
-      "amount": "10.1000000000",
-      "price": "100.1000000000",
-      "created-at": 1494901162595,
-      "type": "buy-limit",
-      "field-amount": "10.1000000000",
-      "field-cash-amount": "1011.0100000000",
-      "field-fees": "0.0202000000",
-      "finished-at": 1494901400468,
-      "user-id": 1000,
-      "source": "api",
-      "state": "filled",
-      "canceled-at": 0
-    }
-  ]
+{
+    "status": "ok",
+    "data": [
+        {
+            "id": 345487249132375,
+            "symbol": "polyusdt",
+            "account-id": 13496526,
+            "client-order-id": "",
+            "amount": "50.000000000000000000",
+            "price": "0.0",
+            "created-at": 1629443051822,
+            "type": "buy-market",
+            "field-amount": "147.928994082840236000",
+            "field-cash-amount": "49.999999999999999768",
+            "field-fees": "0.295857988165680472",
+            "finished-at": 1629443051838,
+            "source": "spot-web",
+            "state": "filled",
+            "canceled-at": 0
+        }
+    ]
+}
 ```
 
 ### Response Content
 
 | Field              | Data Type | Description                                                  |
 | ------------------ | --------- | ------------------------------------------------------------ |
+| status            | true     | string   | status                                                      |             |
+| \<data\>          | true     | object   |                                                          |              |
 | id                 | long      | Order id                                                     |
 | client-order-id    | string    | Client order id ("client-order-id" (if specified) can be returned from all open orders.	"client-order-id" (if specified) can be returned only from closed orders (state <> canceled) created within 7 days.	only those closed orders (state = canceled) created within 8 hours can be returned.) |
 | account-id         | long      | Account id                                                   |
@@ -5153,6 +5525,7 @@ curl "https://api.huobi.pro/v1/order/orders?symbol=ethusdt&type=buy-limit&staet=
 | batch              | string    | Internal data                                                |
 | stop-price         | string    | trigger price of stop limit order                            |
 | operator           | string    | operation character of stop price                            |
+| \</data\>          |      |    |                                                    |                                                              |
 
 ### Error code for invalid start-date/end-date
 
@@ -5174,7 +5547,7 @@ The orders created via API will no longer be queryable after being cancelled for
 
 ### HTTP Request
 
-`GET /v1/order/history`
+ - GET `/v1/order/history`
 
 >Request
 ```json
@@ -5195,8 +5568,7 @@ The orders created via API will no longer be queryable after being cancelled for
 | start-time | false    | long      | Start time (included)                                        | The time 48 hours ago | UTC time in millisecond                                      |
 | end-time   | false    | long      | End time (included)                                          | The query time        | UTC time in millisecond                                      |
 | direct     | false    | string    | Direction of the query. (Note: If the total number of items in the search result is within the limitation defined in "size", this field does not take effect.) | next                  | prev, next                                                   |
-| size       | false    | int       | Number of items in each response                             | 100                   | [10,1000]                                                    |
-
+| size       | false    | int       | Number of items in each response                             | 100                   | [10-1000]                                                    |
 
 
 > The above command returns JSON structured like this:
@@ -5206,20 +5578,38 @@ The orders created via API will no longer be queryable after being cancelled for
     "status": "ok",
     "data": [
         {
-            "id": 31215214553,
-            "symbol": "btcusdt",
-            "account-id": 4717043,
-            "amount": "1.000000000000000000",
+            "id": 357632718898331,
+            "symbol": "adausdt",
+            "account-id": 13496526,
+            "client-order-id": "23456",
+            "amount": "5.000000000000000000",
             "price": "1.000000000000000000",
-            "created-at": 1556533539282,
-            "type": "buy-limit",
+            "created-at": 1630649406687,
+            "type": "buy-limit-maker",
             "field-amount": "0.0",
             "field-cash-amount": "0.0",
             "field-fees": "0.0",
-            "finished-at": 1556533568953,
-            "source": "web",
-            "state": "canceled",
-            "canceled-at": 1556533568911
+            "finished-at": 0,
+            "source": "spot-api",
+            "state": "submitted",
+            "canceled-at": 0
+        },
+        {
+            "id": 357632718898330,
+            "symbol": "adausdt",
+            "account-id": 13496526,
+            "client-order-id": "2345",
+            "amount": "5.000000000000000000",
+            "price": "1.000000000000000000",
+            "created-at": 1630649406687,
+            "type": "buy-limit-maker",
+            "field-amount": "0.0",
+            "field-cash-amount": "0.0",
+            "field-fees": "0.0",
+            "finished-at": 0,
+            "source": "spot-api",
+            "state": "submitted",
+            "canceled-at": 0
         }
     ]
 }
@@ -5229,6 +5619,8 @@ The orders created via API will no longer be queryable after being cancelled for
 
 | Field             | Data Type | Description                                                  |
 | ----------------- | --------- | ------------------------------------------------------------ |
+| status            | string   | status                         |            |
+| \<data\>          | object   |                       |          |
 | {account-id       | long      | Account ID                                                   |
 | amount            | string    | Order size                                                   |
 | canceled-at       | long      | Order cancellation time                                      |
@@ -5246,6 +5638,7 @@ The orders created via API will no longer be queryable after being cancelled for
 | stop-price        | string    | trigger price of stop limit order                            |
 | operator          | string    | operation character of stop price. e.g. get, lte             |
 | type}             | string    | All possible order type (refer to introduction in this section) |
+| \</data\>         |      |    |     |                                                              |
 | next-time         | long      | Next query "start-time" (in response of "direct" = prev), Next query "end-time" (in response of "direct" = next). Note: Only when the total number of items in the search result exceeded the limitation defined in "size", this field exists. UTC time in millisecond. |
 
 
@@ -5258,11 +5651,7 @@ This endpoint returns the match results of past and current filled, or partially
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/order/matchresults`
-
-```shell
-curl "https://api.huobi.pro/v1/order/matchresults?symbol=ethusdt"
-```
+ - GET `/v1/order/matchresults`
 
 ### Request Parameters
 
@@ -5274,37 +5663,44 @@ curl "https://api.huobi.pro/v1/order/matchresults?symbol=ethusdt"
 | end-time   | false     | long     | Near point of time of the query window (unix time in millisecond). Searching based on transact-time. The maximum size of the query window is 48 hour. The query window can be shifted within 120 days. | current-time                                                 | [(current-time) – 120days,(current-time)]                    |
 | from       | string    | false    | N/A                                                          | Search internal id to begin with                             | if search next page, then this should be the last id (not trade-id) of last page; if search previous page, then this should be the first id (not trade-id) of last page |
 | direct     | string    | false    | next                                                         | Search direction when 'from' is used                         | next, prev                                                   |
-| size       | int       | false    | 100                                                          | The number of orders to return                               | [1, 500]                                                     |
+| size       | int       | false    | 100                                                          | The number of orders to return                               | [1-500]                                                     |
 
 > The above command returns JSON structured like this:
 
 ```json
-  "data": [
-    {
-      "id": 29553,
-      "order-id": 59378,
-      "match-id": 59335,
-      "symbol": "ethusdt",
-      "type": "buy-limit",
-      "source": "api",
-      "price": "100.1000000000",
-      "filled-amount": "9.1155000000",
-      "filled-fees": "0.0182310000",
-      "created-at": 1494901400435,
-      "trade-id": 100282808529,
-      "role": "taker",
-      "filled-points": "0.0",
-      "fee-deduct-currency": "",
-      "fee-deduct-state": "done"
-    }
-  ]
+{
+    "status": "ok",
+    "data": [
+        {
+            "symbol": "polyusdt",
+            "fee-currency": "poly",
+            "source": "spot-web",
+            "price": "0.338",
+            "created-at": 1629443051839,
+            "role": "taker",
+            "order-id": 345487249132375,
+            "match-id": 5014,
+            "trade-id": 1085,
+            "filled-amount": "147.928994082840236",
+            "filled-fees": "0",
+            "filled-points": "0.1",
+            "fee-deduct-currency": "hbpoint",
+            "fee-deduct-state": "done",
+            "id": 313288753120940,
+            "type": "buy-market"
+        }
+    ]
+}
 ```
 
 ### Response Content
 
 <aside class="notice">The return data contains a list and each item in the list represents a match result</aside>
+
 | Field               | Data Type | Description                                                  |
 | ------------------- | --------- | ------------------------------------------------------------ |
+| status              |  string   | status    |                                                              |
+| \<data\>            | object   |         |                                          |
 | id                  | long      | Record id, non sequential, it can be used in "from" field for next request |
 | symbol              | string    | The trading symbol to trade, e.g. btcusdt, bccbtc            |
 | order-id            | long      | The order id of this order                                   |
@@ -5321,6 +5717,7 @@ curl "https://api.huobi.pro/v1/order/matchresults?symbol=ethusdt"
 | filled-points       | string    | deduction amount (unit: in ht or hbpoint)                    |
 | fee-deduct-currency | string    | deduction type: ht or hbpoint.                               |
 | fee-deduct-state | string    | Fee deduction status，In deduction：ongoing，Deduction completed：done |
+| \</data\>           |      |    |                         |                                                              |
 
 Notes:<br>
 
@@ -5341,10 +5738,6 @@ This endpoint returns the current transaction fee rate applied to the user.
 
 API Key Permission：Read
 
-```shell
-curl "https://api.huobi.pro/v2/reference/transact-fee-rate?symbols=btcusdt,ethusdt,ltcusdt"
-```
-
 ### HTTP Request
 
 `GET /v2/reference/transact-fee-rate`
@@ -5359,45 +5752,48 @@ curl "https://api.huobi.pro/v2/reference/transact-fee-rate?symbols=btcusdt,ethus
 
 ```json
 {
-  "code": "200",
-  "data": [
-     {
-        "symbol": "btcusdt",
-        "makerFeeRate":"0.002",
-        "takerFeeRate":"0.002",
-        "actualMakerRate": "0.002",
-        "actualTakerRate":"0.002
-     },
-     {
-        "symbol": "ethusdt",
-        "makerFeeRate":"0.002",
-        "takerFeeRate":"0.002",
-        "actualMakerRate": "0.002",
-        "actualTakerRate":"0.002
-     },
-     {
-        "symbol": "ltcusdt",
-        "makerFeeRate":"0.002",
-        "takerFeeRate":"0.002",
-        "actualMakerRate": "0.002",
-        "actualTakerRate":"0.002
-     }
-   ]
+    "code": 200,
+    "data": [
+        {
+            "symbol": "btcusdt",
+            "actualMakerRate": "0.002",
+            "actualTakerRate": "0.002",
+            "takerFeeRate": "0.002",
+            "makerFeeRate": "0.002"
+        },
+        {
+            "symbol": "apnusdt",
+            "actualMakerRate": "0.002",
+            "actualTakerRate": "0.002",
+            "takerFeeRate": "0.002",
+            "makerFeeRate": "0.002"
+        },
+        {
+            "symbol": "htusdt",
+            "actualMakerRate": "0.002",
+            "actualTakerRate": "0.002",
+            "takerFeeRate": "0.002",
+            "makerFeeRate": "0.002"
+        }
+    ],
+    "success": true
 }
 ```
 
 ### Response Content
 
-|      | Field Name        | Data Type | Description                                                  |      |
-| ---- | ----------------- | --------- | ------------------------------------------------------------ | ---- |
-|      | code              | integer   | Status code                                                  |      |
-|      | message           | string    | Error message (if any)                                       |      |
-|      | data              | object    |                                                              |      |
-|      | { symbol          | string    | Trading symbol                                               |      |
-|      | makerFeeRate      | string    | Basic fee rate – passive side (positive value);If maker rebate applicable, revert maker rebate rate (negative value). |      |
-|      | takerFeeRate      | string    | Basic fee rate – aggressive side                             |      |
-|      | actualMakerRate   | string    | Deducted fee rate – passive side (positive value). If deduction is inapplicable or disabled, return basic fee rate.If maker rebate applicable, revert maker rebate rate (negative value). |      |
-|      | actualTakerRate } | string    | Deducted fee rate – aggressive side. If deduction is inapplicable or disabled, return basic fee rate. |      |
+| Field Name        | Data Type | Description                                                  |      |
+| ----------------- | --------- | ------------------------------------------------------------ | ---- |
+| code              | integer   | Status code                                                  |      |
+| message           | string    | Error message (if any)                                       |      |
+| \<data\>          | object    |                                                              |      |
+| symbol            | string    | Trading symbol                                               |      |
+| makerFeeRate      | string    | Basic fee rate – passive side (positive value);If maker rebate applicable, revert maker rebate rate (negative value). |      |
+| takerFeeRate      | string    | Basic fee rate – aggressive side                             |      |
+| actualMakerRate   | string    | Deducted fee rate – passive side (positive value). If deduction is inapplicable or disabled, return basic fee rate.If maker rebate applicable, revert maker rebate rate (negative value). |      |
+| actualTakerRate   | string    | Deducted fee rate – aggressive side. If deduction is inapplicable or disabled, return basic fee rate. |      |
+| \</data\>         |    |                                                              |      |
+
 
 Note：
 - If makerFeeRate/actualMakerRate is positive，this field means the transaction fee rate.
@@ -5525,7 +5921,8 @@ By comparing with the existing stop limit order, the newly introduced conditiona
 
 ## Place a conditional order
 
-POST /v2/algo-orders<br>
+ - POST `/v2/algo-orders`
+
 API Key Permission: Trade<br>
 Rate Limit (NEW): 20times/2sec<br>
 Conditional order can be only placed via this endpoint instead of any endpoint in "Trading" section.<br>
@@ -5543,7 +5940,7 @@ Conditional order can be only placed via this endpoint instead of any endpoint i
 |	orderType	|	string	|	TRUE	|		|	Order type	|	limit,market	|
 |	clientOrderId	|	string	|	TRUE	|		|	Client order ID (max length 64-char) 	|		|
 |	stopPrice	|	string	|	TRUE	|		|	Stop price	|		|
-|	trailingRate	|	string	|	FALSE	|		|	Trailing rate (only valid for trailing stop order)	|	[0.001,0.050]	|
+|	trailingRate	|	string	|	FALSE	|		|	Trailing rate (only valid for trailing stop order)	|	[0.001-0.050]	|
 
 Note:<br>
 •	The gap between orderPrice and stopPrice shouldn't exceed the price limit ratio. For example, a limit buy order's price couldn't be higher than 110% of market price, this limitation should be also applicable to orderPrice/stopPrice ratio.<br>
@@ -5567,12 +5964,15 @@ Note:<br>
 |	-----	|	-----	|	------	|	----	|
 |	code	|	integer	|	TRUE	|Status code	|
 |	message	|	string	|	FALSE	|Error message (if any)	|
-|	data	|	object	|	TRUE	|	|
-|	{ clientOrderId }	|	string	|	TRUE	|Client order ID	|
+|	\<data\> 	|	object	|	TRUE	|	|
+|	clientOrderId 	|	string	|	TRUE	|Client order ID	|
+| \</data\> |		|		|	|
+
 
 ## Cancel conditional orders (before triggering)
 
-POST /v2/algo-orders/cancellation<br>
+ - POST `/v2/algo-orders/cancellation`
+
 API Key Permission: Trade<br>
 Rate Limit (NEW): 20times/2sec<br>
 This endpoint only supports order cancellation for those conditional orders which have not triggered yet. To cancel a triggered order, please refer to the endpoints in "Trading" section.<br>
@@ -5613,13 +6013,16 @@ Before a conditional order triggering, it can be only cancelled via this endpoin
 |	-----	|	-----	|	------	|	----	|
 |	code	|	integer	|	TRUE	|Status code	|
 |	message	|	string	|	FALSE	|Error message (if any)	|
-|	data	|	object	|	TRUE	|	|
-|	{ accepted	|	string[]	|	FALSE	| Accepted clientOrderId list	|
-|	rejected }	|	string[]	|	TRUE	| Rejected clientOrderId list	|
+|	\<data\>	|	object	|	TRUE	|	|
+|	accepted	|	string[]	|	FALSE	| Accepted clientOrderId list	|
+|	rejected 	|	string[]	|	TRUE	| Rejected clientOrderId list	|
+|	\</data\>	|		|		| 	
+
 
 ## Query open conditional orders (before triggering)
 
-GET /v2/algo-orders/opening<br>
+ - GET `/v2/algo-orders/opening`
+
 API Key Permission: Read<br>
 Rate Limit (NEW): 20times/2sec<br>
 Search by orderOrigTime<br>
@@ -5644,18 +6047,33 @@ Before a conditional order triggering, it can be queried out through this endpoi
     "code": 200,
     "data": [
         {
-            "lastActTime": 1593235832976,
-            "orderOrigTime": 1593235832937,
-            "symbol": "btcusdt",
-            "orderSize": "0.001",
-            "stopPrice": "5001",
-            "accountId": 5260185,
+            "lastActTime": 1630657250326,
+            "orderOrigTime": 1630657250238,
+            "symbol": "adausdt",
             "source": "api",
-            "clientOrderId": "a001",
+            "clientOrderId": "123",
             "orderSide": "buy",
             "orderType": "limit",
+            "orderPrice": "0.1",
+            "orderSize": "100",
+            "accountId": 13496526,
             "timeInForce": "gtc",
-            "orderPrice": "5000",
+            "stopPrice": "0.1",
+            "orderStatus": "created"
+        },
+        {
+            "lastActTime": 1630657243576,
+            "orderOrigTime": 1630657243534,
+            "symbol": "adausdt",
+            "source": "api",
+            "clientOrderId": "12",
+            "orderSide": "buy",
+            "orderType": "limit",
+            "orderPrice": "0.1",
+            "orderSize": "100",
+            "accountId": 13496526,
+            "timeInForce": "gtc",
+            "stopPrice": "0.1",
             "orderStatus": "created"
         }
     ]
@@ -5667,8 +6085,8 @@ Before a conditional order triggering, it can be queried out through this endpoi
 |	-----	|	-----	|	------	|	----	|
 |	code	|	integer	|	TRUE	|Status code	|
 |	message	|	string	|	FALSE	|Error message (if any)	|
-|	data	|	object	|	TRUE	|In ascening/descending order defined in 'sort'	|
-|	{ accountId	|	integer	|	TRUE	|Account ID	|
+|	\<data\>	|	object	|	TRUE	|In ascening/descending order defined in 'sort'	|
+|	accountId	|	integer	|	TRUE	|Account ID	|
 |	source	|	string	|	TRUE	|Order source (api,web,ios,android,mac,windows,sys) 	|
 |	clientOrderId	|	string	|	TRUE	|Client order ID	|
 |	symbol	|	string	|	TRUE	|Trading symbol	|
@@ -5682,12 +6100,15 @@ Before a conditional order triggering, it can be queried out through this endpoi
 |	trailingRate	|	string	|	FALSE	|	Trailing rate (only valid for trailing stop order)	|
 |	orderOrigTime	|	long	|	TRUE	|Order original time	|
 |	lastActTime	|	long	|	TRUE	|Order last activity time	|
-|	orderStatus }	|	string	|	TRUE	|Order status (created) 	|
+|	orderStatus  	|	string	|	TRUE	|Order status (created) 	|
+|	\</data\>	|		|		|  	|
 |	nextId	|	long	|	FALSE	|First record ID in next page (only valid if exceeded page size) 	|
+
 
 ## Query conditional order history
 
-GET /v2/algo-orders/history<br>
+ - GET `/v2/algo-orders/history`
+
 API Key Permission: Read<br>
 Rate Limit (NEW): 20times/2sec<br>
 Search by orderOrigTime<br>
@@ -5706,7 +6127,7 @@ The cancelled conditional order before triggering, as well as the conditional or
 |	startTime	|	long	|	FALSE	|		|	Farthest time	|
 |	endTime	|	long	|	FALSE	|current time		|	Nearest time | |
 |	sort	|	string	|	FALSE	|	desc	|	Sorting order 	|asc, desc	|
-|	limit	|	integer	|	FALSE	|	100	|	Maximum number of items in one page	|[1,500]		|
+|	limit	|	integer	|	FALSE	|	100	|	Maximum number of items in one page	|[1-500]		|
 |	fromId	|	long	|	FALSE	|		|	First record ID in this query (only valid for next page querying) 	|		|
 
 > Response
@@ -5716,21 +6137,22 @@ The cancelled conditional order before triggering, as well as the conditional or
     "code": 200,
     "data": [
         {
-            "orderOrigTime": 1593235832937,
-            "lastActTime": 1593236344401,
-            "symbol": "btcusdt",
+            "orderOrigTime": 1630656758442,
+            "lastActTime": 1630656880512,
+            "symbol": "adausdt",
             "source": "api",
+            "clientOrderId": "1234567",
             "orderSide": "buy",
             "orderType": "limit",
+            "orderPrice": "0.1",
+            "orderSize": "100",
+            "accountId": 13496526,
             "timeInForce": "gtc",
-            "clientOrderId": "a001",
-            "accountId": 5260185,
-            "orderPrice": "5000",
-            "orderSize": "0.001",
-            "stopPrice": "5001",
+            "stopPrice": "0.1",
             "orderStatus": "canceled"
         }
-    ]
+    ],
+    "nextId": 9585084
 }
 ```
 
@@ -5739,8 +6161,8 @@ The cancelled conditional order before triggering, as well as the conditional or
 |	-----	|	-----	|	------	|	----	|
 |	code	|	integer	|	TRUE	|Status code	|
 |	message	|	string	|	FALSE	|Error message (if any)	|
-|	data	|	object	|	TRUE	|In ascening/descending order defined in 'sort'	|
-|	{ accountId	|	integer	|	TRUE	|Account ID	|
+|	\<data\>	|	object	|	TRUE	|In ascening/descending order defined in 'sort'	|
+| accountId	|	integer	|	TRUE	|Account ID	|
 |	source	|	string	|	TRUE	|Order source	|
 |	clientOrderId	|	string	|	TRUE	|Client order ID	|
 |	orderId	|	string	|	FALSE	|Order ID (only valid for orderStatus=triggered)	|
@@ -5759,11 +6181,13 @@ The cancelled conditional order before triggering, as well as the conditional or
 |	orderStatus	|	string	|	TRUE	|Order status (triggered,canceled,rejected) 	|
 |	errCode	|	integer	|	FALSE	|Status code in case of order triggering failure (only valid for orderStatus=rejected) 	|
 |	errMessage }	|	string	|	FALSE	|Error message in case of order triggering failure (only valid for orderStatus=rejected) 	|
+|	\</data\>	|		|		|     | 
 |	nextId	|	long	|	FALSE	|First record ID in next page (only valid if exceeded page size) 	|
 
 ## Query a specific conditional order
 
-GET /v2/algo-orders/specific<br>
+ - GET `/v2/algo-orders/specific`
+ 
 API Key Permission: Read<br>
 Rate Limit (NEW): 20times/2sec<br>
 Search by orderOrigTime<br>
@@ -5781,19 +6205,19 @@ The conditional order before triggering, as well as the conditional order failed
 {
     "code": 200,
     "data": {
-        "lastActTime": 1593236344401,
-        "orderOrigTime": 1593235832937,
-        "symbol": "btcusdt",
-        "orderSize": "0.001",
-        "stopPrice": "5001",
-        "accountId": 5260185,
+        "lastActTime": 1630656880512,
+        "orderOrigTime": 1630656758442,
+        "symbol": "adausdt",
         "source": "api",
-        "clientOrderId": "a001",
+        "orderStatus": "canceled",
+        "clientOrderId": "1234567",
         "orderSide": "buy",
         "orderType": "limit",
+        "orderPrice": "0.1",
+        "orderSize": "100",
+        "accountId": 13496526,
         "timeInForce": "gtc",
-        "orderPrice": "5000",
-        "orderStatus": "canceled"
+        "stopPrice": "0.1"
     }
 }
 ```
@@ -5803,8 +6227,8 @@ The conditional order before triggering, as well as the conditional order failed
 |	-----	|	-----	|	------	|	----	|
 |	code	|	integer	|	TRUE	|Status code	|
 |	message	|	string	|	FALSE	|Error message (if any)	|
-|	data	|	object	|	TRUE	|	|
-|	{ accountId	|	integer	|	TRUE	|Account ID	|
+|	\<data\>	|	object	|	TRUE	|	|
+|	accountId	|	integer	|	TRUE	|Account ID	|
 |	source	|	string	|	TRUE	|Order source	|
 |	clientOrderId	|	string	|	TRUE	|Client order ID	|
 |	orderId	|	string	|	FALSE	|Order ID (only valid for orderStatus=triggered)	|
@@ -5822,7 +6246,9 @@ The conditional order before triggering, as well as the conditional order failed
 |	orderCreateTime	|	long	|	FALSE	|Order trigger time (only valid for orderStatus=triggered) 	|
 |	orderStatus	|	string	|	TRUE	|Order status (created,triggered,canceled,rejected) 	|
 |	errCode	|	integer	|	FALSE	|Status code in case of order triggering failure (only valid for orderStatus=rejected) 	|
-|	errMessage }	|	string	|	FALSE	|Error message in case of order triggering failure (only valid for orderStatus=rejected) 	|
+|	errMessage  	|	string	|	FALSE	|Error message in case of order triggering failure (only valid for orderStatus=rejected) 	|
+|	\</data\>	|		|		|	|
+
 
 ## Error Code
 
@@ -5870,7 +6296,7 @@ While repaying the loan, loan interest will be paid first if there is no appoint
 
 ### HTTP Request
 
-`POST /v2/account/repayment`
+- POST `/v2/account/repayment`
 
 > Request:
 
@@ -5912,11 +6338,13 @@ While repaying the loan, loan interest will be paid first if there is no appoint
 | ----------- | ------------- | ------------- | ------------------------------------------ |
 | code        | integer       | TRUE          | status code                                |
 | message     | string        | FALSE         | error description (if any)                 |
-| data        | object        | TRUE          |                                            |
-| { repayId   | string        | TRUE          | repayment ID                               |
-| repayTime } | long          | TRUE          | repayment time (unix  time in millisecond) |
+| \<data\>      | object        | TRUE          |                                            |
+| repayId   | string        | TRUE          | repayment ID                               |
+| repayTime  | long          | TRUE          | repayment time (unix  time in millisecond) |
+| \</data\>     |     |          |                                          |
 
-Note: Returning "repayId" doesn’t mean the repayment is 100% successful. Please check the transaction record to confirm the repayment status. 
+### Note: 
+ - Returning "repayId" doesn’t mean the repayment is 100% successful. Please check the transaction record to confirm the repayment status. 
 
 ## Transfer Asset from Spot Trading Account to Isolated Margin Account（Isolated）
 
@@ -5927,15 +6355,16 @@ This endpoint transfers specific asset from spot trading account to isolated mar
 
 ### HTTP Request
 
-`POST https://api.huobi.pro/v1/dw/transfer-in/margin`
+- POST `/v1/dw/transfer-in/margin`
 
-```shell
-curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/dw/transfer-in/margin" -d
-'{
-  "symbol": "ethusdt",
-  "currency": "eth",
-  "amount": "1.0"
-}'
+> Requset
+
+```json
+{
+    "symbol": "ethusdt",
+    "currency": "eth",
+    "amount": "1.0"
+}
 ```
 
 ### Request Parameters
@@ -5949,12 +6378,17 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/dw/tr
 > The above command returns JSON structured like this:
 
 ```json
-  "data": 1000
+{
+    "status": "ok",
+    "data": 46971504,
+    "code": 200
+}
 ```
 
 ### Response Content
 
 <aside class="notice">The return data contains a single value instead of an object</aside>
+
 | Field | Data Type | Description |
 | ----- | --------- | ----------- |
 | data  | integer   | Transfer id |
@@ -5968,15 +6402,14 @@ This endpoint transfers specific asset from isolated margin account to spot trad
 
 ### HTTP Request
 
-`POST https://api.huobi.pro/v1/dw/transfer-out/margin`
+ - POST `/v1/dw/transfer-out/margin`
 
-```shell
-curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/dw/transfer-out/margin" -d
-'{
-  "symbol": "ethusdt",
-  "currency": "eth",
-  "amount": "1.0"
-}'
+```json
+{
+    "symbol": "ethusdt",
+    "currency": "eth",
+    "amount": "1.0"
+}
 ```
 
 ### Request Parameters
@@ -5990,7 +6423,11 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/dw/tr
 > The above command returns JSON structured like this:
 
 ```json
-  "data": 1000
+{
+    "status": "ok",
+    "data": 46971504,
+    "code": 200
+}
 ```
 
 ### Response Content
@@ -5999,6 +6436,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/dw/tr
 | Field | Data Type | Description |
 | ----- | --------- | ----------- |
 | data  | integer   | Transfer id |
+
 
 ## Get Loan Interest Rate and Quota（Isolated）
 
@@ -6011,10 +6449,6 @@ The endpoint returns loan interest rates and quota applied on the user.
 
 - GET ` /v1/margin/loan-info`
 
-```shell
-curl "https://api.huobi.pro/v1/margin/loan-info?symbols=btcusdt"
-```
-
 ### Request Parameters
 
 | Parameter | Data Type | Required | Default | Description                                                  |
@@ -6026,7 +6460,7 @@ curl "https://api.huobi.pro/v1/margin/loan-info?symbols=btcusdt"
 ```json
 {
     "status": "ok",
-    "data": 
+    "data": [
         {
             "symbol": "btcusdt",
             "currencies": [
@@ -6048,6 +6482,7 @@ curl "https://api.huobi.pro/v1/margin/loan-info?symbols=btcusdt"
                 }
             ]
         }
+    ]
 }
 ```
 
@@ -6055,14 +6490,18 @@ curl "https://api.huobi.pro/v1/margin/loan-info?symbols=btcusdt"
 
 | Field          | Data Type | Description                                                  |
 | -------------- | --------- | ------------------------------------------------------------ |
-| { symbol       | string    | Trading symbol                                               |
-| currencies     | object    |                                                              |
-| { currencies   | string    | Currency                                                     |
+| status       | string   | status                                                     |
+| \<data\>       | object   |                                                      |
+| symbol       | string    | Trading symbol                                               |
+| \<currencies\>     | object    |                                                              |
+| currency       | string    | Currency                                                     |
 | interest-rate  | string    | Basic daily interest rate                                    |
 | min-loan-amt   | string    | Minimal loanable amount                                      |
 | max-loan-amt   | string    | Maximum loanable amount                                      |
 | loanable-amt   | string    | Remaining loanable amount                                    |
-| actual-rate }} | string    | Actual interest rate (if deduction is inapplicable or disabled, return basic daily interest rate) |
+| actual-rate    | string    | Actual interest rate (if deduction is inapplicable or disabled, return basic daily interest rate) |
+| \</currencies\> |    |                                                              |
+| \</data\>       |    |                                                      |
 
 ## Request a Margin Loan（Isolated）
 
@@ -6073,15 +6512,16 @@ This endpoint places an order to apply a margin loan.
 
 ### HTTP Request
 
-`POST https://api.huobi.pro/v1/margin/orders`
+ - POST `/v1/margin/orders`
 
-```shell
-curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/margin/orders" -d
-'{
+> Request:
+
+```json
+{
   "symbol": "ethusdt",
   "currency": "eth",
   "amount": "1.0"
-}'
+}
 ```
 
 ### Request Parameters
@@ -6095,10 +6535,10 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/margi
 > The above command returns JSON structured like this:
 
 ```json
-  {
-    "status": "ok"
-    "data": 1000
-  }
+{
+  "status": "ok",
+  "data": 1000
+}
 ```
 
 ### Response Content
@@ -6117,16 +6557,9 @@ This endpoint repays margin loan with your asset in your margin account.
 
 ### HTTP Request
 
-`POST https://api.huobi.pro/v1/margin/orders/{order-id}/repay`
+- POST `/v1/margin/orders/{order-id}/repay`
 
 'order-id': the previously returned order id when loan order was created
-
-```shell
-curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/margin/orders/1000/repay" -d
-'{
-  "amount": "1.0"
-}'
-```
 
 ### Request Parameters
 
@@ -6138,7 +6571,9 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/margi
 > The above command returns JSON structured like this:
 
 ```json
+{  
   "data": 1000
+}
 ```
 
 ### Response Content
@@ -6157,11 +6592,7 @@ This endpoint returns margin orders based on a specific searching criteria.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/margin/loan-orders`
-
-```shell
-curl "https://api.huobi.pro/v1/margin/load-orders?symbol=ethusdt"
-```
+- GET `/v1/margin/loan-orders`
 
 ### Request Parameters
 
@@ -6213,6 +6644,8 @@ curl "https://api.huobi.pro/v1/margin/load-orders?symbol=ethusdt"
 
 | Field              | Data Type | Description                                                  |
 | ------------------ | --------- | ------------------------------------------------------------ |
+| status             |  string   |   status                       |            |
+| \<data\>           |  object   |                             |         |
 | id                 | integer   | Order id                                                     |
 | account-id         | integer   | Account id                                                   |
 | user-id            | integer   | User id                                                      |
@@ -6234,6 +6667,8 @@ curl "https://api.huobi.pro/v1/margin/load-orders?symbol=ethusdt"
 | updated-at         | long      | Update time                                                  |
 | hour-interest-rate | string    | Hourly interest rate                                         |
 | day-interest-rate  | string    | Daily interest rate                                          |
+| \</data\>          |      |    |                             |                                                              |
+
 
 ## Get the Balance of the Margin Loan Account（Isolated）
 
@@ -6244,11 +6679,7 @@ This endpoint returns the balance of the margin loan account.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/margin/accounts/balance`
-
-```shell
-curl "https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"
-```
+ - GET `/v1/margin/accounts/balance`
 
 ### Request Parameters
 
@@ -6260,63 +6691,71 @@ curl "https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"
 > The above command returns JSON structured like this:
 
 ```json
-"data": [
-        {
-            "id": 18264,
-            "type": "margin",
-            "state": "working",
-            "symbol": "btcusdt",
-            "fl-price": "0",
-            "fl-type": "safe",
-            "risk-rate": "475.952571086994250554",
-            "list": [
-                {
-                    "currency": "btc",
-                    "type": "trade",
-                    "balance": "1168.533000000000000000"
-                },
-                {
-                    "currency": "btc",
-                    "type": "frozen",
-                    "balance": "0.000000000000000000"
-                },
-                {
-                    "currency": "btc",
-                    "type": "loan",
-                    "balance": "-2.433000000000000000"
-                },
-                {
-                    "currency": "btc",
-                    "type": "interest",
-                    "balance": "-0.000533000000000000"
-                },
-                {
-                    "currency": "btc",
-                    "type": "transfer-out-available",
-                    "balance": "1163.872174670000000000"
-                },
-                {
-                    "currency": "btc",
-                    "type": "loan-available",
-                    "balance": "8161.876538350676000000"
-                }
-            ]
-        }
-]
+{  
+  "data": [
+    {
+      "id": 18264,
+      "type": "margin",
+      "state": "working",
+      "symbol": "btcusdt",
+      "fl-price": "0",
+      "fl-type": "safe",
+      "risk-rate": "475.952571086994250554",
+      "list": [
+          {
+              "currency": "btc",
+              "type": "trade",
+              "balance": "1168.533000000000000000"
+          },
+          {
+              "currency": "btc",
+              "type": "frozen",
+              "balance": "0.000000000000000000"
+          },
+          {
+              "currency": "btc",
+              "type": "loan",
+              "balance": "-2.433000000000000000"
+          },
+          {
+              "currency": "btc",
+              "type": "interest",
+              "balance": "-0.000533000000000000"
+          },
+          {
+              "currency": "btc",
+              "type": "transfer-out-available",
+              "balance": "1163.872174670000000000"
+          },
+          {
+              "currency": "btc",
+              "type": "loan-available",
+              "balance": "8161.876538350676000000"
+          }
+      ]
+    }
+  ]
+}
 ```
 
 ### Response Content
 
 | Field      | Data Type | Description                                                  |
 | ---------- | --------- | ------------------------------------------------------------ |
+| \<data\>   | true     | object   |                                                        |          |
+| id         | true     | int      |                                                        |          |
+| type       | true     | string   |                                                        |          |
 | symbol     | string    | The margin loan pair, e.g. btcusdt, bccbtc                   |
 | state      | string    | Loan state, possible values: created, accrual (loaned), cleared (paid), invalid |
 | risk-rate  | string    | The risk rate                                                |
 | fl-price   | string    | The price which margin closeout was triggered                |
-| list       | array     | The list of margin accounts and their details                |
-| { currency | string    | The currency name                                            |
+| \<list\>   | array     | The list of margin accounts and their details                |
+| currency   | string    | The currency name                                            |
 | type       | string    | The sub account type, possible values: trade, frozen, loan, interest ,transfer-out-available, loan-available |
-| balance }  | string    | The negative balance means the loan or interest that need to  repay. All trade balance  can be transferred out if transfer-out-available balance is  -1 |
+| balance    | string    | The negative balance means the loan or interest that need to  repay. All trade balance  can be transferred out if transfer-out-available balance is  -1 |
+| \</list\>   |      |     |                                             |          |
+| \</data\>   |      |     |                                                        |          |
+
 
 ## Transfer Asset from Spot Trading Account to Cross Margin Account（Cross）
 
@@ -6326,14 +6765,15 @@ This endpoint transfers specific asset from spot trading account to cross margin
 
 ### HTTP Request
 
-`POST https://api.huobi.pro/v1/cross-margin/transfer-in`
+ - POST `/v1/cross-margin/transfer-in`
 
-```shell
-curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/cross-margin/transfer-in" -d
-'{
+> Request:
+
+```json
+{
   "currency": "eth",
   "amount": "1.0"
-}'
+}
 ```
 
 ### Request Parameters
@@ -6369,16 +6809,15 @@ This endpoint transfers specific asset from cross margin account to spot trading
 
 ### HTTP Request
 
-`POST https://api.huobi.pro/v1/cross-margin/transfer-in`
+ - POST `/v1/cross-margin/transfer-out`
 
-`POST https://api.huobi.pro/v1/cross-margin/transfer-out`
+> Request:
 
-```shell
-curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/cross-margin/transfer-out" -d
-'{
+```json
+{
   "currency": "eth",
   "amount": "1.0"
-}'
+}
 ```
 
 ### Request Parameters
@@ -6404,6 +6843,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/cross
 | ----- | --------- | ----------- |
 | data  | integer   | Transfer id |
 
+
 ## Get Loan Interest Rate and Quota（Cross）
 
 API Key Permission: Read
@@ -6413,10 +6853,6 @@ This endpoint returns loan interest rates and loan quota applied on the user.
 ### HTTP Request
 
 - GET ` /v1/cross-margin/loan-info`
-
-```shell
-curl "https://api.huobi.pro/v1/cross-margin/loan-info"
-```
 
 ### Request Parameters
 
@@ -6484,7 +6920,8 @@ Null
             "loanable-amt": "734.21439060",
             "actual-rate": "0.000343"
         }
-    ]
+    ],
+    "code": 200
 }
 ```
 
@@ -6492,12 +6929,16 @@ Null
 
 | Field         | Data Type | Description                                                  |
 | ------------- | --------- | ------------------------------------------------------------ |
-| { currency    | string    | Currency                                                     |
+| status        | string   | status                                                         |
+| \<data\>      | object   |                                                             |
+| currency    | string    | Currency                                                     |
 | interest-rate | string    | Basic daily interest rate                                    |
 | min-loan-amt  | string    | Minimal loanable amount                                      |
 | max-loan-amt  | string    | Maximum loanable amount                                      |
 | loanable-amt  | string    | Remaining loanable amount                                    |
-| actual-rate } | string    | Actual interest rate post deduction (if deduction is inapplicable or disabled, return basic daily interest rate) |
+| actual-rate   | string    | Actual interest rate post deduction (if deduction is inapplicable or disabled, return basic daily interest rate) |
+| \</data\>     |          |                                                             |
+| code          | int      |  status code                                                       |
 
 ## Request a Margin Loan（Cross）
 
@@ -6507,14 +6948,15 @@ This endpoint places an order to apply for a margin loan.
 
 ### HTTP Request
 
-`POST https://api.huobi.pro/v1/cross-margin/orders`
+ - POST `/v1/cross-margin/orders`
 
-```shell
-curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/cross-margin/orders" -d
-'{
+> Request:
+
+```json
+{
   "currency": "eth",
   "amount": "1.0"
-}'
+}
 ```
 
 ### Request Parameters
@@ -6538,6 +6980,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/cross
 <aside class="notice">The return data contains a single value instead of an object</aside>
 | Field | Data Type | Description     |
 | ----- | --------- | --------------- |
+| status   | string   | status             |
 | data  | integer   | Margin order id |
 
 ## Repay Margin Loan（Cross）
@@ -6548,21 +6991,23 @@ This endpoint repays margin loan with you asset in your margin account.
 
 ### HTTP Request
 
-`POST https://api.huobi.pro/v1/cross-margin/orders/{order-id}/repay`
+ - POST `/v1/cross-margin/orders/{order-id}/repay`
 
 'order-id': the previously returned order id when loan order was created
 
-```shell
-curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/cross-margin/orders/1000/repay" -d
-'{
+> Request:
+
+```json
+{
   "amount": "1.0"
-}'
+}
 ```
 
 ### Request Parameters
 
 | Parameter | Data Type | Required | Default | Description                     |
 | --------- | --------- | -------- | ------- | ------------------------------- |
+| order-id | string   | true     | Loan order ID (written in url path) |
 | amount    | string    | true     | NA      | The amount of currency to repay |
 
 > The above command returns JSON structured like this:
@@ -6579,6 +7024,7 @@ curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/v1/cross
 <aside class="notice">The return data contains a single value instead of an object</aside>
 | Field | Data Type | Description |
 | ----- | --------- | ----------- |
+| status   | string   | status  |
 | data  | null      | NA          |
 
 ## Search Past Margin Orders（Cross）
@@ -6589,11 +7035,7 @@ This endpoint returns margin orders based on a specific searching criteria.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/cross-margin/loan-orders`
-
-```shell
-curl "https://api.huobi.pro/v1/cross-margin/loan-orders?symbol=ethusdt"
-```
+ - GET `/v1/cross-margin/loan-orders`
 
 ### Request Parameters
 
@@ -6605,31 +7047,31 @@ curl "https://api.huobi.pro/v1/cross-margin/loan-orders?symbol=ethusdt"
 | state      | string    | false    | all                                                          | Order status                             | created, accrual (loaned), cleared (paid), invalid |
 | from       | string    | false    | 0                                                            | Search order id to begin with            | NA                                                 |
 | direct     | string    | false    | next                                                         | Search direction when 'from' is used     | next, prev                                         |
-| size       | string    | false    | 10                                                           | The number of orders to return           | [10,100]                                           |
+| size       | string    | false    | 10                                                           | The number of orders to return           | [10-100]                                           |
 | sub-uid    | long      | false    | If not specified, returns loan order list of current logged in user | Sub user UID                             |                                                    |
 
 > The above command returns JSON structured like this:
 
 ```json
-{  
-  "status": "ok",
-  "data": [
-    {
-      "loan-balance": "0.100000000000000000",
-      "interest-balance": "0.000200000000000000",
-      "loan-amount": "0.100000000000000000",
-      "accrued-at": 1511169724531,
-      "interest-amount": "0.000200000000000000",
-      "filled-points" : "0.2",
-      "filled-ht" : "0.2",
-      "currency": "btc",
-      "id": 394,
-      "state": "accrual",
-      "account-id": 17747,
-      "user-id": 119913,
-      "created-at": 1511169724531
-    }
-  ]
+{
+    "status":"ok",
+    "data":[
+        {
+            "loan-balance":"0.100000000000000000",
+            "interest-balance":"0.000200000000000000",
+            "loan-amount":"0.100000000000000000",
+            "accrued-at":1511169724531,
+            "interest-amount":"0.000200000000000000",
+            "filled-points":"0.2",
+            "filled-ht":"0.2",
+            "currency":"btc",
+            "id":394,
+            "state":"accrual",
+            "account-id":17747,
+            "user-id":119913,
+            "created-at":1511169724531
+        }
+    ]
 }
 ```
 
@@ -6637,6 +7079,8 @@ curl "https://api.huobi.pro/v1/cross-margin/loan-orders?symbol=ethusdt"
 
 | Field            | Data Type | Description                                                  |
 | ---------------- | --------- | ------------------------------------------------------------ |
+| status           | true     | string   | status             |                                                              |
+| \<data\>         | true     | object   |                 |                                                              |
 | id               | integer   | Order id                                                     |
 | account-id       | integer   | Account id                                                   |
 | user-id          | integer   | User id                                                      |
@@ -6650,6 +7094,7 @@ curl "https://api.huobi.pro/v1/cross-margin/loan-orders?symbol=ethusdt"
 | interest-amount  | string    | The accumulated loan interest                                |
 | interest-balance | string    | The amount of loan interest left                             |
 | state            | string    | Loan state, possible values: created, accrual (loaned), cleared (paid), invalid |
+| \</data\>        |          |          |                 |                                                              |
 
 ## Get the Balance of the Margin Loan Account（Cross）
 
@@ -6659,11 +7104,7 @@ This endpoint returns the balance of the margin loan account.
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/cross-margin/accounts/balance`
-
-```shell
-curl "https://api.huobi.pro/v1/cross-margin/accounts/balance?symbol=btcusdt"
-```
+ - GET `/v1/cross-margin/accounts/balance`
 
 ### Request Parameters
 
@@ -6674,48 +7115,47 @@ curl "https://api.huobi.pro/v1/cross-margin/accounts/balance?symbol=btcusdt"
 > The above command returns JSON structured like this:
 
 ```json
-{  
-  "status": "ok",
-  "data": 
-    {
-      "id": 18264,
-      "type": "cross-margin",
-      "state": "working",
-      "risk-rate": "1000",
-      "acct-balance-sum": "12312.123123",
-      "debt-balance-sum": "1231.2123123",
-      "list": [
-          {
-              "currency": "btc",
-              "type": "trade",
-              "balance": "1168.533000000000000000"
-          },
-          {
-              "currency": "btc",
-              "type": "frozen",
-              "balance": "0.000000000000000000"
-          },
-          {
-              "currency": "btc",
-              "type": "loan",
-              "balance": "-2.433000000000000000"
-          },
-          {
-              "currency": "btc",
-              "type": "interest",
-              "balance": "-0.000533000000000000"
-          },
-          {
-              "currency": "btc",
-              "type": "transfer-out-available",//可转btc
-              "balance": "1163.872174670000000000"
-          },
-          {
-              "currency": "btc",
-              "type": "loan-available",//可借btc
-              "balance": "8161.876538350676000000"
-          }
-      ]
+{
+    "status":"ok",
+    "data":{
+        "id":18264,
+        "type":"cross-margin",
+        "state":"working",
+        "risk-rate":"1000",
+        "acct-balance-sum":"12312.123123",
+        "debt-balance-sum":"1231.2123123",
+        "list":[
+            {
+                "currency":"btc",
+                "type":"trade",
+                "balance":"1168.533000000000000000"
+            },
+            {
+                "currency":"btc",
+                "type":"frozen",
+                "balance":"0.000000000000000000"
+            },
+            {
+                "currency":"btc",
+                "type":"loan",
+                "balance":"-2.433000000000000000"
+            },
+            {
+                "currency":"btc",
+                "type":"interest",
+                "balance":"-0.000533000000000000"
+            },
+            {
+                "currency":"btc",
+                "type":"transfer-out-available",  
+                "balance":"1163.872174670000000000"
+            },
+            {
+                "currency":"btc",
+                "type":"loan-available",  
+                "balance":"8161.876538350676000000"
+            }
+        ]
     }
 }
 ```
@@ -6724,17 +7164,20 @@ curl "https://api.huobi.pro/v1/cross-margin/accounts/balance?symbol=btcusdt"
 
 | Field            | Data Type | Description                                                  |
 | ---------------- | --------- | ------------------------------------------------------------ |
+| status           | true     | string   | status                                                        |
+| \<data\>         | true     | object   |                                                              |
 | id               | integer   |                                                              |
 | type             | integer   |                                                              |
 | state            | string    | account state: working, fl-sys, fl-end, fl-negative          |
 | risk-rate        | string    |                                                              |
 | acct-balance-sum | string    |                                                              |
 | debt-balance-sum | string    |                                                              |
-| list             | array     |                                                              |
-| { currency       | string    |                                                              |
+| \<list\>         | array     |                                                              |
+| currency       | string    |                                                              |
 | type             | string    | account type: trade, frozen, loan, interest, transfer-out-available, loan-available |
-| balance }        | string    | The negative balance means the loan or interest that need to  repay. All trade balance  can be transferred out if transfer-out-available balance is  -1 |
-
+| balance          | string    | The negative balance means the loan or interest that need to  repay. All trade balance  can be transferred out if transfer-out-available balance is  -1 |
+| \</list\>        |      |     |                                              |
+| \</data\>        |      |     |                                                              |
 
 
 ## Repayment Record Reference
@@ -6749,7 +7192,7 @@ Sort by "repayTime"
 
 ### HTTP Request
 
-`GET /v2/account/repayment`
+ - GET `/v2/account/repayment`
 
 ### Request Parameters
 
@@ -6761,7 +7204,7 @@ Sort by "repayTime"
 | startTime | long      | FALSE     | start time (unix time in millisecond; range:  [(endTime – x D), endTime]; default value: (endTime – x D) |
 | endTime   | long      | FALSE     | end time (unix time in millisecond；range: [(present time – y D), present time]; default value:  present time) |
 | sort      | string    | FALSE     | sort direction (value: asc,  desc; default value: desc) |
-| limit     | integer   | FALSE     | max return items per page (range: [1,100];  default value: 50) |
+| limit     | integer   | FALSE     | max return items per page (range: [1-100];  default value: 50) |
 | fromId    | long      | FALSE     | search ID from the start (only available when  searching for the next page) |
 
 > Response:
@@ -6795,18 +7238,20 @@ Sort by "repayTime"
 | --------------- | --------- | --------- | ------------------------------------------------------------ |
 | code            | integer   | TRUE      | status code                                                  |
 | message         | string    | FALSE     | error description (if any)                                   |
-| data            | object    | TRUE      | sorted by the appointed order                                |
-| { repayId       | string    | TRUE      | repayment transaction ID                                     |
+| \<data\>        | object    | TRUE      | sorted by the appointed order                                |
+| repayId         | string    | TRUE      | repayment transaction ID                                     |
 | repayTime       | long      | TRUE      | repayment transaction time (unix time  in millisecond)       |
 | accountId       | string    | TRUE      | repayment account ID                                         |
 | currency        | string    | TRUE      | repayment currency                                           |
 | repaidAmount    | string    | TRUE      | repaid amount                                                |
-| transactIds     | object    | TRUE      | ID list of original loan transactions (arranged by order of repaymen time) |
-| { transactId    | long      | TRUE      | original loan transaction ID                                 |
+| \<transactIds\>   | object    | TRUE      | ID list of original loan transactions (arranged by order of repaymen time) |
+| transactId    | long      | TRUE      | original loan transaction ID                                 |
 | repaidPrincipal | string    | TRUE      | principal repaid                                             |
 | repaidInterest  | string    | TRUE      | interest repaid                                              |
 | paidHt          | string    | TRUE      | HT paid                                                      |
-| paidPoint }}    | string    | TRUE      | point paid                                                   |
+| paidPoint       | string    | TRUE      | point paid                                                   |
+| \</transactIds\> |    |          |        |
+| \</data\>        |    |          |                                        |
 | nextId          | long      | FALSE     | search the start ID in the next page  (return only when there is data in the  next page) |
 
 ## Error Code
@@ -6898,7 +7343,8 @@ The account ID of borrowing account will be generated once the first time asset 
 
 ## Place a lending/borrowing offer
 
-POST /v2/c2c/offer<br>
+ - POST `/v2/c2c/offer`
+
 API Key Permission: Trade<br>
 
 ### Request Parameter
@@ -6920,7 +7366,7 @@ Note:<br>
 ```json
 {
     "data": {
-        "offerId": 14743
+        "offerId": 14743,
         "createTime": 1593172709875
     },
     "code": 200,
@@ -6933,13 +7379,16 @@ Note:<br>
 |	-----	|	---------	|	---------	|	----------	|
 |	code	|	integer	|	TRUE	|	Status code	|
 |	message	|	string	|	FALSE	|	Error message (if any)	|
-|	data	|	object	|	TRUE	|		|
-|	{ offerId	|	string	|	TRUE	|	Offer ID	|
-|	createTime }	|	long	|	TRUE	|	Offer creation time (unix time in millisecond)	|
+|	\<data\> 	|	object	|	TRUE	|		|
+|	offerId	  |	string	|	TRUE	|	Offer ID	|
+|	createTime 	|	long	|	TRUE	|	Offer creation time (unix time in millisecond)	|
+|	\</data\> |	 	|	 	|		|
+
 
 ## Cancel a lending/borrowing offer
 
-POST /v2/c2c/cancellation<br>
+ - POST `/v2/c2c/cancellation`
+
 API Key Permission: Trade<br>
 
 ### Request Parameter
@@ -6970,20 +7419,24 @@ API Key Permission: Trade<br>
 |	-----	|	---------	|	---------	|	----------	|
 |	code	|	integer	|	TRUE	|	Status code	|
 |	message	|	string	|	FALSE	|	Error message (if any)	|
-|	data	|	object	|	TRUE	|		|
-|	{ accepted	|	object	|	TRUE	|	Accepted offer list	|
-|	[ offerId ]	|	string	|	FALSE	|	Offer ID	|
-|	rejected	|	object	|	TRUE	|	Rejected offer list	|
-|	[ offerId	|	string	|	FALSE	|	Offer ID	|
+|	\<data\>	|	object	|	TRUE	|		|
+|	\<accepted\>	|	object	|	TRUE	|	Accepted offer list	|
+|	offerId 	|	string	|	FALSE	|	Offer ID	|
+|	\</accepted\>|		|		|		|
+|	\<rejected\>	|	object	|	TRUE	|	Rejected offer list	|
+| offerId	|	string	|	FALSE	|	Offer ID	|
 |	errCode	|	integer	|	FALSE	|	Error code for rejection	|
-|	errMessage ]}	|	string	|	FALSE	|	Error message for rejection	|
+|	errMessage  |	string	|	FALSE	|	Error message for rejection	|
+|	\</rejected\> |	 	|	 	|	 	|
+|	\</data\>	|	 	|	 	|		|
 
 Note:<br>
 •	The acceptance of offer cancellation does not implicate the success of cancellation. Users should query the relevant offers after the cancellation to confirm their status. <br>
 
 ## Cancel all lending/borrowing offers
 
-POST /v2/c2c/cancel-all<br>
+ - POST `/v2/c2c/cancel-all`
+ 
 API Key Permission: Trade<br>
 Maximum 500 offers can be cancelled in a single request. (to be cancelled in descending order of offerId)<br>
 
@@ -6998,15 +7451,15 @@ Maximum 500 offers can be cancelled in a single request. (to be cancelled in des
 
 ```json
 {
-    "data": {
-        "accepted": [
-        {
-        "offerId": "14742"
-        }
-     ]
-   },  
-    "code": 200,
-    "success": true
+    "data":{
+        "accepted":[
+            {
+                "offerId":"14742"
+            }
+        ]
+    },
+    "code":200,
+    "success":true
 }
 ```
 
@@ -7015,20 +7468,25 @@ Maximum 500 offers can be cancelled in a single request. (to be cancelled in des
 |	-----	|	---------	|	---------	|	----------	|
 |	code	|	integer	|	TRUE	|	Status code	|
 |	message	|	string	|	FALSE	|	Error message (if any)	|
-|	data	|	object	|	TRUE	|		|
-|	{ accepted	|	object	|	TRUE	|	Accepted offer list	|
-|	[ offerId ]	|	string	|	FALSE	|	Offer ID	|
-|	rejected	|	object	|	TRUE	|	Rejected offer list	|
-|	[ offerId	|	string	|	FALSE	|	Offer ID	|
+|	\<data\> |	object	|	TRUE	|		|
+|	\<accepted\>	|	object	|	TRUE	|	Accepted offer list	|
+|	offerId  	|	string	|	FALSE	|	Offer ID	|
+|	\</accepted\>|	 	|	 	|	 	|
+|	\<rejected\>	|	object	|	TRUE	|	Rejected offer list	|
+| offerId	|	string	|	FALSE	|	Offer ID	|
 |	errCode	|	integer	|	FALSE	|	Error code of rejection	|
-|	errMessage ]}	|	string	|	FALSE	|	Error message of rejection	|
+|	errMessage 	|	string	|	FALSE	|	Error message of rejection	|
+|	\</rejected\>|	 	|	 	|	 	|
+|	\</data\>	 |	 	|	 	|		|
+
 
 Note:<br>
 •	The acceptance of offer cancellation does not implicate the success of cancellation. Users should query the offer after the cancellation to confirm its status.<br>
 
 ## Query lending/borrow offers
 
-GET /v2/c2c/offers<br>
+ - GET `/v2/c2c/offers`
+
 API Key Permission: Read<br>
 Searched by createTime<br>
 
@@ -7041,7 +7499,7 @@ Searched by createTime<br>
 |	offerStatus	|	string	|	TRUE	|	Offer status (valid value: submitted, filled, partial-filled, canceled, partial-canceled; multiple inputs are allowed, separated by comma)	|
 |	startTime	|	long	|	FALSE	|	Farthest time (unix time in millisecond)	|
 |	endTime	|	long	|	FALSE	|	Nearest time (unix time in millisecond) 	|
-|	limit	|	integer	|	FALSE	|	Maximum number of items in one page (valid range:[1,100]; default value:50)	|
+|	limit	|	integer	|	FALSE	|	Maximum number of items in one page (valid range:[1-100]; default value:50)	|
 |	fromId	|	long	|	FALSE	|	First record ID in this query (only valid for next page querying)	|
 
 > Response
@@ -7087,8 +7545,8 @@ Searched by createTime<br>
 |	-----	|	---------	|	---------	|	----------	|
 |	code	|	integer	|	TRUE	|	Status code	|
 |	message	|	string	|	FALSE	|	Error message (if any)	|
-|	data	|	object	|	TRUE	|	In decending order of createTime 	|
-|	{ offerId	|	string	|	TRUE	|	Offer ID	|
+|	\<data\>	|	object	|	TRUE	|	In decending order of createTime 	|
+|	offerId	  |	string	|	TRUE	|	Offer ID	|
 |	createTime	|	long	|	TRUE	|	Offer creation time (unix time in millisecond) 	|
 |	lastActTime	|	long	|	TRUE	|	Offer update time (unix time in millisecond) 	|
 |	offerStatus	|	string	|	TRUE	|	Offer status (valid value：submitted, filled, partial-filled, canceled, partial-canceled) 	|
@@ -7099,12 +7557,14 @@ Searched by createTime<br>
 |	origAmount	|	string	|	TRUE	|	Original offer value 	|
 |	amount	|	string	|	TRUE	|	Remaining offer value 	|
 |	interestRate	|	string	|	TRUE	|	Daily interest rate	|
-|	loanTerm }	|	integer	|	TRUE	|	Loan term	|
+|	loanTerm 	|	integer	|	TRUE	|	Loan term	|
+|	\</data\>	|	 	|	 	|	 	|
 |	nextId	|	long	|	FALSE	|	First record ID in next page (only valid if exceeded page size)	|
 
 ## Query a lending/borrowing offer
 
-GET /v2/c2c/offer<br>
+ - GET `/v2/c2c/offer`
+
 API Key Permission: Read<br>
 
 ### Request Parameter
@@ -7152,8 +7612,8 @@ API Key Permission: Read<br>
 |	-----	|	---------	|	---------	|	----------	|
 |	code	|	integer	|	TRUE	|	Status code	|
 |	message	|	string	|	FALSE	|	Error message (if any)	|
-|	data	|	object	|	TRUE	|		|
-|	{ offerId	|	string	|	TRUE	|	Offer ID	|
+|	\<data\> |	object	|	TRUE	|		|
+|	offerId	 |	string	|	TRUE	|	Offer ID	|
 |	createTime	|	long	|	TRUE	|	Offer creation time (unix time in millisecond) 	|
 |	lastActTime	|	long	|	TRUE	|	Offer update time (unix time in millisecond) 	|
 |	offerStatus	|	string	|	TRUE	|	Offer status (valid value: submitted, filled, partial-filled, canceled, partial-canceled) 	|
@@ -7165,8 +7625,8 @@ API Key Permission: Read<br>
 |	amount	|	string	|	TRUE	|	Remaining offer value	|
 |	interestRate	|	string	|	TRUE	|	Daily interest rate	|
 |	loanTerm	|	integer	|	TRUE	|	Loan term	|
-|	transactions	|	object	|	TRUE	|	In descending order of transactTime 	|
-|	{ transactRate	|	string	|	TRUE	|	Transaction interest rate 	|
+|	\<transactions\>	|	object	|	TRUE	|	In descending order of transactTime 	|
+|	transactRate	|	string	|	TRUE	|	Transaction interest rate 	|
 |	transactAmount	|	string	|	TRUE	|	Transaction value	|
 |	transactTime	|	long	|	TRUE	|	Transaction time (unix time in millisecond) 	|
 |	transactId	|	long	|	TRUE	|	Transaction ID	|
@@ -7174,11 +7634,15 @@ API Key Permission: Read<br>
 |	unpaidPrincipal	|	string	|	TRUE	|	Unpaid principal	|
 |	unpaidInterest	|	string	|	TRUE	|	Unpaid interest (till query time) 	|
 |	paidInterest	|	string	|	TRUE	|	Paid interest	|
-|	transactStatus }}	|	string	|	TRUE	|	Repayment status (valid value: pending, closed) 	|
+|	transactStatus 	|	string	|	TRUE	|	Repayment status (valid value: pending, closed) 	|
+|	\</transactions\>|	 	|	 	|	 	|
+|	\</data\>	|	 	|	 	|	 	|
+
 
 ## Query lending/borrowing transactions
 
-GET /v2/c2c/transactions<br>
+ - GET `/v2/c2c/transactions`
+
 API Key Permission: Read<br>
 Searched by transactTime<br>
 
@@ -7191,7 +7655,7 @@ Searched by transactTime<br>
 |	transactStatus	|	string	|	TRUE	|	Repayment status (valid value: pending, closed) 	|
 |	startTime	|	long	|	FALSE	|	Farthest time (unix time in millisecond)	|
 |	endTime	|	long	|	FALSE	|	Nearest time (unix time in millisecond) 	|
-|	limit	|	integer	|	FALSE	|	Maximum number of items in one page (valid range:[1,100]; default value:50)	|
+|	limit	|	integer	|	FALSE	|	Maximum number of items in one page (valid range:[1-100]; default value:50)	|
 |	fromId	|	long	|	FALSE	|	First record ID in this query (only valid for next page querying)	|
 
 > Response
@@ -7210,7 +7674,7 @@ Searched by transactTime<br>
         "piadInterest": "0.00007917",
         "transactStatus": "closed",
         "offerId": "14736",
-        "accountId" "13699363",
+        "accountId": "13699363",
         "currency": "usdt",
         "side": "borrow"
     }
@@ -7225,8 +7689,8 @@ Searched by transactTime<br>
 |	-----	|	---------	|	---------	|	----------	|
 |	code	|	integer	|	TRUE	|	Status code	|
 |	message	|	string	|	FALSE	|	Error message (if any)	|
-|	data	|	object	|	TRUE	|	In descending order of transactTime	|
-|	{ transactRate	|	string	|	TRUE	|	Transaction interest rate 	|
+|	\<data\> 	|	object	|	TRUE	|	In descending order of transactTime	|
+|	transactRate	|	string	|	TRUE	|	Transaction interest rate 	|
 |	transactAmount	|	string	|	TRUE	|	Transaction value	|
 |	transactTime	|	long	|	TRUE	|	Transaction time (unix time in millisecond) 	|
 |	transactId	|	long	|	TRUE	|	Transaction ID	|
@@ -7238,12 +7702,14 @@ Searched by transactTime<br>
 |	offerId	|	string	|	TRUE	|	Offer ID	|
 |	accountId	|	string	|	TRUE	|	Account ID	|
 |	currency	|	string	|	TRUE	|	Cryptocurrency of lending/borrowing	|
-|	side }	|	string	|	TRUE	|	Offer side (valid value: lend, borrow) 	|
+|	side 	|	string	|	TRUE	|	Offer side (valid value: lend, borrow) 	|
+|	\</data\> |	 	|	 	|	 	|
 |	nextId	|	long	|	FALSE	|	First record ID in next page (only valid if exceeded page size)	|
 
 ## Repay a borrowing offer
 
-POST /v2/c2c/repayment<br>
+ - POST `/v2/c2c/repayment`
+
 API Key Permission: Trade<br>
 
 ### Request Parameter
@@ -7275,16 +7741,18 @@ Note:<br>
 |	-----	|	---------	|	---------	|	----------	|
 |	code	|	integer	|	TRUE	|	Status code	|
 |	message	|	string	|	FALSE	|	Error message (if any)	|
-|	data	|	object	|	TRUE	|		|
-|	{ repayId	|	string	|	TRUE	|	Repayment ID	|
-|	repayTime }	|	long	|	TRUE	|	Repay time (unix time in millisecond) 	|
+|	\<data\>	|	object	|	TRUE	|		|
+|	repayId	|	string	|	TRUE	|	Repayment ID	|
+|	repayTime 	|	long	|	TRUE	|	Repay time (unix time in millisecond) 	|
+|	\</data\>	|	 	|	 	|		|
 
 Note:<br>
 •	The receipt of repayment ID does not implicate the success of repayment. User should query the repayment history to confirm its status. <br>
 
 ## Query C2C repayments
 
-GET /v2/c2c/repayment<br>
+ - GET `/v2/c2c/repayment`
+
 API Key Permission: Read<br>
 Seached by repayTime<br>
 
@@ -7296,7 +7764,7 @@ Seached by repayTime<br>
 |	currency	|	string	|	FALSE	|	Cryptocurrency of lending/borrowing (default value: all eligible currencies) 	|
 |	startTime	|	long	|	FALSE	|	Farthest time (unix time in millisecond)	|
 |	endTime	|	long	|	FALSE	|	Nearest time (unix time in millisecond) 	|
-|	limit	|	integer	|	FALSE	|	Maximum number of items in one page (valid range:[1,100]; default value:50)	|
+|	limit	|	integer	|	FALSE	|	Maximum number of items in one page (valid range:[1-100]; default value:50)	|
 |	fromId	|	long	|	FALSE	|	First record ID in this query (only valid for next page querying)	|
 
 > Response
@@ -7342,21 +7810,24 @@ Seached by repayTime<br>
 |	-----	|	---------	|	---------	|	----------	|
 |	code	|	integer	|	TRUE	|	Status code	|
 |	message	|	string	|	FALSE	|	Error message (if any)	|
-|	data	|	object	|	TRUE	|	In descending order of repayTime 	|
-|	{ repayId	|	string	|	TRUE	|	Repayment ID	|
+|	\<data\>	|	object	|	TRUE	|	In descending order of repayTime 	|
+|	repayId	|	string	|	TRUE	|	Repayment ID	|
 |	repayTime	|	long	|	TRUE	|	Repay time (unix time in millisecond) 	|
 |	accountId	|	string	|	TRUE	|	Account ID	|
 |	currency	|	string	|	TRUE	|	Currency	|
 |	paidAmount	|	string	|	TRUE	|	Paid value	|
-|	transactIds	|	object	|	TRUE	|	Repayment ID list (in ascending order of repayment sequence) 	|
-|	{ transactId	|	long	|	TRUE	|	Repayment ID	|
+|	\<transactIds\>	|	object	|	TRUE	|	Repayment ID list (in ascending order of repayment sequence) 	|
+|	transactId	|	long	|	TRUE	|	Repayment ID	|
 |	paidPrincipal	|	string	|	TRUE	|	Paid principal	|
-|	paidInterest }}	|	string	|	TRUE	|	Paid interest	|
+|	paidInterest 	|	string	|	TRUE	|	Paid interest	|
+|	\</transactIds\>	|	 	|	 	|	 	|
+|	\</data\>	|	 	|	 	|	 	|
 |	nextId	|	long	|	FALSE	|	First record ID in next page (only valid if exceeded page size)	|
 
 ## Transfer asset
 
-POST /v2/c2c/transfer<br>
+ - POST `/v2/c2c/transfer`
+ 
 API Key Permission: Trade<br>
 
 ### Request Parameter
@@ -7369,7 +7840,6 @@ API Key Permission: Trade<br>
 
 Note:<br>
 •	Only transfers between spot account and specific borrowing account are
-GET /v2/c2c/repayment allowed.<br>
 
 > Response
 
@@ -7389,13 +7859,16 @@ GET /v2/c2c/repayment allowed.<br>
 |	-----	|	---------	|	---------	|	----------	|
 |	code	|	integer	|	TRUE	|	Status code	|
 |	message	|	string	|	FALSE	|	Error message (if any)	|
-|	data	|	object	|	TRUE	|		|
-|	{ transactId	|	string	|	TRUE	|	Transaction ID	|
-|	transactTime }	|	long	|	TRUE	|	Transaction time (unix time in millisecond) 	|
+|	\<data\>	|	object	|	TRUE	|		|
+|	transactId	|	string	|	TRUE	|	Transaction ID	|
+|	transactTime 	|	long	|	TRUE	|	Transaction time (unix time in millisecond) 	|
+|	\</data\>	|	 	|	 	|		|
+
 
 ## Query C2C account balance
 
-GET /v2/c2c/account<br>
+ - GET `/v2/c2c/account`
+
 API Key Permission: Read<br>
 
 ### Request Parameter
@@ -7458,22 +7931,25 @@ API Key Permission: Read<br>
 |	-----	|	---------	|	---------	|	----------	|
 |	code	|	integer	|	TRUE	|	Status code	|
 |	message	|	string	|	FALSE	|	Error message (if any)	|
-|	data	|	object	|	TRUE	|		|
-|	{ accountId	|	string	|	TRUE	|	Account ID	|
+|	\<data\>	|	object	|	TRUE	|		|
+|	accountId	|	string	|	TRUE	|	Account ID	|
 |	accountStatus	|	string	|	TRUE	|	Account status (working, lock, fl-sys, fl-mgt, fl-end, fl-negative) 	|
 |	symbol	|	string	|	FALSE	|	Currency pair (Only valid for borrowing account) 	|
 |	riskRate	|	string	|	FALSE	|	Risk rate (Only valid for borrowing account) 	|
-|	subAccountTypes	|	object	|	TRUE	|	Sub account list	|
-|	{ subAccountType	|	string	|	TRUE	|	Sub account (trade, lending, earnings, loan, interest, advance) 	|
+|	\<subAccountTypes\>	|	object	|	TRUE	|	Sub account list	|
+|	subAccountType	|	string	|	TRUE	|	Sub account (trade, lending, earnings, loan, interest, advance) 	|
 |	currency	|	string	|	TRUE	|	Currency	|
 |	acctBalance	|	string	|	TRUE	|	Account balance	|
 |	availBalance	|	string	|	FALSE	|	Available balance  (Only valid for sub account "trade") 	|
 |	transferable	|	string	|	FALSE	|	Transferable value  (Only valid for sub account "trade") 	|
-|	borrowable }}	|	string	|	FALSE	|	Borrowable value  (Only valid for sub account "trade") 	|
+|	borrowable 	|	string	|	FALSE	|	Borrowable value  (Only valid for sub account "trade") 	|
+|	\</subAccountTypes\>	|	 	|	 	|	 	|
+|	\</data\>	|	 	|	 	|		|
+
 
 Note:<br>
 •	Sub account trade, loan, interest, advance are only valid for borrowing account；<br>
-•	Sub account trade, lending, earnings are only valid for lending account. <br>
+•	Sub account trade, lending, earnings are only valid for lending account.<br>
 
 ## Error Code
 
@@ -7559,10 +8035,10 @@ When client receives this heartbeat message, it should respond with a matching "
 
 To receive data you have to send a "sub" message first.
 
-{
-  "sub": "topic to sub",
-  "id": "id generate by client"
-}
+`{`
+    `"sub": "topic to sub",`
+    `"id": "id generate by client"`
+`}`
 
 > Sub response:
 
@@ -7616,10 +8092,10 @@ While connected to websocket, you can also use it in pull style by sending messa
 
 To request pull style data, you send below message
 
-{
-  "req": "topic to req",
-  "id": "id generate by client"
-}
+`{`
+    `"req": "topic to req",`
+    `"id": "id generate by client"`
+`}`
 
 You will receive a response accordingly and immediately
 
@@ -7668,18 +8144,18 @@ This topic sends a new candlestick whenever it is available.
 
 ```json
 {
-  "ch": "market.ethbtc.kline.1min",
-  "ts": 1489474082831, //system update time
-  "tick": {
-    "id": 1489464480,
-    "amount": 0.0,
-    "count": 0,
-    "open": 7962.62,
-    "close": 7962.62,
-    "low": 7962.62,
-    "high": 7962.62,
-    "vol": 0.0
-  }
+    "ch":"market.ethbtc.kline.1min",
+    "ts":1630981694370,
+    "tick":{
+        "id":1630981680,
+        "open":0.074849,
+        "close":0.074848,
+        "low":0.074848,
+        "high":0.074849,
+        "amount":2.4448,
+        "vol":0.1829884187,
+        "count":3
+    }
 }
 ```
 
@@ -7687,6 +8163,9 @@ This topic sends a new candlestick whenever it is available.
 
 | Field  | Data Type | Description                                                  |
 | ------ | --------- | ------------------------------------------------------------ |
+| ch     | string   | Data belonged channel，Format：market.$symbol.kline.$period     |
+| ts     | long     | Time of Respond Generation, Unit: Millisecond   |
+| \<tick\> | object     |                      |
 | id     | integer   | UNIX epoch timestamp in second as response id                |
 | amount | float     | Aggregated trading volume during the interval (in base currency) |
 | count  | integer   | Number of trades during the interval                         |
@@ -7695,8 +8174,10 @@ This topic sends a new candlestick whenever it is available.
 | low    | float     | Low price during the interval                                |
 | high   | float     | High price during the interval                               |
 | vol    | float     | Aggregated trading value during the interval (in quote currency) |
+| \</tick\> |       |                      |
 
 <aside class="notice">When symbol is set to "hb10" or "huobi10", amount, count, and vol will always have the value of 0</aside>
+
 ### Pull Request
 
 Pull request is supported with extra parameters to define the range. The maximum number of ticks in each response is 300.
@@ -7741,23 +8222,23 @@ Retrieve the market ticker,data is pushed every 100ms.
 
 ```json
 {
-"ch": "market.btcusdt.ticker", 
-"ts": 1628587397308, 
-"tick": {
-"open": 44718.5, 
-"high": 46711, 
-"low": 44480.81, 
-"close": 45868.99, 
-"amount": 22527.427922989766, 
-"vol": 1030630905.0136755, 
-"count": 676424, 
-"bid": 45868.98, 
-"bidSize": 0.016782, 
-"ask": 45868.99, 
-"askSize": 3.1279664455029423, 
-"lastPrice": 45868.99, 
-"lastSize": 0.007444
-}
+    "ch":"market.btcusdt.ticker",
+    "ts":1630982370526,
+    "tick":{
+        "open":51732,
+        "high":52785.64,
+        "low":51000,
+        "close":52735.63,
+        "amount":13259.24137056181,
+        "vol":687640987.4125315,
+        "count":448737,
+        "bid":52732.88,
+        "bidSize":0.036,
+        "ask":52732.89,
+        "askSize":0.583653,
+        "lastPrice":52735.63,
+        "lastSize":0.03
+    }
 }
 ```
 
@@ -7765,6 +8246,9 @@ Retrieve the market ticker,data is pushed every 100ms.
 
 | Field     | Data Type | Description                                                  |
 | --------- | --------- | ------------------------------------------------------------ |
+| ch        | string   | Data belonged channel，Format：market.$symbol.ticker  |
+| ts        | long     | Time of Respond Generation, Unit: Millisecond             |
+| \<tick\>  | object   |                                        |
 | id        | long      | The internal identity                                        |
 | amount    | float     | Accumulated trading volume of last 24 hours (rotating 24h), in base currency |
 | count     | integer   | The number of completed trades (rotating 24h)                |
@@ -7779,8 +8263,8 @@ Retrieve the market ticker,data is pushed every 100ms.
 | askSize   | float     | Best ask size                                                |
 | lastPrice | float     | Last traded price                                            |
 | lastSize  | float     | Last traded size                                             |
+| \</tick\>  |     |                                        |
 
-## 
 
 ## Market Depth
 
@@ -7835,32 +8319,50 @@ While type is set as ‘step1’, ‘step2’, ‘step3’, ‘step4’, or ‘s
 
 ```json
 {
-  "ch": "market.htusdt.depth.step0",
-  "ts": 1572362902027, //system update time
-  "tick": {
-    "bids": [
-      [3.7721, 344.86],// [price, size]
-      [3.7709, 46.66]
-    ],
-    "asks": [
-      [3.7745, 15.44],
-      [3.7746, 70.52]
-    ],
-    "version": 100434317651,
-    "ts": 1572362902012 //quote time
-  }
+    "ch":"market.btcusdt.depth.step0",
+    "ts":1630983549503,
+    "tick":{
+        "bids":[
+            [
+                52690.69,
+                0.36281
+            ],
+            [
+                52690.68,
+                0.2
+            ]
+        ],
+        "asks":[
+            [
+                52690.7,
+                0.372591
+            ],
+            [
+                52691.26,
+                0.13
+            ]
+        ],
+        "version":136998124622,
+        "ts":1630983549500
+    }
 }
 ```
 
 ### Update Content
 
 <aside class="notice">Under 'tick' object there is a list of bids and a list of asks</aside>
+
 | Field   | Data Type | Description                                                  |
 | ------- | --------- | ------------------------------------------------------------ |
+| ch      | string   | Data belonged channel，Format：market.$symbol.depth.$type  |
+| ts      | long     | Time of Respond Generation, Unit: Millisecond     |
+| \<tick\>| object   |  |
 | bids    | object    | The current all bids in format [price, size]                 |
 | asks    | object    | The current all asks in format [price, size]                 |
 | version | integer   | Internal data                                                |
 | ts      | integer   | The UNIX timestamp in milliseconds adjusted to Singapore time |
+| \</tick\> |     |  |
+
 
 <aside class="notice">When symbol is set to "hb10" amount, count, and vol will always have the value of 0</aside>
 ### Pull Request
@@ -7901,13 +8403,16 @@ Currently Huobi Global only supports 5-level/20-level MBP incremental channel an
 
 ```json
 {
-    "ch": "market.btcusdt.mbp.5",
-    "ts": 1573199608679,
-    "tick": {
-        "seqNum": 100020146795,
-        "prevSeqNum": 100020146794,
-        "asks": [
-            [645.140000000000000000, 26.755973959140651643]
+    "ch":"market.btcusdt.mbp.5",
+    "ts":1630985211662,
+    "tick":{
+        "seqNum":136999309829,
+        "prevSeqNum":136999309815,
+        "bids":[
+            [
+                52771.08,
+                1.804671
+            ]
         ]
     }
 }
@@ -7999,13 +8504,13 @@ REQ channel supports refreshing message for 5-level, 20-level, and 150-level.
 {
 	"ch": "market.btcusdt.mbp.5",
 	"ts": 1573199608679, //system update time
-	"tick": {
-		"seqNum": 100020146795,
-		"prevSeqNum": 100020146794,
-		"asks": [
-			[645.140000000000000000, 26.755973959140651643] // [price, size]
-		]
-	}
+    "tick": {
+            "seqNum": 100020146795,
+            "prevSeqNum": 100020146794,
+            "asks": [
+                 [645.140000000000000000, 26.755973959140651643] // [price, size]
+           ]
+    }
 }
 ```
 
@@ -8152,17 +8657,17 @@ User can receive BBO (Best Bid/Offer) update in tick by tick mode.
 
 ```json
 {
-  "ch": "market.btcusdt.bbo",
-  "ts": 1489474082831, //system update time
-  "tick": {
-    "symbol": "btcusdt",
-    "quoteTime": "1489474082811",
-    "bid": "10008.31",
-    "bidSize": "0.01",
-    "ask": "10009.54",
-    "askSize": "0.3"
-    "seqId": "1276823698734"
-  }
+    "ch":"market.btcusdt.bbo",
+    "ts":1630994555540,
+    "tick":{
+        "seqId":137005210233,
+        "ask":52665.02,
+        "askSize":1.502181,
+        "bid":52665.01,
+        "bidSize":0.178567,
+        "quoteTime":1630994555539,
+        "symbol":"btcusdt"
+    }
 }
 ```
 
@@ -8170,6 +8675,9 @@ User can receive BBO (Best Bid/Offer) update in tick by tick mode.
 
 | Field     | Data Type | Description     |
 | --------- | --------- | --------------- |
+| ch        | string   | Data belonged channel，Format：market.$symbol.kline.$period |
+| ts        | long     | Time of Respond Generation, Unit: Millisecond  |
+| \<data\>  | object   |             |
 | symbol    | string    | Trading symbol  |
 | quoteTime | long      | Quote time      |
 | bid       | float     | Best bid        |
@@ -8177,6 +8685,7 @@ User can receive BBO (Best Bid/Offer) update in tick by tick mode.
 | ask       | float     | Best ask        |
 | askSize   | float     | Best ask size   |
 | seqId     | int       | Sequence number |
+| \</data\> |    |             |
 
 
 ## Trade Detail
@@ -8217,23 +8726,22 @@ This topic sends the latest completed trades. It updates in tick by tick mode.
 
 ```json
 {
-  "ch": "market.btcusdt.trade.detail",
-  "ts": 1489474082831, //system update time
-  "tick": {
-        "id": 14650745135,
-        "ts": 1533265950234, //trade time
-        "data": [
+    "ch":"market.btcusdt.trade.detail",
+    "ts":1630994963175,
+    "tick":{
+        "id":137005445109,
+        "ts":1630994963173,
+        "data":[
             {
-                "amount": 0.0099,
-                "ts": 1533265950234, //trade time
-                "id": 146507451359183894799,
-                "tradeId": 102043495674,
-                "price": 401.74,
-                "direction": "buy"
+                "id":137005445109359286410323766,
+                "ts":1630994963173,
+                "tradeId":102523573486,
+                "amount":0.006754,
+                "price":52648.62,
+                "direction":"buy"
             }
-            // more Trade Detail data here
         ]
-  }
+    }
 }
 ```
 
@@ -8241,12 +8749,21 @@ This topic sends the latest completed trades. It updates in tick by tick mode.
 
 | Field     | Data Type | Description                                                  |
 | --------- | --------- | ------------------------------------------------------------ |
+| ch        | string   | Data belonged channel，Format：market.$symbol.trade.detail   |
+| ts        | long     | Time of Respond Generation, Unit: Millisecond           |
+| \<tick\>  | object   |                          |
+| id        | long     | global transaction ID                        |
+| ts        | long     | Latest Creation Time               |
+| \<data\>  | object   |                           |
 | id        | integer   | Unique trade id (to be obsoleted)                            |
 | tradeId   | integer   | Unique trade id (NEW)                                        |
 | amount    | float     | The volume of the trade (buy side or sell side)                    |
 | price     | float     | The price of the trade                                            |
 | ts        | integer   | timestamp (UNIX epoch time in millisecond)             |
 | direction | string    | direction of the trade (taker): 'buy' or 'sell' |
+| \</data\> |    |                           |
+| \</tick\> |    |                          |
+
 
 ### Pull Request
 
@@ -8297,18 +8814,19 @@ This topic sends the latest market stats with 24h summary. It updates in snapsho
 
 ```json
 {
-  "ch": "market.btcusdt.detail",
-  "ts": 1494497082831, //system update time
-  "tick": {
-    "amount": 12224.2922,
-    "open":   9790.52,
-    "close":  10195.00,
-    "high":   10300.00,
-    "id":     1494496390,
-    "count":  15195,
-    "low":    9657.00,
-    "vol":    121906001.754751
-  }
+    "ch":"market.btcusdt.detail",
+    "ts":1630998026649,
+    "tick":{
+        "id":273956868110,
+        "low":51000,
+        "high":52924.14,
+        "open":51823.62,
+        "close":52379.99,
+        "vol":727676440.200527,
+        "amount":13991.028076056185,
+        "version":273956868110,
+        "count":471348
+    }
 }
 ```
 
@@ -8316,6 +8834,9 @@ This topic sends the latest market stats with 24h summary. It updates in snapsho
 
 | Field  | Data Type | Description                                              |
 | ------ | --------- | -------------------------------------------------------- |
+| ch     | string   | Data belonged channel，Format：market.btcusdt.detail |
+| ts     | long     | Time of Respond Generation, Unit: Millisecond          |
+| \<tick>| object   |   |
 | id     | integer   | UNIX epoch timestamp in second as response id            |
 | amount | float     | Aggregated trading volume in past 24H (in base currency) |
 | count  | integer   | Number of trades in past 24H                             |
@@ -8324,6 +8845,9 @@ This topic sends the latest market stats with 24h summary. It updates in snapsho
 | low    | float     | Low price in past 24H                                    |
 | high   | float     | High price in past 24H                                   |
 | vol    | float     | Aggregated trading value in past 24H (in quote currency) |
+| version    | long    | version             |
+| \</tick>|    |   |
+
 
 ### Pull Request
 
@@ -8348,18 +8872,51 @@ Pull request is supported.
 | --------- | --------- | --------- | ------------- | ------------------- | ----------- |
 | symbol    | string    | true      | NA            | ETP traiding symbol |             |
 
+> Update example
+
+```json
+{
+    "ch":"market.btc3lusdt.etp",
+    "ts":1630998641232,
+    "tick":{
+        "actualLeverage":2.939514947040537,
+        "nav":55.96301165128891,
+        "outstanding":302712.87098475,
+        "symbol":"btc3lusdt",
+        "navTime":1630998641232,
+        "basket":[
+            {
+                "amount":0.003154874364924647,
+                "currency":"btc"
+            },
+            {
+                "amount":-108.54109757907857,
+                "currency":"usdt"
+            }
+        ]
+    }
+}
+```
+
 ### Update Content
 
-| 字段 | 数据类型       | 描述   |
-| ---- | -------------- | ------ |
-|      | symbol         | string |
-|      | nav            | float  |
-|      | navTime        | long   |
-|      | outstanding    | float  |
-|      | basket         | object |
-|      | { currency     | float  |
-|      | amount }       | float  |
-|      | actualLeverage | float  |
+| Field Name     | Data Type | Description                            |
+| -------------- | --------- | -------------------------------------- |
+| status    | string | Request Processing Result  "ok","error" |
+| ch        | string | Data belonged channel，Format：market.$symbol.etp  |
+| ts        | long | Time of Respond Generation, Unit: Millisecond   |
+| \<tick\>  | object |  |
+| symbol         | string    | ETP trading symbol                     |
+| nav            | float     | Latest NAV                             |
+| navTime        | long      | Update time (unix time in millisecond) |
+| outstanding    | float     | Outstanding shares                     |
+| \<basket\>     | object    | Basket                                 |
+| currency       | float     | Currency                               |
+| amount         | float     | Amount                                 |
+| \</basket\>     |    |                                         |
+| actualLeverage | float     | Actual leverage ratio                  |
+| \</tick\>  |  |  |
+
 
 ## Error Code
 
@@ -8488,12 +9045,11 @@ The signature generation method of Account and Order WebSocket is similar with R
 
 Please refer to detailed signature generation steps from: [https://huobiapi.github.io/docs/spot/v1/cn/#c64cd15fdc]
 
-```
-GET\n
-api.huobi.pro\n
-/ws/v2\n
-accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatureVersion=2.1&timestamp=2019-12-05T11%3A53%3A03
-```
+`GET\n`
+`api.huobi.pro\n`
+`/ws/v2\n`
+`accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatureVersion=2.1&timestamp=2019-12-05T11%3A53%3A03`
+
 
 The final string involved in signature generation should be like below:
 
@@ -8578,15 +9134,15 @@ The field list in order update message can be various per event type, developers
 	"action":"push",
 	"ch":"orders#btcusdt",
 	"data":
-	{
+	 {
 		"orderSide":"buy",
-		"lastActTime":1583853365586,
-		"clientOrderId":"abc123",
-		"orderStatus":"rejected",
-		"symbol":"btcusdt",
-		"eventType":"trigger",
-		"errCode": 2002,
-		"errMessage":"invalid.client.order.id (NT)"
+	  	"lastActTime":1583853365586,
+	  	"clientOrderId":"abc123",
+	  	"orderStatus":"rejected",
+	  	"symbol":"btcusdt",
+  		"eventType":"trigger",
+  		"errCode": 2002,
+	  	"errMessage":"invalid.client.order.id (NT)"
 	}
 }
 ```
@@ -8976,8 +9532,8 @@ accounts.update#0：
 		"accountId": 123456,
 		"balance": "23.111",
 		"changeType": "transfer",
-           	"accountType":"trade",
-    "seqNum": "86872993928",
+        "accountType":"trade",
+        "seqNum": "86872993928",
 		"changeTime": 1568601800000
 	}
 }
@@ -8991,8 +9547,8 @@ accounts.update#1：
 		"accountId": 33385,
 		"available": "2028.699426619837209087",
 		"changeType": "order.match",
-         		"accountType":"trade",
-    "seqNum": "86872993928",
+  	    "accountType":"trade",
+        "seqNum": "86872993928",
 		"changeTime": 1574393385167
 	}
 }
@@ -9004,8 +9560,8 @@ accounts.update#1：
 		"accountId": 33385,
 		"balance": "2065.100267619837209301",
 		"changeType": "order.match",
-           	"accountType":"trade",
-    "seqNum": "86872993928",
+  	    "accountType":"trade",
+        "seqNum": "86872993928",
 		"changeTime": 1574393385122
 	}
 }
@@ -9067,7 +9623,7 @@ API Key Permission：Read
 
 ### HTTP Request
 
-`GET https://api.huobi.pro/v1/stable-coin/quote`
+ - GET `/v1/stable-coin/quote`
 
 ### Request Parameters
 
@@ -9095,7 +9651,7 @@ API Key Permission：Trade
 
 ### HTTP Request
 
-`POST https://api.huobi.pro/v1/stable-coin/exchange`
+ - POST `/v1/stable-coin/exchange`
 
 ### Request Parameters
 
@@ -9148,9 +9704,6 @@ This endpoint will return the basic information of ETF creation and redemption, 
 
 - GET `/etf/swap/config`
 
-```shell
-curl "https://api.huobi.pro/etf/swap/config?etf_name=hb10"
-```
 
 ### Request Parameter
 
@@ -9426,20 +9979,23 @@ Public data
 |	-----	|	----	|	--------	|	-----	|
 |	code	|	integer	|	TRUE	|Status Code	|
 |	message	|	string	|	FALSE	|Error message (if any)	|
-|	data	|	object	|	TRUE	|	|
-|	{ etpName	|	string	|	TRUE	|ETP code	|
+|	\<data\>	|	object	|	TRUE	|	|
+|	etpName	|	string	|	TRUE	|ETP code	|
 |	displayName	|	string	|	TRUE	|ETP display name	|
-|	creationQuota	|	object	|	TRUE	|	|
-|	{ maxCreationValue	|	int	|	TRUE	|Maximum creation value per request	|
+|	\<creationQuota\>	|	object	|	TRUE	|	|
+|	maxCreationValue	|	int	|	TRUE	|Maximum creation value per request	|
 |	minCreationValue	|	int	|	TRUE	|Minimal creation value per request	|
 |	dailyCreationValue	|	int	|	TRUE	|Maximum creation value per day	|
-|	creationCurrency }	|	string	|	TRUE	|Quote currency of creation	|
+|	creationCurrency 	|	string	|	TRUE	|Quote currency of creation	|
+|	\</creationQuota\>	|	 	|	 	|	|
 |	maxRedemptionAmount	|	int	|	TRUE	|Maximum redemption amount per request	|
 |	minRedemptionAmount	|	int	|	TRUE	|Minimal redemption amount per request	|
 |	dailyRedemptionAmount	|	int	|	TRUE	|Maximum redemption amount per day	|
 |	creationFeeRate	|	float	|	TRUE	|Creation fee rate	|
 |	redemptionFeeRate	|	float	|	TRUE	|Redemption fee rate	|
-|	etpStatus	} |	string	|	TRUE	|ETP status（normal, creation-only, redemption-only, halted）	|
+|	etpStatus	 |	string	|	TRUE	|ETP status（normal, creation-only, redemption-only, halted）	|
+|	\<data\>	|	 	|	 	|	|
+
 
 ## ETP Creation
 
@@ -9464,9 +10020,11 @@ Rate Limit: 2times/sec<br>
 |	-----	|	----	|	--------	|	-----	|
 |	code	|	integer	|	TRUE	|Status Code	|
 |	message	|	string	|	FALSE	|Error message (if any)	|
-|	data	|	object	|	TRUE	|	|
-|	{ transactId	|	long	|	TRUE	|Transaction ID	|
-|	transactTime }	|	long	|	TRUE	|Transaction time (unix time in millisecond)	|
+|	\<data\> 	|	object	|	TRUE	|	|
+|	transactId	|	long	|	TRUE	|Transaction ID	|
+|	transactTime 	|	long	|	TRUE	|Transaction time (unix time in millisecond)	|
+|	\</data\>    	|	 	|	 	|	|
+
 
 Note:<br>
 The receipt of transactId doesn’t implicate the success of creation. User should query creation history to confirm the transaction status post creation.<br>
@@ -9494,9 +10052,11 @@ Rate Limit: 2times/sec<br>
 |	-----	|	----	|	--------	|	-----	|
 |	code	|	integer	|	TRUE	|Status Code	|
 |	message	|	string	|	FALSE	|Error message (if any)	|
-|	data	|	object	|	TRUE	|	|
-|	{ transactId	|	long	|	TRUE	|Transaction ID	|
-|	transactTime }	|	long	|	TRUE	|Transaction time (unix time in millisecond)	|
+|	\<data\> 	|	object	|	TRUE	|	|
+|	transactId	|	long	|	TRUE	|Transaction ID	|
+|	transactTime 	|	long	|	TRUE	|Transaction time (unix time in millisecond)	|
+|	\</data\>    	|	 	|	 	|	|
+
 
 Note:<br>
 The receipt of transactId doesn’t implicate the success of redemption. User should query redemption history to confirm the transaction status post
@@ -9523,11 +10083,38 @@ Searching by transactTime<br>
 |	startTime|	long	|	FALSE	|Farthest time (unix time in millisecond; valid value:[(endTime – 10 days), endTime]; default value: (endTime – 10 days))|
 |	endTime|	long	|	FALSE	|Nearest time (unix time in millisecond; valid value: [(current time – 180 days), current time]; default value: current time)	|
 |	sort|	string	|	FALSE	|Sorting order (valid value: asc, desc; default value: desc）	|
-|	limit|	integer	|	FALSE	|Maximum number of items in one page (valid range:[1,500]; default value:100)	|
+|	limit|	integer	|	FALSE	|Maximum number of items in one page (valid range:[1-500]; default value:100)	|
 |	fromId	|	long	|	FALSE	| First record ID in this query (only valid for next page querying)	|
 
 Note:<br>
 The query window is circled by startTime and endTime. The maximum window size is 10-day. The window can shift within 180-day.<br>
+
+> Response
+
+```json
+{
+    "code": 200,
+    "data": [
+        {
+            "currency": "btc3l",
+            "feeCurrency": "usdt",
+            "transactValue": "90.812020468704123849",
+            "transactPrice": "77.40447942",
+            "transactId": "9054329",
+            "transactTime": 1621405496048,
+            "transactType": "redemption",
+            "transactAmount": "1.17321402",
+            "transactAmountOrig": "1.1733",
+            "transactValueOrig": null,
+            "transactFee": "0.090812020468704123",
+            "transactStatus": "completed",
+            "errCode": null,
+            "etpName": "btc3lusdt",
+            "errMessage": null
+        }
+    ]
+}
+```
 
 ### Response
 
@@ -9535,8 +10122,8 @@ The query window is circled by startTime and endTime. The maximum window size is
 |	-----	|	----	|	--------	|	-----	|
 |	code	|	integer	|	TRUE	|Status Code	|
 |	message	|	string	|	FALSE	|Error message (if any)	|
-|	data	|	object	|	TRUE	|in order as user defined in 'sort'	|
-|	{ etpName	|	string	|	TRUE	| ETP code	|
+|	\<data\>	|	object	|	TRUE	|in order as user defined in 'sort'	|
+|	etpName	|	string	|	TRUE	| ETP code	|
 |	transactId	|	long	|	TRUE	|Transaction ID	|
 |	transactTime	|	long	|	TRUE	|Transaction time (unix time in millisecond)	|
 |	transactType	|	string	|	TRUE	|Transaction type (valid value: creation, redemption)	|
@@ -9550,7 +10137,8 @@ The query window is circled by startTime and endTime. The maximum window size is
 |	feeCurrency	|	string	|	TRUE	| Transaction fee currency	|
 |	transactStatus	|	string	|	TRUE	|Transaction status (valid values: completed, processing, clearing, rejected)	|
 |	errCode	|	integer	|	FALSE	|Error code (only valid for transactStatus=rejected)	|
-|	errMessage }	|	string	|	FALSE	|Error message (only valid for transactStatus=rejected)|
+|	errMessage 	|	string	|	FALSE	|Error message (only valid for transactStatus=rejected)|
+|	\</data\>	|	 	|	 	|  	|
 |	nextId	|	long	|	FALSE	| First record ID in next page (only valid if exceeded page size)	|
 
 Note:<br>
@@ -9571,14 +10159,40 @@ Rate Limit: 2times/sec<br>
 |	-----	|	----	|	------	|	-----	|
 |	transactId	|	long	|	TRUE	|交易ID	|
 
+> Response
+
+```json
+{
+    "data": {
+        "currency": "btc3l",
+        "etpName": "btc3lusdt",
+        "errCode": null,
+        "feeCurrency": "usdt",
+        "transactId": "9054329",
+        "transactTime": 1621405496048,
+        "transactType": "redemption",
+        "transactAmount": "1.17321402",
+        "transactAmountOrig": "1.1733",
+        "transactValue": "90.812020468704123849",
+        "transactValueOrig": null,
+        "transactPrice": "77.40447942",
+        "transactFee": "0.090812020468704123",
+        "transactStatus": "completed",
+        "errMessage": null
+    },
+    "code": 200,
+    "success": true
+}
+```
+
 ### Response
 
 |	Field Name	|	Data Type	|	Mandatory	|	Description	|
 |	-----	|	----	|	--------	|	-----	|
 |	code	|	integer	|	TRUE	|Status Code	|
 |	message	|	string	|	FALSE	|Error message (if any)	|
-|	data	|	object	|	TRUE	|in order as user defined in 'sort'	|
-|	{ etpName	|	string	|	TRUE	| ETP code	|
+|	\<data\>	|	object	|	TRUE	|in order as user defined in 'sort'	|
+|	etpName	  |	string	|	TRUE	| ETP code	|
 |	transactId	|	long	|	TRUE	|Transaction ID	|
 |	transactTime	|	long	|	TRUE	|Transaction time (unix time in millisecond)	|
 |	transactType	|	string	|	TRUE	|Transaction type (valid value: creation, redemption)	|
@@ -9592,7 +10206,9 @@ Rate Limit: 2times/sec<br>
 |	feeCurrency	|	string	|	TRUE	| Transaction fee currency	|
 |	transactStatus	|	string	|	TRUE	|Transaction status (valid values: completed, processing, clearing, rejected)	|
 |	errCode	|	integer	|	FALSE	|Error code (only valid for transactStatus=rejected)	|
-|	errMessage }	|	string	|	FALSE	|Error message (only valid for transactStatus=rejected)|
+|	errMessage  	|	string	|	FALSE	|Error message (only valid for transactStatus=rejected)|
+|	\</data\>	|	 	|	 	|	|
+
 
 Note:<br>
 If user querying occurs just after the transaction, transactAmount、transactValue、transactPrice might be updated as blank.<br>
@@ -9615,7 +10231,7 @@ Searching by rebalTime<br>
 |	startTime|	long	|	FALSE	|Farthest time (unix time in millisecond; valid value:[(endTime – 10 days), endTime]; default value: (endTime – 10 days))|
 |	endTime|	long	|	FALSE	|Nearest time (unix time in millisecond; valid value: [(current time – 180 days), current time]; default value: current time)	|
 |	sort|	string	|	FALSE	|Sorting order (valid value: asc, desc; default value: desc）	|
-|	limit|	integer	|	FALSE	|Maximum number of items in one page (valid range:[1,500]; default value:100)	|
+|	limit|	integer	|	FALSE	|Maximum number of items in one page (valid range:[1-500]; default value:100)	|
 |	fromId	|	long	|	FALSE	| First record ID in this query (only valid for next page querying)	|
 
 Note:<br>
@@ -9625,20 +10241,25 @@ The query window is circled by startTime and endTime. The maximum window size is
 
 ```json
 {
-  "code": 200,
-  "data": [
-    {
-      "symbol": "btc3lusdt",
-      "rebalTime": 1594990401594,
-      "rebalType": "adhoc"
-    },
-    {
-      "symbol": "btc3lusdt",
-      "rebalTime": 1595065303552,
-      "rebalType": "adhoc"
-    }
-  ],
-  "nextId": 2989
+    "code":200,
+    "data":[
+        {
+            "symbol":"btc3lusdt",
+            "rebalTime":1630944000192,
+            "rebalType":"daily"
+        },
+        {
+            "symbol":"btc3lusdt",
+            "rebalTime":1630857600186,
+            "rebalType":"daily"
+        },
+        {
+            "symbol":"btc3lusdt",
+            "rebalTime":1630771200185,
+            "rebalType":"daily"
+        }
+    ],
+    "nextId":8168108
 }
 ```
 
@@ -9648,17 +10269,18 @@ The query window is circled by startTime and endTime. The maximum window size is
 |	-----	|	----	|	--------	|	-----	|
 |	code	|	integer	|	TRUE	|Status Code	|
 |	message	|	string	|	FALSE	|Error message (if any)	|
-|	data	|	object	|	TRUE	|in order as user defined in 'sort'	|
-|	{ symbol	|	string	|	TRUE	|ETP symbol	|
+|	\<data\>	|	object	|	TRUE	|in order as user defined in 'sort'	|
+|	symbol	|	string	|	TRUE	|ETP symbol	|
 |	rebalTime	|	long	|	TRUE	|Position rebalance time (unix time in millisecond)|
-|	rebalType }	|	string	|	TRUE	|Position rebalance type (valid values: daily, adhoc)	|
+|	rebalType 	|	string	|	TRUE	|Position rebalance type (valid values: daily, adhoc)	|
+|	\</data\>	|		|		|	|
 |	nextId	|	long	|	FALSE	| First record ID in next page (only valid if exceeded page size)	|
 
 ## Submit Cancel for an ETP Order
 
 ### HTTP Request
 
-- POST /v2/etp/{transactId}/cancel
+- POST `/v2/etp/{transactId}/cancel`
 
 API Key Permission：Trade<br>
 Rate Limit (NEW): 1 time /s<br>
@@ -9693,7 +10315,7 @@ Rate Limit (NEW): 1 time /s<br>
 
 ### HTTP Request
 
-- POST /v2/etp/batch-cancel
+- POST `/v2/etp/batch-cancel`
 
 API Key Permission：Trade<br>
 Rate Limit (NEW): 1 time /5s<br>
@@ -9737,27 +10359,23 @@ Rate Limit (NEW): 1 time /5s<br>
 |	-----	|	----	|	--------	|	-----	|
 |	code	|	integer	|	TRUE	|Status Code	|
 |	message	|	string	|	FALSE	|Request status	|
-|	data	|	object	|	TRUE	| 	|
-|	{ success	|	string	|	TRUE	|List of successful ETP cancellation transactions	|
+|	\<data\>	|	object	|	TRUE	| 	|
+|	success	|	array	|	TRUE	|List of successful ETP cancellation transactions	|
+|	\<failed\>	|	object	|	FALSE	| 	|
 |	errMsg	|	long	|	TRUE	|Error message of order cancellation failure|
 |	errCode 	|	string	|	TRUE	|Error code of order cancellation failure	|
-|	transactId}	|	long	|	FALSE	| Transaction ID	|
-
+|	transactId	|	long	|	FALSE	| Transaction ID	|
+|	\</failed\>	|	 	|	 	|  	|
+|	\</data\>	|	 	|	 	|	|
 
 
 ##  Get Holding Limit of Leveraged ETP 
 
 ### HTTP Request
 
-- GET /v2/etp/limit
+- GET `/v2/etp/limit`
 
 API Key Permission：Trade<br>
-
-> Request:
-
-```json
-GET /v2/etp/limit?currency=btc3l,btc3s
-```
 
 ### Request Parameter
 
@@ -9769,19 +10387,20 @@ GET /v2/etp/limit?currency=btc3l,btc3s
 
 ```json
 {
-"data": [
-    {
-        "remainingAmount": "2",
-        "currency": "btc3l",
-        "maxHoldings": "2"
-    },
-    {
-        "remainingAmount": "12000",
-        "currency": "btc3s",
-        "maxHoldings": "12000"
-    },
-"code": 200,
-"success": true
+    "data": [
+        {
+            "remainingAmount": "48",
+            "maxHoldings": "48",
+            "currency": "btc3l"
+        },
+        {
+            "remainingAmount": "7561552",
+            "maxHoldings": "7561552",
+            "currency": "btc3s"
+        }
+    ],
+    "code": 200,
+    "success": true
 }
 ```
 
@@ -9791,9 +10410,11 @@ GET /v2/etp/limit?currency=btc3l,btc3s
 | ---------------- | ---------- | -------- | ----------------------- |
 | code             | integer    | TRUE     | Status  Code            |
 | message          | string     | FALSE    | Status  message         |
-| {currency        | string     | TRUE     | Quote  currency         |
+| \<data\>         | object  |       |
+| currency        | string     | TRUE     | Quote  currency         |
 | maxHoldings      | string     | TRUE     | Holding limit           |
 | remainingAmount} | string     | TRUE     | Remaining amount        |
+| \</data\>        |   |       |
 
 ## Error Code
 
