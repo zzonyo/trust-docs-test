@@ -824,30 +824,10 @@
               </ul>
           </li>
           <li>
-            <a href="#etf-hb10" class="toc-h1 toc-link" data-title="ETF (HB10)">ETF (HB10)</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#introduction-14" class="toc-h2 toc-link" data-title="Introduction">Introduction</a>
-                  </li>
-                  <li>
-                    <a href="#creation-and-redemption-configuration" class="toc-h2 toc-link" data-title="Creation and Redemption Configuration">Creation and Redemption Configuration</a>
-                  </li>
-                  <li>
-                    <a href="#order-creation-redemption" class="toc-h2 toc-link" data-title="Order Creation/Redemption">Order Creation/Redemption</a>
-                  </li>
-                  <li>
-                    <a href="#show-past-creation-redemption" class="toc-h2 toc-link" data-title="Show Past Creation/Redemption">Show Past Creation/Redemption</a>
-                  </li>
-                  <li>
-                    <a href="#error-code-14" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
             <a href="#etp" class="toc-h1 toc-link" data-title="ETP">ETP</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#introduction-15" class="toc-h2 toc-link" data-title="Introduction">Introduction</a>
+                    <a href="#introduction-14" class="toc-h2 toc-link" data-title="Introduction">Introduction</a>
                   </li>
                   <li>
                     <a href="#get-reference-data-of-etp" class="toc-h2 toc-link" data-title="Get reference data of ETP">Get reference data of ETP</a>
@@ -877,7 +857,7 @@
                     <a href="#get-holding-limit-of-leveraged-etp" class="toc-h2 toc-link" data-title="Get Holding Limit of Leveraged ETP">Get Holding Limit of Leveraged ETP</a>
                   </li>
                   <li>
-                    <a href="#error-code-15" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
+                    <a href="#error-code-14" class="toc-h2 toc-link" data-title="Error Code">Error Code</a>
                   </li>
               </ul>
           </li>
@@ -19942,486 +19922,257 @@ The topic disseminates the current static value of individual accounts first, at
 <td>Operation is too frequently</td>
 </tr>
 </tbody></table>
-<h1 id='etf-hb10'>ETF (HB10)</h1><h2 id='introduction-14'>Introduction</h2>
-<p>Huobi&#39;s platform allows clients to create ETF holdings with their matching assets, and also allows clients to redempt ETF to comprised assets.</p>
-<h2 id='creation-and-redemption-configuration'>Creation and Redemption Configuration</h2>
-<p>This endpoint will return the basic information of ETF creation and redemption, as well as ETF constituents, including max amount of creation, min amount of creation, max amount of redemption, min amount of redemption, creation fee rate, redemption fee rate, eft create/redeem status.</p>
-<h3 id='http-request-82'>HTTP Request</h3>
-<ul>
-<li>GET <code>/etf/swap/config</code></li>
-</ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/etf/swap/config?etf_name=hb10"</span>
-</code></pre><h3 id='request-parameter-22'>Request Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Data Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>etf_name</td>
-<td>string</td>
-<td>true</td>
-<td>The name of the ETF, currently only support hb10</td>
-</tr>
-</tbody></table>
 
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"purchase_min_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"purchase_max_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"redemption_min_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"redemption_max_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"purchase_fee_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"redemption_fee_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.002</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"etf_status"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"unit_price"</span><span class="p">:</span><span class="w">
-    </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">19.9</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">9.9</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-94'>Response Content</h3>
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Data Type</th>
-<th>Description</th>
-<th>Mandatory</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>purchase_min_amount</td>
-<td>integer</td>
-<td>Minimum creation amounts per request</td>
-<td>true</td>
-</tr>
-<tr>
-<td>purchase_max_amount</td>
-<td>integer</td>
-<td>Maximum creation amounts per request</td>
-<td>false</td>
-</tr>
-<tr>
-<td>redemption_min_amount</td>
-<td>integer</td>
-<td>Minimum redemption amounts per request</td>
-<td>true</td>
-</tr>
-<tr>
-<td>redemption_max_amount</td>
-<td>integer</td>
-<td>Maximum redemption amounts per request</td>
-<td>false</td>
-</tr>
-<tr>
-<td>purchase_fee_rate</td>
-<td>decimal</td>
-<td>Creation fee rate</td>
-<td>ture</td>
-</tr>
-<tr>
-<td>redemption_fee_rate</td>
-<td>decimal</td>
-<td>Redemption fee rate</td>
-<td>ture</td>
-</tr>
-<tr>
-<td>etf_status</td>
-<td>integer</td>
-<td>status of the ETF: Normal(1), Rebalancing Start(2), Creation and Redemption Suspended(3), Creation Suspended(4), Redemption Suspended(5)</td>
-<td>ture</td>
-</tr>
-<tr>
-<td>unit_price</td>
-<td>array</td>
-<td>ETF constitution in format of {amount, currency}</td>
-<td>ture</td>
-</tr>
-</tbody></table>
-<h2 id='order-creation-redemption'>Order Creation/Redemption</h2>
-<p>API Key Permission：Trade</p>
+<!--
+# ETF (HB10)
 
-<p>This endpoint allow clients to order creation or redemption of ETF.</p>
-<h3 id='http-request-83'>HTTP Request</h3>
-<ul>
-<li><p>POST <code>/etf/swap/in</code></p></li>
-<li><p>POST <code>/etf/swap/out</code></p></li>
-</ul>
-<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/etf/swap/in"</span> -d
-<span class="s1">'{"etf_name": "hb10", "amount": 10000}'</span>
+## Introduction
 
-curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span class="s2">"https://api.huobi.pro/etf/swap/out"</span> -d
-<span class="s1">'{"etf_name": "hb10", "amount": 10000}'</span>
-</code></pre><h3 id='request-parameter-23'>Request Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Data Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>etf_name</td>
-<td>true</td>
-<td>string</td>
-<td>ETF name, currently only support hb10</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>true</td>
-<td>integer</td>
-<td>The amount to create or redemption</td>
-</tr>
-</tbody></table>
+Huobi's platform allows clients to create ETF holdings with their matching assets, and also allows clients to redempt ETF to comprised assets.
 
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-95'>Response Content</h3>
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Data Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>code</td>
-<td>integer</td>
-<td>The overall status of the order, please find details in below table</td>
-</tr>
-<tr>
-<td>data</td>
-<td>object</td>
-<td>The data content if available</td>
-</tr>
-<tr>
-<td>message</td>
-<td>string</td>
-<td>The message of the order result</td>
-</tr>
-<tr>
-<td>success</td>
-<td>boolean</td>
-<td>If the order is successful</td>
-</tr>
-</tbody></table>
+## Creation and Redemption Configuration
 
-<p><strong>Response code details</strong></p>
+This endpoint will return the basic information of ETF creation and redemption, as well as ETF constituents, including max amount of creation, min amount of creation, max amount of redemption, min amount of redemption, creation fee rate, redemption fee rate, eft create/redeem status.
 
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td>Successful</td>
-</tr>
-<tr>
-<td>10404</td>
-<td>Invalid ETF name</td>
-</tr>
-<tr>
-<td>13403</td>
-<td>Insufficient asset to create ETF</td>
-</tr>
-<tr>
-<td>13404</td>
-<td>Create and redemption disabled due to system setup</td>
-</tr>
-<tr>
-<td>13405</td>
-<td>Create and redemption disabled due to configuration issue</td>
-</tr>
-<tr>
-<td>13406</td>
-<td>Invalid API call</td>
-</tr>
-<tr>
-<td>13410</td>
-<td>API authentication fails</td>
-</tr>
-<tr>
-<td>13500</td>
-<td>System error</td>
-</tr>
-<tr>
-<td>13601</td>
-<td>Create and redemption disabled during rebalance</td>
-</tr>
-<tr>
-<td>13603</td>
-<td>Create and redemption disabled due to other reason</td>
-</tr>
-<tr>
-<td>13604</td>
-<td>Create suspended</td>
-</tr>
-<tr>
-<td>13605</td>
-<td>Redemption suspended</td>
-</tr>
-<tr>
-<td>13606</td>
-<td>Amount incorrect. For the cases when creation amount or redemption amount is not in the range of min/max amount, this code will be returned.</td>
-</tr>
-</tbody></table>
-<h2 id='show-past-creation-redemption'>Show Past Creation/Redemption</h2>
-<p>API Key Permission：Read</p>
+### HTTP Request
 
-<p>This endpoints allows clients to get past creation and redemption.(up to 100 records)</p>
-<h3 id='http-request-84'>HTTP Request</h3>
-<ul>
-<li>GET <code>/etf/swap/list</code></li>
-</ul>
-<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.huobi.pro/etf/swap/list"</span>
-</code></pre><h3 id='request-parameter-24'>Request Parameter</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Data Type</th>
-<th>Description</th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>etf_name</td>
-<td>true</td>
-<td>string</td>
-<td>ETF name, currently only support hb10</td>
-<td></td>
-</tr>
-<tr>
-<td>offset</td>
-<td>true</td>
-<td>integer</td>
-<td>The offset of the records, set to 0 for the latest records</td>
-<td></td>
-</tr>
-<tr>
-<td>limit</td>
-<td>true</td>
-<td>integer</td>
-<td>The number of records to return, min is 1, max is 100</td>
-<td></td>
-</tr>
-</tbody></table>
+- GET `/etf/swap/config`
 
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">112222</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"gmt_created"</span><span class="p">:</span><span class="w"> </span><span class="mi">1528855872323</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hb10"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">11.5</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"detail"</span><span class="p">:</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"used_currency_list"</span><span class="p">:</span><span class="w">
-        </span><span class="p">[</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.666</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.666</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.002</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.11</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"point_card_amount"</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"obtain_currency_list"</span><span class="p">:</span><span class="w">
-        </span><span class="p">[</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hb10"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='response-content-96'>Response Content</h3>
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Data Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>integer</td>
-<td>Creation/Redemption id</td>
-</tr>
-<tr>
-<td>gmt_created</td>
-<td>integer</td>
-<td>Operation timestamp</td>
-</tr>
-<tr>
-<td>currency</td>
-<td>string</td>
-<td>ETF name</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>double</td>
-<td>Creation/Redmption amount</td>
-</tr>
-<tr>
-<td>type</td>
-<td>integer</td>
-<td>Creation(1), Redemption(2)</td>
-</tr>
-<tr>
-<td>status</td>
-<td>integer</td>
-<td>Operation result (-2 if success)</td>
-</tr>
-<tr>
-<td>detail</td>
-<td>array</td>
-<td>Please find details below</td>
-</tr>
-</tbody></table>
+```shell
+curl "https://api.huobi.pro/etf/swap/config?etf_name=hb10"
+```
 
-<p><strong>Fields under &quot;Detail&quot;</strong></p>
+### Request Parameter
 
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Data Type</th>
-<th>Description</th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>used_currency_list</td>
-<td>array</td>
-<td>For creation this is the list and amount of underlying assets used for ETF creation. For redemption this is the amount of ETF used for redemption.</td>
-<td></td>
-</tr>
-<tr>
-<td>rate</td>
-<td>decimal</td>
-<td>Fee rate</td>
-<td></td>
-</tr>
-<tr>
-<td>fee</td>
-<td>decimal</td>
-<td>The actual fee amount</td>
-<td></td>
-</tr>
-<tr>
-<td>point_card_amount</td>
-<td>decimal</td>
-<td>Discount from point card</td>
-<td></td>
-</tr>
-<tr>
-<td>obtain_currency_list</td>
-<td>array</td>
-<td>For creation this is the amount for ETF created. For redemption this is the list and amount of underlying assets obtained.</td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id='error-code-14'>Error Code</h2>
-<p>Below is the error code and the description returned by ETF APIs</p>
+| Parameter | Data Type | Required | Description                                      |
+| --------- | --------- | -------- | ------------------------------------------------ |
+| etf_name  | string    | true     | The name of the ETF, currently only support hb10 |
 
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>504</td>
-<td>Missing Parameter: [name]</td>
-</tr>
-<tr>
-<td>10404</td>
-<td>The fund does not exist (right now only support hb10)</td>
-</tr>
-<tr>
-<td>13404</td>
-<td>Exchange ratio of the coin and ETF is missing</td>
-</tr>
-<tr>
-<td>13406</td>
-<td>Non-API calls. The request is rejected</td>
-</tr>
-<tr>
-<td>13410</td>
-<td>API signature error</td>
-</tr>
-<tr>
-<td>13601</td>
-<td>Position adjustment phase: swap-in and swap-out are suspended</td>
-</tr>
-<tr>
-<td>13603</td>
-<td>Swap-in and swap-out have been suspended</td>
-</tr>
-<tr>
-<td>13604</td>
-<td>Swap-in has been suspended</td>
-</tr>
-<tr>
-<td>13605</td>
-<td>Swap-out has been suspended</td>
-</tr>
-<tr>
-<td>13606</td>
-<td>Incorrect transaction share, exceed the limit</td>
-</tr>
-</tbody></table>
-<h1 id='etp'>ETP</h1><h2 id='introduction-15'>Introduction</h2>
+> Response:
+
+```json
+{
+  "code": 200,
+  "data": {
+    "purchase_min_amount": 10000,
+    "purchase_max_amount": 100000,
+    "redemption_min_amount": 10000,
+    "redemption_max_amount": 10000,
+    "purchase_fee_rate": 0.001,
+    "redemption_fee_rate": 0.002,
+    "etf_status":1,
+    "unit_price":
+    [
+      {
+        "currency": "eth",
+        "amount": 19.9
+      },
+      {
+        "currency": "btc",
+        "amount": 9.9
+      }
+    ]
+  },
+  "message": null,
+  "success": true
+}
+```
+
+### Response Content
+
+| Field                 | Data Type | Description                                                  | Mandatory  |
+| --------------------- | --------- | ------------------------------------------------------------ | ---------- |
+| purchase_min_amount   | integer   | Minimum creation amounts per request                         |    true    |
+| purchase_max_amount   | integer   | Maximum creation amounts per request                         |    false   |
+| redemption_min_amount | integer   | Minimum redemption amounts per request                       |    true    |
+| redemption_max_amount | integer   | Maximum redemption amounts per request                       |    false   |
+| purchase_fee_rate     | decimal   | Creation fee rate                                            |    ture    |
+| redemption_fee_rate   | decimal   | Redemption fee rate                                          |    ture    |
+| etf_status            | integer   | status of the ETF: Normal(1), Rebalancing Start(2), Creation and Redemption Suspended(3), Creation Suspended(4), Redemption Suspended(5) |                                                        ture    |
+| unit_price            | array     | ETF constitution in format of {amount, currency}             |    ture    |
+
+## Order Creation/Redemption
+
+API Key Permission：Trade
+
+This endpoint allow clients to order creation or redemption of ETF.
+
+### HTTP Request
+
+- POST `/etf/swap/in`
+
+- POST `/etf/swap/out`
+
+```shell
+curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/etf/swap/in" -d
+'{"etf_name": "hb10", "amount": 10000}'
+
+curl -X POST -H 'Content-Type: application/json' "https://api.huobi.pro/etf/swap/out" -d
+'{"etf_name": "hb10", "amount": 10000}'
+```
+
+### Request Parameter
+
+| Parameter | Required | Data Type | Description                           |
+| --------- | -------- | --------- | ------------------------------------- |
+| etf_name  | true     | string    | ETF name, currently only support hb10 |
+| amount    | true     | integer   | The amount to create or redemption    |
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": null,
+    "message": null,
+    "success": true
+}
+```
+
+### Response Content
+
+| Field   | Data Type | Description                                                  |
+| ------- | --------- | ------------------------------------------------------------ |
+| code    | integer   | The overall status of the order, please find details in below table |
+| data    | object    | The data content if available                                |
+| message | string    | The message of the order result                              |
+| success | boolean   | If the order is successful                                   |
+
+**Response code details**
+
+| Code  | Description                                                  |
+| ----- | ------------------------------------------------------------ |
+| 200   | Successful                                                   |
+| 10404 | Invalid ETF name                                             |
+| 13403 | Insufficient asset to create ETF                             |
+| 13404 | Create and redemption disabled due to system setup           |
+| 13405 | Create and redemption disabled due to configuration issue    |
+| 13406 | Invalid API call                                             |
+| 13410 | API authentication fails                                     |
+| 13500 | System error                                                 |
+| 13601 | Create and redemption disabled during rebalance              |
+| 13603 | Create and redemption disabled due to other reason           |
+| 13604 | Create suspended                                             |
+| 13605 | Redemption suspended                                         |
+| 13606 | Amount incorrect. For the cases when creation amount or redemption amount is not in the range of min/max amount, this code will be returned. |
+
+## Show Past Creation/Redemption
+
+API Key Permission：Read
+
+This endpoints allows clients to get past creation and redemption.(up to 100 records)
+
+### HTTP Request
+
+- GET `/etf/swap/list `
+
+```shell
+curl "https://api.huobi.pro/etf/swap/list"
+```
+
+### Request Parameter
+
+| Parameter | Required | Data Type | Description                                                |      |
+| --------- | -------- | --------- | ---------------------------------------------------------- | ---- |
+| etf_name  | true     | string    | ETF name, currently only support hb10                      |      |
+| offset    | true     | integer   | The offset of the records, set to 0 for the latest records |      |
+| limit     | true     | integer   | The number of records to return, min is 1, max is 100      |      |
+
+> Response:
+
+```json
+{
+  "code": 200,
+  "data": [
+    {
+      "id": 112222,
+      "gmt_created": 1528855872323,
+      "currency": "hb10",
+      "amount": 11.5,
+      "type": 1,
+      "status": 2,
+      "detail":
+      {
+        "used_currency_list":
+        [
+          {
+            "currency": "btc",
+            "amount": 0.666
+          },
+          {
+            "currency": "eth",
+            "amount": 0.666
+          }
+        ],
+        "rate": 0.002,
+        "fee": 100.11,
+        "point_card_amount":1.0,
+        "obtain_currency_list":
+        [
+          {
+            "currency": "hb10",
+            "amount": 1000
+          }
+        ]
+      }
+    }
+  ],
+  "message": null,
+  "success": true
+}
+```
+
+### Response Content
+
+| Field       | Data Type | Description                |
+| ----------- | --------- | -------------------------- |
+| id          | integer   | Creation/Redemption id     |
+| gmt_created | integer   | Operation timestamp        |
+| currency    | string    | ETF name                   |
+| amount      | double    | Creation/Redmption amount  |
+| type        | integer   | Creation(1), Redemption(2) |
+| status      | integer   | Operation result (-2 if success) |
+| detail      | array     | Please find details below  |
+
+**Fields under "Detail"**
+
+| Field                | Data Type | Description                                                  |      |
+| -------------------- | --------- | ------------------------------------------------------------ | ---- |
+| used_currency_list   | array     | For creation this is the list and amount of underlying assets used for ETF creation. For redemption this is the amount of ETF used for redemption. |      |
+| rate                 | decimal   | Fee rate                                                     |      |
+| fee                  | decimal   | The actual fee amount                                        |      |
+| point_card_amount    | decimal   | Discount from point card                                     |      |
+| obtain_currency_list | array     | For creation this is the amount for ETF created. For redemption this is the list and amount of underlying assets obtained. |      |
+
+## Error Code
+
+Below is the error code and the description returned by ETF APIs
+
+| Error Code | Description                                                  |
+| ---------- | ------------------------------------------------------------ |
+| 504        | Missing Parameter: [name]                                    |
+| 10404      | The fund does not exist (right now only support hb10)        |
+| 13404      | Exchange ratio of the coin and ETF is missing                |
+| 13406      | Non-API calls. The request is rejected                       |
+| 13410      | API signature error                                          |
+| 13601      | Position adjustment phase: swap-in and swap-out are suspended |
+| 13603      | Swap-in and swap-out have been suspended                     |
+| 13604      | Swap-in has been suspended                                   |
+| 13605      | Swap-out has been suspended                                  |
+| 13606      | Incorrect transaction share, exceed the limit                |
+
+-->
+<h1 id='etp'>ETP</h1><h2 id='introduction-14'>Introduction</h2>
 <p>ETP (Exchange Tradable Products) APIs provide ETP related functionality, such as creation, redemption, query.</p>
 <h2 id='get-reference-data-of-etp'>Get reference data of ETP</h2>
 <p>Client can use this endpoint to query ETP&#39;s reference data</p>
-<h3 id='http-request-85'>HTTP Request</h3>
+<h3 id='http-request-82'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v2/etp/reference</code></li>
 </ul>
 
 <p>Public data</p>
-<h3 id='request-parameter-25'>Request Parameter</h3>
+<h3 id='request-parameter-22'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -20569,14 +20320,14 @@ curl -X POST -H <span class="s1">'Content-Type: application/json'</span> <span c
 <td>ETP status（normal, creation-only, redemption-only, halted）</td>
 </tr>
 </tbody></table>
-<h2 id='etp-creation'>ETP Creation</h2><h3 id='http-request-86'>HTTP Request</h3>
+<h2 id='etp-creation'>ETP Creation</h2><h3 id='http-request-83'>HTTP Request</h3>
 <ul>
 <li>POST <code>/v2/etp/creation</code></li>
 </ul>
 
 <p>API Key Permission: Trade<br>
 Rate Limit: 2times/sec<br></p>
-<h3 id='request-parameter-26'>Request Parameter</h3>
+<h3 id='request-parameter-23'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -20647,14 +20398,14 @@ Rate Limit: 2times/sec<br></p>
 
 <p>Note:<br>
 The receipt of transactId doesn’t implicate the success of creation. User should query creation history to confirm the transaction status post creation.<br></p>
-<h2 id='etp-redemption'>ETP Redemption</h2><h3 id='http-request-87'>HTTP Request</h3>
+<h2 id='etp-redemption'>ETP Redemption</h2><h3 id='http-request-84'>HTTP Request</h3>
 <ul>
 <li>POST <code>/v2/etp/redemption</code></li>
 </ul>
 
 <p>API Key Permission: Trade<br>
 Rate Limit: 2times/sec<br></p>
-<h3 id='request-parameter-27'>Request Parameter</h3>
+<h3 id='request-parameter-24'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -20726,7 +20477,7 @@ Rate Limit: 2times/sec<br></p>
 <p>Note:<br>
 The receipt of transactId doesn’t implicate the success of redemption. User should query redemption history to confirm the transaction status post
 redemption.<br></p>
-<h2 id='get-etp-creation-amp-redemption-history'>Get ETP Creation &amp; Redemption History</h2><h3 id='http-request-88'>HTTP Request</h3>
+<h2 id='get-etp-creation-amp-redemption-history'>Get ETP Creation &amp; Redemption History</h2><h3 id='http-request-85'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v2/etp/transactions</code></li>
 </ul>
@@ -20734,7 +20485,7 @@ redemption.<br></p>
 <p>API Key Permission: Read<br>
 Rate Limit: 2times/sec<br>
 Searching by transactTime<br></p>
-<h3 id='request-parameter-28'>Request Parameter</h3>
+<h3 id='request-parameter-25'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -20928,14 +20679,14 @@ The query window is circled by startTime and endTime. The maximum window size is
 
 <p>Note:<br>
 If user querying occurs just after the transaction, transactAmount、transactValue、transactPrice might be updated as blank.<br></p>
-<h2 id='get-specific-etp-creation-or-redemption-record'>Get Specific ETP Creation or Redemption Record</h2><h3 id='http-request-89'>HTTP Request</h3>
+<h2 id='get-specific-etp-creation-or-redemption-record'>Get Specific ETP Creation or Redemption Record</h2><h3 id='http-request-86'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v2/etp/transaction</code></li>
 </ul>
 
 <p>API Key Permission: Read<br>
 Rate Limit: 2times/sec<br></p>
-<h3 id='request-parameter-29'>Request Parameter</h3>
+<h3 id='request-parameter-26'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -21072,14 +20823,14 @@ Rate Limit: 2times/sec<br></p>
 
 <p>Note:<br>
 If user querying occurs just after the transaction, transactAmount、transactValue、transactPrice might be updated as blank.<br></p>
-<h2 id='get-position-rebalance-history'>Get Position Rebalance History</h2><h3 id='http-request-90'>HTTP Request</h3>
+<h2 id='get-position-rebalance-history'>Get Position Rebalance History</h2><h3 id='http-request-87'>HTTP Request</h3>
 <ul>
 <li>GET <code>/v2/etp/rebalance</code></li>
 </ul>
 
 <p>Public data<br>
 Searching by rebalTime<br></p>
-<h3 id='request-parameter-30'>Request Parameter</h3>
+<h3 id='request-parameter-27'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -21206,14 +20957,14 @@ The query window is circled by startTime and endTime. The maximum window size is
 <td>First record ID in next page (only valid if exceeded page size)</td>
 </tr>
 </tbody></table>
-<h2 id='submit-cancel-for-an-etp-order'>Submit Cancel for an ETP Order</h2><h3 id='http-request-91'>HTTP Request</h3>
+<h2 id='submit-cancel-for-an-etp-order'>Submit Cancel for an ETP Order</h2><h3 id='http-request-88'>HTTP Request</h3>
 <ul>
 <li>POST /v2/etp/{transactId}/cancel</li>
 </ul>
 
 <p>API Key Permission：Trade<br>
 Rate Limit (NEW): 1 time /s<br></p>
-<h3 id='request-parameter-31'>Request Parameter</h3>
+<h3 id='request-parameter-28'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -21259,14 +21010,14 @@ Rate Limit (NEW): 1 time /s<br></p>
 <td>Error message (if any)</td>
 </tr>
 </tbody></table>
-<h2 id='batch-cancellation-for-etp-orders'>Batch Cancellation for ETP Orders</h2><h3 id='http-request-92'>HTTP Request</h3>
+<h2 id='batch-cancellation-for-etp-orders'>Batch Cancellation for ETP Orders</h2><h3 id='http-request-89'>HTTP Request</h3>
 <ul>
 <li>POST /v2/etp/batch-cancel</li>
 </ul>
 
 <p>API Key Permission：Trade<br>
 Rate Limit (NEW): 1 time /5s<br></p>
-<h3 id='request-parameter-32'>Request Parameter</h3>
+<h3 id='request-parameter-29'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -21360,7 +21111,7 @@ Rate Limit (NEW): 1 time /5s<br></p>
 <td>Transaction ID</td>
 </tr>
 </tbody></table>
-<h2 id='get-holding-limit-of-leveraged-etp'>Get Holding Limit of Leveraged ETP</h2><h3 id='http-request-93'>HTTP Request</h3>
+<h2 id='get-holding-limit-of-leveraged-etp'>Get Holding Limit of Leveraged ETP</h2><h3 id='http-request-90'>HTTP Request</h3>
 <ul>
 <li>GET /v2/etp/limit</li>
 </ul>
@@ -21371,7 +21122,7 @@ Rate Limit (NEW): 1 time /5s<br></p>
 <p>Request:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="err">GET</span><span class="w"> </span><span class="err">/v</span><span class="mi">2</span><span class="err">/etp/limit?currency=btc</span><span class="mi">3</span><span class="err">l</span><span class="p">,</span><span class="err">btc</span><span class="mi">3</span><span class="err">s</span><span class="w">
-</span></code></pre><h3 id='request-parameter-33'>Request Parameter</h3>
+</span></code></pre><h3 id='request-parameter-30'>Request Parameter</h3>
 <table><thead>
 <tr>
 <th>Field Name</th>
@@ -21446,7 +21197,7 @@ Rate Limit (NEW): 1 time /5s<br></p>
 <td>Remaining amount</td>
 </tr>
 </tbody></table>
-<h2 id='error-code-15'>Error Code</h2>
+<h2 id='error-code-14'>Error Code</h2>
 <p>Below is the error code and the description returend by ETP APIs</p>
 
 <table><thead>
