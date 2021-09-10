@@ -2255,7 +2255,7 @@ Obtain the total asset valuation of the platform account according to the BTC or
 | Parameter         | Required | Data Type | Description         |
 | --------          | -------- | -------- | -------- |
 | code              | TRUE | int | status code | 
-| \<data\>          | TRUE | object | -------- | 
+| \<data\>          | TRUE | object |   | 
 | totalBalance      | TRUE | string | total balance | 
 | todayProfit       | TRUE | string | today profit | 
 | todayProfitRate   | TRUE | string | today profit rate | 
@@ -3320,7 +3320,7 @@ This endpoint allows parent user to query withdraw address available for API key
 | chain       | true      | string    | Block chain name                                             |             |
 | note        | true      | string    | The address note                                             |             |
 | addressTag  | false     | string    | The address tag，if any                                      |             |
-| address }]  | true      | string    | Withdraw address                                             |             |
+| address     | true      | string    | Withdraw address                                             |             |
 | \</data\>   |      |    |                                                              |     
 | nextId      | false     | long      | First record ID in next page (only valid if exceeded page size) |             |
 
@@ -3935,7 +3935,7 @@ API Key Permission: Read
 | \<data\>    | TRUE      | object    |                        |                |
 | uid         | TRUE      | long      | Sub user’s UID         |                |
 | userState   | TRUE      | string    | Sub user’s status      | lock, normal   |
-| \</data\>    | TRUE     | object   |                  |              |
+| \</data\>    |       |     |                  |              |
 
 
 ## Set Tradable Market for Sub Users
@@ -3990,7 +3990,7 @@ By default, sub user’s trading permission in spot market is activated.
 | accountType | true      | string    | -      | Account type                                                 | isolated-margin,cross-margin |
 | activation  | true      | string    | -      | Account activation                                           | activated,deactivated        |
 | errCode     | false     | int       | -      | Error code in case of rejection (only valid when the requested UID being rejected) |                              |
-| errMessage} | false     | string    | -      | Error message in case of rejection (only valid when the requested UID being rejected) |                              |
+| errMessage  | false     | string    | -      | Error message in case of rejection (only valid when the requested UID being rejected) |                              |
 | \</data\>   |      |    |                                                            |                              |
 
 
@@ -5637,7 +5637,7 @@ The orders created via API will no longer be queryable after being cancelled for
 | symbol            | string    | Trading symbol                                               |
 | stop-price        | string    | trigger price of stop limit order                            |
 | operator          | string    | operation character of stop price. e.g. get, lte             |
-| type}             | string    | All possible order type (refer to introduction in this section) |
+| type              | string    | All possible order type (refer to introduction in this section) |
 | \</data\>         |      |    |     |                                                              |
 | next-time         | long      | Next query "start-time" (in response of "direct" = prev), Next query "end-time" (in response of "direct" = next). Note: Only when the total number of items in the search result exceeded the limitation defined in "size", this field exists. UTC time in millisecond. |
 
@@ -6162,7 +6162,7 @@ The cancelled conditional order before triggering, as well as the conditional or
 |	code	|	integer	|	TRUE	|Status code	|
 |	message	|	string	|	FALSE	|Error message (if any)	|
 |	\<data\>	|	object	|	TRUE	|In ascening/descending order defined in 'sort'	|
-| accountId	|	integer	|	TRUE	|Account ID	|
+|   accountId	|	integer	|	TRUE	|Account ID	|
 |	source	|	string	|	TRUE	|Order source	|
 |	clientOrderId	|	string	|	TRUE	|Client order ID	|
 |	orderId	|	string	|	FALSE	|Order ID (only valid for orderStatus=triggered)	|
@@ -6180,7 +6180,7 @@ The cancelled conditional order before triggering, as well as the conditional or
 |	orderCreateTime	|	long	|	FALSE	|Order trigger time (only valid for orderStatus=triggered) 	|
 |	orderStatus	|	string	|	TRUE	|Order status (triggered,canceled,rejected) 	|
 |	errCode	|	integer	|	FALSE	|Status code in case of order triggering failure (only valid for orderStatus=rejected) 	|
-|	errMessage }	|	string	|	FALSE	|Error message in case of order triggering failure (only valid for orderStatus=rejected) 	|
+|	errMessage 	|	string	|	FALSE	|Error message in case of order triggering failure (only valid for orderStatus=rejected) 	|
 |	\</data\>	|		|		|     | 
 |	nextId	|	long	|	FALSE	|First record ID in next page (only valid if exceeded page size) 	|
 
@@ -8068,10 +8068,10 @@ Then, you will received messages when there is any update in the subcribed topic
 
 To unsubscribe, you need to send below message
 
-{
-  "unsub": "topic to unsub",
-  "id": "id generate by client"
-}
+`{`
+  `"unsub": "topic to unsub",`
+  `"id": "id generate by client"`
+`}`
 
 > UnSub response:
 
