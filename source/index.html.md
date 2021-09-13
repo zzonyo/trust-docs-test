@@ -1280,7 +1280,7 @@ curl "https://api.huobi.pro/v1/common/currencys"
 <aside class="notice">返回的“data”对象是一个字符串数组，每一个字符串代表一个支持的币种。</aside>
 
 | 字段名称       | 是否必需 | 类型    | 字段描述   |
-| -------------- | -------- | ------- | ---------- | 
+| -------------- | -------- | ------- | ---------- |
 | status         | true     | string   | 接口请求返回的结果（"ok","error"）               |
 | data         | true     | array   |  每一个字符串代表一个支持的币种              |
 
@@ -1453,10 +1453,10 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 
 ### 返回参数
 
-| 参数名称 | 	是否必须 | 	类型 | 	描述 | 	取值范围 | 
-| ------ | ------ | ------ | ------ | ------| 
-| status | 	true  |	string  |	请求处理结果	| 
-| data | 	true | 	long | 	当前系统时间戳	 | 
+| 参数名称 | 	是否必须 | 	类型 | 	描述 | 	取值范围 |
+| ------ | ------ | ------ | ------ | ------|
+| status | 	true  |	string  |	请求处理结果	|
+| data | 	true | 	long | 	当前系统时间戳	 |
 
 # 行情数据
 
@@ -2246,9 +2246,9 @@ API Key 权限：读取
 ### 请求参数
 
 |参数|	是否必填|	数据类型|	描述|	 取值范围|
-| ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | 
+| ---------- | -------- | ------ | ------------------------------------------------------------ | ------ |
 |accountType	|false	|string|	账户类型，详见账户类型数据字典	 |
-|valuationCurrency 	|false	|string| 不填默认为btc估值（目前暂只支持BTC估值，参数值需大写）  | 
+|valuationCurrency 	|false	|string| 不填默认为btc估值（目前暂只支持BTC估值，参数值需大写）  |
 
 > Responds:
 
@@ -2280,23 +2280,23 @@ API Key 权限：读取
 
 | 参数名称            | 是否必须 | 数据类型 | 描述         |
 | --------          | -------- | -------- | -------- |
-| code              | TRUE | int | 状态码 | 
-| \<data\>          | TRUE | object |      | 
-| totalBalance      | TRUE | string |总账户资产，按估值参数计价| 
-| todayProfit       | TRUE | string | 今日总收益，按估值参数计价 | 
-| todayProfitRate   | TRUE | string | 今日收益率 | 
-| \<profitAccountBalanceList\> | TRUE | list |  | 
-| distributionType  | TRUE | string | 查询账户类型 | 
-| balance           | TRUE | float | 查询账户资产，按估值参数计价 | 
-| success           | TRUE | boolean | 查询账户资产是否成功 失败时accountBalance和balance为0 | 
-| accountBalance    | TRUE | string | 查询账户资产，按估值参数计价 | 
-| \</profitAccountBalanceList\> |  |  |  | 
-| \<updated\>       | TRUE | list |  | 
-| success           | TRUE | boolean | 今日收益是否已更新 | 
-| time              | TRUE | long | 收益更新日期 | 
-| \</updated\>      |  |  |  | 
+| code              | TRUE | int | 状态码 |
+| \<data\>          | TRUE | object |      |
+| totalBalance      | TRUE | string |总账户资产，按估值参数计价|
+| todayProfit       | TRUE | string | 今日总收益，按估值参数计价 |
+| todayProfitRate   | TRUE | string | 今日收益率 |
+| \<profitAccountBalanceList\> | TRUE | list |  |
+| distributionType  | TRUE | string | 查询账户类型 |
+| balance           | TRUE | float | 查询账户资产，按估值参数计价 |
+| success           | TRUE | boolean | 查询账户资产是否成功 失败时accountBalance和balance为0 |
+| accountBalance    | TRUE | string | 查询账户资产，按估值参数计价 |
+| \</profitAccountBalanceList\> |  |  |  |
+| \<updated\>       | TRUE | list |  |
+| success           | TRUE | boolean | 今日收益是否已更新 |
+| time              | TRUE | long | 收益更新日期 |
+| \</updated\>      |  |  |  |
 | \</data\>         |  |  |  |
-| success           | TRUE | boolean |  | 
+| success           | TRUE | boolean |  |
 
 
 ### 账户类型数据字典
@@ -4507,13 +4507,13 @@ API Key 权限：读取<br>
 
 ### 响应数据
 
-| 参数   | 是否必填 | 数据类型 | 说明 | 取值范围        |  
-| ------ | -------- | -------- | ---- | --------------- | 
-| status   | true     |  string   | 状态 | "OK" or "Error" |   
-| \<data\> | true     | list     |      |             |  
-| currency | true       | string   | 币种                                 |                                                        | 
-| type     | true       | string   | 账户类型                             | spot：现货账户，point：点卡账户, margin:逐仓杠杆账户，super-margin：全仓杠杆账户 | 
-| balance  | true       | string   | 账户余额（可用余额和冻结余额的总和） |                                                        |   
+| 参数   | 是否必填 | 数据类型 | 说明 | 取值范围        |
+| ------ | -------- | -------- | ---- | --------------- |
+| status   | true     |  string   | 状态 | "OK" or "Error" |
+| \<data\> | true     | list     |      |             |
+| currency | true       | string   | 币种                                 |                                                        |
+| type     | true       | string   | 账户类型                             | spot：现货账户，point：点卡账户, margin:逐仓杠杆账户，super-margin：全仓杠杆账户 |
+| balance  | true       | string   | 账户余额（可用余额和冻结余额的总和） |                                                        |
 | \</data\> |      |      |      |             |      |
 
 
@@ -5956,7 +5956,7 @@ A: 您可以根据` GET /v1/common/symbols`接口返回数据中的字段区分�
 
 API Key 权限：交易<br>
 限频值（NEW）：20次/2秒<br>
-仅可通过此节点下单策略委托，不可通过现货/杠杆交易相关接口下单策略委托<br>
+仅可通过此节点下单策略委托，不可通过现货/杠杆交易相关接口下单策略委托，支持未触发OPEN订单最大数量为100。<br>
 
 ### 请求参数
 |	名称	|	类型	|	是否必需	|	默认值|	描述	|	取值范围	|
@@ -9737,7 +9737,7 @@ API Key 权限：读取
 ## 兑换稳定币
 
  - POST `v1/stable-coin/exchange`
- 
+
 API Key 权限：交易
 
 ### 请求参数
