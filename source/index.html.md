@@ -26,7 +26,7 @@ table th {
 
 | 生效时间<br>(UTC +8) | 接口     | 变化      | 摘要         |
 | ---------- | --------- | --------- | --------------- |
-| 2021.9.16 | `accounts.update#${mode}` | 优化 | 增加“账户变更的序号”参数“seqNum” |
+| 2021.9.16 | demo | demo | demo |
 
 
 # 简介
@@ -78,7 +78,7 @@ table th {
 </aside>
 <aside class="warning">
 <red><b>风险提示</b></red>：这两个密钥与账号安全紧密相关，无论何时都请勿将二者<b>同时</b>向其它人透露。API Key的泄露可能会造成您的资产损失（即使未开通提币权限），若发现API Key泄露请尽快删除该API Key。
-</aside> 
+</aside>
 
 ## SDK与代码示例
 
@@ -121,7 +121,7 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 私有接口可用于交易管理和账户管理。每个私有请求必须使用您的API Key进行签名验证。
 
 ## 接入URLs
-您可以自行比较使用api.huobi.pro和api-aws.huobi.pro两个域名的延迟情况，选择延迟低的进行使用。
+您可以自行比较使用www.huobihktrust.com和api-aws.huobi.pro两个域名的延迟情况，选择延迟低的进行使用。
 
 其中，api-aws.huobi.pro域名对使用aws云服务的用户做了一定的链路延迟优化。
 
@@ -131,7 +131,7 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 
 **Websocket Feed（行情，不包含MBP增量行情）**
 
-**`wss://api.huobi.pro/ws`**
+**`wss://www.huobihktrust.com/ws`**
 
 <aside class="notice">
 请使用中国大陆以外的 IP 访问Huobi Trust API。
@@ -140,8 +140,8 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 鉴于延迟高和稳定性差等原因，不建议通过代理的方式访问火币API。
 </aside>
 <aside class="notice">
-为保证API服务的稳定性，建议使用日本AWS云服务器进行访问。如使用中国大陆境内的客户端服务器，连接的稳定性将难以保证。 
-</aside> 
+为保证API服务的稳定性，建议使用日本AWS云服务器进行访问。如使用中国大陆境内的客户端服务器，连接的稳定性将难以保证。
+</aside>
 
 ## 签名认证
 
@@ -273,114 +273,6 @@ www.huobihktrust.com\n
 
 `https://www.huobihktrust.com/v1/open/apiKeyDemo?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&demo-id=1234567890&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
 
-对于WebSocket接口：
-
-1. 按照要求的JSON格式，填入参数和签名。
-2. JSON请求中的参数不需要URL编码
-
-例如：
-
-`
-{
-"action": "req",
-"ch": "auth",
-"params": {
-"authType":"api",
-"accessKey": "e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx",
-"signatureMethod": "HmacSHA256",
-"signatureVersion": "2.1",
-"timestamp": "2019-09-01T18:16:16",
-"signature": "4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o="
-}
-}
-`
-
-## 子用户
-
-子用户可以用来隔离资产与交易，资产可以在母子用户之间划转；子用户只能在子用户内进行交易，并且子用户之间资产不能直接划转，只有母用户有划转权限。
-
-子用户拥有独立的登录账号密码和 API Key，均由母用户在网页端进行管理。
-
-每个母用户可创建200个子用户，每个子用户可创建20组Api Key，每个Api Key可对应设置读取、交易两种权限。
-
-子用户的 API Key 也可绑定 IP 地址, 有效期的限制与母用户的API Key一致。
-
-您可以点击 <a href='https://account.hbg.com/zh-cn/subaccount/management/'>这里 </a> 创建子用户并管理。
-
-子用户可以访问所有公共接口，包括基本信息和市场行情，子用户可以访问的私有接口如下：
-
-| 接口                                                         | 说明                            |      |
-| ------------------------------------------------------------ | ------------------------------- | ---- |
-| [POST /v1/order/orders/place](#fd6ce2a756)                   | 创建并执行订单                  |      |
-| [POST /v1/order/orders/{order-id}/submitcancel](#4e53c0fccd) | 撤销一个订单                    |      |
-| [POST /v1/order/orders/submitCancelClientOrder](#client-order-id) | 撤销订单（基于client order ID） |      |
-| [POST /v1/order/orders/batchcancel](#ad00632ed5)             | 批量撤销订单                    |      |
-| [POST /v1/order/orders/batchCancelOpenOrders](#open-orders)  | 撤销当前委托订单                |      |
-| [GET /v1/order/orders/{order-id}](#92d59b6aad)               | 查询一个订单详情                |      |
-| [GET /v1/order/orders](#d72a5b49e7)                          | 查询当前委托、历史委托          |      |
-| [GET /v1/order/openOrders](#95f2078356)                      | 查询当前委托订单                |      |
-| [GET /v1/order/matchresults](#0fa6055598)                    | 查询成交                        |      |
-| [GET /v1/order/orders/{order-id}/matchresults](#56c6c47284)  | 查询某个订单的成交明细          |      |
-| [GET /v1/account/accounts](#bd9157656f)                      | 查询当前用户的所有账户          |      |
-| [GET /v1/account/accounts/{account-id}/balance](#870c0ab88b) | 查询指定账户的余额              |      |
-| [POST /v1/futures/transfer](#e227a2a3e8)                     | 币币与合约账户间的资产划转      |      |
-| [POST /v1/dw/transfer-in/margin](#0d3c2e7382)                | 从币币交易账户划转至杠杆账户    |      |
-| [POST /v1/dw/transfer-out/margin](#0d3c2e7382)               | 从杠杆账户划转至币币交易账户    |      |
-| [POST /v1/margin/orders](#48cca1ce88)                        | 申请借币                        |      |
-| [POST /v1/margin/orders/{order-id}/repay](#48aa7c8199)       | 归还借币                        |      |
-| [GET /v1/margin/loan-orders](#e52396720a)                    | 查询借币记录                    |      |
-| [GET /v1/margin/accounts/balance](#6e79ba8e80)               | 查询杠杆账户余额                |      |
-| [GET /v1/account/history](#84f1b5486d)                       | 查询账户流水                    |      |
-| [POST /v1/cross-margin/transfer-in](#0d3c2e7382-2)           | 资产划转                        |      |
-| [POST /v1/cross-margin/transfer-out](#0d3c2e7382-2)          | 资产划转                        |      |
-| [GET /v1/cross-margin/loan-info](#e257b9b6a0-2)              | 查询借币币息率及额度            |      |
-| [POST /v1/cross-margin/orders](#0ef2de08fa-2)                | 申请借币                        |      |
-| [POST /v1/cross-margin/orders/{order-id}/repay](#097277f9fc-2) | 归还借币                        |      |
-| [GET /v1/cross-margin/loan-orders](#1e90599f7f-2)            | 查询借币订单                    |      |
-| [GET /v1/cross-margin/accounts/balance](#bf3a643133-2)       | 借币账户详情                    |      |
-| [GET /v2/account/ledger](#2f6797c498)                        | 查询财务流水                    |      |
-| [POST /v1/account/transfer](#0d3c2e7382)                     | 资产划转                        |      |
-| [GET /v2/point/account](#0d7f115f63)                         | 查询点卡余额                    |      |
-| [POST /v2/point/transfer](#c71521e5d9)                       | 点卡划转                        |      |
-| [GET /v2/etp/reference](#8bb7c6b75e)                         | 杠杆ETP基础参考信息             |      |
-| [POST /v2/etp/creation](#etp-4)                              | 杠杆ETP换入                     |      |
-| [POST /v2/etp/redemption](#etp-5)                            | 杠杆ETP换出                     |      |
-| [GET /v2/etp/transactions](#etp-6)                           | 获取杠杆ETP换入换出记录         |      |
-| [GET /v2/etp/transaction](#etp-7)                            | 获取特定杠杆ETP换入换出记录     |      |
-| [GET /v2/etp/rebalance](#etp-8)                              | 获取杠杆ETP调仓记录             |      |
-
-<aside class="notice">
-其他接口子用户不可访问，如果尝试访问，系统会返回 “error-code 403”。
-</aside>
-
-## 业务字典
-
-### 交易对
-
-交易对由基础币种和报价币种组成。以交易对 BTC/USDT 为例，BTC 为基础币种，USDT 为报价币种。
-
-基础币种对应字段为 base-currency 。
-
-报价币种对应字段为 quote-currency 。
-
-### 账户
-
-不同业务对应需要不同的账户，account-id为不同业务账户的唯一标识ID。
-
-account-id可通过/v1/account/accounts接口获取，并根据account-type区分具体账户。
-
-账户类型包括：
-
-* spot：现货账户
-* otc：OTC账户
-* margin：逐仓杠杆账户，该账户类型以subType区分具体币种对账户
-* super-margin（或cross-margin）：全仓杠杆账户
-* point：点卡账户
-* minepool：矿池账户
-* etf：ETF账户
-* 抵押借贷：crypto-loans
-
-更多信息，可以点击<a href='https://www.huobi.com/zh-cn/guide/'>火币成长学院</a> 进行了解。
 
 # 接入说明
 
@@ -388,6 +280,7 @@ account-id可通过/v1/account/accounts接口获取，并根据account-type区�
 
 | 接口分类       | 分类链接                     | 概述                                             |
 | -------------- | ---------------------------- | ------------------------------------------------ |
+| 测试类         | /v1/common/*                 | 基础类接口，包括币种、币种对、时间戳等接口       |
 | 基础类         | /v1/common/*                 | 基础类接口，包括币种、币种对、时间戳等接口       |
 | 行情类         | /market/*                    | 公共行情类接口，包括成交、深度、行情等           |
 | 账户类         | /v1/account/*  /v1/subuser/* | 账户类接口，包括账户信息，子用户等               |
@@ -487,7 +380,7 @@ account-id可通过/v1/account/accounts接口获取，并根据account-type区�
 
 - 不建议在中国大陆境内使用临时域名以及代理的方式访问Huobi API，此类方式访问API连接的稳定性很难保证。
 - 建议使用日本AWS云服务器进行访问。
-- 官方域名api.huobi.pro, api-aws.huobi.pro，若您使用了AWS云服务，建议使用api-aws.huobi.pro域名，该域名为AWS用户做了链路上的优化，链路延迟相对更低。
+- 官方域名www.huobihktrust.com, api-aws.huobi.pro，若您使用了AWS云服务，建议使用api-aws.huobi.pro域名，该域名为AWS用户做了链路上的优化，链路延迟相对更低。
 
 **新限频规则**
 
@@ -592,7 +485,7 @@ account-id则是该用户下不同业务账户的ID，需要通过`GET /v1/accou
 请检查是否属于以下情况：
 
 1. 客户端服务器如在中国大陆境内，连接的稳定性很难保证，建议使用日本AWS云服务器进行访问。
-2. 域名建议使用api.huobi.pro或api-aws.huobi.pro，其他不建议使用。
+2. 域名建议使用www.huobihktrust.com或api-aws.huobi.pro，其他不建议使用。
 
 ### Q4：为什么WebSocket总是断开连接？
 
@@ -603,7 +496,7 @@ account-id则是该用户下不同业务账户的ID，需要通过`GET /v1/accou
 3. 网络原因造成连接断开。
 4. 建议用户做好WebSocket连接断连重连机制，在确保心跳（Ping/Pong）消息正确回复后若连接意外断开，程序能够自动进行重新连接。
 
-### Q5：api.huobi.pro 与 api-aws.huobi.pro有什么区别？
+### Q5：www.huobihktrust.com 与 api-aws.huobi.pro有什么区别？
 
 api-aws.huobi.pro域名对使用aws云服务的用户做了链路延迟优化，请求时延更低。
 
@@ -654,7 +547,7 @@ api-aws.huobi.pro域名对使用aws云服务的用户做了链路延迟优化，
 
 如果您使用了代理，代理可能会改变请求Host，可以尝试去掉代理；
 
-或者，您使用的网络连接库可能会把端口包含在Host内，可以尝试在签名用到的Host中包含端口，如“api.huobi.pro:443"
+或者，您使用的网络连接库可能会把端口包含在Host内，可以尝试在签名用到的Host中包含端口，如“www.huobihktrust.com:443"
 
 9、Access Key 与 Secret Key中是否存在隐藏特殊字符，影响签名
 
@@ -692,27 +585,11 @@ api-aws.huobi.pro域名对使用aws云服务的用户做了链路延迟优化，
 
 # 联系我们
 
-## 做市商项目
-
-欢迎有优秀 maker 策略且交易量大的用户参与长期做市商项目。如果您的火币现货账户或者合约账户中有折合大于10BTC资产（币币和合约账户分开统计），请提供以下信息发送邮件至：
-
-- [Vip@global-hgroup.com](mailto:Vip@global-hgroup.com) Huobi Global（现货 / 杠杆）做市商申请；
-- [Vip@global-hgroup.com](mailto:Vip@global-hgroup.com) HBDM（合约）做市商申请。
-
-1. 提供 UID （需不存在返佣关系的 UID）；
-2. 提供其他交易平台 maker 交易量截图证明（比如30天内成交量，或者 VIP 等级等）；
-3. 请简要阐述做市方法，不需要细节。
-
-<aside class="notice">
-做市商项目不支持点卡抵扣、VIP、交易量相关活动以及任何形式的返佣活动。
-</aside>
-
 ## 技术支持
 
 使用过程中如有问题或者建议，您可选择以下任一方式联系我们：
 
-- 加入官方QQ群（Huobi Global Spot API交流群 1160839820），入群申请请注明UID和编程语言。
-- 通过官网的“帮助中心”或者发送邮件至support@huobigroup.com联系客服。
+- 通过官网的“帮助中心”或者发送邮件至support@huobihktrust.com联系客服。
 
 如您遇到API错误，请按照如下模板向我们反馈问题。
 
@@ -728,13 +605,13 @@ api-aws.huobi.pro域名对使用aws云服务的用户做了链路延迟优化，
 
 `1. 问题简要说明：签名错误`   
 `2. UID：123456`  
-`3. 完整的URL请求：GET https://api.huobi.pro/v1/account/accounts?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D`  
+`3. 完整的URL请求：GET https://www.huobihktrust.com/v1/account/accounts?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D`  
 `4. 完整的JSON格式的参数：无`     
 `5. 完整的JSON格式的返回：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key错误]","data":null}`  
 `6. 问题出现频率：每次都会出现`  
 `7. 签名前字符串`    
 `GET\n`  
-`api.huobi.pro\n`  
+`www.huobihktrust.com\n`  
 `/v1/account/accounts\n`   
 `AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-06T03%3A26%3A13`
 
@@ -950,7 +827,7 @@ curl "https://status.huobigroup.com/api/v2/summary.json"
 挂起原因枚举值包括: 2 - 紧急维护，3 - 计划维护。<br>
 
 ```shell
-curl "https://api.huobi.pro/v2/market-status"
+curl "https://www.huobihktrust.com/v2/market-status"
 ```
 
 
@@ -993,7 +870,7 @@ curl "https://api.huobi.pro/v2/market-status"
 此接口返回所有火币全球站支持的交易对。
 
 ```shell
-curl "https://api.huobi.pro/v1/common/symbols"
+curl "https://www.huobihktrust.com/v1/common/symbols"
 ```
 
 
@@ -1078,7 +955,7 @@ curl "https://api.huobi.pro/v1/common/symbols"
 
 
 ```shell
-curl "https://api.huobi.pro/v1/common/currencys"
+curl "https://www.huobihktrust.com/v1/common/currencys"
 ```
 
 ### HTTP 请求
@@ -1128,7 +1005,7 @@ curl "https://api.huobi.pro/v1/common/currencys"
 - GET `/v2/reference/currencies`
 
 ```shell
-curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
+curl "https://www.huobihktrust.com/v2/reference/currencies?currency=usdt"
 ```
 
 ### 请求参数
@@ -1265,7 +1142,7 @@ curl "https://api.huobi.pro/v2/reference/currencies?currency=usdt"
 此接口返回当前的系统时间戳，即从 **UTC** 1970年1月1日0时0分0秒0毫秒到现在的总**毫秒**数。
 
 ```shell
-curl "https://api.huobi.pro/v1/common/timestamp"
+curl "https://www.huobihktrust.com/v1/common/timestamp"
 ```
 
 ### HTTP 请求
@@ -1309,7 +1186,7 @@ curl "https://api.huobi.pro/v1/common/timestamp"
 <aside class="notice">获取 hb10 净值时， symbol 请填写 “hb10”。</aside>
 
 ```shell
-curl "https://api.huobi.pro/market/history/kline?period=1day&size=200&symbol=btcusdt"
+curl "https://www.huobihktrust.com/market/history/kline?period=1day&size=200&symbol=btcusdt"
 ```
 
 ### HTTP 请求
@@ -1380,7 +1257,7 @@ curl "https://api.huobi.pro/market/history/kline?period=1day&size=200&symbol=btc
 此接口获取ticker信息同时提供最近24小时的交易聚合信息。
 
 ```shell
-curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
+curl "https://www.huobihktrust.com/market/detail/merged?symbol=ethusdt"
 ```
 ### HTTP 请求
 
@@ -1429,7 +1306,7 @@ curl "https://api.huobi.pro/market/detail/merged?symbol=ethusdt"
 
 获得所有交易对的 tickers。
 ```shell
-curl "https://api.huobi.pro/market/tickers"
+curl "https://www.huobihktrust.com/market/tickers"
 ```
 <aside class="notice">此接口返回所有交易对的 ticker，因此数据量较大。</aside>
 ### HTTP 请求
@@ -1499,7 +1376,7 @@ curl "https://api.huobi.pro/market/tickers"
 此接口返回指定交易对的当前市场深度数据。
 
 ```shell
-curl "https://api.huobi.pro/market/depth?symbol=btcusdt&type=step2"
+curl "https://www.huobihktrust.com/market/depth?symbol=btcusdt&type=step2"
 ```
 
 ### HTTP 请求
@@ -1566,7 +1443,7 @@ curl "https://api.huobi.pro/market/depth?symbol=btcusdt&type=step2"
 此接口返回指定交易对最新的一个交易记录。
 
 ```shell
-curl "https://api.huobi.pro/market/trade?symbol=ethusdt"
+curl "https://www.huobihktrust.com/market/trade?symbol=ethusdt"
 ```
 ### HTTP 请求
 
@@ -1614,7 +1491,7 @@ curl "https://api.huobi.pro/market/trade?symbol=ethusdt"
 此接口返回指定交易对近期的所有交易记录。
 
 ```shell
-curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
+curl "https://www.huobihktrust.com/market/history/trade?symbol=ethusdt&size=2"
 ```
 ### HTTP 请求
 
@@ -1689,7 +1566,7 @@ curl "https://api.huobi.pro/market/history/trade?symbol=ethusdt&size=2"
 <aside class="notice">此接口返回的成交量、成交金额为24小时滚动数据（平移窗口大小24小时），有可能会出现后一个窗口内的累计成交量、累计成交额小于前一窗口的情况。</aside>
 
 ```shell
-curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
+curl "https://www.huobihktrust.com/market/detail?symbol=ethusdt"
 ```
 
 ### HTTP 请求
@@ -1738,7 +1615,7 @@ curl "https://api.huobi.pro/market/detail?symbol=ethusdt"
 此接口返回杠杆ETP的最新净值。
 
 ```shell
-curl "https://api.huobi.pro/market/etp?symbol=btc3lusdt"
+curl "https://www.huobihktrust.com/market/etp?symbol=btc3lusdt"
 ```
 
 ### HTTP 请求
@@ -2826,7 +2703,7 @@ API Key 权限：读取<br>
 <aside class="notice"> 充币地址查询暂不支持IOTA币 </aside>
 
 ```shell
-curl "https://api.huobi.pro/v2/account/deposit/address?currency=btc"
+curl "https://www.huobihktrust.com/v2/account/deposit/address?currency=btc"
 ```
 
 ### HTTP 请求
@@ -2876,7 +2753,7 @@ API Key 权限：读取<br>
 限频值（NEW）：20次/2s
 
 ```shell
-curl "https://api.huobi.pro/v2/account/withdraw/quota?currency=btc"
+curl "https://www.huobihktrust.com/v2/account/withdraw/quota?currency=btc"
 ```
 
 ### HTTP 请求
@@ -3257,7 +3134,7 @@ API Key 权限：交易
 | errCode     |      | true     | string   | 错误码           |          |
 | errMessage} |      | false    | string   | 错误信息         |          |
 
-## 
+##
 
 ## 母子用户API key信息查询
 
@@ -5243,7 +5120,7 @@ Api用户查询交易对费率，一次限制最多查10个交易对，子用户
 API Key 权限：读取
 
 ```shell
-curl "https://api.huobi.pro/v2/reference/transact-fee-rate?symbols=btcusdt,ethusdt,ltcusdt"
+curl "https://www.huobihktrust.com/v2/reference/transact-fee-rate?symbols=btcusdt,ethusdt,ltcusdt"
 ```
 
 ### HTTP 请求
@@ -5812,7 +5689,7 @@ API Key 权限：交易
 注：
 返回relayId不意味着该还币100%成功，用户须在还币后通过查询还币交易记录确认该还币状态。
 
-## 
+##
 
 ## 资产划转（逐仓）
 
@@ -5872,7 +5749,7 @@ API Key 权限：读取<br>
 此接口返回用户级别的借币币息率及借币额度。
 
 ```shell
-curl "https://api.huobi.pro/v1/margin/loan-info?symbols=btcusdt"
+curl "https://www.huobihktrust.com/v1/margin/loan-info?symbols=btcusdt"
 ```
 
 ### HTTP 请求
@@ -6108,7 +5985,7 @@ API Key 权限：读取<br>
 此接口返回借币账户详情。
 
 ```shell
-curl "https://api.huobi.pro/v1/margin/accounts/balance?symbol=btcusdt"
+curl "https://www.huobihktrust.com/v1/margin/accounts/balance?symbol=btcusdt"
 ```
 
 ### HTTP 请求
@@ -6372,7 +6249,7 @@ GET /v2/margin/limit?currency=btc
 
 ### 响应数据
 
-### 
+###
 
 | 名称         | 类型    | 描述             |
 | ------------ | ------- | ---------------- |
@@ -6383,7 +6260,7 @@ GET /v2/margin/limit?currency=btc
 
 
 
-## 
+##
 
 ## 申请借币（全仓）
 
@@ -7393,13 +7270,13 @@ API Key 权限：读取<br>
 
 **Global站行情请求地址（除MBP增量推送及MBP全量REQ以外Websocket行情频道）**
 
-**`wss://api.huobi.pro/ws`**
+**`wss://www.huobihktrust.com/ws`**
 
 **`wss://api-aws.huobi.pro/ws`**
 
 **MBP增量推送及MBP全量REQ请求地址**
 
-**`wss://api.huobi.pro/feed`**
+**`wss://www.huobihktrust.com/feed`**
 
 **`wss://api-aws.huobi.pro/feed`**
 
@@ -7410,13 +7287,13 @@ WebSocket 行情接口返回的所有数据都进行了 GZIP 压缩，需要 cli
 ### 心跳消息
 
 ```json
-{"ping": 1492420473027} 
+{"ping": 1492420473027}
 ```
 
 当用户的Websocket客户端连接到火币Websocket服务器后，服务器会定期（当前设为5秒）向其发送`ping`消息并包含一整数值。
 
 ```json
-{"pong": 1492420473027} 
+{"pong": 1492420473027}
 ```
 
 当用户的Websocket客户端接收到此心跳消息后，应返回`pong`消息并包含同一整数值。
@@ -7661,7 +7538,7 @@ Websocket服务器同时支持一次性请求数据（pull）。
 | lastPrice | float    | 最新成交价                               |
 | lastSize  | float    | 最新成交价对应的量                       |
 
-## 
+##
 
 ## 市场深度行情数据
 
@@ -7761,7 +7638,7 @@ Websocket服务器同时支持一次性请求数据（pull）。
 
 **MBP增量推送及MBP全量REQ请求地址**
 
-**`wss://api.huobi.pro/feed`**
+**`wss://www.huobihktrust.com/feed`**
 
 **`wss://api-aws.huobi.pro/feed`**
 
@@ -8269,7 +8146,7 @@ REQ频道支持5档/20档/150档全量数据的获取。<br>
 
 **Websocket资产及订单**
 
-**`wss://api.huobi.pro/ws/v2`**
+**`wss://www.huobihktrust.com/ws/v2`**
 
 **`wss://api-aws.huobi.pro/ws/v2`**
 
@@ -8382,7 +8259,7 @@ Rest接口签名步骤,您可以点击 <a href='https://huobiapi.github.io/docs/
 
 ```
 GET\n
-api.huobi.pro\n
+www.huobihktrust.com\n
 /ws/v2\n
 accessKey=0664b695-rfhfg2mkl3-abbf6c5d-49810&signatureMethod=HmacSHA256&signatureVersion=2.1&timestamp=2019-12-05T11%3A53%3A03
 ```
