@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 - json
 
 toc_footers:
-- <a href='https://www.hbg.com/zh-cn/apikey/'>创建 API Key </a>
+- <a href='https://www.huobihktrust.com/zh-hk/user/api/'>创建 API Key </a>
   includes:
 
 search: true
@@ -84,11 +84,11 @@ table th {
 
 **SDK（推荐）**
 
-[Java](https://github.com/huobiapi/huobi_Java) | [Python3](https://github.com/huobiapi/huobi_Python) | [C++](https://github.com/huobiapi/huobi_Cpp) | [C#](https://github.com/HuobiRDCenter/huobi_CSharp) | [Go](https://github.com/huobirdcenter/huobi_golang)
+[Java](https://github.com/huobitrustapi/huobi_Java) | [Python3](https://github.com/huobitrustapi/huobi_Python) | [C++](https://github.com/huobitrustapi/huobi_Cpp) | [C#](https://github.com/huobitrustapi/huobi_CSharp) | [Go](https://github.com/huobitrustapi/huobi_golang)
 
 **其它代码示例**
 
-[https://github.com/huobiapi?tab=repositories](https://github.com/huobiapi?tab=repositories)
+[https://github.com/huobitrustapi?tab=repositories](https://github.com/huobitrustapi?tab=repositories)
 
 ## 测试环境（已停止）
 
@@ -98,7 +98,7 @@ table th {
 
 ## 接口类型
 
-火币为用户提供两种接口，您可根据自己的使用场景和偏好来选择适合的方式进行查询行情、交易或提币。
+香港信托为用户提供两种接口，您可根据自己的使用场景和偏好来选择适合的方式进行查询行情、交易或提币。
 
 ### REST API
 
@@ -121,23 +121,17 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 私有接口可用于交易管理和账户管理。每个私有请求必须使用您的API Key进行签名验证。
 
 ## 接入URLs
-您可以自行比较使用www.huobihktrust.com和api-aws.huobi.pro两个域名的延迟情况，选择延迟低的进行使用。
-
-其中，api-aws.huobi.pro域名对使用aws云服务的用户做了一定的链路延迟优化。
+您可以使用www.huobihktrust.com域名。
 
 **REST API**
 
 **`https://www.huobihktrust.com`**
 
-**Websocket Feed（行情，不包含MBP增量行情）**
-
-**`wss://www.huobihktrust.com/ws`**
-
 <aside class="notice">
 请使用中国大陆以外的 IP 访问Huobi Trust API。
 </aside>
 <aside class="notice">
-鉴于延迟高和稳定性差等原因，不建议通过代理的方式访问火币API。
+鉴于延迟高和稳定性差等原因，不建议通过代理的方式访问Huobi Trust API。
 </aside>
 <aside class="notice">
 为保证API服务的稳定性，建议使用日本AWS云服务器进行访问。如使用中国大陆境内的客户端服务器，连接的稳定性将难以保证。
