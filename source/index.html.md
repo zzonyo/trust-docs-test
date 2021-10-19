@@ -634,7 +634,7 @@ hb-spot：资金账户， hbt-brokerage：brokerage交易账户，hbt-custody：
 
 | 参数名称 | 是否必须 | 数据类型 | 描述     | 取值范围                                                     |
 | -------- | -------- | -------- | -------- | ------------------------------------------------------------ |
-| code         | true  | integer     | 状态码  | |
+| code         | true    | integer     | 状态码  | |
 | message      | false   | string    | 错误描述（如有）| |
 | data         | false   | object    | 业务数据 ||
 
