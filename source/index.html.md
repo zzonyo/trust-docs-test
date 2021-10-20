@@ -411,15 +411,13 @@ www.huobihktrust.com\n
 
 6、檢查本機時間與標準時間是否存在偏差（偏差應小於1分鐘）
 
-7、WebSocket發送驗簽認證消息時，消息體不需要URL編碼
-
-8、簽名時所帶Host應與請求接口時Host相同
+7、簽名時所帶Host應與請求接口時Host相同
 
 如果您使用了代理，代理可能會改變請求Host，可以嘗試去掉代理；
 
 或者，您使用的網絡連接庫可能會把端口包含在Host內，可以嘗試在簽名用到的Host中包含端口，如「www.huobihktrust.com:443"
 
-9、Access Key 與 Secret Key中是否存在隱藏特殊字符，影響簽名
+8、Access Key 與 Secret Key中是否存在隱藏特殊字符，影響簽名
 
 當前官方已支持多種語言的[SDK](https://github.com/huobitrustapi)，可以參考SDK的簽名實現，或者以下三種語言的簽名樣例代碼
 
