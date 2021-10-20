@@ -260,9 +260,6 @@
                     <a href="#sdk" class="toc-h2 toc-link" data-title="SDK与代码示例">SDK与代码示例</a>
                   </li>
                   <li>
-                    <a href="#2899551a8a" class="toc-h2 toc-link" data-title="测试环境（已停止）">测试环境（已停止）</a>
-                  </li>
-                  <li>
                     <a href="#5076603a3e" class="toc-h2 toc-link" data-title="接口类型">接口类型</a>
                   </li>
                   <li>
@@ -432,16 +429,12 @@ table th {
 <p><strong>其它代码示例</strong></p>
 
 <p><a href="https://github.com/huobitrustapi?tab=repositories">https://github.com/huobitrustapi?tab=repositories</a></p>
-<h2 id='2899551a8a'>测试环境（已停止）</h2>
-<p>测试环境运行了一段时间后，因用户访问量很少，而维护成本很高，我们慎重决定后将其停止。</p>
-
-<p>线上环境更稳定，流动性更好，建议您直接使用线上环境。</p>
 <h2 id='5076603a3e'>接口类型</h2>
-<p>香港信托为用户提供两种接口，您可根据自己的使用场景和偏好来选择适合的方式进行查询行情、交易或提币。</p>
+<p>香港信托为用户提供两种接口，您可根据自己的使用场景和偏好来选择适合的方式进行查询资产。</p>
 <h3 id='rest-api'>REST API</h3>
 <p>REST，即Representational State Transfer的缩写，是目前较为流行的基于HTTP的一种通信机制，每一个URL代表一种资源。</p>
 
-<p>交易或资产提币等一次性操作，建议开发者使用REST API进行操作。</p>
+<p>使用API进行资产查询，建议开发者使用REST API进行操作。</p>
 <h3 id='websocket-api'>WebSocket API</h3>
 <p>WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服务器全双工通信，通过一次简单的握手就可以建立客户端和服务器连接，服务器可以根据业务规则主动推送信息给客户端。</p>
 
@@ -638,7 +631,6 @@ www.huobihktrust.com\n
 
 <ul>
 <li>资产订单类接口调用根据API Key进行限频：1秒10次</li>
-<li>行情类接口调用根据IP进行限频：1秒10次</li>
 </ul>
 <h2 id='21d67c3c4c'>请求格式</h2>
 <p>所有的API请求都是restful，目前只有两种方法：GET和POST</p>
@@ -718,9 +710,9 @@ www.huobihktrust.com\n
 
 <p>针对某类或某个API的问题，请查看每章API的错误码和常见问题。</p>
 <h3 id='q1-api-key'>Q1：一个用户可以申请多少个API Key？</h3>
-<p>每个母用户可创建20组API Key，每个API Key可对应设置读取权限。</p>
+<p>每个用户可创建20组API Key，每个API Key可对应设置读取权限。</p>
 
-<p>以下是三种权限的说明：</p>
+<p>以下是权限的说明：</p>
 
 <ul>
 <li>读取权限：读取权限用于对数据的查询接口，例如：资产查询等。</li>
@@ -854,7 +846,7 @@ www.huobihktrust.com\n
 
 <p>查询指定类型账户，支持以下账户类型：</p>
 
-<p>hb-spot：资金账户， hbt-brokerage：brokerage交易账户，hbt-custody：交易账户</p>
+<p>hb-spot：资金账户， hbt-custody：交易账户</p>
 <h3 id='http'>HTTP 请求</h3>
 <ul>
 <li>GET <code>/v1/open/account/get</code></li>
