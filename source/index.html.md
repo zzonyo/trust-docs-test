@@ -1,115 +1,113 @@
 ---
-title: Huobi Trust API 文档
+title: Huobi Trust API 文檔
 
 language_tabs: # must be one of https://git.io/vQNgJ
 - json
 
 toc_footers:
-- <a href='https://www.huobihktrust.com/zh-hk/user/api/'>创建 API Key </a>
+- <a href='https://www.huobihktrust.com/zh-hk/user/api/'>創建 API Key </a>
   includes:
 
 search: true
 ---
 
-# 更新日志
+# 更新日誌
 
 <style>
 table {
     max-width:100%
 }
 table th {
-    white-space: nowrap; /*表头内容强制在一行显示*/
+    white-space: nowrap; /*表頭內容強製在一行顯示*/
 }
 </style>
 
 
 
-| 生效时间<br>(UTC +8) | 接口     | 变化      | 摘要         |
+| 生效時間<br>(UTC +8) | 接口     | 變化      | 摘要         |
 | ---------- | --------- | --------- | --------------- |
 | 2021.9.16 | - | - | - |
 
 
-# 简介
+# 簡介
 
-欢迎使用Huobi Trust API！
+歡迎使用Huobi Trust API！
 
-此文档是Huobi Trust API的唯一官方文档，Huobi Trust API提供的功能和服务会在此文档持续更新。
+此文檔是Huobi Trust API的唯一官方文檔，Huobi Trust API提供的功能和服務會在此文檔持續更新。
 
-以下是现货API文档各章节主要内容
+以下是現貨API文檔各章節主要內容
 
-第一部分是概要介绍：
+第一部分是概要介紹：
 
-- **快速入门**：该章节对Huobi Trust API做了简单且全方位的介绍，适合第一次使用Huobi Trust API的用户。
-- **常见问题**：该章节列举了使用Huobi Trust API时常见的、和具体API无关的通用问题。
-- **联系我们**：该章节介绍了针对不同问题，如何联系我们。
+- **快速入門**：該章節對Huobi Trust API做了簡單且全方位的介紹，適合第一次使用Huobi Trust API的用戶。
+- **常見問題**：該章節列舉了使用Huobi Trust API時常見的、和具體API無關的通用問題。
+- **聯系我們**：該章節介紹了針對不同問題，如何聯系我們。
 
-第二部分是每个接口类的详细介绍，每个接口类一个章节，每个章节分为如下内容：
+第二部分是每個接口類的詳細介紹，每個接口類一個章節，每個章節分為如下內容：
 
-- **简介**：对该接口类进行简单介绍，包括一些注意事项和说明。
-- ***具体接口***：介绍每个接口的用途、限频、请求、参数、返回等详细信息。
-- **常见错误码**：介绍该接口类下常见的错误码及其说明。
-- **常见问题**：介绍该接口类下常见问题和解答。
+- **簡介**：對該接口類進行簡單介紹，包括一些註意事項和說明。
+- ***具體接口***：介紹每個接口的用途、限頻、請求、參數、返回等詳細信息。
+- **常見錯誤碼**：介紹該接口類下常見的錯誤碼及其說明。
+- **常見問題**：介紹該接口類下常見問題和解答。
 
-# 快速入门
+# 快速入門
 
-## 接入准备
+## 接入準備
 
-如需使用API ，请先登录网页端，完成API key的申请和权限配置，再据此文档详情进行开发和交易。
+如需使用API ，請先登錄網頁端，完成API key的申請和權限配置，再據此文檔詳情進行開發和交易。
 
-您可以点击 <a href='https://www.huobihktrust.com/zh-hk/user/api/ '>这里 </a> 创建 API Key。
+您可以點擊 <a href='https://www.huobihktrust.com/zh-hk/user/api/ '>這裏 </a> 創建 API Key。
 
-每个用户可创建20组Api Key，每个Api Key可对应设置读取权限。
+每個用戶可創建20組Api Key，每個Api Key可對應設置讀取權限。
 
-权限说明如下：
+權限說明如下：
 
-- 读取权限：读取权限用于对数据的查询接口，例如：资产列表查询等。
+- 讀取權限：讀取權限用於對數據的查詢接口，例如：資產列表查詢等。
 
-创建成功后请务必记住以下信息：
+創建成功後請務必記住以下信息：
 
-- `Access Key`  API 访问密钥
+- `Access Key`  API 訪問密鑰
 
-- `Secret Key`  签名认证加密所使用的密钥（仅申请时可见）
+- `Secret Key`  簽名認證加密所使用的密鑰（僅申請時可見）
 
 <aside class="notice">
-每个 API Key 最多可绑定 20个IP 地址(主机地址或网络地址)。
+每個 API Key 最多可綁定 20個IP 地址(主機地址或網絡地址)。
 </aside>
 <aside class="warning">
-<red><b>风险提示</b></red>：这两个密钥与账号安全紧密相关，无论何时都请勿将二者<b>同时</b>向其它人透露。API Key的泄露可能会造成您的资产损失（即使未开通提币权限），若发现API Key泄露请尽快删除该API Key。
+<red><b>風險提示</b></red>：這兩個密鑰與賬號安全緊密相關，無論何時都請勿將二者<b>同時</b>向其它人透露。API Key的泄露可能會造成您的資產損失（即使未開通提幣權限），若發現API Key泄露請盡快刪除該API Key。
 </aside>
 
-## SDK与代码示例
-
-**SDK（推荐）**
+## SDK與代碼示例
 
 [Java](https://github.com/huobitrustapi/huobi_Java) | [Python3](https://github.com/huobitrustapi/huobi_Python) | [C++](https://github.com/huobitrustapi/huobi_Cpp) | [C#](https://github.com/huobitrustapi/huobi_CSharp) | [Go](https://github.com/huobitrustapi/huobi_golang)
 
-**其它代码示例**
+**其它代碼示例**
 
 [https://github.com/huobitrustapi?tab=repositories](https://github.com/huobitrustapi?tab=repositories)
 
-## 接口类型
+## 接口類型
 
-香港信托为用户提供两种接口，您可根据自己的使用场景和偏好来选择适合的方式进行查询资产。
+香港信托為用戶提供兩種接口，您可根據自己的使用場景和偏好來選擇適合的方式進行查詢資產。
 
 ### REST API
 
-REST，即Representational State Transfer的缩写，是目前较为流行的基于HTTP的一种通信机制，每一个URL代表一种资源。
+REST，即Representational State Transfer的縮寫，是目前較為流行的基於HTTP的一種通信機製，每一個URL代表一種資源。
 
-使用API进行资产查询，建议开发者使用REST API进行操作。
+使用API進行資產查詢，建議開發者使用REST API進行操作。
 
 ### WebSocket API
 
-WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服务器全双工通信，通过一次简单的握手就可以建立客户端和服务器连接，服务器可以根据业务规则主动推送信息给客户端。
+WebSocket是HTML5一種新的協議（Protocol）。它實現了客戶端與服務器全雙工通信，通過一次簡單的握手就可以建立客戶端和服務器連接，服務器可以根據業務規則主動推送信息給客戶端。
 
-市场行情和买卖深度等信息，建议开发者使用WebSocket API进行获取。
+市場行情和買賣深度等信息，建議開發者使用WebSocket API進行獲取。
 
-**接口鉴权**
+**接口鑒權**
 
-以上两种接口均包含公共接口和私有接口两种类型。
+以上兩種接口均包含公共接口和私有接口兩種類型。
 
-公共接口可用于获取基础信息和行情数据。公共接口无需认证即可调用。
+公共接口可用於獲取基礎信息和行情數據。公共接口無需認證即可調用。
 
-私有接口可用于交易管理和账户管理。每个私有请求必须使用您的API Key进行签名验证。
+私有接口可用於交易管理和賬戶管理。每個私有請求必須使用您的API Key進行簽名驗證。
 
 ## 接入URLs
 您可以使用www.huobihktrust.com域名。
@@ -119,39 +117,39 @@ WebSocket是HTML5一种新的协议（Protocol）。它实现了客户端与服�
 **`https://www.huobihktrust.com`**
 
 <aside class="notice">
-请使用中国大陆以外的 IP 访问Huobi Trust API。
+請使用中國大陸以外的 IP 訪問Huobi Trust API。
 </aside>
 <aside class="notice">
-鉴于延迟高和稳定性差等原因，不建议通过代理的方式访问Huobi Trust API。
+鑒於延遲高和穩定性差等原因，不建議通過代理的方式訪問Huobi Trust API。
 </aside>
 <aside class="notice">
-为保证API服务的稳定性，建议使用日本AWS云服务器进行访问。如使用中国大陆境内的客户端服务器，连接的稳定性将难以保证。
+為保證API服務的穩定性，建議使用日本AWS雲服務器進行訪問。如使用中國大陸境內的客戶端服務器，連接的穩定性將難以保證。
 </aside>
 
-## 签名认证
+## 簽名認證
 
-### 签名说明
+### 簽名說明
 
-API 请求在通过 internet 传输的过程中极有可能被篡改，为了确保请求未被更改，除公共接口（基础信息，行情数据）外的私有接口均必须使用您的 API Key 做签名认证，以校验参数或参数值在传输途中是否发生了更改。  
-每一个API Key需要有适当的权限才能访问相应的接口，每个新创建的API Key都需要分配权限。在使用接口前，请查看每个接口的权限类型，并确认你的API Key有相应的权限。
+API 請求在通過 internet 傳輸的過程中極有可能被篡改，為了確保請求未被更改，除公共接口（基礎信息，行情數據）外的私有接口均必須使用您的 API Key 做簽名認證，以校驗參數或參數值在傳輸途中是否發生了更改。  
+每一個API Key需要有適當的權限才能訪問相應的接口，每個新創建的API Key都需要分配權限。在使用接口前，請查看每個接口的權限類型，並確認你的API Key有相應的權限。
 
-一个合法的请求由以下几部分组成：
+一個合法的請求由以下幾部分組成：
 
-- 方法请求地址：即访问服务器地址 www.huobihktrust.com，比如 www.huobihktrust.com/v1/open/apiKeyDemo。
-- API 访问Id（AccessKeyId）：您申请的 API Key 中的 Access Key。
-- 签名方法（SignatureMethod）：用户计算签名的基于哈希的协议，此处使用 HmacSHA256。
-- 签名版本（SignatureVersion）：签名协议的版本，此处使用2。
-- 时间戳（Timestamp）：您发出请求的时间 (UTC 时间)  。如：2017-05-11T16:22:06。在查询请求中包含此值有助于防止第三方截取您的请求。
-- 必选和可选参数：每个方法都有一组用于定义 API 调用的必需参数和可选参数。可以在每个方法的说明中查看这些参数及其含义。
-  - 对于 GET 请求，每个方法自带的参数都需要进行签名运算。
-  - 对于 POST 请求，每个方法自带的参数不进行签名认证，并且需要放在 body 中。
-- 签名：签名计算得出的值，用于确保签名有效和未被篡改。
+- 方法請求地址：即訪問服務器地址 www.huobihktrust.com，比如 www.huobihktrust.com/v1/open/apiKeyDemo。
+- API 訪問Id（AccessKeyId）：您申請的 API Key 中的 Access Key。
+- 簽名方法（SignatureMethod）：用戶計算簽名的基於哈希的協議，此處使用 HmacSHA256。
+- 簽名版本（SignatureVersion）：簽名協議的版本，此處使用2。
+- 時間戳（Timestamp）：您發出請求的時間 (UTC 時間)  。如：2017-05-11T16:22:06。在查詢請求中包含此值有助於防止第三方截取您的請求。
+- 必選和可選參數：每個方法都有一組用於定義 API 調用的必需參數和可選參數。可以在每個方法的說明中查看這些參數及其含義。
+  - 對於 GET 請求，每個方法自帶的參數都需要進行簽名運算。
+  - 對於 POST 請求，每個方法自帶的參數不進行簽名認證，並且需要放在 body 中。
+- 簽名：簽名計算得出的值，用於確保簽名有效和未被篡改。
 
-### 签名步骤
+### 簽名步驟
 
-规范要计算签名的请求 因为使用 HMAC 进行签名计算时，使用不同内容计算得到的结果会完全不同。所以在进行签名计算前，请先对请求进行规范化处理。下面以查询某订单详情请求为例进行说明：
+規範要計算簽名的請求 因為使用 HMAC 進行簽名計算時，使用不同內容計算得到的結果會完全不同。所以在進行簽名計算前，請先對請求進行規範化處理。下面以查詢某訂單詳情請求為例進行說明：
 
-查询某订单详情时完整的请求URL
+查詢某訂單詳情時完整的請求URL
 
 `https://www.huobihktrust.com/v1/open/apiKeyDemo?`
 
@@ -165,19 +163,19 @@ API 请求在通过 internet 传输的过程中极有可能被篡改，为了确
 
 `&order-id=1234567890`
 
-**1. 请求方法（GET 或 POST，WebSocket用GET），后面添加换行符 “\n”**
+**1. 請求方法（GET 或 POST，WebSocket用GET），後面添加換行符 「\n」**
 
 例如：
 `GET\n`
 
-**2. 添加小写的访问域名，后面添加换行符 “\n”**
+**2. 添加小寫的訪問域名，後面添加換行符 「\n」**
 
 例如：
 `
 www.huobihktrust.com\n
 `
 
-**3. 访问方法的路径，后面添加换行符 “\n”**
+**3. 訪問方法的路徑，後面添加換行符 「\n」**
 
 例如apiKeyDemo：<br>
 `
@@ -189,9 +187,9 @@ www.huobihktrust.com\n
 /ws/v2
 `
 
-**4. 对参数进行URL编码，并且按照ASCII码顺序进行排序**
+**4. 對參數進行URL編碼，並且按照ASCII碼順序進行排序**
 
-例如，下面是请求参数的原始顺序，且进行URL编码后
+例如，下面是請求參數的原始順序，且進行URL編碼後
 
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
@@ -205,13 +203,13 @@ www.huobihktrust.com\n
 `Timestamp=2017-05-11T15%3A19%3A30`
 
 <aside class="notice">
-使用 UTF-8 编码，且进行了 URL 编码，十六进制字符必须大写，如 “:” 会被编码为 “%3A” ，空格被编码为 “%20”。
+使用 UTF-8 編碼，且進行了 URL 編碼，十六進製字符必須大寫，如 「:」 會被編碼為 「%3A」 ，空格被編碼為 「%20」。
 </aside>
 <aside class="notice">
-时间戳（Timestamp）需要以YYYY-MM-DDThh:mm:ss格式添加并且进行 URL 编码。时间戳有效时间5分钟。
+時間戳（Timestamp）需要以YYYY-MM-DDThh:mm:ss格式添加並且進行 URL 編碼。時間戳有效時間5分鐘。
 </aside>
 
-经过排序之后
+經過排序之後
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
 
@@ -223,12 +221,12 @@ www.huobihktrust.com\n
 
 `demo-id=1234567890`
 
-**5. 按照以上顺序，将各参数使用字符 “&” 连接**
+**5. 按照以上順序，將各參數使用字符 「&」 連接**
 
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&demo-id=1234567890`
 
-**6. 组成最终的要进行签名计算的字符串如下**
+**6. 組成最終的要進行簽名計算的字符串如下**
 
 `GET\n`
 
@@ -239,70 +237,70 @@ www.huobihktrust.com\n
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&demo-id=1234567890`
 
 
-**7. 用上一步里生成的 “请求字符串” 和你的密钥 (Secret Key) 生成一个数字签名**
+**7. 用上一步裏生成的 「請求字符串」 和你的密鑰 (Secret Key) 生成一個數字簽名**
 
 
-1. 将上一步得到的请求字符串和 API 私钥作为两个参数，调用HmacSHA256哈希函数来获得哈希值。
-2. 将此哈希值用base-64编码，得到的值作为此次接口调用的数字签名。
+1. 將上一步得到的請求字符串和 API 私鑰作為兩個參數，調用HmacSHA256哈希函數來獲得哈希值。
+2. 將此哈希值用base-64編碼，得到的值作為此次接口調用的數字簽名。
 
 `4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=`
 
-**8. 将生成的数字签名加入到请求里**
+**8. 將生成的數字簽名加入到請求裏**
 
-对于Rest接口：
+對於Rest接口：
 
-1. 把所有必须的认证参数添加到接口调用的路径参数里
-2. 把数字签名在URL编码后加入到路径参数里，参数名为“Signature”。
+1. 把所有必須的認證參數添加到接口調用的路徑參數裏
+2. 把數字簽名在URL編碼後加入到路徑參數裏，參數名為「Signature」。
 
-最终，发送到服务器的 API 请求应该为
+最終，發送到服務器的 API 請求應該為
 
 `https://www.huobihktrust.com/v1/open/apiKeyDemo?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&demo-id=1234567890&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
 
 
-# 接入说明
+# 接入說明
 
-## 接口概览
+## 接口概覽
 
-| 接口分类       | 分类链接                     | 概述                                             |
+| 接口分類       | 分類鏈接                     | 概述                                             |
 | -------------- | ---------------------------- | ------------------------------------------------ |
-| 测试类         | /v1/open/apiKeyDemo/*        | apiKey测试相关接口       |
-| 账户类         | /v1/open/account/*           | 账户相关接口             |
+| 測試類         | /v1/open/apiKeyDemo/*        | apiKey測試相關接口       |
+| 賬戶類         | /v1/open/account/*           | 賬戶相關接口             |
 
-该分类为大类整理，部分接口未遵循此规则，请根据需求查看有关接口文档。
+該分類為大類整理，部分接口未遵循此規則，請根據需求查看有關接口文檔。
 
-## 新限频规则
+## 新限頻規則
 
-- 当前，新限频规则正在逐步上线中，已单独标注限频值的接口且该限频值被标注为NEW的接口适用新限频规则。
+- 當前，新限頻規則正在逐步上線中，已單獨標註限頻值的接口且該限頻值被標註為NEW的接口適用新限頻規則。
 
-- 新限频规则采用基于UID的限频机制，即，同一UID下各API Key同时对某单个节点请求的频率不能超出单位时间内该节点最大允许访问次数的限制。
+- 新限頻規則采用基於UID的限頻機製，即，同一UID下各API Key同時對某單個節點請求的頻率不能超出單位時間內該節點最大允許訪問次數的限製。
 
-- 用户可根据Http Header中的"X-HB-RateLimit-Requests-Remain"（限频剩余次数）及"X-HB-RateLimit-Requests-Expire"（窗口过期时间）查看当前限频使用情况，以及所在时间窗口的过期时间，根据该数值动态调整您的请求频率。
+- 用戶可根據Http Header中的"X-HB-RateLimit-Requests-Remain"（限頻剩余次數）及"X-HB-RateLimit-Requests-Expire"（窗口過期時間）查看當前限頻使用情況，以及所在時間窗口的過期時間，根據該數值動態調整您的請求頻率。
 
-## 限频规则
+## 限頻規則
 
-除已单独标注限频值为NEW的接口外 -<br>
-* 每个API Key 在1秒之内限制10次<br>
-* 若接口不需要API Key，则每个IP在1秒内限制10次<br>
+除已單獨標註限頻值為NEW的接口外 -<br>
+* 每個API Key 在1秒之內限製10次<br>
+* 若接口不需要API Key，則每個IP在1秒內限製10次<br>
 
 比如：
 
-* 资产订单类接口调用根据API Key进行限频：1秒10次
+* 資產訂單類接口調用根據API Key進行限頻：1秒10次
 
 
-## 请求格式
+## 請求格式
 
-所有的API请求都是restful，目前只有两种方法：GET和POST
+所有的API請求都是restful，目前只有兩種方法：GET和POST
 
-* GET请求：所有的参数都在路径参数里
-* POST请求，所有参数以JSON格式发送在请求主体（body）里
+* GET請求：所有的參數都在路徑參數裏
+* POST請求，所有參數以JSON格式發送在請求主體（body）裏
 
 ## 返回格式
 
-所有的接口都是JSON格式。其中v1和v2接口的JSON定义略有区别。
+所有的接口都是JSON格式。其中v1和v2接口的JSON定義略有區別。
 
-**接口返回格式**：最上层有三个字段：`code`, `message` 和 `data`。前两个字段表示返回码和错误消息，实际的业务数据在`data`字段里。
+**接口返回格式**：最上層有三個字段：`code`, `message` 和 `data`。前兩個字段表示返回碼和錯誤消息，實際的業務數據在`data`字段裏。
 
-以下是一个返回格式的样例：
+以下是一個返回格式的樣例：
 
 ```json
 {
@@ -312,69 +310,71 @@ www.huobihktrust.com\n
 }
 ```
 
-| 参数名称 | 数据类型 | 描述               |
+| 參數名稱 | 數據類型 | 描述               |
 | -------- | -------- | ------------------ |
-| code     | int      | API接口返回码      |
-| message  | string   | 错误消息（如果有） |
-| data     | object   | 接口返回数据主体   |
+| code     | int      | API接口返回碼      |
+| message  | string   | 錯誤消息（如果有） |
+| data     | object   | 接口返回數據主體   |
 
-## 数据类型
+## 數據類型
 
-本文档对JSON格式中数据类型的描述做如下约定：
+本文檔對JSON格式中數據類型的描述做如下約定：
 
-- `string`: 字符串类型，用双引号（"）引用
-- `int`: 32位整数，主要涉及到状态码、大小、次数等
-- `long`: 64位整数，主要涉及到Id和时间戳
-- `float`: 浮点数，主要涉及到金额和价格，建议程序中使用高精度浮点型
-- `object`: 对象，包含一个子对象{}
-- `array`: 数组，包含多个对象
+- `string`: 字符串類型，用雙引號（"）引用
+- `int`: 32位整數，主要涉及到狀態碼、大小、次數等
+- `long`: 64位整數，主要涉及到Id和時間戳
+- `float`: 浮點數，主要涉及到金額和價格，建議程序中使用高精度浮點型
+- `object`: 對象，包含一個子對象{}
+- `array`: 數組，包含多個對象
 
-## 最佳实践
+## 最佳實踐
 
-###安全类
-- 强烈建议：不要将API Key暴露给任何人（包括第三方软件或机构），API Key代表了您的账户权限，API Key的暴露可能会对您的信息、资金造成损失，若API Key泄露，请尽快删除并重新创建。
+###安全類
+- 強烈建議：不要將API Key暴露給任何人（包括第三方軟件或機構），API Key代表了您的賬戶權限，API Key的暴露可能會對您的信息、資金造成損失，若API Key泄露，請盡快刪除並重新創建。
 
-###公共类
-**API访问建议**
+###公共類
+**API訪問建議**
 
-- 不建议在中国大陆境内使用临时域名以及代理的方式访问Huobi Trust API，此类方式访问API连接的稳定性很难保证。
-- 建议使用日本AWS云服务器进行访问。
+- 不建議在中國大陸境內使用臨時域名以及代理的方式訪問Huobi Trust API，此類方式訪問API連接的穩定性很難保證。
+- 建議使用日本AWS雲服務器進行訪問。
 - 官方域名www.huobihktrust.com。
 
-**新限频规则**
 
-- 当前最新限频规则正在逐步上线中，已单独标注限频值的接口适用新限频规则。
+**新限頻規則**
 
-- 用户可根据Http Header中“X-HB-RateLimit-Requests-Remain（限频剩余次数）”，“X-HB-RateLimit-Requests-Expire（窗口过期时间）”查看当前限频使用情况，以及所在时间窗口的过期时间，根据该数值动态调整您的请求频率。
+- 當前最新限頻規則正在逐步上線中，已單獨標註限頻值的接口適用新限頻規則。
 
-- 同一UID下各API Key同时对某单个节点请求的频率不能超出单位时间内该节点最大允许访问次数的限制。
+- 用戶可根據Http Header中「X-HB-RateLimit-Requests-Remain（限頻剩余次數）」，「X-HB-RateLimit-Requests-Expire（窗口過期時間）」查看當前限頻使用情況，以及所在時間窗口的過期時間，根據該數值動態調整您的請求頻率。
+
+- 同一UID下各API Key同時對某單個節點請求的頻率不能超出單位時間內該節點最大允許訪問次數的限製。
 
 
-# 常见问题
+# 常見問題
 
-本章列举了和具体API无关的通用常见问题，如网络、签名或通用错误等。
+本章列舉了和具體API無關的通用常見問題，如網絡、簽名或通用錯誤等。
 
-针对某类或某个API的问题，请查看每章API的错误码和常见问题。
+針對某類或某個API的問題，請查看每章API的錯誤碼和常見問題。
 
-### Q1：一个用户可以申请多少个API Key？
+### Q1：一個用戶可以申請多少個API Key？
 
-每个用户可创建20组API Key，每个API Key可对应设置读取权限。
+每個用戶可創建20組API Key，每個API Key可對應設置讀取權限。
 
-以下是权限的说明：
+以下是權限的說明：
 
-- 读取权限：读取权限用于对数据的查询接口，例如：资产查询等。
+- 讀取權限：讀取權限用於對數據的查詢接口，例如：資產查詢等。
 
-### Q2：为什么经常出现断线、超时的情况？
+### Q2：為什麽經常出現斷線、超時的情況？
 
-请检查是否属于以下情况：
+請檢查是否屬於以下情況：
 
-1. 客户端服务器如在中国大陆境内，连接的稳定性很难保证，建议使用日本AWS云服务器进行访问。
+1. 客戶端服務器如在中國大陸境內，連接的穩定性很難保證，建議使用日本AWS雲服務器進行訪問。
 
-### Q3：为什么签名认证总返回失败？
+### Q3：為什麽簽名認證總返回失敗？
 
-请检查如下可能的原因：
+請檢查如下可能的原因：
 
-1、签名参数应该按照ASCII码排序。比如下面是原始的参数：
+
+1、簽名參數應該按照ASCII碼排序。比如下面是原始的參數：
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
 
@@ -386,7 +386,7 @@ www.huobihktrust.com\n
 
 `Timestamp=2017-05-11T15%3A19%3A30`
 
-排序之后应该为：
+排序之後應該為：
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
 
@@ -398,121 +398,123 @@ www.huobihktrust.com\n
 
 `order-id=1234567890`
 
-2、签名串需进行URL编码。比如：
+2、簽名串需進行URL編碼。比如：
 
-- 冒号 `:`会被编码为`%3A`，空格会被编码为 `%20`
-- 时间戳需要格式化为 `YYYY-MM-DDThh:mm:ss` ，经过URL编码之后为 `2017-05-11T15%3A19%3A30`
+- 冒號 `:`會被編碼為`%3A`，空格會被編碼為 `%20`
+- 時間戳需要格式化為 `YYYY-MM-DDThh:mm:ss` ，經過URL編碼之後為 `2017-05-11T15%3A19%3A30`
 
-3、签名需进行 base64 编码
+3、簽名需進行 base64 編碼
 
-4、Get请求参数需在签名串中
+4、Get請求參數需在簽名串中
 
-5、时间为UTC时间转换为YYYY-MM-DDTHH:mm:ss
+5、時間為UTC時間轉換為YYYY-MM-DDTHH:mm:ss
 
-6、检查本机时间与标准时间是否存在偏差（偏差应小于1分钟）
+6、檢查本機時間與標準時間是否存在偏差（偏差應小於1分鐘）
 
-7、WebSocket发送验签认证消息时，消息体不需要URL编码
+7、WebSocket發送驗簽認證消息時，消息體不需要URL編碼
 
-8、签名时所带Host应与请求接口时Host相同
+8、簽名時所帶Host應與請求接口時Host相同
 
-如果您使用了代理，代理可能会改变请求Host，可以尝试去掉代理；
+如果您使用了代理，代理可能會改變請求Host，可以嘗試去掉代理；
 
-或者，您使用的网络连接库可能会把端口包含在Host内，可以尝试在签名用到的Host中包含端口，如“www.huobihktrust.com:443"
+或者，您使用的網絡連接庫可能會把端口包含在Host內，可以嘗試在簽名用到的Host中包含端口，如「www.huobihktrust.com:443"
 
-9、Access Key 与 Secret Key中是否存在隐藏特殊字符，影响签名
+9、Access Key 與 Secret Key中是否存在隱藏特殊字符，影響簽名
 
-当前官方已支持多种语言的[SDK](https://github.com/huobitrustapi)，可以参考SDK的签名实现，或者以下三种语言的签名样例代码
+當前官方已支持多種語言的[SDK](https://github.com/huobitrustapi)，可以參考SDK的簽名實現，或者以下三種語言的簽名樣例代碼
 
-<a href='https://github.com/huobitrustapi/huobi_Java/blob/master/java_signature_demo.md'>JAVA签名样例代码</a> | <a href='https://github.com/huobitrustapi/huobi_Python/blob/master/example/python_signature_demo.md'>Python签名样例代码</a>   | <a href='https://github.com/huobitrustapi/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++签名样例代码 </a>
+<a href='https://github.com/huobitrustapi/huobi_Java/blob/master/java_signature_demo.md'>JAVA簽名樣例代碼</a> | <a href='https://github.com/huobitrustapi/huobi_Python/blob/master/example/python_signature_demo.md'>Python簽名樣例代碼</a>   | <a href='https://github.com/huobitrustapi/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++簽名樣例代碼 </a>
 
-### Q7：调用接口返回Incorrect Access Key 错误是什么原因？
+### Q7：調用接口返回Incorrect Access Key 錯誤是什麽原因？
 
-请检查URL请求中Access Key是否传递准确，例如：
+請檢查URL請求中Access Key是否傳遞準確，例如：
 
-1. Access Key没有传递
-2. Access Key位数不准确
-3. Access Key已经被删除
-4. URL请求中参数拼接错误或者特殊字符没有进行编码导致服务端对AccessKey解析不正确
+1. Access Key沒有傳遞
+2. Access Key位數不準確
+3. Access Key已經被刪除
+4. URL請求中參數拼接錯誤或者特殊字符沒有進行編碼導致服務端對AccessKey解析不正確
 
-### Q8：调用接口返回 gateway-internal-error 错误是什么原因？
+### Q8：調用接口返回 gateway-internal-error 錯誤是什麽原因？
 
-请检查是否属于以下情况：
+請檢查是否屬於以下情況：
 
-1. 可能为网络原因或服务内部错误，请稍后进行重试。
-2. 发送数据格式是否正确（需要标准JSON格式）。
-3. POST请求头header需要声明为`Content-Type:application/json` 。
+1. 可能為網絡原因或服務內部錯誤，請稍後進行重試。
+2. 發送數據格式是否正確（需要標準JSON格式）。
+3. POST請求頭header需要聲明為`Content-Type:application/json` 。
 
-### Q9：调用接口返回 login-required 错误是什么原因？
+### Q9：調用接口返回 login-required 錯誤是什麽原因？
 
-请检查是否属于以下情况：
+請檢查是否屬於以下情況：
 
-1. 未将AccessKey参数带入URL中。
-2. 未将Signature参数带入URL中。
+1. 未將AccessKey參數帶入URL中。
+2. 未將Signature參數帶入URL中。
 
-### Q10: 调用Rest接口返回HTTP 405错误 method-not-allowed 是什么原因？
+### Q10: 調用Rest接口返回HTTP 405錯誤 method-not-allowed 是什麽原因？
 
-该错误表明调用了不存在的Rest接口，请检查Rest接口路径是否准确。由于Nginx的设置，请求路径(Path)是大小写敏感的，请严格按照文档声明的大小写。
+該錯誤表明調用了不存在的Rest接口，請檢查Rest接口路徑是否準確。由於Nginx的設置，請求路徑(Path)是大小寫敏感的，請嚴格按照文檔聲明的大小寫。
 
-# 联系我们
+# 聯系我們
 
-## 技术支持
+## 技術支持
 
-使用过程中如有问题或者建议，您可选择以下任一方式联系我们：
+使用過程中如有問題或者建議，您可選擇以下任一方式聯系我們：
 
-- 通过官网的“帮助中心”或者发送邮件至support@huobihktrust.com联系客服。
+- 通過官網的「幫助中心」或者發送郵件至support@huobihktrust.com聯系客服。
 
-如您遇到API错误，请按照如下模板向我们反馈问题。
+如您遇到API錯誤，請按照如下模板向我們反饋問題。
 
-`1. 问题描述`  
-`2. 问题发生的用户Id(UID)，账户Id和订单Id(如果和账户、订单有关系)`  
-`3. 完整的URL请求`  
-`4. 完整的JSON格式的请求参数（如果有）`  
-`5. 完整的JSON格式的返回结果`  
-`6. 问题出现时间和频率（如何时开始出现，是否可以重现）`  
-`7. 签名前字符串（如果是签名认证错误）`
+`1. 問題描述`  
+`2. 問題發生的用戶Id(UID)，賬戶Id和訂單Id(如果和賬戶、訂單有關系)`  
+`3. 完整的URL請求`  
+`4. 完整的JSON格式的請求參數（如果有）`  
+`5. 完整的JSON格式的返回結果`  
+`6. 問題出現時間和頻率（如何時開始出現，是否可以重現）`  
+`7. 簽名前字符串（如果是簽名認證錯誤）`
 
-下方是一个应用了模版的例子：
 
-`1. 问题简要说明：签名错误`   
+下方是一個應用了模版的例子：
+
+`1. 問題簡要說明：簽名錯誤`   
 `2. UID：123456`  
-`3. 完整的URL请求：GET https://www.huobihktrust.com/v1/open/apiKeyDemo/forRead?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D`  
-`4. 完整的JSON格式的参数：无`     
-`5. 完整的JSON格式的返回：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key错误]","data":null}`  
-`6. 问题出现频率：每次都会出现`  
-`7. 签名前字符串`    
+`3. 完整的URL請求：GET https://www.huobihktrust.com/v1/open/apiKeyDemo/forRead?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D`  
+`4. 完整的JSON格式的參數：無`     
+`5. 完整的JSON格式的返回：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key錯誤]","data":null}`  
+`6. 問題出現頻率：每次都會出現`  
+`7. 簽名前字符串`    
 `GET\n`  
 `www.huobihktrust.com\n`  
 `/v1/open/apiKeyDemo/forRead\n`   
 `AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-06T03%3A26%3A13`
 
-注意：Access Key仅能证明您的身份，不会影响您账户的安全。切记**不**要将Secret Key信息分享给任何人，若您不小心将Secret Key暴露，请尽快[删除](https://www.hbg.com/zh-cn/apikey/)其对应的API Key，以免造成您的账户损失。
+註意：Access Key僅能證明您的身份，不會影響您賬戶的安全。切記**不**要將Secret Key信息分享給任何人，若您不小心將Secret Key暴露，請盡快[刪除](https://www.hbg.com/zh-cn/apikey/)其對應的API Key，以免造成您的賬戶損失。
 
-# 账户相关
+# 賬戶相關
 
-## 简介
+## 簡介
 
-账户相关接口提供了账户、余额等查询转等功能。
+賬戶相關接口提供了賬戶、余額等查詢轉等功能。
 
-<aside class="notice">访问账户相关的接口需要进行签名认证。</aside>
+<aside class="notice">訪問賬戶相關的接口需要進行簽名認證。</aside>
 
-## 账户信息查询
+## 賬戶信息查詢
 
-API Key 权限：读取<br>
-限频值（NEW）：100次/2s
+API Key 權限：讀取<br>
+限頻值（NEW）：100次/2s
 
-查询指定类型账户，支持以下账户类型：
+查詢指定類型賬戶，支持以下賬戶類型：
 
-hb-spot：资金账户， hbt-custody：交易账户
+hb-spot：資金賬戶， hbt-custody：交易賬戶
 
-### HTTP 请求
+### HTTP 請求
 
 - GET `/v1/open/account/get`
 
-### 请求参数
+### 請求參數
 
-| 参数名称   | 是否必须 | 类型   | 描述                                                         | 默认值 | 取值范围 |
+| 參數名稱   | 是否必須 | 類型   | 描述                                                         | 默認值 | 取值範圍 |
 | ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
-| source | true     | string | hb-spot：资金账户， hbt-brokerage：brokerage交易账户，hbt-custody：交易账户 |        |          |
+| source | true     | string | hb-spot：資金賬戶， hbt-brokerage：brokerage交易賬戶，hbt-custody：交易賬戶 |        |          |
+
 
 > Response:
 
@@ -555,32 +557,32 @@ hb-spot：资金账户， hbt-custody：交易账户
 }
 ```
 
-### 响应数据
+### 響應數據
 
-| 参数名称 | 是否必须 | 数据类型 | 描述     | 取值范围                                                     |
+| 參數名稱 | 是否必須 | 數據類型 | 描述     | 取值範圍                                                     |
 | -------- | -------- | -------- | -------- | ------------------------------------------------------------ |
-| code         | true    | integer     | 状态码  | |
-| message      | false   | string    | 错误描述（如有）| |
-| data         | false   | object    | 业务数据 ||
+| code         | true    | integer     | 狀態碼  | |
+| message      | false   | string    | 錯誤描述（如有）| |
+| data         | false   | object    | 業務數據 ||
 
-data字段说明
+data字段說明
 
-| 参数名称 | 数据类型 | 描述           | 取值范围                                                     |
+| 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
 | -------- | -------- | -------------- | ------------------------------------------------------------ |
-| currency  | string   | 币种           |                                                            |
-| balance   | string   | 余额           |                                                            |
-| suspense  | string   | 冻结金额        |                                                            |
+| currency  | string   | 幣種           |                                                            |
+| balance   | string   | 余額           |                                                            |
+| suspense  | string   | 凍結金額        |                                                            |
 | price     | object   | 折合usdt行情    |                                                            |
 
-price字段说明
+price字段說明（數據來源火幣 Global）
 
-| 参数名称 | 数据类型 | 描述           | 取值范围                                                     |
+| 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
 | -------- | -------- | -------------- | ------------------------------------------------------------ |
-| currency  | string   | 币种           |                                                            |
-| symbol    | string   | 交易对          |                                                            |
-| high      | number   | 24小时最高价     |                                                            |
-| close     | number   | 最新价          |                                                            |
-| open      | number   | 24小时开盘价    |                                                            |
-| amount    | number   | 24小时成交量    |                                                            |
-| vol       | number   | 24小时成交额    |                                                            |
-| count     | number   | 24小时成交笔数	  |                                                            |
+| currency  | string   | 幣種           |                                                            |
+| symbol    | string   | 交易對          |                                                            |
+| high      | number   | 24小時最高價     |                                                            |
+| close     | number   | 最新價          |                                                            |
+| open      | number   | 24小時開盤價    |                                                            |
+| amount    | number   | 24小時成交量    |                                                            |
+| vol       | number   | 24小時成交額    |                                                            |
+| count     | number   | 24小時成交筆數	  |                                                            |
