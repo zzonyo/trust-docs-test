@@ -87,21 +87,15 @@ table th {
 
 [https://github.com/huobitrustapi?tab=repositories](https://github.com/huobitrustapi?tab=repositories)
 
-## 测试环境（已停止）
-
-测试环境运行了一段时间后，因用户访问量很少，而维护成本很高，我们慎重决定后将其停止。
-
-线上环境更稳定，流动性更好，建议您直接使用线上环境。
-
 ## 接口类型
 
-香港信托为用户提供两种接口，您可根据自己的使用场景和偏好来选择适合的方式进行查询行情、交易或提币。
+香港信托为用户提供两种接口，您可根据自己的使用场景和偏好来选择适合的方式进行查询资产。
 
 ### REST API
 
 REST，即Representational State Transfer的缩写，是目前较为流行的基于HTTP的一种通信机制，每一个URL代表一种资源。
 
-交易或资产提币等一次性操作，建议开发者使用REST API进行操作。
+使用API进行资产查询，建议开发者使用REST API进行操作。
 
 ### WebSocket API
 
@@ -293,7 +287,7 @@ www.huobihktrust.com\n
 比如：
 
 * 资产订单类接口调用根据API Key进行限频：1秒10次
-* 行情类接口调用根据IP进行限频：1秒10次
+
 
 ## 请求格式
 
@@ -364,9 +358,9 @@ www.huobihktrust.com\n
 
 ### Q1：一个用户可以申请多少个API Key？
 
-每个母用户可创建20组API Key，每个API Key可对应设置读取权限。
+每个用户可创建20组API Key，每个API Key可对应设置读取权限。
 
-以下是三种权限的说明：
+以下是权限的说明：
 
 - 读取权限：读取权限用于对数据的查询接口，例如：资产查询等。
 
@@ -508,7 +502,7 @@ API Key 权限：读取<br>
 
 查询指定类型账户，支持以下账户类型：
 
-hb-spot：资金账户， hbt-brokerage：brokerage交易账户，hbt-custody：交易账户
+hb-spot：资金账户， hbt-custody：交易账户
 
 ### HTTP 请求
 
