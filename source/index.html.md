@@ -511,7 +511,7 @@ hb-spot：資金賬戶， hbt-custody：交易賬戶
 
 | 參數名稱   | 是否必須 | 類型   | 描述                                                         | 默認值 | 取值範圍 |
 | ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
-| source | true     | string | hb-spot：資金賬戶， hbt-brokerage：brokerage交易賬戶，hbt-custody：交易賬戶 |        |          |
+| source | true     | string | hb-spot：資金賬戶，hbt-custody：交易賬戶 |        |          |
 
 
 > Response:
