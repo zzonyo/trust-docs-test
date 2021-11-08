@@ -130,7 +130,7 @@ WebSocket是HTML5一種新的協議（Protocol）。它實現了客戶端與服�
 
 ### 簽名說明
 
-API 請求在通過 internet 傳輸的過程中極有可能被篡改，為了確保請求未被更改，除公共接口（基礎信息，行情數據）外的私有接口均必須使用您的 API Key 做簽名認證，以校驗參數或參數值在傳輸途中是否發生了更改。  
+API 請求在通過 internet 傳輸的過程中極有可能被篡改，為了確保請求未被更改，除公共接口（基礎信息，行情數據）外的私有接口均必須使用您的 API Key 做簽名認證，以校驗參數或參數值在傳輸途中是否發生了更改。
 每一個API Key需要有適當的權限才能訪問相應的接口，每個新創建的API Key都需要分配權限。在使用接口前，請查看每個接口的權限類型，並確認你的API Key有相應的權限。
 
 一個合法的請求由以下幾部分組成：
@@ -265,6 +265,7 @@ www.huobihktrust.com\n
 | -------------- | ---------------------------- | ------------------------------------------------ |
 | 測試類         | /v1/open/apiKeyDemo/*        | apiKey測試相關接口       |
 | 賬戶類         | /v1/open/account/*           | 賬戶相關接口             |
+
 
 該分類為大類整理，部分接口未遵循此規則，請根據需求查看有關接口文檔。
 
@@ -461,27 +462,27 @@ www.huobihktrust.com\n
 
 如您遇到API錯誤，請按照如下模板向我們反饋問題。
 
-`1. 問題描述`  
-`2. 問題發生的用戶Id(UID)，賬戶Id和訂單Id(如果和賬戶、訂單有關系)`  
-`3. 完整的URL請求`  
-`4. 完整的JSON格式的請求參數（如果有）`  
-`5. 完整的JSON格式的返回結果`  
-`6. 問題出現時間和頻率（如何時開始出現，是否可以重現）`  
+`1. 問題描述`
+`2. 問題發生的用戶Id(UID)，賬戶Id和訂單Id(如果和賬戶、訂單有關系)`
+`3. 完整的URL請求`
+`4. 完整的JSON格式的請求參數（如果有）`
+`5. 完整的JSON格式的返回結果`
+`6. 問題出現時間和頻率（如何時開始出現，是否可以重現）`
 `7. 簽名前字符串（如果是簽名認證錯誤）`
 
 
 下方是一個應用了模版的例子：
 
-`1. 問題簡要說明：簽名錯誤`   
-`2. UID：123456`  
-`3. 完整的URL請求：GET https://www.huobihktrust.com/v1/open/apiKeyDemo/forRead?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D`  
-`4. 完整的JSON格式的參數：無`     
-`5. 完整的JSON格式的返回：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key錯誤]","data":null}`  
-`6. 問題出現頻率：每次都會出現`  
-`7. 簽名前字符串`    
-`GET\n`  
-`www.huobihktrust.com\n`  
-`/v1/open/apiKeyDemo/forRead\n`   
+`1. 問題簡要說明：簽名錯誤`
+`2. UID：123456`
+`3. 完整的URL請求：GET https://www.huobihktrust.com/v1/open/apiKeyDemo/forRead?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D`
+`4. 完整的JSON格式的參數：無`
+`5. 完整的JSON格式的返回：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key錯誤]","data":null}`
+`6. 問題出現頻率：每次都會出現`
+`7. 簽名前字符串`
+`GET\n`
+`www.huobihktrust.com\n`
+`/v1/open/apiKeyDemo/forRead\n`
 `AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-06T03%3A26%3A13`
 
 註意：Access Key僅能證明您的身份，不會影響您賬戶的安全。切記**不**要將Secret Key信息分享給任何人，若您不小心將Secret Key暴露，請盡快[刪除](https://www.hbg.com/zh-cn/apikey/)其對應的API Key，以免造成您的賬戶損失。
@@ -583,4 +584,194 @@ price字段說明（數據來源火幣 Global）
 | open      | number   | 24小時開盤價    |                                                            |
 | amount    | number   | 24小時成交量    |                                                            |
 | vol       | number   | 24小時成交額    |                                                            |
-| count     | number   | 24小時成交筆數	  |                                                            |
+| count     | number   | 24小時成交筆數	  |
+
+
+
+# 資產記錄
+
+## 簡介
+
+資產記錄相關接口提供了充幣、提幣、劃轉記錄等查詢轉等功能。
+
+<aside class="notice">訪問資產記錄相關接口需要進行簽名認證。</aside>
+
+## 充幣記錄查詢
+
+API Key 權限：讀取<br>
+限頻值（NEW）：100次/2s
+
+### HTTP 請求
+
+- GET `/v2/external/deposit/finance/history`
+
+### 請求參數
+
+| 參數名稱   | 是否必須 | 類型   | 描述    | 默認值 | 取值範圍 |
+| --------- | -------- | ------ | --- | ------ | -------- |
+| currency | false     | string | 幣種 |        |          |
+| startTime | false     | long | 查询起始时间(毫秒) |        |          |
+| endTime | false     | long | 查询结束时间(毫秒) |        |          |
+| from | false     | long | 查询起始ID |        |          |
+| direct | false     | string | 方向："prev", "next"（prev 时间由近及远， next时间由远及近） |        |          |
+| size | false     | int | 分页查询查询结果条数（如不传，默认每页展示10条记录，取值区间[1,500]） |        |          |
+| state | false     | int | 提币状态代码集合(多个用英文逗号分隔) 提币单状态:(1, "pre-submitted"),(2, "invalid"),(3, "submitted"),(4, "reexamine"),(5, "canceled"),(6, "pass"),(7, "reject"),(8, "pre-transfer"),(9, "wallet-transfer"),(10, "wallet-reject"),(11, "confirmed"),(12, "confirm-error"),(13, "repealed"),(14, "normal-account-frozen"),(20, "created-without-risk-action"),(21, "account-frozen"),(22, "risk-action-assign"),(23, "risk-action-success"),(24, "risk-action-fail"),(25, "risk-action-timeout"),(30, "pre-withdraw-created"),(31, "pre-withdraw-confirmed"),(32, "pre-withdraw-launch-begin"),(33, "pre-withdraw-launch-success"),(34, "pre-withdraw-launch-failed"),(35, "pre-withdraw-canceled"),(40, "settlement-withdraw-processing"),(41, "settlement-withdraw-partially-completed"),(42, "settlement-withdraw-failed"),(43, "reexamine-reject"),(44, "reexamine-dismissed") |        |          |
+
+
+> Response:
+
+```json
+{
+  "code": 200,
+  "data": [
+    {
+      "currency": "usdt",
+      "state": "normal",
+      "balance": "10120.558300000000000000",
+      "suspense": "19.000000000000000000",
+      "price": {
+        "symbol": "usdtusdt",
+        "high": 1,
+        "close": 1,
+        "open": 1,
+        "amount": 0,
+        "vol": 0,
+        "count": 0
+      }
+    },
+    {
+      "currency": "btc",
+      "state": "normal",
+      "balance": "0",
+      "suspense": "0",
+      "price": {
+        "symbol": "btcusdt",
+        "high": 47815,
+        "close": 47815,
+        "open": 47815,
+        "amount": 0,
+        "vol": 0,
+        "count": 0
+      }
+    }
+  ],
+  "success": true
+}
+```
+
+### 響應數據
+
+| 參數名稱 | 是否必須 | 數據類型 | 描述     | 取值範圍                                                     |
+| -------- | -------- | -------- | -------- | ------------------------------------------------------------ |
+| code         | true    | integer     | 狀態碼  | |
+| message      | false   | string    | 錯誤描述（如有）| |
+| data         | false   | list    | 業務數據 ||
+
+data字段說明
+
+| 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
+| -------- | -------- | -------------- | ------------------------------------------------------------ |
+| currency  | string   | 幣種           |                                                            |
+| amount   | string   | 余額           |                                                            |
+| chain  | string   | 凍結金額        |                                                            |
+| errorCode     | object   | 錯誤碼    |                                                            |
+| errorMsg     | object   | 錯誤信息    |                                                            |
+| fees     | object   | 手续费	    |                                                            |
+| id     | object   | id    |                                                            |
+| label     | object   | 標籤    |                                                            |
+| state     | object   | 状态    |                                                            |
+| toAddress     | object   | 地址    |                                                            |
+| toAddressTag     | object   | 地址标签    |                                                            |
+| txHash     | object   | txHash    |                                                            |
+| type     | string   | 类型    |                                                            |
+| createAt     | long   | 創建時間    |                                                            |
+| updateAt     | long   | 更新時間    |                                                            |
+
+                                                         |                                                           |
+## 提幣記錄查詢
+
+API Key 權限：讀取<br>
+限頻值（NEW）：100次/2s
+
+### HTTP 請求
+
+- GET `/v2/external/deposit/finance/history`
+
+### 請求參數
+
+| 參數名稱   | 是否必須 | 類型   | 描述    | 默認值 | 取值範圍 |
+| --------- | -------- | ------ | --- | ------ | -------- |
+| currency | false     | string | 幣種 |        |          |
+| startTime | false     | long | 查询起始时间(毫秒) |        |          |
+| endTime | false     | long | 查询结束时间(毫秒) |        |          |
+| from | false     | long | 查询起始ID |        |          |
+| direct | false     | string | 方向："prev", "next"（prev 时间由近及远， next时间由远及近） |        |          |
+| size | false     | int | 分页查询查询结果条数（如不传，默认每页展示10条记录，取值区间[1,500]） |        |          |
+| state | false     | int | 提币状态代码集合(多个用英文逗号分隔) 提币单状态:(1, "pre-submitted"),(2, "invalid"),(3, "submitted"),(4, "reexamine"),(5, "canceled"),(6, "pass"),(7, "reject"),(8, "pre-transfer"),(9, "wallet-transfer"),(10, "wallet-reject"),(11, "confirmed"),(12, "confirm-error"),(13, "repealed"),(14, "normal-account-frozen"),(20, "created-without-risk-action"),(21, "account-frozen"),(22, "risk-action-assign"),(23, "risk-action-success"),(24, "risk-action-fail"),(25, "risk-action-timeout"),(30, "pre-withdraw-created"),(31, "pre-withdraw-confirmed"),(32, "pre-withdraw-launch-begin"),(33, "pre-withdraw-launch-success"),(34, "pre-withdraw-launch-failed"),(35, "pre-withdraw-canceled"),(40, "settlement-withdraw-processing"),(41, "settlement-withdraw-partially-completed"),(42, "settlement-withdraw-failed"),(43, "reexamine-reject"),(44, "reexamine-dismissed") |        |          |
+
+
+> Response:
+
+```json
+{
+ "code": 200,
+ "data": [
+   {
+     "currency": "usdt",
+     "state": "normal",
+     "balance": "10120.558300000000000000",
+     "suspense": "19.000000000000000000",
+     "price": {
+       "symbol": "usdtusdt",
+       "high": 1,
+       "close": 1,
+       "open": 1,
+       "amount": 0,
+       "vol": 0,
+       "count": 0
+     }
+   },
+   {
+     "currency": "btc",
+     "state": "normal",
+     "balance": "0",
+     "suspense": "0",
+     "price": {
+       "symbol": "btcusdt",
+       "high": 47815,
+       "close": 47815,
+       "open": 47815,
+       "amount": 0,
+       "vol": 0,
+       "count": 0
+     }
+   }
+ ],
+ "success": true
+}
+```
+
+### 響應數據
+
+| 參數名稱 | 是否必須 | 數據類型 | 描述     | 取值範圍                                                     |
+| -------- | -------- | -------- | -------- | ------------------------------------------------------------ |
+| code         | true    | integer     | 狀態碼  | |
+| message      | false   | string    | 錯誤描述（如有）| |
+| data         | false   | list    | 業務數據 ||
+
+data字段說明
+
+| 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
+| -------- | -------- | -------------- | ------------------------------------------------------------ |
+| currency  | string   | 幣種           |                                                            |
+| amount   | string   | 余額           |                                                            |
+| blockchainConfirm | integer   | 確認次數 |                                                            |
+| depositSafeConfirms | integer | 安全確認次數 |                                                            |
+| errorCode     | object   | 錯誤碼    |                                                            |
+| errorMsg     | object   | 錯誤信息    |                                                            |
+| id     | object   | id    |                                                            |
+| state     | object   | 状态    |                                                            |
+| txHash     | object   | txHash    |                                                            |
+| type     | string   | 类型    |                                                            |
+| createAt     | long   | 創建時間    |                                                            |
+| updateAt     | long   | 更新時間    |                                                            |
