@@ -493,7 +493,7 @@ www.huobihktrust.com\n
 
 <aside class="notice">訪問賬戶相關的接口需要進行簽名認證。</aside>
 
-## 用戶綁定
+## 用戶鑒權
 
 用戶綁定，暫時由信託根據簽名信息自主完成
 簽名流程參照api key加簽流程(秘鑰由信託單獨生成同步給機構，與用戶個人的api key區分使用)
