@@ -334,7 +334,7 @@
             <a href="#215045ded7" class="toc-h1 toc-link" data-title="用戶相關">用戶相關</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#368ef32120" class="toc-h2 toc-link" data-title="用戶綁定">用戶綁定</a>
+                    <a href="#cae34a13d4" class="toc-h2 toc-link" data-title="用戶鑒權">用戶鑒權</a>
                   </li>
                   <li>
                     <a href="#266da16ff8" class="toc-h2 toc-link" data-title="用戶基础信息查詢">用戶基础信息查詢</a>
@@ -861,9 +861,9 @@ www.huobihktrust.com\n
 <p>賬戶相關接口提供了用戶綁定、信息查詢等查詢轉等功能。</p>
 
 <aside class="notice">訪問賬戶相關的接口需要進行簽名認證。</aside>
-<h2 id='368ef32120'>用戶綁定</h2>
+<h2 id='cae34a13d4'>用戶鑒權</h2>
 <p>用戶綁定，暫時由信託根據簽名信息自主完成
-簽名流程參照api key加簽流程
+簽名流程參照api key加簽流程(秘鑰由信託單獨生成同步給機構，與用戶個人的api key區分使用)
 最終，登錄的地址應該為</p>
 
 <p>${信託web頁面登錄url}?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;outerUserId=1234567890&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</p>
