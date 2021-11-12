@@ -866,7 +866,7 @@ www.huobihktrust.com\n
 簽名流程參照api key加簽流程(秘鑰由信託單獨生成同步給機構，與用戶個人的api key區分使用)
 最終，登錄的地址應該為</p>
 
-<p>${信託web頁面登錄url}?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;outerUserId=1234567890&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</p>
+<p>${信託web頁面登錄url}?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;outerUserId=1234567890&amp;callBackUrl=${回調url}&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</p>
 <h3 id='http'>HTTP 請求</h3>
 <ul>
 <li>GET <code>信託web頁面登錄url</code></li>
@@ -895,6 +895,14 @@ www.huobihktrust.com\n
 <td>true</td>
 <td>string</td>
 <td>外部系統用戶唯一標識</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>callbackUrl</td>
+<td>true</td>
+<td>string</td>
+<td>回調url</td>
 <td></td>
 <td></td>
 </tr>
