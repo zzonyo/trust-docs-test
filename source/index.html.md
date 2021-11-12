@@ -496,7 +496,7 @@ www.huobihktrust.com\n
 ## 用戶綁定
 
 用戶綁定，暫時由信託根據簽名信息自主完成
-簽名流程參照api key加簽流程
+簽名流程參照api key加簽流程(秘鑰由信託單獨生成同步給機構，與用戶個人的api key區分使用)
 最終，登錄的地址應該為
 
 ${信託web頁面登錄url}?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&outerUserId=1234567890&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D
