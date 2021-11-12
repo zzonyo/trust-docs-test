@@ -331,6 +331,17 @@
               </ul>
           </li>
           <li>
+            <a href="#215045ded7" class="toc-h1 toc-link" data-title="用戶相關">用戶相關</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#368ef32120" class="toc-h2 toc-link" data-title="用戶綁定">用戶綁定</a>
+                  </li>
+                  <li>
+                    <a href="#266da16ff8" class="toc-h2 toc-link" data-title="用戶基础信息查詢">用戶基础信息查詢</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#c276029c72" class="toc-h1 toc-link" data-title="賬戶相關">賬戶相關</a>
               <ul class="toc-list-h2">
                   <li>
@@ -338,9 +349,6 @@
                   </li>
                   <li>
                     <a href="#d6a1ad08de" class="toc-h2 toc-link" data-title="賬戶信息查詢">賬戶信息查詢</a>
-                  </li>
-                  <li>
-                    <a href="#79fc997a9e" class="toc-h2 toc-link" data-title="賬戶基础信息查詢">賬戶基础信息查詢</a>
                   </li>
               </ul>
           </li>
@@ -849,6 +857,177 @@ www.huobihktrust.com\n
 <code>AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2019-11-06T03%3A26%3A13</code></p>
 
 <p>註意：Access Key僅能證明您的身份，不會影響您賬戶的安全。切記<strong>不</strong>要將Secret Key信息分享給任何人，若您不小心將Secret Key暴露，請盡快<a href="https://www.hbg.com/zh-cn/apikey/">刪除</a>其對應的API Key，以免造成您的賬戶損失。</p>
+<h1 id='215045ded7'>用戶相關</h1>
+<p>賬戶相關接口提供了用戶綁定、信息查詢等查詢轉等功能。</p>
+
+<aside class="notice">訪問賬戶相關的接口需要進行簽名認證。</aside>
+<h2 id='368ef32120'>用戶綁定</h2>
+<p>用戶綁定，暫時由信託根據簽名信息自主完成
+簽名流程參照api key加簽流程
+最終，登錄的地址應該為</p>
+
+<p>${信託web頁面登錄url}?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;outerUserId=1234567890&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</p>
+<h3 id='http'>HTTP 請求</h3>
+<ul>
+<li>GET <code>信託web頁面登錄url</code></li>
+</ul>
+<h3 id='ba05bab92e'>請求參數</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>是否必須</th>
+<th>類型</th>
+<th>描述</th>
+<th>默認值</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>AccessKeyId</td>
+<td>true</td>
+<td>string</td>
+<td>外部系統鑒權access key(由信託服務生成，提供)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>outerUserId</td>
+<td>true</td>
+<td>string</td>
+<td>外部系統用戶唯一標識</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SignatureMethod</td>
+<td>true</td>
+<td>string</td>
+<td>簽名方法（HmacSHA256）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SignatureVersion</td>
+<td>true</td>
+<td>string</td>
+<td>簽名版本（2）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>true</td>
+<td>string</td>
+<td>時間戳（例如：2017-05-11T15%3A19%3A30）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Signature</td>
+<td>true</td>
+<td>string</td>
+<td>簽名數據</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='266da16ff8'>用戶基础信息查詢</h2>
+<p>API Key 權限：讀取<br>
+限頻值（NEW）：100次/2s</p>
+<h3 id='http-2'>HTTP 請求</h3>
+<ul>
+<li>GET <code>/v1/open/user/getBaseInfo</code></li>
+</ul>
+<h3 id='ba05bab92e-2'>請求參數</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>是否必須</th>
+<th>類型</th>
+<th>描述</th>
+<th>默認值</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>outerUserId</td>
+<td>true</td>
+<td>string</td>
+<td>（外部系统用户id）外部系统用户唯一标识</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"outerUserId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"213123D1231"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"outerUid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12312317263123"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='8cee0e29db'>響應數據</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>是否必須</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>true</td>
+<td>integer</td>
+<td>狀態碼</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>false</td>
+<td>string</td>
+<td>錯誤描述（如有）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>false</td>
+<td>object</td>
+<td>業務數據</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>data字段說明</p>
+
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>outerUserId</td>
+<td>string</td>
+<td>外部系统用户标识</td>
+<td></td>
+</tr>
+<tr>
+<td>outerUid</td>
+<td>string</td>
+<td>外部uid</td>
+<td></td>
+</tr>
+</tbody></table>
 <h1 id='c276029c72'>賬戶相關</h1><h2 id='82fb364030-2'>簡介</h2>
 <p>賬戶相關接口提供了賬戶、余額等查詢轉等功能。</p>
 
@@ -860,11 +1039,11 @@ www.huobihktrust.com\n
 <p>查詢指定類型賬戶，支持以下賬戶類型：</p>
 
 <p>hb-spot：資金賬戶， hbt-custody：交易賬戶</p>
-<h3 id='http'>HTTP 請求</h3>
+<h3 id='http-3'>HTTP 請求</h3>
 <ul>
 <li>GET <code>/v1/open/account/get</code></li>
 </ul>
-<h3 id='ba05bab92e'>請求參數</h3>
+<h3 id='ba05bab92e-3'>請求參數</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -924,7 +1103,7 @@ www.huobihktrust.com\n
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='8cee0e29db'>響應數據</h3>
+</span></code></pre><h3 id='8cee0e29db-2'>響應數據</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -1052,103 +1231,6 @@ www.huobihktrust.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='79fc997a9e'>賬戶基础信息查詢</h2>
-<p>API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s</p>
-<h3 id='http-2'>HTTP 請求</h3>
-<ul>
-<li>GET <code>/v1/open/account/getBaseInfo</code></li>
-</ul>
-<h3 id='ba05bab92e-2'>請求參數</h3>
-<table><thead>
-<tr>
-<th>參數名稱</th>
-<th>是否必須</th>
-<th>類型</th>
-<th>描述</th>
-<th>默認值</th>
-<th>取值範圍</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>outer_user_id</td>
-<td>true</td>
-<td>string</td>
-<td>（外部系统用户id）外部系统用户唯一标识</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"outerUserId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"213123D1231"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"outerUid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12312317263123"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='8cee0e29db-2'>響應數據</h3>
-<table><thead>
-<tr>
-<th>參數名稱</th>
-<th>是否必須</th>
-<th>數據類型</th>
-<th>描述</th>
-<th>取值範圍</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>code</td>
-<td>true</td>
-<td>integer</td>
-<td>狀態碼</td>
-<td></td>
-</tr>
-<tr>
-<td>message</td>
-<td>false</td>
-<td>string</td>
-<td>錯誤描述（如有）</td>
-<td></td>
-</tr>
-<tr>
-<td>data</td>
-<td>false</td>
-<td>object</td>
-<td>業務數據</td>
-<td></td>
-</tr>
-</tbody></table>
-
-<p>data字段說明</p>
-
-<table><thead>
-<tr>
-<th>參數名稱</th>
-<th>數據類型</th>
-<th>描述</th>
-<th>取值範圍</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>outerUserId</td>
-<td>string</td>
-<td>外部系统用户标识</td>
-<td></td>
-</tr>
-<tr>
-<td>outerUid</td>
-<td>string</td>
-<td>外部uid</td>
-<td></td>
-</tr>
-</tbody></table>
 <h1 id='454d0ea4cd'>資產記錄</h1><h2 id='82fb364030-3'>簡介</h2>
 <p>資產記錄相關接口提供了充幣、提幣、劃轉記錄等查詢轉等功能。</p>
 
@@ -1156,11 +1238,11 @@ www.huobihktrust.com\n
 <h2 id='e0034031cc'>充幣記錄查詢</h2>
 <p>API Key 權限：讀取<br>
 限頻值（NEW）：100次/2s</p>
-<h3 id='http-3'>HTTP 請求</h3>
+<h3 id='http-4'>HTTP 請求</h3>
 <ul>
 <li>GET <code>/v2/external/deposit/finance/history</code></li>
 </ul>
-<h3 id='ba05bab92e-3'>請求參數</h3>
+<h3 id='ba05bab92e-4'>請求參數</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -1407,11 +1489,11 @@ www.huobihktrust.com\n
 <h2 id='4973af6e72'>提幣記錄查詢</h2>
 <p>API Key 權限：讀取<br>
 限頻值（NEW）：100次/2s</p>
-<h3 id='http-4'>HTTP 請求</h3>
+<h3 id='http-5'>HTTP 請求</h3>
 <ul>
 <li>GET <code>/v2/external/deposit/finance/history</code></li>
 </ul>
-<h3 id='ba05bab92e-4'>請求參數</h3>
+<h3 id='ba05bab92e-5'>請求參數</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
