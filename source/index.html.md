@@ -499,7 +499,7 @@ www.huobihktrust.com\n
 簽名流程參照api key加簽流程(秘鑰由信託單獨生成同步給機構，與用戶個人的api key區分使用)
 最終，登錄的地址應該為
 
-${信託web頁面登錄url}?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&outerUserId=1234567890&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D
+${信託web頁面登錄url}?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&outerUserId=1234567890&callBackUrl=${回調url}&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D
 
 ### HTTP 請求
 
@@ -511,6 +511,7 @@ ${信託web頁面登錄url}?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&outerUs
 | ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
 | AccessKeyId | true     | string | 外部系統鑒權access key(由信託服務生成，提供) |        |          |
 | outerUserId | true     | string | 外部系統用戶唯一標識 |        |          |
+| callbackUrl | true     | string | 回調url |        |          |
 | SignatureMethod | true     | string | 簽名方法（HmacSHA256） |        |          |
 | SignatureVersion | true     | string | 簽名版本（2） |        |          |
 | Timestamp | true     | string | 時間戳（例如：2017-05-11T15%3A19%3A30） |        |          |
