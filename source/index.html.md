@@ -487,6 +487,86 @@ www.huobihktrust.com\n
 
 註意：Access Key僅能證明您的身份，不會影響您賬戶的安全。切記**不**要將Secret Key信息分享給任何人，若您不小心將Secret Key暴露，請盡快[刪除](https://www.hbg.com/zh-cn/apikey/)其對應的API Key，以免造成您的賬戶損失。
 
+# 用戶相關
+
+賬戶相關接口提供了用戶綁定、信息查詢等查詢轉等功能。
+
+<aside class="notice">訪問賬戶相關的接口需要進行簽名認證。</aside>
+
+## 用戶綁定
+
+用戶綁定，暫時由信託根據簽名信息自主完成
+簽名流程參照api key加簽流程
+最終，登錄的地址應該為
+
+${信託web頁面登錄url}?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&outerUserId=1234567890&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D
+
+### HTTP 請求
+
+- GET `信託web頁面登錄url`
+
+### 請求參數
+
+| 參數名稱   | 是否必須 | 類型   | 描述                                                         | 默認值 | 取值範圍 |
+| ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
+| AccessKeyId | true     | string | 外部系統鑒權access key(由信託服務生成，提供) |        |          |
+| outerUserId | true     | string | 外部系統用戶唯一標識 |        |          |
+| SignatureMethod | true     | string | 簽名方法（HmacSHA256） |        |          |
+| SignatureVersion | true     | string | 簽名版本（2） |        |          |
+| Timestamp | true     | string | 時間戳（例如：2017-05-11T15%3A19%3A30） |        |          |
+| Signature | true     | string | 簽名數據 |        |          |
+
+
+
+
+## 用戶基础信息查詢
+
+API Key 權限：讀取<br>
+限頻值（NEW）：100次/2s
+
+### HTTP 請求
+
+- GET `/v1/open/user/getBaseInfo`
+
+### 請求參數
+
+| 參數名稱   | 是否必須 | 類型   | 描述                                                         | 默認值 | 取值範圍 |
+| ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
+| outerUserId | true     | string | （外部系统用户id）外部系统用户唯一标识 |        |          |
+
+
+> Response:
+
+```json
+{
+  "code": 200,
+  "data": [
+    {
+      "outerUserId": "213123D1231",
+      "outerUid": "12312317263123"
+    }
+  ],
+  "success": true
+}
+```
+
+### 響應數據
+
+| 參數名稱 | 是否必須 | 數據類型 | 描述     | 取值範圍                                                     |
+| -------- | -------- | -------- | -------- | ------------------------------------------------------------ |
+| code         | true    | integer     | 狀態碼  | |
+| message      | false   | string    | 錯誤描述（如有）| |
+| data         | false   | object    | 業務數據 ||
+
+data字段說明
+
+| 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
+| -------- | -------- | -------------- | ------------------------------------------------------------ |
+| outerUserId  | string   | 外部系统用户标识           |                                                            |
+| outerUid   | string   | 外部uid           |                                                            |
+
+
+
 # 賬戶相關
 
 ## 簡介
@@ -586,51 +666,6 @@ price字段說明（數據來源火幣 Global）
 | vol       | number   | 24小時成交額    |                                                            |
 | count     | number   | 24小時成交筆數	  |
 
-## 賬戶基础信息查詢
-
-API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s
-
-### HTTP 請求
-
-- GET `/v1/open/account/getBaseInfo`
-
-### 請求參數
-
-| 參數名稱   | 是否必須 | 類型   | 描述                                                         | 默認值 | 取值範圍 |
-| ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
-| outer_user_id | true     | string | （外部系统用户id）外部系统用户唯一标识 |        |          |
-
-
-> Response:
-
-```json
-{
-  "code": 200,
-  "data": [
-    {
-      "outerUserId": "213123D1231",
-      "outerUid": "12312317263123"
-    }
-  ],
-  "success": true
-}
-```
-
-### 響應數據
-
-| 參數名稱 | 是否必須 | 數據類型 | 描述     | 取值範圍                                                     |
-| -------- | -------- | -------- | -------- | ------------------------------------------------------------ |
-| code         | true    | integer     | 狀態碼  | |
-| message      | false   | string    | 錯誤描述（如有）| |
-| data         | false   | object    | 業務數據 ||
-
-data字段說明
-
-| 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
-| -------- | -------- | -------------- | ------------------------------------------------------------ |
-| outerUserId  | string   | 外部系统用户标识           |                                                            |
-| outerUid   | string   | 外部uid           |                                                            |
 
 
 
