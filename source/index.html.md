@@ -608,8 +608,10 @@ API Key 權限：讀取<br>
       "toUserName": "test@163.com",
       "currency": "usdt",
       "state": "audit_refuse",
-      "amount": "10120.558300000000000000",
-      "refuse": "拒绝原因"
+      "amount": 10120.558300000000000000,
+      "refuse": "拒绝原因",
+      "createdTime": 1637075011000,
+      "updatedTime": 1637075011000
     },
     {
       "fromUid": "12312223131",
@@ -617,9 +619,11 @@ API Key 權限：讀取<br>
       "toUserName": "tes12t@163.com",
       "currency": "usdt",
       "state": "audit_refuse",
-      "amount": "10120.558300000000000000",
-      "refuse": "拒绝原因"
-    },
+      "amount": 10120.558300000000000000"
+      "refuse": "拒绝原因",
+      "createdTime": 1637075011000,
+      "updatedTime": 1637075011000
+    }
   ],
   "success": true
 }
@@ -637,18 +641,20 @@ data字段說明
 
 | 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
 | -------- | -------- | -------------- | ------------------------------------------------------------ |
-| fromUid  | string   | 劃入賬戶uid           |                                                            |
-| toUid  | string   | 收款賬戶uid           |                                                            |
+| fromUid  | string   | 劃轉方uid           |                                                            |
+| toUid  | string   | 收款方uid           |                                                            |
 | toUserName  | string   | 收款方註冊賬號           |                                                            |
 | state  | string   | 狀態 枚举: jumio,audit,audit_refuse,multi_audit_refuse,multi_audit_fail,success,fail 枚举备注: jumio :人脸识别验证 audit :人工审核中 audit_refuse :人工审核拒绝 multi_audit_refuse :多人审批验证中 multi_audit_fail :多人审批验证失败 success :划转成功 fail :划转失败          |                                                            |
 | state  | string   | 狀態           |                                                            |
 | amount   | number   | 金額           |                                                            |
 | refuse  | string   | 拒絕原因           |                                                            |
+| createdTime  | integer   | 創建時間           |                                                            |
+| updatedTime  | integer   | 更新時間           |                                                            |
 
 
 ## UID划转
 
-API Key 權限：讀取<br>
+API Key 權限：寫權限<br>
 限頻值（NEW）：100次/2s
 
 ### HTTP 請求
@@ -659,7 +665,6 @@ API Key 權限：讀取<br>
 
 | 參數名稱   | 是否必須 | 類型   | 描述                                                         | 默認值 | 取值範圍 |
 | ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
-| fromUid | false     | integer | 划出用户uid |        |          |
 | toUid | true     | integer | 收款方用户uid |        |          |
 | phone | true     | string | 收款方手机号后四位 |        |          |
 | currency | true     | string | 幣種 |        |          |
