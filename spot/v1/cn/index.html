@@ -342,10 +342,24 @@
               </ul>
           </li>
           <li>
-            <a href="#c276029c72" class="toc-h1 toc-link" data-title="賬戶相關">賬戶相關</a>
+            <a href="#11aa899dcc" class="toc-h1 toc-link" data-title="划转相關">划转相關</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#82fb364030-2" class="toc-h2 toc-link" data-title="簡介">簡介</a>
+                  </li>
+                  <li>
+                    <a href="#uid" class="toc-h2 toc-link" data-title="UID劃轉記錄查詢">UID劃轉記錄查詢</a>
+                  </li>
+                  <li>
+                    <a href="#uid-2" class="toc-h2 toc-link" data-title="UID划转">UID划转</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#c276029c72" class="toc-h1 toc-link" data-title="賬戶相關">賬戶相關</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#82fb364030-3" class="toc-h2 toc-link" data-title="簡介">簡介</a>
                   </li>
                   <li>
                     <a href="#d6a1ad08de" class="toc-h2 toc-link" data-title="賬戶信息查詢">賬戶信息查詢</a>
@@ -356,7 +370,7 @@
             <a href="#454d0ea4cd" class="toc-h1 toc-link" data-title="資產記錄">資產記錄</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#82fb364030-3" class="toc-h2 toc-link" data-title="簡介">簡介</a>
+                    <a href="#82fb364030-4" class="toc-h2 toc-link" data-title="簡介">簡介</a>
                   </li>
                   <li>
                     <a href="#e0034031cc" class="toc-h2 toc-link" data-title="充幣記錄查詢">充幣記錄查詢</a>
@@ -1036,7 +1050,292 @@ www.huobihktrust.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='c276029c72'>賬戶相關</h1><h2 id='82fb364030-2'>簡介</h2>
+<h1 id='11aa899dcc'>划转相關</h1><h2 id='82fb364030-2'>簡介</h2>
+<p>劃轉相關接口提供了賬戶劃轉、查詢等功能。</p>
+
+<aside class="notice">訪問賬戶相關的接口需要進行簽名認證。</aside>
+<h2 id='uid'>UID劃轉記錄查詢</h2>
+<p>API Key 權限：讀取<br>
+限頻值（NEW）：100次/2s</p>
+<h3 id='http-3'>HTTP 請求</h3>
+<ul>
+<li>GET <code>/v1/open/api/uid-transfer/list</code></li>
+</ul>
+<h3 id='ba05bab92e-3'>請求參數</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>是否必須</th>
+<th>類型</th>
+<th>描述</th>
+<th>默認值</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency</td>
+<td>false</td>
+<td>string</td>
+<td>幣種</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>false</td>
+<td>string</td>
+<td>开始时间</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>false</td>
+<td>string</td>
+<td>结束时间</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>false</td>
+<td>string</td>
+<td>分页方向</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fromId</td>
+<td>false</td>
+<td>string</td>
+<td>分页开始id</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>size</td>
+<td>false</td>
+<td>string</td>
+<td>分页大小</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"fromUid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123123131"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"toUid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23213131312"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"toUserName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@163.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"audit_refuse"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10120.558300000000000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"refuse"</span><span class="p">:</span><span class="w"> </span><span class="s2">"拒绝原因"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"fromUid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12312223131"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"toUid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2321313331312"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"toUserName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tes12t@163.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"audit_refuse"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10120.558300000000000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"refuse"</span><span class="p">:</span><span class="w"> </span><span class="s2">"拒绝原因"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='8cee0e29db-2'>響應數據</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>是否必須</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>true</td>
+<td>integer</td>
+<td>狀態碼</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>false</td>
+<td>string</td>
+<td>錯誤描述（如有）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>false</td>
+<td>object</td>
+<td>業務數據</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>data字段說明</p>
+
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fromUid</td>
+<td>string</td>
+<td>劃入賬戶uid</td>
+<td></td>
+</tr>
+<tr>
+<td>toUid</td>
+<td>string</td>
+<td>收款賬戶uid</td>
+<td></td>
+</tr>
+<tr>
+<td>toUserName</td>
+<td>string</td>
+<td>收款方註冊賬號</td>
+<td></td>
+</tr>
+<tr>
+<td>state</td>
+<td>string</td>
+<td>狀態 枚举: jumio,audit,audit_refuse,multi_audit_refuse,multi_audit_fail,success,fail 枚举备注: jumio :人脸识别验证 audit :人工审核中 audit_refuse :人工审核拒绝 multi_audit_refuse :多人审批验证中 multi_audit_fail :多人审批验证失败 success :划转成功 fail :划转失败</td>
+<td></td>
+</tr>
+<tr>
+<td>state</td>
+<td>string</td>
+<td>狀態</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>number</td>
+<td>金額</td>
+<td></td>
+</tr>
+<tr>
+<td>refuse</td>
+<td>string</td>
+<td>拒絕原因</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='uid-2'>UID划转</h2>
+<p>API Key 權限：讀取<br>
+限頻值（NEW）：100次/2s</p>
+<h3 id='http-4'>HTTP 請求</h3>
+<ul>
+<li>GET <code>/v1/open/api/uid-transfer</code></li>
+</ul>
+<h3 id='ba05bab92e-4'>請求參數</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>是否必須</th>
+<th>類型</th>
+<th>描述</th>
+<th>默認值</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fromUid</td>
+<td>false</td>
+<td>integer</td>
+<td>划出用户uid</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>toUid</td>
+<td>true</td>
+<td>integer</td>
+<td>收款方用户uid</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>phone</td>
+<td>true</td>
+<td>string</td>
+<td>收款方手机号后四位</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>currency</td>
+<td>true</td>
+<td>string</td>
+<td>幣種</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>number</td>
+<td>金额</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='8cee0e29db-3'>響應數據</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>是否必須</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>true</td>
+<td>integer</td>
+<td>狀態碼</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>false</td>
+<td>string</td>
+<td>錯誤描述（如有）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>false</td>
+<td>object</td>
+<td>業務數據</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='c276029c72'>賬戶相關</h1><h2 id='82fb364030-3'>簡介</h2>
 <p>賬戶相關接口提供了賬戶、余額等查詢轉等功能。</p>
 
 <aside class="notice">訪問賬戶相關的接口需要進行簽名認證。</aside>
@@ -1047,11 +1346,11 @@ www.huobihktrust.com\n
 <p>查詢指定類型賬戶，支持以下賬戶類型：</p>
 
 <p>hb-spot：資金賬戶， hbt-custody：交易賬戶</p>
-<h3 id='http-3'>HTTP 請求</h3>
+<h3 id='http-5'>HTTP 請求</h3>
 <ul>
 <li>GET <code>/v1/open/account/get</code></li>
 </ul>
-<h3 id='ba05bab92e-3'>請求參數</h3>
+<h3 id='ba05bab92e-5'>請求參數</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -1111,7 +1410,7 @@ www.huobihktrust.com\n
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='8cee0e29db-2'>響應數據</h3>
+</span></code></pre><h3 id='8cee0e29db-4'>響應數據</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -1239,18 +1538,18 @@ www.huobihktrust.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='454d0ea4cd'>資產記錄</h1><h2 id='82fb364030-3'>簡介</h2>
+<h1 id='454d0ea4cd'>資產記錄</h1><h2 id='82fb364030-4'>簡介</h2>
 <p>資產記錄相關接口提供了充幣、提幣、劃轉記錄等查詢轉等功能。</p>
 
 <aside class="notice">訪問資產記錄相關接口需要進行簽名認證。</aside>
 <h2 id='e0034031cc'>充幣記錄查詢</h2>
 <p>API Key 權限：讀取<br>
 限頻值（NEW）：100次/2s</p>
-<h3 id='http-4'>HTTP 請求</h3>
+<h3 id='http-6'>HTTP 請求</h3>
 <ul>
 <li>GET <code>/v2/external/deposit/finance/history</code></li>
 </ul>
-<h3 id='ba05bab92e-4'>請求參數</h3>
+<h3 id='ba05bab92e-6'>請求參數</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -1358,7 +1657,7 @@ www.huobihktrust.com\n
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='8cee0e29db-3'>響應數據</h3>
+</span></code></pre><h3 id='8cee0e29db-5'>響應數據</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -1497,11 +1796,11 @@ www.huobihktrust.com\n
 <h2 id='4973af6e72'>提幣記錄查詢</h2>
 <p>API Key 權限：讀取<br>
 限頻值（NEW）：100次/2s</p>
-<h3 id='http-5'>HTTP 請求</h3>
+<h3 id='http-7'>HTTP 請求</h3>
 <ul>
 <li>GET <code>/v2/external/deposit/finance/history</code></li>
 </ul>
-<h3 id='ba05bab92e-5'>請求參數</h3>
+<h3 id='ba05bab92e-7'>請求參數</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -1609,7 +1908,7 @@ www.huobihktrust.com\n
  </span><span class="p">],</span><span class="w">
  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='8cee0e29db-4'>響應數據</h3>
+</span></code></pre><h3 id='8cee0e29db-6'>響應數據</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
