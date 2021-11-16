@@ -567,6 +567,122 @@ data字段說明
 | outerUid   | string   | 外部uid           |                                                            |
 
 
+# 划转相關
+
+## 簡介
+
+劃轉相關接口提供了賬戶劃轉、查詢等功能。
+
+<aside class="notice">訪問賬戶相關的接口需要進行簽名認證。</aside>
+
+## UID劃轉記錄查詢
+
+API Key 權限：讀取<br>
+限頻值（NEW）：100次/2s
+
+### HTTP 請求
+
+- GET `/v1/open/api/uid-transfer/list`
+
+### 請求參數
+
+| 參數名稱   | 是否必須 | 類型   | 描述                                                         | 默認值 | 取值範圍 |
+| ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
+| currency | false     | string | 幣種 |        |          |
+| startTime | false     | string | 开始时间 |        |          |
+| endTime | false     | string | 结束时间 |        |          |
+| direction | false     | string | 分页方向 |        |          |
+| fromId | false     | string | 分页开始id |        |          |
+| size | false     | string | 分页大小 |        |          |
+
+
+> Response:
+
+```json
+{
+  "code": 200,
+  "data": [
+    {
+      "fromUid": "123123131",
+      "toUid": "23213131312",
+      "toUserName": "test@163.com",
+      "currency": "usdt",
+      "state": "audit_refuse",
+      "amount": "10120.558300000000000000",
+      "refuse": "拒绝原因"
+    },
+    {
+      "fromUid": "12312223131",
+      "toUid": "2321313331312",
+      "toUserName": "tes12t@163.com",
+      "currency": "usdt",
+      "state": "audit_refuse",
+      "amount": "10120.558300000000000000",
+      "refuse": "拒绝原因"
+    },
+  ],
+  "success": true
+}
+```
+
+### 響應數據
+
+| 參數名稱 | 是否必須 | 數據類型 | 描述     | 取值範圍                                                     |
+| -------- | -------- | -------- | -------- | ------------------------------------------------------------ |
+| code         | true    | integer     | 狀態碼  | |
+| message      | false   | string    | 錯誤描述（如有）| |
+| data         | false   | object    | 業務數據 ||
+
+data字段說明
+
+| 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
+| -------- | -------- | -------------- | ------------------------------------------------------------ |
+| fromUid  | string   | 劃入賬戶uid           |                                                            |
+| toUid  | string   | 收款賬戶uid           |                                                            |
+| toUserName  | string   | 收款方註冊賬號           |                                                            |
+| state  | string   | 狀態 枚举: jumio,audit,audit_refuse,multi_audit_refuse,multi_audit_fail,success,fail 枚举备注: jumio :人脸识别验证 audit :人工审核中 audit_refuse :人工审核拒绝 multi_audit_refuse :多人审批验证中 multi_audit_fail :多人审批验证失败 success :划转成功 fail :划转失败          |                                                            |
+| state  | string   | 狀態           |                                                            |
+| amount   | number   | 金額           |                                                            |
+| refuse  | string   | 拒絕原因           |                                                            |
+
+
+## UID划转
+
+API Key 權限：讀取<br>
+限頻值（NEW）：100次/2s
+
+### HTTP 請求
+
+- GET `/v1/open/api/uid-transfer`
+
+### 請求參數
+
+| 參數名稱   | 是否必須 | 類型   | 描述                                                         | 默認值 | 取值範圍 |
+| ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
+| fromUid | false     | integer | 划出用户uid |        |          |
+| toUid | true     | integer | 收款方用户uid |        |          |
+| phone | true     | string | 收款方手机号后四位 |        |          |
+| currency | true     | string | 幣種 |        |          |
+| amount | true     | number | 金额 |        |          |
+
+> Response:
+
+```json
+{
+  "code": 200,
+  "data": null,
+  "success": true
+}
+```
+
+### 響應數據
+
+| 參數名稱 | 是否必須 | 數據類型 | 描述     | 取值範圍                                                     |
+| -------- | -------- | -------- | -------- | ------------------------------------------------------------ |
+| code         | true    | integer     | 狀態碼  | |
+| message      | false   | string    | 錯誤描述（如有）| |
+| data         | false   | object    | 業務數據 ||
+
 
 # 賬戶相關
 
