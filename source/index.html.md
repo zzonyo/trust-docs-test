@@ -604,6 +604,7 @@ API Key 權限：讀取<br>
   "data": [
     {
       "id": 1,
+      "clientOrderId": "12312223131",
       "fromUid": "123123131",
       "toUid": "23213131312",
       "toUserName": "test@163.com",
@@ -616,6 +617,7 @@ API Key 權限：讀取<br>
     },
     {
       "id": 2,
+      "clientOrderId": "12312223131",
       "fromUid": "12312223131",
       "toUid": "2321313331312",
       "toUserName": "tes12t@163.com",
@@ -644,6 +646,7 @@ data字段說明
 | 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
 | -------- | -------- | -------------- | ------------------------------------------------------------ |
 | id  | number   | 数据id           |                                                            |
+| clientOrderId  | string   | 劃轉订单id           |                                                            |
 | fromUid  | string   | 劃轉方uid           |                                                            |
 | toUid  | string   | 收款方uid           |                                                            |
 | toUserName  | string   | 收款方註冊賬號           |                                                            |
@@ -678,7 +681,9 @@ API Key 權限：寫權限<br>
 ```json
 {
   "code": 200,
-  "data": null,
+  "data" {
+    "clientOrderId": "213123123131"
+  }: 
   "success": true
 }
 ```
@@ -690,6 +695,12 @@ API Key 權限：寫權限<br>
 | code         | true    | integer     | 狀態碼  | |
 | message      | false   | string    | 錯誤描述（如有）| |
 | data         | false   | object    | 業務數據 ||
+
+data字段說明
+
+| 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
+| -------- | -------- | -------------- | ------------------------------------------------------------ |
+| clientOrderId  | string   | 劃轉订单id           |                                                            |
 
 
 # 賬戶相關
