@@ -603,6 +603,7 @@ API Key 權限：讀取<br>
   "code": 200,
   "data": [
     {
+      "id": 1,
       "fromUid": "123123131",
       "toUid": "23213131312",
       "toUserName": "test@163.com",
@@ -614,12 +615,13 @@ API Key 權限：讀取<br>
       "updatedTime": 1637075011000
     },
     {
+      "id": 2,
       "fromUid": "12312223131",
       "toUid": "2321313331312",
       "toUserName": "tes12t@163.com",
       "currency": "usdt",
       "state": "audit_refuse",
-      "amount": 10120.558300000000000000"
+      "amount": 10120.558300000000000000",
       "refuse": "拒绝原因",
       "createdTime": 1637075011000,
       "updatedTime": 1637075011000
@@ -641,6 +643,7 @@ data字段說明
 
 | 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
 | -------- | -------- | -------------- | ------------------------------------------------------------ |
+| id  | number   | 数据id           |                                                            |
 | fromUid  | string   | 劃轉方uid           |                                                            |
 | toUid  | string   | 收款方uid           |                                                            |
 | toUserName  | string   | 收款方註冊賬號           |                                                            |
