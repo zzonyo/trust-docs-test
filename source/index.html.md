@@ -396,13 +396,13 @@ api.huobihktrust.com\n
 
 - 讀取權限：讀取權限用於對數據的查詢接口，例如：資產查詢等。
 
-### Q2：為什麽經常出現斷線、超時的情況？
+### Q2：為什麼經常出現斷線、超時的情況？
 
 請檢查是否屬於以下情況：
 
 1. 客戶端服務器如在中國大陸境內，連接的穩定性很難保證，建議使用日本AWS雲服務器進行訪問。
 
-### Q3：為什麽簽名認證總返回失敗？
+### Q3：為什麼簽名認證總返回失敗？
 
 請檢查如下可能的原因：
 
@@ -456,7 +456,7 @@ api.huobihktrust.com\n
 
 <a href='https://github.com/huobitrustapi/huobi_Java/blob/master/java_signature_demo.md'>JAVA簽名樣例代碼</a> | <a href='https://github.com/huobitrustapi/huobi_Python/blob/master/example/python_signature_demo.md'>Python簽名樣例代碼</a>   | <a href='https://github.com/huobitrustapi/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++簽名樣例代碼 </a>
 
-### Q7：調用接口返回Incorrect Access Key 錯誤是什麽原因？
+### Q7：調用接口返回Incorrect Access Key 錯誤是什麼原因？
 
 請檢查URL請求中Access Key是否傳遞準確，例如：
 
@@ -465,7 +465,7 @@ api.huobihktrust.com\n
 3. Access Key已經被刪除
 4. URL請求中參數拼接錯誤或者特殊字符沒有進行編碼導致服務端對AccessKey解析不正確
 
-### Q8：調用接口返回 gateway-internal-error 錯誤是什麽原因？
+### Q8：調用接口返回 gateway-internal-error 錯誤是什麼原因？
 
 請檢查是否屬於以下情況：
 
@@ -473,14 +473,14 @@ api.huobihktrust.com\n
 2. 發送數據格式是否正確（需要標準JSON格式）。
 3. POST請求頭header需要聲明為`Content-Type:application/json` 。
 
-### Q9：調用接口返回 login-required 錯誤是什麽原因？
+### Q9：調用接口返回 login-required 錯誤是什麼原因？
 
 請檢查是否屬於以下情況：
 
 1. 未將AccessKey參數帶入URL中。
 2. 未將Signature參數帶入URL中。
 
-### Q10: 調用Rest接口返回HTTP 405錯誤 method-not-allowed 是什麽原因？
+### Q10: 調用Rest接口返回HTTP 405錯誤 method-not-allowed 是什麼原因？
 
 該錯誤表明調用了不存在的Rest接口，請檢查Rest接口路徑是否準確。由於Nginx的設置，請求路徑(Path)是大小寫敏感的，請嚴格按照文檔聲明的大小寫。
 
@@ -565,7 +565,7 @@ API Key 權限：讀取<br>
 
 | 參數名稱   | 是否必須 | 類型   | 描述                                                         | 默認值 | 取值範圍 |
 | ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
-| outerUserId | true     | string | （外部系统用户id）外部系统用户唯一标识 |        |          |
+| outerUserId | true     | string | （外部系統用戶id）外部系統用戶唯一標識 |        |          |
 
 
 > Response:
@@ -595,11 +595,11 @@ data字段說明
 
 | 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
 | -------- | -------- | -------------- | ------------------------------------------------------------ |
-| outerUserId  | string   | 外部系统用户标识           |                                                            |
+| outerUserId  | string   | 外部系統用戶標識           |                                                            |
 | outerUid   | string   | 外部uid           |                                                            |
 
 
-# 划转相關
+# 劃轉相關
 
 ## 簡介
 
@@ -622,12 +622,12 @@ API Key 權限：讀取<br>
 | ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
 | clientOrderId | false     | string | 劃轉訂單編號 |        |          |
 | currency | false     | string | 幣種 |        |          |
-| status | false     | string | 狀態 |        |      狀態 枚举: jumio,audit,audit_refuse,multi_audit_refuse,multi_audit_fail,success,fail 枚举备注: jumio :人脸识别验证 audit :人工审核中 audit_refuse :人工审核拒绝 multi_audit_refuse :多人审批验证中 multi_audit_fail :多人审批验证失败 success :划转成功 fail :划转失败     |
-| startTime | false     | string | 开始时间 |        |          |
-| endTime | false     | string | 结束时间 |        |          |
-| direction | false     | string | 分页方向 |        |          |
-| fromId | false     | string | 分页开始id |        |          |
-| size | false     | string | 分页大小 |        |          |
+| status | false     | string | 狀態 |        |      狀態 枚舉: jumio,audit,audit_refuse,multi_audit_refuse,multi_audit_fail,success,fail 枚舉備註: jumio :人臉識別驗證 audit :人工審核中 audit_refuse :人工審核拒絕 multi_audit_refuse :多人審批驗證中 multi_audit_fail :多人審批驗證失敗 success :劃轉成功 fail :劃轉失敗     |
+| startTime | false     | string | 開始時間 |        |          |
+| endTime | false     | string | 結束時間 |        |          |
+| direction | false     | string | 分頁方向 |        |          |
+| fromId | false     | string | 分頁開始id |        |          |
+| size | false     | string | 分頁大小 |        |          |
 
 
 > Response:
@@ -645,7 +645,7 @@ API Key 權限：讀取<br>
       "currency": "usdt",
       "state": "audit_refuse",
       "amount": 10120.558300000000000000,
-      "refuse": "拒绝原因",
+      "refuse": "拒絕原因",
       "createdTime": 1637075011000,
       "updatedTime": 1637075011000
     },
@@ -658,7 +658,7 @@ API Key 權限：讀取<br>
       "currency": "usdt",
       "state": "audit_refuse",
       "amount": 10120.558300000000000000",
-      "refuse": "拒绝原因",
+      "refuse": "拒絕原因",
       "createdTime": 1637075011000,
       "updatedTime": 1637075011000
     }
@@ -679,103 +679,12 @@ data字段說明
 
 | 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
 | -------- | -------- | -------------- | ------------------------------------------------------------ |
-| id  | number   | 数据id           |                                                            |
-| clientOrderId  | string   | 劃轉订单id           |                                                            |
+| id  | number   | 數據id           |                                                            |
+| clientOrderId  | string   | 劃轉訂單id           |                                                            |
 | fromUid  | string   | 劃轉方uid           |                                                            |
 | toUid  | string   | 收款方uid           |                                                            |
 | toUserName  | string   | 收款方註冊賬號           |                                                            |
-| state  | string   | 狀態 枚举: jumio,audit,audit_refuse,multi_audit_refuse,multi_audit_fail,success,fail 枚举备注: jumio :人脸识别验证 audit :人工审核中 audit_refuse :人工审核拒绝 multi_audit_refuse :多人审批验证中 multi_audit_fail :多人审批验证失败 success :划转成功 fail :划转失败          |                                                            |
-| state  | string   | 狀態           |                                                            |
-| amount   | number   | 金額           |                                                            |
-| refuse  | string   | 拒絕原因           |                                                            |
-| createdTime  | integer   | 創建時間           |                                                            |
-| updatedTime  | integer   | 更新時間           |                                                            |
-
-## UID劃轉記錄分页查詢
-
-API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s
-
-### HTTP 請求
-
-- GET `/v1/open/api/uid-transfer/page`
-
-### 請求參數
-
-| 參數名稱   | 是否必須 | 類型   | 描述                                                         | 默認值 | 取值範圍 |
-| ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
-| currency | false     | string | 幣種 |        |          |
-| clientOrderId | false     | string | 划转订单 |        |          |
-| status | false     | string | 订单状态 |        |     狀態 枚举: jumio,audit,audit_refuse,multi_audit_refuse,multi_audit_fail,success,fail 枚举备注: jumio :人脸识别验证 audit :人工审核中 audit_refuse :人工审核拒绝 multi_audit_refuse :多人审批验证中 multi_audit_fail :多人审批验证失败 success :划转成功 fail :划转失败      |
-| createTime | false     | object | 申请时间 |        |          |
-| updateTime | false     | object | 申请时间 |        |          |
-| current | false     | integer | 当前页码 |        |          |
-| size | false     | string | 分页大小 |        |          |
-| direction | false     | integer | 排序方向 -1asc 1desc |        |          |
-
-createTime/updateTime 字段說明
-
-| 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
-| -------- | -------- | -------------- | ------------------------------------------------------------ |
-| start  | integer   | 开始时间           |        精确到毫秒  闭                                                 |
-| end  | integer   | 结束时间           |          精确到毫秒  开                                              |
-
-
-> Response:
-
-```json
-{
-  "code": 200,
-  "data": [
-    {
-      "id": 1,
-      "clientOrderId": "12312223131",
-      "fromUid": "123123131",
-      "toUid": "23213131312",
-      "toUserName": "test@163.com",
-      "currency": "usdt",
-      "state": "audit_refuse",
-      "amount": 10120.558300000000000000,
-      "refuse": "拒绝原因",
-      "createdTime": 1637075011000,
-      "updatedTime": 1637075011000
-    },
-    {
-      "id": 2,
-      "clientOrderId": "12312223131",
-      "fromUid": "12312223131",
-      "toUid": "2321313331312",
-      "toUserName": "tes12t@163.com",
-      "currency": "usdt",
-      "state": "audit_refuse",
-      "amount": 10120.558300000000000000",
-      "refuse": "拒绝原因",
-      "createdTime": 1637075011000,
-      "updatedTime": 1637075011000
-    }
-  ],
-  "success": true
-}
-```
-
-### 響應數據
-
-| 參數名稱 | 是否必須 | 數據類型 | 描述     | 取值範圍                                                     |
-| -------- | -------- | -------- | -------- | ------------------------------------------------------------ |
-| code         | true    | integer     | 狀態碼  | |
-| message      | false   | string    | 錯誤描述（如有）| |
-| data         | false   | object    | 業務數據 ||
-
-data字段說明
-
-| 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
-| -------- | -------- | -------------- | ------------------------------------------------------------ |
-| id  | number   | 数据id           |                                                            |
-| clientOrderId  | string   | 劃轉订单id           |                                                            |
-| fromUid  | string   | 劃轉方uid           |                                                            |
-| toUid  | string   | 收款方uid           |                                                            |
-| toUserName  | string   | 收款方註冊賬號           |                                                            |
-| state  | string   | 狀態 枚举: jumio,audit,audit_refuse,multi_audit_refuse,multi_audit_fail,success,fail 枚举备注: jumio :人脸识别验证 audit :人工审核中 audit_refuse :人工审核拒绝 multi_audit_refuse :多人审批验证中 multi_audit_fail :多人审批验证失败 success :划转成功 fail :划转失败          |                                                            |
+| state  | string   | 狀態 枚舉: jumio,audit,audit_refuse,multi_audit_refuse,multi_audit_fail,success,fail 枚舉備註: jumio :人臉識別驗證 audit :人工審核中 audit_refuse :人工審核拒絕 multi_audit_refuse :多人審批驗證中 multi_audit_fail :多人審批驗證失敗 success :劃轉成功 fail :劃轉失敗          |                                                            |
 | state  | string   | 狀態           |                                                            |
 | amount   | number   | 金額           |                                                            |
 | refuse  | string   | 拒絕原因           |                                                            |
@@ -783,7 +692,7 @@ data字段說明
 | updatedTime  | integer   | 更新時間           |                                                            |
 
 
-## UID划转
+## UID劃轉
 
 API Key 權限：寫權限<br>
 限頻值（NEW）：100次/2s
@@ -796,10 +705,10 @@ API Key 權限：寫權限<br>
 
 | 參數名稱   | 是否必須 | 類型   | 描述                                                         | 默認值 | 取值範圍 |
 | ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
-| toUid | true     | integer | 收款方用户uid |        |          |
-| phone | true     | string | 收款方手机号后四位 |        |          |
+| toUid | true     | integer | 收款方用戶uid |        |          |
+| phone | true     | string | 收款方手機號後四位 |        |          |
 | currency | true     | string | 幣種 |        |          |
-| amount | true     | number | 金额 |        |          |
+| amount | true     | number | 金額 |        |          |
 
 > Response:
 
@@ -825,7 +734,7 @@ data字段說明
 
 | 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
 | -------- | -------- | -------------- | ------------------------------------------------------------ |
-| clientOrderId  | string   | 劃轉订单id           |                                                            |
+| clientOrderId  | string   | 劃轉訂單id           |                                                            |
 
 
 # 賬戶相關
@@ -925,7 +834,7 @@ price字段說明（數據來源火幣 Global）
 | open      | number   | 24小時開盤價    |                                                            |
 | amount    | number   | 24小時成交量    |                                                            |
 | vol       | number   | 24小時成交額    |                                                            |
-| count     | number   | 24小時成交筆數	  |
+| count     | number   | 24小時成交筆數   |
 
 
 
@@ -952,12 +861,12 @@ API Key 權限：讀取<br>
 | 參數名稱   | 是否必須 | 類型   | 描述    | 默認值 | 取值範圍 |
 | --------- | -------- | ------ | --- | ------ | -------- |
 | currency | false     | string | 幣種 |        |          |
-| startTime | false     | long | 查询起始时间(毫秒) |        |          |
-| endTime | false     | long | 查询结束时间(毫秒) |        |          |
-| from | false     | long | 查询起始ID |        |          |
-| direct | false     | string | 方向："prev", "next"（prev 时间由近及远， next时间由远及近） |        |          |
-| size | false     | int | 分页查询查询结果条数（如不传，默认每页展示10条记录，取值区间[1,500]） |        |          |
-| state | false     | int | 提币状态代码集合(多个用英文逗号分隔) 提币单状态:(1, "pre-submitted"),(2, "invalid"),(3, "submitted"),(4, "reexamine"),(5, "canceled"),(6, "pass"),(7, "reject"),(8, "pre-transfer"),(9, "wallet-transfer"),(10, "wallet-reject"),(11, "confirmed"),(12, "confirm-error"),(13, "repealed"),(14, "normal-account-frozen"),(20, "created-without-risk-action"),(21, "account-frozen"),(22, "risk-action-assign"),(23, "risk-action-success"),(24, "risk-action-fail"),(25, "risk-action-timeout"),(30, "pre-withdraw-created"),(31, "pre-withdraw-confirmed"),(32, "pre-withdraw-launch-begin"),(33, "pre-withdraw-launch-success"),(34, "pre-withdraw-launch-failed"),(35, "pre-withdraw-canceled"),(40, "settlement-withdraw-processing"),(41, "settlement-withdraw-partially-completed"),(42, "settlement-withdraw-failed"),(43, "reexamine-reject"),(44, "reexamine-dismissed") |        |          |
+| startTime | false     | long | 查詢起始時間(毫秒) |        |          |
+| endTime | false     | long | 查詢結束時間(毫秒) |        |          |
+| from | false     | long | 查詢起始ID |        |          |
+| direct | false     | string | 方向："prev", "next"（prev 時間由近及遠， next時間由遠及近） |        |          |
+| size | false     | int | 分頁查詢查詢結果條數（如不傳，默認每頁展示10條記錄，取值區間[1,500]） |        |          |
+| state | false     | int | 提幣狀態代碼集合(多個用英文逗號分隔) 提幣單狀態:(1, "pre-submitted"),(2, "invalid"),(3, "submitted"),(4, "reexamine"),(5, "canceled"),(6, "pass"),(7, "reject"),(8, "pre-transfer"),(9, "wallet-transfer"),(10, "wallet-reject"),(11, "confirmed"),(12, "confirm-error"),(13, "repealed"),(14, "normal-account-frozen"),(20, "created-without-risk-action"),(21, "account-frozen"),(22, "risk-action-assign"),(23, "risk-action-success"),(24, "risk-action-fail"),(25, "risk-action-timeout"),(30, "pre-withdraw-created"),(31, "pre-withdraw-confirmed"),(32, "pre-withdraw-launch-begin"),(33, "pre-withdraw-launch-success"),(34, "pre-withdraw-launch-failed"),(35, "pre-withdraw-canceled"),(40, "settlement-withdraw-processing"),(41, "settlement-withdraw-partially-completed"),(42, "settlement-withdraw-failed"),(43, "reexamine-reject"),(44, "reexamine-dismissed") |        |          |
 
 
 > Response:
@@ -1018,14 +927,14 @@ data字段說明
 | chain  | string   | 凍結金額        |                                                            |
 | errorCode     | object   | 錯誤碼    |                                                            |
 | errorMsg     | object   | 錯誤信息    |                                                            |
-| fees     | object   | 手续费	    |                                                            |
+| fees     | object   | 手續費     |                                                            |
 | id     | object   | id    |                                                            |
 | label     | object   | 標籤    |                                                            |
-| state     | object   | 状态    |                                                            |
+| state     | object   | 狀態    |                                                            |
 | toAddress     | object   | 地址    |                                                            |
-| toAddressTag     | object   | 地址标签    |                                                            |
+| toAddressTag     | object   | 地址標簽    |                                                            |
 | txHash     | object   | txHash    |                                                            |
-| type     | string   | 类型    |                                                            |
+| type     | string   | 類型    |                                                            |
 | createAt     | long   | 創建時間    |                                                            |
 | updateAt     | long   | 更新時間    |                                                            |
 
@@ -1044,12 +953,12 @@ API Key 權限：讀取<br>
 | 參數名稱   | 是否必須 | 類型   | 描述    | 默認值 | 取值範圍 |
 | --------- | -------- | ------ | --- | ------ | -------- |
 | currency | false     | string | 幣種 |        |          |
-| startTime | false     | long | 查询起始时间(毫秒) |        |          |
-| endTime | false     | long | 查询结束时间(毫秒) |        |          |
-| from | false     | long | 查询起始ID |        |          |
-| direct | false     | string | 方向："prev", "next"（prev 时间由近及远， next时间由远及近） |        |          |
-| size | false     | int | 分页查询查询结果条数（如不传，默认每页展示10条记录，取值区间[1,500]） |        |          |
-| state | false     | int | 提币状态代码集合(多个用英文逗号分隔) 提币单状态:(1, "pre-submitted"),(2, "invalid"),(3, "submitted"),(4, "reexamine"),(5, "canceled"),(6, "pass"),(7, "reject"),(8, "pre-transfer"),(9, "wallet-transfer"),(10, "wallet-reject"),(11, "confirmed"),(12, "confirm-error"),(13, "repealed"),(14, "normal-account-frozen"),(20, "created-without-risk-action"),(21, "account-frozen"),(22, "risk-action-assign"),(23, "risk-action-success"),(24, "risk-action-fail"),(25, "risk-action-timeout"),(30, "pre-withdraw-created"),(31, "pre-withdraw-confirmed"),(32, "pre-withdraw-launch-begin"),(33, "pre-withdraw-launch-success"),(34, "pre-withdraw-launch-failed"),(35, "pre-withdraw-canceled"),(40, "settlement-withdraw-processing"),(41, "settlement-withdraw-partially-completed"),(42, "settlement-withdraw-failed"),(43, "reexamine-reject"),(44, "reexamine-dismissed") |        |          |
+| startTime | false     | long | 查詢起始時間(毫秒) |        |          |
+| endTime | false     | long | 查詢結束時間(毫秒) |        |          |
+| from | false     | long | 查詢起始ID |        |          |
+| direct | false     | string | 方向："prev", "next"（prev 時間由近及遠， next時間由遠及近） |        |          |
+| size | false     | int | 分頁查詢查詢結果條數（如不傳，默認每頁展示10條記錄，取值區間[1,500]） |        |          |
+| state | false     | int | 提幣狀態代碼集合(多個用英文逗號分隔) 提幣單狀態:(1, "pre-submitted"),(2, "invalid"),(3, "submitted"),(4, "reexamine"),(5, "canceled"),(6, "pass"),(7, "reject"),(8, "pre-transfer"),(9, "wallet-transfer"),(10, "wallet-reject"),(11, "confirmed"),(12, "confirm-error"),(13, "repealed"),(14, "normal-account-frozen"),(20, "created-without-risk-action"),(21, "account-frozen"),(22, "risk-action-assign"),(23, "risk-action-success"),(24, "risk-action-fail"),(25, "risk-action-timeout"),(30, "pre-withdraw-created"),(31, "pre-withdraw-confirmed"),(32, "pre-withdraw-launch-begin"),(33, "pre-withdraw-launch-success"),(34, "pre-withdraw-launch-failed"),(35, "pre-withdraw-canceled"),(40, "settlement-withdraw-processing"),(41, "settlement-withdraw-partially-completed"),(42, "settlement-withdraw-failed"),(43, "reexamine-reject"),(44, "reexamine-dismissed") |        |          |
 
 
 > Response:
@@ -1112,9 +1021,9 @@ data字段說明
 | errorCode     | object   | 錯誤碼    |                                                            |
 | errorMsg     | object   | 錯誤信息    |                                                            |
 | id     | object   | id    |                                                            |
-| state     | object   | 状态    |                                                            |
+| state     | object   | 狀態    |                                                            |
 | txHash     | object   | txHash    |                                                            |
-| type     | string   | 类型    |                                                            |
+| type     | string   | 類型    |                                                            |
 | createAt     | long   | 創建時間    |                                                            |
 | updateAt     | long   | 更新時間    |                                                            |
 
@@ -1451,13 +1360,13 @@ www.huobihktrust.com\n
 
 - 讀取權限：讀取權限用於對數據的查詢接口，例如：資產查詢等。
 
-### Q2：為什麽經常出現斷線、超時的情況？
+### Q2：為什麼經常出現斷線、超時的情況？
 
 請檢查是否屬於以下情況：
 
 1. 客戶端服務器如在中國大陸境內，連接的穩定性很難保證，建議使用日本AWS雲服務器進行訪問。
 
-### Q3：為什麽簽名認證總返回失敗？
+### Q3：為什麼簽名認證總返回失敗？
 
 請檢查如下可能的原因：
 
@@ -1511,7 +1420,7 @@ www.huobihktrust.com\n
 
 <a href='https://github.com/huobitrustapi/huobi_Java/blob/master/java_signature_demo.md'>JAVA簽名樣例代碼</a> | <a href='https://github.com/huobitrustapi/huobi_Python/blob/master/example/python_signature_demo.md'>Python簽名樣例代碼</a>   | <a href='https://github.com/huobitrustapi/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++簽名樣例代碼 </a>
 
-### Q7：調用接口返回Incorrect Access Key 錯誤是什麽原因？
+### Q7：調用接口返回Incorrect Access Key 錯誤是什麼原因？
 
 請檢查URL請求中Access Key是否傳遞準確，例如：
 
@@ -1520,7 +1429,7 @@ www.huobihktrust.com\n
 3. Access Key已經被刪除
 4. URL請求中參數拼接錯誤或者特殊字符沒有進行編碼導致服務端對AccessKey解析不正確
 
-### Q8：調用接口返回 gateway-internal-error 錯誤是什麽原因？
+### Q8：調用接口返回 gateway-internal-error 錯誤是什麼原因？
 
 請檢查是否屬於以下情況：
 
@@ -1528,14 +1437,14 @@ www.huobihktrust.com\n
 2. 發送數據格式是否正確（需要標準JSON格式）。
 3. POST請求頭header需要聲明為`Content-Type:application/json` 。
 
-### Q9：調用接口返回 login-required 錯誤是什麽原因？
+### Q9：調用接口返回 login-required 錯誤是什麼原因？
 
 請檢查是否屬於以下情況：
 
 1. 未將AccessKey參數帶入URL中。
 2. 未將Signature參數帶入URL中。
 
-### Q10: 調用Rest接口返回HTTP 405錯誤 method-not-allowed 是什麽原因？
+### Q10: 調用Rest接口返回HTTP 405錯誤 method-not-allowed 是什麼原因？
 
 該錯誤表明調用了不存在的Rest接口，請檢查Rest接口路徑是否準確。由於Nginx的設置，請求路徑(Path)是大小寫敏感的，請嚴格按照文檔聲明的大小寫。
 
@@ -1607,7 +1516,7 @@ ${信託web頁面登錄url}?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&outerUs
 
 
 
-## 用戶基础信息查詢
+## 用戶基礎信息查詢
 
 API Key 權限：讀取<br>
 限頻值（NEW）：100次/2s
@@ -1620,7 +1529,7 @@ API Key 權限：讀取<br>
 
 | 參數名稱   | 是否必須 | 類型   | 描述                                                         | 默認值 | 取值範圍 |
 | ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
-| outerUserId | true     | string | （外部系统用户id）外部系统用户唯一标识 |        |          |
+| outerUserId | true     | string | （外部系統用戶id）外部系統用戶唯一標識 |        |          |
 
 
 > Response:
@@ -1650,11 +1559,11 @@ data字段說明
 
 | 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
 | -------- | -------- | -------------- | ------------------------------------------------------------ |
-| outerUserId  | string   | 外部系统用户标识           |                                                            |
+| outerUserId  | string   | 外部系統用戶標識           |                                                            |
 | outerUid   | string   | 外部uid           |                                                            |
 
 
-# 划转相關
+# 劃轉相關
 
 ## 簡介
 
@@ -1662,25 +1571,34 @@ data字段說明
 
 <aside class="notice">訪問賬戶相關的接口需要進行簽名認證。</aside>
 
-## UID劃轉記錄查詢
+## UID劃轉記錄分頁查詢
 
 API Key 權限：讀取<br>
 限頻值（NEW）：100次/2s
 
 ### HTTP 請求
 
-- GET `/v1/open/api/uid-transfer/list`
+- GET `/v1/open/api/uid-transfer/page`
 
 ### 請求參數
 
 | 參數名稱   | 是否必須 | 類型   | 描述                                                         | 默認值 | 取值範圍 |
 | ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
 | currency | false     | string | 幣種 |        |          |
-| startTime | false     | string | 开始时间 |        |          |
-| endTime | false     | string | 结束时间 |        |          |
-| direction | false     | string | 分页方向 |        |          |
-| fromId | false     | string | 分页开始id |        |          |
-| size | false     | string | 分页大小 |        |          |
+| clientOrderId | false     | string | 劃轉訂單 |        |          |
+| status | false     | string | 訂單狀態 |        |     狀態 枚舉: jumio,audit,audit_refuse,multi_audit_refuse,multi_audit_fail,success,fail 枚舉備註: jumio :人臉識別驗證 audit :人工審核中 audit_refuse :人工審核拒絕 multi_audit_refuse :多人審批驗證中 multi_audit_fail :多人審批驗證失敗 success :劃轉成功 fail :劃轉失敗      |
+| createTime | false     | object | 申請時間 |        |          |
+| updateTime | false     | object | 申請時間 |        |          |
+| current | false     | integer | 當前頁碼 |        |          |
+| size | false     | string | 分頁大小 |        |          |
+| direction | false     | integer | 排序方向 -1asc 1desc |        |          |
+
+createTime/updateTime 字段說明
+
+| 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
+| -------- | -------- | -------------- | ------------------------------------------------------------ |
+| start  | integer   | 開始時間           |        精確到毫秒  閉                                                 |
+| end  | integer   | 結束時間           |          精確到毫秒  開                                              |
 
 
 > Response:
@@ -1698,7 +1616,7 @@ API Key 權限：讀取<br>
       "currency": "usdt",
       "state": "audit_refuse",
       "amount": 10120.558300000000000000,
-      "refuse": "拒绝原因",
+      "refuse": "拒絕原因",
       "createdTime": 1637075011000,
       "updatedTime": 1637075011000
     },
@@ -1711,7 +1629,7 @@ API Key 權限：讀取<br>
       "currency": "usdt",
       "state": "audit_refuse",
       "amount": 10120.558300000000000000",
-      "refuse": "拒绝原因",
+      "refuse": "拒絕原因",
       "createdTime": 1637075011000,
       "updatedTime": 1637075011000
     }
@@ -1732,12 +1650,12 @@ data字段說明
 
 | 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
 | -------- | -------- | -------------- | ------------------------------------------------------------ |
-| id  | number   | 数据id           |                                                            |
-| clientOrderId  | string   | 劃轉订单id           |                                                            |
+| id  | number   | 數據id           |                                                            |
+| clientOrderId  | string   | 劃轉訂單id           |                                                            |
 | fromUid  | string   | 劃轉方uid           |                                                            |
 | toUid  | string   | 收款方uid           |                                                            |
 | toUserName  | string   | 收款方註冊賬號           |                                                            |
-| state  | string   | 狀態 枚举: jumio,audit,audit_refuse,multi_audit_refuse,multi_audit_fail,success,fail 枚举备注: jumio :人脸识别验证 audit :人工审核中 audit_refuse :人工审核拒绝 multi_audit_refuse :多人审批验证中 multi_audit_fail :多人审批验证失败 success :划转成功 fail :划转失败          |                                                            |
+| state  | string   | 狀態 枚舉: jumio,audit,audit_refuse,multi_audit_refuse,multi_audit_fail,success,fail 枚舉備註: jumio :人臉識別驗證 audit :人工審核中 audit_refuse :人工審核拒絕 multi_audit_refuse :多人審批驗證中 multi_audit_fail :多人審批驗證失敗 success :劃轉成功 fail :劃轉失敗          |                                                            |
 | state  | string   | 狀態           |                                                            |
 | amount   | number   | 金額           |                                                            |
 | refuse  | string   | 拒絕原因           |                                                            |
@@ -1745,7 +1663,90 @@ data字段說明
 | updatedTime  | integer   | 更新時間           |                                                            |
 
 
-## UID划转
+## UID劃轉記錄查詢
+
+API Key 權限：讀取<br>
+限頻值（NEW）：100次/2s
+
+### HTTP 請求
+
+- GET `/v1/open/api/uid-transfer/list`
+
+### 請求參數
+
+| 參數名稱   | 是否必須 | 類型   | 描述                                                         | 默認值 | 取值範圍 |
+| ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
+| currency | false     | string | 幣種 |        |          |
+| startTime | false     | string | 開始時間 |        |          |
+| endTime | false     | string | 結束時間 |        |          |
+| direction | false     | string | 分頁方向 |        |          |
+| fromId | false     | string | 分頁開始id |        |          |
+| size | false     | string | 分頁大小 |        |          |
+
+
+> Response:
+
+```json
+{
+  "code": 200,
+  "data": [
+    {
+      "id": 1,
+      "clientOrderId": "12312223131",
+      "fromUid": "123123131",
+      "toUid": "23213131312",
+      "toUserName": "test@163.com",
+      "currency": "usdt",
+      "state": "audit_refuse",
+      "amount": 10120.558300000000000000,
+      "refuse": "拒絕原因",
+      "createdTime": 1637075011000,
+      "updatedTime": 1637075011000
+    },
+    {
+      "id": 2,
+      "clientOrderId": "12312223131",
+      "fromUid": "12312223131",
+      "toUid": "2321313331312",
+      "toUserName": "tes12t@163.com",
+      "currency": "usdt",
+      "state": "audit_refuse",
+      "amount": 10120.558300000000000000",
+      "refuse": "拒絕原因",
+      "createdTime": 1637075011000,
+      "updatedTime": 1637075011000
+    }
+  ],
+  "success": true
+}
+```
+
+### 響應數據
+
+| 參數名稱 | 是否必須 | 數據類型 | 描述     | 取值範圍                                                     |
+| -------- | -------- | -------- | -------- | ------------------------------------------------------------ |
+| code         | true    | integer     | 狀態碼  | |
+| message      | false   | string    | 錯誤描述（如有）| |
+| data         | false   | object    | 業務數據 ||
+
+data字段說明
+
+| 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
+| -------- | -------- | -------------- | ------------------------------------------------------------ |
+| id  | number   | 數據id           |                                                            |
+| clientOrderId  | string   | 劃轉訂單id           |                                                            |
+| fromUid  | string   | 劃轉方uid           |                                                            |
+| toUid  | string   | 收款方uid           |                                                            |
+| toUserName  | string   | 收款方註冊賬號           |                                                            |
+| state  | string   | 狀態 枚舉: jumio,audit,audit_refuse,multi_audit_refuse,multi_audit_fail,success,fail 枚舉備註: jumio :人臉識別驗證 audit :人工審核中 audit_refuse :人工審核拒絕 multi_audit_refuse :多人審批驗證中 multi_audit_fail :多人審批驗證失敗 success :劃轉成功 fail :劃轉失敗          |                                                            |
+| state  | string   | 狀態           |                                                            |
+| amount   | number   | 金額           |                                                            |
+| refuse  | string   | 拒絕原因           |                                                            |
+| createdTime  | integer   | 創建時間           |                                                            |
+| updatedTime  | integer   | 更新時間           |                                                            |
+
+
+## UID劃轉
 
 API Key 權限：寫權限<br>
 限頻值（NEW）：100次/2s
@@ -1758,10 +1759,10 @@ API Key 權限：寫權限<br>
 
 | 參數名稱   | 是否必須 | 類型   | 描述                                                         | 默認值 | 取值範圍 |
 | ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
-| toUid | true     | integer | 收款方用户uid |        |          |
-| phone | true     | string | 收款方手机号后四位 |        |          |
+| toUid | true     | integer | 收款方用戶uid |        |          |
+| phone | true     | string | 收款方手機號後四位 |        |          |
 | currency | true     | string | 幣種 |        |          |
-| amount | true     | number | 金额 |        |          |
+| amount | true     | number | 金額 |        |          |
 
 > Response:
 
@@ -1787,7 +1788,7 @@ data字段說明
 
 | 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
 | -------- | -------- | -------------- | ------------------------------------------------------------ |
-| clientOrderId  | string   | 劃轉订单id           |                                                            |
+| clientOrderId  | string   | 劃轉訂單id           |                                                            |
 
 
 # 賬戶相關
@@ -1887,7 +1888,7 @@ price字段說明（數據來源火幣 Global）
 | open      | number   | 24小時開盤價    |                                                            |
 | amount    | number   | 24小時成交量    |                                                            |
 | vol       | number   | 24小時成交額    |                                                            |
-| count     | number   | 24小時成交筆數	  |
+| count     | number   | 24小時成交筆數   |
 
 
 
@@ -1914,12 +1915,12 @@ API Key 權限：讀取<br>
 | 參數名稱   | 是否必須 | 類型   | 描述    | 默認值 | 取值範圍 |
 | --------- | -------- | ------ | --- | ------ | -------- |
 | currency | false     | string | 幣種 |        |          |
-| startTime | false     | long | 查询起始时间(毫秒) |        |          |
-| endTime | false     | long | 查询结束时间(毫秒) |        |          |
-| from | false     | long | 查询起始ID |        |          |
-| direct | false     | string | 方向："prev", "next"（prev 时间由近及远， next时间由远及近） |        |          |
-| size | false     | int | 分页查询查询结果条数（如不传，默认每页展示10条记录，取值区间[1,500]） |        |          |
-| state | false     | int | 提币状态代码集合(多个用英文逗号分隔) 提币单状态:(1, "pre-submitted"),(2, "invalid"),(3, "submitted"),(4, "reexamine"),(5, "canceled"),(6, "pass"),(7, "reject"),(8, "pre-transfer"),(9, "wallet-transfer"),(10, "wallet-reject"),(11, "confirmed"),(12, "confirm-error"),(13, "repealed"),(14, "normal-account-frozen"),(20, "created-without-risk-action"),(21, "account-frozen"),(22, "risk-action-assign"),(23, "risk-action-success"),(24, "risk-action-fail"),(25, "risk-action-timeout"),(30, "pre-withdraw-created"),(31, "pre-withdraw-confirmed"),(32, "pre-withdraw-launch-begin"),(33, "pre-withdraw-launch-success"),(34, "pre-withdraw-launch-failed"),(35, "pre-withdraw-canceled"),(40, "settlement-withdraw-processing"),(41, "settlement-withdraw-partially-completed"),(42, "settlement-withdraw-failed"),(43, "reexamine-reject"),(44, "reexamine-dismissed") |        |          |
+| startTime | false     | long | 查詢起始時間(毫秒) |        |          |
+| endTime | false     | long | 查詢結束時間(毫秒) |        |          |
+| from | false     | long | 查詢起始ID |        |          |
+| direct | false     | string | 方向："prev", "next"（prev 時間由近及遠， next時間由遠及近） |        |          |
+| size | false     | int | 分頁查詢查詢結果條數（如不傳，默認每頁展示10條記錄，取值區間[1,500]） |        |          |
+| state | false     | int | 提幣狀態代碼集合(多個用英文逗號分隔) 提幣單狀態:(1, "pre-submitted"),(2, "invalid"),(3, "submitted"),(4, "reexamine"),(5, "canceled"),(6, "pass"),(7, "reject"),(8, "pre-transfer"),(9, "wallet-transfer"),(10, "wallet-reject"),(11, "confirmed"),(12, "confirm-error"),(13, "repealed"),(14, "normal-account-frozen"),(20, "created-without-risk-action"),(21, "account-frozen"),(22, "risk-action-assign"),(23, "risk-action-success"),(24, "risk-action-fail"),(25, "risk-action-timeout"),(30, "pre-withdraw-created"),(31, "pre-withdraw-confirmed"),(32, "pre-withdraw-launch-begin"),(33, "pre-withdraw-launch-success"),(34, "pre-withdraw-launch-failed"),(35, "pre-withdraw-canceled"),(40, "settlement-withdraw-processing"),(41, "settlement-withdraw-partially-completed"),(42, "settlement-withdraw-failed"),(43, "reexamine-reject"),(44, "reexamine-dismissed") |        |          |
 
 
 > Response:
@@ -1980,14 +1981,14 @@ data字段說明
 | chain  | string   | 凍結金額        |                                                            |
 | errorCode     | object   | 錯誤碼    |                                                            |
 | errorMsg     | object   | 錯誤信息    |                                                            |
-| fees     | object   | 手续费	    |                                                            |
+| fees     | object   | 手續費     |                                                            |
 | id     | object   | id    |                                                            |
 | label     | object   | 標籤    |                                                            |
-| state     | object   | 状态    |                                                            |
+| state     | object   | 狀態    |                                                            |
 | toAddress     | object   | 地址    |                                                            |
-| toAddressTag     | object   | 地址标签    |                                                            |
+| toAddressTag     | object   | 地址標簽    |                                                            |
 | txHash     | object   | txHash    |                                                            |
-| type     | string   | 类型    |                                                            |
+| type     | string   | 類型    |                                                            |
 | createAt     | long   | 創建時間    |                                                            |
 | updateAt     | long   | 更新時間    |                                                            |
 
@@ -2006,12 +2007,12 @@ API Key 權限：讀取<br>
 | 參數名稱   | 是否必須 | 類型   | 描述    | 默認值 | 取值範圍 |
 | --------- | -------- | ------ | --- | ------ | -------- |
 | currency | false     | string | 幣種 |        |          |
-| startTime | false     | long | 查询起始时间(毫秒) |        |          |
-| endTime | false     | long | 查询结束时间(毫秒) |        |          |
-| from | false     | long | 查询起始ID |        |          |
-| direct | false     | string | 方向："prev", "next"（prev 时间由近及远， next时间由远及近） |        |          |
-| size | false     | int | 分页查询查询结果条数（如不传，默认每页展示10条记录，取值区间[1,500]） |        |          |
-| state | false     | int | 提币状态代码集合(多个用英文逗号分隔) 提币单状态:(1, "pre-submitted"),(2, "invalid"),(3, "submitted"),(4, "reexamine"),(5, "canceled"),(6, "pass"),(7, "reject"),(8, "pre-transfer"),(9, "wallet-transfer"),(10, "wallet-reject"),(11, "confirmed"),(12, "confirm-error"),(13, "repealed"),(14, "normal-account-frozen"),(20, "created-without-risk-action"),(21, "account-frozen"),(22, "risk-action-assign"),(23, "risk-action-success"),(24, "risk-action-fail"),(25, "risk-action-timeout"),(30, "pre-withdraw-created"),(31, "pre-withdraw-confirmed"),(32, "pre-withdraw-launch-begin"),(33, "pre-withdraw-launch-success"),(34, "pre-withdraw-launch-failed"),(35, "pre-withdraw-canceled"),(40, "settlement-withdraw-processing"),(41, "settlement-withdraw-partially-completed"),(42, "settlement-withdraw-failed"),(43, "reexamine-reject"),(44, "reexamine-dismissed") |        |          |
+| startTime | false     | long | 查詢起始時間(毫秒) |        |          |
+| endTime | false     | long | 查詢結束時間(毫秒) |        |          |
+| from | false     | long | 查詢起始ID |        |          |
+| direct | false     | string | 方向："prev", "next"（prev 時間由近及遠， next時間由遠及近） |        |          |
+| size | false     | int | 分頁查詢查詢結果條數（如不傳，默認每頁展示10條記錄，取值區間[1,500]） |        |          |
+| state | false     | int | 提幣狀態代碼集合(多個用英文逗號分隔) 提幣單狀態:(1, "pre-submitted"),(2, "invalid"),(3, "submitted"),(4, "reexamine"),(5, "canceled"),(6, "pass"),(7, "reject"),(8, "pre-transfer"),(9, "wallet-transfer"),(10, "wallet-reject"),(11, "confirmed"),(12, "confirm-error"),(13, "repealed"),(14, "normal-account-frozen"),(20, "created-without-risk-action"),(21, "account-frozen"),(22, "risk-action-assign"),(23, "risk-action-success"),(24, "risk-action-fail"),(25, "risk-action-timeout"),(30, "pre-withdraw-created"),(31, "pre-withdraw-confirmed"),(32, "pre-withdraw-launch-begin"),(33, "pre-withdraw-launch-success"),(34, "pre-withdraw-launch-failed"),(35, "pre-withdraw-canceled"),(40, "settlement-withdraw-processing"),(41, "settlement-withdraw-partially-completed"),(42, "settlement-withdraw-failed"),(43, "reexamine-reject"),(44, "reexamine-dismissed") |        |          |
 
 
 > Response:
@@ -2074,9 +2075,9 @@ data字段說明
 | errorCode     | object   | 錯誤碼    |                                                            |
 | errorMsg     | object   | 錯誤信息    |                                                            |
 | id     | object   | id    |                                                            |
-| state     | object   | 状态    |                                                            |
+| state     | object   | 狀態    |                                                            |
 | txHash     | object   | txHash    |                                                            |
-| type     | string   | 类型    |                                                            |
+| type     | string   | 類型    |                                                            |
 | createAt     | long   | 創建時間    |                                                            |
 | updateAt     | long   | 更新時間    |                                                            |
 **
