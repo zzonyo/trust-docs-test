@@ -1628,7 +1628,7 @@ createTime/updateTime 字段說明
       "toUserName": "tes12t@163.com",
       "currency": "usdt",
       "state": "audit_refuse",
-      "amount": 10120.558300000000000000",
+      "amount": 10120.558300000000000000,
       "refuse": "拒絕原因",
       "createdTime": 1637075011000,
       "updatedTime": 1637075011000
