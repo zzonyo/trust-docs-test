@@ -691,6 +691,97 @@ data字段說明
 | createdTime  | integer   | 創建時間           |                                                            |
 | updatedTime  | integer   | 更新時間           |                                                            |
 
+## UID劃轉記錄分页查詢
+
+API Key 權限：讀取<br>
+限頻值（NEW）：100次/2s
+
+### HTTP 請求
+
+- GET `/v1/open/api/uid-transfer/page`
+
+### 請求參數
+
+| 參數名稱   | 是否必須 | 類型   | 描述                                                         | 默認值 | 取值範圍 |
+| ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
+| currency | false     | string | 幣種 |        |          |
+| clientOrderId | false     | string | 划转订单 |        |          |
+| status | false     | string | 订单状态 |        |     狀態 枚举: jumio,audit,audit_refuse,multi_audit_refuse,multi_audit_fail,success,fail 枚举备注: jumio :人脸识别验证 audit :人工审核中 audit_refuse :人工审核拒绝 multi_audit_refuse :多人审批验证中 multi_audit_fail :多人审批验证失败 success :划转成功 fail :划转失败      |
+| createTime | false     | object | 申请时间 |        |          |
+| updateTime | false     | object | 申请时间 |        |          |
+| current | false     | integer | 当前页码 |        |          |
+| size | false     | string | 分页大小 |        |          |
+| direction | false     | integer | 排序方向 -1asc 1desc |        |          |
+
+createTime/updateTime 字段說明
+
+| 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
+| -------- | -------- | -------------- | ------------------------------------------------------------ |
+| start  | integer   | 开始时间           |        精确到毫秒  闭                                                 |
+| end  | integer   | 结束时间           |          精确到毫秒  开                                              |
+
+
+> Response:
+
+```json
+{
+  "code": 200,
+  "data": [
+    {
+      "id": 1,
+      "clientOrderId": "12312223131",
+      "fromUid": "123123131",
+      "toUid": "23213131312",
+      "toUserName": "test@163.com",
+      "currency": "usdt",
+      "state": "audit_refuse",
+      "amount": 10120.558300000000000000,
+      "refuse": "拒绝原因",
+      "createdTime": 1637075011000,
+      "updatedTime": 1637075011000
+    },
+    {
+      "id": 2,
+      "clientOrderId": "12312223131",
+      "fromUid": "12312223131",
+      "toUid": "2321313331312",
+      "toUserName": "tes12t@163.com",
+      "currency": "usdt",
+      "state": "audit_refuse",
+      "amount": 10120.558300000000000000",
+      "refuse": "拒绝原因",
+      "createdTime": 1637075011000,
+      "updatedTime": 1637075011000
+    }
+  ],
+  "success": true
+}
+```
+
+### 響應數據
+
+| 參數名稱 | 是否必須 | 數據類型 | 描述     | 取值範圍                                                     |
+| -------- | -------- | -------- | -------- | ------------------------------------------------------------ |
+| code         | true    | integer     | 狀態碼  | |
+| message      | false   | string    | 錯誤描述（如有）| |
+| data         | false   | object    | 業務數據 ||
+
+data字段說明
+
+| 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
+| -------- | -------- | -------------- | ------------------------------------------------------------ |
+| id  | number   | 数据id           |                                                            |
+| clientOrderId  | string   | 劃轉订单id           |                                                            |
+| fromUid  | string   | 劃轉方uid           |                                                            |
+| toUid  | string   | 收款方uid           |                                                            |
+| toUserName  | string   | 收款方註冊賬號           |                                                            |
+| state  | string   | 狀態 枚举: jumio,audit,audit_refuse,multi_audit_refuse,multi_audit_fail,success,fail 枚举备注: jumio :人脸识别验证 audit :人工审核中 audit_refuse :人工审核拒绝 multi_audit_refuse :多人审批验证中 multi_audit_fail :多人审批验证失败 success :划转成功 fail :划转失败          |                                                            |
+| state  | string   | 狀態           |                                                            |
+| amount   | number   | 金額           |                                                            |
+| refuse  | string   | 拒絕原因           |                                                            |
+| createdTime  | integer   | 創建時間           |                                                            |
+| updatedTime  | integer   | 更新時間           |                                                            |
+
 
 ## UID划转
 
