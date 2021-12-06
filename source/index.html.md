@@ -708,7 +708,7 @@ API Key 權限：寫權限<br>
 | toUid | true     | integer | 收款方用戶uid |        |          |
 | phone | true     | string | 收款方手機號後四位 |        |          |
 | currency | true     | string | 幣種 |        |          |
-| amount | true     | number | 金額 |        |          |
+| amount | true     | number | 金額 |        |     mock: @float(0.0000000001,99999999999999999.9999999999,2)     |
 
 > Response:
 
@@ -1753,7 +1753,7 @@ API Key 權限：寫權限<br>
 
 ### HTTP 請求
 
-- GET `/v1/open/api/uid-transfer`
+- POST `/v1/open/api/uid-transfer`
 
 ### 請求參數
 
