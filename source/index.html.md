@@ -11,24 +11,6 @@ toc_footers:
 search: true
 ---
 
-# 更新日誌
-
-<style>
-table {
-    max-width:100%
-}
-table th {
-    white-space: nowrap; /*表頭內容強製在一行顯示*/
-}
-</style>
-
-
-
-| 生效時間<br>(UTC +8) | 接口     | 變化      | 摘要         |
-| ---------- | --------- | --------- | --------------- |
-| 2021.9.16 | - | - | - |
-
-
 # 簡介
 ---
 title: Huobi Trust API 文檔
@@ -1046,213 +1028,6 @@ data字段說明
 - **常見錯誤碼**：介紹該接口類下常見的錯誤碼及其說明。
 - **常見問題**：介紹該接口類下常見問題和解答。
 
-# 快速入門
-
-## 接入準備
-
-如需使用API ，請先登錄網頁端，完成API key的申請和權限配置，再據此文檔詳情進行開發和交易。
-
-您可以點擊 <a href='https://www.huobihktrust.com/zh-hk/user/api/ '>這裏 </a> 創建 API Key。
-
-每個用戶可創建20組Api Key，每個Api Key可對應設置讀取權限。
-
-權限說明如下：
-
-- 讀取權限：讀取權限用於對數據的查詢接口，例如：資產列表查詢等。
-
-創建成功後請務必記住以下信息：
-
-- `Access Key`  API 訪問密鑰
-
-- `Secret Key`  簽名認證加密所使用的密鑰（僅申請時可見）
-
-<aside class="notice">
-每個 API Key 最多可綁定 20個IP 地址(主機地址或網絡地址)。
-</aside>
-<aside class="warning">
-<red><b>風險提示</b></red>：這兩個密鑰與賬號安全緊密相關，無論何時都請勿將二者<b>同時</b>向其它人透露。API Key的泄露可能會造成您的資產損失（即使未開通提幣權限），若發現API Key泄露請盡快刪除該API Key。
-</aside>
-
-## SDK與代碼示例
-
-[Java](https://github.com/huobitrustapi/huobi_Java) | [Python3](https://github.com/huobitrustapi/huobi_Python) | [C++](https://github.com/huobitrustapi/huobi_Cpp) | [C#](https://github.com/huobitrustapi/huobi_CSharp) | [Go](https://github.com/huobitrustapi/huobi_golang)
-
-**其它代碼示例**
-
-[https://github.com/huobitrustapi?tab=repositories](https://github.com/huobitrustapi?tab=repositories)
-
-## 接口類型
-
-香港信托為用戶提供兩種接口，您可根據自己的使用場景和偏好來選擇適合的方式進行查詢資產。
-
-### REST API
-
-REST，即Representational State Transfer的縮寫，是目前較為流行的基於HTTP的一種通信機製，每一個URL代表一種資源。
-
-使用API進行資產查詢，建議開發者使用REST API進行操作。
-
-### WebSocket API
-
-WebSocket是HTML5一種新的協議（Protocol）。它實現了客戶端與服務器全雙工通信，通過一次簡單的握手就可以建立客戶端和服務器連接，服務器可以根據業務規則主動推送信息給客戶端。
-
-市場行情和買賣深度等信息，建議開發者使用WebSocket API進行獲取。
-
-**接口鑒權**
-
-以上兩種接口均包含公共接口和私有接口兩種類型。
-
-公共接口可用於獲取基礎信息和行情數據。公共接口無需認證即可調用。
-
-私有接口可用於交易管理和賬戶管理。每個私有請求必須使用您的API Key進行簽名驗證。
-
-## 接入URLs
-您可以使用www.huobihktrust.com域名。
-
-**REST API**
-
-**`https://www.huobihktrust.com`**
-
-<aside class="notice">
-請使用中國大陸以外的 IP 訪問Huobi Trust API。
-</aside>
-<aside class="notice">
-鑒於延遲高和穩定性差等原因，不建議通過代理的方式訪問Huobi Trust API。
-</aside>
-<aside class="notice">
-為保證API服務的穩定性，建議使用日本AWS雲服務器進行訪問。如使用中國大陸境內的客戶端服務器，連接的穩定性將難以保證。
-</aside>
-
-## 簽名認證
-
-### 簽名說明
-
-API 請求在通過 internet 傳輸的過程中極有可能被篡改，為了確保請求未被更改，除公共接口（基礎信息，行情數據）外的私有接口均必須使用您的 API Key 做簽名認證，以校驗參數或參數值在傳輸途中是否發生了更改。
-每一個API Key需要有適當的權限才能訪問相應的接口，每個新創建的API Key都需要分配權限。在使用接口前，請查看每個接口的權限類型，並確認你的API Key有相應的權限。
-
-一個合法的請求由以下幾部分組成：
-
-- 方法請求地址：即訪問服務器地址 www.huobihktrust.com，比如 www.huobihktrust.com/v1/open/apiKeyDemo。
-- API 訪問Id（AccessKeyId）：您申請的 API Key 中的 Access Key。
-- 簽名方法（SignatureMethod）：用戶計算簽名的基於哈希的協議，此處使用 HmacSHA256。
-- 簽名版本（SignatureVersion）：簽名協議的版本，此處使用2。
-- 時間戳（Timestamp）：您發出請求的時間 (UTC 時間)  。如：2017-05-11T16:22:06。在查詢請求中包含此值有助於防止第三方截取您的請求。
-- 必選和可選參數：每個方法都有一組用於定義 API 調用的必需參數和可選參數。可以在每個方法的說明中查看這些參數及其含義。
-  - 對於 GET 請求，每個方法自帶的參數都需要進行簽名運算。
-  - 對於 POST 請求，每個方法自帶的參數不進行簽名認證，並且需要放在 body 中。
-- 簽名：簽名計算得出的值，用於確保簽名有效和未被篡改。
-
-### 簽名步驟
-
-規範要計算簽名的請求 因為使用 HMAC 進行簽名計算時，使用不同內容計算得到的結果會完全不同。所以在進行簽名計算前，請先對請求進行規範化處理。下面以查詢某訂單詳情請求為例進行說明：
-
-查詢某訂單詳情時完整的請求URL
-
-`https://www.huobihktrust.com/v1/open/apiKeyDemo?`
-
-`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
-
-`&SignatureMethod=HmacSHA256`
-
-`&SignatureVersion=2`
-
-`&Timestamp=2017-05-11T15:19:30`
-
-`&order-id=1234567890`
-
-**1. 請求方法（GET 或 POST，WebSocket用GET），後面添加換行符 「\n」**
-
-例如：
-`GET\n`
-
-**2. 添加小寫的訪問域名，後面添加換行符 「\n」**
-
-例如：
-`
-www.huobihktrust.com\n
-`
-
-**3. 訪問方法的路徑，後面添加換行符 「\n」**
-
-例如apiKeyDemo：<br>
-`
-/v1/open/apiKeyDemo\n
-`
-
-例如WebSocket v2<br>
-`
-/ws/v2
-`
-
-**4. 對參數進行URL編碼，並且按照ASCII碼順序進行排序**
-
-例如，下面是請求參數的原始順序，且進行URL編碼後
-
-
-`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
-
-`demo-id=1234567890`
-
-`SignatureMethod=HmacSHA256`
-
-`SignatureVersion=2`
-
-`Timestamp=2017-05-11T15%3A19%3A30`
-
-<aside class="notice">
-使用 UTF-8 編碼，且進行了 URL 編碼，十六進製字符必須大寫，如 「:」 會被編碼為 「%3A」 ，空格被編碼為 「%20」。
-</aside>
-<aside class="notice">
-時間戳（Timestamp）需要以YYYY-MM-DDThh:mm:ss格式添加並且進行 URL 編碼。時間戳有效時間5分鐘。
-</aside>
-
-經過排序之後
-
-`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
-
-`SignatureMethod=HmacSHA256`
-
-`SignatureVersion=2`
-
-`Timestamp=2017-05-11T15%3A19%3A30`
-
-`demo-id=1234567890`
-
-**5. 按照以上順序，將各參數使用字符 「&」 連接**
-
-
-`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&demo-id=1234567890`
-
-**6. 組成最終的要進行簽名計算的字符串如下**
-
-`GET\n`
-
-`www.huobihktrust.com\n`
-
-`v1/open/apiKeyDemo\n`
-
-`AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&demo-id=1234567890`
-
-
-**7. 用上一步裏生成的 「請求字符串」 和你的密鑰 (Secret Key) 生成一個數字簽名**
-
-
-1. 將上一步得到的請求字符串和 API 私鑰作為兩個參數，調用HmacSHA256哈希函數來獲得哈希值。
-2. 將此哈希值用base-64編碼，得到的值作為此次接口調用的數字簽名。
-
-`4F65x5A2bLyMWVQj3Aqp+B4w+ivaA7n5Oi2SuYtCJ9o=`
-
-**8. 將生成的數字簽名加入到請求裏**
-
-對於Rest接口：
-
-1. 把所有必須的認證參數添加到接口調用的路徑參數裏
-2. 把數字簽名在URL編碼後加入到路徑參數裏，參數名為「Signature」。
-
-最終，發送到服務器的 API 請求應該為
-
-`https://www.huobihktrust.com/v1/open/apiKeyDemo?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&demo-id=1234567890&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
-
-
 # 接入說明
 
 ## 接口概覽
@@ -2080,6 +1855,97 @@ data字段說明
 | type     | string   | 類型    |                                                            |
 | createAt     | long   | 創建時間    |                                                            |
 | updateAt     | long   | 更新時間    |                                                            |
-**
 
-# 充币相关
+# 充幣相關
+## 簡介
+
+ 充幣相關接口提供了充幣地址查詢，充幣記錄查詢等功能。
+
+<aside class="notice">訪問充幣相關接口需要進行簽名認證。</aside>
+
+## 充幣地址查詢
+
+API Key 權限：讀取<br>
+限頻值（NEW）：100次/2s
+
+### HTTP 請求
+
+- GET `/v1/open/address/get`
+
+### 請求參數
+
+| 參數名稱   | 是否必須 | 類型   | 描述    | 默認值 | 取值範圍 |
+| --------- | -------- | ------ | --- | ------ | -------- |
+| uid | true     | long | 用戶uid  |        |          |
+| currency | true     | string | 幣種 |        |          |
+| chain | true     | string | 鏈 |        |          |
+| businessType | true     | string | 賬號類型 |   custody     | custody(普通託管)， dedicated(專戶託管)          |
+
+### 響應數據
+
+| 參數名稱 | 是否必須 | 數據類型    | 描述     | 取值範圍                                                     |
+| -------- | -------- |---------| -------- | ------------------------------------------------------------ |
+| code         | true    | integer | 狀態碼  | |
+| message      | false   | string  | 錯誤描述（如有）| |
+| data         | false   | object  | 業務數據 ||
+
+data字段說明
+
+| 參數名稱 | 數據類型    | 描述   | 取值範圍                                                     |
+| -------- |---------|------| ------------------------------------------------------------ |
+| id     | long    | 主鍵   |                                                            |
+| currency  | string  | 幣種   |                                                            |
+| chain  | string  | 鏈    |                                                            |
+| address   | string  | 地址   |                                                            |
+| businessType | string  | 賬戶類型 |                                                            |
+| weight | integer | 權重   |                                                            |
+
+## 充幣記錄查詢
+
+API Key 權限：讀取<br>
+限頻值（NEW）：100次/2s
+
+### HTTP 請求
+
+- GET `/v1/open/deposit/list`
+
+### 請求參數
+
+| 參數名稱      | 是否必須 | 類型     | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | 默認值 | 取值範圍  |
+|-----------| -------- |--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|-------|
+| currency  | false     | string | 幣種                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |     |       |
+| startTime | false     | long   | 查詢起始時間(毫秒)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |     |       |
+| endTime   | false     | long   | 查詢結束時間(毫秒)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |     |       |
+| pagenum   | false     | int    | 第幾頁                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | 1   |       |
+| pagesize  | false     | int    | 每頁記錄數                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | 10  | 0-200 |
+| state     | false     | int    | 提幣狀態代碼集合(多個用英文逗號分隔) 提幣單狀態:(1, "pre-submitted"),(2, "invalid"),(3, "submitted"),(4, "reexamine"),(5, "canceled"),(6, "pass"),(7, "reject"),(8, "pre-transfer"),(9, "wallet-transfer"),(10, "wallet-reject"),(11, "confirmed"),(12, "confirm-error"),(13, "repealed"),(14, "normal-account-frozen"),(20, "created-without-risk-action"),(21, "account-frozen"),(22, "risk-action-assign"),(23, "risk-action-success"),(24, "risk-action-fail"),(25, "risk-action-timeout"),(30, "pre-withdraw-created"),(31, "pre-withdraw-confirmed"),(32, "pre-withdraw-launch-begin"),(33, "pre-withdraw-launch-success"),(34, "pre-withdraw-launch-failed"),(35, "pre-withdraw-canceled"),(40, "settlement-withdraw-processing"),(41, "settlement-withdraw-partially-completed"),(42, "settlement-withdraw-failed"),(43, "reexamine-reject"),(44, "reexamine-dismissed") |     |       |
+
+### 響應數據
+
+| 參數名稱 | 是否必須 | 數據類型    | 描述     | 取值範圍                                                     |
+| -------- | -------- |---------| -------- | ------------------------------------------------------------ |
+| code         | true    | integer | 狀態碼  | |
+| message      | false   | string  | 錯誤描述（如有）| |
+| data         | false   | object  | 業務數據 ||
+
+data字段說明
+
+| 參數名稱     | 數據類型 | 描述 | 取值範圍                                                     |
+|----------|------|--| ------------------------------------------------------------ |
+| pagenum  | int  | 第幾頁 |                                                            |
+| pagesize | int  | 每頁記錄數 |                                                     |
+| rows     | int   | 總記錄數 |                                                         |
+| list     | list  | 數據列表 |                                                          |
+
+list字段說明
+
+| 參數名稱                | 數據類型   | 描述     | 取值範圍                                                     |
+|---------------------|--------|--------| ------------------------------------------------------------ |
+| id                  | long   | 訂單id   |                                                            |
+| userId              | long   | 用戶id   |                                                            |
+| currency            | string | 幣種     |                                                            |
+| amount              | string | 金額     |                                                            |
+| txHash              | string | 交易Hash |                                                            |
+| depositSafeConfirms | int    | 安全確認次數 |                                                            |
+| state               | string | 狀態     |confirming(确认中),orphan(已孤立),orphan-confirming(孤立确认中),rphan-confirmed(孤立确认),rollback-orphan(上账后孤立),rollback-confirming(上账后孤立在确认),rollback-confirmed(上账后孤立在快速上账),orphan-safe(孤立安全), rollback-safe(上账后被孤立在安全上账),waiting-tiny-amount(等待小额上账),large-amount-examine(大额等待审核),confirmed(已确认),safe(已完成：安全上账)|
+| businessType        | string | 賬戶類型   |                                                            |
