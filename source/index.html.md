@@ -612,6 +612,80 @@ data字段說明
 | outerUserId  | string   | 外部系統用戶標識           |                                                            |
 | outerUid   | string   | 外部uid           |                                                            |
 
+## 新增子賬號
+
+API Key 權限：交易<br>
+限頻值（NEW）：100次/2s
+
+### HTTP 請求
+
+- POST `/v1/open/uc/user/create`
+
+### 請求參數
+
+| 參數名稱   | 是否必須 | 類型   | 描述 | 默認值 | 取值範圍 |
+| ---------- | -------- | ------ |--| ------ | -------- |
+| loginName | true     | string | 用戶名，郵箱格式 |        |          |
+| password | true     | string | 密码(32位md5) |        |          |
+| repeatPassword | true     | string | 重复密码(32位md5) |        |          |
+| fingerprint | true     | string | 指纹(32位唯一值) |        |          |
+
+### 響應數據
+
+| 參數名稱 | 是否必須 | 數據類型    | 描述       | 取值範圍                                                     |
+| -------- | -------- |---------|----------| ------------------------------------------------------------ |
+| code         | true    | integer | 狀態碼      | |
+| message      | false   | string  | 錯誤描述（如有） | |
+| data         | false   | long    | 用户uid    ||
+
+## 获取子賬號列表
+
+API Key 權限：读取<br>
+限頻值（NEW）：100次/2s
+
+### HTTP 請求
+
+- POST `/v1/open/uc/user/queryChildList`
+
+### 請求參數
+
+| 參數名稱   | 是否必須 | 類型   | 描述 | 默認值 | 取值範圍 |
+| ---------- | -------- | ------ |--| ------ | -------- |
+| loginName | false     | string | 用戶名，郵箱格式 |        |          |
+| fromId | false     | int | 开始id，第一次请求时fromId传0，上一页时取第一个id,下一页时取最后一个id |        |          |
+| size | false     | int | 每页显示条数 |        |          |
+| direction | false     | int | 取值方向，1为下一页，-1为上一页 |        |          |
+| current | false     | int | 页码 |        |          |
+
+### 響應數據
+
+| 參數名稱  | 數據類型   | 描述       | 取值範圍                                                     |
+| -------- |--------|----------| ------------------------------------------------------------ |
+| code     | int    | 狀態碼      | |
+| message  | string | 錯誤描述（如有） | |
+| data     | object | 业务数据     ||
+
+data数据描述：
+
+| 參數名稱  | 數據類型    | 描述    | 取值範圍                                                     |
+| -------- |---------|-------| ------------------------------------------------------------ |
+| total     | integer | 总记录   | |
+| size  | int     | 每页记录数 | |
+| current     | int     | 当前页码  ||
+| pages     | int     | 总页数   ||
+| records     | object  | 业务数据  ||
+
+records数据描述：
+
+| 參數名稱      | 數據類型   | 描述      | 取值範圍      |
+|-----------|--------|---------|-----------|
+| uid       | long   | 用户uid   |           |
+| loginName | string | 登录名     |           |
+| rank      | int    | 用户等级    ||
+| status    | int    | 状态      | 1：正常 2：冻结 |
+| hasChild  | object | 是否有下级账号 ||
+
+
 # 賬戶相關
 
 ## 簡介
@@ -620,7 +694,7 @@ data字段說明
 
 <aside class="notice">訪問賬戶相關的接口需要進行簽名認證。</aside>
 
-## 賬戶信息查詢
+## 賬戶信息查詢(當前賬號)
 
 API Key 權限：讀取<br>
 限頻值（NEW）：100次/2s
@@ -711,7 +785,40 @@ price字段說明（數據來源火幣 Global）
 | vol       | number   | 24小時成交額    |                                                            |
 | count     | number   | 24小時成交筆數   |
 
+## 查询信托账户资产币种明细(支持子賬號)
 
+API Key 權限：讀取<br>
+限頻值（NEW）：100次/2s
+
+### HTTP 請求
+
+- GET `/v1/open/account/getByUserId`
+
+### 請求參數
+
+| 參數名稱      | 是否必須  | 類型     | 描述    | 默認值 | 取值範圍             |
+|-----------|-------|--------|-------| ------ |------------------|
+| uid       | ture  | long   | 用户uid |        |                  |
+| source    | ture  | string | 账户类型  |        | 资金账户：hbt-custody |
+| currency  | false | string | 幣種    |        |                  |
+
+### 響應數據
+
+| 參數名稱 | 是否必須 | 數據類型 | 描述     | 取值範圍                                                     |
+| -------- | -------- | -------- | -------- | ------------------------------------------------------------ |
+| code         | true    | integer     | 狀態碼  | |
+| message      | false   | string    | 錯誤描述（如有）| |
+| data         | false   | list    | 業務數據 ||
+
+data字段說明
+
+| 參數名稱      | 數據類型   | 描述   | 取值範圍   |
+|-----------|--------|------|--------|
+| currency  | string | 幣種   |        |
+| chain     | string | 鏈    |        |
+| state     | string | 賬號狀態 | normal |
+| balance   | string | 餘額   |        |
+| suspense  | string | 凍結金額 |        |
 
 
 # 資產記錄
@@ -1129,6 +1236,35 @@ data字段說明
 | -------- | -------- | -------------- | ------------------------------------------------------------ |
 | clientOrderId  | string   | 劃轉訂單id           |                                                            |
 
+## 賬號間劃轉
+
+API Key 權限：寫權限<br>
+限頻值（NEW）：100次/2s
+備註：用於母子賬號互相劃轉
+
+### HTTP 請求
+
+- POST `/v2/account/account-transfer`
+
+### 請求參數
+
+| 參數名稱   | 是否必須 | 類型     | 描述            | 默認值 | 取值範圍             |
+| ---------- | -------- |--------|---------------| ------ |------------------|
+| fromUser | true     | long   | 付款方用戶id(非uid) |        |                  |
+| toUser | true     | long   | 收款方用戶id(非uid) |        |                  |
+| fromAccountType | true     | string | 付款賬號類型        |        | custody          |
+| toAccountType | true     | string | 收款賬號類型        |        | custody          |
+| currency | true     | string | 幣種            |        |                  |
+| amount | true     | string | 金額            |        |                  |
+| direction | true     | int    | 劃轉方向          |        | 1：母向子劃轉  2：子向母劃轉 |
+
+### 響應數據
+
+| 參數名稱 | 是否必須 | 數據類型 | 描述     | 取值範圍                                                     |
+| -------- | -------- | -------- | -------- | ------------------------------------------------------------ |
+| code         | true    | integer     | 狀態碼  | |
+| message      | false   | string    | 錯誤描述（如有）| |
+
 
 # 充幣相關
 ## 簡介
@@ -1223,3 +1359,229 @@ list字段說明
 | depositSafeConfirms | int    | 安全確認次數 |                                                            |
 | state               | string | 狀態     |confirming(确认中),orphan(已孤立),orphan-confirming(孤立确认中),rphan-confirmed(孤立确认),rollback-orphan(上账后孤立),rollback-confirming(上账后孤立在确认),rollback-confirmed(上账后孤立在快速上账),orphan-safe(孤立安全), rollback-safe(上账后被孤立在安全上账),waiting-tiny-amount(等待小额上账),large-amount-examine(大额等待审核),confirmed(已确认),safe(已完成：安全上账)|
 | businessType        | string | 賬戶類型   |                                                            |
+
+# 提幣相關
+## 簡介
+
+提幣相關接口提供了增加提幣地址，提幣地址列表，提幣手續費查詢，提幣，提幣記錄查詢，幣種查詢，鏈查詢等功能。
+
+<aside class="notice">訪問提幣相關接口需要進行簽名認證。</aside>
+
+## 添加提幣地址
+
+API Key 權限：劃轉<br>
+限頻值（NEW）：100次/2s
+
+### HTTP 請求
+
+- POST `/v1/open/withdraw/address/add`
+
+### 請求參數
+
+| 參數名稱  | 是否必須 | 類型   | 描述 | 默認值 | 取值範圍 |
+| -------- | -------- | ------ |--| ------ | -------- |
+| currency | true     | string | 幣種 |        |          |
+| chain | true     | string | 鏈 |        |          |
+| address | true     | string | 地址 |       | 長度小於等於100       |
+| label | true     | string | 地址標識 |       | 唯一，長度小於等於20       |
+| withdrawTo | true     | int | 是否用於提幣 |       | 1：是 0：否    |
+| depositFrom | true     | int | 是否用於充幣 |       | 1：是 0：否    |
+| extra | true     | string | 受益人信息 |       | 可填寫用戶的uid    |
+
+### 響應數據
+
+| 參數名稱 | 是否必須 | 數據類型    | 描述     | 取值範圍                                                     |
+| -------- | -------- |---------| -------- | ------------------------------------------------------------ |
+| code         | true    | integer | 狀態碼  | |
+| message      | false   | string  | 錯誤描述（如有）| |
+| data         | false   | object  | 業務數據 ||
+
+data字段說明
+
+| 參數名稱 | 數據類型    | 描述   | 取值範圍                  |
+| -------- |---------|------|-----------------------|
+| orderId     | long    | 订单id |                       |
+| addressId  | long    | 地址id |                       |
+| state  | string  | 地址状态 | DONE(提交成功) FAIL(提交失败) |
+
+## 提幣地址列表分頁查询
+
+API Key 權限：讀取<br>
+限頻值（NEW）：100次/2s
+
+### HTTP 請求
+
+- POST `/v1/open/withdraw/address/list`
+
+### 請求參數
+
+| 參數名稱  | 是否必須 | 類型   | 描述 | 默認值 | 取值範圍 |
+| -------- | -------- | ------ |--| ------ | -------- |
+| uid | false     | long | 用户uid |        |          |
+| label | false     | string | 地址標識 |        |          |
+| currency | false     | string | 幣種 |        |          |
+| chain | false     | string | 鏈 |        |          |
+| startTime | false     | long | 查詢起始時間(毫秒) |        |          |
+| endTime | false     | long | 查詢結束時間(毫秒) |        |          |
+| from | false     | long | 查詢起始ID |        |          |
+| direct | false     | string | 方向：prev 上一页， next下一页 |        |          |
+| size | false     | int | 分頁查詢查詢結果條數（如不傳，默認每頁展示10條記錄，取值區間[1,20]） |        |          |
+| status | false     | string | new 新建，failed 认证失败，whitelisted 认证成功 |        |          |
+
+### 響應數據
+
+| 參數名稱 | 是否必須 | 數據類型    | 描述     | 取值範圍                                                     |
+| -------- | -------- |---------| -------- | ------------------------------------------------------------ |
+| code         | true    | integer | 狀態碼  | |
+| message      | false   | string  | 錯誤描述（如有）| |
+| data         | false   | list    | 業務數據 ||
+
+data字段說明
+
+| 參數名稱 | 數據類型   | 描述                                  | 取值範圍                  |
+| -------- |--------|-------------------------------------|-----------------------|
+| id     | long   | 地址id                                |                       |
+| currency  | string | 幣種                                  |                       |
+| chain  | string | 鏈                                   |                       |
+| address  | string | 地址                                  | |
+| label  | string | 地址標識                                | |
+| status  | string | new 新建，failed 认证失败，whitelisted 认证成功 | |
+| auditStatus  | int    | 上級審核狀態 1、审核中 2、通过 3、拒绝              | |
+| createdAt  | long   | 創建時間(時間戳)                           | |
+| updatedAt  | long   | 更新時間(時間戳)                           | |
+
+## 提幣費查詢
+
+API Key 權限：讀取<br>
+限頻值（NEW）：100次/2s
+使用場景：提幣時先查詢手續費，實際提幣金額=提幣金額-手續費
+
+### HTTP 請求
+
+- GET `/v1/open/withdraw/getWithdrawFee`
+
+### 請求參數
+
+| 參數名稱  | 是否必須 | 類型   | 描述 | 默認值 | 取值範圍 |
+| -------- | -------- | ------ |--| ------ | -------- |
+| amount | true     | string | 提幣金額(精度為幣種精度) |        |          |
+| currency | true     | string | 幣種 |        |          |
+| chain | false     | string | 鏈 |        |          |
+
+### 響應數據
+
+| 參數名稱  | 數據類型 | 描述         | 取值範圍                                                     |
+| --------  |------|------------| ------------------------------------------------------------ |
+| code      | integer | 狀態碼        | |
+| message   | string | 錯誤描述（如有）   | |
+| data      | string  | 業務數據： 手續費值 ||
+
+## 提幣
+
+API Key 權限：提幣<br>
+限頻值（NEW）：100次/2s
+注意事項：實際提幣金額=提幣金額-手續費
+
+### HTTP 請求
+
+- POST `/v1/open/withdraw/doWithdraw`
+
+### 請求參數
+
+| 參數名稱  | 是否必須 | 類型   | 描述 | 默認值 | 取值範圍 |
+| -------- | -------- | ------ |--| ------ | -------- |
+| amount | true     | string | 實際提幣金額(精度為幣種精度) |        |          |
+| currency | true     | string | 幣種 |        |          |
+| chain | true     | string | 鏈 |        |          |
+| toAddressId | true     | string | 地址id |        |          |
+| toAddress | true     | string | 地址 |        |          |
+| toAddressLabel | true     | string | 地址標識 |        |          |
+| withdrawType | true     | string | 提幣類型 |        |   fast(快速提幣),normal(普通提幣)       |
+| sourceOrderId | true     | string | 客戶訂單id(不能重複) |        |    長度<=64      |
+| source | true     | string | 客戶方標識(一個客戶固定一個值) |        |  示例：custody        |
+| uid | true     | string | 用戶uid |        |          |
+| fees | true     | string | 手續費(調用手續費接口獲取) |        |          |
+
+### 響應數據
+
+| 參數名稱  | 數據類型 | 描述       | 取值範圍                                                     |
+| -------- |------|----------| ------------------------------------------------------------ |
+| code     | integer | 狀態碼      | |
+| message  | string | 錯誤描述（如有） | |
+| data     | object  | 業務數據 ||
+
+data字段說明
+
+| 參數名稱 | 數據類型   | 描述   | 取值範圍                  |
+| -------- |--------|------|-----------------------|
+| withdrawOrderId     | long   | 訂單id |                       |
+| withdrawCreateResponse  | object | 訂單信息 |                       |
+
+withdrawCreateResponse字段說明
+
+| 參數名稱 | 數據類型   | 描述   | 取值範圍                  |
+| -------- |--------|------|-----------------------|
+| orderId     | long   | 訂單id |                       |
+| riskActionV2Data  | object | 風控信息 |                       |
+
+riskActionV2Data字段說明
+
+| 參數名稱 | 數據類型   | 描述   | 取值範圍                  |
+| -------- |--------|------|-----------------------|
+| orderState     | string | 訂單狀態 |                       |
+
+## 提幣記錄查詢
+
+API Key 權限：讀取<br>
+限頻值（NEW）：100次/2s
+
+### HTTP 請求
+
+- GET `/v1/open/withdraw/allList`
+
+### 請求參數
+
+| 參數名稱  | 是否必須 | 類型   | 描述 | 默認值 | 取值範圍 |
+| -------- | -------- | ------ |--| ------ | -------- |
+| uid | false     | long | 用戶uid |        |          |
+| currency | false     | string | 幣種 |        |          |
+| startTime | false     | long | 時間戳 |        |          |
+| endTime | false     | long | 時間戳 |        |          |
+| pagesize | false     | int | 每页显示条数 |    10    |    0-200      |
+| pagenum | false     | int | 第几页 |        |       |
+| ids | false     | string | 提幣訂單id，多個用,分割 |        |       |
+
+### 響應數據
+
+| 參數名稱  | 數據類型 | 描述       | 取值範圍                                                     |
+| ------- |------|----------| ------------------------------------------------------------ |
+| code    | integer | 狀態碼      | |
+| message | string | 錯誤描述（如有） | |
+| data    | object  | 業務數據 ||
+
+data字段說明
+
+| 參數名稱     | 數據類型 | 描述   | 取值範圍   |
+|----------   |  --|------|--------|
+| pagesize | int | 每页显示条数 |     |
+| pagenum  | int | 第几页    |        |
+| rows     | int | 總記錄數   |       |
+| list     | list | 業務數據   |        |
+
+list字段說明
+
+| 參數名稱      | 數據類型 | 描述     | 取值範圍      |
+|-----------|--|--------|-----------|
+| id        | long  | 訂單id      |     |
+| type      | sting  | 提幣類型      |        | 
+| currency  | string | 幣種        |        |   
+| chain     | string | 鏈         |        |      
+| toAddress | string | 地址        |        |     
+| amount    | string | 金額        |        |     
+| feee      | string | 手續費       |        |     
+| createAt  | long   | 創建時間（時間戳） |        |     
+| upateAt   | long   | 更新時間（時間戳） |        |     
+| state     | string | 狀態        |-1(初始化),1(待審核),2(初審通過),3(初審拒絕),4(複審通過),5(複審拒絕),6(複審駁回),11(自動審核),99(無效記錄) |     
+| dwState   | string | 提幣狀態 |   pre-submitted(待提交),submitted(已提交),reexamine(等待再次确认),canceled(已撤销),pass(审批通过),pre-transfer(钱包转账中),wallet-transfer(钱包已转账), normal-account-frozen(普通冻结),created-without-risk-action(提币触发风控),account-frozen(冻结成功),risk-action-assign(风控验证), risk-action-success(风控验证成功),risk-action-fail(风控验证失败),risk-action-timeout(风控动作超时), settlement-withdraw-processing(结算进行中),settlement-withdraw-partially-completed(结算部分完成), invalid(错误),reject(审批拒绝),wallet-reject(钱包拒绝),confirm-error(区块确认失败),repealed(人工撤销),settlement-withdraw-failed(结算失败), reexamine-reject(复审拒绝),reexamine-dismissed(复审驳回),confirmed(区块已确认)     |  
+
+
