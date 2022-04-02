@@ -342,6 +342,12 @@
                   <li>
                     <a href="#f3e2ff162f" class="toc-h2 toc-link" data-title="用戶基礎信息查詢">用戶基礎信息查詢</a>
                   </li>
+                  <li>
+                    <a href="#a5bb1a63e3" class="toc-h2 toc-link" data-title="新增子賬號">新增子賬號</a>
+                  </li>
+                  <li>
+                    <a href="#e23ea9ff59" class="toc-h2 toc-link" data-title="获取子賬號列表">获取子賬號列表</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -351,7 +357,10 @@
                     <a href="#82fb364030-2" class="toc-h2 toc-link" data-title="簡介">簡介</a>
                   </li>
                   <li>
-                    <a href="#d6a1ad08de" class="toc-h2 toc-link" data-title="賬戶信息查詢">賬戶信息查詢</a>
+                    <a href="#8f6c838c99" class="toc-h2 toc-link" data-title="賬戶信息查詢(當前賬號)">賬戶信息查詢(當前賬號)</a>
+                  </li>
+                  <li>
+                    <a href="#847d1a2354" class="toc-h2 toc-link" data-title="查询信托账户资产币种明细(支持子賬號)">查询信托账户资产币种明细(支持子賬號)</a>
                   </li>
               </ul>
           </li>
@@ -384,6 +393,9 @@
                   <li>
                     <a href="#uid-3" class="toc-h2 toc-link" data-title="UID劃轉">UID劃轉</a>
                   </li>
+                  <li>
+                    <a href="#c1beb49026" class="toc-h2 toc-link" data-title="賬號間劃轉">賬號間劃轉</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -397,6 +409,29 @@
                   </li>
                   <li>
                     <a href="#e0034031cc-2" class="toc-h2 toc-link" data-title="充幣記錄查詢">充幣記錄查詢</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#413e73287e" class="toc-h1 toc-link" data-title="提幣相關">提幣相關</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#82fb364030-6" class="toc-h2 toc-link" data-title="簡介">簡介</a>
+                  </li>
+                  <li>
+                    <a href="#47e361d3ea" class="toc-h2 toc-link" data-title="添加提幣地址">添加提幣地址</a>
+                  </li>
+                  <li>
+                    <a href="#b9eab9614a" class="toc-h2 toc-link" data-title="提幣地址列表分頁查询">提幣地址列表分頁查询</a>
+                  </li>
+                  <li>
+                    <a href="#80f4b381a0" class="toc-h2 toc-link" data-title="提幣費查詢">提幣費查詢</a>
+                  </li>
+                  <li>
+                    <a href="#068e326184" class="toc-h2 toc-link" data-title="提幣">提幣</a>
+                  </li>
+                  <li>
+                    <a href="#4973af6e72-2" class="toc-h2 toc-link" data-title="提幣記錄查詢">提幣記錄查詢</a>
                   </li>
               </ul>
           </li>
@@ -1176,22 +1211,276 @@ api.huobihktrust.com\n
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='a5bb1a63e3'>新增子賬號</h2>
+<p>API Key 權限：交易<br>
+限頻值（NEW）：100次/2s</p>
+<h3 id='http-4'>HTTP 請求</h3>
+<ul>
+<li>POST <code>/v1/open/uc/user/create</code></li>
+</ul>
+<h3 id='ba05bab92e-4'>請求參數</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>是否必須</th>
+<th>類型</th>
+<th>描述</th>
+<th>默認值</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>loginName</td>
+<td>true</td>
+<td>string</td>
+<td>用戶名，郵箱格式</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>password</td>
+<td>true</td>
+<td>string</td>
+<td>密码(32位md5)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>repeatPassword</td>
+<td>true</td>
+<td>string</td>
+<td>重复密码(32位md5)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fingerprint</td>
+<td>true</td>
+<td>string</td>
+<td>指纹(32位唯一值)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='8cee0e29db-3'>響應數據</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>是否必須</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>true</td>
+<td>integer</td>
+<td>狀態碼</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>false</td>
+<td>string</td>
+<td>錯誤描述（如有）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>false</td>
+<td>long</td>
+<td>用户uid</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='e23ea9ff59'>获取子賬號列表</h2>
+<p>API Key 權限：读取<br>
+限頻值（NEW）：100次/2s</p>
+<h3 id='http-5'>HTTP 請求</h3>
+<ul>
+<li>POST <code>/v1/open/uc/user/queryChildList</code></li>
+</ul>
+<h3 id='ba05bab92e-5'>請求參數</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>是否必須</th>
+<th>類型</th>
+<th>描述</th>
+<th>默認值</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>loginName</td>
+<td>false</td>
+<td>string</td>
+<td>用戶名，郵箱格式</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fromId</td>
+<td>false</td>
+<td>int</td>
+<td>开始id，第一次请求时fromId传0，上一页时取第一个id,下一页时取最后一个id</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>size</td>
+<td>false</td>
+<td>int</td>
+<td>每页显示条数</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>false</td>
+<td>int</td>
+<td>取值方向，1为下一页，-1为上一页</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>current</td>
+<td>false</td>
+<td>int</td>
+<td>页码</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='8cee0e29db-4'>響應數據</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>狀態碼</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>錯誤描述（如有）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>业务数据</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>data数据描述：</p>
+
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total</td>
+<td>integer</td>
+<td>总记录</td>
+<td></td>
+</tr>
+<tr>
+<td>size</td>
+<td>int</td>
+<td>每页记录数</td>
+<td></td>
+</tr>
+<tr>
+<td>current</td>
+<td>int</td>
+<td>当前页码</td>
+<td></td>
+</tr>
+<tr>
+<td>pages</td>
+<td>int</td>
+<td>总页数</td>
+<td></td>
+</tr>
+<tr>
+<td>records</td>
+<td>object</td>
+<td>业务数据</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>records数据描述：</p>
+
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uid</td>
+<td>long</td>
+<td>用户uid</td>
+<td></td>
+</tr>
+<tr>
+<td>loginName</td>
+<td>string</td>
+<td>登录名</td>
+<td></td>
+</tr>
+<tr>
+<td>rank</td>
+<td>int</td>
+<td>用户等级</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>int</td>
+<td>状态</td>
+<td>1：正常 2：冻结</td>
+</tr>
+<tr>
+<td>hasChild</td>
+<td>object</td>
+<td>是否有下级账号</td>
+<td></td>
+</tr>
+</tbody></table>
 <h1 id='c276029c72'>賬戶相關</h1><h2 id='82fb364030-2'>簡介</h2>
 <p>賬戶相關接口提供了賬戶、余額等查詢轉等功能。</p>
 
 <aside class="notice">訪問賬戶相關的接口需要進行簽名認證。</aside>
-<h2 id='d6a1ad08de'>賬戶信息查詢</h2>
+<h2 id='8f6c838c99'>賬戶信息查詢(當前賬號)</h2>
 <p>API Key 權限：讀取<br>
 限頻值（NEW）：100次/2s</p>
 
 <p>查詢指定類型賬戶，支持以下賬戶類型：</p>
 
 <p>hb-spot：資金賬戶， hbt-custody：交易賬戶</p>
-<h3 id='http-4'>HTTP 請求</h3>
+<h3 id='http-6'>HTTP 請求</h3>
 <ul>
 <li>GET <code>/v1/open/account/get</code></li>
 </ul>
-<h3 id='ba05bab92e-4'>請求參數</h3>
+<h3 id='ba05bab92e-6'>請求參數</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -1251,7 +1540,7 @@ api.huobihktrust.com\n
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='8cee0e29db-3'>響應數據</h3>
+</span></code></pre><h3 id='8cee0e29db-5'>響應數據</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -1379,6 +1668,123 @@ api.huobihktrust.com\n
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='847d1a2354'>查询信托账户资产币种明细(支持子賬號)</h2>
+<p>API Key 權限：讀取<br>
+限頻值（NEW）：100次/2s</p>
+<h3 id='http-7'>HTTP 請求</h3>
+<ul>
+<li>GET <code>/v1/open/account/getByUserId</code></li>
+</ul>
+<h3 id='ba05bab92e-7'>請求參數</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>是否必須</th>
+<th>類型</th>
+<th>描述</th>
+<th>默認值</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uid</td>
+<td>ture</td>
+<td>long</td>
+<td>用户uid</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>source</td>
+<td>ture</td>
+<td>string</td>
+<td>账户类型</td>
+<td></td>
+<td>资金账户：hbt-custody</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>false</td>
+<td>string</td>
+<td>幣種</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='8cee0e29db-6'>響應數據</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>是否必須</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>true</td>
+<td>integer</td>
+<td>狀態碼</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>false</td>
+<td>string</td>
+<td>錯誤描述（如有）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>false</td>
+<td>list</td>
+<td>業務數據</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>data字段說明</p>
+
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>幣種</td>
+<td></td>
+</tr>
+<tr>
+<td>chain</td>
+<td>string</td>
+<td>鏈</td>
+<td></td>
+</tr>
+<tr>
+<td>state</td>
+<td>string</td>
+<td>賬號狀態</td>
+<td>normal</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>string</td>
+<td>餘額</td>
+<td></td>
+</tr>
+<tr>
+<td>suspense</td>
+<td>string</td>
+<td>凍結金額</td>
+<td></td>
+</tr>
+</tbody></table>
 <h1 id='454d0ea4cd'>資產記錄</h1><h2 id='82fb364030-3'>簡介</h2>
 <p>資產記錄相關接口提供了充幣、提幣、劃轉記錄等查詢轉等功能。</p>
 
@@ -1386,11 +1792,11 @@ api.huobihktrust.com\n
 <h2 id='e0034031cc'>充幣記錄查詢</h2>
 <p>API Key 權限：讀取<br>
 限頻值（NEW）：100次/2s</p>
-<h3 id='http-5'>HTTP 請求</h3>
+<h3 id='http-8'>HTTP 請求</h3>
 <ul>
 <li>GET <code>/v2/external/deposit/finance/history</code></li>
 </ul>
-<h3 id='ba05bab92e-5'>請求參數</h3>
+<h3 id='ba05bab92e-8'>請求參數</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -1498,7 +1904,7 @@ api.huobihktrust.com\n
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='8cee0e29db-4'>響應數據</h3>
+</span></code></pre><h3 id='8cee0e29db-7'>響應數據</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -1637,11 +2043,11 @@ api.huobihktrust.com\n
 <h2 id='4973af6e72'>提幣記錄查詢</h2>
 <p>API Key 權限：讀取<br>
 限頻值（NEW）：100次/2s</p>
-<h3 id='http-6'>HTTP 請求</h3>
+<h3 id='http-9'>HTTP 請求</h3>
 <ul>
 <li>GET <code>/v2/external/deposit/finance/history</code></li>
 </ul>
-<h3 id='ba05bab92e-6'>請求參數</h3>
+<h3 id='ba05bab92e-9'>請求參數</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -1749,7 +2155,7 @@ api.huobihktrust.com\n
  </span><span class="p">],</span><span class="w">
  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='8cee0e29db-5'>響應數據</h3>
+</span></code></pre><h3 id='8cee0e29db-8'>響應數據</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -1872,11 +2278,11 @@ api.huobihktrust.com\n
 <h2 id='uid'>UID劃轉記錄分頁查詢</h2>
 <p>API Key 權限：讀取<br>
 限頻值（NEW）：100次/2s</p>
-<h3 id='http-7'>HTTP 請求</h3>
+<h3 id='http-10'>HTTP 請求</h3>
 <ul>
 <li>GET <code>/v1/open/api/uid-transfer/page</code></li>
 </ul>
-<h3 id='ba05bab92e-7'>請求參數</h3>
+<h3 id='ba05bab92e-10'>請求參數</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -2012,7 +2418,7 @@ api.huobihktrust.com\n
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='8cee0e29db-6'>響應數據</h3>
+</span></code></pre><h3 id='8cee0e29db-9'>響應數據</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -2125,11 +2531,11 @@ api.huobihktrust.com\n
 <h2 id='uid-2'>UID劃轉記錄查詢</h2>
 <p>API Key 權限：讀取<br>
 限頻值（NEW）：100次/2s</p>
-<h3 id='http-8'>HTTP 請求</h3>
+<h3 id='http-11'>HTTP 請求</h3>
 <ul>
 <li>GET <code>/v1/open/api/uid-transfer/list</code></li>
 </ul>
-<h3 id='ba05bab92e-8'>請求參數</h3>
+<h3 id='ba05bab92e-11'>請求參數</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -2225,7 +2631,7 @@ api.huobihktrust.com\n
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='8cee0e29db-7'>響應數據</h3>
+</span></code></pre><h3 id='8cee0e29db-10'>響應數據</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -2338,11 +2744,11 @@ api.huobihktrust.com\n
 <h2 id='uid-3'>UID劃轉</h2>
 <p>API Key 權限：寫權限<br>
 限頻值（NEW）：100次/2s</p>
-<h3 id='http-9'>HTTP 請求</h3>
+<h3 id='http-12'>HTTP 請求</h3>
 <ul>
 <li>POST <code>/v1/open/api/uid-transfer</code></li>
 </ul>
-<h3 id='ba05bab92e-9'>請求參數</h3>
+<h3 id='ba05bab92e-12'>請求參數</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -2397,7 +2803,7 @@ api.huobihktrust.com\n
     </span><span class="p">},</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='8cee0e29db-8'>響應數據</h3>
+</span></code></pre><h3 id='8cee0e29db-11'>響應數據</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -2447,6 +2853,107 @@ api.huobihktrust.com\n
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='c1beb49026'>賬號間劃轉</h2>
+<p>API Key 權限：寫權限<br>
+限頻值（NEW）：100次/2s
+備註：用於母子賬號互相劃轉</p>
+<h3 id='http-13'>HTTP 請求</h3>
+<ul>
+<li>POST <code>/v2/account/account-transfer</code></li>
+</ul>
+<h3 id='ba05bab92e-13'>請求參數</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>是否必須</th>
+<th>類型</th>
+<th>描述</th>
+<th>默認值</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fromUser</td>
+<td>true</td>
+<td>long</td>
+<td>付款方用戶id(非uid)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>toUser</td>
+<td>true</td>
+<td>long</td>
+<td>收款方用戶id(非uid)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fromAccountType</td>
+<td>true</td>
+<td>string</td>
+<td>付款賬號類型</td>
+<td></td>
+<td>custody</td>
+</tr>
+<tr>
+<td>toAccountType</td>
+<td>true</td>
+<td>string</td>
+<td>收款賬號類型</td>
+<td></td>
+<td>custody</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>true</td>
+<td>string</td>
+<td>幣種</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>string</td>
+<td>金額</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>direction</td>
+<td>true</td>
+<td>int</td>
+<td>劃轉方向</td>
+<td></td>
+<td>1：母向子劃轉  2：子向母劃轉</td>
+</tr>
+</tbody></table>
+<h3 id='8cee0e29db-12'>響應數據</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>是否必須</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>true</td>
+<td>integer</td>
+<td>狀態碼</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>false</td>
+<td>string</td>
+<td>錯誤描述（如有）</td>
+<td></td>
+</tr>
+</tbody></table>
 <h1 id='389519c673'>充幣相關</h1><h2 id='82fb364030-5'>簡介</h2>
 <p>充幣相關接口提供了充幣地址查詢，充幣記錄查詢等功能。</p>
 
@@ -2454,11 +2961,11 @@ api.huobihktrust.com\n
 <h2 id='c9efc405f9'>充幣地址查詢</h2>
 <p>API Key 權限：讀取<br>
 限頻值（NEW）：100次/2s</p>
-<h3 id='http-10'>HTTP 請求</h3>
+<h3 id='http-14'>HTTP 請求</h3>
 <ul>
 <li>GET <code>/v1/open/address/get</code></li>
 </ul>
-<h3 id='ba05bab92e-10'>請求參數</h3>
+<h3 id='ba05bab92e-14'>請求參數</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -2502,7 +3009,7 @@ api.huobihktrust.com\n
 <td>custody(普通託管)， dedicated(專戶託管)</td>
 </tr>
 </tbody></table>
-<h3 id='8cee0e29db-9'>響應數據</h3>
+<h3 id='8cee0e29db-13'>響應數據</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -2585,11 +3092,11 @@ api.huobihktrust.com\n
 <h2 id='e0034031cc-2'>充幣記錄查詢</h2>
 <p>API Key 權限：讀取<br>
 限頻值（NEW）：100次/2s</p>
-<h3 id='http-11'>HTTP 請求</h3>
+<h3 id='http-15'>HTTP 請求</h3>
 <ul>
 <li>GET <code>/v1/open/deposit/list</code></li>
 </ul>
-<h3 id='ba05bab92e-11'>請求參數</h3>
+<h3 id='ba05bab92e-15'>請求參數</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -2649,7 +3156,7 @@ api.huobihktrust.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='8cee0e29db-10'>響應數據</h3>
+<h3 id='8cee0e29db-14'>響應數據</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -2775,6 +3282,835 @@ api.huobihktrust.com\n
 <td>string</td>
 <td>賬戶類型</td>
 <td></td>
+</tr>
+</tbody></table>
+<h1 id='413e73287e'>提幣相關</h1><h2 id='82fb364030-6'>簡介</h2>
+<p>提幣相關接口提供了增加提幣地址，提幣地址列表，提幣手續費查詢，提幣，提幣記錄查詢，幣種查詢，鏈查詢等功能。</p>
+
+<aside class="notice">訪問提幣相關接口需要進行簽名認證。</aside>
+<h2 id='47e361d3ea'>添加提幣地址</h2>
+<p>API Key 權限：劃轉<br>
+限頻值（NEW）：100次/2s</p>
+<h3 id='http-16'>HTTP 請求</h3>
+<ul>
+<li>POST <code>/v1/open/withdraw/address/add</code></li>
+</ul>
+<h3 id='ba05bab92e-16'>請求參數</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>是否必須</th>
+<th>類型</th>
+<th>描述</th>
+<th>默認值</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency</td>
+<td>true</td>
+<td>string</td>
+<td>幣種</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>chain</td>
+<td>true</td>
+<td>string</td>
+<td>鏈</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>address</td>
+<td>true</td>
+<td>string</td>
+<td>地址</td>
+<td></td>
+<td>長度小於等於100</td>
+</tr>
+<tr>
+<td>label</td>
+<td>true</td>
+<td>string</td>
+<td>地址標識</td>
+<td></td>
+<td>唯一，長度小於等於20</td>
+</tr>
+<tr>
+<td>withdrawTo</td>
+<td>true</td>
+<td>int</td>
+<td>是否用於提幣</td>
+<td></td>
+<td>1：是 0：否</td>
+</tr>
+<tr>
+<td>depositFrom</td>
+<td>true</td>
+<td>int</td>
+<td>是否用於充幣</td>
+<td></td>
+<td>1：是 0：否</td>
+</tr>
+<tr>
+<td>extra</td>
+<td>true</td>
+<td>string</td>
+<td>受益人信息</td>
+<td></td>
+<td>可填寫用戶的uid</td>
+</tr>
+</tbody></table>
+<h3 id='8cee0e29db-15'>響應數據</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>是否必須</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>true</td>
+<td>integer</td>
+<td>狀態碼</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>false</td>
+<td>string</td>
+<td>錯誤描述（如有）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>false</td>
+<td>object</td>
+<td>業務數據</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>data字段說明</p>
+
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>long</td>
+<td>订单id</td>
+<td></td>
+</tr>
+<tr>
+<td>addressId</td>
+<td>long</td>
+<td>地址id</td>
+<td></td>
+</tr>
+<tr>
+<td>state</td>
+<td>string</td>
+<td>地址状态</td>
+<td>DONE(提交成功) FAIL(提交失败)</td>
+</tr>
+</tbody></table>
+<h2 id='b9eab9614a'>提幣地址列表分頁查询</h2>
+<p>API Key 權限：讀取<br>
+限頻值（NEW）：100次/2s</p>
+<h3 id='http-17'>HTTP 請求</h3>
+<ul>
+<li>POST <code>/v1/open/withdraw/address/list</code></li>
+</ul>
+<h3 id='ba05bab92e-17'>請求參數</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>是否必須</th>
+<th>類型</th>
+<th>描述</th>
+<th>默認值</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uid</td>
+<td>false</td>
+<td>long</td>
+<td>用户uid</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>label</td>
+<td>false</td>
+<td>string</td>
+<td>地址標識</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>currency</td>
+<td>false</td>
+<td>string</td>
+<td>幣種</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>chain</td>
+<td>false</td>
+<td>string</td>
+<td>鏈</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>false</td>
+<td>long</td>
+<td>查詢起始時間(毫秒)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>false</td>
+<td>long</td>
+<td>查詢結束時間(毫秒)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>from</td>
+<td>false</td>
+<td>long</td>
+<td>查詢起始ID</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>direct</td>
+<td>false</td>
+<td>string</td>
+<td>方向：prev 上一页， next下一页</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>size</td>
+<td>false</td>
+<td>int</td>
+<td>分頁查詢查詢結果條數（如不傳，默認每頁展示10條記錄，取值區間[1,20]）</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>false</td>
+<td>string</td>
+<td>new 新建，failed 认证失败，whitelisted 认证成功</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='8cee0e29db-16'>響應數據</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>是否必須</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>true</td>
+<td>integer</td>
+<td>狀態碼</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>false</td>
+<td>string</td>
+<td>錯誤描述（如有）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>false</td>
+<td>list</td>
+<td>業務數據</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>data字段說明</p>
+
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>long</td>
+<td>地址id</td>
+<td></td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>幣種</td>
+<td></td>
+</tr>
+<tr>
+<td>chain</td>
+<td>string</td>
+<td>鏈</td>
+<td></td>
+</tr>
+<tr>
+<td>address</td>
+<td>string</td>
+<td>地址</td>
+<td></td>
+</tr>
+<tr>
+<td>label</td>
+<td>string</td>
+<td>地址標識</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>new 新建，failed 认证失败，whitelisted 认证成功</td>
+<td></td>
+</tr>
+<tr>
+<td>auditStatus</td>
+<td>int</td>
+<td>上級審核狀態 1、审核中 2、通过 3、拒绝</td>
+<td></td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>long</td>
+<td>創建時間(時間戳)</td>
+<td></td>
+</tr>
+<tr>
+<td>updatedAt</td>
+<td>long</td>
+<td>更新時間(時間戳)</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='80f4b381a0'>提幣費查詢</h2>
+<p>API Key 權限：讀取<br>
+限頻值（NEW）：100次/2s
+使用場景：提幣時先查詢手續費，實際提幣金額=提幣金額-手續費</p>
+<h3 id='http-18'>HTTP 請求</h3>
+<ul>
+<li>GET <code>/v1/open/withdraw/getWithdrawFee</code></li>
+</ul>
+<h3 id='ba05bab92e-18'>請求參數</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>是否必須</th>
+<th>類型</th>
+<th>描述</th>
+<th>默認值</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>string</td>
+<td>提幣金額(精度為幣種精度)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>currency</td>
+<td>true</td>
+<td>string</td>
+<td>幣種</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>chain</td>
+<td>false</td>
+<td>string</td>
+<td>鏈</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='8cee0e29db-17'>響應數據</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>狀態碼</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>錯誤描述（如有）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>string</td>
+<td>業務數據： 手續費值</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='068e326184'>提幣</h2>
+<p>API Key 權限：提幣<br>
+限頻值（NEW）：100次/2s
+注意事項：實際提幣金額=提幣金額-手續費</p>
+<h3 id='http-19'>HTTP 請求</h3>
+<ul>
+<li>POST <code>/v1/open/withdraw/doWithdraw</code></li>
+</ul>
+<h3 id='ba05bab92e-19'>請求參數</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>是否必須</th>
+<th>類型</th>
+<th>描述</th>
+<th>默認值</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>string</td>
+<td>實際提幣金額(精度為幣種精度)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>currency</td>
+<td>true</td>
+<td>string</td>
+<td>幣種</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>chain</td>
+<td>true</td>
+<td>string</td>
+<td>鏈</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>toAddressId</td>
+<td>true</td>
+<td>string</td>
+<td>地址id</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>toAddress</td>
+<td>true</td>
+<td>string</td>
+<td>地址</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>toAddressLabel</td>
+<td>true</td>
+<td>string</td>
+<td>地址標識</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>withdrawType</td>
+<td>true</td>
+<td>string</td>
+<td>提幣類型</td>
+<td></td>
+<td>fast(快速提幣),normal(普通提幣)</td>
+</tr>
+<tr>
+<td>sourceOrderId</td>
+<td>true</td>
+<td>string</td>
+<td>客戶訂單id(不能重複)</td>
+<td></td>
+<td>長度&lt;=64</td>
+</tr>
+<tr>
+<td>source</td>
+<td>true</td>
+<td>string</td>
+<td>客戶方標識(一個客戶固定一個值)</td>
+<td></td>
+<td>示例：custody</td>
+</tr>
+<tr>
+<td>uid</td>
+<td>true</td>
+<td>string</td>
+<td>用戶uid</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fees</td>
+<td>true</td>
+<td>string</td>
+<td>手續費(調用手續費接口獲取)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='8cee0e29db-18'>響應數據</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>狀態碼</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>錯誤描述（如有）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>業務數據</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>data字段說明</p>
+
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>withdrawOrderId</td>
+<td>long</td>
+<td>訂單id</td>
+<td></td>
+</tr>
+<tr>
+<td>withdrawCreateResponse</td>
+<td>object</td>
+<td>訂單信息</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>withdrawCreateResponse字段說明</p>
+
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>long</td>
+<td>訂單id</td>
+<td></td>
+</tr>
+<tr>
+<td>riskActionV2Data</td>
+<td>object</td>
+<td>風控信息</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>riskActionV2Data字段說明</p>
+
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderState</td>
+<td>string</td>
+<td>訂單狀態</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='4973af6e72-2'>提幣記錄查詢</h2>
+<p>API Key 權限：讀取<br>
+限頻值（NEW）：100次/2s</p>
+<h3 id='http-20'>HTTP 請求</h3>
+<ul>
+<li>GET <code>/v1/open/withdraw/allList</code></li>
+</ul>
+<h3 id='ba05bab92e-20'>請求參數</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>是否必須</th>
+<th>類型</th>
+<th>描述</th>
+<th>默認值</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uid</td>
+<td>false</td>
+<td>long</td>
+<td>用戶uid</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>currency</td>
+<td>false</td>
+<td>string</td>
+<td>幣種</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>false</td>
+<td>long</td>
+<td>時間戳</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>false</td>
+<td>long</td>
+<td>時間戳</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>pagesize</td>
+<td>false</td>
+<td>int</td>
+<td>每页显示条数</td>
+<td>10</td>
+<td>0-200</td>
+</tr>
+<tr>
+<td>pagenum</td>
+<td>false</td>
+<td>int</td>
+<td>第几页</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ids</td>
+<td>false</td>
+<td>string</td>
+<td>提幣訂單id，多個用,分割</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='8cee0e29db-19'>響應數據</h3>
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>integer</td>
+<td>狀態碼</td>
+<td></td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>錯誤描述（如有）</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>業務數據</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>data字段說明</p>
+
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pagesize</td>
+<td>int</td>
+<td>每页显示条数</td>
+<td></td>
+</tr>
+<tr>
+<td>pagenum</td>
+<td>int</td>
+<td>第几页</td>
+<td></td>
+</tr>
+<tr>
+<td>rows</td>
+<td>int</td>
+<td>總記錄數</td>
+<td></td>
+</tr>
+<tr>
+<td>list</td>
+<td>list</td>
+<td>業務數據</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p>list字段說明</p>
+
+<table><thead>
+<tr>
+<th>參數名稱</th>
+<th>數據類型</th>
+<th>描述</th>
+<th>取值範圍</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>long</td>
+<td>訂單id</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>sting</td>
+<td>提幣類型</td>
+<td></td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>幣種</td>
+<td></td>
+</tr>
+<tr>
+<td>chain</td>
+<td>string</td>
+<td>鏈</td>
+<td></td>
+</tr>
+<tr>
+<td>toAddress</td>
+<td>string</td>
+<td>地址</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>金額</td>
+<td></td>
+</tr>
+<tr>
+<td>feee</td>
+<td>string</td>
+<td>手續費</td>
+<td></td>
+</tr>
+<tr>
+<td>createAt</td>
+<td>long</td>
+<td>創建時間（時間戳）</td>
+<td></td>
+</tr>
+<tr>
+<td>upateAt</td>
+<td>long</td>
+<td>更新時間（時間戳）</td>
+<td></td>
+</tr>
+<tr>
+<td>state</td>
+<td>string</td>
+<td>狀態</td>
+<td>-1(初始化),1(待審核),2(初審通過),3(初審拒絕),4(複審通過),5(複審拒絕),6(複審駁回),11(自動審核),99(無效記錄)</td>
+</tr>
+<tr>
+<td>dwState</td>
+<td>string</td>
+<td>提幣狀態</td>
+<td>pre-submitted(待提交),submitted(已提交),reexamine(等待再次确认),canceled(已撤销),pass(审批通过),pre-transfer(钱包转账中),wallet-transfer(钱包已转账), normal-account-frozen(普通冻结),created-without-risk-action(提币触发风控),account-frozen(冻结成功),risk-action-assign(风控验证), risk-action-success(风控验证成功),risk-action-fail(风控验证失败),risk-action-timeout(风控动作超时), settlement-withdraw-processing(结算进行中),settlement-withdraw-partially-completed(结算部分完成), invalid(错误),reject(审批拒绝),wallet-reject(钱包拒绝),confirm-error(区块确认失败),repealed(人工撤销),settlement-withdraw-failed(结算失败), reexamine-reject(复审拒绝),reexamine-dismissed(复审驳回),confirmed(区块已确认)</td>
 </tr>
 </tbody></table>
 
