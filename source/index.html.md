@@ -1248,17 +1248,17 @@ API Key 權限：寫權限<br>
 
 ### 請求參數
 
-| 參數名稱            | 是否必須 | 類型     | 描述            | 默認值 | 取值範圍             |
-|-----------------| -------- |--------|---------------| ------ |------------------|
-| fromUser        | true     | long   | 付款方用戶id(非uid) |        |                  |
-| toUser          | true     | long   | 收款方用戶id(非uid) |        |                  |
+| 參數名稱           | 是否必須 | 類型     | 描述            | 默認值 | 取值範圍             |
+|----------------| -------- |--------|---------------| ------ |------------------|
+| fromUser       | true     | long   | 付款方用戶id(非uid) |        |                  |
+| toUser         | true     | long   | 收款方用戶id(非uid) |        |                  |
 | fromAccountType | true     | string | 付款賬號類型        |        | custody          |
-| toAccountType   | true     | string | 收款賬號類型        |        | custody          |
-| currency        | true     | string | 幣種            |        |                  |
-| amount          | true     | string | 金額            |        |                  |
-| direction       | true     | int    | 劃轉方向          |        | 1：母向子劃轉  2：子向母劃轉 |
-| source          | true     | string | 客户标识          |        | 示例：custody       |
-| sourceOrderId   | true     | string | 客户订单id        |        | 需要唯一 ，長度小於等於64   |
+| toAccountType  | true     | string | 收款賬號類型        |        | custody          |
+| currency       | true     | string | 幣種            |        |                  |
+| amount         | true     | string | 金額            |        |                  |
+| direction      | true     | int    | 劃轉方向          |        | 1：母向子劃轉  2：子向母劃轉 |
+| source         | true     | string | 客户标识          |        | 示例：custody       |
+| sourceOrderId  | true     | string | 客户订单id        |        | 需要唯一 ，長度小於等於64   |
 
 ### 響應數據
 
