@@ -1024,7 +1024,7 @@ API Key 權限：讀取<br>
 
 ### HTTP 請求
 
-- GET `/v1/open/api/uid-transfer/page`
+- POST `/v1/open/api/uid-transfer/page`
 
 ### 請求參數
 
