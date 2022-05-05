@@ -424,7 +424,7 @@ api.huobihktrust.com\n
 
 <a href='https://github.com/huobitrustapi/huobi_Java/blob/master/java_signature_demo.md'>JAVA簽名樣例代碼</a> | <a href='https://github.com/huobitrustapi/huobi_Python/blob/master/example/python_signature_demo.md'>Python簽名樣例代碼</a>   | <a href='https://github.com/huobitrustapi/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++簽名樣例代碼 </a>
 
-### Q7：調用接口返回Incorrect Access Key 錯誤是什麼原因？
+### Q4：調用接口返回Incorrect Access Key 錯誤是什麼原因？
 
 請檢查URL請求中Access Key是否傳遞準確，例如：
 
@@ -433,7 +433,7 @@ api.huobihktrust.com\n
 3. Access Key已經被刪除
 4. URL請求中參數拼接錯誤或者特殊字符沒有進行編碼導致服務端對AccessKey解析不正確
 
-### Q8：調用接口返回 gateway-internal-error 錯誤是什麼原因？
+### Q5：調用接口返回 gateway-internal-error 錯誤是什麼原因？
 
 請檢查是否屬於以下情況：
 
@@ -441,14 +441,14 @@ api.huobihktrust.com\n
 2. 發送數據格式是否正確（需要標準JSON格式）。
 3. POST請求頭header需要聲明為`Content-Type:application/json` 。
 
-### Q9：調用接口返回 login-required 錯誤是什麼原因？
+### Q6：調用接口返回 login-required 錯誤是什麼原因？
 
 請檢查是否屬於以下情況：
 
 1. 未將AccessKey參數帶入URL中。
 2. 未將Signature參數帶入URL中。
 
-### Q10: 調用Rest接口返回HTTP 405錯誤 method-not-allowed 是什麼原因？
+### Q7: 調用Rest接口返回HTTP 405錯誤 method-not-allowed 是什麼原因？
 
 該錯誤表明調用了不存在的Rest接口，請檢查Rest接口路徑是否準確。由於Nginx的設置，請求路徑(Path)是大小寫敏感的，請嚴格按照文檔聲明的大小寫。
 
