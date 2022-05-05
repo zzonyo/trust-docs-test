@@ -309,16 +309,16 @@
                     <a href="#q3" class="toc-h2 toc-link" data-title="Q3：為什麼簽名認證總返回失敗？">Q3：為什麼簽名認證總返回失敗？</a>
                   </li>
                   <li>
-                    <a href="#q7-incorrect-access-key" class="toc-h2 toc-link" data-title="Q7：調用接口返回Incorrect Access Key 錯誤是什麼原因？">Q7：調用接口返回Incorrect Access Key 錯誤是什麼原因？</a>
+                    <a href="#q4-incorrect-access-key" class="toc-h2 toc-link" data-title="Q4：調用接口返回Incorrect Access Key 錯誤是什麼原因？">Q4：調用接口返回Incorrect Access Key 錯誤是什麼原因？</a>
                   </li>
                   <li>
-                    <a href="#q8-gateway-internal-error" class="toc-h2 toc-link" data-title="Q8：調用接口返回 gateway-internal-error 錯誤是什麼原因？">Q8：調用接口返回 gateway-internal-error 錯誤是什麼原因？</a>
+                    <a href="#q5-gateway-internal-error" class="toc-h2 toc-link" data-title="Q5：調用接口返回 gateway-internal-error 錯誤是什麼原因？">Q5：調用接口返回 gateway-internal-error 錯誤是什麼原因？</a>
                   </li>
                   <li>
-                    <a href="#q9-login-required" class="toc-h2 toc-link" data-title="Q9：調用接口返回 login-required 錯誤是什麼原因？">Q9：調用接口返回 login-required 錯誤是什麼原因？</a>
+                    <a href="#q6-login-required" class="toc-h2 toc-link" data-title="Q6：調用接口返回 login-required 錯誤是什麼原因？">Q6：調用接口返回 login-required 錯誤是什麼原因？</a>
                   </li>
                   <li>
-                    <a href="#q10-rest-http-405-method-not-allowed" class="toc-h2 toc-link" data-title="Q10: 調用Rest接口返回HTTP 405錯誤 method-not-allowed 是什麼原因？">Q10: 調用Rest接口返回HTTP 405錯誤 method-not-allowed 是什麼原因？</a>
+                    <a href="#q7-rest-http-405-method-not-allowed" class="toc-h2 toc-link" data-title="Q7: 調用Rest接口返回HTTP 405錯誤 method-not-allowed 是什麼原因？">Q7: 調用Rest接口返回HTTP 405錯誤 method-not-allowed 是什麼原因？</a>
                   </li>
               </ul>
           </li>
@@ -877,7 +877,7 @@ api.huobihktrust.com\n
 <p>當前官方已支持多種語言的<a href="https://github.com/huobitrustapi">SDK</a>，可以參考SDK的簽名實現，或者以下三種語言的簽名樣例代碼</p>
 
 <p><a href='https://github.com/huobitrustapi/huobi_Java/blob/master/java_signature_demo.md'>JAVA簽名樣例代碼</a> | <a href='https://github.com/huobitrustapi/huobi_Python/blob/master/example/python_signature_demo.md'>Python簽名樣例代碼</a>   | <a href='https://github.com/huobitrustapi/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++簽名樣例代碼 </a></p>
-<h3 id='q7-incorrect-access-key'>Q7：調用接口返回Incorrect Access Key 錯誤是什麼原因？</h3>
+<h3 id='q4-incorrect-access-key'>Q4：調用接口返回Incorrect Access Key 錯誤是什麼原因？</h3>
 <p>請檢查URL請求中Access Key是否傳遞準確，例如：</p>
 
 <ol>
@@ -886,7 +886,7 @@ api.huobihktrust.com\n
 <li>Access Key已經被刪除</li>
 <li>URL請求中參數拼接錯誤或者特殊字符沒有進行編碼導致服務端對AccessKey解析不正確</li>
 </ol>
-<h3 id='q8-gateway-internal-error'>Q8：調用接口返回 gateway-internal-error 錯誤是什麼原因？</h3>
+<h3 id='q5-gateway-internal-error'>Q5：調用接口返回 gateway-internal-error 錯誤是什麼原因？</h3>
 <p>請檢查是否屬於以下情況：</p>
 
 <ol>
@@ -894,14 +894,14 @@ api.huobihktrust.com\n
 <li>發送數據格式是否正確（需要標準JSON格式）。</li>
 <li>POST請求頭header需要聲明為<code>Content-Type:application/json</code> 。</li>
 </ol>
-<h3 id='q9-login-required'>Q9：調用接口返回 login-required 錯誤是什麼原因？</h3>
+<h3 id='q6-login-required'>Q6：調用接口返回 login-required 錯誤是什麼原因？</h3>
 <p>請檢查是否屬於以下情況：</p>
 
 <ol>
 <li>未將AccessKey參數帶入URL中。</li>
 <li>未將Signature參數帶入URL中。</li>
 </ol>
-<h3 id='q10-rest-http-405-method-not-allowed'>Q10: 調用Rest接口返回HTTP 405錯誤 method-not-allowed 是什麼原因？</h3>
+<h3 id='q7-rest-http-405-method-not-allowed'>Q7: 調用Rest接口返回HTTP 405錯誤 method-not-allowed 是什麼原因？</h3>
 <p>該錯誤表明調用了不存在的Rest接口，請檢查Rest接口路徑是否準確。由於Nginx的設置，請求路徑(Path)是大小寫敏感的，請嚴格按照文檔聲明的大小寫。</p>
 <h1 id='1bb44f67f8'>聯系我們</h1><h2 id='f5729fe8da'>技術支持</h2>
 <p>使用過程中如有問題或者建議，您可選擇以下任一方式聯系我們：</p>
