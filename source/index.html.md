@@ -1497,7 +1497,7 @@ API Key 權限：提幣<br>
 | amount | true     | string | 實際提幣金額(精度為幣種精度) |        |          |
 | currency | true     | string | 幣種 |        |          |
 | chain | true     | string | 鏈 |        |          |
-| toAddressId | false     | string | 地址id |        |          |
+| toAddressId | true     | string | 地址id |        |          |
 | toAddress | true     | string | 地址 |        |          |
 | toAddressLabel | false     | string | 地址標識 |        |          |
 | withdrawType | false     | string | 提幣類型 |        |   fast(快速提幣),normal(普通提幣)       |
