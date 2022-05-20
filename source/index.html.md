@@ -1503,7 +1503,7 @@ API Key 權限：提幣<br>
 | withdrawType | false     | string | 提幣類型 |        |   fast(快速提幣),normal(普通提幣)       |
 | sourceOrderId | true     | string | 客戶訂單id(不能重複) |        |    長度<=64      |
 | source | true     | string | 客戶方標識(一個客戶固定一個值) |        |  示例：custody        |
-| uid | true     | string | 用戶uid |        |          |
+| uid  | true     | string | 用戶uid |        |          |
 | fees | false     | string | 手續費(調用手續費接口獲取) |        |          |
 
 ### 響應數據
