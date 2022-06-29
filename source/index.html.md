@@ -735,8 +735,13 @@ hbt-custody：资金賬戶，hb-spot：交易賬戶
 
 | 參數名稱   | 是否必須 | 類型   | 描述                              | 默認值 | 取值範圍 |
 | ---------- | -------- | ------ |---------------------------------| ------ | -------- |
-| source | true     | string | hbt-custody(資金賬戶),hb-spot(交易賬戶) |        |          |
+| source | true     | string | hbt-custody(資金賬戶),hb-spot(交易賬戶) ,|        |          |
 
+>Request:
+
+```
+https://api.huobihktrust.com/v1/open/account/get?&SignatureVersion=2&x-b3-traceid=13aff565a1054ba39267d7f4ac17be96&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=5%2FfzwQQhT9hwOfqYvsK06iAjARpWlNSGycMh1CWxYis%3D&SignatureMethod=HmacSHA256&source=hbt-custody&Timestamp=2022-06-29T07%3A46%3A19
+```
 
 > Response:
 
@@ -745,30 +750,32 @@ hbt-custody：资金賬戶，hb-spot：交易賬戶
   "code": 200,
   "data": [
     {
-      "currency": "usdt",
+      "currencyDisplayName": "BTC（BTC）",
+      "currency": "btc",
       "state": "normal",
-      "balance": "10120.558300000000000000",
-      "suspense": "19.000000000000000000",
+      "balance": "57226.000000000000000000",
+      "suspense": "0.000000000000000000",
       "price": {
-        "symbol": "usdtusdt",
-        "high": 1,
-        "close": 1,
-        "open": 1,
-        "amount": 0,
-        "vol": 0,
-        "count": 0
+        "symbol": "btcusd",
+        "high": 20855.367948511263,
+        "close": 20853.889169664755,
+        "open": 20855.367948511263,
+        "amount": 15.724957,
+        "vol": 332714.20416247,
+        "count": 64
       }
     },
     {
-      "currency": "btc",
+      "currencyDisplayName": "USDT（ERC20）",
+      "currency": "usdt",
       "state": "normal",
-      "balance": "0",
-      "suspense": "0",
+      "balance": "69952.000000000000000000",
+      "suspense": "0.000000000000000000",
       "price": {
-        "symbol": "btcusdt",
-        "high": 47815,
-        "close": 47815,
-        "open": 47815,
+        "symbol": "usdtusd",
+        "high": 0.9991748962879672,
+        "close": 0.9991748962879672,
+        "open": 0.9991748962879672,
         "amount": 0,
         "vol": 0,
         "count": 0
@@ -826,6 +833,56 @@ API Key 權限：讀取<br>
 | source    | ture  | string | 账户类型  |        | 资金账户：hbt-custody |
 | currency  | false | string | 幣種    |        |                  |
 
+
+>Request:
+
+```
+https://api.huobihktrust.com/v1/open/account/getByUserId?&uid=115460188&SignatureVersion=2&x-b3-traceid=ee9b49e213ef47468ea51add1d99b479&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=D64r4rrYUXQhPMhNX3y9WHExBVID7wPpSVYud3V0f%2B0%3D&SignatureMethod=HmacSHA256&source=hbt-custody&Timestamp=2022-06-29T07%3A50%3A51
+```
+
+> Response:
+
+```json
+{
+  "code": 200,
+  "data": [
+    {
+      "currencyDisplayName": "BTC（BTC）",
+      "currency": "btc",
+      "state": "normal",
+      "balance": "57226.000000000000000000",
+      "suspense": "0.000000000000000000",
+      "price": {
+        "symbol": "btcusd",
+        "high": 20855.367948511263,
+        "close": 20853.889169664755,
+        "open": 20855.367948511263,
+        "amount": 15.724957,
+        "vol": 332714.20416247,
+        "count": 64
+      }
+    },
+    {
+      "currencyDisplayName": "USDT（ERC20）",
+      "currency": "usdt",
+      "state": "normal",
+      "balance": "69952.000000000000000000",
+      "suspense": "0.000000000000000000",
+      "price": {
+        "symbol": "usdtusd",
+        "high": 0.9991748962879672,
+        "close": 0.9991748962879672,
+        "open": 0.9991748962879672,
+        "amount": 0,
+        "vol": 0,
+        "count": 0
+      }
+    }
+  ],
+  "success": true
+}
+```
+
 ### 響應數據
 
 | 參數名稱 | 是否必須 | 數據類型 | 描述     | 取值範圍                                                     |
@@ -853,7 +910,7 @@ data字段說明
 
 <aside class="notice">訪問資產記錄相關接口需要進行簽名認證。</aside>
 
-## 充幣記錄查詢
+## 充幣記錄查詢(不推薦使用,請到【充幣相關】 -> 【充幣記錄查詢/v1/open/deposit/list】)
 
 API Key 權限：讀取<br>
 限頻值（NEW）：100次/2s
@@ -945,14 +1002,14 @@ data字段說明
 | updateAt     | long   | 更新時間    |                                                            |
 
                                                          |                                                           |
-## 提幣記錄查詢
+## 提幣記錄查詢 (不推薦使用,請到【提幣相關】 -> 【提幣記錄查詢/v1/open/withdraw/allList】)
 
 API Key 權限：讀取<br>
 限頻值（NEW）：100次/2s
 
 ### HTTP 請求
 
-- GET `/v2/external/deposit/finance/history`
+- GET `/v2/external/withdraw/list`
 
 ### 請求參數
 
@@ -1057,11 +1114,10 @@ API Key 權限：讀取<br>
 | currency | false     | string | 幣種 |        |          |
 | clientOrderId | false     | string | 劃轉訂單 |        |          |
 | status | false     | string | 訂單狀態 |        |     狀態 枚舉: jumio,audit,audit_refuse,multi_audit_refuse,multi_audit_fail,success,fail 枚舉備註: jumio :人臉識別驗證 audit :人工審核中 audit_refuse :人工審核拒絕 multi_audit_refuse :多人審批驗證中 multi_audit_fail :多人審批驗證失敗 success :劃轉成功 fail :劃轉失敗      |
-| createTime | false     | object | 申請時間 |        |          |
-| updateTime | false     | object | 申請時間 |        |          |
+| createTime | false     | object | 申請時間开始时间 |        |          |
+| updateTime | false     | object | 申請時間结束时间 |        |          |
 | current | false     | integer | 當前頁碼 |        |          |
 | size | false     | string | 分頁大小 |        |          |
-| direction | false     | integer | 排序方向 -1asc 1desc |        |          |
 
 createTime/updateTime 字段說明
 
@@ -1071,122 +1127,43 @@ createTime/updateTime 字段說明
 | end  | integer   | 結束時間           |          精確到毫秒  開                                              |
 
 
-> Response:
+
+>Request:
 
 ```json
 {
-  "code": 200,
-  "data": [
-    {
-      "id": 1,
-      "clientOrderId": "12312223131",
-      "fromUid": "123123131",
-      "toUid": "23213131312",
-      "toUserName": "test@163.com",
-      "currency": "usdt",
-      "state": "audit_refuse",
-      "amount": 10120.558300000000000000,
-      "refuse": "拒絕原因",
-      "createdTime": 1637075011000,
-      "updatedTime": 1637075011000
-    },
-    {
-      "id": 2,
-      "clientOrderId": "12312223131",
-      "fromUid": "12312223131",
-      "toUid": "2321313331312",
-      "toUserName": "tes12t@163.com",
-      "currency": "usdt",
-      "state": "audit_refuse",
-      "amount": 10120.558300000000000000,
-      "refuse": "拒絕原因",
-      "createdTime": 1637075011000,
-      "updatedTime": 1637075011000
-    }
-  ],
-  "success": true
+  "size": 1,
+  "current": 1
 }
 ```
 
-### 響應數據
-
-| 參數名稱 | 是否必須 | 數據類型 | 描述     | 取值範圍                                                     |
-| -------- | -------- | -------- | -------- | ------------------------------------------------------------ |
-| code         | true    | integer     | 狀態碼  | |
-| message      | false   | string    | 錯誤描述（如有）| |
-| data         | false   | object    | 業務數據 ||
-
-data字段說明
-
-| 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
-| -------- | -------- | -------------- | ------------------------------------------------------------ |
-| id  | number   | 數據id           |                                                            |
-| clientOrderId  | string   | 劃轉訂單id           |                                                            |
-| fromUid  | string   | 劃轉方uid           |                                                            |
-| toUid  | string   | 收款方uid           |                                                            |
-| toUserName  | string   | 收款方註冊賬號           |                                                            |
-| state  | string   | 狀態 枚舉: jumio,audit,audit_refuse,multi_audit_refuse,multi_audit_fail,success,fail 枚舉備註: jumio :人臉識別驗證 audit :人工審核中 audit_refuse :人工審核拒絕 multi_audit_refuse :多人審批驗證中 multi_audit_fail :多人審批驗證失敗 success :劃轉成功 fail :劃轉失敗          |                                                            |
-| state  | string   | 狀態           |                                                            |
-| amount   | number   | 金額           |                                                            |
-| refuse  | string   | 拒絕原因           |                                                            |
-| createdTime  | integer   | 創建時間           |                                                            |
-| updatedTime  | integer   | 更新時間           |                                                            |
-
-
-## UID劃轉記錄查詢
-
-API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s
-
-### HTTP 請求
-
-- GET `/v1/open/api/uid-transfer/list`
-
-### 請求參數
-
-| 參數名稱   | 是否必須 | 類型   | 描述                                                         | 默認值 | 取值範圍 |
-| ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
-| currency | false     | string | 幣種 |        |          |
-| startTime | false     | string | 開始時間 |        |          |
-| endTime | false     | string | 結束時間 |        |          |
-| direction | false     | string | 分頁方向 |        |          |
-| fromId | false     | string | 分頁開始id |        |          |
-| size | false     | string | 分頁大小 |        |          |
-
-
 > Response:
 
 ```json
 {
   "code": 200,
-  "data": [
-    {
-      "id": 1,
-      "clientOrderId": "12312223131",
-      "fromUid": "123123131",
-      "toUid": "23213131312",
-      "toUserName": "test@163.com",
-      "currency": "usdt",
-      "state": "audit_refuse",
-      "amount": 10120.558300000000000000,
-      "refuse": "拒絕原因",
-      "createdTime": 1637075011000,
-      "updatedTime": 1637075011000
-    },
-    {
-      "id": 2,
-      "clientOrderId": "12312223131",
-      "fromUid": "12312223131",
-      "toUid": "2321313331312",
-      "toUserName": "tes12t@163.com",
-      "currency": "usdt",
-      "state": "audit_refuse",
-      "amount": 10120.558300000000000000,
-      "refuse": "拒絕原因",
-      "createdTime": 1637075011000,
-      "updatedTime": 1637075011000
-    }
-  ],
+  "data": {
+    "records": [
+      {
+        "id": 1300,
+        "fromUid": 1457228443811871,
+        "phone": "1001",
+        "email": "",
+        "toUserName": "924****1001",
+        "currency": "btc",
+        "amount": 12.0,
+        "clientOrderId": "1540976534049787904",
+        "status": "success",
+        "refuse": "",
+        "createdAt": 1656232410334,
+        "updatedAt": 1656232410559
+      }
+    ],
+    "total": 1,
+    "size": 1,
+    "current": 1,
+    "pages": 1
+  },
   "success": true
 }
 ```
@@ -1239,7 +1216,7 @@ API Key 權限：寫權限<br>
 ```json
 {
   "code": 200,
-  "data"{
+  "data":{
     "clientOrderId": "213123123131"
     },
   "success": true
