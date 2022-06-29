@@ -1294,6 +1294,27 @@ API Key 權限：讀取<br>
 | chain | true     | string | 鏈 |        |          |
 | businessType | true     | string | 賬號類型 |   custody     | custody(普通託管)， dedicated(專戶託管)          |
 
+
+>Request:
+
+```
+https://api.huobihktrust.com/v1/open/address/get?&uid=115460188&SignatureVersion=2&chain=btc&x-b3-traceid=3506b8c7ea7042bbbfd97092a12103cf&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=wYyL3cvYnL8uH63gf4C3xw798k0wSAmqVpWX4hjnt%2Bc%3D&currency=btc&SignatureMethod=HmacSHA256&businessType=custody&Timestamp=2022-06-29T08%3A35%3A00
+```
+
+> Response:
+
+```json
+{
+    "code": 200,
+    "data": {
+        "address": "1CV37JenquEVC1Mu96X5aggV8g3uRmTveJ",
+        "businessType": "custody",
+        "tag": ""
+    },
+    "success": true
+}
+```
+
 ### 響應數據
 
 | 參數名稱 | 是否必須 | 數據類型    | 描述     | 取值範圍                                                     |
@@ -1335,6 +1356,42 @@ API Key 權限：讀取<br>
 | pagenum   | false     | int    | 第幾頁                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | 1   |       |
 | pagesize  | false     | int    | 每頁記錄數                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | 10  | 0-200 |
 | state     | false     | int    | 提幣狀態代碼集合(多個用英文逗號分隔) 提幣單狀態:(1, "pre-submitted"),(2, "invalid"),(3, "submitted"),(4, "reexamine"),(5, "canceled"),(6, "pass"),(7, "reject"),(8, "pre-transfer"),(9, "wallet-transfer"),(10, "wallet-reject"),(11, "confirmed"),(12, "confirm-error"),(13, "repealed"),(14, "normal-account-frozen"),(20, "created-without-risk-action"),(21, "account-frozen"),(22, "risk-action-assign"),(23, "risk-action-success"),(24, "risk-action-fail"),(25, "risk-action-timeout"),(30, "pre-withdraw-created"),(31, "pre-withdraw-confirmed"),(32, "pre-withdraw-launch-begin"),(33, "pre-withdraw-launch-success"),(34, "pre-withdraw-launch-failed"),(35, "pre-withdraw-canceled"),(40, "settlement-withdraw-processing"),(41, "settlement-withdraw-partially-completed"),(42, "settlement-withdraw-failed"),(43, "reexamine-reject"),(44, "reexamine-dismissed") |     |       |
+
+>Request:
+
+```
+https://api.huobihktrust.com/v1/open/deposit/list?&SignatureVersion=2&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=GRSQMbCet%2Br%2Bdib16hyFuafeS4WwC%2BC2vJm2mtzc4KA%3D&pagesize=1&SignatureMethod=HmacSHA256&pagenum=1&Timestamp=2022-06-29T08%3A38%3A22
+```
+
+> Response:
+
+```json
+{
+  "code": 200,
+  "data": {
+    "pagenum": 1,
+    "pagesize": 1,
+    "rows": 4,
+    "list": [
+      {
+        "currencyDisplayName": "USDT（ERC20）",
+        "amount": "60000.000000000000000000",
+        "blockchainConfirm": 99999999,
+        "createdAt": 1656301933428,
+        "currency": "usdt",
+        "depositSafeConfirms": 12,
+        "id": 1189,
+        "state": "safe",
+        "businessType": "custody",
+        "txHash": "JenquEVC1Mu96X12",
+        "userId": 11546018,
+        "type": "normal deposit"
+      }
+    ]
+  },
+  "success": true
+}
+```
 
 ### 響應數據
 
@@ -1434,6 +1491,45 @@ API Key 權限：讀取<br>
 | size | false     | int | 分頁查詢查詢結果條數（如不傳，默認每頁展示10條記錄，取值區間[1,20]） |        |          |
 | status | false     | string | new 新建，failed 认证失败，whitelisted 认证成功 |        |          |
 
+>Request:
+
+```json
+{
+    "from": 11171,
+    "direct": "next",
+    "size": 1
+}
+```
+
+> Response:
+
+```json
+{
+  "code": 200,
+  "data": [
+    {
+      "currencyDisplayName": "ETH（ETH）",
+      "address": "bBcab6404e9f58E76eed6a0d09d6fbf3451a416F",
+      "chain": "eth",
+      "extra": "{\"addrProofFile\":[],\"authType\":30}",
+      "label": "ETH",
+      "tag": "",
+      "currency": "eth",
+      "createdAt": "1654509708456",
+      "updatedAt": "1654509708485",
+      "id": 11171,
+      "userId": 11546018,
+      "status": "whitelisted",
+      "withdrawTo": 1,
+      "organizationId": 0,
+      "depositFrom": 0,
+      "auditStatus": 2
+    }
+  ],
+  "success": true
+}
+```
+
 ### 響應數據
 
 | 參數名稱 | 是否必須 | 數據類型    | 描述     | 取值範圍                                                     |
@@ -1473,6 +1569,23 @@ API Key 權限：讀取<br>
 | amount | true     | string | 提幣金額(精度為幣種精度) |        |          |
 | currency | true     | string | 幣種 |        |          |
 | chain | false     | string | 鏈 |        |          |
+
+
+>Request:
+
+```
+https://api.huobihktrust.com/v1/open/withdraw/getWithdrawFee?&SignatureVersion=2&amount=1&chain=btc&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=NW6%2FA5RvHjT8lDZri3fimLhEtBTSaAeKKxj%2FBr9fyOg%3D&currency=btc&SignatureMethod=HmacSHA256&Timestamp=2022-06-29T08%3A49%3A39
+```
+
+> Response:
+
+```json
+{
+  "code": 200,
+  "data": "0.11111111",
+  "success": true
+}
+```
 
 ### 響應數據
 
@@ -1558,6 +1671,56 @@ API Key 權限：讀取<br>
 | pagesize | false     | int | 每页显示条数 |    10    |    0-200      |
 | pagenum | false     | int | 第几页 |        |       |
 | ids | false     | string | 提幣訂單id，多個用,分割 |        |       |
+
+>Request:
+
+```
+https://api.huobihktrust.com/v1/open/withdraw/allList?&SignatureVersion=2&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=zoc5DtPgKrBJV0adV%2Fq%2Fsi38YE5XtZQqon6Pr9ZDUpA%3D&pagesize=1&SignatureMethod=HmacSHA256&pagenum=1&Timestamp=2022-06-29T08%3A52%3A34
+```
+
+> Response:
+
+```json
+{
+  "code": 200,
+  "data": {
+    "pagenum": 1,
+    "pagesize": 1,
+    "rows": 1,
+    "list": [
+      {
+        "currencyDisplayName": "BTC（BTC）",
+        "id": 55473740,
+        "type": "fast withdraw",
+        "userId": 11546018,
+        "currency": "btc",
+        "amount": "10.000000000000000000",
+        "fees": "0.000000000000000000",
+        "state": "4",
+        "dwState": "confirmed",
+        "txHash": "",
+        "chain": "btc",
+        "toAddress": "1F5XbLksc33XrzdYAxACgGDWF9jAHeA7Hq",
+        "toAddrTag": "",
+        "createAt": 1656232131197,
+        "updateAt": 1656492721745,
+        "errorCode": "",
+        "errorMsg": "",
+        "walletUpdateAt": 1656232131321,
+        "withdrawType": 1,
+        "amlResult": "{\"process-status\":null,\"id\":null,\"error\":null,\"risk-score\":null,\"aml-support\":true,\"new-address\":null,\"error-msg\":\"\"}",
+        "basicAuditState": "2",
+        "gas": "0",
+        "gasCurrency": "",
+        "businessType": "custody",
+        "safeConfirms": 0,
+        "walletConfirms": 0
+      }
+    ]
+  },
+  "success": true
+}
+```
 
 ### 響應數據
 
