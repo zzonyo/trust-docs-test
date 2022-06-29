@@ -1211,14 +1211,26 @@ API Key 權限：寫權限<br>
 | currency | true     | string | 幣種 |        |          |
 | amount | true     | number | 金額 |        |          |
 
+>Request:
+
+```json
+{
+  "amount": 1,
+  "currency": "btc",
+  "toUid": "1457228443811871",
+  "phone": "2346"
+}
+```
+
 > Response:
 
 ```json
 {
   "code": 200,
-  "data":{
-    "clientOrderId": "213123123131"
-    },
+  "data": {
+    "clientOrderId": "1542076280883056640",
+    "status": "multi_audit"
+  },
   "success": true
 }
 ```
@@ -1260,6 +1272,31 @@ API Key 權限：寫權限<br>
 | direction      | true     | int    | 劃轉方向          |        | 1：母向子劃轉  2：子向母劃轉 |
 | source         | true     | string | 客户标识          |        | 示例：custody       |
 | sourceOrderId  | true     | string | 客户订单id        |        | 需要唯一 ，長度小於等於64   |
+
+>Request:
+
+```json
+{
+  "fromAccountType": "custody",
+  "toUser": 11546800,
+  "sourceOrderId": "1488386774794272",
+  "amount": "100.000000000000000000",
+  "toAccountType": "custody",
+  "fromUser": 11582367,
+  "currency": "btc",
+  "source": "brokerage",
+  "direction": "2"
+}
+```
+
+> Response:
+
+```json
+{
+  "code": 200,
+  "data": null
+}
+```
 
 ### 響應數據
 
@@ -1451,6 +1488,41 @@ API Key 權限：劃轉<br>
 | depositFrom | true     | int | 是否用於充幣 |       | 1：是 0：否    |
 | extra | true     | string | 受益人信息 |       | 可填寫用戶的uid    |
 
+>Request:
+
+```json
+{
+  "chain": "usdterc20",
+  "address": "1CZ3AXtAcHLZJ9bnBN9df3KgkWWz8Mh4LW",
+  "authToken": "133aec05c3844356800bce6a53ac8e28",
+  "extra": "O115822617@Bro.com",
+  "depositFrom": "0",
+  "currency": "usdt",
+  "label": "1488557514424352",
+  "withdrawTo": "1"
+}
+```
+
+> Response:
+
+```json
+{
+  "code": 200,
+  "data": {
+    "orderId": 815,
+    "addressId": 11235,
+    "state": "DONE",
+    "riskActionV2Data": {
+      "orderId": 815,
+      "orderState": "DONE",
+      "actionToken": "3738414007889960960",
+      "actions": null,
+      "handlerDown": 0
+    }
+  }
+}
+```
+
 ### 響應數據
 
 | 參數名稱 | 是否必須 | 數據類型    | 描述     | 取值範圍                                                     |
@@ -1620,6 +1692,35 @@ API Key 權限：提幣<br>
 | source | true     | string | 客戶方標識(一個客戶固定一個值) |        |  示例：custody        |
 | uid  | true     | string | 用戶uid |        |          |
 | fees | false     | string | 手續費(調用手續費接口獲取) |        |          |
+
+>Request:
+
+```json
+{
+  "sourceOrderId": "1488574459412512",
+  "uid": 115468007,
+  "amount": "169999.000000000000000000",
+  "chain": "usdterc20",
+  "fees": "1.000000000000000000",
+  "withdrawType": "fast",
+  "currency": "usdt",
+  "source": "brokerage",
+  "toAddress": "1EgLXFgzx9K6o6uvsP6BxB7V8iEuLEiWqQ",
+  "toAddressLabel": "1488560116989984",
+  "toAddressId": 11236
+}
+```
+
+> Response:
+
+```json
+{
+  "code": 200,
+  "data": {
+    "withdrawOrderId": "55476840"
+  }
+}
+```
 
 ### 響應數據
 
