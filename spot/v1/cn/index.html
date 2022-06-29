@@ -2804,7 +2804,25 @@ api.huobihktrust.com\n
 <td>custody(普通託管)， dedicated(專戶託管)</td>
 </tr>
 </tbody></table>
-<h3 id='8cee0e29db-11'>響應數據</h3>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>https://api.huobihktrust.com/v1/open/address/get?&amp;uid=115460188&amp;SignatureVersion=2&amp;chain=btc&amp;x-b3-traceid=3506b8c7ea7042bbbfd97092a12103cf&amp;AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&amp;Signature=wYyL3cvYnL8uH63gf4C3xw798k0wSAmqVpWX4hjnt%2Bc%3D&amp;currency=btc&amp;SignatureMethod=HmacSHA256&amp;businessType=custody&amp;Timestamp=2022-06-29T08%3A35%3A00
+</code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1CV37JenquEVC1Mu96X5aggV8g3uRmTveJ"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"businessType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custody"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='8cee0e29db-11'>響應數據</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -2975,7 +2993,41 @@ api.huobihktrust.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='8cee0e29db-12'>響應數據</h3>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>https://api.huobihktrust.com/v1/open/deposit/list?&amp;SignatureVersion=2&amp;AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&amp;Signature=GRSQMbCet%2Br%2Bdib16hyFuafeS4WwC%2BC2vJm2mtzc4KA%3D&amp;pagesize=1&amp;SignatureMethod=HmacSHA256&amp;pagenum=1&amp;Timestamp=2022-06-29T08%3A38%3A22
+</code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"pagenum"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pagesize"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"currencyDisplayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT（ERC20）"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60000.000000000000000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"blockchainConfirm"</span><span class="p">:</span><span class="w"> </span><span class="mi">99999999</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1656301933428</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"depositSafeConfirms"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1189</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"safe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"businessType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custody"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"txHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JenquEVC1Mu96X12"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">11546018</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"normal deposit"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='8cee0e29db-12'>響應數據</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -3343,7 +3395,44 @@ api.huobihktrust.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='8cee0e29db-14'>響應數據</h3>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="mi">11171</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"direct"</span><span class="p">:</span><span class="w"> </span><span class="s2">"next"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"currencyDisplayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH（ETH）"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bBcab6404e9f58E76eed6a0d09d6fbf3451a416F"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"chain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"extra"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">addrProofFile</span><span class="se">\"</span><span class="s2">:[],</span><span class="se">\"</span><span class="s2">authType</span><span class="se">\"</span><span class="s2">:30}"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eth"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1654509708456"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1654509708485"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11171</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">11546018</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"whitelisted"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"withdrawTo"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"organizationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"depositFrom"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"auditStatus"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='8cee0e29db-14'>響應數據</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -3485,7 +3574,21 @@ api.huobihktrust.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='8cee0e29db-15'>響應數據</h3>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>https://api.huobihktrust.com/v1/open/withdraw/getWithdrawFee?&amp;SignatureVersion=2&amp;amount=1&amp;chain=btc&amp;AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&amp;Signature=NW6%2FA5RvHjT8lDZri3fimLhEtBTSaAeKKxj%2FBr9fyOg%3D&amp;currency=btc&amp;SignatureMethod=HmacSHA256&amp;Timestamp=2022-06-29T08%3A49%3A39
+</code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.11111111"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='8cee0e29db-15'>響應數據</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -3806,7 +3909,55 @@ api.huobihktrust.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='8cee0e29db-17'>響應數據</h3>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>https://api.huobihktrust.com/v1/open/withdraw/allList?&amp;SignatureVersion=2&amp;AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&amp;Signature=zoc5DtPgKrBJV0adV%2Fq%2Fsi38YE5XtZQqon6Pr9ZDUpA%3D&amp;pagesize=1&amp;SignatureMethod=HmacSHA256&amp;pagenum=1&amp;Timestamp=2022-06-29T08%3A52%3A34
+</code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"pagenum"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pagesize"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rows"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"currencyDisplayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC（BTC）"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">55473740</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fast withdraw"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">11546018</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.000000000000000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000000000000000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"dwState"</span><span class="p">:</span><span class="w"> </span><span class="s2">"confirmed"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"txHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"chain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1F5XbLksc33XrzdYAxACgGDWF9jAHeA7Hq"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"toAddrTag"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1656232131197</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updateAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1656492721745</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"errorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"errorMsg"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"walletUpdateAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1656232131321</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"withdrawType"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amlResult"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">process-status</span><span class="se">\"</span><span class="s2">:null,</span><span class="se">\"</span><span class="s2">id</span><span class="se">\"</span><span class="s2">:null,</span><span class="se">\"</span><span class="s2">error</span><span class="se">\"</span><span class="s2">:null,</span><span class="se">\"</span><span class="s2">risk-score</span><span class="se">\"</span><span class="s2">:null,</span><span class="se">\"</span><span class="s2">aml-support</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">new-address</span><span class="se">\"</span><span class="s2">:null,</span><span class="se">\"</span><span class="s2">error-msg</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"\"</span><span class="s2">}"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"basicAuditState"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"gas"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"gasCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"businessType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custody"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"safeConfirms"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"walletConfirms"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='8cee0e29db-17'>響應數據</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
