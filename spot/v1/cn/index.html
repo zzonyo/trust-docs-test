@@ -1244,26 +1244,10 @@ api.huobihktrust.com\n
 <td></td>
 </tr>
 <tr>
-<td>fromId</td>
-<td>false</td>
-<td>int</td>
-<td>开始id，第一次请求时fromId传0，上一页时取第一个id,下一页时取最后一个id</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td>size</td>
 <td>false</td>
 <td>int</td>
 <td>每页显示条数</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>direction</td>
-<td>false</td>
-<td>int</td>
-<td>取值方向，1为下一页，-1为上一页</td>
 <td></td>
 <td></td>
 </tr>
@@ -1388,7 +1372,191 @@ api.huobihktrust.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='c276029c72'>賬戶相關</h1><h2 id='82fb364030-2'>簡介</h2>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"current"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"records"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4585</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">115461860</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"loginName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13123@qq.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sumBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2544198.45889661"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"remark"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1Qaz2wsx@"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bindGa"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"deep"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1652956563000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1656315932000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"hasChild"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custody"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userType"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4586</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">115461872</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"loginName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123123@qq.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sumBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"remark"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1Qaz2wsx@"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bindGa"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"deep"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1652956643000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1652956643000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"hasChild"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custody"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userType"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4587</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">115461887</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"loginName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1232131@qq.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sumBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"remark"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1Qaz2wsx@"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bindGa"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"deep"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1652956731000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1652956731000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"hasChild"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custody"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userType"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4589</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">115461903</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"loginName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123123111@qq.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sumBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"remark"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1Qaz2wsx@"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bindGa"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"deep"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1652956779000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1652956779000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"hasChild"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custody"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userType"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4590</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">115461918</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"loginName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ces121323123hi@123.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sumBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"remark"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1Qaz2wsx@"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bindGa"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"deep"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1652957738000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1652957738000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"hasChild"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custody"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userType"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4591</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">115461927</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"loginName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123123112312323@qq.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sumBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"remark"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1Qaz2wsx@"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bindGa"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"deep"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1652958235000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1652958236000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"hasChild"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custody"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userType"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5675</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">115666732</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"loginName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"92411000__1@qq.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sumBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"remark"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1Qaz2wsx@"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bindGa"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"deep"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1653962861000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1653962861000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"hasChild"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custody"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userType"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7996</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">120847415</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"loginName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"921000_1@qq.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sumBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"remark"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1Qaz2wsx@"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bindGa"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"deep"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1655953250000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1655953250000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"hasChild"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custody"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userType"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7997</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">120847427</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"loginName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"924110001_2@qq.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sumBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"remark"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1Qaz2wsx@"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bindGa"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"deep"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1655953669000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1656153283000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"hasChild"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custody"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userType"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7998</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">120847437</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"loginName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"92411000_23@qq.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sumBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"remark"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1Qaz2wsx@"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"bindGa"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"deep"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1655953763000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1655954394000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"hasChild"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custody"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userType"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"current"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pages"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='c276029c72'>賬戶相關</h1><h2 id='82fb364030-2'>簡介</h2>
 <p>賬戶相關接口提供了賬戶、余額等查詢轉等功能。</p>
 
 <aside class="notice">訪問賬戶相關的接口需要進行簽名認證。</aside>
