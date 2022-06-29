@@ -2573,13 +2573,24 @@ api.huobihktrust.com\n
 </tbody></table>
 
 <blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"toUid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1457228443811871"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2346"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
-    </span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"213123123131"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1542076280883056640"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"multi_audit"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='8cee0e29db-9'>響應數據</h3>
@@ -2724,7 +2735,30 @@ api.huobihktrust.com\n
 <td>需要唯一 ，長度小於等於64</td>
 </tr>
 </tbody></table>
-<h3 id='8cee0e29db-10'>響應數據</h3>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"fromAccountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custody"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"toUser"</span><span class="p">:</span><span class="w"> </span><span class="mi">11546800</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sourceOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1488386774794272"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.000000000000000000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"toAccountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custody"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fromUser"</span><span class="p">:</span><span class="w"> </span><span class="mi">11582367</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"btc"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"brokerage"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='8cee0e29db-10'>響應數據</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -3234,7 +3268,40 @@ api.huobihktrust.com\n
 <td>可填寫用戶的uid</td>
 </tr>
 </tbody></table>
-<h3 id='8cee0e29db-13'>響應數據</h3>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"chain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdterc20"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1CZ3AXtAcHLZJ9bnBN9df3KgkWWz8Mh4LW"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"authToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"133aec05c3844356800bce6a53ac8e28"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"extra"</span><span class="p">:</span><span class="w"> </span><span class="s2">"O115822617@Bro.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"depositFrom"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1488557514424352"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"withdrawTo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">815</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"addressId"</span><span class="p">:</span><span class="w"> </span><span class="mi">11235</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DONE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"riskActionV2Data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">815</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"orderState"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DONE"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"actionToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3738414007889960960"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"handlerDown"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='8cee0e29db-13'>響應數據</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
@@ -3724,7 +3791,34 @@ api.huobihktrust.com\n
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='8cee0e29db-16'>響應數據</h3>
+
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"sourceOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1488574459412512"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"uid"</span><span class="p">:</span><span class="w"> </span><span class="mi">115468007</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"169999.000000000000000000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"chain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdterc20"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fees"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.000000000000000000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"withdrawType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fast"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"usdt"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"brokerage"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1EgLXFgzx9K6o6uvsP6BxB7V8iEuLEiWqQ"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"toAddressLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1488560116989984"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"toAddressId"</span><span class="p">:</span><span class="w"> </span><span class="mi">11236</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"withdrawOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55476840"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='8cee0e29db-16'>響應數據</h3>
 <table><thead>
 <tr>
 <th>參數名稱</th>
