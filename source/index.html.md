@@ -910,7 +910,7 @@ data字段說明
 
 <aside class="notice">訪問資產記錄相關接口需要進行簽名認證。</aside>
 
-## 充幣記錄查詢(不推薦使用,請到【充幣相關】 -> 【充幣記錄查詢/v1/open/deposit/list】)
+## 充幣記錄查詢(不推薦使用,請使用【充幣相關】 -> 【充幣記錄查詢/v1/open/deposit/list】)
 
 API Key 權限：讀取<br>
 限頻值（NEW）：100次/2s
@@ -1002,7 +1002,7 @@ data字段說明
 | updateAt     | long   | 更新時間    |                                                            |
 
                                                          |                                                           |
-## 提幣記錄查詢 (不推薦使用,請到【提幣相關】 -> 【提幣記錄查詢/v1/open/withdraw/allList】)
+## 提幣記錄查詢 (不推薦使用,請使用【提幣相關】 -> 【提幣記錄查詢/v1/open/withdraw/allList】)
 
 API Key 權限：讀取<br>
 限頻值（NEW）：100次/2s
