@@ -536,17 +536,18 @@ API Key 權限：讀取<br>
 | outerUserId | true     | string | （外部系統用戶id）外部系統用戶唯一標識 |        |          |
 
 
+>Request:
+`https://api.huobihktrust.com/v1/open/merchant/user/getAuthInfo?&SignatureVersion=2&x-b3-traceid=a9900d8e-4bcf-4066-9abf-8e0a3acf7d21&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=N70oF0Jrsi1v4Fhs92xhxTG0sNkwHFVGNOsexRKcMOI%3D&outerUserId=testzy5&SignatureMethod=HmacSHA256&Timestamp=2022-06-29T03%3A44%3A20`
+
 > Response:
 
 ```json
 {
   "code": 200,
-  "data": [
-    {
-      "outerUserId": "213123D1231",
-      "outerUid": "12312317263123"
-    }
-  ],
+  "data": {
+    "outerUserId": "testzy5",
+    "outerUid": "1457228443811871"
+  },
   "success": true
 }
 ```
@@ -564,53 +565,7 @@ data字段說明
 | 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
 | -------- | -------- | -------------- | ------------------------------------------------------------ |
 | outerUserId  | string   | 外部系統用戶標識           |                                                            |
-| outerUid   | string   | 外部uid           |                                                            |
-
-## 用戶基礎信息查詢
-
-API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s
-
-### HTTP 請求
-
-- GET `/v1/open/user/getBaseInfo`
-
-### 請求參數
-
-| 參數名稱   | 是否必須 | 類型   | 描述                                                         | 默認值 | 取值範圍 |
-| ---------- | -------- | ------ | ------------------------------------------------------------ | ------ | -------- |
-| outerUserId | true     | string | （外部系統用戶id）外部系統用戶唯一標識 |        |          |
-
-
-> Response:
-
-```json
-{
-  "code": 200,
-  "data": [
-    {
-      "outerUserId": "213123D1231",
-      "outerUid": "12312317263123"
-    }
-  ],
-  "success": true
-}
-```
-
-### 響應數據
-
-| 參數名稱 | 是否必須 | 數據類型 | 描述     | 取值範圍                                                     |
-| -------- | -------- | -------- | -------- | ------------------------------------------------------------ |
-| code         | true    | integer     | 狀態碼  | |
-| message      | false   | string    | 錯誤描述（如有）| |
-| data         | false   | object    | 業務數據 ||
-
-data字段說明
-
-| 參數名稱 | 數據類型 | 描述           | 取值範圍                                                     |
-| -------- | -------- | -------------- | ------------------------------------------------------------ |
-| outerUserId  | string   | 外部系統用戶標識           |                                                            |
-| outerUid   | string   | 外部uid           |                                                            |
+| outerUid   | string   | 外部uid           |                                                            | |
 
 ## 新增子賬號
 
@@ -637,6 +592,27 @@ API Key 權限：交易<br>
 | code         | true    | integer | 狀態碼      | |
 | message      | false   | string  | 錯誤描述（如有） | |
 | data         | false   | long    | 用户uid    ||
+
+>Request:
+> 
+```json
+{
+  "loginName": "1234569@qq.com",
+  "password": "7fa8282ad93047a4d6fe6111c93b308a",
+  "repeatPassword": "7fa8282ad93047a4d6fe6111c93b308a",
+  "fingerprint": "7fa8282ad93047a4d6fe6111c93b308a"
+}
+```
+
+> Response:
+
+```json
+{
+  "code": 200,
+  "data": 121849591,
+  "success": true
+}
+```
 
 ## 获取子賬號列表
 
@@ -1330,6 +1306,7 @@ API Key 權限：讀取<br>
 | endTime   | false     | long   | 查詢結束時間(毫秒) 
 | updatedAtStartTime | false     | long   | 查詢起始時間(毫秒)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |     |       |
 | updatedAtEndTime   | false     | long   | 查詢結束時間(毫秒)
+| type      | false     | string   | 
 | pagenum   | false     | int    | 第幾頁                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | 1   |       |
 | pagesize  | false     | int    | 每頁記錄數                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | 10  | 0-200 |
 | state     | false     | int    | 提幣狀態代碼集合(多個用英文逗號分隔) 提幣單狀態:(1, "pre-submitted"),(2, "invalid"),(3, "submitted"),(4, "reexamine"),(5, "canceled"),(6, "pass"),(7, "reject"),(8, "pre-transfer"),(9, "wallet-transfer"),(10, "wallet-reject"),(11, "confirmed"),(12, "confirm-error"),(13, "repealed"),(14, "normal-account-frozen"),(20, "created-without-risk-action"),(21, "account-frozen"),(22, "risk-action-assign"),(23, "risk-action-success"),(24, "risk-action-fail"),(25, "risk-action-timeout"),(30, "pre-withdraw-created"),(31, "pre-withdraw-confirmed"),(32, "pre-withdraw-launch-begin"),(33, "pre-withdraw-launch-success"),(34, "pre-withdraw-launch-failed"),(35, "pre-withdraw-canceled"),(40, "settlement-withdraw-processing"),(41, "settlement-withdraw-partially-completed"),(42, "settlement-withdraw-failed"),(43, "reexamine-reject"),(44, "reexamine-dismissed") |     |       |
