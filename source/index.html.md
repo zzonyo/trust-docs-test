@@ -589,14 +589,6 @@ API Key 權限：交易<br>
 | repeatPassword | true     | string | 重复密码(32位md5) |        |          |
 | fingerprint | true     | string | 指纹(32位唯一值) |        |          |
 
-### 響應數據
-
-| 參數名稱 | 是否必須 | 數據類型    | 描述       | 取值範圍                                                     |
-| -------- | -------- |---------|----------| ------------------------------------------------------------ |
-| code         | true    | integer | 狀態碼      | |
-| message      | false   | string  | 錯誤描述（如有） | |
-| data         | false   | long    | 用户uid    ||
-
 >Request:
 
 
@@ -619,6 +611,16 @@ API Key 權限：交易<br>
 }
 ```
 
+
+### 響應數據
+
+| 參數名稱 | 是否必須 | 數據類型    | 描述       | 取值範圍                                                     |
+| -------- | -------- |---------|----------| ------------------------------------------------------------ |
+| code         | true    | integer | 狀態碼      | |
+| message      | false   | string  | 錯誤描述（如有） | |
+| data         | false   | long    | 用户uid    ||
+
+
 ## 获取子賬號列表
 
 API Key 權限：读取<br>
@@ -635,6 +637,49 @@ API Key 權限：读取<br>
 | loginName | false     | string | 用戶名，郵箱格式 |        |          | |
 | size | false     | int | 每页显示条数 |        |          |
 | current | false     | int | 页码 |        |          |
+
+>Request:
+
+```json
+{
+  "size": 1,
+  "current": 1
+}
+```
+
+> Response:
+
+```json
+{
+  "code": 200,
+  "data": {
+    "records": [
+      {
+        "id": 4585,
+        "uid": 115461860,
+        "loginName": "13123@qq.com",
+        "sumBalance": "2544198.45889661",
+        "status": 1,
+        "remark": "1Qaz2wsx@",
+        "bindGa": true,
+        "rank": 2,
+        "deep": 1,
+        "createdAt": 1652956563000,
+        "updatedAt": 1656315932000,
+        "hasChild": true,
+        "source": "custody",
+        "userType": 1
+      }
+    ],
+    "total": 18,
+    "size": 1,
+    "current": 1,
+    "pages": 18
+  },
+  "success": true
+}
+```
+
 
 ### 響應數據
 
@@ -664,192 +709,6 @@ records数据描述：
 | status    | int    | 状态      | 1：正常 2：冻结 |
 | hasChild  | object | 是否有下级账号 ||
 
->Request:
-
-
-```json
-{
-  "size": 10,
-  "current": 1
-}
-```
-
-> Response:
-
-```json
-{
-  "code": 200,
-  "data": {
-    "records": [
-      {
-        "id": 4585,
-        "uid": 115461860,
-        "loginName": "13123@qq.com",
-        "sumBalance": "2544198.45889661",
-        "status": 1,
-        "remark": "1Qaz2wsx@",
-        "bindGa": true,
-        "rank": 2,
-        "deep": 1,
-        "createdAt": 1652956563000,
-        "updatedAt": 1656315932000,
-        "hasChild": true,
-        "source": "custody",
-        "userType": 1
-      },
-      {
-        "id": 4586,
-        "uid": 115461872,
-        "loginName": "123123@qq.com",
-        "sumBalance": "0.00000000",
-        "status": 0,
-        "remark": "1Qaz2wsx@",
-        "bindGa": false,
-        "rank": 2,
-        "deep": 1,
-        "createdAt": 1652956643000,
-        "updatedAt": 1652956643000,
-        "hasChild": false,
-        "source": "custody",
-        "userType": 1
-      },
-      {
-        "id": 4587,
-        "uid": 115461887,
-        "loginName": "1232131@qq.com",
-        "sumBalance": "0.00000000",
-        "status": 0,
-        "remark": "1Qaz2wsx@",
-        "bindGa": false,
-        "rank": 2,
-        "deep": 1,
-        "createdAt": 1652956731000,
-        "updatedAt": 1652956731000,
-        "hasChild": false,
-        "source": "custody",
-        "userType": 1
-      },
-      {
-        "id": 4589,
-        "uid": 115461903,
-        "loginName": "123123111@qq.com",
-        "sumBalance": "0.00000000",
-        "status": 0,
-        "remark": "1Qaz2wsx@",
-        "bindGa": false,
-        "rank": 2,
-        "deep": 1,
-        "createdAt": 1652956779000,
-        "updatedAt": 1652956779000,
-        "hasChild": false,
-        "source": "custody",
-        "userType": 1
-      },
-      {
-        "id": 4590,
-        "uid": 115461918,
-        "loginName": "ces121323123hi@123.com",
-        "sumBalance": "0.00000000",
-        "status": 0,
-        "remark": "1Qaz2wsx@",
-        "bindGa": false,
-        "rank": 2,
-        "deep": 1,
-        "createdAt": 1652957738000,
-        "updatedAt": 1652957738000,
-        "hasChild": false,
-        "source": "custody",
-        "userType": 1
-      },
-      {
-        "id": 4591,
-        "uid": 115461927,
-        "loginName": "123123112312323@qq.com",
-        "sumBalance": "0.00000000",
-        "status": 0,
-        "remark": "1Qaz2wsx@",
-        "bindGa": false,
-        "rank": 2,
-        "deep": 1,
-        "createdAt": 1652958235000,
-        "updatedAt": 1652958236000,
-        "hasChild": false,
-        "source": "custody",
-        "userType": 1
-      },
-      {
-        "id": 5675,
-        "uid": 115666732,
-        "loginName": "92411000__1@qq.com",
-        "sumBalance": "0.00000000",
-        "status": 0,
-        "remark": "1Qaz2wsx@",
-        "bindGa": false,
-        "rank": 2,
-        "deep": 1,
-        "createdAt": 1653962861000,
-        "updatedAt": 1653962861000,
-        "hasChild": false,
-        "source": "custody",
-        "userType": 1
-      },
-      {
-        "id": 7996,
-        "uid": 120847415,
-        "loginName": "921000_1@qq.com",
-        "sumBalance": "0.00000000",
-        "status": 0,
-        "remark": "1Qaz2wsx@",
-        "bindGa": false,
-        "rank": 2,
-        "deep": 1,
-        "createdAt": 1655953250000,
-        "updatedAt": 1655953250000,
-        "hasChild": false,
-        "source": "custody",
-        "userType": 1
-      },
-      {
-        "id": 7997,
-        "uid": 120847427,
-        "loginName": "924110001_2@qq.com",
-        "sumBalance": "0.00000000",
-        "status": 1,
-        "remark": "1Qaz2wsx@",
-        "bindGa": false,
-        "rank": 2,
-        "deep": 1,
-        "createdAt": 1655953669000,
-        "updatedAt": 1656153283000,
-        "hasChild": false,
-        "source": "custody",
-        "userType": 1
-      },
-      {
-        "id": 7998,
-        "uid": 120847437,
-        "loginName": "92411000_23@qq.com",
-        "sumBalance": "0.00000000",
-        "status": 1,
-        "remark": "1Qaz2wsx@",
-        "bindGa": false,
-        "rank": 2,
-        "deep": 1,
-        "createdAt": 1655953763000,
-        "updatedAt": 1655954394000,
-        "hasChild": false,
-        "source": "custody",
-        "userType": 1
-      }
-    ],
-    "total": 18,
-    "size": 10,
-    "current": 1,
-    "pages": 2
-  },
-  "success": true
-}
-```
 
 # 賬戶相關
 
