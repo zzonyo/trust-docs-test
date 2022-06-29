@@ -537,9 +537,10 @@ API Key 權限：讀取<br>
 
 
 >Request:
-> 
-```json
-https://api.huobihktrust.com/v1/open/merchant/user/getAuthInfo?&SignatureVersion=2&x-b3-traceid=a9900d8e-4bcf-4066-9abf-8e0a3acf7d21&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=N70oF0Jrsi1v4Fhs92xhxTG0sNkwHFVGNOsexRKcMOI%3D&outerUserId=testzy5&SignatureMethod=HmacSHA256&Timestamp=2022-06-29T03%3A44%3A20`
+
+```
+https://api.huobihktrust.com/v1/open/merchant/user/getAuthInfo?&SignatureVersion=2&x-b3-traceid=a9900d8e-4bcf-4066-9abf-8e0a3acf7d21&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=N70oF0Jrsi1v4Fhs92xhxTG0sNkwHFVGNOsexRKcMOI%3D&outerUserId=testzy5&SignatureMethod=HmacSHA256&Timestamp=2022-06-29T03%3A44%3A20
+
 ```
 
 > Response:
