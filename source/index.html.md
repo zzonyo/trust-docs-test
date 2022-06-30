@@ -1263,8 +1263,8 @@ API Key 權限：寫權限<br>
 
 | 參數名稱           | 是否必須 | 類型     | 描述            | 默認值 | 取值範圍             |
 |----------------| -------- |--------|---------------| ------ |------------------|
-| fromUser       | true     | long   | 付款方用戶id(非uid) |        |                  |
-| toUser         | true     | long   | 收款方用戶id(非uid) |        |                  |
+| fromUser       | true     | long   | 付款方用戶id(非uid, uid 去掉最后一位) |        |                  |
+| toUser         | true     | long   | 收款方用戶id(非uid, uid 去掉最后一位) |        |                  |
 | fromAccountType | true     | string | 付款賬號類型        |        | custody          |
 | toAccountType  | true     | string | 收款賬號類型        |        | custody          |
 | currency       | true     | string | 幣種            |        |                  |
