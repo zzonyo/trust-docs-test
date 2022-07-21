@@ -458,7 +458,7 @@ api.huobihktrust.com\n
 
 使用過程中如有問題或者建議，您可選擇以下任一方式聯系我們：
 
-- 通過官網的「幫助中心」或者發送郵件至support@huobihktrust.com聯系客服。
+- 通過官網的「幫助中心」或者發送郵件至cs@huobitrust.com聯系客服。
 
 如您遇到API錯誤，請按照如下模板向我們反饋問題。
 
