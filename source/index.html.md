@@ -523,7 +523,7 @@ ${信託web頁面登錄url}?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&outerUs
 ## 用戶鑒權信息查詢
 
 API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s
+限頻值（NEW）：100次/s
 
 ### HTTP 請求
 
@@ -574,7 +574,7 @@ data字段說明
 ## 新增子賬號
 
 API Key 權限：交易<br>
-限頻值（NEW）：100次/2s
+限頻值（NEW）：100次/s
 
 ### HTTP 請求
 
@@ -624,7 +624,7 @@ API Key 權限：交易<br>
 ## 获取子賬號列表
 
 API Key 權限：读取<br>
-限頻值（NEW）：100次/2s
+限頻值（NEW）：100次/s
 
 ### HTTP 請求
 
@@ -721,7 +721,7 @@ records数据描述：
 ## 賬戶信息查詢(當前賬號)
 
 API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s
+限頻值（NEW）：100次/s
 
 查詢指定類型賬戶，支持以下賬戶類型：
 
@@ -819,7 +819,7 @@ price字段說明（數據來源火幣 Global）
 ## 查询信托账户资产币种明细(支持子賬號)
 
 API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s
+限頻值（NEW）：100次/s
 
 ### HTTP 請求
 
@@ -913,7 +913,7 @@ data字段說明
 ## 充幣記錄查詢(不推薦使用,請使用【充幣相關】 -> 【充幣記錄查詢/v1/open/deposit/list】)
 
 API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s
+限頻值（NEW）：100次/s
 
 ### HTTP 請求
 
@@ -1005,7 +1005,7 @@ data字段說明
 ## 提幣記錄查詢 (不推薦使用,請使用【提幣相關】 -> 【提幣記錄查詢/v1/open/withdraw/allList】)
 
 API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s
+限頻值（NEW）：100次/s
 
 ### HTTP 請求
 
@@ -1101,7 +1101,7 @@ data字段說明
 ## UID劃轉記錄分頁查詢
 
 API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s
+限頻值（NEW）：100次/s
 
 ### HTTP 請求
 
@@ -1196,7 +1196,7 @@ data字段說明
 ## UID劃轉
 
 API Key 權限：寫權限<br>
-限頻值（NEW）：100次/2s
+限頻值（NEW）：100次/s
 
 ### HTTP 請求
 
@@ -1252,7 +1252,7 @@ data字段說明
 ## 賬號間劃轉
 
 API Key 權限：寫權限<br>
-限頻值（NEW）：100次/2s
+限頻值（NEW）：100次/s
 備註：用於母子賬號互相劃轉
 
 ### HTTP 請求
@@ -1316,7 +1316,7 @@ API Key 權限：寫權限<br>
 ## 充幣地址查詢
 
 API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s
+限頻值（NEW）：100次/s
 
 ### HTTP 請求
 
@@ -1374,7 +1374,7 @@ data字段說明
 ## 充幣記錄查詢
 
 API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s
+限頻值（NEW）：100次/s
 
 ### HTTP 請求
 
@@ -1470,7 +1470,7 @@ list字段說明
 ## 添加提幣地址
 
 API Key 權限：劃轉<br>
-限頻值（NEW）：100次/2s
+限頻值（NEW）：100次/s
 
 ### HTTP 請求
 
@@ -1542,7 +1542,7 @@ data字段說明
 ## 提幣地址列表分頁查询
 
 API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s
+限頻值（NEW）：100次/s
 
 ### HTTP 請求
 
@@ -1627,7 +1627,7 @@ data字段說明
 ## 提幣費查詢
 
 API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s
+限頻值（NEW）：100次/s
 使用場景：提幣時先查詢手續費，實際提幣金額=提幣金額-手續費
 
 ### HTTP 請求
@@ -1670,7 +1670,7 @@ https://api.huobihktrust.com/v1/open/withdraw/getWithdrawFee?&SignatureVersion=2
 ## 提幣
 
 API Key 權限：提幣<br>
-限頻值（NEW）：100次/2s
+限頻值（NEW）：100次/s
 注意事項：實際提幣金額=提幣金額-手續費
 
 ### HTTP 請求
@@ -1753,7 +1753,7 @@ riskActionV2Data字段說明
 ## 提幣記錄查詢
 
 API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s
+限頻值（NEW）：100次/s
 
 ### HTTP 請求
 
