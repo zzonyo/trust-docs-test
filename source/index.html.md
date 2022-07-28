@@ -1210,6 +1210,8 @@ API Key 權限：寫權限<br>
 | phone | false     | string | 收款方手機號後四位 |        |          |
 | currency | true     | string | 幣種 |        |          |
 | amount | true     | number | 金額 |        |          |
+| clientOrderId | true     | string | 请求方唯一流水号 |        |          |
+| source | true     | string | 来源 |        |          |
 
 >Request:
 
