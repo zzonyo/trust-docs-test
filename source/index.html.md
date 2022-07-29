@@ -554,6 +554,7 @@ https://api.huobihktrust.com/v1/open/merchant/user/getAuthInfo?&SignatureVersion
   },
   "success": true
 }
+
 ```
 
 ### 響應數據
