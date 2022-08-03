@@ -901,7 +901,7 @@ api.huobihktrust.com\n
 <p>使用過程中如有問題或者建議，您可選擇以下任一方式聯系我們：</p>
 
 <ul>
-<li>通過官網的「幫助中心」或者發送郵件至support@huobihktrust.com聯系客服。</li>
+<li>通過官網的「幫助中心」或者發送郵件至cs@huobitrust.com聯系客服。</li>
 </ul>
 
 <p>如您遇到API錯誤，請按照如下模板向我們反饋問題。</p>
@@ -1013,7 +1013,7 @@ api.huobihktrust.com\n
 </tbody></table>
 <h2 id='0e6554beeb'>用戶鑒權信息查詢</h2>
 <p>API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s</p>
+限頻值（NEW）：100次/s</p>
 <h3 id='http-2'>HTTP 請求</h3>
 <ul>
 <li>GET <code>/v1/open/merchant/user/getAuthInfo</code></li>
@@ -1056,6 +1056,7 @@ api.huobihktrust.com\n
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 </span></code></pre><h3 id='8cee0e29db'>響應數據</h3>
 <table><thead>
 <tr>
@@ -1114,7 +1115,7 @@ api.huobihktrust.com\n
 </tbody></table>
 <h2 id='a5bb1a63e3'>新增子賬號</h2>
 <p>API Key 權限：交易<br>
-限頻值（NEW）：100次/2s</p>
+限頻值（NEW）：100次/s</p>
 <h3 id='http-3'>HTTP 請求</h3>
 <ul>
 <li>POST <code>/v1/open/uc/user/create</code></li>
@@ -1216,7 +1217,7 @@ api.huobihktrust.com\n
 </tbody></table>
 <h2 id='e23ea9ff59'>获取子賬號列表</h2>
 <p>API Key 權限：读取<br>
-限頻值（NEW）：100次/2s</p>
+限頻值（NEW）：100次/s</p>
 <h3 id='http-4'>HTTP 請求</h3>
 <ul>
 <li>POST <code>/v1/open/uc/user/queryChildList</code></li>
@@ -1415,7 +1416,7 @@ api.huobihktrust.com\n
 <aside class="notice">訪問賬戶相關的接口需要進行簽名認證。</aside>
 <h2 id='8f6c838c99'>賬戶信息查詢(當前賬號)</h2>
 <p>API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s</p>
+限頻值（NEW）：100次/s</p>
 
 <p>查詢指定類型賬戶，支持以下賬戶類型：</p>
 
@@ -1621,7 +1622,7 @@ api.huobihktrust.com\n
 </tbody></table>
 <h2 id='847d1a2354'>查询信托账户资产币种明细(支持子賬號)</h2>
 <p>API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s</p>
+限頻值（NEW）：100次/s</p>
 <h3 id='http-6'>HTTP 請求</h3>
 <ul>
 <li>GET <code>/v1/open/account/getByUserId</code></li>
@@ -1789,7 +1790,7 @@ api.huobihktrust.com\n
 <aside class="notice">訪問資產記錄相關接口需要進行簽名認證。</aside>
 <h2 id='gt-v1-open-deposit-list'>充幣記錄查詢(不推薦使用,請使用【充幣相關】 -&gt; 【充幣記錄查詢/v1/open/deposit/list】)</h2>
 <p>API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s</p>
+限頻值（NEW）：100次/s</p>
 <h3 id='http-7'>HTTP 請求</h3>
 <ul>
 <li>GET <code>/v2/external/deposit/finance/history</code></li>
@@ -2040,7 +2041,7 @@ api.huobihktrust.com\n
 <p>|                                                           |</p>
 <h2 id='gt-v1-open-withdraw-alllist'>提幣記錄查詢 (不推薦使用,請使用【提幣相關】 -&gt; 【提幣記錄查詢/v1/open/withdraw/allList】)</h2>
 <p>API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s</p>
+限頻值（NEW）：100次/s</p>
 <h3 id='http-8'>HTTP 請求</h3>
 <ul>
 <li>GET <code>/v2/external/withdraw/list</code></li>
@@ -2275,7 +2276,7 @@ api.huobihktrust.com\n
 <aside class="notice">訪問賬戶相關的接口需要進行簽名認證。</aside>
 <h2 id='uid'>UID劃轉記錄分頁查詢</h2>
 <p>API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s</p>
+限頻值（NEW）：100次/s</p>
 <h3 id='http-9'>HTTP 請求</h3>
 <ul>
 <li>POST <code>/v1/open/api/uid-transfer/page</code></li>
@@ -2522,7 +2523,7 @@ api.huobihktrust.com\n
 </tbody></table>
 <h2 id='uid-2'>UID劃轉</h2>
 <p>API Key 權限：寫權限<br>
-限頻值（NEW）：100次/2s</p>
+限頻值（NEW）：100次/s</p>
 <h3 id='http-10'>HTTP 請求</h3>
 <ul>
 <li>POST <code>/v1/open/api/uid-transfer</code></li>
@@ -2567,6 +2568,22 @@ api.huobihktrust.com\n
 <td>true</td>
 <td>number</td>
 <td>金額</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>true</td>
+<td>string</td>
+<td>请求方唯一流水号</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>source</td>
+<td>true</td>
+<td>string</td>
+<td>来源</td>
 <td></td>
 <td></td>
 </tr>
@@ -2645,7 +2662,7 @@ api.huobihktrust.com\n
 </tbody></table>
 <h2 id='c1beb49026'>賬號間劃轉</h2>
 <p>API Key 權限：寫權限<br>
-限頻值（NEW）：100次/2s
+限頻值（NEW）：100次/s
 備註：用於母子賬號互相劃轉</p>
 <h3 id='http-11'>HTTP 請求</h3>
 <ul>
@@ -2789,7 +2806,7 @@ api.huobihktrust.com\n
 <aside class="notice">訪問充幣相關接口需要進行簽名認證。</aside>
 <h2 id='c9efc405f9'>充幣地址查詢</h2>
 <p>API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s</p>
+限頻值（NEW）：100次/s</p>
 <h3 id='http-12'>HTTP 請求</h3>
 <ul>
 <li>GET <code>/v1/open/address/get</code></li>
@@ -2938,7 +2955,7 @@ api.huobihktrust.com\n
 </tbody></table>
 <h2 id='e0034031cc'>充幣記錄查詢</h2>
 <p>API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s</p>
+限頻值（NEW）：100次/s</p>
 <h3 id='http-13'>HTTP 請求</h3>
 <ul>
 <li>GET <code>/v1/open/deposit/list</code></li>
@@ -3195,7 +3212,7 @@ api.huobihktrust.com\n
 <aside class="notice">訪問提幣相關接口需要進行簽名認證。</aside>
 <h2 id='47e361d3ea'>添加提幣地址</h2>
 <p>API Key 權限：劃轉<br>
-限頻值（NEW）：100次/2s</p>
+限頻值（NEW）：100次/s</p>
 <h3 id='http-14'>HTTP 請求</h3>
 <ul>
 <li>POST <code>/v1/open/withdraw/address/add</code></li>
@@ -3365,7 +3382,7 @@ api.huobihktrust.com\n
 </tbody></table>
 <h2 id='b9eab9614a'>提幣地址列表分頁查询</h2>
 <p>API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s</p>
+限頻值（NEW）：100次/s</p>
 <h3 id='http-15'>HTTP 請求</h3>
 <ul>
 <li>POST <code>/v1/open/withdraw/address/list</code></li>
@@ -3599,7 +3616,7 @@ api.huobihktrust.com\n
 </tbody></table>
 <h2 id='80f4b381a0'>提幣費查詢</h2>
 <p>API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s
+限頻值（NEW）：100次/s
 使用場景：提幣時先查詢手續費，實際提幣金額=提幣金額-手續費</p>
 <h3 id='http-16'>HTTP 請求</h3>
 <ul>
@@ -3685,7 +3702,7 @@ api.huobihktrust.com\n
 </tbody></table>
 <h2 id='068e326184'>提幣</h2>
 <p>API Key 權限：提幣<br>
-限頻值（NEW）：100次/2s
+限頻值（NEW）：100次/s
 注意事項：實際提幣金額=提幣金額-手續費</p>
 <h3 id='http-17'>HTTP 請求</h3>
 <ul>
@@ -3914,7 +3931,7 @@ api.huobihktrust.com\n
 </tbody></table>
 <h2 id='4973af6e72'>提幣記錄查詢</h2>
 <p>API Key 權限：讀取<br>
-限頻值（NEW）：100次/2s</p>
+限頻值（NEW）：100次/s</p>
 <h3 id='http-18'>HTTP 請求</h3>
 <ul>
 <li>GET <code>/v1/open/withdraw/allList</code></li>
