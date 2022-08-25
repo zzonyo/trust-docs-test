@@ -1401,7 +1401,6 @@ https://api.huobihktrust.com/v1/open/deposit/list?&SignatureVersion=2&AccessKeyI
 }
 ```
 
-
 ### Response Data
 
 | Name    | Required | Type    | Description                | Value Range |
