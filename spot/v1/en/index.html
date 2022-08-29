@@ -219,7 +219,7 @@
               </li>
             </ul>
           </span>
-          <span class="nav_cell nav_tab">
+          <!-- <span class="nav_cell nav_tab">
             <a href="/docs/spot/v1/en/" id="btn_spot">现货</a>
           </span>
           <span class="nav_cell nav_tab">
@@ -230,7 +230,7 @@
           </span>
           <span class="nav_cell nav_tab">
             <a href="/docs/usdt_swap/v1/en/" id="btn_usdt_swap">USDT本位永续合约</a>
-          </span>
+          </span> -->
           <!--
           <span class="nav_cell nav_tab">
             <a href="/docs/option/v1/en/" id="btn_option">期权合约</a>
@@ -4210,11 +4210,11 @@ Rate-limit value (NEW): 100/2 seconds</p>
       }else{
         //如果是英文环境
         lang_btn.innerHTML = '中文';
-        btn_spot.innerHTML = 'Spot';
-        btn_dm.innerHTML = 'Futures';
+        //btn_spot.innerHTML = 'Spot';
+        //btn_dm.innerHTML = 'Futures';
         // btn_swap.innerHTML = 'SWAP API';
-        btn_coin_margined_swap.innerHTML = 'Coin Margined Swap';
-        btn_usdt_swap.innerHTML = 'USDT Margined Swap';
+        //btn_coin_margined_swap.innerHTML = 'Coin Margined Swap';
+        //btn_usdt_swap.innerHTML = 'USDT Margined Swap';
       //  btn_option.innerHTML = 'Option';
         lang_btn.href = url.replace('en/', 'cn/');
         btn_spot.href = btn_spot.href.replace('cn/', 'en/');
@@ -4258,6 +4258,7 @@ Rate-limit value (NEW): 100/2 seconds</p>
         btn_dm.className = '';
       //  btn_option.className = '';
       }
+      //显示语言切换按钮
       lang_btn.style.display = 'block';
       function GetUrlRelativePath(){
         let url = document.location.toString();
