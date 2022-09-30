@@ -43,7 +43,7 @@ parse_args() {
     source .env
   fi
   #
-  check_version_lang
+  #check_version_lang
   # Parse arg flags
   # If something is exposed as an environment variable, set/overwrite it
   # here. Otherwise, set/overwrite the internal variable instead.
