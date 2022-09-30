@@ -35,6 +35,8 @@ run_build() {
   fi
   echo "build_dir="$build_dir
   bundle exec middleman build --clean --build-dir $build_dir
+
+  initial_deploy
 }
 
 parse_args() {
