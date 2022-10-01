@@ -35,8 +35,6 @@ run_build() {
   fi
   echo "build_dir="$build_dir
   bundle exec middleman build --clean --build-dir $build_dir
-
-  incremental_deploy
 }
 
 parse_args() {
@@ -45,7 +43,7 @@ parse_args() {
     source .env
   fi
   #
-  #check_version_lang
+  check_version_lang
   # Parse arg flags
   # If something is exposed as an environment variable, set/overwrite it
   # here. Otherwise, set/overwrite the internal variable instead.
