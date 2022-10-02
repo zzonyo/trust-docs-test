@@ -1,11 +1,11 @@
 **---
-title: Huobi Trust API 文檔
+title: New Huo Trust API 文檔
 
 language_tabs: # must be one of https://git.io/vQNgJ
 - json
 
 toc_footers:
-- <a href='https://www.huobihktrust.com/zh-hk/user/api/'>創建 API Key </a>
+- <a href='https://trust.newhuotech.com/zh-hk/user/api/'>創建 API Key </a>
   includes:
 
 search: true
@@ -31,16 +31,16 @@ table th {
 
 # 簡介
 
-歡迎使用Huobi Trust API！
+歡迎使用New Huo Trust API！
 
-此文檔是Huobi Trust API的唯一官方文檔，Huobi Trust API提供的功能和服務會在此文檔持續更新。
+此文檔是New Huo Trust API的唯一官方文檔，New Huo Trust API提供的功能和服務會在此文檔持續更新。
 
 以下是現貨API文檔各章節主要內容
 
 第一部分是概要介紹：
 
-- **快速入門**：該章節對Huobi Trust API做了簡單且全方位的介紹，適合第一次使用Huobi Trust API的用戶。
-- **常見問題**：該章節列舉了使用Huobi Trust API時常見的、和具體API無關的通用問題。
+- **快速入門**：該章節對New Huo Trust API做了簡單且全方位的介紹，適合第一次使用New Huo Trust API的用戶。
+- **常見問題**：該章節列舉了使用New Huo Trust API時常見的、和具體API無關的通用問題。
 - **聯系我們**：該章節介紹了針對不同問題，如何聯系我們。
 
 第二部分是每個接口類的詳細介紹，每個接口類一個章節，每個章節分為如下內容：
@@ -56,7 +56,7 @@ table th {
 
 如需使用API ，請先登錄網頁端，完成API key的申請和權限配置，再據此文檔詳情進行開發和交易。
 
-您可以點擊 <a href='https://www.huobihktrust.com/zh-hk/user/api/ '>這裏 </a> 創建 API Key。
+您可以點擊 <a href='https://trust.newhuotech.com/zh-hk/user/api/ '>這裏 </a> 創建 API Key。
 
 每個用戶可創建20組Api Key，每個Api Key可對應設置讀取權限。
 
@@ -79,11 +79,11 @@ table th {
 
 ## SDK與代碼示例
 
-[Java](https://github.com/huobitrustapi/huobi_Java) | [Python3](https://github.com/huobitrustapi/huobi_Python) | [C++](https://github.com/huobitrustapi/huobi_Cpp) | [C#](https://github.com/huobitrustapi/huobi_CSharp) | [Go](https://github.com/huobitrustapi/huobi_golang)
+[Java](https://github.com/newhuo-tech/newhuo_Java) | [Python3](https://github.com/newhuo-tech/newhuo_Python) | [C++](https://github.com/newhuo-tech/newhuo_Cpp) | [C#](https://github.com/newhuo-tech/newhuo_CSharp) | [Go](https://github.com/newhuo-tech/newhuo_golang)
 
 **其它代碼示例**
 
-[https://github.com/huobitrustapi?tab=repositories](https://github.com/huobitrustapi?tab=repositories)
+[https://github.com/newhuo-tech?tab=repositories](https://github.com/newhuo-tech?tab=repositories)
 
 ## 接口類型
 
@@ -110,17 +110,17 @@ WebSocket是HTML5一種新的協議（Protocol）。它實現了客戶端與服�
 私有接口可用於交易管理和賬戶管理。每個私有請求必須使用您的API Key進行簽名驗證。
 
 ## 接入URLs
-您可以使用api.huobihktrust.com域名。
+您可以使用api.trust.newhuotech.com域名。
 
 **REST API**
 
-**`https://api.huobihktrust.com`**
+**`https://api.trust.newhuotech.com`**
 
 <aside class="notice">
-請使用中國大陸以外的 IP 訪問Huobi Trust API。
+請使用中國大陸以外的 IP 訪問New Huo Trust API。
 </aside>
 <aside class="notice">
-鑒於延遲高和穩定性差等原因，不建議通過代理的方式訪問Huobi Trust API。
+鑒於延遲高和穩定性差等原因，不建議通過代理的方式訪問New Huo Trust API。
 </aside>
 <aside class="notice">
 為保證API服務的穩定性，建議使用日本AWS雲服務器進行訪問。如使用中國大陸境內的客戶端服務器，連接的穩定性將難以保證。
@@ -135,7 +135,7 @@ API 請求在通過 internet 傳輸的過程中極有可能被篡改，為了確
 
 一個合法的請求由以下幾部分組成：
 
-- 方法請求地址：即訪問服務器地址 api.huobihktrust.com，比如 api.huobihktrust.com/v1/open/apiKeyDemo。
+- 方法請求地址：即訪問服務器地址 api.trust.newhuotech.com，比如 api.trust.newhuotech.com/v1/open/apiKeyDemo。
 - API 訪問Id（AccessKeyId）：您申請的 API Key 中的 Access Key。
 - 簽名方法（SignatureMethod）：用戶計算簽名的基於哈希的協議，此處使用 HmacSHA256。
 - 簽名版本（SignatureVersion）：簽名協議的版本，此處使用2。
@@ -151,7 +151,7 @@ API 請求在通過 internet 傳輸的過程中極有可能被篡改，為了確
 
 查詢某訂單詳情時完整的請求URL
 
-`https://api.huobihktrust.com/v1/open/apiKeyDemo?`
+`https://api.trust.newhuotech.com/v1/open/apiKeyDemo?`
 
 `AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx`
 
@@ -172,7 +172,7 @@ API 請求在通過 internet 傳輸的過程中極有可能被篡改，為了確
 
 例如：
 `
-api.huobihktrust.com\n
+api.trust.newhuotech.com\n
 `
 
 **3. 訪問方法的路徑，後面添加換行符 「\n」**
@@ -230,7 +230,7 @@ api.huobihktrust.com\n
 
 `GET\n`
 
-`api.huobihktrust.com\n`
+`api.trust.newhuotech.com\n`
 
 `v1/open/apiKeyDemo\n`
 
@@ -254,7 +254,7 @@ api.huobihktrust.com\n
 
 最終，發送到服務器的 API 請求應該為
 
-`https://api.huobihktrust.com/v1/open/apiKeyDemo?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&demo-id=1234567890&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
+`https://api.trust.newhuotech.com/v1/open/apiKeyDemo?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&demo-id=1234567890&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2017-05-11T15%3A19%3A30&Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D`
 
 
 # 接入說明
@@ -336,9 +336,9 @@ api.huobihktrust.com\n
 ###公共類
 **API訪問建議**
 
-- 不建議在中國大陸境內使用臨時域名以及代理的方式訪問Huobi Trust API，此類方式訪問API連接的穩定性很難保證。
+- 不建議在中國大陸境內使用臨時域名以及代理的方式訪問New Huo Trust API，此類方式訪問API連接的穩定性很難保證。
 - 建議使用日本AWS雲服務器進行訪問。
-- 官方域名api.huobihktrust.com。
+- 官方域名api.trust.newhuotech.com。
 
 
 **新限頻規則**
@@ -416,13 +416,13 @@ api.huobihktrust.com\n
 
 如果您使用了代理，代理可能會改變請求Host，可以嘗試去掉代理；
 
-或者，您使用的網絡連接庫可能會把端口包含在Host內，可以嘗試在簽名用到的Host中包含端口，如「api.huobihktrust.com:443"
+或者，您使用的網絡連接庫可能會把端口包含在Host內，可以嘗試在簽名用到的Host中包含端口，如「api.trust.newhuotech.com:443"
 
 8、Access Key 與 Secret Key中是否存在隱藏特殊字符，影響簽名
 
-當前官方已支持多種語言的[SDK](https://github.com/huobitrustapi)，可以參考SDK的簽名實現，或者以下三種語言的簽名樣例代碼
+當前官方已支持多種語言的[SDK](https://github.com/newhuo-tech)，可以參考SDK的簽名實現，或者以下三種語言的簽名樣例代碼
 
-<a href='https://github.com/huobitrustapi/huobi_Java/blob/master/java_signature_demo.md'>JAVA簽名樣例代碼</a> | <a href='https://github.com/huobitrustapi/huobi_Python/blob/master/example/python_signature_demo.md'>Python簽名樣例代碼</a>   | <a href='https://github.com/huobitrustapi/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++簽名樣例代碼 </a>
+<a href='https://github.com/newhuo-tech/newhuo_Java/blob/master/java_signature_demo.md'>JAVA簽名樣例代碼</a> | <a href='https://github.com/newhuo-tech/newhuo_Python/blob/master/example/python_signature_demo.md'>Python簽名樣例代碼</a>   | <a href='https://github.com/newhuo-tech/newhuo_Cpp/blob/master/examples/cpp_signature_demo.md'>C++簽名樣例代碼 </a>
 
 ### Q4：調用接口返回Incorrect Access Key 錯誤是什麼原因？
 
@@ -458,7 +458,7 @@ api.huobihktrust.com\n
 
 使用過程中如有問題或者建議，您可選擇以下任一方式聯系我們：
 
-- 通過官網的「幫助中心」或者發送郵件至cs@huobitrust.com聯系客服。
+- 通過官網的「幫助中心」或者發送郵件至cs@newhuotech.com聯系客服。
 
 如您遇到API錯誤，請按照如下模板向我們反饋問題。
 
@@ -475,13 +475,13 @@ api.huobihktrust.com\n
 
 `1. 問題簡要說明：簽名錯誤`
 `2. UID：123456`
-`3. 完整的URL請求：GET https://api.huobihktrust.com/v1/open/apiKeyDemo/forRead?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D`
+`3. 完整的URL請求：GET https://api.trust.newhuotech.com/v1/open/apiKeyDemo/forRead?&SignatureVersion=2&SignatureMethod=HmacSHA256&Timestamp=2019-11-06T03%3A25%3A39&AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D`
 `4. 完整的JSON格式的參數：無`
 `5. 完整的JSON格式的返回：{"status":"error","err-code":"api-signature-not-valid","err-msg":"Signature not valid: Incorrect Access key [Access key錯誤]","data":null}`
 `6. 問題出現頻率：每次都會出現`
 `7. 簽名前字符串`
 `GET\n`
-`api.huobihktrust.com\n`
+`api.trust.newhuotech.com\n`
 `/v1/open/apiKeyDemo/forRead\n`
 `AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&SignatureMethod=HmacSHA256&SignatureVersion=2&Timestamp=2019-11-06T03%3A26%3A13`
 
@@ -539,7 +539,7 @@ API Key 權限：讀取<br>
 >Request:
 
 ```
-https://api.huobihktrust.com/v1/open/merchant/user/getAuthInfo?&SignatureVersion=2&x-b3-traceid=a9900d8e-4bcf-4066-9abf-8e0a3acf7d21&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=N70oF0Jrsi1v4Fhs92xhxTG0sNkwHFVGNOsexRKcMOI%3D&outerUserId=testzy5&SignatureMethod=HmacSHA256&Timestamp=2022-06-29T03%3A44%3A20
+https://api.trust.newhuotech.com/v1/open/merchant/user/getAuthInfo?&SignatureVersion=2&x-b3-traceid=a9900d8e-4bcf-4066-9abf-8e0a3acf7d21&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=N70oF0Jrsi1v4Fhs92xhxTG0sNkwHFVGNOsexRKcMOI%3D&outerUserId=testzy5&SignatureMethod=HmacSHA256&Timestamp=2022-06-29T03%3A44%3A20
 
 ```
 
@@ -741,7 +741,7 @@ hbt-custody：资金賬戶，hb-spot：交易賬戶
 >Request:
 
 ```
-https://api.huobihktrust.com/v1/open/account/get?&SignatureVersion=2&x-b3-traceid=13aff565a1054ba39267d7f4ac17be96&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=5%2FfzwQQhT9hwOfqYvsK06iAjARpWlNSGycMh1CWxYis%3D&SignatureMethod=HmacSHA256&source=hbt-custody&Timestamp=2022-06-29T07%3A46%3A19
+https://api.trust.newhuotech.com/v1/open/account/get?&SignatureVersion=2&x-b3-traceid=13aff565a1054ba39267d7f4ac17be96&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=5%2FfzwQQhT9hwOfqYvsK06iAjARpWlNSGycMh1CWxYis%3D&SignatureMethod=HmacSHA256&source=hbt-custody&Timestamp=2022-06-29T07%3A46%3A19
 ```
 
 > Response:
@@ -838,7 +838,7 @@ API Key 權限：讀取<br>
 >Request:
 
 ```
-https://api.huobihktrust.com/v1/open/account/getByUserId?&uid=115460188&SignatureVersion=2&x-b3-traceid=ee9b49e213ef47468ea51add1d99b479&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=D64r4rrYUXQhPMhNX3y9WHExBVID7wPpSVYud3V0f%2B0%3D&SignatureMethod=HmacSHA256&source=hbt-custody&Timestamp=2022-06-29T07%3A50%3A51
+https://api.trust.newhuotech.com/v1/open/account/getByUserId?&uid=115460188&SignatureVersion=2&x-b3-traceid=ee9b49e213ef47468ea51add1d99b479&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=D64r4rrYUXQhPMhNX3y9WHExBVID7wPpSVYud3V0f%2B0%3D&SignatureMethod=HmacSHA256&source=hbt-custody&Timestamp=2022-06-29T07%3A50%3A51
 ```
 
 > Response:
@@ -1338,7 +1338,7 @@ API Key 權限：讀取<br>
 >Request:
 
 ```
-https://api.huobihktrust.com/v1/open/address/get?&uid=115460188&SignatureVersion=2&chain=btc&x-b3-traceid=3506b8c7ea7042bbbfd97092a12103cf&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=wYyL3cvYnL8uH63gf4C3xw798k0wSAmqVpWX4hjnt%2Bc%3D&currency=btc&SignatureMethod=HmacSHA256&businessType=custody&Timestamp=2022-06-29T08%3A35%3A00
+https://api.trust.newhuotech.com/v1/open/address/get?&uid=115460188&SignatureVersion=2&chain=btc&x-b3-traceid=3506b8c7ea7042bbbfd97092a12103cf&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=wYyL3cvYnL8uH63gf4C3xw798k0wSAmqVpWX4hjnt%2Bc%3D&currency=btc&SignatureMethod=HmacSHA256&businessType=custody&Timestamp=2022-06-29T08%3A35%3A00
 ```
 
 > Response:
@@ -1400,7 +1400,7 @@ API Key 權限：讀取<br>
 >Request:
 
 ```
-https://api.huobihktrust.com/v1/open/deposit/list?&SignatureVersion=2&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=GRSQMbCet%2Br%2Bdib16hyFuafeS4WwC%2BC2vJm2mtzc4KA%3D&pagesize=1&SignatureMethod=HmacSHA256&pagenum=1&Timestamp=2022-06-29T08%3A38%3A22
+https://api.trust.newhuotech.com/v1/open/deposit/list?&SignatureVersion=2&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=GRSQMbCet%2Br%2Bdib16hyFuafeS4WwC%2BC2vJm2mtzc4KA%3D&pagesize=1&SignatureMethod=HmacSHA256&pagenum=1&Timestamp=2022-06-29T08%3A38%3A22
 ```
 
 > Response:
@@ -1649,7 +1649,7 @@ API Key 權限：讀取<br>
 >Request:
 
 ```
-https://api.huobihktrust.com/v1/open/withdraw/getWithdrawFee?&SignatureVersion=2&amount=1&chain=btc&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=NW6%2FA5RvHjT8lDZri3fimLhEtBTSaAeKKxj%2FBr9fyOg%3D&currency=btc&SignatureMethod=HmacSHA256&Timestamp=2022-06-29T08%3A49%3A39
+https://api.trust.newhuotech.com/v1/open/withdraw/getWithdrawFee?&SignatureVersion=2&amount=1&chain=btc&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=NW6%2FA5RvHjT8lDZri3fimLhEtBTSaAeKKxj%2FBr9fyOg%3D&currency=btc&SignatureMethod=HmacSHA256&Timestamp=2022-06-29T08%3A49%3A39
 ```
 
 > Response:
@@ -1779,7 +1779,7 @@ API Key 權限：讀取<br>
 >Request:
 
 ```
-https://api.huobihktrust.com/v1/open/withdraw/allList?&SignatureVersion=2&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=zoc5DtPgKrBJV0adV%2Fq%2Fsi38YE5XtZQqon6Pr9ZDUpA%3D&pagesize=1&SignatureMethod=HmacSHA256&pagenum=1&Timestamp=2022-06-29T08%3A52%3A34
+https://api.trust.newhuotech.com/v1/open/withdraw/allList?&SignatureVersion=2&AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&Signature=zoc5DtPgKrBJV0adV%2Fq%2Fsi38YE5XtZQqon6Pr9ZDUpA%3D&pagesize=1&SignatureMethod=HmacSHA256&pagenum=1&Timestamp=2022-06-29T08%3A52%3A34
 ```
 
 > Response:
