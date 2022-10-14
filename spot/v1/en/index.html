@@ -357,7 +357,7 @@
                     <a href="#account-information-query-current-account" class="toc-h2 toc-link" data-title="Account Information Query (Current Account)">Account Information Query (Current Account)</a>
                   </li>
                   <li>
-                    <a href="#querying-asset-details-in-a-huobi-trust-account-sub-account-supported" class="toc-h2 toc-link" data-title="Querying Asset Details in a Huobi Trust Account (Sub-Account Supported)">Querying Asset Details in a Huobi Trust Account (Sub-Account Supported)</a>
+                    <a href="#querying-asset-details-in-a-new-huo-trust-account-sub-account-supported" class="toc-h2 toc-link" data-title="Querying Asset Details in a New Huo Trust Account (Sub-Account Supported)">Querying Asset Details in a New Huo Trust Account (Sub-Account Supported)</a>
                   </li>
               </ul>
           </li>
@@ -434,13 +434,13 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <p>**--- title: Huobi Trust API Document</p>
+        <p>**--- title: New Huo Trust API Document</p>
 
 <p>language_tabs: # must be one of https://git.io/vQNgJ
 - json</p>
 
 <p>toc_footers:
-- <a href='https://www.huobihktrust.com/zh-hk/user/api/'>Creating API Key </a>
+- <a href='https://trust.newhuotech.com/en-us/user/api/'>創建 API Key </a>
   includes:</p>
 <h2 id='search-true'>search: true</h2><h1 id='change-log'>Change Log</h1>
 <style>
@@ -468,17 +468,17 @@ table th {
 </tr>
 </tbody></table>
 <h1 id='introduction'>Introduction</h1>
-<p>Welcome to Huobi Trust API!</p>
+<p>Welcome to New Huo Trust API!</p>
 
-<p>This document is the only official documentation for Huobi Trust API, and the capabilities and services provided by Huobi Trust API will be continuously updated here.</p>
+<p>This document is the only official documentation for New Huo Trust API, and the capabilities and services provided by New Huo Trust API will be continuously updated here.</p>
 
 <p>The API documentation mainly includes the following parts:</p>
 
 <p>Part 1: Overview</p>
 
 <ul>
-<li><strong>Quick Start</strong>: It gives a brief and comprehensive introduction to Huobi Trust API, applicable to beginners of Huobi Trust API.</li>
-<li><strong>FAQ</strong>: It includes frequently asked questions in the course of using Huobi Trust API but irrelevant to specific APIs.</li>
+<li><strong>Quick Start</strong>: It gives a brief and comprehensive introduction to New Huo Trust API, applicable to beginners of New Huo Trust API.</li>
+<li><strong>FAQ</strong>: It includes frequently asked questions in the course of using New Huo Trust API but irrelevant to specific APIs.</li>
 <li><strong>Contact Us</strong>: It guides you to contact us for solutions to various questions.</li>
 </ul>
 
@@ -491,9 +491,9 @@ table th {
 <li><strong>FAQ</strong>: It introduces frequently asked questions about the endpoint and their answers.</li>
 </ul>
 <h1 id='quick-start'>Quick Start</h1><h2 id='preparation'>Preparation</h2>
-<p>To use API, log in to the Huobi Trust website, create an API key, complete the permission settings, and then you can get started in developing and trading based on this document.</p>
+<p>To use API, log in to the New Huo Trust website, create an API key, complete the permission settings, and then you can get started in developing and trading based on this document.</p>
 
-<p>You can click <a href='https://www.huobihktrust.com/en-us/user/api/ '>here</a> to create an API key.</p>
+<p>You can click <a href='https://trust.newhuotech.com/en-us/user/api '>here</a> to create an API key.</p>
 
 <p>Up to 20 API keys can be created for each account. Each API key can be assigned the read/write/trade permission.</p>
 
@@ -518,13 +518,13 @@ Up to 20 IP addresses (either host IP or network IP address) can be bound to an 
 <red><b>Risk reminder</b></red>: both of keys above are closely related to the account security. Please <b>do not</b> disclose them to anyone else.The disclosure of an API key may cause the loss of your asset (even if you have not assigned the withdrawal permission to the key). If your API keys are exposed to the public, please delete the keys as soon as possible.
 </aside>
 <h2 id='sdk-and-code-demonstration'>SDK and Code Demonstration</h2>
-<p><a href="https://github.com/huobitrustapi/huobi_Java">Java</a> | <a href="https://github.com/huobitrustapi/huobi_Python">Python3</a> | <a href="https://github.com/huobitrustapi/huobi_Cpp">C++</a> | <a href="https://github.com/huobitrustapi/huobi_CSharp">C#</a> | <a href="https://github.com/huobitrustapi/huobi_golang">Go</a></p>
+<p><a href="https://github.com/newhuo-tech/newhuo_Java">Java</a> | <a href="https://github.com/newhuo-tech/newhuo_Python">Python3</a> | <a href="https://github.com/newhuo-tech/newhuo_Cpp">C++</a> | <a href="https://github.com/newhuo-tech/newhuo_CSharp">C#</a> | <a href="https://github.com/newhuo-tech/newhuo_golang">Go</a></p>
 
 <p><strong>For more code instances, see</strong></p>
 
-<p><a href="https://github.com/huobitrustapi?tab=repositories">https://github.com/huobitrustapi?tab=repositories</a></p>
+<p><a href="https://github.com/newhuo-tech?tab=repositories">https://github.com/newhuo-tech?tab=repositories</a></p>
 <h2 id='api-type'>API Type</h2>
-<p>Huobi Trust provides you with two types of API. You can select any of the following to query assets based on application scenarios and your preferences.</p>
+<p>New Huo Trust provides you with two types of API. You can select any of the following to query assets based on application scenarios and your preferences.</p>
 <h3 id='rest-api'>REST API</h3>
 <p>Representational State Transfer (REST) is a popular communication mechanism based on HTTP. Each URL represents a resource.</p>
 
@@ -542,18 +542,18 @@ Up to 20 IP addresses (either host IP or network IP address) can be bound to an 
 
 <p>A private interface is used to manage trades and accounts.Your API key is required to generate the signature for each private request.</p>
 <h2 id='access-url'>Access URL</h2>
-<p>The domain name is &quot;api.huobihktrust.com&quot;.</p>
+<p>The domain name is &quot;api.trust.newhuotech.com&quot;.</p>
 
 <p><strong>REST API</strong></p>
 
-<p><strong><code>https://api.huobihktrust.com</code></strong></p>
+<p><strong><code>https://api.trust.newhuotech.com</code></strong></p>
 
 <aside class="notice">
-Please access Huobi Trust API with an IP address other than from the Chinese mainland.
+Please access New Huo Trust API with an IP address other than from the Chinese mainland.
 </aside>
 
 <aside class="notice">
-Due to high latency and poor stability, it is not recommended to access Huobi Trust API via proxy.
+Due to high latency and poor stability, it is not recommended to access New Huo Trust API via proxy.
 </aside>
 
 <aside class="notice">
@@ -565,7 +565,7 @@ Access with the Hong Kong-based AWS cloud server is recommended to ensure the st
 <p>A valid request consists of the following parts:</p>
 
 <ul>
-<li>API Path: address that accesses a server, such as api.huobihktrust.com/v1/open/apiKeyDemo</li>
+<li>API Path: address that accesses a server, such as api.trust.newhuotech.com/v1/open/apiKeyDemo</li>
 <li>API access ID (AccessKeyId): an access key of the API key you created</li>
 <li>Signature method (SignatureMethod): a Hash-based protocol used by users to generate the signature. HmacSHA256 is used.</li>
 <li>Signature version (SignatureVersion): a version for a signature protocol. Version 2 is used.</li>
@@ -583,7 +583,7 @@ Access with the Hong Kong-based AWS cloud server is recommended to ensure the st
 
 <p>A full request URL to query the order details is as follows:</p>
 
-<p><code>https://api.huobihktrust.com/v1/open/apiKeyDemo?</code></p>
+<p><code>https://api.trust.newhuotech.com/v1/open/apiKeyDemo?</code></p>
 
 <p><code>AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx</code></p>
 
@@ -601,7 +601,7 @@ Access with the Hong Kong-based AWS cloud server is recommended to ensure the st
 
 <p><strong>2. Add an access domain name in lowercase letter followed by a newline character &quot;\n&quot;.</strong></p>
 
-<p>For example: <code>api.huobihktrust.com\n</code></p>
+<p>For example: <code>api.trust.newhuotech.com\n</code></p>
 
 <p><strong>3. Access the method path followed by a new line character &quot;\n&quot;.</strong></p>
 
@@ -653,7 +653,7 @@ Timestamp must be added in the "YYYY-MM-DDThh:mm:ss" format and encoded in URL.T
 
 <p><code>GET\n</code></p>
 
-<p><code>api.huobihktrust.com\n</code></p>
+<p><code>api.trust.newhuotech.com\n</code></p>
 
 <p><code>v1/open/apiKeyDemo\n</code></p>
 
@@ -679,7 +679,7 @@ Timestamp must be added in the "YYYY-MM-DDThh:mm:ss" format and encoded in URL.T
 
 <p>Finally, the API request sent to the server should be as follows:</p>
 
-<p><code>https://api.huobihktrust.com/v1/open/apiKeyDemo?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;demo-id=1234567890&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</code></p>
+<p><code>https://api.trust.newhuotech.com/v1/open/apiKeyDemo?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;demo-id=1234567890&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</code></p>
 <h1 id='access-description'>Access Description</h1><h2 id='overview'>Overview</h2>
 <table><thead>
 <tr>
@@ -778,9 +778,9 @@ Timestamp must be added in the "YYYY-MM-DDThh:mm:ss" format and encoded in URL.T
 <p><strong>API access advice</strong></p>
 
 <ul>
-<li>It is not recommended that a temporary domain name or the proxy mode be used to access Huobi Trust API in the Chinese mainland. The API connection may be not stable in such way.</li>
+<li>It is not recommended that a temporary domain name or the proxy mode be used to access New Huo Trust API in the Chinese mainland. The API connection may be not stable in such way.</li>
 <li>The Hong kong-based AWS cloud server is recommended for access.</li>
-<li>Official domain name: api.huobihktrust.com</li>
+<li>Official domain name: api.trust.newhuotech.com</li>
 </ul>
 
 <p><strong>New rate-limit rules</strong></p>
@@ -856,15 +856,15 @@ Timestamp must be added in the "YYYY-MM-DDThh:mm:ss" format and encoded in URL.T
 
 <p>The proxy may change the request host, so you can try without proxy.</p>
 
-<p>Or, the network library may include the endpoints in the host, in which case you may try including the ports in the host used in signature, e.g. &quot;api.huobihktrust.com:443&quot;.</p>
+<p>Or, the network library may include the endpoints in the host, in which case you may try including the ports in the host used in signature, e.g. &quot;api.trust.newhuotech.com:443&quot;.</p>
 
 <ol>
 <li>The hidden text in the access key and secret key may impact the signature.</li>
 </ol>
 
-<p><a href="https://github.com/huobitrustapi">SDK</a> in multiple languages is supported. You can refer to the SDK signature or the instances of signature codes in the following languages.</p>
+<p><a href="https://github.com/newhuo-tech">SDK</a> in multiple languages is supported. You can refer to the SDK signature or the instances of signature codes in the following languages.</p>
 
-<p><a href='https://github.com/huobitrustapi/huobi_Java/blob/master/java_signature_demo.md'>JAVA signature example</a> | <a href='https://github.com/huobitrustapi/huobi_Python/blob/master/example/python_signature_demo.md'> Python signature example</a> | <a href='https://github.com/huobitrustapi/huobi_Cpp/blob/master/examples/cpp_signature_demo.md'>C++ signature example</a></p>
+<p><a href='https://github.com/newhuo-tech/newhuo_Java/blob/master/java_signature_demo.md'>JAVA signature example</a> | <a href='https://github.com/newhuo-tech/newhuo_Python/blob/master/example/python_signature_demo.md'> Python signature example</a> | <a href='https://github.com/newhuo-tech/newhuo_Cpp/blob/master/examples/cpp_signature_demo.md'>C++ signature example</a></p>
 <h3 id='q4-why-does-the-endpoint-return-the-error-message-quot-incorrect-access-key-quot'>Q4: Why does the endpoint return the error message &quot;Incorrect Access Key&quot;?</h3>
 <p>Please check the correctness of the access key in the URL request, such as:</p>
 
@@ -895,7 +895,7 @@ Timestamp must be added in the "YYYY-MM-DDThh:mm:ss" format and encoded in URL.T
 <p>If you have any other questions, you can select any of the following to contact us:</p>
 
 <ul>
-<li>Contact customer support from Help Center or send email to cs@huobitrust.com.</li>
+<li>Contact customer support from Help Center or send email to cs@newhuotech.com.</li>
 </ul>
 
 <p>If you encounter API errors, please give us feedback using the below template:</p>
@@ -912,28 +912,28 @@ Timestamp must be added in the "YYYY-MM-DDThh:mm:ss" format and encoded in URL.T
 
 <p><code>1. Problem description: signature error</code>
 <code>2. UID: 123456</code>
-<code>3. Raw URL request: GET https://api.huobihktrust.com/v1/open/apiKeyDemo/forRead?&amp;SignatureVersion=2&amp;SignatureMethod=HmacSHA256&amp;Timestamp=2019-11-06T03%3A25%3A39&amp;AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D</code>
+<code>3. Raw URL request: GET https://api.trust.newhuotech.com/v1/open/apiKeyDemo/forRead?&amp;SignatureVersion=2&amp;SignatureMethod=HmacSHA256&amp;Timestamp=2019-11-06T03%3A25%3A39&amp;AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;Signature=HhJwApXKpaLPewiYLczwfLkoTPnFPHgyF61iq0iTFF8%3D</code>
 <code>4. Raw JSON request: N/A</code>
 <code>5. Raw JSON response: {&quot;status&quot;:&quot;error&quot;,&quot;err-code&quot;:&quot;api-signature-not-valid&quot;,&quot;err-msg&quot;:&quot;Signature not valid: Incorrect Access key [Access key error]&quot;,&quot;data&quot;:null}</code>
 <code>6. Problem time and frequency: It occurs every time</code>
 <code>7. Pre-signed text:</code>
 <code>GET\n</code>
-<code>api.huobihktrust.com\n</code>
+<code>api.trust.newhuotech.com\n</code>
 <code>/v1/open/apiKeyDemo/forRead\n</code>
 <code>AccessKeyId=rfhxxxxx-950000847-boooooo3-432c0&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2019-11-06T03%3A26%3A13</code></p>
 
-<p>Note: It is safe to share your access key. The access key only proves your identity, but will not affect your account safety. Remember <strong>never</strong> share your secret key to anyone. If you expose your secret key by accident, please <a href="https://www.hbg.com/zh-cn/apikey/">delete</a> the related API key immediately to avoid potential losses.</p>
+<p>Note: It is safe to share your access key. The access key only proves your identity, but will not affect your account safety. Remember <strong>never</strong> share your secret key to anyone. If you expose your secret key by accident, please <a href="https://trust.newhuotech.com/en-us/user/api/">delete</a> the related API key immediately to avoid potential losses.</p>
 <h1 id='account-endpoints'>Account Endpoints</h1>
 <p>Account endpoints provide functions such as user binding and information query.</p>
 
 <aside class="notice">Generate the signatures to access the account endpoints.</aside>
 <h2 id='user-authentication-for-minter-only'>User Authentication（for Minter only）</h2>
-<p>Account binding is temporarily completed by Huobi Trust according to the signature information. The signing process refers to the common API key signing process (Huobi Trust generates a special API key and provides it to the Minter, which should be used separately from the API key obtained from the Huobi Trust website). Finally, the login address should be as follows:</p>
+<p>Account binding is temporarily completed by New Huo Trust according to the signature information. The signing process refers to the common API key signing process (New Huo Trust generates a special API key and provides it to the Minter, which should be used separately from the API key obtained from the New Huo Trust website). Finally, the login address should be as follows:</p>
 
-<p>${Huobi Trust website login url}?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;outerUserId=1234567890&amp;callBackUrl=${callback url}&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</p>
+<p>${New Huo Trust website login url}?AccessKeyId=e2xxxxxx-99xxxxxx-84xxxxxx-7xxxx&amp;outerUserId=1234567890&amp;callBackUrl=${callback url}&amp;SignatureMethod=HmacSHA256&amp;SignatureVersion=2&amp;Timestamp=2017-05-11T15%3A19%3A30&amp;Signature=4F65x5A2bLyMWVQj3Aqp%2BB4w%2BivaA7n5Oi2SuYtCJ9o%3D</p>
 <h3 id='http-request'>HTTP Request</h3>
 <ul>
-<li>GET <code>Huobi Trust website login url</code></li>
+<li>GET <code>New Huo Trust website login url</code></li>
 </ul>
 <h3 id='request-parameters'>Request Parameters</h3>
 <table><thead>
@@ -950,7 +950,7 @@ Timestamp must be added in the "YYYY-MM-DDThh:mm:ss" format and encoded in URL.T
 <td>AccessKeyId</td>
 <td>true</td>
 <td>string</td>
-<td>Access key for external system authentication (generated and provided by Huobi Trust)</td>
+<td>Access key for external system authentication (generated and provided by New Huo Trust)</td>
 <td></td>
 <td></td>
 </tr>
@@ -1034,7 +1034,7 @@ Rate-limit value (NEW): 100/2 seconds</p>
 <blockquote>
 <p>Request:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>https://api.huobihktrust.com/v1/open/merchant/user/getAuthInfo?&amp;SignatureVersion=2&amp;x-b3-traceid=a9900d8e-4bcf-4066-9abf-8e0a3acf7d21&amp;AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&amp;Signature=N70oF0Jrsi1v4Fhs92xhxTG0sNkwHFVGNOsexRKcMOI%3D&amp;outerUserId=testzy5&amp;SignatureMethod=HmacSHA256&amp;Timestamp=2022-06-29T03%3A44%3A20
+<pre class="highlight plaintext"><code>https://api.trust.newhuotech.com/v1/open/merchant/user/getAuthInfo?&amp;SignatureVersion=2&amp;x-b3-traceid=a9900d8e-4bcf-4066-9abf-8e0a3acf7d21&amp;AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&amp;Signature=N70oF0Jrsi1v4Fhs92xhxTG0sNkwHFVGNOsexRKcMOI%3D&amp;outerUserId=testzy5&amp;SignatureMethod=HmacSHA256&amp;Timestamp=2022-06-29T03%3A44%3A20
 
 </code></pre>
 <blockquote>
@@ -1440,7 +1440,7 @@ Rate-limit value (NEW): 100/2 seconds</p>
 <blockquote>
 <p>Request:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>https://api.huobihktrust.com/v1/open/account/get?&amp;SignatureVersion=2&amp;x-b3-traceid=13aff565a1054ba39267d7f4ac17be96&amp;AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&amp;Signature=5%2FfzwQQhT9hwOfqYvsK06iAjARpWlNSGycMh1CWxYis%3D&amp;SignatureMethod=HmacSHA256&amp;source=hbt-custody&amp;Timestamp=2022-06-29T07%3A46%3A19
+<pre class="highlight plaintext"><code>https://api.trust.newhuotech.com/v1/open/account/get?&amp;SignatureVersion=2&amp;x-b3-traceid=13aff565a1054ba39267d7f4ac17be96&amp;AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&amp;Signature=5%2FfzwQQhT9hwOfqYvsK06iAjARpWlNSGycMh1CWxYis%3D&amp;SignatureMethod=HmacSHA256&amp;source=hbt-custody&amp;Timestamp=2022-06-29T07%3A46%3A19
 </code></pre>
 <blockquote>
 <p>Response:</p>
@@ -1611,7 +1611,7 @@ Rate-limit value (NEW): 100/2 seconds</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='querying-asset-details-in-a-huobi-trust-account-sub-account-supported'>Querying Asset Details in a Huobi Trust Account (Sub-Account Supported)</h2>
+<h2 id='querying-asset-details-in-a-new-huo-trust-account-sub-account-supported'>Querying Asset Details in a New Huo Trust Account (Sub-Account Supported)</h2>
 <p>API key permission: read<br>
 Rate-limit value (NEW): 100/2 seconds</p>
 <h3 id='http-request-6'>HTTP Request</h3>
@@ -1658,7 +1658,7 @@ Rate-limit value (NEW): 100/2 seconds</p>
 <blockquote>
 <p>Request:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>https://api.huobihktrust.com/v1/open/account/getByUserId?&amp;uid=115460188&amp;SignatureVersion=2&amp;x-b3-traceid=ee9b49e213ef47468ea51add1d99b479&amp;AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&amp;Signature=D64r4rrYUXQhPMhNX3y9WHExBVID7wPpSVYud3V0f%2B0%3D&amp;SignatureMethod=HmacSHA256&amp;source=hbt-custody&amp;Timestamp=2022-06-29T07%3A50%3A51
+<pre class="highlight plaintext"><code>https://api.trust.newhuotech.com/v1/open/account/getByUserId?&amp;uid=115460188&amp;SignatureVersion=2&amp;x-b3-traceid=ee9b49e213ef47468ea51add1d99b479&amp;AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&amp;Signature=D64r4rrYUXQhPMhNX3y9WHExBVID7wPpSVYud3V0f%2B0%3D&amp;SignatureMethod=HmacSHA256&amp;source=hbt-custody&amp;Timestamp=2022-06-29T07%3A50%3A51
 </code></pre>
 <blockquote>
 <p>Response:</p>
@@ -2830,7 +2830,7 @@ Rate-limit value (NEW): 100/2 seconds</p>
 <blockquote>
 <p>Request:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>https://api.huobihktrust.com/v1/open/address/get?&amp;uid=115460188&amp;SignatureVersion=2&amp;chain=btc&amp;x-b3-traceid=3506b8c7ea7042bbbfd97092a12103cf&amp;AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&amp;Signature=wYyL3cvYnL8uH63gf4C3xw798k0wSAmqVpWX4hjnt%2Bc%3D&amp;currency=btc&amp;SignatureMethod=HmacSHA256&amp;businessType=custody&amp;Timestamp=2022-06-29T08%3A35%3A00
+<pre class="highlight plaintext"><code>https://api.trust.newhuotech.com/v1/open/address/get?&amp;uid=115460188&amp;SignatureVersion=2&amp;chain=btc&amp;x-b3-traceid=3506b8c7ea7042bbbfd97092a12103cf&amp;AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&amp;Signature=wYyL3cvYnL8uH63gf4C3xw798k0wSAmqVpWX4hjnt%2Bc%3D&amp;currency=btc&amp;SignatureMethod=HmacSHA256&amp;businessType=custody&amp;Timestamp=2022-06-29T08%3A35%3A00
 </code></pre>
 <blockquote>
 <p>Response:</p>
@@ -3018,7 +3018,7 @@ Rate-limit value (NEW): 100/2 seconds</p>
 <blockquote>
 <p>Request:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>https://api.huobihktrust.com/v1/open/deposit/list?&amp;SignatureVersion=2&amp;AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&amp;Signature=GRSQMbCet%2Br%2Bdib16hyFuafeS4WwC%2BC2vJm2mtzc4KA%3D&amp;pagesize=1&amp;SignatureMethod=HmacSHA256&amp;pagenum=1&amp;Timestamp=2022-06-29T08%3A38%3A22
+<pre class="highlight plaintext"><code>https://api.trust.newhuotech.com/v1/open/deposit/list?&amp;SignatureVersion=2&amp;AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&amp;Signature=GRSQMbCet%2Br%2Bdib16hyFuafeS4WwC%2BC2vJm2mtzc4KA%3D&amp;pagesize=1&amp;SignatureMethod=HmacSHA256&amp;pagenum=1&amp;Timestamp=2022-06-29T08%3A38%3A22
 </code></pre>
 <blockquote>
 <p>Response:</p>
@@ -3631,7 +3631,7 @@ Rate-limit (NEW): 100/2 seconds Application scenario: query the fee before withd
 <blockquote>
 <p>Request:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>https://api.huobihktrust.com/v1/open/withdraw/getWithdrawFee?&amp;SignatureVersion=2&amp;amount=1&amp;chain=btc&amp;AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&amp;Signature=NW6%2FA5RvHjT8lDZri3fimLhEtBTSaAeKKxj%2FBr9fyOg%3D&amp;currency=btc&amp;SignatureMethod=HmacSHA256&amp;Timestamp=2022-06-29T08%3A49%3A39
+<pre class="highlight plaintext"><code>https://api.trust.newhuotech.com/v1/open/withdraw/getWithdrawFee?&amp;SignatureVersion=2&amp;amount=1&amp;chain=btc&amp;AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&amp;Signature=NW6%2FA5RvHjT8lDZri3fimLhEtBTSaAeKKxj%2FBr9fyOg%3D&amp;currency=btc&amp;SignatureMethod=HmacSHA256&amp;Timestamp=2022-06-29T08%3A49%3A39
 </code></pre>
 <blockquote>
 <p>Response:</p>
@@ -3991,7 +3991,7 @@ Rate-limit value (NEW): 100/2 seconds</p>
 <blockquote>
 <p>Request:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>https://api.huobihktrust.com/v1/open/withdraw/allList?&amp;SignatureVersion=2&amp;AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&amp;Signature=zoc5DtPgKrBJV0adV%2Fq%2Fsi38YE5XtZQqon6Pr9ZDUpA%3D&amp;pagesize=1&amp;SignatureMethod=HmacSHA256&amp;pagenum=1&amp;Timestamp=2022-06-29T08%3A52%3A34
+<pre class="highlight plaintext"><code>https://api.trust.newhuotech.com/v1/open/withdraw/allList?&amp;SignatureVersion=2&amp;AccessKeyId=8f00e20e-vf25treb80-dcde4948-e5067&amp;Signature=zoc5DtPgKrBJV0adV%2Fq%2Fsi38YE5XtZQqon6Pr9ZDUpA%3D&amp;pagesize=1&amp;SignatureMethod=HmacSHA256&amp;pagenum=1&amp;Timestamp=2022-06-29T08%3A52%3A34
 </code></pre>
 <blockquote>
 <p>Response:</p>
