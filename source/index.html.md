@@ -4,7 +4,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
 - json
 
 toc_footers:
-- <a href='https://trust.newhuotech.com/en-us/user/api/'>創建 API Key </a>
+- <a href='https://trust.newhuotech.com/en-us/user/api/'> Creating API Key </a>
   includes:
 
 search: true
