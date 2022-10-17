@@ -215,8 +215,8 @@ incremental_deploy() {
   #put the previously committed contents of deploy_branch into the index
   git --work-tree "$gh_pages_directory" reset --mixed --quiet
   handle_deploy_files
-  #git --work-tree "$gh_pages_directory" add --all
-  #check_diff
+  git --work-tree "$gh_pages_directory" add --all
+  check_diff
 }
 
 commit+push() {
